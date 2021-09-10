@@ -1,0 +1,12 @@
+<LocalizationProvider dateAdapter={AdapterDateFns}>
+  <StaticTimePicker
+    ampm
+    orientation="landscape"
+    openTo="minutes"
+    value={value}
+    onChange={(newValue) => {
+      setValue(newValue);
+    }}
+    renderInput={(params) => <TextField {...params} />}
+  />
+</LocalizationProvider>

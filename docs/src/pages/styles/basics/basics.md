@@ -38,10 +38,10 @@ To install and save in your `package.json` dependencies, run:
 
 ```sh
 // with npm
-npm install @mui/styles@next
+npm install @mui/styles
 
 // with yarn
-yarn add @mui/styles@next
+yarn add @mui/styles
 ```
 
 ## Getting started

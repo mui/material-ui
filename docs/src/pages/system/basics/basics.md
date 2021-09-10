@@ -19,20 +19,22 @@ _(Resize the window to see the responsive breakpoints)_
 
 ```jsx
 // with npm
-npm install @mui/system@next @emotion/react @emotion/styled
+npm install @mui/system @emotion/react @emotion/styled
 
 // with yarn
-yarn add @mui/system@next @emotion/react @emotion/styled
+yarn add @mui/system @emotion/react @emotion/styled
 ```
 
 Or if you want to use `styled-components` as a styling engine:
 
+<!-- #default-branch-switch -->
+
 ```sh
 // with npm
-npm install @mui/system@next @mui/styled-engine-sc@next styled-components
+npm install @mui/system @mui/styled-engine-sc styled-components
 
 // with yarn
-yarn add @mui/system@next @mui/styled-engine-sc@next styled-components
+yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
 
 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.

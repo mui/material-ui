@@ -14,10 +14,8 @@ async function main() {
   await Promise.all(
     declarationFiles.map(async (declarationFilePath) => {
       const declarationFile = await fse.readFile(declarationFilePath, { encoding: 'utf8' });
-      // find occurences of e.g. `import("../../material-ui/src/...")`
-      const typeImportsRelativeToWorkspace = declarationFile.match(
-        /import\(("|')(\.\.\/)+material-ui/g,
-      );
+      // find occurences of e.g. `import("../../mui-*/src/...")`
+      const typeImportsRelativeToWorkspace = declarationFile.match(/import\(("|')(\.\.\/)+mui/g);
 
       if (typeImportsRelativeToWorkspace !== null) {
         console.error(

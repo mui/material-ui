@@ -132,7 +132,7 @@ function getMuiPackageVersion(packageName: string, commitRef?: string): string {
     process.env.SOURCE_CODE_REPO !== 'https://github.com/mui-org/material-ui'
   ) {
     // #default-branch-switch
-    return 'next';
+    return 'latest';
   }
   const shortSha = commitRef.slice(0, 8);
   return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@mui/${packageName}`;
@@ -170,6 +170,7 @@ export function getDependencies(
     '@mui/private-theming': getMuiPackageVersion('theming', muiCommitRef),
     '@mui/core': getMuiPackageVersion('core', muiCommitRef),
     '@mui/utils': getMuiPackageVersion('utils', muiCommitRef),
+    '@mui/material-next': getMuiPackageVersion('material-next', muiCommitRef),
   };
 
   // TODO: Where is this coming from and why does it need to be injected this way.

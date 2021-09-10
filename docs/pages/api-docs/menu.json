@@ -27,7 +27,7 @@
   "styles": { "classes": ["root", "paper", "list"], "globalClasses": {}, "name": "MuiMenu" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Menu/Menu.js",
+  "filename": "/packages/mui-material/src/Menu/Menu.js",
   "inheritance": { "component": "Popover", "pathname": "/api/popover/" },
   "demos": "<ul><li><a href=\"/components/app-bar/\">App Bar</a></li>\n<li><a href=\"/components/menus/\">Menus</a></li></ul>",
   "styledComponent": true,

@@ -15,7 +15,7 @@ You don't need to provide any JavaScript polyfill as it manages unsupported brow
 
 <!-- #default-branch-switch -->
 
-An extensive list can be found in our [.browserlistrc](https://github.com/mui-org/material-ui/blob/next/.browserslistrc#L12-L27) (check the `stable` entry).
+An extensive list can be found in our [.browserlistrc](https://github.com/mui-org/material-ui/blob/master/.browserslistrc#L12-L27) (check the `stable` entry).
 
 Because Googlebot uses a web rendering service (WRS) to index the page content, it's critical that Material-UI supports it.
 [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html).

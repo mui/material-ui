@@ -49,7 +49,7 @@ import FlatButton from 'material-ui/FlatButton'; // v0.x
 import Button from '@mui/material/Button'; // v1.x
 ```
 
-2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
+2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) on your project.
 3. `MuiThemeProvider` is optional for v1.x., but if you have a custom theme, you are free to use v0.x and v1.x versions of the component at the same time, like this:
 
 ```jsx
@@ -89,7 +89,7 @@ In the future, we will look into providing a simple component to solve the simpl
 
 ### Svg Icon
 
-Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
+Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) on your project.
 
 This will apply a change such as the following:
 

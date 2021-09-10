@@ -10,9 +10,11 @@ This is a reference for upgrading your site from Material-UI v4 to v5.
 While there's a lot covered here, you probably won't need to do everything.
 We'll do our best to keep things easy to follow, and as sequential as possible, so you can quickly get rocking on v5!
 
+> 💡 We are excited to share that the org & package names have been changed from `@material-ui` to `@mui` as part of the rebranding effort! For more details about it, check the [GitHub discussion](https://github.com/mui-org/material-ui/discussions/27803).
+
 ## Why you should migrate
 
-This documentation page covers the _how_ of migrating from v4 to v5.
+To get the benefits of bug fixes and a lot of improvements such as the new styling engine. This documentation page covers the _how_ of migrating from v4 to v5.
 The _why_ will be covered in an upcoming blog post on Medium.
 
 ## Migration steps
@@ -74,24 +76,24 @@ function App() {
 
 ## Update Material-UI version
 
-To use the `next` version of Material-UI.
+To use the `v5` version of Material-UI.
 
 > 💡 If you want to use Material-UI v5 with **styled-components** instead of emotion, check out [the installation guide](/getting-started/installation/#npm)
 
 ```sh
-npm install @mui/material@next @emotion/react @emotion/styled
+npm install @mui/material @emotion/react @emotion/styled
 
 // or with `yarn`
-yarn add @mui/material@next @emotion/react @emotion/styled
+yarn add @mui/material @emotion/react @emotion/styled
 ```
 
-**Optional** if your project includes `@mui/icons-material` and/or `@mui/lab`, use the `next` version of them.
+**Optional** if your project includes `@mui/icons-material` and/or `@mui/lab`, use the `v5` version of them.
 
 ```sh
-npm install @mui/icons-material@next @mui/lab@next
+npm install @mui/icons-material @mui/lab
 
 // or with `yarn`
-yarn add @mui/icons-material@next @mui/lab@next
+yarn add @mui/icons-material @mui/lab
 ```
 
 > **Note:** if you are using `@material-ui/pickers`, it has moved to `@mui/lab`. The details is in "Handling breaking changes" section.
@@ -99,13 +101,13 @@ yarn add @mui/icons-material@next @mui/lab@next
 In this migration process, you will need to install/update `@mui/styles` (JSS) for temporary transition to v5.
 
 ```sh
-npm install @mui/styles@next
+npm install @mui/styles
 
 // or with `yarn`
-yarn add @mui/styles@next
+yarn add @mui/styles
 ```
 
-> ⚠️ After this step, your application is expected to crash because the style library has changed from **JSS (v4)** to **emotion (v5)**.
+> After the migration, you should remove all `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
 
 ## Run codemods
 
@@ -116,10 +118,10 @@ We have prepared these codemods to ease your migration experience.
 This codemod contains most of the transformers that are useful for migration. (**This codemod should be applied only once per folder**)
 
 ```sh
-npx @mui/codemod@next v5.0.0/preset-safe <path>
+npx @mui/codemod v5.0.0/preset-safe <path>
 ```
 
-> If you want to run the transformers one by one, check out [preset-safe codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#-preset-safe) for more details.
+> If you want to run the transformers one by one, check out [preset-safe codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#-preset-safe) for more details.
 
 ### variant-prop
 
@@ -142,10 +144,10 @@ createMuiTheme({
 However, if you want to keep `variant="standard"` to you components, run this codemod or configure theme default props.
 
 ```sh
-npx @mui/codemod@next v5.0.0/variant-prop <path>
+npx @mui/codemod v5.0.0/variant-prop <path>
 ```
 
-For more details, checkout [variant-prop codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#variant-prop).
+For more details, checkout [variant-prop codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#variant-prop).
 
 ### link-underline-hover
 
@@ -168,10 +170,10 @@ createMuiTheme({
 However, if you want to keep `variant="hover"` to you components, run this codemod or configure theme default props.
 
 ```sh
-npx @mui/codemod@next v5.0.0/link-underline-hover <path>
+npx @mui/codemod v5.0.0/link-underline-hover <path>
 ```
 
-For more details, checkout [link-underline-hover codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#link-underline-hover).
+For more details, checkout [link-underline-hover codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#link-underline-hover).
 
 Once you have completed the codemod step, try running your application again. At this point, it should be running without error. Otherwise check out the [Troubleshooting](#troubleshooting) section. Next step, handling breaking changes in each component.
 
@@ -249,7 +251,7 @@ Here is an example:
  }
 ```
 
-> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
+> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
 
 ### Theme structure
 
@@ -2382,10 +2384,10 @@ We recommend two options.
 
 #### Codemod
 
-We provide [a codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
+We provide [a codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
 
 ```sh
-npx @mui/codemod@next v5.0.0/jss-to-styled <path>
+npx @mui/codemod v5.0.0/jss-to-styled <path>
 ```
 
 **Example transformation**:
@@ -2500,27 +2502,27 @@ In some cases, you might want to create multiple styled components in a file ins
 -    color: theme.palette.primary.main,
 -  }
 -}))
-+const Root = style('div')(({ theme }) => ({
++const Root = styled('div')(({ theme }) => ({
 +  display: 'flex',
 +  alignItems: 'center',
 +  borderRadius: 20,
 +  background: theme.palette.grey[50],
 +}))
 
-+const Label = style('span')(({ theme }) => ({
++const Label = styled('span')(({ theme }) => ({
 +  color: theme.palette.primary.main,
 +}))
 
  function Status({ label }) {
-   const classes = useStyles();
+-  const classes = useStyles();
    return (
--    <div className={classe.root}>
+-    <div className={classes.root}>
 -      {icon}
 -      <span className={classes.label}>{label}</span>
 -    </div>
-+    <Root className={classe.root}>
++    <Root>
 +      {icon}
-+      <Label className={classes.label}>{label}</Label>
++      <Label>{label}</Label>
 +    </Root>
    )
  }
@@ -2663,7 +2665,7 @@ You should replace the import, [more details about this error](https://github.co
 You can use this codemod (**recommended**) to fix all the import in your project:
 
 ```sh
-npx @mui/codemod@next v5.0.0/optimal-imports <path>
+npx @mui/codemod v5.0.0/optimal-imports <path>
 ```
 
 or fix it manually like this:

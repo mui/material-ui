@@ -1,0 +1,3 @@
+<ThemeProvider theme={customTheme}>
+  <MyThemeComponent>Styled div with theme</MyThemeComponent>
+</ThemeProvider>
