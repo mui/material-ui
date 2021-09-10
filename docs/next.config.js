@@ -174,7 +174,7 @@ module.exports = {
     REACT_STRICT_MODE: reactStrictMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     // #default-branch-switch
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/next',
+    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/master',
     SOURCE_CODE_REPO: 'https://github.com/mui-org/material-ui',
     STAGING: staging,
   },

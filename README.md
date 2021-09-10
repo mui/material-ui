@@ -26,31 +26,20 @@ Quickly build beautiful [React](https://reactjs.org/) apps. Material-UI is a sim
 
 Material-UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
 
-**[Stable channel v4](https://material-ui.com/)**
+**[Stable channel v5](https://material-ui.com/)**
 
 ```sh
 // with npm
-npm install @mui/material
+npm install @mui/material @emotion/react @emotion/styled
 
 // with yarn
-yarn add @mui/material
-```
-
-⚠️ All ongoing work has moved to v5. The development of v4 is limited to important bug fixes, security patches and easing the upgrade path to v5.
-
-**[Alpha channel v5](https://next.material-ui.com/)**
-
-```sh
-// with npm
-npm install @mui/material@next @emotion/react @emotion/styled
-
-// with yarn
-yarn add @mui/material@next @emotion/react @emotion/styled
+yarn add @mui/material @emotion/react @emotion/styled
 ```
 
 <details>
   <summary>Older versions</summary>
 
+- **[v4.x](https://v4.material-ui.com/)** ([Migration from v4 to v5](https://material-ui.com/guides/migration-v4/))
 - **[v3.x](https://v3.material-ui.com/)** ([Migration from v3 to v4](https://material-ui.com/guides/migration-v3/))
 - **[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://material-ui.com/guides/migration-v0x/))
 

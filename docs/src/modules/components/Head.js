@@ -8,7 +8,7 @@ export default function Head(props) {
   const t = useTranslate();
   const {
     // #major-version-switch
-    card = 'https://next.material-ui.com/static/branding/card.jpeg',
+    card = 'https://material-ui.com/static/branding/card.jpeg',
     children,
     description = t('strapline'),
     largeCard = true,
@@ -40,7 +40,7 @@ export default function Head(props) {
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />
       {/* #major-version-switch */}
-      <meta name="docsearch:version" content="next" />
+      <meta name="docsearch:version" content="master" />
       {children}
     </NextHead>
   );

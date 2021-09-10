@@ -87,13 +87,13 @@ function HomeSteps() {
                 {t('installDescr')}
               </Typography>
               <HighlightedCode
-                code="$ npm install @mui/material@next @emotion/react @emotion/styled"
+                code="$ npm install @mui/material @emotion/react @emotion/styled"
                 language="sh"
               />
               <Link
                 variant="subtitle1"
                 color="inherit"
-                href="https://github.com/mui-org/material-ui/tree/next/examples/cdn"
+                href="https://github.com/mui-org/material-ui/tree/master/examples/cdn"
                 gutterBottom
               >
                 {t('cdn')}

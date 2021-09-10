@@ -7,7 +7,7 @@ Download the example [or clone the repo](https://github.com/mui-org/material-ui)
 <!-- #default-branch-switch -->
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2  material-ui-next/examples/nextjs-with-styled-components-typescript
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/nextjs-with-styled-components-typescript
 cd nextjs-with-styled-components-typescript
 ```
 
@@ -22,7 +22,7 @@ or:
 
 <!-- #default-branch-switch -->
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/next/examples/nextjs-with-styled-components-typescript)
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/nextjs-with-styled-components-typescript)
 
 ## The idea behind the example
 
@@ -33,11 +33,11 @@ It includes `@mui/material` and its peer dependencies, including `styled-compone
 
 Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link).
 The example folder provides adapters for usage with Material-UI.
-More information [in the documentation](https://next.material-ui.com/guides/routing/#next-js).
+More information [in the documentation](https://material-ui.com/guides/routing/#next-js).
 
 ## What's next?
 
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://next.material-ui.com/getting-started/templates/) section.
+You can head back to the documentation, continuing browsing it from the [templates](https://material-ui.com/getting-started/templates/) section.
