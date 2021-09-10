@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { describeConformance, createClientRender, within, fireEvent } from 'test/utils';
+import { describeConformance, createClientRender, within, fireEvent, act } from 'test/utils';
 import BottomNavigationAction, {
   bottomNavigationActionClasses as classes,
 } from '@mui/material/BottomNavigationAction';
@@ -93,12 +93,10 @@ describe('<BottomNavigationAction />', () => {
     });
 
     it('should fire onClick on touch tap', () => {
-      const handleClick = spy();
+      const clickSpy = spy();
+      const handleClick = () => act(clickSpy);
 
-      // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
-      const { container } = render(
-        <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
-      );
+      const { container } = render(<BottomNavigationAction onClick={handleClick} />);
 
       fireEvent.touchStart(container.firstChild, {
         touches: [
@@ -122,18 +120,18 @@ describe('<BottomNavigationAction />', () => {
         ],
       });
 
-      clock.tick(100);
+      act(() => {
+        clock.tick(100);
+      });
 
-      expect(handleClick.callCount).to.equal(1);
+      expect(clickSpy.callCount).to.equal(1);
     });
 
     it('should not fire onClick twice on touch tap', () => {
-      const handleClick = spy();
+      const clickSpy = spy();
+      const handleClick = () => act(clickSpy);
 
-      // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
-      const { getByRole, container } = render(
-        <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
-      );
+      const { getByRole, container } = render(<BottomNavigationAction onClick={handleClick} />);
 
       fireEvent.touchStart(container.firstChild, {
         touches: [
@@ -159,18 +157,18 @@ describe('<BottomNavigationAction />', () => {
 
       getByRole('button').click();
 
-      clock.tick(100);
+      act(() => {
+        clock.tick(100);
+      });
 
-      expect(handleClick.callCount).to.equal(1);
+      expect(clickSpy.callCount).to.equal(1);
     });
 
     it('should not fire onClick if swiping', () => {
-      const handleClick = spy();
+      const clickSpy = spy();
+      const handleClick = () => act(clickSpy);
 
-      // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd)
-      const { container } = render(
-        <BottomNavigationAction onClick={handleClick} disableTouchRipple />,
-      );
+      const { container } = render(<BottomNavigationAction onClick={handleClick} />);
 
       fireEvent.touchStart(container.firstChild, {
         touches: [
@@ -194,22 +192,21 @@ describe('<BottomNavigationAction />', () => {
         ],
       });
 
-      clock.tick(10);
+      act(() => {
+        clock.tick(100);
+      });
 
-      expect(handleClick.callCount).to.equal(0);
+      expect(clickSpy.callCount).to.equal(0);
     });
 
     it('should forward onTouchStart and onTouchEnd events', () => {
-      const handleTouchStart = spy();
-      const handleTouchEnd = spy();
+      const touchStartSpy = spy();
+      const touchEndSpy = spy();
+      const handleTouchStart = () => act(touchStartSpy);
+      const handleTouchEnd = () => act(touchEndSpy);
 
-      // Need disableTouchRipple to avoid ripple missing act (async setState after touchEnd).
       const { container } = render(
-        <BottomNavigationAction
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          disableTouchRipple
-        />,
+        <BottomNavigationAction onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} />,
       );
 
       fireEvent.touchStart(container.firstChild, {
@@ -223,7 +220,7 @@ describe('<BottomNavigationAction />', () => {
         ],
       });
 
-      expect(handleTouchStart.callCount).to.be.equals(1);
+      expect(touchStartSpy.callCount).to.be.equals(1);
 
       fireEvent.touchEnd(container.firstChild, {
         changedTouches: [
@@ -236,7 +233,7 @@ describe('<BottomNavigationAction />', () => {
         ],
       });
 
-      expect(handleTouchEnd.callCount).to.be.equals(1);
+      expect(touchEndSpy.callCount).to.be.equals(1);
     });
   });
 });
