@@ -180,7 +180,7 @@ theme = createTheme(theme, {
           // apply theme's border-radius instead of component's default
           borderRadius: theme.shape.borderRadius,
         },
-      }
+      },
     },
   },
 });
