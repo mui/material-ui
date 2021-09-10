@@ -134,6 +134,58 @@ const theme = createTheme({
 });
 ```
 
+#### Theme composition: using theme options to define other options
+
+When the value for a theme option is dependent on another theme option, you should compose the theme in steps.
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0052cc',
+    },
+    secondary: {
+      main: '#edf2ff',
+    },
+  },
+});
+
+theme = createTheme(theme, {
+  palette: {
+    info: {
+      main: theme.palette.secondary.main,
+    },
+  },
+});
+```
+
+Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options (example above) or to override the design of specific components (example below).
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+let theme = createTheme({
+  shape: {
+    borderRadius: 4,
+  },
+});
+
+theme = createTheme(theme, {
+  components: {
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          // apply theme's border-radius instead of component's default
+          borderRadius: theme.shape.borderRadius,
+        },
+      },
+    },
+  },
+});
+```
+
 ### `responsiveFontSizes(theme, options) => theme`
 
 Generate responsive typography settings based on the options received.
