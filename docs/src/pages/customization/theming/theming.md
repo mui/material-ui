@@ -173,12 +173,14 @@ let theme = createTheme({
 });
 
 theme = createTheme(theme, {
-  overrides: {
+  components: {
     MuiChip: {
-      root: {
-        // apply theme's border-radius instead of component's default
-        borderRadius: theme.shape.borderRadius,
-      },
+      styleOverrides: {
+        root: {
+          // apply theme's border-radius instead of component's default
+          borderRadius: theme.shape.borderRadius,
+        },
+      }
     },
   },
 });
