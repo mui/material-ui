@@ -1,7 +1,6 @@
 // Simplified method of validator/lib/isEmail
 function isEmail(string) {
-  const re =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEFaa-zA-Z\-0-9]+\.)+[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEFaa-zA-Z]{2,}))$/;
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEFaa-zA-Z\-0-9]+\.)+[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEFaa-zA-Z]{2,}))$/;
   return re.test(string);
 }
 
