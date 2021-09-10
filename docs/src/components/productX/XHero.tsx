@@ -149,23 +149,23 @@ export default function XHero() {
                   fontSize: '0.875rem',
                 },
                 '& .MuiTypography-caption': {
-                  width: { md: 28, xl: 32 },
+                  width: { xs: 28, xl: 32 },
                   height: 32,
                 },
                 '& .PrivatePickersSlideTransition-root': {
-                  minWidth: { md: 268, xl: 300 },
-                  minHeight: 238,
+                  minWidth: { xs: 268, xl: 300 },
+                  minHeight: { xs: 238, xl: 288 },
                 },
                 '& [role="row"]': {
-                  margin: { md: '4px 0', xl: '6px 0' },
+                  margin: { xs: '4px 0', xl: '6px 0' },
                 },
                 '& .MuiDateRangePickerDay-root': {
                   lineHeight: 0,
                   margin: 0,
                 },
                 '& .MuiPickersDay-root': {
-                  width: { md: 28, xl: 32 },
-                  height: { md: 28, xl: 32 },
+                  width: { xs: 28, xl: 32 },
+                  height: { xs: 28, xl: 32 },
                   fontWeight: 400,
                 },
               }}

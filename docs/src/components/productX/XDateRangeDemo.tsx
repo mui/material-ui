@@ -37,23 +37,23 @@ export default function XDateRangeDemo() {
               fontSize: '0.875rem',
             },
             '& .MuiTypography-caption': {
-              width: { md: 28, xl: 32 },
+              width: 28,
               height: 32,
             },
             '& .PrivatePickersSlideTransition-root': {
-              minWidth: { md: 258, xl: 300 },
+              minWidth: 258,
               minHeight: 238,
             },
             '& [role="row"]': {
-              margin: { md: '4px 0', xl: '6px 0' },
+              margin: '4px 0',
             },
             '& .MuiDateRangePickerDay-root': {
               lineHeight: 0,
               margin: 0,
             },
             '& .MuiPickersDay-root': {
-              width: { md: 28, xl: 32 },
-              height: { md: 28, xl: 32 },
+              width: 28,
+              height: 28,
               fontWeight: 400,
             },
           }}
