@@ -130,7 +130,7 @@ export default function XDataGrid() {
                   been seen before
                 </Typography>
               }
-              description="The MUI Data Grid is a data table powerhouse. It is packed with exclusive features that will enrich the experience of dealing and maintaining lots of data."
+              description="The MUI Data Grid is a data table powerhouse. It is packed with exclusive features that will enrich the experience of dealing with and maintaining lots of data."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>
