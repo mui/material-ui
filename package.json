@@ -59,7 +59,6 @@
     "test:regressions:server": "serve test/regressions",
     "test:umd": "node packages/mui-material/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}'",
-    "test:watch": "yarn test:unit --watch",
     "test:argos": "node ./scripts/pushArgos.js",
     "typescript": "lerna run --no-bail --parallel typescript",
     "typescript:ci": "lerna run --concurrency 7 --no-bail --no-sort typescript"

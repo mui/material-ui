@@ -5,7 +5,7 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 ## Getting started
 
 1. Add a unit test to `packages/*/src/TheUnitInQuestion/TheUnitInQuestion.test.js` or an integration test `packages/*/test/`.
-2. Run `yarn test:watch`.
+2. Run `yarn t TheUnitInQuestion`.
 3. Implement the tested behavior
 4. Open a PR once the test passes or you want somebody to review your work
 
@@ -116,11 +116,11 @@ trade-off, mainly completeness vs. speed.
 
 To run all of the unit and integration tests run `yarn test:unit`
 
-If you want to `grep` for certain tests add `-g STRING_TO_GREP`.
+If you want to `grep` for certain tests add `-g STRING_TO_GREP` though for development we recommend `yarn t <testFilePattern>`.
 
 #### Watch the core mocha unit/integration test suite.
 
-`yarn test:watch`
+`yarn t <testFilePattern>`
 
 First, we have the **unit test** suite.
 It uses [mocha](https://mochajs.org) and a thin wrapper around `@testing-library/react`.
