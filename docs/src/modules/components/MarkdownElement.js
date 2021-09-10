@@ -140,7 +140,9 @@ const Root = styled('div')(({ theme }) => ({
     },
   },
   '& h2 code': {
+    fontSize: theme.typography.pxToRem(27),
     fontWeight: 'bold',
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : blueDark[700],
   },
   '& table': {
     // Trade display table for scroll overflow
