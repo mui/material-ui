@@ -163,7 +163,7 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-terser": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.2",
     "serve": "^12.0.0",
     "sinon": "^11.1.2",
     "source-map-support": "^0.5.19",
