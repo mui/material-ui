@@ -14058,7 +14058,7 @@ reduce@^1.0.1:
   dependencies:
     object-keys "^1.1.0"
 
-redux@^4.0.0, redux@^4.0.4:
+redux@^4.0.0, redux@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.1.1.tgz#76f1c439bb42043f985fbd9bf21990e60bd67f47"
   integrity sha512-hZQZdDEM25UY2P493kPYuKqviVwZ58lEmGQNeQ+gXa+U0gYPUBf7NKYazbe3m+bs/DzM/ahN12DbF+NG8i0CWw==
