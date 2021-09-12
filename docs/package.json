@@ -109,7 +109,7 @@
     "react-window": "^1.8.5",
     "recast": "^0.20.2",
     "recharts": "^2.1.0",
-    "rimraf": "^3.0.0",
+    "rimraf": "^3.0.2",
     "styled-components": "^5.0.0",
     "stylis": "^4.0.3",
     "stylis-plugin-rtl": "^2.1.0",
