@@ -65,13 +65,13 @@
     "@mui/types": "7.0.0-rc.1",
     "@mui/utils": "5.0.0-rc.1",
     "@popperjs/core": "^2.4.4",
-    "@types/react-transition-group": "^4.2.0",
+    "@types/react-transition-group": "^4.4.2",
     "clsx": "^1.1.1",
     "csstype": "^3.0.8",
     "hoist-non-react-statics": "^3.3.2",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2",
-    "react-transition-group": "^4.4.0"
+    "react-transition-group": "^4.4.2"
   },
   "sideEffects": false,
   "publishConfig": {
