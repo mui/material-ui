@@ -14721,10 +14721,10 @@ serve-static@1.14.1:
     parseurl "~1.3.3"
     send "0.17.1"
 
-serve@^12.0.0:
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/serve/-/serve-12.0.0.tgz#122962f712b57660059de9d109c82599280e4949"
-  integrity sha512-BkTsETQYynAZ7rXX414kg4X6EvuZQS3UVs1NY0VQYdRHSTYWPYcH38nnDh48D0x6ONuislgjag8uKlU2gTBImA==
+serve@^12.0.1:
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/serve/-/serve-12.0.1.tgz#5b0e05849f5ed9b8aab0f30a298c3664bba052bb"
+  integrity sha512-CQ4ikLpxg/wmNM7yivulpS6fhjRiFG6OjmP8ty3/c1SBnSk23fpKmLAV4HboTA2KrZhkUPlDfjDhnRmAjQ5Phw==
   dependencies:
     "@zeit/schemas" "2.6.0"
     ajv "6.12.6"
