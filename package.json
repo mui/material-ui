@@ -166,7 +166,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "serve": "^12.0.1",
     "sinon": "^11.1.2",
-    "source-map-support": "^0.5.19",
+    "source-map-support": "^0.5.20",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
