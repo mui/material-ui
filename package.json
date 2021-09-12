@@ -159,7 +159,7 @@
     "remark": "^13.0.0",
     "rimraf": "^3.0.0",
     "rollup": "^2.56.2",
-    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^5.2.0",
