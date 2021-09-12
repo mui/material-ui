@@ -74,7 +74,7 @@
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2",
-    "react-transition-group": "^4.4.1",
+    "react-transition-group": "^4.4.2",
     "rifm": "^0.12.0"
   },
   "devDependencies": {
