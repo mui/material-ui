@@ -39,6 +39,44 @@ const AspectRatioImage = styled('div', {
   margin: 'auto',
 }));
 
+const PrefetchImages = () => {
+  function makeImg(component: 'sparkline' | 'chart', mode: string, num: number) {
+    return {
+      loading: 'lazy' as const,
+      width: 100,
+      height: 100,
+      src: `/static/branding/mui-x/${component}-${mode}${num}.png`,
+    };
+  }
+  return (
+    <Box
+      sx={{
+        width: 0,
+        height: 0,
+        position: 'fixed',
+        zIndex: -1,
+        top: -1000,
+        '& > img': {
+          position: 'absolute',
+        },
+      }}
+    >
+      {[...Array(2)].map((_, index) => (
+        <React.Fragment key={index}>
+          <img alt="" {...makeImg('sparkline', 'light', index + 1)} />
+          <img alt="" {...makeImg('sparkline', 'dark', index + 1)} />
+        </React.Fragment>
+      ))}
+      {[...Array(4)].map((_, index) => (
+        <React.Fragment key={index}>
+          <img alt="" {...makeImg('chart', 'light', index + 1)} />
+          <img alt="" {...makeImg('chart', 'dark', index + 1)} />
+        </React.Fragment>
+      ))}
+    </Box>
+  );
+};
+
 export default function XComponents() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
@@ -72,7 +110,8 @@ export default function XComponents() {
             <More href={ROUTES.roadmap} />
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} sx={{ position: 'relative' }}>
+          <PrefetchImages />
           {demo === DEMOS[0] && (
             <Fade in timeout={500}>
               <Box sx={{ height: '100%' }}>
