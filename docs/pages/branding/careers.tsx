@@ -286,7 +286,7 @@ function CareersContent() {
         </Container>
       </Box>
       {/* Perks & benefits */}
-      <Box>
+      <div>
         <Container sx={{ py: { xs: 4, md: 8 } }}>
           <Grid container alignItems="center" spacing={{ xs: 2, sm: 4 }}>
             <Grid item xs={12} md={6}>
@@ -367,7 +367,7 @@ function CareersContent() {
             </Grid>
           </Grid>
         </Container>
-      </Box>
+      </div>
       {/* Open roles */}
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Box

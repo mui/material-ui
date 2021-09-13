@@ -121,7 +121,7 @@ export default function GoldSponsors() {
             >
               <AddRounded />
             </IconButton>
-            <Box>
+            <div>
               <Typography variant="body2" color="text.primary" fontWeight="bold">
                 Become our sponsor!
               </Typography>
@@ -132,7 +132,7 @@ export default function GoldSponsors() {
                 </Link>{' '}
                 you want to contribute.
               </Typography>
-            </Box>
+            </div>
           </Paper>
         </Grid>
       </Grid>

@@ -37,7 +37,7 @@ function ProductItem({
       }}
     >
       <Box sx={{ mr: 2, mb: { xs: 1, md: 0 } }}>{icon}</Box>
-      <Box>
+      <div>
         <Typography color="text.primary" variant="body2" fontWeight="bold">
           {name}
         </Typography>
@@ -64,7 +64,7 @@ function ProductItem({
           <span>Learn more</span>{' '}
           <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
         </Link>
-      </Box>
+      </div>
     </Box>
   );
 }

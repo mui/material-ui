@@ -434,7 +434,7 @@ export default function MaterialDesignComponents() {
     setTheme(createTheme(customized ? buildTheme(globalTheme) : { palette: { mode } }));
   }, [mode, customized, globalTheme]);
   return (
-    <Box>
+    <div>
       <Box
         sx={{
           mt: { xs: 2, md: 4 },
@@ -584,6 +584,6 @@ export default function MaterialDesignComponents() {
           </Button>
         </Box>
       </Grid>
-    </Box>
+    </div>
   );
 }

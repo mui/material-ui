@@ -84,7 +84,7 @@ export default function DiamondSponsors() {
             >
               <AddRounded />
             </IconButton>
-            <Box>
+            <div>
               <Typography variant="body2" color="text.primary" fontWeight="bold">
                 Become our sponsor!
               </Typography>
@@ -95,7 +95,7 @@ export default function DiamondSponsors() {
                 </Link>{' '}
                 for pre-approval.
               </Typography>
-            </Box>
+            </div>
           </Paper>
         </Grid>
       </Grid>

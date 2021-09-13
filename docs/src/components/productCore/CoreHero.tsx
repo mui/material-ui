@@ -254,7 +254,7 @@ export default function Hero() {
             }}
           >
             <Stack spacing={4}>
-              <Box>
+              <div>
                 <Accordion
                   elevation={0}
                   variant="outlined"
@@ -300,7 +300,7 @@ export default function Hero() {
                     <Typography variant="body2">Secret Files</Typography>
                   </AccordionSummary>
                 </Accordion>
-              </Box>
+              </div>
               {/* <DatePickerDemo /> */}
               <Alert variant="filled" color="info" icon={<CheckCircleRounded fontSize="small" />}>
                 Check out this library!
