@@ -259,7 +259,6 @@ export default function AppTableOfContents(props) {
             }
             {' and more roles.'}
           */}
-      {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
       {/**
             <span className={classes.hiringLearn}>Learn more &rarr;</span>
           </Link>
