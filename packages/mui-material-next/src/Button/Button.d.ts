@@ -7,9 +7,8 @@ import {
   OverrideProps,
 } from '@mui/types';
 import { SxProps } from '@mui/system';
-/* eslint-disable-next-line no-restricted-imports */
-import { TouchRippleProps } from '@mui/material/ButtonBase/TouchRipple';
 import { Theme } from '@mui/material';
+import { TouchRippleProps } from './TouchRipple';
 import { ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}

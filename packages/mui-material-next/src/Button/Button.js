@@ -9,10 +9,10 @@ import {
 } from '@mui/utils';
 import { useButton } from '@mui/core/ButtonUnstyled';
 import composeClasses from '@mui/core/composeClasses';
-import { styled, useThemeProps, alpha } from '@mui/system';
-import { rootShouldForwardProp } from '@mui/material/styles/styled';
-import TouchRipple from '@mui/material/ButtonBase/TouchRipple';
+import { useThemeProps, alpha } from '@mui/system';
+import styled, { rootShouldForwardProp } from '@mui/material/styles/styled';
 import useTouchRipple from '@mui/material/useTouchRipple';
+import TouchRipple from './TouchRipple';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
 const useUtilityClasses = (styleProps) => {
