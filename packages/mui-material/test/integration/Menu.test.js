@@ -8,7 +8,7 @@ import Menu from '@mui/material/Menu';
 import { act, createClientRender, fireEvent, screen } from 'test/utils';
 
 const options = [
-  'Show some love to Material-UI',
+  'Show some love to MUI',
   'Show all notification content',
   'Hide sensitive notification content',
 ];

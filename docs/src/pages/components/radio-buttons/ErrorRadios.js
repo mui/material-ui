@@ -41,7 +41,7 @@ export default function ErrorRadios() {
         error={error}
         variant="standard"
       >
-        <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel>
+        <FormLabel component="legend">Pop quiz: MUI is...</FormLabel>
         <RadioGroup
           aria-label="quiz"
           name="quiz"

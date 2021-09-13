@@ -1,4 +1,4 @@
-# Material-UI Versions
+# MUI Versions
 
 <p class="description">You can come back to this page and switch the version of the docs you're reading at any time.</p>
 
@@ -11,18 +11,18 @@ The most recent stable version (✓) is recommended for use in production.
 ## Latest versions
 
 Here you can find the latest unreleased documentation and code.
-You can use it to see what changes are coming and provide better feedback to Material-UI contributors.
+You can use it to see what changes are coming and provide better feedback to MUI contributors.
 
 {{"demo": "pages/versions/LatestVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## Versioning strategy
 
-Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
+Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around MUI to thrive.
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/).
-Material-UI version numbers have three parts: `major.minor.patch`.
+MUI follows [Semantic Versioning 2.0.0](https://semver.org/).
+MUI version numbers have three parts: `major.minor.patch`.
 The version number is incremented based on the level of change included in the release.
 
 - **Major releases** contain significant new features, some but minimal developer assistance is expected during the update. When updating to a new major release, you may need to run update scripts, refactor code, run additional tests, and learn new APIs.
@@ -33,7 +33,7 @@ The version number is incremented based on the level of change included in the r
 
 ## Release frequency
 
-A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of Material-UI.
+A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of MUI.
 
 In general, you can expect the following release cycle:
 
@@ -53,7 +53,7 @@ In general, you can expect the following release cycle:
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
-> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction, for informational purposes only. We may decide to add or remove new items at any time, depending on our capability to deliver while meeting our quality standards. The development, releases, and timing of any features or functionality remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
+> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction, for informational purposes only. We may decide to add or remove new items at any time, depending on our capability to deliver while meeting our quality standards. The development, releases, and timing of any features or functionality remains at the sole discretion of MUI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
 
 ## Support policy
 

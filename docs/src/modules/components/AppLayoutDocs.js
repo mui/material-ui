@@ -87,7 +87,7 @@ function AppLayoutDocs(props) {
   return (
     <AppFrame>
       <AdManager>
-        <Head title={`${title} - Material-UI`} description={description} />
+        <Head title={`${title} - MUI`} description={description} />
         {disableAd ? null : (
           <AdGuest>
             <Ad />

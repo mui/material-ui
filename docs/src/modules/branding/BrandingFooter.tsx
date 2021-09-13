@@ -55,12 +55,12 @@ export default function BrandingFooter() {
                 <ul>
                   <li>
                     <Link color="inherit" underline="hover" variant="body2" href="/">
-                      Material-UI
+                      MUI
                     </Link>
                   </li>
                   <li>
                     <Link color="inherit" underline="hover" variant="body2" href="/branding/x/">
-                      Material-UI X
+                      MUI X
                     </Link>
                   </li>
                   <li>
@@ -330,7 +330,7 @@ export default function BrandingFooter() {
           </Interpolate>
           {' Copyright © '}
           {new Date().getFullYear()}
-          {' Material-UI. '}
+          {' MUI. '}
         </Typography>
       </Container>
     </FooterRoot>

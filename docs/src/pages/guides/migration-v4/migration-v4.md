@@ -6,7 +6,7 @@ If you're looking for the v4 docs, you can [find them here](https://material-ui.
 
 ## Introduction
 
-This is a reference for upgrading your site from Material-UI v4 to v5.
+This is a reference for upgrading your site from MUI v4 to v5.
 While there's a lot covered here, you probably won't need to do everything.
 We'll do our best to keep things easy to follow, and as sequential as possible, so you can quickly get rocking on v5!
 
@@ -21,7 +21,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 
 - [Update React & TypeScript](#update-react-amp-typescript-version)
 - [ThemeProvider setup](#themeprovider-setup)
-- [Update Material-UI](#update-material-ui-version)
+- [Update MUI](#update-material-ui-version)
 - [Run codemods](#run-codemods)
   - [🪄 preset-safe](#preset-safe)
   - [variant-prop (optional)](#variant-prop)
@@ -40,7 +40,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 - The minimum supported version of **TypeScript** was increased from v3.2 to v3.5.
 
   > We try to align with types released from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
-  > We will not change the minimum supported version in a major version of Material-UI.
+  > We will not change the minimum supported version in a major version of MUI.
   > However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier)
 
 **Note:** if your project includes these packages, please upgrade them to the `latest` version.
@@ -74,11 +74,11 @@ function App() {
 
 > 📝 Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
 
-## Update Material-UI version
+## Update MUI version
 
-To use the `v5` version of Material-UI.
+To use the `v5` version of MUI.
 
-> 💡 If you want to use Material-UI v5 with **styled-components** instead of emotion, check out [the installation guide](/getting-started/installation/#npm)
+> 💡 If you want to use MUI v5 with **styled-components** instead of emotion, check out [the installation guide](/getting-started/installation/#npm)
 
 ```sh
 npm install @mui/material @emotion/react @emotion/styled
@@ -220,13 +220,13 @@ export default function GlobalCssPriority() {
   return (
     {/* Inject emotion before JSS */}
     <StyledEngineProvider injectFirst>
-      {/* Your component tree. Now you can override Material-UI's styles. */}
+      {/* Your component tree. Now you can override MUI's styles. */}
     </StyledEngineProvider>
   );
 }
 ```
 
-> **Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by Material-UI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`.
+> **Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by MUI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`.
 >
 > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
@@ -245,7 +245,7 @@ Here is an example:
  export default function PlainCssPriority() {
    return (
      <CacheProvider value={cache}>
-       {/* Your component tree. Now you can override Material-UI's styles. */}
+       {/* Your component tree. Now you can override MUI's styles. */}
      </CacheProvider>
    );
  }
@@ -359,7 +359,7 @@ The following changes are supported by the adapter:
    }
   ```
 
-- The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
+- The `theme.palette.text.hint` key was unused in MUI components, and has been removed.
   If you depend on it, you can add it back:
 
   ```diff
@@ -445,7 +445,7 @@ The following changes are supported by the adapter:
 
 #### ThemeProvider
 
-If you are using the utilities from `@mui/styles` together with the `@mui/material`, you should replace the use of `ThemeProvider` from `@mui/styles` with the one exported from `@mui/material/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@mui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+If you are using the utilities from `@mui/styles` together with the `@mui/material`, you should replace the use of `ThemeProvider` from `@mui/styles` with the one exported from `@mui/material/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@mui/styles`, like `makeStyles`, `withStyles` etc. and the MUI components.
 
 ```diff
 -import { ThemeProvider } from '@mui/styles';
@@ -955,7 +955,7 @@ As the core components use emotion as their style engine, the props used by emot
 
   (Note that the system grid function wasn't documented in v4.)
 
-- The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material-UI component.
+- The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a MUI component.
 
   ```diff
   -<Box sx={{ border: '1px dashed grey' }} clone>
@@ -964,7 +964,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
   ```
 
-- The ability to pass a render prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material-UI component.
+- The ability to pass a render prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a MUI component.
 
   ```diff
   -<Box sx={{ border: '1px dashed grey' }}>
@@ -973,7 +973,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
   ```
 
-  For non-Material-UI components, use the `component` prop.
+  For non-MUI components, use the `component` prop.
 
   ```diff
   -<Box sx={{ border: '1px dashed grey' }}>
@@ -2528,7 +2528,7 @@ In some cases, you might want to create multiple styled components in a file ins
  }
 ```
 
-> **Note:** [https://siriwatk.dev/tool/jss-to-styled](https://siriwatk.dev/tool/jss-to-styled) is a tool that helps converting JSS to multiple styled components without increasing CSS specificity. (This tool is **not maintained** by Material-UI)
+> **Note:** [https://siriwatk.dev/tool/jss-to-styled](https://siriwatk.dev/tool/jss-to-styled) is a tool that helps converting JSS to multiple styled components without increasing CSS specificity. (This tool is **not maintained** by MUI)
 
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
@@ -2536,7 +2536,7 @@ The API is similar to JSS `makeStyles` but work with emotion.
 
   <!-- Add material-ui component migration example -->
 
-> **Note:** this library is **not maintained** by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repository](https://github.com/garronej/tss-react/issues/new).
+> **Note:** this library is **not maintained** by MUI. If you have any issue regarding to it, please open an issue in [tss-react repository](https://github.com/garronej/tss-react/issues/new).
 
 💡 Once you migrate all of the styling, remove unnecessary `@mui/styles` by
 

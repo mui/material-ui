@@ -1,7 +1,7 @@
 {
   "name": "@framer/material-ui.material-ui",
-  "author": "Material-UI Team",
-  "description": "Material-UI Framer components",
+  "author": "MUI Team",
+  "description": "MUI Framer components",
   "version": "1.1.0",
   "license": "MIT",
   "homepage": "http://material-ui.com/",
@@ -31,7 +31,7 @@
     }
   },
   "framer": {
-    "displayName": "Material-UI",
+    "displayName": "MUI",
     "id": "ee255265-d0d6-4999-a685-9461c1248b6a"
   }
 }

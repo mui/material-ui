@@ -42,23 +42,21 @@ export default function StylesProvider(props) {
 
   if (process.env.NODE_ENV !== 'production') {
     if (typeof window === 'undefined' && !context.sheetsManager) {
-      console.error(
-        'Material-UI: You need to use the ServerStyleSheets API when rendering on the server.',
-      );
+      console.error('MUI: You need to use the ServerStyleSheets API when rendering on the server.');
     }
   }
 
   if (process.env.NODE_ENV !== 'production') {
     if (context.jss.options.insertionPoint && injectFirst) {
       console.error(
-        'Material-UI: You cannot use a custom insertionPoint and <StylesContext injectFirst> at the same time.',
+        'MUI: You cannot use a custom insertionPoint and <StylesContext injectFirst> at the same time.',
       );
     }
   }
 
   if (process.env.NODE_ENV !== 'production') {
     if (injectFirst && localOptions.jss) {
-      console.error('Material-UI: You cannot use the jss and injectFirst props at the same time.');
+      console.error('MUI: You cannot use the jss and injectFirst props at the same time.');
     }
   }
 
@@ -95,7 +93,7 @@ StylesProvider.propTypes = {
   /**
    * By default, the styles are injected last in the <head> element of the page.
    * As a result, they gain more specificity than any other style sheet.
-   * If you want to override Material-UI's styles, set this prop.
+   * If you want to override MUI's styles, set this prop.
    */
   injectFirst: PropTypes.bool,
   /**

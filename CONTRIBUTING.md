@@ -1,15 +1,15 @@
-# Contributing to Material-UI
+# Contributing to MUI
 
-If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the Material-UI community. Here are a few guidelines that will help you along the way.
+If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the MUI community. Here are a few guidelines that will help you along the way.
 
 ## Code of Conduct
 
-Material-UI has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it.
+MUI has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it.
 Please read [the full text](/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
 
 ## A large spectrum of contributions
 
-There are [many ways](https://material-ui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project) to contribute to Material-UI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
+There are [many ways](https://material-ui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project) to contribute to MUI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
 
 ## Your first Pull Request
 
@@ -33,7 +33,7 @@ If there has been no activity on the issue for 7 to 14 days, it is safe to assum
 
 ## Sending a Pull Request
 
-Material-UI is a community project, so Pull Requests are always welcome, but, before working on a large change, it is best to open an issue first to discuss it with the maintainers.
+MUI is a community project, so Pull Requests are always welcome, but, before working on a large change, it is best to open an issue first to discuss it with the maintainers.
 
 When in doubt, keep your Pull Requests small. To give a Pull Request the best chance of getting accepted, don't bundle more than one feature or bug fix per Pull Request. It's often best to create two smaller Pull Requests than one big one.
 
@@ -78,7 +78,7 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 
 ### Trying changes on the documentation site
 
-The documentation site is built with Material-UI and contains examples of all the components.
+The documentation site is built with MUI and contains examples of all the components.
 This is a great place to experiment with your changes.
 It's the local development environment used by the maintainers.
 
@@ -130,7 +130,7 @@ The following section gives an overview of what each check is responsible for.
 ##### ci/codesandbox
 
 This task should not fail in isolation. It creates multiple sandboxes on CodeSandbox.com that use the version
-of Material-UI that was built from this Pull Request. Use it to test more complex scenarios.
+of MUI that was built from this Pull Request. Use it to test more complex scenarios.
 
 ##### ci/circleci: checkout
 
@@ -204,7 +204,7 @@ $ yarn docs:api
 
 ### Coding style
 
-Please follow the coding style of the project. Material-UI uses prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
+Please follow the coding style of the project. MUI uses prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
 
 - `yarn prettier` reformats the code.
 - `yarn lint` runs manually the linting rules.
@@ -244,7 +244,7 @@ about translations](#translations).
 
 #### 3. Write the content of the demo
 
-Material-UI documents how to use this library with TypeScript.
+MUI documents how to use this library with TypeScript.
 
 If you are familiar with this language, write the demo in TypeScript, and only, in a \*.tsx file.
 When you're done run `yarn docs:typescript:formatted` to automatically create the JavaScript version.
@@ -286,7 +286,7 @@ these changes across the localized versions.
 
 ## Roadmap
 
-To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://material-ui.com/discover-more/roadmap/).
+To get a sense of where MUI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://material-ui.com/discover-more/roadmap/).
 
 ## License
 

@@ -279,7 +279,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       if (instance && instance.nodeName !== 'INPUT' && !instance.focus) {
         console.error(
           [
-            'Material-UI: You have provided a `inputComponent` to the input component',
+            'MUI: You have provided a `inputComponent` to the input component',
             'that does not correctly handle the `ref` prop.',
             'Make sure the `ref` prop is called with a HTMLInputElement.',
           ].join('\n'),
@@ -388,7 +388,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       const element = event.target || inputRef.current;
       if (element == null) {
         throw new MuiError(
-          'Material-UI: Expected valid input target. ' +
+          'MUI: Expected valid input target. ' +
             'Did you use a custom `inputComponent` and forget to forward refs? ' +
             'See https://material-ui.com/r/input-component-ref-interface for more info.',
         );
@@ -434,7 +434,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       if (process.env.NODE_ENV !== 'production') {
         if (minRows || maxRows) {
           console.warn(
-            'Material-UI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
+            'MUI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
           );
         }
       }

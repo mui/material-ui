@@ -16,8 +16,8 @@ export default function ProTip() {
     <Typography sx={{ mt: 6, mb: 3 }} color="text.secondary">
       <LightBulbIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
       Pro tip: See more{' '}
-      <Link href="https://material-ui.com/getting-started/templates/">templates</Link> on the
-      Material-UI documentation.
+      <Link href="https://material-ui.com/getting-started/templates/">templates</Link> on the MUI
+      documentation.
     </Typography>
   );
 }

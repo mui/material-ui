@@ -5,7 +5,7 @@ import MuiError from '../macros/MuiError.macro';
 // We only handle the first word.
 export default function capitalize(string) {
   if (typeof string !== 'string') {
-    throw new MuiError('Material-UI: `capitalize(string)` expects a string argument.');
+    throw new MuiError('MUI: `capitalize(string)` expects a string argument.');
   }
 
   return string.charAt(0).toUpperCase() + string.slice(1);

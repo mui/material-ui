@@ -22,7 +22,7 @@ export default function IconBreadcrumbs() {
           href="/"
         >
           <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-          Material-UI
+          MUI
         </Link>
         <Link
           underline="hover"

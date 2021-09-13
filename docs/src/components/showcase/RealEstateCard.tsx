@@ -13,6 +13,7 @@ export default function RealEstateCard(props: CardProps) {
       sx={{
         display: 'flex',
         flexWrap: 'wrap',
+        backgroundColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff'),
         p: 1,
         zIndex: 1,
         ...props.sx,

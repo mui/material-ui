@@ -53,7 +53,7 @@ function AdvancedReactComponent() {
             fontWeight: 'normal',
           }}
         >
-          Material-UI X is the last React UI library you&apos;ll ever need.{' '}
+          MUI X is the last React UI library you&apos;ll ever need.{' '}
           <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} />
           It contains the best React Data Grid on the market and a{' '}
           <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> growing list of
@@ -160,8 +160,8 @@ const materialUixData = [
     title: 'Built exclusively for React',
     description: (
       <React.Fragment>
-        The team behind Material-UI has been developing for React, and only React, since 2014. We
-        went all-in on React before most developers.
+        The team behind MUI has been developing for React, and only React, since 2014. We went
+        all-in on React before most developers.
         <br />
         <br />
         As a result the components benefit from the expertise we have built, and leverage the power
@@ -174,12 +174,12 @@ const materialUixData = [
     title: 'TypeScript support',
     description: (
       <React.Fragment>
-        Material-UI X components are written in TypeScript, this helps keep the type definitions
-        always up to date.
+        MUI X components are written in TypeScript, this helps keep the type definitions always up
+        to date.
         <br />
         <br />
-        Over half of all React web applications are built with TypeScript. If yours is, Material-UI
-        X is ready for you. (And if it isn&apos;t – we&apos;ve still got you covered! 👍)
+        Over half of all React web applications are built with TypeScript. If yours is, MUI X is
+        ready for you. (And if it isn&apos;t – we&apos;ve still got you covered! 👍)
       </React.Fragment>
     ),
   },
@@ -188,9 +188,8 @@ const materialUixData = [
     title: 'The most popular library',
     description: (
       <React.Fragment>
-        The team behind Material-UI X also developed the most popular UI library for React:
-        Material-UI. With Material-UI X you will benefit from the same expertise gained over many
-        years.
+        The team behind MUI X also developed the most popular UI library for React: MUI. With MUI X
+        you will benefit from the same expertise gained over many years.
         <br />
         <br /> The components are built to the same quality standards: end-to-end tests, polished
         API, type safe, accessible, fast, small. 👌
@@ -207,7 +206,7 @@ const materialUixData = [
         such as a data grid, there isn&apos;t even an open source alternative to turn to.
         <br />
         <br />
-        Material-UI X will support all the most needed UI components, without sacrificing quality.
+        MUI X will support all the most needed UI components, without sacrificing quality.
       </React.Fragment>
     ),
   },
@@ -227,8 +226,8 @@ const materialUixData = [
         what good is that nice design system if you can&apos;t use it?
         <br />
         <br />
-        Material-UI X is simple to customize by design, which means that you are in complete and
-        full control of how your components render down to the very last component, class or style.
+        MUI X is simple to customize by design, which means that you are in complete and full
+        control of how your components render down to the very last component, class or style.
       </React.Fragment>
     ),
   },
@@ -260,8 +259,8 @@ function WhyMaterialUix() {
         }}
       >
         Looking to get ahead? We have timely resources. Switch to{' '}
-        <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> Material-UI X to get
-        more components.
+        <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> MUI X to get more
+        components.
       </Typography>
       <Grid container spacing={3}>
         {materialUixData.map((material) => (
@@ -374,7 +373,7 @@ function ReactDataGridMarket() {
           Packed with exclusive features
         </Typography>
         <Typography align="center" sx={{ mb: { xs: 8, sm: 10 }, fontSize: { xs: 16 } }}>
-          The Material-UI X React Data Grid is packed with exclusive features that will
+          The MUI X React Data Grid is packed with exclusive features that will
           <Box component="span" sx={{ display: { xs: 'none', lg: 'block' } }} />
           enrich the experience of your data tables.
         </Typography>
@@ -435,8 +434,7 @@ const communityData = [
       url: 'https://twitter.com/jimboolean/status/1276549134128943106',
       description: (
         <React.Fragment>
-          Working with Material-UI is like working with an entire UI development team, minus the
-          overhead.
+          Working with MUI is like working with an entire UI development team, minus the overhead.
           <br />
           <br />
           The theming tooling is simple and well-done. The components are common, customizable, and
@@ -470,7 +468,7 @@ const communityData = [
       id: '@matthiasmargot',
       avatar: '/static/branding/mui-x/avatar-matthiasmargot.jpg',
       url: 'https://twitter.com/matthiasmargot/status/1215482285681795072',
-      description: `The DX on Material-UI is absolutely insane and that package has shaped my approach to
+      description: `The DX on MUI is absolutely insane and that package has shaped my approach to
         Component API Design / Composition Design & Style System Design. I think those guys got it
         idiomatically right, wonderful product.`,
     },
@@ -479,7 +477,7 @@ const communityData = [
       id: '@SharpeMartha',
       avatar: '/static/branding/mui-x/avatar-SharpeMartha.jpg',
       url: 'https://twitter.com/SharpeMartha/status/1277983914355818496',
-      description: `Spent the morning going through the docs for Material-UI. Such an amazing framework with
+      description: `Spent the morning going through the docs for MUI. Such an amazing framework with
         amazing documentation! I tried using it several months ago, but struggled to grasp how a
         lot of it worked. Apparently, my understanding of React has been upgraded since then.
         Smiling face with smiling eyes.`,
@@ -856,8 +854,8 @@ export default function Page() {
   return (
     <BrandingRoot>
       <Head
-        title="Material-UI X"
-        description="Material-UI X is the last React UI library you'll ever need.
+        title="MUI X"
+        description="MUI X is the last React UI library you'll ever need.
 It contains the best React Data Grid on the market and a
 growing list of advanced components."
         card="https://material-ui.com/static/branding/mui-x/card.png"

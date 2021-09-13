@@ -2,8 +2,8 @@
   "name": "@mui/lab",
   "version": "5.0.0-alpha.46",
   "private": false,
-  "author": "Material-UI Team",
-  "description": "Laboratory for new Material-UI modules.",
+  "author": "MUI Team",
+  "description": "Laboratory for new MUI modules.",
   "main": "./src/index.js",
   "keywords": [
     "react",

@@ -116,7 +116,7 @@ const PickersYear = React.forwardRef<HTMLButtonElement, YearProps>(function Pick
   // TODO: Can we just forward this to the button?
   React.useEffect(() => {
     if (autoFocus) {
-      // `ref.current` being `null` would be a bug in Material-UIu
+      // `ref.current` being `null` would be a bug in MUIu
       ref.current!.focus();
     }
   }, [autoFocus]);

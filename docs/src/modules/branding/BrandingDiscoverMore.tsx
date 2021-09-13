@@ -89,7 +89,7 @@ export default function BrandingDiscoverMore() {
             href="/discover-more/backers/"
             imagePosition="center"
           >
-            Support Material-UI core development through crowdfunding.
+            Support MUI core development through crowdfunding.
           </DiscoverMoreCard>
         </Grid>
         <Grid item xs={12} md={4}>

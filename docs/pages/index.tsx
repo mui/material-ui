@@ -176,7 +176,7 @@ export default function LandingPage() {
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Material-UI",
+  "name": "MUI",
   "url": "https://material-ui.com/",
   "logo": "https://material-ui.com/static/logo.png",
   "sameAs": [

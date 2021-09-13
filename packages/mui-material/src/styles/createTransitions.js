@@ -68,25 +68,25 @@ export default function createTransitions(inputTransitions) {
       // eslint-disable-next-line no-restricted-globals
       const isNumber = (value) => !isNaN(parseFloat(value));
       if (!isString(props) && !Array.isArray(props)) {
-        console.error('Material-UI: Argument "props" must be a string or Array.');
+        console.error('MUI: Argument "props" must be a string or Array.');
       }
 
       if (!isNumber(durationOption) && !isString(durationOption)) {
         console.error(
-          `Material-UI: Argument "duration" must be a number or a string but found ${durationOption}.`,
+          `MUI: Argument "duration" must be a number or a string but found ${durationOption}.`,
         );
       }
 
       if (!isString(easingOption)) {
-        console.error('Material-UI: Argument "easing" must be a string.');
+        console.error('MUI: Argument "easing" must be a string.');
       }
 
       if (!isNumber(delay) && !isString(delay)) {
-        console.error('Material-UI: Argument "delay" must be a number or a string.');
+        console.error('MUI: Argument "delay" must be a number or a string.');
       }
 
       if (Object.keys(other).length !== 0) {
-        console.error(`Material-UI: Unrecognized argument(s) [${Object.keys(other).join(',')}].`);
+        console.error(`MUI: Unrecognized argument(s) [${Object.keys(other).join(',')}].`);
       }
     }
 

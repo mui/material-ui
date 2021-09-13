@@ -268,7 +268,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
       ) {
         console.error(
           [
-            `Material-UI: You are using a variant value \`${props.variant}\` for which you didn't define styles.`,
+            `MUI: You are using a variant value \`${props.variant}\` for which you didn't define styles.`,
             `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://material-ui.com/r/custom-component-variants.`,
           ].join('\n'),
         );

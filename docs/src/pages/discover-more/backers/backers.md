@@ -1,10 +1,10 @@
 # Sponsors & Backers
 
-<p class="description">Support Material-UI core's development through crowdfunding.</p>
+<p class="description">Support MUI core's development through crowdfunding.</p>
 
-The core of Material-UI is a crowd-funded open-source project, licensed under the permissive MIT license. Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
+The core of MUI is a crowd-funded open-source project, licensed under the permissive MIT license. Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
 
-## Material-UI's sponsors
+## MUI's sponsors
 
 ### Diamond 💎
 
@@ -15,7 +15,7 @@ The core of Material-UI is a crowd-funded open-source project, licensed under th
 
 _1/3 slots available_
 
-Diamond Sponsors are those who have pledged \$1,500/month or more to Material-UI.
+Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
 Please contact us at diamond@material-ui.com to subscribe to this tier.
 
 ### Gold 🏆
@@ -42,7 +42,7 @@ Direct
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="elevator" href="https://www.elevatormag.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="/static/sponsors/elevator.png" alt="elevator" title="The dopest new hip hop, upcoming artsits, music news, culture, and style" height="57" width="191" loading="lazy"></a>
 </p>
 
-Gold Sponsors are those who have pledged \$500/month or more to Material-UI.
+Gold Sponsors are those who have pledged \$500/month or more to MUI.
 
 ### Silver
 
@@ -54,7 +54,7 @@ via [OpenCollective](https://opencollective.com/material-ui)
   <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/silver-sponsor.svg?avatarHeight=70&width=600">Silver Sponsors</object>
 </p>
 
-Silver Sponsors are those who have pledged $250/month to $500/month to Material-UI.
+Silver Sponsors are those who have pledged $250/month to $500/month to MUI.
 
 ### Bronze
 
@@ -66,7 +66,7 @@ via [OpenCollective](https://opencollective.com/material-ui)
   <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/bronze-sponsor.svg?avatarHeight=60&width=600">Bronze Sponsors</object>
 </p>
 
-Bronze Sponsors are those who have pledged $100/month to $250/month to Material-UI.
+Bronze Sponsors are those who have pledged $100/month to $250/month to MUI.
 
 ### Backers
 
@@ -78,32 +78,32 @@ via [OpenCollective](https://opencollective.com/material-ui)
 
 ## FAQ
 
-### Why is Material-UI a "crowd-funded open-source project"?
+### Why is MUI a "crowd-funded open-source project"?
 
-The core of Material-UI is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To make Material-UI a project that users can rely on for years to come, it needs to be well directed and financially sustainable.
+The core of MUI is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To make MUI a project that users can rely on for years to come, it needs to be well directed and financially sustainable.
 
-The absolute best way to support Material-UI's ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving Material-UI core, which you and other Material-UI users then benefit from.
+The absolute best way to support MUI's ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving MUI core, which you and other MUI users then benefit from.
 
 ### How is sponsorship money spent?
 
-Sponsorship money is used to fund software development, testing, documentation, and releases of the Material-UI software suite.
+Sponsorship money is used to fund software development, testing, documentation, and releases of the MUI software suite.
 
-### Is sponsorship required to use Material-UI?
+### Is sponsorship required to use MUI?
 
-Users are not legally required to give back to the Material-UI project, but it is in their interest to do so.
+Users are not legally required to give back to the MUI project, but it is in their interest to do so.
 
-By significantly reducing the amount of work needed to achieve business goals and reducing running costs, Material-UI results in huge time and money savings for users. We encourage organizations to contribute a portion of these savings back, enabling the project to advance more rapidly and result in even greater savings for your organization.
+By significantly reducing the amount of work needed to achieve business goals and reducing running costs, MUI results in huge time and money savings for users. We encourage organizations to contribute a portion of these savings back, enabling the project to advance more rapidly and result in even greater savings for your organization.
 
 ### What's the difference between Patreon and OpenCollective?
 
 Funds received via Patreon or other forms, directly support [Olivier Tassinari](https://github.com/oliviertassinari) and the core team mission.
 The funds go to a for-profit entity that employs some of the core team members.
 
-Funds donated via OpenCollective are managed transparently and aimed to sustain the MIT core of Material-UI. Material-UI benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
+Funds donated via OpenCollective are managed transparently and aimed to sustain the MIT core of MUI. MUI benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
 
 ## Services
 
-These great services sponsor Material-UI's core infrastructure:
+These great services sponsor MUI's core infrastructure:
 
 [<img loading="lazy" alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height="25">](https://github.com/)
 

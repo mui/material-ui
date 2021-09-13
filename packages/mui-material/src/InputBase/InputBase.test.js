@@ -272,10 +272,10 @@ describe('<InputBase />', () => {
             <InputBase inputProps={{ ref: triggerChangeRef }} inputComponent={BadInputComponent} />,
           );
         }).toErrorDev([
-          'Material-UI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
+          'MUI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
           // React 18 Strict Effects run mount effects twice
           React.version.startsWith('18') &&
-            'Material-UI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
+            'MUI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
         ]);
       });
     });
@@ -499,10 +499,10 @@ describe('<InputBase />', () => {
             </FormControl>,
           );
         }).toErrorDev([
-          'Material-UI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
+          'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
           // React 18 Strict Effects run mount effects twice
           React.version.startsWith('18') &&
-            'Material-UI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
+            'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
         ]);
       });
 

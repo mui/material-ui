@@ -99,7 +99,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
         ) {
           console.warn(
             [
-              'Material-UI: The `anchorEl` prop provided to the component is invalid.',
+              'MUI: The `anchorEl` prop provided to the component is invalid.',
               'The anchor element should be part of the document layout.',
               "Make sure the element is present in the document or that it's not display none.",
             ].join('\n'),
@@ -272,7 +272,7 @@ Popper.propTypes /* remove-proptypes */ = {
           ) {
             return new Error(
               [
-                'Material-UI: The `anchorEl` prop provided to the component is invalid.',
+                'MUI: The `anchorEl` prop provided to the component is invalid.',
                 'The anchor element should be part of the document layout.',
                 "Make sure the element is present in the document or that it's not display none.",
               ].join('\n'),
@@ -286,7 +286,7 @@ Popper.propTypes /* remove-proptypes */ = {
         ) {
           return new Error(
             [
-              'Material-UI: The `anchorEl` prop provided to the component is invalid.',
+              'MUI: The `anchorEl` prop provided to the component is invalid.',
               'It should be an HTML element instance or a virtualElement ',
               '(https://popper.js.org/docs/v2/virtual-elements/).',
             ].join('\n'),

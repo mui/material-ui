@@ -1,4 +1,5 @@
 import { deepmerge } from '@mui/utils';
+import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import { createTheme, ThemeOptions, Theme } from '@mui/material/styles';
 
 declare module '@mui/material/styles/createPalette' {
@@ -370,6 +371,16 @@ export function getThemedComponents(theme: Theme) {
             '& svg:last-child': {
               marginLeft: 2,
             },
+          },
+        },
+      },
+      MuiSelect: {
+        defaultProps: {
+          IconComponent: ArrowDropDownRounded,
+        },
+        styleOverrides: {
+          iconFilled: {
+            top: 'calc(50% - .25em)',
           },
         },
       },

@@ -95,7 +95,7 @@ export default function AppFooter() {
               <Logo>
                 <img src="/static/logo_raw.svg" alt="" />
                 <Link underline="hover" variant="body1" color="inherit" href="/">
-                  Material-UI
+                  MUI
                 </Link>
               </Logo>
             </Grid>
@@ -235,7 +235,7 @@ export default function AppFooter() {
             </Interpolate>
             {' Copyright © '}
             {new Date().getFullYear()}
-            {' Material-UI. '}
+            {' MUI. '}
           </VersionTypography>
         </Footer>
       </Container>
