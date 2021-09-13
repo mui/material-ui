@@ -5,7 +5,7 @@ import Link from '@mui/material/Link';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import '@docsearch/css';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Input from '@mui/material/Input';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -105,9 +105,9 @@ export default function AppSearch() {
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
@@ -135,14 +135,19 @@ export default function AppSearch() {
         styles={(theme) => ({
           html: {
             ':root': {
-              '--docsearch-primary-color': theme.palette.primary[500],
-              '--docsearch-muted-color': 'rgba(0, 0, 0, 0.54)',
+              '--docsearch-primary-color':
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[400]
+                  : theme.palette.primary[500],
+              '--docsearch-text-color': theme.palette.text.primary,
+              '--docsearch-muted-color': theme.palette.text.secondary,
               '--docsearch-searchbox-shadow': 0,
               '--docsearch-hit-shadow': 0,
               '--docsearch-footer-shadow': 0,
               '--docsearch-spacing': theme.spacing(1.5),
             },
             '.DocSearch-Container': {
+              fontFamily: theme.typography.fontFamily,
               backgroundColor: 'rgba(32,38,45,0.2)',
               '& .DocSearch-Modal': {
                 boxShadow: `0px 4px 20px ${
@@ -150,6 +155,11 @@ export default function AppSearch() {
                     ? alpha(theme.palette.background.paper, 0.72)
                     : 'rgba(170, 180, 190, 0.3)'
                 }`,
+                border: '1px solid',
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[400]
+                    : theme.palette.grey[200],
                 borderRadius: 10,
                 backgroundColor: theme.palette.background.paper,
                 '& .DocSearch-SearchBar': {
@@ -157,6 +167,7 @@ export default function AppSearch() {
                   borderColor: theme.palette.grey[200],
                   paddingBottom: theme.spacing(1),
                   '& .DocSearch-Form': {
+                    backgroundColor: 'inherit',
                     '& .DocSearch-Reset': {
                       display: 'none',
                     },
@@ -185,16 +196,18 @@ export default function AppSearch() {
                 },
               },
               '& .DocSearch-Dropdown': {
+                backgroundColor: 'inherit',
                 '&::before': {
                   padding: `${theme.spacing(2)} ${theme.spacing(1.5)}`,
                   display: 'block',
                   content: '"Results:"',
                   color:
                     theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[300]
+                      ? theme.palette.primaryDark[400]
                       : theme.palette.grey[800],
                 },
                 '& .DocSearch-Hit a': {
+                  backgroundColor: 'inherit',
                   border: '1px solid transparent',
                   borderBottomColor: theme.palette.grey[100],
                 },
@@ -219,12 +232,16 @@ export default function AppSearch() {
                     padding: `${theme.spacing(0.5)} 0`,
                   },
                   '& .DocSearch-Hit-path': {
-                    color: `rgba(0, 0, 0, 0.54) !important`,
+                    color: `${theme.palette.text.secondary} !important`,
                     padding: `${theme.spacing(0.5)} 0`,
                   },
                 },
                 '& .DocSearch-Hit-icon, & .DocSearch-Hit-action, & .DocSearch-Hits mark': {
-                  color: `${theme.palette.primary[500]} !important`,
+                  color: `${
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[400]
+                      : theme.palette.primary[500]
+                  } !important`,
                 },
                 '& .DocSearch-Hit-action': {
                   marginRight: theme.spacing(1),
@@ -234,6 +251,7 @@ export default function AppSearch() {
                 },
               },
               '& .DocSearch-Footer': {
+                backgroundColor: 'inherit',
                 '& .DocSearch-Commands': {
                   display: 'none',
                 },
