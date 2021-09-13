@@ -4706,7 +4706,7 @@ More documentation are coming.
 - [docs] Add ui-schema in related projects (#22644) @elbakerino
 - [docs] Avoid confusion between layout grid and data grid (#22681) @oliviertassinari
 - [docs] Batch small changes (#22646) @oliviertassinari
-- [docs] Configuring redirects for Material-UI X (#22632) @dtassone
+- [docs] Configuring redirects for MUI X (#22632) @dtassone
 - [docs] Customized hook at Autocomplete issue in dark mode (#22605) @hmaddisb
 - [docs] Encourage DataGrid in /components/tables/ over alternatives (#22637) @oliviertassinari
 - [docs] Fix emotion broken in SSR (#22731) @mnajdova
@@ -5475,7 +5475,7 @@ Here are some highlights ✨:
 - [docs] Add ClassKeys migration description for Renaming API (#22061) @kodai3
 - [docs] Add a label to the TreeView demos (#21900) @joshwooding
 - [docs] Add missing JSDoc for various props (#22005) @eps1lon
-- [docs] Add the services that support Material-UI in readme (#22137) @naineet
+- [docs] Add the services that support MUI in readme (#22137) @naineet
 - [docs] Add trailingSlash: true (#22008) @oliviertassinari
 - [docs] Add visibility to TypeScript examples (#22013) @esemeniuc
 - [docs] Avoid using any type in Tabs examples (#22091) @tacigar
@@ -5603,7 +5603,7 @@ A big thanks to the 11 contributors who made this release possible.
 ### Docs
 
 - [docs] Break up Select demos (#21792) @cjoecker
-- [docs] Change RMaterial-UIF info to new version (#21812) @phoqe
+- [docs] Change RMUIF info to new version (#21812) @phoqe
 - [docs] Fix Spanish translation (#21800) @adamsr123
 - [docs] Fix nav color (#21780) @mbrookes
 - [docs] Update advanced-de.md (#21786) @jasonericdavis

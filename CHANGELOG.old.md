@@ -299,7 +299,7 @@ A big thanks to the 12 contributors who made this release possible.
 - [docs] Add ethicalads.io (#21752) @oliviertassinari
 - [docs] Add live demo with DataGrid (#22697) @oliviertassinari
 - [docs] Add notification about survey @oliviertassinari
-- [docs] Add notification for Material-UI for Figma v4.12.0 (#23212) @mbrookes
+- [docs] Add notification for MUI for Figma v4.12.0 (#23212) @mbrookes
 - [docs] Add redirection for links published on npm (#22575) @oliviertassinari
 - [docs] Allow to host code in a different repo (#23390) @oliviertassinari
 - [docs] Avoid confusion between layout grid and data grid (#22681) @oliviertassinari
@@ -328,7 +328,7 @@ A big thanks to the 12 contributors who made this release possible.
 - [docs] Sync translation (#21638, #21751, #21925, #22751, #22850, #22887, #23357) @oliviertassinari
 - [docs] Update homepage quotes (#23326) @mbrookes
 - [docs] Use codesandbox deploy for demos created from deploy previews (#22616) @eps1lon
-- [docs] configuring redirects for Material-UI X (#22632) @dtassone
+- [docs] configuring redirects for MUI X (#22632) @dtassone
 
 ### Core
 
@@ -615,7 +615,7 @@ Here are some highlights ✨:
 - [docs] Recommend no-restricted-imports to catch treeshake issues (#21035) @eps1lon
 - [docs] Reduce confusion around higher order component (#21056) @ravshansbox
 - [docs] Show font smoothing override (#21057) @mattstobbs
-- [docs] Sort ways to support Material-UI; clarify clsx (#21150) @dandv
+- [docs] Sort ways to support MUI; clarify clsx (#21150) @dandv
 - [docs] Sync translations (#21155) @oliviertassinari
 
 ### Core
@@ -1505,7 +1505,7 @@ Here are some highlights ✨:
 - [docs] Fix typo (#19492) @Blechkelle
 - [docs] Fix typo in Autocomplete CSS API (#19503) @DenrizSusam
 - [docs] Improve Style Library Interoperability (#19457) @oliviertassinari
-- [docs] Include more info on RMaterial-UIF v2.2.0 (#19410) @phoqe
+- [docs] Include more info on RMUIF v2.2.0 (#19410) @phoqe
 - [docs] Increase button variant demos consistency (#19392) @theswerd
 - [docs] Refresh the home page (#19430) @mbrookes
 - [docs] Remove `@ts-ignore` usage (#19504) @eps1lon
@@ -3317,7 +3317,7 @@ Here are some highlights ✨:
 - [docs] Improve the CssBaseline description (#16148) @levigunz
 - [docs] Lowercase text to demo text-transform (#16160) @blmoore
 - [docs] Pseudo-class: the style rules that require an increase of specificity (#16120) @oliviertassinari
-- [docs] Remove `CSS to Material-UI webpack Loader` (#16175) @sabrinaluo
+- [docs] Remove `CSS to MUI webpack Loader` (#16175) @sabrinaluo
 - [docs] import Omit Type from @material-ui/types (#16157) @aditya1906
 
 ### Core
@@ -4202,7 +4202,7 @@ Here are some highlights ✨:
 - [docs] Flatten /layout/layout (#15120) @oliviertassinari
 - [docs] Migrate docs' App Bar page to hooks (#15121) @gabrielgene
 - [docs] Migrate docs' Tooltips page to hooks (#15137) @gabrielgene
-- [docs] Use Date type instead of any for Material-UI pickers demo (#15144) @gabrielgene
+- [docs] Use Date type instead of any for MUI pickers demo (#15144) @gabrielgene
 - [docs] Add virtualized List example (#15149) @joshwooding
 - [docs] Update Style Library Interoperability + Container forwardRef (#15147) @oliviertassinari
 - [docs] Run the TypeScript demos (#15159) @oliviertassinari
@@ -5319,7 +5319,7 @@ Here are some highlights ✨:
 ### Docs
 
 - [docs] Fix demo iframe styling in Firefox (#14056) @joshwooding
-- [docs] CSS to Material-UI loader documentation updated (#14060) @Kaliyani
+- [docs] CSS to MUI loader documentation updated (#14060) @Kaliyani
 - [docs] Fix spelling mistake in Premium themes footer (#14071) @nikhilem
 - [docs] Update showcase with 36 new sites (#14083) @mbrookes
 - [docs] Update URL for @material-ui/system (#14043) @NMinhNguyen
@@ -7317,7 +7317,7 @@ N/A
 #### Labs
 
 - [SpeedDial] Fix classes prop description (#11599) @mbrookes
-- [Slider] Misc fixes towards standard Material-UI patterns (#11605) @mbrookes
+- [Slider] Misc fixes towards standard MUI patterns (#11605) @mbrookes
 - [Slider] Fire the right event on mouseDown (#11642) @acroyear
 - [SpeedDial] Add type definitions to lab, so SpeedDial can be use with TypeScript project (#11542) @TR3MIC
 
@@ -11376,7 +11376,7 @@ A big thanks to the 11 contributors who are pushing the `next` branch forward.
 - [ButtonBase] Add test coverage for handleKeyDown (#6591)
 - [Tabs] Add scrollable behavior (#6502) @shawnmcknight
 - [Modal] Test focus (#6573) @agamrafaeli
-- [Chip] Add MuiChip to Material-UI_SHEET_ORDER (#6595) @nareshbhatia
+- [Chip] Add MuiChip to MUI_SHEET_ORDER (#6595) @nareshbhatia
 - [Collapse] Add test coverage for `handleExiting()` (#6589) @agamrafaeli
 - [Modal] Add test coverage for `handleDocumentKeyUp()` (#6588) @agamrafaeli
 - [Popover] Add test coverage for `handleRequestTimeout()` (#6599) @agamrafaeli
@@ -12453,14 +12453,14 @@ Although we discourage you to use this library like that.
   you need to add `.default` to your requires (#3648):
 
 ```diff
-- const Material-UI = require('material-ui');
-+ const Material-UI = require('material-ui').default;
+- const MUI = require('material-ui');
++ const MUI = require('material-ui').default;
 ```
 
 If you used ES modules, you're already all good:
 
 ```js
-import Material-UI from 'material-ui'; // no changes here :D
+import MUI from 'material-ui'; // no changes here :D
 ```
 
 - [Core] Remove uniqueId utils (#3538)
