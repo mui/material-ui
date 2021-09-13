@@ -10,6 +10,7 @@ After over 400 days of development and over 40 canary releases, we are excited t
 This release features some major highlights:
 
 - [High-level goals for v5](#high-level-goals-for-v5)
+- [A new branding](#a-new-branding)
 - [Improved customizability](#improved-customizability)
   - [Migration from JSS to emotion](#migration-from-jss-to-emotion)
   - [The sx prop](#the-sx-prop)
@@ -17,6 +18,8 @@ This release features some major highlights:
   - [Global class names](#global-class-names)
   - [Base components (alpha)](#base-components-alpha)
 - [Improved DX](#improved-dx)
+  - [Smaller demos in the docs](#smaller-demos-in-the-docs)
+  - [Props descriptions in IntelliSense](#props-descriptions-in-intellisense)
 - [A new product line: X](#a-new-product-line-x)
 - [New components](#new-components)
   - [Improved Grid](#improved-grid)
@@ -24,8 +27,8 @@ This release features some major highlights:
   - [Stack](#stack)
   - [Promotion from the lab](#promotion-from-the-lab)
   - [New in the lab](#new-in-the-lab)
-- [A new branding](#a-new-branding)
 - [v4 migration](#v4-migration)
+  - [Change on the supported platforms](#change-on-the-supported-platforms)
 - [Design kits](#design-kits)
 - [What's next?](#whats-next)
 
@@ -45,6 +48,10 @@ For instance, we have stopped all development in v4 as soon as we started to wor
 We have taken the liberty to introduce breaking changes anytime we have identified a long-term potential.
 
 You can find the initial RFC plan for v5 in [issue #20012](https://github.com/mui-org/material-ui/issues/20012).
+
+## A new branding
+
+Material-UI **is now MUI**! Head to the [dedicated blog post](/blog/material-ui-is-now-mui/) to learn more.
 
 ## Improved customizability
 
@@ -345,11 +352,25 @@ You can use [#27170](https://github.com/mui-org/material-ui/issues/27170) to fol
 
 ### Smaller demos in the docs
 
-- Covered a bit in https://material-ui.com/blog/2021-q1-update/
+We have used the migration of the demos from JSS to emotion as an opportunity to rework them.
+Many of the demos were added taking into account how they would help maintainers work on the components.
+We have reversed the priority, putting the developers using them [first](https://github.com/mui-org/material-ui/issues/22484).
+
+In practice, it means that we have focused on breaking down complex demos into smaller ones.
+We aim for having as many "inline preview" as possible. It saves one click to expand the demo and the mental overhead of figuring out the part of the code that map with what you saw interesting on the screen.
+
+<a href="/components/buttons/#basic-button"><img src="/static/blog/mui-core-v5/inline-preview.png" alt="" style="width: 649px; margin-bottom: 16px;" /></a>
 
 ### Props descriptions in IntelliSense
 
-- Already a bit covered in https://material-ui.com/blog/2020-q2-update/
+The best documentation is the one you don't need to open.
+We have moved all the props' descriptions to TypeScript, so the IntelliSense in your editor can show you more context.
+
+<img src="/static/blog/mui-core-v5/prop-descriptions.png" alt="" style="width: 649px; margin-bottom: 16px;" />
+
+<p class="blog-description">The popup explains what the <code>forcePopupIcon</code> prop is for.</p>
+
+These TypeScript props' descriptions are also used to generate the [API pages](/api/autocomplete/#props) of the documentation, so there is a single source of truth.
 
 ### Migration from Enzyme to Testing Library
 
@@ -470,25 +491,6 @@ The following components are now available in the lab:
 - See next section
 - Covered a bit in https://material-ui.com/blog/2020-q3-update/
 
-## Change on the supported platforms
-
-This breaking change is the opportunity to drop the support of legacy upstream dependencies.
-
-- We have updated the minimum supported TypeScript version from 3.2 to **3.5**.
-  It aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with versions of TypeScript that are less than two years old.
-- We have updated the minimum supported node.js version from 8.0 to **12.17**.
-  It aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode.
-- We have updated the minimum supported React version from 16.8 to **17.0**. The breaking changes released between the two versions are minors.
-- We have updated the browsers support.
-  - IE: **partial**. We have kept the logic that we added in the past to support IE 11. However, we have stopped active work on it. We can't guarentee that it works correctly. It's discontinued.
-  - Edge: from 14 to **91**. The minimum version is based on Chromium.
-  - Firefox: from 52 to **78**.
-  - Chrome: from 49 to **90**.
-  - Safari: from 10 to **12.5**
-
-Stop all work on IE 11, but specific IE 11 will only be removed in v6.
-  Moving IE 11 to a different bundle has allowed saving [-6kB](https://github.com/mui-org/material-ui/pull/22814#issuecomment-700995216) overall.
-
 ## v4 migration
 
 - The high-level changes required
@@ -496,6 +498,26 @@ Stop all work on IE 11, but specific IE 11 will only be removed in v6.
 - ⚓️ We have introduced a new release line: v4.x.x-deprecations.x. This release line is kept in sync with the latest version of v4 and includes actionable deprecations to ease the migration to v5.
 - The codemod, covered a bit in https://material-ui.com/blog/2021-q2-update/
 - The migration guide
+
+### Change on the supported platforms
+
+This breaking change is the opportunity to drop the support of legacy upstream dependencies.
+
+- We have updated the minimum supported TypeScript version from 3.2 to **3.5**.
+  It aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with versions of TypeScript that are less than two years old.
+- We have updated the minimum supported node.js version from 8.0 to **12.17**.
+  It aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode.
+- We have updated the minimum supported React version from 16.8 to **17.0**.
+  The breaking changes released between the two versions are [minors](https://reactjs.org/blog/2020/10/20/react-v17.html).
+- We have updated the browsers support.
+  - IE: **partial**. We have kept the logic that we added in the past to support IE 11.
+    However, we have stopped active work on it. We can't guarentee that it works correctly. It's discontinued.
+  - Edge: from 14 to **91**. The minimum version is based on Chromium.
+  - Firefox: from 52 to **78**.
+  - Chrome: from 49 to **90**. We have [assumed](https://developers.google.com/search/blog/2019/05/the-new-evergreen-googlebot) that Googlebot is always using the latest version of Chrome.
+  - Safari: from 10 to **12.5**
+
+These changes have allowed us to save [6 kB gzipped](https://github.com/mui-org/material-ui/pull/22814#issuecomment-700995216) on the `@mui/material` package.
 
 ## Design kits
 
@@ -516,10 +538,6 @@ It's new, link core and x roadmaps.
 ### X
 
 - Data grid
-
-## A new branding
-
-Material-UI **is now MUI**! Head to the [dedicated blog post](/blog/material-ui-is-now-mui/) to learn more.
 
 ## Thank you
 
