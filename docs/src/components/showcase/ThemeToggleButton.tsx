@@ -112,7 +112,7 @@ export default function ThemeToggleButton() {
           aria-label="language"
         >
           <ToggleButton value="javascript">React</ToggleButton>
-          <ToggleButton value="html">Typescript</ToggleButton>
+          <ToggleButton value="html">TypeScript</ToggleButton>
           <ToggleButton value="css">CSS</ToggleButton>
         </ToggleButtonGroup>
       </Fade>
