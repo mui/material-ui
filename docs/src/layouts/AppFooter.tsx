@@ -61,8 +61,8 @@ export default function AppFooter() {
               <Typography fontWeight="bold" variant="body2">
                 Products
               </Typography>
-              <Link href={ROUTES.productCore}>Core</Link>
-              <Link href={ROUTES.productAdvanced}>Advanced X</Link>
+              <Link href={ROUTES.productCore}>MUI Core</Link>
+              <Link href={ROUTES.productAdvanced}>MUI X</Link>
               <Link href={ROUTES.productTemplates}>Templates</Link>
               <Link href={ROUTES.productDesignKits}>Design Kits</Link>
             </Box>
