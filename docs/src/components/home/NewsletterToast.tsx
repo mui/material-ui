@@ -68,7 +68,7 @@ export default function NewsletterToast() {
               You have subscribed to MUI newsletter.
             </Typography>
           </div>
-          <IconButton aria-hidden size="small" onClick={() => setHidden(true)}>
+          <IconButton aria-hidden size="small" onClick={() => setHidden(true)} aria-label="close">
             <CloseRounded fontSize="small" />
           </IconButton>
         </Card>
