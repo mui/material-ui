@@ -5,13 +5,132 @@ import Link from '@mui/material/Link';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import '@docsearch/css';
+import { styled } from '@mui/material/styles';
+import Input from '@mui/material/Input';
+import SearchIcon from '@mui/icons-material/Search';
+
+const RootDiv = styled('div')(({ theme }) => {
+  return {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'flex',
+    },
+    fontFamily: theme.typography.fontFamily,
+    position: 'relative',
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.grey[50],
+    '&:hover': {
+      backgroundColor:
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
+    },
+    color: theme.palette.mode === 'dark' ? 'white' : theme.palette.grey[900],
+    border: `1px solid ${
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200]
+    }`,
+    borderRadius: 10,
+    cursor: 'pointer',
+  };
+});
+
+const SearchDiv = styled('div')(({ theme }) => {
+  return {
+    width: theme.spacing(4),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: theme.palette.grey[700],
+  };
+});
+
+const StyledInput = styled(Input)(({ theme }) => {
+  return {
+    color: 'inherit',
+    '& input': {
+      padding: theme.spacing(0.5),
+      paddingLeft: theme.spacing(4),
+      width: 150,
+      cursor: 'pointer',
+    },
+    '&::before, &::after, &:hover:not(.Mui-disabled):before': {
+      border: 0,
+    },
+  };
+});
+
+const Shortcut = styled('div')(({ theme }) => {
+  return {
+    fontSize: theme.typography.pxToRem(13),
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[700],
+    lineHeight: '21px',
+    border: `1px solid ${
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.grey[200]
+    }`,
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
+    padding: theme.spacing(0, 0.7),
+    position: 'absolute',
+    right: theme.spacing(1),
+    height: 23,
+    top: 'calc(50% - 11px)',
+    borderRadius: 5,
+  };
+});
 
 export default function AppSearch() {
   const userLanguage = useUserLanguage();
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
   const facetFilterLanguage =
     LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
+  const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+
+  React.useEffect(() => {
+    const handleKeyDown = (nativeEvent) => {
+      if (nativeEvent.key === 'Escape') {
+        setIsModalOpen(false);
+        return;
+      }
+
+      const matchMainShortcut =
+        (nativeEvent.ctrlKey || nativeEvent.metaKey) && nativeEvent.key === 'k';
+      const matchNonkeyboardNode =
+        ['INPUT', 'SELECT', 'TEXTAREA'].indexOf(document.activeElement.tagName) === -1 &&
+        !document.activeElement.isContentEditable;
+
+      if (matchMainShortcut && matchNonkeyboardNode) {
+        nativeEvent.preventDefault();
+        setIsModalOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
     <React.Fragment>
+      <RootDiv onClick={() => setIsModalOpen(true)}>
+        <SearchDiv>
+          <SearchIcon
+            fontSize="small"
+            sx={{
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.grey[500]
+                  : theme.palette.primary[500],
+            }}
+          />
+        </SearchDiv>
+        <StyledInput placeholder="Search..." />
+        <Shortcut>
+          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+          {macOS ? '⌘' : 'Ctrl+'}K
+        </Shortcut>
+      </RootDiv>
       <GlobalStyles
         styles={(theme) => ({
           html: {
@@ -46,6 +165,7 @@ export default function AppSearch() {
                     },
                   },
                   '& .DocSearch-Cancel': {
+                    display: 'block',
                     alignSelf: 'center',
                     height: '1.5rem',
                     marginRight: theme.spacing(1),
@@ -122,13 +242,15 @@ export default function AppSearch() {
           },
         })}
       />
-      <DocSearchModal
-        apiKey="1d8534f83b9b0cfea8f16498d19fbcab"
-        indexName="material-ui"
-        searchParameters={{
-          facetFilters: ['version:next', facetFilterLanguage],
-        }}
-      />
+      {isModalOpen && (
+        <DocSearchModal
+          apiKey="1d8534f83b9b0cfea8f16498d19fbcab"
+          indexName="material-ui"
+          searchParameters={{
+            facetFilters: ['version:next', facetFilterLanguage],
+          }}
+        />
+      )}
     </React.Fragment>
   );
 }
