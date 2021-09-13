@@ -8,6 +8,7 @@ import '@docsearch/css';
 import { styled, alpha } from '@mui/material/styles';
 import Input from '@mui/material/Input';
 import SearchIcon from '@mui/icons-material/Search';
+import { Tooltip } from '@mui/material';
 
 const RootDiv = styled('div')(({ theme }) => {
   return {
@@ -137,7 +138,7 @@ export default function AppSearch() {
             ':root': {
               '--docsearch-primary-color':
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[400]
+                  ? theme.palette.primaryDark[300]
                   : theme.palette.primary[500],
               '--docsearch-text-color': theme.palette.text.primary,
               '--docsearch-muted-color': theme.palette.text.secondary,
@@ -148,23 +149,30 @@ export default function AppSearch() {
             },
             '.DocSearch-Container': {
               fontFamily: theme.typography.fontFamily,
-              backgroundColor: 'rgba(32,38,45,0.2)',
+              fontSize: theme.typography.pxToRem(14),
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.grey[900], 0.7)
+                  : alpha(theme.palette.grey[900], 0.2),
               '& .DocSearch-Modal': {
                 boxShadow: `0px 4px 20px ${
                   theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.background.paper, 0.72)
-                    : 'rgba(170, 180, 190, 0.3)'
+                    ? alpha(theme.palette.background.paper, 0.7)
+                    : alpha(theme.palette.grey[700], 0.2)
                 }`,
                 border: '1px solid',
                 borderColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[400]
-                    : theme.palette.grey[200],
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[300],
                 borderRadius: 10,
                 backgroundColor: theme.palette.background.paper,
                 '& .DocSearch-SearchBar': {
                   borderBottom: '1px solid',
-                  borderColor: theme.palette.grey[200],
+                  borderColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[700]
+                      : theme.palette.grey[200],
                   paddingBottom: theme.spacing(1),
                   '& .DocSearch-Form': {
                     backgroundColor: 'inherit',
@@ -180,17 +188,23 @@ export default function AppSearch() {
                     alignSelf: 'center',
                     height: '1.5rem',
                     marginRight: theme.spacing(1),
-                    padding: '.15rem .40rem',
+                    padding: theme.spacing(0.5, 0.8),
                     fontSize: 0,
-                    borderRadius: 7,
-                    backgroundColor: theme.palette.background.paper,
+                    borderRadius: 5,
+                    backgroundColor:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primaryDark[800]
+                        : theme.palette.grey[50],
                     border: '1px solid',
-                    borderColor: theme.palette.grey[200],
+                    borderColor:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primaryDark[600]
+                        : theme.palette.grey[300],
                     '&::before': {
                       content: '"esc"',
-                      fontSize: '0.875rem',
-                      fontWeight: 600,
-                      color: theme.palette.text.primary,
+                      fontSize: theme.typography.pxToRem(13),
+                      fontWeight: 700,
+                      color: theme.palette.text.secondary,
                     },
                   },
                 },
@@ -200,37 +214,47 @@ export default function AppSearch() {
                 '& .DocSearch-Hit a': {
                   backgroundColor: 'inherit',
                   border: '1px solid transparent',
-                  borderBottomColor: theme.palette.grey[100],
+                  borderRadius: 0,
+                  borderBottomColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[600]
+                      : theme.palette.grey[300],
                 },
                 [`& .DocSearch-Hit[aria-selected='true'] a`]: {
                   backgroundColor:
                     theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[600]
+                      ? theme.palette.primaryDark[800]
                       : theme.palette.primary[50],
                   borderRadius: 10,
                   borderColor:
                     theme.palette.mode === 'dark'
-                      ? theme.palette.grey[100]
-                      : theme.palette.primary[400],
+                      ? theme.palette.primaryDark[400]
+                      : theme.palette.primary[200],
                 },
                 '& .DocSearch-Hit-Container': {
-                  padding: `${theme.spacing(4)} 0`,
+                  padding: `${theme.spacing(5)} 0`,
                 },
                 '& .DocSearch-Hit-source': {
-                  padding: theme.spacing(2),
+                  padding: theme.spacing(2, 1),
                   backgroundColor: 'inherit',
                   top: 'initial',
+                  fontSize: theme.typography.pxToRem(14),
+                  fontWeight: 500,
+                  color: `${theme.palette.text.secondary} !important`,
                 },
                 '& .DocSearch-Hit-content-wrapper': {
                   paddingLeft: theme.spacing(2),
                   flexDirection: 'column-reverse',
                   '& .DocSearch-Hit-title': {
                     // content -- mismatching classname
+                    fontSize: theme.typography.pxToRem(14),
                     color: `${theme.palette.text.secondary} !important`,
                     padding: `${theme.spacing(0.5)} 0`,
                   },
                   '& .DocSearch-Hit-path': {
                     // title  -- mismatching classname
+                    fontSize: theme.typography.pxToRem(14),
+                    fontWeight: 700,
                     color: `${theme.palette.text.primary} !important`,
                     padding: `${theme.spacing(0.5)} 0`,
                   },
@@ -238,16 +262,21 @@ export default function AppSearch() {
                 '& .DocSearch-Hit-icon, & .DocSearch-Hit-action, & .DocSearch-Hits mark': {
                   color: `${
                     theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[400]
+                      ? theme.palette.primaryDark[300]
                       : theme.palette.primary[500]
                   } !important`,
                 },
                 '& .DocSearch-Hit-action': {
-                  marginRight: theme.spacing(1),
+                  marginRight: theme.spacing(2),
                 },
               },
               '& .DocSearch-Footer': {
                 backgroundColor: 'inherit',
+                borderTop: '1px solid',
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[200],
                 '& .DocSearch-Commands': {
                   display: 'none',
                 },

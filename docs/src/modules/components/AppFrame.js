@@ -122,15 +122,13 @@ const StyledAppBar = styled(AppBar, {
     }),
     ...(!disablePermanent && {
       [theme.breakpoints.up('lg')]: {
-        width: 'calc(100% - 240px)',
+        width: 'calc(100% - 250px)',
       },
     }),
     boxShadow: 'none',
-    borderStyle: 'solid',
+    borderBottom: '1px solid',
     borderColor:
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
-    borderWidth: 0,
-    borderBottomWidth: 'thin',
     background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
     '& .MuiIconButton-root': {
