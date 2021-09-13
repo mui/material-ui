@@ -61,7 +61,7 @@ function createTheme(options = {}, ...args) {
             const stateClass = generateUtilityClass('', key);
             console.error(
               [
-                `Material-UI: The \`${component}\` component increases ` +
+                `MUI: The \`${component}\` component increases ` +
                   `the CSS specificity of the \`${key}\` internal state.`,
                 'You can not override it like this: ',
                 JSON.stringify(node, null, 2),
@@ -107,7 +107,7 @@ export function createMuiTheme(...args) {
       warnedOnce = true;
       console.error(
         [
-          'Material-UI: the createMuiTheme function was renamed to createTheme.',
+          'MUI: the createMuiTheme function was renamed to createTheme.',
           '',
           "You should use `import { createTheme } from '@mui/material/styles'`",
         ].join('\n'),

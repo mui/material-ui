@@ -135,7 +135,7 @@ The date picker is at the border between the advanced components and the design 
 - 🚨 We have started to work on breaking changes to reach a stable state.
 - 💾 We have extended the support of @mui/material to handle v4 and v5 at the same time.
   In the future, we might desynchronize the release version of _mui/material-ui_ and _mui/material-ui-x_.
-  For Material-UI X, we will likely need to release breaking changes at a higher frequency: every six months.
+  For MUI X, we will likely need to release breaking changes at a higher frequency: every six months.
 - 🎛 We have added a column selector.
 
   <img src="/static/blog/2021-q1-update/column-selector.png" alt="" style="width: 518px; margin-bottom: 16px;" />
@@ -182,7 +182,7 @@ This Handbook is the single **source of truth**. It's meant to be updated by any
   We have seen a significant influx of stars this quarter.
 - 👨‍👩‍👧‍👦 From 2,052 to 2,141 contributors on GitHub. We add on average one new contributor every day.
 - 💰 Grew gross revenue at +4%/week on average during the period.
-- 🏢 We have welcomed one new member to Material-UI: [Matheus](/blog/matheus-wichman-joining/).
+- 🏢 We have welcomed one new member to MUI: [Matheus](/blog/matheus-wichman-joining/).
 
 ## Our roadmap intent for Q2 2021
 

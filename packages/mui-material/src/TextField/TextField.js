@@ -124,7 +124,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   if (process.env.NODE_ENV !== 'production') {
     if (select && !children) {
       console.error(
-        'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
+        'MUI: `children` must be passed when using the `TextField` component with `select`.',
       );
     }
   }

@@ -264,9 +264,9 @@ describe('<Menu />', () => {
           </Menu>,
         );
       }).toErrorDev([
-        "Material-UI: The Menu component doesn't accept a Fragment as a child.",
+        "MUI: The Menu component doesn't accept a Fragment as a child.",
         !strictModeDoubleLoggingSupressed &&
-          "Material-UI: The Menu component doesn't accept a Fragment as a child.",
+          "MUI: The Menu component doesn't accept a Fragment as a child.",
       ]);
     });
   });

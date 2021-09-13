@@ -2,7 +2,7 @@
   "name": "@mui/styled-engine-sc",
   "version": "5.0.0-rc.1",
   "private": false,
-  "author": "Material-UI Team",
+  "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
   "main": "./src/index.js",
   "keywords": [

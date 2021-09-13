@@ -1,8 +1,8 @@
 # Installation
 
-<p class="description">Install Material-UI, the world's most popular React UI framework.</p>
+<p class="description">Install MUI, the world's most popular React UI framework.</p>
 
-Material-UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
+MUI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
 
 ## npm
 
@@ -34,7 +34,7 @@ Take a look at the [Styled Engine guide](/guides/styled-engine/) for more inform
 
 ## Roboto Font
 
-Material-UI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto)
+MUI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto)
 font in mind. So be sure to follow [these instructions](/components/typography/#general).
 For instance, via Google Web Fonts:
 
@@ -76,7 +76,7 @@ yarn add @mui/icons-material
 
 ## CDN
 
-You can start using Material-UI with minimal Front-end infrastructure,
+You can start using MUI with minimal Front-end infrastructure,
 which is great for prototyping.
 
 Two Universal Module Definition (**UMD**) files are provided:
@@ -102,7 +102,7 @@ You should consider pointing to a specific version, such as [v4.4.0](https://unp
 
 A set of reusable components for design tools is available, designed to match the React components and to help you craft great products:
 
-- [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma): A large UI kit with over 600 handcrafted Material-UI components.
-- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd): A large UI kit with over 600 handcrafted Material-UI components.
-- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch): A large UI kit with over 600 handcrafted Material-UI symbols.
-- [Framer](https://packages.framer.com/package/material-ui/material-ui): A small free UI kit of Material-UI components.
+- [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma): A large UI kit with over 600 handcrafted MUI components.
+- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd): A large UI kit with over 600 handcrafted MUI components.
+- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch): A large UI kit with over 600 handcrafted MUI symbols.
+- [Framer](https://packages.framer.com/package/material-ui/material-ui): A small free UI kit of MUI components.

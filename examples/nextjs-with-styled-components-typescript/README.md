@@ -27,12 +27,12 @@ or:
 ## The idea behind the example
 
 The project uses [Next.js](https://github.com/zeit/next.js), which is a framework for server-rendered React apps.
-It includes `@mui/material` and its peer dependencies, including `styled-components`, which is used instead of the default style engine in Material-UI v5.
+It includes `@mui/material` and its peer dependencies, including `styled-components`, which is used instead of the default style engine in MUI v5.
 
 ## The link component
 
 Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link).
-The example folder provides adapters for usage with Material-UI.
+The example folder provides adapters for usage with MUI.
 More information [in the documentation](https://material-ui.com/guides/routing/#next-js).
 
 ## What's next?

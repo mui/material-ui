@@ -87,7 +87,7 @@ CardMedia.propTypes /* remove-proptypes */ = {
   children: chainPropTypes(PropTypes.node, (props) => {
     if (!props.children && !props.image && !props.src && !props.component) {
       return new Error(
-        'Material-UI: Either `children`, `image`, `src` or `component` prop must be specified.',
+        'MUI: Either `children`, `image`, `src` or `component` prop must be specified.',
       );
     }
     return null;

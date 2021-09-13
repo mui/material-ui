@@ -43,7 +43,7 @@ export default function createSpacing(spacingInput: SpacingOptions = 8): Spacing
     if (process.env.NODE_ENV !== 'production') {
       if (!(argsInput.length <= 4)) {
         console.error(
-          `Material-UI: Too many arguments provided, expected between 0 and 4, got ${argsInput.length}`,
+          `MUI: Too many arguments provided, expected between 0 and 4, got ${argsInput.length}`,
         );
       }
     }

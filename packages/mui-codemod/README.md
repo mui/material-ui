@@ -1,12 +1,12 @@
 # @mui/codemod
 
-> Codemod scripts for Material-UI
+> Codemod scripts for MUI
 
 [![npm version](https://img.shields.io/npm/v/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 [![npm downloads](https://img.shields.io/npm/dm/@mui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@mui/codemod)
 
 This repository contains a collection of codemod scripts based for use with
-[jscodeshift](https://github.com/facebook/jscodeshift) that help update Material-UI APIs.
+[jscodeshift](https://github.com/facebook/jscodeshift) that help update MUI APIs.
 
 ## Setup & run
 
@@ -1199,7 +1199,7 @@ Head to https://material-ui.com/guides/minimizing-bundle-size/ to understand whe
 #### `import-path`
 
 Updates the `import-paths` for the new location of the components.
-Material-UI v1.0.0 flatten the import paths.
+MUI v1.0.0 flatten the import paths.
 The diff should look like this:
 
 ```diff
@@ -1224,7 +1224,7 @@ Subsequently, you can run the above `find ...` command to flatten your imports.
 
 #### `color-imports`
 
-Updates the `color-imports` for the new location of Material-UI color palettes.
+Updates the `color-imports` for the new location of MUI color palettes.
 The diff should look like this:
 
 ```diff
@@ -1271,7 +1271,7 @@ npx @mui/codemod v1.0.0/svg-icon-imports <path>
 #### `import-path`
 
 Updates the `import-paths` for the new location of the components.
-Material-UI v0.15.0 is reorganizing the folder distribution of the project.
+MUI v0.15.0 is reorganizing the folder distribution of the project.
 The diff should look like this:
 
 ```diff

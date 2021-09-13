@@ -13,7 +13,7 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
 export default function CustomSeparator() {
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit" href="/" onClick={handleClick}>
-      Material-UI
+      MUI
     </Link>,
     <Link
       underline="hover"

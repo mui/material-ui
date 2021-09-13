@@ -2,7 +2,7 @@
   "name": "docs",
   "version": "5.0.0",
   "private": true,
-  "author": "Material-UI Team",
+  "author": "MUI Team",
   "license": "MIT",
   "scripts": {
     "build": "cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 next build --profile",

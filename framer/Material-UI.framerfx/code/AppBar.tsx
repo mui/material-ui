@@ -24,7 +24,7 @@ export class AppBar extends React.Component<Props> {
     width: 300,
     height: 56,
     leftIcon: 'menu',
-    title: 'Material-UI',
+    title: 'MUI',
     action1: 'Login',
     action2: '',
     icon1: 'notifications',

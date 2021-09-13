@@ -110,7 +110,7 @@ describe('createTheme', () => {
           components: { MuiButton: { styleOverrides: { disabled: { color: 'blue' } } } },
         });
       }).toErrorDev(
-        'Material-UI: The `MuiButton` component increases the CSS specificity of the `disabled` internal state.',
+        'MUI: The `MuiButton` component increases the CSS specificity of the `disabled` internal state.',
       );
       expect(Object.keys(theme.components.MuiButton.styleOverrides.disabled).length).to.equal(0);
     });

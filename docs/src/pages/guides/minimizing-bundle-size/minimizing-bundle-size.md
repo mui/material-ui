@@ -4,15 +4,15 @@
 
 ## Bundle size matters
 
-The bundle size of Material-UI is taken very seriously. Size snapshots are taken
+The bundle size of MUI is taken very seriously. Size snapshots are taken
 on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot)).
 Combined with [dangerJS](https://danger.systems/js/) we can inspect
 [detailed bundle size changes](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
 
 ## When and how to use tree-shaking?
 
-Tree-shaking of Material-UI works out of the box in modern frameworks.
-Material-UI exposes its full API on the top-level `material-ui` import.
+Tree-shaking of MUI works out of the box in modern frameworks.
+MUI exposes its full API on the top-level `material-ui` import.
 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js

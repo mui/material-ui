@@ -2,7 +2,7 @@
   "name": "eslint-plugin-material-ui",
   "version": "5.0.0",
   "private": true,
-  "description": "Custom eslint rules for Material-UI.",
+  "description": "Custom eslint rules for MUI.",
   "main": "src/index.js",
   "dependencies": {
     "emoji-regex": "^9.2.2"

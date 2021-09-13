@@ -58,7 +58,7 @@ describe('useControlled', () => {
     expect(() => {
       setProps({ value: 'foobar' });
     }).toErrorDev(
-      'Material-UI: A component is changing the uncontrolled value state of TestComponent to be controlled.',
+      'MUI: A component is changing the uncontrolled value state of TestComponent to be controlled.',
     );
   });
 
@@ -72,7 +72,7 @@ describe('useControlled', () => {
     expect(() => {
       setProps({ value: undefined });
     }).toErrorDev(
-      'Material-UI: A component is changing the controlled value state of TestComponent to be uncontrolled.',
+      'MUI: A component is changing the controlled value state of TestComponent to be uncontrolled.',
     );
   });
 
@@ -86,7 +86,7 @@ describe('useControlled', () => {
     expect(() => {
       setProps({ defaultValue: 1 });
     }).toErrorDev(
-      'Material-UI: A component is changing the default value state of an uncontrolled TestComponent after being initialized.',
+      'MUI: A component is changing the default value state of an uncontrolled TestComponent after being initialized.',
     );
   });
 

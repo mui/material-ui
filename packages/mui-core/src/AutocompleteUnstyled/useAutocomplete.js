@@ -116,7 +116,7 @@ export default function useAutocomplete(props) {
         const erroneousReturn =
           optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
         console.error(
-          `Material-UI: The \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for ${JSON.stringify(
+          `MUI: The \`getOptionLabel\` method of ${componentName} returned ${erroneousReturn} instead of a string for ${JSON.stringify(
             option,
           )}.`,
         );
@@ -240,7 +240,7 @@ export default function useAutocomplete(props) {
       if (missingValue.length > 0) {
         console.warn(
           [
-            `Material-UI: The value provided to ${componentName} is invalid.`,
+            `MUI: The value provided to ${componentName} is invalid.`,
             `None of the options match with \`${
               missingValue.length > 1
                 ? JSON.stringify(missingValue)
@@ -522,7 +522,7 @@ export default function useAutocomplete(props) {
       if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
         console.error(
           [
-            `Material-UI: Unable to find the input element. It was resolved to ${inputRef.current} while an HTMLInputElement was expected.`,
+            `MUI: Unable to find the input element. It was resolved to ${inputRef.current} while an HTMLInputElement was expected.`,
             `Instead, ${componentName} expects an input element.`,
             '',
             componentName === 'useAutocomplete'
@@ -590,7 +590,7 @@ export default function useAutocomplete(props) {
         if (matches.length > 1) {
           console.error(
             [
-              `Material-UI: The \`isOptionEqualToValue\` method of ${componentName} do not handle the arguments correctly.`,
+              `MUI: The \`isOptionEqualToValue\` method of ${componentName} do not handle the arguments correctly.`,
               `The component expects a single value to match a given option but found ${matches.length} matches.`,
             ].join('\n'),
           );
@@ -962,7 +962,7 @@ export default function useAutocomplete(props) {
         if (process.env.NODE_ENV !== 'production') {
           if (indexBy.get(group) && !warn) {
             console.warn(
-              `Material-UI: The options provided combined with the \`groupBy\` method of ${componentName} returns duplicated headers.`,
+              `MUI: The options provided combined with the \`groupBy\` method of ${componentName} returns duplicated headers.`,
               'You can solve the issue by sorting the options with the output of `groupBy`.',
             );
             warn = true;

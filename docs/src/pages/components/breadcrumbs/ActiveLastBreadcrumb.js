@@ -12,7 +12,7 @@ export default function ActiveLastBreadcrumb() {
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
         <Link underline="hover" color="inherit" href="/">
-          Material-UI
+          MUI
         </Link>
         <Link
           underline="hover"

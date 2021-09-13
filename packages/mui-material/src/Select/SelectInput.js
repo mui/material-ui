@@ -337,7 +337,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       if (isFragment(child)) {
         console.error(
           [
-            "Material-UI: The Select component doesn't accept a Fragment as a child.",
+            "MUI: The Select component doesn't accept a Fragment as a child.",
             'Consider providing an array instead.',
           ].join('\n'),
         );
@@ -349,7 +349,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     if (multiple) {
       if (!Array.isArray(value)) {
         throw new MuiError(
-          'Material-UI: The `value` prop must be an array ' +
+          'MUI: The `value` prop must be an array ' +
             'when using the `Select` component with `multiple`.',
         );
       }
@@ -398,7 +398,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         const values = childrenArray.map((child) => child.props.value);
         console.warn(
           [
-            `Material-UI: You have provided an out-of-range value \`${value}\` for the select ${
+            `MUI: You have provided an out-of-range value \`${value}\` for the select ${
               name ? `(name="${name}") ` : ''
             }component.`,
             "Consider providing a value that matches one of the available options or ''.",

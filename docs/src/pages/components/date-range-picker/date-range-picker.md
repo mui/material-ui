@@ -12,7 +12,7 @@ materialDesign: https://material.io/components/date-pickers
 
 > ⚠️ Pro component
 > <br /><br />
-> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license).
+> The date range picker is intended for MUI X Pro, a commercial set of advanced components built on top of the community edition (MIT license).
 > <br /><br />
 > This paid extension will include more advanced components (rich data grid, date range picker, tree view drag & drop, etc.). [Early access](https://material-ui.com/store/items/material-ui-pro/) starts at an affordable price.
 

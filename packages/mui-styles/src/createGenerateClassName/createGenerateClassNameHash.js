@@ -4,7 +4,7 @@ function safePrefix(classNamePrefix) {
   const prefix = String(classNamePrefix);
   if (process.env.NODE_ENV !== 'production') {
     if (prefix.length >= 256) {
-      console.error(`Material-UI: The class name prefix is too long: ${prefix}.`);
+      console.error(`MUI: The class name prefix is too long: ${prefix}.`);
     }
   }
 
@@ -50,7 +50,7 @@ export default function createGenerateClassNameHash(options = {}) {
         if (ruleCounter >= 1e10) {
           console.warn(
             [
-              'Material-UI: You might have a memory leak.',
+              'MUI: You might have a memory leak.',
               'The ruleCounter is not supposed to grow that much.',
             ].join(''),
           );

@@ -13,9 +13,7 @@ describe('styled', () => {
         // Error message changes between browsers.
         // It's not relevant to the test anyway.
       }).to.throw();
-    }).toErrorDev(
-      'Material-UI: Seems like you called `styled("span")()` without a `style` argument',
-    );
+    }).toErrorDev('MUI: Seems like you called `styled("span")()` without a `style` argument');
 
     expect(() => {
       expect(() => {
@@ -23,9 +21,7 @@ describe('styled', () => {
         // Error message changes between browsers.
         // It's not relevant to the test anyway.
       }).to.throw();
-    }).toErrorDev(
-      'Material-UI: the styled("span")(...args) API requires all its args to be defined',
-    );
+    }).toErrorDev('MUI: the styled("span")(...args) API requires all its args to be defined');
   });
 
   it('should respect the options', () => {

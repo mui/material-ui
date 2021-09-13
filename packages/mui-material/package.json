@@ -2,8 +2,8 @@
   "name": "@mui/material",
   "version": "5.0.0-rc.1",
   "private": false,
-  "author": "Material-UI Team",
-  "description": "Quickly build beautiful React apps. Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with Material Design.",
+  "author": "MUI Team",
+  "description": "Quickly build beautiful React apps. MUI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with Material Design.",
   "main": "./src/index.ts",
   "keywords": [
     "react",

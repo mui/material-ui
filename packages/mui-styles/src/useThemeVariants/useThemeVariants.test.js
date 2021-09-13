@@ -136,12 +136,12 @@ describe('useThemeVariants', () => {
       ),
     ).toErrorDev([
       [
-        `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
+        `MUI: You are using a variant value \`test\` for which you didn't define styles.`,
         `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://material-ui.com/r/custom-component-variants.`,
       ].join('\n'),
       !strictModeDoubleLoggingSupressed &&
         [
-          `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
+          `MUI: You are using a variant value \`test\` for which you didn't define styles.`,
           `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://material-ui.com/r/custom-component-variants.`,
         ].join('\n'),
     ]);

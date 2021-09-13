@@ -707,7 +707,7 @@ Rating.propTypes /* remove-proptypes */ = {
     if (props.precision < 0.1) {
       return new Error(
         [
-          'Material-UI: The prop `precision` should be above 0.1.',
+          'MUI: The prop `precision` should be above 0.1.',
           'A value below this limit has an imperceptible impact.',
         ].join('\n'),
       );

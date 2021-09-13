@@ -1,6 +1,6 @@
 # API Design Approach
 
-<p class="description">We have learned a great deal regarding how Material-UI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
+<p class="description">We have learned a great deal regarding how MUI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 
 > API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
 
@@ -138,7 +138,7 @@ For example, let's take a button that has different types. Each option has its p
   bounds the number of props exposed,
   and can easily support new values in the future.
 
-The Material-UI components use a combination of the two approaches according to the following rules:
+The MUI components use a combination of the two approaches according to the following rules:
 
 - A _boolean_ is used when **2** possible values are required.
 - An _enum_ is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.

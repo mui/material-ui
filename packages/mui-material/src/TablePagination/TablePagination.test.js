@@ -371,7 +371,7 @@ describe('<TablePagination />', () => {
           'MockedTablePagination',
         );
       }).toErrorDev(
-        'Material-UI: The page prop of a TablePagination is out of range (0 to 1, but page is 2).',
+        'MUI: The page prop of a TablePagination is out of range (0 to 1, but page is 2).',
       );
     });
   });

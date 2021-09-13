@@ -10,7 +10,7 @@ export default React.forwardRef(function DeprecatedAvatarGroup(props, ref) {
   if (!warnedOnce) {
     console.warn(
       [
-        'Material-UI: The AvatarGroup component was moved from the lab to the core.',
+        'MUI: The AvatarGroup component was moved from the lab to the core.',
         '',
         "You should use `import { AvatarGroup } from '@mui/material'`",
         "or `import AvatarGroup from '@mui/material/AvatarGroup'`",
