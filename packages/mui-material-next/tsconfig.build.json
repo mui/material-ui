@@ -14,6 +14,7 @@
   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
   "references": [
     { "path": "../mui-core/tsconfig.build.json" },
+    { "path": "../mui-material/tsconfig.build.json" },
     { "path": "../mui-system/tsconfig.build.json" }
   ]
 }

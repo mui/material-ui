@@ -35,6 +35,7 @@
     "@mui/icons-material": "^5.0.0",
     "@mui/lab": "5.0.0-alpha.47",
     "@mui/material": "^5.0.0",
+    "@mui/material-next": "^6.0.0-alpha.0",
     "@mui/styled-engine": "^5.0.0",
     "@mui/styled-engine-sc": "^5.0.0",
     "@mui/styles": "^5.0.0",
