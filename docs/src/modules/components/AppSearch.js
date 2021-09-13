@@ -65,7 +65,7 @@ const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(13),
     fontWeight: 600,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[700],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[600],
     lineHeight: '21px',
     border: `1px solid ${
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.grey[200]
@@ -154,6 +154,14 @@ export default function AppSearch() {
                 theme.palette.mode === 'dark'
                   ? alpha(theme.palette.grey[900], 0.7)
                   : alpha(theme.palette.grey[900], 0.2),
+              '& .DocSearch-Search-Icon': {
+                width: '20px',
+                height: '20px',
+              },
+              '& .DocSearch-Hit-Select-Icon': {
+                height: '15px',
+                width: '15px',
+              },
               '& .DocSearch-Modal': {
                 boxShadow: `0px 4px 20px ${
                   theme.palette.mode === 'dark'
@@ -218,7 +226,7 @@ export default function AppSearch() {
                   borderBottomColor:
                     theme.palette.mode === 'dark'
                       ? theme.palette.primaryDark[600]
-                      : theme.palette.grey[300],
+                      : theme.palette.grey[200],
                 },
                 [`& .DocSearch-Hit[aria-selected='true'] a`]: {
                   backgroundColor:
