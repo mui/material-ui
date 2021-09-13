@@ -1,7 +1,6 @@
 import React from 'react';
-import { DocSearch, DocSearchModal } from '@docsearch/react';
+import { DocSearchModal } from '@docsearch/react';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import Link from '@mui/material/Link';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import '@docsearch/css';
@@ -118,7 +117,7 @@ export default function AppSearch() {
           <SearchIcon
             fontSize="small"
             sx={{
-              color:
+              color: (theme) =>
                 theme.palette.mode === 'dark'
                   ? theme.palette.grey[500]
                   : theme.palette.primary[500],
