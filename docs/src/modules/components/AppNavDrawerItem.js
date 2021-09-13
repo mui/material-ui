@@ -97,6 +97,10 @@ const ItemLink = styled(Item, {
     ...(hasIcon && {
       paddingLeft: 2,
     }),
+    ...(depth === 0 && {
+      fontSize: theme.typography.pxToRem(14.5),
+      color: theme.palette.text.primary,
+    }),
   };
 });
 
@@ -208,21 +212,24 @@ export default function AppNavDrawerItem(props) {
 
   if (href) {
     return (
-      <StyledLi {...other} depth={depth}>
-        <ItemLink
-          component={Link}
-          activeClassName="app-drawer-active"
-          href={href}
-          underline="none"
-          onClick={onClick}
-          depth={depth}
-          hasIcon={hasIcon}
-          {...linkProps}
-        >
-          {iconElement}
-          {title}
-        </ItemLink>
-      </StyledLi>
+      <React.Fragment>
+        <StyledLi {...other} depth={depth}>
+          <ItemLink
+            component={Link}
+            activeClassName="app-drawer-active"
+            href={href}
+            underline="none"
+            onClick={onClick}
+            depth={depth}
+            hasIcon={hasIcon}
+            {...linkProps}
+          >
+            {iconElement}
+            {title}
+          </ItemLink>
+        </StyledLi>
+        {depth === 0 && <Divider sx={{ my: 1.2 }} />}
+      </React.Fragment>
     );
   }
 
