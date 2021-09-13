@@ -197,15 +197,6 @@ export default function AppSearch() {
               },
               '& .DocSearch-Dropdown': {
                 backgroundColor: 'inherit',
-                '&::before': {
-                  padding: `${theme.spacing(2)} ${theme.spacing(1.5)}`,
-                  display: 'block',
-                  content: '"Results:"',
-                  color:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[400]
-                      : theme.palette.grey[800],
-                },
                 '& .DocSearch-Hit a': {
                   backgroundColor: 'inherit',
                   border: '1px solid transparent',
@@ -225,14 +216,22 @@ export default function AppSearch() {
                 '& .DocSearch-Hit-Container': {
                   padding: `${theme.spacing(4)} 0`,
                 },
+                '& .DocSearch-Hit-source': {
+                  padding: theme.spacing(2),
+                  backgroundColor: 'inherit',
+                  top: 'initial',
+                },
                 '& .DocSearch-Hit-content-wrapper': {
                   paddingLeft: theme.spacing(2),
+                  flexDirection: 'column-reverse',
                   '& .DocSearch-Hit-title': {
-                    color: `${theme.palette.text.primary} !important`,
+                    // content -- mismatching classname
+                    color: `${theme.palette.text.secondary} !important`,
                     padding: `${theme.spacing(0.5)} 0`,
                   },
                   '& .DocSearch-Hit-path': {
-                    color: `${theme.palette.text.secondary} !important`,
+                    // title  -- mismatching classname
+                    color: `${theme.palette.text.primary} !important`,
                     padding: `${theme.spacing(0.5)} 0`,
                   },
                 },
@@ -245,9 +244,6 @@ export default function AppSearch() {
                 },
                 '& .DocSearch-Hit-action': {
                   marginRight: theme.spacing(1),
-                },
-                '& .DocSearch-Hit-source': {
-                  display: 'none',
                 },
               },
               '& .DocSearch-Footer': {
