@@ -84,7 +84,7 @@ Alguns componentes do Material-UI usam essas transições internamente. Estas ac
 - Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
 - Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. Esses dois callbacks permitem desmontar os elementos filhos quando em estado fechado e totalmente transitados.
 
-For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition). Você também pode visitar as seções dedicadas de alguns dos componentes:
+For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](https://reactcommunity.org/react-transition-group/transition). Você também pode visitar as seções dedicadas de alguns dos componentes:
 
 - [Modal](/components/modal/#transitions)
 - [Dialog](/components/dialogs/#transitions)
