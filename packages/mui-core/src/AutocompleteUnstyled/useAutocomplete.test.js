@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, screen, ErrorBoundary } from 'test/utils';
+import { createClientRender, screen, ErrorBoundary, act, fireEvent } from 'test/utils';
 import { useAutocomplete, createFilterOptions } from '@mui/core/AutocompleteUnstyled';
 
 describe('useAutocomplete', () => {
@@ -277,5 +277,25 @@ describe('useAutocomplete', () => {
         </ErrorBoundary>,
       );
     }).toErrorDev(devErrorMessages);
+  });
+
+  describe('prop: freeSolo', () => {
+    it('should not reset if the component value does not change on blur', () => {
+      const Test = (props) => {
+        const { options } = props;
+        const { getInputProps } = useAutocomplete({ options, open: true, freeSolo: true });
+
+        return <input {...getInputProps()} />;
+      };
+      render(<Test options={['foo', 'bar']} />);
+      const input = screen.getByRole('textbox');
+
+      act(() => {
+        fireEvent.change(input, { target: { value: 'free' } });
+        input.blur();
+      });
+
+      expect(input.value).to.equal('free');
+    });
   });
 });

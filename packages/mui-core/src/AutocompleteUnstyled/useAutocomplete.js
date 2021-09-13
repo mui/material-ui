@@ -185,8 +185,13 @@ export default function useAutocomplete(props) {
       return;
     }
 
+    // Only reset the input's value when freeSolo if the component's value changes.
+    if (freeSolo && !valueChange) {
+      return;
+    }
+
     resetInputValue(null, value);
-  }, [value, resetInputValue, focused, prevValue]);
+  }, [value, resetInputValue, focused, prevValue, freeSolo]);
 
   const [open, setOpenState] = useControlled({
     controlled: openProp,

@@ -83,7 +83,7 @@ const ClockAmButton = styled(IconButton, { skipSx: true })<{ ownerState: ClockPr
   ({ theme, ownerState }) => ({
     zIndex: 1,
     position: 'absolute',
-    bottom: 8,
+    bottom: ownerState.ampmInClock ? 64 : 8,
     left: 8,
     ...(ownerState.meridiemMode === 'am' && {
       backgroundColor: theme.palette.primary.main,
@@ -99,7 +99,7 @@ const ClockPmButton = styled(IconButton, { skipSx: true })<{ ownerState: ClockPr
   ({ theme, ownerState }) => ({
     zIndex: 1,
     position: 'absolute',
-    bottom: 8,
+    bottom: ownerState.ampmInClock ? 64 : 8,
     right: 8,
     ...(ownerState.meridiemMode === 'pm' && {
       backgroundColor: theme.palette.primary.main,

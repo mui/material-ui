@@ -23,7 +23,7 @@ When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> 
 
 ## Unstyled
 
-- 📦 [2.0 kB gzipped](https://bundlephobia.com/result?p=@mui/core@next)
+- 📦 [2.0 kB gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
 
 As the component does not have any styles, it also comes with the unstyled package.
 

@@ -27,10 +27,10 @@ Install the package in your project directory with:
 
 ```sh
 // with npm
-npm install @mui/icons-material@next
+npm install @mui/icons-material
 
 // with yarn
-yarn add @mui/icons-material@next
+yarn add @mui/icons-material
 ```
 
 These components use the Material-UI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@materialui/core`.
@@ -39,10 +39,10 @@ If you aren't already using Material-UI in your project, you can add it with:
 
 ```sh
 // with npm
-npm install @mui/material@next
+npm install @mui/material
 
 // with yarn
-yarn add @mui/material@next
+yarn add @mui/material
 ```
 
 ### Usage

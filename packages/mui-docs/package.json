@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/mui-docs",
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/mui-docs",
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",
     "build:legacy": "node ../../scripts/build legacy",
@@ -30,7 +30,7 @@
     "build:stable": "node ../../scripts/build stable",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build --tag next",
+    "release": "yarn build && npm publish build",
     "test": "exit 0"
   },
   "peerDependencies": {
