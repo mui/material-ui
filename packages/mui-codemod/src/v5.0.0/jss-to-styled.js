@@ -26,20 +26,23 @@ export default function transformer(file, api, options) {
 
     // 1. check from withStylesFn
     if (withStylesCall && withStylesCall.arguments[1] && withStylesCall.arguments[1].properties) {
-      const name = withStylesCall.arguments[1].properties.find((prop) => prop.key.name === 'name');
+      const name = withStylesCall.arguments[1].properties.find(prop => prop.key.name === 'name');
       prefix = name.value.value;
     }
 
     if (!prefix) {
       // 2. check name from export default
-      root.find(j.ExportDefaultDeclaration).forEach((path) => {
+      root.find(j.ExportDefaultDeclaration).forEach(path => {
         prefix = path.node.declaration.name;
       });
     }
 
     if (!prefix) {
       // 3. use name export that is Capitalize
-      root.find(j.ExportNamedDeclaration).forEach((path) => {
+      root.find(j.ExportNamedDeclaration).forEach(path => {
+        if (path.node.type !== 'VariableDeclaration') {
+          return;
+        }
         const name = path.node.declaration.declarations[0].id.name;
         if (!prefix && name.match(/^[A-Z]/)) {
           prefix = name;
@@ -77,9 +80,9 @@ export default function transformer(file, api, options) {
       root
         .findJSXElements(name)
         .at(0)
-        .forEach((path) => {
+        .forEach(path => {
           const existingClassName = path.node.openingElement.attributes.find(
-            (attr) => attr.name && attr.name.name === 'className',
+            attr => attr.name && attr.name.name === 'className',
           );
           if (existingClassName) {
             if (existingClassName.value.type === 'StringLiteral') {
@@ -100,7 +103,7 @@ export default function transformer(file, api, options) {
 
               if (existingClassName.value.expression.type === 'CallExpression') {
                 // className={clsx(classes.root)}
-                existingClassName.value.expression.arguments.forEach((arg) => {
+                existingClassName.value.expression.arguments.forEach(arg => {
                   if (arg.type === 'MemberExpression') {
                     if (arg.object.name === 'classes') {
                       rootClassKeys.push(arg.property.name);
@@ -108,7 +111,7 @@ export default function transformer(file, api, options) {
                   }
 
                   if (arg.type === 'ObjectExpression') {
-                    arg.properties.forEach((prop) => {
+                    arg.properties.forEach(prop => {
                       if (prop.key.object && prop.key.object.name === 'classes') {
                         rootClassKeys.push(prop.key.property.name);
                       }
@@ -170,7 +173,7 @@ export default function transformer(file, api, options) {
    */
   function createClasses(objExpression) {
     const classes = j.objectExpression([]);
-    objExpression.properties.forEach((prop) => {
+    objExpression.properties.forEach(prop => {
       classes.properties.push(
         j.objectProperty(
           prop.key,
@@ -198,7 +201,7 @@ export default function transformer(file, api, options) {
     if (functionExpression.type === 'ArrowFunctionExpression') {
       if (functionExpression.body.type === 'BlockStatement') {
         const returnStatement = functionExpression.body.body.find(
-          (b) => b.type === 'ReturnStatement',
+          b => b.type === 'ReturnStatement',
         );
         return returnStatement.argument;
       }
@@ -212,9 +215,7 @@ export default function transformer(file, api, options) {
       }
     }
     if (functionExpression.type === 'FunctionDeclaration') {
-      const returnStatement = functionExpression.body.body.find(
-        (b) => b.type === 'ReturnStatement',
-      );
+      const returnStatement = functionExpression.body.body.find(b => b.type === 'ReturnStatement');
       return returnStatement.argument;
     }
     if (functionExpression.type === 'CallExpression') {
@@ -237,7 +238,7 @@ export default function transformer(file, api, options) {
     if (functionExpression.type === 'ArrowFunctionExpression') {
       if (functionExpression.body.type === 'BlockStatement') {
         const returnStatement = functionExpression.body.body.find(
-          (b) => b.type === 'ReturnStatement',
+          b => b.type === 'ReturnStatement',
         );
         objectExpression = returnStatement.argument;
       }
@@ -248,13 +249,11 @@ export default function transformer(file, api, options) {
     }
     if (functionExpression.type === 'FunctionDeclaration') {
       functionExpression.type = 'FunctionExpression';
-      const returnStatement = functionExpression.body.body.find(
-        (b) => b.type === 'ReturnStatement',
-      );
+      const returnStatement = functionExpression.body.body.find(b => b.type === 'ReturnStatement');
       objectExpression = returnStatement.argument;
     }
     if (objectExpression) {
-      objectExpression.properties.forEach((prop) => {
+      objectExpression.properties.forEach(prop => {
         const selector = rootKeys.includes(prop.key.name) ? '&.' : '& .';
         prop.key = j.templateLiteral(
           [
@@ -269,7 +268,7 @@ export default function transformer(file, api, options) {
     }
 
     if (functionExpression.params) {
-      functionExpression.params = functionExpression.params.map((param) => {
+      functionExpression.params = functionExpression.params.map(param => {
         if (param.type === 'ObjectPattern') {
           return j.objectPattern([j.objectProperty(j.identifier('theme'), param)]);
         }
@@ -323,7 +322,7 @@ export default function transformer(file, api, options) {
     root
       .find(j.CallExpression, { callee: { name: 'withStyles' } })
       .at(0)
-      .forEach((path) => {
+      .forEach(path => {
         const arg = path.node.arguments[0];
         if (arg.type === 'Identifier') {
           stylesFnName = arg.name;
@@ -338,7 +337,7 @@ export default function transformer(file, api, options) {
     root
       .find(j.VariableDeclarator, { id: { name: stylesFnName } })
       .at(0)
-      .forEach((path) => {
+      .forEach(path => {
         let fnArg = path.node.init;
 
         const objectExpression = getReturnStatement(fnArg);
@@ -364,8 +363,8 @@ export default function transformer(file, api, options) {
     root
       .find(j.FunctionDeclaration, { id: { name: stylesFnName } })
       .at(0)
-      .forEach((path) => {
-        const returnStatement = path.node.body.body.find((b) => b.type === 'ReturnStatement');
+      .forEach(path => {
+        const returnStatement = path.node.body.body.find(b => b.type === 'ReturnStatement');
         result.classes = createClasses(returnStatement.argument, prefix);
         result.styledArg = convertToStyledArg(path.node, rootClassKeys);
       })
@@ -377,7 +376,7 @@ export default function transformer(file, api, options) {
     root
       .find(j.CallExpression, { callee: { name: 'makeStyles' } })
       .at(0)
-      .forEach((path) => {
+      .forEach(path => {
         let arg = path.node.arguments[0];
         if (arg.type === 'Identifier') {
           stylesFnName = arg.name;
@@ -404,7 +403,7 @@ export default function transformer(file, api, options) {
     root
       .find(j.VariableDeclarator, { id: { name: stylesFnName } })
       .at(0)
-      .forEach((path) => {
+      .forEach(path => {
         const objectExpression = getReturnStatement(path.node.init);
         if (objectExpression) {
           result.classes = createClasses(objectExpression, prefix);
@@ -416,8 +415,8 @@ export default function transformer(file, api, options) {
     root
       .find(j.FunctionDeclaration, { id: { name: stylesFnName } })
       .at(0)
-      .forEach((path) => {
-        const returnStatement = path.node.body.body.find((b) => b.type === 'ReturnStatement');
+      .forEach(path => {
+        const returnStatement = path.node.body.body.find(b => b.type === 'ReturnStatement');
         result.classes = createClasses(returnStatement.argument, prefix);
         result.styledArg = convertToStyledArg(path.node, rootClassKeys);
       })
@@ -425,7 +424,7 @@ export default function transformer(file, api, options) {
 
     root
       .find(j.VariableDeclaration)
-      .filter((path) => path.node.declarations.some((d) => d.id.name === 'useStyles'))
+      .filter(path => path.node.declarations.some(d => d.id.name === 'useStyles'))
       .remove();
   }
 
@@ -436,7 +435,7 @@ export default function transformer(file, api, options) {
   root
     .find(j.ImportDeclaration)
     .at(-1)
-    .forEach((path) => {
+    .forEach(path => {
       path.insertAfter(
         j.variableDeclaration('const', [
           j.variableDeclarator(j.identifier('PREFIX'), j.stringLiteral(prefix)),
@@ -474,12 +473,17 @@ export default function transformer(file, api, options) {
    * apply <StyledComponent />
    */
   if (rootJsxName === '') {
-    root.find(j.JSXFragment).at(0).forEach(transformJsxRootToStyledComponent);
+    root
+      .find(j.JSXFragment)
+      .at(0)
+      .forEach(transformJsxRootToStyledComponent);
   } else if (rootJsxName.indexOf('.') > 0) {
     let converted = false;
-    root.find(j.JSXElement).forEach((path) => {
+    root.find(j.JSXElement).forEach(path => {
       if (!converted && path.node.openingElement.name.type === 'JSXMemberExpression') {
-        const tagName = `${path.node.openingElement.name.object.name}.${path.node.openingElement.name.property.name}`;
+        const tagName = `${path.node.openingElement.name.object.name}.${
+          path.node.openingElement.name.property.name
+        }`;
         if (tagName === rootJsxName) {
           converted = true;
           transformJsxRootToStyledComponent(path);
@@ -487,7 +491,10 @@ export default function transformer(file, api, options) {
       }
     });
   } else {
-    root.findJSXElements(rootJsxName).at(0).forEach(transformJsxRootToStyledComponent);
+    root
+      .findJSXElements(rootJsxName)
+      .at(0)
+      .forEach(transformJsxRootToStyledComponent);
   }
 
   /**
@@ -497,7 +504,7 @@ export default function transformer(file, api, options) {
     .find(j.ImportDeclaration)
     .filter(({ node }) => node.source.value.match(/^@material-ui\/core\/styles$/))
     .forEach(({ node }) => {
-      const existed = node.specifiers.find((s) => s.imported.name === 'styled');
+      const existed = node.specifiers.find(s => s.imported.name === 'styled');
       if (!existed) {
         node.specifiers.push(j.importSpecifier(j.identifier('styled')));
       }
@@ -506,7 +513,7 @@ export default function transformer(file, api, options) {
     root
       .find(j.ImportDeclaration)
       .at(0)
-      .forEach((path) =>
+      .forEach(path =>
         path.insertAfter(
           j.importDeclaration(
             [j.importSpecifier(j.identifier('styled'))],
@@ -521,20 +528,20 @@ export default function transformer(file, api, options) {
    */
   root
     .find(j.ImportDeclaration)
-    .filter((path) =>
+    .filter(path =>
       path.node.source.value.match(
         /^@material-ui\/styles\/?(withStyles|makeStyles|createStyles)?$/,
       ),
     )
-    .forEach((path) => {
+    .forEach(path => {
       path.node.specifiers = path.node.specifiers.filter(
-        (s) =>
+        s =>
           s.local.name !== 'withStyles' &&
           s.local.name !== 'makeStyles' &&
           s.local.name !== 'createStyles',
       );
     })
-    .filter((path) => !path.node.specifiers.length)
+    .filter(path => !path.node.specifiers.length)
     .remove();
 
   return root
