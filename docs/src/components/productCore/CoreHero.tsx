@@ -396,22 +396,19 @@ export default function Hero() {
                 <CardHeader
                   avatar={
                     <Avatar
-                      sx={{ bgcolor: 'primary.50', color: 'primary.600' }}
-                      aria-label="recipe"
+                      sx={{ bgcolor: 'primary.50', color: 'primary.600', fontWeight: 'bold' }}
                     >
-                      <b>YN</b>
+                      YN
                     </Avatar>
                   }
                   title="Yosemite National Park"
                   subheader="California, United States"
                 />
                 <CardMedia
-                  sx={{
-                    height: 0,
-                    paddingTop: '34%', // 16:9
-                  }}
+                  height={125}
+                  alt=""
+                  component="img"
                   image="/static/images/cards/yosemite.jpeg"
-                  title="Paella dish"
                 />
                 <CardContent sx={{ pb: 0 }}>
                   <Typography variant="body2" color="text.secondary">
