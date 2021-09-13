@@ -1,6 +1,6 @@
 # React Engineer
 
-<p class="description">We are looking for a React Engineer to support the advanced components team, build ambitious new features, and grow the open-source adoption.</p>
+<p class="description">We are looking for a React Engineer to support the advanced components team, build new ambitious enterprise features, and grow the open-source adoption.</p>
 
 ## Details of the Role
 
@@ -13,7 +13,7 @@
 
 ## About us
 
-See the [careers](/company/careers/) and [about us](https://next.material-ui.com/branding/about/) pages.
+See the [careers](/company/careers/) and [about us](https://material-ui.com/branding/about/) pages.
 
 ### Why we're hiring
 
@@ -30,7 +30,7 @@ We also need help to continue to improve the health of the open-source product: 
 
 Our solution is empowering React developers to build awesome applications.
 It should be easy, it shouldn't require any advanced technical skills.
-Hundreds of thousands of developers use Material-UI every month.
+Hundreds of thousands of developers use MUI every month.
 
 Our enterprise components portfolio is still small, with a million interesting and challenging problems to solve.
 
@@ -41,12 +41,12 @@ Our enterprise components portfolio is still small, with a million interesting a
 Depending on the day or the team you join, you'll:
 
 - **Help guide architectural decisions**.
-  The future of Material-UI is discussed and planned in our public RFCs and issues.
-  You'll be helping drive these conversations and guiding Material-UI toward the best possible solutions.
+  The future of MUI is discussed and planned in our public RFCs and issues.
+  You'll be helping drive these conversations and guiding MUI toward the best possible solutions.
 - **Contribute to deep, meaningful refactors and feature releases**.
-  Material-UI is a complex codebase. Components we've shipped recently, such as the data grid have required months of dedicated, careful work.
+  MUI is a complex codebase. Components we've shipped recently, such as the data grid have required months of dedicated, careful work.
 - **Reduce friction**.
-  A large amount of the work on Material-UI is reducing friction and making it easier to use.
+  A large amount of the work on MUI is reducing friction and making it easier to use.
   This might involve careful API design, identifying and fixing top bugs, creating easier to understand error messages, and writing documentation and blog posts about features you ship.
 - **Collaborate with the community**.
   Many small as well as meaningful fixes and features have been contributed by the community. Your role is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
@@ -61,7 +61,7 @@ Depending on the day or the team you join, you'll:
 
 - **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
 - **You'll be part of an active, open, friendly community** of developers that are excited about building awesome applications.
-- **Your role will be key to making Material-UI the go-to UI framework** for building applications, websites, and design systems with React.
+- **Your role will be key to making MUI the go-to UI framework** for building applications, websites, and design systems with React.
 
 ### The worst parts of this job
 
@@ -71,7 +71,7 @@ Depending on the day or the team you join, you'll:
   It's fun, rewarding work, but it can be very challenging.
 - **We move quickly, but don't sacrifice quality**.
   We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue with quality should be enough for any given iteration. Our users quickly tell us when we haven't pushed a solution far enough.
-- **Material-UI is a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌.
+- **MUI is a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌.
   The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
 - **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
 
@@ -82,7 +82,7 @@ We're looking for someone with strong front-end skills. More important than spec
 ### Skills you should have
 
 - **Expertise in the modern JavaScript ecosystem**.
-  Material-UI is built on the shoulders of giants, making use of technologies such as ES2020, TypeScript, Node.js, React, Next.js, webpack, and Babel.
+  MUI is built on the shoulders of giants, making use of technologies such as ES2020, TypeScript, Node.js, React, Next.js, webpack, and Babel.
 - **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
 - **Strong written and verbal communication skills**.
@@ -105,7 +105,7 @@ We're looking for someone with strong front-end skills. More important than spec
 - **You've maintained an active repository before**.
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
   Previous experience with highly active repository workflows is a definite plus for this role.
-- **You have contributed code to Material-UI before**. A history of contributing to Material-UI would be a definite plus.
+- **You have contributed code to MUI before**. A history of contributing to MUI would be a definite plus.
 
 ## Compensation
 

@@ -1,15 +1,19 @@
 ---
 title: Componente Barra de Aplicativos para React
 components: AppBar, Toolbar, Menu
+githubLabel: 'component: AppBar'
+materialDesign: https://material.io/components/app-bars-top
 ---
 
 # Barra de Aplicativos
 
 <p class="description">A barra de aplicativos exibe informações e ações relacionadas à tela atual.</p>
 
-A [barra de aplicativos superior](https://material.io/design/components/app-bars-top.html) provê conteúdo e ações relacionados à tela atual. Ela é utilizada para a identidade visual, títulos de tela, navegação, e ações.
+A barra de aplicativos superior fornece conteúdo e ações relacionadas à tela atual. Ela é utilizada para a identidade visual, títulos de tela, navegação e ações.
 
 Ela pode se transformar em uma barra de ações contextual ou ser utilizada como uma barra de navegação.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Barra de Aplicativos Simples
 
@@ -49,7 +53,7 @@ Uma barra de aplicativos proeminente.
 
 Quando você renderiza a barra de aplicativos com um posicionamento fixo, a dimensão do elemento não afeta o resto da página. Isso pode fazer com que parte do seu conteúdo pareça estar invisível, atrás da barra de aplicativos. Aqui estão 3 soluções possíveis:
 
-1. Você pode usar `position="sticky"` ao invés de fixed. ⚠️ sticky não é suportado pelo IE 11.
+1. Você pode usar `position="sticky"` ao invés de fixed. ⚠️ sticky não é suportado pelo IE11.
 2. Você pode renderizar um segundo componente `<Toolbar />`:
 
 ```jsx
@@ -68,21 +72,18 @@ function App() {
 3. Você pode usar o CSS `theme.mixins.toolbar`:
 
 ```jsx
-const useStyles = makeStyles(theme => ({
-  offset: theme.mixins.toolbar,
-}))
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 function App() {
-  const classes = useStyles();
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* conteúdo */}</Toolbar>
+        <Toolbar>{/* content */}</Toolbar>
       </AppBar>
-      <div className={classes.offset} />
+      <Offset />
     </React.Fragment>
-  )
-};
+  );
+}
 ```
 
 ## Rolagem
@@ -111,11 +112,11 @@ Um botão de ação flutuante aparece na rolagem para facilitar o retorno ao top
 
 #### Argumentos
 
-1. `options` (*Object* [opcional]):
+1. `options` (_object_ [optional]):
 
-- `options.disableHysteresis` (*Boolean* [opcional]): Padrão `false`. Desabilita a histerese. Ignora a direção de rolagem ao determinar o valor de `trigger`.
-- `options.target` (*Node* [opcional]): Padrão `window`.
-- `options.threshold` (*Number* [opcional]): Padrão `100`. Modifica o valor limite que aciona a `trigger` quando a barra de rolagem vertical cruzar ou chegar a este limite.
+   - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. Desabilita a histerese. Ignora a direção de rolagem ao determinar o valor de `trigger`.
+   - `options.target` (_Node_ [opcional]): Padrão `window`.
+   - `options.threshold` (_number_ [opcional]): Padrão `100`. Modifica o valor limite que aciona a `trigger` quando a barra de rolagem vertical cruzar ou chegar a este limite.
 
 #### Retornos
 
@@ -134,4 +135,28 @@ function HideOnScroll(props) {
     </Slide>
   );
 }
+```
+
+## Enable Color on Dark
+
+Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the AppBar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
+
+```jsx
+// Specific element via prop
+<AppBar enableColorOnDark />
+
+// Affect all AppBars via theme
+<ThemeProvider
+  theme={createTheme({
+    components: {
+      MuiAppBar: {
+        defaultProps: {
+          enableColorOnDark: true,
+        },
+      },
+    },
+  })}
+>
+  <AppBar />
+</ThemeProvider>
 ```

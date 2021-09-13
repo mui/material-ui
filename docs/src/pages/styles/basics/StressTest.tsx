@@ -1,5 +1,5 @@
-import React from 'react';
-import { ThemeProvider, useTheme, makeStyles, createStyles } from '@material-ui/core/styles';
+import * as React from 'react';
+import { ThemeProvider, useTheme, makeStyles } from '@mui/styles';
 
 interface MyTheme {
   color: string;
@@ -9,14 +9,12 @@ interface ComponentProps {
   backgroundColor: string;
 }
 
-const useStyles = makeStyles((theme: MyTheme) =>
-  createStyles({
-    root: (props: ComponentProps) => ({
-      backgroundColor: props.backgroundColor,
-      color: theme.color,
-    }),
+const useStyles = makeStyles((theme: MyTheme) => ({
+  root: (props: ComponentProps) => ({
+    backgroundColor: props.backgroundColor,
+    color: theme.color,
   }),
-);
+}));
 
 const Component = React.memo((props: ComponentProps) => {
   const classes = useStyles(props);
@@ -40,7 +38,9 @@ const Component = React.memo((props: ComponentProps) => {
 
 export default function StressTest() {
   const [backgroundColor, setBackgroundColor] = React.useState('#2196f3');
-  const handleBackgroundColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBackgroundColorChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setBackgroundColor(event.target.value);
   };
 
@@ -57,7 +57,12 @@ export default function StressTest() {
         <fieldset>
           <div>
             <label htmlFor="color">theme color: </label>
-            <input id="color" type="color" onChange={handleColorChange} value={color} />
+            <input
+              id="color"
+              type="color"
+              onChange={handleColorChange}
+              value={color}
+            />
           </div>
           <div>
             <label htmlFor="background-color">background-color property: </label>

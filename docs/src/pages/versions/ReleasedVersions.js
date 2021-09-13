@@ -1,30 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import Typography from '@material-ui/core/Typography';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
-import PageContext from 'docs/src/modules/components/PageContext';
+import VersionsContext from './VersionsContext';
 
-const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui-org/material-ui/releases/tag/';
+const GITHUB_RELEASE_BASE_URL =
+  'https://github.com/mui-org/material-ui/releases/tag/';
 
-const styles = {
-  root: {
-    minHeight: 33 * 11,
-    overflow: 'auto',
-    width: '100%',
-  },
-};
-
-function ReleasedVersions(props) {
-  const { classes } = props;
-  const { versions } = React.useContext(PageContext);
+function ReleasedVersions() {
+  const versions = React.useContext(VersionsContext);
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ minHeight: 33 * 11, overflow: 'auto', width: '100%' }}>
       <Table>
         <TableBody>
           {versions.map((doc) => (
@@ -36,7 +27,12 @@ function ReleasedVersions(props) {
                 </Typography>
               </TableCell>
               <TableCell>
-                <Link variant="body2" color="secondary" rel="nofollow" href={doc.url}>
+                <Link
+                  variant="body2"
+                  color="secondary"
+                  rel="nofollow"
+                  href={doc.url}
+                >
                   Documentation
                 </Link>
               </TableCell>
@@ -57,12 +53,8 @@ function ReleasedVersions(props) {
           ))}
         </TableBody>
       </Table>
-    </div>
+    </Box>
   );
 }
 
-ReleasedVersions.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ReleasedVersions);
+export default ReleasedVersions;

@@ -21,7 +21,7 @@ But this summary is just scratching the surface. We have accepted 198 commits fr
 
 ## Our roadmap intent for July
 
-*(We'll do our best, no guarantee!)*
+_(We'll do our best, no guarantee!)_
 
 - We will keep working on a new Tree View component.
   You can already [preview it](https://deploy-preview-14827--material-ui.netlify.app/components/tree-view/).

@@ -1,25 +1,14 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import Switch from '@material-ui/core/Switch';
-import WifiIcon from '@material-ui/icons/Wifi';
-import BluetoothIcon from '@material-ui/icons/Bluetooth';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
+import * as React from 'react';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import ListSubheader from '@mui/material/ListSubheader';
+import Switch from '@mui/material/Switch';
+import WifiIcon from '@mui/icons-material/Wifi';
+import BluetoothIcon from '@mui/icons-material/Bluetooth';
 
 export default function SwitchListSecondary() {
-  const classes = useStyles();
   const [checked, setChecked] = React.useState(['wifi']);
 
   const handleToggle = (value) => () => {
@@ -36,34 +25,37 @@ export default function SwitchListSecondary() {
   };
 
   return (
-    <List subheader={<ListSubheader>Settings</ListSubheader>} className={classes.root}>
+    <List
+      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+      subheader={<ListSubheader>Settings</ListSubheader>}
+    >
       <ListItem>
         <ListItemIcon>
           <WifiIcon />
         </ListItemIcon>
         <ListItemText id="switch-list-label-wifi" primary="Wi-Fi" />
-        <ListItemSecondaryAction>
-          <Switch
-            edge="end"
-            onChange={handleToggle('wifi')}
-            checked={checked.indexOf('wifi') !== -1}
-            inputProps={{ 'aria-labelledby': 'switch-list-label-wifi' }}
-          />
-        </ListItemSecondaryAction>
+        <Switch
+          edge="end"
+          onChange={handleToggle('wifi')}
+          checked={checked.indexOf('wifi') !== -1}
+          inputProps={{
+            'aria-labelledby': 'switch-list-label-wifi',
+          }}
+        />
       </ListItem>
       <ListItem>
         <ListItemIcon>
           <BluetoothIcon />
         </ListItemIcon>
         <ListItemText id="switch-list-label-bluetooth" primary="Bluetooth" />
-        <ListItemSecondaryAction>
-          <Switch
-            edge="end"
-            onChange={handleToggle('bluetooth')}
-            checked={checked.indexOf('bluetooth') !== -1}
-            inputProps={{ 'aria-labelledby': 'switch-list-label-bluetooth' }}
-          />
-        </ListItemSecondaryAction>
+        <Switch
+          edge="end"
+          onChange={handleToggle('bluetooth')}
+          checked={checked.indexOf('bluetooth') !== -1}
+          inputProps={{
+            'aria-labelledby': 'switch-list-label-bluetooth',
+          }}
+        />
       </ListItem>
     </List>
   );

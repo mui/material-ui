@@ -1,6 +1,6 @@
 # About Us
 
-<p class="description">We’re on a mission to make building UIs with React fun.</p>
+<p class="description">We're on a mission to make building UIs with React fun.</p>
 
 ## Our Mission
 
@@ -10,7 +10,7 @@ We're proud not only of the products we make, but also the community and partner
 
 ## Our Vision
 
-Our vision is to provide React components for faster and easier web development. [Read more](/discover-more/vision/).
+Our vision is to provide React components for faster and simpler web development. [Read more](/discover-more/vision/).
 
 ## Our Values
 
@@ -18,6 +18,6 @@ Our core values include transparency (our work is public most of the time); crea
 
 ## Our Story
 
-Material-UI started back in 2014 to unify React and Material Design.
+MUI started back in 2014 to unify React and Material Design.
 
-Today, Material-UI has grown to become one of the world's most popular React UI libraries – backed by a vibrant community of more than 1M developers in over 180 countries.
+Today, MUI has grown to become one of the world's most popular React UI libraries – backed by a vibrant community of more than 1M developers in over 180 countries.

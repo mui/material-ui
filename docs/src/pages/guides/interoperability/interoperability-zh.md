@@ -1,6 +1,6 @@
 # 样式库的互通性
 
-<p class="description">当您可以使用 Materal-UI 提供的基于 JSS 的样式解决方案来装饰应用程序，也可以用您已经熟知和喜欢的工具（从纯 CSS 到 styled-components）。 </p>
+<p class="description">虽然你可以使用 Material-UI 提供的基于 emotion 的样式解决方案来自定义你的应用程序，但你也可以使用你已知和喜欢的方案（从普通的 CSS 到 styled-components）。</p>
 
 本指南旨在归档当前比较流行的一些替代方案，但是您会发现在这里运用的法则，也可以在其他库里适用。 我们为以下的样式方案提供了一些示例：
 
@@ -9,7 +9,6 @@
 - [Styled Components](#styled-components)
 - [CSS Modules](#css-modules)
 - [Emotion](#css-modules)
-- [React JSS](#emotion)
 
 ## 纯 CSS
 
@@ -17,90 +16,152 @@
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/plain-css-mtzri)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/plain-css-fdue7)
 
-**PlainCssButton.css**
+**PlainCssSlider.css**
 
 ```css
-.button {
-  background-color: #6772e5;
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
+.slider {
+  color: #20b2aa;
 }
-.button:hover {
-  background-color: #5469d4;
+
+.slider:hover {
+  color: #2e8b57;
 }
 ```
 
-**PlainCssButton.js**
+**PlainCssSlider.js**
 
 ```jsx
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import './PlainCssButton.css';
+import * as React from 'react';
+import Slider from '@material-ui/core/Slider';
+import './PlainCssSlider.css';
 
-export default function PlainCssButton() {
+export default function PlainCssSlider() {
   return (
     <div>
-      <Button>默认的按钮</Button>
-      <Button className="button">自定义按钮</Button>
+      <Slider defaultValue={30} />
+      <Slider defaultValue={30} className="slider" />
     </div>
   );
 }
 ```
 
-### 控制的优先权 ⚠️
+### CSS 注入顺序⚠️
 
-**请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important** 来标记样式属性的话，则需要更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如下所示：
+**注意：** 大多数的 CSS-in-JS 解决方案是在 HTML `<head>` 的底部注入它们的样式，这会导致你的自定义样式被 Material-UI 的样式规则所覆盖。 如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 Here's a demo of how it can be done in Material-UI:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import * as React from 'react';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
-<StylesProvider injectFirst>
-  {/* 你的组件树。
-      现在，您可以覆盖 Material-UI 的样式。 */}
-</StylesProvider>
+export default function GlobalCssPriority() {
+  return (
+    <StyledEngineProvider injectFirst>
+      {/* Your component tree. 现在你可以覆盖 Material-UI 的样式。 */}
+    </StyledEngineProvider>
+  );
+}
 ```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. 下面是一个示例：
+
+```jsx
+import * as React from 'react';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function PlainCssPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {这里编写你的组件树。 现在你可以覆盖 Material-UI 的样式。 */}
+    </CacheProvider>
+  );
+}
+```
+
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
 
 ### 更深层的元素
 
-如果您尝试赋予 Drawer（抽屉）组件以永久的变体的样式，这很可能会影响到抽屉组件的子纸张元素。 但是，纸张元素不是抽屉组件的根元素，因此上面的自定义 styled-components 将不起作用。 您则需要使用 Material-UI 的 [`classes`](/styles/advanced/#overriding-styles-classes-prop) API 来达到目的。
+如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 在 Material-UI 中，所有的子元素都增加了两层的特定类：`.parent .child {}`。 所以在编写覆盖样式的时候，你也需要这样做。
 
-以下示例除了自定义按钮本身的样式外，还会覆盖 `Button` 的`标签（label）`的样式。
+以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideToolbar": true}}
 
-**PlainCssButtonDeep.css**
+**PlainCssSliderDeep1.css**
 
 ```css
-.button {
-  background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
+.slider {
+  color: #20b2aa;
 }
-.button:hover {
-  background-color: #5469d4;
+
+.slider:hover {
+  color: #2e8b57;
 }
-.button-label {
-  color: #fff;
+
+.slider .MuiSlider-thumb {
+  border-radius: 1px;
 }
 ```
 
-**PlainCssButtonDeep.js**
+**PlainCssSliderDeep1.js**
 
 ```jsx
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import './PlainCssButtonDeep.css';
+import * as React from 'react';
+import Slider from '@material-ui/core/Slider';
+import './PlainCssSliderDeep1.css';
 
-export default function PlainCssButtonDeep() {
+export default function PlainCssSliderDeep1() {
   return (
     <div>
-      <Button>默认的</Button>
-      <Button classes={{ root: 'button', label: 'button-label' }}>
-        自定义的
-      </Button>
+      <Slider defaultValue={30} />
+      <Slider defaultValue={30} className="slider" />
+    </div>
+  );
+}
+```
+
+上面的演示依赖于 [默认的`className`值](/styles/advanced/#with-material-ui-core)，但是你也可以使用 `componentsProps` API 来提供你自己的类名。
+
+**PlainCssSliderDeep2.css**
+
+```css
+.slider {
+  color: #20b2aa;
+}
+
+.slider:hover {
+  color: #2e8b57;
+}
+
+.slider .thumb {
+  border-radius: 1px;
+}
+```
+
+**PlainCssSliderDeep2.js**
+
+```jsx
+import * as React from 'react';
+import Slider from '@material-ui/core/Slider';
+import './PlainCssSliderDeep2.css';
+
+export default function PlainCssSliderDeep2() {
+  return (
+    <div>
+      <Slider defaultValue={30} />
+      <Slider
+        defaultValue={30}
+        className="slider"
+        componentsProps={{ thumb: { className: 'thumb' } }}
+      />
     </div>
   );
 }
@@ -110,163 +171,174 @@ export default function PlainCssButtonDeep() {
 
 明确向提组件提供类名是不是太大费周章了？ [您可以定位到由 Material-UI 生成的类名](/styles/advanced/#with-material-ui-core)。
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/global-css-bir9e)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/global-classnames-dho8k)
 
-**GlobalCssButton.css**
+**GlobalCssSlider.css**
 
 ```css
-.MuiButton-root {
-  background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
+.MuiSlider-root {
+  color: #20b2aa;
 }
-.MuiButton-root:hover {
-  background-color: #5469d4;
-}
-.MuiButton-label {
-  color: #fff;
+
+.MuiSlider-root:hover {
+  color: #2e8b57;
 }
 ```
 
-**GlobalCssButton.js**
+**GlobalCssSlider.js**
 
 ```jsx
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import './GlobalCssButton.css';
+import * as React from 'react';
+import Slider from '@material-ui/core/Slider';
+import './GlobalCssSlider.css';
 
-export default function GlobalCssButton() {
-  return <Button>自定义的</Button>;
+export default function GlobalCssSlider() {
+  return <Slider defaultValue={30} />;
 }
 ```
 
-### 控制的优先权 ⚠️
+### CSS 注入顺序⚠️
 
-**请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important** 来标记样式属性的话，则需要更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如下所示：
+**注意：** 大多数的 CSS-in-JS 解决方案是在 HTML `<head>` 的底部注入它们的样式，这会导致你的自定义样式被 Material-UI 的样式规则所覆盖。 如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 Here's a demo of how it can be done in Material-UI:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import * as React from 'react';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
-<StylesProvider injectFirst>
-  {/* 你的组件树。
-      现在，您可以覆盖 Material-UI 的样式。 */}
-</StylesProvider>
+export default function GlobalCssPriority() {
+  return (
+    <StyledEngineProvider injectFirst>
+      {/* Your component tree. 现在你可以覆盖 Material-UI 的样式。 */}
+    </StyledEngineProvider>
+  );
+}
+```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. 下面是一个示例：
+
+```jsx
+import * as React from 'react';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function GlobalCssPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* 这里编写你的组件树。 现在你可以覆盖 Material-UI 的样式。 */}
+    </CacheProvider>
+  );
+}
+```
+
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
+
+### 更深层的元素
+
+如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 在 Material-UI 中，所有的子元素都增加了两层的特定类：`.parent .child {}`。 所以在编写覆盖样式的时候，你也需要这样做。
+
+以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
+
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideToolbar": true}}
+
+**GlobalCssSliderDeep.css**
+
+```css
+.MuiSlider-root {
+  color: #20b2aa;
+}
+
+.MuiSlider-root:hover {
+  color: #2e8b57;
+}
+
+.MuiSlider-root .MuiSlider-thumb {
+  border-radius: 1px;
+}
+```
+
+**GlobalCssSliderDeep.js**
+
+```jsx
+import * as React from 'react';
+import Slider from '@material-ui/core/Slider';
+import './GlobalCssSliderDeep.css';
+
+export default function GlobalCssSliderDeep() {
+  return <Slider defaultValue={30} />;
+}
 ```
 
 ## Styled Components
 
-![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
+![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg)
 
-`styled()` 方法完美适用于我们所有的组件。
+### 改变默认的样式引擎
+
+默认情况下，Material-UI 组件使用 emotion 来作为它们的样式引擎。 但是，如果你想使用 `styled-components` 的话，那么你可以参考这个 [示例项目](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components) 来配置你的应用程序。 按照这种方法来配置的话，则可以减少捆绑包的大小，并且无需配置 CSS 注入顺序。
+
+After the style engine is configured properly, you can use the [`styled()`](/customization/styled/) utility from `@material-ui/core/styles` and have direct access to the theme.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-r1fsr)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-interoperability-w9z9d)
 
 ```jsx
-import React from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
+import * as React from 'react';
+import Slider from '@material-ui/core/Slider';
+import { styled } from '@material-ui/core/styles';
 
-const StyledButton = styled(Button)`
-  background-color: #6772e5;
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
-  &:hover {
-    background-color: #5469d4;
+const CustomizedSlider = styled(Slider)`
+  color: #20b2aa;
+
+  :hover {
+    color: #2e8b57;
   }
 `;
 
 export default function StyledComponents() {
-  return (
-    <div>
-      <Button>默认的按钮</Button>
-      <StyledButton>自定义按钮</StyledButton>
-    </div>
-  );
+  return <CustomizedSlider defaultValue={30} />;
 }
-
 ```
-
-### 控制的优先权 ⚠️
-
-**请注意：** styled-components 和 JSS 都在 `<head>` 的底部注入其样式表。 若想要 styled-components 的样式在最后加载，我们推荐的最佳方法是更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如下演示：
-
-```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* 你的组件树。
-      Now, you can override Material-UI's styles. */}
-</StylesProvider>
-      现在，您可以覆盖 Material-UI 的样式。 */}
-</StylesProvider>
-```
-
-另外一个在 styled-components 中使用 `&&` 字符的方案则是通过重复类名来 [增强其优先级](https://www.styled-components.com/docs/advanced#issues-with-specificity)。 您应该避免使用 `!imporant`。
 
 ### 更深层的元素
 
-如果您尝试赋予Drawer（抽屉）组件以永久的变体的样式，您很可能会需要涉及抽屉组件的子纸张元素。 但是，这不是抽屉组件的根元素，因此上面的样式组件自定义将不起作用。 您则需要使用 Material-UI 的 API 中的 [`classes`](/styles/advanced/#overriding-styles-classes-prop) 来达到目的。
+如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 在 Material-UI 中，所有的子元素都增加了两层的特定类：`.parent .child {}`。 所以在编写覆盖样式的时候，你也需要这样做。
 
-以下示例除了按钮本身的自定义样式外，还会覆盖 `label` 的 `Button` 样式。 通过“消费”不应该传递到底层的那些属性，它还解决了 [这个 styled-components 问题](https://github.com/styled-components/styled-components/issues/439)，
+以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
 
-{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js"}}
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "defaultCodeOpen": true}}
 
-```jsx
-import React from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
-
-const StyledButton = styled(Button)`
-  background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
-  &:hover {
-    background-color: #5469d4;
-  }
-  & .MuiButton-label {
-    color: #fff;
-  }
-`;
-
-export default function StyledComponentsDeep() {
-  return (
-    <div>
-      <Button>默认的按钮</Button>
-      <StyledButton>自定义按钮</StyledButton>
-    </div>
-  );
-}
-```
-
-以上的例子依赖于 [默认的`类`的值](/styles/advanced/#with-material-ui-core)，但是您也可以提供自定义的类名：`.label`。
+上面的演示依赖于 [默认的`className`值](/styles/advanced/#with-material-ui-core)，但是你也可以使用 `componentsProps` API 来提供你自己的类名。
 
 ```jsx
-import React from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
+import * as React from 'react';
+import { styled } from '@material-ui/core/styles';
+import Slider from '@material-ui/core/Slider';
 
-const StyledButton = styled(({ color, ...other }) => (
-  <Button classes={{ label: 'label' }} {...other} />
+const CustomizedSlider = styled((props) => (
+  <Slider componentsProps={{ thumb: { className: 'thumb' } }} {...props} />
 ))`
-  background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
-  &:hover {
-    background-color: #5469d4;
+  color: #20b2aa;
+
+  :hover {
+    color: #2e8b57;
   }
-  & .label {
-    color: #fff;
+
+  & .thumb {
+    border-radius: 1px;
   }
 `;
 
-export default function StyledComponentsDeep() {
+export default function StyledComponentsDeep2() {
   return (
     <div>
-      <Button>默认的按钮</Button>
-      <StyledButton>自定义按钮</StyledButton>
+      <Slider defaultValue={30} />
+      <CustomizedSlider defaultValue={30} />
     </div>
   );
 }
@@ -274,27 +346,22 @@ export default function StyledComponentsDeep() {
 
 ### 主题
 
-Material-UI 有着一个丰富的主题架构，而您可以利用它来做一些颜色的处理，过渡动画，媒体查询等等。
+通过使用 Material-UI 主题提供者（theme provider），该主题也可以在样式引擎的主题上下文中可用（emotion 或 styled-components，取决于你的配置）。
 
-我们鼓励在 Materal-UI 和您的样式之间分享相同的主题对象（theme object）。
+> ⚠️如果你**已经**使用了 styled-component 或 emotion 驱动的自定义主题，那么它可能会不兼容 Material-UI 的主题规范。 如果它不兼容，那么你需要<b>先</b>渲染 Material-UI 的 ThemeProvider。 这样做就可以确保主题结构的隔离。 这对于想要在代码库中渐进式地使用 Material-UI 组件是非常理想的。
+
+我们鼓励你在 Material-UI 和你项目的其他部分之间共享相同的主题对象。
 
 ```jsx
-const StyledButton = styled(Button)`
-  ${({ theme }) => `
-  background-color: ${theme.palette.primary.main};
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 4px 10px;
-  font-size: 13px;
-  &:hover {
-    background-color: ${darken(theme.palette.primary.main, 0.2)};
+const CustomizedSlider = styled(Slider)(
+  ({ theme }) => `
+  color: ${theme.palette.primary.main};
+
+  :hover {
+    color: ${darken(theme.palette.primary.main, 0.2)};
   }
-  ${theme.breakpoints.up('sm')} {
-    font-size: 14px;
-    padding: 7px 14px;
-  }
-  `}
-`;
+`,
+);
 ```
 
 {{"demo": "pages/guides/interoperability/StyledComponentsTheme.js"}}
@@ -303,23 +370,19 @@ const StyledButton = styled(Button)`
 
 [传送门组件](/components/portal/)提供了一种一流的方法，它将子元素渲染在其父组件的 DOM 层次结构之外的 DOM 节点中。 当您使用这样的 styled-components 规范其 CSS 的方式时，可能会遇到一些无法附着样式的问题。
 
-例如，若您尝试用 `MenuProps` 属性来样式化 [Select](/components/selects/) 组件的 [Menu](/components/menus/)，您将需要将 `className` 属性传递到它的 DOM 层次结构之外渲染的元素当中。 下面的示例演示了一个变通办法：
+For example, if you attempt to style the `tooltip` generated by the [Tooltip](/components/tooltip/) component, you will need to pass along the `className` property to the element being rendered outside of it's DOM hierarchy. 下面的示例演示了一个变通办法：
 
 ```jsx
-import React from 'react';
-import styled from 'styled-components';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import * as React from 'react';
+import { styled } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 
-const StyledMenu = styled(({ className, ...props }) => (
-  <Menu {...props} classes={{ paper: className }} />
+const StyledTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
 ))`
-  box-shadow: none;
-  border: 1px solid #d3d4d5;
-
-  li {
-    padding-top: 8px;
-    padding-bottom: 8px;
+  & .MuiTooltip-tooltip {
+    background: navy;
   }
 `;
 ```
@@ -334,92 +397,155 @@ const StyledMenu = styled(({ className, ...props }) => (
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/css-modules-3j29h)
+[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/css-modules-nuyg8)
 
-**CssModulesButton.css**
+**CssModulesSlider.module.css**
 
 ```css
-.button {
-  background-color: #6772e5;
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
+.slider {
+  color: #20b2aa;
 }
-.button:hover {
-  background-color: #5469d4;
+
+.slider:hover {
+  color: #2e8b57;
 }
 ```
 
-**CssModulesButton.js**
+**CssModulesSlider.js**
 
 ```jsx
-import React from 'react';
-// webpack，parcel 或者其他工具会将 CSS 注入到此页面
-import styles from './CssModulesButton.css';
-import Button from '@material-ui/core/Button';
+import * as React from 'react';
+import Slider from '@material-ui/core/Slider';
+// webpack, parcel or else will inject the CSS into the page
+import styles from './CssModulesSlider.module.css';
 
-export default function CssModulesButton() {
+export default function CssModulesSlider() {
   return (
     <div>
-      <Button>默认的按钮</Button>
-      <Button className={styles.button}>自定义按钮</Button>
+      <Slider defaultValue={30} />
+      <Slider defaultValue={30} className={styles.slider} />
     </div>
   );
 }
 ```
 
-### Controlling priority ⚠️
+### CSS 注入顺序⚠️
 
-**请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important** 来标记样式属性的话，则需要更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如下所示：
+**注意：** 大多数的 CSS-in-JS 解决方案是在 HTML `<head>` 的底部注入它们的样式，这会导致你的自定义样式被 Material-UI 的样式规则所覆盖。 如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 Here's a demo of how it can be done in Material-UI:
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import * as React from 'react';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
-<StylesProvider injectFirst>
-  {/* 你的组件树。
-      Now, you can override Material-UI's styles. */}
-</StylesProvider>
-      现在，您可以覆盖 Material-UI 的样式。 */}
-</StylesProvider>
+export default function GlobalCssPriority() {
+  return (
+    <StyledEngineProvider injectFirst>
+      {/* Your component tree. 现在你可以覆盖 Material-UI 的样式。 */}
+    </StyledEngineProvider>
+  );
+}
 ```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. 下面是一个示例：
+
+```jsx
+import * as React from 'react';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* 这里编写你的组件 现在你可以覆盖 Material-UI 的样式。 */}
+    </CacheProvider>
+  );
+}
+```
+
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
 
 ### 更深层的元素
 
-如果您尝试赋予Drawer（抽屉）组件以永久的变体的样式，您很可能会需要涉及抽屉组件的子纸张元素。 但是，这不是抽屉组件的根元素，因此上面的样式组件自定义将不起作用。 您则需要使用 Material-UI 的 API 中的 [`classes`](/styles/advanced/#overriding-styles-classes-prop) 来达到目的。
+如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 在 Material-UI 中，所有的子元素都增加了两层的特定类：`.parent .child {}`。 所以在编写覆盖样式的时候，你也需要这样做。
 
-以下示例除了按钮本身的自定义样式外，还会覆盖 `label` 的 `Button` 样式。
+以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
 
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideToolbar": true}}
 
-**CssModulesButtonDeep.css**
+**CssModulesSliderDeep1.module.css**
 
 ```css
-.root {
-  background-color: #6772e5;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
+.slider {
+  color: #20b2aa;
 }
-.root:hover {
-  background-color: #5469d4;
+
+.slider:hover {
+  color: #2e8b57;
 }
-.label {
-  color: #fff;
+
+.slider .MuiSlider-thumb {
+  border-radius: 1px;
 }
 ```
 
-**CssModulesButtonDeep.js**
+**CssModulesSliderDeep1.js**
 
 ```jsx
-import React from 'react';
-// webpack，parcel 或者其他工具会将 CSS 注入到此页面
-import styles from './CssModulesButtonDeep.css';
-import Button from '@material-ui/core/Button';
+import * as React from 'react';
+// webpack, parcel or else will inject the CSS into the page
+import styles from './CssModulesSliderDeep1.module.css';
+import Slider from '@material-ui/core/Slider';
 
-export default function CssModulesButtonDeep() {
+export default function CssModulesSliderDeep1() {
   return (
     <div>
-      <Button>默认的按钮</Button>
-      <Button classes={styles}>自定义按钮</Button>
+      <Slider defaultValue={30} />
+      <Slider defaultValue={30} className={styles.slider} />
+    </div>
+  );
+}
+```
+
+上面的演示依赖于 [默认的`className`值](/styles/advanced/#with-material-ui-core)，但是你也可以使用 `componentsProps` API 来提供你自己的类名。
+
+**CssModulesSliderDeep2.module.css**
+
+```css
+.slider {
+  color: #20b2aa;
+}
+
+.slider:hover {
+  color: #2e8b57;
+}
+
+.slider .thumb {
+  border-radius: 1px;
+}
+```
+
+**CssModulesSliderDeep2.js**
+
+```jsx
+import * as React from 'react';
+// webpack, parcel or else will inject the CSS into the page
+import styles from './CssModulesSliderDeep2.module.css';
+import Slider from '@material-ui/core/Slider';
+
+export default function CssModulesSliderDeep2() {
+  return (
+    <div>
+      <Slider defaultValue={30} />
+      <Slider
+        defaultValue={30}
+        className={styles.slider}
+        componentsProps={{ thumb: { className: styles.thumb } }}
+      />
     </div>
   );
 }
@@ -427,84 +553,17 @@ export default function CssModulesButtonDeep() {
 
 ## Emotion
 
-![stars](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/emotion.svg?)
+![stars](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/@emotion/react.svg)
 
 ### `css` 属性
 
-Emotion的 **css()** 方法与 Material-UI 无缝协作。
+Emotion 的 **css()** 方法与 Material-UI 无缝协作。
 
-{{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideToolbar": true}}
-
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/emotion-bgfxj)
-
-```jsx
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import Button from '@material-ui/core/Button';
-
-export default function EmotionCSS() {
-  return (
-    <div>
-      <Button>默认的按钮</Button>
-      <Button
-        css={css`
-          background-color: #6772e5;
-          color: #fff;
-          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-          padding: 7px 14px;
-          &:hover {
-            background-color: #5469d4;
-          }
-        `}
-      >
-        自定义按钮
-      </Button>
-    </div>
-  );
-}
-```
-
-### 控制的优先权 ⚠️
-
-**请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important** 来标记样式属性的话，则需要更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如下所示：
-
-```jsx
-import { StylesProvider } from '@material-ui/core/styles';
-
-<StylesProvider injectFirst>
-  {/* 你的组件树。
-      现在，您可以覆盖 Material-UI 的样式。 */}
-</StylesProvider>
-```
+{{"demo": "pages/guides/interoperability/EmotionCSS.js", "defaultCodeOpen": true}}
 
 ### 主题
 
-Material-UI 有着一个丰富的主题架构，而您可以利用它来做一些颜色的处理，过渡动画，媒体查询等等。
-
-我们鼓励在 Materal-UI 和您的样式之间分享相同的主题对象（theme object）。
-
-```jsx
-<Button
-  css={theme => css`
-    background-color: ${theme.palette.primary.main};
-    color: #fff;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-    padding: 4px 10px;
-    font-size: 13px;
-    &:hover {
-      background-color: ${darken(theme.palette.primary.main, 0.2)};
-    }
-    ${theme.breakpoints.up('sm')} {
-      font-size: 14px;
-      padding: 7px 14px;
-    }
-  `}
->
-  自定义按钮
-</Button>
-```
-
-{{"demo": "pages/guides/interoperability/EmotionTheme.js"}}
+它会像 styled components 一样起作用。 您可以 [使用相同的指南](/guides/interoperability/#styled-components) 。
 
 ### `styled()` API
 

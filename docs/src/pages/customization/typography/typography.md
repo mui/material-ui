@@ -6,7 +6,7 @@
 
 You can change the font family with the `theme.typography.fontFamily` property.
 
-For instance, this demo uses the system font instead of the default Roboto font:
+For instance, this example uses the system font instead of the default Roboto font:
 
 ```js
 const theme = createTheme({
@@ -37,35 +37,30 @@ CDN.
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
-
-const raleway = {
-  fontFamily: 'Raleway',
-  fontStyle: 'normal',
-  fontDisplay: 'swap',
-  fontWeight: 400,
-  src: `
-    local('Raleway'),
-    local('Raleway-Regular'),
-    url(${RalewayWoff2}) format('woff2')
-  `,
-  unicodeRange:
-    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
-};
 ```
 
 Next, you need to change the theme to use this new font.
 In order to globally define Raleway as a font face, the [`CssBaseline`](/components/css-baseline/) component can be used (or any other CSS solution of your choice).
 
 ```jsx
+import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
+
 const theme = createTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
   },
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      '@global': {
-        '@font-face': [raleway],
-      },
+      styleOverrides: `
+        @font-face {
+          font-family: 'Raleway';
+          font-style: normal;
+          font-display: swap;
+          font-weight: 400;
+          src: local('Raleway'), local('Raleway-Regular'), url(${RalewayWoff2}) format('woff2');
+          unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
+        }
+      `,
     },
   },
 });
@@ -74,20 +69,28 @@ const theme = createTheme({
 return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    {children}
+    <Box
+      sx={{
+        fontFamily: 'Raleway',
+      }}
+    >
+      Raleway
+    </Box>
   </ThemeProvider>
 );
 ```
 
+Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previosly defined `@font-face` declarations won't be replaced.
+
 ## Font size
 
-Material-UI uses `rem` units for the font size.
+MUI uses `rem` units for the font size.
 The browser `<html>` element default font size is `16px`, but browsers have an option to change this value,
 so `rem` units allow us to accommodate the user's settings, resulting in a better accessibility support.
 Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings
 for devices that can be vastly different in size and viewing distance.
 
-To change the font-size of Material-UI you can provide a `fontSize` property.
+To change the font-size of MUI you can provide a `fontSize` property.
 The default value is `14px`.
 
 ```js
@@ -102,13 +105,13 @@ const theme = createTheme({
 
 The computed font size by the browser follows this mathematical equation:
 
-![font-size](/static/images/font-size.gif)
+<img src="/static/images/font-size.svg" alt="font size calculation" style="width: 458px;" />
 
-<!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
+<!-- https://latex.codecogs.com/svg.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
 
 ### Responsive font sizes
 
-The typography variants properties map directly to the generated CSS.
+The `theme.typography.*` [variant](#variants) properties map directly to the generated CSS.
 You can use [media queries](/customization/breakpoints/#api) inside them:
 
 ```js
@@ -131,10 +134,10 @@ To automate this setup, you can use the [`responsiveFontSizes()`](/customization
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+You can see this in action in the example below. Adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
 
 ```js
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -150,16 +153,16 @@ To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 
-> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
+> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
-An `htmlFontSize` theme property is provided for this use case,
-which tells Material-UI what the font-size on the `<html>` element is.
+The `theme.typography.htmlFontSize` property is provided for this use case,
+which tells MUI what the font-size on the `<html>` element is.
 This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createTheme({
   typography: {
-    // Tell Material-UI what's the font-size on the html element is.
+    // Tell MUI what's the font-size on the html element is.
     htmlFontSize: 10,
   },
 });
@@ -171,7 +174,7 @@ html {
 }
 ```
 
-*You need to apply the above CSS on the html element of this page to see the below demo rendered correctly*
+_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
@@ -212,6 +215,64 @@ const theme = createTheme({
 ```
 
 {{"demo": "pages/customization/typography/TypographyVariants.js"}}
+
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. Here is what you need to do:
+
+**Step 1. Update the theme's typography object**
+
+```js
+const theme = createTheme({
+  typography: {
+    poster: {
+      color: 'red',
+    },
+    // Disable h3 variant
+    h3: undefined,
+  },
+});
+```
+
+**Step 2. Update the necessary typings (if you are using TypeScript)**
+
+> If you aren't using TypeScript you should skip this step.
+
+You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
+
+<!-- Tested with packages/mui-material/test/typescript/augmentation/typographyVariants.spec.ts -->
+
+```ts
+declare module '@mui/material/styles' {
+  interface TypographyVariants {
+    poster: React.CSSProperties;
+  }
+
+  // allow configuration using `createTheme`
+  interface TypographyVariantsOptions {
+    poster?: React.CSSProperties;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    poster: true;
+    h3: false;
+  }
+}
+```
+
+**Step 3. You can now use the new variant**
+
+{{"demo": "pages/customization/typography/TypographyCustomVariant.js", "hideToolbar": true}}
+
+```jsx
+<Typography variant="poster">poster</Typography>;
+
+/* This variant is no longer supported */
+<Typography variant="h3">h3</Typography>;
+```
 
 ## Default values
 

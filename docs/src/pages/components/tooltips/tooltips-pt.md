@@ -1,27 +1,32 @@
 ---
 title: Componente React para Dicas
 components: Tooltip
+githubLabel: 'component: Tooltip'
+materialDesign: https://material.io/components/tooltips
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---
 
-# Dica
+# Dicas
 
 <p class="description">Dicas exibem texto informativo quando os usuários passam o mouse, focalizam ou tocam em um elemento.</p>
 
 Quando ativada, [dicas](https://material.io/design/components/tooltips.html) exibem um rótulo de texto identificando o elemento, como uma descrição de sua função.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Dicas simples
 
-{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
-## Posicionamento de dicas
+## Dicas posicionadas
 
-O componente `Tooltip` tem 12 **posicionamentos** para ser escolhido. Eles não têm setas direcionais; em vez disso, eles dependem do movimento que emana da fonte para transmitir direção.
+O `Tooltip` tem 12 **posicionamentos** para ser escolhido. They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
 ## Dicas customizadas
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
@@ -33,7 +38,7 @@ Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a 
 
 ## Elemento filho customizado
 
-A dica precisa aplicar eventos DOM ao seu elemento filho. Se o filho for um elemento React customizado, você precisará garantir que ele repasse suas propriedades para o elemento DOM subjacente.
+A dica precisa aplicar eventos DOM ao seu elemento filho. A dica precisa aplicar eventos DOM ao seu elemento filho.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -56,13 +61,13 @@ Você pode definir os tipos de eventos que fazem com que uma dica seja exibida.
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Dicas Controladas
+## Dicas controladas
 
 Você pode usas as propriedades `open`, `onOpen` e `onClose` para controlar o comportamento da dica.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Largura Variável
+## Largura variável
 
 A dica (`Tooltip`) quebra o texto longo por padrão para torná-lo legível.
 
@@ -70,11 +75,11 @@ A dica (`Tooltip`) quebra o texto longo por padrão para torná-lo legível.
 
 ## Interativo
 
-Uma dica pode ser interativa. Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire.
+Dicas são interativas por padrão ([WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire. Você pode desativar esse comportamento (assim falhando o critério de sucesso que é necessário para alcançar AA) passando `disableInteractive`.
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
-## Elementos Desabilitados
+## Elementos desabilitados
 
 Por padrão os elementos desabilitados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, como passar o mouse. Para acomodar elementos desabilitados, adicione um elemento encapsulador simples, como um `span`.
 
@@ -87,11 +92,9 @@ Por padrão os elementos desabilitados como `<button>` não disparam interaçõe
 ```jsx
 <Tooltip title="Você não tem permissão para esta tarefa">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
-      {'Um botão desabilitado'}
-    </button>
-  </span>
-</Tooltip>
+    <button disabled={disabled} style={disabled ? <Tooltip title="Você não tem permissão para esta tarefa">
+  <span>
+    <button disabled={disabled} style={disabled ?
 ```
 
 ## Transições
@@ -100,6 +103,18 @@ Use uma transição diferente.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
+## Seguir o cursor
+
+Você pode habilitar a dica para seguir o cursor definindo `followCursor={true}`.
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## Elemento virtual
+
+No caso de você precisar implementar um posicionamento customizado, você pode usar a propriedade `anchorEl`: O valor da propriedade `anchorEl` pode ser referência para um elemento DOM falso. Você precisa criar um objeto com a estrutura definida como  [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
+
 ## Exibindo e ocultando
 
 A dica normalmente é exibida imediatamente quando o mouse do usuário passa sobre o elemento e se oculta imediatamente quando o mouse do usuário sai. Um atraso na exibição ou ocultação da dica pode ser adicionado por meio das propriedades `enterDelay` e `leaveDelay`, conforme mostrado na demonstração de dicas controladas acima.
@@ -107,3 +122,17 @@ A dica normalmente é exibida imediatamente quando o mouse do usuário passa sob
 No celular, a dica é exibida quando o usuário pressiona longamente o elemento e oculta após um atraso de 1500 ms. Você pode desativar esse recurso com a propriedade `disableTouchListener`.
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}
+
+## Acessibilidade
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
+
+Por padrão, a dica apenas rotula seu elemento filho. Isso é notavelmente diferente de `title` que pode rotular **ou** descrever seu elemento filho, dependendo se o filho já tem um rótulo. Por exemplo, em:
+
+```html
+<button title="alguma informação a mais">Um botão</button>
+```
+
+o `title` atua como uma descrição acessível. Se você quer que a dica aja como uma descrição acessível, você pode passar `describeChild`. Observe que você não deveria usar `describeChild` se a dica fornece somente um rótulo visual. Caso contrário, um elemento filho não teria um nome acessível e a dica violaria [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+
+{{"demo": "pages/components/tooltips/AccessibilityTooltips.js"}}

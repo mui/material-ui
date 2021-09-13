@@ -1,30 +1,36 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Fade from '@material-ui/core/Fade';
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Fade from '@mui/material/Fade';
 
 export default function FadeMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   return (
     <div>
-      <Button aria-controls="fade-menu" aria-haspopup="true" onClick={handleClick}>
-        Open with fade transition
+      <Button
+        id="fade-button"
+        aria-controls="fade-menu"
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        Dashboard
       </Button>
       <Menu
         id="fade-menu"
+        MenuListProps={{
+          'aria-labelledby': 'fade-button',
+        }}
         anchorEl={anchorEl}
-        keepMounted
         open={open}
         onClose={handleClose}
         TransitionComponent={Fade}

@@ -11,7 +11,7 @@ Vous pouvez utiliser n'importe lequel des composants comme indiqué dans la docu
 Voici un exemple rapide pour vous aider à commencer, **c'est tout ce dont vous avez besoin** :
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 
@@ -32,17 +32,14 @@ Oui, c'est tout ce dont vous avez besoin pour commencer, comme vous pouvez le vo
 
 ## Variables globales
 
-L'expérience d'utilisation de Material-UI peut être améliorée avec une poignée d'importants globaux que vous devez connaître.
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### La balise meta responsive design (vue adaptative)
 
 Pour que le rendu et le zoom tactile soient corrects pour tous les périphériques, ajoutez la balise meta viewport à votre élément `<head>`. Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries.
 
 ```html
-<meta
-  name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width"
-/>
+<meta name="viewport" content="initial-scale=1, width=device-width" />
 ```
 
 ### CssBaseline
@@ -59,4 +56,4 @@ Maintenant que vous avez une idée de la configuration de base, il est temps d'e
 
 - Comment fournir [la police et la typographie Material Design](/components/typography/) .
 - Comment tirer parti de la [solution de thème](/customization/theming/).
-- Comment [modifier](/customization/components/), l'apparence des composants.
+- Comment [modifier](/customization/how-to-customize/), l'apparence des composants.

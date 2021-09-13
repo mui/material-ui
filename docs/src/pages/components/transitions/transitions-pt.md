@@ -1,6 +1,7 @@
 ---
 title: Componentes React para Transição
 components: Collapse, Fade, Grow, Slide, Zoom
+githubLabel: 'component: Transition'
 ---
 
 # Transições
@@ -9,7 +10,9 @@ components: Collapse, Fade, Grow, Slide, Zoom
 
 Material-UI provê um número de transições que podem ser usadas para introduzir alguns [movimentos](https://material.io/design/motion/) básicos para os componentes de sua aplicação.
 
-Para um melhor suporte a renderização no servidor, Material-UI provê uma propriedade `style` para o filho de alguns componentes de transição (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperado.
+[A paleta](/system/palette/) com funções de estilo.
+
+Para um melhor suporte a renderização no servidor, Material-UI provê uma propriedade `style` para o elemento filho de alguns componentes de transição, (Fade, Grow, Zoom, Slide). A propriedade `style` deve ser aplicada ao DOM para que a animação funcione conforme esperada.
 
 ```jsx
 // O objeto `props` contém uma propriedade `style`.
@@ -33,7 +36,7 @@ export default Main() {
 
 ## Collapse
 
-Expanda verticalmente a partir do topo do elemento filho. A propriedade `collapsedHeight` pode ser usada para definir a altura mínima quando não expandida.
+Expandir para fora partindo do centro do elemento filho. Use a propriedade `orientation` se você precisar de um colapso na horizontal. A propriedade `collapsedHeight` pode ser usada para definir a altura mínima quando não expandida.
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
@@ -47,7 +50,7 @@ Esmaecer de transparente para opaco.
 
 Expande para fora a partir do centro do elemento filho, enquanto também desvanece em efeito de transparente para opaco.
 
-O segundo exemplo demonstra como alterar `transform-origin` e condicionalmente aplica a propriedade `timeout` para alterar a velocidade de entrada.
+The second example demonstrates how to change the `transform-origin`, and conditionally applies the `timeout` prop to change the entry speed.
 
 {{"demo": "pages/components/transitions/SimpleGrow.js", "bg": true}}
 
@@ -67,12 +70,24 @@ Este exemplo também demonstra como atrasar a transição de entrada.
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
 
+## TransitionGroup
+
+To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](https://reactcommunity.org/react-transition-group/transition-group) component from _react-transition-group_. As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
+
+{{"demo": "pages/components/transitions/TransitionGroupExample.js"}}
+
 ## Propriedade TransitionComponent
 
-Os componentes aceitam uma propriedade `TransitionComponent` para customizar as transições padrão. Você pode usar qualquer um dos componentes acima ou seu próprio componente. Ele deve respeitar as seguintes condições:
+Alguns componentes do Material-UI usam essas transições internamente. Estas aceitam uma propriedade `TransitionComponent` para customizar a transição padrão. Você pode usar qualquer um dos componentes acima ou seu próprio componente. Ele deve respeitar as seguintes condições:
 
 - Aceitar uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
 - Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
 - Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. Esses dois callbacks permitem desmontar os elementos filhos quando em estado fechado e totalmente transitados.
 
-Para obter maiores informações sobre como criar transações customizadas, visite a [documentação de transições do React Transition Group](http://reactcommunity.org/react-transition-group/transition).
+For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition). Você também pode visitar as seções dedicadas de alguns dos componentes:
+
+- [Modal](/components/modal/#transitions)
+- [Dialog](/components/dialogs/#transitions)
+- [Popper](/components/popper/#transitions)
+- [Snackbar](/components/snackbars/#transitions)
+- [Tooltip](/components/tooltips/#transitions)

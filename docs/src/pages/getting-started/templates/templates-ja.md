@@ -4,9 +4,9 @@ title: 9+ Free React Templates
 
 # Reactテンプレート
 
-<p class="description">アプリを作り始めるのに役立つ無料のreact テンプレートのセレクションです。このコレクションには、 react dashboardやreact adminなどが含まれています。</p>
+<p class="description">このページでは自由に使えるReactアプリのテンプレートを紹介しています。これらを用いてアプリ開発を始めることができます。 アプリのダッシュボード画面や、管理画面、などなどさまざまなページを作ることができます。</p>
 
-テンプレートを [サンプルアプリケーション](https://github.com/mui-org/material-ui/tree/master/examples) いずれかと組み合わせて、完全なスターターを形成できます。
+これらのテンプレートは [別なページで紹介しているサンプルアプリ](https://github.com/mui-org/material-ui/tree/master/examples)と組み合わせることができ、しっかりしたアプリを作り始めることができます。
 
 各レイアウトのセクションは、コメントまたは別ファイルを使用して明確に定義されているため、ページの一部（例えば、「ヒーローユニット」やフッターなど）を簡単に抽出して他のページで再利用することができます。 マルチパートの例については、リンクされたソースコードの場所にあるREADMEの表に各ファイルの目的が説明されています。
 
@@ -18,6 +18,6 @@ So far we have demos for a dashboard, sign in page, sign up page, blog page, che
 
 ## プレミアムテーマ
 
-さらに何かをお探しですか？ 完全なテンプレートとテーマは<a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">premium themes section</a>に掲載しています。
+さらに何かをお探しですか？ さらに何かをお探しですか？ You can find complete templates & themes in the <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">premium template section</a>.
 
 <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>

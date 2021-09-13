@@ -1,0 +1,12 @@
+<Masonry columns={3} spacing={1}>
+  {itemData.map((item) => (
+    <MasonryItem key={item.img}>
+      <img
+        src={`${item.img}?w=162&auto=format`}
+        srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
+        alt={item.title}
+        loading="lazy"
+      />
+    </MasonryItem>
+  ))}
+</Masonry>

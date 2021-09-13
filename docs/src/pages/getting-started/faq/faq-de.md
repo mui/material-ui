@@ -11,7 +11,7 @@ Es gibt viele Möglichkeiten, die Material-UI zu unterstützen:
 - **Verbreiten Sie Material-Ui**. Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
-- **Make changes happen**. 
+- **Make changes happen**.
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
   - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
@@ -47,12 +47,13 @@ Der Ripple-Effekt kommt ausschließlich von der `BaseButton` Komponente. Sie kö
 import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
-  props: {
+  components: {
     // Name of the component ⚛️
     MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 💣!
-    },
+      defaultProps: {
+        // The props to apply
+        disableRipple: true, // No more ripple, on the whole application 💣!
+      },
   },
 });
 ```
@@ -66,7 +67,7 @@ import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
   transitions: {
-    // Jetzt haven wir überall `transition: none;`
+    // So we have `transition: none;` everywhere
     create: () => 'none',
   },
 });
@@ -80,11 +81,10 @@ You can go one step further by disabling all transitions and animations effects:
 import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
-  overrides: {
+  components: {
     // Name of the component ⚛️
     MuiCssBaseline: {
-      // Name of the rule
-      '@global': {
+      styleOverrides: {
         '*, *::before, *::after': {
           transition: 'none !important',
           animation: 'none !important',
@@ -110,7 +110,7 @@ No, it's not required. But this dependency comes built in, so carries no additio
 
 Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one? In diesem Fall gehen Sie zum [Zusammenführen von Style Libraries](/guides/interoperability/) Abschnitt in dem wir zeigen, wie einfach es ist, Material-UI-Komponenten mit alternativen Stilbibliotheken umzustrukturieren.
 
-## Wann verwende ich inline-style vs CSS?
+## When should I use inline-style vs. CSS?
 
 Verwenden Sie als Faustregel Inline-Style nur für dynamische Stileigenschaften. Die CSS-Alternative bietet weitere Vorteile, z.B.:
 
@@ -121,7 +121,7 @@ Verwenden Sie als Faustregel Inline-Style nur für dynamische Stileigenschaften.
 
 ## Wie verwende ich den react-router?
 
-We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
+We detail the [integration with third-party routing libraries](/guides/routing/) like react-router, Gatsby or Next.js in our guide.
 
 ## Wie kann ich auf das DOM-Element zugreifen?
 
@@ -228,7 +228,9 @@ Sie haben mehrere Anwendungen, die `@material-ui/styles` verwenden, und auf ders
 
 ## Meine App wird auf dem Server nicht richtig dargestellt
 
-Wenn dies nicht funktioniert, handelt es sich in 99% der Fälle um ein Konfigurationsproblem. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+Wenn dies nicht funktioniert, handelt es sich in 99% der Fälle um ein Konfigurationsproblem. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup.
+
+The best way to find out what's wrong is to compare your project to an **already working setup**. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSS funktioniert nur beim ersten Laden, dann fehlt es
 
@@ -238,7 +240,7 @@ Das CSS wird nur beim ersten Laden der Seite generiert. Auf dem Server fehlt dan
 
 The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). Sie müssen **eine neue `sheets`Instanze für jede Anfrage** erstellen.
 
-*beispiel für fix:*
+beispiel für fix:
 
 ```diff
 -const sheets = new ServerStyleSheets();
@@ -246,9 +248,16 @@ The styling solution relies on a cache, the *sheets manager*, to only inject the
 function handleRender(req, res) {
 
 + // Eine Sheet Instanz erstellen.
-+ const sheets = new ServerStyleSheets();
+-const sheets = new ServerStyleSheets();
 
-  //…
+function handleRender(req, res) {
+
++ // Eine Sheet Instanz erstellen.
+-const sheets = new ServerStyleSheets();
+
+function handleRender(req, res) {
+
++ // Eine Sheet Instanz erstellen.
 
   // Rendern des Komponenten als String.
 const html = ReactDOMServer.renderToString(
@@ -262,51 +271,57 @@ const html = ReactDOMServer.renderToString(
 
 ### React Klassenname Hydratation Nichtübereinstimmung
 
+> Warning: Prop className did not match.
+
 Es gibt eine Nichtübereinstimmung der Klassennamen zwischen Client und Server. Es könnte für die erste Anfrage funktionieren. Ein anderes Symptom ist, dass sich das Styling zwischen dem Laden der ersten Seite und dem Herunterladen der Clientskripte ändert.
 
 #### Zu ergreifende Maßnahmen
 
-Der Klassennamenwert basiert auf dem Konzept des [Klassennamensgenerators](/styles/advanced/#class-names). Die gesamte Seite muss mit **einem einzigen Generator** gerendert werden. Dieser Generator muss sich auf dem Server und auf dem Client identisch verhalten. Zum Beispiel:
+Der Klassennamenwert basiert auf dem Konzept des [Klassennamensgenerators](/styles/advanced/#class-names). Der Klassennamenwert basiert auf dem Konzept des [Klassennamensgenerators](/styles/advanced/#class-names). Dieser Generator muss sich auf dem Server und auf dem Client identisch verhalten. Zum Beispiel:
 
 - Sie müssen für jede Anforderung einen neuen Klassennamengenerator bereitstellen. Sie sollten jedoch nicht eine `createGenerateClassName()` Funktion zwischen verschiedenen Anfragen teilen:
 
-*beispiel für fix:*
+  beispiel für fix:
 
-```diff
-- // Erstellen Sie einen neuen Klassennamengenerator.
--const generateClassName = createGenerateClassName();
+  ```diff
+  - // Erstellen Sie einen neuen Klassennamengenerator.
+  -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
 
 + // Erstellt einen neuen Klassennamengenerator.
-+ const generateClassName = createGenerateClassName();
+  -const generateClassName = createGenerateClassName();
 
-  //…
+function handleRender(req, res) {
 
-  // Render der Komponente als String.
-  const html = ReactDOMServer.renderToString(
++ // Erstellt einen neuen Klassennamengenerator.
+
+    // Rendern des Komponenten als String.
+    const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
 
   - // Eine Sheet Instanz erstellen.
-```
+  ```
 
 - Sie müssen sicherstellen, dass auf Ihrem Client und Server die **exakt dieselbe Version** von Material-UI ausführen. Es kann vorkommen, dass eine Nichtübereinstimmung von selbst kleinerer Versionen zu Stilproblemen führen kann. Um die Versionsnummern zu überprüfen, führen Sie `npm list@material-ui/core` in der Umgebung aus, in der Sie Ihre Anwendung erstellen, und in Ihrer Implementierungsumgebung.
-  
-    Sie können die gleiche Version in verschiedenen Umgebungen festlegen, indem Sie in den Abhängigkeiten Ihrer package.json eine bestimmte MUI-Version angeben.
 
-*beispiel für fix (package.json):*
+  Sie können die gleiche Version in verschiedenen Umgebungen festlegen, indem Sie in den Abhängigkeiten Ihrer package.json eine bestimmte MUI-Version angeben.
 
-```diff
-  "dependencies": {
+  _beispiel für fix (package.json):_
+
+  ```diff
+    "dependencies": {
     ...
 
--   "@material-ui/core": "^4.0.0",
+-
+  "@material-ui/core": "^4.0.0",
 +   "@material-ui/core": "4.0.0",
     ...
   },
-```
+    },
+  ```
 
 - Sie müssen sicherstellen, dass Server und Client denselben `process.env.NODE_ENV verwenden` Wert haben.
 
@@ -357,7 +372,10 @@ Aus diesem Grund benötigen wir eine Eigenschaft mit dem eigentlichen DOM-Knoten
 ```jsx
 function App() {
   const [container, setContainer] = React.useState(null);
-  const handleRef = React.useCallback(instance => setContainer(instance), [setContainer])
+  const handleRef = React.useCallback(
+    (instance) => setContainer(instance),
+    [setContainer],
+  );
 
   return (
     <div className="App">
@@ -381,11 +399,11 @@ Instead of writing:
 
 return (
   <div
-    className={`MuiButton-root ${disabled ? // let disabled = false, selected = true;
-
-return (
-  <div
-    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ?
+    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${
+      selected ? 'Mui-selected' : ''
+    }`}
+  />
+);
 ```
 
 you can do:

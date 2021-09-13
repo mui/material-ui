@@ -1,6 +1,8 @@
 ---
 title: React Drawer component
 components: Drawer, SwipeableDrawer
+githubLabel: 'component: Drawer'
+materialDesign: https://material.io/components/navigation-drawer
 ---
 
 # Seitliches Menü (Drawer)
@@ -10,6 +12,8 @@ components: Drawer, SwipeableDrawer
 [Navigation drawers](https://material.io/design/components/navigation-drawer.html) (or "sidebars") provide access to destinations and app functionality, such as switching accounts. Sie können entweder permanent auf dem Bildschirm angezeigt oder durch ein Navigationsmenüsymbol gesteuert werden.
 
 [Die Seitenblätter](https://material.io/design/components/sheets-side.html) sind Zusatzflächen, die hauptsächlich auf Tablets und Desktops verwendet werden.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Temporäre Navigationsleisten
 
@@ -33,14 +37,38 @@ The following properties are used in this documentation website for optimal usab
 - iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
 
 ```jsx
-const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS =
+  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
+
+### Swipeable edge
+
+You can configure the `SwipeableDrawer` to have a visible edge when closed.
+
+If you are on a desktop, you can toggle the drawer with the "OPEN" button. If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swipe.
+
+{{"demo": "pages/components/drawers/SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
+
+### Keep mounted
+
+To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like:
+
+```jsx
+<Drawer
+  variant="temporary"
+  ModalProps={{
+    keepMounted: true,
+  }}
+/>
+```
+
+More details in the [Modal performance section](/components/modal/#performance).
 
 ## Responsive Navigationsleiste
 
-Die `Hidden` Responsive-Hilfskomponente ermöglicht die Anzeige verschiedener Leistentypen in Abhängigkeit von der Bildschirmbreite. Eine `temporäre` Leiste wird für kleine Bildschirme angezeigt, während eine `permanente` Leiste für breitere Bildschirme angezeigt wird.
+You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
 
 {{"demo": "pages/components/drawers/ResponsiveDrawer.js", "iframe": true}}
 
@@ -68,7 +96,7 @@ Die Mini-Variante wird für Anwendungsbereiche empfohlen, die neben Inhalten ein
 
 Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. Sie können nicht geschlossen werden.
 
-Permanente Navigationsleisten sind die **empfohlene Standardeinstellung für Desktop**.
+Apps, welche sich auf den Informationsverbrauch konzentrieren, verwenden eine Links-Rechts-Hierarchie.
 
 ### Navigation in voller Höhe
 

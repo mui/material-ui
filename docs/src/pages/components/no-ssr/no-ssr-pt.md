@@ -15,7 +15,9 @@ Esse componente pode ser útil em várias situações:
 - Sob carga de servidor muito pesada, você pode ativar a degradação do serviço.
 - Melhorar o tempo de interação apenas renderizando o que é importante (com a propriedade `defer`).
 
-## Adiamento do lado do cliente
+[A paleta](/system/palette/) com funções de estilo.
+
+## Client-side deferring
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
 

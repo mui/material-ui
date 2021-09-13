@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider, useTheme, makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider, useTheme, makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: (props) => ({
@@ -52,7 +52,12 @@ export default function StressTest() {
         <fieldset>
           <div>
             <label htmlFor="color">theme color: </label>
-            <input id="color" type="color" onChange={handleColorChange} value={color} />
+            <input
+              id="color"
+              type="color"
+              onChange={handleColorChange}
+              value={color}
+            />
           </div>
           <div>
             <label htmlFor="background-color">background-color property: </label>

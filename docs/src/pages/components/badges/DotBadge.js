@@ -1,28 +1,14 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Badge from '@material-ui/core/Badge';
-import MailIcon from '@material-ui/icons/Mail';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
 
 export default function DotBadge() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box sx={{ color: 'action.active' }}>
       <Badge color="secondary" variant="dot">
         <MailIcon />
       </Badge>
-      <Badge color="secondary" variant="dot">
-        <Typography>Typography</Typography>
-      </Badge>
-    </div>
+    </Box>
   );
 }

@@ -1,11 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import MuiSnackbar from '@material-ui/core/Snackbar';
-import Slide from '@material-ui/core/Slide';
-import CloseIcon from '@material-ui/icons/Close';
-import InfoIcon from '@material-ui/icons/Info';
-import IconButton from '@material-ui/core/IconButton';
+
+import { withStyles } from '@mui/styles';
+import MuiSnackbar from '@mui/material/Snackbar';
+import Slide from '@mui/material/Slide';
+import CloseIcon from '@mui/icons-material/Close';
+import InfoIcon from '@mui/icons-material/Info';
+import IconButton from '@mui/material/IconButton';
 
 const styles = (theme) => ({
   content: {
@@ -41,13 +42,13 @@ function Transition(props) {
 }
 
 function Snackbar(props) {
-  const { classes, onClose, message, ...other } = props;
+  const { classes, message, closeFunc, ...other } = props;
 
   return (
     <MuiSnackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       autoHideDuration={6000}
-      transition={Transition}
+      TransitionComponent={Transition}
       ContentProps={{
         classes: {
           root: classes.content,
@@ -67,7 +68,7 @@ function Snackbar(props) {
           aria-label="close"
           color="inherit"
           className={classes.close}
-          onClick={onClose}
+          onClick={() => closeFunc && closeFunc()}
         >
           <CloseIcon />
         </IconButton>,
@@ -78,8 +79,15 @@ function Snackbar(props) {
 }
 
 Snackbar.propTypes = {
+  /**
+   * Override or extend the styles applied to the component.
+   */
   classes: PropTypes.object.isRequired,
-  SnackbarContentProps: PropTypes.object,
+  closeFunc: PropTypes.func,
+  /**
+   * The message to display.
+   */
+  message: PropTypes.node,
 };
 
 export default withStyles(styles)(Snackbar);

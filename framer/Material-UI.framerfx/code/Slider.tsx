@@ -1,51 +1,41 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiSlider from '@material-ui/core/Slider';
+import MuiSlider from '@mui/material/Slider';
 
 interface Props {
-  color?: 'primary' | 'secondary';
   disabled?: boolean;
+  disableSwap?: boolean;
   max?: number;
   min?: number;
   orientation?: 'horizontal' | 'vertical';
+  size: 'small' | 'medium';
   step?: number;
-  track?: 'normal' | false | 'inverted';
-  valueLabelDisplay?: 'on' | 'auto' | 'off';
-  width?: number;
-  height?: number;
+  tabIndex?: number;
+  track?: 'inverted' | 'normal' | false;
+  valueLabelDisplay?: 'auto' | 'off' | 'on';
+  width: number | string;
+  height: number;
 }
 
-const defaultProps: Props = {
-  color: 'primary',
-  disabled: false,
-  max: 100,
-  min: 0,
-  orientation: 'horizontal',
-  step: 1,
-  track: 'normal',
-  valueLabelDisplay: 'off',
+export function Slider(props: Props): JSX.Element {
+  const { width, height, ...other } = props;
+  return <MuiSlider {...other} />;
+}
+
+Slider.defaultProps = {
+  size: 'medium' as 'medium',
   width: 160,
   height: 24,
 };
 
-export const Slider: React.SFC<Props> = (props: Props) => {
-  const { width, height, ...other } = props;
-  return <MuiSlider {...other} />;
-};
-
-Slider.defaultProps = defaultProps;
-
 addPropertyControls(Slider, {
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['primary', 'secondary'],
-  },
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
+  },
+  disableSwap: {
+    type: ControlType.Boolean,
+    title: 'Disable swap',
   },
   max: {
     type: ControlType.Number,
@@ -60,18 +50,27 @@ addPropertyControls(Slider, {
     title: 'Orientation',
     options: ['horizontal', 'vertical'],
   },
+  size: {
+    type: ControlType.Enum,
+    title: 'Size',
+    options: ['small', 'medium'],
+  },
   step: {
     type: ControlType.Number,
     title: 'Step',
   },
+  tabIndex: {
+    type: ControlType.Number,
+    title: 'Tab index',
+  },
   track: {
     type: ControlType.Enum,
     title: 'Track',
-    options: ['normal', false, 'inverted'],
+    options: ['inverted', 'normal', false],
   },
   valueLabelDisplay: {
     type: ControlType.Enum,
     title: 'Value label display',
-    options: ['on', 'auto', 'off'],
+    options: ['auto', 'off', 'on'],
   },
 });

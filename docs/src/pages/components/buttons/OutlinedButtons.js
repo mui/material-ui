@@ -1,33 +1,17 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 export default function OutlinedButtons() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <Button variant="outlined">Default</Button>
-      <Button variant="outlined" color="primary">
-        Primary
-      </Button>
-      <Button variant="outlined" color="secondary">
-        Secondary
-      </Button>
+    <Stack direction="row" spacing={2}>
+      <Button variant="outlined">Primary</Button>
       <Button variant="outlined" disabled>
         Disabled
       </Button>
-      <Button variant="outlined" color="primary" href="#outlined-buttons">
+      <Button variant="outlined" href="#outlined-buttons">
         Link
       </Button>
-    </div>
+    </Stack>
   );
 }

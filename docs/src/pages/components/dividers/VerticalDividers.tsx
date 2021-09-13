@@ -1,46 +1,39 @@
-import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
-import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
-import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
-import FormatBoldIcon from '@material-ui/icons/FormatBold';
-import FormatItalicIcon from '@material-ui/icons/FormatItalic';
-import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
-import Grid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 'fit-content',
-      border: `1px solid ${theme.palette.divider}`,
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: theme.palette.background.paper,
-      color: theme.palette.text.secondary,
-      '& svg': {
-        margin: theme.spacing(1.5),
-      },
-      '& hr': {
-        margin: theme.spacing(0, 0.5),
-      },
-    },
-  }),
-);
+import * as React from 'react';
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
+import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
+import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
+import FormatBoldIcon from '@mui/icons-material/FormatBold';
+import FormatItalicIcon from '@mui/icons-material/FormatItalic';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 
 export default function VerticalDividers() {
-  const classes = useStyles();
-
   return (
     <div>
-      <Grid container alignItems="center" className={classes.root}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          width: 'fit-content',
+          border: (theme) => `1px solid ${theme.palette.divider}`,
+          borderRadius: 1,
+          bgcolor: 'background.paper',
+          color: 'text.secondary',
+          '& svg': {
+            m: 1.5,
+          },
+          '& hr': {
+            mx: 0.5,
+          },
+        }}
+      >
         <FormatAlignLeftIcon />
         <FormatAlignCenterIcon />
         <FormatAlignRightIcon />
         <Divider orientation="vertical" flexItem />
         <FormatBoldIcon />
         <FormatItalicIcon />
-        <FormatUnderlinedIcon />
-      </Grid>
+      </Box>
     </div>
   );
 }

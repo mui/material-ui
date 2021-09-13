@@ -1,41 +1,26 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiAvatar from '@material-ui/core/Avatar';
+import MuiAvatar from '@mui/material/Avatar';
 import { Icon } from './Icon';
 
 interface Props {
-  variant?: 'circle' | 'circular' | 'rounded' | 'square';
-  backgroundColor?: string;
-  textColor?: string;
-  icon?: string;
-  imageFile?: string;
-  imageUrl?: string;
-  label?: string;
-  width?: number;
-  height?: number;
+  backgroundColor: string;
+  textColor: string;
+  icon: string;
+  avatarImageFile: string;
+  avatarImageUrl: string;
+  label: string;
+  width: number | string;
+  height: number;
 }
 
-const defaultProps: Props = {
-  variant: 'circle',
-  backgroundColor: '#4154af',
-  textColor: undefined,
-  icon: 'face',
-  imageFile: '',
-  imageUrl: 'https://i.pravatar.cc/300',
-  label: 'MB',
-  width: 40,
-  height: 40,
-};
-
-export const Avatar: React.SFC<Props> = (props: Props) => {
+export function Avatar(props: Props): JSX.Element {
   const {
     backgroundColor,
     height,
     icon,
-    imageFile,
-    imageUrl,
+    avatarImageFile: imageFile,
+    avatarImageUrl: imageUrl,
     label,
     textColor,
     width,
@@ -49,16 +34,20 @@ export const Avatar: React.SFC<Props> = (props: Props) => {
       {icon === '' ? label : <Icon icon={icon} />}
     </MuiAvatar>
   );
+}
+
+Avatar.defaultProps = {
+  backgroundColor: '#4154af',
+  textColor: undefined,
+  icon: 'face',
+  avatarImageFile: '',
+  avatarImageUrl: 'https://i.pravatar.cc/300',
+  label: 'MB',
+  width: 40,
+  height: 40,
 };
 
-Avatar.defaultProps = defaultProps;
-
 addPropertyControls(Avatar, {
-  variant: {
-    type: ControlType.Enum,
-    title: 'Variant',
-    options: ['circle', 'circular', 'rounded', 'square'],
-  },
   backgroundColor: {
     type: ControlType.Color,
     title: 'Background color',
@@ -71,18 +60,15 @@ addPropertyControls(Avatar, {
     type: ControlType.String,
     title: 'Icon',
   },
-  imageFile: {
+  avatarImageFile: {
     type: ControlType.Image,
-    title: 'Image File',
-    hidden: function hidden(props) {
-      return props.primaryAction && props.primaryAction !== 'avatar';
-    },
+    title: 'Avatar Image File',
   },
-  imageUrl: {
+  avatarImageUrl: {
     type: ControlType.String,
-    title: 'Image URL',
-    hidden: function hidden(props) {
-      return props.imageFile !== '' || (props.primaryAction && props.primaryAction !== 'avatar');
+    title: 'Avatar Image URL',
+    hidden(props) {
+      return props.avatarImageFile !== '';
     },
   },
   label: {

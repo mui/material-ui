@@ -1,20 +1,21 @@
-import React from 'react';
-import Box from '@material-ui/core/Box';
+import * as React from 'react';
+import Box from '@mui/material/Box';
 
-const defaultProps = {
+const commonStyles = {
   bgcolor: 'background.paper',
   borderColor: 'text.primary',
   m: 1,
   border: 1,
-  style: { width: '5rem', height: '5rem' },
+  width: '5rem',
+  height: '5rem',
 };
 
 export default function BorderRadius() {
   return (
-    <Box display="flex" justifyContent="center">
-      <Box borderRadius="50%" {...defaultProps} />
-      <Box borderRadius="borderRadius" {...defaultProps} />
-      <Box borderRadius={16} {...defaultProps} />
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ ...commonStyles, borderRadius: '50%' }} />
+      <Box sx={{ ...commonStyles, borderRadius: 1 }} />
+      <Box sx={{ ...commonStyles, borderRadius: '16px' }} />
     </Box>
   );
 }

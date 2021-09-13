@@ -1,6 +1,7 @@
 ---
 title: React Popperコンポーネント
 components: Popper
+githubLabel: 'component: Popper'
 ---
 
 # Popper
@@ -9,15 +10,17 @@ components: Popper
 
 `Popper` コンポーネントのいくつかの重要な機能：
 
-- Popperは、サードパーティのライブラリ([Popper.js](https://github.com/FezVrasta/popper.js))を使用して、最適な配置を行います。
+- Popperは、サードパーティのライブラリ([Popper.js](https://github.com/popperjs/popper-core))を使います。
 - これは、react-popperの代替API です。 シンプルさを目指しています。
-- 📦 [10 kB gzipped](/size-snapshot) ([7 kB](https://bundlephobia.com/result?p=popper.js) from Popper.js).
+- 📦 [gzip形式のファイル(8 kB)](/size-snapshot).
 - レンダリングの問題を回避するため、子はドキュメントの本文に対して [`Portal`](/components/portal/)となります。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。
 - スクロールは、 [`Popover`](/components/popover/)コンポーネントのようにブロックされません。 ポッパーの配置は、ビューポートの利用可能な領域で更新されます。
 - クリックしても `Popper` コンポーネントは非表示になりません。 クリックしても `Popper` コンポーネントは非表示になりません。 この動作が必要な場合は、 [`ClickAwayListener`](/components/click-away-listener/) 使用することができます - [メニュードキュメンテーションセクション](/components/menus/#menulist-composition)例を参照してください。 クリックしても `Popper` コンポーネントは非表示になりません。 この動作が必要な場合は、 [`ClickAwayListener`](/components/click-away-listener/) 使用することができます - [メニュードキュメンテーションセクション](/components/menus/#menulist-composition)例を参照してください。 クリックしても `Popper` コンポーネントは非表示になりません。 この動作が必要な場合は、 [`ClickAwayListener`](/components/click-away-listener/) 使用することができます - [メニュードキュメンテーションセクション](/components/menus/#menulist-composition)例を参照してください。 クリックしても `Popper` コンポーネントは非表示になりません。 この動作が必要な場合は、 [`ClickAwayListener`](/components/click-away-listener/) 使用することができます - [メニュードキュメンテーションセクション](/components/menus/#menulist-composition)例を参照してください。 この動作が必要な場合は、 [`ClickAwayListener`](/components/click-away-listener/) 使用することができます - [メニュードキュメンテーションセクション](/components/menus/#menulist-composition)例を参照してください。
 - `anchorEl` は、新しい `Popper.js` インスタンスを作成するための参照オブジェクトとして渡されます。
 
-## シンプルポッパー
+[The palette](/system/palette/) style関数。
+
+## 基本のPopper
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 
@@ -37,21 +40,21 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 
-## 位置決めポッパー
+## 定位置に表示されるPopper
 
-{{"demo": "pages/components/popper/PositionedPopper.js", "bg": true}}
+{{"demo": "pages/components/popper/PositionedPopper.js"}}
 
 ## Scroll playground
 
 {{"demo": "pages/components/popper/ScrollPlayground.js", "hideToolbar": true, "bg": true}}
 
-## 偽の参照オブジェクト
+## 仮想Element
 
-`anchorEl` プロパティは、偽のDOM要素への参照することができます。 [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123)のような形のオブジェクトを作成するだけです。
+`anchorEl` プロパティは、仮想のDOM要素を参照することができます。 [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/)のようなオブジェクトを作成する必要があります。
 
 テキストの一部をハイライトして、ポップヒントを表示します。
 
-{{"demo": "pages/components/popper/FakedReferencePopper.js"}}
+{{"demo": "pages/components/popper/VirtualElementPopper.js"}}
 
 ## 補完プロジェクト
 

@@ -1,9 +1,9 @@
-import React from 'react';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
+import * as React from 'react';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 
 export default function FormControlLabelPlacement() {
   return (
@@ -12,23 +12,23 @@ export default function FormControlLabelPlacement() {
       <RadioGroup row aria-label="position" name="position" defaultValue="top">
         <FormControlLabel
           value="top"
-          control={<Radio color="primary" />}
+          control={<Radio />}
           label="Top"
           labelPlacement="top"
         />
         <FormControlLabel
           value="start"
-          control={<Radio color="primary" />}
+          control={<Radio />}
           label="Start"
           labelPlacement="start"
         />
         <FormControlLabel
           value="bottom"
-          control={<Radio color="primary" />}
+          control={<Radio />}
           label="Bottom"
           labelPlacement="bottom"
         />
-        <FormControlLabel value="end" control={<Radio color="primary" />} label="End" />
+        <FormControlLabel value="end" control={<Radio />} label="End" />
       </RadioGroup>
     </FormControl>
   );

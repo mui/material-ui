@@ -1,32 +1,25 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Alert from '@material-ui/lab/Alert';
-import CheckIcon from '@material-ui/icons/Check';
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
+import * as React from 'react';
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Stack from '@mui/material/Stack';
 
 export default function IconAlerts() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Stack sx={{ width: '100%' }} spacing={2}>
       <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
         This is a success alert — check it out!
       </Alert>
-      <Alert iconMapping={{ success: <CheckCircleOutlineIcon fontSize="inherit" /> }}>
+      <Alert
+        iconMapping={{
+          success: <CheckCircleOutlineIcon fontSize="inherit" />,
+        }}
+      >
         This is a success alert — check it out!
       </Alert>
       <Alert icon={false} severity="success">
         This is a success alert — check it out!
       </Alert>
-    </div>
+    </Stack>
   );
 }

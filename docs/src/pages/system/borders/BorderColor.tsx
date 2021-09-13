@@ -1,21 +1,22 @@
-import React from 'react';
-import Box from '@material-ui/core/Box';
+import * as React from 'react';
+import Box from '@mui/material/Box';
 
-const defaultProps = {
+const commonStyles = {
   bgcolor: 'background.paper',
   m: 1,
   border: 1,
-  style: { width: '5rem', height: '5rem' },
+  width: '5rem',
+  height: '5rem',
 };
 
 export default function BorderColor() {
   return (
-    <Box display="flex" justifyContent="center">
-      <Box borderColor="primary.main" {...defaultProps} />
-      <Box borderColor="secondary.main" {...defaultProps} />
-      <Box borderColor="error.main" {...defaultProps} />
-      <Box borderColor="grey.500" {...defaultProps} />
-      <Box borderColor="text.primary" {...defaultProps} />
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ ...commonStyles, borderColor: 'primary.main' }} />
+      <Box sx={{ ...commonStyles, borderColor: 'secondary.main' }} />
+      <Box sx={{ ...commonStyles, borderColor: 'error.main' }} />
+      <Box sx={{ ...commonStyles, borderColor: 'grey.500' }} />
+      <Box sx={{ ...commonStyles, borderColor: 'text.primary' }} />
     </Box>
   );
 }

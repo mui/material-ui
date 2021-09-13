@@ -1,43 +1,60 @@
 ---
-<<<<<<< HEAD:docs/src/pages/components/grid-list/grid-list-zh.md
-title: React Grid List（网格列表）组件
-components: GridList, GridListTile, GridListTileBar
-=======
 title: React Image list（图像列表）组件
 components: ImageList, ImageListItem, ImageListItemBar
->>>>>>> [GridList] Rename to ImageList & add deprecation warnings (#22363):docs/src/pages/components/image-list/image-list-zh.md
+materialDesign: https://material.io/components/image-lists
+githubLabel: 'component: ImageList'
 ---
 
-# Grid List 网格列表
+# Image list 图像列表
 
-<p class="description">网格列表在一个系统的网格中展示了一系列的图像。</p>
+<p class="description">图像列表在一个系统的栅格中展示了一系列的图像。</p>
 
-[网格列表](https://material.io/design/components/image-lists.html)展示了一个在重复的模式中的子集。 它们有助于提高对所持内容的视觉理解。
+图像列表表示重复模式的项目集合。 它们有助于提高对所持内容的视觉理解。
 
-## 仅有图像的网格列表
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-这是一个可滚动的图像的`网格列表`的简单示例。
+## 标准的图像列表
 
-{{"demo": "pages/components/image-list/ImageImageList.js", "hideEditButton": true}}
+标准的图像列表最适合用于同等重要的项目。 它们具有统一的容器尺寸、比例和间距。
 
-## 带有标题栏的网格列表
+{{"demo": "pages/components/image-list/StandardImageList.js"}}
 
-此示例演示如何使用 `ImageListItemBar` 为每个 `ImageListItem` 添加一个叠加层。 叠加层可以容纳 `title`， `subtitle` 和辅助操作—在本例中为 `IconButton`。
+## 拼接图像列表
 
-{{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
+拼接图像列表强调集合中的某些项目而不是之外的其他项目。 它们使用不同的容器尺寸和比例来创建层次结构。
 
-## 单行网格列表
+{{"demo": "pages/components/image-list/QuiltedImageList.js"}}
 
-此示例演示了可以在水平方向滚动的单行纯图像网格列表。 我们其实不鼓励水平滚动网格列表，因为滚动会干扰典型的阅读模式，从而影响用户的理解。 一个值得注意的例外是水平滚动的单行网格图像列表，例如图库。
+## 交织图像列表
 
-{{"demo": "pages/components/image-list/SingleLineImageList.js", "hideEditButton": true}}
+交织图像列表使用交替的容器比率来创建一个有节奏的布局。 当需要浏览同行内容时，最好采用交织图像列表的方式。
 
-## 高级网格列表
+{{"demo": "pages/components/image-list/WovenImageList.js"}}
 
-此示例演示了“精选的”瓷砖效果 ，使用 `rows` 和 `cols` props 来调整磁贴的大小，并使用 `padding` 属性来调整间距。 瓷砖有一个位于顶部的自定义标题栏，并带有自定义渐变的 `titleBackground `。 而辅助操作的 `IconButton` 则位于左侧。
+## 堆砌图像列表
 
-<<<<<<< HEAD:docs/src/pages/components/grid-list/grid-list-zh.md
-{{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true, "defaultCodeOpen": false}}
-=======
-{{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}
->>>>>>> [GridList] Rename to ImageList & add deprecation warnings (#22363):docs/src/pages/components/image-list/image-list-zh.md
+堆砌图像列表使用动态调整大小的容器高度，以反映每个图像的纵横比。 该图像列表最适合用于浏览未被裁剪的同行内容。
+
+{{"demo": "pages/components/image-list/MasonryImageList.js"}}
+
+## 带标题栏的图像列表
+
+此示例演示如何使用 `ImageListItemBar` 来为每个子块添加一个叠加层。 叠加层可以容纳 `title`， `subtitle` 和辅助操作—在本例中为 `IconButton`。
+
+{{"demo": "pages/components/image-list/TitlebarImageList.js"}}
+
+### 位于图像下方的标题栏（标准）
+
+标题栏可以放置在图像下方。
+
+{{"demo": "pages/components/image-list/TitlebarBelowImageList.js"}}
+
+### 位于图像下方的标题栏（堆砌）
+
+{{"demo": "pages/components/image-list/TitlebarBelowMasonryImageList.js"}}
+
+## 自定义图像列表
+
+在这个例子中，项目有一个自定义的标题栏，位于顶部，并有一个自定义渐变的 `titleBackground`。 而辅助操作的 `IconButton` 则位于左侧。 `gap` 属性用于调整项目之间的间隙。
+
+{{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}

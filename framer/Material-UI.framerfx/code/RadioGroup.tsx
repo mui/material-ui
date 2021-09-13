@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiRadioGroup from '@material-ui/core/RadioGroup';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiFormLabel from '@material-ui/core/FormLabel';
+import MuiRadioGroup from '@mui/material/RadioGroup';
+import MuiFormLabel from '@mui/material/FormLabel';
 import { Radio } from './Radio';
 
-export function RadioGroup(props) {
+interface Props {
+  labels: readonly string[];
+  label: string;
+  width: number | string;
+  height: number;
+}
+
+export function RadioGroup(props: Props): JSX.Element {
   const { label, labels, ...other } = props;
 
   return (

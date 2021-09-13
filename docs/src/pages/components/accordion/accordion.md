@@ -1,19 +1,24 @@
 ---
 title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
+githubLabel: 'component: Accordion'
+materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
+waiAria: https://www.w3.org/TR/wai-aria-practices/#accordion
 ---
 
 # Accordion
 
 <p class="description">Accordions contain creation flows and allow lightweight editing of an element.</p>
 
-[An accordion](https://material.io/archive/guidelines/components/expansion-panels.html) is a lightweight container that may either stand alone or be connected to a larger surface, such as a card.
+An accordion is a lightweight container that may either be used standalone, or be connected to a larger surface, such as a card.
 
-> **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them. It was formerly known as the "expansion panel".
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Simple accordion
+> **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel".
 
-{{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
+## Basic accordion
+
+{{"demo": "pages/components/accordion/BasicAccordion.js", "bg": true}}
 
 ## Controlled accordion
 
@@ -21,21 +26,12 @@ Extend the default behavior to create an accordion with the `Accordion` componen
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## Customized accordions
+## Customization
 
-Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
-
-## Additional actions
-
-In order to put an action such as a `Checkbox` or a button inside of the `AccordionSummary`, you need to stop the propagation of the focus and click events to prevent the accordion from
-expanding/collapsing when using the action.
-You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in
-the label of the parent button that controls the accordion expansion.
-
-{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## Performance
 
@@ -51,12 +47,6 @@ accordions it might be a good idea to change this default behavior by enabling t
 
 As with any performance optimization this is not a silver bullet. Be sure to identify
 bottlenecks first and then try out these optimization strategies.
-
-## Secondary heading and columns
-
-Multiple columns can be used to structure the content, and a helper text may be added to the accordion to assist the user.
-
-{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## Accessibility
 

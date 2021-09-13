@@ -1,17 +1,13 @@
-import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Slider from '@mui/material/Slider';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 250,
-    },
-    margin: {
-      height: theme.spacing(3),
-    },
-  }),
+const Separator = styled('div')(
+  ({ theme }) => `
+  height: ${theme.spacing(3)};
+`,
 );
 
 const marks = [
@@ -38,10 +34,8 @@ function valuetext(value: number) {
 }
 
 export default function TrackInvertedSlider() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: 250 }}>
       <Typography id="track-inverted-slider" gutterBottom>
         Inverted track
       </Typography>
@@ -52,7 +46,7 @@ export default function TrackInvertedSlider() {
         defaultValue={30}
         marks={marks}
       />
-      <div className={classes.margin} />
+      <Separator />
       <Typography id="track-inverted-range-slider" gutterBottom>
         Inverted track range
       </Typography>
@@ -63,6 +57,6 @@ export default function TrackInvertedSlider() {
         defaultValue={[20, 37]}
         marks={marks}
       />
-    </div>
+    </Box>
   );
 }

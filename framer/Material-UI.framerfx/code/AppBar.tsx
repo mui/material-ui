@@ -1,17 +1,9 @@
 import * as React from 'react';
 import { PropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiAppBar from '@material-ui/core/AppBar';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import Toolbar from '@material-ui/core/Toolbar';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import Typography from '@material-ui/core/Typography';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import Button from '@material-ui/core/Button';
+import MuiAppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import { IconButton } from './IconButton';
 
 // Define type of property
@@ -32,7 +24,7 @@ export class AppBar extends React.Component<Props> {
     width: 300,
     height: 56,
     leftIcon: 'menu',
-    title: 'Material-UI',
+    title: 'MUI',
     action1: 'Login',
     action2: '',
     icon1: 'notifications',
@@ -74,8 +66,6 @@ export class AppBar extends React.Component<Props> {
             {leftIcon && (
               <IconButton
                 icon={leftIcon}
-                // tslint:disable-next-line: ban-ts-ignore
-                // @ts-ignore
                 style={{ marginLeft: -12, marginRight: 20 }}
                 color="inherit"
               />
@@ -90,8 +80,6 @@ export class AppBar extends React.Component<Props> {
                 icon={icon1}
                 badgeColor="secondary"
                 badgeContent={icon1Badge}
-                // tslint:disable-next-line: ban-ts-ignore
-                // @ts-ignore
                 style={{ marginRight: 8 }}
                 color="inherit"
               />
@@ -100,8 +88,6 @@ export class AppBar extends React.Component<Props> {
               <IconButton
                 icon={icon2}
                 badgeContent={icon2Badge}
-                // tslint:disable-next-line: ban-ts-ignore
-                // @ts-ignore
                 style={{ marginRight: 8 }}
                 color="inherit"
               />

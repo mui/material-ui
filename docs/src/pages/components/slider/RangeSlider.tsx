@@ -1,38 +1,27 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-
-const useStyles = makeStyles({
-  root: {
-    width: 300,
-  },
-});
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
 function valuetext(value: number) {
   return `${value}°C`;
 }
 
 export default function RangeSlider() {
-  const classes = useStyles();
   const [value, setValue] = React.useState<number[]>([20, 37]);
 
-  const handleChange = (event: any, newValue: number | number[]) => {
+  const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
   };
 
   return (
-    <div className={classes.root}>
-      <Typography id="range-slider" gutterBottom>
-        Temperature range
-      </Typography>
+    <Box sx={{ width: 300 }}>
       <Slider
+        getAriaLabel={() => 'Temperature range'}
         value={value}
         onChange={handleChange}
         valueLabelDisplay="auto"
-        aria-labelledby="range-slider"
         getAriaValueText={valuetext}
       />
-    </div>
+    </Box>
   );
 }

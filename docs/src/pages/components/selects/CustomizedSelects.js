@@ -1,19 +1,17 @@
-import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputBase from '@material-ui/core/InputBase';
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import NativeSelect from '@mui/material/NativeSelect';
+import InputBase from '@mui/material/InputBase';
 
-const BootstrapInput = withStyles((theme) => ({
-  root: {
-    'label + &': {
-      marginTop: theme.spacing(3),
-    },
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  'label + &': {
+    marginTop: theme.spacing(3),
   },
-  input: {
+  '& .MuiInputBase-input': {
     borderRadius: 4,
     position: 'relative',
     backgroundColor: theme.palette.background.paper,
@@ -40,27 +38,20 @@ const BootstrapInput = withStyles((theme) => ({
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
     },
   },
-}))(InputBase);
-
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
 }));
 
 export default function CustomizedSelects() {
-  const classes = useStyles();
   const [age, setAge] = React.useState('');
   const handleChange = (event) => {
     setAge(event.target.value);
   };
   return (
     <div>
-      <FormControl className={classes.margin}>
+      <FormControl sx={{ m: 1 }} variant="standard">
         <InputLabel htmlFor="demo-customized-textbox">Age</InputLabel>
         <BootstrapInput id="demo-customized-textbox" />
       </FormControl>
-      <FormControl className={classes.margin}>
+      <FormControl sx={{ m: 1 }} variant="standard">
         <InputLabel id="demo-customized-select-label">Age</InputLabel>
         <Select
           labelId="demo-customized-select-label"
@@ -77,7 +68,7 @@ export default function CustomizedSelects() {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl className={classes.margin}>
+      <FormControl sx={{ m: 1 }} variant="standard">
         <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
         <NativeSelect
           id="demo-customized-select-native"

@@ -4,18 +4,39 @@
 
 ## ブラウザ
 
-Material-UIは主要なブラウザとプラットフォームの最新の安定版リリースをサポートしています。 Internet Explorer 11もサポートしています。 ブラウザのサポートされていない機能は内部的に独立して管理されているので、JavaScriptポリフィルを導入する必要はありません。
+Material-UIは主要なブラウザとプラットフォームの最新の安定版リリースをサポートしています。 ブラウザのサポートされていない機能は内部的に独立して管理されているので、JavaScriptポリフィルを導入する必要はありません。
 
-| IE | Edge  | Firefox | Chrome | Safari | Googlebot |
-|:-- |:----- |:------- |:------ |:------ |:--------- |
-| 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
+<!-- #stable-snapshot -->
 
+| Edge  | Firefox | Chrome | Safari (macOS) | Safari (iOS) | IE                   |
+|:----- |:------- |:------ |:-------------- |:------------ |:-------------------- |
+| >= 85 | >= 78   | >= 84  | >= 13          | >= 12.1      | 11 (partial support) |
+
+<!-- #default-branch-switch -->
+
+An extensive list can be found in our [.browserlistrc](https://github.com/mui-org/material-ui/blob/next/.browserslistrc#L12-L27) (check the `stable` entry).
 
 Googlebotはページコンテンツのインデックス作成にweb rendering service (WRS) を使用するので、Material-UIがそれをサポートすることは重要です。 [WRSは、使用するレンダリングエンジンを定期的に更新します](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html)。 特に支障なくレンダリングできるMaterial-UIのコンポーネントを期待できます。
 
+### IE 11
+
+Material-UI provides **partial** supports for IE 11. Be aware of the following:
+
+- Some of the components have no support. For instance, the new components, the data grid, the date picker.
+- Some of the components have degraded support. For instance, the outlined input border radius is missing, the combobox doesn't remove diacritics, the circular progress animation is wobbling.
+- The documentaton itself might crash.
+- You need install the [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+- You might need to install polyfills. For instance for the [popper.js transitive dependency](https://popper.js.org/docs/v2/browser-support/#ie11).
+
+Overall, the library doesn't prioritize the support of IE 11 if it harms the most common use cases. For instance, we will close new issues opened about IE 11 and might not merge pull requests that improve IE 11 support.
+
+v6 will completely remove the support of IE 11.
+
 ## サーバ
 
-Material-UIはサーバサイドレンダリングをサポートしてるので、最新の安定版リリースの[Node.js](https://github.com/nodejs/node)をサポートする必要があります。 可能な限り、 [メンテナンス中のLTS バージョン](https://github.com/nodejs/Release#lts-schedule1) はサポートされます。 **node v10.x** またはそれ以降を使用することをお勧めします。 しかし、 **node v8.x** はまだサポートされています。 **node v8.x** のサポートは Material-UI Version 5 で停止されます。
+<!-- #stable-snapshot -->
+
+Material-UI supports [Node.js](https://github.com/nodejs/node) starting with version 12.17 (or 12.0 with `--experimental-modules` enabled) for server-side rendering. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) are supported.
 
 ### CSSプレフィックス
 
@@ -25,8 +46,10 @@ Material-UIはサーバサイドレンダリングをサポートしてるので
 
 ## React
 
-Material-UIは、^16.8. 0(フックのついた方) 以降のReactの最新バージョンをサポートします。 下位互換性については、古い [バージョン](https://material-ui.com/versions/) を参照してください。
+<!-- #react-peer-version -->
+
+Material-UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). 下位互換性については、古い [バージョン](https://material-ui.com/versions/) を参照してください。
 
 ## TypeScript
 
-Material-UI requires a minimum version of TypeScript 3.2.
+Material-UI requires a minimum version of TypeScript 3.5.

@@ -1,96 +1,133 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import { useSelector } from 'react-redux';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { useTheme, styled } from '@mui/material/styles';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& a': {
-      display: 'block',
-      marginBottom: theme.spacing(1),
-    },
-    '& img': {
-      display: 'inline-block',
-    },
+const Root = styled('div')(({ theme }) => ({
+  margin: theme.spacing(2, 3),
+  '& img': {
+    display: 'inline-block',
   },
-  placeholder: {
-    width: 125,
-    height: 35,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: theme.shape.borderRadius,
-    color: theme.palette.divider,
-    border: `1px dashed ${theme.palette.divider}`,
-    transition: theme.transitions.create(['color', 'border-color']),
-    '&&': {
-      display: 'flex',
-    },
-    '&:hover': {
-      borderColor: 'currentColor',
-      color: theme.palette.text.secondary,
-    },
+}));
+
+const Placeholder = styled('a')(({ theme }) => ({
+  width: '100%',
+  height: 55,
+  fontSize: theme.typography.pxToRem(14),
+  fontWeight: 600,
+  alignItems: 'center',
+  justifyContent: 'center',
+  textDecoration: 'none',
+  borderRadius: theme.shape.borderRadius,
+  color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
+  border: `1px dashed ${theme.palette.divider}`,
+  transition: theme.transitions.create(['color', 'border-color']),
+  '&&': {
+    display: 'flex',
+  },
+  '&:hover': {
+    borderColor: 'currentColor',
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.primary[50],
   },
 }));
 
 export default function DiamondSponsors(props) {
-  const classes = useStyles();
   const { spot } = props;
   const theme = useTheme();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
-    <div className={classes.root}>
-      <Typography variant="caption" color="textSecondary" display="block" gutterBottom>
+    <Root>
+      <Typography variant="caption" color="primary.main" display="block" sx={{ mb: 2 }}>
         {t('diamondSponsors')}
       </Typography>
-      <a
-        data-ga-event-category="sponsor"
-        data-ga-event-action={spot}
-        data-ga-event-label="octopus"
-        href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
-        rel="noopener noreferrer sponsored"
-        target="_blank"
-        style={{ width: 125, height: 35 }}
-      >
-        <img
-          width="125"
-          height="35"
-          src={`/static/sponsors/octopus-${theme.palette.type}.png`}
-          alt="octopus"
-          title="Repeatable, reliable deployments"
-          loading="lazy"
-        />
-      </a>
-      <a
-        data-ga-event-category="sponsor"
-        data-ga-event-action={spot}
-        data-ga-event-label="doit"
-        href="https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral"
-        rel="noopener noreferrer sponsored"
-        target="_blank"
-        style={{ width: 125, height: 35 }}
-      >
-        <img
-          width="125"
-          height="35"
-          src={`/static/sponsors/doit-intl.png`}
-          alt="doit-intl"
-          title="Management Platform for Google Cloud and AWS"
-          loading="lazy"
-        />
-      </a>
-      <a
-        aria-label={t('diamondSponsors')}
-        className={classes.placeholder}
-        rel="noopener noreferrer"
-        target="_blank"
-        href="/discover-more/backers/#diamond"
-      >
-        <AddIcon />
-      </a>
-    </div>
+      <Stack spacing={1.5}>
+        <Box
+          component="a"
+          data-ga-event-category="sponsor"
+          data-ga-event-action={spot}
+          data-ga-event-label="octopus"
+          href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
+          rel="noopener noreferrer sponsored"
+          target="_blank"
+          sx={{
+            width: '100%',
+            height: 55,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: `1px solid ${theme.palette.divider}`,
+            borderRadius: 1,
+            transition: theme.transitions.create(['color', 'border-color']),
+            '&:hover': {
+              borderColor: 'currentColor',
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[300]
+                  : theme.palette.primary[500],
+            },
+          }}
+        >
+          <img
+            width="137"
+            height="30"
+            src={`/static/sponsors/octopus-${theme.palette.mode}.svg`}
+            alt="octopus"
+            title="Repeatable, reliable deployments"
+            loading="lazy"
+          />
+        </Box>
+        <Box
+          component="a"
+          data-ga-event-category="sponsor"
+          data-ga-event-action={spot}
+          data-ga-event-label="doit"
+          href="https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral"
+          rel="noopener noreferrer sponsored"
+          target="_blank"
+          sx={{
+            width: '100%',
+            height: 55,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: `1px solid ${theme.palette.divider}`,
+            borderRadius: 1,
+            transition: theme.transitions.create(['color', 'border-color']),
+            '&:hover': {
+              borderColor: 'currentColor',
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[300]
+                  : theme.palette.primary[500],
+            },
+          }}
+        >
+          <img
+            width="60"
+            height="25"
+            src={`/static/sponsors/doit.svg`}
+            alt="doit-intl"
+            title="Management Platform for Google Cloud and AWS"
+            loading="lazy"
+          />
+        </Box>
+        <Placeholder
+          aria-label={t('diamondSponsors')}
+          rel="noopener noreferrer"
+          target="_blank"
+          href="/discover-more/backers/#diamond"
+          // eslint-disable-next-line material-ui/no-hardcoded-labels
+        >
+          +1
+        </Placeholder>
+      </Stack>
+    </Root>
   );
 }
 

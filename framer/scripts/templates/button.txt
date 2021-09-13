@@ -1,20 +1,15 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import Mui«componentName» from '@material-ui/core/«componentName»';
+import Mui«componentName» from '@mui/material/«componentName»';
 import { Icon } from './Icon';
 
 interface Props {
 «& tsInterface»
+  variant?: 'contained' | 'outlined' | 'text';
 }
 
-const defaultProps: Props =  {
-«& defaultProps»
-};
-
-export const «componentName»: React.SFC<Props> = (props: Props) => {
+export function «componentName»(props: Props): JSX.Element {
   const {
     endIcon,
     endIconTheme,
@@ -39,8 +34,16 @@ export const «componentName»: React.SFC<Props> = (props: Props) => {
   );
 }
 
-«componentName».defaultProps = defaultProps;
+«componentName».defaultProps = {
+«& defaultProps»
+  variant: 'text' as 'text',
+};
 
 addPropertyControls(«componentName», {
 «& propertyControls»
+  variant: {
+    type: ControlType.Enum,
+    title: 'Variant',
+    options: ['contained', 'outlined', 'text'],
+  },
 });

@@ -1,20 +1,12 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
-
-const useStyles = makeStyles({
-  root: {
-    width: 500,
-  },
-});
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
 
 export default function PositionedTooltips() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: 500 }}>
       <Grid container justifyContent="center">
         <Grid item>
           <Tooltip title="Add" placement="top-start">
@@ -73,6 +65,6 @@ export default function PositionedTooltips() {
           </Tooltip>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 }

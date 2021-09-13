@@ -1,6 +1,8 @@
 ---
 title: React Alert （警告提示）组件
 components: Alert, AlertTitle
+githubLabel: 'component: Alert'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 
 # Alert 警告提示
@@ -9,11 +11,13 @@ components: Alert, AlertTitle
 
 **请注意：**该组件不再出现在 [Material Design 指南](https://material.io/)中, 但 Material-UI 会继续支持此组件。
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## 简单的警告提示
 
 警告提示有四种不同程度的级别，每种都有自己独特的颜色和图标。
 
-{{"demo": "pages/components/alert/SimpleAlerts.js"}}
+{{"demo": "pages/components/alert/BasicAlerts.js"}}
 
 ## 描述
 
@@ -35,13 +39,13 @@ components: Alert, AlertTitle
 
 {{"demo": "pages/components/alert/TransitionAlerts.js"}}
 
-## 图标
+## Icons 图标
 
 使用 `icon` 属性，您可以在警告提示组件开头添加一个图标。 以此来改变不同程度的默认图标。
 
-通过使用 `iconMapping` 属性，您可以改变不同程度的默认图标映射。 使用 [自定义主题](/customization/globals/#default-props)，您可以进行全局的设置。
+通过使用 `iconMapping` 属性，您可以改变不同程度的默认图标映射。 使用 [自定义主题](/customization/theme-components/#default-props)，您可以进行全局的设置。
 
-把 icon 属性设置为 false 时，将会把图标都移除。
+把图标属性设置为 `false` 将会移除所有图标。
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 

@@ -1,20 +1,18 @@
-/* eslint-disable no-nested-ternary */
-import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import Link, { LinkProps } from '@material-ui/core/Link';
-import ListItem from '@material-ui/core/ListItem';
-import Collapse from '@material-ui/core/Collapse';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import Link, { LinkProps } from '@mui/material/Link';
+import ListItem, { ListItemProps } from '@mui/material/ListItem';
+import Collapse from '@mui/material/Collapse';
+import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { Route, MemoryRouter } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
-import { Omit } from '@material-ui/types';
 
-interface ListItemLinkProps extends LinkProps {
+interface ListItemLinkProps extends ListItemProps {
   to: string;
   open?: boolean;
 }
@@ -27,46 +25,35 @@ const breadcrumbNameMap: { [key: string]: string } = {
   '/drafts': 'Drafts',
 };
 
-function ListItemLink(props: Omit<ListItemLinkProps, 'ref'>) {
+function ListItemLink(props: ListItemLinkProps) {
   const { to, open, ...other } = props;
   const primary = breadcrumbNameMap[to];
 
+  let icon = null;
+  if (open != null) {
+    icon = open ? <ExpandLess /> : <ExpandMore />;
+  }
+
   return (
     <li>
-      <ListItem button component={RouterLink} to={to} {...other}>
+      <ListItem button component={RouterLink as any} to={to} {...other}>
         <ListItemText primary={primary} />
-        {open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
+        {icon}
       </ListItem>
     </li>
   );
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: 360,
-    },
-    lists: {
-      backgroundColor: theme.palette.background.paper,
-      marginTop: theme.spacing(1),
-    },
-    nested: {
-      paddingLeft: theme.spacing(4),
-    },
-  }),
-);
 
 interface LinkRouterProps extends LinkProps {
   to: string;
   replace?: boolean;
 }
 
-const LinkRouter = (props: LinkRouterProps) => <Link {...props} component={RouterLink as any} />;
+const LinkRouter = (props: LinkRouterProps) => (
+  <Link {...props} component={RouterLink as any} />
+);
 
 export default function RouterBreadcrumbs() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
@@ -75,14 +62,14 @@ export default function RouterBreadcrumbs() {
 
   return (
     <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
-      <div className={classes.root}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', width: 360 }}>
         <Route>
           {({ location }) => {
             const pathnames = location.pathname.split('/').filter((x) => x);
 
             return (
               <Breadcrumbs aria-label="breadcrumb">
-                <LinkRouter color="inherit" to="/">
+                <LinkRouter underline="hover" color="inherit" to="/">
                   Home
                 </LinkRouter>
                 {pathnames.map((value, index) => {
@@ -90,11 +77,11 @@ export default function RouterBreadcrumbs() {
                   const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 
                   return last ? (
-                    <Typography color="textPrimary" key={to}>
+                    <Typography color="text.primary" key={to}>
                       {breadcrumbNameMap[to]}
                     </Typography>
                   ) : (
-                    <LinkRouter color="inherit" to={to} key={to}>
+                    <LinkRouter underline="hover" color="inherit" to={to} key={to}>
                       {breadcrumbNameMap[to]}
                     </LinkRouter>
                   );
@@ -103,19 +90,26 @@ export default function RouterBreadcrumbs() {
             );
           }}
         </Route>
-        <nav className={classes.lists} aria-label="mailbox folders">
+        <Box
+          sx={{
+            bgcolor: 'background.paper',
+            mt: 1,
+          }}
+          component="nav"
+          aria-label="mailbox folders"
+        >
           <List>
             <ListItemLink to="/inbox" open={open} onClick={handleClick} />
             <Collapse component="li" in={open} timeout="auto" unmountOnExit>
               <List disablePadding>
-                <ListItemLink to="/inbox/important" className={classes.nested} />
+                <ListItemLink sx={{ pl: 4 }} to="/inbox/important" />
               </List>
             </Collapse>
             <ListItemLink to="/trash" />
             <ListItemLink to="/spam" />
           </List>
-        </nav>
-      </div>
+        </Box>
+      </Box>
     </MemoryRouter>
   );
 }

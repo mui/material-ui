@@ -8,10 +8,10 @@ Material-UIコンポーネントは独立して機能します。 **これらは
 
 ## 今すぐ始める
 
-以下に簡単な例を示します。**文字通り必要なものすべてです**:
+以下に簡単な例を示します。 **文字通り必要なものすべてです**:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 
@@ -30,19 +30,16 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 {{"demo": "pages/getting-started/usage/Usage.js", "hideToolbar": true, "bg": true}}
 
-## Globals
+## グローバル
 
-知っておく必要のあるいくつかの重要なことで、Material-UIの使い易さは改善されます。
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### Responsive meta tag
 
 Material-UIはモバイルファーストで開発されています。最初にモバイル端末用のコードを記述し、次にCSSメディアクエリを使用して必要に応じてコンポーネントを拡張するという方法を用いています。 すべてのデバイスで適切なレンダリングとタッチズームを確実に行うには、responsive viewport meta tagを `<head>` 要素に追加します。
 
 ```html
-<meta
-  name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width"
-/>
+<meta name="viewport" content="initial-scale=1, width=device-width" />
 ```
 
 ### CssBaseline
@@ -59,4 +56,4 @@ Material-UIはオプションで[CssBaseline](/components/css-baseline/)コン�
 
 - [Material Designフォントとタイポグラフィ](/components/typography/)を導入する方法
 - [テーマソリューションを活用する方法](/customization/theming/) 。
-- コンポーネントの見た目を[上書き](/customization/components/)する方法
+- コンポーネントの見た目を[上書き](/customization/how-to-customize/)する方法

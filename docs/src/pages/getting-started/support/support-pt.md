@@ -1,6 +1,6 @@
 # Suporte
 
-<p class="description">Desde a ajuda da comunidade até o suporte premium essencial aos negócios, estamos aqui para ajudar.</p>
+<p class="description">From community help to premium critical business support, we're here to help.</p>
 
 ## Ajuda da comunidade (grátis)
 
@@ -21,7 +21,7 @@ Usamos issues do GitHub exclusivamente para rastrear bugs e solicitações de re
 #### Novas diretrizes para issues
 
 - Por favor, siga o modelo de issue.
-- Comece o título com '[ComponentName]', quando apropriado, e use uma descrição sucinta que ajude outras pessoas a encontrar issues semelhantes. Use o idioma padrão do projeto que é o inglês. 
+- Comece o título com '[ComponentName]', quando apropriado, e use uma descrição sucinta que ajude outras pessoas a encontrar issues semelhantes. Use o idioma padrão do projeto que é o inglês.
   - "doesn't work" ❌
   - "[Button] Add support for <some feature>" ✅
 - Não agrupe vários tópicos em uma issue - cada um deve ter sua própria issue.
@@ -47,7 +47,7 @@ Receba as últimas notícias sobre Material-UI.
 
 ### Versões suportadas
 
-O Material-UI CE (Community Edition) é 100% de código aberto (MIT) desde o início, e sempre será. Os desenvolvedores podem garantir que Material-UI seja a escolha certa para seus aplicativos React através da estratégia de manutenção da comunidade do Material-UI. A equipe do Material-UI disponibiliza regularmente novos lançamentos, correções de bugs e é muito receptiva às solicitações da comunidade.
+O Material-UI CE (Community Edition) é 100% de código aberto (MIT) desde o início, e sempre será. O Material-UI CE (Community Edition) é 100% de código aberto (MIT) desde o início, e sempre será. A equipe do Material-UI disponibiliza regularmente novos lançamentos, correções de bugs e é muito receptiva às solicitações da comunidade.
 
 Dada a realidade das restrições de tempo e recursos, bem como o desejo de continuar inovando, com o tempo, torna-se necessário mudar o foco para as versões mais recentes do framework ([nosso cronograma de lançamento](https://material-ui.com/versions/#release-frequency)), enquanto essa transição ocorre para as versões mais recentes, sempre que possível, inclusões de publicação de guias de migração são feitas, como [esta para a v4](/guides/migration-v3/). A comunidade de código aberto é sempre bem-vinda para enviar novos recursos e correções de erros também.
 
@@ -83,12 +83,16 @@ O resultado final? Todas as capacidades que você espera de um software de níve
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Obter mais detalhes </a>
+  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+Obter mais detalhes
+</a>
 
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Solicite uma demonstração </a>
+  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+Solicite uma demonstração
+</a>
 
 ### Trabalho customizado 🛠
 

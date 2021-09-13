@@ -1,46 +1,24 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiChip from '@material-ui/core/Chip';
+import MuiChip from '@mui/material/Chip';
 import { Icon } from './Icon';
 import { Avatar } from './Avatar';
 
 interface Props {
-  clickable?: boolean;
-  color?: 'default' | 'primary' | 'secondary';
-  deleteIcon?: string;
-  disabled?: boolean;
-  icon?: string;
-  label?: string;
-  size?: 'small' | 'medium';
-  variant?: 'default' | 'outlined';
-  avatarImageFile?: string;
-  avatarImageUrl?: string;
-  deletable?: boolean;
-  iconTheme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
-  width?: number;
-  height?: number;
+  clickable: boolean;
+  deleteIcon: string;
+  disabled: boolean;
+  icon: string;
+  label: string;
+  avatarImageFile: string;
+  avatarImageUrl: string;
+  deletable: boolean;
+  iconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
+  width: number | string;
+  height: number;
 }
 
-const defaultProps: Props = {
-  clickable: true,
-  color: 'default',
-  deleteIcon: '',
-  disabled: false,
-  icon: 'star',
-  label: 'Chip',
-  size: 'medium',
-  variant: 'default',
-  avatarImageFile: '',
-  avatarImageUrl: '',
-  deletable: false,
-  iconTheme: 'Filled',
-  width: 100,
-  height: 32,
-};
-
-export const Chip: React.SFC<Props> = (props: Props) => {
+export function Chip(props: Props): JSX.Element {
   const {
     avatarImageFile,
     avatarImageUrl,
@@ -57,7 +35,7 @@ export const Chip: React.SFC<Props> = (props: Props) => {
     <MuiChip
       avatar={
         avatarImageFile || avatarImageUrl ? (
-          <Avatar imageFile={avatarImageFile} imageUrl={avatarImageUrl} />
+          <Avatar avatarImageFile={avatarImageFile} avatarImageUrl={avatarImageUrl} />
         ) : undefined
       }
       icon={<Icon icon={icon} theme={iconTheme} />}
@@ -66,19 +44,26 @@ export const Chip: React.SFC<Props> = (props: Props) => {
       {...other}
     />
   );
-};
+}
 
-Chip.defaultProps = defaultProps;
+Chip.defaultProps = {
+  clickable: true,
+  deleteIcon: '',
+  disabled: false,
+  icon: 'star',
+  label: 'Chip',
+  avatarImageFile: '',
+  avatarImageUrl: '',
+  deletable: false,
+  iconTheme: 'Filled' as 'Filled',
+  width: 100,
+  height: 32,
+};
 
 addPropertyControls(Chip, {
   clickable: {
     type: ControlType.Boolean,
     title: 'Clickable',
-  },
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['default', 'primary', 'secondary'],
   },
   deleteIcon: {
     type: ControlType.String,
@@ -96,16 +81,6 @@ addPropertyControls(Chip, {
     type: ControlType.String,
     title: 'Label',
   },
-  size: {
-    type: ControlType.Enum,
-    title: 'Size',
-    options: ['small', 'medium'],
-  },
-  variant: {
-    type: ControlType.Enum,
-    title: 'Variant',
-    options: ['default', 'outlined'],
-  },
   avatarImageFile: {
     type: ControlType.Image,
     title: 'Avatar Image File',
@@ -113,7 +88,7 @@ addPropertyControls(Chip, {
   avatarImageUrl: {
     type: ControlType.String,
     title: 'Avatar Image URL',
-    hidden: function hidden(props) {
+    hidden(props) {
       return props.avatarImageFile !== '';
     },
   },

@@ -1,0 +1,19 @@
+{
+  "componentDescription": "<code>FormGroup</code> wraps controls such as <code>Checkbox</code> and <code>Switch</code>.\nIt provides compact row layout.\nFor the <code>Radio</code>, you should be using the <code>RadioGroup</code> component instead of this one.",
+  "propDescriptions": {
+    "children": "Le contenu du composant.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "row": "Display group of elements in a compact row.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details."
+  },
+  "classDescriptions": {
+    "root": {
+      "description": "Styles applied to the root element."
+    },
+    "row": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>row={true}</code>"
+    }
+  }
+}

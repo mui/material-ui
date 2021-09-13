@@ -1,6 +1,9 @@
 ---
 title: Radio buttons React component
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
+githubLabel: 'component: Radio'
+materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 ---
 
 # Radio
@@ -11,19 +14,41 @@ Usa [botones de radio](https://material.io/design/components/selection-controls.
 
 Radio buttons should have the most commonly used option selected by default.
 
-## RadioGroup
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Radio group
 
 `RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-Para poner los botones de forma horizontal, establezca el `fila` prop: `<RadioGroup row />`.
+### Direction
+
+To lay out the buttons horizontally, set the `row` prop:
+
+{{"demo": "pages/components/radio-buttons/RowRadioButtonsGroup.js"}}
+
+### Controlled
+
+You can control the radio with the `value` and `onChange` props:
+
+{{"demo": "pages/components/radio-buttons/ControlledRadioButtonsGroup.js"}}
 
 ## Standalone radio buttons
 
 `Radio` también puede ser utilizado de forma independiente, sin el contenedor RadioGroup.
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
+
+## Tamaño
+
+Use the `size` prop or customize the font size of the svg icons to change the size of the radios.
+
+{{"demo": "pages/components/radio-buttons/SizeRadioButtons.js"}}
+
+## Color
+
+{{"demo": "pages/components/radio-buttons/ColorRadioButtons.js"}}
 
 ## Ubicación de Etiqueta
 
@@ -39,9 +64,34 @@ In general, radio buttons should have a value selected by default. If this is no
 
 ## Customized radios
 
-He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
+
+## `useRadioGroup`
+
+For advanced customization use cases, a `useRadioGroup()` hook is exposed. It returns the context value of the parent radio group. The Radio component uses this hook internally.
+
+### API
+
+```jsx
+<RadioButton
+  value="radioA"
+  inputProps={{ 'aria-label': 'Radio A' }}
+/>
+```
+
+#### Regresa
+
+`value` (_object_):
+
+- `value.name` (_string_ [optional]): The name used to reference the value of the control.
+- `value.onChange` (_func_ [optional]): Callback fired when a radio button is selected.
+- `value.value` (_any_ [optional]): Value of the selected radio button.
+
+#### Ejemplo
+
+{{"demo": "pages/components/radio-buttons/UseRadioGroup.js"}}
 
 ## Cuándo usarlo
 
@@ -55,8 +105,10 @@ He aquí un ejemplo de personalización del componente. You can learn more about
 - Cuando no se puede usar una etiqueta, es necesario agregar un atributo directamente al componente de entrada. En este caso, puede aplicar el atributo adicional (por ejemplo, `aria-label`, `aria-labelledby`, `title`) a través de la propiedad `inputProps`.
 
 ```jsx
-<RadioButton
+<Radio
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' }}
+  inputProps={{
+    'aria-label': 'Radio A',
+  }}
 />
 ```

@@ -8,14 +8,14 @@
 
 Material-UIは、サーバーでのレンダリングの制約を考慮してゼロから設計されましたが、正しく統合されるかどうかはユーザー次第です。 サーバサイドレンダリングでは必要とされるCSSが正しく渡される必要があります。HTML要素だけを返しクライアントサイドでCSSが挿入されるのを待つようにコード書かれた場合、CSSが適用される前後でチラつき（俗にいうFOUC）が発生する場合があります。 クライアントにスタイルを注入するには、次のことが必要です。
 
-1. 新しい[`ServerStyleSheets`](/styles/api/#serverstylesheets) のインスタンスを毎リクエストごとに作成する。
+1. Create a fresh, new [`emotion cache`](https://emotion.sh/docs/@emotion/cache) instance on every request.
 2. Server-side collectorを使用しReactのコンポーネントツリーを描画する。
 3. コンポーネントツリーで必要となるCSSを読み込む
 4. CSSをツリーと一緒にクライアント側へ渡す。
 
-クライアントサイドでは上記のサーバサイドで書かれたCSSが取り除かれるより前に、本来のCSSが挿入されます。
+On the client-side, the CSS will be injected a second time before removing the server-side injected CSS.
 
-## 設定する
+## Setting up
 
 ここからは、サーバーサイドレンダリングをどう設定するかについて見ていきます。
 
@@ -41,9 +41,6 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
-    background: {
-      default: '#fff',
-    },
   },
 });
 
@@ -52,7 +49,7 @@ export default theme;
 
 ### サーバーサイド
 
-サーバーサイドのコードは概ね次の様になります。 サーバに入ってくるすべてのリクエストを処理するために、[app.use](https://expressjs.com/en/api.html)を使用して[Expressミドルウェア](https://expressjs.com/en/guide/using-middleware.html)をセットアップします。 Express やミドルウェアに慣れていない場合は、サーバーがリクエストを受け取るたびにhandleRender関数が呼ばれることを知っておいてください。
+サーバーサイドのコードは概ね次の様になります。 We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come into the server. If you're unfamiliar with Express or middleware, know that the `handleRender` function will be called every time the server receives a request.
 
 `server.js`
 
@@ -60,15 +57,84 @@ export default theme;
 const css = sheets.toString();
 
   // Send the rendered page back to the client.
-import express from 'express';
-
-// この箇所は後のセクションで埋めていきます。
 function renderFullPage(html, css) {
   /* ... */
 }
 
 function handleRender(req, res) {
   /* ... res.send(renderFullPage(html, css));
+}
+
+const app = express();
+
+// Isso é acionado toda vez que o servidor recebe uma solicitação.
+*/
+}
+
+const app = express();
+
+// Isso é acionado toda vez que o servidor recebe uma solicitação.
+```
+
+### Handling the request
+
+The first thing that we need to do on every request is to create a new `emotion cache`.
+
+When rendering, we will wrap `App`, the root component, inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
+
+The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. これを実現するために [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html)を使用します。
+
+Material-UI is using emotion as its default styled engine. We need to extract the styles from the emotion instance. For this, we need to share the same cache configuration for both the client and server:
+
+`getCache.js`
+
+```js
+import createCache from '@emotion/cache';
+
+export default function getCache() {
+  const cache = createCache({ key: 'css' });
+  cache.compat = true;
+  return cache;
+}
+```
+
+With this we are creating new emotion cache instance and using this to extract the critical styles for the html as well.
+
+ここで、先ほどの`renderFullPage`関数の中で、これらの値がどの様に受け渡されるを見ていきます。
+
+```jsx
+import express from 'express';
+import * as React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
+import createEmotionServer from '@emotion/server/create-instance';
+import App from './App';
+import theme from './theme';
+import getCache from './getCache';
+
+function handleRender(req, res) {
+  const cache = getCache();
+  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
+    createEmotionServer(cache);
+
+// This is fired every time the server-side receives a request.
+  const html = ReactDOMServer.renderToString(
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </CacheProvider>,
+  );
+
+  // Grab the CSS from emotion
+  const emotionChunks = extractCriticalToChunks(html);
+  const emotionCss = constructStyleTagsFromChunks(emotionChunks);
+
+  // Send the rendered page back to the client.
+  res.send(renderFullPage(html, emotionCss));
 }
 
 const app = express();
@@ -84,52 +150,9 @@ const app = express();
 // Isso é acionado toda vez que o servidor recebe uma solicitação.
 ```
 
-### リクエストハンドリング
+### Inject initial component HTML and CSS
 
-リクエストをサーバで受け付けた後、まず最初に行わなくてはいけないのは新しい`ServerStyleSheets`インスタンスの作成です。
-
-画面を描画する際に、ルートコンポーネントである`App`コンポーネントを [`StylesProvider`](/styles/api/#stylesprovider)と [`ThemeProvider`](/styles/api/#themeprovider)でラップします。 これによりスタイルの設定が行われ、コンポーネントツリー内に存在する全てのコンポーネントが`theme`インスタンスにアクセスできる様になります。
-
-サーバーサイドレンダリングにおいて最も重要なステップは、最初に描画されるHTMLをクライアントに**渡す前**に描画しきることです。 これを実現するために [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html)を使用します。
-
-その後、対象のCSS を`sheets` インスタンスから`sheets.toString()`を用いて文字列として取得します。 ここで、先ほどの`renderFullPage`関数の中で、これらの値がどの様に受け渡されるを見ていきます。
-
-```jsx
-const css = sheets.toString();
-
-  // Send the rendered page back to the client.
-  res.send(renderFullPage(html, css));
-}
-
-const app = express();
-
-app.use('/build', express.static('build'));
-
-// This is fired every time the server-side receives a request.
-  const html = ReactDOMServer.renderToString(
-    sheets.collect(
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>,
-    ),
-  );
-
-  // Grab the CSS from the sheets.
-  */
-}
-
-const app = express();
-
-// Isso é acionado toda vez que o servidor recebe uma solicitação.
-app.use(handleRender);
-
-const port = 3000;
-app.listen(port);
-```
-
-### コンポーネントHTML・CSSをテンプレートに挿入する
-
-最後に、コンポーネントツリーから作成されたCSSとHTMLをクライアントサイドで描画するためのテンプレートに差し込みます。
+The final step on the server-side is to inject the initial component HTML and CSS into a template to be rendered on the client-side.
 
 ```js
 function renderFullPage(html, css) {
@@ -138,7 +161,9 @@ function renderFullPage(html, css) {
     <html>
       <head>
         <title>My page</title>
-        <style id="jss-server-side">${css}</style>
+        ${css}
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </head>
       <body>
         <div id="root">${html}</div>
@@ -148,31 +173,31 @@ function renderFullPage(html, css) {
 }
 ```
 
-### クライアントサイド
+### The client-side
 
-クライアント側は簡単です。 サーバーサイドで生成された CSS を削除するだけです。 クライアント側のコードを見てみましょう:
+The client-side is straightforward. All we need to do is use the same cache configuration as the server-side. クライアント側のコードを見てみましょう:
 
 `client.js`
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
+import { CacheProvider } from '@emotion/react';
 import App from './App';
 import theme from './theme';
+import getCache from './getCache';
 
 function Main() {
-  React.useEffect(() => {
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
-  }, []);
-
   return (
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <CacheProvider value={getCache}>
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 
@@ -181,11 +206,11 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 ## 参考実装
 
-[GitHubリポジトリ](https://github.com/mui-org/material-ui)の下の[`/examples`](https://github.com/mui-org/material-ui/tree/master/examples)フォルダにいくつかのサンプルプロジェクトを用意しています。
+We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/HEAD/examples) folder:
 
-- [このチュートリアルの実装サンプル](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
-- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
+- [このチュートリアルの実装サンプル](https://github.com/mui-org/material-ui/tree/HEAD/examples/ssr)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/HEAD/examples/gatsby)
+- [Next.js](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript))
 
 ## トラブルシューティング
 

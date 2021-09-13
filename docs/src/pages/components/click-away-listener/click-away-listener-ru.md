@@ -1,6 +1,7 @@
 ---
 title: Отлавливает щелчок за пределами компонента
 components: ClickAwayListener
+githubLabel: 'component: ClickAwayListener'
 ---
 
 # Событие клика вне компонента
@@ -9,6 +10,8 @@ components: ClickAwayListener
 
 - 📦 [1 кБ в сжатом виде](/size-snapshot).
 - ⚛️ Поддерживает порталы
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Пример
 

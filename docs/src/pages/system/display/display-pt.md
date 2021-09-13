@@ -9,8 +9,8 @@
 {{"demo": "pages/system/display/Inline.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box component="div" display="inline">inline</Box>
-<Box component="div" display="inline">inline</Box>
+<Box component="div" sx={{ display: 'inline' }}>inline</Box>
+<Box component="div" sx={{ display: 'inline' }}>inline</Box>
 ```
 
 ### Bloco
@@ -18,36 +18,35 @@
 {{"demo": "pages/system/display/Block.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box component="span" display="block">block</Box>
-<Box component="span" display="block">block</Box>
+<Box component="span" sx={{ display: 'block' }}>block</Box>
+<Box component="span" sx={{ display: 'block' }}>block</Box>
 ```
 
 ## Ocultando elementos
 
 Para um desenvolvimento ágil para dispositivos móveis, use classes de exibição responsivas para mostrar e ocultar elementos por dispositivo. Evite criar versões totalmente diferentes do mesmo site, em vez disso, oculte o elemento de forma responsiva para cada tamanho de tela.
 
-| Tamanho da tela | Classe                                               |
-|:--------------- |:---------------------------------------------------- |
-| Oculto em todas | `display="none"`                                     |
-| Oculto em xs    | `display={{ xs: 'none', sm: 'block' }}`              |
-| Oculto em sm    | `display={{ xs: 'block', sm: 'none', md: 'block' }}` |
-| Oculto em md    | `display={{ xs: 'block', md: 'none', lg: 'block' }}` |
-| Oculto em lg    | `display={{ xs: 'block', lg: 'none', xl: 'block' }}` |
-| Oculto em xl    | `display={{ xs: 'block', xl: 'none' }}`              |
-| Visível em xs   | `display={{ xs: 'block', sm: 'none' }}`              |
-| Visível em sm   | `display={{ xs: 'none', sm: 'block', md: 'none' }}`  |
-| Visível em md   | `display={{ xs: 'none', md: 'block', lg: 'none' }}`  |
-| Visível em lg   | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
-| Visível em xl   | `display={{ xs: 'none', xl: 'block' }}`              |
-
+| Tamanho da tela | Classe                                                       |
+|:--------------- |:------------------------------------------------------------ |
+| Oculto em todas | `sx={{ display: 'none' }}`                                   |
+| Oculto em xs    | `sx={{ display: { xs: 'none', sm: 'block' } }}`              |
+| Oculto em sm    | `sx={{ display: { xs: 'block', sm: 'none', md: 'block' } }}` |
+| Oculto em md    | `sx={{ display: { xs: 'block', md: 'none', lg: 'block' } }}` |
+| Oculto em lg    | `sx={{ display: { xs: 'block', lg: 'none', xl: 'block' } }}` |
+| Oculto em xl    | `sx={{ display: { xs: 'block', xl: 'none' } }}`              |
+| Visível em xs   | `sx={{ display: { xs: 'block', sm: 'none' } }}`              |
+| Visível em sm   | `sx={{ display: { xs: 'none', sm: 'block', md: 'none' } }}`  |
+| Visível em md   | `sx={{ display: { xs: 'none', md: 'block', lg: 'none' } }}`  |
+| Visível em lg   | `sx={{ display: { xs: 'none', lg: 'block', xl: 'none' } }}`  |
+| Visível em xl   | `sx={{ display: { xs: 'none', xl: 'block' } }}`              |
 
 {{"demo": "pages/system/display/Hiding.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box display={{ xs: 'block', md: 'none' }}>
+<Box sx={{ display: { xs: 'block', md: 'none' }}}>
   oculta em telas maiores que md
 </Box>
-<Box display={{ xs: 'none', md: 'block' }}>
+<Box sx={{ display: { xs: 'none', md: 'block' }}}>
   oculta em telas menores que md
 </Box>
 ```
@@ -57,10 +56,10 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 {{"demo": "pages/system/display/Print.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box display="block" displayPrint="none">
+<Box sx={{ display: 'block', displayPrint: 'none' }}>
   Somente tela (Oculta somente em impressão)
 </Box>
-<Box display="none" displayPrint="block">
+<Box sx={{ display: 'none', displayPrint: 'block' }}>
   Somente impressão (Oculta somente em tela)
 </Box>
 ```
@@ -70,10 +69,10 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 {{"demo": "pages/system/display/Overflow.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box component="div" overflow="hidden">
+<Box component="div" sx={{ overflow: 'hidden' }}>
   Estouro oculto
 </Box>
-<Box component="div" overflow="visible">
+<Box component="div" sx={{ overflow: 'visible' }}>
   Estouro visível
 </Box>
 ```
@@ -83,10 +82,10 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 {{"demo": "pages/system/display/TextOverflow.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box component="div" textOverflow="clip">
+<Box component="div" sx={{ textOverflow: 'clip' }}>
   Estouro de texto com corte
 </Box>
-<Box component="div" textOverflow="ellipsis">
+<Box component="div" sx={{ textOverflow: 'ellipsis' }}>
   Estouro de texto com reticências
 </Box>
 ```
@@ -96,10 +95,10 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 {{"demo": "pages/system/display/Visibility.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box component="div" visibility="visible">
+<Box component="div" sx={{ visibility: 'visible' }}>
   Visibilidade visível
 </Box>
-<Box component="div" visibility="hidden">
+<Box component="div" sx={{ visibility: 'hidden' }}>
   Visibilidade oculta
 </Box>
 ```
@@ -109,10 +108,10 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 {{"demo": "pages/system/display/WhiteSpace.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box component="div" whiteSpace="nowrap">
+<Box component="div" sx={{ whiteSpace: 'nowrap' }}>
   Espaço em branco sem quebra
 </Box>
-<Box component="div" whiteSpace="normal">
+<Box component="div" sx={{ whiteSpace: 'normal' }}>
   Espaço em branco normal
 </Box>
 ```

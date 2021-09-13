@@ -1,25 +1,16 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import * as React from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-});
-
 export default function Languages() {
-  const classes = useStyles();
-
   return (
-    <Paper className={classes.root}>
+    <Paper sx={{ width: '100%' }}>
       <Table>
         <TableBody>
           {LANGUAGES_LABEL.map((language) => (

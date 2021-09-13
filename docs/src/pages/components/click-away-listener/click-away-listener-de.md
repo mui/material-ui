@@ -1,6 +1,7 @@
 ---
 title: Erkennt einen Klick außerhalb der Komponente
 components: ClickAwayListener
+githubLabel: 'component: ClickAwayListener'
 ---
 
 # Wegklick Zuhörer
@@ -9,6 +10,8 @@ components: ClickAwayListener
 
 - 📦 [1.5 kB gzipped](/size-snapshot).
 - ⚛️ Support portals
+
+Die Style-Funktion der [Palette](/system/palette/).
 
 ## Beispiel
 

@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { withStyles } from '@mui/styles';
+import Button from '@mui/material/Button';
 
 const styles = {
   root: {
@@ -28,9 +28,6 @@ function MyButtonRaw(props) {
 }
 
 MyButtonRaw.propTypes = {
-  /**
-   * Override or extend the styles applied to the component.
-   */
   classes: PropTypes.object.isRequired,
   color: PropTypes.oneOf(['blue', 'red']).isRequired,
 };

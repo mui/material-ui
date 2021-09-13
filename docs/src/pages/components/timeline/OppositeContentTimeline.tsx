@@ -1,64 +1,55 @@
-import React from 'react';
-import Timeline from '@material-ui/lab/Timeline';
-import TimelineItem from '@material-ui/lab/TimelineItem';
-import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
-import TimelineConnector from '@material-ui/lab/TimelineConnector';
-import TimelineContent from '@material-ui/lab/TimelineContent';
-import TimelineDot from '@material-ui/lab/TimelineDot';
-import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
-import Typography from '@material-ui/core/Typography';
+import * as React from 'react';
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineDot from '@mui/lab/TimelineDot';
+import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
 export default function OppositeContentTimeline() {
   return (
     <React.Fragment>
-      <Timeline align="alternate">
+      <Timeline position="alternate">
         <TimelineItem>
-          <TimelineOppositeContent>
-            <Typography color="textSecondary">09:30 am</Typography>
+          <TimelineOppositeContent color="text.secondary">
+            09:30 am
           </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>
-            <Typography>Eat</Typography>
-          </TimelineContent>
+          <TimelineContent>Eat</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent>
-            <Typography color="textSecondary">10:00 am</Typography>
+          <TimelineOppositeContent color="text.secondary">
+            10:00 am
           </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>
-            <Typography>Code</Typography>
-          </TimelineContent>
+          <TimelineContent>Code</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent>
-            <Typography color="textSecondary">12:00 am</Typography>
+          <TimelineOppositeContent color="text.secondary">
+            12:00 am
           </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>
-            <Typography>Sleep</Typography>
-          </TimelineContent>
+          <TimelineContent>Sleep</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent>
-            <Typography color="textSecondary">9:00 am</Typography>
+          <TimelineOppositeContent color="text.secondary">
+            9:00 am
           </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>
-            <Typography>Repeat</Typography>
-          </TimelineContent>
+          <TimelineContent>Repeat</TimelineContent>
         </TimelineItem>
       </Timeline>
     </React.Fragment>

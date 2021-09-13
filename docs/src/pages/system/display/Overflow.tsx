@@ -1,13 +1,19 @@
-import React from 'react';
-import Box from '@material-ui/core/Box';
+import * as React from 'react';
+import Box from '@mui/material/Box';
 
 export default function Overflow() {
   return (
     <div style={{ width: 200, whiteSpace: 'nowrap' }}>
-      <Box component="div" my={2} overflow="hidden" bgcolor="background.paper">
+      <Box
+        component="div"
+        sx={{ overflow: 'hidden', my: 2, bgcolor: 'background.paper' }}
+      >
         Overflow Hidden. Overflow Hidden. Overflow Hidden.
       </Box>
-      <Box component="div" my={2} overflow="auto" bgcolor="background.paper">
+      <Box
+        component="div"
+        sx={{ overflow: 'auto', my: 2, bgcolor: 'background.paper' }}
+      >
         Overflow Auto. Overflow Auto. Overflow Auto.
       </Box>
     </div>

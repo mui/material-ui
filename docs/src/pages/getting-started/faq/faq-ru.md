@@ -11,7 +11,7 @@
 - **Говорите о нас**. Продвигайте Material-UI в массы: разместите ссылки на [material-ui.com](https://material-ui.com/) на своём сайте, каждое упоминание имеет значение. Зафолловьте нас в [Твиттере](https://twitter.com/MaterialUI), лайкайте и ретвитьте значимые новости. Или просто расскажите о нас друзьям.
 - **Делитесь отзывами и предложениями**. Говорите, что у нас получается хорошо, а где можно и получше. Пожалуйста, плюсуйте (👍) тикеты, которые вам хотелось бы поскорее увидеть решёнными.
 - **Помогайте новичкам**. Поотвечайте на вопросы на [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
-- **Двигайте проект вперёд**. 
+- **Двигайте проект вперёд**.
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Присылайте багрепорты и фичреквесты [через тикеты](https://github.com/mui-org/material-ui/issues/new).
   - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
@@ -47,12 +47,13 @@ The ripple effect is exclusively coming from the `BaseButton` component. You can
 import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
-  props: {
+  components: {
     // Name of the component ⚛️
     MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 💣!
-    },
+      defaultProps: {
+        // The props to apply
+        disableRipple: true, // No more ripple, on the whole application 💣!
+      },
   },
 });
 ```
@@ -66,7 +67,7 @@ import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
   transitions: {
-    // Então temos `transition: none;` everywhere
+    // So we have `transition: none;` everywhere
     create: () => 'none',
   },
 });
@@ -80,11 +81,10 @@ You can go one step further by disabling all transitions and animations effects:
 import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
-  overrides: {
+  components: {
     // Name of the component ⚛️
     MuiCssBaseline: {
-      // Name of the rule
-      '@global': {
+      styleOverrides: {
         '*, *::before, *::after': {
           transition: 'none !important',
           animation: 'none !important',
@@ -110,7 +110,7 @@ No, it's not required. But this dependency comes built in, so carries no additio
 
 You can use `npm ls @material-ui/styles`, `yarn list @material-ui/styles` or `find -L ./node_modules | grep /@material-ui/styles/package.json` commands in your application folder. If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this.
 
-## When should I use inline-style vs CSS?
+## When should I use inline-style vs. CSS?
 
 As a rule of thumb, only use inline-style for dynamic style properties. The CSS alternative provides more advantages, such as:
 
@@ -121,7 +121,7 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 
 ## Как мне использовать react-router?
 
-We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
+We detail the [integration with third-party routing libraries](/guides/routing/) like react-router, Gatsby or Next.js in our guide.
 
 ## Как я могу получить доступ к элементу DOM?
 
@@ -228,7 +228,9 @@ If you have several applications running on one page, consider using one @materi
 
 ## My App doesn't render correctly on the server
 
-If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup.
+
+The best way to find out what's wrong is to compare your project to an **already working setup**. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSS works only on first load then is missing
 
@@ -238,7 +240,7 @@ The CSS is only generated on the first load of the page. Then, the CSS is missin
 
 The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to create **a new `sheets` instance for each request**.
 
-*example of fix:*
+example of fix:
 
 ```diff
 -const sheets = new ServerStyleSheets();
@@ -248,10 +250,17 @@ function handleRender(req, res) {
 + // Create a sheets instance.
 + const sheets = new ServerStyleSheets();
 
-  //…
+  //… const html = ReactDOMServer.renderToString(
+  -// Create a sheets instance.
+-const sheets = new ServerStyleSheets();
 
-  // Render the component to a string.
-const html = ReactDOMServer.renderToString(
+function handleRender(req, res) {
+
++ // Create a sheets instance.
+
+  + const sheets = new ServerStyleSheets();
+
+  //…
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
@@ -261,50 +270,55 @@ const html = ReactDOMServer.renderToString(
 
 ### React class name hydration mismatch
 
+> Warning: Prop className did not match.
+
 There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
 
 #### Action to Take
 
-The class names value relies on the concept of [class name generator](/styles/advanced/#class-names). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. Например:
+The class names value relies on the concept of [class name generator](/styles/advanced/#class-names). The class names value relies on the concept of [class name generator](/styles/advanced/#class-names). This generator needs to behave identically on the server and on the client. Например:
 
 - You need to provide a new class name generator for each request. But you shouldn't share a `createGenerateClassName()` between different requests:
 
-*example of fix:*
+  example of fix:
 
-```diff
--// Create a new class name generator.
--const generateClassName = createGenerateClassName();
+  ```diff
+  -// Create a new class name generator.
+  -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
 
 + // Create a new class name generator.
-+ const generateClassName = createGenerateClassName();
+  -const generateClassName = createGenerateClassName();
+
+function handleRender(req, res) {
+
++ // Create a new class name generator.
+
+    + const sheets = new ServerStyleSheets();
 
   //…
-
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
+    const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   -// Create a sheets instance.
-```
+  ```
 
 - You need to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling problems. To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
-  
-    You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
 
-*example of fix (package.json):*
+  You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
 
-```diff
-  "dependencies": {
+  _example of fix (package.json):_
+
+  ```diff
+    "dependencies": {
     ...
-
--   "@material-ui/core": "^4.0.0",
+  -   "@material-ui/core": "^4.0.0",
 +   "@material-ui/core": "4.0.0",
     ...
-  },
-```
+    },
+  ```
 
 - You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
 
@@ -355,7 +369,10 @@ This is why we require a prop with the actual DOM node so that React can take ca
 ```jsx
 function App() {
   const [container, setContainer] = React.useState(null);
-  const handleRef = React.useCallback(instance => setContainer(instance), [setContainer])
+  const handleRef = React.useCallback(
+    (instance) => setContainer(instance),
+    [setContainer],
+  );
 
   return (
     <div className="App">

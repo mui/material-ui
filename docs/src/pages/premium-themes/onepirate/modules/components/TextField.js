@@ -1,9 +1,15 @@
-import React from 'react';
-import clsx from 'clsx';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import MuiTextField from '@material-ui/core/TextField';
-import { capitalize } from '@material-ui/core/utils';
+import clsx from 'clsx';
+import { withStyles } from '@mui/styles';
+import MuiTextField from '@mui/material/TextField';
+
+const inputStyleMapping = {
+  small: 'inputSizeSmall',
+  medium: 'inputSizeMedium',
+  large: 'inputSizeLarge',
+  xlarge: 'inputSizeXlarge',
+};
 
 const styles = (theme) => ({
   root: {
@@ -26,22 +32,22 @@ const styles = (theme) => ({
     },
   },
   disabled: {},
-  inputSizeSmall: {
+  [inputStyleMapping.small]: {
     fontSize: 14,
     padding: theme.spacing(1),
-    width: `calc(100% - ${theme.spacing(2)}px)`,
+    width: `calc(100% - ${theme.spacing(2)})`,
   },
-  inputSizeMedium: {
+  [inputStyleMapping.medium]: {
     fontSize: 16,
     padding: theme.spacing(2),
-    width: `calc(100% - ${theme.spacing(4)}px)`,
+    width: `calc(100% - ${theme.spacing(4)})`,
   },
-  inputSizeLarge: {
+  [inputStyleMapping.large]: {
     fontSize: 18,
-    padding: 22,
-    width: `calc(100% - ${22 * 2}px)`,
+    padding: 20,
+    width: `calc(100% - ${20 * 2}px)`,
   },
-  inputSizeXlarge: {
+  [inputStyleMapping.xlarge]: {
     fontSize: 20,
     padding: 25,
     width: `calc(100% - ${25 * 2}px)`,
@@ -64,7 +70,7 @@ function TextField(props) {
     classes,
     InputProps = {},
     InputLabelProps,
-    noBorder = false,
+    noBorder,
     size = 'medium',
     SelectProps,
     ...other
@@ -78,12 +84,11 @@ function TextField(props) {
   return (
     <MuiTextField
       InputProps={{
-        disableUnderline: true,
         classes: {
           root: classes.root,
           input: clsx(
             classes.input,
-            classes[`inputSize${capitalize(size)}`],
+            classes[inputStyleMapping[size]],
             {
               [classes.inputBorder]: !noBorder,
             },
@@ -92,6 +97,7 @@ function TextField(props) {
           disabled: classes.disabled,
           ...InputPropsClassesOther,
         },
+        disableUnderline: true,
         ...InputPropsOther,
       }}
       InputLabelProps={{
@@ -112,12 +118,27 @@ function TextField(props) {
 }
 
 TextField.propTypes = {
+  /**
+   * Override or extend the styles applied to the component.
+   */
   classes: PropTypes.object.isRequired,
+  /**
+   * Props applied to the [`InputLabel`](/api/input-label/) element.
+   */
   InputLabelProps: PropTypes.object,
+  /**
+   * Props applied to the Input element.
+   * It will be a [`FilledInput`](/api/filled-input/),
+   * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
+   * component depending on the `variant` prop value.
+   */
   InputProps: PropTypes.object,
   noBorder: PropTypes.bool,
+  /**
+   * Props applied to the [`Select`](/api/select/) element.
+   */
   SelectProps: PropTypes.object,
-  size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+  size: PropTypes.oneOf(['large', 'medium', 'small', 'xlarge']),
 };
 
 export default withStyles(styles)(TextField);

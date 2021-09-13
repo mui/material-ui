@@ -1,4 +1,4 @@
-import { alpha } from '@material-ui/core/styles';
+import { alpha } from '@mui/material/styles';
 import { adShape } from 'docs/src/modules/components/AdManager';
 
 const adBodyImageStyles = (theme) => ({
@@ -6,9 +6,9 @@ const adBodyImageStyles = (theme) => ({
     display: 'block',
     overflow: 'hidden',
     border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
-    padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${
-      theme.spacing(1.5) + 130
-    }px`,
+    padding: `${theme.spacing(1.5)} ${theme.spacing(1.5)} ${theme.spacing(
+      1.5,
+    )} calc(${theme.spacing(1.5)} + 130px)`,
     borderRadius: theme.shape.borderRadius,
   },
   imgWrapper: {
@@ -35,6 +35,7 @@ const adBodyImageStyles = (theme) => ({
     color: theme.palette.text.secondary,
     display: 'block',
     marginTop: theme.spacing(0.5),
+    fontWeight: 500,
   },
 });
 

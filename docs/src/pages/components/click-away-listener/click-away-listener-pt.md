@@ -1,6 +1,7 @@
 ---
 title: Componente React para Detectar clique fora
 components: ClickAwayListener
+githubLabel: 'component: ClickAwayListener'
 ---
 
 # Observador de Clique (ClickAwayListener)
@@ -9,6 +10,8 @@ components: ClickAwayListener
 
 - 📦 [1.5 kB gzipped](/size-snapshot).
 - ⚛️ Suporte para portais
+
+[A paleta](/system/palette/) com funções de estilo.
 
 ## Exemplo
 

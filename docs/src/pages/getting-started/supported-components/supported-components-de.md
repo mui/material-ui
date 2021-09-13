@@ -7,103 +7,102 @@ While we strive to follow the guidelines where practical (applying common sense 
 Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möchten, welche hier nicht markiert sind, suchen Sie bitte nach dem entsprechenden [GitHub-Issue](https://github.com/mui-org/material-ui/issues) oder erstellen Sie ein neues, um die Realisierung zu besprechen, bevor Sie ein Pull-Request absenden.
 
 - **[Painéis de Expansão](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*Legado Material v1*)
-- App bar 
+- App bar
   - **[Oben](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Unten](https://material.io/design/components/app-bars-bottom.html) ✓**
 - **[Banner](https://material.io/design/components/banners.html)** ([ Kann zusammengesetzt werden ](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
 - **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)********
-- ****** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)**** 
+- ****** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)****
   - **[ Text & enthaltene Schaltflächen (früher flach & angehoben)](https://material.io/design/components/buttons.html) ✓**
   - **[Schalter (Toggle buttons)](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
-- **[Cards](https://material.io/design/components/cards.html) ✓** 
-  - Transições: 
+- **[Cards](https://material.io/design/components/cards.html) ✓**
+  - Transições:
     - **[Schnellzugriff (Speed Dial)](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/components/about-the-lab/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Morph](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [Full screen](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
-  - **[Extended FAB](https://material.io/design/components/buttons-floating-action-button.html#extended-fab) ✓** 
+  - **[Extended FAB](https://material.io/design/components/buttons-floating-action-button.html#extended-fab) ✓**
     - Speed dial
 - **[Chips](https://material.io/design/components/chips.html) ✓**
-- **[Data tables](https://material.io/design/components/data-tables.html) ✓** 
+- **[Data tables](https://material.io/design/components/data-tables.html) ✓**
   - **Sortable ✓**
   - [Choice](https://material.io/design/components/chips.html#choice-chips)
   - [Filter](https://material.io/design/components/chips.html#filter-chips)
   - [Action](https://material.io/design/components/chips.html#action-chips)
-- **[Dialogs](https://material.io/design/components/dialogs.html) ✓** 
+- **[Dialogs](https://material.io/design/components/dialogs.html) ✓**
   - **[Alert dialog](https://material.io/design/components/dialogs.html#alert-dialog) ✓**
   - **Selectable ✓**
   - **[Confirmation dialogs](https://material.io/design/components/dialogs.html#confirmation-dialog) ✓**
-- **[Dividers](https://material.io/design/components/dividers.html) ✓** 
+- **[Dividers](https://material.io/design/components/dividers.html) ✓**
   - **[Full bleed](https://material.io/design/components/dividers.html#types) ✓**
   - **[Diálogos simples](https://material.io/design/components/dialogs.html#simple-dialog) ✓** (Pode ser composto com Dialog e a List.)
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
-- **[Inset](https://material.io/design/components/dividers.html#types) ✓** 
+- **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)
-- **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed)
-- **<strong x-id="1"><a href="https://material.io/design/components/image-lists.html">Listas de Imagem</a> ✓</strong> (também conhecido como Grade Lista)********** 
-  - [Types:](https://material.io/design/components/lists.html#types) 
+- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)********
+- ****[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)**********
+  - [Types:](https://material.io/design/components/lists.html#types)
     - **Single line ✓**
     - **Two line ✓**
     - Three line
   - **Avatar ✓**
   - **Contextual ✓**
   - Thumbnail
-  - **Controls ✓** 
+  - **Controls ✓**
     - **Checkbox ✓**
     - **Text field dropdown menu ✓** (Select)
     - **Switch ✓**
     - Reorder
-- ******** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)****** 
-  - [Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓ 
+- ******** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)******
+  - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed)
     - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
-  - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
+  - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu)
     - **Text field dropdown menu ✓** (Select)
     - Editable dropdown menu
   - **Helper text ✓**
-- **[Selection controls](https://material.io/design/components/selection-controls.html) ✓** 
+- **[Selection controls](https://material.io/design/components/selection-controls.html) ✓**
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
   - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*Veraltetes Material v1*)
-- **[Sliders](https://material.io/design/components/sliders.html) ✓** 
+- **[Sliders](https://material.io/design/components/sliders.html) ✓**
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
-- **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓** 
+- **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Veraltetes Material v1*)
-- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*) 
+- **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*)
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
-- [Tabs](https://material.io/design/components/tabs.html) ✓ 
+- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*)
   - **[Fixed tabs](https://material.io/design/components/tabs.html#fixed-tabs) ✓**
   - **[Scrollable tabs](https://material.io/design/components/tabs.html#scrollable-tabs) ✓**
   - **[Mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) ✓**
-- ******** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)****** 
+- ******** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)******
   - **[Tooltips](https://material.io/design/components/tooltips.html) ✓**
   - **[Filled](https://material.io/design/components/text-fields.html#filled-text-field) ✓**
-- **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓** 
+- **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
   - ** [ Standard](https://material.io/archive/guidelines/components/text-fields.html) ✓**(Legacy Material v1)
   - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
   - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**
-  - [Types](https://material.io/design/components/text-fields.html#input-types): 
+  - [Types](https://material.io/design/components/text-fields.html#input-types):
     - **Single-line ✓**
     - **Multi-line ✓**
     - Text-area
     - **Full-width ✓**
-  - [Assistive elements:](https://material.io/design/components/text-fields.html#anatomy) 
+  - [Assistive elements:](https://material.io/design/components/text-fields.html#anatomy)
     - **Helper text ✓**
     - **Error message ✓**
     - **Icon ✓**
     - Character counter
 - ** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)
-- **[Tooltips](https://material.io/design/components/tooltips.html) ✓** 
-  - **Desktop ✓**
-  - **Desktop ✓**
+- **[Tooltips](https://material.io/design/components/tooltips.html) ✓**
+- **Desktop ✓**
+- **Desktop ✓**

@@ -1,10 +1,10 @@
 # Density
 
-<p class="description">How to apply density to Material-UI components.</p>
+<p class="description">How to apply density to MUI components.</p>
 
 ## Applying density
 
-This section explains how to apply density. 
+This section explains how to apply density.
 It doesn't cover potential use cases, or considerations for using density in your application.
 The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
 
@@ -35,7 +35,7 @@ The following components have props applying higher density:
 ## Explore theme density
 
 This tool allows you to apply density via spacing and component props. You can browse
-around and see how this applies to the overall feel of Material-UI components.
+around and see how this applies to the overall feel of MUI components.
 
 If you enable high density a custom theme is applied to the docs. This theme is only
 for demonstration purposes. You _should not_ apply this theme to your whole application
@@ -46,54 +46,78 @@ The theme is configured with the following options:
 
 ```js
 const theme = createTheme({
-  props: {
+  components: {
     MuiButton: {
-      size: 'small',
+      defaultProps: {
+        size: 'small',
+      },
     },
     MuiFilledInput: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiFormControl: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiFormHelperText: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiIconButton: {
-      size: 'small',
+      defaultProps: {
+        size: 'small',
+      },
+      styleOverrides: {
+        sizeSmall: {
+          // Adjust spacing to reach minimal touch target hitbox
+          marginLeft: 4,
+          marginRight: 4,
+          padding: 12,
+        },
+      },
     },
     MuiInputBase: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiInputLabel: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiListItem: {
-      dense: true,
+      defaultProps: {
+        dense: true,
+      },
     },
     MuiOutlinedInput: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiFab: {
-      size: 'small',
+      defaultProps: {
+        size: 'small',
+      },
     },
     MuiTable: {
-      size: 'small',
+      defaultProps: {
+        size: 'small',
+      },
     },
     MuiTextField: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiToolbar: {
-      variant: 'dense',
-    },
-  },
-  overrides: {
-    MuiIconButton: {
-      sizeSmall: {
-        // Adjust spacing to reach minimal touch target hitbox
-        marginLeft: 4,
-        marginRight: 4,
-        padding: 12,
+      defaultProps: {
+        variant: 'dense',
       },
     },
   },

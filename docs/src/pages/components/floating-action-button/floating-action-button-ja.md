@@ -1,27 +1,31 @@
 ---
 title: React Fab component
 components: Fab
+githubLabel: 'component: Fab'
+materialDesign: https://material.io/components/buttons-floating-action-button
 ---
 
 # Floating action button
 
 <p class="description">A floating action button (FAB) performs the primary, or most common, action on a screen.</p>
 
-## フローティング アクションボタン
+フローティング アクションボタンは、すべての画面コンテンツの全面に表示されます。通常は、中央にアイコンが付いた円の形状です。 FABには次の二つのタイプがあります: regular extended
 
-A [floating action button](https://material.io/design/components/buttons-floating-action-button.html) appears in front of all screen content, typically as a circular shape with an icon in its center. FABには次の二つのタイプがあります: regular extended
+画面の最も主要なアクションのための最も適切な方法である場合にのみ、FABを使用してください。 最も頻出なアクションであることを示すために、画面ごとに1つのみ配置することが推奨されます。
 
-FABを使用するのは、それが画面の主なアクションを提示するための最も適切な方法である場合だけにしてください。
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-最も一般的なアクションを表すには、画面ごとに1つのフローティングアクションボタンのみをお勧めします。
+## 基本的なFAB
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtons.js"}}
 
 ## Size
 
-Floating action buttonsを大きくしたり小さくしたりするには、 `size` プロパティを使用します。
+By default, the size is `large`. Use the `size` prop for smaller floating action buttons.
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtonSize.js"}}
+
+{{"demo": "pages/components/floating-action-button/FloatingActionButtonExtendedSize.js"}}
 
 ## Animation
 

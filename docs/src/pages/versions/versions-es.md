@@ -46,7 +46,6 @@ En general, espera el siguiente ciclo de lanzamiento:
 | Q1 2021             | v5.0.beta.0 | Work in progress |
 | September 1st, 2021 | v5.0.0      | ⏳                |
 
-
 Puedes seguir los [hitos](https://github.com/mui-org/material-ui/milestones) para una descripción más detallada.
 
 > ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.

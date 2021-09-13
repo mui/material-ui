@@ -1,13 +1,18 @@
 ---
 title: Компонент React Skeleton
 components: Skeleton
+githubLabel: 'component: Skeleton'
 ---
 
-# Skeleton (Скелет)
+# Skeleton
 
 <p class="description">Отображайте макет вашего приложения перед загрузкой данных, чтобы уменьшить дискомфорт от загрузки.</p>
 
-Данные ваших компонентов могут не быть доступны сразу. Вы можете увеличить предполагаемую производительность для пользователей с помощью скелетов. Кажется, что все происходит мгновенно, затем информация постепенно отображается на экране. (см. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
+Данные ваших компонентов могут не быть доступны сразу. You can improve the perceived responsiveness of the page by using skeletons. Кажется, что все происходит мгновенно, затем информация постепенно отображается на экране. (см. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Использование
 
 Компонент разработан для использования **напрямую в ваших компонентах**. Например:
 
@@ -63,8 +68,22 @@ loading
 
 {{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}
 
+## Цвет
+
+The color of the component can be customized by changing its `background-color` CSS property. This is especially useful when on a black background (as the skeleton will otherwise be invisible).
+
+{{"demo": "pages/components/skeleton/SkeletonColor.js", "bg": "inline"}}
+
 ## Доступность
 
-Skeleton screens provide an alternative to the traditional spinner methods. Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
+Skeleton screens provide an alternative to the traditional spinner method. Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
 
 The background color of the skeleton uses the least amount of luminance to be visible in good conditions (good ambient light, good screen, no visual impairments).
+
+### ARIA
+
+None.
+
+### Keyboard
+
+The skeleton is not focusable.

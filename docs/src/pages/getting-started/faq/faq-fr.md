@@ -11,12 +11,12 @@ Il y a plusieurs façons de soutenir Material-UI :
 - **Faites passer le mot**. Évangéliser Material-UI en affichant un [lien vers material-ui.com](https://material-ui.com/) sur votre site web, chaque lien compte. Suivez-nous sur [Twitter](https://twitter.com/MaterialUI), aimer et retweeter les nouvelles importantes. Ou parlez simplement de nous avec vos amis.
 - **donnez nous vos retours**. Dites-nous ce que nous faisons bien ou ce que nous pouvons améliorer. Merci de voter 👍 les problèmes qui vous voudriez le plus voir résolus.
 - **Aidez les nouveaux utilisateurs**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
-- **Apportez des modifications**. 
+- **Apportez des modifications**.
   - Modifiez la documentation. Chaque page a un lien "ÉDITER CETTE PAGE" en haut à droite.
   - Signaler des bugs ou des fonctionnalités manquantes en [créant un ticket](https://github.com/mui-org/material-ui/issues/new).
   - Réviser et commenter les [pull requests](https://github.com/mui-org/material-ui/pulls) existantes et les [tickets](https://github.com/mui-org/material-ui/issues).
   - Aidez à [traduire](https://translate.material-ui.com) la documentation.
-  - [Améliorez notre documentation](https://github.com/mui-org/material-ui/tree/master/docs), corrigez des bugs ou ajoutez des fonctionnalités en soumettant une [pull request](https://github.com/mui-org/material-ui/pulls).
+  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/master/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 - **Soutenez nous financièrement sur [OpenCollective](https://opencollective.com/material-ui)**. Si vous utilisez Material-UI dans un projet commercial et que vous souhaitez soutenir son développement continu en devenant Sponsor, ou dans un projet parallèle ou hobby et aimeriez devenir un Backer, vous pouvez le faire via OpenCollective. Tous les fonds donnés sont gérés de manière transparente et les Sponsors reçoivent une reconnaissance dans le README et sur la page d'accueil de Material-UI.
 
 ## Pourquoi est-ce que mes composants ne s'affichent pas correctement en production ?
@@ -52,7 +52,7 @@ const theme = createTheme({
     MuiButtonBase: {
       // The properties to apply
       disableRipple: true, // No more ripple, on the whole application 💣!
-    },
+      },
   },
 });
 ```
@@ -80,11 +80,10 @@ You can go one step further by disabling all transitions and animations effects:
 import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
-  overrides: {
+  components: {
     // Name of the component ⚛️
     MuiCssBaseline: {
-      // Name of the rule
-      '@global': {
+      styleOverrides: {
         '*, *::before, *::after': {
           transition: 'none !important',
           animation: 'none !important',
@@ -228,7 +227,9 @@ If you have several applications running on one page, consider using one @materi
 
 ## My App doesn't render correctly on the server
 
-If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup.
+
+The best way to find out what's wrong is to compare your project to an **already working setup**. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSS works only on first load then is missing
 
@@ -238,7 +239,7 @@ The CSS is only generated on the first load of the page. Then, the CSS is missin
 
 The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to create **a new `sheets` instance for each request**.
 
-*example of fix:*
+example of fix:
 
 ```diff
 -const sheets = new ServerStyleSheets();
@@ -248,10 +249,17 @@ function handleRender(req, res) {
 + // Create a sheets instance.
 + const sheets = new ServerStyleSheets();
 
-  //…
+  //… const html = ReactDOMServer.renderToString(
+  -// Create a sheets instance.
+-const sheets = new ServerStyleSheets();
 
-  // Render the component to a string.
-const html = ReactDOMServer.renderToString(
+function handleRender(req, res) {
+
++ // Create a sheets instance.
+
+  + const sheets = new ServerStyleSheets();
+
+  //…
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
@@ -261,50 +269,55 @@ const html = ReactDOMServer.renderToString(
 
 ### React class name hydration mismatch
 
+> Warning: Prop className did not match.
+
 There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
 
 #### Action to Take
 
-The class names value relies on the concept of [class name generator](/styles/advanced/#class-names). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. Par exemple:
+The class names value relies on the concept of [class name generator](/styles/advanced/#class-names). The class names value relies on the concept of [class name generator](/styles/advanced/#class-names). This generator needs to behave identically on the server and on the client. Par exemple:
 
 - You need to provide a new class name generator for each request. But you shouldn't share a `createGenerateClassName()` between different requests:
 
-*example of fix:*
+  example of fix:
 
-```diff
--// Create a new class name generator.
--const generateClassName = createGenerateClassName();
+  ```diff
+  -// Create a new class name generator.
+  -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
 
 + // Create a new class name generator.
-+ const generateClassName = createGenerateClassName();
+  -const generateClassName = createGenerateClassName();
+
+function handleRender(req, res) {
+
++ // Create a new class name generator.
+
+    + const sheets = new ServerStyleSheets();
 
   //…
-
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
+    const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   -// Create a sheets instance.
-```
+  ```
 
 - You need to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling problems. To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
-  
-    You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
 
-*example of fix (package.json):*
+  You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
 
-```diff
-  "dependencies": {
+  _example of fix (package.json):_
+
+  ```diff
+    "dependencies": {
     ...
-
--   "@material-ui/core": "^4.0.0",
+  -   "@material-ui/core": "^4.0.0",
 +   "@material-ui/core": "4.0.0",
     ...
-  },
-```
+    },
+  ```
 
 - You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
 

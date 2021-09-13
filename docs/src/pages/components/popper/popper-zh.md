@@ -1,6 +1,7 @@
 ---
 title: React Popper（弹出提示）组件
 components: Popper
+githubLabel: 'component: Popper'
 ---
 
 # Popper 弹出提示
@@ -9,15 +10,17 @@ components: Popper
 
 以下是`弹出提示`组件的一些重要功能：
 
-- 🕷 Popper 依赖第三方库 ([Popper.js](https://github.com/FezVrasta/popper.js)) 来实现完美的定位。
+- 🕷 Popper 依赖第三方库 ([Popper.js](https://github.com/popperjs/popper-core)) 来实现完美的定位。
 - 💄 这是 react-popper 的一个替代性 API。 它是为了简单性而设计。
-- 📦 [10 kB 压缩包](/size-snapshot) ([7 kB](https://bundlephobia.com/result?p=popper.js) 来自 Popper.js).
+- 📦 [8kB 已压缩的包](/size-snapshot).
 - 为了避免渲染问题，子组件作为页面 body 的 [`Portal`](/components/portal/)。 您可以使用 `disablePortal` 来禁用此行为。
-- 不同于 [`Popper`](/components/popover/) 组件，你可以自由实现滚动（scroll）行为。 弹出提示的位置会随着视口中的可用面积而更新。
+- 不同于  [`Popper`](/components/popover/) 组件，你可以自由实现滚动（scroll）行为。 弹出提示的位置会随着视口中的可用面积而更新。
 - Clicking away 不会隐藏`弹出提示`组件。 若您需要这个功能，请使用 [`ClickAwayListener`](/components/click-away-listener/) - 可以参照 [menu 文档章节](/components/menus/#menulist-composition) 中的一个样例。
 - 创建一个新 ` Popper.js` 实例时，` anchorEl ` 作为一个参考对象在其中传递。
 
-## 简单的弹出提示
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+## 基础的弹出提示组件
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 
@@ -33,25 +36,25 @@ components: Popper
 
 {{"demo": "pages/components/popper/TransitionsPopper.js"}}
 
-或者，你可以使用 [react-spring](https://github.com/react-spring/react-spring)。
+或者，您也可以使用 [react-spring](https://github.com/react-spring/react-spring)。
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 
-## 特定位置的弹出提示组件
+## 弹出提示组件的位置
 
-{{"demo": "pages/components/popper/PositionedPopper.js", "bg": true}}
+{{"demo": "pages/components/popper/PositionedPopper.js"}}
 
 ## 滚动（Scroll）测试
 
 {{"demo": "pages/components/popper/ScrollPlayground.js", "hideToolbar": true, "bg": true}}
 
-## 占位的参考对象
+## 虚拟元素
 
-`anchorEl` 属性可以作为一个占位 DOM 元素的引用。 您只需要创建一个形状类似于 [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) 的对象。
+而 `anchorEl` 属性的值可以是对一个占位 DOM 元素的引用。 你需要创建一个类似 [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/) 的对象。
 
 高亮文本来显示弹出提示组件：
 
-{{"demo": "pages/components/popper/FakedReferencePopper.js"}}
+{{"demo": "pages/components/popper/VirtualElementPopper.js"}}
 
 ## 补充项目
 

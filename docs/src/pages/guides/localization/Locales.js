@@ -1,18 +1,19 @@
-import React from 'react';
-import TablePagination from '@material-ui/core/TablePagination';
-import Pagination from '@material-ui/lab/Pagination';
-import Rating from '@material-ui/lab/Rating';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import TextField from '@material-ui/core/TextField';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import * as locales from '@material-ui/core/locale';
+import * as React from 'react';
+import TablePagination from '@mui/material/TablePagination';
+import Autocomplete from '@mui/material/Autocomplete';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import * as locales from '@mui/material/locale';
 
 export default function Locales() {
   const [locale, setLocale] = React.useState('zhCN');
 
   return (
-    <div>
-      <ThemeProvider theme={(outerTheme) => createTheme(outerTheme, locales[locale])}>
+    <Box sx={{ width: '100%' }}>
+      <ThemeProvider
+        theme={(outerTheme) => createTheme(outerTheme, locales[locale])}
+      >
         <Autocomplete
           options={Object.keys(locales)}
           getOptionLabel={(key) => `${key.substring(0, 2)}-${key.substring(2, 4)}`}
@@ -23,7 +24,7 @@ export default function Locales() {
             setLocale(newValue);
           }}
           renderInput={(params) => (
-            <TextField {...params} label="自动完成" variant="outlined" fullWidth />
+            <TextField {...params} label="Locale" fullWidth />
           )}
         />
         <TablePagination
@@ -33,9 +34,7 @@ export default function Locales() {
           component="div"
           onPageChange={() => {}}
         />
-        <Pagination count={2000} color="primary" />
-        <Rating defaultValue={4} name="locales" />
       </ThemeProvider>
-    </div>
+    </Box>
   );
 }

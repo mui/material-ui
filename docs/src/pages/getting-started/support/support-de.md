@@ -1,6 +1,6 @@
 # Unterstützung
 
-<p class="description">Von Community-Hilfe bis hin zu erstklassiger Unternehmensunterstützung sind wir hier um Ihnen zu helfen.</p>
+<p class="description">From community help to premium critical business support, we're here to help.</p>
 
 ## Community help (free)
 
@@ -21,7 +21,7 @@ Wir verwenden GitHub Issues ausschließlich als Bug und Feature Request-Tracker.
 #### New issue guidelines
 
 - Please follow the issue template.
-- Please begin the title with '[ComponentName]' where appropriate, and use a succinct description that helps others find similar issues. 
+- Please begin the title with '[ComponentName]' where appropriate, and use a succinct description that helps others find similar issues.
   - "doesn't work" ❌
   - "[Button] Add support for <some feature>" ✅
 - Please don't group multiple topics in one issue – each should have its own issue instead.
@@ -47,7 +47,7 @@ Receive the latest news on Material-UI.
 
 ### Supported versions
 
-The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
 Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v4](/guides/migration-v3/). The open-source community is always welcome to submit new features and bug fixes as well.
 
@@ -83,12 +83,16 @@ The end result? All of the capabilities you expect from commercial-grade softwar
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Get more details </a>
+  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+Get more details
+</a>
 
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Request a demo </a>
+  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+Request a demo
+</a>
 
 ### Custom work 🛠
 

@@ -10,4 +10,6 @@ Explore the default theme object:
 
 > Tip: you can play with the documentation theme object in your browser console, as the `theme` variable is exposed on all the documentation pages. Please note that **the documentation site is using a custom theme**.
 
-Подробности о структуре темы изнутри можно посмотреть здесь [`material-ui/style/createTheme.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/createTheme.js), а также изучив зависимости, используемые `createTheme`.
+<!-- #default-branch-switch -->
+
+If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createTheme.js), and the related imports which `createTheme` uses.

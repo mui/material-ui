@@ -1,6 +1,6 @@
 # カラー
 
-<p class="description"><strong>Palette</strong>: A palette is a collection of colors, i.e. hues and their shades. Material-UIは、Material Designガイドラインのすべてのカラーを提供します。 <a href="#color-palette">このカラーパレット</a>は、互いに調和する色でデザインされています。</p>
+<p class="description"><strong>Palette</strong>: A palette is a collection of colors, i.e. hues and their shades. Out of the box you get access to all colors in the Material Design guidelines.</p>
 
 Material Designの[color system](https://material.io/design/color/)を使用すると、自分のブランドやスタイルを反映した色のテーマを作成できます。
 
@@ -13,11 +13,11 @@ The Material Design team has also built an awesome palette configuration tool: [
 <a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="公式カラーツール" style="width: 574px" />
 </a>
-  
-  
 
+<br />
+<br />
 
-出力は、`createTheme()`関数に渡すことができます。
+The output can be fed into `createTheme()` function:
 
 ```js
 import { createTheme } from '@material-ui/core/styles';
@@ -64,14 +64,14 @@ const theme = createTheme({
 });
 ```
 
-他の色は [Theme customization](/customization/palette/)セクションで説明されているように`createTheme()`によって計算されるので、`main`シェーディングのみを提供する必要があります(`light`、`dark`、`contrastText`をさらにカスタマイズする場合を除きます)。
+Only the `main` shades need be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createTheme()`, as described in the [Theme customization](/customization/palette/) section.
 
-デフォルトの一次または二次シェード、あるいはその両方を使用している場合にカラーオブジェクトを指定すると、`createTheme()`はメイン、ライト、およびダークにマテリアルカラーからの適切なシェードを使用します。
+If you are using the default primary and / or secondary shades then by providing the color object, `createTheme()` will use the appropriate shades from the material color for main, light and dark.
 
 ### コミュニティによるツール
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating Material-UI themes via Material Design Color Tool.
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview. Includes basic site templates to show various components and how they are affected by the theme
 - [マテリアルパレットジェネレータ](https://material.io/inline-tools/color/)　: マテリアルパレットジェネレータを使用して、入力した任意のカラーのパレットを生成できます。
 
 ## 2014 Material Design color palettes
@@ -80,12 +80,12 @@ These color palettes, originally created by Material Design in 2014, are compris
 
 ### 重要な用語
 
-- **Hue" & "Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500". Material-UIは、Material Designガイドラインのすべてのカラーを提供します。 [このカラーパレット](#color-palette)は、互いに調和する色でデザインされています。 [このカラーパレット](#color-palette)は、互いに調和する色でデザインされています。
-- **Palette**: A palette is a collection of colors, i.e. hues and their shades. "red 50" は赤(*pink!*) の最も明るいシェードで、"red 900"は最も暗いシェードです。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。
+- **Palette**: A palette is a collection of colors, i.e. hues and their shades. Material-UIは、Material Designガイドラインのすべてのカラーを提供します。 [このカラーパレット](#color-palette)は、互いに調和する色でデザインされています。 [このカラーパレット](#color-palette)は、互いに調和する色でデザインされています。
+- **Hue" & "Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500". "red 50" は赤(*pink!*) の最も明るいシェードで、"red 900"は最も暗いシェードです。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。
 
 ### カラー・パレット
 
-{{"demo": "pages/customization/color/Color.js", "hideToolbar": true, "bg": "inline"}}
+HUEが与えられた場合* （赤、ピンクなど）および* SHADE * （500、600など）次のように色をインポートできます。
 
 ```jsx
 import HUE from '@material-ui/core/colors/HUE';

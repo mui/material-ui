@@ -15,7 +15,9 @@ components: NoSsr
 - 在过重的服务器负载下，您可以打开服务降级。
 - 通过仅渲染重要的内容（使用 `defer` 属性），从而来改善交互时间。
 
-## 客户端延迟
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+## Client-side deferring
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
 
@@ -23,6 +25,6 @@ components: NoSsr
 
 在其核心中，NoSr 组件的目的是 **推迟渲染**。 正如在前一个演示中所展示的那样，您可以使用它来将推迟从服务器到客户端的渲染。
 
-但你也可以使用它来推迟客户端自身的渲染。 您可以使用 `defer` 属性来**等待一个屏幕帧**后，再渲染子组件。 React 会做 [2 次提交](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) 而不是 1 次。
+但你也可以使用它来推迟客户端自身的渲染。 您可以使用 `defer` 属性来**等待一个屏幕帧**后，再渲染子组件。 React 会做  [2 次提交](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects)  而不是 1 次。
 
 {{"demo": "pages/components/no-ssr/FrameDeferring.js"}}

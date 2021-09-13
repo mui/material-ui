@@ -1,6 +1,7 @@
 ---
 title: React Container component
 components: Container
+githubLabel: 'component: Container'
 ---
 
 # Container
@@ -9,9 +10,11 @@ components: Container
 
 Container können verschachtelt werden, für die meisten Layouts ist dies aber nicht notwendig.
 
+Die Style-Funktion der [Palette](/system/palette/).
+
 ## Flexible Container
 
-A fluid container width is bounded by the `maxWidth` property value.
+A fluid container width is bounded by the `maxWidth` prop value.
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 

@@ -1,42 +1,34 @@
-import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
-import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
-import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
-import FormatAlignJustifyIcon from '@material-ui/icons/FormatAlignJustify';
-import FormatBoldIcon from '@material-ui/icons/FormatBold';
-import FormatItalicIcon from '@material-ui/icons/FormatItalic';
-import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
-import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import Divider from '@material-ui/core/Divider';
-import Paper from '@material-ui/core/Paper';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
+import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
+import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
+import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
+import FormatBoldIcon from '@mui/icons-material/FormatBold';
+import FormatItalicIcon from '@mui/icons-material/FormatItalic';
+import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
+import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Divider from '@mui/material/Divider';
+import Paper from '@mui/material/Paper';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    display: 'flex',
-    border: `1px solid ${theme.palette.divider}`,
-    flexWrap: 'wrap',
-  },
-  divider: {
-    margin: theme.spacing(1, 0.5),
+const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+  '& .MuiToggleButtonGroup-grouped': {
+    margin: theme.spacing(0.5),
+    border: 0,
+    '&.Mui-disabled': {
+      border: 0,
+    },
+    '&:not(:first-of-type)': {
+      borderRadius: theme.shape.borderRadius,
+    },
+    '&:first-of-type': {
+      borderRadius: theme.shape.borderRadius,
+    },
   },
 }));
-
-const StyledToggleButtonGroup = withStyles((theme) => ({
-  grouped: {
-    margin: theme.spacing(0.5),
-    border: 'none',
-    '&:not(:first-child)': {
-      borderRadius: theme.shape.borderRadius,
-    },
-    '&:first-child': {
-      borderRadius: theme.shape.borderRadius,
-    },
-  },
-}))(ToggleButtonGroup);
 
 export default function CustomizedDividers() {
   const [alignment, setAlignment] = React.useState('left');
@@ -50,11 +42,16 @@ export default function CustomizedDividers() {
     setAlignment(newAlignment);
   };
 
-  const classes = useStyles();
-
   return (
     <div>
-      <Paper elevation={0} className={classes.paper}>
+      <Paper
+        elevation={0}
+        sx={{
+          display: 'flex',
+          border: (theme) => `1px solid ${theme.palette.divider}`,
+          flexWrap: 'wrap',
+        }}
+      >
         <StyledToggleButtonGroup
           size="small"
           value={alignment}
@@ -75,7 +72,7 @@ export default function CustomizedDividers() {
             <FormatAlignJustifyIcon />
           </ToggleButton>
         </StyledToggleButtonGroup>
-        <Divider flexItem orientation="vertical" className={classes.divider} />
+        <Divider flexItem orientation="vertical" sx={{ mx: 0.5, my: 1 }} />
         <StyledToggleButtonGroup
           size="small"
           value={formats}

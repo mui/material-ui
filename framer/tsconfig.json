@@ -1,0 +1,8 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "noUnusedLocals": true
+  },
+  "include": ["Material-UI.framerfx/code", "types"]
+}

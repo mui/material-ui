@@ -1,29 +1,40 @@
 ---
 title: Reactメニューコンポーネント
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
+githubLabel: 'component: Menu'
+materialDesign: https://material.io/components/menus
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 ---
 
-# Menus
+# Menu
 
 <p class="description">メニューには、一時的なサーフェスの選択肢のリストが表示されます。</p>
 
-[Menu](https://material.io/design/components/menus.html)には、一時サーフェス上の選択項目のリストが表示されます。 ユーザーがボタンやその他のコントロールを操作すると表示されます。 ユーザーがボタンやその他のコントロールを操作すると表示されます。 ユーザーがボタンやその他のコントロールを操作すると表示されます。 ユーザーがボタンやその他のコントロールを操作すると表示されます。
+メニューコンポーネントは、画面に一時的に表示されるリストのコンポーネントです。 ユーザーがボタンやその他のコントロールを操作すると表示されます。
 
-## シンプルなメニュー
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-デフォルトでは、アンカー要素の上にシンプルなメニューが開きます（このオプションはpropsを介して変更できます）。 画面の端に近づくと、シンプルメニューが垂直方向に再配置され、すべてのメニュー項目が完全に表示されます。 画面の端に近づくと、シンプルメニューが垂直方向に再配置され、すべてのメニュー項目が完全に表示されます。
+## 基本のメニューコンポーネント
+
+シンプルなメニューはデフォルトでアンカー要素の上に表示されます。 (プロパティによって設定を[変える](#menu-positioning)ことができます。) 画面の端に表示される場合、すべてのメニュー項目が表示されるよう、デフォルトのメニューは垂直方向に表示されます。
 
 オプションを選択したら、そのオプションをすぐにコミットしてメニューを閉じるのが理想的です。
 
-The `MenuItem` is a wrapper around `ListItem` with some additional styles. You can use the same list composition features with the `MenuItem` component:
+**曖昧さ回避**: メニューとは違い、ダイアログでは、リスト項目で使用可能なオプションに関連する追加の詳細を表示したり、主要なタスクに関連するナビゲーションまたは直交アクションを提供することができます。 同じコンテンツを表示することはできますが、シンプルなダイアログよりもシンプルなメニューが好まれます。シンプルなメニューはユーザーの現在のコンテキストにとって破壊的ではないためです。
 
-{{"demo": "pages/components/menus/SimpleMenu.js"}}
+{{"demo": "pages/components/menus/BasicMenu.js"}}
 
-## 選択したメニュー
+## 選択されているメニュー
 
-項目の選択に使用した場合、シンプルメニューを開くと、現在選択されているメニュー項目がアンカー要素に垂直に配置されます。 選択したメニュー項目に初期フォーカスが移ります。 The `MenuItem` is a wrapper around `ListItem` with some additional styles. The `MenuItem` is a wrapper around `ListItem` with some additional styles. You can use the same list composition features with the `MenuItem` component: 項目の選択に使用した場合、シンプルメニューを開くと、現在選択されているメニュー項目がアンカー要素に垂直に配置されます。 選択したメニュー項目に初期フォーカスが移ります。 現在選択されているメニュー項目は、 `selected` プロパティ（[ListItem](/api/list-item/)）を使用して設定されます。 項目の選択に使用した場合、シンプルメニューを開くと、現在選択されているメニュー項目がアンカー要素に垂直に配置されます。 選択したメニュー項目に初期フォーカスが移ります。 現在選択されているメニュー項目は、 `selected` プロパティ（[ListItem](/api/list-item/)）を使用して設定されます。 選択したメニュー項目を、初期フォーカスやメニューの縦位置に影響を与えずに使用するには、`variant`プロパティを `menu`に設定します。
+If used for item selection, when opened, simple menus places the initial focus on the selected menu item. 現在選択されているメニュー項目は、 `selected` プロパティ（[ListItem](/api/list-item/)）を使用して設定されます。 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
+
+## 位置を決めたメニュー
+
+`Menu`コンポーネントは自信を配置するのに`Popover`コンポーネントを使用するため、配置のために同じ[配置プロパティ](/components/popover/#anchor-playground)を使うことができます。 たとえば、アンカーの下にメニューを表示できます。
+
+{{"demo": "pages/components/menus/PositionedMenu.js"}}
 
 ## メニューリストの構成
 
@@ -33,9 +44,9 @@ The `MenuItem` is a wrapper around `ListItem` with some additional styles. You c
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Customized menus
+## カスタムメニュー
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [こちら](/customization/how-to-customize/)を参照してください。
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
@@ -43,7 +54,7 @@ The `MenuItem` is a wrapper around `ListItem` with some additional styles. You c
 
 🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu) を確認すると良いでしょう。
 
-## 最大高さメニュー
+## 高さの最大値を決めたメニュー
 
 すべてのメニュー項目を表示しないようにメニューの高さを設定すると、メニューは内部でスクロールできるようになります。
 

@@ -22,7 +22,7 @@ Aside from the above composition trade-off, we enforce the following rules:
 
 ### Spread
 
-Props supplied to a component which are not explictly documented, are spread to the root element; for instance, the `className` property is applied to the root.
+Props supplied to a component which are not explicitly documented are spread to the root element; for instance, the `className` prop is applied to the root.
 
 Now, let's say you want to disable the ripples on the `MenuItem`. You can take advantage of the spread behavior:
 
@@ -38,7 +38,7 @@ We avoid documenting native properties supported by the DOM like [`className`](/
 
 ### CSS Classes
 
-All components accept a [`classes`](/customization/components/#overriding-styles-with-classes) prop to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
+All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) prop to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
 
 - The class applied to the root element is always called `root`.
 - All the default styles are grouped in a single class.
@@ -46,7 +46,7 @@ All components accept a [`classes`](/customization/components/#overriding-styles
 - The variants applied by a boolean property **aren't** prefixed, e.g. the `rounded` class applied by the `rounded` property.
 - The variants applied by an enum property **are** prefixed, e.g. the `colorPrimary` class applied by the `color="primary"` property.
 - A variant has **one level of specificity**. The `color` and `variant` properties are considered a variant. The lower the style specificity is, the simpler it is to override.
-- We increase the specificity for a variant modifier. We already **have to do it** for the pseudo-classes (`:hover`, `:focus`, etc.). It allows much more control at the cost of more boilerplate. Hopefully, it's also more intuitive.
+- We increase the specificity for a variant modifier. We increase the specificity for a variant modifier. It allows much more control at the cost of more boilerplate. Hopefully, it's also more intuitive.
 
 ```js
 const styles = {
@@ -67,7 +67,7 @@ Nested components inside a component have:
 - their own flattened properties when these are key to the top level component abstraction, for instance an `id` prop for the `Input` component.
 - their own `xxxProps` property when users might need to tweak the internal render method's sub-components, for instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
 - their own `xxxComponent` property for performing component injection.
-- экземляр `window.HTMLDivElement`. **host element**: DOM-нода в контексте `react-dom`, т.е.
+- экземляр `window.HTMLDivElement`. This helps answer the question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### Property naming
 
@@ -78,36 +78,36 @@ The name of a boolean property should be chosen based on the **default value**. 
 +<Input disabled />
 ```
 
-### Controlled components
+### Управляемые компоненты
 
-Most of the controlled component are controlled via the `value` and the `onChange` properties, however, the `open` / `onClose` / `onOpen` combination is used for display related state.
+Большинство управляемых компонентов контролируются параметрами `value` и `onChange`, хотя комбинация `open` / `onClose` / `onOpen` используется с отвечающим за отображение состоянием. Если же событий несколько, то мы ставим в начало существительное, а затем глагол, например: `onPageChange`, `onRowsChange`.
 
-### boolean vs enum
+### boolean vs. enum
 
 There are two options to design the API for the variations of a component: with a *boolean*; or with an *enum*. For example, let's take a button that has different types. Each option has its pros and cons:
 
 - Option 1 *boolean*:
-    
-    ```tsx
-    type Props = {
+
+  ```tsx
+  type Props = {
     contained: boolean;
     fab: boolean;
     };
-    ```
-    
-    This API enables the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
+  ```
+
+  This API enables the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
 
 - Option 2 *enum*:
-    
-    ```tsx
-    type Props = {
+
+  ```tsx
+  type Props = {
       variant: 'text' | 'contained' | 'fab';
     }
-    ```
-    
-    This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
-    
-    This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
+  ```
+
+  This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
+
+  However, it prevents an invalid combination from being used, bounds the number of props exposed, and can easily support new values in the future.
 
 The Material-UI components use a combination of the two approaches according to the following rules:
 
@@ -122,6 +122,7 @@ The `ref` is forwarded to the root element. This means that, without changing th
 
 ## Словарь
 
+- **host element**: DOM-нода в контексте `react-dom`, т.е. экземляр `window.HTMLDivElement`. экземляр `window.HTMLDivElement`.
 - **host element**: DOM-нода в контексте `react-dom`, т.е. экземляр `window.HTMLDivElement`.
 - экземляр `window.HTMLDivElement`. **host element**: DOM-нода в контексте `react-dom`, т.е.
 - **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.

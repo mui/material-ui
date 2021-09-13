@@ -1,45 +1,25 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-import VolumeDown from '@material-ui/icons/VolumeDown';
-import VolumeUp from '@material-ui/icons/VolumeUp';
-
-const useStyles = makeStyles({
-  root: {
-    width: 200,
-  },
-});
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Slider from '@mui/material/Slider';
+import VolumeDown from '@mui/icons-material/VolumeDown';
+import VolumeUp from '@mui/icons-material/VolumeUp';
 
 export default function ContinuousSlider() {
-  const classes = useStyles();
   const [value, setValue] = React.useState<number>(30);
 
-  const handleChange = (event: any, newValue: number | number[]) => {
+  const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number);
   };
 
   return (
-    <div className={classes.root}>
-      <Typography id="continuous-slider" gutterBottom>
-        Volume
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item>
-          <VolumeDown />
-        </Grid>
-        <Grid item xs>
-          <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" />
-        </Grid>
-        <Grid item>
-          <VolumeUp />
-        </Grid>
-      </Grid>
-      <Typography id="disabled-slider" gutterBottom>
-        Disabled slider
-      </Typography>
-      <Slider disabled defaultValue={30} aria-labelledby="disabled-slider" />
-    </div>
+    <Box sx={{ width: 200 }}>
+      <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
+        <VolumeDown />
+        <Slider aria-label="Volume" value={value} onChange={handleChange} />
+        <VolumeUp />
+      </Stack>
+      <Slider disabled defaultValue={30} aria-label="Disabled slider" />
+    </Box>
   );
 }

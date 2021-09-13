@@ -1,11 +1,14 @@
 ---
 title: React Avatar Komponente
 components: Avatar, AvatarGroup, Badge
+githubLabel: 'component: Avatar'
 ---
 
 # Avatar
 
 <p class="description">Avatare sind im gesamten Material Design zu finden und werden in allen Bereichen von Tabellen bis hin zu Dialogmenüs verwendet.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Bild-Avatare
 
@@ -18,6 +21,10 @@ Bild-Avatare können erstellt werden, indem reguläre `img` props `src` oder `sr
 Avatars containing simple characters can be created by passing a string as `children`.
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
+
+You can use different background colors for the avatar. The following demo generates the color based on the name of the person.
+
+{{"demo": "pages/components/avatars/BackgroundLetterAvatars.js"}}
 
 ## Größen
 

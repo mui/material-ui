@@ -1,16 +1,16 @@
-import React from 'react';
-import { useTheme } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Input from '@material-ui/core/Input';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+import * as React from 'react';
+import { useTheme } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
+import Input from '@mui/material/Input';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
-import IncreaseIcon from '@material-ui/icons/AddCircleOutline';
-import DecreaseIcon from '@material-ui/icons/RemoveCircleOutline';
-import { useSelector } from 'react-redux';
+import IncreaseIcon from '@mui/icons-material/AddCircleOutline';
+import DecreaseIcon from '@mui/icons-material/RemoveCircleOutline';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const minSpacing = 0;
 const maxSpacing = 20;
@@ -18,11 +18,17 @@ const maxSpacing = 20;
 export default function DensityTool() {
   const dispatch = React.useContext(DispatchContext);
   const handleDensityChange = (event) => {
-    dispatch({ type: 'SET_DENSE', payload: event.target.checked });
+    dispatch({
+      type: 'SET_DENSE',
+      payload: event.target.checked,
+    });
   };
 
   const handleSpacingChange = (event, value) => {
-    dispatch({ type: 'SET_SPACING', payload: value || +event.target.value });
+    dispatch({
+      type: 'SET_SPACING',
+      payload: value || +event.target.value,
+    });
   };
 
   const increaseSpacing = () => {
@@ -38,9 +44,10 @@ export default function DensityTool() {
   };
 
   const theme = useTheme();
-  const spacingUnit = theme.spacing(1);
+  // Use unstable_toUnitless in the future if need to handle custom themes
+  const spacingUnit = parseFloat(theme.spacing(1));
 
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <Grid container spacing={2}>
@@ -85,7 +92,7 @@ export default function DensityTool() {
         </Grid>
       </Grid>
       <Grid item>
-        <Button color="primary" variant="contained" onClick={resetDensity}>
+        <Button variant="contained" onClick={resetDensity}>
           {t('resetDensity')}
         </Button>
       </Grid>

@@ -1,19 +1,23 @@
 ---
 title: React アラート コンポーネント
 components: Alert, AlertTitle
+githubLabel: 'component: Alert'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 
 # アラート
 
 <p class="description">アラートは、ユーザのタスクを中断することなく、ユーザの注意を引き付けるような短く重要なメッセージを表示します。</p>
 
-**注意:** このコンポーネントは [Material Design guidelines](https://material.io/)に記載されていませんが、Material-UIはそれをサポートしています。
+**注意:** このコンポーネントは [マテリアルデザインのガイドライン](https://material.io/)に記載されていませんが、Material-UI ではサポートしています。
 
-## 単純なアラート
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## 基本のアラートコンポーネント
 
 このアラートは、特徴的なアイコンと色を設定する4つの重要度レベルを提供します。
 
-{{"demo": "pages/components/alert/SimpleAlerts.js"}}
+{{"demo": "pages/components/alert/BasicAlerts.js"}}
 
 ## Description
 
@@ -25,7 +29,7 @@ components: Alert, AlertTitle
 
 アラートには、閉じるボタンや元に戻すボタンなどのアクションがあります。 これは、アラートの最後にメッセージの後にレンダリングされます。 これは、アラートの最後にメッセージの後にレンダリングされます。
 
-`onClose` コールバックが指定されていて、 `アクション` プロパティが設定されていない場合は、閉じるアイコンが表示されます。 `アクション` プロパティは、ボタンや IconButtonなどの代替アクションを提供するために使用できます。 `アクション` プロパティは、ボタンや IconButtonなどの代替アクションを提供するために使用できます。 `アクション` プロパティは、ボタンや IconButtonなどの代替アクションを提供するために使用できます。 `アクション` プロパティは、ボタンや IconButtonなどの代替アクションを提供するために使用できます。 `アクション` プロパティは、ボタンや IconButtonなどの代替アクションを提供するために使用できます。
+`onClose` コールバックが指定されていて、 `アクション` プロパティが設定されていない場合は、閉じるアイコンが表示されます。 `アクション` プロパティは、ボタンや IconButtonなどの代替アクションを提供するために使用できます。 `アクション` プロパティは、ボタンや IconButtonなどの代替アクションを提供するために使用できます。
 
 {{"demo": "pages/components/alert/ActionAlerts.js"}}
 
@@ -39,9 +43,9 @@ components: Alert, AlertTitle
 
 `アイコン` プロパティでは、アラートコンポーネントの先頭にアイコンを追加できます。 これは指定された重要度のデフォルトアイコンを上書きします。 これは指定された重要度のデフォルトアイコンを上書きします。 これは指定された重要度のデフォルトアイコンを上書きします。 これは指定された重要度のデフォルトアイコンを上書きします。 これは指定された重要度のデフォルトアイコンを上書きします。
 
-`iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。
+`iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 `iconMapping` プロパティを使用して、デフォルトの重要度をアイコンマッピングに変更できます。 [テーマカスタマイズ](/customization/globals/#default-props)を使用してグローバルに定義することができます。 [テーマをカスタマイズ](/customization/theme-components/#default-props)してグローバルに定義することができます。
 
-Setting the icon prop to false will remove the icon altogether.
+icon プロパティ を `false` に設定すると、アイコンが全て削除されます。
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 

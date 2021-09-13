@@ -13,6 +13,16 @@
  */
 const appList = [
   {
+    title: 'd-cide',
+    description:
+      'A progressive Web App to make rational decisions in workshops. ' +
+      'It uses MUI with a neumorphic custom theme.',
+    image: 'dcide.jpg',
+    link: 'https://d-cide.me/',
+    source: 'https://github.com/cjoecker/d-cide',
+    dateAdded: '2020-07-01',
+  },
+  {
     title: 'QuintoAndar',
     description:
       'QuintoAndar is a company that uses technology and ' +
@@ -142,7 +152,8 @@ const appList = [
   },
   {
     title: 'EQ3',
-    description: 'Modern Furniture & Accessories, designed in Canada, for everyday living.',
+    description:
+      'Modern Furniture & Accessories, designed in Canada, for everyday living.',
     image: 'eq3.jpg',
     link: 'https://www.eq3.com/ca/en/',
     similarWebVisits: 256,
@@ -153,7 +164,7 @@ const appList = [
     description:
       'The #1 rated mobile software to run your home service business. ' +
       'Schedule, dispatch, GPS track employees, invoice, accept credit cards and get booked ' +
-      'online. The marketing website is also built with Material-UI: https://www.housecallpro.com/',
+      'online. The marketing website is also built with MUI: https://www.housecallpro.com/',
     image: 'housecall.jpg',
     link: 'https://pro.housecall.io/pro/log_in',
     similarWebVisits: 750,
@@ -240,7 +251,8 @@ const appList = [
   },
   {
     title: 'LessWrong',
-    description: 'LessWrong is a community blog devoted to the art of human rationality.',
+    description:
+      'LessWrong is a community blog devoted to the art of human rationality.',
     image: 'lesswrong.jpg',
     link: 'https://www.lesswrong.com/',
     similarWebVisits: 774,
@@ -264,7 +276,7 @@ const appList = [
   {
     title: 'ODIGEO Connect',
     description:
-      'Connect your hotel, B&B and apartment with Europe’s #1 flight OTA ' +
+      "Connect your hotel, B&B and apartment with Europe's #1 flight OTA " +
       'and distribute it to millions of travellers.',
     image: 'odigeo.jpg',
     link: 'https://www.odigeoconnect.com/',
@@ -274,7 +286,7 @@ const appList = [
     title: 'comet',
     description:
       'Comet lets you track code, experiments, and results on ML projects. ' +
-      'It’s fast, simple, and free for open source projects.',
+      "It's fast, simple, and free for open source projects.",
     image: 'comet.jpg',
     link: 'https://www.comet.ml/',
     dateAdded: '2019-01-01',
@@ -291,7 +303,7 @@ const appList = [
   {
     title: 'Oneplanetcrowd',
     description:
-      'Oneplanetcrowd is Europe’s leading sustainable crowdfunding platform for People & Planet.',
+      "Oneplanetcrowd is Europe's leading sustainable crowdfunding platform for People & Planet.",
     image: 'oneplanetcrowd.jpg',
     link: 'https://www.oneplanetcrowd.com/en',
     dateAdded: '2019-01-01',
@@ -323,7 +335,7 @@ const appList = [
     title: 'Builder Book',
     description:
       'Books to learn how to build full-stack, production-ready JavaScript web applications from scratch. ' +
-      'Learn React, Material-UI, Next, Express, Mongoose, MongoDB, third party APIs, and more.',
+      'Learn React, MUI, Next, Express, Mongoose, MongoDB, third party APIs, and more.',
     image: 'builderbook.jpg',
     link: 'https://builderbook.org/',
     source: 'https://github.com/builderbook/builderbook',
@@ -374,14 +386,16 @@ const appList = [
   },
   {
     title: 'Rare Bits',
-    description: 'Rare Bits is a marketplace where users can buy, sell and discover crypto assets.',
+    description:
+      'Rare Bits is a marketplace where users can buy, sell and discover crypto assets.',
     image: 'rarebits.jpg',
     link: 'https://rarebits.io/',
     dateAdded: '2019-01-01',
   },
   {
     title: 'Roast',
-    description: 'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
+    description:
+      'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
     image: 'roast.jpg',
     link: 'https://www.roast.io/',
     dateAdded: '2019-01-01',
@@ -413,8 +427,8 @@ const appList = [
   {
     title: 'MetaFact',
     description:
-      'Metafact is a place to verify knowledge via the world’s top experts. ' +
-      'It’s a platform to ask questions, learn the facts and share the truth.',
+      "Metafact is a place to verify knowledge via the world's top experts. " +
+      "It's a platform to ask questions, learn the facts and share the truth.",
     image: 'metafact.jpg',
     link: 'https://metafact.io/',
     dateAdded: '2019-01-01',
@@ -452,7 +466,8 @@ const appList = [
   },
   {
     title: 'SlidesUp',
-    description: 'SlidesUp is a platform to help conference organizers plan their events.',
+    description:
+      'SlidesUp is a platform to help conference organizers plan their events.',
     image: 'slidesup.jpg',
     link: 'https://slidesup.com/',
     dateAdded: '2018-01-03',
@@ -512,7 +527,7 @@ const appList = [
   },
   {
     title: 'Swimmy',
-    description: 'An open source forum PWA. 🇯🇵 (Github docs are in English)',
+    description: 'An open source forum PWA. 🇯🇵 (GitHub docs are in English)',
     image: 'swimmy.jpg',
     link: 'https://swimmy.io/',
     source: 'https://github.com/swimmy/swimmy.io',
@@ -554,7 +569,7 @@ const appList = [
     title: 'Tree',
     description:
       'An open source top 100 documentaries (personal opinion) app ' +
-      'with React Hooks and Material-UI.',
+      'with React Hooks and MUI.',
     link: 'https://tree.valleyease.me/',
     image: 'tree.jpg',
     source: 'https://github.com/ValleyZw/tree',
@@ -593,7 +608,8 @@ const appList = [
   },
   {
     title: 'TradeNBA',
-    description: 'NBA trade machine and social analysis tools for the basketball community.',
+    description:
+      'NBA trade machine and social analysis tools for the basketball community.',
     image: 'tradenba.jpg',
     link: 'https://tradenba.com/',
     similarWebVisits: 160,
@@ -601,7 +617,8 @@ const appList = [
   },
   {
     title: 'CinemaPlus',
-    description: 'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
+    description:
+      'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
     image: 'cinemaplus.jpg',
     link: 'https://elcinema.herokuapp.com/',
     similarWebVisits: 100,
@@ -632,12 +649,35 @@ const appList = [
   },
   {
     title: 'LightyearVPN',
-    description:
-      'LightyearVPN is a simple to use, fast and secure VPN software.',
+    description: 'LightyearVPN is a simple to use, fast and secure VPN software.',
     image: 'lightyearvpn.jpg',
     link: 'https://lightyearvpn.com',
     similarWebVisits: 534,
     dateAdded: '2020-09-11',
+  },
+  {
+    title: 'buybags',
+    description: 'buybags is a fashion shopping aggregator in Germany.',
+    image: 'buybags.jpg',
+    link: 'https://www.buybags.de/',
+    dateAdded: '2020-10-08',
+  },
+  {
+    title: 'TCES PAL',
+    description:
+      "Roster and guild management tool for Tom Clancy's Elite Squad game.",
+    image: 'tcespal.jpg',
+    link: 'https://tcespal.com',
+    dateAdded: '2021-02-06',
+  },
+  {
+    title: 'Atomic CRM',
+    description: 'A full-featured Customer Relationship Management app',
+    image: 'atomiccrm.jpg',
+    link: 'https://marmelab.com/react-admin-crm/',
+    source: 'https://github.com/marmelab/react-admin/tree/master/examples/crm',
+    stars: 16700,
+    dateAdded: '2021-05-06',
   },
 ];
 

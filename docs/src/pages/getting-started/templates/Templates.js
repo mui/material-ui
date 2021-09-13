@@ -1,33 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-
-const styles = {
-  item: {
-    flexGrow: 1,
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  cardMedia: {
-    height: 0,
-    paddingTop: '65%',
-  },
-};
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 function layouts(t) {
   return [
@@ -37,7 +16,7 @@ function layouts(t) {
       src: '/static/images/templates/dashboard.png',
       href: '/getting-started/templates/dashboard/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/dashboard',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/dashboard',
     },
     {
       title: t('signInTitle'),
@@ -45,7 +24,7 @@ function layouts(t) {
       src: '/static/images/templates/sign-in.png',
       href: '/getting-started/templates/sign-in/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/sign-in',
     },
     {
       title: t('signInSideTitle'),
@@ -53,7 +32,7 @@ function layouts(t) {
       src: '/static/images/templates/sign-in-side.png',
       href: '/getting-started/templates/sign-in-side/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in-side',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/sign-in-side',
     },
     {
       title: t('signUpTitle'),
@@ -61,7 +40,7 @@ function layouts(t) {
       src: '/static/images/templates/sign-up.png',
       href: '/getting-started/templates/sign-up/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-up',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/sign-up',
     },
     {
       title: t('blogTitle'),
@@ -69,7 +48,7 @@ function layouts(t) {
       src: '/static/images/templates/blog.png',
       href: '/getting-started/templates/blog/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/blog',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/blog',
     },
     {
       title: t('checkoutTitle'),
@@ -77,7 +56,7 @@ function layouts(t) {
       src: '/static/images/templates/checkout.png',
       href: '/getting-started/templates/checkout/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/checkout',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/checkout',
     },
     {
       title: t('albumTitle'),
@@ -85,7 +64,7 @@ function layouts(t) {
       src: '/static/images/templates/album.png',
       href: '/getting-started/templates/album/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/album',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/album',
     },
     {
       title: t('pricingTitle'),
@@ -93,7 +72,7 @@ function layouts(t) {
       src: '/static/images/templates/pricing.png',
       href: '/getting-started/templates/pricing/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/pricing',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/pricing',
     },
     {
       title: t('stickyFooterTitle'),
@@ -101,37 +80,43 @@ function layouts(t) {
       src: '/static/images/templates/sticky-footer.png',
       href: '/getting-started/templates/sticky-footer/',
       source:
-        'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sticky-footer',
+        'https://github.com/mui-org/material-ui/tree/next/docs/src/pages/getting-started/templates/sticky-footer',
     },
   ];
 }
 
-function Templates(props) {
-  const { classes } = props;
-  const t = useSelector((state) => state.options.t);
+function Templates() {
+  const t = useTranslate();
 
   return (
     <Grid container spacing={2}>
       {layouts(t).map((layout) => (
-        <Grid item sm={6} md={4} className={classes.item} key={layout.title}>
-          <Card className={classes.card}>
+        <Grid item sm={6} md={4} sx={{ flexGrow: 1 }} key={layout.title}>
+          <Card
+            sx={{
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              flexGrow: 1,
+            }}
+          >
             <CardMedia
               component="a"
               href={layout.href}
-              className={classes.cardMedia}
+              sx={{ height: 0, pt: '65%' }}
               image={layout.src}
               title={layout.title}
               rel="nofollow"
               target="_blank"
             />
-            <CardContent className={classes.cardContent}>
+            <CardContent sx={{ flexGrow: 1 }}>
               <Typography gutterBottom variant="h5" align="left" component="h2">
                 {layout.title}
               </Typography>
               <Typography component="p">{layout.description}</Typography>
             </CardContent>
             <CardActions>
-              <Button component="a" href={layout.source} size="small" color="primary">
+              <Button component="a" href={layout.source} size="small">
                 {t('sourceCode')}
               </Button>
             </CardActions>
@@ -142,8 +127,4 @@ function Templates(props) {
   );
 }
 
-Templates.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Templates);
+export default Templates;

@@ -1,0 +1,37 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "unsupportedProp" } },
+    "classes": { "type": { "name": "object" } },
+    "disabled": { "type": { "name": "bool" } },
+    "disableFocusRipple": { "type": { "name": "bool" } },
+    "disableRipple": { "type": { "name": "bool" } },
+    "icon": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;string" } },
+    "label": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } },
+    "value": { "type": { "name": "any" } },
+    "wrapped": { "type": { "name": "bool" } }
+  },
+  "name": "Tab",
+  "styles": {
+    "classes": [
+      "root",
+      "labelIcon",
+      "textColorInherit",
+      "textColorPrimary",
+      "textColorSecondary",
+      "selected",
+      "disabled",
+      "fullWidth",
+      "wrapped"
+    ],
+    "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" },
+    "name": "MuiTab"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-material/src/Tab/Tab.js",
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
+  "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

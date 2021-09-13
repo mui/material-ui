@@ -15,7 +15,9 @@ Diese Komponente kann in verschiedenen Situationen nützlich sein:
 - Bei zu starker Serverlast können Sie die Dienstverschlechterung aktivieren.
 - Verbessern Sie die Zeit bis zur Interaktion, indem Sie nur das ausgeben, was wichtig ist (mit der `defer` Eigenschaft).
 
-## Aufschiebung der Client-Seite
+Die Style-Funktion der [Palette](/system/palette/).
+
+## Client-side deferring
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
 

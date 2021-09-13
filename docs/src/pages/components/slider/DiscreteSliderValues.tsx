@@ -1,13 +1,6 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-
-const useStyles = makeStyles({
-  root: {
-    width: 300,
-  },
-});
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
 const marks = [
   {
@@ -36,23 +29,18 @@ function valueLabelFormat(value: number) {
   return marks.findIndex((mark) => mark.value === value) + 1;
 }
 
-export default function DiscreteSlider() {
-  const classes = useStyles();
-
+export default function DiscreteSliderValues() {
   return (
-    <div className={classes.root}>
-      <Typography id="discrete-slider-restrict" gutterBottom>
-        Restricted values
-      </Typography>
+    <Box sx={{ width: 300 }}>
       <Slider
+        aria-label="Restricted values"
         defaultValue={20}
         valueLabelFormat={valueLabelFormat}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider-restrict"
         step={null}
         valueLabelDisplay="auto"
         marks={marks}
       />
-    </div>
+    </Box>
   );
 }

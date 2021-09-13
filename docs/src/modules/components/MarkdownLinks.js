@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Router from 'next/router';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
@@ -18,13 +18,6 @@ export async function handleEvent(event, as) {
   event.preventDefault();
 
   let pathname = as.replace(/#(.*)$/, '');
-  // Add support for leading / in development mode.
-  if (pathname !== '/') {
-    // The leading / is only added to support static hosting (resolve /index.html).
-    // We remove it to normalize the pathname.
-    // See `rewriteUrlForNextExport` on Next.js side.
-    pathname = pathname.replace(/\/$/, '');
-  }
   pathname = pathnameToLanguage(pathname).canonical;
 
   const success = await Router.push(pathname, as);
@@ -35,11 +28,18 @@ export async function handleEvent(event, as) {
   document.body.focus();
 }
 
+/**
+ * @param {MouseEvent} event
+ */
 function handleClick(event) {
-  const activeElement = document.activeElement;
+  let activeElement = event.target;
+  while (activeElement?.nodeType === Node.ELEMENT_NODE && activeElement.nodeName !== 'A') {
+    activeElement = activeElement.parentElement;
+  }
 
   // Ignore non link clicks
   if (
+    activeElement === null ||
     activeElement.nodeName !== 'A' ||
     activeElement.getAttribute('target') === '_blank' ||
     activeElement.getAttribute('data-no-link') === 'true' ||
@@ -48,7 +48,7 @@ function handleClick(event) {
     return;
   }
 
-  handleEvent(event, document.activeElement.getAttribute('href'));
+  handleEvent(event, activeElement.getAttribute('href'));
 }
 
 let bound = false;

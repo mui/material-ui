@@ -14,8 +14,9 @@ Here are the most significant improvements in April:
 
   This was only possible thanks to the contributions **@merceyz**, **@sperry94**, **@jasondashwang**, **@bh1505**, **@donigianrp**, **@Dudrie**, **@eluchsinger**, **@cahilfoley**, **@gabrielgene**, **@kenzhemir**, **@Adherentman**, **@lksilva**, **@Tevinthuku**. Thank you!
   Supporting these TypeScript demos has one important implication, it forces us to have working TypeScript definitions ✨.
+
 - 🎀 We have migrated a large chunk of our components from classes to hooks. **@joshwooding** has lead the effort. We will explain why in the v4 release blog post.
-- 📐 We have updated our components to better match the Material Design specification
+- 📐 We have updated our components to better match the Material Design guidelines
   (Snackbar, List, Checkbox, Radio & Switch).
 - 🎁 We have added a demo for building a [TransferList](/components/transfer-list/) component.
 
@@ -34,6 +35,7 @@ Here are the most significant improvements in April:
 - 💄 We have added support for responsive font sizes. You can wrap your theme with [`responsiveFontSizes()`](/customization/typography/#responsive-font-sizes):
 
   [![Responsive font sizes](/static/blog/april-2019-update/responsive.png)](/customization/typography/#responsive-font-sizes)
+
 - We have added support for custom [header scroll behaviors](/components/app-bar/#scrolling):
 
   <video src="/static/blog/april-2019-update/scroll-trigger.mp4" controls loop autoplay></video>
@@ -42,9 +44,9 @@ But this summary is just scratching the surface. We have accepted 243 commits fr
 
 ## Our roadmap intent for May
 
-*(We'll do our best, no guarantee!)*
+_(We'll do our best, no guarantee!)_
 
-- We will release Material-UI v4 stable during the React Europe conference.
+- We will release MUI v4 stable during the React Europe conference.
 - We will start an effort to support more components. So far, we have identified a couple of useful ones:
   - Layout
   - Combobox

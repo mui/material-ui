@@ -1,6 +1,8 @@
 ---
 title: React Drawer component
 components: Drawer, SwipeableDrawer
+githubLabel: 'component: Drawer'
+materialDesign: https://material.io/components/navigation-drawer
 ---
 
 # Cajón
@@ -10,6 +12,8 @@ components: Drawer, SwipeableDrawer
 [Navigation Drawers](https://material.io/design/components/navigation-drawer.html) proveen acceso a destinos o funcionalidades de su aplicación, como cambiar de cuentas. Pueden estar permanentemente en pantalla o controlados por un ícono del menú de navegación.
 
 [Las hojas laterales](https://material.io/design/components/sheets-side.html) son superficies suplementarias que se usan principalmente en tabletas y computadores de escritorio.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Drawer temporal
 
@@ -33,14 +37,38 @@ Las siguientes propiedades son usadas en la web de documentación para una ópti
 - iOS tiene un gesto "deslizar para volver" que interfiere con la función de descubrimiento, por lo tanto esta debe ser deshabilitada.
 
 ```jsx
-const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS =
+  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
+
+### Swipeable edge
+
+You can configure the `SwipeableDrawer` to have a visible edge when closed.
+
+If you are on a desktop, you can toggle the drawer with the "OPEN" button. If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swipe.
+
+{{"demo": "pages/components/drawers/SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
+
+### Keep mounted
+
+To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like:
+
+```jsx
+<Drawer
+  variant="temporary"
+  ModalProps={{
+    keepMounted: true,
+  }}
+/>
+```
+
+More details in the [Modal performance section](/components/modal/#performance).
 
 ## Drawer responsivo
 
-El componente utilitario responsivo `Hidden` permite mostrar diferentes tipos de cajones dependiendo del ancho de la pantalla. Un Drawer `temporary` se muestra para pantallas pequeñas mientras que un Drawer `permanent` se muestra para pantallas mas anchas.
+You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
 
 {{"demo": "pages/components/drawers/ResponsiveDrawer.js", "iframe": true}}
 
@@ -68,7 +96,7 @@ La variante mini está recomendada para secciones de la aplicación que necesite
 
 Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
 
-Los cajones de navegación permanentes son los **recomendados por defecto para escritorio**.
+Aplicaciones enfocadas en consumo de información que usan jerarquía de izquierda a derecha.
 
 ### Navegación de altura completa
 

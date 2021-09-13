@@ -1,5 +1,5 @@
-import React from 'react';
-import { ThemeProvider, useTheme } from '@material-ui/core/styles';
+import * as React from 'react';
+import { ThemeProvider, useTheme } from '@mui/styles';
 
 interface MyTheme {
   spacing: string;

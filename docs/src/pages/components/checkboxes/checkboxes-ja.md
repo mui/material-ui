@@ -1,29 +1,62 @@
 ---
 title: React Checkbox コンポーネント
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
+materialDesign: 'https://material.io/components/selection-controls#checkboxes'
+githubLabel: 'component: Checkbox'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 ---
 
-# Checkbox チェックボックス
+# Checkbox
 
 <p class="description">Checkboxコンポーネントにより、ユーザーの選択が一つ以上の項目から設定します。</p>
 
-[CheckBox コンポーネント](https://material.io/design/components/selection-controls.html#checkboxes) を使用してオプションをオンまたはオフにすることができます。
+CheckBox コンポーネントを使用してオプションをオンまたはオフにすることができます。
 
 リストに複数のオプションを持っている場合は、 Checkboxを使用して代わりのオン/オフスイッチのスペースを保存することができます。 選択肢が1つしかない場合は、チェックボックスを使用せずに代わりにオン/オフスイッチを使用します。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic checkboxes
 
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-## Checkbox with FormControlLabel
+## FormGroupのCheckbox
 
-`Checkbox` は `FormControlLabel` コンポーネントによってラベルを付けることができます。
+You can provide a label to the `Checkbox` thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## FormGroupのCheckbox
+## Size
 
-`FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。
+Use the `size` prop or customize the font size of the svg icons to change the size of the checkboxes.
+
+{{"demo": "pages/components/checkboxes/SizeCheckboxes.js"}}
+
+## カラー
+
+{{"demo": "pages/components/checkboxes/ColorCheckboxes.js"}}
+
+## Icon
+
+{{"demo": "pages/components/checkboxes/IconCheckboxes.js"}}
+
+## Controlled
+
+You can control the checkbox with the `checked` and `onChange` props:
+
+{{"demo": "pages/components/checkboxes/ControlledCheckbox.js"}}
+
+## FormControlLabel を使用した Checkbox
+
+チェックボックスは、フォーム内でチェックされているかチェックされていないかの2つの状態のみを持つことができます。 その値を送信するかしないかです。 Visually, there are **three** states a checkbox can be in: checked, unchecked, or indeterminate.
+
+{{"demo": "pages/components/checkboxes/IndeterminateCheckbox.js"}}
+
+> ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
+
+## ラベルの配置
+
+`FormGroup` is a helpful wrapper used to group selection control components.
 
 {{"demo": "pages/components/checkboxes/CheckboxesGroup.js"}}
 
@@ -35,16 +68,16 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## カスタマイズされたチェックボックス
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [こちら](/customization/how-to-customize/)を参照してください。
 
-{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
+{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
 
 🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox) を確認すると良いでしょう。
 
 ## When to use
 
-- [Checkboxと スイッチ Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
-- [Checkboxと スイッチ Switches](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+- [Checkboxと Radio Button](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Checkboxと スイッチ](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## アクセシビリティ
 

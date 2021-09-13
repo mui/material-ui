@@ -1,11 +1,14 @@
 ---
 title: Компонент React Avatar
 components: Avatar, AvatarGroup, Badge
+githubLabel: 'component: Avatar'
 ---
 
 # Avatar
 
 <p class="description">Аватары встречаются в material design и используются во всем - от таблиц до диалоговых меню.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Аватары изображений
 
@@ -18,6 +21,10 @@ components: Avatar, AvatarGroup, Badge
 Аватары, содержащие простые символы, можно создать, передав вашу строку как `children`.
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
+
+Вы можете использовать другие фоновые цвета для аватара The following demo generates the color based on the name of the person.
+
+{{"demo": "pages/components/avatars/BackgroundLetterAvatars.js"}}
 
 ## Размеры
 

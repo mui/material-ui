@@ -1,6 +1,8 @@
 ---
 title: Componente React Divisor
 components: Divider
+githubLabel: 'component: Divider'
+materialDesign: https://material.io/components/dividers
 ---
 
 # Divisor
@@ -8,6 +10,8 @@ components: Divider
 <p class="description">Um divisor é uma linha fina que agrupa conteúdo em listas e leiautes.</p>
 
 [Divisores](https://material.io/design/components/dividers.html) separam conteúdos em grupos correspondentes.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Divisores de lista
 
@@ -31,8 +35,28 @@ Em uma lista, você deve garantir que o `Divider` seja renderizado como um eleme
 
 {{"demo": "pages/components/dividers/MiddleDividers.js", "bg": true}}
 
-## Divisores verticais
+## Divisores com texto
 
-Você pode renderizar um divisor vertical usando a propriedade `orientation`. Observe o uso da propriedade `flexItem` para acomodar em um contêiner flexível.
+Você também pode renderizar um divisor com conteúdo.
+
+{{"demo": "pages/components/dividers/DividerText.js"}}
+
+## Divisor vertical
+
+Você pode renderizar um divisor vertical usando a propriedade `orientation`.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}
+
+> Observe o uso da propriedade `flexItem` para acomodar em um contêiner flexível.
+
+### Vertical with variant middle
+
+You can also render a vertical divider with `variant="middle"`.
+
+{{"demo": "pages/components/dividers/VerticalDividerMiddle.js", "bg": true}}
+
+### Vertical com texto
+
+Você também pode renderizar um divisor vertical com conteúdo.
+
+{{"demo": "pages/components/dividers/VerticalDividerText.js"}}

@@ -8,12 +8,12 @@ Während Entwickler die Komponenten verwenden, testen und Probleme melden, erfah
 
 Damit eine Komponente zum Kern (Core) übergehen kann, werden folgende Kriterien berücksichtigt:
 
-* Es muss **verwendet werden**. Das Material-UI-Team verwendet neben anderen Metriken Google Analytics Statistiken, um die Nutzung der einzelnen Komponenten zu bewerten. Eine Laborkomponente mit geringem Verbrauch bedeutet entweder, dass sie noch nicht vollständig funktioniert oder dass eine geringe Nachfrage besteht.
-* Es muss mit der **Code-Qualität** der Kernkomponenten übereinstimmen. Es muss nicht perfekt sein, um ein Teil des Kerns zu sein, aber die Komponente sollte so zuverlässig sein, dass die Entwickler darauf aufbauen können. 
-    * Jede Komponente benötigt **Typdefinitionen**. Es ist derzeit nicht erforderlich, dass eine Test-Kompontente angegeben wird, aber sie muss angegeben werden, um in den Kern (Core) zu wechseln.
-    * Erfordert eine gute **Testabdeckung**. Einige der Test-Komponenten haben derzeit keine umfassenden Tests.
-* Kann es ein **ausschlaggebender Punkt** sein, um Benutzer zu einem Upgrade auf die neueste Hauptversion zu bewegen? Je weniger zersplittert die Gemeinschaft ist, desto besser.
-* Es muss eine geringe Wahrscheinlichkeit für eine **einschneidende Änderung** in der kurzen/mittleren Zukunft bestehen. Zum Beispiel, wenn es eine neue Funktion benötigt, die wahrscheinlich eine einschneidende Änderung erfordert, ist es vielleicht besser, seine Aufnahme in den Kern zu verschieben.
+- Folgendes sollte **verwendet werden**. The Material-UI team uses Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it.
+- Sie muss der **Codequalität** der Kernkomponenten entsprechen. It doesn't have to be perfect to be part of the core, but the component should be reliable enough that developers can depend on it.
+  - Jede Komponente benötigt **Typdefinitionen**. Es ist derzeit nicht erforderlich, dass eine Test-Kompontente angegeben wird, aber sie muss angegeben werden, um in den Kern (Core) zu wechseln.
+  - Erfordert eine gute **Testabdeckung**. Einige der Test-Komponenten haben derzeit keine umfassenden Tests.
+- Kann es ein **ausschlaggebender Punkt** sein, um Benutzer zu einem Upgrade auf die neueste Hauptversion zu bewegen? Je weniger zersplittert die Gemeinschaft ist, desto besser.
+- Es muss eine geringe Wahrscheinlichkeit für eine **einschneidende Änderung** in der kurzen/mittleren Zukunft bestehen. Zum Beispiel, wenn es eine neue Funktion benötigt, die wahrscheinlich eine einschneidende Änderung erfordert, ist es vielleicht besser, seine Aufnahme in den Kern zu verschieben.
 
 ## Installation
 
@@ -39,16 +39,18 @@ yarn add @material-ui/core
 
 ## TypeScript
 
-In order to benefit from the [CSS overrides](/customization/globals/#css) and [default prop customization](/customization/globals/#default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
+In order to benefit from the [CSS overrides](/customization/theme-components/#global-style-overrides) and [default prop customization](/customization/theme-components/#default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
 
 ```tsx
-import type '@material-ui/lab/themeAugmentation';
+import '@material-ui/lab/themeAugmentation';
 
 const theme = createTheme({
-  overrides: {
+  components: {
     MuiTimeline: {
-      root: {
-        backgroundColor: 'red',
+      styleOverrides: {
+        root: {
+          backgroundColor: 'red',
+        },
       },
     },
   },

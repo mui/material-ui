@@ -1,69 +1,58 @@
-import React from 'react';
-import MaskedInput from 'react-text-mask';
+import * as React from 'react';
+import { IMaskInput } from 'react-imask';
 import NumberFormat from 'react-number-format';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
+import Box from '@mui/material/Box';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }),
-);
-
-interface TextMaskCustomProps {
-  inputRef: (ref: HTMLInputElement | null) => void;
-}
-
-function TextMaskCustom(props: TextMaskCustomProps) {
-  const { inputRef, ...other } = props;
-
-  return (
-    <MaskedInput
-      {...other}
-      ref={(ref: any) => {
-        inputRef(ref ? ref.inputElement : null);
-      }}
-      mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-      placeholderChar={'\u2000'}
-      showMask
-    />
-  );
-}
-
-interface NumberFormatCustomProps {
-  inputRef: (instance: NumberFormat | null) => void;
+interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
 }
 
-function NumberFormatCustom(props: NumberFormatCustomProps) {
-  const { inputRef, onChange, ...other } = props;
+const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(
+  function TextMaskCustom(props, ref) {
+    const { onChange, ...other } = props;
+    return (
+      <IMaskInput
+        {...other}
+        mask="(#00) 000-0000"
+        definitions={{
+          '#': /[1-9]/,
+        }}
+        inputRef={ref}
+        onAccept={(value: any) => onChange({ target: { name: props.name, value } })}
+        overwrite
+      />
+    );
+  },
+);
 
-  return (
-    <NumberFormat
-      {...other}
-      getInputRef={inputRef}
-      onValueChange={(values) => {
-        onChange({
-          target: {
-            name: props.name,
-            value: values.value,
-          },
-        });
-      }}
-      thousandSeparator
-      isNumericString
-      prefix="$"
-    />
-  );
-}
+const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
+  function NumberFormatCustom(props, ref) {
+    const { onChange, ...other } = props;
+
+    return (
+      <NumberFormat
+        {...other}
+        getInputRef={ref}
+        onValueChange={(values) => {
+          onChange({
+            target: {
+              name: props.name,
+              value: values.value,
+            },
+          });
+        }}
+        thousandSeparator
+        isNumericString
+        prefix="$"
+      />
+    );
+  },
+);
 
 interface State {
   textmask: string;
@@ -71,9 +60,8 @@ interface State {
 }
 
 export default function FormattedInputs() {
-  const classes = useStyles();
   const [values, setValues] = React.useState<State>({
-    textmask: '(1  )    -    ',
+    textmask: '(100) 000-0000',
     numberformat: '1320',
   });
 
@@ -85,9 +73,15 @@ export default function FormattedInputs() {
   };
 
   return (
-    <div className={classes.root}>
-      <FormControl>
-        <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
+    <Box
+      sx={{
+        '& > :not(style)': {
+          m: 1,
+        },
+      }}
+    >
+      <FormControl variant="standard">
+        <InputLabel htmlFor="formatted-text-mask-input">react-imask</InputLabel>
         <Input
           value={values.textmask}
           onChange={handleChange}
@@ -105,7 +99,8 @@ export default function FormattedInputs() {
         InputProps={{
           inputComponent: NumberFormatCustom as any,
         }}
+        variant="standard"
       />
-    </div>
+    </Box>
   );
 }

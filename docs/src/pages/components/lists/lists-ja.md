@@ -1,33 +1,31 @@
 ---
 title: Reactリストコンポーネント
-components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+components: Collapse, Divider, List, ListItem, ListItemButton, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+githubLabel: 'component: List'
+materialDesign: https://material.io/components/lists
 ---
 
 # List
 
 <p class="description">Listは、テキストまたは画像が連続する垂直方向の索引です。</p>
 
-[List](https://material.io/design/components/lists.html) は、テキストまたは画像が連続するまとまりです。 それらは、アイコンとテキストで表される主要または補足的なアクションを含む項目で構成されています。 それらは、アイコンとテキストで表される主要または補足的なアクションを含む項目で構成されています。
+リストはテキストや画像を一覧表示するものです。 それらは、アイコンとテキストで表される主要または補足的なアクションを含む項目で構成されています。
 
-## シンプルなList
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-{{"demo": "pages/components/lists/SimpleList.js", "bg": true}}
+## Basic List
+
+{{"demo": "pages/components/lists/BasicList.js", "bg": true}}
 
 上のデモの最後の項目は、リンクを表示方法を示しています。
 
 ```jsx
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
-//...
-
-<ListItemLink href="#simple-list">
+<ListItemButton component="a" href="#simple-list">
   <ListItemText primary="Spam" />
-</ListItemLink>
+</ListItemButton>
 ```
 
-ドキュメントには[このセクションに続くReact Routerを用いたデモ](/guides/composition/#react-router)があります。
+You can find a [demo with React Router following this section](/guides/routing/#list) of the documentation.
 
 ## ネストしたList
 
@@ -49,7 +47,7 @@ function ListItemLink(props) {
 
 ## Listの項目の整列
 
-3行以上を表示するときは、項目の配置を変更する必要があり、`alignItems="flex-start"`プロパティを設定してください。
+項目内に3行以上を表示するときは、項目の配置を変更する必要があります。`alignItems` プロパティを "flex-start" に設定してください。
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 
@@ -73,17 +71,23 @@ Switchは補助的なアクションであり異なるターゲットです。
 
 {{"demo": "pages/components/lists/SwitchListSecondary.js", "bg": true}}
 
-## ピン止めされたサブヘッダー付きList
+## Sticky subheader
 
-スクロールする上で、サブヘッダーは次のサブヘッダーによって画面から押し出されるまで画面の上部に固定されたままになります。
-
-この機能はCSSのSticky positioningに依存しています。 この機能はCSSのSticky positioningに依存しています。 この機能はCSSのSticky positioningに依存しています。 Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. この機能はCSSのSticky positioningに依存しています。 この機能はCSSのSticky positioningに依存しています。 Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. It defaults to `disableSticky` when not supported.
+スクロールする上で、サブヘッダーは次のサブヘッダーによって画面から押し出されるまで画面の上部に固定されたままになります。 この機能はCSSのSticky positioningに依存しています。 この機能はCSSのSticky positioningに依存しています。 この機能はCSSのSticky positioningに依存しています。 Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. (⚠️ no IE 11 support)
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## 差し込み
+## ピン留めリスト項目
+
+The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
+
+## Gutterless リスト
+
+When rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.
+
+{{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
 
 ## Virtualized List
 
@@ -92,6 +96,12 @@ Switchは補助的なアクションであり異なるターゲットです。
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged. このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
+
+## Customized List
+
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [こちら](/customization/how-to-customize/)を参照してください。
+
+{{"demo": "pages/components/lists/CustomizedList.js"}}
 
 ## カスタマイズ
 

@@ -1,43 +1,30 @@
-import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper,
-    },
-    dividerFullWidth: {
-      margin: `5px 0 0 ${theme.spacing(2)}px`,
-    },
-    dividerInset: {
-      margin: `5px 0 0 ${theme.spacing(9)}px`,
-    },
-  }),
-);
+import * as React from 'react';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
 
 export default function SubheaderDividers() {
-  const classes = useStyles();
-
   return (
-    <List className={classes.root}>
+    <List
+      sx={{
+        width: '100%',
+        maxWidth: 360,
+        bgcolor: 'background.paper',
+      }}
+    >
       <ListItem>
         <ListItemText primary="Photos" secondary="Jan 9, 2014" />
       </ListItem>
       <Divider component="li" />
       <li>
         <Typography
-          className={classes.dividerFullWidth}
-          color="textSecondary"
+          sx={{ mt: 0.5, ml: 2 }}
+          color="text.secondary"
           display="block"
           variant="caption"
         >
@@ -50,8 +37,8 @@ export default function SubheaderDividers() {
       <Divider component="li" variant="inset" />
       <li>
         <Typography
-          className={classes.dividerInset}
-          color="textSecondary"
+          sx={{ mt: 0.5, ml: 9 }}
+          color="text.secondary"
           display="block"
           variant="caption"
         >

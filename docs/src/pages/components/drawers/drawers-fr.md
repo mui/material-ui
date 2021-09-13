@@ -1,15 +1,19 @@
 ---
 title: Composant React Drawer
 components: Drawer, SwipeableDrawer
+githubLabel: 'component: Drawer'
+materialDesign: https://material.io/components/navigation-drawer
 ---
 
 # Drawer (Tiroir)
 
 <p class="description">Les tiroirs de navigation permettent d'accéder aux destinations de votre application. Les feuilles latérales sont des surfaces contenant du contenu supplémentaire ancré au bord gauche ou droit de l'écran.</p>
 
-[Les tiroirs de navigation](https://material.io/design/components/navigation-drawer.html) (ou "barres latérales") fournissent un accès aux destinations et aux fonctionnalités d'applications, telles que le changement de comptes. Ils peuvent être : soit affichés en permanence à l'écran, soit contrôlés par une une icône de menu de navigation
+[Navigation drawers](https://material.io/design/components/navigation-drawer.html) (or "sidebars") permettent d'accéder aux destinations et aux fonctionnalités de l'application, telles que le changement de compte. Ils peuvent être : soit affichés en permanence à l'écran, soit contrôlés par une une icône de menu de navigation
 
-[Side sheets](https://material.io/design/components/sheets-side.html) sont des surfaces supplémentaires principalement utilisées pour les tablettes et les ordinateurs.
+[Side sheets](https://material.io/design/components/sheets-side.html) (appelé: "Les feuilles latérales") sont des surfaces supplémentaires principalement utilisées sur les tablettes et les ordinateurs de bureau.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Tiroir temporaire
 
@@ -23,7 +27,7 @@ Le drawer peut être annulé en cliquant ailleurs dans la zone sombre ou en appu
 
 You can make the drawer swipeable with the `SwipeableDrawer` component.
 
-Ce composant est livré avec une charge utile gzip de 2 kB. Certains appareils mobiles bas de gamme ne peuvent pas suivre les doigts à 60 FPS. Vous pouvez utiliser la propriété `disableBackdropTransition` pour aider.
+Ce composant est livré avec une charge utile gzip de 2 kB. Certains appareils mobiles bas de gamme ne peuvent pas suivre les doigts à 60 FPS. Vous pouvez utiliser le prop `disableBackdropTransition` pour vous aider.
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
@@ -33,14 +37,38 @@ Les propriétés suivantes sont utilisées dans la documentation du site pour un
 - iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
 
 ```jsx
-const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS =
+  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
+
+### Bord glissant
+
+Vous pouvez configurer le `SwipeableDrawer` pour avoir un bord visible lorsqu'il est fermé.
+
+Si vous êtes sur un bureau, vous pouvez basculer le tiroir avec le bouton "OUVERT". Si vous êtes sur mobile, vous pouvez ouvrir la démo dans CodeSandbox (icône "modifier") et glisser.
+
+{{"demo": "pages/components/drawers/SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
+
+### Garder monté
+
+Pour vous assurer qu'un tiroir temporaire n'est pas démonté, spécifiez la prop `ModalProps` comme :
+
+```jsx
+<Drawer
+  variant="temporary"
+  ModalProps={{
+    keepMounted: true,
+  }}
+/>
+```
+
+Plus de détails dans la [section Performances modales](/components/modal/#performance).
 
 ## Tiroir adaptatif
 
-The `Hidden` responsive helper component allows showing different types of drawer depending on the screen width. A `temporary` drawer is shown for small screens while a `permanent` drawer is shown for wider screens.
+A `temporary` drawer is shown for small screens while a `permanent` drawer is shown for wider screens.
 
 {{"demo": "pages/components/drawers/ResponsiveDrawer.js", "iframe": true}}
 
@@ -68,7 +96,7 @@ The mini variant is recommended for apps sections that need quick selection acce
 
 Les tiroirs de navigation permanents sont toujours visibles et épinglés au bord gauche, à la même altitude que le contenu ou l'arrière-plan. Ils ne peuvent pas être fermés.
 
-Les tiroirs de navigation permanents sont les **valeurs par défaut recommandées pour le bureau**.
+Les tiroirs de navigation permanents sont les **recommandés par défaut pour le bureau**.
 
 ### Navigation pleine hauteur
 

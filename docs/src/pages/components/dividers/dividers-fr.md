@@ -1,6 +1,8 @@
 ---
 title: Composant React Divider
 components: Divider
+githubLabel: 'component: Divider'
+materialDesign: https://material.io/components/dividers
 ---
 
 # Divider
@@ -9,9 +11,11 @@ components: Divider
 
 [Diviseurs](https://material.io/design/components/dividers.html) séparer le contenu en groupes clairs.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Liste diviseurs
 
-Par défaut, le diviseur est rendu comme un `<hr>`. Vous pouvez enregistrer le rendu de cet élément DOM en utilisant la propriété `divider` sur le composant `ListItem`.
+Par défaut, le diviseur est rendu comme un `<hr>`. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
 
 {{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 
@@ -31,8 +35,28 @@ Dans une liste, vous devez vous assurer que le `Divider` est rendu en tant que `
 
 {{"demo": "pages/components/dividers/MiddleDividers.js", "bg": true}}
 
+## Diviseurs avec texte
+
+Vous pouvez également rendre un séparateur avec le contenu.
+
+{{"demo": "pages/components/dividers/DividerText.js"}}
+
 ## Séparateurs verticaux
 
-Vous pouvez également rendre un séparateur verticalement en utilisant la propriété `orientation`. Notez l'utilisation de l'accessoire `flexItem` pour accueillir le conteneur flex.
+Vous pouvez également rendre un séparateur verticalement en utilisant la propriété `orientation`.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}
+
+> Notez l'utilisation de l'accessoire `flexItem` pour accueillir le conteneur flex.
+
+### Vertical with variant middle
+
+You can also render a vertical divider with `variant="middle"`.
+
+{{"demo": "pages/components/dividers/VerticalDividerMiddle.js", "bg": true}}
+
+### Vertical avec texte
+
+Vous pouvez également rendre un séparateur avec le contenu.
+
+{{"demo": "pages/components/dividers/VerticalDividerText.js"}}

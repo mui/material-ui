@@ -1,7 +1,7 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import SnackbarContent from '@mui/material/SnackbarContent';
 
 const action = (
   <Button color="secondary" size="small">
@@ -9,22 +9,9 @@ const action = (
   </Button>
 );
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      maxWidth: 600,
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-  }),
-);
-
 export default function LongTextSnackbar() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Stack spacing={2} sx={{ maxWidth: 600 }}>
       <SnackbarContent message="I love snacks." action={action} />
       <SnackbarContent
         message={
@@ -32,7 +19,10 @@ export default function LongTextSnackbar() {
           I love cheesecake. I love chocolate.'
         }
       />
-      <SnackbarContent message="I love candy. I love cookies. I love cupcakes." action={action} />
+      <SnackbarContent
+        message="I love candy. I love cookies. I love cupcakes."
+        action={action}
+      />
       <SnackbarContent
         message={
           'I love candy. I love cookies. I love cupcakes. \
@@ -40,6 +30,6 @@ export default function LongTextSnackbar() {
         }
         action={action}
       />
-    </div>
+    </Stack>
   );
 }

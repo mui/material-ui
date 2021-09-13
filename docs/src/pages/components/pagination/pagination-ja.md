@@ -1,11 +1,14 @@
 ---
 title: React Pagination component
 components: Pagination, PaginationItem
+githubLabel: 'component: Pagination'
 ---
 
 # Pagination
 
 <p class="description">Pagination コンポーネントにより、範囲から特定のページを選択できます。</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic pagination
 
@@ -45,10 +48,10 @@ You can specify how many digits to display either side of current page with the 
 
 ## `usePagination`
 
-高度なカスタマイズのユースケースでは、ヘッドレスな`usePagination()` フックを公開しています。 It accepts almost the same options as the Pagination component minus all the props related to the rendering of JSX. The Pagination component uses this hook internally.
+For advanced customization use cases, a headless `usePagination()` hook is exposed. It accepts almost the same options as the Pagination component minus all the props related to the rendering of JSX. The Pagination component is built on this hook.
 
 ```jsx
-import { usePagination } from '@material-ui/lab/Pagination';
+import { usePagination } from '@material-ui/core/Pagination';
 ```
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}
@@ -60,6 +63,8 @@ import { usePagination } from '@material-ui/lab/Pagination';
 For the pagination of a large set of tabular data, you should use the `TablePagination` component.
 
 {{"demo": "pages/components/pagination/TablePagination.js"}}
+
+> 注意　`Pagination`ページプロパティは、URLに値を含むという要件に合わせるため1から始まります。一方、`TablePagination`ページプロパティは、たくさんの表形式データをレンダリングすることからゼロ基点であるJavaScript配列に合わせて0から始まります。
 
 You can learn more about this use case in the [table section](/components/tables/#custom-pagination-options) of the documentation.
 

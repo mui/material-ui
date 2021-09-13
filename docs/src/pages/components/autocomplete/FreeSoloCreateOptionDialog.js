@@ -1,13 +1,12 @@
-/* eslint-disable no-use-before-define */
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogActions from '@material-ui/core/DialogActions';
-import Button from '@material-ui/core/Button';
-import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 
 const filter = createFilterOptions();
 
@@ -90,16 +89,14 @@ export default function FreeSoloCreateOptionDialog() {
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
-        renderOption={(option) => option.title}
-        style={{ width: 300 }}
+        renderOption={(props, option) => <li {...props}>{option.title}</li>}
+        sx={{ width: 300 }}
         freeSolo
-        renderInput={(params) => (
-          <TextField {...params} label="Free solo dialog" variant="outlined" />
-        )}
+        renderInput={(params) => <TextField {...params} label="Free solo dialog" />}
       />
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={open} onClose={handleClose}>
         <form onSubmit={handleSubmit}>
-          <DialogTitle id="form-dialog-title">Add a new film</DialogTitle>
+          <DialogTitle>Add a new film</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Did you miss any film in our list? Please, add it!
@@ -109,26 +106,34 @@ export default function FreeSoloCreateOptionDialog() {
               margin="dense"
               id="name"
               value={dialogValue.title}
-              onChange={(event) => setDialogValue({ ...dialogValue, title: event.target.value })}
+              onChange={(event) =>
+                setDialogValue({
+                  ...dialogValue,
+                  title: event.target.value,
+                })
+              }
               label="title"
               type="text"
+              variant="standard"
             />
             <TextField
               margin="dense"
               id="name"
               value={dialogValue.year}
-              onChange={(event) => setDialogValue({ ...dialogValue, year: event.target.value })}
+              onChange={(event) =>
+                setDialogValue({
+                  ...dialogValue,
+                  year: event.target.value,
+                })
+              }
               label="year"
               type="number"
+              variant="standard"
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button type="submit" color="primary">
-              Add
-            </Button>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button type="submit">Add</Button>
           </DialogActions>
         </form>
       </Dialog>
@@ -145,19 +150,34 @@ const top100Films = [
   { title: '12 Angry Men', year: 1957 },
   { title: "Schindler's List", year: 1993 },
   { title: 'Pulp Fiction', year: 1994 },
-  { title: 'The Lord of the Rings: The Return of the King', year: 2003 },
+  {
+    title: 'The Lord of the Rings: The Return of the King',
+    year: 2003,
+  },
   { title: 'The Good, the Bad and the Ugly', year: 1966 },
   { title: 'Fight Club', year: 1999 },
-  { title: 'The Lord of the Rings: The Fellowship of the Ring', year: 2001 },
-  { title: 'Star Wars: Episode V - The Empire Strikes Back', year: 1980 },
+  {
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
+    year: 2001,
+  },
+  {
+    title: 'Star Wars: Episode V - The Empire Strikes Back',
+    year: 1980,
+  },
   { title: 'Forrest Gump', year: 1994 },
   { title: 'Inception', year: 2010 },
-  { title: 'The Lord of the Rings: The Two Towers', year: 2002 },
+  {
+    title: 'The Lord of the Rings: The Two Towers',
+    year: 2002,
+  },
   { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
   { title: 'Goodfellas', year: 1990 },
   { title: 'The Matrix', year: 1999 },
   { title: 'Seven Samurai', year: 1954 },
-  { title: 'Star Wars: Episode IV - A New Hope', year: 1977 },
+  {
+    title: 'Star Wars: Episode IV - A New Hope',
+    year: 1977,
+  },
   { title: 'City of God', year: 2002 },
   { title: 'Se7en', year: 1995 },
   { title: 'The Silence of the Lambs', year: 1991 },
@@ -213,7 +233,10 @@ const top100Films = [
   { title: 'Citizen Kane', year: 1941 },
   { title: 'North by Northwest', year: 1959 },
   { title: 'Vertigo', year: 1958 },
-  { title: 'Star Wars: Episode VI - Return of the Jedi', year: 1983 },
+  {
+    title: 'Star Wars: Episode VI - Return of the Jedi',
+    year: 1983,
+  },
   { title: 'Reservoir Dogs', year: 1992 },
   { title: 'Braveheart', year: 1995 },
   { title: 'M', year: 1931 },
@@ -224,7 +247,10 @@ const top100Films = [
   { title: 'Taxi Driver', year: 1976 },
   { title: 'Lawrence of Arabia', year: 1962 },
   { title: 'Double Indemnity', year: 1944 },
-  { title: 'Eternal Sunshine of the Spotless Mind', year: 2004 },
+  {
+    title: 'Eternal Sunshine of the Spotless Mind',
+    year: 2004,
+  },
   { title: 'Amadeus', year: 1984 },
   { title: 'To Kill a Mockingbird', year: 1962 },
   { title: 'Toy Story 3', year: 2010 },

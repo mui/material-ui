@@ -1,32 +1,15 @@
-import React from 'react';
-import Badge from '@material-ui/core/Badge';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import { makeStyles } from '@material-ui/core/styles';
-import MailIcon from '@material-ui/icons/Mail';
+import * as React from 'react';
+import Badge from '@mui/material/Badge';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import Box from '@mui/material/Box';
+import MailIcon from '@mui/icons-material/Mail';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-  },
-  formControl: {
-    margin: theme.spacing(3),
-  },
-  row: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  margin: {
-    margin: theme.spacing(2),
-  },
-}));
-
 export default function BadgeAlignment() {
-  const classes = useStyles();
   const [horizontal, setHorizontal] = React.useState('right');
   const [vertical, setVertical] = React.useState('top');
 
@@ -48,24 +31,49 @@ export default function BadgeAlignment() {
 `;
 
   return (
-    <div className={classes.root}>
-      <div className={classes.row}>
-        <FormControl component="fieldset" className={classes.formControl}>
+    <Box sx={{ width: '100%' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          '& fieldset': {
+            margin: 3,
+          },
+        }}
+      >
+        <FormControl component="fieldset">
           <FormLabel component="legend">Vertical</FormLabel>
-          <RadioGroup name="vertical" value={vertical} onChange={handleVerticalChange}>
+          <RadioGroup
+            name="vertical"
+            value={vertical}
+            onChange={handleVerticalChange}
+          >
             <FormControlLabel value="top" control={<Radio />} label="Top" />
             <FormControlLabel value="bottom" control={<Radio />} label="Bottom" />
           </RadioGroup>
         </FormControl>
-        <FormControl component="fieldset" className={classes.formControl}>
+        <FormControl component="fieldset">
           <FormLabel component="legend">Horizontal</FormLabel>
-          <RadioGroup name="horizontal" value={horizontal} onChange={handleHorizontalChange}>
+          <RadioGroup
+            name="horizontal"
+            value={horizontal}
+            onChange={handleHorizontalChange}
+          >
             <FormControlLabel value="right" control={<Radio />} label="Right" />
             <FormControlLabel value="left" control={<Radio />} label="Left" />
           </RadioGroup>
         </FormControl>
-      </div>
-      <div className={classes.row}>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          color: 'action.active',
+          '& > *': {
+            margin: 2,
+          },
+        }}
+      >
         <Badge
           color="secondary"
           variant="dot"
@@ -74,7 +82,6 @@ export default function BadgeAlignment() {
             horizontal,
             vertical,
           }}
-          className={classes.margin}
         >
           <MailIcon />
         </Badge>
@@ -85,7 +92,6 @@ export default function BadgeAlignment() {
             horizontal,
             vertical,
           }}
-          className={classes.margin}
         >
           <MailIcon />
         </Badge>
@@ -96,7 +102,6 @@ export default function BadgeAlignment() {
             horizontal,
             vertical,
           }}
-          className={classes.margin}
         >
           <MailIcon />
         </Badge>
@@ -107,7 +112,6 @@ export default function BadgeAlignment() {
             horizontal,
             vertical,
           }}
-          className={classes.margin}
         >
           <MailIcon />
         </Badge>
@@ -119,12 +123,11 @@ export default function BadgeAlignment() {
             horizontal,
             vertical,
           }}
-          className={classes.margin}
         >
           <MailIcon />
         </Badge>
-      </div>
+      </Box>
       <HighlightedCode code={jsx} language="jsx" />
-    </div>
+    </Box>
   );
 }

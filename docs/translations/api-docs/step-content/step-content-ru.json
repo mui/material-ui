@@ -1,0 +1,25 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "The content of the component.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "TransitionComponent": "Компонент, используемый в анимации сворачивания. <a href=\"/components/transitions/#transitioncomponent-prop\">Прочтите это руководство</a>, чтобы узнать больше о требованиях к этому компоненту.",
+    "transitionDuration": "Adjust the duration of the content expand transition. Passed as a prop to the transition component.<br>Set to &#39;auto&#39; to automatically calculate transition time based on height.",
+    "TransitionProps": "Свойства, передаваемые в анимируемый компонент. По умолчанию элемент основывается на компоненте <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a>."
+  },
+  "classDescriptions": {
+    "root": {
+      "description": "Styles applied to the root element."
+    },
+    "last": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>last={true}</code> (controlled by <code>Step</code>)"
+    },
+    "transition": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Transition component"
+    }
+  }
+}

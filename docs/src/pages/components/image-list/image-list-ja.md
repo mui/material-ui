@@ -1,38 +1,60 @@
 ---
 title: Grid List React component
 components: ImageList, ImageListItem, ImageListItemBar
+materialDesign: https://material.io/components/image-lists
+githubLabel: 'component: ImageList'
 ---
 
 # Grid List
 
 <p class="description">グリッドリストは、整理されたグリッドで画像のコレクションを表示します。</p>
 
-[グリッドリスト](https://material.io/design/components/image-lists.html) は、繰り返しパターンの項目の集まりを表します。 それらは、保持するコンテンツの視覚的理解を改善するのに役立ちます。
+画像リストは、繰り返しパターンの項目の集まりを表します。 それらは、保持するコンテンツの視覚的理解を改善するのに役立ちます。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## 画像のみのGrid list
 
-スクロール可能な画像の簡単な `ImageList`の例。
+標準的な画像リストは、同じ重要度の項目のリストに最適です。 均一なコンテナーの大きさ、比率、および間隔を持ちます。
 
-{{"demo": "pages/components/image-list/ImageImageList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/StandardImageList.js"}}
 
-## タイトルバー付きのGrid list
+## ステッチ状の(Quilted)画像リスト
+
+ステッチ状の画像リスト特定のアイテムをコレクション内の他のアイテムより強調します。 さまざまなコンテナサイズと比率によって階層構造が作られます。
+
+{{"demo": "pages/components/image-list/QuiltedImageList.js"}}
+
+## 織り込み(Woven)画像リスト
+
+織り込みイメージリストでは、交互のコンテナ比を使用して律動的なレイアウトを作成します。 織り込み画像リストは、ペアのコンテンツを閲覧するのに最適です。
+
+{{"demo": "pages/components/image-list/WovenImageList.js"}}
+
+## 積み上げ(Masonary)画像リスト
+
+積み上げ画像リストは、各画像のアスペクト比を反映した動的なコンテナの高さを使用します。 この画像リストは、トリミングされていないペアのコンテンツ閲覧に最適です。
+
+{{"demo": "pages/components/image-list/MasonryImageList.js"}}
+
+## タイトルバー付き画像リスト
 
 この例は、 `ImageListItemBar` を使用して、各 `ImageListItem`オーバーレイを追加する方法を示しています。 オーバーレイには、 `title`, `subtitle` および副次的アクション例えば`IconButton`を含めることができます。
 
-{{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/TitlebarImageList.js"}}
 
-## Single line Grid list 単一行グリッドリスト
+### 画像の下にタイトルバー（標準）
 
-この例では、水平スクロール可能な単一行グリッドの画像リストを示します。 水平方向のスクロールグリッドリストは、スクロールが一般的な読み方の邪魔になり理解に影響を与えるため、推奨されません。 注目すべき例外の1つは、水平にスクロールする、ギャラリーなどの画像の1行グリッドリストです。
+タイトルバーは画像の下に配置できます。
 
-{{"demo": "pages/components/image-list/SingleLineImageList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/TitlebarBelowImageList.js"}}
 
-## 高度なグリッドリスト
+### 画像の下にタイトルバー（積み上げ）
 
-この例では、`rows` and `cols` プロップを使用してタイルのサイズを調整し、 `padding`プロップを使用して間隔を調整する方法を示します。 タイルには、上部にカスタムのタイトルバーがあり、カスタムのグラデーション`titleBackground`があります。 セカンダリアクション `IconButton` は左側に配置されます。
+{{"demo": "pages/components/image-list/TitlebarBelowMasonryImageList.js"}}
 
-<<<<<<< HEAD:docs/src/pages/components/grid-list/grid-list-ja.md
-{{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true, "defaultCodeOpen": false}}
-=======
-{{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}
->>>>>>> [GridList] Rename to ImageList & add deprecation warnings (#22363):docs/src/pages/components/image-list/image-list-ja.md
+## カスタム画像リスト
+
+タイルには、上部にカスタムのタイトルバーがあり、カスタムのグラデーション`titleBackground`があります。 セカンダリアクション `IconButton` は左側に配置されます。 タイルには、上部にカスタムのタイトルバーがあり、カスタムのグラデーション`titleBackground`があります。
+
+{{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}

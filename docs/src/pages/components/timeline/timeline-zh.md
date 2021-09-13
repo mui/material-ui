@@ -1,13 +1,17 @@
 ---
 title: React Timeline（时间轴）组件
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
+githubLabel: 'component: Timeline'
+packageName: '@material-ui/lab'
 ---
 
 # Timeline 时间轴
 
 <p class="description">时间轴组件按时间顺序来展示了一系列的事件。</p>
 
-**请注意：**该组件不再出现在 [Material Design 指南](https://material.io/)中，但 Material-UI 会继续支持此组件。
+**请注意：**该组件不再出现在 [Material Design 指南](https://material.io/)中, 但 Material-UI 会继续支持此组件。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## 基础的时间轴
 
@@ -15,11 +19,11 @@ components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConn
 
 {{"demo": "pages/components/timeline/BasicTimeline.js"}}
 
-## 靠右对齐的时间轴
+## Left-positioned timeline
 
-您也可以将时间轴放置在事件的右侧。
+The main content of the timeline can be positioned on the left side relative to the time axis.
 
-{{"demo": "pages/components/timeline/RightAlignedTimeline.js"}}
+{{"demo": "pages/components/timeline/LeftPositionedTimeline.js"}}
 
 ## 交替的时间轴
 
@@ -45,6 +49,6 @@ components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConn
 
 ## 定制的时间轴
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/components/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/timeline/CustomizedTimeline.js"}}

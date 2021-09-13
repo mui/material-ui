@@ -16,7 +16,12 @@ async function loadCurrentSnapshot() {
  * @param {string} commitId - the sha of a commit
  * @param {string} ref - the branch containing that commit
  */
-async function loadSnapshot(commitId, ref = 'master') {
+async function loadSnapshot(commitId, ref) {
+  if (ref === undefined) {
+    throw new TypeError(
+      `Need a ref for that commit. Did you mean \`loadSnapshot(commitId, 'master')\`?`,
+    );
+  }
   const response = await fetch(`${artifactServer}/artifacts/${ref}/${commitId}/size-snapshot.json`);
   return response.json();
 }

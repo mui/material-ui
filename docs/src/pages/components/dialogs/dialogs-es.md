@@ -1,15 +1,20 @@
 ---
 title: React Dialog component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
+githubLabel: 'component: Dialog'
+materialDesign: https://material.io/components/dialogs
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 ---
 
-# Dialog (diálogo)
+# Dialog
 
 <p class="description">Los diálogos informan a los usuarios sobre una tarea y pueden contener información importante, requerir decisiones, o involucrar múltiples tareas.</p>
 
 Un [Diálogo](https://material.io/design/components/dialogs.html)es una clase de [ventana modal](/components/modal/) que aparece encima del contenido para proveer información importante o pedir que el usuario tome una decision. Los diálogos deshabilitan todas las funcciones de la aplicación cuando aparecen, y se quedan visibles hasta que se confirman, se descartan, o se toma alguna acción necesaria.
 
 Los diálogos están diseñados para interrumpir el usuario, por eso deben usarse sólo cuando sean necesarios.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Diálogos simples
 
@@ -36,7 +41,7 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 Si se necesita un título:
 
 - Use una pregunta o afirmación clara con una explicación en el área de contenido, tal como "¿Borrar el almacenamiento USB?".
-- Evite disculpas, ambigüedades o preguntas, como "¡Advertencia!" O "¿Está seguro?"
+- Avoid apologies, ambiguity, or questions, such as "Warning!" or "Are you sure?"
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -54,7 +59,7 @@ Los diálogos de formulario permiten a los usuarios llenar campos dentro de un c
 
 ## Diálogos personalizados
 
-He aquí un ejemplo de personalización del componente. You can learn more about this in the [overrides documentation page](/customization/components/).
+He aquí un ejemplo de personalización del componente. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
 
 The dialog has a close button added to aide usability.
 
@@ -89,9 +94,9 @@ function MyComponent() {
 
 ## Diálogos de confirmación
 
-Los diálogos de confirmación requieren que los usuarios confirmen explícitamente su elección antes de que se confirme una opción. Por ejemplo, los usuarios pueden escuchar varios tonos de llamada, pero solo hacer una selección final al tocar "Aceptar".
+Los diálogos de confirmación requieren que los usuarios confirmen explícitamente su elección antes de que se confirme una opción. For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-Al tocar "Cancelar" en un cuadro de diálogo de confirmación, o al presionar Atrás, se cancela la acción, se descartan los cambios y se cierra el cuadro de diálogo.
+Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
@@ -103,7 +108,7 @@ Puede crear un cuadro de diálogo arrastrable utilizando [react-draggable](https
 
 ## Desplazando contenido largo
 
-Cuando los diálogos se vuelven demasiado largos para la ventana o el dispositivo del usuario, se desplazan.
+When dialogs become too long for the user's viewport or device, they scroll.
 
 - `scroll=paper` el contenido del diálogo se desplaza dentro del elemento Paper.
 - `scroll=body` el contenido del diálogo se desplaza dentro del elemento body.
@@ -111,6 +116,10 @@ Cuando los diálogos se vuelven demasiado largos para la ventana o el dispositiv
 Prueba la demostración de abajo para ver lo que queremos decir:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
+
+## Rendimiento
+
+Sigue la [Sección de rendimiento de Modal](/components/modal/#performance).
 
 ## Limitaciones
 

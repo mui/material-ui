@@ -23,7 +23,7 @@ This document contains the practices that are followed to provide you with a lea
 Die Versionsnummer wird basierend auf dem in der Version enthaltenen Änderungsstand erhöht. Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Die Versionsnummern der Material-UI bestehen aus drei Teilen: `Hauptversion.Nebenversion.Patch`.
 
 - **Hauptversionen** enthalten wichtige neue Funktionen, während des Updates wird jedoch eine minimale Entwicklerunterstützung erwartet. Bei der Aktualisierung auf eine neue Hauptversion müssen Sie möglicherweise Aktualisierungsskripts ausführen, Code umgestalten, zusätzliche Tests ausführen und neue APIs erlernen.
-- ** Patch-Versionen ** sind geringes Risiko, enthalten Fehlerbehebungen und kleine neue Funktionen. Während des Updates wird keine Entwicklerunterstützung erwartet.
+- ** Nebenversionen ** enthalten wichtige neue Funktionen. Während des Updates wird keine Entwicklerunterstützung erwartet.
 - ** Patch-Versionen ** sind geringes Risiko, enthalten Fehlerbehebungen und kleine neue Funktionen. Während des Updates wird keine Entwicklerunterstützung erwartet.
 
 ## Release-Frequenz
@@ -45,7 +45,6 @@ Im Allgemeinen können Sie den folgenden Release-Zyklus erwarten:
 | Mai 2019          | v4.0.0      | Veröffentlicht |
 | 01. Juli 2021     | v5.0.beta.0 | In Bearbeitung |
 | 1. September 2021 | v5.0.0      | ⏳              |
-
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 

@@ -1,42 +1,23 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { green, pink } from '@material-ui/core/colors';
-import Avatar from '@material-ui/core/Avatar';
-import FolderIcon from '@material-ui/icons/Folder';
-import PageviewIcon from '@material-ui/icons/Pageview';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-  pink: {
-    color: theme.palette.getContrastText(pink[500]),
-    backgroundColor: pink[500],
-  },
-  green: {
-    color: '#fff',
-    backgroundColor: green[500],
-  },
-}));
+import * as React from 'react';
+import { green, pink } from '@mui/material/colors';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import FolderIcon from '@mui/icons-material/Folder';
+import PageviewIcon from '@mui/icons-material/Pageview';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 
 export default function IconAvatars() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Stack direction="row" spacing={2}>
       <Avatar>
         <FolderIcon />
       </Avatar>
-      <Avatar className={classes.pink}>
+      <Avatar sx={{ bgcolor: pink[500] }}>
         <PageviewIcon />
       </Avatar>
-      <Avatar className={classes.green}>
+      <Avatar sx={{ bgcolor: green[500] }}>
         <AssignmentIcon />
       </Avatar>
-    </div>
+    </Stack>
   );
 }

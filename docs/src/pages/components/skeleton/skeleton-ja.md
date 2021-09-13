@@ -1,13 +1,18 @@
 ---
 title: React Skeleton コンポーネント
 components: Skeleton
+githubLabel: 'component: Skeleton'
 ---
 
-# スケルトン
+# Skeleton
 
 <p class="description">データがロードされる前にコンテンツのプレースホルダープレビューを表示して、ロード時のフラストレーションを軽減します。</p>
 
-コンポーネントのデータがすぐに利用できない場合があります。 スケルトンを使用することにより、ユーザーの知覚パフォーマンスを向上させることができます。 すぐに物事が発生しているように感じ、情報が画面に徐々に表示されます（Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
+コンポーネントのデータがすぐに利用できない場合があります。 スケルトンを使用することで、ページの認知応答性を向上させることができます。 すぐに物事が発生しているように感じ、情報が画面に徐々に表示されます（Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## 使い方
 
 このコンポーネントは、**コンポーネント内で直接使用**できるように設計されています。 例えば： 例えば： 例えば： 例えば： 例えば： 例えば：
 
@@ -27,7 +32,7 @@ The component supports 3 shape variants.
 
 ## Animations
 
-By default, the skeleton pulsate, but you can change the animation for a wave or disable it entirely.
+デフォルトでは、スケルトンパルサーが表示されますが、アニメーションを波に変更したり、完全に無効にしたりできます。
 
 {{"demo": "pages/components/skeleton/Animations.js"}}
 
@@ -63,8 +68,22 @@ loading
 
 {{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}
 
+## カラー
+
+The color of the component can be customized by changing its `background-color` CSS property. This is especially useful when on a black background (as the skeleton will otherwise be invisible).
+
+{{"demo": "pages/components/skeleton/SkeletonColor.js", "bg": "inline"}}
+
 ## アクセシビリティ
 
-Skeleton screens provide an alternative to the traditional spinner methods. Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
+スケルトンスクリーンは、従来のスピナー方法に代わるものです。 Rather than showing an abstract widget, skeleton screens create anticipation of what is to come and reduce cognitive load.
 
 The background color of the skeleton uses the least amount of luminance to be visible in good conditions (good ambient light, good screen, no visual impairments).
+
+### ARIA
+
+None.
+
+### Keyboard
+
+スケルトンはフォーカス可能ではありません。

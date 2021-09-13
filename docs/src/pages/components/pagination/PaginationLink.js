@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import { MemoryRouter, Route } from 'react-router';
 import { Link } from 'react-router-dom';
-import Pagination from '@material-ui/lab/Pagination';
-import PaginationItem from '@material-ui/lab/PaginationItem';
+import Pagination from '@mui/material/Pagination';
+import PaginationItem from '@mui/material/PaginationItem';
 
 export default function PaginationLink() {
   return (

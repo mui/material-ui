@@ -1,21 +1,22 @@
 ---
 title: Composant React Table
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+githubLabel: 'component: Table'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
+materialDesign: https://material.io/components/data-tables
 ---
 
 # Table (Tableaux)
 
 <p class="description">Tables display sets of data. They can be fully customized.</p>
 
-[Tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. Ils peuvent être intégrés au contenu principal, tel que les cartes.
-
-Tables can include:
+Les tables affichent des informations d'une manière facile à numériser, afin que les utilisateurs puissent rechercher des modèles et des aperçus. Ils peuvent être intégrés au contenu principal, tel que les cartes. Ils peuvent inclure :
 
 - Une visualisation correspondante
 - Menu principal
 - Outils pour interroger et manipuler des données
 
-Lorsque des outils sont inclus, ils doivent être placés directement au-dessus ou au-dessous de la table.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Tableau de base
 
@@ -47,7 +48,7 @@ La table a reçu une largeur fixe pour illustrer le défilement horizontal. Afin
 
 ## Tableaux Personnalisés
 
-Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -55,17 +56,17 @@ Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus da
 
 It's possible to customise the options shown in the "Rows per page" select using the `rowsPerPageOptions` prop. You should either provide an array of:
 
-- **numbers**, each number will be used for the option's label and value.
-    
-    ```jsx
-    <TablePagination rowsPerPageOptions={[10, 50]} />
-    ```
+- **nombres**, chaque nombre sera utilisé pour l'étiquette et la valeur de l'option.
 
-- **objects**, the `value` and `label` keys will be used respectively for the value and label of the option (useful for language strings such as 'All').
-    
-    ```jsx
-    <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
-    ```
+  ```jsx
+  <TablePagination rowsPerPageOptions={[10, 50]} />
+  ```
+
+- **objects**, `value`, et `label` des clés seront utilisées respectivement pour la valeur et l'étiquette de l'option (utile pour les chaînes de langue telles que 'Tout').
+
+  ```jsx
+  <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
+  ```
 
 ### Custom pagination actions
 
@@ -75,9 +76,22 @@ The `ActionsComponent` prop of the `TablePagination` component allows the implem
 
 ## Fixed header
 
-An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
+An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop.<br /> (⚠️ no IE11 support) (⚠️ no IE 11 support)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
+
+## Regroupement de colonnes
+
+Vous pouvez regrouper les en-têtes de colonne en affichant plusieurs lignes de la table dans une tête de la table :
+
+```jsx
+<TableHead>
+  <TableRow />
+  <TableRow />
+</TableHead>
+```
+
+{{"demo": "pages/components/tables/ColumnGroupingTable.js", "bg": true}}
 
 ## Collapsible table
 
@@ -103,6 +117,6 @@ Dans l'exemple suivant, nous montrons comment utiliser [react-virtualized](https
 
 ### Légende
 
-A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it’s about and decide if they want to read it.
+A caption functions like a heading for a table. Most screen readers announce the content of captions. Les légendes aident les utilisateurs à trouver une table et à comprendre ce dont il est question et à décider s'ils veulent la lire.
 
 {{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

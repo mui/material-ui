@@ -1,6 +1,7 @@
 ---
 title: Componente React Container
 components: Container
+githubLabel: 'component: Container'
 ---
 
 # Container
@@ -8,6 +9,8 @@ components: Container
 <p class="description">O container centraliza seu conteúdo horizontalmente. É o elemento de leiaute mais básico.</p>
 
 Enquanto os containers podem ser aninhados, a maioria dos leiautes não necessitam de um container aninhado.
+
+[A paleta](/system/palette/) com funções de estilo.
 
 ## Fluído
 

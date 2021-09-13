@@ -1,21 +1,22 @@
-import React from 'react';
-import Box from '@material-ui/core/Box';
+import * as React from 'react';
+import Box from '@mui/material/Box';
 
-const defaultProps = {
+const commonStyles = {
   bgcolor: 'background.paper',
   m: 1,
-  style: { width: '5rem', height: '5rem' },
   borderColor: 'text.primary',
+  width: '5rem',
+  height: '5rem',
 };
 
 export default function BorderAdditive() {
   return (
-    <Box display="flex" justifyContent="center">
-      <Box border={1} {...defaultProps} />
-      <Box borderTop={1} {...defaultProps} />
-      <Box borderRight={1} {...defaultProps} />
-      <Box borderBottom={1} {...defaultProps} />
-      <Box borderLeft={1} {...defaultProps} />
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ ...commonStyles, border: 1 }} />
+      <Box sx={{ ...commonStyles, borderTop: 1 }} />
+      <Box sx={{ ...commonStyles, borderRight: 1 }} />
+      <Box sx={{ ...commonStyles, borderBottom: 1 }} />
+      <Box sx={{ ...commonStyles, borderLeft: 1 }} />
     </Box>
   );
 }

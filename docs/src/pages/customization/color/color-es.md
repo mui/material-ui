@@ -1,6 +1,6 @@
 # Color
 
-<p class="description">Transmitir significado a través del color. Ahora mismo se puede acceder a todos los colores en la especificación de diseño de Material Design.</p>
+<p class="description">Transmitir significado a través del color. Out of the box you get access to all colors in the Material Design guidelines.</p>
 
 El [sistema de color](https://material.io/design/color/) Material Design se puede utilizar para crear un tema de color que refleje su marca o estilo.
 
@@ -13,9 +13,9 @@ The Material Design team has also built an awesome palette configuration tool: [
 <a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="Herramienta oficial de color" style="width: 574px" />
 </a>
-  
-  
 
+<br />
+<br />
 
 The output can be fed into `createTheme()` function:
 
@@ -71,7 +71,7 @@ If you are using the default primary and / or secondary shades then by providing
 ### Herramientas de la comunidad
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating Material-UI themes via Material Design Color Tool.
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview. Includes basic site templates to show various components and how they are affected by the theme
 - [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
 
 ## 2014 Material Design color palettes

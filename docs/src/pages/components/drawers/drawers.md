@@ -1,15 +1,19 @@
 ---
 title: React Drawer component
 components: Drawer, SwipeableDrawer
+githubLabel: 'component: Drawer'
+materialDesign: https://material.io/components/navigation-drawer
 ---
 
 # Drawer
 
 <p class="description">Navigation drawers provide access to destinations in your app. Side sheets are surfaces containing supplementary content that are anchored to the left or right edge of the screen.</p>
 
-[Navigation drawers](https://material.io/design/components/navigation-drawer.html) (or "sidebars") provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
+Navigation drawers (or "sidebars") provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
 
-[Side sheets](https://material.io/design/components/sheets-side.html) are supplementary surfaces primarily used on tablet and desktop.
+[Side sheets](https://material.io/components/sheets-side) are supplementary surfaces primarily used on tablet and desktop.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Temporary drawer
 
@@ -26,27 +30,52 @@ You can make the drawer swipeable with the `SwipeableDrawer` component.
 
 This component comes with a 2 kB gzipped payload overhead.
 Some low-end mobile devices won't be able to follow the fingers at 60 FPS.
-You can use the `disableBackdropTransition` property to help.
+You can use the `disableBackdropTransition` prop to help.
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
 The following properties are used in this documentation website for optimal usability of the component:
+
 - iOS is hosted on high-end devices.
-The backdrop transition can be enabled without dropping frames.
-The performance will be good enough.
+  The backdrop transition can be enabled without dropping frames.
+  The performance will be good enough.
 - iOS has a "swipe to go back" feature that interferes
-with the discovery feature, so discovery has to be disabled.
+  with the discovery feature, so discovery has to be disabled.
 
 ```jsx
-const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS =
+  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
+
+### Swipeable edge
+
+You can configure the `SwipeableDrawer` to have a visible edge when closed.
+
+If you are on a desktop, you can toggle the drawer with the "OPEN" button.
+If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swipe.
+
+{{"demo": "pages/components/drawers/SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
+
+### Keep mounted
+
+To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like:
+
+```jsx
+<Drawer
+  variant="temporary"
+  ModalProps={{
+    keepMounted: true,
+  }}
+/>
+```
+
+More details in the [Modal performance section](/components/modal/#performance).
 
 ## Responsive drawer
 
-The `Hidden` responsive helper component allows showing different types of drawer depending on the screen width.
-A `temporary` drawer is shown for small screens while a `permanent` drawer is shown for wider screens.
+You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
 
 {{"demo": "pages/components/drawers/ResponsiveDrawer.js", "iframe": true}}
 

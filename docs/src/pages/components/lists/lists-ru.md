@@ -1,6 +1,8 @@
 ---
 title: Компонент React List
-components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+components: Collapse, Divider, List, ListItem, ListItemButton, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+githubLabel: 'component: List'
+materialDesign: https://material.io/components/lists
 ---
 
 # Списки
@@ -9,25 +11,21 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 [Списки](https://material.io/design/components/lists.html) представляют собой непрерывную группу из текста или изображений. Они состоят из элементов, содержащих основные и дополнительные действия, которые представлены значками и текстом.
 
-## Простой список
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-{{"demo": "pages/components/lists/SimpleList.js", "bg": true}}
+## Basic List
+
+{{"demo": "pages/components/lists/BasicList.js", "bg": true}}
 
 Последний элемент предыдущего примера показывает, как вы можете отрисовать ссылку:
 
 ```jsx
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
-//...
-
-<ListItemLink href="#simple-list">
+<ListItemButton component="a" href="#simple-list">
   <ListItemText primary="Spam" />
-</ListItemLink>
+</ListItemButton>
 ```
 
-Вы можете [посмотреть демо с React Router](/guides/composition/#react-router).
+You can find a [demo with React Router following this section](/guides/routing/#list) of the documentation.
 
 ## Вложенный список
 
@@ -39,7 +37,7 @@ function ListItemLink(props) {
 
 ## Интерактивность
 
-Ниже приведена интерактивная демонстрация, которая позволяет вам увидеть результаты различных настроек:
+Ниже приведен интерактивный пример, который демонстрирует результаты различных настроек сетки:
 
 {{"demo": "pages/components/lists/InteractiveList.js", "bg": true}}
 
@@ -73,17 +71,23 @@ Switch является второстепенным действием.
 
 {{"demo": "pages/components/lists/SwitchListSecondary.js", "bg": true}}
 
-## Закрепленный подзаголовок
+## Sticky subheader
 
-При прокрутке подзаголовки остаются закрепленными в верхней части экрана, пока следующий подзаголовок не оттеснит предыдущий.
-
-This feature relies on CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. It defaults to `disableSticky` when not supported.
+При прокрутке подзаголовки остаются закрепленными в верхней части экрана, пока следующий подзаголовок не оттеснит предыдущий. This feature relies on CSS sticky positioning. (⚠️ no IE 11 support)
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## Вставленный список
+## Inset List Item
+
+The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
+
+## Gutterless list
+
+When rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.
+
+{{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
 
 ## Virtualized List
 
@@ -92,6 +96,12 @@ In the following example, we demonstrate how to use [react-window](https://githu
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
 If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso). The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
+
+## Customized List
+
+Ниже находятся примеры кастомизации компонента. Вы можете узнать об этом больше [в документации по переопределению свойств](/customization/how-to-customize/).
+
+{{"demo": "pages/components/lists/CustomizedList.js"}}
 
 ## Кастомизация
 

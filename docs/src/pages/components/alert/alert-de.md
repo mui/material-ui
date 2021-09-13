@@ -1,6 +1,8 @@
 ---
 title: React Hinweis Komponenten
 components: Alert, AlertTitle
+githubLabel: 'component: Alert'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 
 # Hinweis (Alert)
@@ -9,11 +11,13 @@ components: Alert, AlertTitle
 
 **Hinweis:** Diese Komponente ist nicht in den [Material-Design-Richtlinien](https://material.io/) dokumentiert, wird aber von Material-UI unterstützt.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Einfache Hinweise
 
 Der Hinweis bietet vier Schweregrade an, welche je ein eigenes Icon und eine eigene Farbe besitzen.
 
-{{"demo": "pages/components/alert/SimpleAlerts.js"}}
+{{"demo": "pages/components/alert/BasicAlerts.js"}}
 
 ## Beschreibung
 
@@ -39,9 +43,9 @@ You can use a [transition component](/components/transitions/) such as `Collapse
 
 The `icon` prop allows you to add an icon to the beginning of the alert component. This will override the default icon for the specified severity.
 
-You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/globals/#default-props).
+You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/theme-components/#default-props).
 
-Setting the icon prop to false will remove the icon altogether.
+Setze das Symbol-Prop auf `false` wird das Symbol komplett entfernen.
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 

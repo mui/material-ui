@@ -1,32 +1,23 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import DeleteIcon from '@material-ui/icons/Delete';
-import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
-import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
-import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
-import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
-import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
-import DeleteForeverSharpIcon from '@material-ui/icons/DeleteForeverSharp';
-import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
-import FourKIcon from '@material-ui/icons/FourK';
-import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    color: theme.palette.text.primary,
-  },
-}));
+import * as React from 'react';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
+import DeleteSharpIcon from '@mui/icons-material/DeleteSharp';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone';
+import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
+import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
+import FourKIcon from '@mui/icons-material/FourK';
+import ThreeSixtyIcon from '@mui/icons-material/ThreeSixty';
 
 export default function SvgMaterialIcons() {
-  const classes = useStyles();
-
   return (
-    <Grid container className={classes.root}>
+    <Grid container sx={{ color: 'text.primary' }}>
       <Grid item xs={4}>
         <Typography>Filled</Typography>
       </Grid>

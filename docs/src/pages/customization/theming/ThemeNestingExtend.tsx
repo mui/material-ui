@@ -1,7 +1,7 @@
-import React from 'react';
-import { createTheme, Theme, ThemeProvider } from '@material-ui/core/styles';
-import Checkbox from '@material-ui/core/Checkbox';
-import { green, orange } from '@material-ui/core/colors';
+import * as React from 'react';
+import { createTheme, Theme, ThemeProvider } from '@mui/material/styles';
+import Checkbox from '@mui/material/Checkbox';
+import { green, orange } from '@mui/material/colors';
 
 const outerTheme = createTheme({
   palette: {
@@ -14,7 +14,7 @@ const outerTheme = createTheme({
 export default function ThemeNestingExtend() {
   return (
     <ThemeProvider theme={outerTheme}>
-      <Checkbox defaultChecked />
+      <Checkbox defaultChecked color="secondary" />
       <ThemeProvider
         theme={(theme: Theme) =>
           createTheme({
@@ -28,7 +28,7 @@ export default function ThemeNestingExtend() {
           })
         }
       >
-        <Checkbox defaultChecked color="primary" />
+        <Checkbox defaultChecked />
         <Checkbox defaultChecked color="secondary" />
       </ThemeProvider>
     </ThemeProvider>

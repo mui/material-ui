@@ -1,22 +1,16 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import NoSsr from '@material-ui/core/NoSsr';
-
-const useStyles = makeStyles({
-  container: {
-    width: 300,
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-});
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import NoSsr from '@mui/material/NoSsr';
 
 function LargeTree() {
   return Array.from(new Array(5000)).map((_, index) => <span key={index}>.</span>);
 }
 
 export default function FrameDeferring() {
-  const classes = useStyles();
-  const [state, setState] = React.useState({ open: false, defer: false });
+  const [state, setState] = React.useState({
+    open: false,
+    defer: false,
+  });
 
   return (
     <div>
@@ -45,7 +39,7 @@ export default function FrameDeferring() {
       </button>
       <br />
       <br />
-      <div className={classes.container}>
+      <Box sx={{ width: 300, display: 'flex', flexWrap: 'wrap' }}>
         {state.open ? (
           <React.Fragment>
             <div>Outside NoSsr</div>
@@ -55,7 +49,7 @@ export default function FrameDeferring() {
             </NoSsr>
           </React.Fragment>
         ) : null}
-      </div>
+      </Box>
     </div>
   );
 }

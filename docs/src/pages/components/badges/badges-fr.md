@@ -1,11 +1,14 @@
 ---
 title: Composant React Badge
-components: Badge
+components: Badge, BadgeUnstyled
+githubLabel: 'component: Badge'
 ---
 
 # Badge
 
 <p class="description">Le badge génère un petit badge en haut à droite de son enfant.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Badges Basique
 
@@ -15,7 +18,7 @@ Exemples de badges contenant du texte, utilisant les couleurs primaires et secon
 
 ## Badges personnalisés
 
-Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus à ce sujet dans la [page de documentation](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus à ce sujet dans la [page de documentation](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -25,7 +28,7 @@ La visibilité des badges peut être contrôlée en utilisant le prop `invisible
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-Le badge se cache automatiquement quand badgeContent est null. Vous pouvez la remplacer avec le prop `showZero`.
+Le badge se cache automatiquement quand badgeContent est null. Vous pouvez la remplacer avec la propriété `showZero`.
 
 {{"demo": "pages/components/badges/ShowZeroBadge.js"}}
 
@@ -37,7 +40,7 @@ Vous pouvez utiliser le prop `max` pour plafonner la valeur du contenu du badge.
 
 ## Badge à points
 
-La propriété `point` change un badge en un petit point. Cela peut être utilisé comme une notification que quelque chose a changé sans donner de compte.
+La propriété `dot` change un badge en petit point. Cela peut être utilisé comme une notification que quelque chose a changé sans donner de compte.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
@@ -52,3 +55,19 @@ Vous pouvez utiliser le prop `overlap` pour placer le badge relatif au coin de l
 Vous pouvez utiliser le prop `anchorOrigin` pour déplacer le badge dans n'importe quel coin de l'élément enveloppé.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## Unstyled
+
+The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+```js
+import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
+```
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}
+
+## Accessibilité
+
+You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
+
+{{"demo": "pages/components/badges/AccessibleBadges.js"}}

@@ -1,9 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 // import of a small, pure module in a private demo
 // bundle size and module duplication is negligible
 /* eslint-disable-next-line no-restricted-imports */
-import { convertLength } from '@material-ui/core/styles/cssUtils';
-import { makeStyles, createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { convertLength } from '@mui/material/styles/cssUtils';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import {
   Legend,
   Tooltip,
@@ -18,19 +19,18 @@ import {
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
-const colors = ['#443dc2', '#2060df', '#277e91', '#378153', '#4d811d', '#63780d', '#996600'];
+const colors = [
+  '#443dc2',
+  '#2060df',
+  '#277e91',
+  '#378153',
+  '#4d811d',
+  '#63780d',
+  '#996600',
+];
 const variants = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1'];
 
-const useStyles = makeStyles({
-  root: {
-    height: 380,
-    width: '100%',
-    color: 'black',
-  },
-});
-
 export default function ResponsiveFontSizes() {
-  const classes = useStyles();
   const convert = convertLength(theme.typography.htmlFontSize);
   const toPx = (rem) => parseFloat(convert(rem, 'px'));
 
@@ -71,7 +71,7 @@ export default function ResponsiveFontSizes() {
   });
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ height: 380, width: '100%', color: 'black' }}>
       <ResponsiveContainer>
         <LineChart
           margin={{
@@ -104,6 +104,6 @@ export default function ResponsiveFontSizes() {
           ))}
         </LineChart>
       </ResponsiveContainer>
-    </div>
+    </Box>
   );
 }

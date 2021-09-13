@@ -1,11 +1,14 @@
 ---
 title: React Badge component
-components: Badge
+components: Badge, BadgeUnstyled
+githubLabel: 'component: Badge'
 ---
 
 # Badge
 
 <p class="description">El componente Badge genera un pequeño badge en la esquina superior derecha de su(s) hijo(s).</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Badges básicos
 
@@ -15,17 +18,17 @@ Ejemplos de insignias que contienen texto, utilizando colores primarios y secund
 
 ## Placas personalizadas
 
-La siguiente tabla muestra un ejemplo de personalización del componente. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/components/).
+He aquí un ejemplo de personalización del componente. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
 ## Visibilidad del Badge
 
-La visibilidad del badge puede ser controlada usando la propiedad `invisible`.
+Usted puede usar la propiedad `overlap` para establecer el Badge relativo a la esquina del elemento envuelto.
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-El badge se oculta automáticamente con `badgeContent` igual a cero. Puede anular esto con la propiedad `showZero`.
+El badge se oculta automáticamente con `badgeContent` igual a cero. Usted puede sobrescribir esto con la propiedad `showZero`.
 
 {{"demo": "pages/components/badges/ShowZeroBadge.js"}}
 
@@ -43,7 +46,7 @@ La propiedad `dot` cambia el badge a un pequeño punto. Esto se puede usar como 
 
 ## Superposición del Badge
 
-Puede usar la propiedad `overlap` para colocar la insignia relativa a la esquina del elemento envuelto.
+Usted puede usar la propiedad `anchorOrigin` para mover el Badge a cualquier esquina del elemento envuelto.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
@@ -52,3 +55,19 @@ Puede usar la propiedad `overlap` para colocar la insignia relativa a la esquina
 Puede usar la propiedad `overlap` para colocar la insignia relativa a la esquina del elemento envuelto.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## Unstyled
+
+The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+```js
+import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
+```
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}
+
+## Accesibilidad
+
+You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
+
+{{"demo": "pages/components/badges/AccessibleBadges.js"}}

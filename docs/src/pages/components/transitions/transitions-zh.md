@@ -1,18 +1,21 @@
 ---
 title: React Transition（过渡动画）组件
 components: Collapse, Fade, Grow, Slide, Zoom
+githubLabel: 'component: Transition'
 ---
 
-# Transitions 过渡动画
+# 过渡动画
 
-<p class="description">过渡动画使 UI 更富有表现力并且易于使用。</p>
+<p class="description">过渡动画有利于增强 UI 的表现力并且让人更易于使用。</p>
 
-Material-UI 提供了一系列的过渡效果，你可以将一些基本的[动作](https://material.io/design/motion/)添加到你的应用的组件中。
+Material-UI 提供了一系列的过渡效果，你可以将一些基本的 [动作](https://material.io/design/motion/) 添加到你的应用组件中。
 
-为了更好地支持服务端渲染，Material-UI 为某些过渡组件 (Fade, Grow, Zoom, Slide) 的子级提供了 `style` 属性。 为了让动画如期实现，您必须将 `style` 属性应用到DOM上。
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+为了更好地支持服务器渲染，Material-UI 为一些动画组件的子组件提供了一个 `style` 属性，（Fade, Grow, Zoom, Slide）。 为了让动画如期实现，必须将 `style` 属性应用到 DOM 上。
 
 ```jsx
-// `props` 对象包含一个 `style` 属性。
+// 'props' 对象包含一个 'style' 属性。
 // 你需要将这个属性提供给 `div` 元素，如下所示。
 function MyComponent(props) {
   return (
@@ -33,7 +36,7 @@ export default Main() {
 
 ## Collapse 折叠
 
-从子元素的顶部垂直扩展开来。 使用 `collapsedHeight` 属性可以用于设置未扩展时的最小高度值。
+从子元素的起始边缘开始展开。 如果你需要水平折叠，请使用 `orientation` 属性。 `collapsedHeight` 属性可以用于设置未扩展时的最小高度值。
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
@@ -47,7 +50,7 @@ export default Main() {
 
 从子元素的中心向外扩展，同时从透明淡入至不透明。
 
-第二个示例演示如何更改 `transform-origin` 属性，以及有条件地用 `timeout` 属性来改变元素进入的速度。
+第二个示例演示了如何更改 `transform-origin`，并有条件地应用了 `timeout` 属性来更改输入速度。
 
 {{"demo": "pages/components/transitions/SimpleGrow.js", "bg": true}}
 
@@ -67,12 +70,24 @@ export default Main() {
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
 
+## TransitionGroup 动画组
+
+要在安装或卸载组件时对其进行动画处理，可以使用 _react-transition-group_ 中的 [`TransitionGroup`](https://reactcommunity.org/react-transition-group/transition-group) 组件。 当组件被添加或删除时，`in` 属性会被 `TransitionGroup` 自动切换。
+
+{{"demo": "pages/components/transitions/TransitionGroupExample.js"}}
+
 ## TransitionComponent 属性
 
-这些组件接收 `TransitionComponent` 属性来自定义默认的过渡动画。 您可以使用上述的任何组件或者是您自己的组件。 它应遵守以下条件：
+有些 Material-UI 组件在内部也在使用这些过渡动画。 它们接受一个 `TransitionComponent` 属性来定制默认的动画。 您可以使用上述的任何组件或者是您自己的组件。 它应遵守以下条件：
 
 - 接受一个 `in` 属性。 这对应于打开/关闭的状态。
 - 当进入过渡时调用 `onEnter` 回调属性。
 - 当退出过渡完成后应该调用 `onExited` 回调属性。 这两个回调属性保证了当在一个关闭的状态并展示完过渡动画时，才会移除子内容。
 
-欲了解更多关于创建自定义过渡的信息，请访问 [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition)。
+For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition). 你还可以访问一些组件的专用部分： 你还可以访问一些组件的专用部分： 你还可以访问一些组件的专用部分：
+
+- [Modal](/components/modal/#transitions)
+- [Dialog](/components/dialogs/#transitions)
+- [Popper](/components/popper/#transitions)
+- [Snackbar（消息条）](/components/snackbars/#transitions)
+- [Tooltip](/components/tooltips/#transitions)

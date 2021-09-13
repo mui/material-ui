@@ -1,14 +1,6 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import SvgIcon from '@material-ui/core/SvgIcon';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > svg': {
-      margin: theme.spacing(2),
-    },
-  },
-}));
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import SvgIcon from '@mui/material/SvgIcon';
 
 function HomeIcon(props) {
   return (
@@ -19,14 +11,18 @@ function HomeIcon(props) {
 }
 
 export default function SvgIconsSize() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        '& > :not(style)': {
+          m: 2,
+        },
+      }}
+    >
       <HomeIcon fontSize="small" />
       <HomeIcon />
       <HomeIcon fontSize="large" />
-      <HomeIcon style={{ fontSize: 40 }} />
-    </div>
+      <HomeIcon sx={{ fontSize: 40 }} />
+    </Box>
   );
 }

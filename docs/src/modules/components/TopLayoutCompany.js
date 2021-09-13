@@ -1,6 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
+import { createTheme } from '@mui/material/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import { BANNER_HEIGHT } from 'docs/src/modules/constants';
@@ -16,7 +17,7 @@ const styles = (theme) => ({
   },
   container: {
     marginBottom: theme.spacing(20),
-    maxWidth: 680 + theme.spacing(8 + 4),
+    maxWidth: `calc(680px + ${theme.spacing(12)})`,
     '& .markdownElement': {
       [theme.breakpoints.up('md')]: {
         paddingRight: theme.spacing(4),
@@ -31,9 +32,9 @@ function TopLayoutCompany(props) {
 
   return (
     <AppFrame disableDrawer>
-      <Head title={`${title} - Material-UI`} description={description} />
+      <Head title={`${title} - MUI`} description={description} />
       <div className={classes.root}>
-        <AppContainer className={classes.container}>
+        <AppContainer component="main" className={classes.container}>
           {rendered.map((chunk, index) => {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}
@@ -49,4 +50,5 @@ TopLayoutCompany.propTypes = {
   docs: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TopLayoutCompany);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(TopLayoutCompany);

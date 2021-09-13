@@ -1,45 +1,30 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiCircularProgress from '@material-ui/core/CircularProgress';
+import MuiCircularProgress from '@mui/material/CircularProgress';
 
 interface Props {
-  color?: 'primary' | 'secondary' | 'inherit';
-  thickness?: number;
-  value?: number;
-  variant?: 'determinate' | 'indeterminate' | 'static';
-  width?: number;
-  height?: number;
+  thickness: number;
+  value: number;
+  variant: 'determinate' | 'indeterminate';
+  width: number | string;
+  height: number;
 }
 
-const defaultProps: Props = {
-  color: 'primary',
+export function CircularProgress(props: Props): JSX.Element {
+  const { width, height, ...other } = props;
+
+  return <MuiCircularProgress size={width} style={{ width, height }} {...other} />;
+}
+
+CircularProgress.defaultProps = {
   thickness: 4,
   value: 75,
-  variant: 'static',
+  variant: 'determinate' as 'determinate',
   width: 44,
   height: 44,
 };
 
-export const CircularProgress: React.SFC<Props> = (props: Props) => {
-  const { width, height, ...other } = props;
-  const style: React.CSSProperties = {
-    width: 'width',
-    height: 'height',
-  };
-
-  return <MuiCircularProgress size={width} {...other} />;
-};
-
-CircularProgress.defaultProps = defaultProps;
-
 addPropertyControls(CircularProgress, {
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['primary', 'secondary', 'inherit'],
-  },
   thickness: {
     type: ControlType.Number,
     title: 'Thickness',
@@ -49,13 +34,13 @@ addPropertyControls(CircularProgress, {
   value: {
     type: ControlType.Number,
     title: 'Value',
-    hidden: function hidden(props) {
-      return props.variant === 'indeterminate' || props.variant === 'query';
+    hidden(props) {
+      return props.variant === 'indeterminate';
     },
   },
   variant: {
     type: ControlType.Enum,
     title: 'Variant',
-    options: ['determinate', 'indeterminate', 'static'],
+    options: ['determinate', 'indeterminate'],
   },
 });

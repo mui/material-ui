@@ -1,20 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import {
+  demos,
+  docs,
+  demoComponents,
+} from 'docs/src/pages/components/slider/slider.md?@mui/markdown';
 
-const pageFilename = 'components/slider';
-const requireDemo = require.context('docs/src/pages/components/slider', false, /\.(js|tsx)$/);
-const requireRaw = require.context(
-  '!raw-loader!../../src/pages/components/slider',
-  false,
-  /\.(js|md|tsx)$/,
-);
-
-export default function Page({ demos, docs }) {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
+export default function Page() {
+  return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;
 }
-
-Page.getInitialProps = () => {
-  const { demos, docs } = prepareMarkdown({ pageFilename, requireRaw });
-  return { demos, docs };
-};

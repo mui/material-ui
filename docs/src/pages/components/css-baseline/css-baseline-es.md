@@ -1,27 +1,20 @@
 ---
 components: CssBaseline, ScopedCssBaseline
+githubLabel: 'component: CssBaseline'
 ---
 
 # Base de CSS
 
 <p class="description">Material-UI provee un componente llamado CssBaseline como un punto de partida elegante, simple y consistente para empezar a desarrollar.</p>
 
+[La función de estilo de la paleta](/system/palette/).
+
 ## Global reset
 
 Tal vez tengas familiaridad con [normalize.css](https://github.com/necolas/normalize.css), una colección de atributos de estilos normalizados para elementos HTML.
 
 ```jsx
-import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-
-export default function MyApp() {
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      {/* The rest of your application */}
-    </React.Fragment>
-  );
-}
+Reinicio global
 ```
 
 ## Scoping on children
@@ -29,14 +22,14 @@ export default function MyApp() {
 However, you might be progressively migrating a website to Material-UI, using a global reset might not be an option. It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
 import MyApp from './MyApp';
 
 export default function MyApp() {
   return (
     <ScopedCssBaseline>
-      {/* The rest of your application */}
+      {/* El resto de tu aplicación */}
       <MyApp />
     </ScopedCssBaseline>
   );
@@ -58,6 +51,26 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 - La propiedad `box-sizing` se establece globalmente en el elemento `<html>` con el valor `border-box`. Cada elemento, incluyendo `*::before` y `*::after`, es declarado para heredar ésta propiedad, la cual asegura que el ancho declarado del elemento nunca sea excedido gracias al relleno o al borde.
 
+### Scrollbars
+
+In dark mode, the colors of the scrollbars are customized to provide a better contrast. Add this code to your theme (for dark mode).
+
+```jsx
+import darkScrollbar from '@material-ui/core/darkScrollbar';
+
+const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: theme.palette.mode === 'dark' ? darkScrollbar() : null,
+      },
+    },
+  },
+});
+```
+
+This website uses `darkScrollbar` when dark mode is enabled. Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
+
 ### Tipografía
 
 - No se declara ningún tamaño de fuente de base en el elemento `<html>`, pero se asume 16px (el valor predeterminado del navegador). Puedes aprender más acerca de las implicaciones de cambiar el tamaño de fuente predeterminado de `<html>`, en la página [de documentación del tema](/customization/typography/#typography-html-font-size).
@@ -67,4 +80,4 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 ## Personalización
 
-Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.
+Head to the [global customization](/customization/how-to-customize/#5-global-css-override) section of the documentation to change the output of these components.

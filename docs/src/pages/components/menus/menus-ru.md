@@ -1,29 +1,40 @@
 ---
 title: Компонент React Menu
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
+githubLabel: 'component: Menu'
+materialDesign: https://material.io/components/menus
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 ---
 
-# Меню
+# Menu
 
 <p class="description">Меню временно отображают список вариантов.</p>
 
-[Меню](https://material.io/design/components/menus.html) отображает список выбранного на временной поверхности. Оно появляется когда пользователь взаимодействует с кнопкой или другим элементом управления.
+A menu displays a list of choices on a temporary surface. Оно появляется когда пользователь взаимодействует с кнопкой или другим элементом управления.
 
-## Простое меню
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-Простые меню по умолчанию открываются над якорным элементом (это поведение можно изменить с помощью props). Находясь вблизи края экрана, простое меню располагается таким образом, чтобы все элементы меню были полностью видны.
+## Basic menu
+
+A basic menu opens over the anchor element by default (this option can be [changed](#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
 
 Выбор варианта должен в идеале немедленно зафиксировать его и закрыть меню.
 
-**Неточности:** В отличии от простых меню, простые диалоги могут содержать дополнительную информацию относительно опций, доступных для элемента списка или предоставлять навигационные или ортогональные действия, относящиеся к главной задаче. Хотя они могут отображать один и тот же контент, простые меню более предпочтительны в отличии от простых диалогов, потому что они создают меньше препятствий текущему контексту пользователя.
+**Неточности:** В отличии от простых меню, простые диалоги могут содержать дополнительную информацию относительно опций, доступных для элемента списка или предоставлять навигационные или ортогональные действия, относящиеся к главной задаче. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user's current context.
 
-{{"demo": "pages/components/menus/SimpleMenu.js"}}
+{{"demo": "pages/components/menus/BasicMenu.js"}}
 
-## Выбранные меню
+## Selected menu
 
-If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element, and the initial focus will be placed on the selected menu item. The currently selected menu item is set using the `selected` property (from [ListItem](/api/list-item/)). To use a selected menu item without impacting the initial focus or the vertical positioning of the menu, set the `variant` property to `menu`.
+If used for item selection, when opened, simple menus places the initial focus on the selected menu item. The currently selected menu item is set using the `selected` property (from [ListItem](/api/list-item/)). To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
+
+## Positioned menu
+
+Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/components/popover/#anchor-playground) to position it. For instance, you can display the menu below the anchor:
+
+{{"demo": "pages/components/menus/PositionedMenu.js"}}
 
 ## MenuList composition
 
@@ -33,9 +44,9 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Customized menus
+## Customized menu
 
-Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. Вы можете узнать об этом больше [в документации по переопределению свойств](/customization/how-to-customize/).
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
@@ -43,7 +54,7 @@ The `MenuItem` is a wrapper around `ListItem` with some additional styles. You c
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu).
 
-## Меню с максимальной высотой
+## Max height menu
 
 Если высота меню препятствует отображению всех пунктов меню, меню можно прокручивать внутри.
 

@@ -1,15 +1,19 @@
 ---
 title: 'Componente React: App Bar'
 components: AppBar, Toolbar, Menu
+githubLabel: 'component: AppBar'
+materialDesign: https://material.io/components/app-bars-top
 ---
 
 # App Bar
 
 <p class="description">La App Bar muestra información y acciones relacionadas con la pantalla actual.</p>
 
-La [top App Bar](https://material.io/design/components/app-bars-top.html) provee contenido y acciones relacionados a la pantalla actual. Es usada para mostrar logotipos de marcas, títulos de pantalla, navegación y acciones.
+La [top App Bar](https://material.io/design/components/app-bars-top.html) provee contenido y acciones relacionados a la pantalla actual. It's used for branding, screen titles, navigation, and actions.
 
 Se puede transformar en una barra de acción contextual o usarse como una barra de navegación.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## App Bar Simple
 
@@ -49,7 +53,7 @@ Un App Bar prominente.
 
 Cuando muestra la posición de la barra de App Bar fija, la dimensión de los elementos no tiene impacto sobre el resto de la página. Esto puede causar que alguna parte de su contenido no sea visible, detrás del App Bar. Aquí hay 3 posibles soluciones:
 
-1. Puedes usar `position = "sticky"` en lugar de fijo. ⚠️ sticky no es compatible con IE 11.
+1. Puedes usar `position = "sticky"` en lugar de fijo. ⚠️ sticky is not supported by IE11.
 2. Puedes renderizar un segundo componente `<Toolbar />`:
 
 ```jsx
@@ -113,9 +117,9 @@ Aparece un botón de acción flotante al desplazarse para que sea fácil volver 
 
 1. `options` (*Object* [optional]):
 
-- `options.disableHysteresis` (*Boolean* [optional]): Default `false`. Desactiva la histéresis. Ignora la dirección de desplazamiento cuando determina el valor del `trigger`.
-- `options.target` (*Node* [optional]): Default `window`.
-- `options.threshold` (*Number* [optional]): Default `100`. Cambia el valor de `trigger` cuando el desplazamiento vertical cruza estrictamente este umbral (exclusivo).
+   - `options.disableHysteresis` (*Boolean* [optional]): Default `false`. Desactiva la histéresis. Ignora la dirección de desplazamiento cuando determina el valor del `trigger`.
+   - `options.target` (*Node* [optional]): Default `window`.
+   - `options.threshold` (*Number* [optional]): Default `100`. Cambia el valor de `trigger` cuando el desplazamiento vertical cruza estrictamente este umbral (exclusivo).
 
 #### Regresa
 
@@ -134,4 +138,28 @@ function HideOnScroll(props) {
     </Slide>
   );
 }
+```
+
+## Enable Color on Dark
+
+Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the AppBar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
+
+```jsx
+// Specific element via prop
+<AppBar enableColorOnDark />
+
+// Affect all AppBars via theme
+<ThemeProvider
+  theme={createTheme({
+    components: {
+      MuiAppBar: {
+        defaultProps: {
+          enableColorOnDark: true,
+        },
+      },
+    },
+  })}
+>
+  <AppBar />
+</ThemeProvider>
 ```

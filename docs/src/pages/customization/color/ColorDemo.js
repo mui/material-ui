@@ -1,73 +1,53 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, useTheme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Fab from '@material-ui/core/Fab';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Typography from '@material-ui/core/Typography';
-import AddIcon from '@material-ui/icons/Add';
-
-const styles = (theme) => ({
-  root: {
-    position: 'relative',
-    overflow: 'hidden',
-  },
-  appFrame: {
-    position: 'relative',
-    height: 390,
-    backgroundColor: theme.palette.background.paper,
-  },
-  statusBar: {
-    width: '100%',
-    height: 24,
-  },
-  menuButton: {
-    marginRight: 20,
-  },
-  code: {
-    margin: theme.spacing(2),
-    fontSize: 16,
-  },
-  fab: {
-    position: 'absolute',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  },
-});
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Fab from '@mui/material/Fab';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import Typography from '@mui/material/Typography';
+import AddIcon from '@mui/icons-material/Add';
 
 function ColorDemo(props) {
-  const { classes, data } = props;
+  const { data } = props;
   const theme = useTheme();
   const primary = theme.palette.augmentColor({
-    main: data.primary,
-    output:
-      data.primaryShade === 4
-        ? `${data.primaryHue}`
-        : `{
+    color: {
+      main: data.primary,
+      output:
+        data.primaryShade === 4
+          ? `${data.primaryHue}`
+          : `{
       main: '${data.primary}',
     }`,
+    },
   });
   const secondary = theme.palette.augmentColor({
-    main: data.secondary,
-    output:
-      data.secondaryShade === 11
-        ? `${data.secondaryHue}`
-        : `{
+    color: {
+      main: data.secondary,
+      output:
+        data.secondaryShade === 11
+          ? `${data.secondaryHue}`
+          : `{
       main: '${data.secondary}',
     }`,
+    },
   });
 
   return (
-    <div className={classes.root}>
-      <div className={classes.appFrame}>
-        <div className={classes.statusBar} style={{ backgroundColor: primary.dark }} />
+    <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+      <Box sx={{ position: 'relative', height: 390, bgcolor: 'background.paper' }}>
+        <Box
+          sx={{ width: '100%', height: 24 }}
+          style={{ backgroundColor: primary.dark }}
+        />
         <AppBar position="static" style={{ backgroundColor: primary.main }}>
           <Toolbar style={{ color: primary.contrastText }}>
             <IconButton
               edge="start"
-              className={classes.menuButton}
+              sx={{ mr: '20px' }}
               color="inherit"
               aria-label="menu"
             >
@@ -78,25 +58,32 @@ function ColorDemo(props) {
             </Typography>
           </Toolbar>
         </AppBar>
-        <pre className={classes.code}>
+        <Box component="pre" sx={{ m: 2, fontSize: 16 }}>
           {`{
   palette: {
     primary: ${primary.output},
     secondary: ${secondary.output},
   },
 }`}
-        </pre>
-        <Fab className={classes.fab} style={{ backgroundColor: secondary.main }} aria-label="add">
+        </Box>
+        <Fab
+          sx={{
+            position: 'absolute',
+            bottom: theme.spacing(2),
+            right: theme.spacing(2),
+          }}
+          style={{ backgroundColor: secondary.main }}
+          aria-label="add"
+        >
           <AddIcon htmlColor={secondary.contrastText} />
         </Fab>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 
 ColorDemo.propTypes = {
-  classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ColorDemo);
+export default ColorDemo;

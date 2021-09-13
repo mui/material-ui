@@ -4,7 +4,7 @@
 
 ## Wrapping components
 
-In order to provide the maximum flexibility and performance, we need a way to know the nature of the child elements a component receives. To solve this problem we tag some of the components with a `muiName` static property when needed.
+In order to provide the maximum flexibility and performance, we need a way to know the nature of the child elements a component receives. To solve this problem, we tag some of the components with a `muiName` static property when needed.
 
 You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution. If you wrap a component, verify if that component has this static property set.
 
@@ -47,7 +47,7 @@ This pattern is very powerful and allows for great flexibility, as well as a way
 
 ### Caveat with inlining
 
-Не только React сделает ненужное обновление DOM, но и ripple эффект `ListItem` будет работать неправильно. ⚠️ Однако, поскольку мы используем встроенную функцию для изменения отрисованного компонента, React будет демонтировать ссылку каждый раз, когда `ListItemLink` отрисован.
+Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. ⚠️ Однако, поскольку мы используем встроенную функцию для изменения отрисованного компонента, React будет демонтировать ссылку каждый раз, когда `ListItemLink` отрисован.
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -72,17 +72,20 @@ function ListItemLink(props) {
 
 The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component:
 
-```jsx
-import { Link } from 'react-router-dom';
+```tsx
+import { Link, LinkProps } from 'react-router-dom';
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const CustomLink = React.useMemo(
     () =>
-      React.forwardRef((linkProps, ref) => (
-        <Link ref={ref} to={to} {...linkProps} />
-      )),
+      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(function Link(
+        linkProps,
+        ref,
+      ) {
+        return <Link ref={ref} to={to} {...linkProps} />;
+      }),
     [to],
   );
 
@@ -113,22 +116,6 @@ import { Link } from 'react-router-dom';
 
 You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
 
-## Routing libraries
-
-The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
-
-### Button
-
-{{"demo": "pages/guides/composition/ButtonRouter.js"}}
-
-### Link
-
-{{"demo": "pages/guides/composition/LinkRouter.js"}}
-
-### Список
-
-{{"demo": "pages/guides/composition/ListRouter.js"}}
-
 ## Caveat with refs
 
 This section covers caveats when using a custom component as `children` or for the `component` prop.
@@ -146,17 +133,17 @@ If you don't use one of the above types when using your components in conjunctio
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-Be aware that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
-
-In some instances an additional warning is issued to help with debugging, similar to:
+Обратите внимание, что вы все равно получите это предупреждение для `lazy` и `memo` компонентов, если обернутый ими компонент не может содержать ссылку. In some instances an additional warning is issued to help with debugging, similar to:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
--const MyButton = props => <div role="button" {...props} />;
-+const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
+-const MyButton = () => <div role="button" />;
++const MyButton = React.forwardRef((props, ref) =>
++  <div role="button" {...props} ref={ref} />);
+
 <Button component={MyButton} />;
 ```
 

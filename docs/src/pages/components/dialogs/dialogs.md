@@ -1,17 +1,22 @@
 ---
 title: React Dialog component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
+githubLabel: 'component: Dialog'
+materialDesign: https://material.io/components/dialogs
+waiAria: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
 ---
 
 # Dialog
 
 <p class="description">Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.</p>
 
-A [Dialog](https://material.io/design/components/dialogs.html) is a type of [modal](/components/modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
+A Dialog is a type of [modal](/components/modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
 
 Dialogs are purposefully interruptive, so they should be used sparingly.
 
-## Simple Dialogs
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Basic dialog
 
 Simple dialogs can provide additional details or actions about a list item.
 For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
@@ -39,7 +44,7 @@ Users should be able to understand the choices based on the title and button tex
 If a title is required:
 
 - Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
-- Avoid apologies, ambiguity, or questions, such as “Warning!” or “Are you sure?”
+- Avoid apologies, ambiguity, or questions, such as "Warning!" or "Are you sure?"
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -56,12 +61,12 @@ For example, if your site prompts for potential subscribers to fill in their ema
 
 {{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Customized dialogs
+## Customization
 
-Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
-The dialog has a close button added to aide usability.
+The dialog has a close button added to aid usability.
 
 {{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
@@ -72,7 +77,7 @@ The dialog has a close button added to aide usability.
 ## Optional sizes
 
 You can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullWidth` boolean.
-When the `fullWidth` property is true, the dialog will adapt based on the `maxWidth` value.
+When the `fullWidth` prop is true, the dialog will adapt based on the `maxWidth` value.
 
 {{"demo": "pages/components/dialogs/MaxWidthDialog.js"}}
 
@@ -81,13 +86,13 @@ When the `fullWidth` property is true, the dialog will adapt based on the `maxWi
 You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
 
 ```jsx
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-  return <Dialog fullScreen={fullScreen} />
+  return <Dialog fullScreen={fullScreen} />;
 }
 ```
 
@@ -96,23 +101,23 @@ function MyComponent() {
 ## Confirmation dialogs
 
 Confirmation dialogs require users to explicitly confirm their choice before an option is committed.
-For example, users can listen to multiple ringtones but only make a final selection upon touching “OK”.
+For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
+Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
 ## Draggable dialog
 
 You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable).
-To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component.
+To do so, you can pass the imported `Draggable` component as the `PaperComponent` of the `Dialog` component.
 This will make the entire dialog draggable.
 
 {{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Scrolling long content
 
-When dialogs become too long for the user’s viewport or device, they scroll.
+When dialogs become too long for the user's viewport or device, they scroll.
 
 - `scroll=paper` the content of the dialog scrolls within the paper element.
 - `scroll=body` the content of the dialog scrolls within the body element.
@@ -120,6 +125,10 @@ When dialogs become too long for the user’s viewport or device, they scroll.
 Try the demo below to see what we mean:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
+
+## Performance
+
+Follow the [Modal performance section](/components/modal/#performance).
 
 ## Limitations
 

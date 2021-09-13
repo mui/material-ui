@@ -1,24 +1,32 @@
 ---
 title: Circular, Linear progress React components
 components: CircularProgress, LinearProgress
+githubLabel: 'component: CircularProgress'
+materialDesign: '<a href="https://material.io/design/components/progress-indicators.html#linear-progress-indicators">Linear progress</a> indicators.'
 ---
 
 # Barres de progression
 
-<p class="description">Les indicateurs de progression, plus connus sous le nom de spinners, expriment un temps d'attente non spécifié ou affichent la durée d'un processus. L'animation fonctionne avec du CSS, pas de JavaScript.</p>
+<p class="description">Les indicateurs de progression, plus connus sous le nom de spinners, expriment un temps d'attente non spécifié ou affichent la durée d'un processus.</p>
 
-Les [Indicateurs de progression](https://material.io/design/components/progress-indicators.html) informent les utilisateurs de l'état des processus en cours, tels que le chargement d'une application, la soumission d'un formulaire ou la progression des mises à jour. Ils communiquent l'état d'une application et indiquent les actions disponibles, par exemple si les utilisateurs peuvent quitter l'écran actuel.
+Les [Indicateurs de progression](https://material.io/design/components/progress-indicators.html) informent les utilisateurs de l'état des processus en cours, tels que le chargement d'une application, la soumission d'un formulaire ou la progression des mises à jour.
 
 - Les indicateurs **déterminés** indiquent la durée d'une opération.
-- Les indicateurs **indéterminés** indiquent un temps d'attente non spécifié.
+- **Indeterminate** circular indicators grow and shrink in size while moving along the invisible track.
 
-Lorsque vous affichez les progrès d'une séquence de processus, indiquez le progrès global plutôt que les progrès de chaque activité.
+Les animations des composants s'appuient sur CSS autant que possible pour fonctionner avant même que le JavaScript soit chargé.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Circular
 
 ### Circulaire indéterminée
 
 {{"demo": "pages/components/progress/CircularIndeterminate.js"}}
+
+### Circular color
+
+{{"demo": "pages/components/progress/CircularColor.js"}}
 
 ### Circulaire déterminée
 
@@ -37,6 +45,10 @@ Lorsque vous affichez les progrès d'une séquence de processus, indiquez le pro
 ### Linéaire indéterminée
 
 {{"demo": "pages/components/progress/LinearIndeterminate.js"}}
+
+### Linear color
+
+{{"demo": "pages/components/progress/LinearColor.js"}}
 
 ### Linéaire déterminée
 
@@ -73,7 +85,7 @@ function Progress(props) {
 
 ## Barres de progression personnalisée
 
-Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
+Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js", "defaultCodeOpen": false}}
 
@@ -85,6 +97,8 @@ Il y a [3 limites importantes](https://www.nngroup.com/articles/response-times-3
 
 ## Limites
 
+### Charge CPU élevée
+
 Under heavy load, you might lose the stroke dash animation or see random CircularProgress ring widths. You should run processor intensive operations in a web worker or by batch in order not to block the main rendering thread.
 
 ![heavy load](/static/images/progress/heavy-load.gif)
@@ -92,3 +106,36 @@ Under heavy load, you might lose the stroke dash animation or see random Circula
 When it's not possible, you can leverage the `disableShrink` property to mitigate the issue. See [this issue](https://github.com/mui-org/material-ui/issues/10327).
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}
+
+### Mises à jour haute fréquence
+
+Le `LinearProgress` utilise une transition sur la propriété de transformation CSS pour fournir une mise à jour lisse entre différentes valeurs. La durée de transition par défaut est de 200ms. Dans le cas où le composant parent met à jour la propriété `value` trop rapidement, vous aurez au moins un délai de 200ms entre le rendu (affichage) et la barre de progression complètement mise à jour.
+
+Si vous devez effectuer 30 affichages par seconde ou plus, nous vous recommandons de désactiver la transition :
+
+```css
+.MuiLinearProgress-bar {
+  transition: none;
+}
+```
+
+### IE11
+
+The circular progress component animation on IE11 is degraded. L'animation du tableau de bord des traits ne fonctionne pas (équivalent à `disableShrink`) et à l'animation circulaire. Vous pouvez résoudre ce dernier avec :
+
+```css
+.MuiCircularProgress-indeterminate {
+  animation: circular-rotate 1.4s linear infinite;
+}
+
+@keyframes circular-rotate {
+  0% {
+    transform: rotate(0deg);
+    /* Fix IE11 wobbly */
+    transform-origin: 50% 50%;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+```

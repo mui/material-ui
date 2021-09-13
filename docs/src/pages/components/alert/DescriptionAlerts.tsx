@@ -1,23 +1,11 @@
-import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Alert, AlertTitle } from '@material-ui/lab';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-  }),
-);
+import * as React from 'react';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 
 export default function DescriptionAlerts() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Stack sx={{ width: '100%' }} spacing={2}>
       <Alert severity="error">
         <AlertTitle>Error</AlertTitle>
         This is an error alert — <strong>check it out!</strong>
@@ -34,6 +22,6 @@ export default function DescriptionAlerts() {
         <AlertTitle>Success</AlertTitle>
         This is a success alert — <strong>check it out!</strong>
       </Alert>
-    </div>
+    </Stack>
   );
 }

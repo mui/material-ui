@@ -2,9 +2,9 @@
 
 <p class="description">借助 TypeScript，你可以为 JavaScript 添加静态类型，从而提高代码质量及开发者的工作效率。</p>
 
-Material-UI 需要最低 TypeScript 的版本为 3.2。
+Material-UI requires a minimum version of TypeScript 3.5.
 
-请查看一下 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) 的例子。
+请查看 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) 的例子。
 
 若想使用类型，你必须在 `tsconfig.json` 里启用以下的一些选项：
 
@@ -39,7 +39,7 @@ const styles = {
 
 withStyles（styles）;
 //         ^^^^^^
-//        属性 “flexDirection”` 的类型是不兼容的。
+//        属性 'flexDirection' 的类型是不兼容的。
 //           “string” 类型不能赋予给这些类型：'"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'。
 ```
 
@@ -82,15 +82,16 @@ const styles = createStyles({
 });
 
 // 依赖于主题的样式
-const styles = ({ palette, spacing }: Theme) => createStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: spacing.unit,
-    backgroundColor: palette.background.default,
-    color: palette.primary.main,
-  },
-});
+const styles = ({ palette, spacing }: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      padding: spacing.unit,
+      backgroundColor: palette.background.default,
+      color: palette.primary.main,
+    },
+  });
 ```
 
 `createStyles` 只是一个恒等函数（identity function)；它不会在运行时“做任何事情”，只是在编译时帮助指导类型推断。
@@ -112,11 +113,11 @@ const styles = createStyles({
 });
 ```
 
-但是，为了允许这些样式来传递 TypeScript，鉴于CSS 类的名称和实际的 CSS 属性名称不一致，所赋予的定义必须是模糊的。 由于类名称应与 CSS 属性相同，因此应避免使用。
+然而，为了让这些样式能在TypeScript 中使用，所以在定义时必须明确 CSS 类的名称和实际的 CSS 属性名称。 由于类名称应与 CSS 属性相同，因此应避免使用。
 
 ```ts
-// 这样是错误的，由于 TypeScript 认为 `@media (min-width: 960px)` 是一个类名
-// 并且 `content` 是 css 属性
+// 这样是错误的，因为 TypeScript 认为 `@media (min-width: 960px)` 是一个类名
+// 并且认为 `content` 是 css 属性
 const ambiguousStyles = createStyles({
   content: {
     minHeight: '100vh',
@@ -146,17 +147,24 @@ const ambiguousStyles = createStyles({
 由于用 `withStyles(styles)` 装饰的组件被注入了一个特殊的 `classes` 属性，您需要相应地定义其属性：
 
 ```ts
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
-  paper: { /* ... */ },
-  button: { /* ... */ },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
 
 interface Props {
   // 非样式的属性
   foo: number;
   bar: boolean;
-  // 注入的样式的属性
+  // 已被注入样式的属性
   classes: {
     root: string;
     paper: string;
@@ -168,13 +176,21 @@ interface Props {
 然而，这是不是很 [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) ，因为它需要你在两个不同的地方保持类名（如 `“root”`， `“paper”`， `“button”`，...）。 我们提供了一个类型操作符 `WithStyles` 来帮助解决这个问题，因此您可以直接写入：:
 
 ```ts
-import { WithStyles, createStyles } from '@material-ui/core';
+import { createStyles } from '@material-ui/styles';
+import { WithStyles } from '@material-ui/core';
 
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
-  paper: { /* ... */ },
-  button: { /* ... */ },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
 
 interface Props extends WithStyles<typeof styles> {
   foo: number;
@@ -196,14 +212,14 @@ const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) 
 const DecoratedClass = withStyles(styles)(
   class extends React.Component<Props> {
     render() {
-      const { text, type, color, classes } = this.props
+      const { text, type, color, classes } = this.props;
       return (
         <Typography variant={type} color={color} classes={classes}>
           {text}
         </Typography>
       );
     }
-  }
+  },
 );
 ```
 
@@ -216,22 +232,21 @@ const DecoratedClass = withStyles(styles)(
 以下示例添加了一个 `appDrawer` 属性，并将其合并到由 `material-ui` 提供的属性中：
 
 ```ts
-import { Theme } from '@material-ui/core/styles/createTheme';
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
+import { Breakpoint, Theme } from '@material-ui/core/styles';
 
-declare module '@material-ui/core/styles/createTheme' {
+declare module '@material-ui/core/styles' {
   interface Theme {
     appDrawer: {
-      width: React.CSSProperties['width']
-      breakpoint: Breakpoint
-    }
+      width: React.CSSProperties['width'];
+      breakpoint: Breakpoint;
+    };
   }
-  // 允许用 `createTheme` 来配置
+  // allow configuration using `createTheme`
   interface ThemeOptions {
     appDrawer?: {
-      width?: React.CSSProperties['width']
-      breakpoint?: Breakpoint
-    }
+      width?: React.CSSProperties['width'];
+      breakpoint?: Breakpoint;
+    };
   }
 }
 ```
@@ -250,7 +265,7 @@ export default function createMyTheme(options: ThemeOptions) {
       breakpoint: 'lg',
     },
     ...options,
-  })
+  });
 }
 ```
 
@@ -259,12 +274,14 @@ export default function createMyTheme(options: ThemeOptions) {
 ```ts
 import createMyTheme from './styles/createMyTheme';
 
-const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
+const theme = createMyTheme({
+  appDrawer: { breakpoint: 'md' },
+});
 ```
 
 ## `component` 属性的用法
 
-你可以通过 `component` 属性替换许多 Material-UI 的许多组件的根节点，我们在组件的 API 文档中做了详细的说明。 例如，一个按钮（Button）的根节点可以被替换成一个 React Router 的链接（Link），并且，任何传入按钮（Button）的额外的属性，例如 `to` ，都会被传递到链接（Link）组件中。 关于按钮组件和 react-router-dom 的代码示例查看 [这些示例](/guides/composition/#routing-libraries)。
+你可以通过 `component` 属性替换许多 Material-UI 的许多组件的根节点，我们在组件的 API 文档中做了详细的说明。 例如，一个按钮（Button）的根节点可以被替换成一个 React Router 的链接（Link），并且，任何传入按钮（Button）的额外的属性，例如 `to` ，都会被传递到链接（Link）组件中。 关于按钮和 react-router-dom 的代码示例查看[这些示例](/guides/routing/#component-prop)。
 
 为了能够单独使用 Material-UI 组件的属性，该属性应该与类型参数一起使用。 否则，`component` 属性将不会出现在 Material-UI 组件的属性中。
 
@@ -293,8 +310,8 @@ function GenericCustomComponent<C extends React.ElementType>(
 现在，如果将 `GenericCustomComponent` 与所提供的 `component` 属性一起使用，它也应该拥有所提供的组件所需的所有属性。
 
 ```ts
-function ThirdPartyComponent({ prop1 } : { prop1: string }) {
-  return <div />
+function ThirdPartyComponent({ prop1 }: { prop1: string }) {
+  return <div />;
 }
 // ...
 <GenericCustomComponent component={ThirdPartyComponent} prop1="some value" />;

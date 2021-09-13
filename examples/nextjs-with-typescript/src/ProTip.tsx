@@ -1,8 +1,7 @@
-import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
-import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
-import Typography from '@material-ui/core/Typography';
+import * as React from 'react';
+import Link from '@mui/material/Link';
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
+import Typography from '@mui/material/Typography';
 
 function LightBulbIcon(props: SvgIconProps) {
   return (
@@ -12,26 +11,13 @@ function LightBulbIcon(props: SvgIconProps) {
   );
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      margin: theme.spacing(6, 0, 3),
-    },
-    lightBulb: {
-      verticalAlign: 'middle',
-      marginRight: theme.spacing(1),
-    },
-  }),
-);
-
 export default function ProTip() {
-  const classes = useStyles();
   return (
-    <Typography className={classes.root} color="textSecondary">
-      <LightBulbIcon className={classes.lightBulb} />
+    <Typography sx={{ mt: 6, mb: 3 }} color="text.secondary">
+      <LightBulbIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
       Pro tip: See more{' '}
-      <Link href="https://material-ui.com/getting-started/templates/">templates</Link> on the
-      Material-UI documentation.
+      <Link href="https://material-ui.com/getting-started/templates/">templates</Link> on the MUI
+      documentation.
     </Typography>
   );
 }

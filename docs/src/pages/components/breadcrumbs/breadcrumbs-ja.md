@@ -1,15 +1,19 @@
 ---
 title: React Breadcrumbs コンポーネント
 components: Breadcrumbs, Link, Typography
+githubLabel: 'component: Breadcrumbs'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 ---
 
 # Breadcrumbs (パンくずリスト)
 
 <p class="description">Breadcrumbsを使用すると、値の範囲から選択できます。</p>
 
-## シンプルなbreadcurmbs
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-{{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
+## シンプルな breadcurmbs
+
+{{"demo": "pages/components/breadcrumbs/BasicBreadcrumbs.js"}}
 
 ## 最後のbreadcurmbsをアクティブにする
 
@@ -19,7 +23,7 @@ components: Breadcrumbs, Link, Typography
 
 ## カスタムセパレーター (Custom separator）
 
-次の例では、2つの文字列セパレータとSVGアイコンを使用しています。
+In the following examples, we are using two string separators and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
@@ -33,7 +37,7 @@ components: Breadcrumbs, Link, Typography
 
 ## カスタマイズされた breadcrumbs
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [こちら](/customization/how-to-customize/)を参照してください。
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 

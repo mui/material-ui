@@ -1,6 +1,6 @@
 {
   "name": "ssr",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "private": true,
   "dependencies": {
     "@babel/core": "latest",
@@ -8,7 +8,11 @@
     "@babel/plugin-proposal-class-properties": "latest",
     "@babel/preset-env": "latest",
     "@babel/preset-react": "latest",
-    "@material-ui/core": "latest",
+    "@emotion/cache": "latest",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@emotion/server": "latest",
+    "@mui/material": "next",
     "babel-loader": "latest",
     "cross-env": "latest",
     "express": "latest",

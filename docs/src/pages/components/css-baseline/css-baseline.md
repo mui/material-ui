@@ -1,18 +1,21 @@
 ---
 components: CssBaseline, ScopedCssBaseline
+githubLabel: 'component: CssBaseline'
 ---
 
 # CSS Baseline
 
-<p class="description">Material-UI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
+<p class="description">MUI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Global reset
 
 You might be familiar with [normalize.css](https://github.com/necolas/normalize.css), a collection of HTML element and attribute style-normalizations.
 
 ```jsx
-import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
 
 export default function MyApp() {
   return (
@@ -26,12 +29,12 @@ export default function MyApp() {
 
 ## Scoping on children
 
-However, you might be progressively migrating a website to Material-UI, using a global reset might not be an option.
+However, you might be progressively migrating a website to MUI, using a global reset might not be an option.
 It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
 
 ```jsx
-import React from 'react';
-import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import * as React from 'react';
+import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 import MyApp from './MyApp';
 
 export default function MyApp() {
@@ -54,22 +57,43 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 - The margin in all browsers is removed.
 - The default Material Design background color is applied.
-It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
+  It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
 
 ### Layout
 
 - `box-sizing` is set globally on the `<html>` element to `border-box`.
-Every element—including `*::before` and `*::after` are declared to inherit this property,
-which ensures that the declared width of the element is never exceeded due to padding or border.
+  Every element—including `*::before` and `*::after` are declared to inherit this property,
+  which ensures that the declared width of the element is never exceeded due to padding or border.
+
+### Scrollbars
+
+The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
+
+```jsx
+import darkScrollbar from '@mui/material/darkScrollbar';
+
+const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: theme.palette.mode === 'dark' ? darkScrollbar() : null,
+      },
+    },
+  },
+});
+```
+
+This website uses `darkScrollbar` when dark mode is enabled.
+Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
 
 ### Typography
 
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default).
-You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/typography/#typography-html-font-size) page.
-- Set the `theme.typography.body2` style on the `<body>` element.
+  You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/typography/#typography-html-font-size) page.
+- Set the `theme.typography.body1` style on the `<body>` element.
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
 - Custom font-smoothing is enabled for better display of the Roboto font.
 
 ## Customization
 
-Head to the [global customization](/customization/globals/#global-css) section of the documentation to change the output of these components.
+Head to the [global customization](/customization/how-to-customize/#5-global-css-override) section of the documentation to change the output of these components.

@@ -1,11 +1,14 @@
 ---
 title: React アバターコンポーネント
 components: Avatar, AvatarGroup, Badge
+githubLabel: 'component: Avatar'
 ---
 
 # Avatar
 
 <p class="description">Avatars(アバター) は、テーブルからダイアログメニューまで、あらゆる用途に使用されています。</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Image avatars(画像アバター)
 
@@ -18,6 +21,10 @@ Image Avatars(画像アバター) は通常の`img` propsである、 `src` も�
 `children`に文字列を渡すことで、シンプルな文字列を使ったアバターを作成することができます。
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
+
+You can use different background colors for the avatar. The following demo generates the color based on the name of the person.
+
+{{"demo": "pages/components/avatars/BackgroundLetterAvatars.js"}}
 
 ## サイズ
 

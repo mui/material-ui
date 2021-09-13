@@ -1,28 +1,11 @@
-import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Fade from '@material-ui/core/Fade';
-import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    button: {
-      margin: theme.spacing(2),
-    },
-    placeholder: {
-      height: 40,
-    },
-  }),
-);
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Fade from '@mui/material/Fade';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
 
 export default function DelayingAppearance() {
-  const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [query, setQuery] = React.useState('idle');
   const timerRef = React.useRef<number>();
@@ -39,7 +22,9 @@ export default function DelayingAppearance() {
   };
 
   const handleClickQuery = () => {
-    clearTimeout(timerRef.current);
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
 
     if (query !== 'idle') {
       setQuery('idle');
@@ -53,8 +38,8 @@ export default function DelayingAppearance() {
   };
 
   return (
-    <div className={classes.root}>
-      <div className={classes.placeholder}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Box sx={{ height: 40 }}>
         <Fade
           in={loading}
           style={{
@@ -64,11 +49,11 @@ export default function DelayingAppearance() {
         >
           <CircularProgress />
         </Fade>
-      </div>
-      <Button onClick={handleClickLoading} className={classes.button}>
+      </Box>
+      <Button onClick={handleClickLoading} sx={{ m: 2 }}>
         {loading ? 'Stop loading' : 'Loading'}
       </Button>
-      <div className={classes.placeholder}>
+      <Box sx={{ height: 40 }}>
         {query === 'success' ? (
           <Typography>Success!</Typography>
         ) : (
@@ -82,10 +67,10 @@ export default function DelayingAppearance() {
             <CircularProgress />
           </Fade>
         )}
-      </div>
-      <Button onClick={handleClickQuery} className={classes.button}>
+      </Box>
+      <Button onClick={handleClickQuery} sx={{ m: 2 }}>
         {query !== 'idle' ? 'Reset' : 'Simulate a load'}
       </Button>
-    </div>
+    </Box>
   );
 }

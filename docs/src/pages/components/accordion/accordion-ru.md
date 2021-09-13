@@ -1,19 +1,24 @@
 ---
 title: Компонент React Accordion
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
+githubLabel: 'component: Accordion'
+materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
 
 # Accordion
 
 <p class="description">Аккордеоны содержат потоки создания и позволяют осуществить легковесное редактирование элемента.</p>
 
-[Accordion](https://material.io/archive/guidelines/components/expansion-panels.html) это легковесный контейнер, который может использоваться отдельно или как часть более крупного компонента, такого как Card.
+Аккордеон это простой контейнер, который может использоваться как самостоятельно, так и внутри более крупного компонента, такого как Card (карточка).
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 > **На заметку:** Аккордеоны больше не задокументированы в [руководствах Material Design](https://material.io/), но Material-UI будет продолжать поддерживать их. Ранее они были известны как "expansion panels".
 
 ## Простой аккордеон
 
-{{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/BasicAccordion.js", "bg": true}}
 
 ## Контролируемый аккордеон
 
@@ -21,17 +26,11 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## Настраиваемый аккордеон
+## Кастомизированные аккордеоны
 
-Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. Вы можете узнать об этом больше [в документации по переопределению свойств](/customization/how-to-customize/).
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
-
-## Действия внутри аккордеона
-
-Чтобы предотвратить сворачивание/разворачивания аккордеона при нажатии на `Checkbox` или на кнопку внутри `AccordionSummary`, необходимо прервать всплытие событий нажатия и фокуса. Также вы должны указать `aria-label` для действий, иначе label действия будет включен в label кнопки разворачивания аккордеона.
-
-{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## Производительность
 
@@ -42,12 +41,6 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 ```
 
 Как и при любой оптимизации производительности, эта функция не панацея. Сначала идентифицируйте узкие места и лишь затем пытайтесь применить эти стратегии.
-
-## Подзаголовок и столбцы
-
-Содержимое панели можно структурировать, сгруппировав его в отдельные столбцы, кроме того можно добавить подзаголовок и подсказки для пользователя.
-
-{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## Доступность
 

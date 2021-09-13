@@ -1,17 +1,8 @@
-import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    close: {
-      padding: theme.spacing(0.5),
-    },
-  }),
-);
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 export interface SnackbarMessage {
   message: string;
@@ -20,14 +11,16 @@ export interface SnackbarMessage {
 
 export interface State {
   open: boolean;
-  snackPack: SnackbarMessage[];
+  snackPack: readonly SnackbarMessage[];
   messageInfo?: SnackbarMessage;
 }
 
 export default function ConsecutiveSnackbars() {
-  const [snackPack, setSnackPack] = React.useState<SnackbarMessage[]>([]);
+  const [snackPack, setSnackPack] = React.useState<readonly SnackbarMessage[]>([]);
   const [open, setOpen] = React.useState(false);
-  const [messageInfo, setMessageInfo] = React.useState<SnackbarMessage | undefined>(undefined);
+  const [messageInfo, setMessageInfo] = React.useState<SnackbarMessage | undefined>(
+    undefined,
+  );
 
   React.useEffect(() => {
     if (snackPack.length && !messageInfo) {
@@ -45,7 +38,10 @@ export default function ConsecutiveSnackbars() {
     setSnackPack((prev) => [...prev, { message, key: new Date().getTime() }]);
   };
 
-  const handleClose = (event: React.SyntheticEvent | MouseEvent, reason?: string) => {
+  const handleClose = (
+    event: React.SyntheticEvent | MouseEvent,
+    reason?: string,
+  ) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -56,21 +52,16 @@ export default function ConsecutiveSnackbars() {
     setMessageInfo(undefined);
   };
 
-  const classes = useStyles();
   return (
     <div>
       <Button onClick={handleClick('Message A')}>Show message A</Button>
       <Button onClick={handleClick('Message B')}>Show message B</Button>
       <Snackbar
         key={messageInfo ? messageInfo.key : undefined}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
-        onExited={handleExited}
+        TransitionProps={{ onExited: handleExited }}
         message={messageInfo ? messageInfo.message : undefined}
         action={
           <React.Fragment>
@@ -80,7 +71,7 @@ export default function ConsecutiveSnackbars() {
             <IconButton
               aria-label="close"
               color="inherit"
-              className={classes.close}
+              sx={{ p: 0.5 }}
               onClick={handleClose}
             >
               <CloseIcon />

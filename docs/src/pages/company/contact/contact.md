@@ -1,6 +1,6 @@
-# Contact Us
+# Contact us
 
-<p class="description">We’re all ears.</p>
+<p class="description">We're all ears.</p>
 
 Please choose a topic below related to your inquiry:
 

@@ -8,16 +8,16 @@ If you still can't find what you're looking for, you can refer to our [support p
 
 Material-UIをサポートする方法はたくさんあります。
 
-- **ライブラリを布教する** **ライブラリを布教する** **ライブラリを布教する** **ライブラリを布教する** **ライブラリを布教する** Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
-- **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
-- **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
-- **Make changes happen**. 
+- **ライブラリを布教する**  **ライブラリを布教する** **ライブラリを布教する** **ライブラリを布教する** **ライブラリを布教する** Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
+- **フィードバックを送る** Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
+- **新規ユーザーを助ける** You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
+- **変更を加える**
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
   - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
   - Help [translate](https://translate.material-ui.com) the documentation.
-  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/master/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
-- **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**. If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
+  - [Pull Requestを出して](https://github.com/mui-org/material-ui/pulls)、[私たちのドキュメントを改善したり](https://github.com/mui-org/material-ui/tree/next/docs)、 バグを修正したり、新機能を追加したりしましょう。
+- **[OpenCollective](https://opencollective.com/material-ui)で資金的なサポートをする** If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
 
 ## productionビルドでコンポーネントが正しくレンダリングされないのはなぜですか？
 
@@ -27,8 +27,8 @@ To correct this issue, all components on the page need to be initialized such th
 
 さまざまなシナリオで、誤って2つのクラス名ジェネレータを使用することになる事例
 
-- If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. --hoistフラグを指定してbootstrap option を実行してみてください。
-- You are using `StylesProvider` for a **subset** of your React tree.
+- 誤って2つのバージョンのMaterial-UIを**バンドル**してしまっている場合。 If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. --hoistフラグを指定してbootstrap option を実行してみてください。
+- Reactツリーの**サブセット**に`StylesProvider`を使用している場合
 - バンドラーを使用していて、それが原因で複数のクラス名ジェネレータインスタンスが作成されるようにコードを分割している場合。
 
 > Webパックで[SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/)を使用している場合は、[`最適化`で`runtimeChunk`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk)設定を構成してみてください。
@@ -47,12 +47,13 @@ Material-UI uses the same theme helper for creating all its transitions. Therefo
 import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
-  props: {
+  components: {
     // Name of the component ⚛️
     MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 💣!
-    },
+      defaultProps: {
+        // The props to apply
+        disableRipple: true, // No more ripple, on the whole application 💣!
+      },
   },
 });
 ```
@@ -80,11 +81,10 @@ You can go one step further by disabling all transitions and animations effects:
 import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
-  overrides: {
+  components: {
     // Name of the component ⚛️
     MuiCssBaseline: {
-      // Name of the rule
-      '@global': {
+      styleOverrides: {
         '*, *::before, *::after': {
           transition: 'none !important',
           animation: 'none !important',
@@ -110,7 +110,7 @@ Notice that the usage of `CssBaseline` is required for the above approach to wor
 
 その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示しています。
 
-## インラインスタイルとCSSのどちらを使用すべきか
+## When should I use inline-style vs. CSS?
 
 経験則として、動的styleプロパティにはinline-styleのみを使用してください。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。
 
@@ -121,7 +121,7 @@ Notice that the usage of `CssBaseline` is required for the above approach to wor
 
 ## react-routerの使い方は？
 
-We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
+We detail the [integration with third-party routing libraries](/guides/routing/) like react-router, Gatsby or Next.js in our guide.
 
 ## どうやってDOM要素にアクセスできますか？
 
@@ -228,7 +228,9 @@ Lernaルートフォルダー内のpackage.jsonファイルの例
 
 ## サーバーでアプリが正しくレンダリングされない
 
-動作しない場合は、99%のケースで設定の問題になります。 動作しない場合は、99%のケースで設定の問題になります。 動作しない場合は、99%のケースで設定の問題になります。 動作しない場合は、99%のケースで設定の問題になります。 動作しない場合は、99%のケースで設定の問題になります。 A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+動作しない場合は、99%のケースで設定の問題になります。 A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup.
+
+The best way to find out what's wrong is to compare your project to an **already working setup**. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSSは最初のロードでのみ機能し、その後欠落します
 
@@ -238,7 +240,7 @@ CSSは、ページの最初のロード時にのみ生成されます。 この�
 
 The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). 要求ごとに**新しい`シート`インスタンスを作成する必要があります**。
 
-*修正の例：*
+修正の例：
 
 ```diff
 -const sheets = new ServerStyleSheets();
@@ -248,10 +250,17 @@ function handleRender(req, res) {
 + // Create a sheets instance.
 + const sheets = new ServerStyleSheets();
 
-  //…
+  //… const html = ReactDOMServer.renderToString(
+  -// Create a sheets instance.
+-const sheets = new ServerStyleSheets();
 
-  // Render the component to a string.
-const html = ReactDOMServer.renderToString(
+function handleRender(req, res) {
+
++ // Create a sheets instance.
+
+  + const sheets = new ServerStyleSheets();
+
+  //…
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
@@ -261,50 +270,55 @@ const html = ReactDOMServer.renderToString(
 
 ### Reactクラス名のハイドレーションの不一致
 
+> Warning: Prop className did not match.
+
 クライアントとサーバーの間にクラス名の不一致があります。 最初の要求で機能する場合があります。 う1つの症状は、初期ページ・ロードとクライアント・スクリプトのダウンロードの間でスタイル設定が変更されることです。 最初の要求で機能する場合があります。 う1つの症状は、初期ページ・ロードとクライアント・スクリプトのダウンロードの間でスタイル設定が変更されることです。
 
 #### 実行するアクション
 
-クラス名の値は、[class name generator](/styles/advanced/#class-names)の概念に基づいています。 ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば：
+クラス名の値は、[class name generator](/styles/advanced/#class-names)の概念に基づいています。 ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターで**レンダリングする必要があります 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば：
 
 - 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。
 
-*修正の例：*
+  修正の例：
 
-```diff
--// Create a new class name generator.
--const generateClassName = createGenerateClassName();
+  ```diff
+  -// Create a new class name generator.
+  -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
 
 + // Create a new class name generator.
-+ const generateClassName = createGenerateClassName();
+  -const generateClassName = createGenerateClassName();
+
+function handleRender(req, res) {
+
++ // Create a new class name generator.
+
+    + const sheets = new ServerStyleSheets();
 
   //…
-
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
+    const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   -// Create a sheets instance.
-```
+  ```
 
 - しかし、異なるリクエスト間で**createGenerateClassName()**を共有すべきではありません。 マイナーバージョンの不一致でも、スタイルの問題が発生する可能性があります。 バージョン番号を確認するには、アプリケーションを構築する環境と配備環境で`npm list@material-ui/core`を実行します
-  
-    Package.jsonの依存関係に特定のMUIバージョンを指定することで、異なる環境で同じバージョンを使用することもできます。
 
-*修正の例（package.json）：*
+  Package.jsonの依存関係に特定のMUIバージョンを指定することで、異なる環境で同じバージョンを使用することもできます。
 
-```diff
-  "dependencies": {
+  _修正の例（package.json）：_
+
+  ```diff
+    "dependencies": {
     ...
-
--   "@material-ui/core": "^4.0.0",
+  -   "@material-ui/core": "^4.0.0",
 +   "@material-ui/core": "4.0.0",
     ...
-  },
-```
+    },
+  ```
 
 - サーバーとクライアントが同じ`process.env.NODE_ENV` valueを共有していることを確認する必要があります。
 
@@ -355,7 +369,10 @@ function Portal({ children, container }) {
 ```jsx
 function App() {
   const [container, setContainer] = React.useState(null);
-  const handleRef = React.useCallback(instance => setContainer(instance), [setContainer])
+  const handleRef = React.useCallback(
+    (instance) => setContainer(instance),
+    [setContainer],
+  );
 
   return (
     <div className="App">

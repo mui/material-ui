@@ -1,343 +1,382 @@
-# @material-ui/system
+# Sistema Material-UI
 
-<p class="description">Sistema de estilo & funções de estilo para a construção de sistemas de design poderosos.</p>
+<p class="description">CSS utilities for rapidly laying out custom designs.</p>
 
-## Primeiros passos
+Material-UI comes with dozens of **ready-to-use** components in the core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
 
-O pacote `@material-ui/system` fornece funções utilitárias de baixo nível, chamadas de "*funções de estilo*", para construir sistemas de design poderosos. Algumas das principais características:
+O **sistema** permite que você crie rapidamente componentes de UI customizados utilizando os valores definidos no seu tema.
 
-- ⚛️ Acesso aos valores do tema diretamente nas propriedades do componente.
-- 🦋 Incentivo a consistência da UI.
-- 🌈 Escreva estilo responsivo sem esforço.
-- 🦎 Trabalhe com qualquer objeto de tema.
-- 💅 Trabalhe com as soluções CSS-in-JS mais populares.
-- 📦 Menos que [4 KB gzipped](https://bundlephobia.com/result?p=@material-ui/system).
-- 🚀 [Rápido o suficiente](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem) para não ser um gargalo em tempo de execução.
+## Demonstração
 
-É importante entender que este pacote expõe funções de estilo puras (sem efeitos colaterais) com esta assinatura: `({ theme, ...style }) => style`, **só isso**.
+_(Redimensione a janela para ver os pontos de quebra responsivos)_
 
-### Demonstração
+{{"demo": "pages/system/basics/Demo.js", "bg": true, "defaultCodeOpen": true}}
 
-No restante desta seção de *Primeiros passos*, estamos usando **styled-components** como exemplo de referência (para enfatizar a universalidade deste pacote). Como alternativa, você pode [usar JSS](#interoperability). As demonstrações também são baseadas no valor **padrão** do [objeto de tema](/customization/default-theme/) do Material-UI.
+## Instalação
 
-{{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
-
-### Instalação
+<!-- #default-branch-switch -->
 
 ```jsx
-// utilizando o npm
-npm install @material-ui/system
+// with npm
+npm install @material-ui/system@next @emotion/react @emotion/styled
 
-// utilizando o yarn
-yarn add @material-ui/system
+// with yarn
+yarn add @material-ui/system@next @emotion/react @emotion/styled
 ```
 
-### Criando um componente
+Or if you want to use `styled-components` as a styling engine:
 
-Para usar o componente `Box`, você primeiro irá precisar criá-lo. Para começar, adicione uma função de `spacing` e `palette` para o argumento de estilo.
+```sh
+// with npm
+npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 
-```jsx
-import styled from 'styled-components';
-import { spacing, palette } from '@material-ui/system';
-
-const Box = styled.div`${spacing}${palette}`;
-
-export default Box;
+// with yarn
+yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 ```
 
-Este componente Box agora suporta novas [propriedades de espaçamento](/system/spacing/#api) e [propriedades de cor](/system/palette/#api). Por exemplo, você pode fornecer uma propriedade de preenchimento: `p` e uma propriedade de cor: `color`.
+Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+
+## Por que usar o sistema?
+
+Compare como o mesmo componente de estatística pode ser construído com duas APIs diferentes.
+
+{{"demo": "pages/system/basics/Why.js", "bg": true, "defaultCodeOpen": false}}
+
+1. ❌ usando a API do styled-components:
 
 ```jsx
-<Box p="1rem" color="grey">Me dê algum espaço!</Box>
+const StatWrapper = styled('div')(
+  ({ theme }) => `
+  background-color: ${theme.palette.background.paper};
+  box-shadow: ${theme.shadows[1]};
+  border-radius: ${theme.shape.borderRadius}px;
+  padding: ${theme.spacing(2)};
+  min-width: 300px;
+`,
+);
+
+const StatHeader = styled('div')(
+  ({ theme }) => `
+  color: ${theme.palette.text.secondary};
+`,
+);
+
+const StyledTrend = styled(TrendingUpIcon)(
+  ({ theme }) => `
+  color: ${theme.palette.success.dark};
+  font-size: 16px;
+  vertical-alignment: sub;
+`,
+);
+
+const StatValue = styled('div')(
+  ({ theme }) => `
+  color: ${theme.palette.text.primary};
+  font-size: 34px;
+  font-weight: ${theme.typography.fontWeightMedium};
+`,
+);
+
+const StatDiff = styled('div')(
+  ({ theme }) => `
+  color: ${theme.palette.success.dark};
+  display: inline;
+  font-weight: ${theme.typography.fontWeightMedium};
+  margin-left: ${theme.spacing(0.5)};
+  margin-right: ${theme.spacing(0.5)};
+`,
+);
+
+const StatPrevious = styled('div')(
+  ({ theme }) => `
+  color: ${theme.palette.text.secondary};
+  display: inline;
+  font-size: 12px;
+`,
+);
+
+return (
+  <StatWrapper>
+    <StatHeader>Sessões</StatHeader>
+    <StatValue>98.3 K</StatValue>
+    <StyledTrend />
+    <StatDiff>18.77%</StatDiff>
+    <StatPrevious>em relação ultima semana</StatPrevious>
+  </StatWrapper>
+);
 ```
 
-O componente pode ser estilizado, fornecendo quaisquer valores CSS válidos.
-
-### Temas
-
-Mas na maioria das vezes, você deseja depender dos valores de um tema, para aumentar a consistência da interface do usuário. É preferível ter um conjunto predeterminado de valores de preenchimento e cor. Importe o provedor de temas de sua solução de estilo.
+2. ✅ usando o sistema:
 
 ```jsx
-import React from 'react'
-import { ThemeProvider } from 'styled-components'
+<Box
+  sx={{
+    bgcolor: 'background.paper',
+    boxShadow: 1,
+    borderRadius: 1,
+    p: 2,
+    minWidth: 300,
+  }}
+>
+  <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
+  <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
+    98.3 K
+  </Box>
+  <Box
+    component={TrendingUpIcon}
+    sx={{ color: 'success.dark', fontSize: 16, verticalAlign: 'sub' }}
+  />
+  <Box
+    sx={{
+      color: 'success.dark',
+      display: 'inline',
+      fontWeight: 'medium',
+      mx: 0.5,
+    }}
+  >
+    18.77%
+  </Box>
+  <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
+    vs. last week
+  </Box>
+</Box>
+```
 
-const theme = {
-  spacing: 4,
-  palette: {
-    primary: '#007bff',
+### Problema resolvido
+
+O sistema foca na resolução de 3 principais problemas:
+
+**1. Mudar de contexto desperdiça tempo.**
+
+Não há necessidade de saltar constantemente entre o uso dos componentes customizados e onde eles são definidos. Com o sistema, essas descrições estão corretas onde é necessário estar.
+
+**2. Nomear as coisas é difícil.**
+
+Você já se encontrou com dificuldades para encontrar um bom nome para um componente customizado? O sistema mapeia os estilos diretamente para o elemento. Tudo o que você precisa fazer é se preocupar com as propriedades de estilo atuais.
+
+**3. Manter consistência nas UI é difícil.**
+
+Isso é especialmente verdadeiro quando mais de uma pessoa está construindo a aplicação, já que tem que haver alguma coordenação entre os membros da equipe sobre a escolha dos tokens de design e como eles são usados, quais partes da estrutura do tema devem ser usadas com quais propriedades CSS e assim por diante.
+
+O sistema oferece acesso direto ao valor no tema. Fica mais fácil de lidar com restrições.
+
+## A propriedade `sx`
+
+A propriedade `sx`, como a parte principal do sistema, resolve esses problemas, fornecendo uma maneira rápida & simples de aplicar os tokens de design corretos para propriedades CSS específicas diretamente a um elemento React. A [demonstração acima](#demo) mostra como ela pode ser usada para criar um design único.
+
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Além disso, permite uma maneira simples de definir valores responsivos que correspondem aos pontos de quebra definidos no tema.
+
+### Quando usar ela?
+
+- **styled-components**: a API é excelente para construir componentes que precisam suportar uma ampla variedade de contextos. Estes componentes são usados em diversos locais da aplicação e suportam diferentes combinações de propriedades.
+- **propriedade `sx`**: a API é excelente para aplicar estilos pontuais. É chamado de "utilitário" por esse motivo.
+
+### Desempenho
+
+O sistema depende do CSS-in-JS. Funciona com ambos, emotion e styled-components.
+
+Prós:
+
+- 📚 Permite uma grande flexibilidade na API. A propriedade `sx` suporta um super conjunto de CSS. Não há **nenhuma necessidade de aprender CSS duas vezes**. Uma vez que você aprendeu a sintaxe padronizada do CSS, é seguro pois, não mudou durante uma década. Então, você pode **opcionalmente** aprender os atalhos, se você valoriza a economia de tempo que eles trazem.
+- 📦 Auto-purge. Somente o CSS usado na página é enviado para o cliente. O custo inicial do tamanho do pacote é **fixo**. Ele não aumenta com o número de propriedades CSS usadas. Você paga o custo de [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) e [@material-ui/system](https://bundlephobia.com/result?p=@material-ui/system). Custa cerca de ~15 kB gzipped. Se você já está usando os componentes principais, eles não vêm com sobrecarga extra.
+
+Contras:
+
+- O desempenho em tempo de execução é impactado.
+
+  | Benchmark                             | Fragmento de código         | Tempo normalizado |
+  |:------------------------------------- |:--------------------------- | ----------------- |
+  | a. Renderizar 1.000 Box               | `<div className="…">` | 100ms             |
+  | b. Renderizar 1.000 componentes       | `<Div>`               | 120ms             |
+  | c. Renderizar 1,000 styled components | `<StyledDiv>`         | 160ms             |
+  | d. a. Renderizar 1.000 Box            | `<Box sx={…}>`        | 370ms             |
+
+  _Vá até a [pasta de benchmark](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) para uma reprodução dessas métricas._
+
+  Nós acreditamos que para a maioria das situações é **rápido o suficiente**, mas há soluções alternativas simples onde a performance se torna crítica. Por exemplo, ao renderizar uma lista com muitos itens, você pode usar um seletor filho CSS para ter um único ponto de "injeção de estilo" (usando d. para o wrapper e a. para cada item).
+
+### API tradeoff
+
+Having the system under one prop (`sx`) helps to differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic. It's important for the **separation of concerns**. For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), not to be confused with the color CSS property.
+
+Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _props_ for the above reason. These components are designed to solve CSS problems, they are CSS component utilities.
+
+## Uso
+
+### Tokens de design no tema
+
+Você pode explorar a página de [Propriedades do sistema](/system/properties/) para descobrir como as diferentes propriedades do CSS (e customizadas) são mapeadas para a chaves do tema.
+
+### Abreviações
+
+Existem muitas abreviações disponíveis para as propriedades do CSS. Estas são documentadas nas próximas paginas, por exemplo, [o espaçamento](/system/spacing/). Aqui está um exemplo demonstrando-as:
+
+```jsx
+<Box
+  sx={{
+    boxShadow: 1, // theme.shadows[1]
+    color: 'primary.main', // theme.palette.primary.main
+    m: 1, // margin: theme.spacing(1)
+    p: {
+      xs: 1, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
+    },
+    zIndex: 'tooltip', // theme.zIndex.tooltip
+  }}
+>
+```
+
+Estas abreviações são **opcionais**, elas são ótimas para economizar tempo quando escrevemos estilos, mas pode ser frustrante aprender novas APIs customizadas. Talvez você queira pular essa parte e apostar em CSS, ele está padronizado há décadas, vá para a [próxima seção](#superset-of-css).
+
+### Super conjunto de CSS
+
+Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos:
+
+- Usando pseudo seletores:
+
+  ```jsx
+  <Box
+    sx={{
+      // some styles
+      ":hover": {
+        boxShadow: 6,
+      },
+    }}
+  >
+  ```
+
+- Usando consultas de mídia:
+
+  ```jsx
+  <Box
+    sx={{
+      // some styles
+      '@media print': {
+        width: 300,
+      },
+    }}
+  >
+  ```
+
+- Usando seletor aninhado:
+
+  ```jsx
+  <Box
+    sx={{
+      // some styles
+      '& .ChildSelector': {
+        bgcolor: 'primary.main',
+      },
+    }}
+  >
+  ```
+
+### Valores responsivos
+
+Se você quiser ter valores responsivos para uma propriedade CSS, você pode usar a sintaxe abreviada de pontos de quebra. Há duas maneiras de definir os pontos de quebra:
+
+#### 1. Pontos de quebra como um objeto
+
+A primeira opção para definir pontos de quebra é defini-los como um objeto, usando os pontos de quebra como chaves. Note that each breakpoint property matches the breakpoint and every larger breakpoint. For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`. Aqui está o exemplo anterior novamente, usando a sintaxe do objeto.
+
+{{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
+
+#### 2. Pontos de quebra como um array
+
+A segunda opção é definir seus pontos de quebra como um array, do menor ao maior ponto de quebra.
+
+{{"demo": "pages/system/basics/BreakpointsAsArray.js"}}
+
+> ⚠️ Esta opção só é recomendada quando o tema tem um número limitado de pontos de quebra, p. ex. 3.<br /> Prefira a API de objeto se você tiver mais pontos de quebra. Por exemplo, o tema padrão do Material-UI tem 5.
+
+Você pode ignorar pontos de quebra usando o valor como `null`:
+
+```jsx
+<Box sx={{ width: [null, null, 300] }}>Este box tem uma largura responsiva.</Box>
+```
+
+### Pontos de quebra customizados
+
+Você também pode especificar seus próprios pontos de quebras customizados, e usá-los como chaves ao definir o objeto de pontos de quebra. Aqui esta um exemplo de como o fazer.
+
+```jsx
+import * as React from 'react';
+import Box from '@material-ui/core/Box';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      mobile: 0,
+      tablet: 640,
+      laptop: 1024,
+      desktop: 1280,
+    },
   },
-};
+});
 
-export default function App() {
+export default function CustomBreakpoints() {
   return (
     <ThemeProvider theme={theme}>
-      {/* componentes filhos */}
+      <Box
+        sx={{
+          width: {
+            mobile: 100,
+            laptop: 300,
+          },
+        }}
+      >
+        This box has a responsive width
+      </Box>
     </ThemeProvider>
-  )
+  );
 }
 ```
 
-Agora, você pode fornecer um valor multiplicador de espaçamento:
+Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
+
+```ts
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
+    xs: false; // removes the `xs` breakpoint
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    tablet: true; // adds the `tablet` breakpoint
+    laptop: true;
+    desktop: true;
+  }
+}
+```
+
+### Recuperando o tema
+
+Se você deseja usar o tema para uma propriedade CSS que não é suportada nativamente pelo sistema, você pode usar uma função como valor, no qual você pode acessar o objeto do tema.
+
+{{"demo": "pages/system/basics/ValueAsFunction.js"}}
+
+## Implementações
+
+A propriedade `sx` pode ser usada em quatro locais diferentes:
+
+### 1. Componentes do core
+
+Todos os componentes Material-UI do core suportarão a propriedade `sx`.
+
+### 2. Box
+
+[`Box`](/components/box/) é um componente leve que dá acesso a propriedade `sx`, e pode ser usado como um componente utilitário, e como um encapsulador para outros componentes. Ele renderiza um elemento `<div>` por padrão.
+
+### 3. Componentes customizados
+
+In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
 
 ```jsx
-<Box p={1}>4px</Box>
-<Box p={2}>8px</Box>
-<Box p={-1}>-4px</Box>
+import { styled } from '@material-ui/core/styles';
+
+const Div = styled('div')``;
 ```
 
-e uma cor primária:
+### 4. Qualquer elemento com o plugin babel
 
-```jsx
-<Box color="primary">azul</Box>
-```
-
-### Tudo incluído
-
-Para tornar o componente Box mais útil, estamos construindo uma coleção de funções de estilo, aqui está a lista completa:
-
-- [borders](/system/borders/#api)
-- [display](/system/display/#api)
-- [flexbox](/system/flexbox/#api)
-- [palette](/system/palette/#api)
-- [positions](/system/positions/#api)
-- [shadows](/system/shadows/#api)
-- [sizing](/system/sizing/#api)
-- [spacing](/system/spacing/#api)
-- [typography](/system/typography/#api)
-
-Se você já estiver usando `@material-ui/core`, poderá usar o componente [Box](/components/box/) (usando JSS internamente):
-
-```jsx
-import Box from '@material-ui/core/Box';
-```
-
-## Interoperabilidade
-
-O pacote `@material-ui/system` funciona com a maioria das bibliotecas CSS-in-JS, incluindo JSS, styled-components, e emotion.
-
-Se você já estiver usando `@material-ui/core`, nós recomendamos você a começar com a solução **JSS**, para diminuir o tamanho do pacote.
-
-### JSS
-
-{{"demo": "pages/system/basics/JSS.js", "defaultCodeOpen": true}}
-
-### Styled components
-
-{{"demo": "pages/system/basics/StyledComponents.js", "defaultCodeOpen": true}}
-
-### Emotion
-
-{{"demo": "pages/system/basics/Emotion.js", "defaultCodeOpen": true}}
-
-## Responsividade
-
-**Todas** as propriedades são responsivas, oferecemos suporte para 3 diferentes APIs. Ela usa essa estrutura de tema com pontos de quebra padrão, mas é customizável:
-
-```js
-const values = {
-  xs: 0,
-  sm: 600,
-  md: 960,
-  lg: 1280,
-  xl: 1920,
-};
-
-const theme = {
-  breakpoints: {
-    keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-    up: key => `@media (min-width:${values[key]}px)`,
-  },
-};
-```
-
-### Array
-
-```jsx
-<Box p={[2, 3, 4]} />
-
-/**
- * Saídas:
- *
- * padding: 16px;
- * @media (min-width: 600px) {
- *   padding: 24px;
- * }
- * @media (min-width: 960px) {
- *   padding: 32px;
- * }
- */
-```
-
-### Object
-
-```jsx
-<Box p={{ xs: 2, sm: 3, md: 4 }} />
-
-/**
- * Saídas:
- *
- * padding: 16px;
- * @media (min-width: 600px) {
- *   padding: 24px;
- * }
- * @media (min-width: 960px) {
- *   padding: 32px;
- * }
- */
-```
-
-### Colocação
-
-Se você quiser agrupar valores de ponto de quebra, você pode usar o utilitário `breakpoints()`.
-
-```jsx
-import { compose, spacing, palette, breakpoints } from '@material-ui/system';
-import styled from 'styled-components';
-
-const Box = styled.div`
-  ${breakpoints(
-    compose(
-      spacing,
-      palette,
-    ),
-  )}
-`;
-
-<Box
-  p={2}
-  sm={{ p: 3 }}
-  md={{ p: 4 }}
-/>
-
-/**
- * Saídas:
- *
- * padding: 16px;
- * @media (min-width: 600px) {
- *   padding: 24px;
- * }
- * @media (min-width: 960px) {
- *   padding: 32px;
- * }
- */
-```
-
-{{"demo": "pages/system/basics/CollocationApi.js"}}
-
-## Propriedades de estilo customizadas
-
-### `style(options) => style function`
-
-Use esta função utilitária para criar sua própria função de estilo.
-
-Nem todas as propriedades CSS são suportadas. É possível que você queira suportar novas. Também é possível que você queira alterar o prefixo do caminho do tema.
-
-#### Argumentos
-
-1. `options` (*Object*): 
-  - `options.prop` (*String*): A propriedade na qual a função de estilo será ativada.
-  - `options.cssProperty` (*String|Boolean* [opcional]): Padrão `options.prop`. A propriedade CSS usada. Você pode desativar esta opção fornecendo `false`. Quando desativado, o valor da propriedade será manipulado como um objeto de estilo próprio. Pode ser usado para [variações de renderização](#variants).
-  - `options.themeKey` (*String* [opcional]): O prefixo do caminho do tema.
-  - `options.transform` (*Function* [opcional]): Aplique uma transformação antes de gerar um valor de CSS.
-
-#### Retornos
-
-`style function`: A função de estilo criada.
-
-#### Exemplos
-
-Você pode criar um componente que suporte algumas propriedades CSS na grade, como um `grid-gap`. Fornecendo `spacing` como `themeKey`, você pode reutilizar a lógica, permitindo o comportamento que vemos em outras propriedades de espaçamento, como `padding`.
-
-```jsx
-import styled from 'styled-components';
-import { style } from '@material-ui/system';
-import { Box } from '@material-ui/core';
-
-const gridGap = style({
-  prop: 'gridGap',
-  themeKey: 'spacing',
-});
-
-const Grid = styled(Box)`${gridGap}`;
-const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
-```
-
-Você também pode customizar o nome da propriedade adicionando ambos, `prop` e `cssProperty` e transformando o valor, adicionando uma função `transform`.
-
-```jsx
-import styled from 'styled-components';
-import { style } from '@material-ui/system';
-
-const borderColor = style({
-  prop: 'bc',
-  cssProperty: 'borderColor',
-  themeKey: 'palette',
-  transform: value => `${value} !important`,
-});
-
-const Colored = styled.div`${borderColor}`;
-const example = <Colored bc="primary.main">...</Colored>;
-```
-
-### `compose(...style functions) => style function`
-
-Mesclar várias funções de estilo em uma.
-
-#### Retornos
-
-`style function`: A função de estilo criada.
-
-#### Exemplos
-
-```js
-import { style, compose } from '@material-ui/system'
-
-export const textColor = style({
-  prop: 'color',
-  themeKey: 'palette',
-});
-
-export const bgcolor = style({
-  prop: 'bgcolor',
-  cssProperty: 'backgroundColor',
-  themeKey: 'palette',
-});
-
-const palette = compose(textColor, bgcolor);
-```
-
-## Variantes
-
-A função utilitária `style()` também pode ser usada para mapear propriedades para objetos de estilo no tema. Neste exemplo, a propriedade `variant` suporta todas as chaves presentes em `theme.typography`.
-
-{{"demo": "pages/system/basics/Variant.js", "defaultCodeOpen": true}}
-
-## Propriedade CSS
-
-Se você quiser suportar valores customizados de CSS, você pode usar o utilitário `css()`. Ele irá processar a propriedade `css`.
-
-{{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
-
-## Como funciona
-
-O styled-system fez um ótimo trabalho [explicando como ele funciona](https://github.com/jxnblk/styled-system/blob/master/docs/how-it-works.md#how-it-works). Ele pode ajudar a construir um modelo mental para esse conceito de "função de estilo".
-
-## Situações de uso no mundo real
-
-Na prática, um componente do Box pode poupar muito tempo. Neste exemplo, demonstramos como reproduzir um componente Banner.
-
-{{"demo": "pages/system/basics/RealWorld.js", "bg": true}}
-
-## Técnica anterior
-
-O pacote `@material-ui/system` sintetiza ideias & APIs de várias fontes diferentes:
-
-- [Tachyons](https://tachyons.io/) foi uma das primeiras bibliotecas CSS (2014) a promover o [padrão de CSS atômico](https://css-tricks.com/lets-define-exactly-atomic-css/) (ou CSS funcional).
-- Tachyons foi mais tarde (2017) seguido por [Tailwind CSS](https://tailwindcss.com/). Eles tornaram o CSS atômico mais popular.
-- [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) introduziu lentamente nomes de classes atômicas em v2, v3 e v4. A forma como agrupam suas "Classes utilitárias" foi usada como inspiração.
-- No mundo React, [Styled System](https://github.com/jxnblk/styled-system) foi um dos primeiros (2017) a promover as funções de estilo. Ele pode ser usado como um componente genérico do Box, substituindo os utilitários de CSS atômicos, bem como os utilitários para escrever novos componentes.
-- Grandes empresas como Pinterest, GitHub e Segment.io estão usando a mesma abordagem em diferentes gostos: 
-  - [Evergreen Box](https://evergreen.segment.com/foundations/layers)
-  - [Gestalt Box](https://pinterest.github.io/gestalt/#/Box)
-  - [Primer Box](https://primer.style/components/docs/Box)
-- A implementação atual e a API responsiva de objetos foram inspiradas no [sistema Smooth-UI](https://smooth-ui.smooth-code.com/docs-basics-system).
+A fazer [#23220](https://github.com/mui-org/material-ui/issues/23220).

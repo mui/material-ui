@@ -1,43 +1,37 @@
 import * as React from 'react';
-import { pascal } from 'naming-style';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import * as Icons from '@material-ui/icons';
+import * as Icons from '@mui/icons-material';
+import { SvgIconProps } from '@mui/material/SvgIcon';
+import { pascalCase } from './utils';
 
-interface Props {
-  color?: 'inherit' | 'primary' | 'secondary' | 'action' | 'error' | 'disabled';
-  icon?: string;
-  theme?: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
-  width?: number;
-  height?: number;
+interface Props extends SvgIconProps {
+  baseClassName: string;
+  icon: string;
+  theme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
+  width: number | string;
+  height: number;
 }
 
-const defaultProps: Props = {
-  color: 'inherit',
+export function Icon(props: Props): JSX.Element | null {
+  const { height, icon: iconProp, theme, width, ...other } = props;
+  const iconName = `${iconProp && pascalCase(iconProp)}${theme === 'Filled' ? '' : theme}`;
+  const MuiIcon = Object.keys(Icons).indexOf(iconName) !== -1 ? Icons[iconName] : undefined;
+
+  return MuiIcon ? <MuiIcon style={{ width, height }} {...other} /> : null;
+}
+
+Icon.defaultProps = {
+  baseClassName: 'material-icons',
   icon: 'add',
-  theme: 'Filled',
+  theme: 'Filled' as 'Filled',
   width: 24,
   height: 24,
 };
 
-export const Icon: React.SFC<Props> = (props: Props) => {
-  const { height, icon: iconProp, theme, width, ...other } = props;
-  const iconName = `${iconProp && pascal(iconProp)}${theme === 'Filled' ? '' : theme}`;
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
-  const Icon = Object.keys(Icons).includes(iconName) ? Icons[iconName] : undefined;
-
-  return Icon ? <Icon style={{ width, height }} {...other} /> : null;
-};
-
-Icon.defaultProps = defaultProps;
-
 addPropertyControls(Icon, {
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['inherit', 'primary', 'secondary', 'action', 'error', 'disabled'],
+  baseClassName: {
+    type: ControlType.String,
+    title: 'Base class name',
   },
   icon: {
     type: ControlType.String,

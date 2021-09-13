@@ -1,7 +1,7 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 
 const currencies = [
   {
@@ -22,17 +22,7 @@ const currencies = [
   },
 ];
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-}));
-
-export default function MultilineTextFields() {
-  const classes = useStyles();
+export default function SelectTextFields() {
   const [currency, setCurrency] = React.useState('EUR');
 
   const handleChange = (event) => {
@@ -40,10 +30,17 @@ export default function MultilineTextFields() {
   };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <div>
         <TextField
-          id="standard-select-currency"
+          id="outlined-select-currency"
           select
           label="Select"
           value={currency}
@@ -57,7 +54,7 @@ export default function MultilineTextFields() {
           ))}
         </TextField>
         <TextField
-          id="standard-select-currency-native"
+          id="outlined-select-currency-native"
           select
           label="Native select"
           value={currency}
@@ -111,13 +108,13 @@ export default function MultilineTextFields() {
       </div>
       <div>
         <TextField
-          id="outlined-select-currency"
+          id="standard-select-currency"
           select
           label="Select"
           value={currency}
           onChange={handleChange}
           helperText="Please select your currency"
-          variant="outlined"
+          variant="standard"
         >
           {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -126,7 +123,7 @@ export default function MultilineTextFields() {
           ))}
         </TextField>
         <TextField
-          id="outlined-select-currency-native"
+          id="standard-select-currency-native"
           select
           label="Native select"
           value={currency}
@@ -135,7 +132,7 @@ export default function MultilineTextFields() {
             native: true,
           }}
           helperText="Please select your currency"
-          variant="outlined"
+          variant="standard"
         >
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
@@ -144,6 +141,6 @@ export default function MultilineTextFields() {
           ))}
         </TextField>
       </div>
-    </form>
+    </Box>
   );
 }

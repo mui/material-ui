@@ -1,15 +1,19 @@
 ---
 title: React Breadcrumbs Kompontente
 components: Breadcrumbs, Link, Typography
+githubLabel: 'component: Breadcrumbs'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 ---
 
 # Breadcrumbs
 
 <p class="description">Breadcrumbs erlauben es Nutzern, eine Auswahl aus einer Reihe von Werten zu treffen.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Einfache Breadcrumbs
 
-{{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/BasicBreadcrumbs.js"}}
 
 ## Active last breadcrumb
 
@@ -19,7 +23,7 @@ Keep the last breadcrumb interactive.
 
 ## Benutzerdefiniertes Trennzeichen
 
-In den folgenden Beispielen werden zwei textbasierte Trennzeichen und ein SVG-Icon verwendet.
+In the following examples, we are using two string separators and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
@@ -33,7 +37,7 @@ In den folgenden Beispielen werden zwei textbasierte Trennzeichen und ein SVG-Ic
 
 ## Benutzerdefinierte Breadcrumbs
 
-Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/how-to-customize/).
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 

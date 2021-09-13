@@ -32,60 +32,84 @@
 
 该工具允许您可以来通过 spacing 和 component 属性来应用密度。 您可以浏览一下，看看在 Material-UI 组件上使用后的整体感觉如何。
 
-如果您启用了较大的密度，那么一个自定义的主题将被应用到当前的文档中。 该主题仅为演示使用。 您 *不应该* 将此主题应用在整个应用程序中，因为这可能会对用户的体验产生一些负面影响。 在 [Material design 规范](https://material.io/design/layout/applying-density.html#typographic-density) 的示例中，列举了不应该使用密度的情景。
+如果您启用了较大的密度，那么一个自定义的主题将被应用到当前的文档中。 该主题仅为演示使用。 您 _不应该_ 将此主题应用在整个应用程序中，因为这可能会对用户的体验产生一些负面影响。 在 [Material design 规范](https://material.io/design/layout/applying-density.html#typographic-density) 的示例中，列举了不应该使用密度的情景。
 
 主题配置有以下选项：
 
 ```js
 const theme = createTheme({
-  props: {
+  components: {
     MuiButton: {
-      size: 'small',
+      defaultProps: {
+        size: 'small',
+      },
     },
     MuiFilledInput: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiFormControl: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiFormHelperText: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiIconButton: {
-      size: 'small',
+      defaultProps: {
+        size: 'small',
+      },
+      styleOverrides: {
+        sizeSmall: {
+          // Adjust spacing to reach minimal touch target hitbox
+          marginLeft: 4,
+          marginRight: 4,
+          padding: 12,
+        },
+      },
     },
     MuiInputBase: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiInputLabel: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiListItem: {
-      dense: true,
+      defaultProps: {
+        dense: true,
+      },
     },
     MuiOutlinedInput: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiFab: {
-      size: 'small',
+      defaultProps: {
+        size: 'small',
+      },
     },
     MuiTable: {
-      size: 'small',
+      defaultProps: {
+        size: 'small',
+      },
     },
     MuiTextField: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiToolbar: {
-      variant: 'dense',
-    },
-  },
-  overrides: {
-    MuiIconButton: {
-      sizeSmall: {
-        // 调整间距来实现最小的触摸目标框
-        marginLeft: 4,
-        marginRight: 4,
-        padding: 12,
+      defaultProps: {
+        variant: 'dense',
       },
     },
   },

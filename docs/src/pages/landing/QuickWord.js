@@ -1,14 +1,12 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import NoSsr from '@material-ui/core/NoSsr';
+import * as React from 'react';
+import { makeStyles } from '@mui/styles';
+import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const backers = [
   {
-    href:
-      'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
+    href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
     alt: 'tidelift',
     title: 'Tidelift — Enterprise-ready open source software',
   },
@@ -18,9 +16,9 @@ const backers = [
     title: 'Bitsrc — The fastest way to share code',
   },
   {
-    href: 'https://www.call-em-all.com',
-    alt: 'callemall',
-    title: 'Call-Em-All - The easy way to message your group',
+    href: 'https://www.text-em-all.com',
+    alt: 'textemall',
+    title: 'Text-Em-All - Mass Text Messaging & Automated Calling',
   },
   {
     href: 'https://octopus.com/?utm_source=materialui&utm_medium=referral',
@@ -28,8 +26,7 @@ const backers = [
     title: 'Octopus - Repeatable, reliable deployments',
   },
   {
-    href:
-      'https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral',
+    href: 'https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral',
     alt: 'doit-intl',
     title: 'DoiT - Management Platform for Google Cloud and AWS',
   },
@@ -53,13 +50,19 @@ const useStyles = makeStyles(
 
 export default function QuickWord() {
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
-  const backer = backers[Math.floor(backers.length * Math.random())];
+  const t = useTranslate();
+
+  const [backer, setBacker] = React.useState(null);
+  React.useEffect(() => {
+    setBacker(backers[Math.floor(backers.length * Math.random())]);
+  }, []);
 
   return (
     <div className={classes.root}>
       <Typography variant="caption">{t('homeQuickWord')}</Typography>
-      <NoSsr defer>
+      {backer === null ? (
+        <Typography variant="body2">&nbsp;</Typography>
+      ) : (
         <Link
           variant="body2"
           display="block"
@@ -72,7 +75,7 @@ export default function QuickWord() {
         >
           {backer.title}
         </Link>
-      </NoSsr>
+      )}
     </div>
   );
 }

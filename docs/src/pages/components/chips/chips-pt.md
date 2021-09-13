@@ -1,6 +1,8 @@
 ---
 title: Componente React Chip
 components: Chip
+githubLabel: 'component: Chip'
+materialDesign: https://material.io/components/chips
 ---
 
 # Chip
@@ -11,40 +13,74 @@ components: Chip
 
 Embora incluído aqui como um componente independente, o uso mais comum será em alguma forma de entrada, portanto, alguns dos comportamentos demonstrados aqui não são mostrados considerando um contexto.
 
-## Chip
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-Exemplo de Chips, usando uma imagem de Avatar, Ícone SVG, "Letra" e Avatar (texto).
+## Basic chip
 
-- Chips com a propriedade `onClick` definida, mudará a aparência do foco, ao passar por cima (hover) e clique.
-- Chips com a propriedade `onDelete` definida irá exibir um ícone de remoção no qual modificará a aparência ao passar por cima (hover).
+The `Chip` component supports outlined and filled styling.
 
-{{"demo": "pages/components/chips/Chips.js"}}
+{{"demo": "pages/components/chips/BasicChips.js"}}
 
-### Chips Delineados
+## Chip actions
 
-Chips Delineados oferecem um estilo alternativo.
+You can use the following actions.
 
-{{"demo": "pages/components/chips/OutlinedChips.js"}}
+- Chips with the `onClick` prop defined change appearance on focus, hover, and click.
+- Chips with the `onDelete` prop defined will display a delete icon which changes appearance on hover.
 
-## Matriz de Chip (Array)
+### Clickeable
 
-Um exemplo de renderização de vários Chips a partir de uma matriz de valores. Deletando um chip irá remove-lo da matriz. Observe que mesmo que a propriedade `onClick` não esteja definida, o Chip pode ser focado, mas não irá ganhar efeito de profundidade quando clicado ou tocado.
+{{"demo": "pages/components/chips/ClickeableChips.js"}}
 
-{{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
+### Deleteable
 
-## Chip Pequeno
+{{"demo": "pages/components/chips/DeleteableChips.js"}}
+
+### Clickeable and deleteable
+
+{{"demo": "pages/components/chips/ClickeableAndDeleteableChips.js"}}
+
+### Clickeable link
+
+{{"demo": "pages/components/chips/ClickeableLinkChips.js"}}
+
+### Custom delete icon
+
+{{"demo": "pages/components/chips/CustomDeleteIconChips.js"}}
+
+## Chip adornments
+
+You can add ornaments to the beginning of the component.
+
+Use the `avatar` prop to added a avatar or use the `icon` prop to added a icon.
+
+### Avatar chip
+
+{{"demo": "pages/components/chips/AvatarChips.js"}}
+
+### Icon chip
+
+{{"demo": "pages/components/chips/IconChips.js"}}
+
+## Color chip
+
+You can use the `color` prop to define a primary or secondary color.
+
+{{"demo": "pages/components/chips/ColorChips.js"}}
+
+## Sizes chip
 
 Você pode usar a propriedade `size` para definir um Chip pequeno.
 
-### Variante Default
+{{"demo": "pages/components/chips/SizesChips.js"}}
 
-{{"demo": "pages/components/chips/SmallChips.js"}}
+## Matriz de Chip (Array)
 
-### Variante Outlined
+An example of rendering multiple chips from an array of values. Deletando um chip irá remove-lo da matriz. Note that since no `onClick` prop is defined, the `Chip` can be focused, but does not gain depth while clicked or touched.
 
-{{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
+{{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
-## Chip - Exemplo interativo
+## Chip playground
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 

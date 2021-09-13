@@ -1,13 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import TwitterIcon from '@material-ui/icons/Twitter';
+import { createTheme } from '@mui/material/styles';
+import { withStyles } from '@mui/styles';
+import CardMedia from '@mui/material/CardMedia';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const activeCore = [
   {
@@ -28,28 +29,21 @@ const activeCore = [
     name: 'Sebastian Silbermann',
     github: 'eps1lon',
     twitter: 'sebsilbermann',
-    flag: 'Community team',
+    flag: 'Core components team',
     location: 'Dresden, Germany',
-  },
-  {
-    name: 'Damien Tassone',
-    github: 'dtassone',
-    twitter: 'madKakoO',
-    flag: 'Enterprise team',
-    location: 'London, UK',
   },
   {
     name: 'Marija Najdova',
     github: 'mnajdova',
     twitter: 'marijanajdova',
-    flag: 'Community team',
+    flag: 'Core components team',
     location: 'Skopje, North Macedonia',
   },
   {
     name: 'Danail Hadjiatanasov',
     github: 'DanailH',
     twitter: 'danail_h',
-    flag: 'Enterprise team',
+    flag: 'Advanced components team',
     location: 'Amsterdam, Netherlands',
   },
   {
@@ -58,6 +52,39 @@ const activeCore = [
     twitter: 'JoshWooding_',
     flag: 'Community member, J.P. Morgan',
     location: 'London, UK',
+  },
+  {
+    name: 'Matheus Wichman',
+    github: 'm4theushw',
+    flag: 'Advanced components team',
+    location: 'Esteio, Brazil',
+  },
+  {
+    name: 'Michał Dudak',
+    github: 'michaldudak',
+    twitter: 'michaldudak',
+    flag: 'Core components team',
+    location: 'Silesia, Poland',
+  },
+  {
+    name: 'Siriwat Kunaporn',
+    github: 'siriwatknp',
+    twitter: 'siriwatknp',
+    flag: 'Core components team',
+    location: 'Bangkok, Thailand',
+  },
+  {
+    name: 'Flavien Delangle',
+    github: 'flaviendelangle',
+    flag: 'Advanced components team',
+    location: 'Lille, France',
+  },
+  {
+    name: 'Danilo Leal',
+    github: 'danilo-leal',
+    twitter: 'danilobleal',
+    flag: 'Lead Designer',
+    location: 'São Paulo, Brazil',
   },
 ];
 
@@ -93,6 +120,13 @@ const community = [
     twitter: 'oleg008',
     flag: 'JSS',
     location: 'Berlin, Germany',
+  },
+  {
+    name: 'Ryan Cogswell',
+    github: 'ryancogswell',
+    twitter: 'ryanecogswell',
+    flag: 'Stack Overflow',
+    location: 'Minnesota, United States',
   },
 ];
 
@@ -163,7 +197,7 @@ const styles = (theme) => ({
     padding: theme.spacing(1),
   },
   container: {
-    margin: theme.spacing(2, 0, 4),
+    margin: theme.spacing(2, -2, 4),
   },
 });
 
@@ -192,10 +226,10 @@ function Group(props) {
                     <Typography component="h3" variant="h6">
                       {member.name}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography variant="body2" color="text.secondary">
                       {member.flag}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography variant="body2" color="text.secondary">
                       {member.location}
                     </Typography>
                     <Grid container>
@@ -204,6 +238,8 @@ function Group(props) {
                           aria-label="github"
                           component="a"
                           href={`https://github.com/${member.github}`}
+                          target="_blank"
+                          rel="noopener"
                           className={classes.icon}
                         >
                           <GitHubIcon fontSize="inherit" />
@@ -214,6 +250,8 @@ function Group(props) {
                           aria-label="twitter"
                           component="a"
                           href={`https://twitter.com/${member.twitter}`}
+                          target="_blank"
+                          rel="noopener"
                           className={classes.icon}
                         >
                           <TwitterIcon fontSize="inherit" />
@@ -260,7 +298,7 @@ some of whom have chosen to be featured below.`}
         title="Community emeriti"
         description={`We honor some no-longer-active core team members who have made
 valuable contributions in the past.
-They advise us from time-to-time.`}
+They advise us from time to time.`}
         members={emeriti}
         {...props}
       />
@@ -268,4 +306,5 @@ They advise us from time-to-time.`}
   );
 }
 
-export default withStyles(styles)(Team);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(Team);

@@ -1,18 +1,23 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import Mui«componentName» from '@material-ui/core/«componentName»';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Mui«componentName» from '@mui/material/«componentName»';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
-export function «componentName»(props) {
-  const { checked: checkedProp, label, onChange, size, ...other } = props;
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
+interface Props {
+«& tsInterface»
+}
 
+export function «componentName»(props: Props) {
+  const {
+    checked: checkedProp,
+    label,
+    // @ts-ignore -- untyped
+    onChange,
+    // @ts-ignore -- untyped
+    size,
+    ...other
+  } = props;
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,8 +27,6 @@ export function «componentName»(props) {
     setChecked((event.target as HTMLInputElement).checked);
   };
 
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
   React.useEffect(() => {
     setChecked(checkedProp);
   }, [checkedProp]);

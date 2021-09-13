@@ -1,9 +1,11 @@
 {
   "name": "create-react-app-with-typescript",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "latest",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@mui/material": "next",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "react": "latest",

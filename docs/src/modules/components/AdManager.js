@@ -1,10 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-
-const useEnhancedEffect =
-  typeof window !== 'undefined' && process.env.NODE_ENV !== 'test'
-    ? React.useLayoutEffect
-    : React.useEffect;
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 
 export const AdContext = React.createContext();
 
@@ -25,15 +21,7 @@ export default function AdManager(props) {
     setPortal({ placement: 'body-top', element: description });
   }, []);
 
-  return (
-    <AdContext.Provider
-      value={{
-        portal,
-      }}
-    >
-      {props.children}
-    </AdContext.Provider>
-  );
+  return <AdContext.Provider value={portal}>{props.children}</AdContext.Provider>;
 }
 
 AdManager.propTypes = {

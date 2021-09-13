@@ -13,7 +13,7 @@
 
 ## About us
 
-See the [careers](/company/careers/) and [about us](https://next.material-ui.com/branding/about/) pages.
+See the [careers](/company/careers/) and [about us](https://material-ui.com/branding/about/) pages.
 
 ### Why we're hiring
 
@@ -22,16 +22,16 @@ We need talented people to keep that going!
 
 Our mission is to make building UIs more accessible.
 The faster and simpler it is, and the broader the audience that can create custom UIs, the better.
-We believe that the best way to improve on these dimensions is to eliminate [80%](https://www.youtube.com/watch?v=GnO7D5UaDig&t=2451s) of the code that has to be written: low-code.
+We believe that the best way to improve on these dimensions is to eliminate [80%](https://www.youtube.com/watch?v=GnO7D5UaDig&t=2451s) of the code that has to be written.
 
 ### Why this is interesting
 
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use Material-UI every month.
+Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
 
 But providing React components isn't enough.
 In our [last developer survey](/blog/2020-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
 They are looking for ways to move faster.
-They are working on a couple of new projects every year, and where the integration between the UI and the database is key.
+They are working on a couple of new projects every year, and where the integration between the UI and the data is key.
 
 ## About the role
 
@@ -51,13 +51,13 @@ You are curious, you enjoy taking risks, and learning.
 
 ### Skills you should have
 
-- **Expertise in the modern JavaScript ecosystem**. Material-UI is built on the shoulders of giants, making use of technologies such as ES2020+, TypeScript, Node.js, React, Next.js, and Babel. The knowledge of SQL, Docker, and the AWS stack will prove itself valuable.
+- **Expertise in the modern JavaScript ecosystem**. MUI is built on the shoulders of giants, making use of technologies such as ES2020+, TypeScript, Node.js, React, Next.js, and Babel. The knowledge of SQL, Docker, and the AWS stack will prove itself valuable.
 - ​You are autonomous and a faster learner. You are proactive and can start projects without constant direction.
 - You ship code often that is elegant to use and read, and you take ownership of it. You can be relied upon throughout its lifecycle.
 - You can put a lot of thoughts into design, product roadmap, and the details of each feature. You won't only take a project and make it "functional."
 - You communicate your thoughts and decisions clearly and proactively, and engage with the rest of the team with an optimistic and first principles mindset.
 
-### What it would be nice if you had, but isn't required
+### What would be nice if you had, but isn't required
 
 - **You've maintained an active repository before.**
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.

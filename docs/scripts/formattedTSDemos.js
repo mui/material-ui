@@ -23,7 +23,7 @@ const tsConfig = typescriptToProptypes.loadConfig(path.resolve(__dirname, '../ts
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],
-  plugins: ['unwrap-createstyles'],
+  plugins: [],
   generatorOpts: { retainLines: true },
   babelrc: false,
   configFile: false,
@@ -31,15 +31,13 @@ const babelConfig = {
 
 const workspaceRoot = path.join(__dirname, '../../');
 
-const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
-  config: path.join(workspaceRoot, 'prettier.config.js'),
-});
-
 async function getFiles(root) {
   const files = [];
 
   await Promise.all(
-    (await fse.readdir(root)).map(async (name) => {
+    (
+      await fse.readdir(root)
+    ).map(async (name) => {
       const filePath = path.join(root, name);
       const stat = await fse.stat(filePath);
 
@@ -47,7 +45,8 @@ async function getFiles(root) {
         files.push(...(await getFiles(filePath)));
       } else if (
         stat.isFile() &&
-        filePath.endsWith('.tsx') &&
+        /\.tsx?$/.test(filePath) &&
+        !filePath.endsWith('.d.ts') &&
         !ignoreList.some((ignorePath) => filePath.endsWith(path.normalize(ignorePath)))
       ) {
         files.push(filePath);
@@ -60,24 +59,25 @@ async function getFiles(root) {
 
 const TranspileResult = {
   Success: 0,
-  Skipped: 1,
-  Failed: 2,
+  Failed: 1,
 };
 
-async function transpileFile(tsxPath, program, ignoreCache = false) {
-  const jsPath = tsxPath.replace('.tsx', '.js');
+async function transpileFile(tsxPath, program) {
+  const jsPath = tsxPath.replace(/\.tsx?$/, '.js');
   try {
-    if (!ignoreCache && (await fse.exists(jsPath))) {
-      const [jsStat, tsxStat] = await Promise.all([fse.stat(jsPath), fse.stat(tsxPath)]);
-      if (jsStat.mtimeMs > tsxStat.mtimeMs) {
-        // JavaScript version is newer, skip transpiling
-        return TranspileResult.Skipped;
-      }
-    }
-
     const source = await fse.readFile(tsxPath, 'utf8');
 
-    const { code } = await babel.transformAsync(source, { ...babelConfig, filename: tsxPath });
+    const transformOptions = { ...babelConfig, filename: tsxPath };
+    const enableJSXPreview = !tsxPath.includes(path.join('pages', 'premium-themes'));
+    if (enableJSXPreview) {
+      transformOptions.plugins = transformOptions.plugins.concat([
+        [
+          require.resolve('docs/src/modules/utils/babel-plugin-jsx-preview'),
+          { maxLines: 16, outputFilename: `${tsxPath}.preview` },
+        ],
+      ]);
+    }
+    const { code } = await babel.transformAsync(source, transformOptions);
 
     if (/import \w* from 'prop-types'/.test(code)) {
       throw new Error('TypeScript demo contains prop-types, please remove them');
@@ -94,11 +94,18 @@ async function transpileFile(tsxPath, program, ignoreCache = false) {
     });
     const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code);
 
-    const prettified = prettier.format(codeWithPropTypes, { ...prettierConfig, filepath: tsxPath });
+    const prettierConfig = prettier.resolveConfig.sync(jsPath, {
+      config: path.join(workspaceRoot, 'prettier.config.js'),
+    });
+    const prettierFormat = (jsSource) =>
+      prettier.format(jsSource, { ...prettierConfig, filepath: jsPath });
+
+    const prettified = prettierFormat(codeWithPropTypes);
     const formatted = fixBabelGeneratorIssues(prettified);
     const correctedLineEndings = fixLineEndings(source, formatted);
 
-    await fse.writeFile(jsPath, correctedLineEndings);
+    // removed blank lines change potential formatting
+    await fse.writeFile(jsPath, prettierFormat(correctedLineEndings));
     return TranspileResult.Success;
   } catch (err) {
     console.error('Something went wrong transpiling %s\n%s\n', tsxPath, err);
@@ -107,46 +114,55 @@ async function transpileFile(tsxPath, program, ignoreCache = false) {
 }
 
 async function main(argv) {
-  const { watch: watchMode, disableCache: cacheDisabled } = argv;
+  const { watch: watchMode, disableCache, pattern } = argv;
 
-  const tsxFiles = await getFiles(path.join(workspaceRoot, 'docs/src/pages'));
+  // TODO: Remove at some point.
+  // Though not too soon so that it isn't disruptive.
+  // It's a no-op anyway.
+  if (disableCache !== undefined) {
+    console.warn(
+      '--disable-cache does not have any effect since it is the default. In the future passing this flag will throw.',
+    );
+  }
 
-  const program = typescriptToProptypes.createProgram(tsxFiles, tsConfig);
+  const filePattern = new RegExp(pattern);
+  if (pattern.length > 0) {
+    console.log(`Only considering demos matching ${filePattern}`);
+  }
+
+  const tsxFiles = (await getFiles(path.join(workspaceRoot, 'docs/src/pages'))).filter(
+    (fileName) => {
+      return filePattern.test(fileName);
+    },
+  );
+
+  const program = typescriptToProptypes.createTSProgram(tsxFiles, tsConfig);
 
   let successful = 0;
   let failed = 0;
-  let skipped = 0;
-  (await Promise.all(tsxFiles.map((file) => transpileFile(file, program, cacheDisabled)))).forEach(
-    (result) => {
-      switch (result) {
-        case TranspileResult.Success: {
-          successful += 1;
-          break;
-        }
-        case TranspileResult.Failed: {
-          failed += 1;
-          break;
-        }
-        case TranspileResult.Skipped: {
-          skipped += 1;
-          break;
-        }
-        default: {
-          throw new Error(`No handler for ${result}`);
-        }
+  (await Promise.all(tsxFiles.map((file) => transpileFile(file, program)))).forEach((result) => {
+    switch (result) {
+      case TranspileResult.Success: {
+        successful += 1;
+        break;
       }
-    },
-  );
+      case TranspileResult.Failed: {
+        failed += 1;
+        break;
+      }
+      default: {
+        throw new Error(`No handler for ${result}`);
+      }
+    }
+  });
 
   console.log(
     [
       '------ Summary ------',
       '%i demo(s) were successfully transpiled',
-      '%i demo(s) were skipped',
       '%i demo(s) were unsuccessful',
     ].join('\n'),
     successful,
-    skipped,
     failed,
   );
 
@@ -171,7 +187,7 @@ async function main(argv) {
 yargs
   .command({
     command: '$0',
-    description: 'transpile typescript demos',
+    description: 'transpile TypeScript demos',
     builder: (command) => {
       return command
         .option('watch', {
@@ -180,9 +196,14 @@ yargs
           type: 'boolean',
         })
         .option('disable-cache', {
-          default: false,
-          description: 'transpiles all demos even if they didnt change',
+          description: 'No longer supported. The cache is disabled by default.',
           type: 'boolean',
+        })
+        .option('pattern', {
+          default: '',
+          description:
+            'Transpiles only the TypeScript demos whose filename matches the given pattern.',
+          type: 'string',
         });
     },
     handler: main,

@@ -4,15 +4,15 @@
 
 ## Perguntas Frequentes
 
-### Woah - a API é diferente! Isso significa que 1.0 é completamente diferente, vou ter que aprender o básico de novo, e a migração será praticamente impossível?
+### Woah - a API é diferente! Does that mean 1.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
 
-Estou feliz que você tenha perguntado! A resposta é não. Os principais conceitos não mudaram. Você vai notar que a API oferece mais flexibilidade, mas isso tem um custo – componentes de nível inferior que abstraem menos complexidade.
+A resposta é não. I'm glad you asked! The core concepts haven't changed. Você vai notar que a API oferece mais flexibilidade, mas isso tem um custo – componentes de nível inferior que abstraem menos complexidade.
 
 ### O que motivou uma mudança tão grande?
 
 Material-UI foi iniciado [4 anos atrás](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). O ecossistema evoluiu muito desde então, também aprendemos muito. [@nathanmarks](https://github.com/nathanmarks/) iniciou uma tarefa ambiciosa, reconstruindo o Material-UI do **zero**, aproveitando esse conhecimento para resolver problemas de longa data. Para citar algumas das principais mudanças:
 
-- Nova solução de estilo usando CSS-in-JS (melhor poder de [customização](/customization/components/), melhor desempenho)
+- New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
 - Novo tratamento de tema (aninhamento, auto-suporte, etc.)
 - Documentação rápida e brilhante graças a [Next.js](https://github.com/zeit/next.js)
 - Melhor [cobertura de teste](/guides/testing/) (99%+, executado em todos os principais navegadores, [testes de regressão visual](https://www.argos-ci.com/mui-org/material-ui))
@@ -22,55 +22,54 @@ Material-UI foi iniciado [4 anos atrás](https://github.com/mui-org/material-ui/
 ### Onde devo começar a migração?
 
 1. Comece instalando a versão v1.x do Material-UI ao lado da versão v0.x.
-    
-    utilizando o yarn:
+
+utilizando o yarn:
 
 ```sh
-  yarn add material-ui
+yarn add material-ui
   yarn add @material-ui/core
-  ```
+```
 
-  Ou utilizando npm:
-  ```sh
-  npm install material-ui
+Ou utilizando npm:
+
+```sh
+npm install material-ui
   npm install @material-ui/core
-  ```
+```
 
-  então
+então
 
-  ```js
-  import FlatButton from 'material-ui/FlatButton'; // v0.x
+```js
+import FlatButton from 'material-ui/FlatButton'; // v0.x
   import Button from '@material-ui/core/Button'; // v1.x
-  ```
+```
 
 2. Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) em seu projeto.
 3. `MuiThemeProvider` é opcional para v1.x., mas se você tem um tema customizado, você é livre para usar as versões v0.x e v1.x do componente, ao mesmo tempo, como neste exemplo:
 
-  ```jsx
-  import React from 'react';
-  import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
-  import { MuiThemeProvider as V0MuiThemeProvider} from 'material-ui';
-  import getMuiTheme from 'material-ui/styles/getMuiTheme';
+```jsx
+import * as React from 'react';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
+import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-  const theme = createMuiTheme({
-    /* tema para v1.x */
-  });
-  const themeV0 = getMuiTheme({
-    /* tema para v0.x */
-  });
+const theme = createMuiTheme({
+  /* tema para v1.x */
+});
+const themeV0 = getMuiTheme({
+  /* tema para v0.x */
+});
 
-  function App() {
-    return (
-      <MuiThemeProvider theme={theme}>
-        <V0MuiThemeProvider muiTheme={themeV0}>
-          {/*Components*/}
-        </V0MuiThemeProvider>
-      </MuiThemeProvider>
-    );
-  }
+function App() {
+  return (
+    <MuiThemeProvider theme={theme}>
+      <V0MuiThemeProvider muiTheme={themeV0}>{/*Components*/}</V0MuiThemeProvider>
+    </MuiThemeProvider>
+  );
+}
 
-  export default App;
-  ```
+export default App;
+```
 
 4. Depois disso, você está livre para migrar uma instância de componente por vez.
 
@@ -78,16 +77,15 @@ Material-UI foi iniciado [4 anos atrás](https://github.com/mui-org/material-ui/
 
 ### Autocompletar
 
-Material-UI, não fornece uma API de alto nível para resolver este problema.
-Recomendamos que você explore [as soluções que a comunidade construiu](/components/autocomplete/).
-
-No futuro, procuraremos fornecer um componente para resolver as formas de uso mais simples: [#9997](https://github.com/mui-org/material-ui/issues/9997).
-
-### Svg Icon
+Material-UI, não fornece uma API de alto nível para resolver este problema. Recomendamos que você explore [as soluções que a comunidade construiu](/components/autocomplete/).
 
 Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) em seu projeto.
 
-Isto irá aplicar a seguinte mudança:
+### Ícone Svg
+
+Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) em seu projeto.
+
+Caminho de atualização do RaisedButton:
 
 ```diff
 -import AddIcon from 'material-ui/svg-icons/Add';

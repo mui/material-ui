@@ -1,6 +1,7 @@
 ---
 title: Composant React Popper
 components: Popper
+githubLabel: 'component: Popper'
 ---
 
 # Popper
@@ -9,13 +10,15 @@ components: Popper
 
 Some important features of the `Popper` component:
 
-- 🕷 Popper relies on the 3rd party library ([Popper.js](https://github.com/FezVrasta/popper.js)) for perfect positioning.
+- 🕷 Popper s'appuie sur la bibliothèque tierce ([Popper.js](https://github.com/popperjs/popper-core)) pour un positionnement parfait.
 - 💄 It's an alternative API to react-popper. It aims for simplicity.
-- 📦 [10 kB gzipped](/size-snapshot) ([7 kB](https://bundlephobia.com/result?p=popper.js) from Popper.js).
+- 📦 [8 kB gzippé](/size-snapshot).
 - The children is [`Portal`](/components/portal/) to the body of the document to avoid rendering problems. You can disable this behavior with `disablePortal`.
 - The scroll isn't blocked like with the [`Popover`](/components/popover/) component. The placement of the popper updates with the available area in the viewport.
 - Clicking away does not hide the `Popper` component. If you need this behavior, you can use [`ClickAwayListener`](/components/click-away-listener/) - see the example in the [menu documentation section](/components/menus/#menulist-composition).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Simple Popper
 
@@ -37,21 +40,21 @@ Alternativement, vous pouvez utiliser [react-spring](https://github.com/react-sp
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 
-## Positioned Popper
+## Popper positionné
 
-{{"demo": "pages/components/popper/PositionedPopper.js", "bg": true}}
+{{"demo": "pages/components/popper/PositionedPopper.js"}}
 
 ## Scroll playground
 
 {{"demo": "pages/components/popper/ScrollPlayground.js", "hideToolbar": true, "bg": true}}
 
-## Faked reference object
+## Élément virtuel
 
-The `anchorEl` property can be a reference to a fake DOM element. You just need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+La valeur de la propriété `anchorEl` peut être une référence à un élément DOM faux. Vous devez créer un objet formé comme le [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 Highlight part of the text to see the popper:
 
-{{"demo": "pages/components/popper/FakedReferencePopper.js"}}
+{{"demo": "pages/components/popper/VirtualElementPopper.js"}}
 
 ## Projets complémentaires
 

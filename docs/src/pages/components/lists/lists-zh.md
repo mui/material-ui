@@ -1,33 +1,31 @@
 ---
 title: React List（列表）组件
-components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+components: Collapse, Divider, List, ListItem, ListItemButton, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+githubLabel: 'component: List'
+materialDesign: https://material.io/components/lists
 ---
 
 # List 列表
 
 <p class="description">列表是对文本或图像的连续、垂直的索引。</p>
 
-[列表](https://material.io/design/components/lists.html) 能够承载一组连续的文本或图像。 它们由包含主要和补充操作的项子集组成，而这些操作由图标和文本表示。
+列表能够承载一组连续的文本或图像。 它们由包含主要和补充操作的项子集组成，而这些操作由图标和文本表示。
 
-## 简易列表
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-{{"demo": "pages/components/lists/SimpleList.js", "bg": true}}
+## Basic List
+
+{{"demo": "pages/components/lists/BasicList.js", "bg": true}}
 
 上一个样例的最后一个子集展示了如何渲染一个链接：
 
 ```jsx
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
-//...
-
-<ListItemLink href="#simple-list">
+<ListItemButton component="a" href="#simple-list">
   <ListItemText primary="Spam" />
-</ListItemLink>
+</ListItemButton>
 ```
 
-你可以从这里查看 [React Router与文档此部分结合使用的相关样例](/guides/composition/#react-router)。
+You can find a [demo with React Router following this section](/guides/routing/#list) of the documentation.
 
 ## 嵌套列表
 
@@ -37,9 +35,9 @@ function ListItemLink(props) {
 
 {{"demo": "pages/components/lists/FolderList.js", "bg": true}}
 
-## 交互
+## 交互式
 
-您在以下的一个交互式演示可以探索不同设置的视觉效果：
+下面是一个交互式的演示，你也可以探索不同设置下的视觉结果：
 
 {{"demo": "pages/components/lists/InteractiveList.js", "bg": true}}
 
@@ -49,7 +47,7 @@ function ListItemLink(props) {
 
 ## 对齐列表项
 
-若想显示3行或者更多行时，您应该设置列表项的对齐属性为 `alignItems="flex-start"`。
+若想显示 3 行或者更多行时，你应该改变列表项的对齐方式，将 `alignItems` 属性值设置为 "flex-start"。
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 
@@ -73,17 +71,23 @@ function ListItemLink(props) {
 
 {{"demo": "pages/components/lists/SwitchListSecondary.js", "bg": true}}
 
-## 固定的副标题列表
+## Sticky subheader
 
-在滚动列表时，子标题保持固定在屏幕的顶端，直到被下一个子标题推离屏幕。
-
-此性能由 CSS sticky 位置实现。 可惜的是，这一功能并未在我们支持的所有浏览器中 [实现](https://caniuse.com/#search=sticky) 。 若浏览器不支持，则默认使用 `disableSticky`。
+在滚动列表时，子标题保持固定在屏幕的顶端，直到被下一个子标题推离屏幕。 此性能由 CSS sticky 位置实现。 (⚠️ no IE 11 support)
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## 嵌入列表
+## 对齐列表项
+
+The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
+
+## 没有边距的列表
+
+When rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.
+
+{{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
 
 ## 大型列表渲染
 
@@ -93,6 +97,12 @@ function ListItemLink(props) {
 
 我们鼓励尽可能使用 [react-window](https://github.com/bvaughn/react-window)。 如果这个库不包括你的用例，你应该考虑使用 [react-virtualized](https://github.com/bvaughn/react-virtualized)，然后使用 [react-virtuoso](https://github.com/petyosi/react-virtuoso)等替代品。
 
-## 个性化
+## Customized List
+
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+
+{{"demo": "pages/components/lists/CustomizedList.js"}}
+
+## Customization 个性化
 
 🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/list-item)。

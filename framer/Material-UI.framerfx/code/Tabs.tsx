@@ -1,49 +1,32 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiAppBar from '@material-ui/core/AppBar';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiTabs from '@material-ui/core/Tabs';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiTab from '@material-ui/core/Tab';
+import MuiAppBar from '@mui/material/AppBar';
+import MuiTabs from '@mui/material/Tabs';
+import MuiTab from '@mui/material/Tab';
 import { Icon } from './Icon';
 
 interface Props {
-  centered?: boolean;
-  indicatorColor?: 'secondary' | 'primary';
-  scrollButtons?: 'auto' | 'desktop' | 'on' | 'off';
-  textColor?: 'secondary' | 'primary' | 'inherit';
-  variant?: 'standard' | 'scrollable' | 'fullWidth';
+  allowScrollButtonsMobile: boolean;
+  centered: boolean;
+  indicatorColor: 'primary' | 'secondary';
+  scrollButtons: 'auto' | false | true;
+  selectionFollowsFocus?: boolean;
+  textColor: 'inherit' | 'primary' | 'secondary';
+  variant: 'fullWidth' | 'scrollable' | 'standard';
+  visibleScrollbar: boolean;
   appBarColor?: 'default' | 'primary' | 'secondary' | 'inherit';
-  icons?: string[];
-  labels?: string[];
-  width?: number;
-  height?: number;
+  icons: readonly string[];
+  labels: readonly string[];
+  width: number | string;
+  height: number;
 }
 
-const defaultProps: Props = {
-  centered: false,
-  indicatorColor: 'secondary',
-  scrollButtons: 'auto',
-  textColor: 'inherit',
-  variant: 'standard',
-  icons: ['phone', 'favorite', 'person_pin'],
-  labels: ['Tab 1', 'Tab 2', 'Tab 3'],
-  width: 500,
-  height: 64,
-};
-
-export const Tabs: React.SFC<Props> = (props: Props) => {
+export function Tabs(props: Props): JSX.Element {
   const { appBarColor, labels, icons, width, height, ...other } = props;
 
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
@@ -68,11 +51,27 @@ export const Tabs: React.SFC<Props> = (props: Props) => {
       </MuiAppBar>
     </div>
   );
+}
+
+Tabs.defaultProps = {
+  allowScrollButtonsMobile: false,
+  centered: false,
+  indicatorColor: 'primary' as 'primary',
+  scrollButtons: 'auto' as 'auto',
+  textColor: 'primary' as 'primary',
+  variant: 'standard' as 'standard',
+  visibleScrollbar: false,
+  icons: ['phone', 'favorite', 'person_pin'],
+  labels: ['Tab 1', 'Tab 2', 'Tab 3'],
+  width: 500,
+  height: 64,
 };
 
-Tabs.defaultProps = defaultProps;
-
 addPropertyControls(Tabs, {
+  allowScrollButtonsMobile: {
+    type: ControlType.Boolean,
+    title: 'Allow scroll buttons mobile',
+  },
   centered: {
     type: ControlType.Boolean,
     title: 'Centered',
@@ -80,22 +79,30 @@ addPropertyControls(Tabs, {
   indicatorColor: {
     type: ControlType.Enum,
     title: 'Indicator color',
-    options: ['secondary', 'primary'],
+    options: ['primary', 'secondary'],
   },
   scrollButtons: {
     type: ControlType.Enum,
     title: 'Scroll buttons',
-    options: ['auto', 'desktop', 'on', 'off'],
+    options: ['auto', false, true],
+  },
+  selectionFollowsFocus: {
+    type: ControlType.Boolean,
+    title: 'Selection follows focus',
   },
   textColor: {
     type: ControlType.Enum,
     title: 'Text color',
-    options: ['secondary', 'primary', 'inherit'],
+    options: ['inherit', 'primary', 'secondary'],
   },
   variant: {
     type: ControlType.Enum,
     title: 'Variant',
-    options: ['standard', 'scrollable', 'fullWidth'],
+    options: ['fullWidth', 'scrollable', 'standard'],
+  },
+  visibleScrollbar: {
+    type: ControlType.Boolean,
+    title: 'Visible scrollbar',
   },
   appBarColor: {
     type: ControlType.Enum,

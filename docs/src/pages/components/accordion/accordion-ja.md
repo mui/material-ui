@@ -1,19 +1,24 @@
 ---
 title: React アコーディオン コンポーネント
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
+githubLabel: 'component: Accordion'
+materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
 
 # Accordion (拡張パネル)
 
 <p class="description">Expansion panels(拡張パネル) には作成フローが含まれ、要素を簡単に編集できます。</p>
 
-[拡張パネル](https://material.io/archive/guidelines/components/expansion-panels.html)は 独立した軽量のコンテナであるか、カードなどの大きなサーフェスに接続されています。
+Reactアコーディオンコンポーネントは 単体で扱えるコンテナ、もしくはカードコンポーネントのようにより大きなコンポーネントと組み合わせて使います。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 > **注：** 拡張パネルについては、[Material Design guidelines](https://material.io/)では説明されていませんが、Material-UIでは引き続きサポートされます。 以前は"expansion panel"としてしられていたものです。
 
-## Simple Accordion
+## 基本の Accordionコンポーネント
 
-{{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/BasicAccordion.js", "bg": true}}
 
 ## Controlled Accordion
 
@@ -21,17 +26,11 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## カスタマイズされた拡張パネル
+## アコーディオンコンポーネントのカスタマイズ
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [こちら](/customization/how-to-customize/)を参照してください。
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
-
-## Additional actions
-
-`Checkbox`などのアクションまたはボタンを`AccordionSummary`の内部で使うために、フォーカスの伝播を止めて、アクション時にクリックイベントがパネルの開閉動作を呼ばないようにする必要があります。 また、アクションに `aria-label` を付与する必要があります。 そうしないと、入れ子になったアクションのラベルがアコーディオンの拡張を制御する親コンポーネントのボタンのラベルに含まれることになります。
-
-{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## パフォーマンス
 
@@ -42,12 +41,6 @@ Accordionsのコンテンツは、パネルが展開されていない場合で�
 ```
 
 他のパフォーマンス最適化と同様、これは特効薬ではありません。 まずボトルネックを特定してから、これらの最適化戦略を試してください。
-
-## Secondary heading and Columns (第2の見出しと列)
-
-複数の列を使用してコンテンツを構成でき、ユーザーを支援するためにヘルパーテキストをパネルに追加できます。
-
-{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## アクセシビリティ
 

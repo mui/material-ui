@@ -1,6 +1,7 @@
 ---
 title: Detect click outside React component
 components: ClickAwayListener
+githubLabel: 'component: ClickAwayListener'
 ---
 
 # Click Away Listener
@@ -9,6 +10,8 @@ components: ClickAwayListener
 
 - 📦 [1.5 kB comprimido](/size-snapshot).
 - ⚛️ Support portals
+
+[La función de estilo de la paleta](/system/palette/).
 
 ## Ejemplo
 

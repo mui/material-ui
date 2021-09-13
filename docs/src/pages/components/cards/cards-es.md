@@ -1,6 +1,8 @@
 ---
 title: React Card component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
+githubLabel: 'component: Card'
+materialDesign: https://material.io/components/cards
 ---
 
 # Card (tarjeta)
@@ -10,6 +12,8 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 Las [Tarjetas](https://material.io/design/components/cards.html) son superficies que muestran contenido y acciones sobre un tema particular.
 
 Deberían ser fáciles de visualizar sus acciones e información relevante. Los elementos como textos e imágenes deberían ubicarse de forma que indiquen jerarquía.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Tarjeta simple
 
@@ -25,7 +29,7 @@ Usa `variant="outlined"` para mostrar una tarjeta con bordes.
 
 ## Interacción compleja
 
-En desktop, el contenido de las tarjetas puede expandirse.
+En desktop, el contenido de las tarjetas puede expandirse. (Click the downward chevron to view the recipe.)
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
@@ -39,7 +43,17 @@ Por defecto usamos una combinacion de un `<div>` y una *imagen de fondo* para mo
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
-> ⚠ Cuando `component="img"`, CardMedia depende de `object-fit` para centrar la imagen. No es compatible con IE 11.
+> ⚠ Cuando `component="img"`, CardMedia depende de `object-fit` para centrar la imagen. It's not supported by IE11.
+
+## Primary action
+
+Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
+
+{{"demo": "pages/components/cards/ActionAreaCard.js", "bg": true}}
+
+A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap.
+
+{{"demo": "pages/components/cards/MultiActionAreaCard.js", "bg": true}}
 
 ## Controles de IU
 

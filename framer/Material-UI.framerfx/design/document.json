@@ -3779,7 +3779,7 @@
           ],
           "error" : "#f44336",
           "info" : "#2196f3",
-          "paletteType" : "light",
+          "paletteMode" : "light",
           "primary" : "#3577CB",
           "secondary" : "#CA2B51",
           "success" : "#4caf4f",
@@ -3858,7 +3858,7 @@
           "icon2" : "",
           "icon2Badge" : "",
           "leftIcon" : "",
-          "title" : "Material-UI"
+          "title" : "MUI"
         },
         "codeOverrideEnabled" : false,
         "constraintsLocked" : false,
@@ -4302,7 +4302,7 @@
           "icon2" : "account_circle",
           "icon2Badge" : "",
           "leftIcon" : "menu",
-          "title" : "Material-UI"
+          "title" : "MUI"
         },
         "codeOverrideEnabled" : false,
         "constraintsLocked" : false,
@@ -5159,7 +5159,7 @@
         "codeComponentProps" : {
           "action1" : "View",
           "action2" : "",
-          "body" : "Discover Material-UI, a popular React Material Design component library.",
+          "body" : "Discover MUI, a popular React Material Design component library.",
           "icon1" : "share",
           "icon2" : "more_vert",
           "imageFile" : "",
@@ -5489,7 +5489,7 @@
             "codeComponentProps" : {
               "action1" : "View",
               "action2" : "",
-              "body" : "Discover how Material-UI, the leading React Material Design component library, can help to improve your users' experience.",
+              "body" : "Discover how MUI, the leading React Material Design component library, can help to improve your users' experience.",
               "icon1" : "share",
               "icon2" : "more_vert",
               "imageFile" : "design\/assets\/blue_sky_blue_water-2560x1600.jpg",
@@ -6319,7 +6319,7 @@
               "icon2" : "account_circle",
               "icon2Badge" : "",
               "leftIcon" : "menu",
-              "title" : "Material-UI"
+              "title" : "MUI"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,

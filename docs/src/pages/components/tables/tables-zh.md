@@ -1,21 +1,22 @@
 ---
 title: React Table（表格）组件
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+githubLabel: 'component: Table'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
+materialDesign: https://material.io/components/data-tables
 ---
 
 # Table 表格
 
 <p class="description">表格展示数据组。 它们是完全可以自定义的。</p>
 
-[表格](https://material.io/design/components/data-tables.html)以一目了然的方式显示信息，这样一来用户可以寻找规律并探索见解。 表格可以被内嵌在主要内容中，如 卡片（cards）。
-
-表格可以包括：
+表格以一种易于扫描的方式显示信息，以便用户洞察和寻找模型。 表格可以被内嵌在主要内容中，如 卡片（cards）。 它们可以包括：
 
 - 对应的可视化效果
 - 导航
 - 一个用于查询和操作数据的工具
 
-当在引入工具时，我们应将它们直接放在表格的上方或下方。
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## 基础表格
 
@@ -27,7 +28,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 `Table` 组件与原生 `<table>` 元素存在密切关联。 这种限制条件导致要构建丰富的数据表格会变得很有挑战性。
 
-[`DataGrid` 组件](/components/data-grid/) 专为需要处理大量表格数据的情况而设计。 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。 
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data. 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。
 
 {{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
@@ -47,25 +48,25 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 ## 自定义表格
 
-以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
 ### 自定义的分页选项
 
-通过 `rowsPerPageOptions` 属性，也可以自定义 "Rows per page" 选择中显示的选项。 你应该提供以下一种数组：
+你也可以使用 `rowsPerPageOptions` 属性来自定义 "Rows per page" 显示的选择项。 你应该提供以下一种数组：
 
 - **数字（numbers）**，而每个数字用作为选择项的标签（label）和值（value）。
-    
-    ```jsx
-    <TablePagination rowsPerPageOptions={[10, 50]} />
-    ```
+
+  ```jsx
+  <TablePagination rowsPerPageOptions={[10, 50]} />
+  ```
 
 - **对象（objects）**，而 `value` 和 `label` 键则相应的对照选择项的标签（label）和值（value）（譬如，当有一个语言字符串为“All” 时你会受益匪浅）。
-    
-    ```jsx
-    <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
-    ```
+
+  ```jsx
+  <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
+  ```
 
 ### 自定义表格分页操作
 
@@ -73,11 +74,24 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
-## 固定表头
+## Sticky header
 
-一个具有可滚动行和固定表头的表格示例。 它利用了 `stickyheader` 这个属性（⚠️不支持 IE11）。
+Here is an example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop. (⚠️ no IE 11 support)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
+
+## 按列分组
+
+你可以在一个表头内渲染多个表行来分组列头：
+
+```jsx
+<TableHead>
+  <TableRow />
+  <TableRow />
+</TableHead>
+```
+
+{{"demo": "pages/components/tables/ColumnGroupingTable.js", "bg": true}}
 
 ## 可折叠的表格
 
@@ -103,6 +117,6 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 ### Caption 字幕
 
-字幕能够充当表格的表头。 大多数屏幕阅读器能够宣读字幕的内容。 字幕能够帮助用户找到一个表格，并且描述这个表格的内容，从而协助用户决定是不是想继续阅读这个表格。
+字幕能够充当表格的表头。 大多数屏幕阅读器能够宣读字幕的内容。 标题可以帮助用户找到表格，了解表格的内容，决定是否要阅读。
 
 {{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

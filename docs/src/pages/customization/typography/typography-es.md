@@ -6,7 +6,7 @@
 
 Puedes Cambiar la familia de fuente con la propiedad `theme.typography.fontFamily`.
 
-Para instanciar, este demo usa el sistema de fuente en vez de la fuente por defecto Roboto:
+Por ejemplo, en este caso se utiliza la fuente del sistema en vez de la fuente por defecto, Roboto:
 
 ```js
 const theme = createTheme({
@@ -31,38 +31,33 @@ const theme = createTheme({
 
 Para fuentes auto-hospedadas, descargue los archivos de fuente en `ttf`, `woff`, and/or `woff2` añada el formato e importelo dentro de su código.
 
-⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and `woff2` files. Las fuentes no podran ser empotradas dentro de su bundle. Estas se podrán cargar desde su servidor en vez de servirlas desde un CDN.
+⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and `woff2` files. Las fuentes _no_ serán incrustadas dentro de tu paquete. Estas se podrán cargar desde su servidor en vez de servirlas desde un CDN.
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
-
-const raleway = {
-  fontFamily: 'Raleway',
-  fontStyle: 'normal',
-  fontDisplay: 'swap',
-  fontWeight: 400,
-  src: `
-    local('Raleway'),
-    local('Raleway-Regular'),
-    url(${RalewayWoff2}) format('woff2')
-  `,
-  unicodeRange:
-    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
-};
 ```
 
 Luego, usted podrá lo necesario en el cambiar el tema para usar la nueva fuente. En aras de definir de forma global como una cara de fuente, el componente [`CssBaseline`](/components/css-baseline/) podra ser usado (o cualquier otra solucion CSS de su eleccion).
 
 ```jsx
+import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
+
 const theme = createTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
   },
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      '@global': {
-        '@font-face': [raleway],
-      },
+      styleOverrides: `
+        @font-face {
+          font-family: 'Raleway';
+          font-style: normal;
+          font-display: swap;
+          font-weight: 400;
+          src: "local('Raleway'), local('Raleway-Regular'), url(${RalewayWoff2}) format('woff2')";
+          unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+        }
+      `,
     },
   },
 });
@@ -71,10 +66,18 @@ const theme = createTheme({
 return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    {children}
+    <Box
+      sx={{
+        fontFamily: 'Raleway',
+      }}
+    >
+      Raleway
+    </Box>
   </ThemeProvider>
 );
 ```
+
+Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previosly defined `@font-face` declarations won't be replaced.
 
 ## Font size
 
@@ -94,13 +97,13 @@ const theme = createTheme({
 
 The computed font size by the browser follows this mathematical equation:
 
-![font-size](/static/images/font-size.gif)
+<img src="/static/images/font-size.png" alt="cálculo del tamaño de fuente" style="width: 458px;" />
 
-<!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
+<!-- https://latex.codecogs.com/png.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
 
 ### Tamaños de fuente responsivos
 
-Las propeidades tipograficas variantes mapean dierctamente hacia el CSS generado. puedes usar [media queries](/customization/breakpoints/#api) dentro de ellos:
+Las propiedades [variantes](#variants) de `theme.typography.*`  se mapean directamente al CSS generado. puedes usar [media queries](/customization/breakpoints/#api) dentro de ellos:
 
 ```js
 const theme = createTheme();
@@ -122,7 +125,7 @@ Para automatizar el setup, puedes usar el ayudante [`responsiveFontSizes()`](/cu
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-Puedes ver esto en acción en ejemplo debajo. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+Puedes ver esto en acción en ejemplo debajo. Ajusta el tamaño de la ventana de tu navegador y observa como el tamaño de la fuente cambia a medida que el ancho sobrepasa los diferentes [breakpoints](/customization/breakpoints/):
 
 ```js
 import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -141,9 +144,9 @@ To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 
-> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser’s default font size to something larger.
+> ⚠️ Changing the font size can harm accessibility ♿️. La mayoría de los navegadores concuerdan en el tamaño por defecto de 16px, pero el usuario puede cambiarlo. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
-An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
+La propiedad `theme.typography.htmlFontSize` puede ser utilizada en estos casos, le informa a Material-UI cual es el tamaño de la fuente en el elemento `<html>`. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createTheme({
@@ -160,7 +163,7 @@ html {
 }
 ```
 
-*You need to apply the above CSS on the html element of this page to see the below demo rendered correctly*
+_You need to apply the above CSS on the html element of this page to see the below demo rendered correctly_
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
@@ -201,6 +204,64 @@ const theme = createTheme({
 ```
 
 {{"demo": "pages/customization/typography/TypographyVariants.js"}}
+
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. Here is what you need to do:
+
+**Step 1. Update the theme's typography object**
+
+```js
+const theme = createTheme({
+  typography: {
+    poster: {
+      color: 'red',
+    },
+    // Disable h3 variant
+    h3: undefined,
+  },
+});
+```
+
+**Step 2. Update the necessary typings (if you are using TypeScript)**
+
+> If you aren't using TypeScript you should skip this step.
+
+You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
+
+<!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
+
+```ts
+declare module '@material-ui/core/styles' {
+  interface TypographyVariants {
+    poster: React.CSSProperties;
+  }
+
+  // allow configuration using `createTheme`
+  interface TypographyVariantsOptions {
+    poster?: React.CSSProperties;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module '@material-ui/core/Typography' {
+  interface TypographyPropsVariantOverrides {
+    poster: true;
+    h3: false;
+  }
+}
+```
+
+**Step 3. You can now use the new variant**
+
+{{"demo": "pages/customization/typography/TypographyCustomVariant.js", "hideToolbar": true}}
+
+```jsx
+<Typography variant="poster">poster</Typography>;
+
+/* This variant is no longer supported */
+<Typography variant="h3">h3</Typography>;
+```
 
 ## Default values
 

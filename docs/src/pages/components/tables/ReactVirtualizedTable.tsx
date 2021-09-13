@@ -1,22 +1,19 @@
-import React from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import TableCell from '@material-ui/core/TableCell';
-import Paper from '@material-ui/core/Paper';
-import { AutoSizer, Column, Table, TableCellRenderer, TableHeaderProps } from 'react-virtualized';
-
-declare module '@material-ui/core/styles/withStyles' {
-  // Augment the BaseCSSProperties so that we can control jss-rtl
-  interface BaseCSSProperties {
-    /*
-     * Used to control if the rule-set should be affected by rtl transformation
-     */
-    flip?: boolean;
-  }
-}
+import { withStyles, WithStyles } from '@mui/styles';
+import { Theme, createTheme } from '@mui/material/styles';
+import TableCell from '@mui/material/TableCell';
+import Paper from '@mui/material/Paper';
+import {
+  AutoSizer,
+  Column,
+  Table,
+  TableCellRenderer,
+  TableHeaderProps,
+} from 'react-virtualized';
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     flexContainer: {
       display: 'flex',
       alignItems: 'center',
@@ -26,8 +23,12 @@ const styles = (theme: Theme) =>
       // temporary right-to-left patch, waiting for
       // https://github.com/bvaughn/react-virtualized/issues/454
       '& .ReactVirtualized__Table__headerRow': {
-        flip: false,
-        paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined,
+        ...(theme.direction === 'rtl' && {
+          paddingLeft: '0 !important',
+        }),
+        ...(theme.direction !== 'rtl' && {
+          paddingRight: undefined,
+        }),
       },
     },
     tableRow: {
@@ -44,7 +45,7 @@ const styles = (theme: Theme) =>
     noClick: {
       cursor: 'initial',
     },
-  });
+  } as const);
 
 interface ColumnData {
   dataKey: string;
@@ -58,7 +59,7 @@ interface Row {
 }
 
 interface MuiVirtualizedTableProps extends WithStyles<typeof styles> {
-  columns: ColumnData[];
+  columns: readonly ColumnData[];
   headerHeight?: number;
   onRowClick?: () => void;
   rowCount: number;
@@ -90,14 +91,21 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
         })}
         variant="body"
         style={{ height: rowHeight }}
-        align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
+        align={
+          (columnIndex != null && columns[columnIndex].numeric) || false
+            ? 'right'
+            : 'left'
+        }
       >
         {cellData}
       </TableCell>
     );
   };
 
-  headerRenderer = ({ label, columnIndex }: TableHeaderProps & { columnIndex: number }) => {
+  headerRenderer = ({
+    label,
+    columnIndex,
+  }: TableHeaderProps & { columnIndex: number }) => {
     const { headerHeight, columns, classes } = this.props;
 
     return (
@@ -154,7 +162,8 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
   }
 }
 
-const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
+const defaultTheme = createTheme();
+const VirtualizedTable = withStyles(styles, { defaultTheme })(MuiVirtualizedTable);
 
 // ---
 
@@ -168,7 +177,7 @@ interface Data {
 }
 type Sample = [string, number, number, number, number];
 
-const sample: Sample[] = [
+const sample: readonly Sample[] = [
   ['Frozen yoghurt', 159, 6.0, 24, 4.0],
   ['Ice cream sandwich', 237, 9.0, 37, 4.3],
   ['Eclair', 262, 16.0, 24, 6.0],

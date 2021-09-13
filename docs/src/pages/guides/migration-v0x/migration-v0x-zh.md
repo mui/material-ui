@@ -4,15 +4,15 @@
 
 ## 常问问题
 
-### 哇—— API 看起来完全不一样！ 这是否意味着1.0完全不同，而我得重新学习基础知识，而迁移是几乎不可能的？
+### 哇—— API 看起来完全不一样！ Does that mean 1.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
 
-我很高兴你问了！ 答案是不。我们的核心概念并没有改变。 您会注意到 API 提供了更多的灵活性，但这有一定的成本——一些更低级别的组件提取了较低的复杂性。
+I'm glad you asked! 答案是不。 答案是不。 The core concepts haven't changed. 您会注意到 API 提供了更多的灵活性，但这有一定的成本——一些更低级别的组件提取了较低的复杂性。
 
 ### 到底是什么带来了如此巨大的改变呢？
 
 Material-UI 这个项目是从[4年前](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46)开始的。 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) 启动了一项雄心勃勃的任务，将 Material-UI **重新启动**，并利用我们学到的知识，来解决一些长期存在的问题。 譬如这些主要的变化：
 
-- 我们采用 CSS-in-JS 这个新的样式方案（更好的[自定义](/customization/components/)的能力和整体性能）
+- New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
 - 新的主题处理 （有嵌套，自主支撑等。）
 - 感谢 [Next.js](https://github.com/zeit/next.js) 超快地创建文档
 - 更容易检测 [测试覆盖率](/guides/testing/) （99％以上，在所有主流浏览器上运行， [视觉回归测试](https://www.argos-ci.com/mui-org/material-ui)）
@@ -22,72 +22,70 @@ Material-UI 这个项目是从[4年前](https://github.com/mui-org/material-ui/c
 ### 我应该从哪里开始迁移？
 
 1. 首先，和 v0.x 版本一起，安装 v1.x 版本的 Material-UI。
-    
-    用 yarn：
+
+用 yarn：
 
 ```sh
-  yarn add material-ui
+yarn add material-ui
   yarn add @material-ui/core
-  ```
+```
 
-  Or with npm:
-  ```sh
-  npm install material-ui
+或者用 npm：
+
+```sh
+npm install material-ui
   npm install @material-ui/core
-  ```
+```
 
-  then
+然后
 
-  ```js
-  import FlatButton from 'material-ui/FlatButton'; // v0.x
+```js
+import FlatButton from 'material-ui/FlatButton'; // v0.x
   import Button from '@material-ui/core/Button'; // v1.x
-  ```
+```
 
-2. 在你的项目上运行 [迁移助手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) 
-3。 `MuiThemeProvider` 对于 v1.x. 版本是可选项，但是如果您有一个自定义的主题，你可以随意同时使用 v0.x 和 v1.x 版本的组件，像这样：
+2. 未来，我们打算提供一个简单的组件来解决这个用例：[#9997](https://github.com/mui-org/material-ui/issues/9997)。
+3. `MuiThemeProvider` 对于v1.x.版本是可选的，但如果您有自定义主题，则可以同时使用该组件的v0.x和v1.x版本，如下所示：
 
-  ```jsx
-  import React from 'react';
-  import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
-  import { MuiThemeProvider as V0MuiThemeProvider} from 'material-ui';
-  import getMuiTheme from 'material-ui/styles/getMuiTheme';
+```jsx
+import * as React from 'react';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
+import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-  const theme = createMuiTheme({
-    /* theme for v1.x */
-  });
-  const themeV0 = getMuiTheme({
-    /* theme for v0.x */
-  });
+const theme = createMuiTheme({
+  /* v1.x 版本的主题 */
+});
+const themeV0 = getMuiTheme({
+  /* v0.x 版本的主题 */
+});
 
-  function App() {
-    return (
-      <MuiThemeProvider theme={theme}>
-        <V0MuiThemeProvider muiTheme={themeV0}>
-          {/*Components*/}
-        </V0MuiThemeProvider>
-      </MuiThemeProvider>
-    );
-  }
+function App() {
+  return (
+    <MuiThemeProvider theme={theme}>
+      <V0MuiThemeProvider muiTheme={themeV0}>{/*Components*/}</V0MuiThemeProvider>
+    </MuiThemeProvider>
+  );
+}
 
-  export default App;
-  ```
+export default App;
+```
 
 4. 之后，您可以自由地一次迁移一个组件实例。
 
-## 组件
+## Components 组件
 
-### 自动完成
+### Autocomplete 自动补全组件
 
-Material-UI 并没有提供一个高级的 API 来解决这个问题。
-我们鼓励您去探索 [React 社区提供的解决方案](/components/autocomplete/)。
+Material-UI 不提供用于解决此问题的高级 API。 Material-UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/components/autocomplete/).
 
-未来，我们打算提供一个简单的组件来解决这个用例：[#9997](https://github.com/mui-org/material-ui/issues/9997)。
+在你的项目上运行 [迁移助手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod)
 
 ### Svg 图标
 
-请在你的项目上运行 [迁移助手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) 。
+未来，我们打算提供一个简单的组件来解决这个用例：[#9997](https://github.com/mui-org/material-ui/issues/9997)。
 
-这会应用出如下的变更：
+这将应用如下更改：
 
 ```diff
 -import AddIcon from 'material-ui/svg-icons/Add';
@@ -124,8 +122,8 @@ Material-UI 并没有提供一个高级的 API 来解决这个问题。
 -import Subheader from 'material-ui/Subheader';
 +import ListSubheader from '@material-ui/core/ListSubheader';
 
--<Subheader>Sub Heading</Subheader>
-+<ListSubheader>Sub Heading</ListSubheader>
+-<Subheader>副标题</Subheader>
++<ListSubheader>副标题</ListSubheader>
 ```
 
 ### Toggle（切换）
@@ -135,7 +133,6 @@ Material-UI 并没有提供一个高级的 API 来解决这个问题。
 +import Switch from '@material-ui/core/Switch';
 
 -<Toggle
-
 -  toggled={this.state.checkedA}
 -  onToggle={this.handleToggle}
 -/>
@@ -152,7 +149,7 @@ Material-UI 并没有提供一个高级的 API 来解决这个问题。
 +import MenuItem from '@material-ui/core/MenuItem';
 
 -<MenuItem primaryText="Profile" />
-+<MenuItem>Profile</MenuItem>
++<MenuItem>个人资料</MenuItem>
 ```
 
 ### Font Icon（字体图标）

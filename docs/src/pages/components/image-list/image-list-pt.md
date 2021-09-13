@@ -1,38 +1,60 @@
 ---
-title: Componente React para Lista de Grade
+title: Componente React para Lista de Imagem
 components: ImageList, ImageListItem, ImageListItemBar
+materialDesign: https://material.io/components/image-lists
+githubLabel: 'component: ImageList'
 ---
 
-# Lista de Grade
+# Lista de imagem
 
-<p class="description">As listas de grade exibem uma coleção de imagens em uma grade de forma organizada.</p>
+<p class="description">As listas de imagem exibem uma coleção de imagens em uma grade de forma organizada.</p>
 
-[Listas de Grade](https://material.io/design/components/image-lists.html) representam uma coleção de itens em um padrão repetido. Elas ajudam a melhorar a compreensão visual do conteúdo que elas contêm.
+As listas de imagens representam uma coleção de itens em um padrão repetido. Elas ajudam a melhorar a compreensão visual do conteúdo que elas contêm.
 
-## Lista de grade com imagens
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-Um exemplo simples de uma `ImageList` com imagens.
+## Lista de imagem padrão
 
-{{"demo": "pages/components/image-list/ImageImageList.js", "hideEditButton": true}}
+Listas de imagem padrão são as melhores para itens de igual importância. Elas tem um tamanho uniforme no contêiner, proporção e espaçamento.
 
-## Lista de grade com barras de título
+{{"demo": "pages/components/image-list/StandardImageList.js"}}
 
-Este exemplo demonstra o uso do `ImageListItemBar` para adicionar uma sobreposição a cada `ImageListItem`. A sobreposição pode acomodar um `title`, `subtitle` e ação secundária - neste exemplo utilizamos um `IconButton`.
+## Lista de imagem com barras de título
 
-{{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
+Listas de imagens classificadas enfatizam certos itens sobre outros em uma coleção. Criam uma hierarquia usando tamanhos de contêiner variados e proporção.
 
-## Lista de grade em linha única
+{{"demo": "pages/components/image-list/QuiltedImageList.js"}}
 
-Este exemplo demonstra uma lista de grade com imagens, em linha unica e rolável horizontalmente. As listas de grade de rolagem horizontal não são recomendadas porque a rolagem interfere nos padrões de leitura típicos, afetando a compreensão. Uma exceção notável para rolagem horizontal, seria uma lista de grade com imagens em linha única, como uma galeria.
+## Lista de imagem entrelaçada
 
-{{"demo": "pages/components/image-list/SingleLineImageList.js", "hideEditButton": true}}
+Listas de imagens entrelaçadas usam contêiner de proporção alternados para criar um leiaute rítmico. Uma lista de imagens entrelaçadas é melhor para navegar por conteúdo em pares.
 
-## Lista de grade avançada
+{{"demo": "pages/components/image-list/WovenImageList.js"}}
 
-Este exemplo demonstra blocos "em destaque", usando as propriedades `rows` e `cols` para ajustar o tamanho do bloco, e a propriedade `padding` para ajustar o espaçamento. Os blocos tem uma barra de título customizada, posicionada no topo e com um gradiente personalizado `titleBackground`. A ação secundária `IconButton` está posicionada à esquerda.
+## Lista de imagem alternada
 
-<<<<<<< HEAD:docs/src/pages/components/grid-list/grid-list-pt.md
-{{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true, "defaultCodeOpen": false}}
-=======
-{{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}
->>>>>>> [GridList] Rename to ImageList & add deprecation warnings (#22363):docs/src/pages/components/image-list/image-list-pt.md
+Listas de imagens alternadas usam alturas de tamanho dinamicamente dimensionado do contêiner que reflete a proporção de cada imagem. Esta lista de imagens é a melhor utilizada para navegação de conteúdo de pares não cortados.
+
+{{"demo": "pages/components/image-list/MasonryImageList.js"}}
+
+## Lista de imagem com barra de título
+
+Este exemplo demonstra o uso da `ImageListItemBar` para adicionar uma sobreposição a cada item. A sobreposição pode acomodar um `title`, `subtitle` e ação secundária - neste exemplo utilizamos um `IconButton`.
+
+{{"demo": "pages/components/image-list/TitlebarImageList.js"}}
+
+### Barra de título abaixo da imagem (padrão)
+
+A barra de título pode ser colocada abaixo da imagem.
+
+{{"demo": "pages/components/image-list/TitlebarBelowImageList.js"}}
+
+### Barra de título abaixo da imagem (alternada)
+
+{{"demo": "pages/components/image-list/TitlebarBelowMasonryImageList.js"}}
+
+## Lista de imagem customizada
+
+Neste exemplo, os itens tem uma barra de título customizada, posicionada no topo e com um gradiente customizado com `titleBackground`. A ação secundária `IconButton` está posicionada à esquerda. A ação secundária `IconButton` está posicionada à esquerda.
+
+{{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}

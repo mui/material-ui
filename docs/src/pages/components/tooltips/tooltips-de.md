@@ -1,6 +1,9 @@
 ---
 title: React Tooltip component
 components: Tooltip
+githubLabel: 'component: Tooltip'
+materialDesign: https://material.io/components/tooltips
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---
 
 # Tooltip
@@ -9,23 +12,25 @@ components: Tooltip
 
 Wenn aktiviert, zeigen [Tooltips](https://material.io/design/components/tooltips.html) eine Beschriftung an, die ein Element kennzeichnet, beispielsweise eine Beschreibung seiner Funktion.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Einfache Tooltips
 
-{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
-## Positionierte Tooltips
+## Positioned tooltips
 
-The `Tooltip` has 12 **placements** choice. They don’t have directional arrows; instead, they rely on motion emanating from the source to convey direction.
+The `Tooltip` has 12 **placements** choice. They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
 ## Benutzerdefinierte Tooltips
 
-Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
-## Arrow Tooltips
+## Arrow tooltips
 
 You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
 
@@ -33,7 +38,7 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 ## Benutzerdefiniertes untergeordnetes Element
 
-The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
+The tooltip needs to apply DOM event listeners to its child element. The tooltip needs to apply DOM event listeners to its child element.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -56,13 +61,13 @@ Sie können die Ereignistypen definieren, bei denen ein Tooltip angezeigt wird.
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Kontrollierte Tooltips
+## Controlled tooltips
 
 Sie können die Eigenschaften `onOpen`, `onClose` und `open`, verwenden, um das Verhalten des Tooltips zu steuern.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Variable Breite
+## Variable width
 
 Der `Tooltip` umhüllt standardmäßig lange Texte, um diese lesbar zu machen.
 
@@ -70,11 +75,11 @@ Der `Tooltip` umhüllt standardmäßig lange Texte, um diese lesbar zu machen.
 
 ## Interaktive Liste
 
-Ein Tooltip kann interaktiv sein. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). It won't close when the user hovers over the tooltip before the `leaveDelay` is expired. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
 
-{{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
+{{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
-## Deaktivierte Elemente
+## Disabled elements
 
 Standardmäßig lösen deaktivierte Elemente wie `<button>` keine Benutzerinteraktionen aus, sodass ein `Tooltip` bei normalen Ereignissen wie Hover nicht aktiviert wird. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
@@ -87,8 +92,8 @@ Standardmäßig lösen deaktivierte Elemente wie `<button>` keine Benutzerintera
 ```jsx
 <Tooltip title="You don't have permission to do this">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
-      {'A disabled button'}
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
+      A disabled button
     </button>
   </span>
 </Tooltip>
@@ -100,6 +105,18 @@ Verwenden Sie einen anderen Übergang.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
+## Follow cursor
+
+You can enable the tooltip to follow the cursor by setting `followCursor={true}`.
+
+{{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
+
+## Virtual element
+
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+
+{{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
+
 ## Ein-und ausblenden
 
 Der Tooltip wird normalerweise sofort angezeigt, wenn sich die Maus des Benutzers über dem Element befindet und sofort ausgeblendet wird, wenn die Maus des Benutzers verlassen wird. Eine Verzögerung beim Anzeigen oder Ausblenden des Tooltips kann über die Eigenschaften `enterDelay` und `leaveDelay` hinzugefügt werden, wie in der Demo zum kontrollierten Tooltip oben gezeigt.
@@ -107,3 +124,17 @@ Der Tooltip wird normalerweise sofort angezeigt, wenn sich die Maus des Benutzer
 On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}
+
+## Barrierefreiheit
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
+
+By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. For example, in:
+
+```html
+<button title="some more information">A button</button>
+```
+
+the `title` acts as an accessible description. If you want the tooltip to act as an accessible description you can pass `describeChild`. Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+
+{{"demo": "pages/components/tooltips/AccessibilityTooltips.js"}}

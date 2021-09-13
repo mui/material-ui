@@ -1,0 +1,1 @@
+<DialogTitle disableTypography onClick={onClick} />;

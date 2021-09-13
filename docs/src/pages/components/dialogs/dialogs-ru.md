@@ -1,15 +1,20 @@
 ---
 title: Компонент React Dialog
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
+githubLabel: 'component: Dialog'
+materialDesign: https://material.io/components/dialogs
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 ---
 
-# Dialog (диалог)
+# Dialog
 
 <p class="description">Диалоги информируют пользователей о задаче и могут содержать критическую информацию, требовать решения или включать несколько задач.</p>
 
 [Диалог](https://material.io/design/components/dialogs.html) представляет собой тип [модальных](/components/modal/) окон, который появляется над приложением, чтобы предоставить важную информацию или для предоставления решения. Диалоги отключают все функции приложения, когда они появляются, и остаются на экране до тех пор, пока не будут подтверждены, отклонены или пока не будут предприняты необходимые действия.
 
 Диалоги целенаправленно останавливают, поэтому их следует использовать с осторожностью.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Простые диалоги
 
@@ -36,7 +41,7 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 Если требуется название:
 
 - Используйте четкий вопрос или утверждение с пояснением в области содержимого, например «Очистить USB-накопитель?».
-- Избегайте извинений, двусмысленности или вопросов, таких как «Предупреждение!» Или «Вы уверены?»
+- Avoid apologies, ambiguity, or questions, such as "Warning!" or "Are you sure?"
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -54,7 +59,7 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 
 ## Индивидуальные диалоги
 
-Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. Вы можете узнать об этом больше [в документации по переопределению свойств](/customization/how-to-customize/).
 
 Данный диалог имеет кнопку закрытия, добавленную для удобства использования.
 
@@ -89,9 +94,9 @@ function MyComponent() {
 
 ## Диалоги подтверждения
 
-Диалоги подтверждения требуют, чтобы пользователи явно подтвердили свой выбор, прежде чем их выбор будет сохранен. Например, пользователи могут прослушивать несколько мелодий, но сделать окончательный выбор только после нажатия «ОК.».
+Диалоги подтверждения требуют, чтобы пользователи явно подтвердили свой выбор, прежде чем их выбор будет сохранен. For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-Нажатие кнопки «Отмена» в диалоговом окне подтверждения или нажатие «Назад» отменяет действие, отменяет любые изменения и закрывает диалоговое окно.
+Нажатие кнопки «Отмена» в диалоговом окне подтверждения или нажатие кнопки «Назад» отменяет действие и отменяет любые изменения, закрывая диалоговое окно.
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
@@ -103,7 +108,7 @@ function MyComponent() {
 
 ## Прокрутка длинного контента
 
-Когда диалоги становятся слишком длинными для окна просмотра или устройства пользователя, они их прокручивают.
+When dialogs become too long for the user's viewport or device, they scroll.
 
 - `scroll = paper` содержимое диалогового окна прокручивается внутри элемента paper.
 - `scroll = body` содержимое диалога прокручивается внутри элемента body.
@@ -111,6 +116,10 @@ function MyComponent() {
 Попробуйте демо ниже, чтобы увидеть, что мы имеем в виду:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
+
+## Производительность
+
+Перейдите в раздел [Modal performance section](/components/modal/#performance).
 
 ## Ограничения
 

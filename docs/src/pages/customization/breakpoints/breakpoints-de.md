@@ -4,7 +4,7 @@
 
 Für eine optimale Benutzererfahrung müssen Materialdesign-Schnittstellen in der Lage sein, ihr Layout an verschiedenen Haltepunkten anzupassen. Material-UI verwendet eine **vereinfachte** Implementierung der ursprünglichen [Spezifikation](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
-Die Haltepunkte werden intern in verschiedenen Komponenten verwendet, um sie ansprechbar zu machen, Sie können sie jedoch auch benutzten, um das Layout Ihrer Anwendung über das [Grid](/components/grid/) zu steuern und für [Hidden](/components/hidden/) Komponenten.
+The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) component.
 
 ## Default breakpoints
 
@@ -12,18 +12,9 @@ Jeder Haltepunkt (ein Schlüssel) stimmt mit einer *festen* Bildschirmbreite (ei
 
 - ** xs, ** extraklein: 0px
 - ** sm, ** klein: 600px
-- ** md, ** mittel: 960px
-- ** lg, ** groß: 1280px
-- ** xl ** extra groß: 1920px
-
-These breakpoint values are used to determine breakpoint ranges. Ein Bereich beginnt mit dem Haltepunktwert einschließlich bis zum nächsten Haltepunktwert:
-
-```js
-Wert          |0px     600px    960px    1280px   1920px
-Schlüssel     |xs      sm       md       lg       xl
-Breite        |--------|--------|--------|--------|-------->
-Bereich       |   xs   |   sm   |   md   |   lg   |   xl
-```
+- **md,** medium: 900px
+- **lg,** large: 1200px
+- **xl,** extra-large: 1536px
 
 These values can be [customized](#custom-breakpoints).
 
@@ -39,20 +30,10 @@ CSS media queries are the idiomatic approach to make your UI responsive. The the
 In der folgenden Demo ändern wir die Hintergrundfarbe (rot, blau & grün) basierend auf der Bildschirmbreite.
 
 ```jsx
-const styles = theme => ({
-  root: {
-    padding: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
-      backgroundColor: theme.palette.secondary.main,
-    },
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: theme.palette.primary.main,
-    },
-    [theme.breakpoints.up('lg')]: {
-      backgroundColor: green[500],
-    },
-  },
-});
+Wert          |0px     600px    960px    1280px   1920px
+Schlüssel     |xs      sm       md       lg       xl
+Breite        |--------|--------|--------|--------|-------->
+Bereich       |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
 {{"demo": "pages/customization/breakpoints/MediaQuery.js"}}
@@ -64,24 +45,6 @@ Manchmal reicht die Verwendung von CSS nicht aus. Möglicherweise möchten Sie d
 ### useMediaQuery hook
 
 Weitere Informationen finden Sie auf der [ useMediaQuery](/components/use-media-query/) Seite.
-
-### withWidth()
-
-> ⚠️ This higher-order component will be deprecated for the [useMediaQuery](/components/use-media-query/) hook.
-
-```jsx
-import withWidth from '@material-ui/core/withWidth';
-
-function MyComponent(props) {
-  return <div>{`Current width: ${props.width}`}</div>;
-}
-
-export default withWidth()(MyComponent);
-```
-
-In der folgenden Demo ändern wir das gerenderte DOM-Element (* em*, <u> u</u>, ~~ del ~~ & span) basierend auf der Bildschirmbreite.
-
-{{"demo": "pages/customization/breakpoints/WithWidth.js"}}
 
 ## Custom breakpoints
 
@@ -99,12 +62,12 @@ const theme = createTheme({
     values: {
       xs: 0,
       sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
     },
   },
-})
+});
 ```
 
 Feel free to have as few or as many breakpoints as you want, naming them in whatever way you'd prefer for your project.
@@ -113,9 +76,10 @@ Feel free to have as few or as many breakpoints as you want, naming them in what
 const theme = createTheme({
   breakpoints: {
     values: {
+      mobile: 0,
       tablet: 640,
       laptop: 1024,
-      desktop: 1280,
+      desktop: 1200,
     },
   },
 });
@@ -123,15 +87,18 @@ const theme = createTheme({
 
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
+<!-- Tested with packages/material-ui/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
+
 ```ts
-declare module "@material-ui/core/styles/createBreakpoints" {
+declare module '@material-ui/core/styles' {
   interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;
     md: false;
     lg: false;
     xl: false;
-    tablet: true; // adds the `tablet` breakpoint
+    mobile: true; // adds the `mobile` breakpoint
+    tablet: true;
     laptop: true;
     desktop: true;
   }
@@ -142,9 +109,9 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 ### `theme.breakpoints.up(key) => media query`
 
-#### Argumente
+#### Parameter
 
-1. `key` (*String* | *Number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
+1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
 #### Rückgabewerte
 
@@ -153,11 +120,11 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 #### Beispiele
 
 ```js
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
     // Match [md, ∞)
-    //       [960px, ∞)
+    //       [900px, ∞)
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
@@ -167,9 +134,9 @@ const styles = theme => ({
 
 ### `theme.breakpoints.down(key) => media query`
 
-#### Argumente
+#### Parameter
 
-1. `key` (*String* | *Number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
+1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
 #### Rückgabewerte
 
@@ -178,12 +145,11 @@ const styles = theme => ({
 #### Beispiele
 
 ```js
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [0, md + 1)
-    //       [0, lg)
-    //       [0, 1280px)
+    // Match [0, md)
+    //       [0, 900px)
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
@@ -193,9 +159,9 @@ const styles = theme => ({
 
 ### `theme.breakpoints.only(key) => media query`
 
-#### Argumente
+#### Parameter
 
-1. `key` (*String*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.).
+1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
 
 #### Rückgabewerte
 
@@ -204,12 +170,12 @@ const styles = theme => ({
 #### Beispiele
 
 ```js
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
     // Match [md, md + 1)
     //       [md, lg)
-    //       [960px, 1280px)
+    //       [900px, 1200px)
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
@@ -219,10 +185,10 @@ const styles = theme => ({
 
 ### `theme.breakpoints.between(start, end) => media query`
 
-#### Argumente
+#### Parameter
 
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `start` (_string_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+2. `end` (_string_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
 #### Rückgabewerte
 
@@ -231,70 +197,16 @@ const styles = theme => ({
 #### Beispiele
 
 ```js
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match [sm, md + 1)
-    //       [sm, lg)
-    //       [600px, 1280px[
+    // Match [sm, md)
+    //       [600px, 900px)
     [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
     },
   },
 });
-```
-
-### `withWidth([options]) => higher-order component`
-
-Injizieren Sie eine `width` Eigenschaft. Die an sie übergebene Komponente wird nicht geändert. Stattdessen wird eine neue Komponente zurückgegeben. Diese `width` Haltepunkt-Eigenschaft entspricht der aktuellen Bildschirmbreite. Es kann einer der folgenden Haltepunkte sein:
-
-```ts
-type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-```
-
-Einige Implementierungsdetails, die interessant sein könnten:
-
-- Es leitet *nicht React statisch* Eigenschaften weiter, so dass dieser HOC "transparenter" ist. Es kann zum Beispiel verwendet werden, um eine `getInitialProps()` als statische Methode zu definieren (next.js).
-
-#### Argumente
-
-1. `options` (*Object* [optional]): 
-  - `options.withTheme` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
-  - `options.noSSR` (*Boolean* [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Die Benutzeroberfläche blinkt möglicherweise. Sie können dieses Flag auf `true` setzen, wenn Sie kein serverseitiges Rendering durchführen.
-  - `options.initialWidth` (*Breakpoint* [optional]): Da `window.innerWidth` auf dem Server nicht verfügbar ist, wird eine leere Komponente während der ersten Mounts standardmäßig gerendert. Vielleicht mögen Sie eine Heuristik verwenden, um annähernd die Bildschirmbreite des Client-Browsers zu bestimmen. Sie könnten beispielsweise den Benutzeragenten oder die Client-Hinweise verwenden. Mit https://caniuse.com/#search=client%20hint, können wir die anfängliche Breite global festlegen, indem Sie die [`benutzerdefinierten Eigenschaften`](/customization/globals/#default-props) zum Theme verwenden. Um die Anfangsbreite festzulegen, müssen wir eine benutzerdefinierte Eigenschaft mit dieser Form übergeben:
-
-```js
-const theme = createTheme({
-  props: {
-    // withWidth Komponente ⚛️
-    MuiWithWidth: {
-      // Initiale Breite
-      initialWidth: 'lg', // Haltepunkte ist global gesetzt 🌎!
-    },
-  },
-});
-```
-
-- `options.resizeInterval` (*Number* [optional]): Der Standardwert ist 166, entspricht 10 Bildern bei 60 Hz. Anzahl der Millisekunden, die gewartet werden muss, bevor auf ein Ereignis zur Größenänderung des Bildschirms reagiert wird.
-
-#### Rückgabewerte
-
-`Komponente höherer Ordnung`: Sollte zum Umwickeln einer Komponente verwendet werden.
-
-#### Beispiele
-
-```jsx
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
-
-function MyComponent(props) {
-  if (isWidthUp('sm', props.width)) {
-    return <span />
-  }
-
-  return <div />;
-}
-
-export default withWidth()(MyComponent);
 ```
 
 ## Default values

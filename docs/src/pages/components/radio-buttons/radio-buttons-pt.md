@@ -1,6 +1,9 @@
 ---
 title: Componente React para Botões de opção
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
+githubLabel: 'component: Radio'
+materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 ---
 
 # Botões de opção
@@ -11,19 +14,41 @@ Use [botões de opção](https://material.io/design/components/selection-control
 
 Os botões de opção devem ter a opção comum e mais usada selecionada por padrão.
 
-## RadioGroup
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Radio group
 
 O componente `RadioGroup` é um wrapper utilizado para agrupar componentes `Radio`, fornece uma API mais simples e adequada para a acessibilidade por teclado.
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-Para demonstrar os botões horizontalmente, defina a propriedade `row`: `<RadioGroup row />`.
+### Direção
+
+To lay out the buttons horizontally, set the `row` prop:
+
+{{"demo": "pages/components/radio-buttons/RowRadioButtonsGroup.js"}}
+
+### Controlled
+
+You can control the radio with the `value` and `onChange` props:
+
+{{"demo": "pages/components/radio-buttons/ControlledRadioButtonsGroup.js"}}
 
 ## Botões de opção independentes
 
 O componente `Radio` também pode ser usado de forma independente, sem o wrapper RadioGroup.
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
+
+## Tamanho
+
+Use the `size` prop or customize the font size of the svg icons to change the size of the radios.
+
+{{"demo": "pages/components/radio-buttons/SizeRadioButtons.js"}}
+
+## Cor
+
+{{"demo": "pages/components/radio-buttons/ColorRadioButtons.js"}}
 
 ## Posicionamento do rótulo
 
@@ -39,13 +64,35 @@ Em geral, os botões de opção devem ter um valor selecionado por padrão. Se e
 
 ## Opções customizadas
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
+## `useRadioGroup`
+
+Para situações de uso avançadas de customização, um hook `useRadioGroup()` é exposto. Ele retorna o valor do contexto do grupo de botões de opção pai. O componente de botões de opção usa este hook internamente.
+
+### API
+
+```jsx
+import { useRadioGroup } from '@material-ui/core/RadioGroup';
+```
+
+#### Retornos
+
+`value` (_object_):
+
+- `value.name` (_string_ [opcional]): O nome usado para fazer referência ao valor do controle.
+- `value.onChange` (_func_ [optional]): Callback fired when a radio button is selected.
+- `value.value` (_any_ [opcional]): Valor do botão de opção selecionado.
+
+#### Exemplo
+
+{{"demo": "pages/components/radio-buttons/UseRadioGroup.js"}}
+
 ## Quando usar
 
-- [Caixas de seleção vs. Botões de opção](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Caixas de Seleção vs. Botões de Opção](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
 ## Acessibilidade
 
@@ -55,8 +102,10 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 - Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (por exemplo, `aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
 
 ```jsx
-<RadioButton
+<Radio
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' }}
+  inputProps={{
+    'aria-label': 'Radio A',
+  }}
 />
 ```

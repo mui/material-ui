@@ -1,0 +1,15 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "defer": { "type": { "name": "bool" } },
+    "fallback": { "type": { "name": "node" }, "default": "null" }
+  },
+  "name": "NoSsr",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": false,
+  "filename": "/packages/mui-core/src/NoSsr/NoSsr.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/no-ssr/\">No Ssr</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

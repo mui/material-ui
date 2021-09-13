@@ -1,13 +1,6 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-
-const useStyles = makeStyles({
-  root: {
-    height: 300,
-  },
-});
+import * as React from 'react';
+import Stack from '@mui/material/Stack';
+import Slider from '@mui/material/Slider';
 
 function valuetext(value) {
   return `${value}°C`;
@@ -33,35 +26,27 @@ const marks = [
 ];
 
 export default function VerticalSlider() {
-  const classes = useStyles();
-
   return (
-    <React.Fragment>
-      <Typography id="vertical-slider" gutterBottom>
-        Temperature
-      </Typography>
-      <div className={classes.root}>
-        <Slider
-          orientation="vertical"
-          getAriaValueText={valuetext}
-          defaultValue={30}
-          aria-labelledby="vertical-slider"
-        />
-        <Slider
-          disabled
-          orientation="vertical"
-          getAriaValueText={valuetext}
-          defaultValue={30}
-          aria-labelledby="vertical-slider"
-        />
-        <Slider
-          orientation="vertical"
-          defaultValue={[20, 37]}
-          aria-labelledby="vertical-slider"
-          getAriaValueText={valuetext}
-          marks={marks}
-        />
-      </div>
-    </React.Fragment>
+    <Stack sx={{ height: 300 }} spacing={1} direction="row">
+      <Slider
+        aria-label="Temperature"
+        orientation="vertical"
+        getAriaValueText={valuetext}
+        defaultValue={30}
+      />
+      <Slider
+        aria-label="Temperature"
+        orientation="vertical"
+        defaultValue={30}
+        disabled
+      />
+      <Slider
+        getAriaLabel={() => 'Temperature'}
+        orientation="vertical"
+        getAriaValueText={valuetext}
+        defaultValue={[20, 37]}
+        marks={marks}
+      />
+    </Stack>
   );
 }

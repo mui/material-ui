@@ -1,15 +1,8 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
-
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-});
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 export default function LinearBuffer() {
-  const classes = useStyles();
   const [progress, setProgress] = React.useState(0);
   const [buffer, setBuffer] = React.useState(10);
 
@@ -39,8 +32,8 @@ export default function LinearBuffer() {
   }, []);
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: '100%' }}>
       <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
-    </div>
+    </Box>
   );
 }

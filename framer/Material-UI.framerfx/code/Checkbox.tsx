@@ -1,16 +1,27 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiCheckbox from '@material-ui/core/Checkbox';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import MuiCheckbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
-export function Checkbox(props) {
-  const { checked: checkedProp, label, onChange, size, ...other } = props;
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
+interface Props {
+  checked: boolean;
+  defaultChecked?: boolean;
+  disabled: boolean;
+  label: string;
+  width: number | string;
+  height: number;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+}
+
+export function Checkbox(props: Props): JSX.Element {
+  const {
+    checked: checkedProp,
+    label,
+    onChange,
+    // @ts-ignore -- untyped
+    size,
+    ...other
+  } = props;
 
   const [checked, setChecked] = React.useState(false);
 
@@ -18,11 +29,9 @@ export function Checkbox(props) {
     if (onChange) {
       onChange(event);
     }
-    setChecked((event.target as HTMLInputElement).checked);
+    setChecked(event.target.checked);
   };
 
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
   React.useEffect(() => {
     setChecked(checkedProp);
   }, [checkedProp]);
@@ -34,9 +43,7 @@ export function Checkbox(props) {
 
 Checkbox.defaultProps = {
   checked: false,
-  color: 'secondary',
   disabled: false,
-  size: 'medium',
   label: 'Checkbox',
   width: 100,
   height: 42,
@@ -47,19 +54,13 @@ addPropertyControls(Checkbox, {
     type: ControlType.Boolean,
     title: 'Checked',
   },
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['primary', 'secondary', 'default'],
+  defaultChecked: {
+    type: ControlType.Boolean,
+    title: 'Default checked',
   },
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
-  },
-  size: {
-    type: ControlType.Enum,
-    title: 'Size',
-    options: ['small', 'medium'],
   },
   label: {
     type: ControlType.String,

@@ -8,7 +8,7 @@ Material-UIはバンドルサイズについてとても気をつけている。
 
 ## いつ、どのように、tree-shakingをするか？
 
-Material-UIのtree-shakingは、モダンフレームワークにおいて設定なしに動作します。 Material-UIはすべてのAPIを上位の`material-ui`インポートで公開しています。 ES6とtree0shakingに対応したバンドラー ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) を使用している場合、名前を指定してインポートをしても自動的にバンドルサイズの最適化の恩恵を受けることができます。
+Material-UIのtree-shakingは、モダンフレームワークにおいて設定なしに動作します。 Material-UIはすべてのAPIを上位の`material-ui`インポートで公開しています。 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
@@ -39,7 +39,7 @@ import { Button, TextField } from '@material-ui/core';
 
 設定を必要としないので、この選択肢は全てのデモで利用しています。 コンポーネントを利用するパッケージ作成者には推奨されています。 最高のDXとUXをもたらすアプローチは[選択肢 2](#option-2)をみましょう。
 
-このように直接インポートする場合 [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js)のエクスポートを使用しないので、公開されているモジュールと同じくらいに手軽な参照として提供されます。
+While importing directly in this manner doesn't use the exports in [the main file of `@material-ui/core`](https://unpkg.com/@material-ui/core), this file can serve as a handy reference as to which modules are public.
 
 1, 2階層までのインポートのみ対応していることに注意してください。 これより深い階層はプライベートとみなされ、バンドルのモジュール重複などの問題を引き起こします。
 
@@ -81,6 +81,7 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 - UX: Babelプラグインは、バンドラーがサポートしていない場合でも、トップレベルのtree-shakingを有効にします。
 - DX: Babelプラグインは、開発モードでも選択肢1と同様の起動時間の速さをもたらします。
 - この記法は、一つのインポート文で複数のモジュールに対応するのでコードの重複をへらします。 全体として、読みやすく、新しいモジュールをimportする際に間違いをする機会を削減します。
+
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
@@ -103,26 +104,24 @@ import { Button, TextField } from '@material-ui/core';
     [
       'babel-plugin-import',
       {
-        'libraryName': '@material-ui/core',
-        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
-        'libraryDirectory': 'esm',
-        'camel2DashComponentName': false
+        libraryName: '@material-ui/core',
+        libraryDirectory: '',
+        camel2DashComponentName: false,
       },
-      'core'
+      'core',
     ],
     [
       'babel-plugin-import',
       {
-        'libraryName': '@material-ui/icons',
-        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
-        'libraryDirectory': 'esm',
-        'camel2DashComponentName': false
+        libraryName: '@material-ui/icons',
+        libraryDirectory: '',
+        camel2DashComponentName: false,
       },
-      'icons'
-    ]
+      'icons',
+    ],
   ];
 
-  module.exports = {plugins};
+  module.exports = { plugins };
   ```
 
 - [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports)と以下の設定
@@ -138,72 +137,56 @@ import { Button, TextField } from '@material-ui/core';
       'babel-plugin-transform-imports',
       {
         '@material-ui/core': {
-          // Use "transform: '@material-ui/core/${member}'," if your bundler does not support ES modules
-          'transform': '@material-ui/core/esm/${member}',
-          'preventFullImport': true
+          transform: '@material-ui/core/${member}',
+          preventFullImport: true,
         },
         '@material-ui/icons': {
-          // Use "transform: '@material-ui/icons/${member}'," if your bundler does not support ES modules
-          'transform': '@material-ui/icons/esm/${member}',
-          'preventFullImport': true
-        }
-      }
-    ]
+          transform: '@material-ui/icons/${member}',
+          preventFullImport: true,
+        },
+      },
+    ],
   ];
 
-  module.exports = {plugins};
+  module.exports = { plugins };
   ```
 
 Create React Appを使用している場合、`.babelrc`の利用を許容しているいくつかのプロジェクトを使用する必要があります。
 
-  `yarn add -D react-app-rewired customize-cra
+`yarn add -D react-app-rewired customize-cra
 `
 
-  `config-overrides.js`をルートディレクトリ に作成します。
+`config-overrides.js`をルートディレクトリ に作成します。
 
-  ```js
-  /* config-overrides.js */
-  const { useBabelRc, override } = require('customize-cra')
+```js
+/* config-overrides.js */
+/* eslint-disable react-hooks/rules-of-hooks */
+const { useBabelRc, override } = require('customize-cra');
 
-  module.exports = override(
-    useBabelRc()
-  );
-  ```
+module.exports = override(useBabelRc());
+```
 
-  必要に応じて、`babel-plugin-import`は`.babelrc`の代わりに、 [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options)を使うことで、`config-overrides.js`を通して設定可能です。
+必要に応じて、`babel-plugin-import`は`.babelrc`の代わりに、 [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options)を使うことで、`config-overrides.js`を通して設定可能です。
 
-  `package.json`のstartコマンドを変更します。
+Modify your `package.json` start command:
 
 ```diff
   "scripts": {
--  "start": "react-scripts start"
-+  "start": "react-app-rewired start"
-  }
+-   "start": "react-scripts start",
++   "start": "react-app-rewired start",
+-   "build": "react-scripts build",
++   "build": "react-app-rewired build",
+-   "test": "react-scripts test",
++   "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+}
 ```
 
-  注意: このようなエラーが発生する場合があります。
-
-  > Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
-
-  これは、 `@material-ui/styles`が `core`を通して、再エクスポートされているからです。しかし、全てのインポートは許可されていません。
-
-  このようにインポートをしている
-
-  ```js
-  import { makeStyles, createStyles } from '@material-ui/core';
-  ```
-
-  修正は簡単です、インポートを別々にします。
-
-  ```js
-  import { makeStyles, createStyles } from '@material-ui/core/styles';
-  ```
-
-  大幅に速い起動時間をお楽しみください。
+大幅に速い起動時間をお楽しみください。
 
 #### 2. すべてのインポートを変換する
 
-ついに、既存のコードを [上位層インポート](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) に変更できます。 以下のような 変更になります。 以下のような 変更になります。 以下のような 変更になります。 以下のような 変更になります。
+Finally, you can convert your existing codebase to this option with this [top-level-imports codemod](https://www.npmjs.com/package/@material-ui/codemod#top-level-imports). 以下のような 変更になります。
 
 ```diff
 -import Button from '@material-ui/core/Button';
@@ -211,10 +194,16 @@ Create React Appを使用している場合、`.babelrc`の利用を許容して
 +import { Button, TextField } from '@material-ui/core';
 ```
 
-## ECMAScript
+## Available bundles
 
 npmに公開されたパッケージは[Babel](https://github.com/babel/babel)で**トランスパイル**されています。[対応するプラットフォーム](/getting-started/supported-platforms/)への互換性のためです。
 
-ふたつめのバージョンも同様に公開されています。[`/es` フォルダー](https://unpkg.com/@material-ui/core/es/)に存在します。 全ての非公式構文は、 [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm)にトランスパイルされます。それ以上でもありません。 これは、異なるブラウザに対して別々のバンドルを作成するために使用できます。 古いブラウザはより多くのJavaScriptの機能をトランスパイル必要性があり、これはバンドルサイズの増加につながります。 ES2015のランタイムには、polyfillは含まれません。 IE11+ と evergreen browsersは必要な全ての機能をサポートしています。 他のブラウザへのサポートが必要な場合、[`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill)の使用を検討してください。
+⚠️ In order to minimize duplication of code in users' bundles, library authors are **strongly discouraged** to import from any of the other bundles.
 
-⚠️ ユーザーのバンドルで、重複の発生を最小限にするために、ライブラリの作成者は、`/es` フォルダーの使用は**明確に非推奨**としています。
+### Modern bundle
+
+The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@material-ui/core/modern/). It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge). これは、異なるブラウザに対して別々のバンドルを作成するために使用できます。
+
+### Legacy bundle
+
+If you need to support IE 11 you cannot use the default or modern bundle without transpilation. However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@material-ui/core/legacy/). You don't need any additional polyfills.

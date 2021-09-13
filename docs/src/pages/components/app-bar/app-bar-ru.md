@@ -1,6 +1,8 @@
 ---
 title: React-компонент Панель навигации
 components: AppBar, Toolbar, Menu
+githubLabel: 'component: AppBar'
+materialDesign: https://material.io/components/app-bars-top
 ---
 
 # Панель навигации
@@ -10,6 +12,8 @@ components: AppBar, Toolbar, Menu
 В [](https://material.io/design/components/app-bars-top.html)верхней панели приложений</a> отображается содержимое и действия, связанные с текущим экраном. Она используется для брендинга, заголовков экрана, навигации и действий.
 
 Она может использоваться как контекстное меню или как навигационная панель.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Простая панель навигации
 
@@ -49,7 +53,7 @@ components: AppBar, Toolbar, Menu
 
 Когда вы рендерите навигационную панель с фиксированным положением, размер элемента не влияет на остальную часть страницы. Это может быть причиной того, что часть вашего содержимого может стать невидимой, скрываясь за навигационной панелью. Есть 3 варианта решения:
 
-1. Вы можете использовать `position="sticky"` вместо `"fixed"`. ⚠️ `"sticky"` не поддерживается в IE 11.
+1. Вы можете использовать `position="sticky"` вместо `"fixed"`. ⚠️ sticky не поддерживается в IE11.
 2. Вы можете отрендерить второй `<Toolbar />` компонент:
 
 ```jsx
@@ -68,21 +72,18 @@ function App() {
 3. Вы можете использовать `theme.mixins.toolbar` в CSS:
 
 ```jsx
-const useStyles = makeStyles(theme => ({
-  offset: theme.mixins.toolbar,
-}))
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 function App() {
-  const classes = useStyles();
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* содержимое */}</Toolbar>
+        <Toolbar>{/* content */}</Toolbar>
       </AppBar>
-      <div className={classes.offset} />
+      <Offset />
     </React.Fragment>
-  )
-};
+  );
+}
 ```
 
 ## Прокрутка
@@ -111,11 +112,11 @@ function App() {
 
 #### Аргументы
 
-1. `варианты` (*объекта* [optional]):
+1. `options` (_object_ [optional]):
 
-- `options.disableHysteresis` (*Boolean* [optional]): По умолчанию - `false`. Отключение запаздывания. Игнорирование направления прокрутки когда определено `trigger` значение.
-- `options.target` (*Node* [optional]): По умолчанию `window`.
-- `options.threshold` (*Number* [optional]): По умолчанию `100`. Измените значение `trigger` когда вертикальная прокрутка строго первышает этот порог (исключительно).
+   - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. Отключение запаздывания. Игнорирование направления прокрутки когда определено `trigger` значение.
+   - `options.target` (*Node* [optional]): По умолчанию `window`.
+   - `options.threshold` (*number* [optional]): По умолчанию `100`. Измените значение `trigger` когда вертикальная прокрутка строго первышает этот порог (исключительно).
 
 #### Возвращает
 
@@ -124,5 +125,29 @@ function App() {
 #### Примеры
 
 ```jsx
-<div>
+<div mark="crwd-mark">
+```
+
+## Enable Color on Dark
+
+Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the AppBar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
+
+```jsx
+// Specific element via prop
+<AppBar enableColorOnDark />
+
+// Affect all AppBars via theme
+<ThemeProvider
+  theme={createTheme({
+    components: {
+      MuiAppBar: {
+        defaultProps: {
+          enableColorOnDark: true,
+        },
+      },
+    },
+  })}
+>
+  <AppBar />
+</ThemeProvider>
 ```

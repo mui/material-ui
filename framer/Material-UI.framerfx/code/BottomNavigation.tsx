@@ -1,38 +1,24 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiBottomNavigation from '@material-ui/core/BottomNavigation';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiBottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import MuiBottomNavigation from '@mui/material/BottomNavigation';
+import MuiBottomNavigationAction from '@mui/material/BottomNavigationAction';
 import { Icon } from './Icon';
 
 interface Props {
-  showLabels?: boolean;
-  icons?: string[];
-  labels?: string[];
-  width?: number;
-  height?: number;
+  showLabels: boolean;
+  icons: readonly string[];
+  labels: readonly string[];
+  width: number | string;
+  height: number;
 }
 
-const defaultProps: Props = {
-  showLabels: false,
-  icons: ['restore', 'favorite', 'location_on', 'folder'],
-  labels: ['Recents', 'Favorites', 'Nearby', 'Saved'],
-  width: 500,
-  height: 56,
-};
-
-export const BottomNavigation: React.SFC<Props> = (props: Props) => {
+export function BottomNavigation(props: Props): JSX.Element {
   const { labels, icons, ...other } = props;
 
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, value) => {
-    setValue(value);
+  const handleChange = (event: React.SyntheticEvent, newValue: any) => {
+    setValue(newValue);
   };
 
   const items = icons.length > labels.length ? icons : labels;
@@ -52,9 +38,15 @@ export const BottomNavigation: React.SFC<Props> = (props: Props) => {
       )}
     </MuiBottomNavigation>
   );
-};
+}
 
-BottomNavigation.defaultProps = defaultProps;
+BottomNavigation.defaultProps = {
+  showLabels: false,
+  icons: ['restore', 'favorite', 'location_on', 'folder'],
+  labels: ['Recents', 'Favorites', 'Nearby', 'Saved'],
+  width: 500,
+  height: 56,
+};
 
 addPropertyControls(BottomNavigation, {
   showLabels: {

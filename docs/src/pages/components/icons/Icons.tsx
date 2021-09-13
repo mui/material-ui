@@ -1,29 +1,22 @@
-import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
-import Icon from '@material-ui/core/Icon';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > span': {
-        margin: theme.spacing(2),
-      },
-    },
-  }),
-);
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import { green } from '@mui/material/colors';
+import Icon from '@mui/material/Icon';
 
 export default function Icons() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        '& > :not(style)': {
+          m: 2,
+        },
+      }}
+    >
       <Icon>add_circle</Icon>
       <Icon color="primary">add_circle</Icon>
-      <Icon color="secondary">add_circle</Icon>
-      <Icon style={{ color: green[500] }}>add_circle</Icon>
+      <Icon sx={{ color: green[500] }}>add_circle</Icon>
       <Icon fontSize="small">add_circle</Icon>
-      <Icon style={{ fontSize: 30 }}>add_circle</Icon>
-    </div>
+      <Icon sx={{ fontSize: 30 }}>add_circle</Icon>
+    </Box>
   );
 }

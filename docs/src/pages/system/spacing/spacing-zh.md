@@ -1,24 +1,24 @@
 # Spacing 间距
 
-<p class="description">为了改变一个元素的外观，您可以使用一系列的简写响应式的 margin 和 padding 的辅助工具类。</p>
+<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element's appearance.</p>
 
 ## 符号
 
 用 space 辅助工具能够将简写的 margin 和 padding 属性转换为margin 和 padding 的 CSS 声明。 而属性则使用 `{property}{sides}` 的格式命名。
 
-其中*属性*是以下其中之一：
+其中_属性_是其中之一：
 
 - `m` - 能够设置 *margin* 的类名
 - `p` - 能够设置 *padding* 的类名
 
 而 *sides* 是以下其中之一：
 
-- `t` - 能够设置 *margin-top* 或 *padding-top* 的类名
-- `b` - 能够设置 *margin-bottom* 或 *padding-bottom* 的类名
-- `l` - 能够设置 *margin-left* 或 *padding-left* 的类名
-- `r` - 能够设置 *margin-right* 或 *padding-right* 的类名
-- `x` - 能够一起设置 ** -left* 和 ** -right* 的类名
-- `y` - 能够一起设置 ** -top* 和 ** -bottom* 的类名
+- `t` - 对于设置* margin-top*或*padding-top*的类
+- `b` - 对于设置*margin-bottom的类*或*padding-bottom*的类
+- `l` - 对于设置*margin-left*或*padding-left*的类
+- `r` - 对于设置*margin-right*或*padding-right*的类
+- `x` - 对于设置** -left*和** -right*的类
+- `y` - 对于设置** -top*和** -bottom*的类
 - blank - 能够设置元素的所有 4 个边的 margin 或者 padding 的类名
 
 ## 转换
@@ -32,10 +32,10 @@ const theme = {
   spacing: 8,
 }
 
-<Box m={-2} /> // margin: -16px;
-<Box m={0} /> // margin: 0px;
-<Box m={0.5} /> // margin: 4px;
-<Box m={2} /> // margin: 16px;
+<Box sx={{ m: -2 }} /> // margin: -16px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 0.5 }} /> // margin: 4px;
+<Box sx={{ m: 2 }} /> // margin: 16px;
 ```
 
 - input: `number` & theme: `array` ：属性值用作数组索引。
@@ -45,27 +45,27 @@ const theme = {
   spacing: [0, 2, 3, 5, 8],
 }
 
-<Box m={-2} /> // margin: -3px;
-<Box m={0} /> // margin: 0px;
-<Box m={2} /> // margin: 3px;
+<Box sx={{ m: -2 }} /> // margin: -3px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 2 }} /> // margin: 3px;
 ```
 
 - input: `number` & theme: `function`：使用属性值调用该函数。
 
 ```jsx
 const theme = {
-  spacing: value => value ** 2,
+  spacing: value => value * 2,
 }
 
-<Box m={0} /> // margin: 0px;
-<Box m={2} /> // margin: 4px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 2 }} /> // margin: 4px;
 ```
 
 - input: `string`: 该属性作为原始的 CSS 值传递。
 
 ```jsx
-<Box m="2rem" /> // margin: 2rem;
-<Box mx="auto" /> // margin-left: auto; margin-right: auto;
+<Box sx={{ m: "2rem" }} /> // margin: 2rem;
+<Box sx={{ mx: "auto" }} /> // margin-left: auto; margin-right: auto;
 ```
 
 ## 示例
@@ -73,17 +73,27 @@ const theme = {
 {{"demo": "pages/system/spacing/Demo.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box p={1}>…
-<Box m={1}>…
-<Box p={2}>…
+<Box sx={{ p: 1 }}>…
+<Box sx={{ m: 1 }}>…
+<Box sx={{ p: 2 }}>…
 ```
 
 ## 水平居中
 
+The CSS flex and grid display properties are often used to align elements at the center. However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a width for horizontally centering:
+
 {{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box mx="auto">…
+<Box sx={{ mx: "auto", width: 200 }}>…
+<Box border={0}>…
+<Box sx={{ borderTop: 1 }}>…
+<Box borderRight={0}>…
+<Box borderBottom={0}>…
+<Box borderLeft={0}>…
+<Box sx={{ borderRight: 1 }}>…
+<Box sx={{ borderBottom: 1 }}>…
+<Box sx={{ borderLeft: 1 }}>…
 ```
 
 ## API
@@ -109,15 +119,14 @@ import { spacing } from '@material-ui/system';
 | `spacing` | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 | `spacing` | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
-
-*有些人觉得属性简写让人困惑，如果你愿意的话，您也可以使用完整版：*
+_有些人觉得属性简写让人困惑，如果你愿意的话，您也可以使用完整版：_
 
 ```diff
--<Box pt={2} />
-+<Box paddingTop={2} />
+-<Box sx={{ pt: 2 }} />
++<Box sx={{ paddingTop: 2 }} />
 ```
 
 ```diff
--<Box px={2} />
-+<Box paddingX={2} />
+-<Box sx={{ px: 2 }} />
++<Box sx={{ paddingX: 2 }} />
 ```

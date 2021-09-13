@@ -4,7 +4,7 @@
 
 Several Material-UI components utilize `z-index`, employing a default z-index scale in Material-UI that has been designed to properly layer drawers, modals, snackbars, tooltips, and more.
 
-[These values](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js) start at an arbitrary number, high and specific enough to ideally avoid conflicts.
+Los valores de `z-index` comienzan en un número arbitrario, suficientemente alto y específico para -idealmente- evitar conflictos:
 
 - mobile stepper: 1000
 - speed dial: 1050

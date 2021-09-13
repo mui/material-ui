@@ -12,15 +12,18 @@ Use o tema para configurar os textos da localização globalmente:
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { zhCN } from '@material-ui/core/locale';
 
-const theme = createTheme({
-  palette: {
-    primary: { main: '#1976d2' },
+const theme = createTheme(
+  {
+    palette: {
+      primary: { main: '#1976d2' },
+    },
   },
-}, zhCN);
+  zhCN,
+);
 
 <ThemeProvider theme={theme}>
   <App />
-</ThemeProvider>
+</ThemeProvider>;
 ```
 
 ### Exemplo
@@ -31,11 +34,15 @@ const theme = createTheme({
 
 | Localidade              | Etiqueta do idioma BCP 47 | Nome da importação |
 |:----------------------- |:------------------------- |:------------------ |
+| Árabe (Egito)           | ar-EG                     | `arEG`             |
 | Armênio                 | hy-AM                     | `hyAM`             |
 | Azerbaijano             | az-AZ                     | `azAZ`             |
+| Bangla                  | bn-BD                     | `bnBD`             |
 | Búlgaro                 | bg-BG                     | `bgBG`             |
 | Catalão                 | ca-ES                     | `caES`             |
+| Chinese (Hong Kong)     | zh-HK                     | `zhHK`             |
 | Chinês (Simplificado)   | zh-CN                     | `zhCN`             |
+| Chinese (Taiwan)        | zh-TW                     | `zhTW`             |
 | Tcheco                  | cs-CZ                     | `csCZ`             |
 | Holandês                | nl-NL                     | `nlNL`             |
 | Inglês (Estados Unidos) | en-US                     | `enUS`             |
@@ -43,6 +50,7 @@ const theme = createTheme({
 | Finlandês               | fi-FI                     | `fiFI`             |
 | Francês                 | fr-FR                     | `frFR`             |
 | Alemão                  | de-DE                     | `deDE`             |
+| Hebraico                | el-GR                     | `elGR`             |
 | Hebraico                | he-IL                     | `heIL`             |
 | Hindi                   | hi-IN                     | `hiIN`             |
 | Húngaro                 | hu-HU                     | `huHU`             |
@@ -50,6 +58,7 @@ const theme = createTheme({
 | Indonésio               | id-ID                     | `idID`             |
 | Italiano                | it-IT                     | `itIT`             |
 | Japonês                 | ja-JP                     | `jaJP`             |
+| Cazaque                 | kz-KZ                     | `kzKZ`             |
 | Coreano                 | ko-KR                     | `koKR`             |
 | Persa                   | fa-IR                     | `faIR`             |
 | Polonês                 | pl-PL                     | `plPL`             |
@@ -61,14 +70,17 @@ const theme = createTheme({
 | Espanhol                | es-ES                     | `esES`             |
 | Sueco                   | sv-SE                     | `svSE`             |
 | Turco                   | tr-TR                     | `trTR`             |
+| Vietnamita              | th-TH                     | `thTH`             |
 | Ucraniano               | uk-UA                     | `ukUA`             |
 | Vietnamita              | vi-VN                     | `viVN`             |
 
-Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.ts) no repositório do GitHub.
+<!-- #default-branch-switch -->
+
+Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/locale/index.ts) no repositório do GitHub.
 
 Para criar sua própria tradução, ou para personalizar o texto em inglês, copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 
-Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, o Material-UI visa suportar as [100 localidades mais populares](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2.5 milhões de falantes nativos.
+Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, Material-UI visa suportar [100 mais comuns](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [localidades](https://www.ethnologue.com/guides/ethnologue200), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2.5 milhões de falantes nativos.
 
 ## Suporte RTL
 

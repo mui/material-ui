@@ -1,0 +1,11 @@
+<Chip
+  label="Clickable Deleteable"
+  onClick={handleClick}
+  onDelete={handleDelete}
+/>
+<Chip
+  label="Clickable Deleteable"
+  variant="outlined"
+  onClick={handleClick}
+  onDelete={handleDelete}
+/>

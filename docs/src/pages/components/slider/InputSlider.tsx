@@ -1,25 +1,22 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-import Input from '@material-ui/core/Input';
-import VolumeUp from '@material-ui/icons/VolumeUp';
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Slider from '@mui/material/Slider';
+import MuiInput from '@mui/material/Input';
+import VolumeUp from '@mui/icons-material/VolumeUp';
 
-const useStyles = makeStyles({
-  root: {
-    width: 250,
-  },
-  input: {
-    width: 42,
-  },
-});
+const Input = styled(MuiInput)`
+  width: 42px;
+`;
 
 export default function InputSlider() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState<number | string | Array<number | string>>(30);
+  const [value, setValue] = React.useState<number | string | Array<number | string>>(
+    30,
+  );
 
-  const handleSliderChange = (event: any, newValue: number | number[]) => {
+  const handleSliderChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue);
   };
 
@@ -36,7 +33,7 @@ export default function InputSlider() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: 250 }}>
       <Typography id="input-slider" gutterBottom>
         Volume
       </Typography>
@@ -53,9 +50,8 @@ export default function InputSlider() {
         </Grid>
         <Grid item>
           <Input
-            className={classes.input}
             value={value}
-            margin="dense"
+            size="small"
             onChange={handleInputChange}
             onBlur={handleBlur}
             inputProps={{
@@ -68,6 +64,6 @@ export default function InputSlider() {
           />
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 }

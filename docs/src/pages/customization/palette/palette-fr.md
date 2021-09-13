@@ -4,14 +4,14 @@
 
 ## Couleurs des palettes
 
-Une intention de couleur est un mappage d'une couleur de palette à une intention donnée au sein de votre application. Le thème expose les couleurs de palette suivantes (accessibles sous `theme.palette.`) :
+Le thème expose les couleurs de palette suivantes (accessibles sous `theme.palette.`) :
 
-- *primary* - utilisé pour représenter les éléments d'interface principaux pour un utilisateur. C'est la couleur qui s'affiche le plus fréquemment sur les écrans et les composants de votre application.
-- *secondary* - utilisé pour représenter des éléments d'interface secondaires pour un utilisateur. Il offre plus de façons d'accentuer et de distinguer votre produit. L'avoir est facultatif.
-- *error* - utilisé pour représenter les éléments d'interface dont l'utilisateur doit être informé.
-- *warning* - utilisé pour représenter des actions potentiellement dangereuses ou des messages importants.
-- *info* - utilisé pour présenter à l'utilisateur des informations neutres et pas nécessairement importantes.
-- *success* - utilisé pour indiquer la réussite d'une action déclenchée par l'utilisateur.
+- _primary_ - utilisé pour représenter les éléments d'interface principaux pour un utilisateur. C'est la couleur qui s'affiche le plus fréquemment sur les écrans et les composants de votre application.
+- _secondary_ - utilisé pour représenter des éléments d'interface secondaires pour un utilisateur. Il offre plus de façons d'accentuer et de distinguer votre produit. L'avoir est facultatif.
+- _error_ - utilisé pour représenter les éléments d'interface dont l'utilisateur doit être informé.
+- _warning_ - utilisé pour représenter des actions potentiellement dangereuses ou des messages importants.
+- _info_ - utilisé pour présenter à l'utilisateur des informations neutres et pas nécessairement importantes.
+- _success_ - utilisé pour indiquer la réussite d'une action déclenchée par l'utilisateur.
 
 Si vous souhaitez en savoir plus sur la couleur, vous pouvez consulter la [section couleur](/customization/color/).
 
@@ -21,7 +21,7 @@ Vous pouvez explorer les valeurs par défaut de la palette en utilisant [l'explo
 
 {{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
-La palette par défaut utilise les teintes préfixées par `A` (`A200`, etc.) pour l'intention secondaire, et les nuances non préfixées pour les autres intentions.
+La palette par défaut utilise les nuances préfixées par `A` (`A200`, etc.) pour la couleur de la palette secondaire, et les nuances non préfixées pour les autres couleurs de la palette.
 
 ## Personnalisation
 
@@ -34,7 +34,7 @@ Vous pouvez remplacer les valeurs de palette par défaut en incluant un objet pa
 - [`palette.info`](/customization/default-theme/?expand-path=$.palette.info)
 - [`palette.success`](/customization/default-theme/?expand-path=$.palette.success)
 
-des objets de couleur de palette sont fournis, ils remplaceront les valeurs par défaut.
+des objets de couleur de palette sont fournis, ils remplaceront ceux par défaut.
 
 La valeur de couleur de la palette peut être soit un objet [color](/customization/color/#2014-material-design-color-palettes), soit un objet avec une ou plusieurs des clés spécifiées par l'interface TypeScript suivante :
 
@@ -49,7 +49,7 @@ interface PaletteColor {
 
 ### Utiliser un objet de couleur
 
-Le moyen le plus simple de personnaliser une intention est d'importer une ou plusieurs des couleurs fournies et appliquez-les à une intention de palette :
+Le moyen le plus simple de personnaliser une couleur de palette est d'importer une ou plusieurs des couleurs fournies et de les appliquer :
 
 ```js
 import { createTheme } from '@material-ui/core/styles';
@@ -64,7 +64,7 @@ const theme = createTheme({
 
 ### Fournir les couleurs directement
 
-Si vous souhaitez proposer des couleurs plus personnalisées, vous pouvez soit créer votre propre objet couleur, ou fournir directement des couleurs à tout ou partie des clés de l'intention :
+Si vous souhaitez fournir des couleurs plus personnalisées, vous pouvez soit créer votre propre palette de couleurs, ou fournir directement des couleurs à tout ou partie des clés `theme.palette` :
 
 ```js
 import { createTheme } from '@material-ui/core/styles';
@@ -83,8 +83,8 @@ const theme = createTheme({
       // sombre : sera calculé à partir de palette.secondaire.main,
       contrastText: '#ffcc00',
     },
-    // Utilisé par `getContrastText()` pour maximiser le contraste entre
-    // le fond et le texte.
+    // Used by `getContrastText()` to maximize the contrast between
+    // the background and the text.
     tonalOffset: 0.2,
   },
 });
@@ -95,7 +95,7 @@ const theme = createTheme({
     // E.g., shift from Red 500 to Red 300 or Red 700.
 ```
 
-Comme dans l'exemple ci-dessus, si l'objet d'intention contient des couleurs personnalisées utilisant l'un des Clés "main", "light", "dark" ou "contrastText", ces clés sont mappées comme suit :
+Comme dans l'exemple ci-dessus, si la couleur de la palette contient des couleurs personnalisées utilisant l'un des clés "main", "light", "dark" ou "contrastText", ces clés sont mappées comme suit :
 
 - Si les clés "dark" et/ou "light" ne sont pas données, leur(s) valeur(s) seront calculées à partir de "main", selon la valeur "tonalOffset".
 - Si "contrastText" n'est pas indiqué, sa valeur sera calculée pour contraster avec "main", selon la valeur "contrastThreshold".
@@ -138,6 +138,8 @@ const theme = createTheme({
 
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
+<!-- tested with packages/material-ui/test/typescript/augmentation/paletteColors.spec.ts -->
+
 ```ts
 declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
@@ -162,27 +164,35 @@ declare module "@material-ui/core/styles/createPalette" {
 }
 ```
 
+{{"demo": "pages/customization/palette/CustomColor.js"}}
+
 ## Picking colors
 
 Besoin d'inspiration ? L'équipe Material Design a conçu un [outil de configuration de palette](/customization/color/#picking-colors) pour vous aider.
 
 ## Mode Sombre
 
-Material-UI est livré avec deux types de palettes, clair (par défaut) et sombre. Vous pouvez rendre le thème sombre en définissant `type : 'dark'`. Bien qu'il ne s'agisse que d'un seul changement de valeur de propriété, il modifie en interne plusieurs valeurs de palette.
+Material-UI comes with two palette types, light (the default) and dark. Vous pouvez rendre le thème sombre en définissant le `mode : 'dark'`.
 
 ```js
 const darkTheme = createTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
   },
 });
 ```
 
-Les couleurs modifiées par le type de palette sont les suivantes :
+While it's only a single property value change, internally it modifies several palette values. The colors modified by the palette type are the following:
 
 {{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
 ### Préférence de l'utilisateur
+
+You can use the React context to toggle the mode with a button inside your page.
+
+{{"demo": "pages/customization/palette/ToggleColorMode.js", "defaultCodeOpen": false}}
+
+### System preference
 
 Les utilisateurs peuvent avoir spécifié une préférence pour un thème clair ou sombre. La méthode par laquelle l'utilisateur exprime sa préférence peut varier. Il peut s'agir d'un paramètre à l'échelle du système exposé par le système d'exploitation ou d'un paramètre contrôlé par l'agent utilisateur.
 
@@ -191,7 +201,7 @@ Vous pouvez exploiter cette préférence de manière dynamique avec le crochet [
 Par exemple, vous pouvez activer le mode sombre automatiquement :
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -203,7 +213,7 @@ function App() {
     () =>
       createTheme({
         palette: {
-          type: prefersDarkMode ? 'dark' : 'light',
+          mode: prefersDarkMode ? 'dark' : 'light',
         },
       }),
     [prefersDarkMode],

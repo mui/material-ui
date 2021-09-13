@@ -4,15 +4,24 @@
 
 ## Supported values
 
-The sizing style functions support different property input type:
+The sizing properties: `width`, `height`, `minHeight`, `maxHeight`, `minWidth`, and `maxWidth` are using the following custom transform function for the value:
+
+```js
+function transform(value) {
+  return value <= 1 ? `${value * 100}%` : value;
+}
+```
+
+If the value is between [0, 1], it's converted to percent.
+Otherwise, it is directly set on the CSS property.
 
 {{"demo": "pages/system/sizing/Values.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box width={1/4}> // Numbers in [0,1] are multiplied by 100 and converted to % values.
-<Box width={300}> // Numbers are converted to pixel values.
-<Box width="75%"> // String values are used as raw CSS.
-<Box width={1}>   // 100%
+<Box sx={{ width: 1/4 }}> // Equivalent to width: '25%'
+<Box sx={{ width: 300 }}> // Numbers are converted to pixel values.
+<Box sx={{ width: '75%' }}> // String values are used as raw CSS.
+<Box sx={{ width: 1 }}> // 100%
 ```
 
 ## Width
@@ -20,11 +29,20 @@ The sizing style functions support different property input type:
 {{"demo": "pages/system/sizing/Width.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box width="25%">…
-<Box width="50%">…
-<Box width="75%">…
-<Box width="100%">…
-<Box width="auto">…
+<Box sx={{ width: '25%' }}>…
+<Box sx={{ width: '50%' }}>…
+<Box sx={{ width: '75%' }}>…
+<Box sx={{ width: '100%' }}>…
+<Box sx={{ width: 'auto' }}>…
+```
+
+### Max-width
+
+The max-width property allows setting a constraint on your breakpoints.
+In this example, the value resolves to [`theme.breakpoints.values.md`](/customization/default-theme/?expand-path=$.breakpoints.values).
+
+```jsx
+<Box sx={{ maxWidth: 'md' }}>…
 ```
 
 ## Height
@@ -32,24 +50,24 @@ The sizing style functions support different property input type:
 {{"demo": "pages/system/sizing/Height.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box height="25%">…
-<Box height="50%">…
-<Box height="75%">…
-<Box height="100%">…
+<Box sx={{ height: '25%' }}>…
+<Box sx={{ height: '50%' }}>…
+<Box sx={{ height: '75%' }}>…
+<Box sx={{ height: '100%' }}>…
 ```
 
 ## API
 
 ```js
-import { sizing } from '@material-ui/system';
+import { sizing } from '@mui/system';
 ```
 
-| Import name | Prop | CSS property | Theme key |
-|:------------|:-----|:-------------|:----------|
-| `width` | `width` | `width` | none |
-| `maxWidth` | `maxWidth` | `max-width` | none |
-| `minWidth` | `minWidth` | `min-width` | none |
-| `height` | `height` | `height` | none |
-| `maxHeight` | `maxHeight`| `max-height` | none |
-| `minHeight` | `minHeight`| `min-height` | none |
-| `boxSizing` | `boxSizing`| `box-sizing` | none |
+| Import name | Prop        | CSS property | Theme key                                                                                    |
+| :---------- | :---------- | :----------- | :------------------------------------------------------------------------------------------- |
+| `width`     | `width`     | `width`      | none                                                                                         |
+| `maxWidth`  | `maxWidth`  | `max-width`  | [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) |
+| `minWidth`  | `minWidth`  | `min-width`  | none                                                                                         |
+| `height`    | `height`    | `height`     | none                                                                                         |
+| `maxHeight` | `maxHeight` | `max-height` | none                                                                                         |
+| `minHeight` | `minHeight` | `min-height` | none                                                                                         |
+| `boxSizing` | `boxSizing` | `box-sizing` | none                                                                                         |

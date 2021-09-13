@@ -1,8 +1,7 @@
-import React from 'react';
-import { createTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import { purple } from '@material-ui/core/colors';
-import Button from '@material-ui/core/Button';
+import * as React from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { purple } from '@mui/material/colors';
+import Button from '@mui/material/Button';
 
 const theme = createTheme({
   palette: {
@@ -20,7 +19,7 @@ const theme = createTheme({
 export default function Palette() {
   return (
     <ThemeProvider theme={theme}>
-      <Button color="primary">Primary</Button>
+      <Button>Primary</Button>
       <Button color="secondary">Secondary</Button>
     </ThemeProvider>
   );

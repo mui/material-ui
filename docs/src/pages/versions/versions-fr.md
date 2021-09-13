@@ -23,7 +23,7 @@ This document contains the practices that are followed to provide you with a lea
 Le numéro de version est incrémenté en fonction du niveau de changement inclus dans la version. Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Les numéros de version Material-UI ont trois parties : `majeur.mineur.correctifs`.
 
 - Les ** Versions majeures ** contiennent de nouvelles fonctionnalités significatives, mais une aide minimale aux développeurs est attendue durant la mise à jour. Lors de la mise à jour vers une nouvelle version majeure, vous devrez peut-être exécuter des scripts de mise à jour, de la refactorisation du code, exécuter des tests supplémentaires et apprendre de nouvelles API.
-- Les ** Versions de correctifs ** sont à faible risque, contiennent des corrections de bugs et de petites nouvelles fonctionnalités. Aucune assistance pour les développeurs n'est attendue lors de la mise à jour.
+- Les ** Versions mineures ** contiennent d'importantes nouvelles fonctionnalités. Aucune assistance pour les développeurs n'est attendue lors de la mise à jour.
 - Les ** Versions de correctifs ** sont à faible risque, contiennent des corrections de bugs et de petites nouvelles fonctionnalités. Aucune assistance pour les développeurs n'est attendue lors de la mise à jour.
 
 ## Fréquence de version
@@ -46,10 +46,9 @@ In general, you can expect the following release cycle:
 | Q1 2021             | v5.0.beta.0 | Work in progress |
 | September 1st, 2021 | v5.0.0      | ⏳                |
 
-
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
-> ⚠️ **Avertissement** : Nous opérons dans un environnement dynamique et les choses sont susceptibles de changer. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
+> ⚠️ **Avertissement** : Nous opérons dans un environnement dynamique et les choses sont susceptibles de changer. Les informations fournies visent à définir l'orientation générale du cadre. Il est destiné à des fins d'information uniquement. Nous pouvons décider d'ajouter/supprimer de nouveaux articles à tout moment en fonction de notre capacité à livrer tout en respectant nos normes de qualité. Le développement, les versions et le calendrier de toute fonctionnalité ou fonctionnalité de Material-UI restent à la seule discrétion de Material-UI. La feuille de route ne représente pas un engagement, une obligation ou une promesse de livraison à tout moment.
 
 ## Politique de support
 

@@ -1,22 +1,10 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from '@material-ui/core/Link';
-import HomeIcon from '@material-ui/icons/Home';
-import WhatshotIcon from '@material-ui/icons/Whatshot';
-import GrainIcon from '@material-ui/icons/Grain';
-
-const useStyles = makeStyles((theme) => ({
-  link: {
-    display: 'flex',
-  },
-  icon: {
-    marginRight: theme.spacing(0.5),
-    width: 20,
-    height: 20,
-  },
-}));
+import * as React from 'react';
+import Typography from '@mui/material/Typography';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import HomeIcon from '@mui/icons-material/Home';
+import WhatshotIcon from '@mui/icons-material/Whatshot';
+import GrainIcon from '@mui/icons-material/Grain';
 
 function handleClick(event) {
   event.preventDefault();
@@ -24,27 +12,35 @@ function handleClick(event) {
 }
 
 export default function IconBreadcrumbs() {
-  const classes = useStyles();
-
   return (
-    <Breadcrumbs aria-label="breadcrumb">
-      <Link color="inherit" href="/" onClick={handleClick} className={classes.link}>
-        <HomeIcon className={classes.icon} />
-        Material-UI
-      </Link>
-      <Link
-        color="inherit"
-        href="/getting-started/installation/"
-        onClick={handleClick}
-        className={classes.link}
-      >
-        <WhatshotIcon className={classes.icon} />
-        Core
-      </Link>
-      <Typography color="textPrimary" className={classes.link}>
-        <GrainIcon className={classes.icon} />
-        Breadcrumb
-      </Typography>
-    </Breadcrumbs>
+    <div role="presentation" onClick={handleClick}>
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link
+          underline="hover"
+          sx={{ display: 'flex', alignItems: 'center' }}
+          color="inherit"
+          href="/"
+        >
+          <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+          MUI
+        </Link>
+        <Link
+          underline="hover"
+          sx={{ display: 'flex', alignItems: 'center' }}
+          color="inherit"
+          href="/getting-started/installation/"
+        >
+          <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+          Core
+        </Link>
+        <Typography
+          sx={{ display: 'flex', alignItems: 'center' }}
+          color="text.primary"
+        >
+          <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+          Breadcrumb
+        </Typography>
+      </Breadcrumbs>
+    </div>
   );
 }

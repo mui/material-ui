@@ -1,6 +1,6 @@
 # Color 颜色
 
-<p class="description">颜色承载了不同的寓意。 开箱即用，您可以查看 Material Design 规范中的所有颜色。</p>
+<p class="description">颜色承载了不同的寓意。 Out of the box you get access to all colors in the Material Design guidelines.</p>
 
 使用 Material Design 的[颜色系统](https://material.io/design/color/)，您可创建表现独特品牌或风格的颜色主题。
 
@@ -10,14 +10,15 @@
 
 Material Design 团队也搭建了一个非常棒的调色板配置工具： [material.io/resources/color/](https://material.io/resources/color/)。 您可以用它来为 UI 创建调色板，以及检测任何颜色组合的无障碍水平。
 
-<a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
+<a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336
+" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="官方的色彩工具" style="width: 574px" />
 </a>
-  
-  
 
+<br />
+<br />
 
-输出的结果可以被传入到 `createTheme()` 函数中：
+The output can be fed into `createTheme()` function:
 
 ```js
 import { createTheme } from '@material-ui/core/styles';
@@ -46,7 +47,7 @@ const theme = createTheme({
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideToolbar": true, "bg": true}}
 
-您可以把颜色的例子中显示的输出结果直接粘贴到一个 [`createTheme()`](/customization/theming/#createtheme-options-theme) 函数里（需要与 [`ThemeProvider`](/customization/theming/#theme-provider) 配合使用）：
+The output shown in the color sample can be pasted directly into a [`createTheme()`](/customization/theming/#createtheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
 import { createTheme } from '@material-ui/core/styles';
@@ -64,14 +65,14 @@ const theme = createTheme({
 });
 ```
 
-您只需提供 `主要的` 阴影（shades）（除非您希望进一步自定义 `light`，`dark` 或 `contrastText` 这几个属性），在 [定制主题](/customization/palette/) 章节中提到，这是因为其他颜色会由 `createTheme()` 自动计算。
+Only the `main` shades need be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createTheme()`, as described in the [Theme customization](/customization/palette/) section.
 
-如果你在使用默认的主要和/或次要阴影，那么通过提供一个颜色对象（color object） ，`createTheme()` 将会根据主（main）、亮（light）和暗（dark）三种 material 颜色使用合适的阴影。
+If you are using the default primary and / or secondary shades then by providing the color object, `createTheme()` will use the appropriate shades from the material color for main, light and dark.
 
 ### 社区提供的一些工具
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/)：使用 Material Design 颜色工具来创建 Material-UI 主题的在线工具。
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/)：只需要选择颜色即可为你的 Material-UI 应用生成主题的工具，同时还支持在线预览。
+- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/)：一个帮助设计和定制 Material-UI 组件库主题的工具。 包括基本的网站模板，并且展示各种组件及其受主题影响的方式。
 - [Material palette generator](https://material.io/inline-tools/color/)：它可用于通过您输入的任何颜色生成一系列的调色板。
 
 ## 2014 Material Design 调色板
@@ -80,12 +81,12 @@ const theme = createTheme({
 
 ### 一些重要的术语
 
-- **调色板（Palette ）**：调色板是一个颜色的集合，例如色调及其阴影。 Material-UI 提供 Material Design 指南中的所有颜色。 设计 [此调色板](#color-palette) 时，我们确保了各个颜色之间的协调呈现。
-- **色调（Hue）和阴影（Shade）**：调色板中的单个颜色是由色调（如 "red"）和阴影（如 "500"）组成。 "red 50" 是红色的最浅的阴影（* pink! *），而 "red 900" 是最深的红色。 除此之外，大多数的色调都带有以 `A` 为前缀的强调（accent）色调。
+- **Palette**：调色板是颜色的集合，即色调及其深度。 Material-UI 提供 Material Design 指南中的所有颜色。 设计 [此调色板](#color-palette) 时，我们确保了各个颜色之间的协调呈现。
+- **Hue & Shade**：调色板中的单一颜色由色调（如“red”）和深度（如“500”）组成。 "rad 50" 是红色的最浅的阴影（_ 粉红色！ _），而 "red 900" 是最暗的深红色。 除此之外，大多数的色调都带有以 `A` 为前缀的强调（accent）色调。
 
 ### 调色板
 
-若给定了一种*色调*（如红色，粉红色等）以及一个*阴影* （500，600 等），您可以像这样导入颜色：
+若给定了一种_色调_（如红色，粉红色等）以及一个_阴影_ （500，600等），你可以这样导入颜色：
 
 ```jsx
 import HUE from '@material-ui/core/colors/HUE';

@@ -11,7 +11,7 @@
 Вот краткий пример для начала, **это буквально все что вам нужно**:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 
@@ -32,17 +32,14 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## Глобальная настройка
 
-Опыт использования Material-UI может быть улучшен с помощью ряда важных глобальных настроек, о которых вам нужно знать.
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### Responsive meta tag
 
 Чтобы обеспечить правильный рендеринг и масштабирование касанием для всех устройств, добавьте метатег реагирующего окна просмотра в элемент `<head>`. Чтобы обеспечить правильный рендеринг и масштабирование касанием для всех устройств, добавьте метатег реагирующего окна просмотра в элемент `<head>`.
 
 ```html
-<meta
-  name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width"
-/>
+<meta name="viewport" content="initial-scale=1, width=device-width" />
 ```
 
 ### CssBaseline
@@ -59,4 +56,4 @@ Material-UI предоставляет опциональный компонен
 
 - Как предоставить [шрифт и оформление Material Design](/components/typography/).
 - Как воспользоваться [механизмом тем](/customization/theming/).
-- Как [переопределить](/customization/components/) внешний вид компонентов.
+- Как [переопределить](/customization/how-to-customize/) внешний вид компонентов.

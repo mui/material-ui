@@ -1,12 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import CssBaseline from '@mui/material/CssBaseline';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -40,13 +40,15 @@ export default function ElevateAppBar(props) {
       <ElevationScroll {...props}>
         <AppBar>
           <Toolbar>
-            <Typography variant="h6">Scroll to Elevate App Bar</Typography>
+            <Typography variant="h6" component="div">
+              Scroll to Elevate App Bar
+            </Typography>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
       <Toolbar />
       <Container>
-        <Box my={2}>
+        <Box sx={{ my: 2 }}>
           {[...new Array(12)]
             .map(
               () => `Cras mattis consectetur purus sit amet fermentum.

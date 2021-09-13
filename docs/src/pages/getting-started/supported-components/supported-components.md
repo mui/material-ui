@@ -1,6 +1,6 @@
-# Supported Components
+# Supported components
 
-<p class="description">The following is a list of Material Design components & features. Those currently supported by Material-UI are highlighted ✓.</p>
+<p class="description">The following is a list of Material Design components & features. Those currently supported by MUI are highlighted ✓.</p>
 
 While we strive to follow the guidelines where practical (applying
 common sense where guidelines contradict - a more common occurrence than
@@ -74,7 +74,7 @@ to discuss the approach before submitting a pull request.
 - **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓**
   - **[Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓**
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
-  - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*Legacy Material v1*)
+  - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (_Legacy Material v1_)
 - **[Selection controls](https://material.io/design/components/selection-controls.html) ✓**
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
@@ -82,12 +82,12 @@ to discuss the approach before submitting a pull request.
 - **[Sliders](https://material.io/design/components/sliders.html) ✓**
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ✓**
-- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
-- **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*)
+- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (_Legacy Material v1_)
+- **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (_Legacy Material v1_)
   - **[List](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - **[Grid](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
-- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*)
+- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (_Legacy Material v1_)
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) ✓**
@@ -109,6 +109,6 @@ to discuss the approach before submitting a pull request.
     - **Icons ✓**
     - Character counter
 - **[Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓** (Legacy Material v1)
--  **[Tooltips](https://material.io/design/components/tooltips.html) ✓**
-  -  **Desktop ✓**
-  -  **Mobile ✓**
+- **[Tooltips](https://material.io/design/components/tooltips.html) ✓**
+- **Desktop ✓**
+- **Mobile ✓**

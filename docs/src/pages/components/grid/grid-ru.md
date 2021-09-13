@@ -1,6 +1,8 @@
 ---
 title: Компонент React Grid
 components: Grid
+githubLabel: 'component: Grid'
+materialDesign: https://material.io/design/layout/understanding-layout.html
 ---
 
 # Grid
@@ -9,43 +11,77 @@ components: Grid
 
 [Сетка](https://material.io/design/layout/responsive-layout-grid.html) создает визуальную согласованность между макетами, позволяя гибко адаптироваться к разнообразным дизайнам. Адаптивный пользовательский интерфейс Material Design основан на сетке с 12 колонками.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 > ⚠️ Компонент `Сетка` не путать с сеткой данных; он ближе к раскладке сетки. Для передачи данных заголовок перейти к: [компоненту `DataGrid`](/components/data-grid/).
 
 ## Как это работает
 
 Система сетки реализована с помощью компонента `Grid`:
 
-- Она использует [модуль Flexible Box CSS](https://www.w3.org/TR/css-flexbox-1/) для повышеной гибкости.
-- Существует два типа макетов: *контейнеры* и *элементы*.
-- Ширина элементов задается в процентах, поэтому они всегда гибко изменяют свой размер относительно родительского элемента.
+- Она использует [модуль Flexible Box CSS](https://www.w3.org/TR/css-flexbox-1/) для повышенной гибкости.
+- Существует два типа макетов: *containers* и *items*.
+- Ширина item задается в процентах, поэтому они всегда гибко изменяют свой размер относительно родительского элемента.
 - Элементы имеют отступы для создания промежутков между отдельными элементами.
 - Существует пять контрольных точек прерывания сетки: xs, sm, md, lg и xl.
+- Каждой точке останова (breakpoint) могут быть присвоены целые значения, указывая сколько из 12 доступных столбцов занято компонентом, когда ширина видимости соответствует [breakpoint constants](/customization/breakpoints/#default-breakpoints) (константе breakpoint).
 
-Если вы **слабо знакомы (или совсем незнакомы) с Flexbox**, мы рекомендуем Вам прочитать это руководство [CSS-трюки Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
-
-## Интервал
-
-Смысл адаптивной сетки не в равной ширине столбцов, а в равной ширине интервалов между ними. В Material Design величина отступов и ширина столбцов привязаны к базовой сетке с шагом в **8px**. Свойство `spacing` может принимать целочисленные значения от 0 до 10 включительно. По умолчанию расстояние между соседними элементами (GridItem) задано линейной функцией: `output(spacing) = spacing * 8px`, т.е. `spacing={2}` устанавливает значение интервала 16px.
-
-Поведение функции `output` можно изменить, [отредактировав тему](/customization/spacing/).
-
-{{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
+Если вы **слабо знакомы (или совсем незнакомы) с Flexbox**, мы рекомендуем Вам прочитать это руководство [CSS-Tricks Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
 ## Адаптивные сетки
 
-Адаптивные сетки используют столбцы, которые меняют свою ширину и масштабируют размер содержимого. Макет с адаптивной сеткой может использовать точки останова (breakpoints), в тех случаях, когда макет должен резко измениться.
+Адаптивные сетки используют столбцы, которые меняют свою ширину и масштабируют размер содержимого. A fluid grid's layout can use breakpoints to determine if the layout needs to change dramatically.
 
 ### Базовая сетка
 
-Ширина столбца меняется во всех точках прерывания (от `xs` и выше).
+Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
 
-{{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
+A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
 
-### Сетка с точками прерывания
+{{"demo": "pages/components/grid/BasicGrid.js", "bg": true}}
 
-Некоторые столбцы имеют несколько значений ширины, что приводит к изменению макета в определенной точке прерывания.
+### Сетка с несколькими breakpoints
+
+Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints.
+
+For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
+
+## Интервал
+
+To control space between children, use the `spacing` prop. The spacing value can be any positive number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
+
+{{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
+
+## Responsive values
+
+You can switch the props' value based on the active breakpoint. For instance, we can implement the ["recommended"](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
+
+{{"demo": "pages/components/grid/ResponsiveGrid.js", "bg": true}}
+
+Responsive values is supported by:
+
+- `columns`
+- `columnSpacing`
+- `direction`
+- `rowSpacing`
+- `spacing`
+- all the [other props](#system-props) of the system
+
+> ⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint. For instance, this is not working. The grid item misses the value for `md`:
+> 
+> ```jsx
+> <Grid container columns={{ xs: 4, md: 12 }}>
+>    <Grid item xs={2} />
+> > </Grid>
+> ```
+
+### Row & column spacing
+
+The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently. It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+
+{{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
 
 ## Интерактивность
 
@@ -55,46 +91,45 @@ components: Grid
 
 ## Авто-разметка
 
-Автоматическая разметка позволяет *элементам* равномерно распределяться по всему доступному пространству. Это также означает, что вы можете установить ширину одного *элемента* и остальные автоматически изменят свои размеры вокруг него.
+The Auto-layout makes the _items_ equitably share the available space. That also means you can set the width of one _item_ and the others will automatically resize around it.
 
 {{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
 ## Сложная сетка
 
-Следующая демонстрация не соответствует спецификации Material Design, но иллюстрирует, как сетка может использоваться для создания сложных макетов.
+The following demo doesn't follow the Material Design guidelines, but illustrates how the grid can be used to build complex layouts.
 
 {{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 
 ## Вложенная сетка
 
-Свойства `container` и `item` - это два независимых логических значения. Они могут быть объединены.
+The `container` and `item` props are two independent booleans; they can be combined to allow a Grid component to be both a flex container and child.
 
-> Flex **контейнер** представляет собой блок, созданный элементом с вычисляемым свойством display `flex` или `inline-flex`. Дочерние элементы flex контейнера называются flex **элементы** и размещаются используя flex-модель.
+> A flex **container** is the box generated by an element with a computed display of `flex` or `inline-flex`. In-flow children of a flex container are called flex **items** and are laid out using the flex layout model.
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "pages/components/grid/NestedGrid.js", "bg": true}}
 
+⚠️ Defining an explicit width to a Grid element that is flex container, flex item, and has spacing at the same time lead to unexpected behavior, avoid doing it:
+
+```jsx
+<Grid spacing={1} container item xs={12}>
+```
+
+If you need to do such, remove one of the props.
+
+## Столбцы
+
+You can change the default number of columns (12) with the `columns` prop.
+
+{{"demo": "pages/components/grid/ColumnsGrid.js", "bg": true}}
+
 ## Ограничения
 
 ### Отрицательный margin
 
-Есть одно ограничение с отрицательным margin, которое мы используем для добавления расстояния между элементами. Появится горизонтальная прокрутка, если отрицательный margin выходит за пределы `<body>`. Существует 3 обходных пути, чтобы избежать этого:
-
-1. Не использовать отступы и не реализовывать их в пространстве пользователя. `spacing={0}` (по умолчанию).
-2. Применение внутренних отступов (padding) к родителю с использованием, как минимум, половины значения отступа, имеющегося у дочернего элемента:
-
-```jsx
-  <body>
-    <div style={{ padding: 20 }}>
-      <Grid container spacing={5}>
-        //...
-      </Grid>
-    </div>
-  </body>
-```
-
-3. Добавление `overflow-x: hidden;` к родителю.
+The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
 ### white-space: nowrap;
 
@@ -105,7 +140,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   <Typography noWrap>
 ```
 
-Чтобы элемент оставался в контейнере, необходимо установить `min-width: 0`. На практике вы можете установить свойство `zeroMinWidth`:
+Чтобы элемент оставался в контейнере, необходимо установить `min-width: 0`. In practice, you can set the `zeroMinWidth` prop:
 
 ```jsx
 <Grid item xs zeroMinWidth>
@@ -116,10 +151,20 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### direction: column | column-reverse
 
-Хотя компонент `Grid` имеет свойство `direction` которое допускает значения `row`, `row-reverse`, `column`и `column-reverse`, тем не менее, некоторые функции не поддерживаются в контейнерах `column` и `column-reverse`. Свойства, определющие количество сеток, которые компонент будет использовать для данной точки останова (`xs`, `см`, `md`, `lg`и `xl`), ориентированы на управление шириной и оказывают **различное** влияние на height в контейнерах `column` и `column-reverse`. При использовании в контейнерах `column` или `column-reverse`, эти свойства могут оказать нежелательные эффекты на ширину элементов `Grid`.
+The `xs`, `sm`, `md`, `lg`, and `xl` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
+
+They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers. If used, these props may have undesirable effects on the height of the `Grid` item elements.
 
 ## CSS макет сетки
 
-Material-UI сам по себе не предоставляет никакой функциональности CSS Grid, но, как видно ниже, вы можете легко использовать CSS Grid в макете страницы.
+The `Grid` component is using CSS flexbox internally. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
 
 {{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}
+
+## System props
+
+As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding:
+
+```jsx
+<Grid item p={2}>
+```

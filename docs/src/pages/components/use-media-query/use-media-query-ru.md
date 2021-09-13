@@ -1,5 +1,6 @@
 ---
 title: Consulta de mídia no React para design responsivo
+githubLabel: 'hook: useMediaQuery'
 ---
 
 # useMediaQuery
@@ -12,6 +13,8 @@ Some of the key features:
 - 🚀 Он производителен. Он наблюдает за документом, чтобы определить, когда его медиа-запросы изменяются, вместо периодического опроса значения.
 - 1 [1 кБ в сжатом виде](/size-snapshot).
 - 🤖 It supports server-side rendering.
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Простой медиа-запрос
 
@@ -83,6 +86,28 @@ describe('MyTests', () => {
 });
 ```
 
+## Рендеринг лишь на стороне клиента
+
+Для выполнения гидратации на стороне сервера хук должен рендерится дважды. Первый раз с `false`, значение сервера и второй раз с разрешенным значением. This double pass rendering cycle comes with a drawback. It's slower. Вы можете установить опцию `noSsr` как `true` если вы делаете рендеринг **лишь на стороне клиента**.
+
+```js
+const matches = useMediaQuery('(min-width:600px)', { noSsr: true });
+```
+
+или он может включить его глобально с помощью темы:
+
+```js
+const theme = createTheme({
+  components: {
+    MuiUseMediaQuery: {
+      defaultProps: {
+        noSsr: true,
+      },
+    },
+  },
+});
+```
+
 ## Server-side rendering
 
 > ⚠️ Server-side rendering and client-side media queries are fundamentally at odds. Be aware of the tradeoff. The support can only be partial.
@@ -91,7 +116,7 @@ Try relying on client-side CSS media queries first. For instance, you could use:
 
 - [`<Box display>`](/system/display/#hiding-elements)
 - [`themes.breakpoints.up(x)`](/customization/breakpoints/#css-media-queries)
-- or [`<Hidden implementation="css">`](/components/hidden/#css)
+- or [`sx prop`](/system/basics/#heading-the-sx-prop)
 
 If none of the above alternatives are an option, you can proceed reading this section of the documentation.
 
@@ -115,24 +140,17 @@ function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
   const ssrMatchMedia = query => ({
     matches: mediaQuery.match(query, {
-      // The estimated CSS width of the browser. '0px' : '1024px',
-    }),
-  });
+      // The estimated CSS width of the browser.
+      import ReactDOMServer from 'react-dom/server';
+import parser from 'ua-parser-js';
+import mediaQuery from 'css-mediaquery';
+import { ThemeProvider } from '@material-ui/core/styles';
 
-  const html = ReactDOMServer.renderToString(
-    <ThemeProvider
-      theme={{
-        props: {
-          // Change the default options of useMediaQuery
-          MuiUseMediaQuery: { ssrMatchMedia },
-        },
-      }}
-    >
-      <App />
-    </ThemeProvider>,
-  );
-
-  // …
+function handleRender(req, res) {
+  const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
+  const ssrMatchMedia = query => ({
+    matches: mediaQuery.match(query, {
+      // The estimated CSS width of the browser. width: deviceType === 'mobile' ?
 }
 ```
 
@@ -152,14 +170,15 @@ The `withWidth()` higher-order component injects the screen width of the page. Y
 
 #### Аргументы
 
-1. `query` (*String* | *Function*): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
-2. `варианты` (*объекта* [optional]): 
-  - `options.defaultMatches` (*Boolean* [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. The default value is `false`.
-  - `options.matchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
-  - `options.noSsr` (*Boolean* [optional]): По умолчанию - `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. It's slower. You can set this flag to `true` if you are **not doing server-side rendering**.
-  - `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
+1. `query` (_string_ | _func_): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
+2. `options` (_object_ [optional]):
 
-Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
+- `options.defaultMatches` (_bool_ [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. The default value is `false`.
+- `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. This can be used for handling an iframe content window.
+- `options.noSsr` (_bool_ [optional]): Defaults to `false`. Для выполнения гидратации на стороне сервера хук должен рендерится дважды. Первый раз с `false`, значение сервера и второй раз с разрешенным значением. This double pass rendering cycle comes with a drawback. It's slower. Вы можете установить опцию `noSsr` как `true` если вы делаете рендеринг **лишь на стороне клиента**.
+- `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
+
+Note: You can change the default options using the [`default props`](/customization/theme-components/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
 #### Возвращает
 
@@ -168,7 +187,7 @@ Note: You can change the default options using the [`default props`](/customizat
 #### Примеры
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {

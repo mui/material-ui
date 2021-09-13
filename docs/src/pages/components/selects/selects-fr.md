@@ -1,11 +1,14 @@
 ---
 title: Composant React Select
 components: Select, NativeSelect
+githubLabel: 'component: Select'
 ---
 
 # Liste à choix simple
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Simple Select
 
@@ -19,35 +22,73 @@ The Select component is meant to be interchangeable with a native `<select>` ele
 
 If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). C'est censé être une version améliorée de la "react-select" et de "downshift".
 
-## Native Select
+## Props
 
-As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
+Le composant Select est implémenté en tant qu'élément `<input>` personnalisé de la [InputBase](/api/input-base/). It extends the [text field components](/components/text-fields) sub-components, either the [Input](/api/input/), [FilledInput](/api/filled-input/), or [OutlinedInput](/api/outlined-input/), depending on the variant selected. Il partage les mêmes styles et bon nombre des mêmes accessoires. Reportez-vous à la page API du composant respectif pour plus de détails.
+
+### Filled and outlined variants
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Text Fields (Champs de texte)
+### Étiquettes et texte d'aide
+
+{{"demo": "pages/components/selects/SelectLabels.js"}}
+
+### Largeur automatique
+
+{{"demo": "pages/components/selects/SelectAutoWidth.js"}}
+
+### D'autres accessoires
+
+{{"demo": "pages/components/selects/SelectOtherProps.js"}}
+
+## Sélection native
+
+As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
+
+{{"demo": "pages/components/selects/NativeSelect.js"}}
+
+## TextField
 
 Le composant d'encapsulation `TextField` est un contrôle de formulaire complet comprenant une étiquette, une entrée et un texte d'aide. The first step is to style the `InputBase` component.
 
 ## Customized selects
 
-Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
+Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
 
-The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
+The first step is to style the `InputBase` component. Une fois qu'il est stylisé, vous pouvez soit l'utiliser directement comme champ de texte, soit le fournir à la propriété select `input` pour avoir un champ `select`. Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
 🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/styles/select).
 
-## Multiple Select
+## Sélection multiple
 
-The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
+The `Select` component can handle multiple selections. Il est activé avec la prop `multiple`.
 
 Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
 
+### Défaut
+
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Controlled Open Select
+### Coches
+
+{{"demo": "pages/components/selects/MultipleSelectCheckmarks.js"}}
+
+### Chip
+
+Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
+
+### Espace réservé
+
+{{"demo": "pages/components/selects/MultipleSelectPlaceholder.js"}}
+
+### Originaire de
+
+{{"demo": "pages/components/selects/MultipleSelectNative.js"}}
+
+## Sélection ouverte contrôlée
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 

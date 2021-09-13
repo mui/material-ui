@@ -1,6 +1,9 @@
 ---
 title: React Tabs component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
+githubLabel: 'component: Tabs'
+materialDesign: https://material.io/components/tabs
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
 ---
 
 # Tabs
@@ -9,27 +12,39 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 [タブ](https://material.io/design/components/tabs.html) は、関連し、同じ階層レベルにあるコンテンツのグループ間のナビゲーションを整理し、許可します。
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## シンプルなタブ
 
-飾り気のないシンプルな例です。
+A basic example with tab panels.
 
-{{"demo": "pages/components/tabs/SimpleTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/BasicTabs.js"}}
 
-### ラップされたラベル
+## Experimental API
 
-長いラベルはタブで自動的に折り返されます。 長いラベルはタブで自動的に折り返されます。 ラベルがタブに対して長すぎる場合、ラベルはオーバーフローし、テキストは表示されません。 長いラベルはタブで自動的に折り返されます。 ラベルがタブに対して長すぎる場合、ラベルはオーバーフローし、テキストは表示されません。 長いラベルはタブで自動的に折り返されます。 ラベルがタブに対して長すぎる場合、ラベルはオーバーフローし、テキストは表示されません。 長いラベルはタブで自動的に折り返されます。 ラベルがタブに対して長すぎる場合、ラベルはオーバーフローし、テキストは表示されません。 長いラベルはタブで自動的に折り返されます。 ラベルがタブに対して長すぎる場合、ラベルはオーバーフローし、テキストは表示されません。
+`@material-ui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
 
-{{"demo": "pages/components/tabs/TabsWrappedLabel.js", "bg": true}}
+{{"demo": "pages/components/tabs/LabTabs.js"}}
 
-### 無効タブ
+## ラップされたラベル
 
-`disabled` プロパティを設定すると、タブを無効にできます。
+長いラベルはタブで自動的に折り返されます。 If the label is too long for the tab, it will overflow, and the text will not be visible.
 
-{{"demo": "pages/components/tabs/DisabledTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
+
+## Colored tab
+
+{{"demo": "pages/components/tabs/ColorTabs.js"}}
+
+## 無効タブ
+
+A tab can be disabled by setting the `disabled` prop.
+
+{{"demo": "pages/components/tabs/DisabledTabs.js"}}
 
 ## 固定タブ
 
-固定タブは、限られた数のタブで、一定の配置が筋肉の記憶に役立つ場合に使用します。
+Fixed tabs should be used with a limited number of tabs, and when a consistent placement will aid muscle memory.
 
 ### 最大幅
 
@@ -53,41 +68,59 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 ### 強制スクロールボタン
 
-ビューポートの幅に関係なく、左右のスクロールボタンが表示されます。
+Left and right scroll buttons be presented (reserve space) regardless of the viewport width with `scrollButtons={true}` `allowScrollButtonsMobile`:
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
+If you want to make sure the buttons are always visible, you should customize the opacity.
+
+```css
+.MuiTabs-scrollButtons.Mui-disabled {
+  opacity: 0.3;
+}
+```
+
+{{"demo": "pages/components/tabs/ScrollableTabsButtonVisible.js", "bg": true}}
+
 ### スクロールボタンを防ぐ
 
-左右のスクロールボタンは表示されません。 左右のスクロールボタンは表示されません。 左右のスクロールボタンは表示されません。 左右のスクロールボタンは表示されません。 左右のスクロールボタンは表示されません。 左右のスクロールボタンは表示されません。 すべてのスクロールは、ユーザーエージェントのスクロールメカニズム(たとえば、左右のスワイプ、Shift-マウスホイールなど。)を使用して開始する必要があります。
+Left and right scroll buttons are never be presented with `scrollButtons={false}`. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift mouse wheel, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
 ## カスタマイズされたタブ
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [こちら](/customization/how-to-customize/)を参照してください。
 
-{{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 
 🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/) を確認すると良いでしょう。
 
 ## 垂直タブ
 
+タブラベルは、すべてアイコンまたはすべてテキストのいずれかです。
+
 {{"demo": "pages/components/tabs/VerticalTabs.js", "bg": true}}
 
-## ナビゲーションタブ
+Note that you can restore the scrollbar with `visibleScrollbar`.
 
-デフォルトでは、タブは `button`要素を使用しますが、独自のカスタムタグまたはコンポーネントを提供できます。 次に、タブナビゲーションを実装する例を示します。
+## Nav tabs
 
-{{"demo": "pages/components/tabs/NavTabs.js", "bg": true}}
+By default, tabs use a `button` element, but you can provide your custom tag or component. 次に、タブナビゲーションを実装する例を示します。
 
-## アイコンタブ
+{{"demo": "pages/components/tabs/NavTabs.js"}}
+
+## Icon tabs
 
 タブラベルは、すべてアイコンまたはすべてテキストのいずれかです。
 
-{{"demo": "pages/components/tabs/IconTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/IconTabs.js"}}
 
-{{"demo": "pages/components/tabs/IconLabelTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/IconLabelTabs.js"}}
+
+## サードパーティ製ルーティングライブラリ
+
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
 
 ## アクセシビリティ
 
@@ -106,19 +139,18 @@ The components implement keyboard navigation using the "manual activation" behav
 
 #### Demo
 
-The following two demos only differ in their keyboard navigation behavior. Focus a tab and navigate with arrow keys to notice the difference.
+The following two demos only differ in their keyboard navigation behavior. Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
 
 ```jsx
 /* Tabs where selection follows focus */
 <Tabs selectionFollowsFocus />
+```
+
+{{"demo": "pages/components/tabs/AccessibleTabs1.js", "defaultCodeOpen": false}}
+
+```jsx
 /* Tabs where each tab needs to be selected manually */
 <Tabs />
 ```
 
-{{"demo": "pages/components/tabs/AccessibleTabs.js", "bg": true}}
-
-## Experimental API
-
-`@material-ui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
-
-{{"demo": "pages/components/tabs/LabTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/AccessibleTabs2.js", "defaultCodeOpen": false}}

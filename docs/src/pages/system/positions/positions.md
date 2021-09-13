@@ -7,21 +7,21 @@
 {{"demo": "pages/system/positions/ZIndex.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box zIndex="tooltip">
-<Box zIndex="modal">
+<Box sx={{ zIndex: 'tooltip' }}>
+<Box sx={{ zIndex: 'modal' }}>
 ```
 
 ## API
 
 ```js
-import { positions } from '@material-ui/system';
+import { positions } from '@mui/system';
 ```
 
-| Import name | Prop | CSS property | Theme key |
-|:------------|:-----|:-------------|:----------|
-| `position` | `position` | `position` | none |
-| `zIndex` | `zIndex` | `z-index` | [`zIndex`](/customization/default-theme/?expand-path=$.zIndex) |
-| `top` | `top` | `top` | none |
-| `right` | `right` | `right` | none |
-| `bottom` | `bottom`| `bottom` | none |
-| `left` | `left`| `left` | none |
+| Import name | Prop       | CSS property | Theme key                                                      |
+| :---------- | :--------- | :----------- | :------------------------------------------------------------- |
+| `position`  | `position` | `position`   | none                                                           |
+| `zIndex`    | `zIndex`   | `z-index`    | [`zIndex`](/customization/default-theme/?expand-path=$.zIndex) |
+| `top`       | `top`      | `top`        | none                                                           |
+| `right`     | `right`    | `right`      | none                                                           |
+| `bottom`    | `bottom`   | `bottom`     | none                                                           |
+| `left`      | `left`     | `left`       | none                                                           |

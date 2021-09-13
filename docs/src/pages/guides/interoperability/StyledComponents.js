@@ -1,23 +1,21 @@
-import React from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
-import NoSsr from '@material-ui/core/NoSsr';
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Slider from '@mui/material/Slider';
+import Box from '@mui/material/Box';
 
-const StyledButton = styled(Button)`
-  background-color: #6772e5;
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding: 7px 14px;
-  &:hover {
-    background-color: #5469d4;
+const SliderCustomized = styled(Slider)`
+  color: #20b2aa;
+
+  :hover {
+    color: #2e8b57;
   }
 `;
 
 export default function StyledComponents() {
   return (
-    <NoSsr>
-      <Button>Default</Button>
-      <StyledButton>Customized</StyledButton>
-    </NoSsr>
+    <Box sx={{ width: 300 }}>
+      <Slider defaultValue={30} />
+      <SliderCustomized defaultValue={30} />
+    </Box>
   );
 }

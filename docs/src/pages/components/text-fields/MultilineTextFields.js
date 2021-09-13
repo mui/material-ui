@@ -1,18 +1,8 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-}));
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 export default function MultilineTextFields() {
-  const classes = useStyles();
   const [value, setValue] = React.useState('Controlled');
 
   const handleChange = (event) => {
@@ -20,10 +10,17 @@ export default function MultilineTextFields() {
   };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <div>
         <TextField
-          id="standard-multiline-flexible"
+          id="outlined-multiline-flexible"
           label="Multiline"
           multiline
           maxRows={4}
@@ -31,13 +28,13 @@ export default function MultilineTextFields() {
           onChange={handleChange}
         />
         <TextField
-          id="standard-textarea"
+          id="outlined-textarea"
           label="Multiline Placeholder"
           placeholder="Placeholder"
           multiline
         />
         <TextField
-          id="standard-multiline-static"
+          id="outlined-multiline-static"
           label="Multiline"
           multiline
           rows={4}
@@ -72,30 +69,30 @@ export default function MultilineTextFields() {
       </div>
       <div>
         <TextField
-          id="outlined-multiline-flexible"
+          id="standard-multiline-flexible"
           label="Multiline"
           multiline
           maxRows={4}
           value={value}
           onChange={handleChange}
-          variant="outlined"
+          variant="standard"
         />
         <TextField
-          id="outlined-textarea"
+          id="standard-textarea"
           label="Multiline Placeholder"
           placeholder="Placeholder"
           multiline
-          variant="outlined"
+          variant="standard"
         />
         <TextField
-          id="outlined-multiline-static"
+          id="standard-multiline-static"
           label="Multiline"
           multiline
           rows={4}
           defaultValue="Default Value"
-          variant="outlined"
+          variant="standard"
         />
       </div>
-    </form>
+    </Box>
   );
 }

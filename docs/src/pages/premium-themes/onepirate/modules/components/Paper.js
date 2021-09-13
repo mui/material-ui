@@ -1,48 +1,40 @@
-import React from 'react';
-import clsx from 'clsx';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import MuiPaper from '@material-ui/core/Paper';
-import { capitalize } from '@material-ui/core/utils';
-import { withStyles } from '@material-ui/core/styles';
+import MuiPaper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
 
-const styles = (theme) => ({
-  backgroundLight: {
-    backgroundColor: theme.palette.secondary.light,
-  },
-  backgroundMain: {
-    backgroundColor: theme.palette.secondary.main,
-  },
-  backgroundDark: {
-    backgroundColor: theme.palette.secondary.dark,
-  },
-  padding: {
+const PaperRoot = styled(MuiPaper, {
+  shouldForwardProp: (prop) => prop !== 'background' && prop !== 'padding',
+})(({ theme, background, padding }) => ({
+  backgroundColor: theme.palette.secondary[background],
+  ...(padding && {
     padding: theme.spacing(1),
-  },
-});
+  }),
+}));
 
 function Paper(props) {
-  const { background = 'light', classes, className, padding = false, ...other } = props;
+  const { background, classes, className, padding = false, ...other } = props;
+
   return (
-    <MuiPaper
-      elevation={0}
+    <PaperRoot
       square
-      className={clsx(
-        classes[`background${capitalize(background)}`],
-        {
-          [classes.padding]: padding,
-        },
-        className,
-      )}
+      elevation={0}
+      background={background}
+      padding={padding}
+      className={className}
       {...other}
     />
   );
 }
 
 Paper.propTypes = {
-  background: PropTypes.oneOf(['light', 'main', 'dark']),
-  classes: PropTypes.object.isRequired,
+  background: PropTypes.oneOf(['dark', 'light', 'main']).isRequired,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
   className: PropTypes.string,
   padding: PropTypes.bool,
 };
 
-export default withStyles(styles)(Paper);
+export default Paper;

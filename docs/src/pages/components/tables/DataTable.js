@@ -1,26 +1,15 @@
 import * as React from 'react';
-import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 90 },
-  {
-    field: 'firstName',
-    headerName: 'First name',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'lastName',
-    headerName: 'Last name',
-    width: 150,
-    editable: true,
-  },
+  { field: 'id', headerName: 'ID', width: 70 },
+  { field: 'firstName', headerName: 'First name', width: 130 },
+  { field: 'lastName', headerName: 'Last name', width: 130 },
   {
     field: 'age',
     headerName: 'Age',
     type: 'number',
-    width: 110,
-    editable: true,
+    width: 90,
   },
   {
     field: 'fullName',
@@ -54,8 +43,8 @@ export default function DataTable() {
         rows={rows}
         columns={columns}
         pageSize={5}
+        rowsPerPageOptions={[5]}
         checkboxSelection
-        disableSelectionOnClick
       />
     </div>
   );

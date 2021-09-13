@@ -1,43 +1,57 @@
 ---
 title: React Switch component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
+githubLabel: 'component: Switch'
+materialDesign: 'https://material.io/components/selection-controls#switches'
 ---
 
 # Switch
 
 <p class="description">スイッチは、単一の設定の状態をオンまたはオフに切り替えます。</p>
 
-[スイッチ](https://material.io/design/components/selection-controls.html#switches) は、モバイルの設定を調整するための好ましい方法です。 The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label. The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label.
+[スイッチ](https://material.io/design/components/selection-controls.html#switches) は、モバイルの設定を調整するための好ましい方法です。 The option that the switch controls, as well as the state it's in, should be made clear from the corresponding inline label.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Basic switches
 
-{{"demo": "pages/components/switches/Switches.js"}}
+{{"demo": "pages/components/switches/BasicSwitches.js"}}
 
-## Switch with FormControlLabel
+## FormGroupのCheckbox
 
-`Switch` can be provided with a description thanks to the `FormControlLabel` component.
+You can provide a label to the `Switch` thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
 
+## Size
+
+Use the `size` prop to change the size of the switch.
+
+{{"demo": "pages/components/switches/SwitchesSize.js"}}
+
+## カラー
+
+{{"demo": "pages/components/switches/ColorSwitches.js"}}
+
+## Controlled
+
+You can control the switch with the `checked` and `onChange` props:
+
+{{"demo": "pages/components/switches/ControlledSwitches.js"}}
+
 ## FormGroupを使用したスイッチ
 
-`FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。 `FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。 However, you are encouraged you to use [Checkboxes](/components/checkboxes/) instead if multiple related controls are required. (See: [When to use](#when-to-use)).
+`FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。 `FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。 (See: [When to use](#when-to-use)).
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
 ## カスタマイズされたスイッチ （Customized switches）
 
-コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [こちら](/customization/how-to-customize/)を参照してください。
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
 🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch) を確認すると良いでしょう。
-
-## サイズ
-
-小型のスイッチが好きですか？ `size`プロパティを使用します。
-
-{{"demo": "pages/components/switches/SwitchesSize.js"}}
 
 ## ラベルの配置
 

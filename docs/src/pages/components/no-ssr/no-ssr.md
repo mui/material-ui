@@ -15,13 +15,15 @@ This component can be useful in a variety of situations:
 - Under too heavy server load, you can turn on service degradation.
 - Improve the time-to-interactive by only rendering what's important (with the `defer` property).
 
-## Client side deferring
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+## Client-side deferring
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
 
 ## Frame deferring
 
-In it's core, the NoSsr component purpose is to **defer rendering**.
+At its core, the NoSsr component's purpose is to **defer rendering**.
 As it's illustrated in the previous demo, you can use it to defer the rendering from the server to the client.
 
 But you can also use it to defer the rendering within the client itself.
@@ -29,3 +31,13 @@ You can **wait a screen frame** with the `defer` property to render the children
 React does [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of 1.
 
 {{"demo": "pages/components/no-ssr/FrameDeferring.js"}}
+
+## Unstyled
+
+- 📦 [784 B gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
+
+As the component does not have any styles, it also comes with the unstyled package.
+
+```js
+import NoSsr from '@mui/core/NoSsr';
+```

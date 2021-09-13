@@ -1,24 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: 300 + theme.spacing(3) * 2,
-  },
-  margin: {
-    height: theme.spacing(3),
-  },
-}));
+import Slider, { SliderThumb } from '@mui/material/Slider';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import Box from '@mui/material/Box';
 
 function ValueLabelComponent(props) {
-  const { children, open, value } = props;
+  const { children, value } = props;
 
   return (
-    <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
+    <Tooltip enterTouchDelay={0} placement="top" title={value}>
       {children}
     </Tooltip>
   );
@@ -26,7 +18,6 @@ function ValueLabelComponent(props) {
 
 ValueLabelComponent.propTypes = {
   children: PropTypes.element.isRequired,
-  open: PropTypes.bool.isRequired,
   value: PropTypes.number.isRequired,
 };
 
@@ -48,105 +39,108 @@ const marks = [
   },
 ];
 
-const IOSSlider = withStyles({
-  root: {
-    color: '#3880ff',
-    height: 2,
-    padding: '15px 0',
-  },
-  thumb: {
+const IOSSlider = styled(Slider)(({ theme }) => ({
+  color: theme.palette.mode === 'dark' ? '#3880ff' : '#3880ff',
+  height: 2,
+  padding: '15px 0',
+  '& .MuiSlider-thumb': {
     height: 28,
     width: 28,
     backgroundColor: '#fff',
     boxShadow: iOSBoxShadow,
-    marginTop: -14,
-    marginLeft: -14,
-    '&:focus, &:hover, &$active': {
-      boxShadow: '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
+    '&:focus, &:hover, &.Mui-active': {
+      boxShadow:
+        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         boxShadow: iOSBoxShadow,
       },
     },
   },
-  active: {},
-  valueLabel: {
-    left: 'calc(-50% + 12px)',
-    top: -22,
+  '& .MuiSlider-valueLabel': {
+    fontSize: 12,
+    fontWeight: 'normal',
+    top: -6,
+    backgroundColor: 'unset',
+    color: theme.palette.text.primary,
+    '&:before': {
+      display: 'none',
+    },
     '& *': {
       background: 'transparent',
-      color: '#000',
+      color: theme.palette.mode === 'dark' ? '#fff' : '#000',
     },
   },
-  track: {
-    height: 2,
+  '& .MuiSlider-track': {
+    border: 'none',
   },
-  rail: {
-    height: 2,
+  '& .MuiSlider-rail': {
     opacity: 0.5,
     backgroundColor: '#bfbfbf',
   },
-  mark: {
+  '& .MuiSlider-mark': {
     backgroundColor: '#bfbfbf',
     height: 8,
     width: 1,
-    marginTop: -3,
+    '&.MuiSlider-markActive': {
+      opacity: 1,
+      backgroundColor: 'currentColor',
+    },
   },
-  markActive: {
-    opacity: 1,
-    backgroundColor: 'currentColor',
-  },
-})(Slider);
+}));
 
-const PrettoSlider = withStyles({
-  root: {
-    color: '#52af77',
-    height: 8,
+const PrettoSlider = styled(Slider)({
+  color: '#52af77',
+  height: 8,
+  '& .MuiSlider-track': {
+    border: 'none',
   },
-  thumb: {
+  '& .MuiSlider-thumb': {
     height: 24,
     width: 24,
     backgroundColor: '#fff',
     border: '2px solid currentColor',
-    marginTop: -8,
-    marginLeft: -12,
-    '&:focus, &:hover, &$active': {
+    '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
       boxShadow: 'inherit',
     },
+    '&:before': {
+      display: 'none',
+    },
   },
-  active: {},
-  valueLabel: {
-    left: 'calc(-50% + 4px)',
+  '& .MuiSlider-valueLabel': {
+    lineHeight: 1.2,
+    fontSize: 12,
+    background: 'unset',
+    padding: 0,
+    width: 32,
+    height: 32,
+    borderRadius: '50% 50% 50% 0',
+    backgroundColor: '#52af77',
+    transformOrigin: 'bottom left',
+    transform: 'translate(50%, -100%) rotate(-45deg) scale(0)',
+    '&:before': { display: 'none' },
+    '&.MuiSlider-valueLabelOpen': {
+      transform: 'translate(50%, -100%) rotate(-45deg) scale(1)',
+    },
+    '& > *': {
+      transform: 'rotate(45deg)',
+    },
   },
-  track: {
-    height: 8,
-    borderRadius: 4,
-  },
-  rail: {
-    height: 8,
-    borderRadius: 4,
-  },
-})(Slider);
+});
 
-const AirbnbSlider = withStyles({
-  root: {
-    color: '#3a8589',
-    height: 3,
-    padding: '13px 0',
-  },
-  thumb: {
+const AirbnbSlider = styled(Slider)(({ theme }) => ({
+  color: '#3a8589',
+  height: 3,
+  padding: '13px 0',
+  '& .MuiSlider-thumb': {
     height: 27,
     width: 27,
     backgroundColor: '#fff',
     border: '1px solid currentColor',
-    marginTop: -12,
-    marginLeft: -13,
-    boxShadow: '#ebebeb 0 2px 2px',
-    '&:focus, &:hover, &$active': {
-      boxShadow: '#ccc 0 2px 3px 1px',
+    '&:hover': {
+      boxShadow: '0 0 0 8px rgba(58, 133, 137, 0.16)',
     },
-    '& .bar': {
-      // display: inline-block !important;
+    '& .airbnb-bar': {
       height: 9,
       width: 1,
       backgroundColor: 'currentColor',
@@ -154,51 +148,66 @@ const AirbnbSlider = withStyles({
       marginRight: 1,
     },
   },
-  active: {},
-  track: {
+  '& .MuiSlider-track': {
     height: 3,
   },
-  rail: {
-    color: '#d8d8d8',
-    opacity: 1,
+  '& .MuiSlider-rail': {
+    color: theme.palette.mode === 'dark' ? '#bfbfbf' : '#d8d8d8',
+    opacity: theme.palette.mode === 'dark' ? undefined : 1,
     height: 3,
   },
-})(Slider);
+}));
 
 function AirbnbThumbComponent(props) {
+  const { children, ...other } = props;
   return (
-    <span {...props}>
-      <span className="bar" />
-      <span className="bar" />
-      <span className="bar" />
-    </span>
+    <SliderThumb {...other}>
+      {children}
+      <span className="airbnb-bar" />
+      <span className="airbnb-bar" />
+      <span className="airbnb-bar" />
+    </SliderThumb>
   );
 }
 
-export default function CustomizedSlider() {
-  const classes = useStyles();
+AirbnbThumbComponent.propTypes = {
+  children: PropTypes.node,
+};
 
+export default function CustomizedSlider() {
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: 320 }}>
       <Typography gutterBottom>iOS</Typography>
-      <IOSSlider aria-label="ios slider" defaultValue={60} marks={marks} valueLabelDisplay="on" />
-      <div className={classes.margin} />
+      <IOSSlider
+        aria-label="ios slider"
+        defaultValue={60}
+        marks={marks}
+        valueLabelDisplay="on"
+      />
+      <Box sx={{ m: 3 }} />
       <Typography gutterBottom>pretto.fr</Typography>
-      <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} />
-      <div className={classes.margin} />
+      <PrettoSlider
+        valueLabelDisplay="auto"
+        aria-label="pretto slider"
+        defaultValue={20}
+      />
+      <Box sx={{ m: 3 }} />
       <Typography gutterBottom>Tooltip value label</Typography>
       <Slider
-        ValueLabelComponent={ValueLabelComponent}
+        valueLabelDisplay="auto"
+        components={{
+          ValueLabel: ValueLabelComponent,
+        }}
         aria-label="custom thumb label"
         defaultValue={20}
       />
-      <div className={classes.margin} />
+      <Box sx={{ m: 3 }} />
       <Typography gutterBottom>Airbnb</Typography>
       <AirbnbSlider
-        ThumbComponent={AirbnbThumbComponent}
+        components={{ Thumb: AirbnbThumbComponent }}
         getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
         defaultValue={[20, 40]}
       />
-    </div>
+    </Box>
   );
 }

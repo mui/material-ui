@@ -1,5 +1,5 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import * as React from 'react';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   '@global': {

@@ -1,14 +1,12 @@
-import React from 'react';
-import classNames from 'classnames';
-import { makeStyles } from '@material-ui/core/styles';
-import { BANNER_HEIGHT } from 'docs/src/modules/constants';
+import * as React from 'react';
+import clsx from 'clsx';
+import { makeStyles } from '@mui/styles';
 import Link from 'docs/src/modules/components/Link';
-import { useSelector } from 'react-redux';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const useStyles = makeStyles(
   (theme) => ({
     root: {
-      marginTop: BANNER_HEIGHT,
       padding: theme.spacing(1, 2, 1, 2),
       right: 0,
       left: 0,
@@ -31,12 +29,12 @@ const useStyles = makeStyles(
 
 export default function Pro() {
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <Link
       variant="body2"
-      className={classNames(classes.root, 'mui-fixed')}
+      className={clsx(classes.root, 'mui-fixed')}
       href="/getting-started/support/#professional-support-premium"
     >
       {t('getProfessionalSupport')}

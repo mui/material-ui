@@ -1,37 +1,32 @@
-import React from 'react';
-import Grid, { GridItemsAlignment, GridJustification, GridDirection } from '@material-ui/core/Grid';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
-import Paper from '@material-ui/core/Paper';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import * as React from 'react';
+import Grid, { GridDirection } from '@mui/material/Grid';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
+import Paper from '@mui/material/Paper';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    demo: {
-      height: 240,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      height: '100%',
-      color: theme.palette.text.secondary,
-    },
-    control: {
-      padding: theme.spacing(2),
-    },
-  }),
-);
+type GridItemsAlignment =
+  | 'flex-start'
+  | 'center'
+  | 'flex-end'
+  | 'stretch'
+  | 'baseline';
+
+type GridJustification =
+  | 'flex-start'
+  | 'center'
+  | 'flex-end'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly';
 
 export default function InteractiveGrid() {
-  const classes = useStyles();
   const [direction, setDirection] = React.useState<GridDirection>('row');
-  const [justifyContent, setJustifyContent] = React.useState<GridJustification>('center');
+  const [justifyContent, setJustifyContent] =
+    React.useState<GridJustification>('center');
   const [alignItems, setAlignItems] = React.useState<GridItemsAlignment>('center');
 
   const jsx = `
@@ -44,12 +39,12 @@ export default function InteractiveGrid() {
 `;
 
   return (
-    <Grid container className={classes.root}>
+    <Grid sx={{ flexGrow: 1 }} container>
       <Grid item xs={12}>
         <Grid
+          sx={{ height: 240 }}
           container
           spacing={2}
-          className={classes.demo}
           alignItems={alignItems}
           direction={direction}
           justifyContent={justifyContent}
@@ -57,8 +52,13 @@ export default function InteractiveGrid() {
           {[0, 1, 2].map((value) => (
             <Grid key={value} item>
               <Paper
-                className={classes.paper}
-                style={{ paddingTop: (value + 1) * 10, paddingBottom: (value + 1) * 10 }}
+                sx={{
+                  p: 2,
+                  height: '100%',
+                  color: 'text.secondary',
+                  pt: `${(value + 1) * 10}px`,
+                  pb: `${(value + 1) * 10}px`,
+                }}
               >
                 {`Cell ${value + 1}`}
               </Paper>
@@ -67,23 +67,33 @@ export default function InteractiveGrid() {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <Paper className={classes.control}>
+        <Paper sx={{ p: 2 }}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <FormControl component="fieldset">
-                <FormLabel>direction</FormLabel>
+                <FormLabel component="legend">direction</FormLabel>
                 <RadioGroup
                   row
                   name="direction"
                   aria-label="direction"
                   value={direction}
                   onChange={(event) => {
-                    setDirection((event.target as HTMLInputElement).value as GridDirection);
+                    setDirection(
+                      (event.target as HTMLInputElement).value as GridDirection,
+                    );
                   }}
                 >
                   <FormControlLabel value="row" control={<Radio />} label="row" />
-                  <FormControlLabel value="row-reverse" control={<Radio />} label="row-reverse" />
-                  <FormControlLabel value="column" control={<Radio />} label="column" />
+                  <FormControlLabel
+                    value="row-reverse"
+                    control={<Radio />}
+                    label="row-reverse"
+                  />
+                  <FormControlLabel
+                    value="column"
+                    control={<Radio />}
+                    label="column"
+                  />
                   <FormControlLabel
                     value="column-reverse"
                     control={<Radio />}
@@ -94,7 +104,7 @@ export default function InteractiveGrid() {
             </Grid>
             <Grid item xs={12}>
               <FormControl component="fieldset">
-                <FormLabel>justifyContent</FormLabel>
+                <FormLabel component="legend">justifyContent</FormLabel>
                 <RadioGroup
                   row
                   name="justifyContent"
@@ -106,36 +116,78 @@ export default function InteractiveGrid() {
                     );
                   }}
                 >
-                  <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
-                  <FormControlLabel value="center" control={<Radio />} label="center" />
-                  <FormControlLabel value="flex-end" control={<Radio />} label="flex-end" />
+                  <FormControlLabel
+                    value="flex-start"
+                    control={<Radio />}
+                    label="flex-start"
+                  />
+                  <FormControlLabel
+                    value="center"
+                    control={<Radio />}
+                    label="center"
+                  />
+                  <FormControlLabel
+                    value="flex-end"
+                    control={<Radio />}
+                    label="flex-end"
+                  />
                   <FormControlLabel
                     value="space-between"
                     control={<Radio />}
                     label="space-between"
                   />
-                  <FormControlLabel value="space-around" control={<Radio />} label="space-around" />
-                  <FormControlLabel value="space-evenly" control={<Radio />} label="space-evenly" />
+                  <FormControlLabel
+                    value="space-around"
+                    control={<Radio />}
+                    label="space-around"
+                  />
+                  <FormControlLabel
+                    value="space-evenly"
+                    control={<Radio />}
+                    label="space-evenly"
+                  />
                 </RadioGroup>
               </FormControl>
             </Grid>
             <Grid item xs={12}>
               <FormControl component="fieldset">
-                <FormLabel>alignItems</FormLabel>
+                <FormLabel component="legend">alignItems</FormLabel>
                 <RadioGroup
                   row
                   name="alignItems"
                   aria-label="align items"
                   value={alignItems}
                   onChange={(event) => {
-                    setAlignItems((event.target as HTMLInputElement).value as GridItemsAlignment);
+                    setAlignItems(
+                      (event.target as HTMLInputElement).value as GridItemsAlignment,
+                    );
                   }}
                 >
-                  <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
-                  <FormControlLabel value="center" control={<Radio />} label="center" />
-                  <FormControlLabel value="flex-end" control={<Radio />} label="flex-end" />
-                  <FormControlLabel value="stretch" control={<Radio />} label="stretch" />
-                  <FormControlLabel value="baseline" control={<Radio />} label="baseline" />
+                  <FormControlLabel
+                    value="flex-start"
+                    control={<Radio />}
+                    label="flex-start"
+                  />
+                  <FormControlLabel
+                    value="center"
+                    control={<Radio />}
+                    label="center"
+                  />
+                  <FormControlLabel
+                    value="flex-end"
+                    control={<Radio />}
+                    label="flex-end"
+                  />
+                  <FormControlLabel
+                    value="stretch"
+                    control={<Radio />}
+                    label="stretch"
+                  />
+                  <FormControlLabel
+                    value="baseline"
+                    control={<Radio />}
+                    label="baseline"
+                  />
                 </RadioGroup>
               </FormControl>
             </Grid>

@@ -7,8 +7,8 @@
 {{"demo": "pages/system/positions/ZIndex.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box zIndex="tooltip">
-<Box zIndex="modal">
+<Box sx={{ zIndex: 'tooltip' }}>
+<Box sx={{ zIndex: 'modal' }}>
 ```
 
 ## API
@@ -17,11 +17,11 @@
 import { positions } from '@material-ui/system';
 ```
 
-| Noms importés | Propriétés | Propriété CSS | Clé du thème                                                   |
-|:------------- |:---------- |:------------- |:-------------------------------------------------------------- |
-| `position`    | `position` | `position`    | none                                                           |
-| `zIndex`      | `zIndex`   | `z-index`     | [`zIndex`](/customization/default-theme/?expand-path=$.zIndex) |
-| `top`         | `top`      | `top`         | none                                                           |
-| `right`       | `right`    | `right`       | none                                                           |
-| `bottom`      | `bottom`   | `bottom`      | none                                                           |
-| `left`        | `left`     | `left`        | none                                                           |
+| Nom importé | Propriété  | Propriété CSS | Clé du thème                                                   |
+|:----------- |:---------- |:------------- |:-------------------------------------------------------------- |
+| `position`  | `position` | `position`    | none                                                           |
+| `zIndex`    | `zIndex`   | `z-index`     | [`zIndex`](/customization/default-theme/?expand-path=$.zIndex) |
+| `top`       | `top`      | `top`         | none                                                           |
+| `right`     | `right`    | `right`       | none                                                           |
+| `bottom`    | `bottom`   | `bottom`      | none                                                           |
+| `left`      | `left`     | `left`        | none                                                           |

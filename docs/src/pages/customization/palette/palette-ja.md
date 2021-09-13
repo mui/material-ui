@@ -4,7 +4,7 @@
 
 ## Palette colors
 
-A color intention is a mapping of a palette color to a given intention within your application. The theme exposes the following palette colors (accessible under `theme.palette.`):
+The theme exposes the following palette colors (accessible under `theme.palette.`):
 
 - *primary* - used to represent primary interface elements for a user. It's the color displayed most frequently across your app's screens and components.
 - *secondary* - used to represent secondary interface elements for a user. It provides more ways to accent and distinguish your product. Having it is optional.
@@ -21,18 +21,18 @@ You can explore the default values of the palette using [the theme explorer](/cu
 
 {{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideToolbar": true}}
 
-既定のパレットでは、副次的な意図を表すために、先頭に`A`(`A200`など。) が付いたシェーディングが使用されます。 他の目的のために省略されたシェードがあります。
+既定のパレットでは、副次的な意図を表すために、先頭に`A`(`A200`など。 ) が付いたシェーディングが使用されます。
 
 ## カスタマイズ
 
 You may override the default palette values by including a palette object as part of your theme. If any of the:
 
-- [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary)
-- [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary)
-- [`palette.error`](/customization/default-theme/?expand-path=$.palette.error)
-- [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning)
-- [`palette.info`](/customization/default-theme/?expand-path=$.palette.info)
-- [`palette.success`](/customization/default-theme/?expand-path=$.palette.success)
+- [`.palette.primary`](/customization/default-theme/?expand-path=$.palette.primary)
+- [`.palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary)
+- [`.palette.error`](/customization/default-theme/?expand-path=$.palette.error)
+- [`.palette.warning`](/customization/default-theme/?expand-path=$.palette.warning)
+- [`.palette.info`](/customization/default-theme/?expand-path=$.palette.info)
+- [`.palette.success`](/customization/default-theme/?expand-path=$.palette.success)
 
 palette color objects are provided, they will replace the defaults.
 
@@ -49,7 +49,7 @@ interface PaletteColor {
 
 ### カラーオブジェクトを使用する
 
-意図をカスタマイズする最も簡単な方法は、提供されている1つまたは複数のカラーをインポートすることです。 次のようにパレット意図に適用します。
+意図をカスタマイズする最も簡単な方法は、提供されている1つまたは複数のカラーをインポートすることです。
 
 ```js
 import { createTheme } from '@material-ui/core/styles';
@@ -128,14 +128,21 @@ const theme = createTheme({
     danger: '#e53e3e',
   },
   palette: {
+    primary: {
+      main: '#0971f1',
+      darker: '#053e85',
+    },
     neutral: {
-      main: '#5c6ac4',
+      main: '#64748B',
+      contrastText: '#fff',
     },
   },
 });
 ```
 
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+
+<!-- tested with packages/material-ui/test/typescript/augmentation/paletteColors.spec.ts -->
 
 ```ts
 declare module '@material-ui/core/styles/createTheme' {
@@ -161,27 +168,35 @@ declare module "@material-ui/core/styles/createPalette" {
 }
 ```
 
+{{"demo": "pages/customization/palette/CustomColor.js"}}
+
 ## Picking colors
 
 インスピレーションが必要ですか？ インスピレーションが必要ですか？ インスピレーションが必要ですか？ インスピレーションが必要ですか？ インスピレーションが必要ですか？ The Material Design team has built an [palette configuration tool](/customization/color/#picking-colors) to help you.
 
 ## Dark mode
 
-Material-UI comes with two palette types, light (the default) and dark. You can make the theme dark by setting `type: 'dark'`. While it's only a single property value change, internally it modifies several palette values.
+Material-UI comes with two palette modes: light (the default) and dark. You can make the theme dark by setting `mode: 'dark'`.
 
 ```js
 const darkTheme = createTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
   },
 });
 ```
 
-The colors modified by the palette type are the following:
+While it's only a single value change, the `createTheme` helper modifies several palette values. The colors modified by the palette mode are the following:
 
 {{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
-### User preference
+### Toggling color mode
+
+You can use the React context to toggle the mode with a button inside your page.
+
+{{"demo": "pages/customization/palette/ToggleColorMode.js", "defaultCodeOpen": false}}
+
+### System preference
 
 Users might have specified a preference for a light or dark theme. The method by which the user expresses their preference can vary. It might be a system-wide setting exposed by the Operating System, or a setting controlled by the User Agent.
 
@@ -190,7 +205,7 @@ You can leverage this preference dynamically with the [useMediaQuery](/component
 For instance, you can enable the dark mode automatically:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -202,7 +217,7 @@ function App() {
     () =>
       createTheme({
         palette: {
-          type: prefersDarkMode ? 'dark' : 'light',
+          mode: prefersDarkMode ? 'dark' : 'light',
         },
       }),
     [prefersDarkMode],

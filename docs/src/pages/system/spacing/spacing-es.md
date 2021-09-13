@@ -1,6 +1,6 @@
 # Espaciado
 
-<p class="description">Una amplia gama de tipos de utilidades de relleno y márgenes receptivos cortos para modificar la apariencia de un elemento.</p>
+<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element's appearance.</p>
 
 ## Notación
 
@@ -13,12 +13,12 @@ Donde *property* es una de:
 
 Donde *sides* es uno de:
 
-- `t` - para clases que establecen *margin-top* o *padding-top*
-- `b` - para clases que establecen *margin-bottom* o *padding-bottom*
-- `l` - para clases que establecen *margen-left* o *padding-left*
-- `r` - para clases que establecen *margin-right* o *padding-right*
-- `x` - para clases que establecen **-izquierda* y **-derecha*
-- `y` - para clases que establecen **-top* y **-bottom*
+- `t` - for classes that set *margin-top* or *padding-top*
+- `b` - for classes that set *margin-bottom* or *padding-bottom*
+- `l` - for classes that set *margin-left* or *padding-left*
+- `r` - for classes that set *margin-right* or *padding-right*
+- `x` - for classes that set both **-left* and **-right*
+- `y` - for classes that set both **-top* and **-bottom*
 - en blanco - para las clases que establecen un margen o un relleno en los 4 lados del elemento
 
 ## Transformación
@@ -32,10 +32,10 @@ const theme = {
   spacing: 8,
 }
 
-<Box m={-2} /> // margin: -16px;
-<Box m={0} /> // margin: 0px;
-<Box m={0.5} /> // margin: 4px;
-<Box m={2} /> // margin: 16px;
+<Box sx={{ m: -2 }} /> // margin: -16px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 0.5 }} /> // margin: 4px;
+<Box sx={{ m: 2 }} /> // margin: 16px;
 ```
 
 - input: `number` & theme: `array`: the property is value is used as the array index.
@@ -45,9 +45,9 @@ const theme = {
   spacing: [0, 2, 3, 5, 8],
 }
 
-<Box m={-2} /> // margin: -3px;
-<Box m={0} /> // margin: 0px;
-<Box m={2} /> // margin: 3px;
+<Box sx={{ m: -2 }} /> // margin: -3px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 2 }} /> // margin: 3px;
 ```
 
 - input: `number` & theme: `function`: the function is called with the property value.
@@ -57,15 +57,15 @@ const theme = {
   spacing: value => value ** 2,
 }
 
-<Box m={0} /> // margin: 0px;
-<Box m={2} /> // margin: 4px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 2 }} /> // margin: 4px;
 ```
 
 - input: `string`: the property is passed as raw CSS value.
 
 ```jsx
-<Box m="2rem" /> // margin: 2rem;
-<Box mx="auto" /> // margin-left: auto; margin-right: auto;
+<Box sx={{ m: "2rem" }} /> // margin: 2rem;
+<Box sx={{ mx: "auto" }} /> // margin-left: auto; margin-right: auto;
 ```
 
 ## Ejemplo
@@ -73,17 +73,19 @@ const theme = {
 {{"demo": "pages/system/spacing/Demo.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box p={1}>…
-<Box m={1}>…
-<Box p={2}>…
+<Box sx={{ p: 1 }}>…
+<Box sx={{ m: 1 }}>…
+<Box sx={{ p: 2 }}>…
 ```
 
 ## Centrado Horizontal
 
+The CSS flex and grid display properties are often used to align elements at the center. However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a width for horizontally centering:
+
 {{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box mx="auto">…
+<Box sx={{ mx: "auto", width: 200 }}>…
 ```
 
 ## API
@@ -109,15 +111,14 @@ import { spacing } from '@material-ui/system';
 | `spacing`         | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 | `spacing`         | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
-
-*Algunas personas encuentran confusión con la abreviatura del prop, puedes usar la versión completa si lo prefieres:*
+_Algunas personas encuentran confusión con la abreviatura del prop, puedes usar la versión completa si lo prefieres:_
 
 ```diff
--<Box pt={2} />
-+<Box paddingTop={2} />
+-<Box sx={{ pt: 2 }} />
++<Box sx={{ paddingTop: 2 }} />
 ```
 
 ```diff
--<Box px={2} />
-+<Box paddingX={2} />
+-<Box sx={{ px: 2 }} />
++<Box sx={{ paddingX: 2 }} />
 ```

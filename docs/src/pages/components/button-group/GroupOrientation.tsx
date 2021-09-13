@@ -1,51 +1,44 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { makeStyles } from '@material-ui/core/styles';
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Box from '@mui/material/Box';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+const buttons = [
+  <Button key="one">One</Button>,
+  <Button key="two">Two</Button>,
+  <Button key="three">Three</Button>,
+];
 
 export default function GroupOrientation() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        display: 'flex',
+        '& > *': {
+          m: 1,
+        },
+      }}
+    >
       <ButtonGroup
         orientation="vertical"
-        color="primary"
-        aria-label="vertical outlined primary button group"
+        aria-label="vertical outlined button group"
       >
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
+        {buttons}
       </ButtonGroup>
       <ButtonGroup
         orientation="vertical"
-        color="primary"
-        aria-label="vertical contained primary button group"
+        aria-label="vertical contained button group"
         variant="contained"
       >
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
+        {buttons}
       </ButtonGroup>
       <ButtonGroup
         orientation="vertical"
-        color="primary"
-        aria-label="vertical contained primary button group"
+        aria-label="vertical contained button group"
         variant="text"
       >
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
+        {buttons}
       </ButtonGroup>
-    </div>
+    </Box>
   );
 }

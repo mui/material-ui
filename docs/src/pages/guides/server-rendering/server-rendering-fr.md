@@ -65,14 +65,7 @@ function renderFullPage(html, css) {
 }
 
 function handleRender(req, res) {
-  /* ... res.send(renderFullPage(html, css));
-}
-
-const app = express();
-
-app.use('/build', express.static('build'));
-
-// This is fired every time the server-side receives a request.
+  /* ...
 */
 }
 
@@ -89,10 +82,33 @@ When rendering, we will wrap `App`, the root component, inside a [`StylesProvide
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-We then get the CSS from the `sheets` using `sheets.toString()`. We will see how this is passed along in the `renderFullPage` function.
+We then get the CSS from the `sheets` using `sheets.toString()`. As we are also using emotion as our default styled engine, we need to extract the styles from the emotion instance as well. For this we need to share the same cache definition for both the client and server:
+
+`cache.js`
+
+```js
+import createCache from '@emotion/cache';
+
+const cache = createCache({ key: 'css' });
+
+export default cache;
+```
+
+With this we are creating new Emotion server instance and using this to extract the critical styles for the html as well.
+
+We will see how this is passed along in the `renderFullPage` function.
 
 ```jsx
-const css = sheets.toString();
+import express from 'express';
+import * as React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
+import createEmotionServer from '@emotion/server/create-instance';
+import App from './App';
+import theme from './theme';
+import cache from './cache';
+
+const { extractCritical } = createEmotionServer(cache);
 
   // Send the rendered page back to the client.
   res.send(renderFullPage(html, css));
@@ -105,24 +121,34 @@ app.use('/build', express.static('build'));
 // This is fired every time the server-side receives a request.
   const html = ReactDOMServer.renderToString(
     sheets.collect(
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>,
+      <CacheProvider value={cache}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </CacheProvider>,
     ),
   );
 
-  // Grab the CSS from the sheets.
-  function renderFullPage(html, css) {
-  /* ... */
+  // Grab the CSS from the sheets. const css = sheets.toString();
+
+  // Grab the CSS from emotion
+  const styles = extractCritical(html);
+
+  // Send the rendered page back to the client.
+  res.send(renderFullPage(html, `${css} ${styles.css}`));
+}
+
+const app = express();
+
+app.use('/build', express.static('build'));
+
+// This is fired every time the server-side receives a request.
+*/
 }
 
 const app = express();
 
 // Isso é acionado toda vez que o servidor recebe uma solicitação.
-app.use(handleRender);
-
-const port = 3000;
-app.listen(port);
 ```
 
 ### Inject Initial Component HTML and CSS
@@ -153,11 +179,13 @@ The client side is straightforward. All we need to do is remove the server-side 
 `client.js`
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
+import { CacheProvider } from '@emotion/react';
 import App from './App';
 import theme from './theme';
+import cache from './cache';
 
 function Main() {
   React.useEffect(() => {
@@ -168,9 +196,19 @@ function Main() {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </CacheProvider>
+  );
+}
+
+ReactDOM.hydrate(<Main />, document.querySelector('#root')); */}
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 
@@ -181,9 +219,9 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
 
-- [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
-- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
+- [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/HEAD/examples/ssr)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/HEAD/examples/gatsby)
+- https://github.com/mui-org/material-ui/tree/master/examples/nextjs
 
 ## Résolution de problèmes
 

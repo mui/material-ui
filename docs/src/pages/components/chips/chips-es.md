@@ -1,6 +1,8 @@
 ---
 title: React Chip component
 components: Chip
+githubLabel: 'component: Chip'
+materialDesign: https://material.io/components/chips
 ---
 
 # Chip
@@ -11,20 +13,66 @@ Los [Chips](https://material.io/design/components/chips.html) le permiten a los 
 
 Aunque incluido como un componente individual, el uso más común será en algún tipo de entrada de formulario, por lo que parte del comportamiento demostrado aquí no se muestra en este contexto.
 
-## Chip
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Basic chip
 
 Ejemplos de Chips, usando un Avatar de imagen, Avatar de icono SVG, Avatar con "Letra" y (cadena de texto).
+
+{{"demo": "pages/components/chips/Chips.js"}}
+
+## Array de Chips
+
+Los chips con contorno ofrecen un estilo alternativo.
 
 - Los Chips con la propiedad `onClick` definida cambian su apariencia en el focus, el hover y el click.
 - Los Chips con la propiedad `onDelete` definida mostrarán un icono de eliminar, el cuál cambia de apariencia en el hover.
 
-{{"demo": "pages/components/chips/Chips.js"}}
-
 ### Chips con contorno
 
-Los chips con contorno ofrecen un estilo alternativo.
-
 {{"demo": "pages/components/chips/OutlinedChips.js"}}
+
+### Default variant
+
+{{"demo": "pages/components/chips/DeleteableChips.js"}}
+
+### Outlined variant
+
+{{"demo": "pages/components/chips/ClickeableAndDeleteableChips.js"}}
+
+### Clickeable link
+
+Puedes usar la propiedad `size` para definir un chip pequeño.
+
+### Custom delete icon
+
+{{"demo": "pages/components/chips/SmallChips.js"}}
+
+## Chip Pequeño
+
+{{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
+
+Use the `avatar` prop to added a avatar or use the `icon` prop to added a icon.
+
+### Avatar chip
+
+{{"demo": "pages/components/chips/AvatarChips.js"}}
+
+### Icon chip
+
+{{"demo": "pages/components/chips/IconChips.js"}}
+
+## Chip Playground
+
+You can use the `color` prop to define a primary or secondary color.
+
+{{"demo": "pages/components/chips/ColorChips.js"}}
+
+## Accesibilidad
+
+Puedes usar la propiedad `size` para definir un chip pequeño.
+
+{{"demo": "pages/components/chips/SizesChips.js"}}
 
 ## Array de Chips
 
@@ -32,19 +80,7 @@ Un ejemplo de cómo renderizar múltiples Chips desde un array de valores. Elimi
 
 {{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
-## Chip Pequeño
-
-Puedes usar la propiedad `size` para definir un chip pequeño.
-
-### Variante por defecto
-
-{{"demo": "pages/components/chips/SmallChips.js"}}
-
-### Outlined variant
-
-{{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
-
-## Chip Playground
+## Chip playground
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 

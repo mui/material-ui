@@ -1,6 +1,6 @@
-# Spacing(間隔)
+# Spacing
 
-<p class="description">簡単に要素のmarginとpaddingをレスポンシブに変更するためのユーティリティクラスです。</p>
+<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element's appearance.</p>
 
 ## 表記
 
@@ -13,12 +13,12 @@
 
 *sides* は次のいずれかである。
 
-- `t` - *margin-top*もしくは *padding-top*を設定するためのclass
-- `t` - *margin-bottom*もしくは *padding-bottom*を設定するためのclass
-- `t` - *margin-left*もしくは *padding-left*を設定するためのclass
-- `t` - *margin-right*もしくは *padding-right*を設定するためのclass
-- `x` - 水平方向（**-left* および **-right*）を設定するためのclass
-- `y` - 垂直方向( **-top* および **-bottom*) を設定するためのclass
+- `t` - for classes that set *margin-top* or *padding-top*
+- `b` - for classes that set *margin-bottom* or *padding-bottom*
+- `l` - for classes that set *margin-left* or *padding-left*
+- `r` - for classes that set *margin-right* or *padding-right*
+- `x` - for classes that set both **-left* and **-right*
+- `y` - for classes that set both **-top* and **-bottom*
 - (指定なし) - HTML要素の四方向のmarginもしくはpaddingを設定するためのクラス
 
 ## 変形
@@ -32,10 +32,10 @@ const theme = {
   spacing: 8,
 }
 
-<Box m={-2} /> // margin: -16px;
-<Box m={0} /> // margin: 0px;
-<Box m={0.5} /> // margin: 4px;
-<Box m={2} /> // margin: 16px;
+<Box sx={{ m: -2 }} /> // margin: -16px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 0.5 }} /> // margin: 4px;
+<Box sx={{ m: 2 }} /> // margin: 16px;
 ```
 
 - 入力: `number` & テーマ: `配列`: テーマに設定された値を配列としてインデックスから参照できます。
@@ -45,9 +45,9 @@ const theme = {
   spacing: [0, 2, 3, 5, 8],
 }
 
-<Box m={-2} /> // margin: -3px;
-<Box m={0} /> // margin: 0px;
-<Box m={2} /> // margin: 3px;
+<Box sx={{ m: -2 }} /> // margin: -3px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 2 }} /> // margin: 3px;
 ```
 
 - 入力: `number` & テーマ: `関数`: 入力された値が関数に渡され、結果をプロパティとして利用します。
@@ -57,15 +57,15 @@ const theme = {
   spacing: value => value ** 2,
 }
 
-<Box m={0} /> // margin: 0px;
-<Box m={2} /> // margin: 4px;
+<Box sx={{ m: 0 }} /> // margin: 0px;
+<Box sx={{ m: 2 }} /> // margin: 4px;
 ```
 
 - 入力: `string`: 入力された値はそのまま生のCSSの値として適用されます。
 
 ```jsx
-<Box m="2rem" /> // margin: 2rem;
-<Box mx="auto" /> // margin-left: auto; margin-right: auto;
+<Box sx={{ m: "2rem" }} /> // margin: 2rem;
+<Box sx={{ mx: "auto" }} /> // margin-left: auto; margin-right: auto;
 ```
 
 ## 例
@@ -73,17 +73,19 @@ const theme = {
 {{"demo": "pages/system/spacing/Demo.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box p={1}>…
-<Box m={1}>…
-<Box p={2}>…
+<Box sx={{ p: 1 }}>…
+<Box sx={{ m: 1 }}>…
+<Box sx={{ p: 2 }}>…
 ```
 
 ## 水平方向に中央寄せする
 
+The CSS flex and grid display properties are often used to align elements at the center. However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a width for horizontally centering:
+
 {{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box mx="auto">…
+<Box sx={{ mx: "auto", width: 200 }}>…
 ```
 
 ## API
@@ -109,15 +111,14 @@ import { spacing } from '@material-ui/system';
 | `spacing`   | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 | `spacing`   | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
-
-*もしPropsの略称が難しいと感じた場合、正称を使用することもできます。*
+_もしPropsの略称が難しいと感じた場合、正称を使用することもできます。_
 
 ```diff
--<Box pt={2} />
-+<Box paddingTop={2} />
+-<Box sx={{ pt: 2 }} />
++<Box sx={{ paddingTop: 2 }} />
 ```
 
 ```diff
--<Box px={2} />
-+<Box paddingX={2} />
+-<Box sx={{ px: 2 }} />
++<Box sx={{ paddingX: 2 }} />
 ```

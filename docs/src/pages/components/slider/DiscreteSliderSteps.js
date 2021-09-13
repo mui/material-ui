@@ -1,36 +1,24 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-
-const useStyles = makeStyles({
-  root: {
-    width: 300,
-  },
-});
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
 function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function DiscreteSlider() {
-  const classes = useStyles();
-
+export default function DiscreteSliderSteps() {
   return (
-    <div className={classes.root}>
-      <Typography id="discrete-slider-small-steps" gutterBottom>
-        Small steps
-      </Typography>
+    <Box sx={{ width: 300 }}>
       <Slider
+        aria-label="Small steps"
         defaultValue={0.00000005}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider-small-steps"
         step={0.00000001}
         marks
         min={-0.00000005}
         max={0.0000001}
         valueLabelDisplay="auto"
       />
-    </div>
+    </Box>
   );
 }

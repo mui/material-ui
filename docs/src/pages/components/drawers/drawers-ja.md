@@ -1,15 +1,19 @@
 ---
 title: React Drawer component
 components: Drawer, SwipeableDrawer
+githubLabel: 'component: Drawer'
+materialDesign: https://material.io/components/navigation-drawer
 ---
 
 # Drawer
 
-<p class="description">ナビゲーションドロワー(Drawer) を使用すると、App内の目的地にアクセスできます。サイドシートは、画面の左端または右端にアンカーされた補足コンテンツを含むサーフェスです。</p>
+<p class="description">ナビゲーションドロワー(Drawer) を使用すると、App内の目的地にアクセスできます。 サイドシートは、画面の左端または右端にアンカーされた補足コンテンツを含むサーフェスです。</p>
 
-[ナビゲーション・ドロワー](https://material.io/design/components/navigation-drawer.html)(または「サイドバー」)は、目的地へのアクセスとアカウントの切り替えなどのアプリケーション機能を提供します。 これらは、画面上で永続的に表示することも、ナビゲーション・メニュー・アイコンで制御することもできます。
+ナビゲーション・ドロワー(または「サイドバー」)は、目的地へのアクセスとアカウントの切り替えなどのアプリケーション機能を提供します。 これらは、画面上で永続的に表示することも、ナビゲーション・メニュー・アイコンで制御することもできます。
 
 [サイドシート](https://material.io/design/components/sheets-side.html) は、主にタブレットやデスクトップで使用される補助サーフェスです。
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Temporary drawer
 
@@ -33,14 +37,38 @@ components: Drawer, SwipeableDrawer
 - iOSには、ディスカバリー機能を妨害する「スワイプして戻る」機能があるため、ディスカバリーを無効にする必要があります。
 
 ```jsx
-const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS =
+  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
+
+### スワイプ可能なエッジ
+
+`SwipeableDrawer` を閉じたときにエッジが表示されるように設定することができます。
+
+デスクトップでは、「OPEN」ボタンでドロワーを切り替えることができます。 モバイルでは、CodeSandbox(編集アイコン)でデモを開き、スワイプできます。
+
+{{"demo": "pages/components/drawers/SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
+
+### マウントしたままにする
+
+一時的な引き出しがアンマウントされないようにするには、 `ModalProps` のプロパティを次のように指定します。
+
+```jsx
+<Drawer
+  variant="temporary"
+  ModalProps={{
+    keepMounted: true,
+  }}
+/>
+```
+
+詳細については、 [Modal performance section](/components/modal/#performance) を参照してください。
 
 ## レスポンシブなドロワー
 
-`Hidden`対応ヘルパーコンポーネントを使用すると、画面の幅に応じてさまざまな種類のドロワーを表示できます。 小さな画面では `temporary` ドロワーが表示され、大きな画面では `permanent` ドロワーが表示されます。
+You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
 
 {{"demo": "pages/components/drawers/ResponsiveDrawer.js", "iframe": true}}
 
@@ -68,7 +96,7 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 固定ナビゲーションdrawersは常に表示され、コンテンツまたは背景と同じ高さの左端に固定されます。 それらを閉じることはできません。
 
-パーマネントナビゲーションドロワーは、**デスクトップでデフォルト推奨**です。
+固定ドロワーは、**デスクトップ**で推奨されるデフォルトです。
 
 ### Full-height navigation（フルハイトナビゲーション）
 

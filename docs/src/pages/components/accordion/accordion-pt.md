@@ -1,19 +1,24 @@
 ---
 title: Componente de Acordeão React
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
+githubLabel: 'component: Accordion'
+materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
 
 # Acordeão
 
 <p class="description">Os acordeões contêm fluxos de criação e permitem a edição simplificada de um elemento.</p>
 
-[Um acordeão](https://material.io/archive/guidelines/components/expansion-panels.html) é um contêiner leve que pode estar sozinho ou conectado em uma superfície maior, como um cartão.
+[Um painel de expansão](https://material.io/archive/guidelines/components/expansion-panels.html) é um contêiner leve que pode estar sozinho ou conectado em uma superfície maior, como um cartão.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 > **Nota:** Os acordeões não estão mais documentados nas [diretrizes do Material Design](https://material.io/), mas o Material-UI continuará a suportá-los. Anteriormente, ele era formalmente conhecido como "painel de expansão".
 
-## Acordeão simples
+## Painel de Expansão Simples
 
-{{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/BasicAccordion.js", "bg": true}}
 
 ## Acordeão controlado
 
@@ -21,17 +26,11 @@ Estenda o comportamento padrão para criar um acordeão customizado com o compon
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## Acordeões customizados
+## Painéis de Expansão Customizados
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
-
-## Ações adicionais
-
-Para colocar uma ação como um `Checkbox` ou um botão dentro do `AccordionSummary`, você precisa parar a propogação do foco e eventos de clique para previnir o painel de expandir/colapsar quando usar a ação. Você deve fornecer também um `aria-label` para a ação, caso contrário, o rótulo da ação aninhada será incluído no rótulo do botão pai que controla a expansão do acordeão.
-
-{{"demo": "pages/components/accordion/ActionsInAccordionSummary.js", "bg": true}}
 
 ## Performance
 
@@ -42,12 +41,6 @@ O conteúdo dos acordeões é montado por padrão, mesmo que o acordeão não es
 ```
 
 Como acontece com qualquer otimização de desempenho, isso não é uma bala de prata. Certifique-se de identificar gargalos primeiro e, em seguida, experimente essas estratégias de otimização.
-
-## Cabeçalho secundário e colunas
-
-Várias colunas podem ser usadas para estruturar o conteúdo, e um texto auxiliar pode ser adicionado ao acordeão para ajudar o usuário.
-
-{{"demo": "pages/components/accordion/DetailedAccordion.js", "bg": true}}
 
 ## Acessibilidade
 

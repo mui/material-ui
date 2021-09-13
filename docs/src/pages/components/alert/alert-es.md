@@ -1,6 +1,8 @@
 ---
 title: React Alert component
 components: Alert, AlertTitle
+githubLabel: 'component: Alert'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 ---
 
 # Alerta
@@ -9,11 +11,13 @@ components: Alert, AlertTitle
 
 **Nota:** Este componente no está documentado en las [ pautas de Material Design](https://material.io/), pero Material-UI lo soporta.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Alertas simples
 
 La alerta ofrece cuatro niveles de severidad que distintivamente establecen un icono y un color.
 
-{{"demo": "pages/components/alert/SimpleAlerts.js"}}
+{{"demo": "pages/components/alert/BasicAlerts.js"}}
 
 ## Descripción
 
@@ -39,7 +43,7 @@ Puedes utilizar un [ componente de transition ](/components/transitions/) como `
 
 La propiedad `icon` te permite añadir un icono al inicio del componente alerta. Esto anulará el icono por defecto para la severidad especificada.
 
-Puedes cambiar el mapeo por defecto de severidad a ícono con la propiedad  `iconMapping`. Esto puede ser definido globalmente usando [la personalización del tema](/customization/globals/#default-props).
+Puedes cambiar el mapeo por defecto de severidad a ícono con la propiedad  `iconMapping`. Esto puede ser definido globalmente usando [la personalización del tema](/customization/theme-components/#default-props).
 
 Al establecer la propiedad `icono` a falso, el icono se removerá completamente.
 

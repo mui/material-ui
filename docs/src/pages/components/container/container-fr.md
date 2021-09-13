@@ -1,6 +1,7 @@
 ---
 title: Composant React Container
 components: Container (Conteneur)
+githubLabel: 'component: Container'
 ---
 
 # Container (Conteneur)
@@ -9,9 +10,11 @@ components: Container (Conteneur)
 
 Bien que les conteneurs puissent être imbriqués, la plupart des mises en page ne nécessitent pas de conteneur imbriqué.
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Fluid
 
-Une largeur de conteneur fluide est limitée par la valeur de propriété `maxWidth`.
+La largeur d'un conteneur fluid (pleine largeure) est limitée par la valeur de la propriété `maxWidth`.
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 
@@ -21,7 +24,7 @@ Une largeur de conteneur fluide est limitée par la valeur de propriété `maxWi
 
 ## Fixe
 
-Si vous préférez concevoir pour un ensemble fixe de tailles au lieu d'essayer de s'adapter à une vue entièrement fluide, vous pouvez définir la propriété `fixe`. La largeur maximale correspond à la largeur minimale du point d'arrêt actuel.
+Si vous préférez concevoir pour un ensemble fixe de tailles au lieu d'essayer de vous adapter à un viewport fluid (pleine largeure), vous pouvez définir la propriété `fixed`. La largeur maximale correspond à la largeur minimale du point d'arrêt actuel.
 
 {{"demo": "pages/components/container/FixedContainer.js", "iframe": true, "defaultCodeOpen": false}}
 

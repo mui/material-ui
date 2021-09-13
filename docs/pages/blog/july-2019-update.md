@@ -20,7 +20,7 @@ Here are the most significant improvements in July:
   Read our [Minimizing Bundle Size](/guides/minimizing-bundle-size/) guide to learn how your project should be configured.
 
   ```js
-  import { Button, TextField } from '@material-ui/core';
+  import { Button, TextField } from '@mui/material';
   ```
 
 - ⭐️ We have introduced a new [Rating component](/components/rating/) in the lab.
@@ -31,7 +31,7 @@ But this summary is just scratching the surface. We have accepted 146 commits fr
 
 ## Our roadmap intent for August
 
-*(We'll do our best, no guarantee!)*
+_(We'll do our best, no guarantee!)_
 
 - 🔍 We will work on providing ready to use autocomplete, combo box, and multi-select components.
 

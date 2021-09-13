@@ -1,34 +1,60 @@
 ---
-title: Composant React Grid List
+title: Composant React Image List
 components: ImageList, ImageListItem, ImageListItemBar
+materialDesign: https://material.io/components/image-lists
+githubLabel: 'component: ImageList'
 ---
 
-# Grid list
+# Liste d'images
 
-<p class="description">Les listes de grille affichent une collection d'images dans une grille organisée.</p>
+<p class="description">Les listes d'images affichent une collection d'images dans une grille organisée.</p>
 
-[Les listes de grille](https://material.io/design/components/image-lists.html) représentent une collection d'éléments dans un motif répété. Ils aident à améliorer la compréhension visuelle du contenu qu'ils contiennent.
+Les listes d'images représentent une collection d'éléments dans un motif répété. Ils aident à améliorer la compréhension visuelle du contenu qu'ils contiennent.
 
-## Grid list contenant uniquement des images
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-Un exemple simple d'image défilable `ImageList`.
+## Liste d'images standard
 
-{{"demo": "pages/components/image-list/ImageImageList.js", "hideEditButton": true}}
+Les listes d'images standard sont idéales pour les éléments d'égale importance. Ils ont une taille, un rapport et un espacement de conteneur uniformes.
 
-## Grid list avec barres de titre
+{{"demo": "pages/components/image-list/StandardImageList.js"}}
+
+## Liste d'images matelassées
+
+Les listes d'images matelassées mettent en valeur certains éléments par rapport à d'autres dans une collection. Ils créent une hiérarchie en utilisant des tailles et des ratios de conteneurs variés.
+
+{{"demo": "pages/components/image-list/QuiltedImageList.js"}}
+
+## Liste d'images tissées
+
+Les listes d'images tissées utilisent des ratios de conteneurs alternés pour créer une mise en page rythmique. Une liste d'images tissées est idéale pour parcourir le contenu des pairs.
+
+{{"demo": "pages/components/image-list/WovenImageList.js"}}
+
+## Liste d'images avancée
+
+Les listes d'images avancées utilisent des hauteurs de conteneurs de taille dynamique qui reflètent le rapport hauteur/largeur de chaque image. Cette liste d'images est mieux utilisée pour parcourir le contenu de pairs non rogné.
+
+{{"demo": "pages/components/image-list/MasonryImageList.js"}}
+
+## Liste d'images avec barres de titre
 
 Cet exemple illustre l'utilisation de `ImageListItemBar` pour ajouter une superposition à chaque `ImageListItem`. La superposition peut accueillir un `titre`, `sous - titre` et une action secondaire - dans cet exemple un `IconButton`.
 
-{{"demo": "pages/components/image-list/TitlebarImageList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/TitlebarImageList.js"}}
 
-## Grid List sur une ligne
+### Barre de titre sous l'image (standard)
 
-Cet exemple illustre une image list défilante horizontale d'images. Les listes de grille défilant horizontalement sont déconseillées car le défilement interfère avec les habitudes de lecture, ce qui affecte la compréhension. Une exception notable est la liste d'images comportant une seule ligne, telle qu'une galerie, qui défile horizontalement.
+La barre de titre peut être placée sous l'image.
 
-{{"demo": "pages/components/image-list/SingleLineImageList.js", "hideEditButton": true}}
+{{"demo": "pages/components/image-list/TitlebarBelowImageList.js"}}
 
-## Grid list avancée
+### Barre de titre sous l'image (avancé)
 
-Cet exemple montre des tuiles , en utilisant les `rows` et `cols`props pour ajuster la taille de la tuile, et le `padding` prop pour ajuster l'espacement. Les tuiles ont une barre de titre personnalisée, placée en haut et avec un dégradé personnalisé `titleBackground`. L'action secondaire `IconButton` est positionnée sur la gauche.
+{{"demo": "pages/components/image-list/TitlebarBelowMasonryImageList.js"}}
 
-{{"demo": "pages/components/image-list/AdvancedImageList.js", "hideEditButton": true, "defaultCodeOpen": false}}
+## Liste d'images personnalisée
+
+Dans cet exemple, les éléments ont une barre de titre personnalisée, positionnée en haut et avec un dégradé `titleBackground` personnalisé. L'action secondaire `IconButton` est positionnée sur la gauche. La prop `gap` est utilisée pour ajuster l'écart entre les éléments.
+
+{{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}

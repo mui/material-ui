@@ -1,9 +1,11 @@
 ---
 title: Компонент React Chip
 components: Chip
+githubLabel: 'component: Chip'
+materialDesign: https://material.io/components/chips
 ---
 
-# Chip (фишка)
+# Chip
 
 <p class="description">Фишки - это компактные элементы, представляющие входные данные, атрибут или действие.</p>
 
@@ -11,40 +13,74 @@ components: Chip
 
 Несмотря на то, что он включен здесь как автономный компонент, наиболее распространенное использование будет в той или иной форме ввода, поэтому некоторые из продемонстрированных здесь действий не показаны в контексте.
 
-## Chip
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-Примеры фишек, использующих изображения, SVG-иконку, «Символ» и строку в качестве аватара.
+## Basic chip
 
-- Фишки с заданным свойством `onClick` могут изменять внешний вид при фокусировке, наведении курсора и клике.
-- Фишки с определенным свойством `onDelete` будут отображать значок удаления который меняет внешний вид при наведении курсора.
+The `Chip` component supports outlined and filled styling.
 
-{{"demo": "pages/components/chips/Chips.js"}}
+{{"demo": "pages/components/chips/BasicChips.js"}}
 
-### Контурные фишки
+## Chip actions
 
-Контурные фишки предлагают альтернативный стиль.
+You can use the following actions.
 
-{{"demo": "pages/components/chips/OutlinedChips.js"}}
+- Chips with the `onClick` prop defined change appearance on focus, hover, and click.
+- Chips with the `onDelete` prop defined will display a delete icon which changes appearance on hover.
 
-## Массив фишек
+### Clickeable
 
-Пример рендеринга нескольких фишек из массива значений. Удаление фишки удаляет ее из массива. Обратите внимание, что поскольку свойство `onClick` не определено, фишка может быть сфокусирована, но не получает глубины при щелчке или касании.
+{{"demo": "pages/components/chips/ClickeableChips.js"}}
 
-{{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
+### Deleteable
 
-## Маленькая фишка
+{{"demo": "pages/components/chips/DeleteableChips.js"}}
+
+### Clickeable and deleteable
+
+{{"demo": "pages/components/chips/ClickeableAndDeleteableChips.js"}}
+
+### Clickeable link
+
+{{"demo": "pages/components/chips/ClickeableLinkChips.js"}}
+
+### Custom delete icon
+
+{{"demo": "pages/components/chips/CustomDeleteIconChips.js"}}
+
+## Chip adornments
+
+You can add ornaments to the beginning of the component.
+
+Use the `avatar` prop to added a avatar or use the `icon` prop to added a icon.
+
+### Avatar chip
+
+{{"demo": "pages/components/chips/AvatarChips.js"}}
+
+### Icon chip
+
+{{"demo": "pages/components/chips/IconChips.js"}}
+
+## Color chip
+
+You can use the `color` prop to define a primary or secondary color.
+
+{{"demo": "pages/components/chips/ColorChips.js"}}
+
+## Sizes chip
 
 Для определения маленькой фишки можно использовать свойство `size`.
 
-### Вариант по умолчанию
+{{"demo": "pages/components/chips/SizesChips.js"}}
 
-{{"demo": "pages/components/chips/SmallChips.js"}}
+## Массив фишек
 
-### Контурный вариант
+An example of rendering multiple chips from an array of values. Удаление фишки удаляет ее из массива. Note that since no `onClick` prop is defined, the `Chip` can be focused, but does not gain depth while clicked or touched.
 
-{{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
+{{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
-## Песочница
+## Chip playground
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 

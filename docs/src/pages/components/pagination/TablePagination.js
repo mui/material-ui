@@ -1,5 +1,5 @@
-import React from 'react';
-import TablePagination from '@material-ui/core/TablePagination';
+import * as React from 'react';
+import TablePagination from '@mui/material/TablePagination';
 
 export default function TablePaginationDemo() {
   const [page, setPage] = React.useState(2);

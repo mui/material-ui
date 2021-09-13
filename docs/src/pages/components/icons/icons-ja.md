@@ -1,6 +1,8 @@
 ---
 title: Icon コンポーネント
 components: Icon, SvgIcon
+githubLabel: 'components: SvgIcon'
+materialDesign: https://material.io/design/iconography/system-icons.html
 ---
 
 # Icons
@@ -15,30 +17,31 @@ Material-UIはアイコンについて、3種類の提供方法をサポート�
 
 ## マテリアルアイコン（Material Icons）
 
-Material Designでは1,100以上の公式アイコンが標準化されており、それぞれ5つのテーマに分かれています。(下記参照) SVGアイコンは、@material-ui/iconsパッケージのReactコンポーネントとしてそれぞれエクスポートされています。 [これらのアイコンの一覧を検索](/components/material-icons/)することが出来ます。
+Google has created over 1,700 official Material icons, each in five different "themes" (see below). SVGアイコンは、`@material-ui/icons` パッケージでReactコンポーネントとしてそれぞれエクスポートされています。 [これらのアイコンの一覧を検索](/components/material-icons/)することが出来ます。
 
 ### インストール
 
 次を使用して、プロジェクトディレクトリにパッケージをインストールします。
 
 ```sh
-// with npm
-npm install @material-ui/icons
+// npmの場合
+npm install @material-ui/icons@next
 
-// with yarn
-yarn add @material-ui/icons
+// yarnの場合
+yarn add @material-ui/icons@next
 ```
 
-These components use the Material-UI SvgIcon component to render the SVG path for each icon, and so they have a peer-dependency on the next release of Material-UI.
+これらのコンポーネントはMaterial-UIの `SvgIcon` コンポーネントを使用してそれぞれのアイコンを表示するため、`@materialui/core` をpeer-dependencyに持っています。
 
-If you are not already using Material-UI in your project, you can add it with:
+プロジェクトでまだMaterial-UIを使用していない場合は、次のコマンドでインストールできます:
 
 ```sh
 // npmの場合
-npm install @material-ui/core
+npm install @material-ui/core@next
 
 // yarnの場合
-yarn add @material-ui/core
+yarn add @material-ui/core@next
+
 ```
 
 ### 使い方
@@ -58,9 +61,9 @@ yarn add @material-ui/core
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest is Option 1 but Option 2 can yield the best developer experience. 2番目の方法を使用する前に [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) に従ってください。 The configuration of a Babel plugin is encouraged.
+バンドルサイズの面で最も安全なのはOption 1ですが、一部の開発者はOption 2を好みます。 2番目の方法を使用する前に [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) に従ってください。
 
-Each icon also has a "theme": Filled (default), Outlined, Rounded, Two tone and Sharp. If you want to import the icon component with a theme other than default, append the theme name to the icon name. 例えば `@material-ui/icons/Delete` アイコンには次のものが含まれます:
+各マテリアルアイコンには「テーマ」があります。Filled(デフォルト)、Outline、Rounded、Two-tone、そしてSharpです。 デフォルト以外のテーマでアイコンコンポーネントをインポートするには、アイコン名にテーマ名を追加します。 例えば `@material-ui/icons/Delete` アイコンには次のものが含まれます:
 
 - `@material-ui/icons/Delete` としてエクスポートされた Filled テーマ(デフォルト)
 - `@material-ui/icons/DeleteOutlined` としてエクスポートされた Outlinedテーマ
@@ -68,16 +71,30 @@ Each icon also has a "theme": Filled (default), Outlined, Rounded, Two tone and 
 - `@material-ui/icons/DeleteTwoTone` としてエクスポートされた Twotone テーマ
 - `@material-ui/icons/DeleteSharp` としてエクスポートされた Sharpテーマ
 
-> 備考: Material Designの仕様では「snake_case」命名規則を使って名前を付けています(例えば`delete_forever`,、`add_a_photo`)が、`@material-ui/icons` ではそれぞれのアイコンを「PascalCase」命名規則を用いてエクスポートしています(例えば `DeleteForever`、`AddAPhoto`)。 There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
+### テスト
+
+テストの目的で、 `@material-ui/icons` で公開された各アイコンには、アイコンの名前を持つ `data-testid` 属性があります。 例えば：
+
+```jsx
+import DeleteIcon from '@material-ui/icons/Delete';
+```
+
+は次の属性を持っています
+
+```html
+<svg data-testid="DeleteIcon"></svg>
+```
+
 ## SvgIcon
 
-If you need a custom SVG icon (not available in the Material Icons [default set](/components/material-icons/)) you can use the `SvgIcon` wrapper. This component extends the native `<svg>` element:
+カスタム SVG アイコンが必要な場合 ( [Material Icons](/components/material-icons/)にない場合) は、 `SvgIcon` ラッパーを使用できます。 This component extends the native `<svg>` element:
 
 - It comes with built-in accessibility.
-- SVG elements should be scaled for a 24x24px viewport, so the resulting icon can be used as is, or included as a child for other Material-UI components that use icons. (This can be customized with the `viewBox` attribute).
+- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other Material-UI components that use icons. (This can be customized with the `viewBox` attribute).
 - By default, the component inherits the current color. Optionally, you can apply one of the theme colors using the `color` prop.
 
 ```jsx
@@ -115,7 +132,7 @@ import StarIcon from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
-It's also possible to use it with "url-loader" or "file-loader". It's the approach used by Create React App.
+It's also possible to use it with "url-loader" or "file-loader". This is the approach used by Create React App.
 
 ```jsx
 // webpack.config.js
@@ -130,29 +147,40 @@ import { ReactComponent as StarIcon } from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
+### createSvgIcon
+
+The `createSvgIcon` utility component is used to create the [Material icons](#material-icons). It can be used to wrap an SVG path with an SvgIcon component.
+
+```jsx
+const HomeIcon = createSvgIcon(
+  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />,
+  'Home',
+);
+```
+
+{{"demo": "pages/components/icons/CreateSvgIcon.js"}}
+
+### Font Awesome
+
+If you find that there are layout issues when using FontAwesomeIcon from `@fortawesome/react-fontawesome`, you can try passing the Font Awesome SVG data directly to SvgIcon.
+
+以下は、`FontAwesomeIcon`コンポーネントとラップされた`SvgIcon`コンポーネントの比較です。
+
+{{"demo": "pages/components/icons/FontAwesomeSvgIconDemo.js"}}
+
+FontAwesomeIcon's `fullWidth` prop can also be used to approximate the correct dimensions, but it isn't perfect.
+
 ### ライブラリ
-
-#### Material Design (recommended)
-
-Material Design has standardized over [1,100 official icons](#material-icons).
 
 #### MDI
 
-[materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons. For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component.
+[materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons. For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component, or with `createSvgIcon()`.
 
 Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has already wrapped each of these SVG icons with the `SvgIcon` component, so you don't have to do it yourself.
 
 ## Icon (Font icons)
 
-`Icon` will set the correct class name for the Material icon font. 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
-
-```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-```
-
-`Icon` will set the correct class name for the Material icon font. 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
-
-アイコンを使用するには、単純にアイコン名（フォントの合字）を `Icon` コンポーネントでラップします。例えば：
+`Icon` will set the correct class name for the Material icon font. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. アイコンを使用するには、単純にアイコン名（フォントの合字）を `Icon` コンポーネントでラップします。例えば：
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -164,13 +192,79 @@ import Icon from '@material-ui/core/Icon';
 
 ### Font Material icons
 
+`Icon` はデフォルトで、Material Iconsフォント(Filled)に正しいベースクラス名を設定します。 あなたがしなければいけないことは例えばGoogle Web Fontsなどからフォントをロードすることだけです。
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+```
+
 {{"demo": "pages/components/icons/Icons.js"}}
+
+### カスタムフォント
+
+他のフォントを使用する場合、 `baseClassName` プロパティを使用してベースラインクラス名をカスタマイズできます。 たとえば、two-toneのMaterial Designアイコンを表示できます。
+
+```jsx
+import Icon from '@material-ui/core/Icon';
+
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone"
+  // Import the two tones MD variant                           ^^^^^^^^
+/>;
+```
+
+{{"demo": "pages/components/icons/TwoToneIcons.js"}}
+
+#### Global base class name
+
+Modifying the `baseClassName` prop for each component usage is repetitive. You can change the default prop globally with the theme
+
+```js
+const theme = createTheme({
+  components: {
+    MuiIcon: {
+      defaultProps: {
+        // Replace the `material-icons` default value.
+        baseClassName: 'material-icons-two-tone',
+      },
+    },
+  },
+});
+```
+
+Then, you can use the two-tone font directly:
+
+```jsx
+<Icon>add_circle</Icon>
+```
 
 ### Font Awesome
 
-[Font Awesome](https://fontawesome.com/icons) は、 `Icon` コンポーネントとともに、次のように使用することができます。
+[Font Awesome](https://fontawesome.com/icons) は `Icon` コンポーネントで以下のように使用できます:
 
-{{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
+{{"demo": "pages/components/icons/FontAwesomeIcon.js"}}
+
+Font AwesomeのアイコンはMaterial Designのアイコンのようにデザインされていない(前の2つのデモと比較して)ことに注意してください。 faアイコンは、利用可能なすべてのスペースを使用するようにトリミングされます。 これはグローバルオーバーライドで調整できます。
+
+```js
+const theme = createTheme({
+  components: {
+    MuiIcon: {
+      styleOverrides: {
+        root: {
+          // Match 24px = 3 * 2 + 1.125 * 16
+          boxSizing: 'content-box',
+          padding: 3,
+          fontSize: '1.125rem',
+        },
+      },
+    },
+  },
+});
+```
+
+{{"demo": "pages/components/icons/FontAwesomeIconSize.js"}}
 
 ## Font vs SVG どのアプローチを使用しますか？
 
@@ -180,21 +274,20 @@ import Icon from '@material-ui/core/Icon';
 
 ## アクセシビリティ
 
-アイコンはあらゆる種類の意味のある情報を伝えることができるので、可能な限り多くの人に届くことが重要です。 次の2つの使用例を検討してください。 次の2つの使用例を検討してください。
+アイコンはあらゆる種類の有意義な情報を伝えることができるので、適切な場所にアクセスできるようにすることが重要です。 考慮するユースケースが2つあります。
+
 - **装飾アイコン** は、視覚的またはブランド強化のためにのみ使用されています。 それらがページから削除された場合でも、ユーザーはあなたのページを理解して使用することができます。
 - **セマンティックアイコン** は、単なる装飾ではなく、意味を伝えるためのものです。 これには、ボタン、フォーム要素、トグルなど、インタラクティブコントロールとして使用されるテキストのないアイコンが含まれます。
 
-### 装飾SVGアイコン
+### 装飾アイコン
 
-`Icon` will set the correct class name for the Material icon font. 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
+アイコンが純粋に装飾的なものであれば、他にすることはありません。 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
 
-### Semantic SVG Icons
+### セマンティックアイコン
 
-import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
- // ...
-&lt;Icon&gt;add_circle&lt;/Icon&gt;
-&lt;Typography variant="srOnly"&gt;Create a user&lt;/Typography&gt;
+#### セマンティックSVGアイコン
+
+`titleAccess` プロパティに意味のある値を含める必要があります。 正しいアクセシビリティのために、`role="img"` 属性と `<title>` 要素が追加されます。
 
 アイコンボタンと一緒に使用したときのようにフォーカス可能なインタラクティブ要素の場合は、 `aria-label` プロパティを使用できます。
 
@@ -210,26 +303,21 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 // ...
 ```
 
-### Decorative Font Icons
+#### セマンティックフォントアイコン
 
-`Icon` will set the correct class name for the Material icon font. 他のフォントの場合、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
-
-### Semantic Font Icons
-
-アイコンに意味的な意味がある場合は、支援技術にしか見えない代替テキストを提供する必要があります。
+支援技術にのみ表示される代替テキストを提供する必要があります。
 
 ```jsx
+import Box from '@material-ui/core/Box';
 import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
+import { visuallyHidden } from '@material-ui/utils';
 
 // ...
 
-import Icon from '@material-ui/core/Icon';
-import Typography from '@material-ui/core/Typography';
-
-// ...
+<Icon>add_circle</Icon>
+<Box component="span" sx={visuallyHidden}>Create a user</Box>
 ```
 
-### リファレンス
+#### リファレンス
 
 - https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/

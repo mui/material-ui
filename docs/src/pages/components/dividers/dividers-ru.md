@@ -1,13 +1,17 @@
 ---
 title: Компонент React Divider
 components: Divider
+githubLabel: 'component: Divider'
+materialDesign: https://material.io/components/dividers
 ---
 
-# Divider (разделитель)
+# Divider
 
 <p class="description">Разделитель - это тонкая линия, которая группирует содержимое (контент) в списки и макеты (слои).</p>
 
 [Разелители](https://material.io/design/components/dividers.html) делят содержимое (контент) на явные (четкие) группы.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Разделители списков
 
@@ -23,7 +27,7 @@ In a list, you should ensure the `Divider` is rendered as an `<li>` to match the
 
 {{"demo": "pages/components/dividers/InsetDividers.js", "bg": true}}
 
-## Подтитульные разделлители
+## Подтитульные разделители
 
 {{"demo": "pages/components/dividers/SubheaderDividers.js", "bg": true}}
 
@@ -33,6 +37,26 @@ In a list, you should ensure the `Divider` is rendered as an `<li>` to match the
 
 ## Vertical Dividers
 
-You can also render a divider vertically using the `orientation` prop. Note the use of the `flexItem` prop to accommodate for the flex container.
+You can also render a divider with content.
+
+{{"demo": "pages/components/dividers/DividerText.js"}}
+
+## Divider (разделитель)
+
+You can also render a divider vertically using the `orientation` prop.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}
+
+> Note the use of the `flexItem` prop to accommodate for the flex container.
+
+### Vertical with variant middle
+
+You can also render a vertical divider with `variant="middle"`.
+
+{{"demo": "pages/components/dividers/VerticalDividerMiddle.js", "bg": true}}
+
+### Вертикальный с текстом
+
+You can also render a vertical divider with content.
+
+{{"demo": "pages/components/dividers/VerticalDividerText.js"}}

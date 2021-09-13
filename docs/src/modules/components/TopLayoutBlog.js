@@ -1,15 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
+import { withStyles } from '@mui/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
-import { BANNER_HEIGHT } from 'docs/src/modules/constants';
 import { useRouter } from 'next/router';
-import Link from '@material-ui/core/Link';
-import Avatar from '@material-ui/core/Avatar';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
 import AppFooter from 'docs/src/modules/components/AppFooter';
-import { exactProp } from '@material-ui/utils';
+import { exactProp } from '@mui/utils';
 import MarkdownElement from './MarkdownElement';
 
 const authors = {
@@ -26,8 +28,6 @@ const authors = {
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
-    // Adding top buffer because of the v5 banner
-    marginTop: BANNER_HEIGHT,
   },
   back: {
     display: 'block',
@@ -35,7 +35,7 @@ const styles = (theme) => ({
   },
   container: {
     marginBottom: theme.spacing(20),
-    maxWidth: 680 + theme.spacing(8 + 4),
+    maxWidth: `calc(680px + ${theme.spacing(12)})`,
     '& h1': {
       marginBottom: theme.spacing(4),
     },
@@ -69,16 +69,11 @@ const styles = (theme) => ({
   },
   avatar: {
     display: 'flex',
-    gap: theme.spacing(3),
-    '& > div': {
-      marginTop: theme.spacing(-1),
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: theme.spacing(5),
-      fontWeight: theme.typography.fontWeightMedium,
-      '& .MuiAvatar-root': {
-        marginRight: theme.spacing(1),
-      },
+    alignItems: 'center',
+    paddingBottom: theme.spacing(5),
+    fontWeight: theme.typography.fontWeightMedium,
+    '& .MuiAvatar-root': {
+      marginRight: theme.spacing(1),
     },
   },
 });
@@ -92,7 +87,7 @@ function TopLayoutBlog(props) {
   return (
     <AppFrame disableDrawer>
       <Head
-        title={`${finalTitle} - Material-UI`}
+        title={`${finalTitle} - MUI`}
         description={description}
         largeCard={headers.card === 'true' ? true : undefined}
         card={
@@ -102,14 +97,15 @@ function TopLayoutBlog(props) {
         }
       />
       <div className={classes.root}>
-        <AppContainer className={classes.container}>
+        <AppContainer component="main" className={classes.container}>
           <Link
             href="https://medium.com/material-ui"
             rel="nofollow"
-            color="textSecondary"
+            color="text.secondary"
             variant="body2"
             className={classes.back}
           >
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
             {'< Back to blog'}
           </Link>
           {headers.title ? (
@@ -125,14 +121,14 @@ function TopLayoutBlog(props) {
               <MarkdownElement>
                 <h1>{headers.title}</h1>
               </MarkdownElement>
-              <div className={classes.avatar}>
+              <Stack direction="row" spacing={3}>
                 {headers.authors.map((author) => (
-                  <div key={author}>
+                  <div key={author} className={classes.avatar}>
                     <Avatar src={`https://github.com/${authors[author].github}.png`} />
-                    {authors[author].name}
+                    <Typography>{authors[author].name}</Typography>
                   </div>
                 ))}
-              </div>
+              </Stack>
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {
@@ -154,4 +150,5 @@ if (process.env.NODE_ENV !== 'production') {
   TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
 
-export default withStyles(styles)(TopLayoutBlog);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(TopLayoutBlog);

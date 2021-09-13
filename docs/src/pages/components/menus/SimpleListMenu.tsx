@@ -1,36 +1,29 @@
-import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      backgroundColor: theme.palette.background.paper,
-    },
-  }),
-);
+import * as React from 'react';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 const options = [
-  'Show some love to Material-UI',
+  'Show some love to MUI',
   'Show all notification content',
   'Hide sensitive notification content',
   'Hide all notification content',
 ];
 
 export default function SimpleListMenu() {
-  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
-
+  const open = Boolean(anchorEl);
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (event: React.MouseEvent<HTMLElement>, index: number) => {
+  const handleMenuItemClick = (
+    event: React.MouseEvent<HTMLElement>,
+    index: number,
+  ) => {
     setSelectedIndex(index);
     setAnchorEl(null);
   };
@@ -40,24 +33,36 @@ export default function SimpleListMenu() {
   };
 
   return (
-    <div className={classes.root}>
-      <List component="nav" aria-label="Device settings">
+    <div>
+      <List
+        component="nav"
+        aria-label="Device settings"
+        sx={{ bgcolor: 'background.paper' }}
+      >
         <ListItem
           button
-          aria-haspopup="true"
+          id="lock-button"
+          aria-haspopup="listbox"
           aria-controls="lock-menu"
           aria-label="when device is locked"
+          aria-expanded={open ? 'true' : undefined}
           onClick={handleClickListItem}
         >
-          <ListItemText primary="When device is locked" secondary={options[selectedIndex]} />
+          <ListItemText
+            primary="When device is locked"
+            secondary={options[selectedIndex]}
+          />
         </ListItem>
       </List>
       <Menu
         id="lock-menu"
         anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
+        open={open}
         onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'lock-button',
+          role: 'listbox',
+        }}
       >
         {options.map((option, index) => (
           <MenuItem

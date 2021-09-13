@@ -1,6 +1,8 @@
 ---
 title: React List component
-components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+components: Collapse, Divider, List, ListItem, ListItemButton, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+githubLabel: 'component: List'
+materialDesign: https://material.io/components/lists
 ---
 
 # Listas
@@ -9,25 +11,21 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 Las [listas](https://material.io/design/components/lists.html) son un grupo contínuo de texto o imágenes. Se componen de elementos que contienen acciones primarias y complementarias, que se representan mediante iconos y texto.
 
-## Lista Simple
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-{{"demo": "pages/components/lists/SimpleList.js", "bg": true}}
+## Basic List
+
+{{"demo": "pages/components/lists/BasicList.js", "bg": true}}
 
 El último elemento del demo anterior muestra cómo se puede representar un enlace:
 
 ```jsx
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
-//...
-
-<ListItemLink href="#simple-list">
+<ListItemButton component="a" href="#simple-list">
   <ListItemText primary="Spam" />
-</ListItemLink>
+</ListItemButton>
 ```
 
-Hay una demostración [usando React Router siguiendo esta sección](/guides/composition/#react-router) de la documentación.
+You can find a [demo with React Router following this section](/guides/routing/#list) of the documentation.
 
 ## Lista Anidada
 
@@ -73,17 +71,23 @@ El switch es la acción secundaria y un objetivo separado.
 
 {{"demo": "pages/components/lists/SwitchListSecondary.js", "bg": true}}
 
-## Lista de Subencabezados Fijados
+## Sticky subheader
 
-Al desplazarse, los subencabezados permanecen anclados en la parte superior de la pantalla hasta que el siguiente subencabezado los saque de la pantalla.
-
-Esta característica se basa en el posicionamiento sticky de CSS. Desafortunadamente, [no está implementado](https://caniuse.com/#search=sticky) por todos los navegadores compatibles. El valor por defecto soportado es `disableSticky` cuando el navegador no provee el soporte.
+Al desplazarse, los subencabezados permanecen anclados en la parte superior de la pantalla hasta que el siguiente subencabezado los saque de la pantalla. Esta característica se basa en el posicionamiento sticky de CSS. (⚠️ no IE 11 support)
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## Lista con Margen
+## Inset List Item
+
+The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
+
+## Gutterless list
+
+When rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.
+
+{{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
 
 ## Virtualización de listas
 
@@ -92,6 +96,12 @@ En el siguiente ejemplo se demuestra como usar [react-window](https://github.com
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
 If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso). The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
+
+## Customized List
+
+Here are some examples of customizing the component. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
+
+{{"demo": "pages/components/lists/CustomizedList.js"}}
 
 ## Personalización
 

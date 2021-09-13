@@ -1,23 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { createTheme, ThemeProvider, withStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Hidden from '@material-ui/core/Hidden';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import * as React from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 import Navigator from './Navigator';
 import Content from './Content';
 import Header from './Header';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
       </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+      {new Date().getFullYear()}.
     </Typography>
   );
 }
@@ -40,9 +39,11 @@ let theme = createTheme({
   shape: {
     borderRadius: 8,
   },
-  props: {
+  components: {
     MuiTab: {
-      disableRipple: true,
+      defaultProps: {
+        disableRipple: true,
+      },
     },
   },
   mixins: {
@@ -54,79 +55,110 @@ let theme = createTheme({
 
 theme = {
   ...theme,
-  overrides: {
+  components: {
     MuiDrawer: {
-      paper: {
-        backgroundColor: '#18202c',
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#081627',
+        },
       },
     },
     MuiButton: {
-      label: {
-        textTransform: 'none',
-      },
-      contained: {
-        boxShadow: 'none',
-        '&:active': {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+        contained: {
           boxShadow: 'none',
+          '&:active': {
+            boxShadow: 'none',
+          },
         },
       },
     },
     MuiTabs: {
-      root: {
-        marginLeft: theme.spacing(1),
-      },
-      indicator: {
-        height: 3,
-        borderTopLeftRadius: 3,
-        borderTopRightRadius: 3,
-        backgroundColor: theme.palette.common.white,
+      styleOverrides: {
+        root: {
+          marginLeft: theme.spacing(1),
+        },
+        indicator: {
+          height: 3,
+          borderTopLeftRadius: 3,
+          borderTopRightRadius: 3,
+          backgroundColor: theme.palette.common.white,
+        },
       },
     },
     MuiTab: {
-      root: {
-        textTransform: 'none',
-        margin: '0 16px',
-        minWidth: 0,
-        padding: 0,
-        [theme.breakpoints.up('md')]: {
-          padding: 0,
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          margin: '0 16px',
           minWidth: 0,
+          padding: 0,
+          [theme.breakpoints.up('md')]: {
+            padding: 0,
+            minWidth: 0,
+          },
         },
       },
     },
     MuiIconButton: {
-      root: {
-        padding: theme.spacing(1),
+      styleOverrides: {
+        root: {
+          padding: theme.spacing(1),
+        },
       },
     },
     MuiTooltip: {
-      tooltip: {
-        borderRadius: 4,
+      styleOverrides: {
+        tooltip: {
+          borderRadius: 4,
+        },
       },
     },
     MuiDivider: {
-      root: {
-        backgroundColor: '#404854',
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgb(255,255,255,0.15)',
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected': {
+            color: '#4fc3f7',
+          },
+        },
       },
     },
     MuiListItemText: {
-      primary: {
-        fontWeight: theme.typography.fontWeightMedium,
+      styleOverrides: {
+        primary: {
+          fontSize: 14,
+          fontWeight: theme.typography.fontWeightMedium,
+        },
       },
     },
     MuiListItemIcon: {
-      root: {
-        color: 'inherit',
-        marginRight: 0,
-        '& svg': {
-          fontSize: 20,
+      styleOverrides: {
+        root: {
+          color: 'inherit',
+          minWidth: 'auto',
+          marginRight: theme.spacing(2),
+          '& svg': {
+            fontSize: 20,
+          },
         },
       },
     },
     MuiAvatar: {
-      root: {
-        width: 32,
-        height: 32,
+      styleOverrides: {
+        root: {
+          width: 32,
+          height: 32,
+        },
       },
     },
   },
@@ -134,36 +166,9 @@ theme = {
 
 const drawerWidth = 256;
 
-const styles = {
-  root: {
-    display: 'flex',
-    minHeight: '100vh',
-  },
-  drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-  },
-  app: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  main: {
-    flex: 1,
-    padding: theme.spacing(6, 4),
-    background: '#eaeff1',
-  },
-  footer: {
-    padding: theme.spacing(2),
-    background: '#eaeff1',
-  },
-};
-
-function Paperbase(props) {
-  const { classes } = props;
+export default function Paperbase() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -171,37 +176,36 @@ function Paperbase(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={classes.root}>
+      <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <CssBaseline />
-        <nav className={classes.drawer}>
-          <Hidden smUp implementation="js">
+        <Box
+          component="nav"
+          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        >
+          {isSmUp ? null : (
             <Navigator
               PaperProps={{ style: { width: drawerWidth } }}
               variant="temporary"
               open={mobileOpen}
               onClose={handleDrawerToggle}
             />
-          </Hidden>
-          <Hidden xsDown implementation="css">
-            <Navigator PaperProps={{ style: { width: drawerWidth } }} />
-          </Hidden>
-        </nav>
-        <div className={classes.app}>
+          )}
+
+          <Navigator
+            PaperProps={{ style: { width: drawerWidth } }}
+            sx={{ display: { sm: 'block', xs: 'none' } }}
+          />
+        </Box>
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <Header onDrawerToggle={handleDrawerToggle} />
-          <main className={classes.main}>
+          <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
             <Content />
-          </main>
-          <footer className={classes.footer}>
+          </Box>
+          <Box component="footer" sx={{ p: 2, bgcolor: '#eaeff1' }}>
             <Copyright />
-          </footer>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Box>
     </ThemeProvider>
   );
 }
-
-Paperbase.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Paperbase);

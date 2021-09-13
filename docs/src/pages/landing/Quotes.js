@@ -1,18 +1,18 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import Link from 'docs/src/modules/components/Link';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import NoSsr from '@material-ui/core/NoSsr';
-import Container from '@material-ui/core/Container';
-import Divider from '@material-ui/core/Divider';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import NoSsr from '@mui/core/NoSsr';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const quotes = [
   {
@@ -29,7 +29,7 @@ const quotes = [
     username: '@fragileglass',
     tweet: 'https://twitter.com/fragileglass/status/1205256087290753025',
     quote:
-      'It’s a game changer with how nicely it works with React. It’s made working with React so much more enjoyable. Everything is configurable and predictable. Bootstrap was killing me. It was hijacking my whole project.',
+      "It's a game changer with how nicely it works with React. It's made working with React so much more enjoyable. Everything is configurable and predictable. Bootstrap was killing me. It was hijacking my whole project.",
   },
   {
     avatar: 'https://pbs.twimg.com/profile_images/1214337550791299072/ybsFasgV',
@@ -61,7 +61,7 @@ const quotes = [
     username: '@SamDurrant_',
     tweet: 'https://twitter.com/SamDurrant_/status/1214741763455209473',
     quote:
-      'Began coding out the front end of my app today. Used <em>@MaterialUI</em> for the first time and love how easy it is to make things look nice. It’s also really cool to see all the hard work building out the backend of my app come to life in the front end!',
+      "Began coding out the front end of my app today. Used <em>@MaterialUI</em> for the first time and love how easy it is to make things look nice. It's also really cool to see all the hard work building out the backend of my app come to life in the front end!",
   },
   {
     avatar: 'https://pbs.twimg.com/profile_images/1231452795368329216/GhjrxYH2',
@@ -69,7 +69,7 @@ const quotes = [
     username: '@fragileglass',
     tweet: 'https://twitter.com/fragileglass/status/1255170173226680320',
     quote:
-      'Sometimes a library is so incredibly awesome. You don’t want to use anything else. I absolutely love that I can have the Material look or completely customize <em>@MaterialUI</em> to any look I desire.',
+      "Sometimes a library is so incredibly awesome. You don't want to use anything else. I absolutely love that I can have the Material look or completely customize <em>@MaterialUI</em> to any look I desire.",
   },
   {
     avatar: 'https://pbs.twimg.com/profile_images/1214337550791299072/ybsFasgV',
@@ -123,12 +123,6 @@ const useStyles = makeStyles(
     grid: {
       marginTop: theme.spacing(5),
       marginBottom: theme.spacing(5),
-    },
-    img: {
-      margin: theme.spacing(1.5, 3),
-    },
-    button: {
-      margin: theme.spacing(2, 0, 0),
     },
   }),
   { name: 'Quotes' },
@@ -188,7 +182,11 @@ function Quote(props) {
 
   return (
     <Card variant="outlined" className={classes.card}>
-      <CardActionArea component={QuoteLink} href={href} className={classes.cardAction}>
+      <CardActionArea
+        component={QuoteLink}
+        href={href}
+        className={classes.cardAction}
+      >
         <CardContent>
           <Grid container spacing={1}>
             <Grid item>
@@ -200,10 +198,15 @@ function Quote(props) {
               />
             </Grid>
             <Grid item>
-              <Typography component="div" variant="h6" color="textPrimary" className={classes.name}>
+              <Typography
+                component="div"
+                variant="h6"
+                color="text.primary"
+                className={classes.name}
+              >
                 {name}
               </Typography>
-              <Typography component="div" variant="subtitle2" color="textSecondary">
+              <Typography component="div" variant="subtitle2" color="text.secondary">
                 {userName}
               </Typography>
             </Grid>
@@ -214,7 +217,7 @@ function Quote(props) {
         </CardContent>
         <CardContent className={classes.quote}>
           <Typography
-            color="textPrimary"
+            color="text.primary"
             variant="body1"
             dangerouslySetInnerHTML={{ __html: quote }}
           />
@@ -240,7 +243,7 @@ for (let i = 0; i < 3; i += 1) {
 
 export default function Quotes() {
   const classes = useStyles();
-  const t = useSelector((state) => state.options.t);
+  const t = useTranslate();
 
   return (
     <div className={classes.root}>

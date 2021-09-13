@@ -9,8 +9,8 @@
 {{"demo": "pages/system/display/Inline.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box component="div" display="inline">inline</Box>
-<Box component="div" display="inline">inline</Box>
+<Box component="div" sx={{ display: 'inline' }}>内嵌元素</Box>
+<Box component="div" sx={{ display: 'inline' }}>内嵌元素</Box>
 ```
 
 ### 块级元素（Block）
@@ -18,36 +18,35 @@
 {{"demo": "pages/system/display/Block.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box component="span" display="block">block</Box>
-<Box component="span" display="block">block</Box>
+<Box component="span" sx={{ display: 'block' }}>块级元素</Box>
+<Box component="span" sx={{ display: 'block' }}>块级元素</Box>
 ```
 
 ## 隐藏元素（Hiding elements）
 
 为了更快速地进行移动端的开发，您可以使用响应式的显示类来按设备显示和隐藏元素。 避免为同一站点创建完全不同的版本，您只需要根据不同的屏幕大小来相应地隐藏元素。
 
-| 屏幕大小        | 类别                                                   |
-|:----------- |:---------------------------------------------------- |
-| 在所有设备上隐藏    | `display="none"`                                     |
-| 仅在 xs 大小时隐藏 | `display={{ xs: 'none', sm: 'block' }}`              |
-| 仅在 sm 大小时隐藏 | `display={{ xs: 'block', sm: 'none', md: 'block' }}` |
-| 仅在 md 大小时隐藏 | `display={{ xs: 'block', md: 'none', lg: 'block' }}` |
-| 仅在 lg 大小时隐藏 | `display={{ xs: 'block', lg: 'none', xl: 'block' }}` |
-| 仅在 xl 大小时隐藏 | `display={{ xs: 'block', xl: 'none' }}`              |
-| 仅在 xs 大小时可见 | `display={{ xs: 'block', sm: 'none' }}`              |
-| 仅在 sm 大小时可见 | `display={{ xs: 'none', sm: 'block', md: 'none' }}`  |
-| 仅在 md 大小时可见 | `display={{ xs: 'none', md: 'block', lg: 'none' }}`  |
-| 仅在 lg 大小时可见 | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
-| 仅在 xl 大小时可见 | `display={{ xs: 'none', xl: 'block' }}`              |
-
+| 屏幕大小        | 类别                                                           |
+|:----------- |:------------------------------------------------------------ |
+| 在所有设备上隐藏    | `sx={{ display: 'none' }}`                                   |
+| 仅在 xs 大小时隐藏 | `sx={{ display: { xs: 'none', sm: 'block' } }}`              |
+| 仅在 sm 大小时隐藏 | `sx={{ display: { xs: 'block', sm: 'none', md: 'block' } }}` |
+| 仅在 md 大小时隐藏 | `sx={{ display: { xs: 'block', md: 'none', lg: 'block' } }}` |
+| 仅在 lg 大小时隐藏 | `sx={{ display: { xs: 'block', lg: 'none', xl: 'block' } }}` |
+| 仅在 xl 大小时隐藏 | `sx={{ display: { xs: 'block', xl: 'none' } }}`              |
+| 仅在 xs 大小时可见 | `sx={{ display: { xs: 'block', sm: 'none' } }}`              |
+| 仅在 sm 大小时可见 | `sx={{ display: { xs: 'none', sm: 'block', md: 'none' } }}`  |
+| 仅在 md 大小时可见 | `sx={{ display: { xs: 'none', md: 'block', lg: 'none' } }}`  |
+| 仅在 lg 大小时可见 | `sx={{ display: { xs: 'none', lg: 'block', xl: 'none' } }}`  |
+| 仅在 xl 大小时可见 | `sx={{ display: { xs: 'none', xl: 'block' } }}`              |
 
 {{"demo": "pages/system/display/Hiding.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box display={{ xs: 'block', md: 'none' }}>
+<Box sx={{ display: { xs: 'block', md: 'none' }}}>
   在宽度大于 md 的屏幕上隐藏
 </Box>
-<Box display={{ xs: 'none', md: 'block' }}>
+<Box sx={{ display: { xs: 'none', md: 'block' }}}>
   在宽度小于 md 的屏幕上隐藏
 </Box>
 ```
@@ -57,10 +56,10 @@
 {{"demo": "pages/system/display/Print.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box display="block" displayPrint="none">
+<Box sx={{ display: 'block', displayPrint: 'none' }}>
   仅在屏幕上显示（仅在打印时隐藏）
 </Box>
-<Box display="none" displayPrint="block">
+<Box sx={{ display: 'none', displayPrint: 'block' }}>
   仅打印上显示（仅在屏幕上隐藏）
 </Box>
 ```
@@ -70,23 +69,23 @@
 {{"demo": "pages/system/display/Overflow.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box component="div" overflow="hidden">
+<Box component="div" sx={{ overflow: 'hidden' }}>
   隐藏溢出的元素
 </Box>
-<Box component="div" overflow="visible">
+<Box component="div" sx={{ overflow: 'visible' }}>
   显示溢出的元素
 </Box>
 ```
 
-## 文本溢出（Text Overflow）
+## 文本溢出（Text overflow）
 
 {{"demo": "pages/system/display/TextOverflow.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box component="div" textOverflow="clip">
+<Box component="div" sx={{ textOverflow: 'clip' }}>
   文本溢出时直接剪切
 </Box>
-<Box component="div" textOverflow="ellipsis">
+<Box component="div" sx={{ textOverflow: 'ellipsis' }}>
   文本溢出时显示省略号
 </Box>
 ```
@@ -96,23 +95,23 @@
 {{"demo": "pages/system/display/Visibility.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box component="div" visibility="visible">
+<Box component="div" sx={{ visibility: 'visible' }}>
   可见
 </Box>
-<Box component="div" visibility="hidden">
+<Box component="div" sx={{ visibility: 'hidden' }}>
   不可见
 </Box>
 ```
 
-## 空格（White Space）
+## 空格（White space）
 
 {{"demo": "pages/system/display/WhiteSpace.js", "defaultCodeOpen": false}}
 
 ```jsx
-<Box component="div" whiteSpace="nowrap">
+<Box component="div" sx={{ whiteSpace: 'nowrap' }}>
   不换行的空格
 </Box>
-<Box component="div" whiteSpace="normal">
+<Box component="div" sx={{ whiteSpace: 'normal' }}>
   普通的空格
 </Box>
 ```

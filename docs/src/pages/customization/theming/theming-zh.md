@@ -4,7 +4,7 @@
 
 主题可以指定组件的配色、平面的明暗、阴影的深浅、墨水元素的合适的不透明度等等。
 
-通过使用主题，您可以给应用程序提供统一的风格。你也可以**自定义项目中所有的设计方面的内容**，这样可以满足您的企业或品牌的特定需求。
+样式可让您为应用程序应用一致的音调。 它可以让你 **自定义所有的设计方面** 项目，以满足您的企业或品牌的特定需求。
 
 为了提高应用程序之间的一致性，你可以在明暗主题类型中选择。 默认情况下，组件会使用浅色的主题样式。
 
@@ -18,12 +18,13 @@
 
 更改主题配置变量是将 Material-UI 与您的需求相匹配的最有效方法。 以下各节涵盖了一些最重要的主题变量：
 
-- [Palette（调色）](/customization/palette/)
-- [Typography（文字排版）](/customization/typography/)
-- [Spacing 间距](/customization/spacing/)
-- [Breakpoints（断点）](/customization/breakpoints/)
-- [z-index](/customization/z-index/)
-- [Globals（全局变量）](/customization/globals/)
+- [`.调色板`](/customization/palette/)
+- [`.typography`](/customization/typography/)
+- [`.spacing 间距`](/customization/spacing/)
+- [`.breakpoints 断点`](/customization/breakpoints/)
+- [`.zIndex`](/customization/z-index/)
+- [`.过渡动画`](/customization/transitions/)
+- [`.组件`](/customization/theme-components/)
 
 您可以在[默认主题部分](/customization/default-theme/)查看完整的默认样式。
 
@@ -31,7 +32,45 @@
 
 当 Material-UI 的主题与[样式解决方案（styling solution）](/styles/basics/)或[任何其他解决方案](/guides/interoperability/#themeprovider)一起使用时，若您将额外的变量添加到主题中，这样就能便于在任何地方使用它们。 就像这样：
 
+```jsx
+const theme = createTheme({
+  status: {
+    danger: orange[500],
+  },
+});
+```
+
+如果您使用的是 TypeScript，您还需要使用 [module augmentation](/guides/typescript/#customization-of-theme) 来让主题接受上述值。
+
+```tsx
+declare module '@material-ui/core/styles' {
+  interface Theme {
+    status: {
+      danger: string;
+    };
+  }
+  // allow configuration using `createTheme`
+  interface ThemeOptions {
+    status?: {
+      danger?: string;
+    };
+  }
+}
+```
+
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
+
+## 访问一个组件中的主题
+
+<video autoPlay muted loop width="320">
+  <source src="/static/studies.mp4" type="video/mp4" >
+</video>
+
+你 [可以访问](/styles/advanced/#accessing-the-theme-in-a-component) React 组件内部的主题变量。
+
+- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/)：一个帮助设计和定制 Material-UI 组件库主题的工具。 包括基本的网站模板，并且展示各种组件及其受主题影响的方式。
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/)：使用 Material Design 颜色工具来创建 Material-UI 主题的在线工具。
+- [Material palette generator](https://material.io/inline-tools/color/)：它可用于通过您输入的任何颜色生成一系列的调色板。
 
 ## 访问一个组件中的主题
 
@@ -47,7 +86,7 @@
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
-### 关于性能的一个说明
+**关于性能的一个说明**
 
 嵌套 `ThemeProvider` 组件的性能和 JSS 幕后的工作是息息相关的。 需要理解的要点是，注入的 CSS 是用下面的元组(tuple) `(styles, theme)` 缓存的。
 
@@ -62,14 +101,14 @@
 
 #### 参数
 
-1. `options`(*Object*)：采用不完整的主题对象并添加缺少的部分。
-2. `...args` (*Array*)：将参数与即将返回的主题深度合并。
+1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
 #### 返回结果
 
-`theme` (*Object*)：一个完整的，随时可用的主题对象。
+`theme` (_object_): A complete, ready-to-use theme object.
 
-#### 示例
+#### 例子
 
 ```js
 import { createTheme } from '@material-ui/core/styles';
@@ -94,19 +133,19 @@ const theme = createTheme({
 
 #### 参数
 
-1. `theme` (*Object*)：需要加强的主题对象。
-2. `options` (*Object* [optional]):
+1. `theme` (_object_): The theme object to enhance.
+2. `options` (_object_ [optional]):
 
-- `breakpoints` (*Array\<String\>* [optional])：默认值为 `['sm', 'md', 'lg']`。 一个 [breakpoints](/customization/breakpoints/) 的数组（identifiers）。
-- `disableAlign` (*Boolean* [optional]): 默认值为`false`。 字体大小是否略有变化，这样能够保持行高并与 Material Design 的 4px 行高网格相对齐。 这需要主题样式中的无单位行高度。
-- ` factor ` (*Number* [optional]): 默认值是 `2`。 此值决定了字体大小调整的强度。 值越高的话，在较小的屏幕上字体大小之间的差异就越小。 值越低的话，在较小屏幕上的字体就越大。 该值必须大于1。
-- `variants` (*Array\<String\>* [optional]): 默认值为 all。 需要处理的文字变体。
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. 一个 [breakpoints](/customization/breakpoints/) 的数组（identifiers）。
+- `disableAlign` (_bool_ [optional]): Default to `false`. 字体大小是否略有变化，这样能够保持行高并与 Material Design 的 4px 行高网格相对齐。 这需要主题样式中的无单位行高度。
+- `factor` (_number_ [optional]): Default to `2`. 此值决定了字体大小调整的强度。 值越高的话，在较小的屏幕上字体大小之间的差异就越小。 值越低的话，在较小屏幕上的字体就越大。 该值必须大于1。
+- `variants` (_array\<string\>_ [optional]): Default to all. 需要处理的文字变体。
 
 #### 返回结果
 
-`theme` (*Object*)：返回一个响应式排版的新主题。
+`theme` (_object_): The new theme with a responsive typography.
 
-#### 示例
+#### 例子
 
 ```js
 import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -117,80 +156,22 @@ theme = responsiveFontSizes(theme);
 
 ### `unstable_createMuiStrictModeTheme(options, ...args) => theme`
 
-**警告**：请不要在生产环境中使用该方法。
+使用 `unstable_createMuiStrictModeTheme` 会限制某些组件的使用。
 
 生成一个减少 [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html) 内的警告数量的主题，类似于 `Warning: findDOMNode is deprecated in StrictMode`。
 
 #### 要求
 
-使用 `unstable_createMuiStrictModeTheme` 会限制某些组件的使用。
-
-##### `component` 属性
-
-以下使用`组件（component）`属性的组件需要中需要转发其 ref：
-
-- [`Collapse 折叠`](/api/collapse/)
-
-否则你会收到这样的错误 `Error: Function component cannot be given refs`。 参见： [Composition: Caveat with refs](/guides/composition/#caveat-with-refs)。
-
-##### `children` 属性
-
-在 `子组件（children）` 属性中使用的组件需要转发其 ref：
-
-- [`Fade 淡入淡出`](/api/fade/)
-- [`Grow 扩展`](/api/grow/)
-- [`Zoom 放大`](/api/zoom/)
-
-```diff
--function TabPanel(props) {
-+const TabPanel = React.forwardRef(function TabPanel(props, ref) {
-  return <div role="tabpanel" {...props} ref={ref} />;
--}
-+});
-
-function Tabs() {
-  return <Fade><TabPanel>...</TabPanel></Fade>;
-}
-```
-
-否则组件的动画将不会正常显示，你会得到这样的警告 `Function components cannot be given refs`。
-
-#### 部分禁用严格模式（StrictMode）兼容性
-
-如果你仍然能收到 `Error: Function component cannot be given refs` 这样的错误，那么你可能使用的是第三方组件，而之前所提到的修复方法并不适用于它。 你可以通过应用 `disableStrictModeCompat` 来修复此问题。 您将再次看到废弃警告，但它们只是警告，而 `Function component cannot be given refs` 实际上打破了我们组件的记录行为。
-
-```diff
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
-
-function ThirdPartyTabPanel(props) {
-  return <div {...props} role="tabpanel">
-}
-
-const theme = unstable_createMuiStrictModeTheme();
-
-function Fade() {
-  return (
-    <React.StrictMode>
-      <ThemeProvider theme={theme}>
-
--        <Fade>
-+        <Fade disableStrictModeCompat>
-          <ThirdPartyTabPanel />
-        </Fade>
-      </ThemeProvider>
-    </React.StrictMode>,
-  );
-}
-```
+目前 `unstable_createMuiStrictModeTheme` 没有添加额外的要求。
 
 #### 参数
 
-1. `options`(*Object*)：采用不完整的主题对象并添加缺少的部分。
-2. `...args` (*Array*)：将参数与即将返回的主题深度合并。
+1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
 #### 返回结果
 
-`theme` (*Object*)：一个完整的，随时可用的主题对象。
+`theme` (_object_): A complete, ready to use theme object.
 
 #### 例子
 
@@ -205,7 +186,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <LandingPage />
       </ThemeProvider>
-    </React.StrictMode>,
+    </React.StrictMode>
   );
 }
 ```

@@ -1,6 +1,7 @@
 ---
 title: React Detect click outside（它处点击监听器）组件
 components: ClickAwayListener
+githubLabel: 'component: ClickAwayListener'
 ---
 
 # Click away listener 它处点击监听器
@@ -9,6 +10,8 @@ components: ClickAwayListener
 
 - 📦 [1.5kB 已压缩的包](/size-snapshot)。
 - ⚛️ 支持传送门组件
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 示例
 

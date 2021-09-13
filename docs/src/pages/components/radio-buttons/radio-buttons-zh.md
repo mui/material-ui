@@ -1,29 +1,54 @@
 ---
 title: React Radio buttons（单选按钮）组件
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
+githubLabel: 'component: Radio'
+materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 ---
 
 # Radio 单选框组件
 
 <p class="description">用户可以通过单选按钮从一组中选择一个选项。</p>
 
-当用户想要看到所有的选项时，可以使用 [单选按钮](https://material.io/design/components/selection-controls.html#radio-buttons)。 如果可用选项可以折叠，请您考虑使用占用空间更少的下拉菜单。
+当用户想要看到所有的选项时，可以使用单选按钮。 如果可用选项可以折叠，请您考虑使用占用空间更少的下拉菜单。
 
 默认情况下，单选按钮应该选择了最常用的选项。
 
-## RadioGroup 单选框组
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Radio group
 
 `RadioGroup` 适用于一组 `Radio`，它提供相对简单的 API 并且能够使用键盘对该 RadioGroup 进行控制。
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-要横向布置按钮，请将 `row` 属性设置为：`<RadioGroup row />`。
+### 方向
 
-## Standalone radio buttons 独立的单选框按钮 
+To lay out the buttons horizontally, set the `row` prop:
+
+{{"demo": "pages/components/radio-buttons/RowRadioButtonsGroup.js"}}
+
+### Controlled
+
+You can control the radio with the `value` and `onChange` props:
+
+{{"demo": "pages/components/radio-buttons/ControlledRadioButtonsGroup.js"}}
+
+## Standalone radio buttons 独立的单选框按钮
 
 `Radio` 也可以单独使用，无需额外的 RadioGroup wrapper。
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
+
+## Size 大小
+
+Use the `size` prop or customize the font size of the svg icons to change the size of the radios.
+
+{{"demo": "pages/components/radio-buttons/SizeRadioButtons.js"}}
+
+## Color 颜色
+
+{{"demo": "pages/components/radio-buttons/ColorRadioButtons.js"}}
 
 ## 标签放置
 
@@ -39,13 +64,35 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 ## Customized radios 自定义单选框
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页](/customization/components/) 中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
+## `useRadioGroup`
+
+对于需要高级定制用例的情况，您可以使用一个 `useRadioGroup()` hook。 这将会返回单选框组上下文的值。 单选框组件在其内部会使用这个 hook。
+
+### API
+
+```jsx
+import { useRadioGroup } from '@material-ui/core/RadioGroup';
+```
+
+#### 返回结果
+
+`value` (_object_):
+
+- `value.name` (_string_ [optional])：用于引用控件值的名称。
+- `value.onChange` (_func_ [optional]): Callback fired when a radio button is selected.
+- `value.value` (_any_ [optional])：所被选定的单选框的值。
+
+#### 示例
+
+{{"demo": "pages/components/radio-buttons/UseRadioGroup.js"}}
+
 ## 什么时候使用
 
-- [复选框 对比 单选按钮](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [多选框 对比 单选按钮（Radio Buttons）](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
 ## 无障碍设计
 
@@ -55,8 +102,10 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 - 如果无法使用标签，您则必须在输入组件中直接添加属性。 在这种情况下，您可以经由 `inputProps` 属性，来附着一些额外的属性（例如 `arial-label`，`aria-labelledby`，`title`）。
 
 ```jsx
-<RadioButton
+<Radio
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' }}
+  inputProps={{
+    'aria-label': 'Radio A',
+  }}
 />
 ```

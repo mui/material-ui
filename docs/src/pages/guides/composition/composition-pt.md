@@ -4,7 +4,7 @@
 
 ## Encapsulando componentes
 
-Para fornecer o máximo de flexibilidade e desempenho, precisamos de uma maneira de conhecer a natureza dos elementos filhos que um componente recebe. Para resolver esse problema, quando necessário, identificamos alguns dos componentes com uma propriedade estática `muiName`.
+Para fornecer o máximo de flexibilidade e desempenho, precisamos de uma maneira de conhecer a natureza dos elementos filhos que um componente recebe. To solve this problem, we tag some of the components with a `muiName` static property when needed.
 
 Você pode, no entanto, precisar encapsular um componente para melhorá-lo, o que pode entrar em conflito com a solução `muiName`. Se você encapsular um componente, verifique se ele tem esta propriedade estática definida.
 
@@ -13,8 +13,7 @@ Se você se deparar com esta situação, precisará usar a mesma propriedade `mu
 Vamos ver um exemplo:
 
 ```jsx
-const WrappedIcon = props => <Icon {...props} />;
-WrappedIcon.muiName = Icon.muiName;
+const WrappedIcon = props => <Icon {...props} />; WrappedIcon.muiName = Icon.muiName;
 ```
 
 {{"demo": "pages/guides/composition/Composition.js"}}
@@ -73,17 +72,20 @@ function ListItemLink(props) {
 
 A solução é simples: **evite funções em linha e passe um componente estático para a propriedade `component`**. Vamos mudar o componente `ListItemLink` para que `CustomLink` sempre referencie o mesmo componente:
 
-```jsx
-import { Link } from 'react-router-dom';
+```tsx
+import { Link, LinkProps } from 'react-router-dom';
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const CustomLink = React.useMemo(
     () =>
-      React.forwardRef((linkProps, ref) => (
-        <Link ref={ref} to={to} {...linkProps} />
-      )),
+      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(function Link(
+        linkProps,
+        ref,
+      ) {
+        return <Link ref={ref} to={to} {...linkProps} />;
+      }),
     [to],
   );
 
@@ -114,22 +116,6 @@ import { Link } from 'react-router-dom';
 
 Você pode encontrar os detalhes no [guia TypeScript](/guides/typescript/#usage-of-component-prop).
 
-## Bibliotecas de roteamento
-
-A integração com bibliotecas de roteamento de terceiros é resolvida com a propriedade `component`. O comportamento é idêntico à descrição da propriedade acima. Aqui estão algumas demonstrações com [react-router-dom](https://github.com/ReactTraining/react-router). Ele cobre os componentes Button, Link e List, você deve ser capaz de aplicar a mesma estratégia com todos os componentes.
-
-### Button
-
-{{"demo": "pages/guides/composition/ButtonRouter.js"}}
-
-### Link
-
-{{"demo": "pages/guides/composition/LinkRouter.js"}}
-
-### List
-
-{{"demo": "pages/guides/composition/ListRouter.js"}}
-
 ## Advertência com refs
 
 Esta seção aborda advertências ao usar um componente customizado como `children` ou para a propriedade `component`.
@@ -147,17 +133,17 @@ Se você não usar um dos tipos acima ao usar seus componentes em conjunto com o
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-Esteja ciente que você ainda receberá este aviso para componentes `lazy` ou `memo` se eles forem encapsulados por um componente que não contém ref.
-
-Em alguns casos, um aviso adicional é emitido para ajudar na depuração, semelhante a:
+Note que você ainda receberá este aviso para componentes `lazy` ou `memo` se eles forem encapsulados por um componente que não contém ref. Em alguns casos, um aviso adicional é emitido para ajudar na depuração, semelhante a:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 Só as duas formas de utilização mais comuns são cobertas aqui. Para mais informações, consulte [esta seção na documentação oficial do React](https://pt-br.reactjs.org/docs/forwarding-refs.html).
 
 ```diff
--const MyButton = props => <div role="button" {...props} />;
-+const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
+-const MyButton = () => <div role="button" />;
++const MyButton = React.forwardRef((props, ref) =>
++  <div role="button" {...props} ref={ref} />);
+
 <Button component={MyButton} />;
 ```
 

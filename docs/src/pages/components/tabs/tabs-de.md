@@ -1,6 +1,9 @@
 ---
 title: React Tabs component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
+githubLabel: 'component: Tabs'
+materialDesign: https://material.io/components/tabs
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
 ---
 
 # Tabs
@@ -9,27 +12,39 @@ components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 
 [Tabs](https://material.io/design/components/tabs.html) organisieren und ermöglichen die Navigation zwischen zusammengehörigen Inhaltsgruppen auf derselben Hierarchieebene.
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Einfache Tabs
 
-Ein einfaches Beispiel ohne Verzierungen.
+A basic example with tab panels.
 
-{{"demo": "pages/components/tabs/SimpleTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/BasicTabs.js"}}
 
-### Umbrechen von Tab Beschriftungen
+## Experimental API
 
-Lange Beschriftungen werden automatisch umgebrochen. Zu lange Beschriftungen sind allerdings nicht sichtbar und werden abgeschnitten (`overflow`).
+`@material-ui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
 
-{{"demo": "pages/components/tabs/TabsWrappedLabel.js", "bg": true}}
+{{"demo": "pages/components/tabs/LabTabs.js"}}
 
-### Deaktivierter Tab
+## Umbrechen von Tab Beschriftungen
 
-Ein Tab kann durch die Eigenschaft `disabled` deaktiviert werden.
+Lange Beschriftungen werden automatisch umgebrochen. If the label is too long for the tab, it will overflow, and the text will not be visible.
 
-{{"demo": "pages/components/tabs/DisabledTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
+
+## Colored tab
+
+{{"demo": "pages/components/tabs/ColorTabs.js"}}
+
+## Deaktivierter Tab
+
+A tab can be disabled by setting the `disabled` prop.
+
+{{"demo": "pages/components/tabs/DisabledTabs.js"}}
 
 ## Feste Tabs
 
-Feste Tabs sollten mit einer begrenzten Anzahl von Tabs verwendet werden, und wenn eine gleichmäßige Platzierung das Muskelgedächtnis verbessert.
+Fixed tabs should be used with a limited number of tabs, and when a consistent placement will aid muscle memory.
 
 ### Gesamte Breite
 
@@ -47,47 +62,65 @@ Die Eigenschaft `centered` sollte für kleinere Ansichten verwendet werden.
 
 ### Automatische Scroll-Tasten
 
-Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
+By default, left and right scroll buttons are automatically presented on desktop and hidden on mobile. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonAuto.js", "bg": true}}
 
 ### Erzwungene Bildlaufschaltflächen
 
-Die linken und rechten Bildlauftasten werden unabhängig von der Breite des Ansichtsfensters angezeigt.
+Left and right scroll buttons be presented (reserve space) regardless of the viewport width with `scrollButtons={true}` `allowScrollButtonsMobile`:
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
+If you want to make sure the buttons are always visible, you should customize the opacity.
+
+```css
+.MuiTabs-scrollButtons.Mui-disabled {
+  opacity: 0.3;
+}
+```
+
+{{"demo": "pages/components/tabs/ScrollableTabsButtonVisible.js", "bg": true}}
+
 ### Scrolltasten verhindern
 
-Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
+Left and right scroll buttons are never be presented with `scrollButtons={false}`. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift mouse wheel, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
 ## Benutzerdefinierte Tabs
 
-Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/how-to-customize/).
 
-{{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 
 🎨 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://mui-treasury.com/styles/tabs/) an.
 
 ## Vertikale Tabs
 
+Tab-Beschriftungen können entweder nur Symbole oder nur Text enthalten.
+
 {{"demo": "pages/components/tabs/VerticalTabs.js", "bg": true}}
 
-## Nav-Tabs
+Note that you can restore the scrollbar with `visibleScrollbar`.
 
-Standardmäßig verwenden Registerkarten als `Button-` Element dargestellt, Sie können jedoch Ihr eigenes benutzerdefiniertes Tag oder Ihre eigene Komponente definieren. Here's an example of implementing tabbed navigation:
+## Nav tabs
 
-{{"demo": "pages/components/tabs/NavTabs.js", "bg": true}}
+By default, tabs use a `button` element, but you can provide your custom tag or component. Here's an example of implementing tabbed navigation:
 
-## Symbol-Tabs
+{{"demo": "pages/components/tabs/NavTabs.js"}}
+
+## Icon tabs
 
 Tab-Beschriftungen können entweder nur Symbole oder nur Text enthalten.
 
-{{"demo": "pages/components/tabs/IconTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/IconTabs.js"}}
 
-{{"demo": "pages/components/tabs/IconLabelTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/IconLabelTabs.js"}}
+
+## Drittanbieter-Routing Bibliothek
+
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
 
 ## Barrierefreiheit
 
@@ -106,19 +139,18 @@ The components implement keyboard navigation using the "manual activation" behav
 
 #### Demo
 
-The following two demos only differ in their keyboard navigation behavior. Focus a tab and navigate with arrow keys to notice the difference.
+The following two demos only differ in their keyboard navigation behavior. Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
 
 ```jsx
 /* Tabs where selection follows focus */
 <Tabs selectionFollowsFocus />
+```
+
+{{"demo": "pages/components/tabs/AccessibleTabs1.js", "defaultCodeOpen": false}}
+
+```jsx
 /* Tabs where each tab needs to be selected manually */
 <Tabs />
 ```
 
-{{"demo": "pages/components/tabs/AccessibleTabs.js", "bg": true}}
-
-## Experimental API
-
-`@material-ui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
-
-{{"demo": "pages/components/tabs/LabTabs.js", "bg": true}}
+{{"demo": "pages/components/tabs/AccessibleTabs2.js", "defaultCodeOpen": false}}

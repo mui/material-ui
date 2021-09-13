@@ -13,20 +13,20 @@ This update covers our progress over the last three months, and what we aim to a
 Here are the most significant improvements since March 2020:
 
 - 🚧 Work has started on [the next major version: v5](https://github.com/mui-org/material-ui/issues/20012).<br />
-The last 14 months have been spent focusing on improving the library under the v4.x development branch, while not introducing any breaking changes. During this period we have identified several important areas for improvement. While the absence of breaking changes is a significant time-saver for developers, it also limits the scope of the problems that can be solved and the quality of the solutions. We're excited about what comes next!<br /><br />
-You can find the documentation for the next version at http://next.material-ui.com/. The next 6-8 months will see weekly releases as always, following [the roadmap](https://github.com/mui-org/material-ui/issues/20012) and [milestone](https://github.com/mui-org/material-ui/milestone/35).
+  The last 14 months have been spent focusing on improving the library under the v4.x development branch, while not introducing any breaking changes. During this period we have identified several important areas for improvement. While the absence of breaking changes is a significant time-saver for developers, it also limits the scope of the problems that can be solved and the quality of the solutions. We're excited about what comes next!<br /><br />
+  You can find the documentation for the next version at http://material-ui.com/. The next 6-8 months will see weekly releases as always, following [the roadmap](https://github.com/mui-org/material-ui/issues/20012) and [milestone](https://github.com/mui-org/material-ui/milestone/35).
 
-- 📍 The icons package has been updated with changes made by Google, leading to [200+ new icons](https://next.material-ui.com/components/material-icons/).
+- 📍 The icons package has been updated with changes made by Google, leading to [200+ new icons](https://material-ui.com/components/material-icons/).
 
   <img src="/static/blog/2020-q2-update/icons.png" alt="icons" style="width: 615px; margin-bottom: 24px;" />
 
-- 🎨 [Figma assets](https://material-ui.com/store/items/figma-react/) for Material-UI extend the support for design tools beyond Sketch.
+- 🎨 [Figma assets](https://material-ui.com/store/items/figma-react/) for MUI extend the support for design tools beyond Sketch.
 
   <a href="https://material-ui.com/store/items/figma-react/"><img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="width: 160px; margin-bottom: 24px;" /></a>
 
   Adobe XD and Framer support are also up for consideration if they attract a significant audience, but not until we've polished the Sketch and Figma assets.
 
-- 🔄 `LoadingButton` – [a new component in the lab](https://next.material-ui.com/components/buttons/#loading-buttons). This work is influenced by the [concurrent UI patterns](https://reactjs.org/docs/concurrent-mode-patterns.html) presented by the React team.
+- 🔄 `LoadingButton` – [a new component in the lab](https://material-ui.com/components/buttons/#loading-buttons). This work is influenced by the [concurrent UI patterns](https://reactjs.org/docs/concurrent-mode-patterns.html) presented by the React team.
 
   <img src="/static/blog/2020-q2-update/loading.gif" alt="loading" style="margin-bottom: 24px;" />
 
@@ -38,7 +38,7 @@ You can find the documentation for the next version at http://next.material-ui.c
 
   <img src="/static/blog/2020-q2-update/timeline.png" alt="timeline" style="width: 244px; margin-bottom: 24px;" />
 
-- 📣 We have analyzed and published the results of the "Material-UI Developer Survey 2020". If you haven't read it yet, you can follow this link to [read it in detail](/blog/2020-developer-survey-results/). It contains a lot of interesting insights that will shape the future of the library and company. Thanks for the contributions! ❤️
+- 📣 We have analyzed and published the results of the "MUI Developer Survey 2020". If you haven't read it yet, you can follow this link to [read it in detail](/blog/2020-developer-survey-results/). It contains a lot of interesting insights that will shape the future of the library and company. Thanks for the contributions! ❤️
 - 🇨🇳🇧🇷 The non-API documentation has been fully translated to Chinese and Brazilian, thanks to the collaboration of [Danica Shen](https://github.com/DDDDDanica), [Yan Lee](https://github.com/AGDholo), and [Jairon Alves Lima](https://github.com/jaironalves), native speakers from the community 🙏.
 
   <img src="/static/blog/2020-q2-update/chinese.png" alt="chinese" style="width: 146px; padding-right: 3px; box-sizing: content-box;" />
@@ -101,6 +101,7 @@ We'll do our best, no guarantee!
 These are objectives, no guarantees:
 
 - 🏢 We will [hire](/company/jobs/) 3 full-time roles in the team.
+
   - One person on the open-source side to focus on the design system problem (unstyled, theming, styling, etc.): ✅ starting in two months.
   - One person on the enterprise side to consolidate the development of the advanced components: 🚧 Work in progress.
   - One person on a role yet to defined: 🚧 Work in progress.
@@ -111,6 +112,6 @@ These are objectives, no guarantees:
 ### Enterprise components
 
 - ⌗ Make available a first alpha version of our advanced data grid component as part of the enterprise bundle.
-You can already [play with an early version](https://muix-preview.netlify.app/#/grid).
+  You can already [play with an early version](https://muix-preview.netlify.app/#/grid).
 - 📆 Make available a first alpha version of the date range picker as part of the enterprise bundle.
-You can already [play with an early version](https://next.material-ui-pickers.dev/demo/daterangepicker).
+  You can already [play with an early version](https://next.material-ui-pickers.dev/demo/daterangepicker).

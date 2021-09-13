@@ -1,17 +1,27 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiSwitch from '@material-ui/core/Switch';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import MuiSwitch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
-export function Switch(props) {
-  const { checked: checkedProp, label, onChange, size, ...other } = props;
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
+interface Props {
+  checked: boolean;
+  defaultChecked?: boolean;
+  disabled: boolean;
+  label: string;
+  width: number | string;
+  height: number;
+}
 
+export function Switch(props: Props) {
+  const {
+    checked: checkedProp,
+    label,
+    // @ts-ignore -- untyped
+    onChange,
+    // @ts-ignore -- untyped
+    size,
+    ...other
+  } = props;
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,8 +31,6 @@ export function Switch(props) {
     setChecked((event.target as HTMLInputElement).checked);
   };
 
-  // tslint:disable-next-line: ban-ts-ignore
-  // @ts-ignore
   React.useEffect(() => {
     setChecked(checkedProp);
   }, [checkedProp]);
@@ -34,9 +42,7 @@ export function Switch(props) {
 
 Switch.defaultProps = {
   checked: false,
-  color: 'secondary',
   disabled: false,
-  size: 'medium',
   label: 'Switch',
   width: 100,
   height: 38,
@@ -47,19 +53,13 @@ addPropertyControls(Switch, {
     type: ControlType.Boolean,
     title: 'Checked',
   },
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['primary', 'secondary', 'default'],
+  defaultChecked: {
+    type: ControlType.Boolean,
+    title: 'Default checked',
   },
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
-  },
-  size: {
-    type: ControlType.Enum,
-    title: 'Size',
-    options: ['small', 'medium'],
   },
   label: {
     type: ControlType.String,

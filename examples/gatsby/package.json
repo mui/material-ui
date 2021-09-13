@@ -1,12 +1,13 @@
 {
   "name": "gatsby",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "latest",
-    "@material-ui/styles": "latest",
+    "@emotion/react": "latest",
+    "@emotion/server": "latest",
+    "@emotion/styled": "latest",
+    "@mui/material": "next",
     "gatsby": "latest",
-    "gatsby-plugin-material-ui": "latest",
     "gatsby-plugin-react-helmet": "latest",
     "react": "latest",
     "react-dom": "latest",

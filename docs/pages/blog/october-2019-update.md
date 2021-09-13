@@ -26,15 +26,15 @@ But this summary is just scratching the surface. We have accepted 182 commits fr
 
 ## Our roadmap intent for November
 
-*(We'll do our best, no guarantee!)*
+_(We'll do our best, no guarantee!)_
 
 - 💅 We will initiate an update of our styling solution.
-It should cover styled-component [#6115](https://github.com/mui-org/material-ui/pull/#6115), the system [#15561](https://github.com/mui-org/material-ui/issues/15561), dynamic props [#15573](https://github.com/mui-org/material-ui/issues/15573) and an unstyled version [#6218](https://github.com/mui-org/material-ui/pull/6218).
+  It should cover styled-component [#6115](https://github.com/mui-org/material-ui/pull/#6115), the system [#15561](https://github.com/mui-org/material-ui/issues/15561), dynamic props [#15573](https://github.com/mui-org/material-ui/issues/15573) and an unstyled version [#6218](https://github.com/mui-org/material-ui/pull/6218).
 
 - 📅 We will start to work on a [major upgrade](https://github.com/mui-org/material-ui-pickers/issues/1293) of the date/time picker components.
 
 - 🧮 We will start to work on a data table component. The core will be open-source. The advanced features of the data grid will be behind an enterprise subscription ⭐️.
-This is an effort [of our roadmap](/discover-more/roadmap/) to better answer enterprise needs. To get a rough idea of what's coming, you can read: https://uxdesign.cc/design-better-data-tables-4ecc99d23356.
+  This is an effort [of our roadmap](/discover-more/roadmap/) to better answer enterprise needs. To get a rough idea of what's coming, you can read: https://uxdesign.cc/design-better-data-tables-4ecc99d23356.
 
 - ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
 

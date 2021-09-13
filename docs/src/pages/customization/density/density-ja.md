@@ -4,7 +4,7 @@
 
 ## 密度を適用する
 
-This section explains how to apply density. Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。 Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。 Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。 It doesn't cover potential use cases, or considerations for using density in your application.
+This section explains how to apply density. Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。 Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。
 
 ## 実装密度
 
@@ -32,60 +32,84 @@ This section explains how to apply density. Material design ガイドライン�
 
 このツールを使用すると、間隔とコンポーネントpropsによって密度を適用できます。 これがMaterial-UIコンポーネントの全体的な感触にどのように適用されるかを参照できます。 このツールを使用すると、間隔とコンポーネントpropsによって密度を適用できます。 これがMaterial-UIコンポーネントの全体的な感触にどのように適用されるかを参照できます。
 
-高密度を有効にすると、カスタムテーマがドキュメントに適用されます。 このテーマは、デモンストレーションの目的でのみ です。 あなたはこのテーマをアプリケーション全体に適用 *すべきではありません* 。ユーザーエクスペリエンスに悪影響を及ぼす可能性があります。 密度を適用しない場合の[Material designガイドライン例](https://material.io/design/layout/applying-density.html#typographic-density) があります。
+高密度を有効にすると、カスタムテーマがドキュメントに適用されます。 このテーマは、デモンストレーションの目的でのみ です。 あなたはこのテーマをアプリケーション全体に適用 *すべきではありません* 。 ユーザーエクスペリエンスに悪影響を及ぼす可能性があります。 密度を適用しない場合の[Material designガイドライン例](https://material.io/design/layout/applying-density.html#typographic-density) があります。
 
 テーマは、次のオプションで構成されます。
 
 ```js
 const theme = createTheme({
-  props: {
+  components: {
     MuiButton: {
-      size: 'small',
+      defaultProps: {
+        size: 'small',
+      },
     },
     MuiFilledInput: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiFormControl: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiFormHelperText: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiIconButton: {
-      size: 'small',
+      defaultProps: {
+        size: 'small',
+      },
+      styleOverrides: {
+        sizeSmall: {
+          // Adjust spacing to reach minimal touch target hitbox
+          marginLeft: 4,
+          marginRight: 4,
+          padding: 12,
+        },
+      },
     },
     MuiInputBase: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiInputLabel: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiListItem: {
-      dense: true,
+      defaultProps: {
+        dense: true,
+      },
     },
     MuiOutlinedInput: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiFab: {
-      size: 'small',
+      defaultProps: {
+        size: 'small',
+      },
     },
     MuiTable: {
-      size: 'small',
+      defaultProps: {
+        size: 'small',
+      },
     },
     MuiTextField: {
-      margin: 'dense',
+      defaultProps: {
+        margin: 'dense',
+      },
     },
     MuiToolbar: {
-      variant: 'dense',
-    },
-  },
-  overrides: {
-    MuiIconButton: {
-      sizeSmall: {
-        // Adjust spacing to reach minimal touch target hitbox
-        marginLeft: 4,
-        marginRight: 4,
-        padding: 12,
+      defaultProps: {
+        variant: 'dense',
       },
     },
   },

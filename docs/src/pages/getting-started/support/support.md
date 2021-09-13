@@ -1,6 +1,6 @@
 # Support
 
-<p class="description">From community help to premium critical business support, we’re here to help.</p>
+<p class="description">From community help to premium critical business support, we're here to help.</p>
 
 ## Community help (free)
 
@@ -8,16 +8,18 @@ The community is your first stop for questions and advice about the framework. W
 
 ### StackOverflow <img src="/static/images/logos/stackoverflow.svg" width="24" height="24" alt="StackOverflow logo" loading="lazy" />
 
-For crowdsourced technical questions from expert Material-UI devs in our community. Also frequented by the Material-UI core team.
+For crowdsourced answers from expert MUI developers in our community.
+StackOverflow is also frequented, from time to time, by the maintainers of MUI.
 
 [Post a question](https://stackoverflow.com/questions/tagged/material-ui)
 
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 
-We use GitHub issues exclusively as a bugs and feature requests tracker.
+MUI uses GitHub issues as a bug and feature request tracker.
 If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
 
-[Open an issue](https://github.com/mui-org/material-ui/issues/new/choose)
+- [Open an issue on MUI Core](https://github.com/mui-org/material-ui/issues/new/choose)
+- [Open an issue on MUI X](https://github.com/mui-org/material-ui-x/issues/new/choose)
 
 #### New issue guidelines
 
@@ -36,39 +38,53 @@ Stay up to date with the development of the library by following the blog.
 
 ### Resources 📖
 
-New to Material-UI? It's easy to learn if you know where to start!
+New to MUI? It's easy to learn if you know where to start!
 
-[Learn Material-UI](/getting-started/learn/)
+[Learn MUI](/getting-started/learn/)
 
 ### Twitter <img src="/static/images/logos/twitter.svg" width="24" height="24" alt="Twitter logo" loading="lazy" />
 
-Receive the latest news on Material-UI.
+Receive the latest news on MUI.
 
 [Follow us](https://twitter.com/MaterialUI)
 
 ### Supported versions
 
-The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be.
+Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy.
+The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v4](/guides/migration-v3/).
+Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/guides/migration-v4/).
 The open-source community is always welcome to submit new features and bug fixes as well.
 
-The current status of each Material-UI version is as follows:
+The current status of each MUI version is as follows:
 
-- Material-UI v5 (emotion): ✅ In active development.
-- Material-UI v4 (hooks): ⚠️ Only handle security fixes.
-- Material-UI v3 (change supported browsers): ❌ Inactive.
-- ~Material-UI v2 (never existed)~.
-- Material-UI v1 (rewrite): ❌ Inactive.
-- Material-UI v0.x: ❌ Inactive.
+- MUI Core v5 (emotion): ✅ In active development.
+- MUI Core v4 (hooks): ⚠️ Only handle security fixes.
+- MUI Core v3 (change supported browsers): ❌ Inactive.
+- ~MUI Core v2 (never existed)~.
+- MUI Core v1 (rewrite): ❌ Inactive.
+- MUI Core v0.x: ❌ Inactive.
 
-For teams and organizations that require additional support for older versions, Material-UI has [options available](#enterprise).
+For teams and organizations that require additional support for older versions, MUI has [options available](#professional-support-premium).
 
 ## Professional support (premium)
 
+### Pro/Premium plans
+
+MUI comes in [three plans](/pricing/).
+The support available on the Community plan is mostly made possible thanks to people like you: the community. It's described in more detail in the above section. The maintainers of MUI focuses on solving the root issues, not direct support.
+
+The Pro plan allows developers to license extra features that are challenging to find in the OSS space.
+The maintainers of MUI provide support for these paid features.
+They aim for a similar quality of experience to the one provided by the community on the open-source modules
+however no SLAs are provided.
+
+The Premium plan goes one step further by providing SLAs on the quality of the support.
+
 ### Tidelift subscription <img src="/static/images/logos/tidelift.svg" width="24" height="24" alt="Tidelift logo" loading="lazy" />
 
-Material-UI and the maintainers of thousands of other packages are working with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
+MUI and the maintainers of thousands of other packages are working with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
 
 If you want the flexibility of open-source and the confidence of commercial-grade software, this is worth looking at.
 
@@ -86,25 +102,25 @@ The end result? All of the capabilities you expect from commercial-grade softwar
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
   href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
-  Get more details
+Get more details
 </a>
 
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
   href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
-  Request a demo
+Request a demo
 </a>
 
 ### Custom work 🛠
 
-Tweak Material-UI to meet specific requirements. Give us a summary of your needs and we'll help you if we can. We might:
+Tweak MUI to meet specific requirements. Give us a summary of your needs and we'll help you if we can. We might:
 
 - Give you an estimate of time and price if the work is straightforward
-- Suggest alternatives that might not require Material-UI
+- Suggest alternatives that might not require MUI
 - Decline the work due to timing or relevancy
 
-Note that work must be Material-UI related.
+Note that work must be MUI related.
 We don't accept general React development work.
 Our contracting price is $200/hour or $1,500/day.
 

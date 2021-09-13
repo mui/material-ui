@@ -1,31 +1,29 @@
 {
   "name": "@framer/material-ui.material-ui",
-  "author": "Material-UI Team",
-  "description": "Material-UI Framer components",
+  "author": "MUI Team",
+  "description": "MUI Framer components",
   "version": "1.1.0",
-  "main": "dist/index.js",
   "license": "MIT",
   "homepage": "http://material-ui.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git"
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "framer/Material-UI.framerfx"
   },
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "devDependencies": {
-    "@types/react": "^16.8"
-  },
   "dependencies": {
-    "@material-ui/core": "^4.9.3",
-    "@material-ui/icons": "^4.9.1",
-    "naming-style": "^1.0.0"
+    "@mui/material": "^5.0.0-rc.0",
+    "@mui/icons-material": "^5.0.0-rc.0",
+    "@mui/utils": "^5.0.0-rc.0",
+    "lodash": "^4.17.21"
   },
   "peerDependencies": {
-    "@types/react": "^16.8.6",
+    "@types/react": "^17.0.19",
     "framer": "^1.0.0",
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -33,7 +31,7 @@
     }
   },
   "framer": {
-    "displayName": "Material-UI",
+    "displayName": "MUI",
     "id": "ee255265-d0d6-4999-a685-9461c1248b6a"
   }
 }

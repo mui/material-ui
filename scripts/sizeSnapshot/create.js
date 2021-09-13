@@ -3,6 +3,7 @@ const lodash = require('lodash');
 const path = require('path');
 const { promisify } = require('util');
 const webpackCallbackBased = require('webpack');
+const yargs = require('yargs');
 const createWebpackConfig = require('./webpack.config');
 
 const webpack = promisify(webpackCallbackBased);
@@ -23,7 +24,10 @@ async function getRollupSize(snapshotPath) {
 
   return Object.entries(rollupSnapshot).map(([bundlePath, snapshot]) => [
     // path in the snapshot is relative the snapshot itself
-    path.relative(workspaceRoot, path.join(path.dirname(snapshotPath), bundlePath)),
+    path
+      .relative(workspaceRoot, path.join(path.dirname(snapshotPath), bundlePath))
+      // Ensure original ID when the package was located in `packages/material-ui/`
+      .replace('mui-material', 'material-ui'),
     normalizeRollupSnapshot(snapshot),
   ]);
 }
@@ -31,132 +35,72 @@ async function getRollupSize(snapshotPath) {
 /**
  * creates size snapshot for every bundle that built with webpack
  */
-async function getWebpackSizes() {
+async function getWebpackSizes(webpackEnvironment) {
   await fse.mkdirp(path.join(__dirname, 'build'));
 
-  // webpack --config $configPath --json > $statsPath
-  // will create a 300MB big json file which sometimes requires up to 1.5GB
-  // memory. This will sometimes crash node in azure pipelines with "heap out of memory"
-  const webpackStats = await webpack(await createWebpackConfig(webpack));
-  const stats = webpackStats.toJson();
+  const configurations = await createWebpackConfig(webpack, webpackEnvironment);
+  const webpackMultiStats = await webpack(configurations);
 
-  const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
-
-  return Object.entries(stats.assetsByChunkName).map(([chunkName, assetName]) => {
-    const parsedSize = assets.get(assetName).size;
-    const gzipSize = assets.get(`${assetName}.gz`).size;
-    return [chunkName, { parsed: parsedSize, gzip: gzipSize }];
-  });
-}
-
-// waiting for String.prototype.matchAll in node 10
-function* matchAll(string, regex) {
-  let match = null;
-  do {
-    match = regex.exec(string);
-    if (match !== null) {
-      yield match;
-    }
-  } while (match !== null);
-}
-
-/**
- * Inverse to `pretty-bytes`
- *
- * @param {string} n
- * @param {'B', 'kB' | 'MB' | 'GB' | 'TB' | 'PB'} unit
- * @returns {number}
- */
-
-function prettyBytesInverse(n, unit) {
-  const metrixPrefix = unit.length < 2 ? '' : unit[0];
-  const metricPrefixes = ['', 'k', 'M', 'G', 'T', 'P'];
-  const metrixPrefixIndex = metricPrefixes.indexOf(metrixPrefix);
-  if (metrixPrefixIndex === -1) {
-    throw new TypeError(
-      `unrecognized metric prefix '${metrixPrefix}' in unit '${unit}'. only '${metricPrefixes.join(
-        "', '",
-      )}' are allowed`,
-    );
-  }
-
-  const power = metrixPrefixIndex * 3;
-  return n * 10 ** power;
-}
-
-/**
- * parses output from next build to size snapshot format
- * @returns {[string, { gzip: number, files: number, packages: number }][]}
- */
-
-async function getNextPagesSize() {
-  const consoleOutput = await fse.readFile(path.join(__dirname, 'build/docs.next'), {
-    encoding: 'utf8',
-  });
-  const pageRegex = /(?<treeViewPresentation>┌|├|└)\s+((?<fileType>λ|○|●)\s+)?(?<pageUrl>[^\s]+)\s+(?<sizeFormatted>[0-9.]+)\s+(?<sizeUnit>\w+)/gm;
-
-  const sharedChunks = [];
-
-  const entries = Array.from(matchAll(consoleOutput, pageRegex), (match) => {
-    const { pageUrl, sizeFormatted, sizeUnit } = match.groups;
-
-    let snapshotId = `docs:${pageUrl}`;
-    // used to be tracked with custom logic hence the different ids
-    if (pageUrl === '/') {
-      snapshotId = 'docs.landing';
-    } else if (pageUrl === 'static/pages/_app.js') {
-      snapshotId = 'docs.main';
-      // chunks contain a content hash that makes the names
-      // unsuitable for tracking. Using stable name instead:
-    } else if (/^runtime\/main\.(.+)\.js$/.test(pageUrl)) {
-      snapshotId = 'docs:shared:runtime/main';
-    } else if (/^runtime\/webpack\.(.+)\.js$/.test(pageUrl)) {
-      snapshotId = 'docs:shared:runtime/webpack';
-    } else if (/^chunks\/commons\.(.+)\.js$/.test(pageUrl)) {
-      snapshotId = 'docs:shared:chunk/commons';
-    } else if (/^chunks\/framework\.(.+)\.js$/.test(pageUrl)) {
-      snapshotId = 'docs:shared:chunk/framework';
-    } else if (/^chunks\/(.*)\.js$/.test(pageUrl)) {
-      // shared chunks are unnamed and only have a hash
-      // we just track their tally and summed size
-      sharedChunks.push(prettyBytesInverse(sizeFormatted, sizeUnit));
-      // and not each chunk individually
-      return null;
+  const sizes = [];
+  webpackMultiStats.stats.forEach((webpackStats) => {
+    if (webpackStats.hasErrors()) {
+      const { entrypoints, errors } = webpackStats.toJson({
+        all: false,
+        entrypoints: true,
+        errors: true,
+      });
+      throw new Error(
+        `The following errors occured during bundling of ${Object.keys(
+          entrypoints,
+        )} with webpack: \n${errors.join('\n')}`,
+      );
     }
 
-    return [
-      snapshotId,
-      {
-        parsed: prettyBytesInverse(sizeFormatted, sizeUnit),
-        gzip: -1,
-      },
-    ];
-  }).filter((entry) => entry !== null);
+    const stats = webpackStats.toJson({ all: false, assets: true });
+    const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
 
-  entries.push([
-    'docs:chunk:shared',
-    {
-      parsed: sharedChunks.reduce((sum, size) => sum + size, 0),
-      gzip: -1,
-      tally: sharedChunks.length,
-    },
-  ]);
+    Object.entries(stats.assetsByChunkName).forEach(([chunkName, assetName]) => {
+      const parsedSize = assets.get(assetName).size;
+      const gzipSize = assets.get(`${assetName}.gz`).size;
+      sizes.push([chunkName, { parsed: parsedSize, gzip: gzipSize }]);
+    });
+  });
 
-  return entries;
+  return sizes;
 }
 
-async function run() {
-  const rollupBundles = [path.join(workspaceRoot, 'packages/material-ui/size-snapshot.json')];
+async function run(argv) {
+  const { analyze, accurateBundles } = argv;
+
+  const rollupBundles = [path.join(workspaceRoot, 'packages/mui-material/size-snapshot.json')];
   const bundleSizes = lodash.fromPairs([
-    ...(await getWebpackSizes()),
+    ...(await getWebpackSizes({ analyze, accurateBundles })),
     ...lodash.flatten(await Promise.all(rollupBundles.map(getRollupSize))),
-    ...(await getNextPagesSize()),
   ]);
 
   await fse.writeJSON(snapshotDestPath, bundleSizes, { spaces: 2 });
 }
 
-run().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+yargs
+  .command({
+    command: '$0',
+    description: 'Saves a size snapshot in size-snapshot.json',
+    builder: (command) => {
+      return command
+        .option('analyze', {
+          default: false,
+          describe: 'Creates a webpack-bundle-analyzer report for each bundle.',
+          type: 'boolean',
+        })
+        .option('accurateBundles', {
+          default: false,
+          describe: 'Displays used bundles accurately at the cost of more CPU cycles.',
+          type: 'boolean',
+        });
+    },
+    handler: run,
+  })
+  .help()
+  .strict(true)
+  .version(false)
+  .parse();

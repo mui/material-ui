@@ -1,46 +1,26 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
-import { parseColor } from './utils/parseColor';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { parseColor } from './utils';
 
 interface Props {
-  paletteType?: 'dark' | 'light';
-  primary?: string;
-  secondary?: string;
-  error?: string;
-  info?: string;
-  warning?: string;
-  success?: string;
+  children?: React.ReactNode;
+  paletteMode: 'dark' | 'light';
+  primary: string;
+  secondary: string;
+  error: string;
+  info: string;
+  warning: string;
+  success: string;
 }
 
-const defaultProps: Props = {
-  paletteType: 'light',
-  primary: '#3f51b5',
-  secondary: '#f50057',
-  error: '#f44336',
-  info: '#2196f3',
-  warning: '#ff9800',
-  success: '#4caf4f',
-};
-
-export const Theme: React.SFC<Props> = (props: Props) => {
-  const {
-    children,
-    error,
-    paletteType,
-    primary,
-    secondary,
-    info,
-    warning,
-    success,
-    ...other
-  } = props;
+export function Theme(props: Props): JSX.Element {
+  const { children, error, paletteMode, primary, secondary, info, warning, success, ...other } =
+    props;
 
   const theme = createTheme({
     palette: {
-      type: paletteType,
+      mode: paletteMode,
       primary: { main: parseColor(primary) },
       secondary: { main: parseColor(secondary) },
       error: { main: parseColor(error) },
@@ -51,16 +31,24 @@ export const Theme: React.SFC<Props> = (props: Props) => {
   });
 
   return (
-    <MuiThemeProvider theme={theme} {...other}>
+    <ThemeProvider theme={theme} {...other}>
       {children}
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
+}
+
+Theme.defaultProps = {
+  paletteMode: 'light' as const,
+  primary: '#3f51b5',
+  secondary: '#f50057',
+  error: '#f44336',
+  info: '#2196f3',
+  warning: '#ff9800',
+  success: '#4caf4f',
 };
 
-Theme.defaultProps = defaultProps;
-
 addPropertyControls(Theme, {
-  paletteType: {
+  paletteMode: {
     type: ControlType.Enum,
     title: 'Palette type',
     options: ['dark', 'light'],

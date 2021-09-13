@@ -1,10 +1,14 @@
 ---
 components: Link
+githubLabel: 'component: Link'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 ---
 
 # Links
 
 <p class="description">O componente Link permite que você personalize facilmente elementos de âncora com suas cores de tema e estilos de tipografia.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Links simples
 
@@ -12,10 +16,16 @@ O componente Link é construído sobre o componente [Typography](/api/typography
 
 {{"demo": "pages/components/links/Links.js"}}
 
-No entanto, o componente Link possui propriedades padrão diferentes do componente Typography:
+Quando você usa `target="_blank"` com Links, é [recomendado](https://developers.google.com/web/tools/lighthouse/audits/noopener) sempre definir `rel="noopener"` ou `rel="noreferrer"` quando conectando a conteúdo de terceiros.
 
 - A propriedade `color="primary"`, pelo fato de que o link precisa se destacar.
 - A propriedade `variant="inherit"`, já que o link será na maioria das vezes usado como filho de um componente Typography.
+
+## Sublinhado
+
+A propriedade `underline` pode ser usada para definir o comportamento sublinhado. O padrão é `hover`.
+
+{{"demo": "pages/components/links/UnderlineLink.js"}}
 
 ## Segurança
 
@@ -26,16 +36,14 @@ Quando você usa `target="_blank"` com Links, é [recomendado](https://developer
 
 ## Biblioteca de roteamento de terceiros
 
-Uma situação comum é executar a navegação apenas no lado do cliente, sem uma ida e volta HTTP ao servidor. O componente `Link` fornece uma propriedade para lidar com esta situação: `component`.
-
-Aqui está um [exemplo de integração com react-router](/guides/composition/#link).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. O componente `Link` fornece uma propriedade para lidar com este caso: `component`. Here is a [more detailed guide](/guides/routing/#link).
 
 ## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
 
 - Ao fornecer o conteúdo para o link, evite descrições genéricas como "clique aqui" ou "vá para". Em vez disso, use [descrições específicas](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
-- Para a melhor experiência do usuário, os links devem se destacar do texto na página.
+- Para a melhor experiência do usuário, os links devem se destacar do texto na página. For instance, you can keep the default `underline="always"` behavior.
 - Se o link não tem um href significativo, [ele deve ser renderizado usando um elemento `<button>`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md).
 
 {{"demo": "pages/components/links/ButtonLink.js"}}

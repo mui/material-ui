@@ -1,8 +1,6 @@
-import withRoot from './modules/withRoot';
-// --- Post bootstrap -----
-import React from 'react';
+import * as React from 'react';
 import { Field, Form, FormSpy } from 'react-final-form';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@mui/material/Box';
 import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
 import AppAppBar from './modules/views/AppAppBar';
@@ -11,31 +9,18 @@ import { email, required } from './modules/form/validation';
 import RFTextField from './modules/form/RFTextField';
 import FormButton from './modules/form/FormButton';
 import FormFeedback from './modules/form/FormFeedback';
-
-const useStyles = makeStyles((theme) => ({
-  form: {
-    marginTop: theme.spacing(6),
-  },
-  button: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(2),
-  },
-  feedback: {
-    marginTop: theme.spacing(2),
-  },
-}));
+import withRoot from './modules/withRoot';
 
 function ForgotPassword() {
-  const classes = useStyles();
   const [sent, setSent] = React.useState(false);
 
   const validate = (values) => {
-    const errors = required(['email', 'password'], values);
+    const errors = required(['email'], values);
 
     if (!errors.email) {
-      const emailError = email(values.email, values);
+      const emailError = email(values.email);
       if (emailError) {
-        errors.email = email(values.email, values);
+        errors.email = emailError;
       }
     }
 
@@ -59,9 +44,13 @@ function ForgotPassword() {
               'send you a link to reset your password.'}
           </Typography>
         </React.Fragment>
-        <Form onSubmit={handleSubmit} subscription={{ submitting: true }} validate={validate}>
-          {({ handleSubmit2, submitting }) => (
-            <form onSubmit={handleSubmit2} className={classes.form} noValidate>
+        <Form
+          onSubmit={handleSubmit}
+          subscription={{ submitting: true }}
+          validate={validate}
+        >
+          {({ handleSubmit: handleSubmit2, submitting }) => (
+            <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
               <Field
                 autoFocus
                 autoComplete="email"
@@ -77,14 +66,14 @@ function ForgotPassword() {
               <FormSpy subscription={{ submitError: true }}>
                 {({ submitError }) =>
                   submitError ? (
-                    <FormFeedback className={classes.feedback} error>
+                    <FormFeedback error sx={{ mt: 2 }}>
                       {submitError}
                     </FormFeedback>
                   ) : null
                 }
               </FormSpy>
               <FormButton
-                className={classes.button}
+                sx={{ mt: 3, mb: 2 }}
                 disabled={submitting || sent}
                 size="large"
                 color="secondary"
@@ -92,7 +81,7 @@ function ForgotPassword() {
               >
                 {submitting || sent ? 'In progress…' : 'Send reset link'}
               </FormButton>
-            </form>
+            </Box>
           )}
         </Form>
       </AppForm>

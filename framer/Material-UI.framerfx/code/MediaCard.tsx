@@ -1,26 +1,12 @@
 import * as React from 'react';
 import { PropertyControls, ControlType } from 'framer';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import Card from '@material-ui/core/Card';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import CardActionArea from '@material-ui/core/CardActionArea';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import CardActions from '@material-ui/core/CardActions';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import CardContent from '@material-ui/core/CardContent';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import CardMedia from '@material-ui/core/CardMedia';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiButton from '@material-ui/core/Button';
-// tslint:disable-next-line: ban-ts-ignore
-// @ts-ignore
-import MuiTypography from '@material-ui/core/Typography';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import MuiButton from '@mui/material/Button';
+import MuiTypography from '@mui/material/Typography';
 import { IconButton } from './IconButton';
 
 // Define type of property
@@ -46,8 +32,7 @@ export class MediaCard extends React.Component<Props> {
     imageUrl: 'https://source.unsplash.com/random/320x180?laptop',
     title: 'Material Improvement',
     subtitle: 'by Laura Philips',
-    body:
-      "Discover how Material-UI, the leading React Material Design component library, can help to improve your users' experience.",
+    body: "Discover how MUI, the leading React Material Design component library, can help to improve your users' experience.",
     icon1: 'share',
     icon2: 'more_vert',
   };
@@ -87,18 +72,8 @@ export class MediaCard extends React.Component<Props> {
   };
 
   render() {
-    const {
-      action1,
-      action2,
-      body,
-      icon1,
-      icon2,
-      imageFile,
-      imageUrl,
-      subtitle,
-      title,
-      ...other
-    } = this.props;
+    const { action1, action2, body, icon1, icon2, imageFile, imageUrl, subtitle, title, ...other } =
+      this.props;
 
     return (
       <Card {...other}>
@@ -117,12 +92,12 @@ export class MediaCard extends React.Component<Props> {
               </MuiTypography>
             )}
             {subtitle && (
-              <MuiTypography gutterBottom variant="subtitle1" color="textSecondary">
+              <MuiTypography gutterBottom variant="subtitle1" color="text.secondary">
                 {subtitle}
               </MuiTypography>
             )}
             {body && (
-              <MuiTypography component="p" color="textPrimary">
+              <MuiTypography component="p" color="text.primary">
                 {body}
               </MuiTypography>
             )}

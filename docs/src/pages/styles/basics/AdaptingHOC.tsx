@@ -1,9 +1,8 @@
-import React from 'react';
-import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
-import Button, { ButtonProps } from '@material-ui/core/Button';
-import { Omit } from '@material-ui/types';
+import * as React from 'react';
+import { withStyles, WithStyles } from '@mui/styles';
+import Button, { ButtonProps } from '@mui/material/Button';
 
-const styles = createStyles({
+const styles = {
   root: {
     background: (props: MyButtonRawProps) =>
       props.color === 'red'
@@ -20,14 +19,17 @@ const styles = createStyles({
     padding: '0 30px',
     margin: 8,
   },
-});
+};
 
 interface MyButtonRawProps {
   color: 'red' | 'blue';
 }
+// These are the props available inside MyButtonRaw
+// They're different from MyButtonRawProps which are the props available for dynamic styling.
+type MyButtonRawInnerProps = MyButtonRawProps & WithStyles<typeof styles>;
 
 function MyButtonRaw(
-  props: WithStyles<typeof styles> & Omit<ButtonProps, keyof MyButtonRawProps> & MyButtonRawProps,
+  props: MyButtonRawInnerProps & Omit<ButtonProps, keyof MyButtonRawInnerProps>,
 ) {
   const { classes, color, ...other } = props;
   return <Button className={classes.root} {...other} />;

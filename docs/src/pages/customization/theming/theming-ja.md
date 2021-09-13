@@ -4,7 +4,7 @@
 
 テーマはコンポーネントの色、表面の暗さ、影のレベル、インク要素の透明度等を指定します。
 
-テーマを使用することで、アプリに一貫したトーンを適用できます。あなたのビジネスやブランドのニーズに合うようにデザインをカスタマイズすることができます。
+テーマを使用することで、アプリに一貫したトーンを適用できます。 あなたのビジネスやブランドのニーズに合うようにデザインをカスタマイズすることができます。
 
 アプリ間で一貫性を高めるために、ライトテーマとダークテーマを選択できます。 デフォルトでは、ライトテーマを使用する仕様になっています。
 
@@ -18,12 +18,13 @@
 
 テーマの構成変数を変更することは、Material-UIをニーズに合わせる最も効果的な方法です。 以下のセクションでは、最も重要なテーマ変数について説明します。 以下のセクションでは、最も重要なテーマ変数について説明します。 以下のセクションでは、最も重要なテーマ変数について説明します。 以下のセクションでは、最も重要なテーマ変数について説明します。 以下のセクションでは、最も重要なテーマ変数について説明します。 以下のセクションでは、最も重要なテーマ変数について説明します。
 
-- [パレット](/customization/palette/)
-- [タイポグラフィ](/customization/typography/)
-- [間隔](/customization/spacing/)
-- [ブレークポイント](/customization/breakpoints/)
-- [z-index](/customization/z-index/)
-- [グローバル](/customization/globals/)
+- [`.パレット`](/customization/palette/)
+- [`.タイポグラフィ`](/customization/typography/)
+- [`.spacing`](/customization/spacing/)
+- [`.ブレークポイント`](/customization/breakpoints/)
+- [`.zIndex`](/customization/z-index/)
+- [`.transições`](/customization/transitions/)
+- [`.コンポーネント`](/customization/theme-components/)
 
 [既定のテーマセクション](/customization/default-theme/)をチェックアウトすると、既定のテーマをすべて表示できます。
 
@@ -31,7 +32,45 @@
 
 When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. 例えば：
 
+```jsx
+const theme = createTheme({
+  status: {
+    danger: orange[500],
+  },
+});
+```
+
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+
+```tsx
+declare module '@material-ui/core/styles' {
+  interface Theme {
+    status: {
+      danger: string;
+    };
+  }
+  // allow configuration using `createTheme`
+  interface ThemeOptions {
+    status?: {
+      danger?: string;
+    };
+  }
+}
+```
+
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
+
+## コンポーネント内のテーマへのアクセス
+
+<video autoPlay muted loop width="320">
+  <source src="/static/studies.mp4" type="video/mp4" >
+</video>
+
+Reactコンポーネント内のテーマ変数に[アクセスできます](/styles/advanced/#accessing-the-theme-in-a-component) 。
+
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview. Includes basic site templates to show various components and how they are affected by the theme
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating Material-UI themes via Material Design Color Tool.
+- [マテリアルパレットジェネレータ](https://material.io/inline-tools/color/)　: マテリアルパレットジェネレータを使用して、入力した任意のカラーのパレットを生成できます。
 
 ## コンポーネント内のテーマへのアクセス
 
@@ -43,11 +82,11 @@ Reactコンポーネント内のテーマ変数に[アクセスできます](/st
 
 {{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
-内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。 内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。 内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。 内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。 内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。 内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。
+内部テーマは外側のテーマを**オーバーライドします**。 内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
-### パフォーマンスに関する注意
+**パフォーマンスに関する注意**
 
 Otherwise you'll encounter `Error: Function component cannot be given refs`. See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs).
 
@@ -62,12 +101,12 @@ Otherwise you'll encounter `Error: Function component cannot be given refs`. See
 
 #### 引数
 
-1. `options` (*Object*): 不完全なテーマオブジェクトを取得し、不足している部分を追加します。
-2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
+1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
 #### 戻り値
 
-`theme` (*Object*): すぐに使用できる完全なテーマオブジェクト。
+`theme` (_object_): A complete, ready-to-use theme object.
 
 #### 例
 
@@ -94,17 +133,17 @@ const theme = createTheme({
 
 #### 引数
 
-1. `theme` (*Object*): 強化するテーマオブジェクト。
-2. `オプション` (*オプジェクト* [任意]):
+1. `theme` (_object_): The theme object to enhance.
+2. `options` (_object_ [optional]):
 
-- Array of [breakpoints](/customization/breakpoints/) (identifiers). `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`.
-- `variants` (*Array\<String\>* [optional]): Default to all. フォントサイズがわずかに変化して線が表示されるかどうか 高さは保持され、Material Designの4pxライン高さグリッドに位置合わせされます。 これには、テーマのスタイルで単位なしの行の高さが必要です。 これには、テーマのスタイルで単位なしの行の高さが必要です。 これには、テーマのスタイルで単位なしの行の高さが必要です。
-- `variants` (*Array\<String\>* [optional]): Default to all. この値は、フォントサイズのサイズ変更の強度を決定します。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。
-- `factor` (*Number* [optional]): Default to `2`. 処理するタイポグラフィバリアント。
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`.
+- `disableAlign` (_bool_ [optional]): Default to `false`. フォントサイズがわずかに変化して線が表示されるかどうか 高さは保持され、Material Designの4pxライン高さグリッドに位置合わせされます。 これには、テーマのスタイルで単位なしの行の高さが必要です。 これには、テーマのスタイルで単位なしの行の高さが必要です。 これには、テーマのスタイルで単位なしの行の高さが必要です。
+- `factor` (_number_ [optional]): Default to `2`. この値は、フォントサイズのサイズ変更の強度を決定します。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。
+- `variants` (_array\<string\>_ [optional]): Default to all. 処理するタイポグラフィバリアント。
 
 #### 戻り値
 
-`theme` (*Object*): レスポンシブなタイポグラフィを備えた新しいテーマ。
+`theme` (_object_): The new theme with a responsive typography.
 
 #### 例
 
@@ -125,23 +164,18 @@ Generates a theme that reduces the amount of warnings inside [`React.StrictMode`
 
 Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our components.
 
-##### `component` prop
+#### 引数
 
-The component used in the `component` prop of the following components need to forward their ref:
+1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
-- [`Collapse`](/api/collapse/)
+#### 戻り値
 
-Otherwise you'll encounter `Error: Function component cannot be given refs`. See also: [Composition: Caveat with refs](/guides/composition/#caveat-with-refs).
+`theme` (_object_): A complete, ready to use theme object.
 
-##### `children` prop
+#### 例
 
-The `children` of the following components need to forward their ref:
-
-- [`Fade`](/api/fade/)
-- [`Grow`](/api/grow/)
-- [`Zoom`](/api/zoom/)
-
-```diff
+```js
 -function TabPanel(props) {
 +const TabPanel = React.forwardRef(function TabPanel(props, ref) {
   return <div role="tabpanel" {...props} ref={ref} />;
@@ -150,62 +184,5 @@ The `children` of the following components need to forward their ref:
 
 function Tabs() {
   return <Fade><TabPanel>...</TabPanel></Fade>;
-}
-```
-
-Otherwise the component will not animate properly and you'll encounter the warning that `Function components cannot be given refs`.
-
-#### Disable StrictMode compatibility partially
-
-If you still see `Error: Function component cannot be given refs` then you're probably using a third-party component for which the previously mentioned fixes aren't applicable. You can fix this by applying `disableStrictModeCompat`. You'll see deprecation warnings again but these are only warnings while `Function component cannot be given refs` actually breaks the documented behavior of our components.
-
-```diff
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
-
-function ThirdPartyTabPanel(props) {
-  return <div {...props} role="tabpanel">
-}
-
-const theme = unstable_createMuiStrictModeTheme();
-
-function Fade() {
-  return (
-    <React.StrictMode>
-      <ThemeProvider theme={theme}>
-
--        <Fade>
-+        <Fade disableStrictModeCompat>
-          <ThirdPartyTabPanel />
-        </Fade>
-      </ThemeProvider>
-    </React.StrictMode>,
-  );
-}
-```
-
-#### 引数
-
-1. `options` (*Object*): 不完全なテーマオブジェクトを取得し、不足している部分を追加します。
-2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
-
-#### 戻り値
-
-`theme` (*Object*): すぐに使用できる完全なテーマオブジェクト。
-
-#### 例
-
-```js
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
-
-const theme = unstable_createMuiStrictModeTheme();
-
-function App() {
-  return (
-    <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <LandingPage />
-      </ThemeProvider>
-    </React.StrictMode>,
-  );
 }
 ```

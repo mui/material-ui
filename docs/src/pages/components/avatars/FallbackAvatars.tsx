@@ -1,33 +1,24 @@
-import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import { deepOrange } from '@material-ui/core/colors';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-    orange: {
-      color: theme.palette.getContrastText(deepOrange[500]),
-      backgroundColor: deepOrange[500],
-    },
-  }),
-);
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import { deepOrange } from '@mui/material/colors';
 
 export default function FallbackAvatars() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <Avatar alt="Remy Sharp" src="/broken-image.jpg" className={classes.orange}>
+    <Stack direction="row" spacing={2}>
+      <Avatar
+        sx={{ bgcolor: deepOrange[500] }}
+        alt="Remy Sharp"
+        src="/broken-image.jpg"
+      >
         B
       </Avatar>
-      <Avatar alt="Remy Sharp" src="/broken-image.jpg" className={classes.orange} />
+      <Avatar
+        sx={{ bgcolor: deepOrange[500] }}
+        alt="Remy Sharp"
+        src="/broken-image.jpg"
+      />
       <Avatar src="/broken-image.jpg" />
-    </div>
+    </Stack>
   );
 }

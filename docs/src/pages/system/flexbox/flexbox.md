@@ -11,7 +11,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 {{"demo": "pages/system/flexbox/Display.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box display="flex">…
+<Box sx={{ display: 'flex' }}>…
 ```
 
 ### flex-direction
@@ -19,8 +19,8 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 {{"demo": "pages/system/flexbox/FlexDirection.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box flexDirection="row">…
-<Box flexDirection="row-reverse">…
+<Box sx={{ flexDirection: 'row' }}>…
+<Box sx={{ flexDirection: 'row-reverse' }}>…
 ```
 
 ### flex-wrap
@@ -28,8 +28,8 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 {{"demo": "pages/system/flexbox/FlexWrap.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box flexWrap="nowrap">…
-<Box flexWrap="wrap">…
+<Box sx={{ flexWrap: 'nowrap' }}>…
+<Box sx={{ flexWrap: 'wrap' }}>…
 ```
 
 ### justify-content
@@ -37,9 +37,9 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 {{"demo": "pages/system/flexbox/JustifyContent.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box justifyContent="flex-start">…
-<Box justifyContent="flex-end">…
-<Box justifyContent="center">…
+<Box sx={{ justifyContent: 'flex-start' }}>…
+<Box sx={{ justifyContent: 'flex-end' }}>…
+<Box sx={{ justifyContent: 'center' }}>…
 ```
 
 ### align-items
@@ -47,9 +47,9 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 {{"demo": "pages/system/flexbox/AlignItems.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box alignItems="flex-start">…
-<Box alignItems="flex-end">…
-<Box alignItems="center">…
+<Box sx={{ alignItems: 'flex-start' }}>…
+<Box sx={{ alignItems: 'flex-end' }}>…
+<Box sx={{ alignItems: 'center' }}>…
 ```
 
 ### align-content
@@ -57,8 +57,8 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 {{"demo": "pages/system/flexbox/AlignContent.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box alignContent="flex-start">…
-<Box alignContent="flex-end">…
+<Box sx={{ alignContent: 'flex-start' }}>…
+<Box sx={{ alignContent: 'flex-end' }}>…
 ```
 
 ## Properties for the Children
@@ -68,9 +68,9 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 {{"demo": "pages/system/flexbox/Order.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box order={2}>Item 1</Box>
-<Box order={3}>Item 2</Box>
-<Box order={1}>Item 3</Box>
+<Box sx={{ order: 2 }}>Item 1</Box>
+<Box sx={{ order: 3 }}>Item 2</Box>
+<Box sx={{ order: 1 }}>Item 3</Box>
 ```
 
 ### flex-grow
@@ -78,7 +78,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 {{"demo": "pages/system/flexbox/FlexGrow.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box flexGrow={1}>Item 1</Box>
+<Box sx={{ flexGrow: 1 }}>Item 1</Box>
 <Box>Item 2</Box>
 <Box>Item 3</Box>
 ```
@@ -88,9 +88,9 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 {{"demo": "pages/system/flexbox/FlexShrink.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box width="100%">Item 1</Box>
-<Box flexShrink={1}>Item 2</Box>
-<Box flexShrink={0}>Item 3</Box>
+<Box sx={{ width: '100%' }}>Item 1</Box>
+<Box sx={{ flexShrink: 1 }}>Item 2</Box>
+<Box sx={{ flexShrink: 0 }}>Item 3</Box>
 ```
 
 ### align-self
@@ -99,25 +99,25 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 ```jsx
 <Box>Item 1</Box>
-<Box alignSelf="flex-end">Item 2</Box>
+<Box sx={{ alignSelf: 'flex-end' }}>Item 2</Box>
 <Box>Item 3</Box>
 ```
 
 ## API
 
 ```js
-import { flexbox } from '@material-ui/system';
+import { flexbox } from '@mui/system';
 ```
 
-| Import name | Prop | CSS property | Theme key |
-|:------------|:-----|:-------------|:----------|
-| `flexDirection` | `flexDirection` | `flex-direction` | none |
-| `flexWrap` | `flexWrap` | `flex-wrap` | none |
-| `justifyContent` | `justifyContent` | `justify-content` | none |
-| `alignItems` | `alignItems` | `align-items` | none |
-| `alignContent` | `alignContent` | `align-content` | none |
-| `order` | `order` | `order` | none |
-| `flex` | `flex` | `flex` | none |
-| `flexGrow` | `flexGrow` | `flex-grow` | none |
-| `flexShrink` | `flexShrink` | `flex-shrink` | none |
-| `alignSelf` | `alignSelf` | `align-self` | none |
+| Import name      | Prop             | CSS property      | Theme key |
+| :--------------- | :--------------- | :---------------- | :-------- |
+| `flexDirection`  | `flexDirection`  | `flex-direction`  | none      |
+| `flexWrap`       | `flexWrap`       | `flex-wrap`       | none      |
+| `justifyContent` | `justifyContent` | `justify-content` | none      |
+| `alignItems`     | `alignItems`     | `align-items`     | none      |
+| `alignContent`   | `alignContent`   | `align-content`   | none      |
+| `order`          | `order`          | `order`           | none      |
+| `flex`           | `flex`           | `flex`            | none      |
+| `flexGrow`       | `flexGrow`       | `flex-grow`       | none      |
+| `flexShrink`     | `flexShrink`     | `flex-shrink`     | none      |
+| `alignSelf`      | `alignSelf`      | `align-self`      | none      |

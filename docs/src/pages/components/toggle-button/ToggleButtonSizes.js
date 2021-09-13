@@ -1,11 +1,11 @@
-import React from 'react';
-import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
-import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
-import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
-import FormatAlignJustifyIcon from '@material-ui/icons/FormatAlignJustify';
-import Grid from '@material-ui/core/Grid';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import * as React from 'react';
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
+import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
+import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
+import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
+import Box from '@mui/material/Box';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 export default function ToggleButtonSizes() {
   const [alignment, setAlignment] = React.useState('left');
@@ -14,56 +14,44 @@ export default function ToggleButtonSizes() {
     setAlignment(newAlignment);
   };
 
+  const children = [
+    <ToggleButton value="left" key="left">
+      <FormatAlignLeftIcon fontSize="small" />
+    </ToggleButton>,
+    <ToggleButton value="center" key="center">
+      <FormatAlignCenterIcon fontSize="small" />
+    </ToggleButton>,
+    <ToggleButton value="right" key="right">
+      <FormatAlignRightIcon fontSize="small" />
+    </ToggleButton>,
+    <ToggleButton value="justify" key="justify">
+      <FormatAlignJustifyIcon fontSize="small" />
+    </ToggleButton>,
+  ];
+
+  const control = {
+    value: alignment,
+    onChange: handleChange,
+    exclusive: true,
+  };
+
   return (
-    <Grid container spacing={2} direction="column" alignItems="center">
-      <Grid item>
-        <ToggleButtonGroup size="small" value={alignment} exclusive onChange={handleChange}>
-          <ToggleButton value="left">
-            <FormatAlignLeftIcon fontSize="small" />
-          </ToggleButton>
-          <ToggleButton value="center">
-            <FormatAlignCenterIcon fontSize="small" />
-          </ToggleButton>
-          <ToggleButton value="right">
-            <FormatAlignRightIcon fontSize="small" />
-          </ToggleButton>
-          <ToggleButton value="justify">
-            <FormatAlignJustifyIcon fontSize="small" />
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </Grid>
-      <Grid item>
-        <ToggleButtonGroup size="medium" value={alignment} exclusive onChange={handleChange}>
-          <ToggleButton value="left">
-            <FormatAlignLeftIcon />
-          </ToggleButton>
-          <ToggleButton value="center">
-            <FormatAlignCenterIcon />
-          </ToggleButton>
-          <ToggleButton value="right">
-            <FormatAlignRightIcon />
-          </ToggleButton>
-          <ToggleButton value="justify">
-            <FormatAlignJustifyIcon />
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </Grid>
-      <Grid item>
-        <ToggleButtonGroup size="large" value={alignment} exclusive onChange={handleChange}>
-          <ToggleButton value="left">
-            <FormatAlignLeftIcon />
-          </ToggleButton>
-          <ToggleButton value="center">
-            <FormatAlignCenterIcon />
-          </ToggleButton>
-          <ToggleButton value="right">
-            <FormatAlignRightIcon />
-          </ToggleButton>
-          <ToggleButton value="justify">
-            <FormatAlignJustifyIcon />
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </Grid>
-    </Grid>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        // TODO Replace with Stack
+        '& > :not(style) + :not(style)': { mt: 2 },
+      }}
+    >
+      <ToggleButtonGroup size="small" {...control}>
+        {children}
+      </ToggleButtonGroup>
+      <ToggleButtonGroup {...control}>{children}</ToggleButtonGroup>
+      <ToggleButtonGroup size="large" {...control}>
+        {children}
+      </ToggleButtonGroup>
+    </Box>
   );
 }

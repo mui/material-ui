@@ -14,13 +14,20 @@ function resolvePath(sourcePath, currentFile, opts) {
 }
 
 const alias = {
-  '@material-ui/core': '../packages/material-ui/src',
-  '@material-ui/docs': '../packages/material-ui-docs/src',
-  '@material-ui/icons': '../packages/material-ui-icons/src',
-  '@material-ui/lab': '../packages/material-ui-lab/src',
-  '@material-ui/styles': '../packages/material-ui-styles/src',
-  '@material-ui/system': '../packages/material-ui-system/src',
-  '@material-ui/utils': '../packages/material-ui-utils/src',
+  '@mui/material': '../packages/mui-material/src',
+  '@mui/docs': '../packages/mui-docs/src',
+  '@mui/icons-material': '../packages/mui-icons-material/lib',
+  '@mui/lab': '../packages/mui-lab/src',
+  '@mui/styles': '../packages/mui-styles/src',
+  '@mui/styled-engine-sc': '../packages/mui-styled-engine-sc/src',
+  // Swap the comments on the next two lines for using the styled-components as style engine
+  '@mui/styled-engine': '../packages/mui-styled-engine/src',
+  // '@mui/styled-engine': '../packages/mui-styled-engine-sc/src',
+  '@mui/system': '../packages/mui-system/src',
+  '@mui/private-theming': '../packages/mui-private-theming/src',
+  '@mui/utils': '../packages/mui-utils/src',
+  '@mui/core': '../packages/mui-core/src',
+  '@mui/material-next': '../packages/mui-material-next/src',
   docs: './',
   modules: '../modules',
   pages: './pages',
@@ -31,9 +38,19 @@ const { version: transformRuntimeVersion } = fse.readJSONSync(
 );
 
 module.exports = {
+  // TODO: Enable once nextjs uses babel 7.13
+  // assumptions: {
+  //   noDocumentAll: true,
+  // },
   presets: [
     // backport of https://github.com/zeit/next.js/pull/9511
-    ['next/babel', { 'transform-runtime': { corejs: 2, version: transformRuntimeVersion } }],
+    [
+      'next/babel',
+      {
+        'preset-react': { runtime: 'automatic' },
+        'transform-runtime': { corejs: 2, version: transformRuntimeVersion },
+      },
+    ],
   ],
   plugins: [
     [
@@ -45,9 +62,8 @@ module.exports = {
       },
     ],
     'babel-plugin-optimize-clsx',
-    // for IE 11 support
+    // for IE11 support
     '@babel/plugin-transform-object-assign',
-    'babel-plugin-preval',
     [
       'babel-plugin-module-resolver',
       {
@@ -62,7 +78,6 @@ module.exports = {
     production: {
       plugins: [
         '@babel/plugin-transform-react-constant-elements',
-        'babel-plugin-transform-dev-warning',
         ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
         ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
       ],

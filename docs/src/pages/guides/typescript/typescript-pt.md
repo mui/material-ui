@@ -2,7 +2,7 @@
 
 <p class="description">Você pode adicionar tipagem estática para o JavaScript para melhorar a produtividade do desenvolvimento e a qualidade do código graças ao TypeScript.</p>
 
-Material-UI requer como versão mínima o TypeScript 3.2.
+Material-UI requires a minimum version of TypeScript 3.5.
 
 Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript).
 
@@ -112,7 +112,7 @@ const styles = createStyles({
 });
 ```
 
-No entanto, para permitir que estes estilos passem pelo TypeScript, as definições devem ser ambíguas em relação aos nomes de classes CSS e nomes de propriedades CSS. Devido a isso, evite utilizar nomes de classes iguais a propriedades do CSS.
+No entanto, para permitir que estes estilos passem pelo TypeScript, as definições não devem ser ambíguas em relação aos nomes de classes CSS e nomes de propriedades CSS. Devido a isso, evite utilizar nomes de classes iguais a propriedades do CSS.
 
 ```ts
 // erro porque TypeScript acha que `@media (min-width: 960px)` é o nome da classe
@@ -168,13 +168,21 @@ interface Props {
 No entanto isto não é muito elegante de acordo com o princípio de software [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), porque requer que você mantenha os nomes das classes (`'root'`, `'paper'`, `'button'`, ...) em dois locais diferentes. Nós fornecemos um operador de tipo `WithStyles` para ajudar com isso, assim você pode apenas escrever:
 
 ```ts
-import { WithStyles, createStyles } from '@material-ui/core';
+import { createStyles } from '@material-ui/styles';
+import { WithStyles } from '@material-ui/core';
 
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
-  paper: { /* ... */ },
-  button: { /* ... */ },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
 
 interface Props extends WithStyles<typeof styles> {
   foo: number;
@@ -196,14 +204,14 @@ const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) 
 const DecoratedClass = withStyles(styles)(
   class extends React.Component<Props> {
     render() {
-      const { text, type, color, classes } = this.props
+      const { text, type, color, classes } = this.props;
       return (
         <Typography variant={type} color={color} classes={classes}>
           {text}
         </Typography>
       );
     }
-  }
+  },
 );
 ```
 
@@ -216,22 +224,21 @@ Ao adicionar propriedades customizadas ao `Theme`, você pode continuar a utiliz
 O exemplo a seguir adiciona uma propriedade `appDrawer` que é mesclada na que foi exportada pelo `material-ui`:
 
 ```ts
-import { Theme } from '@material-ui/core/styles/createTheme';
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
+import { Breakpoint, Theme } from '@material-ui/core/styles';
 
-declare module '@material-ui/core/styles/createTheme' {
+declare module '@material-ui/core/styles' {
   interface Theme {
     appDrawer: {
-      width: React.CSSProperties['width']
-      breakpoint: Breakpoint
-    }
+      width: React.CSSProperties['width'];
+      breakpoint: Breakpoint;
+    };
   }
-  // permitir configuração usando `createTheme`
+  // allow configuration using `createTheme`
   interface ThemeOptions {
     appDrawer?: {
-      width?: React.CSSProperties['width']
-      breakpoint?: Breakpoint
-    }
+      width?: React.CSSProperties['width'];
+      breakpoint?: Breakpoint;
+    };
   }
 }
 ```
@@ -250,7 +257,7 @@ export default function createMyTheme(options: ThemeOptions) {
       breakpoint: 'lg',
     },
     ...options,
-  })
+  });
 }
 ```
 
@@ -264,7 +271,7 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 
 ## Uso da propriedade `component`
 
-Muitos componentes do Material-UI permitem que você substitua seu nó raiz através de uma propriedade `component`, isto será detalhado na documentação da API do componente. Por exemplo, o nó raiz de um Button pode ser substituído por um Link do React Router, e quaisquer propriedades adicionais que são passados para o Button, como `to`, serão propagadas para o componente Link. Para um exemplo de código relativo ao Button e o react-router-dom veja [estas demonstrações](/guides/composition/#routing-libraries).
+Muitos componentes do Material-UI permitem que você substitua seu nó raiz através de uma propriedade `component`, isto será detalhado na documentação da API do componente. Por exemplo, o nó raiz de um Button pode ser substituído por um Link do React Router, e quaisquer propriedades adicionais que são passados para o Button, como `to`, serão propagadas para o componente Link. Para um exemplo de código relativo ao Button e o react-router-dom veja [estas demonstrações](/guides/routing/#component-prop).
 
 Para poder usar propriedades de determinado componente Material-UI no seu componente próprio, as propriedades devem ser usadas com argumentos de tipo. Caso contrário, a propriedade `component` não estará presente nas propriedades do componente Material-UI.
 
@@ -283,7 +290,7 @@ Agora o `CustomComponent` pode ser usado com uma propriedade `component` que dev
 É possível ter um componente genérico `CustomComponent` que aceitará qualquer componente React, customizado e elementos HTML.
 
 ```ts
-function GenericCustomComponent<C extends React.ElementType>(
+function GenericCustomComponent<C extends React. ElementType>(
   props: TypographyProps<C, { component?: C }>,
 ) {
   /* ... */

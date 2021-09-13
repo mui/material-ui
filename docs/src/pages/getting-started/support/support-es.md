@@ -1,6 +1,6 @@
 # Apóyanos
 
-<p class="description">Desde la ayuda de la comunidad hasta el apoyo de empresas críticas premium, estamos aquí para ayudar.</p>
+<p class="description">From community help to premium critical business support, we're here to help.</p>
 
 ## Ayuda comunitaria (gratis)
 
@@ -14,14 +14,14 @@ Para preguntas técnicas de expertos de Material-UI en nuestra comunidad. Tambi�
 
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="Logo de GitHub" loading="lazy" />
 
-Utilizamos los problemas de GitHub exclusivamente como un rastreador de fallos y peticiones de características. Si crees que has encontrado un bug, o tienes una nueva idea de características, por favor comience asegurándose de que no ha sido [reportado o corregido](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). Puede buscar a través de problemas existentes y pull requests para ver si alguien ha reportado uno similar al suyo.
+We use GitHub issues exclusively as a bugs and feature requests tracker. Si crees que has encontrado un bug, o tienes una nueva idea de características, por favor comience asegurándose de que no ha sido [reportado o corregido](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). Puede buscar a través de problemas existentes y pull requests para ver si alguien ha reportado uno similar al suyo.
 
 [Abre un problema](https://github.com/mui-org/material-ui/issues/new/choose)
 
 #### Nuevas directrices de problemas
 
 - Por favor, siga la plantilla de problema.
-- Comience el título con '[ComponentName]' donde corresponda, y utilice una descripción sucinta que ayude a otros a encontrar problemas similares. 
+- Comience el título con '[ComponentName]' donde corresponda, y utilice una descripción sucinta que ayude a otros a encontrar problemas similares.
   - "no funciona" ❌
   - "[Button] Add support for <some feature>" ✅
 - Por favor, no agrupe varios temas en un solo problema: cada uno debería tener su propio problema en su lugar.
@@ -47,7 +47,7 @@ Reciba las últimas noticias sobre Material-UI.
 
 ### Versiones compatibles
 
-The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
 Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v4](/guides/migration-v3/). The open-source community is always welcome to submit new features and bug fixes as well.
 
@@ -83,12 +83,16 @@ The end result? All of the capabilities you expect from commercial-grade softwar
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Obtener más detalles </a>
+  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+Obtener más detalles
+</a>
 
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise"> Solicite una demostración </a>
+  href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+Solicite una demostración
+</a>
 
 ### Trabajo personalizado 🛠
 

@@ -1,18 +1,6 @@
-import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 300,
-    },
-    margin: {
-      height: theme.spacing(3),
-    },
-  }),
-);
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
 const marks = [
   {
@@ -37,22 +25,17 @@ function valuetext(value: number) {
   return `${value}°C`;
 }
 
-export default function DiscreteSlider() {
-  const classes = useStyles();
-
+export default function DiscreteSliderLabel() {
   return (
-    <div className={classes.root}>
-      <Typography id="discrete-slider-always" gutterBottom>
-        Always visible
-      </Typography>
+    <Box sx={{ width: 300 }}>
       <Slider
+        aria-label="Always visible"
         defaultValue={80}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider-always"
         step={10}
         marks={marks}
         valueLabelDisplay="on"
       />
-    </div>
+    </Box>
   );
 }

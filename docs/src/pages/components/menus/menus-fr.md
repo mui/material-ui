@@ -1,17 +1,22 @@
 ---
 title: Composant React Menu
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
+githubLabel: 'component: Menu'
+materialDesign: https://material.io/components/menus
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 ---
 
-# Menus
+# Menu
 
 <p class="description">Les menus affichent une liste de choix sur des surfaces temporaires.</p>
 
 Un [Menu](https://material.io/design/components/menus.html) affiche une liste de choix sur une surface temporaire. Il apparaît lorsque l'utilisateur interagit avec un bouton ou un autre contrôle.
 
-## Menu simple
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-Les menus simples s'ouvrent par défaut sur l'élément d'ancrage (cette option peut être modifiée via les propriétés). Lorsqu'ils sont près du bord de l'écran, les menus simples se réalignent verticalement afin que tous les éléments du menu soient visibles.
+## Menu de base
+
+Un menu de base s'ouvre par défaut sur l'élément d'ancrage (cette option peut [ être modifiée ](#menu-positioning) via les accessoires). Lorsqu'ils sont près du bord de l'écran, les menus simples se réalignent verticalement afin que tous les éléments du menu soient visibles.
 
 Le choix d'une option doit idéalement être validé immédiatement et fermer le menu.
 
@@ -19,11 +24,17 @@ Le choix d'une option doit idéalement être validé immédiatement et fermer le
 
 {{"demo": "pages/components/menus/SimpleMenu.js"}}
 
-## Menus sélectionnés
+## Menu sélectionné
 
-S'ils sont utilisés pour la sélection d'élément, lorsqu'ils sont ouverts, les menus simples tentent d'aligner verticalement l'élément de menu actuellement sélectionné avec l'élément d'ancrage, et la mise au point initiale sera placée sur l'élément de menu sélectionné. L'élément de menu actuellement sélectionné est défini à l'aide de la propriété `selected` (à partir de [ListItem](/api/list-item/)). Pour utiliser un élément de menu sélectionné sans affecter la mise au point initiale ou le positionnement vertical du menu, définissez la propriété `variant` à `menu`.
+L'élément de menu actuellement sélectionné est défini à l'aide de la propriété `selected` (à partir de [ListItem](/api/list-item/)). S'ils sont utilisés pour la sélection d'élément, lorsqu'ils sont ouverts, les menus simples tentent d'aligner verticalement l'élément de menu actuellement sélectionné avec l'élément d'ancrage, et la mise au point initiale sera placée sur l'élément de menu sélectionné. Pour utiliser un élément de menu sélectionné sans affecter la mise au point initiale ou le positionnement vertical du menu, définissez la propriété `variant` à `menu`.
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
+
+## Menu positionné
+
+Parce que le composant `Menu` utilise le composant `Popover` pour se positionner, vous pouvez utiliser les mêmes [props de positionnement](/components/popover/#anchor-playground) pour le positionner. Par exemple, vous pouvez afficher le menu sous l'ancre :
+
+{{"demo": "pages/components/menus/PositionedMenu.js"}}
 
 ## Composition de MenuList
 
@@ -33,9 +44,9 @@ La responsabilité principale du composant `MenuList` est de gérer le focus.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Menus personnalisés
+## Menu personnalisé
 
-Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides (surcharges)](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
@@ -43,7 +54,7 @@ Le `MenuItem` est un wrapper autour de `ListItem` avec quelques styles suppléme
 
 🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/styles/menu).
 
-## Hauteur maximale des menus
+## Hauteur maximale du menu
 
 Si la hauteur d'un menu empêche l'affichage de tous les éléments du menu, le menu peut défiler en interne.
 
