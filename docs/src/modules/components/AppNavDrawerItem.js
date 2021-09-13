@@ -157,7 +157,7 @@ const ItemButton = styled(Item, {
 const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(
   ({ theme, depth }) => {
     return {
-      padding: depth === 0 ? '0 10px' : '4px 0',
+      padding: depth === 0 ? '0 10px' : '0',
       marginTop: depth === 0 ? theme.spacing(1) : undefined,
       display: 'block',
     };
