@@ -110,7 +110,7 @@ export default function Hero() {
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            <GradientText>Everything</GradientText> to build React UIs faster
+            Build <GradientText>faster and beautiful</GradientText> React apps
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             MUI provides a robust, customizable, and accessible library of foundational and advanced
