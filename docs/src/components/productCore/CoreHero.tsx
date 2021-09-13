@@ -375,7 +375,7 @@ export default function Hero() {
                 </Typography>
                 <SlideDemo />
               </Paper>
-              <TextField defaultValue="Ultraviolet" label="Basement" />
+              <TextField id="core-hero-input" defaultValue="Ultraviolet" label="Basement" />
               <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <BadgeVisibilityDemo />
                 <Paper
