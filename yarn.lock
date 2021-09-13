@@ -2118,16 +2118,6 @@
     npmlog "^4.1.2"
     write-file-atomic "^3.0.3"
 
-"@material-ui/data-grid@^4.0.0-alpha.37":
-  version "4.0.0-alpha.37"
-  resolved "https://registry.yarnpkg.com/@material-ui/data-grid/-/data-grid-4.0.0-alpha.37.tgz#89d907c4e94e6a0db4e89e4f59160f7811546ca2"
-  integrity sha512-3T2AG31aad/lWLMLwn1XUP4mUf3H9YZES17dGuYByzkRLCXbBZHBTPEnCctWukajzwm+v0KGg3QpwitGoiDAjA==
-  dependencies:
-    "@material-ui/utils" "^5.0.0-alpha.14"
-    clsx "^1.0.4"
-    prop-types "^15.7.2"
-    reselect "^4.0.0"
-
 "@material-ui/types@^4.0.0":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@material-ui/types/-/types-4.1.1.tgz#b65e002d926089970a3271213a3ad7a21b17f02b"
@@ -2140,7 +2130,7 @@
   resolved "https://registry.yarnpkg.com/@material-ui/types/-/types-6.0.2.tgz#a6d384196c6e2e130eb2765b62d944c0b1ea1015"
   integrity sha512-/XUca4wUb9pWimLLdM1PE8KS8rTbDEGohSGkGtk3WST7lm23m+8RYv9uOmrvOg/VSsl4bMiOv4t2/LCb+RLbTg==
 
-"@material-ui/utils@^5.0.0-alpha.14":
+"@material-ui/utils@^5.0.0-beta.4":
   version "5.0.0-beta.5"
   resolved "https://registry.yarnpkg.com/@material-ui/utils/-/utils-5.0.0-beta.5.tgz#de492037e1f1f0910fda32e6f11b66dfcde2a1c2"
   integrity sha512-wtJ3ovXWZdTAz5eLBqvMpYH/IBJb3qMQbGCyL1i00+sf7AUlAuv4QLx+QtX/siA6L7IpxUQVfqpoCpQH1eYRpQ==
@@ -2163,6 +2153,46 @@
   dependencies:
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
+
+"@mui/x-data-grid-generator@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-4.0.0.tgz#fcb63b4bb81e28eca64589e0c0d227d3f5608cab"
+  integrity sha512-ZuJs/46NSPz9YwO7qSyABMN0xybFaEm2Oo204boHbE+Lc2UfgNNM6b/p54a9rWwN391oFqzIyta3AMzb8KbHYQ==
+  dependencies:
+    "@types/chance" "^1.1.3"
+    chance "^1.1.7"
+    clsx "^1.1.1"
+    lru-cache "^6.0.0"
+
+"@mui/x-data-grid-pro@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-4.0.0.tgz#e132a56f5a6d262eefe0885d22ef825395bbdd86"
+  integrity sha512-XsWb8RUJXO0gr3nvTY1g3Gkjy6Z5wxqc2FoRkkYkLh+MEIcdZQY+/g7ArKAK7KHmWGZHfeOD1U/s/7qxJRsIdA==
+  dependencies:
+    "@material-ui/utils" "^5.0.0-beta.4"
+    "@mui/x-license-pro" "4.0.0"
+    clsx "^1.0.4"
+    prop-types "^15.7.2"
+    reselect "^4.0.0"
+
+"@mui/x-data-grid@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-4.0.0.tgz#e9e9c33a8b86e85872c48f30f4a8de72ee819153"
+  integrity sha512-BYn7uLx5tJbMarcWltjjVArWNBdC22/2xOpq3Azhltbb3TRx3h2RLUeKwZI685xmGHmzvtu6QqaoYqQgFe/h+g==
+  dependencies:
+    "@material-ui/utils" "^5.0.0-beta.4"
+    clsx "^1.1.1"
+    prop-types "^15.7.2"
+    reselect "^4.0.0"
+
+"@mui/x-license-pro@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-license-pro/-/x-license-pro-4.0.0.tgz#cea1aa4ef9a500deaa7469420060a8e6353dfec9"
+  integrity sha512-UchQWGpaTzBpQvhrS3ni85zfXEdjuU9jD9Tem2wlbOD43PoSLhS65p9QKp0QPM18+ERnaslIYarCPY8ajPmURA==
+  dependencies:
+    "@material-ui/utils" "^5.0.0-beta.4"
+    esm "^3.2.25"
+    yargs "^17.0.1"
 
 "@napi-rs/triples@^1.0.3":
   version "1.0.3"
@@ -2850,6 +2880,11 @@
   version "4.2.21"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.2.21.tgz#9f35a5643129df132cf3b5c1ec64046ea1af0650"
   integrity sha512-yd+9qKmJxm496BOV9CMNaey8TWsikaZOwMRwPHQIjcOJM9oV+fi9ZMNw3JsVnbEEbo2gRTDnGEBv8pjyn67hNg==
+
+"@types/chance@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@types/chance/-/chance-1.1.3.tgz#d19fe9391288d60fdccd87632bfc9ab2b4523fea"
+  integrity sha512-X6c6ghhe4/sQh4XzcZWSFaTAUOda38GQHmq9BUanYkOE/EO7ZrkazwKmtsj3xzTjkLWmwULE++23g3d3CCWaWw==
 
 "@types/cheerio@*":
   version "0.22.30"
@@ -5240,6 +5275,11 @@ chalk@^4.0.0, chalk@^4.1.0, chalk@^4.1.1, chalk@^4.1.2:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+chance@^1.1.7:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/chance/-/chance-1.1.8.tgz#5d6c2b78c9170bf6eb9df7acdda04363085be909"
+  integrity sha512-v7fi5Hj2VbR6dJEGRWLmJBA83LJMS47pkAbmROFxHWd9qmE1esHRZW8Clf1Fhzr3rjxnNZVCjOEv/ivFxeIMtg==
+
 character-entities-legacy@^1.0.0:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/character-entities-legacy/-/character-entities-legacy-1.1.4.tgz#94bc1845dce70a5bb9d2ecc748725661293d8fc1"
@@ -7550,6 +7590,11 @@ eslint@^7.32.0:
     table "^6.0.9"
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
+
+esm@^3.2.25:
+  version "3.2.25"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.2.25.tgz#342c18c29d56157688ba5ce31f8431fbb795cc10"
+  integrity sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==
 
 espree@^7.3.0, espree@^7.3.1:
   version "7.3.1"
