@@ -199,11 +199,11 @@ export default function Hero() {
               '& > *': { mr: 1, width: 28, height: 28 },
             }}
           >
-            <IconImage name="product-core" /> Core
+            <IconImage name="product-core" /> MUI Core
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            Ready to use, <br />
-            <GradientText>forever free</GradientText>,<br /> components
+            Ready to use components, <br />
+            <GradientText>forever free</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             Get a growing list of components, ready to use, forever free with built-in

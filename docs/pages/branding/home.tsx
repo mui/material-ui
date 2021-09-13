@@ -20,7 +20,7 @@ export default function Home() {
     <BrandingProvider>
       <Head
         title="MUI: A popular React UI framework"
-        description="MUI provides a robust, customizable, and accessible library of foundational and advanced components, enabling you to build your own design system and develop React applications faster."
+        description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design. You will develop React applications faster."
       />
       <NoSsr>
         <NewsletterToast />

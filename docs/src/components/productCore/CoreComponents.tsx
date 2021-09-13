@@ -152,7 +152,7 @@ export default function CoreComponents() {
                   <GradientText>40+</GradientText> building block components
                 </Typography>
               }
-              description="We have built the foundational components for your design system, enabling you to launch even faster that cool product you've been thinking about. We got your back!"
+              description="We've built the foundational components for your design system, enabling you to launch that cool product you've been thinking about even faster. We got your back!"
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>

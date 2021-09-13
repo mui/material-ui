@@ -95,7 +95,7 @@ const ProductsSwitcher = ({
           MUI X
         </Box>
       }
-      description="Powerful and robust components for your complex apps."
+      description="Advanced and powerful components for complex use-cases."
       href={ROUTES.productAdvanced}
     />,
     <ProductItem
