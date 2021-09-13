@@ -29,6 +29,7 @@ function ProductItem({
 }) {
   return (
     <Box
+      component="span"
       sx={{
         display: 'flex',
         p: 2,
@@ -36,12 +37,27 @@ function ProductItem({
         alignItems: { md: 'center' },
       }}
     >
-      <Box sx={{ mr: 2, mb: { xs: 1, md: 0 } }}>{icon}</Box>
-      <div>
-        <Typography color="text.primary" variant="body2" fontWeight="bold">
+      <Box component="span" sx={{ mr: 2, mb: { xs: 1, md: 0 } }}>
+        {icon}
+      </Box>
+      <span>
+        <Typography
+          component="span"
+          color="text.primary"
+          variant="body2"
+          fontWeight="bold"
+          display="block"
+        >
           {name}
         </Typography>
-        <Typography color="text.secondary" variant="body2" fontWeight="regular" sx={{ my: 0.5 }}>
+        <Typography
+          component="span"
+          color="text.secondary"
+          variant="body2"
+          fontWeight="regular"
+          display="block"
+          sx={{ my: 0.5 }}
+        >
           {description}
         </Typography>
         <Link
@@ -64,7 +80,7 @@ function ProductItem({
           <span>Learn more</span>{' '}
           <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
         </Link>
-      </div>
+      </span>
     </Box>
   );
 }
