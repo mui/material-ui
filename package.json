@@ -12,6 +12,7 @@
     "release:publish": "lerna publish from-package --dist-tag next --contents build",
     "release:publish:dry-run": "lerna publish from-package --dist-tag next --contents build --registry=\"http://localhost:4873/\"",
     "release:tag": "node scripts/releaseTag",
+    "clean": "lerna run --parallel --scope \"@mui/*\" prebuild",
     "docs:api": "rimraf ./docs/pages/api-docs && yarn docs:api:build",
     "docs:api:build": "cross-env BABEL_ENV=development __NEXT_EXPORT_TRAILING_SLASH=true babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/buildApi.ts  ./docs/pages/api-docs ./packages/mui-core/src ./packages/mui-material/src ./packages/mui-lab/src --apiPagesManifestPath ./docs/src/pagesApi.js",
     "docs:build": "yarn workspace docs build",
