@@ -90,7 +90,7 @@ The npm organization name (scope) has moved from @material-ui to [@mui](https://
 Lastly, to celebrate the start of a new chapter for the company with the release of v5.0.0, and new products in the making, we're introducing a brand new website and documentation design.
 
 You'll find a completely different theme from Material Design – new typeface, colors, box-shadows, and more,
-all done using the sophisticated theming features of v5.
+all done using the flexible theming features of v5.
 
 <a href="/"><img loading="lazy" src="/static/blog/material-ui-is-now-mui/palette.png" alt="" style="width: 600px; margin-bottom: 16px;" /></a>
 
