@@ -30,7 +30,7 @@ We were heavily used and customized to build: customer-facing applications, inte
 
 ## A larger focus
 
-In our last survey, [60% fewer](/blog/2020-developer-survey-results/#comparison-with-last-year) developers were complaining about improving Material Design implementation than they did a year before.
+In our last survey, the number of developers that complained about improving Material Design implementation was down by [60%](/blog/2020-developer-survey-results/#comparison-with-last-year) compared to the year before.
 At the same time, 400% more developers were struggling to customize the components.
 
 It is based on this context that we started to work on v5 in 2019.
