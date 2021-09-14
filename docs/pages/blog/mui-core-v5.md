@@ -28,6 +28,10 @@ This release features some major highlights:
   - [Promotion from the lab](#promotion-from-the-lab)
   - [New in the lab](#new-in-the-lab)
 - [v4 migration](#v4-migration)
+  - [Change of the package names](#change-of-the-package-names)
+  - [Change of the styling engine](#change-of-the-styling-engine)
+  - [Installation](#installation)
+  - [Change of the React & TypeScript supported versions](#change-of-the-react-amp-typescript-supported-versions)
   - [Change on the supported platforms](#change-on-the-supported-platforms)
 - [Design kits](#design-kits)
 - [What's next?](#whats-next)
@@ -492,11 +496,55 @@ The following components are now available in the lab:
 
 ## v4 migration
 
-- The high-level changes required
-- Installation
-- ⚓️ We have introduced a new release line: v4.x.x-deprecations.x. This release line is kept in sync with the latest version of v4 and includes actionable deprecations to ease the migration to v5.
-- The codemod, covered a bit in https://material-ui.com/blog/2021-q2-update/
-- The migration guide
+We put a lot of work in order to make the migration from v4 to v5 as easier as possible. If you are starting your upgrade, these are the three things you should look into:
+
+- ⚓ We have introduced actionable deprecations in v4. You can upgrade to v4.12.0 and start preparing your codebase to be compatible with v5.
+- ⚒️ We have prepared a [codemod](/guides/migration-v4/#preset-safe) that does most of the transformations you will need for the migration. If you are not familiar what a codemod is, check out [Effective Refactoring with Codemods by Edd Yerburgh](https://www.youtube.com/watch?v=H9qtLutnT_g&ab_channel=Pusher).
+- 📄 Lasty, we have prepared a step by step [guide](/guides/migration-v4/) about how you can upgrade to v5, using the codemod above. This guide is the one place where you can find all information required for upgrading to v5.
+
+In the following sections, we will cover some high-level changes required for a successfull upgrade.
+
+### Change of the package names
+
+In order to support the new branding and the long term direction we have, we made a change in the terminology used in the project.
+To support this, we needed to change the names of the packages that we provide. For more details on this check the [the migration guide](/guides/migration-v4/#update-mui-version).
+
+### Change of the styling engine
+
+The change of the styling engine, allowed us to unlock the improvement of the DX for the customization of the components, and the performance of the dynamic styles.
+We replaced [JSS](https://cssinjs.org/) with [emotion](https://emotion.sh/) as a default styled engine.
+If you preffer [styled-components](https://styled-components.com/), see the next version of how you can use it instead of emotion.
+
+We recommend migration your `makeStyles` customization by using the new customization APIs: `styled` or the `sx` prop.
+However, if you still wish to use the `makeStyles` API, you can:
+
+- add `@mui/styles` as a dependency and change the imports of the `makeStyles`/`withStyles` utilities
+- use [`tss-react`](https://github.com/garronej/tss-react) - it has API is similar to JSS makeStyles but works with emotion
+
+You can find more information for this on the [Migrate from JSS](/guides/migration-v4/#migrate-from-jss) section of the migration guide.
+
+### Installation
+
+To use the `v5` version of MUI.
+
+> 💡 If you want to use MUI v5 with **styled-components** instead of emotion, check out [the installation guide](/getting-started/installation/#npm)
+
+```sh
+npm install @mui/material @emotion/react @emotion/styled
+
+// or with `yarn`
+yarn add @mui/material @emotion/react @emotion/styled
+```
+
+**Optional** if your project includes `@mui/icons-material` and/or `@mui/lab`, use the `v5` version of them.
+
+```sh
+npm install @mui/icons-material @mui/lab
+
+// or with `yarn`
+yarn add @mui/icons-material @mui/lab
+```
+
 
 ### Change on the supported platforms
 
