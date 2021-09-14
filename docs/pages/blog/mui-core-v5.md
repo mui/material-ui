@@ -621,13 +621,13 @@ Don't hesitate to let us know what you think!
 
 ### Second design system
 
-We have started the [discussion](https://github.com/mui-org/material-ui/discussions/27803) about the direction of this product which we aim to grow beyond material design.
+Developing a new design system is one of the main initiatives, alongside this new brand and the unstyled components, to grow MUI beyond Material Design. Its codename is **Joy** and we have just started [the high-level discussion](https://github.com/mui-org/material-ui/discussions/27803) around it if you want more context. 
 
-This new design system, codename `Joy`, will be built on top of our strong foundation packages (`unstyled` and `system`) to provide better DX eg. built-in CSS variables generated from theme, perfect dark mode API, etc.
+It will be built on top of our foundation packages (the base/unstyled components and `@mui/system`) to provide a close DX and API as Material Design. We plan on having built-in CSS variables generated from the theme, a great dark mode API, a custom look and feel, and more.
 
-The plan is to release a set of components in each milestone (ordered by most browse) until it has the same amount of components as `@mui/material`, so that the developers only have to pick a package between material-design and Joy based on the design they want to get started with. Most functionalities and APIs of components will be the same because both design systems are built on top of `@mui/core`. The differences will be the theme structure that we want to achieve the right amount of flexibility and great design out of the box.
+We're prioritizing developing first the most frequently used components as we plan on releasing them continuously with each milestone. We intend on having on Joy all the components already available on Material Design so that developers can then pick between them focusing on the design they like the most. The main difference will be at the theme structure, where we want to achieve the right amount of flexibility while providing an amazing design by default.
 
-We will keep you posted about the progress, stay tuned.
+We'll keep you updated about the progress. And as always, you're invited for contributing to it as well. Stay tuned!
 
 ### X
 
