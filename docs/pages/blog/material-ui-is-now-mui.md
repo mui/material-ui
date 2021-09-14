@@ -23,7 +23,7 @@ The goal was simple, to empower React developers to use Material Design.
 The community [loved it](https://news.ycombinator.com/item?id=8582439) and was craving for more, so we kept building.
 
 We made it easy for the community to contribute and started actively reviewing pull requests and guiding issues.
-Over 2,200 developers cared enough about our mission to contribute, so far.
+Over 2,200 developers have cared enough about our mission to contribute, so far.
 Things started to really take off with [the release of v1](/blog/material-ui-v1-is-out/) in 2018.
 The frontend community was actively migrating to React, but didn't have the bandwidth to rebuild legacy interfaces from scratch,
 so before we knew it, we had grown into the most popular React UI component library.
@@ -78,7 +78,7 @@ To better identify, market, and promote each product, we're introducing logos fo
 
 - **MUI Core** contains ready-to-use, forever free, foundational components.
 - **MUI X** includes Powerful and robust components for your complex apps.
-- **MUI Templates** is a collection of fully built, out-of-the-box, React templates for your application. They are developed by the community curated by us for quality.
+- **Templates** is a collection of fully built, out-of-the-box, React templates for your application. They are developed by the community curated by us for quality.
 
 ### New package names
 
