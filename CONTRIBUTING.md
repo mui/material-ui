@@ -47,11 +47,13 @@ cd material-ui
 git remote add upstream https://github.com/mui-org/material-ui.git
 ```
 
-3. Synchronize your local `next` branch with the upstream one:
+<!-- #default-branch-switch -->
+
+3. Synchronize your local `master` branch with the upstream one:
 
 ```sh
-git checkout next
-git pull upstream next
+git checkout master
+git pull upstream master
 ```
 
 4. Install the dependencies with yarn (npm isn't supported):
