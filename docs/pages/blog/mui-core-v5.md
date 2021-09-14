@@ -20,6 +20,9 @@ This release features some major highlights:
 - [Improved DX](#improved-dx)
   - [Smaller demos in the docs](#smaller-demos-in-the-docs)
   - [Props descriptions in IntelliSense](#props-descriptions-in-intellisense)
+  - [Migration from Enzyme to Testing Library](#migration-from-enzyme-to-testing-library)
+  - [TypeScript migration](#typescript-migration)
+  - [Strict Mode support](#strict-mode-support)
 - [A new product line: X](#a-new-product-line-x)
 - [New components](#new-components)
   - [Improved Grid](#improved-grid)
@@ -29,9 +32,7 @@ This release features some major highlights:
   - [New in the lab](#new-in-the-lab)
 - [v4 migration](#v4-migration)
   - [Change of the package names](#change-of-the-package-names)
-  - [Change of the styling engine](#change-of-the-styling-engine)
-  - [Installation](#installation)
-  - [Change of the React & TypeScript supported versions](#change-of-the-react-amp-typescript-supported-versions)
+  - [Change of the styling solution](#change-of-the-styling-solution)
   - [Change on the supported platforms](#change-on-the-supported-platforms)
 - [Design kits](#design-kits)
 - [What's next?](#whats-next)
@@ -381,18 +382,52 @@ These TypeScript prop descriptions are also used to generate the [API pages](/ap
 
 ### Migration from Enzyme to Testing Library
 
-- The value? Makes it easier for developers to copy the source, and maintainers to make sure the components are easy to test
+The migration of MUI from class components [to hooks in v4](/blog/material-ui-v4-is-out/#preparing-for-the-future) broke many of the tests we had written with [Enzyme](https://github.com/enzymejs/enzyme/).
+Our tests were too coupled with the internals of React.
+We decided to transition our tests suite to [Testing Library](https://testing-library.com/).
+
+Fast forward a couple of years, Testing Library is now [the most popular](https://npm-stat.com/charts.html?package=enzyme&package=%40testing-library%2Freact&from=2020-09-13&to=2021-09-13) option to test React components in the community.
+
+We are happy to report that we have migrated **all** our test codebase to Testing Library.
+You can use our tests as inspiration when you need to write new ones.
+The migration has even allowed us to rethink some of the implementations, making the components easier to test with the library.
 
 ### TypeScript migration
 
-- Share our progress https://github.com/mui-org/material-ui/issues/15984
-- Covered a bit in https://material-ui.com/blog/2020-q3-update/
-- The value? Helps keeping the types as accurate as possible
+The MUI Core codebase is not completely written in TypeScript yet but we have been coming a long way ([MUI X](https://github.com/mui-org/material-ui-x) is).
+In v4, we have written all the demos TypeScript first.
+
+With v5, we have made new steps toward the adoption of TypeScript:
+
+- We have made the TypeScript definitions the source of the API pages.
+  This reduces the likeliness for a new release to include out-of-date definitions.
+- We have migrated our first component to be written in TypeScript.
+- We are writing most of the new code in TypeScript.
+
+Overall, the language stats of GitHub give some qualitative measure of the progress:
+
+- 02/2019: 1.6%
+- 03/2020: 3.2%
+- 07/2020: 5.3%
+- 10/2020: 25.4%
+- 07/2021: 35.4%
+- Today: 36.1%
+
+<img src="/static/blog/mui-core-v5/typescript.png" alt="" style="width: 310px; margin-bottom: 16px;" />
+
+We expect the adoption of TypeScript to increase during the lifecycle of v5.
+With this organic adoption strategy, it might take us two years to close [#15984](https://github.com/mui-org/material-ui/issues/15984).
 
 ### Strict Mode support
 
-- Docs, test, etc. now runs in StrictMode
-- Warn that `@material-ui/styles` is not compatible
+This release is compatible with `React.StrictMode`.
+This is the result of two years of work on the infrastructure.
+We now run the tests and the documentation in strict mode.
+Thanks for the patience, this has been an old and [frequently requested](https://github.com/mui-org/material-ui/issues/13394) improvement.
+
+Bonus point, we run [React v18](https://github.com/reactwg/react-18) (unreleased) in a nightly build, in strict mode, without any test failures.
+
+> ⚠️ `@mui/styles` is not compatible with strict mode nor concurrent mode.
 
 ## A new product line: X
 
@@ -500,56 +535,41 @@ The following components are now available in the lab:
 
 ## v4 migration
 
-We put a lot of work in order to make the migration from v4 to v5 as easier as possible. If you are starting your upgrade, these are the three things you should look into:
+We have been meticulous to minimize the pain on the migration from v4 to v5. We know how daunting an upgrade can be.
 
-- ⚓ We have introduced actionable deprecations in v4. You can upgrade to v4.12.0 and start preparing your codebase to be compatible with v5.
-- ⚒️ We have prepared a [codemod](/guides/migration-v4/#preset-safe) that does most of the transformations you will need for the migration. If you are not familiar with what a codemod is, check out [Effective Refactoring with Codemods by Edd Yerburgh](https://www.youtube.com/watch?v=H9qtLutnT_g&ab_channel=Pusher).
-- 📄 Lastly, we have prepared a step-by-step [guide](/guides/migration-v4/) about how you can upgrade to v5, using the codemod above. This guide is the one place where you can find all information required for upgrading to v5.
+We have used all the tools at our disposal.
+We have documented all the breaking changes, we have added as many deprecations as we could, we wrote codemods to automate the laborious tasks, and more!
+
+If you are starting your upgrade, these are the three things you should look into:
+
+- ⚓ We have introduced actionable deprecations in v4.
+  You can upgrade to v4.12.0 and start preparing your codebase to be compatible with v5.
+- ⚒️ We have prepared a [codemod](/guides/migration-v4/#preset-safe) that does most of the transformations you will need for the migration.
+  If you are not familiar with what a codemod is, check out [Effective Refactoring with Codemods by Edd Yerburgh](https://www.youtube.com/watch?v=H9qtLutnT_g&ab_channel=Pusher).
+- 📄 Lastly, we have prepared a step-by-step [migration guide](/guides/migration-v4/).
+  This guide is the one place where you can find all information required for upgrading to v5.
 
 In the following sections, we will cover some high-level changes required for a successful upgrade.
 
 ### Change of the package names
 
-In order to support the new branding and the long-term direction we have, we made a change in the terminology used in the project.
-To support this, we needed to change the names of the packages that we provide. For more details on this check the [the migration guide](/guides/migration-v4/#update-mui-version).
+To support our [new brand](/blog/material-ui-is-now-mui/), we changed some of the terminology used in the project.
+The npm packages have been renamed.
+For more details on this check [the migration guide](/guides/migration-v4/#update-mui-version).
 
-### Change of the styling engine
+### Change of the styling solution
 
-The change of the styling engine, allowed us to unlock the improvement of the DX for the customization of the components, and the performance of the dynamic styles.
-We replaced [JSS](https://cssinjs.org/) with [emotion](https://emotion.sh/) as a default styled engine.
-If you prefer [styled-components](https://styled-components.com/), see the next version of how you can use it instead of emotion.
+We have [replaced JSS with emotion](#migration-from-jss-to-emotion) as a default styling solution while adding support for styled-components at the same time.
+We recommend migration your customization from JSS/`makeStyles`/`withStyles` to the new APIs: `styled` and the `sx` prop.
 
-We recommend migration your `makeStyles` customization by using the new customization APIs: `styled` or the `sx` prop.
-However, if you still wish to use the `makeStyles` API, you can:
+If you are not ready to migrate away from the `makeStyles` API now, you can:
 
 - add `@mui/styles` as a dependency and change the imports of the `makeStyles`/`withStyles` utilities
-- use [`tss-react`](https://github.com/garronej/tss-react) - it has API is similar to JSS makeStyles but works with emotion
+- use [`tss-react`](https://github.com/garronej/tss-react) - its API is similar to JSS `makeStyles` but is powered by emotion, which minimizes the bundle duplication with the core components.
 
 You can find more information for this on the [Migrate from JSS](/guides/migration-v4/#migrate-from-jss) section of the migration guide.
 
-### Installation
-
-To use the `v5` version of MUI.
-
-> 💡 If you want to use MUI v5 with **styled-components** instead of emotion, check out [the installation guide](/getting-started/installation/#npm)
-
-```sh
-npm install @mui/material @emotion/react @emotion/styled
-
-// or with `yarn`
-yarn add @mui/material @emotion/react @emotion/styled
-```
-
-**Optional** if your project includes `@mui/icons-material` and/or `@mui/lab`, use the `v5` version of them.
-
-```sh
-npm install @mui/icons-material @mui/lab
-
-// or with `yarn`
-yarn add @mui/icons-material @mui/lab
-```
-
-### Changes to the supported platforms
+### Change to the supported platforms
 
 This breaking change is an opportunity to drop the support of legacy upstream dependencies.
 
