@@ -12,7 +12,7 @@ Esta é uma referência para atualizar seu site de Material-UI v3 para v4. Embor
 
 ## Por que você deve migrar
 
-Esta página de documentação cobre o *como* migrar da v3 para a v4. O *por que* é abordado na [postagem no blog do Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+Esta página de documentação cobre o *como* migrar da v3 para a v4. O *porque* é abordado na [postagem no blog do Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
 ## Atualizando suas dependências
 
@@ -223,14 +223,14 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 - [ClickAwayListener] Esconda propriedades react-event-listener.
 
-### Dialog
+### Diálogo
 
 - [DialogActions] Renomeie a propriedade `disableActionSpacing` para `disableSpacing`.
 - [DialogActions] Renomeie a classe CSS `action` para `spacing`.
 - [DialogContentText] Use a variante de tipografia `body1` em vez de `subtitle1`.
 - [Dialog] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
-### Divider
+### Divisor
 
 - [Divider] Remova a propriedade obsoleta `inset`.
 
@@ -337,7 +337,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
   +<Tabs variant="scrollable" />
   ```
 
-### Table
+### Tabela
 
 - [TableCell] Remova a propriedade descontinuada `numeric`:
 
@@ -356,7 +356,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 - [TablePagination] O componente já não tenta corrigir as combinações de propriedades inválidas (`page`, `count`, `rowsPerPage`). Em vez disso, emite um aviso.
 
-### TextField
+### Campo de texto
 
 - [InputLabel] Você deve conseguir sobrescrever todos os estilos do componente FormLabel usando a API CSS do componente InputLabel. A propriedade `FormLabelClasses` foi removida.
 
@@ -379,7 +379,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 - [InputBase] Remova a classe `inputType` do `InputBase`.
 
-### Tooltip
+### Dica
 
 - [Tooltip] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 - [Tooltip] Aparece somente após o foco ser "focus-visible" em vez de qualquer foco.

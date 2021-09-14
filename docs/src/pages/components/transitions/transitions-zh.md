@@ -56,9 +56,9 @@ export default Main() {
 
 ## Slide 滑动
 
-从屏幕边缘滑入。 `direction` 属性控制从屏幕的哪一个边缘开始。
+从屏幕边缘滑入。 使用 `direction` 属性能够控制从屏幕的哪一个边缘开始过渡。
 
-过渡组件的 `mountOnEnter` 属性使子组件无法被挂载，直到 `in` 为 `true`。 这可以保证相对上定位好的组件不会从屏幕外面的位置滚动到视图中。 同样的， 在组件从屏幕中过渡完后，`unmountOnExit` 属性将次组件从 DOM 中移除。
+过渡组件的 `mountOnEnter` 属性，保证了只有 `in` 是`true`时，子组件才会被渲染。 这可以保证相对上定位好的组件不会从屏幕外面的位置滚动到视图中。 同样的， 在组件从屏幕中过渡完后，`unmountOnExit` 属性将次组件从 DOM 中移除。
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
@@ -84,7 +84,7 @@ export default Main() {
 - 当进入过渡时调用 `onEnter` 回调属性。
 - 当退出过渡完成后应该调用 `onExited` 回调属性。 这两个回调属性保证了当在一个关闭的状态并展示完过渡动画时，才会移除子内容。
 
-For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](https://reactcommunity.org/react-transition-group/transition). 你还可以访问一些组件的专用部分： 你还可以访问一些组件的专用部分： 你还可以访问一些组件的专用部分：
+For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition). 你还可以访问一些组件的专用部分： 你还可以访问一些组件的专用部分： 你还可以访问一些组件的专用部分：
 
 - [Modal](/components/modal/#transitions)
 - [Dialog](/components/dialogs/#transitions)

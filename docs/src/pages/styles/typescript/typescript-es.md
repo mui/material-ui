@@ -1,6 +1,6 @@
 # TypeScript
 
-### Customization of `Theme`
+### Personalización de `Tema`
 
 Puedes aumentar el tipo de tema predeterminado para evitar tener que configurar el tipo de tema cada vez que utilices `makeStyles`, `useTheme`, o `styled`.
 

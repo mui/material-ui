@@ -56,9 +56,9 @@ export default Main() {
 
 ## Slide
 
-画面の端からスライドします。 `direction` プロパティは、画面のどの端からトランジションを開始するかを制御します。
+画面の端からスライドします。 画面の端からスライドします。 画面の端からスライドします。 `direction` プロパティは、画面のどの端からトランジションを開始するかを制御します。
 
-The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. これにより、相対的に配置されたコンポーネントが画面外の位置からビューにスクロールするのを防ぐことができます。 同様に、 `unmountOnExit` プロパティは、画面外に遷移した後、DOMからコンポーネント を削除します。
+The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. これにより、相対的に配置されたコンポーネントが画面外の位置からビューにスクロールするのを防ぐことができます。 これにより、相対的に配置されたコンポーネントが画面外の位置からビューにスクロールするのを防ぐことができます。 同様に、 `unmountOnExit` プロパティは、画面外に遷移した後、DOMからコンポーネント を削除します。 これにより、相対的に配置されたコンポーネントが画面外の位置からビューにスクロールするのを防ぐことができます。 同様に、 `unmountOnExit` プロパティは、画面外に遷移した後、DOMからコンポーネント を削除します。
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
@@ -84,7 +84,7 @@ Some Material-UI components use these transitions internally. These accept a `Tr
 - Call the `onEnter` callback prop when the enter transition starts.
 - Call the `onExited` callback prop when the exit transition is completed. Call the `onExited` callback prop when the exit transition is completed.
 
-For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](https://reactcommunity.org/react-transition-group/transition). You can also visit the dedicated sections of some of the components:
+For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition). You can also visit the dedicated sections of some of the components:
 
 - [Modal](/components/modal/#transitions)
 - [Dialog](/components/dialogs/#transitions)

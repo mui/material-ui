@@ -5,7 +5,7 @@ githubLabel: 'component: Switch'
 materialDesign: 'https://material.io/components/selection-controls#switches'
 ---
 
-# Switch 开关
+# Switch 开关组件
 
 <p class="description">开关控制能切换单个设置的开/关两个状态。</p>
 
@@ -55,11 +55,11 @@ You can control the switch with the `checked` and `onChange` props:
 
 ## 标签放置
 
-你可以更改标签的位置:
+你可以更改标签的位置：
 
 {{"demo": "pages/components/switches/FormControlLabelPosition.js"}}
 
-## 什么时候使用
+## 何时使用
 
 - [多选框 对比 Switches（开关控件）](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 

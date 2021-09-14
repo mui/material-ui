@@ -14,7 +14,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 快速拨号实例
+## 简单的快速拨号组件
 
 浮动操作按钮可以显示相关操作。
 
@@ -26,7 +26,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 ## 自定义关闭图标
 
-您可以使用 `SpeedDialIcon` 组件的 `图标` 和 `openIcon` 道具 为关闭和打开状态提供备用图标。
+您可以使用 `SpeedDialIcon` 组件的 `icon` 和 `openIcon` 属性，给关闭和打开状态提供一个备用的图标。
 
 {{"demo": "pages/components/speed-dial/ControlledOpenSpeedDial.js"}}
 

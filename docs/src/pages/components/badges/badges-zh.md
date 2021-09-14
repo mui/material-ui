@@ -34,7 +34,7 @@ githubLabel: 'component: Badge'
 
 ## 最大值
 
-您可以使用 `max` 属性来限制徽章内容的最大值。
+您可以使用 `max` 属性来限制徽章组件内容的最大值。
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
@@ -46,7 +46,7 @@ githubLabel: 'component: Badge'
 
 ## 徽章组件的 overlap 属性
 
-您可以使用 `overlap` 这个属性，在封装的元素相对的一角来显示徽章组件。
+你可以使用 `overlap` 属性来将徽章组件放置到到封装的元素一个相对位置的角落。
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 

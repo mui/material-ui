@@ -39,7 +39,7 @@ const styles = {
 
 withStyles(styles);
 //         ^^^^^^
-//         Os tipos de propriedade 'flexDirection' são incompatíveis.
+//         Os tipos da propriedade 'flexDirection' são incompatíveis.
 //           Tipo 'string' não pode ser atribuído para o tipo '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
 ```
 
@@ -153,10 +153,10 @@ const styles = (theme: Theme) => createStyles({
 });
 
 interface Props {
-  // non-style props
+  // propriedades comuns
   foo: number;
   bar: boolean;
-  // injected style props
+  // propriedades de estilo injetadas
   classes: {
     root: string;
     paper: string;

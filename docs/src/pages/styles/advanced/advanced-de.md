@@ -2,7 +2,7 @@
 
 <p class="description">In diesem Abschnitt wird die erweiterte Verwendung von @material-ui/core/styles behandelt.</p>
 
-## Theming
+## Theming.
 
 Sie können das äußere Theme erweitern, indem Sie eine Funktion bereitstellen: Das innere Theme ** überschreibt** das äußere Theme.
 
@@ -284,6 +284,9 @@ In diesem Beispiel wird ein Html-String zurückgegeben und die erforderliche kri
 ```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
+
+const styleNode = document.createComment('jss-insertion-point');
+document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
   ...jssPreset(),

@@ -84,7 +84,7 @@ Some Material-UI components use these transitions internally. These accept a `Tr
 - Call the `onEnter` callback prop when the enter transition starts.
 - Call the `onExited` callback prop when the exit transition is completed. Call the `onExited` callback prop when the exit transition is completed.
 
-For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](https://reactcommunity.org/react-transition-group/transition). You can also visit the dedicated sections of some of the components:
+For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition). You can also visit the dedicated sections of some of the components:
 
 - [Modal](/components/modal/#transitions)
 - [Dialog](/components/dialogs/#transitions)

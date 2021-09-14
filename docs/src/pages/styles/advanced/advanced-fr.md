@@ -252,19 +252,12 @@ The `StylesProvider` component has an `injectFirst` prop to inject the style tag
 The injection of style tags happens in the **same order** as the `makeStyles` / `withStyles` / `styled` invocations. For instance the color red wins in this case:
 
 ```jsx
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import rtl from 'jss-rtl'
 
-const useStylesBase = makeStyles({
-  root: {
-    color: 'blue', // 🔵
-  },
-});
-
-const useStyles = makeStyles({
-  root: {
-    color: 'red', // 🔴
-  },
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
 });
 
 export default function MyComponent() {

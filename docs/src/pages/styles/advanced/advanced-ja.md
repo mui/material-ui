@@ -255,10 +255,8 @@ const useStylesBase = makeStyles({
   },
 });
 
-const useStyles = makeStyles({
-  root: {
-    color: 'red', // 🔴
-  },
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
 });
 
 export default function MyComponent() {
@@ -321,6 +319,9 @@ export default function App() {
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
 
+const styleNode = document.createComment('jss-insertion-point');
+document.head.insertBefore(styleNode, document.head.firstChild);
+
 const jss = create({
   ...jssPreset(),
   // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
@@ -344,8 +345,13 @@ const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
-  ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      ...
   insertionPoint: 'jss-insertion-point',
 });
 

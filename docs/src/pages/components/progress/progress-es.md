@@ -30,7 +30,7 @@ Los indicadores **determinados** muestran cuánto durará una operación.
 
 ### Circular determinate
 
-{{"demo": "pages/components/progress/CircularDeterminate.js"}}
+{{"demo": "pages/components/progress/CircularIntegration.js"}}
 
 ### Interactive integration
 

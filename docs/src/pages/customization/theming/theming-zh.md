@@ -60,7 +60,7 @@ declare module '@material-ui/core/styles' {
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
-## 访问组件中的主题
+## 访问一个组件中的主题
 
 <video autoPlay muted loop width="320">
   <source src="/static/studies.mp4" type="video/mp4" >
