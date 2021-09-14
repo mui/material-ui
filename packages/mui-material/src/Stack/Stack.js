@@ -44,6 +44,7 @@ const getSideFromDirection = (direction) => {
 export const style = ({ ownerState, theme }) => {
   let styles = {
     display: 'flex',
+    flexWrap: ownerState.wrap,
     ...handleBreakpoints({ theme }, ownerState.direction, (propValue) => ({
       flexDirection: propValue,
     })),
@@ -63,12 +64,24 @@ export const style = ({ ownerState, theme }) => {
     const spacingValues = resolveBreakpointValues({ values: ownerState.spacing, base });
 
     const styleFromPropValue = (propValue, breakpoint) => {
+      const direction = getSideFromDirection(
+        breakpoint ? directionValues[breakpoint] : ownerState.direction,
+      );
+
+      if (ownerState.wrap === 'wrap' || ownerState.wrap === 'wrap-reverse') {
+        return {
+          margin: `-${getValue(transformer, propValue)}`,
+          '& > :not(style)': {
+            marginLeft: getValue(transformer, propValue),
+            marginBottom: getValue(transformer, propValue),
+          },
+        };
+      }
+
       return {
         '& > :not(style) + :not(style)': {
           margin: 0,
-          [`margin${getSideFromDirection(
-            breakpoint ? directionValues[breakpoint] : ownerState.direction,
-          )}`]: getValue(transformer, propValue),
+          [`margin${direction}`]: getValue(transformer, propValue),
         },
       };
     };
@@ -93,6 +106,7 @@ const Stack = React.forwardRef(function Stack(inProps, ref) {
     component = 'div',
     direction = 'column',
     spacing = 0,
+    wrap = 'nowrap',
     divider,
     children,
     ...other
@@ -100,6 +114,7 @@ const Stack = React.forwardRef(function Stack(inProps, ref) {
   const ownerState = {
     direction,
     spacing,
+    wrap,
   };
 
   return (
@@ -151,6 +166,12 @@ Stack.propTypes /* remove-proptypes */ = {
    * The system prop, which allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.object,
+  /**
+   * Defines the `flex-wrap` style property.
+   * It's applied for all screen sizes.
+   * @default 'nowrap'
+   */
+  wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
 };
 
 export default Stack;

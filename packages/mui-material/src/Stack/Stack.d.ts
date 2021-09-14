@@ -3,6 +3,8 @@ import { ResponsiveStyleValue, SxProps, SystemProps } from '@mui/system';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles/createTheme';
 
+export type FlexWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
+
 export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     SystemProps<Theme> & {
@@ -30,6 +32,12 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The system prop, which allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps<Theme>;
+      /**
+       * Defines the `flex-wrap` style property.
+       * It's applied for all screen sizes.
+       * @default 'nowrap'
+       */
+      wrap?: FlexWrap;
     };
   defaultComponent: D;
 }

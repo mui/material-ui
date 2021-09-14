@@ -17,7 +17,14 @@
       },
       "default": "0"
     },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "object" } },
+    "wrap": {
+      "type": {
+        "name": "enum",
+        "description": "'nowrap'<br>&#124;&nbsp;'wrap-reverse'<br>&#124;&nbsp;'wrap'"
+      },
+      "default": "'nowrap'"
+    }
   },
   "name": "Stack",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
