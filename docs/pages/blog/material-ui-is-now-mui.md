@@ -82,10 +82,9 @@ The npm organization name has moved from @material-ui to [@mui](https://www.npmj
 
 ### A new website & documentation
 
-We used this opportunity to tell a different story about the company and its products, positioning us in a broader space.
-We better explain and share what we do and who we are.
-We have created a custom brand identity, away from Material Design.
-For instance, you will find this custom color palette:
+Lastly, to celebrate and start a new chapter of the company, together with v5.0.0 rolling out and new products in the making, we're introducing a brand new marketing website and documentation design.
+
+You'll find a completely different theme from Material Design, new typeface, colors, box-shadows, etc. All done using the sophisticated theming features. We want to position the company in a broader space, better explain and share what we do and who we are. 
 
 <img loading="lazy" src="/static/blog/material-ui-is-now-mui/palette.png" alt="" style="width: 408px; margin-bottom: 16px;" />
 
