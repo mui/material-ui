@@ -8,14 +8,14 @@ If you still can't find what you're looking for, you can refer to our [support p
 
 Material-UIをサポートする方法はたくさんあります。
 
-- **ライブラリを布教する**  **ライブラリを布教する** **ライブラリを布教する** **ライブラリを布教する** **ライブラリを布教する** Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
+- **ライブラリを布教する**  **ライブラリを布教する** **ライブラリを布教する** **ライブラリを布教する** **ライブラリを布教する** Evangelize Material-UI by [linking to mui.com](https://mui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
 - **フィードバックを送る** Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **新規ユーザーを助ける** You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **変更を加える**
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
   - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
-  - Help [translate](https://translate.material-ui.com) the documentation.
+  - Help [translate](https://translate.mui.com) the documentation.
   - [Pull Requestを出して](https://github.com/mui-org/material-ui/pulls)、[私たちのドキュメントを改善したり](https://github.com/mui-org/material-ui/tree/next/docs)、 バグを修正したり、新機能を追加したりしましょう。
 - **[OpenCollective](https://opencollective.com/material-ui)で資金的なサポートをする** If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
 

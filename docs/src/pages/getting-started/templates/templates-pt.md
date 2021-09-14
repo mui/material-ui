@@ -18,6 +18,6 @@ Até agora, temos demonstrações para um painel, página de login, página de i
 
 ## Temas Premium
 
-Procurando por algo mais? Você pode encontrar modelos completos & temas na <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">seção de modelos premium</a>.
+Procurando por algo mais? Você pode encontrar modelos completos & temas na <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">seção de modelos premium</a>.
 
-<a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="modelos react" /></a>
+<a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="modelos react" /></a>

@@ -8,14 +8,14 @@ Si vous ne pouvez toujours pas trouver ce que vous cherchez, vous pouvez consult
 
 Il y a plusieurs façons de soutenir Material-UI :
 
-- **Faites passer le mot**. Évangéliser Material-UI en affichant un [lien vers material-ui.com](https://material-ui.com/) sur votre site web, chaque lien compte. Suivez-nous sur [Twitter](https://twitter.com/MaterialUI), aimer et retweeter les nouvelles importantes. Ou parlez simplement de nous avec vos amis.
+- **Faites passer le mot**. Évangéliser Material-UI en affichant un [lien vers mui.com](https://mui.com/) sur votre site web, chaque lien compte. Suivez-nous sur [Twitter](https://twitter.com/MaterialUI), aimer et retweeter les nouvelles importantes. Ou parlez simplement de nous avec vos amis.
 - **donnez nous vos retours**. Dites-nous ce que nous faisons bien ou ce que nous pouvons améliorer. Merci de voter 👍 les problèmes qui vous voudriez le plus voir résolus.
 - **Aidez les nouveaux utilisateurs**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Apportez des modifications**.
   - Modifiez la documentation. Chaque page a un lien "ÉDITER CETTE PAGE" en haut à droite.
   - Signaler des bugs ou des fonctionnalités manquantes en [créant un ticket](https://github.com/mui-org/material-ui/issues/new).
   - Réviser et commenter les [pull requests](https://github.com/mui-org/material-ui/pulls) existantes et les [tickets](https://github.com/mui-org/material-ui/issues).
-  - Aidez à [traduire](https://translate.material-ui.com) la documentation.
+  - Aidez à [traduire](https://translate.mui.com) la documentation.
   - [Improve our documentation](https://github.com/mui-org/material-ui/tree/master/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 - **Soutenez nous financièrement sur [OpenCollective](https://opencollective.com/material-ui)**. Si vous utilisez Material-UI dans un projet commercial et que vous souhaitez soutenir son développement continu en devenant Sponsor, ou dans un projet parallèle ou hobby et aimeriez devenir un Backer, vous pouvez le faire via OpenCollective. Tous les fonds donnés sont gérés de manière transparente et les Sponsors reçoivent une reconnaissance dans le README et sur la page d'accueil de Material-UI.
 

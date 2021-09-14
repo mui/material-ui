@@ -92,7 +92,7 @@ function TopLayoutBlog(props) {
         largeCard={headers.card === 'true' ? true : undefined}
         card={
           headers.card === 'true'
-            ? `https://material-ui.com/static${router.pathname}/card.png`
+            ? `https://mui.com/static${router.pathname}/card.png`
             : undefined
         }
       />

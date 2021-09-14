@@ -2,7 +2,7 @@
 
 <p class="description">Ja, v4 wurde veröffentlicht!</p>
 
-Looking for the v3 docs? [Find them here](https://material-ui.com/versions/).
+Looking for the v3 docs? [Find them here](https://mui.com/versions/).
 
 > This document is a work in progress. Have you upgraded your site and run into something that's not covered here? [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v3/migration-v3.md).
 
@@ -153,7 +153,7 @@ yarn add @material-ui/styles
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
 
-  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
+  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://mui.com/system/spacing/#transformation).
 
 - [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
 

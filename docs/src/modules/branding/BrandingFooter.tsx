@@ -78,7 +78,7 @@ export default function BrandingFooter() {
                       color="inherit"
                       underline="hover"
                       variant="body2"
-                      href="https://material-ui.com/store/"
+                      href="https://mui.com/store/"
                     >
                       {t1('Store')}
                     </Link>
@@ -309,7 +309,7 @@ export default function BrandingFooter() {
                 <Link
                   color="text.primary"
                   underline="hover"
-                  href={`https://material-ui.com${languagePrefix}/versions/`}
+                  href={`https://mui.com${languagePrefix}/versions/`}
                   aria-label={`v${process.env.LIB_VERSION}. View versions page.`}
                 >
                   {`v${process.env.LIB_VERSION}`}

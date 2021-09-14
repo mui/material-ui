@@ -49,7 +49,7 @@
 
 Material-UI CE（社区版本）最初的时候就是 100% 的开源项目（MIT 开源协议），并且永远都会是。 Developers can ensure Material-UI is the right choice for their React applications through Material-UI's community maintenance strategy. Material-UI 团队会定期发布新版本，修复 bug，并非常欢迎社区的拉取请求（pull requests）。 Material-UI 团队会定期发布新版本，修复 bug，并非常欢迎社区的拉取请求（pull requests）。
 
-我们考虑到时间和资源限制的现实，以及需要不断创新的愿望，所以随着时间的推移，我们有必要将开发的重点转移到框架的最新版本（[我们的版本发布时间表](https://material-ui.com/versions/#release-frequency)），同时让用户尽可能平稳地过渡到新的版本，所以我们做了包括迁移指南在内的多个工作，例如 [这个 v4 版本](/guides/migration-v3/) 的迁移指南。 作为一个开源社区，我们始终欢迎您来提交新的功能和帮助我们修复错误。
+我们考虑到时间和资源限制的现实，以及需要不断创新的愿望，所以随着时间的推移，我们有必要将开发的重点转移到框架的最新版本（[我们的版本发布时间表](https://mui.com/versions/#release-frequency)），同时让用户尽可能平稳地过渡到新的版本，所以我们做了包括迁移指南在内的多个工作，例如 [这个 v4 版本](/guides/migration-v3/) 的迁移指南。 作为一个开源社区，我们始终欢迎您来提交新的功能和帮助我们修复错误。
 
 各个 Material-UI 版本的当前状态如下所示：
 
@@ -104,4 +104,4 @@ Tidelift 订阅能够为您管理您的依赖包：
 
 请注意，工作必须与 Material-UI 相关。 我们不接受一般的 React 开发工作。 我们的合同价格是 200美元/小时 或 1500美元/天。
 
-[给我们发送一封电子邮件](mailto:custom-work@material-ui.com)
+[给我们发送一封电子邮件](mailto:custom-work@mui.com)

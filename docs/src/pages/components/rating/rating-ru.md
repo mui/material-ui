@@ -52,7 +52,7 @@ The rating is implemented with a radio group, set `highlightSelectedOnly` to res
 Доступность этого компонента зависит от:
 
 - Скрыта ли визуально группа radio-кнопок. Rating содержит шесть radio-кнопок, по одному для каждой звёздочки, а ещё одна для 0 звёзд, которые проверяются по умолчанию. Не забудьте предоставить значение для prop `name`, который уникален для родительской формы.
-- Labels for the radio buttons containing actual text (“1 Star”, “2 Stars”, …). Be sure to provide a suitable function to the `getLabelText` prop when the page is in a language other than English. You can use the [included locales](https://material-ui.com/guides/localization/), or provide your own.
+- Labels for the radio buttons containing actual text (“1 Star”, “2 Stars”, …). Be sure to provide a suitable function to the `getLabelText` prop when the page is in a language other than English. You can use the [included locales](https://mui.com/guides/localization/), or provide your own.
 - A visually distinct appearance for the rating icons. By default, the rating component uses both a difference of color and shape (filled and empty icons) to indicate the value. In the event that you are using color as the only means to indicate the value, the information should also be also displayed as text, as in this demo. This is important to match [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) of WCAG2.1.
 
 {{"demo": "pages/components/rating/TextRating.js"}}

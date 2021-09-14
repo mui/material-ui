@@ -95,7 +95,7 @@ Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next
   }
   ```
 
-- The second version of the adapter is the `Link` component. This component is styled. It leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
+- The second version of the adapter is the `Link` component. This component is styled. It leverages the [link component of Material-UI](https://mui.com/components/links/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';

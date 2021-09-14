@@ -6,11 +6,11 @@ packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
-# Date Range Picker [<span role="img" title="Enterprise">⚡️</span>](https://material-ui.com/store/items/material-ui-x/)
+# Date Range Picker [<span role="img" title="Enterprise">⚡️</span>](https://mui.com/store/items/material-ui-x/)
 
 <p class="description">Les sélecteurs de dates permettent à l'utilisateur de sélectionner une plage de dates.</p>
 
-> <br /><br /> This paid extension will include more advanced components (rich data grid, date range picker, tree view drag & drop, etc.). ⚠️ Premium component <br /><br /> The date range picker is intended for Material-UI X, a commercial set of advanced components built on top of the community edition (MIT license) of Material-UI. [Early access](https://material-ui.com/store/items/material-ui-x/) starts at an affordable price.
+> <br /><br /> This paid extension will include more advanced components (rich data grid, date range picker, tree view drag & drop, etc.). ⚠️ Premium component <br /><br /> The date range picker is intended for Material-UI X, a commercial set of advanced components built on top of the community edition (MIT license) of Material-UI. [Early access](https://mui.com/store/items/material-ui-x/) starts at an affordable price.
 
 Les sélecteurs de plage de dates permettent à l'utilisateur de sélectionner une plage de dates.
 

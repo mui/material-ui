@@ -300,7 +300,7 @@ const RowHead = ({
 );
 
 function getUrl(hash: string) {
-  return `https://material-ui.com/components/data-grid${hash}`;
+  return `https://mui.com/components/data-grid${hash}`;
 }
 
 const rowHeaders: Record<string, React.ReactNode> = {

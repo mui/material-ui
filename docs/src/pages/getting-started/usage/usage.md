@@ -50,7 +50,7 @@ It fixes some inconsistencies across browsers and devices while providing slight
 ## Versioned Documentation
 
 This documentation always reflects the latest stable version of MUI.
-You can find older versions of the documentation on a [separate page](https://material-ui.com/versions/).
+You can find older versions of the documentation on a [separate page](https://mui.com/versions/).
 
 ## Next steps
 

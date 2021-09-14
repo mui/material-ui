@@ -64,11 +64,11 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
  *
  * Demos:
  *
- * - [Accordion](https://material-ui.com/components/accordion/)
+ * - [Accordion](https://mui.com/components/accordion/)
  *
  * API:
  *
- * - [Accordion API](https://material-ui.com/api/accordion/)
- * - inherits [Paper API](https://material-ui.com/api/paper/)
+ * - [Accordion API](https://mui.com/api/accordion/)
+ * - inherits [Paper API](https://mui.com/api/paper/)
  */
 export default function Accordion(props: AccordionProps): JSX.Element;

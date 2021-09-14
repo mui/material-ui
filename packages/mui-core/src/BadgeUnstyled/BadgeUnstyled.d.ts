@@ -92,11 +92,11 @@ export type ExtendBadgeUnstyled<M extends OverridableTypeMap> = OverridableCompo
  *
  * Demos:
  *
- * - [Badges](https://material-ui.com/components/badges/)
+ * - [Badges](https://mui.com/components/badges/)
  *
  * API:
  *
- * - [BadgeUnstyled API](https://material-ui.com/api/badge-unstyled/)
+ * - [BadgeUnstyled API](https://mui.com/api/badge-unstyled/)
  */
 declare const BadgeUnstyled: OverridableComponent<BadgeUnstyledTypeMap>;
 

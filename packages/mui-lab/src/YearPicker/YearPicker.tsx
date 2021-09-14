@@ -261,10 +261,10 @@ YearPicker.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/components/date-picker/)
  *
  * API:
  *
- * - [YearPicker API](https://material-ui.com/api/year-picker/)
+ * - [YearPicker API](https://mui.com/api/year-picker/)
  */
 export default YearPicker as <TDate>(props: YearPickerProps<TDate>) => JSX.Element;

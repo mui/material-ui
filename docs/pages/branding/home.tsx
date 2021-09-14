@@ -47,8 +47,8 @@ export default function Home() {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "MUI",
-  "url": "https://material-ui.com/",
-  "logo": "https://material-ui.com/static/logo.png",
+  "url": "https://mui.com/",
+  "logo": "https://mui.com/static/logo.png",
   "sameAs": [
     "https://twitter.com/materialUI",
     "https://github.com/mui-org/material-ui",

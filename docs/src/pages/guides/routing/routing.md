@@ -123,7 +123,7 @@ The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/n
 
 - The second version of the adapter is the `Link` component.
   This component is styled.
-  It leverages the [link component of MUI](https://material-ui.com/components/links/) with `NextLinkComposed`.
+  It leverages the [link component of MUI](https://mui.com/components/links/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';

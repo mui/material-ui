@@ -8,7 +8,7 @@ export default function Head(props) {
   const t = useTranslate();
   const {
     // #major-version-switch
-    card = 'https://material-ui.com/static/branding/card.jpeg',
+    card = 'https://mui.com/static/branding/card.jpeg',
     children,
     description = t('strapline'),
     largeCard = true,
@@ -33,7 +33,7 @@ export default function Head(props) {
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       {/* #major-version-switch */}
-      <meta property="og:url" content={`https://material-ui.com${router.asPath}`} />
+      <meta property="og:url" content={`https://mui.com${router.asPath}`} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={card} />
       <meta property="og:ttl" content="604800" />

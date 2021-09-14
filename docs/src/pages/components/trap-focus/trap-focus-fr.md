@@ -22,7 +22,7 @@ Lorsque `open={true}` le piège est activé, et en appuyant sur <kbd class="key"
 
 ## Unstyled
 
-- 📦 [1,5 ko gzippé](https://material-ui.com/size-snapshot).
+- 📦 [1,5 ko gzippé](https://mui.com/size-snapshot).
 
 As the component does not have any styles, it also comes with the unstyled package.
 
