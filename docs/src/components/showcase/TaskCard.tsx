@@ -93,7 +93,12 @@ export default function TaskCard() {
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <ScheduleRounded fontSize="inherit" />
-            <Typography color="text.secondary" variant="caption" sx={{ ml: 0.5, mt: '1px' }}>
+            <Typography
+              color="text.secondary"
+              variant="caption"
+              fontWeight={500}
+              sx={{ ml: 0.5, mt: '1px' }}
+            >
               March 25th
             </Typography>
           </Box>
@@ -120,10 +125,12 @@ export default function TaskCard() {
               variant="rounded"
             />
             <Box sx={{ ml: 1 }}>
-              <Typography variant="body2" color="primary.200">
+              <Typography variant="body2" color="primary.200" fontWeight={500}>
                 Assigned to
               </Typography>
-              <Typography id="demo-task-card-assigne-name">Michael Scott</Typography>
+              <Typography id="demo-task-card-assigne-name" fontWeight={500}>
+                Michael Scott
+              </Typography>
             </Box>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 0.5 }}>

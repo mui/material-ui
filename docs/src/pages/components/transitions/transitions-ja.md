@@ -56,9 +56,9 @@ export default Main() {
 
 ## Slide
 
-画面の端からスライドします。 `direction` プロパティは、画面のどの端からトランジションを開始するかを制御します。
+画面の端からスライドします。 画面の端からスライドします。 画面の端からスライドします。 `direction` プロパティは、画面のどの端からトランジションを開始するかを制御します。
 
-The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. これにより、相対的に配置されたコンポーネントが画面外の位置からビューにスクロールするのを防ぐことができます。 同様に、 `unmountOnExit` プロパティは、画面外に遷移した後、DOMからコンポーネント を削除します。
+The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. これにより、相対的に配置されたコンポーネントが画面外の位置からビューにスクロールするのを防ぐことができます。 これにより、相対的に配置されたコンポーネントが画面外の位置からビューにスクロールするのを防ぐことができます。 同様に、 `unmountOnExit` プロパティは、画面外に遷移した後、DOMからコンポーネント を削除します。 これにより、相対的に配置されたコンポーネントが画面外の位置からビューにスクロールするのを防ぐことができます。 同様に、 `unmountOnExit` プロパティは、画面外に遷移した後、DOMからコンポーネント を削除します。
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 

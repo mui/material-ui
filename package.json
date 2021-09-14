@@ -59,7 +59,6 @@
     "test:regressions:server": "serve test/regressions",
     "test:umd": "node packages/mui-material/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}'",
-    "test:watch": "yarn test:unit --watch",
     "test:argos": "node ./scripts/pushArgos.js",
     "typescript": "lerna run --no-bail --parallel typescript",
     "typescript:ci": "lerna run --concurrency 7 --no-bail --no-sort typescript"
@@ -92,7 +91,7 @@
     "@types/lodash": "^4.14.172",
     "@types/mocha": "^9.0.0",
     "@types/prettier": "^2.3.2",
-    "@types/react": "^17.0.19",
+    "@types/react": "^17.0.20",
     "@types/sinon": "^10.0.2",
     "@types/webpack": "^4.41.22",
     "@types/yargs": "^17.0.0",
@@ -195,7 +194,7 @@
     "**/@babel/preset-react": "^7.14.5",
     "**/@babel/preset-typescript": "^7.15.0",
     "**/@babel/runtime": "^7.14.8",
-    "**/@types/react": "^17.0.19",
+    "**/@types/react": "^17.0.20",
     "**/@types/react-dom": "^17.0.9",
     "**/cross-fetch": "^3.1.4",
     "**/react-is": "^17.0.2"

@@ -55,7 +55,7 @@ If you wish to add support for a component or feature not highlighted here, plea
   - Thumbnail
   - **Controls ✓**
     - **Checkbox ✓**
-    - **Expand/collapse ✓** (AKA Nested)
+    - **Развернуть/свернуть ✓** (Вложение)
     - **Switch ✓**
     - Reorder
 - **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓**

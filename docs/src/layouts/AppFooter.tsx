@@ -97,7 +97,7 @@ export default function AppFooter() {
             <Link href={ROUTES.vision}>Vision</Link>
             <Link href={ROUTES.careers}>Careers</Link>
             <Link href={ROUTES.support}>Support</Link>
-            <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@material-ui.com">
+            <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
               Contact us
             </Link>
           </Box>

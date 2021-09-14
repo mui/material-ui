@@ -4,7 +4,7 @@ components: Select, NativeSelect
 githubLabel: 'component: Select'
 ---
 
-# Select (選択)
+# Select 選択
 
 <p class="description">選択コンポーネントは、オプションのリストからユーザー提供の情報を収集するために使用されます。</p>
 

@@ -414,7 +414,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
               fontSize: '1.125rem',
               color:
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primary[500]
+                  ? theme.palette.primary[300]
                   : theme.palette.primaryDark[400],
             },
           },
