@@ -38,7 +38,7 @@ In our last survey, the number of developers that complained about improving Mat
 At the same time, 400% more developers were struggling to customize the components.
 
 It is based on this context that we started to work on v5 in 2019.
-Our primary focus was to revamp the **customization DX**.
+Our primary focus was to revamp the **customization Developer Experience (DX)**.
 It had become clear that design and DX were key to unlock the next stage of growth.
 
 At the same time, the last major iteration on the library was done with MUI v4, released [2.5 years ago](/blog/material-ui-v4-is-out/).
