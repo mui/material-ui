@@ -71,7 +71,7 @@ It's basically the same, to keep it familiar –
 we're keeping the geometrical shape, to resonate with the _building blocks_ idea of the components –
 however we're reducing the emphasis on the 3D perspective, stepping away from the notion of elevation that Material Design coined.
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/old-new.png" alt="" style="width: 100%; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/old-new.png" alt="" style="width: 612px; margin-bottom: 16px;" />
 
 To better identify, market, and promote each product, we're introducing logos for each one of them.
 
