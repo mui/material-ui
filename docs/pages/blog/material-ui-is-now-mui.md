@@ -82,7 +82,8 @@ To better identify, market, and promote each product, we're introducing logos fo
 
 ### New package names
 
-The package names have changed in v5, which is a **breaking change**. You can find more details in the [release notes](https://github.com/mui-org/material-ui/releases/tag/v5.0.0).
+The package names have changed in v5, which is a **breaking change**.
+You can find more details in the [release](https://github.com/mui-org/material-ui/releases/tag/v5.0.0) [notes](https://github.com/mui-org/material-ui-x/releases/tag/v4.0.0).
 The npm organization name (scope) has moved from @material-ui to [@mui](https://www.npmjs.com/org/mui).
 
 ### A new website & documentation

@@ -132,20 +132,21 @@ In v5, we have pushed the solution one step further with the `sx` prop.
 The prop is now available on **all** the components (made possible by emotion).
 It exposes a superset of the CSS API: the normal CSS properties, shorthands, and media query helpers.
 
-For instance, you can add two units of vertical margin with:
+For instance, you can add one unit of vertical margin with:
 
 ```jsx
-// add margin: 16px 0px;
-<Slider sx={{ my: 2 }} />
+// add margin: 8px 0px;
+<Slider sx={{ my: 1 }} />
 ```
 
 <p class="blog-description"><a href="https://codesandbox.io/s/nostalgic-williams-zmo5r?file=/src/App.js">Codesandbox</a></p>
 
 Developers already seem to [love it](https://twitter.com/AnsonLowZF/status/1397034690771443715).
 You can find a [side-by-side comparison](/system/basics/#why-use-the-system) of `styled` vs. `sx` in the documentation to determine when you should use the prop.
-Find where your cursor is. Some developers use it for everything, others with parsimony.
+Some developers use `sx` for everything, others only in simple cases.
 
-The four components categorized as CSS utilities: Box, Grid, Typography, and Stack also expose a subset of the `sx` prop as flat props, for instance:
+The four components categorized as CSS utilities: Box, Grid, Typography, and Stack pushes the approach one step further.
+They expose a subset of the `sx` prop as flat props, for instance:
 
 ```jsx
 <Typography color="grey.600">
