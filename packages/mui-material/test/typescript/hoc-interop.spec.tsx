@@ -13,7 +13,7 @@ import { createStyles, withStyles } from '@mui/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import emotionStyled from '@emotion/styled';
 import * as React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 const filledProps = {
