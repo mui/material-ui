@@ -43,7 +43,7 @@ At the same time, 5X more developers were struggling to customize the components
 
 It is based on this context that we started to work on v5 in 2019.
 Our primary focus was to revamp the **customization Developer Experience (DX)**.
-It had become clear that design and DX were key to unlocking the next stage of growth.
+It had become clear that design (aesthetic, UX) and DX were key to unlocking the next stage of growth.
 
 The last major iteration on the library was completed with MUI v4, released [two-and-a-half years ago](/blog/material-ui-v4-is-out/),
 meaning over a year without innovation.

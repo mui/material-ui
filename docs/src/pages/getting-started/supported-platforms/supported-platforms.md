@@ -40,7 +40,7 @@ v6 will completely remove the support of IE 11.
 <!-- #stable-snapshot -->
 
 MUI supports [Node.js](https://github.com/nodejs/node) starting with version 12.17 (or 12.0 with `--experimental-modules` enabled) for server-side rendering.
-It aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode.
+This aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode.
 
 ### CSS prefixing
 
@@ -63,4 +63,4 @@ Have a look at the older [versions](https://mui.com/versions/) for backward comp
 ## TypeScript
 
 MUI requires a minimum version of TypeScript 3.5.
-It aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old.
+This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old.
