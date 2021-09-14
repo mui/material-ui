@@ -6,11 +6,11 @@ packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
-# Date Range Picker [<span role="img" title="Enterprise">⚡️</span>](https://mui.com/store/items/material-ui-pro/) (Выбор диапазона дат)
+# Date Range Picker [<span role="img" title="Enterprise">⚡️</span>](https://material-ui.com/store/items/material-ui-pro/) (Выбор диапазона дат)
 
 <p class="description">Date pickers позволяют пользователю выбрать диапазон дат.</p>
 
-> ⚠️ Pro component <br /><br /> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). <br /><br /> Это платное расширение будет включать более продвинутые компоненты (rich data grid, date range picker, tree view drag & drop, и т.д.). [Ранний доступ](https://mui.com/store/items/material-ui-pro/) начинается по доступной цене.
+> ⚠️ Pro component <br /><br /> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). <br /><br /> Это платное расширение будет включать более продвинутые компоненты (rich data grid, date range picker, tree view drag & drop, и т.д.). [Ранний доступ](https://material-ui.com/store/items/material-ui-pro/) начинается по доступной цене.
 
 Выбор диапазона дат (date range pickers) позволяет пользователю выбрать диапазон дат.
 

@@ -2,7 +2,7 @@
 
 <p class="description">Este pacote hospeda os componentes da incubadora que ainda não estão prontos para mover para o core.</p>
 
-A principal diferença entre o lab e o core (núcleo) é como os componentes são versionados. Tendo um pacote separado para o lab, podemos liberar alterações críticas quando necessário, enquanto o pacote do core segue uma [política de liberação mais lenta](https://mui.com/versions/#release-frequency).
+A principal diferença entre o lab e o core (núcleo) é como os componentes são versionados. Tendo um pacote separado para o lab, podemos liberar alterações críticas quando necessário, enquanto o pacote do core segue uma [política de liberação mais lenta](https://material-ui.com/versions/#release-frequency).
 
 À medida que os desenvolvedores usam, testam os componentes e relatam problemas, os mantenedores aprendem mais sobre as deficiências dos componentes: recursos ausentes, problemas de acessibilidade, bugs, design de API, etc. Quanto mais antigo e mais usado for um componente, menor é a probabilidade de novos problemas serem encontrados e, consequentemente, necessidades de alterações críticas serem feitas.
 

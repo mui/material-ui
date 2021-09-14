@@ -48,7 +48,7 @@ Das in dieser Dokumentation bereitgestellte CSS wird mit dem [`Autoprefixer`](ht
 
 <!-- #react-peer-version -->
 
-Material-UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). Have a look at the older [versions](https://mui.com/versions/) for backward compatibility.
+Material-UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). Have a look at the older [versions](https://material-ui.com/versions/) for backward compatibility.
 
 ## TypeScript
 

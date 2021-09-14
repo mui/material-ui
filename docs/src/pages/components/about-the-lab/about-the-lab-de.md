@@ -2,7 +2,7 @@
 
 <p class="description">Dieses Paket enthält die Inkubator-Komponenten, die noch nicht bereit sind, in den Kern aufgenommen zu werden.</p>
 
-Der Hauptunterschied zwischen dem Labor und dem Kern besteht darin, wie die Komponenten versioniert werden. Ein separates Labor-Paket erlaubt es uns, wenn es notwendig ist, nicht rückwärtskompatible Änderungen zu veröffentlichen, ohne die [langsamere Veröffentlichungsfrequenz](https://mui.com/versions/#release-frequency) des Kernpakets einzuschränken.
+Der Hauptunterschied zwischen dem Labor und dem Kern besteht darin, wie die Komponenten versioniert werden. Ein separates Labor-Paket erlaubt es uns, wenn es notwendig ist, nicht rückwärtskompatible Änderungen zu veröffentlichen, ohne die [langsamere Veröffentlichungsfrequenz](https://material-ui.com/versions/#release-frequency) des Kernpakets einzuschränken.
 
 Während Entwickler die Komponenten verwenden, testen und Probleme melden, erfahren die Betreuer (Maintainer) mehr über Mängel der Komponenten: fehlende Features, Barrierefreiheit, Fehler, API-Design usw. Je älter und mehr verwendet eine Komponente ist, desto weniger wahrscheinlich ist es, dass neue Probleme gefunden werden und in der Folge, große Änderungen eingeführt werden müssen.
 

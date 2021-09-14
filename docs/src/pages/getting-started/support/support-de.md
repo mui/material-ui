@@ -49,7 +49,7 @@ Receive the latest news on Material-UI.
 
 The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://mui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v4](/guides/migration-v3/). The open-source community is always welcome to submit new features and bug fixes as well.
+Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v4](/guides/migration-v3/). The open-source community is always welcome to submit new features and bug fixes as well.
 
 The current status of each Material-UI version is as follows:
 
@@ -104,4 +104,4 @@ Tweak Material-UI to meet specific requirements. We might: Give us a summary of 
 
 Note that work must be Material-UI related. We don't accept general React development work. Our contracting price is $200/hour or $1,500/day.
 
-[Send us an email](mailto:custom-work@mui.com)
+[Send us an email](mailto:custom-work@material-ui.com)

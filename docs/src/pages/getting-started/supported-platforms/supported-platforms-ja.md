@@ -48,7 +48,7 @@ Material-UI supports [Node.js](https://github.com/nodejs/node) starting with ver
 
 <!-- #react-peer-version -->
 
-Material-UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). 下位互換性については、古い [バージョン](https://mui.com/versions/) を参照してください。
+Material-UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). 下位互換性については、古い [バージョン](https://material-ui.com/versions/) を参照してください。
 
 ## TypeScript
 

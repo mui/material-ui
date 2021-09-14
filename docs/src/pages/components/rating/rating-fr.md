@@ -52,7 +52,7 @@ L'accessibilité de ce composant repose sur les points suivants :
 L'accessibilité de ce composant repose sur les points suivants :
 
 - Un groupe radio avec ses champs visuellement cachés. Il contient six boutons radio, un pour chaque étoile et un autre pour 0 étoile coché par défaut. Assurez-vous de fournir une valeur pour la propriété `name` qui est unique au formulaire parent.
-- Libellés des boutons radio contenant du texte réel (« 1 étoile », « 2 étoiles », …). Assurez-vous de fournir une fonction appropriée à la prop `getLabelText` lorsque la page est dans une langue autre que l'anglais. Vous pouvez utiliser les [locales incluses](https://mui.com/guides/localization/) ou fournir les vôtres.
+- Libellés des boutons radio contenant du texte réel (« 1 étoile », « 2 étoiles », …). Assurez-vous de fournir une fonction appropriée à la prop `getLabelText` lorsque la page est dans une langue autre que l'anglais. Vous pouvez utiliser les [locales incluses](https://material-ui.com/guides/localization/) ou fournir les vôtres.
 - Une apparence visuellement distincte pour les icônes de notation. Par défaut, le composant d'évaluation utilise à la fois une différence de couleur et de forme (icônes pleines et vides) pour indiquer la valeur. Dans le cas où vous utilisez la couleur comme seul moyen d'indiquer la valeur, les informations doivent également être affichées sous forme de texte, comme dans cette démo. Ceci est important pour correspondre au [critère de réussite 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) des WCAG2.1.
 
 {{"demo": "pages/components/rating/TextRating.js"}}

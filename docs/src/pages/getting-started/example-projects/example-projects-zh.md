@@ -23,7 +23,7 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 
 ## 进阶示例项目
 
-如果你想从一个更完整、切合实际的示例开始，你可以看看[高级主题&模板](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store)，或者：
+如果你想从一个更完整、切合实际的示例开始，你可以看看[高级主题&模板](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store)，或者：
 
 ### 免费的资源
 

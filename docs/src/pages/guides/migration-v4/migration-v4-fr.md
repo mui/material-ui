@@ -2,7 +2,7 @@
 
 <p class="description">Yeah, v5 has been released!</p>
 
-Looking for the v4 docs? [Find them here](https://mui.com/versions/).
+Looking for the v4 docs? [Find them here](https://material-ui.com/versions/).
 
 > This document is a work in progress. Have you upgraded your site and run into something that's not covered here? [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v4/migration-v4.md).
 
@@ -563,7 +563,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
   +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
   ```
 
-  Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://mui.com/system/basics/):
+  Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/):
 
 - The following properties were renamed, because they are considered deprecated CSS proeprties:
 

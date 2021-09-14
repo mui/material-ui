@@ -2,7 +2,7 @@
 
 <p class="description">Ce package contient des composants en incubation (en développement) qui ne sont pas encore prêts à être ajoutés au package principal.</p>
 
-La principale différence entre le laboratoire et le noyau est la façon dont les composants sont versionnés. Avoir un paquet laboratoire séparer nous permets de pouvoir effectuer des changements ou d'intégrer de nouvelles fonctionnalités tandis que le noyau suit une [politique plus lente](https://mui.com/versions/#release-frequency).
+La principale différence entre le laboratoire et le noyau est la façon dont les composants sont versionnés. Avoir un paquet laboratoire séparer nous permets de pouvoir effectuer des changements ou d'intégrer de nouvelles fonctionnalités tandis que le noyau suit une [politique plus lente](https://material-ui.com/versions/#release-frequency).
 
 Lorsque les développeur utilise et test les composant en signalant les éventuels problèmes, les contributeurs en apprennent plus sur se que le composant pourrait manquer, fonctionnalité manquante, problème d'accessibilité, bugs, API design, etc. Plus un composant est âgé, plus il est utilisé, moins il y aura de chances de trouver de nouveaux problèmes et par conséquent de devoir subir d'important changement.
 
