@@ -24,6 +24,8 @@ This release features some major highlights:
   - [TypeScript migration](#typescript-migration)
   - [Strict Mode support](#strict-mode-support)
 - [A new product line: X](#a-new-product-line-x)
+  - [Data Grid](#data-grid)
+  - [Date Picker](#date-picker)
 - [New components](#new-components)
   - [Improved Grid](#improved-grid)
   - [More Material Design icons](#more-material-design-icons)
@@ -36,6 +38,7 @@ This release features some major highlights:
   - [Change on the supported platforms](#change-on-the-supported-platforms)
 - [Design kits](#design-kits)
 - [What's next?](#whats-next)
+  - [A public roadmap](#a-public-roadmap)
   - [Unstyled components and hooks](#unstyled-components-and-hooks)
   - [Second design system](#second-design-system)
   - [MUI X](#mui-x)
@@ -434,19 +437,30 @@ Bonus point, we run [React v18](https://github.com/reactwg/react-18) (unreleased
 
 ## A new product line: X
 
-- What are the new product separation
-- What this product line is about
-- Why does it even exist
-- Present the new Data Grid component, hopefully, released as v5.0.0 at the same time.
-
-### Date pickers
-
-- Transfer of ownership from third-party to mui-org.
+```sh
+- What's the problem solved by MUI X, what's the difference
+- Why it's a new product line
+- How it's made sustainable
+- What's available in it. Present the new Data Grid component
+```
 
 ### Data Grid
 
-- See next section
+```sh
+- What's the ambition with the component
+- Do a quick presentation of what's available
 - Covered a bit in https://material-ui.com/blog/2020-q3-update/
+```
+
+### Date Picker
+
+```sh
+- Transfer of ownership from Dmitriy to main organization.
+- Now in the lab
+- Spend a lot of time on consistency
+- Fist TypeScript component
+- Currently as the border between Core and X, hard to maintain in Core -> X, too popular for X -> Core?
+```
 
 ## New components
 
@@ -594,14 +608,29 @@ These changes have allowed us to save [6 kB gzipped](https://github.com/mui-org/
 
 ## Design kits
 
+```sh
+- Now we have Figma, Adobe XD, and Sketch
+```
+
 ## What's next?
 
-- Start covering the growth of v4, and its inertia, https://material-ui.com/blog/2020-q3-update/
-- These efforts are sustainable, echos back to https://material-ui.com/blog/material-ui-v4-is-out/#premium-themes-store-%E2%9C%A8
+```sh
+- Retrospective on what we aimed for in v4 and what we delivered
+  https://material-ui.com/blog/material-ui-v4-is-out/#whats-next
+- Retrospective on our growth in the React community,
+  ~25% of the market, aim for 50% by 2025.
+  Did a bit of this in https://material-ui.com/blog/2020-q3-update/
+- Retrospective on yes, we succesffuly managed to make this effort sustainable
+  echos back to https://material-ui.com/blog/material-ui-v4-is-out/#premium-themes-store-%E2%9C%A8
+```
 
 ### A public roadmap
 
-It's new, link core and x roadmaps.
+```sh
+- It's new, link core and x roadmaps.
+  Can use https://github.blog/2020-07-28-announcing-the-github-public-roadmap/ as inspiration
+- Use what come bellow as key effort we want to take on
+```
 
 ### Unstyled components and hooks
 
@@ -630,7 +659,10 @@ We'll keep you updated about the progress. And as always, you're invited for con
 
 ### MUI X
 
-- Data grid
+```sh
+- We will keep focusing on the data grid
+- We will expend to a second component, once we hit a point of diminushing efficiency on the data  grid
+```
 
 ## Thank you
 
