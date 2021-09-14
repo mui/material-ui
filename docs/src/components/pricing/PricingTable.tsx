@@ -308,7 +308,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   '@mui/core': (
     <ColumnHead
       {...{
-        label: '@mui/core',
+        label: '@mui/base',
         tooltip: 'The unstyled components and react hooks.',
       }}
     />
