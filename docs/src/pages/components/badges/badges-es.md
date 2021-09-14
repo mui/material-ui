@@ -34,7 +34,7 @@ El badge se oculta automáticamente con `badgeContent` igual a cero. Usted puede
 
 ## Valor máximo
 
-Usted puede usar la propiedad `max` para establecer el valor máximo que puede contener el Badge.
+Puedes usar la propiedad `max` para limitar el valor máximo del contenido del badge.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 

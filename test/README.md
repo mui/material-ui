@@ -1,11 +1,11 @@
-# Material-UI Testing
+# MUI Testing
 
 Thanks for writing tests! Here's a quick run-down on our current setup.
 
 ## Getting started
 
 1. Add a unit test to `packages/*/src/TheUnitInQuestion/TheUnitInQuestion.test.js` or an integration test `packages/*/test/`.
-2. Run `yarn test:watch`.
+2. Run `yarn t TheUnitInQuestion`.
 3. Implement the tested behavior
 4. Open a PR once the test passes or you want somebody to review your work
 
@@ -33,7 +33,7 @@ In addition to the core matchers from `chai` we also use matchers from [`chai-do
 
 Deciding where to put a test is (like naming things) a hard problem:
 
-- When in doubt, put the new test case directly in the unit test file for that component e.g. `material-ui/src/Button/Button.test.js`.
+- When in doubt, put the new test case directly in the unit test file for that component e.g. `packages/mui-material/src/Button/Button.test.js`.
 - If your test requires multiple components from the library create a new integration test.
 - If you find yourself using a lot of `data-testid` attributes or you're accessing
   a lot of styles consider adding a component (that doesn't require any interaction)
@@ -107,7 +107,7 @@ With the regression tests:
 
 ## Commands
 
-Material-UI uses a wide range of tests approach as each of them comes with a different
+MUI uses a wide range of tests approach as each of them comes with a different
 trade-off, mainly completeness vs. speed.
 
 ### React API level
@@ -116,15 +116,15 @@ trade-off, mainly completeness vs. speed.
 
 To run all of the unit and integration tests run `yarn test:unit`
 
-If you want to `grep` for certain tests add `-g STRING_TO_GREP`.
+If you want to `grep` for certain tests add `-g STRING_TO_GREP` though for development we recommend `yarn t <testFilePattern>`.
 
 #### Watch the core mocha unit/integration test suite.
 
-`yarn test:watch`
+`yarn t <testFilePattern>`
 
 First, we have the **unit test** suite.
 It uses [mocha](https://mochajs.org) and a thin wrapper around `@testing-library/react`.
-Here is an [example](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/packages/material-ui/src/Dialog/Dialog.test.js#L71-L80) with the `Dialog` component.
+Here is an [example](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/packages/mui-material/src/Dialog/Dialog.test.js#L71-L80) with the `Dialog` component.
 
 Next, we have the **integration** tests. They are mostly used for components that
 act as composite widgets like `Select` or `Menu`.
@@ -150,6 +150,22 @@ Our tests run on different browsers to increase the coverage:
 
 - [Headless Chrome](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md)
 - Chrome, Firefox, Safari, and Edge thanks to [BrowserStack](https://www.browserstack.com)
+
+##### BrowserStack
+
+We only use BrowserStack for non-PR commits to save ressources.
+Browserstack rarely reports actual issues so we only use it as a stop-gap for releases not merges.
+
+To force a run of BrowserStack on a PR you have to run the pipeline with `browserstack-force` set to `true`.
+For example, you've opened a PR with the number 64209 and now after everything is green you want to make sure the change passes all browsers:
+
+```bash
+curl --request POST \
+  --url https://circleci.com/api/v2/project/gh/mui-org/material-ui/pipeline \
+  --header 'content-type: application/json' \
+  --header 'Circle-Token: $CIRCLE_TOKEN' \
+  --data-raw '{"branch":"pull/64209/head","parameters":{"browserstack-force":true}}'
+```
 
 ### Browser API level
 

@@ -1,30 +1,30 @@
 import * as React from 'react';
-import { OverridableComponent } from '@material-ui/core/OverridableComponent';
-import Box, { BoxTypeMap } from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Stack from '@material-ui/core/Stack';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import IconButton from '@material-ui/core/IconButton';
-import { styled } from '@material-ui/core/styles';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
+import Box, { BoxTypeMap } from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import IconButton from '@mui/material/IconButton';
+import { styled } from '@mui/material/styles';
 import t1 from 'docs/src/modules/branding/t1';
 
 interface PersonaRootProps {
-  styleProps: { size: 'large' | 'small' };
+  ownerState: { size: 'large' | 'small' };
 }
 
 const PersonaRoot: OverridableComponent<BoxTypeMap<PersonaRootProps>> = styled(Box, {
   name: 'Persona',
   slot: 'Root',
-})<PersonaRootProps>(({ styleProps, theme }) => ({
+})<PersonaRootProps>(({ ownerState, theme }) => ({
   display: 'flex',
   marginTop: theme.spacing(1),
   marginBottom: theme.spacing(1),
   flexDirection: 'column',
   alignItems: 'center',
   '& [class*="MuiAvatar-root"]': {
-    width: styleProps.size === 'large' ? 200 : 120,
-    height: styleProps.size === 'large' ? 200 : 120,
+    width: ownerState.size === 'large' ? 200 : 120,
+    height: ownerState.size === 'large' ? 200 : 120,
     marginBottom: theme.spacing(1),
   },
   '& [class*="MuiIconButton-root"]': {
@@ -51,7 +51,7 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
   const { name, src, srcSet, title, location, twitter, github, size = 'large' } = props;
   return (
     <PersonaRoot
-      styleProps={{ size }}
+      ownerState={{ size }}
       sx={{
         '& img': {
           borderRadius: '50%',

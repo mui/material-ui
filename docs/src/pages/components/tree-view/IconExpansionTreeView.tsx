@@ -1,14 +1,14 @@
 import * as React from 'react';
-import TreeView from '@material-ui/lab/TreeView';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import TreeView from '@mui/lab/TreeView';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem, {
   TreeItemProps,
   useTreeItem,
   TreeItemContentProps,
-} from '@material-ui/lab/TreeItem';
+} from '@mui/lab/TreeItem';
 import clsx from 'clsx';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps,
@@ -98,7 +98,7 @@ export default function IconExpansionTreeView() {
       </CustomTreeItem>
       <CustomTreeItem nodeId="5" label="Documents">
         <CustomTreeItem nodeId="10" label="OSS" />
-        <CustomTreeItem nodeId="6" label="Material-UI">
+        <CustomTreeItem nodeId="6" label="MUI">
           <CustomTreeItem nodeId="7" label="src">
             <CustomTreeItem nodeId="8" label="index.js" />
             <CustomTreeItem nodeId="9" label="tree-view.js" />

@@ -142,7 +142,7 @@ Os componentes implementam a navegação do teclado usando o comportamento de "a
 As duas demonstrações seguintes diferem apenas no seu comportamento de navegação por teclado. Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
 
 ```jsx
-/* Tabs where selection follows focus */
+/* Abas onde a seleção segue o foco */
 <Tabs selectionFollowsFocus />
 ```
 

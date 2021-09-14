@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { pink } from '@material-ui/core/colors';
-import Radio from '@material-ui/core/Radio';
+import { pink } from '@mui/material/colors';
+import Radio from '@mui/material/Radio';
 
 export default function ColorRadioButtons() {
   const [selectedValue, setSelectedValue] = React.useState('a');

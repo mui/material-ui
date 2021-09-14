@@ -1,10 +1,10 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import Box from '@material-ui/core/Box';
-import Stack from '@material-ui/core/Stack';
+import TextField from '@mui/material/TextField';
+import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 
 export default function FormPropsDateRangePickers() {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);

@@ -18,7 +18,7 @@
     "transformOrigin": "This is the point on the popover which will attach to the anchor&#39;s origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].",
     "TransitionComponent": "O componente usado para a transição. <a href=\"/components/transitions/#transitioncomponent-prop\">Siga este guia</a> para saber mais sobre os requisitos para este componente.",
     "transitionDuration": "Set to &#39;auto&#39; to automatically calculate transition time based on height.",
-    "TransitionProps": "Propriedades aplicadas ao elemento de transição. Por padrão, o elemento é baseado neste componente <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a>."
+    "TransitionProps": "Propriedades aplicadas ao elemento de transição. Por padrão, o elemento é baseado neste componente <a href=\"https://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a>."
   },
   "classDescriptions": {
     "root": {

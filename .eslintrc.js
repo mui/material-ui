@@ -5,7 +5,7 @@ const forbidTopLevelMessage = [
   'See https://github.com/mui-org/material-ui/pull/24147 for the kind of win it can unlock.',
 ].join('\n');
 // This only applies to packages published from this monorepo.
-// If you build a library around `@material-ui/core` you can safely use `createStyles` without running into the same issue as we are.
+// If you build a library around `@mui/material` you can safely use `createStyles` without running into the same issue as we are.
 const forbidCreateStylesMessage =
   'Use `MuiStyles<ClassKey, Props>` instead if the styles are exported. Otherwise use `as const` assertions. ' +
   '`createStyles` will lead to inlined, at-compile-time-resolved type-imports. ' +
@@ -46,6 +46,7 @@ module.exports = {
    */
   rules: {
     'consistent-this': ['error', 'self'],
+    curly: ['error', 'all'],
     // Just as bad as "max components per file"
     'max-classes-per-file': 'off',
     // Too interruptive
@@ -62,19 +63,19 @@ module.exports = {
       'error',
       {
         patterns: [
-          '@material-ui/*/*/*',
+          '@mui/*/*/*',
           // Begin block: Packages with files instead of packages in the top level
           // Importing from the top level pulls in CommonJS instead of ES modules
           // Allowing /icons as to reduce cold-start of dev builds significantly.
           // There's nothing to tree-shake when importing from /icons this way:
-          // '@material-ui/icons/*/',
-          '@material-ui/system/*',
-          '@material-ui/utils/*',
+          // '@mui/icons-material/*/',
+          '@mui/system/*',
+          '@mui/utils/*',
           // End block
           // Macros are fine since their import path is transpiled away
-          '!@material-ui/utils/macros',
-          '@material-ui/utils/macros/*',
-          '!@material-ui/utils/macros/*.macro',
+          '!@mui/utils/macros',
+          '@mui/utils/macros/*',
+          '!@mui/utils/macros/*.macro',
         ],
       },
     ],
@@ -144,6 +145,8 @@ module.exports = {
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.tsx'] }],
     // Prefer <React.Fragment> over <>.
     'react/jsx-fragments': ['error', 'element'],
+    // Enforces premature optimization
+    'react/jsx-no-bind': 'off',
     // We are a UI library.
     'react/jsx-props-no-spreading': 'off',
     // This rule is great for raising people awareness of what a key is and how it works.
@@ -224,7 +227,7 @@ module.exports = {
       rules: {
         'material-ui/no-hardcoded-labels': [
           'error',
-          { allow: ['Material-UI', 'Twitter', 'GitHub', 'StackOverflow'] },
+          { allow: ['MUI', 'Twitter', 'GitHub', 'StackOverflow'] },
         ],
       },
     },
@@ -232,6 +235,15 @@ module.exports = {
       files: ['docs/pages/**/*.js'],
       rules: {
         'react/prop-types': 'off',
+      },
+    },
+    // demos
+    {
+      files: ['docs/src/pages/**/*.js', 'docs/src/pages/**/*.tsx'],
+      rules: {
+        // This most often reports data that is defined after the component definition.
+        // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
+        '@typescript-eslint/no-use-before-define': 'off',
       },
     },
     {
@@ -250,9 +262,9 @@ module.exports = {
           {
             patterns: [
               // Allow deeper imports for TypeScript types. TODO?
-              '@material-ui/*/*/*/*',
+              '@mui/*/*/*/*',
               // Macros are fine since they're transpiled into something else
-              '!@material-ui/utils/macros/*.macro',
+              '!@mui/utils/macros/*.macro',
             ],
           },
         ],
@@ -269,25 +281,25 @@ module.exports = {
           {
             paths: [
               {
-                name: '@material-ui/core/styles',
+                name: '@mui/material/styles',
                 importNames: ['createStyles'],
                 message: forbidCreateStylesMessage,
               },
               {
-                name: '@material-ui/styles',
+                name: '@mui/styles',
                 importNames: ['createStyles'],
                 message: forbidCreateStylesMessage,
               },
               {
-                name: '@material-ui/styles/createStyles',
+                name: '@mui/styles/createStyles',
                 message: forbidCreateStylesMessage,
               },
             ],
             patterns: [
               // Allow deeper imports for TypeScript types. TODO?
-              '@material-ui/*/*/*/*',
+              '@mui/*/*/*/*',
               // Macros are fine since they're transpiled into something else
-              '!@material-ui/utils/macros/*.macro',
+              '!@mui/utils/macros/*.macro',
             ],
           },
         ],
@@ -348,11 +360,11 @@ module.exports = {
           {
             paths: [
               {
-                name: '@material-ui/core',
+                name: '@mui/material',
                 message: forbidTopLevelMessage,
               },
               {
-                name: '@material-ui/lab',
+                name: '@mui/lab',
                 message: forbidTopLevelMessage,
               },
             ],

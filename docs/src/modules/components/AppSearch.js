@@ -1,27 +1,36 @@
 import * as React from 'react';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { alpha, styled, useTheme } from '@material-ui/core/styles';
-import GlobalStyles from '@material-ui/core/GlobalStyles';
-import Input from '@material-ui/core/Input';
-import SearchIcon from '@material-ui/icons/Search';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { styled, useTheme, alpha } from '@mui/material/styles';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import Input from '@mui/material/Input';
+import SearchIcon from '@mui/icons-material/Search';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
 import docsearch from 'docsearch.js';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
-const StyledInput = styled(Input)(({ theme }) => ({
-  color: 'inherit',
-  '& input': {
-    padding: theme.spacing(1),
-    paddingLeft: theme.spacing(9),
-    transition: theme.transitions.create('width'),
-    width: 140,
-    '&:focus': {
-      width: 170,
+const StyledInput = styled(Input)(({ theme }) => {
+  const placeholder = {
+    color: theme.palette.mode === 'dark' ? 'white' : 'black',
+  };
+  return {
+    color: 'inherit',
+    '& input': {
+      padding: theme.spacing(0.5),
+      paddingLeft: theme.spacing(4),
+      transition: theme.transitions.create('width'),
+      width: 150,
+      '&:focus': {
+        width: 170,
+      },
+      '&::-webkit-input-placeholder': placeholder,
+      '&::-moz-placeholder': placeholder, // Firefox 19+
+      '&:-ms-input-placeholder': placeholder, // IE11
+      '&::-ms-input-placeholder': placeholder, // Edge
     },
-  },
-}));
+  };
+});
 
 function AlgoliaStyles() {
   return (
@@ -30,7 +39,16 @@ function AlgoliaStyles() {
         return {
           '.algolia-autocomplete.algolia-autocomplete': {
             '& .ds-dropdown-menu': {
-              boxShadow: theme.shadows[1],
+              boxShadow: `0px 4px 20px ${
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.background.paper, 0.72)
+                  : 'rgba(170, 180, 190, 0.3)'
+              }`,
+              border: '1px solid',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[400]
+                  : theme.palette.grey[200],
               borderRadius: theme.shape.borderRadius,
               '&::before': {
                 display: 'none',
@@ -99,41 +117,49 @@ const RootDiv = styled('div')(({ theme }) => {
     },
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
-    marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(1),
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.grey[50],
     '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
+      backgroundColor:
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
     },
+    color: theme.palette.mode === 'dark' ? 'white' : theme.palette.grey[900],
+    border: `1px solid ${
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200]
+    }`,
+    borderRadius: 10,
   };
 });
 
 const SearchDiv = styled('div')(({ theme }) => {
   return {
-    width: theme.spacing(9),
+    width: theme.spacing(4),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    color: theme.palette.grey[700],
   };
 });
 
 const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(13),
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[700],
     lineHeight: '21px',
-    color: alpha(theme.palette.common.white, 0.8),
-    border: `1px solid ${alpha(theme.palette.common.white, 0.4)}`,
-    backgroundColor: alpha(theme.palette.common.white, 0.1),
-    padding: theme.spacing(0, 0.5),
+    border: `1px solid ${
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.grey[200]
+    }`,
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
+    padding: theme.spacing(0, 0.7),
     position: 'absolute',
     right: theme.spacing(1),
     height: 23,
     top: 'calc(50% - 11px)',
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: 5,
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -206,6 +232,7 @@ export default function AppSearch() {
         indexName: 'material-ui',
         inputSelector: '#docsearch-input',
         algoliaOptions: {
+          // #major-version-switch - Except changing this line you need to update https://github.com/algolia/docsearch-configs/blob/master/configs/material-ui.json
           facetFilters: ['version:next', facetFilterLanguage],
         },
         autocompleteOptions: {
@@ -260,7 +287,13 @@ export default function AppSearch() {
   return (
     <RootDiv>
       <SearchDiv>
-        <SearchIcon />
+        <SearchIcon
+          fontSize="small"
+          sx={{
+            color:
+              theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.primary[500],
+          }}
+        />
       </SearchDiv>
       <AlgoliaStyles />
       <StyledInput

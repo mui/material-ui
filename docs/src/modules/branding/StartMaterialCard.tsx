@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import MuiButton from '@material-ui/core/Button';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import MuiButton from '@mui/material/Button';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
 import Link from 'docs/src/modules/components/Link';
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import WatchIcon from 'docs/src/modules/branding/icons/Watch';
 
 // PriorityButton start

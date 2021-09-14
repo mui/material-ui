@@ -144,8 +144,12 @@ function findPages(
   pages.sort((a, b) => {
     const pathnameA = a.pathname.replace(/-/g, '');
     const pathnameB = b.pathname.replace(/-/g, '');
-    if (pathnameA < pathnameB) return -1;
-    if (pathnameA > pathnameB) return 1;
+    if (pathnameA < pathnameB) {
+      return -1;
+    }
+    if (pathnameA > pathnameB) {
+      return 1;
+    }
     return 0;
   });
 

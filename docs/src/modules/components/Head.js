@@ -7,7 +7,8 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 export default function Head(props) {
   const t = useTranslate();
   const {
-    card = 'https://next.material-ui.com/static/branding/card.png',
+    // #major-version-switch
+    card = 'https://material-ui.com/static/branding/card.jpeg',
     children,
     description = t('strapline'),
     largeCard = true,
@@ -24,19 +25,22 @@ export default function Head(props) {
       {/* Twitter */}
       <meta name="twitter:card" content={largeCard ? 'summary_large_image' : 'summary'} />
       <meta name="twitter:site" content="@MaterialUI" />
+      {/* #major-version-switch */}
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={card} />
       {/* Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
+      {/* #major-version-switch */}
       <meta property="og:url" content={`https://material-ui.com${router.asPath}`} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={card} />
       <meta property="og:ttl" content="604800" />
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />
-      <meta name="docsearch:version" content="next" />
+      {/* #major-version-switch */}
+      <meta name="docsearch:version" content="master" />
       {children}
     </NextHead>
   );

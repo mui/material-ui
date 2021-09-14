@@ -70,7 +70,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/material-ui/src/PaginationItem/PaginationItem.js",
+  "filename": "/packages/mui-material/src/PaginationItem/PaginationItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/pagination/\">Pagination</a></li></ul>",
   "styledComponent": true,

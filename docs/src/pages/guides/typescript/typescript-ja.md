@@ -146,8 +146,8 @@ const ambiguousStyles = createStyles({
 `withStyles(styles) で装飾されたコンポーネント`には、特別な`classes` プロパティが挿入されるため、それに応じてプロパティを定義する必要があります。
 
 ```ts
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
+*/ },
+  button: { /* ... */ },
   paper: { /* ... */ },
   button: { /* ... */ },
 });

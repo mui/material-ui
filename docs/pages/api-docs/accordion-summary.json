@@ -27,7 +27,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/AccordionSummary/AccordionSummary.js",
+  "filename": "/packages/mui-material/src/AccordionSummary/AccordionSummary.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/accordion/\">Accordion</a></li></ul>",
   "styledComponent": true,

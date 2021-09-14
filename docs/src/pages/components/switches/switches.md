@@ -50,8 +50,8 @@ However, you are encouraged to use [Checkboxes](/components/checkboxes/) instead
 
 ## Customization
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here are some examples of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
@@ -62,7 +62,7 @@ Here are some examples of customizing the component. You can learn more about th
 The switch also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```jsx
-import SwitchUnstyled from '@material-ui/unstyled/SwitchUnstyled';
+import SwitchUnstyled from '@mui/core/SwitchUnstyled';
 ```
 
 The `SwitchUnstyled` component provides default components and assigns CSS classes you can style entirely on your own.
@@ -73,17 +73,13 @@ There are three components you can override by the `components` prop: `Root`, `T
 
 {{"demo": "pages/components/switches/UnstyledSwitches.js"}}
 
-### Recreation of Material-UI's Switch
-
-{{"demo": "pages/components/switches/UnstyledSwitchesMaterial.js"}}
-
 ### useSwitch hook
 
 For the ultimate customizability, a `useSwitch` hook is available.
 It accepts almost the same options as the SwitchUnstyled component minus the `component`, `components`, and `componentsProps` props.
 
 ```jsx
-import { useSwitch } from '@material-ui/unstyled/SwitchUnstyled';
+import { useSwitch } from '@mui/core/SwitchUnstyled';
 ```
 
 #### Basic example
@@ -93,10 +89,6 @@ import { useSwitch } from '@material-ui/unstyled/SwitchUnstyled';
 #### Customized look and feel
 
 {{"demo": "pages/components/switches/UseSwitchesCustom.js"}}
-
-#### Recreation of Material-UI's Switch
-
-{{"demo": "pages/components/switches/UseSwitchesMaterial.js"}}
 
 ## Label placement
 

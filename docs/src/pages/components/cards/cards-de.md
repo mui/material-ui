@@ -5,7 +5,7 @@ githubLabel: 'component: Card'
 materialDesign: https://material.io/components/cards
 ---
 
-# Card (karte)
+# Karte (Card)
 
 <p class="description">Karten enthalten Inhalte und Aktionen zu einem bestimmten Thema.</p>
 

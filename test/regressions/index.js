@@ -5,9 +5,9 @@ import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
 // Get all the fixtures specifically written for preventing visual regressions.
-const requireRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/);
+const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
 const regressionFixtures = [];
-requireRegressionFixtures.keys().forEach((path) => {
+importRegressionFixtures.keys().forEach((path) => {
   const [suite, name] = path
     .replace('./', '')
     .replace(/\.\w+$/, '')
@@ -17,7 +17,7 @@ requireRegressionFixtures.keys().forEach((path) => {
     path,
     suite: `regression-${suite}`,
     name,
-    Component: requireRegressionFixtures(path).default,
+    Component: React.lazy(() => importRegressionFixtures(path)),
   });
 }, []);
 
@@ -68,6 +68,7 @@ const blacklist = [
   'docs-components-hidden', // Need to dynamically resize to test
   'docs-components-icons/FontAwesomeIconSize.png', // Relies on cascading network requests
   'docs-components-image-list', // Image don't load
+  'docs-components-masonry/ImageMasonry.png', // Image don't load
   'docs-components-material-icons/synonyms.png', // No component
   'docs-components-menus', // Need interaction
   'docs-components-modal/KeepMountedModal.png', // Needs interaction
@@ -196,9 +197,9 @@ function excludeDemoFixture(suite, name) {
 }
 
 // Also use some of the demos to avoid code duplication.
-const requireDemos = require.context('docs/src/pages', true, /js$/);
+const importDemos = require.context('docs/src/pages', true, /js$/, 'lazy');
 const demoFixtures = [];
-requireDemos.keys().forEach((path) => {
+importDemos.keys().forEach((path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
@@ -207,7 +208,7 @@ requireDemos.keys().forEach((path) => {
       path,
       suite,
       name,
-      Component: requireDemos(path).default,
+      Component: React.lazy(() => importDemos(path)),
     });
   }
 }, []);

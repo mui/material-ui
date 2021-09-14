@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 
 const customerIconsData = [
   { image: '/static/branding/companies/coursera.svg', width: 102, height: 16, alt: 'Coursera' },
@@ -45,7 +45,7 @@ export default function BrandingCustomerIcons() {
         color="text.secondary"
         sx={{ mt: { sm: 3, lg: 7 }, mb: { xs: 10, sm: 10, lg: 15 }, maxWidth: 400, mx: 'auto' }}
       >
-        From startups to Fortune 500s, the world&apos;s best product teams use Material-UI.
+        From startups to Fortune 500s, the world&apos;s best product teams use MUI.
       </Typography>
     </Container>
   );

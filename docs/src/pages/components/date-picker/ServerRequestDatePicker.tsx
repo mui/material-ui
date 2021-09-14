@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Badge from '@material-ui/core/Badge';
-import TextField from '@material-ui/core/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import PickersDay from '@material-ui/lab/PickersDay';
-import DatePicker from '@material-ui/lab/DatePicker';
-import CalendarPickerSkeleton from '@material-ui/lab/CalendarPickerSkeleton';
+import Badge from '@mui/material/Badge';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import PickersDay from '@mui/lab/PickersDay';
+import DatePicker from '@mui/lab/DatePicker';
+import CalendarPickerSkeleton from '@mui/lab/CalendarPickerSkeleton';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
 
 function getRandomNumber(min: number, max: number) {
@@ -27,7 +27,7 @@ function fakeFetch(date: Date, { signal }: { signal: AbortSignal }) {
 
     signal.onabort = () => {
       clearTimeout(timeout);
-      reject(new Error('aborted'));
+      reject(new DOMException('aborted', 'AbortError'));
     };
   });
 }
@@ -49,7 +49,12 @@ export default function ServerRequestDatePicker() {
         setHighlightedDays(daysToHighlight);
         setIsLoading(false);
       })
-      .catch(() => console.log('Wow, you are switching months too quickly 🐕'));
+      .catch((error) => {
+        // ignore the error if it's caused by `controller.abort`
+        if (error.name !== 'AbortError') {
+          throw error;
+        }
+      });
 
     requestAbortController.current = controller;
   };

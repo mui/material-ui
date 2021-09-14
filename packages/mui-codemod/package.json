@@ -1,0 +1,46 @@
+{
+  "name": "@mui/codemod",
+  "version": "5.0.0-rc.1",
+  "bin": "./codemod.js",
+  "private": false,
+  "author": "MUI Team",
+  "description": "Codemod scripts for MUI.",
+  "keywords": [
+    "react",
+    "react-component",
+    "material-ui",
+    "codemod",
+    "jscodeshift"
+  ],
+  "scripts": {
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-codemod/**/*.test.js'",
+    "prebuild": "rimraf build",
+    "build": "node ../../scripts/build node --out-dir ./build && cpy README.md build && cpy package.json build && cpy codemod.js build",
+    "release": "yarn build && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "packages/mui-codemod"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod",
+  "dependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/runtime": "^7.14.8",
+    "@babel/traverse": "^7.15.0",
+    "jscodeshift": "^0.13.0",
+    "jscodeshift-add-imports": "^1.0.10",
+    "yargs": "^17.0.1"
+  },
+  "devDependencies": {
+    "@types/jscodeshift": "0.11.2"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

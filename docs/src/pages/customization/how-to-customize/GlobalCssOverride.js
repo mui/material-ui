@@ -1,5 +1,5 @@
 import * as React from 'react';
-import GlobalStyles from '@material-ui/core/GlobalStyles';
+import GlobalStyles from '@mui/material/GlobalStyles';
 
 export default function GlobalCssOverride() {
   return (

@@ -1,199 +1,178 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import dynamic from 'next/dynamic';
+import { useTheme } from '@mui/material/styles';
+import Box, { BoxProps } from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import GradientText from 'docs/src/components/typography/GradientText';
-import PlayerCard from 'docs/src/pages/components/cards/PlayerCard';
-import TaskCard from 'docs/src/pages/components/cards/TaskCard';
-import NotificationCard from 'docs/src/pages/components/cards/NotificationCard';
-import ThemeChip from 'docs/src/pages/components/chips/ThemeChip';
-import ThemeDatePicker from 'docs/src/pages/components/date-picker/ThemeDatePicker';
-import ThemeSlider from 'docs/src/pages/components/slider/ThemeSlider';
-import FolderTable from 'docs/src/pages/components/tables/FolderTable';
-import ThemeTabs from 'docs/src/pages/components/tabs/ThemeTabs';
-import ThemeTimeline from 'docs/src/pages/components/timeline/ThemeTimeline';
-import ViewToggleButton from 'docs/src/pages/components/toggle-button/ViewToggleButton';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
+import HeroContainer from 'docs/src/layouts/HeroContainer';
 
-const MAX_WIDTH = 1000;
-const SPAN_SIZE = 10;
-const GAP = 0;
-const GUTTER = 30;
-const grid = [
-  {
-    ui: <TaskCard />,
-    width: 330,
-    height: 280,
-    sx: {
-      '& > .MuiCard-root': {
-        height: '100%',
-        width: '100%',
-        maxWidth: '100%',
-      },
-    },
-  },
-  {
-    ui: <ThemeDatePicker />,
-    width: 320,
-    height: 380,
-  },
-  {
-    width: MAX_WIDTH - (320 + GUTTER) - (320 + GUTTER),
-    height: 388,
-  },
-  {
-    ui: <ThemeSlider />,
-    width: 70,
-    height: 180,
-  },
-  {
-    ui: <ViewToggleButton />,
-    width: 180,
-    height: 70,
-    sx: { alignSelf: 'flex-end' },
-  },
-  {
-    width: MAX_WIDTH - (320 + GUTTER) - (320 + GUTTER),
-    height: 135,
-  },
-  {
-    ui: <ThemeChip />,
-    width: 220,
-    height: 32,
-    sx: { alignSelf: 'center' },
-  },
-  {
-    ui: <PlayerCard />,
-    width: 313,
-    height: 119,
-  },
-  {
-    ui: (
-      <Box sx={{ transform: { xs: 'scale(1.11)', lg: 'scale(1)' } }}>
-        <ThemeTabs />
-      </Box>
-    ),
-    width: 310,
-    height: 50,
-  },
-  {
-    ui: <NotificationCard />,
-    width: 379,
-    height: 100,
-  },
-  {
-    ui: <FolderTable />,
-    width: 260,
-    height: 188,
-  },
-  {
-    ui: <ThemeTimeline />,
-    width: 270,
-    height: 160,
-  },
-];
-
-function getSpan(value: number) {
-  // x * SPAN_SIZE + (x - 1) * GAP = width
-  // x * (SPAN_SIZE + GAP) = width + GAP
-  return Math.ceil((value + GAP) / (SPAN_SIZE + GAP));
+function createLoading(sx: BoxProps['sx']) {
+  return () => (
+    <Box
+      sx={{
+        borderRadius: 1,
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
+        ...sx,
+      }}
+    />
+  );
 }
 
+const TaskCard = dynamic(() => import('../showcase/TaskCard'), {
+  ssr: false,
+  loading: createLoading({ width: 360, height: 280 }),
+});
+const PlayerCard = dynamic(() => import('../showcase/PlayerCard'), {
+  ssr: false,
+  loading: createLoading({ width: 360, height: 146 }),
+});
+const ThemeToggleButton = dynamic(() => import('../showcase/ThemeToggleButton'), {
+  ssr: false,
+  loading: createLoading({ width: 360, height: 48 }),
+});
+const ThemeSwitch = dynamic(() => import('../showcase/ThemeSwitch'), {
+  ssr: false,
+  loading: createLoading({ width: 108, height: 20 }),
+});
+const ThemeChip = dynamic(() => import('../showcase/ThemeChip'), {
+  ssr: false,
+  loading: createLoading({ width: 212, height: 32 }),
+});
+const ThemeTimeline = dynamic(() => import('../showcase/ThemeTimeline'), {
+  ssr: false,
+  loading: createLoading({ width: 360, height: 180 }),
+});
+const FolderTable = dynamic(() => import('../showcase/FolderTable'), {
+  ssr: false,
+  loading: createLoading({ width: 360, height: 212 }),
+});
+
+const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), {
+  ssr: false,
+  loading: createLoading({ width: { md: 360, xl: 400 }, height: 260 }),
+});
+const ThemeTabs = dynamic(() => import('../showcase/ThemeTabs'), {
+  ssr: false,
+  loading: createLoading({ width: { md: 360, xl: 400 }, height: 48 }),
+});
+const ThemeSlider = dynamic(() => import('../showcase/ThemeSlider'), {
+  ssr: false,
+  loading: createLoading({ width: { md: 124, xl: 164 }, height: 214 }),
+});
+const ViewToggleButton = dynamic(() => import('../showcase/ViewToggleButton'), {
+  ssr: false,
+  loading: createLoading({ width: 196, height: 40 }),
+});
+const ThemeButton = dynamic(() => import('../showcase/ThemeButton'), {
+  ssr: false,
+  loading: createLoading({ width: 196, height: 154 }),
+});
+const ThemeAccordion = dynamic(() => import('../showcase/ThemeAccordion'), {
+  ssr: false,
+  loading: createLoading({ width: { md: 360, xl: 400 }, height: 171 }),
+});
+const NotificationCard = dynamic(() => import('../showcase/NotificationCard'), {
+  ssr: false,
+  loading: createLoading({ width: { md: 360, xl: 400 }, height: 146 }),
+});
+
 export default function Hero() {
+  const frame = React.useRef<null | HTMLDivElement>(null);
+  const globalTheme = useTheme();
+  const isMdUp = useMediaQuery(globalTheme.breakpoints.up('md'));
+  React.useEffect(() => {
+    let obs: undefined | MutationObserver;
+    function suppressTabIndex() {
+      if (frame.current && isMdUp) {
+        const elements = frame.current.querySelectorAll(
+          'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
+        );
+        elements.forEach((elm) => {
+          elm.setAttribute('tabindex', '-1');
+        });
+      }
+    }
+    if (typeof MutationObserver !== 'undefined' && frame.current) {
+      obs = new MutationObserver(suppressTabIndex);
+      obs.observe(frame.current, { childList: true, subtree: true });
+    }
+    return () => {
+      if (obs) {
+        obs.disconnect();
+      }
+    };
+  }, [isMdUp]);
   return (
-    <Box sx={{ overflow: 'hidden' }}>
-      <Container
-        sx={{
-          minHeight: 500,
-          height: 'calc(100vh - 120px)',
-          maxHeight: { xs: 500, sm: 700, xl: 1000 },
-          transition: '0.3s',
-        }}
-      >
-        <Grid
-          container
-          alignItems="center"
-          wrap="nowrap"
-          sx={{ height: '100%', maxWidth: { xs: 500, md: 'initial' }, mx: 'auto' }}
-        >
-          <Grid item md={7} lg={6}>
-            <Box sx={{ textAlign: { xs: 'center', md: 'left' }, maxWidth: 500 }}>
-              <Typography variant="h1" sx={{ my: 2 }}>
-                The <GradientText>ultimate</GradientText> solution for your UI.
-              </Typography>
-              <Typography color="text.secondary" sx={{ mb: 3 }}>
-                MUI provides a robust, customizible and accessible library of foundational and
-                advanced components, enabling you to build your own design system and develop React
-                applications faster.
-              </Typography>
-              <GetStartedButtons sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} />
-            </Box>
-          </Grid>
-          <Grid
-            item
-            md={5}
-            lg={6}
-            sx={{ maxHeight: '100%', display: { xs: 'none', md: 'initial' } }}
-          >
-            <Box
-              aria-hidden="true"
-              sx={{
-                p: 3,
-                bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
-                minWidth: 2000,
-                minHeight: 500,
-                height: 'calc(100vh - 120px)',
-                maxHeight: { lg: 700, xl: 1000 },
-                borderBottomLeftRadius: 10,
-                transition: 'max-height 0.3s',
-              }}
-            >
-              <Box
-                sx={{
-                  maxWidth: MAX_WIDTH,
-                  display: 'grid',
-                  gridTemplateColumns: `repeat(auto-fit, minmax(${SPAN_SIZE}px, 1fr))`,
-                  gridAutoRows: SPAN_SIZE,
-                  gridAutoFlow: 'dense',
-                  '& > *': {
-                    opacity: 0.6,
-                    transition: '0.4s',
-                    '&:hover': {
-                      opacity: 1,
-                    },
-                  },
-                  '& *': {
-                    fontFamily: [
-                      '"IBM Plex Sans"',
-                      '-apple-system',
-                      'BlinkMacSystemFont',
-                      'sans-serif',
-                    ].join(','),
-                  },
-                  transform: { xs: 'scale(0.9)', xl: 'scale(1)' },
-                  transformOrigin: 'top left',
-                  transition: 'transform 0.3s',
-                }}
-              >
-                {grid.map((config, index) => (
-                  <Box
-                    key={index}
-                    sx={{
-                      gridRow: `span ${getSpan(config.height + (config.ui ? GUTTER : -GUTTER))}`,
-                      gridColumn: `span ${getSpan(config.width + (config.ui ? GUTTER : -GUTTER))}`,
-                      p: 1.5,
-                      ...config.sx,
-                    }}
-                  >
-                    {config.ui || null}
-                  </Box>
-                ))}
+    <HeroContainer
+      left={
+        <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+          <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
+            The <GradientText>ultimate</GradientText> solution for your&nbsp;UI
+          </Typography>
+          <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
+            MUI provides a robust, customizable, and accessible library of foundational and advanced
+            components, enabling you to build your own design system and develop React applications
+            faster.
+          </Typography>
+          <GetStartedButtons sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} />
+        </Box>
+      }
+      rightSx={{
+        p: 3,
+        minWidth: 2000,
+        '& > div': {
+          width: 360,
+          display: 'inline-flex',
+          verticalAlign: 'top',
+          '&:nth-of-type(2)': {
+            width: { xl: 400 },
+          },
+        },
+        '&& *': {
+          fontFamily: ['"IBM Plex Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
+            ',',
+          ),
+        },
+      }}
+      rightRef={frame}
+      right={
+        <React.Fragment>
+          {isMdUp && (
+            <Stack spacing={4} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+              <TaskCard />
+              <PlayerCard />
+              <ThemeToggleButton />
+              <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+                <ThemeSwitch />
+                <Box sx={{ width: 40 }} />
+                <ThemeChip />
               </Box>
-            </Box>
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
+              <ThemeTimeline />
+              <FolderTable />
+            </Stack>
+          )}
+          {isMdUp && (
+            <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+              <ThemeDatePicker />
+              <ThemeTabs />
+              <Box sx={{ display: 'flex' }}>
+                <Box sx={{ flexGrow: 1 }}>
+                  <ThemeSlider />
+                </Box>
+                <Stack spacing={2} sx={{ ml: 4 }}>
+                  <ViewToggleButton />
+                  <ThemeButton />
+                </Stack>
+              </Box>
+              <ThemeAccordion />
+              <NotificationCard />
+            </Stack>
+          )}
+        </React.Fragment>
+      }
+    />
   );
 }

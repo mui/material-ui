@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import MuiPaper from '@material-ui/core/Paper';
-import { styled } from '@material-ui/core/styles';
+import MuiPaper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
 
 const PaperRoot = styled(MuiPaper, {
   shouldForwardProp: (prop) => prop !== 'background' && prop !== 'padding',

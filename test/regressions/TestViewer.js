@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useFakeTimers } from 'sinon';
-import Box from '@material-ui/core/Box';
-import GlobalStyles from '@material-ui/core/GlobalStyles';
+import Box from '@mui/material/Box';
+import GlobalStyles from '@mui/material/GlobalStyles';
 
 function TestViewer(props) {
   const { children } = props;
@@ -67,13 +67,15 @@ function TestViewer(props) {
           },
         }}
       />
-      <Box
-        aria-busy={!ready}
-        data-testid="testcase"
-        sx={{ bgcolor: 'background.default', display: 'inline-block', p: 1 }}
-      >
-        {children}
-      </Box>
+      <React.Suspense fallback={<div aria-busy />}>
+        <Box
+          aria-busy={!ready}
+          data-testid="testcase"
+          sx={{ bgcolor: 'background.default', display: 'inline-block', p: 1 }}
+        >
+          {children}
+        </Box>
+      </React.Suspense>
     </React.Fragment>
   );
 }

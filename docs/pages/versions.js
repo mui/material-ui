@@ -2,17 +2,13 @@ import * as React from 'react';
 import sortedUniqBy from 'lodash/sortedUniqBy';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import VersionsContext from 'docs/src/pages/versions/VersionsContext';
-import {
-  demos,
-  docs,
-  requireDemo,
-} from 'docs/src/pages/versions/versions.md?@material-ui/markdown';
+import { demos, docs, demoComponents } from 'docs/src/pages/versions/versions.md?@mui/markdown';
 
 export default function Page(props) {
   const { versions } = props;
   return (
     <VersionsContext.Provider value={versions}>
-      <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />
+      <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />
     </VersionsContext.Provider>
   );
 }

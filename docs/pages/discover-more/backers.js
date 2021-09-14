@@ -3,9 +3,9 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import {
   demos,
   docs,
-  requireDemo,
-} from 'docs/src/pages/discover-more/backers/backers.md?@material-ui/markdown';
+  demoComponents,
+} from 'docs/src/pages/discover-more/backers/backers.md?@mui/markdown';
 
 export default function Page() {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} disableAd />;
+  return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} disableAd />;
 }

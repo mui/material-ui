@@ -20,7 +20,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLUListElement",
-  "filename": "/packages/material-ui-lab/src/Timeline/Timeline.tsx",
+  "filename": "/packages/mui-lab/src/Timeline/Timeline.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
   "styledComponent": true,

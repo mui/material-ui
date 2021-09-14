@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Chip from '@material-ui/core/Chip';
-import Stack from '@material-ui/core/Stack';
-import DoneIcon from '@material-ui/icons/Done';
-import DeleteIcon from '@material-ui/icons/Delete';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+import DoneIcon from '@mui/icons-material/Done';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function CustomDeleteIconChips() {
   const handleClick = () => {

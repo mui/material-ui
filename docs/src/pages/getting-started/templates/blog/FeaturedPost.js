@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 
 function FeaturedPost(props) {
   const { post } = props;
@@ -29,9 +29,10 @@ function FeaturedPost(props) {
             </Typography>
           </CardContent>
           <CardMedia
+            component="img"
             sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
             image={post.image}
-            title={post.imageText}
+            alt={post.imageLabel}
           />
         </Card>
       </CardActionArea>
@@ -44,7 +45,7 @@ FeaturedPost.propTypes = {
     date: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    imageText: PropTypes.string.isRequired,
+    imageLabel: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
 };

@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { styled } from '@material-ui/system';
-import SwitchUnstyled, {
-  switchUnstyledClasses,
-} from '@material-ui/unstyled/SwitchUnstyled';
+import { styled } from '@mui/system';
+import SwitchUnstyled, { switchUnstyledClasses } from '@mui/core/SwitchUnstyled';
 
 const Root = styled('span')(`
   font-size: 0;
@@ -10,8 +8,7 @@ const Root = styled('span')(`
   display: inline-block;
   width: 32px;
   height: 20px;
-  background: #B3C3D3;
-  border-radius: 10px;
+  
   margin: 10px;
   cursor: pointer;
 
@@ -20,8 +17,13 @@ const Root = styled('span')(`
     cursor: not-allowed;
   }
 
-  &.${switchUnstyledClasses.checked} {
-    background: #007FFF;
+  & .${switchUnstyledClasses.track} {
+    background: #B3C3D3;
+    border-radius: 10px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
   }
 
   & .${switchUnstyledClasses.thumb} {
@@ -41,10 +43,16 @@ const Root = styled('span')(`
     box-shadow: 0 0 1px 8px rgba(0,0,0,0.25);
   }
 
-  &.${switchUnstyledClasses.checked} .${switchUnstyledClasses.thumb} {
-    left: 14px;
-    top: 3px;
-    background-color: #FFF;
+  &.${switchUnstyledClasses.checked} { 
+    .${switchUnstyledClasses.thumb} {
+      left: 14px;
+      top: 3px;
+      background-color: #FFF;
+    }
+
+    .${switchUnstyledClasses.track} {
+      background: #007FFF;
+    }
   }
 
   & .${switchUnstyledClasses.input} {

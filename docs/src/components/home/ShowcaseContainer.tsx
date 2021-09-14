@@ -1,13 +1,20 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
+import Box, { BoxProps } from '@mui/material/Box';
+import NoSsr from '@mui/material/NoSsr';
+import Paper, { PaperProps } from '@mui/material/Paper';
 
 export default function ShowcaseContainer({
   preview,
+  previewSx,
   code,
+  codeSx,
+  sx,
 }: {
   preview?: React.ReactNode;
+  previewSx?: PaperProps['sx'];
   code?: React.ReactNode;
+  codeSx?: BoxProps['sx'];
+  sx?: BoxProps['sx'];
 }) {
   return (
     <Box
@@ -15,6 +22,7 @@ export default function ShowcaseContainer({
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
+        ...sx,
       }}
     >
       <Paper
@@ -25,17 +33,12 @@ export default function ShowcaseContainer({
           minHeight: 220,
           justifyContent: 'center',
           alignItems: 'center',
-          px: 2,
+          p: 2,
           bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300'),
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.300'),
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
-          '&& *:not([class*="MuiSwitch"])': {
-            transition: '0.7s',
-          },
-          '&& [class*="MuiSwitch"]': {
-            transition: '0.3s',
-          },
+          ...previewSx,
         }}
       >
         {preview}
@@ -48,7 +51,6 @@ export default function ShowcaseContainer({
           maxWidth: '100%',
           position: 'relative',
           minHeight: 200,
-          maxHeight: 540,
           borderWidth: '0 1px 1px 1px',
           borderStyle: 'solid',
           borderColor: (theme) =>
@@ -56,9 +58,10 @@ export default function ShowcaseContainer({
           bgcolor: 'primaryDark.800',
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
+          ...codeSx,
         }}
       >
-        {code}
+        <NoSsr>{code}</NoSsr>
       </Box>
     </Box>
   );

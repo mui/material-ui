@@ -29,8 +29,8 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
 ## Customization
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here are some examples of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
@@ -61,7 +61,7 @@ Snackbars should appear above FABs (on mobile).
 
 {{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
-### Change Transition
+### Change transition
 
 [Grow](/components/transitions/#grow) is the default transition but you can use a different one.
 
@@ -70,6 +70,22 @@ Snackbars should appear above FABs (on mobile).
 ### Control Slide direction
 
 You can change the direction of the [Slide](/components/transitions/#slide) transition.
+
+Example of making the slide transition to the left:
+
+```jsx
+import Slide from '@material-ui/core/Slide';
+
+function TransitionLeft(props) {
+  return <Slide {...props} direction="left" />;
+}
+
+export default function MyComponent() {
+  return <Snackbar TransitionComponent={TransitionLeft} />;
+}
+```
+
+Other examples:
 
 {{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
 
@@ -86,7 +102,7 @@ This example demonstrates how to use [notistack](https://github.com/iamhosseindh
 notistack has an **imperative API** that makes it easy to display snackbars, without having to handle their open/close state.
 It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design guidelines).
 
-TODO: Add example once notistack is compatible with v5 or replace with [#1824](https://github.com/mui-org/material-ui/issues/1824).
+{{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
 
 ## Accessibility
 

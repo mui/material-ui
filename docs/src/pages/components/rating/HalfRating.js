@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Rating from '@material-ui/core/Rating';
-import Stack from '@material-ui/core/Stack';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
 
 export default function HalfRating() {
   return (

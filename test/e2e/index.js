@@ -6,8 +6,8 @@ import TestViewer from './TestViewer';
 
 const fixtures = [];
 
-const requireFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/);
-requireFixtures.keys().forEach((path) => {
+const importFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
+importFixtures.keys().forEach((path) => {
   const [suite, name] = path
     .replace('./', '')
     .replace(/\.\w+$/, '')
@@ -16,7 +16,7 @@ requireFixtures.keys().forEach((path) => {
     path,
     suite: `e2e/${suite}`,
     name,
-    Component: requireFixtures(path).default,
+    Component: React.lazy(() => importFixtures(path)),
   });
 });
 

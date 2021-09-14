@@ -8,7 +8,7 @@ githubLabel: 'component: Transition'
 
 <p class="description">Transitions help to make a UI expressive and easy to use.</p>
 
-Material-UI provides transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications.
+MUI provides transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -48,6 +48,13 @@ Similarly, the `unmountOnExit` prop removes the component from the DOM after it 
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
+### Slide relative to a container
+
+The Slide component also accepts `container` prop, which is a reference to a DOM node.
+If this prop is set, the Slide component will slide from the edge of that DOM node.
+
+{{"demo": "pages/components/transitions/SlideFromContainer.js"}}
+
 ## Zoom
 
 Expand outwards from the center of the child element.
@@ -58,7 +65,7 @@ This example also demonstrates how to delay the enter transition.
 
 ## Child requirement
 
-- **Forward the style**: To better support server rendering, Material-UI provides a `style` prop to the children of some transition components (Fade, Grow, Zoom, Slide).
+- **Forward the style**: To better support server rendering, MUI provides a `style` prop to the children of some transition components (Fade, Grow, Zoom, Slide).
   The `style` prop must be applied to the DOM for the animation to work as expected.
 - **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/guides/composition/#caveat-with-refs)
 - **Single element**: The transition components require only one child element (`React.Fragment` is not allowed).
@@ -93,7 +100,7 @@ As components are added or removed, the `in` prop is toggled automatically by `T
 
 ## TransitionComponent prop
 
-Some Material-UI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition.
+Some MUI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition.
 You can use any of the above components or your own.
 It should respect the following conditions:
 
@@ -102,7 +109,7 @@ It should respect the following conditions:
 - Call the `onExited` callback prop when the exit transition is completed.
   These two callbacks allow to unmount the children when in a closed state and fully transitioned.
 
-For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition).
+For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](https://reactcommunity.org/react-transition-group/transition).
 You can also visit the dedicated sections of some of the components:
 
 - [Modal](/components/modal/#transitions)

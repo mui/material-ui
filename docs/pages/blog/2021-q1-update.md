@@ -43,7 +43,7 @@ Here are the most significant improvements since December 2020.
 
   <img src="/static/blog/2021-q1-update/stack.png" alt="" style="width: 502px; margin-bottom: 16px;" />
 
-  You can find [more details](https://next.material-ui.com/components/stack/) in the documentation.
+  You can find [more details](https://material-ui.com/components/stack/) in the documentation.
 
 - 🎨 We have improved the support for custom colors and variants.
   This is [one](https://github.com/mui-org/material-ui/issues/13875) of the most upvoted issues in the GitHub issue tracker.
@@ -51,7 +51,7 @@ Here are the most significant improvements since December 2020.
   Developers can now do the following:
 
 ```jsx
-import { createMuiTheme, Button } from '@material-ui/core';
+import { createMuiTheme, Button } from '@mui/material';
 
 // 1. Extend the theme.
 const theme = createMuiTheme({
@@ -63,7 +63,7 @@ const theme = createMuiTheme({
 });
 
 // 2. Notify TypeScript about the new color in the palette
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Palette {
     neutral: Palette['primary'];
   }
@@ -81,9 +81,9 @@ This new feature removes the need to create a wrapper component.
 - 📍 We have synchronized the icons with the latest update of the Material Design icons.<br />
   Google has moved its icons to a new location: https://fonts.google.com/icons.
   At the same time, they have increased the number of provided icons from 6,500 to 8,500.
-  You can find all these icons under the `@material-ui/icons` package.
+  You can find all these icons under the `@mui/icons-material` package.
 
-- 🦴 We have migrated a couple of components to the `@material-ui/unstyled` package.
+- 🦴 We have migrated a couple of components to the `@mui/core` package.
   The aim of the package is to host the unstyled and headless (hooks) components.
   So far, you can only find:
 
@@ -120,7 +120,7 @@ We have primarily focused on the data grid components, fixing a lot of bugs, but
 The date picker is at the border between the advanced components and the design system realms.
 
 - 📚 We have fixed the generation of the API pages.
-  We now document all the props supported by the public pickers components, e.g. [DatePicker](https://next.material-ui.com/api/date-picker/).
+  We now document all the props supported by the public pickers components, e.g. [DatePicker](https://material-ui.com/api/date-picker/).
 - ⚙️ We have mostly focused on addressing the technical debt present in the picker components (ported from `@materal-ui/pickers`).
 
 #### Data Grid
@@ -133,9 +133,9 @@ The date picker is at the border between the advanced components and the design 
 - ♿️ We have fixed a couple of accessibility issues (more in progress).
 - 🌏 We have introduced support for [custom locales](/components/data-grid/localization/).
 - 🚨 We have started to work on breaking changes to reach a stable state.
-- 💾 We have extended the support of @material-ui/core to handle v4 and v5 at the same time.
+- 💾 We have extended the support of @mui/material to handle v4 and v5 at the same time.
   In the future, we might desynchronize the release version of _mui/material-ui_ and _mui/material-ui-x_.
-  For Material-UI X, we will likely need to release breaking changes at a higher frequency: every six months.
+  For MUI X, we will likely need to release breaking changes at a higher frequency: every six months.
 - 🎛 We have added a column selector.
 
   <img src="/static/blog/2021-q1-update/column-selector.png" alt="" style="width: 518px; margin-bottom: 16px;" />
@@ -182,7 +182,7 @@ This Handbook is the single **source of truth**. It's meant to be updated by any
   We have seen a significant influx of stars this quarter.
 - 👨‍👩‍👧‍👦 From 2,052 to 2,141 contributors on GitHub. We add on average one new contributor every day.
 - 💰 Grew gross revenue at +4%/week on average during the period.
-- 🏢 We have welcomed one new member to Material-UI: [Matheus](/blog/matheus-wichman-joining/).
+- 🏢 We have welcomed one new member to MUI: [Matheus](/blog/matheus-wichman-joining/).
 
 ## Our roadmap intent for Q2 2021
 
@@ -197,7 +197,7 @@ We will cross the ten-person milestone in the coming weeks (11).
 
 We have the following objectives:
 
-- Finish the implementation of the rebranding. A preview, the [about](https://next.material-ui.com/branding/about/) and [pricing](https://next.material-ui.com/branding/pricing/) pages.
+- Finish the implementation of the rebranding. A preview, the [about](https://material-ui.com/branding/about/) and [pricing](https://material-ui.com/branding/pricing/) pages.
 - Onboard the new members and scale our processes as we double the size of the organization this quarter.
 
 ### Core components
