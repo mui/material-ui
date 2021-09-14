@@ -1,5 +1,5 @@
 ---
-title: React Container component
+title: React Container コンポーネント
 components: Container
 githubLabel: 'component: Container'
 ---
@@ -14,7 +14,7 @@ githubLabel: 'component: Container'
 
 ## Fluid(可変)
 
-A fluid container width is bounded by the `maxWidth` prop value.
+Fluid (可変) コンテナーの横幅は `maxWidth` プロパティによって制限されます。
 
 {{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 
@@ -24,7 +24,7 @@ A fluid container width is bounded by the `maxWidth` prop value.
 
 ## 固定
 
-完全に流動的なビューポートに対応するのではなく、固定サイズのセット用に設計したい場合は、 `fixed` プロパティを設定できます。 最大幅は、現在のブレークポイントの最小幅と一致します。
+完全に流動的なビューポートに対応するのではなく、固定サイズのセット用に設計したい場合は、 `fixed` プロパティを設定できます。 最大幅は、現在のブレークポイントの最小幅と一致します。 最大幅は、現在のブレークポイントの最小幅と一致します。
 
 {{"demo": "pages/components/container/FixedContainer.js", "iframe": true, "defaultCodeOpen": false}}
 

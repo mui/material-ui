@@ -17,7 +17,7 @@ Steppers may display a transient feedback message after a step is saved.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
+> **Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them.
 
 ## Horizontal stepper
 
@@ -59,8 +59,8 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prop 
 
 ### Customized horizontal stepper
 
-Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
@@ -70,7 +70,7 @@ Vertical steppers are designed for narrow screen sizes. They are ideal for mobil
 
 {{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
-### Perfomance
+### Performance
 
 The content of a step is unmounted when closed.
 If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to keep the step mounted with:

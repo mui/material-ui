@@ -3,7 +3,8 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "icon": { "type": { "name": "node" } },
-    "optional": { "type": { "name": "node" } }
+    "optional": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "StepButton",
   "styles": {
@@ -13,9 +14,9 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/material-ui/src/StepButton/StepButton.js",
+  "filename": "/packages/mui-material/src/StepButton/StepButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

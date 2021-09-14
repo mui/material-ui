@@ -2,6 +2,10 @@ const path = require('path');
 
 const workspaceRoot = path.resolve(__dirname, '../..');
 
+// for babel.config.js
+// webpack `mode: 'production'` does not affect NODE_ENV nor BABEL_ENV in babel-loader
+process.env.NODE_ENV = 'production';
+
 module.exports = {
   context: workspaceRoot,
   entry: 'benchmark/browser/index.js',
@@ -16,7 +20,11 @@ module.exports = {
         test: /\.(js|ts|tsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        options: { cacheDirectory: true, cwd: workspaceRoot },
+        options: {
+          cacheDirectory: true,
+          configFile: path.join(workspaceRoot, 'babel.config.js'),
+          envName: 'benchmark',
+        },
       },
       {
         test: /\.(jpg|gif|png)$/,
@@ -25,13 +33,6 @@ module.exports = {
     ],
   },
   resolve: {
-    alias: {
-      '@material-ui/core': path.join(workspaceRoot, './packages/material-ui/src'),
-      '@material-ui/styles': path.join(workspaceRoot, './packages/material-ui-styles/src'),
-      '@material-ui/system': path.join(workspaceRoot, './packages/material-ui-system/src'),
-      'react-dom$': 'react-dom/profiling',
-      'scheduler/tracing': 'scheduler/tracing-profiling',
-    },
     extensions: ['.js', '.ts', '.tsx'],
   },
 };

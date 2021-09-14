@@ -1,23 +1,14 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import TreeView from '@material-ui/lab/TreeView';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import TreeView from '@mui/lab/TreeView';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem, {
   TreeItemProps,
   useTreeItem,
   TreeItemContentProps,
-} from '@material-ui/lab/TreeItem';
+} from '@mui/lab/TreeItem';
 import clsx from 'clsx';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles({
-  root: {
-    height: 240,
-    flexGrow: 1,
-    maxWidth: 400,
-  },
-});
+import Typography from '@mui/material/Typography';
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps,
@@ -25,6 +16,7 @@ const CustomContent = React.forwardRef(function CustomContent(
 ) {
   const {
     classes,
+    className,
     label,
     nodeId,
     icon: iconProp,
@@ -63,7 +55,7 @@ const CustomContent = React.forwardRef(function CustomContent(
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
-      className={clsx(classes.root, {
+      className={clsx(className, classes.root, {
         [classes.expanded]: expanded,
         [classes.selected]: selected,
         [classes.focused]: focused,
@@ -92,14 +84,12 @@ const CustomTreeItem = (props: TreeItemProps) => (
 );
 
 export default function IconExpansionTreeView() {
-  const classes = useStyles();
-
   return (
     <TreeView
       aria-label="icon expansion"
-      className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
+      sx={{ height: 240, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
       <CustomTreeItem nodeId="1" label="Applications">
         <CustomTreeItem nodeId="2" label="Calendar" />
@@ -108,7 +98,7 @@ export default function IconExpansionTreeView() {
       </CustomTreeItem>
       <CustomTreeItem nodeId="5" label="Documents">
         <CustomTreeItem nodeId="10" label="OSS" />
-        <CustomTreeItem nodeId="6" label="Material-UI">
+        <CustomTreeItem nodeId="6" label="MUI">
           <CustomTreeItem nodeId="7" label="src">
             <CustomTreeItem nodeId="8" label="index.js" />
             <CustomTreeItem nodeId="9" label="tree-view.js" />

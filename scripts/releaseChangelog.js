@@ -28,15 +28,12 @@ function parseTags(commitMessage) {
 }
 
 /**
- *
  * @param {Octokit.ReposCompareCommitsResponseCommitsItem} commitsItem
  */
 function filterCommit(commitsItem) {
-  // exclude dependabot commits (sometimes they're merged manually so filtering by author is insufficient)
-  return (
-    commitsItem.author.login !== 'dependabot-preview[bot]' &&
-    !commitsItem.commit.message.startsWith('Bump')
-  );
+  // TODO: Use labels
+  // Filter dependency updates
+  return !commitsItem.commit.message.startsWith('Bump');
 }
 
 async function findLatestTaggedVersion() {
@@ -61,7 +58,7 @@ async function main(argv) {
 
   if (!githubToken) {
     throw new TypeError(
-      'Unable to authenticate. Make sure you either call the script with `--githubToken $token` or set `process.eng.GITHUB_TOKEN`.',
+      'Unable to authenticate. Make sure you either call the script with `--githubToken $token` or set `process.env.GITHUB_TOKEN`. The token needs `public_repo` permissions.',
     );
   }
   const octokit = new Octokit({
@@ -124,15 +121,14 @@ async function main(argv) {
   });
   const changes = commitsItems.map((commitsItem) => {
     // Helps changelog author keeping track of order when grouping commits under headings.
-    const dateSortMarker = `<!-- ${(
-      commitsItemsByDateDesc.length - commitsItemsByDateDesc.indexOf(commitsItem)
-    )
+    // &#8203; is a zero-width-space that ensures that the content of the listitem is formatted properly
+    const dateSortMarker = `&#8203;<!-- ${(commitsItems.length - commitsItems.indexOf(commitsItem))
       .toString()
       // Padding them with a zero means we can just feed a list into online sorting tools like https://www.online-utility.org/text/sort.jsp
       // i.e. we can sort the lines alphanumerically
       .padStart(Math.ceil(Math.log10(commitsItemsByDateDesc.length)), '0')} -->`;
     const shortMessage = commitsItem.commit.message.split('\n')[0];
-    return `- ${dateSortMarker} ${shortMessage} @${commitsItem.author.login}`;
+    return `- ${dateSortMarker}${shortMessage} @${commitsItem.author.login}`;
   });
   const nowFormated = new Date().toLocaleDateString('en-US', {
     month: 'short',
@@ -145,7 +141,7 @@ async function main(argv) {
 <!-- generated comparing ${lastRelease}..${release} -->
 _${nowFormated}_
 
-Big thanks to the ${
+A big thanks to the ${
     authors.length
   } contributors who made this release possible. Here are some highlights ✨:
 

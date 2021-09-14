@@ -1,6 +1,6 @@
 # Temática
 
-<p class="description">Personaliza Material-UI con tu tema. Puedes cambiar los colores, la tipogradía y mucho más.</p>
+<p class="description">Personaliza Material-UI con tu tema. Puedes cambiar los colores, la tipografía y mucho más.</p>
 
 El tema especifica el color de los componentes, las obscuridad de las superficies, nivel de la sombra, opacidad apropiada de la tinta de los elementos, etc.
 
@@ -18,19 +18,45 @@ Puede aprender más acerca de esto en la [sección API](/styles/api/#themeprovid
 
 Cambiar las variables de configuración del tema es la forma más efectiva de adaptar Material-UI a sus necesidades. Las siguientes secciones cubren las variables de tema más importantes:
 
-- [Paleta](/customization/palette/)
-- [Tipografía](/customization/typography/)
-- [Espaciado](/customization/spacing/)
-- [Separaciones](/customization/breakpoints/)
-- [z-index](/customization/z-index/)
-- [Componentes](/customization/theme-components/)
-- [Transiciones](/customization/transitions/)
+- [`.paleta`](/customization/palette/)
+- [`.typography`](/customization/typography/)
+- [`.espaciado`](/customization/spacing/)
+- [`.separaciones`](/customization/breakpoints/)
+- [`.zIndex`](/customization/z-index/)
+- [`.transições`](/customization/transitions/)
+- [`.componentes`](/customization/theme-components/)
 
 Puede consultar la sección de [Tema predeterminado](/customization/default-theme/) para ver el tema completo.
 
 ### Variables personalizadas
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Por ejemplo:
+Al usar el tema de Material-UI con la [solución de estilo](/styles/basics/) o [cualquier otra](/guides/interoperability/#themeprovider), puede ser conveniente añadir variables adicionales al tema, para que se puedan usar en todas partes. Por ejemplo:
+
+```jsx
+const theme = createTheme({
+  status: {
+    danger: orange[500],
+  },
+});
+```
+
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+
+```tsx
+declare module '@material-ui/core/styles' {
+  interface Theme {
+    status: {
+      danger: string;
+    };
+  }
+  // allow configuration using `createTheme`
+  interface ThemeOptions {
+    status?: {
+      danger?: string;
+    };
+  }
+}
+```
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
@@ -69,27 +95,27 @@ Las implicaciones de rendimiento de anidar el componente ` ThemeProvider ` está
 
 ## API
 
-### `createMuiTheme(options, ...args) => theme`
+### `createTheme(options, ...args) => theme`
 
 Generar un tema en base a las opciones recibidas.
 
 #### Argumentos
 
-1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
-2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
+1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
 #### Regresa
 
-`theme` (*Object*): The new theme with a responsive typography.
+`theme` (_object_): A complete, ready-to-use theme object.
 
 #### Ejemplos
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -107,24 +133,24 @@ Generate responsive typography settings based on the options received.
 
 #### Argumentos
 
-1. `theme` (*Object*): The theme object to enhance.
+1. `theme` (_object_): The theme object to enhance.
 2. `options` (*Object* [optional]):
 
-- `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`.
-- `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
-- `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
-- `variants` (*Array\<String\>* [optional]): Default to all. The typography variants to handle.
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`.
+- `disableAlign` (_bool_ [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
+- `factor` (_number_ [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
+- `variants` (_array\<string\>_ [optional]): Default to all. The typography variants to handle.
 
 #### Regresa
 
-`theme` (*Object*): A complete, ready to use theme object.
+`theme` (_object_): The new theme with a responsive typography.
 
 #### Ejemplos
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 
@@ -140,12 +166,12 @@ Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our com
 
 #### Argumentos
 
-1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
-2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
+1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
 #### Regresa
 
-`theme` (*Object*): The new theme with a responsive typography.
+`theme` (_object_): A complete, ready to use theme object.
 
 #### Ejemplos
 

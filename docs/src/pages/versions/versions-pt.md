@@ -38,16 +38,17 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 
 ## Cronograma de lançamento
 
-| Data             | Versão | Situação |
-|:---------------- |:------ |:-------- |
-| Maio de 2018     | v1.0.0 | Lançada  |
-| Setembro de 2018 | v3.0.0 | Lançada  |
-| Maio de 2019     | v4.0.0 | Lançada  |
-| Q1 2021          | v5.0.0 | ⏳        |
+| Data                | Versão      | Situação         |
+|:------------------- |:----------- |:---------------- |
+| Maio de 2018        | v1.0.0      | Lançada          |
+| Setembro de 2018    | v3.0.0      | Lançada          |
+| Maio de 2019        | v4.0.0      | Lançada          |
+| Q1 2021             | v5.0.beta.0 | Work in progress |
+| September 1st, 2021 | v5.0.0      | ⏳                |
 
 Você pode seguir os [milestones](https://github.com/mui-org/material-ui/milestones) para uma visão geral mais detalhada.
 
-> ⚠️ ** Isenção de responsabilidade **: Operamos em um ambiente dinâmico e as coisas estão sujeitas a alterações. As informações disponibilizadas destinam-se a traçar a orientação geral do framework. Destina-se apenas a fins informativos. Podemos decidir adicionar/remover itens novos a qualquer momento, com base em nossos recursos de capacidade de entrga ou para manter nossos padrões de qualidade. O desenvolvimento, lançamentos e disponibilidade de recursos ou funcionalidades do Material-UI permanece a critério exclusivo da equipe. O roadmap não representa um compromisso, obrigação ou promessa que será entregue em um determinado momento.
+> ⚠️ **Isenção de responsabilidade**: Operamos em um ambiente dinâmico e as coisas estão sujeitas a alterações. As informações disponibilizadas destinam-se a traçar a orientação geral do framework. Destina-se apenas a fins informativos. Podemos decidir adicionar/remover itens novos a qualquer momento, com base em nossos recursos de capacidade de entrega ou para manter nossos padrões de qualidade. O desenvolvimento, lançamentos e disponibilidade de recursos ou funcionalidades do Material-UI permanece a critério exclusivo da equipe. O roadmap não representa um compromisso, obrigação ou promessa que será entregue em um determinado momento.
 
 ## Política de suporte
 
@@ -55,7 +56,7 @@ Encontre detalhes nas [versões suportadas](/getting-started/support/#supported-
 
 ## Práticas de descontinuação
 
-Às vezes, **"alterações significativas"**, tais como a remoção do suporte para selecionar APIs e recursos, são necessários.
+Às vezes, **"alterações significativas"**, tais como a remoção do suporte para certas APIs e recursos, são necessários.
 
 Para tornar essas transições o mais fácil possível:
 

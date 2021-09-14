@@ -23,7 +23,7 @@ materialDesign: https://material.io/components/dividers
 
 在一个列表中，请确保您将 `Divider` 渲染成一个 `<li>` 元素，这样才能遵循 HTML5 规范。 下面的例子展示了两种实现方式。
 
-## 内嵌分隔线
+## 内凹分隔线
 
 {{"demo": "pages/components/dividers/InsetDividers.js", "bg": true}}
 
@@ -48,6 +48,12 @@ materialDesign: https://material.io/components/dividers
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}
 
 > 请注意这其中使用了 `flexItem` 属性来适应 flex 容器。
+
+### Vertical with variant middle
+
+You can also render a vertical divider with `variant="middle"`.
+
+{{"demo": "pages/components/dividers/VerticalDividerMiddle.js", "bg": true}}
 
 ### 垂直的文本分隔线
 

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiButton: {
       // Style sheet name ⚛️

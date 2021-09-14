@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-  createMuiTheme,
+  createTheme,
   responsiveFontSizes,
   ThemeProvider,
-} from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+} from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 export default function ResponsiveFontSizes() {

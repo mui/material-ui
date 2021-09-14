@@ -1,10 +1,10 @@
 import * as React from 'react';
-import TablePagination from '@material-ui/core/TablePagination';
-import Autocomplete from '@material-ui/core/Autocomplete';
-import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import * as locales from '@material-ui/core/locale';
+import TablePagination from '@mui/material/TablePagination';
+import Autocomplete from '@mui/material/Autocomplete';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import * as locales from '@mui/material/locale';
 
 export default function Locales() {
   const [locale, setLocale] = React.useState('zhCN');
@@ -12,7 +12,7 @@ export default function Locales() {
   return (
     <Box sx={{ width: '100%' }}>
       <ThemeProvider
-        theme={(outerTheme) => createMuiTheme(outerTheme, locales[locale])}
+        theme={(outerTheme) => createTheme(outerTheme, locales[locale])}
       >
         <Autocomplete
           options={Object.keys(locales)}

@@ -4,9 +4,9 @@ import {
   Theme,
   ThemeProvider,
   useTheme,
-  createMuiTheme,
-} from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+  createTheme,
+} from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -17,7 +17,7 @@ type BreakpointOrNull = Breakpoint | null;
  */
 function useWidth() {
   const theme: Theme = useTheme();
-  const keys: Breakpoint[] = [...theme.breakpoints.keys].reverse();
+  const keys: readonly Breakpoint[] = [...theme.breakpoints.keys].reverse();
   return (
     keys.reduce((output: BreakpointOrNull, key: Breakpoint) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -32,7 +32,7 @@ function MyComponent() {
   return <span>{`width: ${width}`}</span>;
 }
 
-const theme = createMuiTheme();
+const theme = createTheme();
 
 export default function UseWidth() {
   return (

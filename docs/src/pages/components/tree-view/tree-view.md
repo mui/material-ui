@@ -3,7 +3,7 @@ title: Tree View React component
 components: TreeView, TreeItem
 githubLabel: 'component: TreeView'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#TreeView
-packageName: '@material-ui/lab'
+packageName: '@mui/lab'
 ---
 
 # Tree View
@@ -64,7 +64,7 @@ Or increasing the width of the state indicator:
 
 {{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
 
-## Customized tree view
+## Customization
 
 ### Custom icons, border and animation
 

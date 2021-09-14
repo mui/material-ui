@@ -1,15 +1,15 @@
 import * as React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiCssBaseline: {
-      styleOverrides: {
-        h1: {
-          color: 'grey',
-        },
-      },
+      styleOverrides: `
+        h1 {
+          color: grey;
+        }
+      `,
     },
   },
 });

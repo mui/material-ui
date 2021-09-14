@@ -1,6 +1,6 @@
 import * as React from 'react';
-import NoSsr from '@material-ui/core/NoSsr';
-import Box from '@material-ui/core/Box';
+import NoSsr from '@mui/material/NoSsr';
+import Box from '@mui/material/Box';
 
 export default function SimpleNoSsr() {
   return (
@@ -10,11 +10,7 @@ export default function SimpleNoSsr() {
       </Box>
       <NoSsr>
         <Box
-          sx={{
-            p: 2,
-            bgcolor: 'secondary.main',
-            color: 'primary.contrastText',
-          }}
+          sx={{ p: 2, bgcolor: 'secondary.main', color: 'secondary.contrastText' }}
         >
           Client only
         </Box>

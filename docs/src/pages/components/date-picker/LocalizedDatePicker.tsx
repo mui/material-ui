@@ -3,12 +3,12 @@ import frLocale from 'date-fns/locale/fr';
 import ruLocale from 'date-fns/locale/ru';
 import deLocale from 'date-fns/locale/de';
 import enLocale from 'date-fns/locale/en-US';
-import ToggleButton from '@material-ui/core/ToggleButton';
-import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
-import TextField from '@material-ui/core/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import DatePicker from '@material-ui/lab/DatePicker';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import DatePicker from '@mui/lab/DatePicker';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 const localeMap = {
   en: enLocale,
@@ -26,7 +26,7 @@ const maskMap = {
 
 export default function LocalizedDatePicker() {
   const [locale, setLocale] = React.useState<keyof typeof maskMap>('ru');
-  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
+  const [value, setValue] = React.useState<Date | null>(new Date());
 
   const selectLocale = (newLocale: any) => {
     setLocale(newLocale);
@@ -34,8 +34,8 @@ export default function LocalizedDatePicker() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[locale]}>
-      <div style={{ width: 300 }}>
-        <ToggleButtonGroup value={locale} exclusive>
+      <div>
+        <ToggleButtonGroup value={locale} exclusive sx={{ mb: 2, display: 'block' }}>
           {Object.keys(localeMap).map((localeItem) => (
             <ToggleButton
               key={localeItem}
@@ -48,8 +48,8 @@ export default function LocalizedDatePicker() {
         </ToggleButtonGroup>
         <DatePicker
           mask={maskMap[locale]}
-          value={selectedDate}
-          onChange={(date) => handleDateChange(date)}
+          value={value}
+          onChange={(newValue) => setValue(newValue)}
           renderInput={(params) => <TextField {...params} />}
         />
       </div>

@@ -16,7 +16,7 @@ const appList = [
     title: 'd-cide',
     description:
       'A progressive Web App to make rational decisions in workshops. ' +
-      'It uses Material-UI with a neumorphic custom theme.',
+      'It uses MUI with a neumorphic custom theme.',
     image: 'dcide.jpg',
     link: 'https://d-cide.me/',
     source: 'https://github.com/cjoecker/d-cide',
@@ -164,7 +164,7 @@ const appList = [
     description:
       'The #1 rated mobile software to run your home service business. ' +
       'Schedule, dispatch, GPS track employees, invoice, accept credit cards and get booked ' +
-      'online. The marketing website is also built with Material-UI: https://www.housecallpro.com/',
+      'online. The marketing website is also built with MUI: https://www.housecallpro.com/',
     image: 'housecall.jpg',
     link: 'https://pro.housecall.io/pro/log_in',
     similarWebVisits: 750,
@@ -335,7 +335,7 @@ const appList = [
     title: 'Builder Book',
     description:
       'Books to learn how to build full-stack, production-ready JavaScript web applications from scratch. ' +
-      'Learn React, Material-UI, Next, Express, Mongoose, MongoDB, third party APIs, and more.',
+      'Learn React, MUI, Next, Express, Mongoose, MongoDB, third party APIs, and more.',
     image: 'builderbook.jpg',
     link: 'https://builderbook.org/',
     source: 'https://github.com/builderbook/builderbook',
@@ -560,8 +560,7 @@ const appList = [
       'An open source Chrome extension allowing you to import and execute JavaScript code ' +
       'snippets from GitHub.',
     image: 'snippets.jpg',
-    link:
-      'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
+    link: 'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
     source: 'https://github.com/richardscarrott/snippets',
     stars: 42,
     dateAdded: '2018-01-19',
@@ -570,7 +569,7 @@ const appList = [
     title: 'Tree',
     description:
       'An open source top 100 documentaries (personal opinion) app ' +
-      'with React Hooks and Material-UI.',
+      'with React Hooks and MUI.',
     link: 'https://tree.valleyease.me/',
     image: 'tree.jpg',
     source: 'https://github.com/ValleyZw/tree',
@@ -670,6 +669,15 @@ const appList = [
     image: 'tcespal.jpg',
     link: 'https://tcespal.com',
     dateAdded: '2021-02-06',
+  },
+  {
+    title: 'Atomic CRM',
+    description: 'A full-featured Customer Relationship Management app',
+    image: 'atomiccrm.jpg',
+    link: 'https://marmelab.com/react-admin-crm/',
+    source: 'https://github.com/marmelab/react-admin/tree/master/examples/crm',
+    stars: 16700,
+    dateAdded: '2021-05-06',
   },
 ];
 

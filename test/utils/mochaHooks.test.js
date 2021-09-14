@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import * as React from 'react';
 import { stub } from 'sinon';
 import { createMochaHooks } from './mochaHooks';
-import { createClientRender } from './createClientRender';
+import { createClientRender, act } from './createClientRender';
 
 describe('mochaHooks', () => {
   // one block per hook.
@@ -46,7 +46,8 @@ describe('mochaHooks', () => {
 
     describe('dedupes missing act() warnings by component', () => {
       const mochaHooks = createMochaHooks(Mocha);
-      const render = createClientRender();
+      // missing act warnings only happen in StrictMode
+      const render = createClientRender({ strict: true });
 
       beforeEach(function beforeEachHook() {
         mochaHooks.beforeAll.forEach((beforeAllMochaHook) => {
@@ -64,19 +65,23 @@ describe('mochaHooks', () => {
           return null;
         });
 
-        let setState;
+        let unsafeSetState;
         function Parent() {
-          setState = React.useState(0)[1];
+          const [state, setState] = React.useState(0);
+          unsafeSetState = setState;
+
           React.useEffect(() => {});
           React.useEffect(() => {});
 
-          return <Child />;
+          return <Child rerender={state} />;
         }
 
         render(<Parent />);
 
         // not wrapped in act()
-        setState(1);
+        unsafeSetState(1);
+        // make sure effects are flushed
+        act(() => {});
       });
 
       afterEach(function afterEachHook() {

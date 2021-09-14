@@ -2,7 +2,6 @@
 const astTypes = require('ast-types');
 const { parse: parseDoctrine } = require('doctrine');
 const { utils: docgenUtils } = require('react-docgen');
-const { isAnnotatedComponent } = require('./findAnnotatedComponentsResolver');
 
 const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = docgenUtils;
 
@@ -40,9 +39,14 @@ function getDefaultValue(propertyPath, importer) {
       path = resolveToValue(path, importer);
     }
     if (types.ImportDeclaration.check(path.node)) {
+      if (types.TSAsExpression.check(node)) {
+        node = node.expression;
+      }
       if (!types.Identifier.check(node)) {
+        const locationHint =
+          node.loc != null ? `${node.loc.start.line}:${node.loc.start.column}` : 'unknown location';
         throw new TypeError(
-          `Unable to follow data flow. Expected an 'Identifier' resolve to an 'ImportDeclaration'. Instead attempted to resolve a '${node.type}'.`,
+          `Unable to follow data flow. Expected an 'Identifier' resolve to an 'ImportDeclaration'. Instead attempted to resolve a '${node.type}' at ${locationHint}.`,
         );
       }
       defaultValue = node.name;
@@ -65,7 +69,6 @@ function getDefaultValue(propertyPath, importer) {
 }
 
 /**
- *
  * @param {import('doctrine').Annotation} jsdoc
  * @return {{ value: string } | undefined}
  */
@@ -135,8 +138,6 @@ function getDefaultValuesFromProps(properties, documentation, importer) {
       if (defaultValue) {
         propDescriptor.defaultValue = defaultValue;
       }
-    } else {
-      propDescriptor.external = true;
     }
   });
 }
@@ -180,7 +181,12 @@ function getPropsPath(functionBody) {
        */
       (path) => {
         const declaratorPath = path.get('declarations', 0);
-        if (declaratorPath.get('init', 'name').value === 'props') {
+        // find `const {} = props`
+        // but not `const ownerState = props`
+        if (
+          declaratorPath.get('init', 'name').value === 'props' &&
+          declaratorPath.get('id', 'type').value === 'ObjectPattern'
+        ) {
           propsPath = declaratorPath.get('id');
         }
       },
@@ -193,18 +199,10 @@ function getPropsPath(functionBody) {
  * @type {import('react-docgen').Handler}
  */
 const defaultPropsHandler = (documentation, componentDefinition, importer) => {
-  if (isAnnotatedComponent(componentDefinition)) {
-    Object.values(documentation.toObject().props).forEach((propDescriptor) => {
-      // For annotated components static analysis already breaks down.
-      // Props can be considered external i.e. we can't verify if the documented default value matches at runtime.
-      propDescriptor.external = true;
-    });
-  } else {
-    const renderBody = getRenderBody(componentDefinition, importer);
-    const props = getPropsPath(renderBody);
-    if (props !== undefined) {
-      getDefaultValuesFromProps(props.get('properties'), documentation, importer);
-    }
+  const renderBody = getRenderBody(componentDefinition, importer);
+  const props = getPropsPath(renderBody);
+  if (props !== undefined) {
+    getDefaultValuesFromProps(props.get('properties'), documentation, importer);
   }
 };
 

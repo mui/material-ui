@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiAppBar from '@material-ui/core/AppBar';
-import MuiTabs from '@material-ui/core/Tabs';
-import MuiTab from '@material-ui/core/Tab';
+import MuiAppBar from '@mui/material/AppBar';
+import MuiTabs from '@mui/material/Tabs';
+import MuiTab from '@mui/material/Tab';
 import { Icon } from './Icon';
 
 interface Props {
@@ -15,8 +15,8 @@ interface Props {
   variant: 'fullWidth' | 'scrollable' | 'standard';
   visibleScrollbar: boolean;
   appBarColor?: 'default' | 'primary' | 'secondary' | 'inherit';
-  icons: string[];
-  labels: string[];
+  icons: readonly string[];
+  labels: readonly string[];
   width: number | string;
   height: number;
 }

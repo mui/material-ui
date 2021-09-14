@@ -55,8 +55,8 @@ function createComparisonFilter(parsedThreshold, gzipThreshold) {
 }
 
 /**
- * checks if the bundle is of a package e.b. `@material-ui/core` but not
- * `@material-ui/core/Paper`
+ * checks if the bundle is of a package e.b. `@mui/material` but not
+ * `@mui/material/Paper`
  * @param {[string, any]} comparisonEntry
  */
 function isPackageComparison(comparisonEntry) {
@@ -126,7 +126,8 @@ async function reportBundleSize() {
   await git(`fetch ${UPSTREAM_REMOTE}`);
   const mergeBaseCommit = await git(`merge-base HEAD ${UPSTREAM_REMOTE}/${upstreamRef}`);
 
-  const detailedComparisonUrl = `https://mui-dashboard.netlify.app/size-comparison?buildId=${azureBuildId}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit}&prNumber=${danger.github.pr.number}`;
+  const detailedComparisonRoute = `/size-comparison?buildId=${azureBuildId}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit}&prNumber=${danger.github.pr.number}`;
+  const detailedComparisonUrl = `https://mui-dashboard.netlify.app${detailedComparisonRoute}`;
 
   const comparison = await loadComparison(mergeBaseCommit, upstreamRef);
 

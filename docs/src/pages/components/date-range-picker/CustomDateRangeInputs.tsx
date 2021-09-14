@@ -1,26 +1,25 @@
 import * as React from 'react';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';
+import Box from '@mui/material/Box';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
 
 export default function CustomDateRangeInputs() {
-  const [selectedDate, handleDateChange] = React.useState<DateRange<Date>>([
-    null,
-    null,
-  ]);
+  const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
         label="Advanced keyboard"
-        value={selectedDate}
-        onChange={(date) => handleDateChange(date)}
+        value={value}
+        onChange={(newValue) => setValue(newValue)}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
             <input
               ref={startProps.inputRef as React.Ref<HTMLInputElement>}
               {...startProps.inputProps}
             />
+            <Box sx={{ mx: 1 }}> to </Box>
             <input
               ref={endProps.inputRef as React.Ref<HTMLInputElement>}
               {...endProps.inputProps}

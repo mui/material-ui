@@ -37,7 +37,7 @@ If you enable high density a custom theme is applied to the docs. This theme is 
 The theme is configured with the following options:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     MuiButton: {
       size: 'small',

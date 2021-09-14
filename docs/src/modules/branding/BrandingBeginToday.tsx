@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Link from 'docs/src/modules/components/Link';
 
 export default function BrandingBeginToday() {
@@ -58,10 +58,10 @@ export default function BrandingBeginToday() {
           }}
         />
         <Typography variant="h2" align="center">
-          Begin with Material-UI today
+          Begin with MUI today
         </Typography>
         <Typography align="center" sx={{ mt: 2, mb: 4, fontSize: [16, 18] }}>
-          Start with Material-UI and discover the benefits
+          Start with MUI and discover the benefits
         </Typography>
         <Button
           component={Link}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 export default function MinHeightTextarea() {
   return (
@@ -7,6 +7,7 @@ export default function MinHeightTextarea() {
       aria-label="minimum height"
       minRows={3}
       placeholder="Minimum 3 rows"
+      style={{ width: 200 }}
     />
   );
 }

@@ -1,19 +1,10 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 80,
-  },
-}));
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 export default function SelectAutoWidth() {
-  const classes = useStyles();
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
@@ -22,7 +13,7 @@ export default function SelectAutoWidth() {
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
+      <FormControl sx={{ m: 1, minWidth: 80 }}>
         <InputLabel id="demo-simple-select-autowidth-label">Age</InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"
@@ -30,6 +21,7 @@ export default function SelectAutoWidth() {
           value={age}
           onChange={handleChange}
           autoWidth
+          label="Age"
         >
           <MenuItem value="">
             <em>None</em>

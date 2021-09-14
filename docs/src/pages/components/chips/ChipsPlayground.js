@@ -1,29 +1,17 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import Grid from '@material-ui/core/Grid';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
-import Avatar from '@material-ui/core/Avatar';
-import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
-import DoneIcon from '@material-ui/icons/Done';
+import Grid from '@mui/material/Grid';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
+import FaceIcon from '@mui/icons-material/Face';
+import DoneIcon from '@mui/icons-material/Done';
 
-const styles = (theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  chipWrapper: {
-    height: theme.spacing(10),
-  },
-});
-
-function ChipsPlayground(props) {
-  const { classes } = props;
+function ChipsPlayground() {
   const [state, setState] = React.useState({
     color: 'default',
     onDelete: 'none',
@@ -102,10 +90,10 @@ function ChipsPlayground(props) {
 `;
 
   return (
-    <Grid container className={classes.root}>
+    <Grid container sx={{ flexGrow: 1 }}>
       <Grid item xs={12}>
         <Grid container justifyContent="center" alignItems="center">
-          <Grid item className={classes.chipWrapper}>
+          <Grid item sx={{ height: (theme) => theme.spacing(10) }}>
             <Chip
               label="Chip Component"
               color={color}
@@ -168,6 +156,18 @@ function ChipsPlayground(props) {
                   value="secondary"
                   control={<Radio />}
                   label="secondary"
+                />
+                <FormControlLabel value="error" control={<Radio />} label="error" />
+                <FormControlLabel value="info" control={<Radio />} label="info" />
+                <FormControlLabel
+                  value="success"
+                  control={<Radio />}
+                  label="success"
+                />
+                <FormControlLabel
+                  value="warning"
+                  control={<Radio />}
+                  label="warning"
                 />
               </RadioGroup>
             </FormControl>
@@ -259,8 +259,4 @@ function ChipsPlayground(props) {
   );
 }
 
-ChipsPlayground.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ChipsPlayground);
+export default ChipsPlayground;

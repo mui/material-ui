@@ -22,14 +22,15 @@ A basic example with tab panels.
 
 ## Experimental API
 
-`@material-ui/lab` offers utility components that inject props to implement accessible tabs
+`@mui/lab` offers utility components that inject props to implement accessible tabs
 following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
 
 {{"demo": "pages/components/tabs/LabTabs.js"}}
 
 ## Wrapped labels
 
-Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow and the text will not be visible.
+Long labels will automatically wrap on tabs.
+If the label is too long for the tab, it will overflow, and the text will not be visible.
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
@@ -45,7 +46,7 @@ A tab can be disabled by setting the `disabled` prop.
 
 ## Fixed tabs
 
-Fixed tabs should be used with a limited number of tabs, and when consistent placement will aid muscle memory.
+Fixed tabs should be used with a limited number of tabs, and when a consistent placement will aid muscle memory.
 
 ### Full width
 
@@ -87,14 +88,14 @@ If you want to make sure the buttons are always visible, you should customize th
 ### Prevent scroll buttons
 
 Left and right scroll buttons are never be presented with `scrollButtons={false}`.
-All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
+All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift mouse wheel, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
-## Customized tabs
+## Customization
 
-Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 
@@ -122,6 +123,12 @@ Tab labels may be either all icons or all text.
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js"}}
 
+## Third-party routing library
+
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
+The `Tab` component provides the `component` prop to handle this use case.
+Here is a [more detailed guide](/guides/routing/#tabs).
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
@@ -132,7 +139,7 @@ The following steps are needed in order to provide necessary information for ass
 2. `Tab`s need to be connected to their
    corresponding `[role="tabpanel"]` by setting the correct `id`, `aria-controls` and `aria-labelledby`.
 
-An example for the current implementation can be found in the demos on this page. We've also published [an experimental API](#experimental-api) in `@material-ui/lab` that does not require
+An example for the current implementation can be found in the demos on this page. We've also published [an experimental API](#experimental-api) in `@mui/lab` that does not require
 extra work.
 
 ### Keyboard navigation

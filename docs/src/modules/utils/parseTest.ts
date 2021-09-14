@@ -34,10 +34,7 @@ function findConformanceDescriptor(file: babel.ParseResult): babel.types.ObjectE
     CallExpression(babelPath) {
       const { node: callExpression } = babelPath;
       const { callee } = callExpression;
-      if (
-        t.isIdentifier(callee) &&
-        (callee.name === 'describeConformance' || callee.name === 'describeConformanceV5')
-      ) {
+      if (t.isIdentifier(callee) && callee.name.startsWith('describeConformance')) {
         const [, optionsFactory] = callExpression.arguments;
         if (
           t.isArrowFunctionExpression(optionsFactory) &&
@@ -65,7 +62,8 @@ function getRefInstance(valueNode: babel.Node): string | undefined {
 
   if (!babel.types.isMemberExpression(valueNode)) {
     throw new Error(
-      'Expected a member expression (e.g. window.HTMLDivElement) or a global identifier (e.g. Object) in refInstanceof.',
+      'Expected a member expression (e.g. window.HTMLDivElement) or a global identifier (e.g. Object) in refInstanceof. ' +
+        'If the ref will not be resolved use `refInstanceof: undefined`.',
     );
   }
 

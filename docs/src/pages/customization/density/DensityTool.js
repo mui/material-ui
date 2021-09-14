@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Input from '@material-ui/core/Input';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+import { useTheme } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
+import Input from '@mui/material/Input';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
-import IncreaseIcon from '@material-ui/icons/AddCircleOutline';
-import DecreaseIcon from '@material-ui/icons/RemoveCircleOutline';
+import IncreaseIcon from '@mui/icons-material/AddCircleOutline';
+import DecreaseIcon from '@mui/icons-material/RemoveCircleOutline';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const minSpacing = 0;
@@ -44,7 +44,8 @@ export default function DensityTool() {
   };
 
   const theme = useTheme();
-  const spacingUnit = theme.spacing(1);
+  // Use unstable_toUnitless in the future if need to handle custom themes
+  const spacingUnit = parseFloat(theme.spacing(1));
 
   const t = useTranslate();
 

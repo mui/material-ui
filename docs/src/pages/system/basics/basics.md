@@ -1,8 +1,8 @@
-# Material-UI System
+# MUI System
 
 <p class="description">CSS utilities for rapidly laying out custom designs.</p>
 
-Material-UI comes with dozens of **ready-to-use** components in the core.
+MUI comes with dozens of **ready-to-use** components in the core.
 These components are an incredible starting point but when it comes to making your site stand out with a custom design, it can be simpler to start from an unstyled state. Introducing the system:
 
 The **system** lets you quickly build custom UI components leveraging the values defined in your theme.
@@ -15,13 +15,29 @@ _(Resize the window to see the responsive breakpoints)_
 
 ## Installation
 
+<!-- #default-branch-switch -->
+
 ```jsx
 // with npm
-npm install @material-ui/system
+npm install @mui/system @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/system
+yarn add @mui/system @emotion/react @emotion/styled
 ```
+
+Or if you want to use `styled-components` as a styling engine:
+
+<!-- #default-branch-switch -->
+
+```sh
+// with npm
+npm install @mui/system @mui/styled-engine-sc styled-components
+
+// with yarn
+yarn add @mui/system @mui/styled-engine-sc styled-components
+```
+
+Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
 
 ## Why use the system?
 
@@ -124,7 +140,7 @@ return (
     18.77%
   </Box>
   <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
-    vs last week
+    vs. last week
   </Box>
 </Box>
 ```
@@ -153,7 +169,9 @@ The system provides direct access to the value in the theme. It makes it easier 
 
 The `sx` prop, as the main part of the system, solves these problems by providing a fast & simple way of applying the correct design tokens for specific CSS properties directly to a React element. The [demo above](#demo) shows how it can be used to create a one-off design.
 
-This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used.
+Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
+For more details, visit the [`sx` prop page](/system/the-sx-prop/).
 
 ### When to use it?
 
@@ -168,7 +186,7 @@ Pros:
 
 - 📚 It allows a lot of flexibility in the API. The `sx` prop supports a superset of CSS. There is **no need to learn CSS twice**. You are set once you have learn the standardized CSS syntax, it's safe, it hasn't changed for a decade. Then, you can **optionally** learn the shorthands if you value the save of time they bring.
 - 📦 Auto-purge. Only the used CSS on the page is sent to the client. The initial bundle size cost is **fixed**. It's not growing with the number of used CSS properties.
-  You pay the cost of [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) and [@material-ui/system](https://bundlephobia.com/result?p=@material-ui/system). It cost around ~15 kB gzipped.
+  You pay the cost of [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) and [@mui/system](https://bundlephobia.com/result?p=@mui/system). It cost around ~15 kB gzipped.
   If you are already using the core components, it comes with no extra overhead.
 
 Cons:
@@ -188,9 +206,12 @@ Cons:
 
 ### API tradeoff
 
-In previous versions, the system properties were supported as props on the `Box` component. From v5, however, the system provides a superset of CSS (supports all CSS properties/selectors in addition to custom ones), and is available in all components, so selectors cannot be efficiently mapped to props without potential naming conflicts. Instead, all system properties are available under one prop `sx`.
+Having the system under one prop (`sx`) helps to differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
+It's important for the **separation of concerns**.
+For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), not to be confused with the color CSS property.
 
-Additionally, having the system under one prop helps to easily differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
+Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _props_ for the above reason.
+These components are designed to solve CSS problems, they are CSS component utilities.
 
 ## Usage
 
@@ -211,7 +232,7 @@ Here is an example leveraging them:
     color: 'primary.main', // theme.palette.primary.main
     m: 1, // margin: theme.spacing(1)
     p: {
-      xs: 1, // [theme.breakpoints.up('xs')]: : { padding: theme.spacing(1) }
+      xs: 1, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
     },
     zIndex: 'tooltip', // theme.zIndex.tooltip
   }}
@@ -270,7 +291,10 @@ If you would like to have responsive values for a CSS property, you can use the 
 
 #### 1. Breakpoints as an object
 
-The first option for defining breakpoints is to define them as an object, using the breakpoints as keys. Here is the previous example again, using the object syntax.
+The first option for defining breakpoints is to define them as an object, using the breakpoints as keys.
+Note that each breakpoint property matches the breakpoint and every larger breakpoint.
+For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`.
+Here is the previous example again, using the object syntax.
 
 {{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
 
@@ -281,7 +305,7 @@ The second option is to define your breakpoints as an array, from the smallest t
 {{"demo": "pages/system/basics/BreakpointsAsArray.js"}}
 
 > ⚠️ This option is only recommended when the theme has a limited number of breakpoints, e.g. 3.<br />
-> Prefer the object API if you have more breakpoints. For instance, the default theme of Material-UI has 5.
+> Prefer the object API if you have more breakpoints. For instance, the default theme of MUI has 5.
 
 You can skip breakpoints with the `null` value:
 
@@ -295,12 +319,13 @@ You can also specify your own custom breakpoints, and use them as keys when defi
 
 ```jsx
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
+      mobile: 0,
       tablet: 640,
       laptop: 1024,
       desktop: 1280,
@@ -314,9 +339,8 @@ export default function CustomBreakpoints() {
       <Box
         sx={{
           width: {
-            tablet: 100,
+            mobile: 100,
             laptop: 300,
-            desktop: 500,
           },
         }}
       >
@@ -330,7 +354,7 @@ export default function CustomBreakpoints() {
 If you are using TypeScript, you will also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 ```ts
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;
@@ -356,7 +380,7 @@ The `sx` prop can be used in four different locations:
 
 ### 1. Core components
 
-All core Material-UI components will support the `sx` prop.
+All core MUI components will support the `sx` prop.
 
 ### 2. Box
 
@@ -365,10 +389,10 @@ It renders a `<div>` element by default.
 
 ### 3. Custom components
 
-In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `experimentalStyled` utility from `@material-ui/core/styles`.
+In addition to MUI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
 
 ```jsx
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 const Div = styled('div')``;
 ```

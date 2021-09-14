@@ -1,18 +1,16 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/core/Autocomplete';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Autocomplete from '@mui/material/Autocomplete';
 
 export default function FreeSolo() {
   return (
-    <div style={{ width: 300 }}>
+    <Stack spacing={2} sx={{ width: 300 }}>
       <Autocomplete
         id="free-solo-demo"
         freeSolo
         options={top100Films.map((option) => option.title)}
-        renderInput={(params) => (
-          <TextField {...params} label="freeSolo" margin="normal" />
-        )}
+        renderInput={(params) => <TextField {...params} label="freeSolo" />}
       />
       <Autocomplete
         freeSolo
@@ -23,7 +21,6 @@ export default function FreeSolo() {
           <TextField
             {...params}
             label="Search input"
-            margin="normal"
             InputProps={{
               ...params.InputProps,
               type: 'search',
@@ -31,7 +28,7 @@ export default function FreeSolo() {
           />
         )}
       />
-    </div>
+    </Stack>
   );
 }
 

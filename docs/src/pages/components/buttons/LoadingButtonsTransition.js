@@ -1,51 +1,45 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import LoadingButton from '@material-ui/lab/LoadingButton';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import SaveIcon from '@material-ui/icons/Save';
-import SendIcon from '@material-ui/icons/Send';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& button': {
-      margin: theme.spacing(1),
-    },
-  },
-  switch: {
-    display: 'block',
-  },
-}));
+import LoadingButton from '@mui/lab/LoadingButton';
+import Box from '@mui/material/Box';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import SaveIcon from '@mui/icons-material/Save';
+import SendIcon from '@mui/icons-material/Send';
 
 export default function LoadingButtonsTransition() {
-  const classes = useStyles();
-
-  const [pending, setPending] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   function handleClick() {
-    setPending(true);
+    setLoading(true);
   }
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ '& > button': { m: 1 } }}>
       <FormControlLabel
+        sx={{
+          display: 'block',
+        }}
         control={
           <Switch
-            checked={pending}
-            onChange={() => setPending(!pending)}
-            name="pending"
+            checked={loading}
+            onChange={() => setLoading(!loading)}
+            name="loading"
             color="primary"
           />
         }
-        className={classes.switch}
-        label="Pending"
+        label="Loading"
       />
-      <LoadingButton onClick={handleClick} pending={pending} variant="outlined">
-        Submit
+      <LoadingButton
+        onClick={handleClick}
+        loading={loading}
+        variant="outlined"
+        disabled
+      >
+        disabled
       </LoadingButton>
       <LoadingButton
         onClick={handleClick}
-        pending={pending}
-        pendingIndicator="Loading..."
+        loading={loading}
+        loadingIndicator="Loading..."
         variant="outlined"
       >
         Fetch data
@@ -53,8 +47,8 @@ export default function LoadingButtonsTransition() {
       <LoadingButton
         onClick={handleClick}
         endIcon={<SendIcon />}
-        pending={pending}
-        pendingPosition="end"
+        loading={loading}
+        loadingPosition="end"
         variant="contained"
       >
         Send
@@ -62,13 +56,13 @@ export default function LoadingButtonsTransition() {
       <LoadingButton
         color="secondary"
         onClick={handleClick}
-        pending={pending}
-        pendingPosition="start"
+        loading={loading}
+        loadingPosition="start"
         startIcon={<SaveIcon />}
         variant="contained"
       >
         Save
       </LoadingButton>
-    </div>
+    </Box>
   );
 }

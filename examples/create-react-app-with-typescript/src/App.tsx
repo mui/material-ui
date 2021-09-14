@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import ProTip from './ProTip';
 
 function Copyright() {
@@ -22,7 +22,7 @@ export default function App() {
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Create React App v5-alpha example with TypeScript
+          Create React App v5-beta example with TypeScript
         </Typography>
         <ProTip />
         <Copyright />

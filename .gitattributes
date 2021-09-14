@@ -5,4 +5,8 @@
 packages/**/*.d.ts -linguist-vendored
 # These icons are imported from Google.
 # Kept so that we can review the impact when changing the generation script.
-packages/material-ui-icons/src/*.js linguist-vendored
+packages/mui-icons-material/lib/** linguist-generated
+packages/mui-icons-material/material-icons/** linguist-generated
+packages/mui-icons-material/legacy/** linguist-vendored
+# bundling fixtures
+test/bundling/scripts/packages.js linguist-generated

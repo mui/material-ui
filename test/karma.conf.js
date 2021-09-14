@@ -1,20 +1,33 @@
 const playwright = require('playwright');
+const path = require('path');
 const webpack = require('webpack');
 
 const CI = Boolean(process.env.CI);
+// renovate PRs are based off of  upstream branches.
+// Their CI run will be a branch based run not PR run and therefore won't have a CIRCLE_PR_NUMBER
+const isPR = Boolean(process.env.CIRCLE_PULL_REQUEST);
 
 let build = `material-ui local ${new Date().toISOString()}`;
 
-if (process.env.CIRCLE_BUILD_URL) {
-  build = process.env.CIRCLE_BUILD_URL;
+if (process.env.CIRCLECI) {
+  const buildPrefix =
+    process.env.CIRCLE_PR_NUMBER !== undefined
+      ? process.env.CIRCLE_PR_NUMBER
+      : process.env.CIRCLE_BRANCH;
+  build = `${buildPrefix}: ${process.env.CIRCLE_BUILD_URL}`;
 }
 
 const browserStack = {
+  // |commits in PRs| >> |Merged commits|.
+  // Since we have limited ressources on browserstack we often time out on PRs.
+  // However, browserstack rarely fails with a true-positive so we use it as a stop gap for release not merge.
+  // But always enable it locally since people usually have to explicitly have to expose their browserstack access key anyway.
+  enabled: !CI || !isPR || process.env.BROWSERSTACK_FORCE === 'true',
   username: process.env.BROWSERSTACK_USERNAME,
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
   build,
   // https://github.com/browserstack/api#timeout300
-  timeout: 5.5 * 60, // Maximum time before a worker is terminated. Default 5 minutes.
+  timeout: 6 * 60, // Maximum time before a worker is terminated. Default 5 minutes.
 };
 
 process.env.CHROME_BIN = playwright.chromium.executablePath();
@@ -37,10 +50,18 @@ module.exports = function setKarmaConfig(config) {
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 3 * 60 * 1000, // default 30000
     colors: true,
+    coverageIstanbulReporter: {
+      combineBrowserReports: true,
+      dir: path.resolve(__dirname, '../coverage'),
+      fixWebpackSourcePaths: true,
+      reports: CI ? ['lcov'] : [],
+      skipFilesWithNoCoverage: true,
+      verbose: false,
+    },
     client: {
       mocha: {
         // Some BrowserStack browsers can be slow.
-        timeout: (process.env.CIRCLECI === 'true' ? 4 : 2) * 1000,
+        timeout: (process.env.CIRCLECI === 'true' ? 6 : 2) * 1000,
       },
     },
     frameworks: ['mocha'],
@@ -58,7 +79,13 @@ module.exports = function setKarmaConfig(config) {
         served: true,
       },
     ],
-    plugins: ['karma-mocha', 'karma-chrome-launcher', 'karma-sourcemap-loader', 'karma-webpack'],
+    plugins: [
+      'karma-mocha',
+      'karma-chrome-launcher',
+      'karma-coverage-istanbul-reporter',
+      'karma-sourcemap-loader',
+      'karma-webpack',
+    ],
     /**
      * possible values:
      * - config.LOG_DISABLE
@@ -76,7 +103,9 @@ module.exports = function setKarmaConfig(config) {
       '/fake.png': '/base/test/assets/fake.png',
       '/fake2.png': '/base/test/assets/fake2.png',
     },
-    reporters: ['dots'],
+    // The CI branch fixes double log issue
+    // https://github.com/karma-runner/karma/issues/2342
+    reporters: ['dots', ...(CI ? ['coverage-istanbul'] : [])],
     webpack: {
       mode: 'development',
       devtool: CI ? 'inline-source-map' : 'eval-source-map',
@@ -97,6 +126,15 @@ module.exports = function setKarmaConfig(config) {
             options: {
               envName: 'stable',
             },
+          },
+          {
+            test: /\.(js|ts|tsx)$/,
+            use: {
+              loader: 'istanbul-instrumenter-loader',
+              options: { esModules: true },
+            },
+            enforce: 'post',
+            exclude: /node_modules/,
           },
         ],
       },
@@ -123,7 +161,7 @@ module.exports = function setKarmaConfig(config) {
 
   let newConfig = baseConfig;
 
-  if (browserStack.accessKey) {
+  if (browserStack.enabled && browserStack.accessKey) {
     newConfig = {
       ...baseConfig,
       browserStack,
@@ -136,7 +174,10 @@ module.exports = function setKarmaConfig(config) {
           os: 'OS X',
           os_version: 'Catalina',
           browser: 'chrome',
-          browser_version: '84.0',
+          // We support Chrome 90.x
+          // However, >=88 fails on seemingly all focus-related tests.
+          // TODO: Investigate why.
+          browser_version: '87.0',
         },
         firefox: {
           base: 'BrowserStack',
@@ -150,8 +191,8 @@ module.exports = function setKarmaConfig(config) {
           os: 'OS X',
           os_version: 'Catalina',
           browser: 'safari',
-          // We support 12.2 on iOS.
-          // However, 12.1 is very flaky on desktop (mobile is always flaky).
+          // We support 12.5 on iOS.
+          // However, 12.x is very flaky on desktop (mobile is always flaky).
           browser_version: '13.0',
         },
         edge: {
@@ -159,7 +200,7 @@ module.exports = function setKarmaConfig(config) {
           os: 'Windows',
           os_version: '10',
           browser: 'edge',
-          browser_version: '85.0',
+          browser_version: '91.0',
         },
       },
     };

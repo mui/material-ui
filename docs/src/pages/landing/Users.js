@@ -1,12 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import NoSsr from '@material-ui/core/NoSsr';
-import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@mui/styles';
+import NoSsr from '@mui/core/NoSsr';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const users = [
@@ -60,13 +60,6 @@ const users = [
     caption: 'Netflix',
   },
   {
-    logo: 'coursera.svg',
-    logoWidth: 169,
-    logoHeight: 23,
-    caption: 'Coursera',
-    class: 'coursera',
-  },
-  {
     logo: 'amazon.svg',
     logoWidth: 119,
     logoHeight: 36,
@@ -79,6 +72,13 @@ const users = [
     logoHeight: 50,
     caption: 'Unity',
     class: 'unity',
+  },
+  {
+    logo: 'spotify.svg',
+    logoWidth: 180,
+    logoHeight: 54,
+    caption: 'Spotify',
+    class: 'spotify',
   },
 ];
 
@@ -93,7 +93,7 @@ const useStyles = makeStyles(
       marginBottom: theme.spacing(4),
     },
     users: {
-      padding: theme.spacing(10, 4, 0),
+      padding: theme.spacing(10, 6, 0),
     },
     grid: {
       marginTop: theme.spacing(5),
@@ -105,11 +105,11 @@ const useStyles = makeStyles(
     amazon: {
       margin: theme.spacing(2.4, 3, 1.5),
     },
-    coursera: {
-      margin: theme.spacing(2.3, 3, 1.5),
-    },
     unity: {
       margin: theme.spacing(0.5, 3, 1.5),
+    },
+    spotify: {
+      margin: theme.spacing(0, 3, 1.5),
     },
     walmart: {
       margin: '13px 4px 12px',

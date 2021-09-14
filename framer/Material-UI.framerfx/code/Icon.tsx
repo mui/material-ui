@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import * as Icons from '@material-ui/icons';
-import { SvgIconProps } from '@material-ui/core/SvgIcon';
+import * as Icons from '@mui/icons-material';
+import { SvgIconProps } from '@mui/material/SvgIcon';
 import { pascalCase } from './utils';
 
 interface Props extends SvgIconProps {
   baseClassName: string;
-  color: 'action' | 'disabled' | 'error' | 'inherit' | 'primary' | 'secondary';
   icon: string;
   theme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   width: number | string;
@@ -15,9 +14,7 @@ interface Props extends SvgIconProps {
 
 export function Icon(props: Props): JSX.Element | null {
   const { height, icon: iconProp, theme, width, ...other } = props;
-  const iconName = `${iconProp && pascalCase(iconProp)}${
-    theme === 'Filled' ? '' : theme
-  }` as keyof typeof Icons;
+  const iconName = `${iconProp && pascalCase(iconProp)}${theme === 'Filled' ? '' : theme}`;
   const MuiIcon = Object.keys(Icons).indexOf(iconName) !== -1 ? Icons[iconName] : undefined;
 
   return MuiIcon ? <MuiIcon style={{ width, height }} {...other} /> : null;
@@ -25,7 +22,6 @@ export function Icon(props: Props): JSX.Element | null {
 
 Icon.defaultProps = {
   baseClassName: 'material-icons',
-  color: 'inherit' as 'inherit',
   icon: 'add',
   theme: 'Filled' as 'Filled',
   width: 24,
@@ -36,11 +32,6 @@ addPropertyControls(Icon, {
   baseClassName: {
     type: ControlType.String,
     title: 'Base class name',
-  },
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['action', 'disabled', 'error', 'inherit', 'primary', 'secondary'],
   },
   icon: {
     type: ControlType.String,

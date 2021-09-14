@@ -18,19 +18,45 @@ You can learn more about this in [the API section](/styles/api/#themeprovider). 
 
 Changer la configuration du thème est la manière la plus efficace d'accorder Material-UI à vos préférences. Les sections suivantes couvrent les principales variables des thèmes:
 
-- [Palette](/customization/palette/)
-- [Typographie](/customization/typography/)
-- [Ecartement](/customization/spacing/)
-- [Breakpoints](/customization/breakpoints/)
-- [z-index](/customization/z-index/)
-- [Composants](/customization/theme-components/)
-- [Les transitions](/customization/transitions/)
+- [`Palette`](/customization/palette/)
+- [`Typographie`](/customization/typography/)
+- [`Ecartement`](/customization/spacing/)
+- [`Breakpoints`](/customization/breakpoints/)
+- [`z-index`](/customization/z-index/)
+- [`Les transitions`](/customization/transitions/)
+- [`Composants`](/customization/theme-components/)
 
 Vous pouvez consulter la section [thème par défaut](/customization/default-theme/) pour afficher le thème par défaut dans son intégralité.
 
 ### Variables personnalisées
 
 When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Par exemple:
+
+```jsx
+const theme = createTheme({
+  status: {
+    danger: orange[500],
+  },
+});
+```
+
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+
+```tsx
+declare module '@material-ui/core/styles' {
+  interface Theme {
+    status: {
+      danger: string;
+    };
+  }
+  // allow configuration using `createTheme`
+  interface ThemeOptions {
+    status?: {
+      danger?: string;
+    };
+  }
+}
+```
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
@@ -69,7 +95,7 @@ The performance implications of nesting the `ThemeProvider` component are linked
 
 ## API
 
-### `createMuiTheme(options, ...args) => theme`
+### `createTheme(options, ...args) => theme`
 
 Générer un thème basé sur les options reçues.
 
@@ -80,16 +106,16 @@ Générer un thème basé sur les options reçues.
 
 #### Valeur de retour
 
-`theme` (*Object*): The new theme with a responsive typography.
+`theme` (*Object*): A complete, ready to use theme object.
 
 #### Exemples
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -110,21 +136,21 @@ Generate responsive typography settings based on the options received.
 1. `theme` (*Object*): The theme object to enhance.
 2. `options` (*Object* [optional]):
 
-- `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`.
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`.
 - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
 - `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
 - `variants` (*Array\<String\>* [optional]): Default to all. The typography variants to handle.
 
 #### Valeur de retour
 
-`theme` (*Object*): A complete, ready to use theme object.
+`theme` (_object_): The new theme with a responsive typography.
 
 #### Exemples
 
 ```js
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
-let theme = createMuiTheme();
+let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 
@@ -136,7 +162,7 @@ Generates a theme that reduces the amount of warnings inside [`React.StrictMode`
 
 #### Requirements
 
-Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our components.
+`theme` (*Object*): The new theme with a responsive typography.
 
 #### Paramètres
 
@@ -145,7 +171,7 @@ Using `unstable_createMuiStrictModeTheme` restricts the usage of some of our com
 
 #### Valeur de retour
 
-`theme` (*Object*): The new theme with a responsive typography.
+`theme` (_object_): A complete, ready to use theme object.
 
 #### Exemples
 

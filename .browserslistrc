@@ -7,61 +7,63 @@ node 14
 
 # Default/Fallback
 # `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11"` when the last major is released.
-# On update check all #stable-snapshot markers
+# Manually downgrading to ios_saf 12.4 for iPhone 6 and webpack 4 support.
+# On update, sync references where "#stable-snapshot" is mentioned in the codebase.
 [stable]
-and_chr 85
-and_ff 80
+and_chr 91
+and_ff 89
 and_qq 10.4
 and_uc 12.12
-android 85
+android 91
 baidu 7.12
-chrome 84
-edge 85
+chrome 90
+edge 91
 firefox 78
-ios_saf 12.2
+ios_saf 12.4
 kaios 2.5
 op_mini all
-op_mob 70
-opera 70
-safari 13.1
-samsung 11.1-11.2
+op_mob 76
+opera 76
+safari 14
+samsung 13.0
 
 # Same as `stable` but with IE 11
 [legacy]
-IE 11
-and_chr 85
-and_ff 80
+ie 11
+and_chr 91
+and_ff 89
 and_qq 10.4
 and_uc 12.12
-android 85
+android 91
 baidu 7.12
-chrome 84
-edge 85
+chrome 90
+edge 91
 firefox 78
-ios_saf 12.2
+ios_saf 12.4
 kaios 2.5
 op_mini all
-op_mob 70
-opera 70
-safari 13.1
-samsung 11.1-11.2
+op_mob 76
+opera 76
+safari 14
+samsung 13.0
 
 # snapshot of `npx browserslist "maintained node versions"`
+# On update check all #stable-snapshot markers
 [node]
-node 10.0
+node 12.0
 
 # same as `node`
 [coverage]
-node 10.0
+node 12.0
 
 # same as `node`
 [development]
-node 10.0
+node 12.0
 
 # same as `node`
 [test]
-node 10.0
+node 12.0
 
 # same as `node`
 [benchmark]
-node 10.0
+node 12.0

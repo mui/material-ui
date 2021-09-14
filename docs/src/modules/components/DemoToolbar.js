@@ -1,29 +1,31 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import LZString from 'lz-string';
-import { useDispatch } from 'react-redux';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Fade from '@material-ui/core/Fade';
-import ToggleButton from '@material-ui/core/ToggleButton';
-import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
-import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@material-ui/docs';
-import EditIcon from '@material-ui/icons/Edit';
-import CodeIcon from '@material-ui/icons/Code';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-import Snackbar from '@material-ui/core/Snackbar';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Tooltip from '@material-ui/core/Tooltip';
-import RefreshIcon from '@material-ui/icons/Refresh';
-import ResetFocusIcon from '@material-ui/icons/CenterFocusWeak';
+import { useTheme, styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Fade from '@mui/material/Fade';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@mui/docs';
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import SvgIcon from '@mui/material/SvgIcon';
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import Snackbar from '@mui/material/Snackbar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Tooltip from '@mui/material/Tooltip';
+import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
+import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useRouter } from 'next/router';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -40,42 +42,58 @@ function addHiddenInput(form, name, value) {
   form.appendChild(input);
 }
 
-const useDemoToolbarStyles = makeStyles(
-  (theme) => {
-    return {
-      // Sync with styles form DemoToolbarFallback.
-      root: {
-        display: 'none',
-        [theme.breakpoints.up('sm')]: {
-          display: 'flex',
-          flip: false,
-          top: 0,
-          right: theme.spacing(1),
-          height: theme.spacing(6),
-        },
-        justifyContent: 'space-between',
-      },
-      toggleButtonGroup: {
-        margin: '8px 0',
-      },
-      toggleButton: {
-        padding: '4px 9px',
-      },
-      tooltip: {
-        zIndex: theme.zIndex.appBar - 1,
-      },
-    };
+const Root = styled('div')(({ theme }) => ({
+  display: 'none',
+  [theme.breakpoints.up('sm')]: {
+    display: 'flex',
+    top: 0,
+    height: theme.spacing(8),
+    ...(theme.direction === 'rtl' && {
+      left: theme.spacing(1),
+    }),
+    ...(theme.direction !== 'rtl' && {
+      right: theme.spacing(1),
+    }),
   },
-  { name: 'DemoToolbar' },
-);
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  '& .MuiSvgIcon-root': {
+    fontSize: 17,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[800],
+  },
+}));
 
-export function DemoToolbarFallback() {
-  const classes = useDemoToolbarStyles();
-  const t = useTranslate();
+const DemoTooltip = styled((props) => {
+  const { className, classes = {}, ...other } = props;
+
+  return <Tooltip {...other} classes={{ ...classes, popper: clsx(className, classes.popper) }} />;
+})(({ theme }) => ({
+  zIndex: theme.zIndex.appBar - 1,
+}));
+
+function ToggleCodeTooltip(props) {
+  const { showSourceHint, ...other } = props;
+  const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
+  const [open, setOpen] = React.useState(false);
 
   return (
-    <div aria-busy aria-label={t('demoToolbarLabel')} className={classes.root} role="toolbar" />
+    <DemoTooltip
+      {...other}
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={showSourceHint && atLeastSmallViewport ? true : open}
+    />
   );
+}
+ToggleCodeTooltip.propTypes = {
+  showSourceHint: PropTypes.bool,
+};
+
+export function DemoToolbarFallback() {
+  const t = useTranslate();
+
+  return <Root aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
 }
 
 const alwaysTrue = () => true;
@@ -121,7 +139,7 @@ function useToolbar(controlRefs, options = {}) {
       // eslint-disable-next-line no-lonely-if
       if (process.env.NODE_ENV !== 'production') {
         console.error(
-          'Material-UI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
+          'MUI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
             'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
         );
       }
@@ -133,7 +151,7 @@ function useToolbar(controlRefs, options = {}) {
     handleToolbarFocus = (event) => {
       if (findControlIndex(event.target) === -1) {
         console.error(
-          'Material-UI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
+          'MUI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
             'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
         );
       }
@@ -223,9 +241,7 @@ export default function DemoToolbar(props) {
     showPreview,
   } = props;
 
-  const classes = useDemoToolbarStyles();
-
-  const dispatch = useDispatch();
+  const setCodeVariant = useSetCodeVariant();
   const t = useTranslate();
 
   const hasTSVariant = demo.rawTS;
@@ -237,13 +253,8 @@ export default function DemoToolbar(props) {
   };
 
   const handleCodeLanguageClick = (event, clickedCodeVariant) => {
-    if (codeVariant !== clickedCodeVariant) {
-      dispatch({
-        type: ACTION_TYPES.OPTIONS_CHANGE,
-        payload: {
-          codeVariant: clickedCodeVariant,
-        },
-      });
+    if (clickedCodeVariant !== null && codeVariant !== clickedCodeVariant) {
+      setCodeVariant(clickedCodeVariant);
     }
   };
 
@@ -277,9 +288,40 @@ export default function DemoToolbar(props) {
     const form = document.createElement('form');
     form.method = 'POST';
     form.target = '_blank';
-    form.action = 'https://codeSandbox.io/api/v1/sandboxes/define';
+    form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
     addHiddenInput(form, 'parameters', parameters);
-    addHiddenInput(form, 'query', 'file=/demo.tsx');
+    addHiddenInput(
+      form,
+      'query',
+      codeVariant === CODE_VARIANTS.TS ? 'file=/demo.tsx' : 'file=/demo.js',
+    );
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+  };
+
+  const handleStackBlitzClick = () => {
+    const demoConfig = getDemoConfig(demoData, {
+      indexPath: 'index.html',
+      previewPackage: false,
+    });
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.target = '_blank';
+    form.action = 'https://stackblitz.com/run';
+    addHiddenInput(form, 'project[template]', 'create-react-app');
+    addHiddenInput(form, 'project[title]', demoConfig.title);
+    addHiddenInput(
+      form,
+      'project[description]',
+      `# ${demoConfig.title}\n${demoConfig.description}`,
+    );
+    addHiddenInput(form, 'project[dependencies]', JSON.stringify(demoConfig.dependencies));
+    addHiddenInput(form, 'project[devDependencies]', JSON.stringify(demoConfig.devDependencies));
+    Object.keys(demoConfig.files).forEach((key) => {
+      const value = demoConfig.files[key];
+      addHiddenInput(form, `project[files][${key}]`, value);
+    });
     document.body.appendChild(form);
     form.submit();
     document.body.removeChild(form);
@@ -342,9 +384,8 @@ export default function DemoToolbar(props) {
     showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
   }
 
-  const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-
   const controlRefs = [
+    React.useRef(null),
     React.useRef(null),
     React.useRef(null),
     React.useRef(null),
@@ -355,26 +396,99 @@ export default function DemoToolbar(props) {
     React.useRef(null),
   ];
   // if the code is not open we hide the first two language controls
-  const isFocusableControl = React.useCallback((index) => (codeOpen ? true : index >= 2), [
-    codeOpen,
-  ]);
+  const isFocusableControl = React.useCallback(
+    (index) => (codeOpen ? true : index >= 2),
+    [codeOpen],
+  );
   const { getControlProps, toolbarProps } = useToolbar(controlRefs, {
     defaultActiveIndex: 2,
     isFocusableControl,
   });
 
+  const devMenuItems = [];
+  if (process.env.STAGING === true) {
+    /* eslint-disable material-ui/no-hardcoded-labels -- staging only */
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env.STAGING never changes
+    const router = useRouter();
+
+    const defaultReviewID = process.env.GIT_REVIEW_ID ?? '20000';
+    devMenuItems.push(
+      <MenuItem
+        key="link-deploy-preview"
+        data-ga-event-category="demo"
+        data-ga-event-label={demoOptions.demo}
+        data-ga-event-action="link-deploy-preview"
+        component="a"
+        href={`https://deploy-preview-${defaultReviewID}--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
+        target="_blank"
+        rel="noopener nofollow"
+        onClick={handleMoreClose}
+      >
+        demo on PR #{defaultReviewID}
+      </MenuItem>,
+      <MenuItem
+        key="link-next"
+        data-ga-event-category="demo"
+        data-ga-event-label={demoOptions.demo}
+        data-ga-event-action="link-next"
+        component="a"
+        href={`https://next--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
+        target="_blank"
+        rel="noopener nofollow"
+        onClick={handleMoreClose}
+      >
+        demo on&#160;<code>next</code>
+      </MenuItem>,
+      <MenuItem
+        key="permalink"
+        data-ga-event-category="demo"
+        data-ga-event-label={demoOptions.demo}
+        data-ga-event-action="permalink"
+        component="a"
+        href={`${process.env.NETLIFY_DEPLOY_URL}${router.route}#${demoName}`}
+        target="_blank"
+        rel="noopener nofollow"
+        onClick={handleMoreClose}
+      >
+        demo permalink
+      </MenuItem>,
+      <MenuItem
+        key="link-master"
+        data-ga-event-category="demo"
+        data-ga-event-label={demoOptions.demo}
+        data-ga-event-action="link-master"
+        component="a"
+        href={`https://master--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
+        target="_blank"
+        rel="noopener nofollow"
+        onClick={handleMoreClose}
+      >
+        demo on&#160;<code>master</code>
+      </MenuItem>,
+    );
+
+    /* eslint-enable material-ui/no-hardcoded-labels */
+  }
+
   return (
     <React.Fragment>
-      <div aria-label={t('demoToolbarLabel')} className={classes.root} {...toolbarProps}>
+      <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
         <Fade in={codeOpen}>
           <ToggleButtonGroup
-            className={classes.toggleButtonGroup}
+            sx={{ margin: '8px 0' }}
             exclusive
             value={renderedCodeVariant()}
             onChange={handleCodeLanguageClick}
           >
             <ToggleButton
-              className={classes.toggleButton}
+              sx={{
+                padding: '5px 10px',
+                borderRadius: 0.5,
+                borderColor: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[200],
+              }}
               value={CODE_VARIANTS.JS}
               aria-label={t('showJSSource')}
               data-ga-event-category="demo"
@@ -382,10 +496,17 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               {...getControlProps(0)}
             >
-              <JavaScriptIcon />
+              <JavaScriptIcon sx={{ fontSize: 20 }} />
             </ToggleButton>
             <ToggleButton
-              className={classes.toggleButton}
+              sx={{
+                padding: '5px 10px',
+                borderRadius: 0.5,
+                borderColor: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[200],
+              }}
               value={CODE_VARIANTS.TS}
               disabled={!hasTSVariant}
               aria-label={t('showTSSource')}
@@ -394,20 +515,19 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               {...getControlProps(1)}
             >
-              <TypeScriptIcon />
+              <TypeScriptIcon sx={{ fontSize: 20 }} />
             </ToggleButton>
           </ToggleButtonGroup>
         </Fade>
         <div>
-          <Tooltip
-            classes={{ popper: classes.tooltip }}
-            key={showSourceHint}
-            open={showSourceHint && atLeastSmallViewport ? true : undefined}
+          <ToggleCodeTooltip
+            showSourceHint={showSourceHint}
             PopperProps={{ disablePortal: true }}
             title={showCodeLabel}
             placement="bottom"
           >
             <IconButton
+              size="large"
               aria-controls={openDemoSource ? demoSourceId : null}
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
@@ -416,115 +536,134 @@ export default function DemoToolbar(props) {
               color={demoHovered ? 'primary' : 'default'}
               {...getControlProps(2)}
             >
-              <CodeIcon fontSize="small" />
+              <CodeRoundedIcon />
             </IconButton>
-          </Tooltip>
+          </ToggleCodeTooltip>
           {demoOptions.hideEditButton ? null : (
-            <Tooltip
-              classes={{ popper: classes.tooltip }}
-              title={t('codesandbox')}
-              placement="bottom"
-            >
-              <IconButton
-                data-ga-event-category="demo"
-                data-ga-event-label={demoOptions.demo}
-                data-ga-event-action="codesandbox"
-                onClick={handleCodeSandboxClick}
-                {...getControlProps(3)}
-              >
-                <EditIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
+            <React.Fragment>
+              <DemoTooltip title={t('codesandbox')} placement="bottom">
+                <IconButton
+                  size="large"
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="codesandbox"
+                  onClick={handleCodeSandboxClick}
+                  {...getControlProps(3)}
+                >
+                  <SvgIcon viewBox="0 0 1024 1024">
+                    <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                  </SvgIcon>
+                </IconButton>
+              </DemoTooltip>
+              <DemoTooltip title={t('stackblitz')} placement="bottom">
+                <IconButton
+                  size="large"
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="stackblitz"
+                  onClick={handleStackBlitzClick}
+                  {...getControlProps(4)}
+                >
+                  <SvgIcon viewBox="0 0 19 28">
+                    <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
+                  </SvgIcon>
+                </IconButton>
+              </DemoTooltip>
+            </React.Fragment>
           )}
-          <Tooltip classes={{ popper: classes.tooltip }} title={t('copySource')} placement="bottom">
+          <DemoTooltip title={t('copySource')} placement="bottom">
             <IconButton
+              size="large"
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
               data-ga-event-action="copy"
               onClick={handleCopyClick}
-              {...getControlProps(4)}
+              {...getControlProps(5)}
             >
-              <FileCopyIcon fontSize="small" />
+              <ContentCopyRoundedIcon />
             </IconButton>
-          </Tooltip>
-          <Tooltip classes={{ popper: classes.tooltip }} title={t('resetFocus')} placement="bottom">
+          </DemoTooltip>
+          <DemoTooltip title={t('resetFocus')} placement="bottom">
             <IconButton
+              size="large"
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
               data-ga-event-action="reset-focus"
               onClick={handleResetFocusClick}
-              {...getControlProps(5)}
+              {...getControlProps(6)}
             >
-              <ResetFocusIcon fontSize="small" />
+              <ResetFocusIcon />
             </IconButton>
-          </Tooltip>
-          <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="bottom">
+          </DemoTooltip>
+          <DemoTooltip title={t('resetDemo')} placement="bottom">
             <IconButton
+              size="large"
               aria-controls={demoId}
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
               data-ga-event-action="reset"
               onClick={onResetDemoClick}
-              {...getControlProps(6)}
+              {...getControlProps(7)}
             >
-              <RefreshIcon fontSize="small" />
+              <RefreshRoundedIcon />
             </IconButton>
-          </Tooltip>
+          </DemoTooltip>
           <IconButton
+            size="large"
             onClick={handleMoreClick}
             aria-label={t('seeMore')}
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}
             aria-haspopup="true"
-            {...getControlProps(7)}
+            {...getControlProps(8)}
           >
-            <MoreVertIcon fontSize="small" />
+            <MoreVertIcon />
           </IconButton>
-          <Menu
-            id="demo-menu-more"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleMoreClose}
-            getContentAnchorEl={null}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-          >
-            <MenuItem
-              data-ga-event-category="demo"
-              data-ga-event-label={demoOptions.demo}
-              data-ga-event-action="github"
-              component="a"
-              href={demoData.githubLocation}
-              target="_blank"
-              rel="noopener nofollow"
-              onClick={handleMoreClose}
-            >
-              {t('viewGitHub')}
-            </MenuItem>
-            <MenuItem
-              data-ga-event-category="demo"
-              data-ga-event-label={demoOptions.demo}
-              data-ga-event-action="copy-js-source-link"
-              onClick={createHandleCodeSourceLink(`${demoName}.js`)}
-            >
-              {t('copySourceLinkJS')}
-            </MenuItem>
-            <MenuItem
-              data-ga-event-category="demo"
-              data-ga-event-label={demoOptions.demo}
-              data-ga-event-action="copy-ts-source-link"
-              onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
-            >
-              {t('copySourceLinkTS')}
-            </MenuItem>
-          </Menu>
         </div>
-      </div>
+      </Root>
+      <Menu
+        id="demo-menu-more"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMoreClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <MenuItem
+          data-ga-event-category="demo"
+          data-ga-event-label={demoOptions.demo}
+          data-ga-event-action="github"
+          component="a"
+          href={demoData.githubLocation}
+          target="_blank"
+          rel="noopener nofollow"
+          onClick={handleMoreClose}
+        >
+          {t('viewGitHub')}
+        </MenuItem>
+        <MenuItem
+          data-ga-event-category="demo"
+          data-ga-event-label={demoOptions.demo}
+          data-ga-event-action="copy-js-source-link"
+          onClick={createHandleCodeSourceLink(`${demoName}.js`)}
+        >
+          {t('copySourceLinkJS')}
+        </MenuItem>
+        <MenuItem
+          data-ga-event-category="demo"
+          data-ga-event-label={demoOptions.demo}
+          data-ga-event-action="copy-ts-source-link"
+          onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
+        >
+          {t('copySourceLinkTS')}
+        </MenuItem>
+        {devMenuItems}
+      </Menu>
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}

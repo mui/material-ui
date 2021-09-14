@@ -1,10 +1,20 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 
 export default function BreakpointsAsObject() {
   return (
     <div>
-      <Box sx={{ width: { xs: 100, sm: 200, md: 300, lg: 400, xl: 500 } }}>
+      <Box
+        sx={{
+          width: {
+            xs: 100, // theme.breakpoints.up('xs')
+            sm: 200, // theme.breakpoints.up('sm')
+            md: 300, // theme.breakpoints.up('md')
+            lg: 400, // theme.breakpoints.up('lg')
+            xl: 500, // theme.breakpoints.up('xl')
+          },
+        }}
+      >
         This box has a responsive width.
       </Box>
     </div>

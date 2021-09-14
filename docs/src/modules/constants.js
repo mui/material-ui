@@ -3,11 +3,6 @@ const CODE_VARIANTS = {
   TS: 'TS',
 };
 
-const ACTION_TYPES = {
-  OPTIONS_CHANGE: 'OPTIONS_CHANGE',
-  NOTIFICATIONS_CHANGE: 'NOTIFICATIONS_CHANGE',
-};
-
 // Valid languages to server-side render in production
 const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'es', 'fr', 'de', 'ja'];
 
@@ -53,18 +48,10 @@ const LANGUAGES_LABEL = [
   },
 ];
 
-// #default-branch-switch
-const SOURCE_CODE_ROOT_URL =
-  process.env.SOURCE_CODE_ROOT_URL || 'https://github.com/mui-org/material-ui/blob/next';
-const SOURCE_CODE_REPO = process.env.SOURCE_CODE_REPO || 'https://github.com/mui-org/material-ui';
-
 module.exports = {
   CODE_VARIANTS,
-  ACTION_TYPES,
   LANGUAGES,
   LANGUAGES_SSR,
   LANGUAGES_LABEL,
   LANGUAGES_IN_PROGRESS,
-  SOURCE_CODE_ROOT_URL,
-  SOURCE_CODE_REPO,
 };

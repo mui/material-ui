@@ -9,18 +9,21 @@ La localización predeterminada de Material-UI es Inglés (Estados Unidos). Si q
 Utilice el tema para configurar el texto regional globalmente:
 
 ```jsx
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { zhCN } from '@material-ui/core/locale';
 
-const theme = createMuiTheme({
-  palette: {
-    primary: { main: '#1976d2' },
+const theme = createTheme(
+  {
+    palette: {
+      primary: { main: '#1976d2' },
+    },
   },
-}, zhCN);
+  zhCN,
+);
 
 <ThemeProvider theme={theme}>
   <App />
-</ThemeProvider>
+</ThemeProvider>;
 ```
 
 ### Ejemplo
@@ -34,9 +37,12 @@ const theme = createMuiTheme({
 | Arabic (Egypt)          | ar-EG                     | `arEG`            |
 | Armenio                 | hy-AM                     | `hyAM`            |
 | Azerbaiyano             | az-AZ                     | `azAZ`            |
+| Bangla                  | bn-BD                     | `bnBD`            |
 | Búlgaro                 | bg-BG                     | `bgBG`            |
 | Catalán                 | ca-ES                     | `caES`            |
+| Chinese (Hong Kong)     | zh-HK                     | `zhHK`            |
 | Chino (simplificado)    | zh-CN                     | `zhCN`            |
+| Chinese (Taiwan)        | zh-TW                     | `zhTW`            |
 | Checo                   | cs-CZ                     | `csCZ`            |
 | Holandés                | nl-NL                     | `nlNL`            |
 | Inglés (Estados Unidos) | en-US                     | `enUS`            |

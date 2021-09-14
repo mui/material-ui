@@ -2,14 +2,13 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "disableTypography": { "type": { "name": "bool" } },
     "sx": { "type": { "name": "object" } }
   },
   "name": "DialogTitle",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogTitle" },
   "spread": true,
-  "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/DialogTitle/DialogTitle.js",
+  "forwardsRefTo": "HTMLHeadingElement",
+  "filename": "/packages/mui-material/src/DialogTitle/DialogTitle.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li></ul>",
   "styledComponent": true,

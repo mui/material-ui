@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/core/Autocomplete';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 export default function DisabledOptions() {
   return (
@@ -11,7 +10,7 @@ export default function DisabledOptions() {
       getOptionDisabled={(option) =>
         option === timeSlots[0] || option === timeSlots[2]
       }
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Disabled options" />}
     />
   );

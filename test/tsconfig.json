@@ -1,6 +1,6 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["regressions/**/*", "utils/**/*"],
+  "include": ["e2e/**/*", "regressions/**/*", "utils/**/*"],
   "compilerOptions": {
     "allowJs": true,
     "noEmit": true,

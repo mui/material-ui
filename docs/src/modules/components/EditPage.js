@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
+import Button from '@mui/material/Button';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 export default function EditPage(props) {
@@ -18,7 +17,7 @@ export default function EditPage(props) {
       component="a"
       href={
         userLanguage === 'en'
-          ? `${SOURCE_CODE_ROOT_URL}${markdownLocation}`
+          ? `${process.env.SOURCE_CODE_ROOT_URL}${markdownLocation}`
           : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging${crowdInPath}`
       }
       target="_blank"
@@ -27,6 +26,10 @@ export default function EditPage(props) {
       data-ga-event-category={userLanguage === 'en' ? undefined : 'l10n'}
       data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
       data-ga-event-label={userLanguage === 'en' ? undefined : userLanguage}
+      sx={{
+        color: (theme) =>
+          theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+      }}
     >
       {t('editPage')}
     </Button>

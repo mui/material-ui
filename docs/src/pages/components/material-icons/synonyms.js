@@ -213,7 +213,6 @@ const synonyms = {
   Duo: 'call chat conference device video',
   Dvr: 'laptop monitor',
   DynamicFeed: 'live refresh update',
-  Eco: 'environment green leaf',
   EditLocation: 'gps map pin write',
   Eject: 'arrow player remove triangle up',
   Elderly: 'old',
@@ -725,7 +724,7 @@ const synonyms = {
   SupervisedUserCircle: 'avatar human people person profile supervisor',
   SupervisorAccount:
     'administrator avatar human people person profile supervised user',
-  SurroundSound: 'audio circle speaker system volumn',
+  SurroundSound: 'audio circle speaker system volume',
   SwapCalls: 'arrow',
   SwapHoriz: 'arrows back direction horizontal',
   SwapHorizontalCircle: 'arrows back direction',

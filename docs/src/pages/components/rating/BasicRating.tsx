@@ -1,24 +1,17 @@
 import * as React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import Rating from '@material-ui/core/Rating';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      '& > legend': {
-        marginTop: theme.spacing(2),
-      },
-    },
-  }),
-);
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
 
 export default function BasicRating() {
-  const classes = useStyles();
   const [value, setValue] = React.useState<number | null>(2);
 
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        '& > legend': { mt: 2 },
+      }}
+    >
       <Typography component="legend">Controlled</Typography>
       <Rating
         name="simple-controlled"
@@ -33,6 +26,6 @@ export default function BasicRating() {
       <Rating name="disabled" value={value} disabled />
       <Typography component="legend">No rating given</Typography>
       <Rating name="no-value" value={null} />
-    </div>
+    </Box>
   );
 }

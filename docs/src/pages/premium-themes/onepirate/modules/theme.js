@@ -1,7 +1,7 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-import { green, grey, red } from '@material-ui/core/colors';
+import { createTheme } from '@mui/material/styles';
+import { green, grey, red } from '@mui/material/colors';
 
-const rawTheme = createMuiTheme({
+const rawTheme = createTheme({
   palette: {
     primary: {
       light: '#69696a',

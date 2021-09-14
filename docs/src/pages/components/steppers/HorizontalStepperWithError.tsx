@@ -1,27 +1,19 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-});
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import Typography from '@mui/material/Typography';
 
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 
 export default function HorizontalStepperWithError() {
-  const classes = useStyles();
-
   const isStepFailed = (step: number) => {
     return step === 1;
   };
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: '100%' }}>
       <Stepper activeStep={1}>
         {steps.map((label, index) => {
           const labelProps: {
@@ -44,6 +36,6 @@ export default function HorizontalStepperWithError() {
           );
         })}
       </Stepper>
-    </div>
+    </Box>
   );
 }

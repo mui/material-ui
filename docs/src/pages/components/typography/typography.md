@@ -16,7 +16,7 @@ A [typographic scale](https://material.io/design/typography/#type-scale) has a l
 
 ## General
 
-The _Roboto_ font will **not** be automatically loaded by Material-UI.
+The _Roboto_ font will **not** be automatically loaded by MUI.
 You are responsible for loading any fonts used in your application.
 Roboto Font has a few easy ways to get started. For more advanced configuration, check out
 [the theme customization section](/customization/typography/).
@@ -50,7 +50,7 @@ import '@fontsource/roboto/700.css';
 For more info check out [Fontsource](https://github.com/fontsource/fontsource).
 
 Fontsource can be configured to load specific subsets, weights and styles.
-Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
+MUI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Component
 
@@ -84,7 +84,7 @@ It's important to realize that the style of a typography component is independen
 - You can change the mapping [globally using the theme](/customization/theme-components/#default-props):
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiTypography: {
       defaultProps: {
@@ -113,6 +113,11 @@ In addition to using the default typography variants, you can add custom ones, o
 ## System props
 
 As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component.
+For instance, a margin-top:
+
+```jsx
+<Typography mt={2}>
+```
 
 ## Accessibility
 

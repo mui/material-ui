@@ -1,7 +1,6 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
 function valuetext(value) {
   return `${value}°C`;
@@ -16,14 +15,11 @@ export default function RangeSlider() {
 
   return (
     <Box sx={{ width: 300 }}>
-      <Typography id="range-slider-demo" gutterBottom>
-        Temperature range
-      </Typography>
       <Slider
+        getAriaLabel={() => 'Temperature range'}
         value={value}
         onChange={handleChange}
         valueLabelDisplay="auto"
-        aria-labelledby="range-slider-demo"
         getAriaValueText={valuetext}
       />
     </Box>

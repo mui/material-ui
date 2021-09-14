@@ -1,8 +1,8 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import StaticTimePicker from '@material-ui/lab/StaticTimePicker';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import StaticTimePicker from '@mui/lab/StaticTimePicker';
 
 export default function StaticTimePickerDemo() {
   const [value, setValue] = React.useState<Date | null>(new Date());
@@ -15,7 +15,7 @@ export default function StaticTimePickerDemo() {
         onChange={(newValue) => {
           setValue(newValue);
         }}
-        renderInput={(params) => <TextField {...params} variant="standard" />}
+        renderInput={(params) => <TextField {...params} />}
       />
     </LocalizationProvider>
   );

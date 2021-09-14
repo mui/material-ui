@@ -44,7 +44,7 @@ theme.transitions.create(['background-color', 'transform']);
 You can change some or all of the duration values, or provide your own (for use in the `create()` helper). This example shows all the default values (in milliseconds), but you only need to provide the keys you wish to change or add.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     duration: {
       shortest: 150,
@@ -68,7 +68,7 @@ const theme = createMuiTheme({
 You can change some or all of the easing values, or provide your own, by providing a custom CSS <code>transition-timing-function</code> value.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     easing: {
       // This is the most common easing curve.

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 export default function ScrollableTabsButtonForce() {
   const [value, setValue] = React.useState(0);
@@ -11,7 +11,7 @@ export default function ScrollableTabsButtonForce() {
   };
 
   return (
-    <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+    <Box sx={{ maxWidth: 480, bgcolor: 'background.paper' }}>
       <Tabs
         value={value}
         onChange={handleChange}

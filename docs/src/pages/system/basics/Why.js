@@ -1,6 +1,6 @@
 import * as React from 'react';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import Box from '@material-ui/core/Box';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import Box from '@mui/material/Box';
 
 export default function Why() {
   return (
@@ -32,7 +32,7 @@ export default function Why() {
         18.77%
       </Box>
       <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
-        vs last week
+        vs. last week
       </Box>
     </Box>
   );

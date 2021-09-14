@@ -1,13 +1,13 @@
 declare module 'react-docgen' {
-  import { ASTNode } from 'ast-types';
+  import { namedTypes } from 'ast-types';
   // `import { NodePath } from 'ast-types';` points to `const NodePath: NodePathConstructor` for unknown reasons.
   import { NodePath as AstTypesNodePath } from 'ast-types/lib/node-path';
 
-  export { ASTNode };
+  export type Node = namedTypes.Node;
 
   // sound wrapper around `NodePath` from `ast-types` i.e. no `any`
-  export type NodePath<Node extends ASTNode = ASTNode, Value = unknown> = AstTypesNodePath<
-    Node,
+  export type NodePath<SpecificNode extends Node = Node, Value = unknown> = AstTypesNodePath<
+    SpecificNode,
     Value | undefined
   >;
 
@@ -18,16 +18,16 @@ declare module 'react-docgen' {
   export type Handler = (
     documentation: Documentation,
     componentDefinition: NodePath,
-    importer: Importer
+    importer: Importer,
   ) => void;
 
-  export const defaultHandlers: Handler[];
+  export const defaultHandlers: readonly Handler[];
 
   export type Importer = (path: NodePath, name: string) => NodePath | undefined;
   export type Resolver = (
     ast: ASTNode,
     parser: unknown,
-    importer: Importer
+    importer: Importer,
   ) => NodePath | NodePath[] | undefined;
 
   export namespace resolver {
@@ -57,7 +57,7 @@ declare module 'react-docgen' {
   }
   interface EnumPropTypeDescriptor extends BasePropTypeDescriptor {
     name: 'enum';
-    value: StringPropTypeDescriptor[];
+    value: readonly StringPropTypeDescriptor[];
   }
   interface ArrayPropTypeDescriptor extends BasePropTypeDescriptor {
     name: 'array';
@@ -102,7 +102,7 @@ declare module 'react-docgen' {
   }
   interface UnionPropTypeDescriptor extends BasePropTypeDescriptor {
     name: 'union';
-    value: PropTypeDescriptor[];
+    value: readonly PropTypeDescriptor[];
   }
   interface ElementTypePropTypeDescriptor extends BasePropTypeDescriptor {
     name: 'elementType';
@@ -139,12 +139,6 @@ declare module 'react-docgen' {
     // augmented by docs/src/modules/utils/defaultPropsHandler.js
     jsdocDefaultValue?: { computed?: boolean; value: string };
     description?: string;
-    // augmented by docs/src/modules/utils/defaultPropsHandler.js
-    /**
-     * External props are props that are documented on the component but implemented somewhere else.
-     * For example, TextField documents `margin` but `margin` is spread to `FormControl` which actually implements `margin`.
-     */
-    external?: boolean;
     required?: boolean;
     /**
      * react-docgen has this as nullable but it was never treated as such
@@ -157,7 +151,7 @@ declare module 'react-docgen' {
   }
 
   export interface TypeApplicationPropType {
-    applications: string[];
+    applications: readonly string[];
     type: 'TypeApplication';
   }
 
@@ -167,7 +161,7 @@ declare module 'react-docgen' {
 
   export interface UnionPropType {
     type: 'UnionType';
-    elements: PropType[];
+    elements: readonly PropType[];
   }
 
   export type PropType =
@@ -179,8 +173,8 @@ declare module 'react-docgen' {
   export function parse(
     source: string,
     componentResolver: null | Resolver,
-    handlers: null | Handler[],
-    options: { filename: string }
+    handlers: null | readonly Handler[],
+    options: { filename: string },
   ): any;
 
   export namespace utils {

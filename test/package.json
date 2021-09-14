@@ -1,7 +1,7 @@
 {
-  "private": true,
   "name": "test",
-  "version": "0.0.1",
+  "version": "5.0.0",
+  "private": true,
   "scripts": {
     "typescript": "tsc -p tsconfig.json"
   }

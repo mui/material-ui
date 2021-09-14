@@ -2,7 +2,7 @@
 title: React Date Time Picker component
 components: DateTimePicker,DesktopDateTimePicker,MobileDateTimePicker,StaticDateTimePicker
 githubLabel: 'component: DateTimePicker'
-packageName: '@material-ui/lab'
+packageName: '@mui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -24,9 +24,9 @@ This component relies on the date management library of your choice. It supports
 Please install any of these libraries and set up the right date engine by wrapping your root (or the highest level you wish the pickers to be available) with `LocalizationProvider`:
 
 ```jsx
-// or @material-ui/lab/Adapter{Dayjs,Luxon,Moment} or any valid date-io adapter
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+// or @mui/lab/Adapter{Dayjs,Luxon,Moment} or any valid date-io adapter
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 function App() {
   return (
@@ -45,13 +45,19 @@ Allows choosing date then time. There are 4 steps available (year, date, hour an
 
 The `DateTimePicker` component is designed and optimized for the device it runs on.
 
-- The "Mobile" version works best for touch devices and small screens.
-- The "Desktop" version works best for mouse devices and large screens.
+- The `MobileDateTimePicker` component works best for touch devices and small screens.
+- The `DesktopDateTimePicker` component works best for mouse devices and large screens.
 
-By default, the `DateTimePicker` component uses a `@media (pointer: fine)` media query to determine which version to use.
+By default, the `DateTimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches.
 This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-time-picker/ResponsiveDateTimePickers.js"}}
+
+## Form props
+
+The date time picker component can be disabled or read-only.
+
+{{"demo": "pages/components/date-time-picker/FormPropsDateTimePickers.js"}}
 
 ## Date and time validation
 

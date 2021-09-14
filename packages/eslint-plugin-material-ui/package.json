@@ -1,15 +1,15 @@
 {
   "name": "eslint-plugin-material-ui",
-  "version": "5.0.0-alpha.24",
+  "version": "5.0.0",
   "private": true,
-  "description": "Custom eslint rules for Material-UI.",
+  "description": "Custom eslint rules for MUI.",
   "main": "src/index.js",
   "dependencies": {
-    "emoji-regex": "^9.0.0"
+    "emoji-regex": "^9.2.2"
   },
   "devDependencies": {
-    "@types/eslint": "^7.2.0",
-    "@typescript-eslint/parser": "^4.11.1"
+    "@types/eslint": "^7.28.0",
+    "@typescript-eslint/parser": "^4.29.0"
   },
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js'"

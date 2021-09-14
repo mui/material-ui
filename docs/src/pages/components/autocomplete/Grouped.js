@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/core/Autocomplete';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 export default function Grouped() {
   const options = top100Films.map((option) => {
@@ -18,7 +17,7 @@ export default function Grouped() {
       options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
       groupBy={(option) => option.firstLetter}
       getOptionLabel={(option) => option.title}
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="With categories" />}
     />
   );

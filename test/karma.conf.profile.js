@@ -106,7 +106,6 @@ module.exports = function setKarmaConfig(config) {
           // "How to use profiling in production"
           // https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977#react-dom1660--scheduler0100
           'react-dom$': 'react-dom/profiling',
-          'scheduler/tracing': 'scheduler/tracing-profiling',
         },
         extensions: ['.js', '.ts', '.tsx'],
       },
@@ -139,7 +138,7 @@ module.exports = function setKarmaConfig(config) {
           os: 'OS X',
           os_version: 'Catalina',
           browser: 'chrome',
-          browser_version: '84.0',
+          browser_version: '90.0',
         },
         // No accurate performance timings (integer precision instead of double).
         firefox: {
@@ -155,8 +154,8 @@ module.exports = function setKarmaConfig(config) {
           os: 'OS X',
           os_version: 'Catalina',
           browser: 'safari',
-          // We support 12.2 on iOS.
-          // However, 12.1 is very flaky on desktop (mobile is always flaky).
+          // We support 12.5 on iOS.
+          // However, 12.x is very flaky on desktop (mobile is always flaky).
           browser_version: '13.0',
         },
         edge: {
@@ -164,7 +163,7 @@ module.exports = function setKarmaConfig(config) {
           os: 'Windows',
           os_version: '10',
           browser: 'edge',
-          browser_version: '85.0',
+          browser_version: '91.0',
         },
       },
     };

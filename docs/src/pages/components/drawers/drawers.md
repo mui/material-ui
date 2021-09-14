@@ -75,8 +75,7 @@ More details in the [Modal performance section](/components/modal/#performance).
 
 ## Responsive drawer
 
-The `Hidden` responsive helper component allows showing different types of drawer depending on the screen width.
-A `temporary` drawer is shown for small screens while a `permanent` drawer is shown for wider screens.
+You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
 
 {{"demo": "pages/components/drawers/ResponsiveDrawer.js", "iframe": true}}
 

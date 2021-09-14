@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Rating from '@material-ui/core/Rating';
-import Box from '@material-ui/core/Box';
-import StarIcon from '@material-ui/icons/Star';
+import Rating from '@mui/material/Rating';
+import Box from '@mui/material/Box';
+import StarIcon from '@mui/icons-material/Star';
 
 const labels = {
   0.5: 'Useless',
@@ -17,21 +16,18 @@ const labels = {
   5: 'Excellent+',
 };
 
-const useStyles = makeStyles({
-  root: {
-    width: 200,
-    display: 'flex',
-    alignItems: 'center',
-  },
-});
-
 export default function HoverRating() {
   const [value, setValue] = React.useState(2);
   const [hover, setHover] = React.useState(-1);
-  const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        width: 200,
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
       <Rating
         name="hover-feedback"
         value={value}
@@ -47,6 +43,6 @@ export default function HoverRating() {
       {value !== null && (
         <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
       )}
-    </div>
+    </Box>
   );
 }

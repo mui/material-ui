@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete, { createFilterOptions } from '@material-ui/core/Autocomplete';
+import TextField from '@mui/material/TextField';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
@@ -15,7 +14,7 @@ export default function Filter() {
       options={top100Films}
       getOptionLabel={(option) => option.title}
       filterOptions={filterOptions}
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Custom filter" />}
     />
   );

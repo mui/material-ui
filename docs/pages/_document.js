@@ -1,14 +1,12 @@
 import * as React from 'react';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import { themeColor } from 'docs/src/modules/components/ThemeContext';
-import { cacheLtr } from 'docs/pages/_app';
-
-const { extractCritical } = createEmotionServer(cacheLtr);
+import createEmotionCache from 'docs/src/createEmotionCache';
+import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -45,7 +43,16 @@ export default class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={themeColor} />
+          <meta
+            name="theme-color"
+            content={getMetaThemeColor('light')}
+            media="(prefers-color-scheme: light)"
+          />
+          <meta
+            name="theme-color"
+            content={getMetaThemeColor('dark')}
+            media="(prefers-color-scheme: dark)"
+          />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           {/* iOS Icon */}
           <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/180x180.png" />
@@ -73,6 +80,41 @@ export default class MyDocument extends Document {
             This includes DNS lookups, TLS negotiations, TCP handshakes.
           */}
           <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+            rel="stylesheet"
+          />
+          <link // prevent font flash
+            rel="preload"
+            // optimized for english characters (40kb -> 6kb)
+            href="/static/fonts/PlusJakartaSans-ExtraBold-subset.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <style
+            // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `@font-face{font-family:'PlusJakartaSans-ExtraBold';font-style:normal;font-weight:800;font-display:swap;src:url('/static/fonts/PlusJakartaSans-ExtraBold-subset.woff2') format('woff2');}`,
+            }}
+          />
+          <style
+            // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `@font-face{font-family:'PlusJakartaSans-Bold';font-style:normal;font-weight:700;font-display:swap;src:url('/static/fonts/PlusJakartaSans-Bold-subset.woff2') format('woff2');}`,
+            }}
+          />
+          <style
+            // Loads IBM Plex Sans: 400,500,700 & IBM Plex Mono: 400, 600
+            // use https://cssminifier.com/ to minify
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Regular.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Regular.woff) format('woff'),url(/static/fonts/IBMPlexSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Medium.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Medium.woff) format('woff'),url(/static/fonts/IBMPlexSans-Medium.ttf) format('truetype');font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Bold.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Bold.woff) format('woff'),url(/static/fonts/IBMPlexSans-Bold.ttf) format('truetype');font-weight:700;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Mono';src:url(/static/fonts/IBMPlexMono-Regular.woff2) format('woff2'),url(/static/fonts/IBMPlexMono-Regular.woff) format('woff'),url(/static/fonts/IBMPlexMono-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Mono';src:url(/static/fonts/IBMPlexMono-SemiBold.woff2) format('woff2'),url(/static/fonts/IBMPlexMono-SemiBold.woff) format('woff'),url(/static/fonts/IBMPlexMono-SemiBold.ttf) format('truetype');font-weight:600;font-style:normal;font-display:swap}`,
+            }}
+          />
         </Head>
         <body>
           <Main />
@@ -122,15 +164,28 @@ MyDocument.getInitialProps = async (ctx) => {
   const styledComponentsSheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
+  const cache = createEmotionCache();
+  const { extractCriticalToChunks } = createEmotionServer(cache);
+
   try {
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App) => (props) =>
-          styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
+          styledComponentsSheet.collectStyles(
+            materialSheets.collect(<App emotionCache={cache} {...props} />),
+          ),
       });
 
     const initialProps = await Document.getInitialProps(ctx);
-    const emotionStyles = extractCritical(initialProps.html);
+    const emotionStyles = extractCriticalToChunks(initialProps.html);
+    const emotionStyleTags = emotionStyles.styles.map((style) => (
+      <style
+        data-emotion={`${style.key} ${style.ids.join(' ')}`}
+        key={style.key}
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: style.css }}
+      />
+    ));
 
     let css = materialSheets.toString();
     // It might be undefined, e.g. after an error.
@@ -153,22 +208,16 @@ MyDocument.getInitialProps = async (ctx) => {
       userLanguage: ctx.query.userLanguage || 'en',
       // Styles fragment is rendered after the app and page rendering finish.
       styles: [
+        <style id="material-icon-font" key="material-icon-font" />,
+        <style id="font-awesome-css" key="font-awesome-css" />,
         styledComponentsSheet.getStyleElement(),
-        <style
-          id="emotion-server-side"
-          key="emotion-server-side"
-          data-emotion={`css ${emotionStyles.ids.join(' ')}`}
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: emotionStyles.css }}
-        />,
+        ...emotionStyleTags,
         <style
           id="jss-server-side"
           key="jss-server-side"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: css }}
         />,
-        <style id="material-icon-font" key="material-icon-font" />,
-        <style id="font-awesome-css" key="font-awesome-css" />,
         <style id="app-search" key="app-search" />,
         <style id="prismjs" key="prismjs" />,
         <style id="insertion-point-jss" key="insertion-point-jss" />,

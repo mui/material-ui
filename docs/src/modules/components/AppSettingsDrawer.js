@@ -1,55 +1,40 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { alpha, withStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
-import ToggleButton from '@material-ui/core/ToggleButton';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
-import Brightness7Icon from '@material-ui/icons/Brightness7';
-import SettingsBrightnessIcon from '@material-ui/icons/SettingsBrightness';
-import FormatTextdirectionLToRIcon from '@material-ui/icons/FormatTextdirectionLToR';
-import FormatTextdirectionRToLIcon from '@material-ui/icons/FormatTextdirectionRToL';
+import { styled, useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Drawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
+import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
+import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 
-const styles = (theme) => ({
-  paper: {
-    width: 352,
-    backgroundColor: theme.palette.background.level1,
-  },
-  heading: {
-    margin: '16px 0 8px',
-  },
-  toggleButtonGroup: {
-    width: '100%',
-  },
-  toggleButton: {
-    width: '100%',
-    color: theme.palette.text.secondary,
-    '&$toggleButtonSelected': {
-      color: `${theme.palette.primary.main}`,
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-      },
-    },
-  },
-  toggleButtonSelected: {},
-  icon: {
-    marginRight: 8,
+const Heading = styled(Typography)({
+  margin: '20px 0 10px',
+});
+
+const IconToggleButton = styled(ToggleButton)({
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  '& > *': {
+    marginRight: '8px',
   },
 });
 
 function AppSettingsDrawer(props) {
-  const { classes, onClose, open = false, ...other } = props;
+  const { onClose, open = false, ...other } = props;
   const t = useTranslate();
   const theme = useTheme();
   const changeTheme = useChangeTheme();
@@ -86,109 +71,92 @@ function AppSettingsDrawer(props) {
       anchor="right"
       onClose={onClose}
       open={open}
-      classes={{
-        paper: classes.paper,
-      }}
+      PaperProps={{ elevation: 0, sx: { width: 360 } }}
       {...other}
     >
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
-        <Typography variant="h5">{t('settings.settings')}</Typography>
+        <Typography variant="h6">{t('settings.settings')}</Typography>
         <IconButton color="inherit" onClick={onClose} edge="end">
-          <CloseIcon />
+          <CloseIcon color="primary" fontSize="small" />
         </IconButton>
       </Box>
       <Divider />
       <Box sx={{ pl: 2, pr: 2 }}>
-        <Typography gutterBottom id="settings-mode" className={classes.heading}>
+        <Heading gutterBottom id="settings-mode">
           {t('settings.mode')}
-        </Typography>
+        </Heading>
         <ToggleButtonGroup
           exclusive
           value={mode}
+          color="primary"
           onChange={handleChangeThemeMode}
           aria-labelledby="settings-mode"
-          className={classes.toggleButtonGroup}
+          fullWidth
         >
-          <ToggleButton
+          <IconToggleButton
             value="light"
             aria-label={t('settings.light')}
             data-ga-event-category="settings"
             data-ga-event-action="light"
-            classes={{ root: classes.toggleButton, selected: classes.toggleButtonSelected }}
           >
-            <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
-              <Brightness7Icon className={classes.icon} />
-              {t('settings.light')}
-            </Box>
-          </ToggleButton>
-          <ToggleButton
+            <LightModeIcon fontSize="small" />
+            {t('settings.light')}
+          </IconToggleButton>
+          <IconToggleButton
             value="system"
             aria-label={t('settings.system')}
             data-ga-event-category="settings"
             data-ga-event-action="system"
-            classes={{ root: classes.toggleButton, selected: classes.toggleButtonSelected }}
           >
-            <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
-              <SettingsBrightnessIcon className={classes.icon} />
-              {t('settings.system')}
-            </Box>
-          </ToggleButton>
-          <ToggleButton
+            <SettingsBrightnessIcon fontSize="small" />
+            {t('settings.system')}
+          </IconToggleButton>
+          <IconToggleButton
             value="dark"
             aria-label={t('settings.dark')}
             data-ga-event-category="settings"
             data-ga-event-action="dark"
-            classes={{ root: classes.toggleButton, selected: classes.toggleButtonSelected }}
           >
-            <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
-              <Brightness4Icon className={classes.icon} />
-              {t('settings.dark')}
-            </Box>
-          </ToggleButton>
+            <DarkModeOutlinedIcon fontSize="small" />
+            {t('settings.dark')}
+          </IconToggleButton>
         </ToggleButtonGroup>
-        <Typography gutterBottom id="settings-direction" className={classes.heading}>
+        <Heading gutterBottom id="settings-direction">
           {t('settings.direction')}
-        </Typography>
+        </Heading>
         <ToggleButtonGroup
           exclusive
           value={theme.direction}
           onChange={handleChangeDirection}
           aria-labelledby="settings-direction"
-          className={classes.toggleButtonGroup}
+          color="primary"
+          fullWidth
         >
-          <ToggleButton
+          <IconToggleButton
             value="ltr"
             aria-label={t('settings.light')}
             data-ga-event-category="settings"
             data-ga-event-action="ltr"
-            classes={{ root: classes.toggleButton, selected: classes.toggleButtonSelected }}
           >
-            <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
-              <FormatTextdirectionLToRIcon className={classes.icon} />
-              {t('settings.ltr')}
-            </Box>
-          </ToggleButton>
-          <ToggleButton
+            <FormatTextdirectionLToRIcon />
+            {t('settings.ltr')}
+          </IconToggleButton>
+          <IconToggleButton
             value="rtl"
             aria-label={t('settings.system')}
             data-ga-event-category="settings"
             data-ga-event-action="rtl"
-            classes={{ root: classes.toggleButton, selected: classes.toggleButtonSelected }}
           >
-            <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
-              <FormatTextdirectionRToLIcon className={classes.icon} />
-              {t('settings.rtl')}
-            </Box>
-          </ToggleButton>
+            <FormatTextdirectionRToLIcon />
+            {t('settings.rtl')}
+          </IconToggleButton>
         </ToggleButtonGroup>
-        <Typography gutterBottom className={classes.heading}>
-          {t('settings.color')}
-        </Typography>
+        <Heading gutterBottom>{t('settings.color')}</Heading>
         <Link
           href="/customization/color/#playground"
           data-ga-event-category="settings"
           data-ga-event-action="colors"
-          variant="body1"
+          variant="body2"
         >
           {t('settings.editWebsiteColors')}
         </Link>
@@ -198,9 +166,8 @@ function AppSettingsDrawer(props) {
 }
 
 AppSettingsDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool,
 };
 
-export default withStyles(styles)(AppSettingsDrawer);
+export default AppSettingsDrawer;

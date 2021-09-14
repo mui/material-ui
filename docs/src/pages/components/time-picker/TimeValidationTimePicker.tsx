@@ -1,8 +1,9 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import TimePicker from '@material-ui/lab/TimePicker';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import TimePicker from '@mui/lab/TimePicker';
 
 export default function TimeValidationTimePicker() {
   const [value, setValue] = React.useState<Date | null>(
@@ -11,9 +12,9 @@ export default function TimeValidationTimePicker() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div style={{ width: 300 }}>
+      <Stack spacing={3}>
         <TimePicker
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => <TextField {...params} />}
           value={value}
           label="min/max time"
           onChange={(newValue) => {
@@ -23,7 +24,7 @@ export default function TimeValidationTimePicker() {
           maxTime={new Date(0, 0, 0, 18, 45)}
         />
         <TimePicker
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => <TextField {...params} />}
           label="Disable odd hours"
           value={value}
           onChange={(newValue) => {
@@ -37,7 +38,7 @@ export default function TimeValidationTimePicker() {
             return false;
           }}
         />
-      </div>
+      </Stack>
     </LocalizationProvider>
   );
 }

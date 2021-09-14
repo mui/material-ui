@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiListItem from '@material-ui/core/ListItem';
-import MuiListItemIcon from '@material-ui/core/ListItemIcon';
-import MuiListItemAvatar from '@material-ui/core/ListItemAvatar';
-// import MuiListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import MuiListItemText from '@material-ui/core/ListItemText';
-import MuiCheckbox from '@material-ui/core/Checkbox';
-import MuiSwitch from '@material-ui/core/Switch';
+import MuiListItem from '@mui/material/ListItem';
+import MuiListItemIcon from '@mui/material/ListItemIcon';
+import MuiListItemAvatar from '@mui/material/ListItemAvatar';
+// import MuiListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
+import MuiListItemText from '@mui/material/ListItemText';
+import MuiCheckbox from '@mui/material/Checkbox';
+import MuiSwitch from '@mui/material/Switch';
 import { Avatar } from './Avatar';
 import { Icon } from './Icon';
 import { IconButton } from './IconButton';
@@ -18,7 +18,9 @@ interface Props {
   dense: boolean;
   disabled: boolean;
   disableGutters: boolean;
+  disablePadding: boolean;
   divider: boolean;
+  secondaryAction?: 'none' | 'iconButton' | 'checkbox' | 'switch';
   selected: boolean;
   width: number | string;
   height: number;
@@ -29,7 +31,6 @@ interface Props {
   primaryIcon: string;
   imageFile: string;
   imageUrl: string;
-  secondaryAction?: 'none' | 'iconButton' | 'checkbox' | 'switch';
   secondaryIcon: string;
 }
 
@@ -118,6 +119,7 @@ ListItem.defaultProps = {
   dense: false,
   disabled: false,
   disableGutters: false,
+  disablePadding: false,
   divider: false,
   selected: false,
   width: 568,
@@ -158,9 +160,18 @@ addPropertyControls(ListItem, {
     type: ControlType.Boolean,
     title: 'Disable gutters',
   },
+  disablePadding: {
+    type: ControlType.Boolean,
+    title: 'Disable padding',
+  },
   divider: {
     type: ControlType.Boolean,
     title: 'Divider',
+  },
+  secondaryAction: {
+    type: ControlType.Enum,
+    title: 'Secondary action',
+    options: ['none', 'iconButton', 'checkbox', 'switch'],
   },
   selected: {
     type: ControlType.Boolean,
@@ -210,11 +221,6 @@ addPropertyControls(ListItem, {
         (props.primaryAction !== undefined && props.primaryAction !== 'avatar')
       );
     },
-  },
-  secondaryAction: {
-    type: ControlType.Enum,
-    title: 'Secondary action',
-    options: ['none', 'iconButton', 'checkbox', 'switch'],
   },
   secondaryIcon: {
     type: ControlType.String,

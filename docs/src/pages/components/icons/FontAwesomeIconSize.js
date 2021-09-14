@@ -1,19 +1,12 @@
 import * as React from 'react';
 import { loadCSS } from 'fg-loadcss';
-import { ThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
-import Icon from '@material-ui/core/Icon';
-import MdPhone from '@material-ui/icons/Phone';
-import Chip from '@material-ui/core/Chip';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Icon from '@mui/material/Icon';
+import MdPhone from '@mui/icons-material/Phone';
+import Chip from '@mui/material/Chip';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
-
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiIcon: {
       styleOverrides: {
@@ -29,8 +22,6 @@ const theme = createMuiTheme({
 });
 
 export default function FontAwesomeIconSize() {
-  const classes = useStyles();
-
   React.useEffect(() => {
     const node = loadCSS(
       'https://use.fontawesome.com/releases/v5.14.0/css/all.css',
@@ -44,11 +35,17 @@ export default function FontAwesomeIconSize() {
   }, []);
 
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        '& > :not(style)': {
+          m: 1,
+        },
+      }}
+    >
       <ThemeProvider theme={theme}>
         <Chip icon={<MdPhone />} label="Call me" />
         <Chip icon={<Icon className="fas fa-phone-alt" />} label="Call me" />
       </ThemeProvider>
-    </div>
+    </Box>
   );
 }

@@ -2,7 +2,8 @@
   "props": {
     "classes": { "type": { "name": "object" } },
     "icon": { "type": { "name": "node" } },
-    "openIcon": { "type": { "name": "node" } }
+    "openIcon": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "SpeedDialIcon",
   "styles": {
@@ -12,9 +13,9 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/material-ui/src/SpeedDialIcon/SpeedDialIcon.js",
+  "filename": "/packages/mui-material/src/SpeedDialIcon/SpeedDialIcon.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/speed-dial/\">Speed Dial</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

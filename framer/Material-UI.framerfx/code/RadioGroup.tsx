@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiRadioGroup from '@material-ui/core/RadioGroup';
-import MuiFormLabel from '@material-ui/core/FormLabel';
+import MuiRadioGroup from '@mui/material/RadioGroup';
+import MuiFormLabel from '@mui/material/FormLabel';
 import { Radio } from './Radio';
 
 interface Props {
-  labels: string[];
+  labels: readonly string[];
   label: string;
   width: number | string;
   height: number;

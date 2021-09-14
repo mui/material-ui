@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 export default function TabsWrappedLabel() {
   const [value, setValue] = React.useState('one');
@@ -19,7 +19,7 @@ export default function TabsWrappedLabel() {
       >
         <Tab
           value="one"
-          label="New Arrivals in the Longest Text of Nonfiction"
+          label="New Arrivals in the Longest Text of Nonfiction that should appear in the next line"
           wrapped
         />
         <Tab value="two" label="Item Two" />

@@ -15,11 +15,11 @@ They should be easy to scan for relevant and actionable information. Elements, l
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Simple card
+## Basic card
 
 Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.
 
-{{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
+{{"demo": "pages/components/cards/BasicCard.js", "bg": true}}
 
 ### Outlined Card
 
@@ -62,7 +62,5 @@ Supplemental actions within the card are explicitly called out using icons, text
 Here's an example of a media control card.
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
-
-## Customization
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).

@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import Benchmark from 'benchmark';
-import { unstable_styleFunctionSx as styleFunctionSx } from '@material-ui/system';
+import { unstable_styleFunctionSx as styleFunctionSx } from '@mui/system';
 import styledSystemCss from '@styled-system/css';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 import { css as chakraCss } from '@chakra-ui/system';
 
 const suite = new Benchmark.Suite('system', {
@@ -12,7 +12,7 @@ const suite = new Benchmark.Suite('system', {
 });
 Benchmark.options.minSamples = 100;
 
-const materialSystemTheme = createMuiTheme();
+const materialSystemTheme = createTheme();
 
 const styledSystemTheme = {
   breakpoints: ['40em', '52em', '64em'],
@@ -50,7 +50,7 @@ suite
     })({ theme: styledSystemTheme });
   })
   // ---
-  .add('@material-ui/system styleFunctionSx', () => {
+  .add('@mui/system styleFunctionSx', () => {
     styleFunctionSx({
       theme: materialSystemTheme,
       sx: {

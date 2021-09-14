@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
 import { faInfo } from '@fortawesome/free-solid-svg-icons/faInfo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 const FontAwesomeSvgIcon = React.forwardRef((props, ref) => {
   const { icon } = props;
@@ -39,19 +39,15 @@ FontAwesomeSvgIcon.propTypes = {
   icon: PropTypes.any.isRequired,
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
-
 export default function FontAwesomeSvgIconDemo() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        '& > :not(style)': {
+          m: 1,
+        },
+      }}
+    >
       <IconButton aria-label="Example">
         <FontAwesomeIcon icon={faEllipsisV} />
       </IconButton>
@@ -64,6 +60,6 @@ export default function FontAwesomeSvgIconDemo() {
       <Button variant="contained" startIcon={<FontAwesomeSvgIcon icon={faInfo} />}>
         Example
       </Button>
-    </div>
+    </Box>
   );
 }

@@ -1,7 +1,8 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react';
-import Slider from '@material-ui/core/Slider';
-import Box from '@material-ui/core/Box';
+/* eslint-disable react/react-in-jsx-scope -- Unaware of jsxImportSource */
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import Slider from '@mui/material/Slider';
+import Box from '@mui/material/Box';
 
 export default function EmotionCSS() {
   return (

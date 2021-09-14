@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Typography from '@material-ui/core/Typography';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
 
 export default function ContextMenu() {
   const [contextMenu, setContextMenu] = React.useState(null);
@@ -38,7 +38,6 @@ export default function ContextMenu() {
         consequat. Suspendisse lacinia tellus a libero volutpat maximus.
       </Typography>
       <Menu
-        keepMounted
         open={contextMenu !== null}
         onClose={handleClose}
         anchorReference="anchorPosition"

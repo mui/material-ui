@@ -1,0 +1,7 @@
+<Masonry columns={4} spacing={1}>
+  {itemData.map((item, index) => (
+    <MasonryItem key={index} columnSpan={item.span}>
+      <Item sx={{ height: item.height }}>{index + 1}</Item>
+    </MasonryItem>
+  ))}
+</Masonry>

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiBottomNavigation from '@material-ui/core/BottomNavigation';
-import MuiBottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import MuiBottomNavigation from '@mui/material/BottomNavigation';
+import MuiBottomNavigationAction from '@mui/material/BottomNavigationAction';
 import { Icon } from './Icon';
 
 interface Props {
   showLabels: boolean;
-  icons: string[];
-  labels: string[];
+  icons: readonly string[];
+  labels: readonly string[];
   width: number | string;
   height: number;
 }

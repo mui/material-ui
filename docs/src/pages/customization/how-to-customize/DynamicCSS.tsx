@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { alpha, experimentalStyled } from '@material-ui/core/styles';
-import Slider, { SliderProps } from '@material-ui/core/Slider';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+import { alpha, styled } from '@mui/material/styles';
+import Slider, { SliderProps } from '@mui/material/Slider';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 
-type StyledSliderProps = SliderProps & {
+interface StyledSliderProps extends SliderProps {
   success?: boolean;
-};
+}
 
-const StyledSlider = experimentalStyled(Slider, {
+const StyledSlider = styled(Slider, {
   shouldForwardProp: (prop) => prop !== 'success',
 })<StyledSliderProps>(({ success, theme }) => ({
   width: 300,

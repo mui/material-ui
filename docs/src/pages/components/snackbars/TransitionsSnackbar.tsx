@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
-import Fade from '@material-ui/core/Fade';
-import Slide from '@material-ui/core/Slide';
-import Grow from '@material-ui/core/Grow';
-import { TransitionProps } from '@material-ui/core/transitions';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Fade from '@mui/material/Fade';
+import Slide from '@mui/material/Slide';
+import Grow from '@mui/material/Grow';
+import { TransitionProps } from '@mui/material/transitions';
 
 function SlideTransition(props: TransitionProps) {
   return <Slide {...props} direction="up" />;
@@ -27,18 +27,20 @@ export default function TransitionsSnackbar() {
     Transition: Fade,
   });
 
-  const handleClick = (
-    Transition: React.ComponentType<
-      TransitionProps & {
-        children?: React.ReactElement<any, any>;
-      }
-    >,
-  ) => () => {
-    setState({
-      open: true,
-      Transition,
-    });
-  };
+  const handleClick =
+    (
+      Transition: React.ComponentType<
+        TransitionProps & {
+          children?: React.ReactElement<any, any>;
+        }
+      >,
+    ) =>
+    () => {
+      setState({
+        open: true,
+        Transition,
+      });
+    };
 
   const handleClose = () => {
     setState({

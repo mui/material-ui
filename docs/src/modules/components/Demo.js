@@ -1,42 +1,32 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { useSelector } from 'react-redux';
-import { alpha, makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import Collapse from '@material-ui/core/Collapse';
-import NoSsr from '@material-ui/core/NoSsr';
+import { alpha, styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import NoSsr from '@mui/material/NoSsr';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
-import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
+import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar
 // Importing the styles results in no bundle size reduction
-const useDemoToolbarFallbackStyles = makeStyles(
-  (theme) => {
-    return {
-      root: {
-        display: 'none',
-        [theme.breakpoints.up('sm')]: {
-          display: 'flex',
-          height: theme.spacing(6),
-        },
-      },
-    };
-  },
-  { name: 'DemoToolbar' },
-);
+const DemoToolbarFallbackRoot = styled('div')(({ theme }) => {
+  return {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'flex',
+      height: theme.spacing(8),
+    },
+  };
+});
 export function DemoToolbarFallback() {
-  const classes = useDemoToolbarFallbackStyles();
   const t = useTranslate();
 
-  return (
-    <div aria-busy aria-label={t('demoToolbarLabel')} className={classes.root} role="toolbar" />
-  );
+  return <DemoToolbarFallbackRoot aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
 }
 
 function getDemoName(location) {
@@ -80,93 +70,85 @@ function useUniqueId(prefix) {
   return id ? `${prefix}${id}` : id;
 }
 
-const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      marginBottom: 40,
-      marginLeft: theme.spacing(-2),
-      marginRight: theme.spacing(-2),
-      [theme.breakpoints.up('sm')]: {
-        padding: theme.spacing(0, 1),
-        marginLeft: 0,
-        marginRight: 0,
-      },
-    },
-    demo: {
-      position: 'relative',
-      outline: 0,
-      margin: 'auto',
-      display: 'flex',
-      justifyContent: 'center',
-      [theme.breakpoints.up('sm')]: {
-        borderRadius: theme.shape.borderRadius,
-      },
-    },
-    /* Isolate the demo with an outline. */
-    demoBgOutlined: {
-      padding: theme.spacing(3),
-      border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
-      borderLeftWidth: 0,
-      borderRightWidth: 0,
-      [theme.breakpoints.up('sm')]: {
-        borderLeftWidth: 1,
-        borderRightWidth: 1,
-      },
-    },
-    /* Prepare the background to display an inner elevation. */
-    demoBgTrue: {
-      padding: theme.spacing(3),
-      backgroundColor: theme.palette.background.level2,
-    },
+const Root = styled('div')(({ theme }) => ({
+  marginBottom: 40,
+  marginLeft: theme.spacing(-2),
+  marginRight: theme.spacing(-2),
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: 0,
+    marginRight: 0,
+  },
+}));
+const DemoRoot = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
+})(({ theme, hiddenToolbar, bg }) => ({
+  position: 'relative',
+  outline: 0,
+  margin: 'auto',
+  display: 'flex',
+  justifyContent: 'center',
+  [theme.breakpoints.up('sm')]: {
+    borderRadius: 10,
+    ...(bg === 'outlined' && {
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
+    }),
     /* Make no difference between the demo and the markdown. */
-    demoBgInline: {
-      // Maintain alignment with the markdown text
-      [theme.breakpoints.down('sm')]: {
-        padding: theme.spacing(3),
-      },
-    },
-    demoHiddenToolbar: {
-      paddingTop: theme.spacing(2),
-      [theme.breakpoints.up('sm')]: {
-        paddingTop: theme.spacing(3),
-      },
-    },
-    code: {
-      display: 'none',
-      padding: 0,
-      marginBottom: theme.spacing(1),
-      marginRight: 0,
-      [theme.breakpoints.up('sm')]: {
-        display: 'block',
-      },
-      '& pre': {
-        overflow: 'auto',
-        lineHeight: 1.5,
-        margin: '0 !important',
-        maxHeight: 'min(68vh, 1000px)',
-      },
-    },
-    anchorLink: {
-      marginTop: -64, // height of toolbar
-      position: 'absolute',
-    },
-    initialFocus: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: theme.spacing(4),
-      height: theme.spacing(4),
-      pointerEvents: 'none',
-    },
+    ...(bg === 'inline' && {
+      padding: theme.spacing(3),
+    }),
+    ...(hiddenToolbar && {
+      paddingTop: theme.spacing(3),
+    }),
+  },
+  /* Isolate the demo with an outline. */
+  ...(bg === 'outlined' && {
+    padding: theme.spacing(3),
+    backgroundColor: theme.palette.background.paper,
+    border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
   }),
-  { name: 'Demo' },
-);
-
+  /* Prepare the background to display an inner elevation. */
+  ...(bg === true && {
+    padding: theme.spacing(3),
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100],
+  }),
+  ...(hiddenToolbar && {
+    paddingTop: theme.spacing(2),
+  }),
+}));
+const Code = styled(HighlightedCode)(({ theme }) => ({
+  padding: 0,
+  marginBottom: theme.spacing(1),
+  marginTop: theme.spacing(2),
+  [theme.breakpoints.up('sm')]: {
+    marginTop: theme.spacing(0),
+  },
+  '& pre': {
+    overflow: 'auto',
+    lineHeight: 1.5,
+    margin: '0 auto',
+    maxHeight: 'min(68vh, 1000px)',
+  },
+}));
+const AnchorLink = styled('div')({
+  marginTop: -64, // height of toolbar
+  position: 'absolute',
+});
+const InitialFocus = styled(IconButton)(({ theme }) => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: theme.spacing(4),
+  height: theme.spacing(4),
+  pointerEvents: 'none',
+}));
 export default function Demo(props) {
   const { demo, demoOptions, disableAd, githubLocation } = props;
-  const classes = useStyles();
   const t = useTranslate();
-  const codeVariant = useSelector((state) => state.options.codeVariant);
+  const codeVariant = useCodeVariant();
   const demoData = useDemoData(codeVariant, demo, githubLocation);
 
   const [demoHovered, setDemoHovered] = React.useState(false);
@@ -205,12 +187,8 @@ export default function Demo(props) {
     }
   }, [demoName]);
 
-  const jsx = getJsxPreview(demoData.raw || '');
   const showPreview =
-    !demoOptions.hideToolbar &&
-    demoOptions.defaultCodeOpen !== false &&
-    jsx !== demoData.raw &&
-    jsx.split(/\n/).length <= 17;
+    !demoOptions.hideToolbar && demoOptions.defaultCodeOpen !== false && Boolean(demo.jsxPreview);
 
   const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
 
@@ -223,24 +201,16 @@ export default function Demo(props) {
   const [showAd, setShowAd] = React.useState(false);
 
   return (
-    <div className={classes.root}>
-      <div
-        className={clsx(classes.demo, {
-          [classes.demoHiddenToolbar]: demoOptions.hideToolbar,
-          [classes.demoBgOutlined]: demoOptions.bg === 'outlined',
-          [classes.demoBgTrue]: demoOptions.bg === true,
-          [classes.demoBgInline]: demoOptions.bg === 'inline',
-        })}
+    <Root>
+      <AnchorLink id={`${demoName}`} />
+      <DemoRoot
+        hiddenToolbar={demoOptions.hideToolbar}
+        bg={demoOptions.bg}
         id={demoId}
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
-        <IconButton
-          aria-label={t('initialFocusLabel')}
-          className={classes.initialFocus}
-          action={initialFocusRef}
-          tabIndex={-1}
-        />
+        <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
         <DemoSandboxed
           key={demoKey}
           style={demoSandboxedStyle}
@@ -249,9 +219,9 @@ export default function Demo(props) {
           name={demoName}
           onResetDemoClick={resetDemo}
         />
-      </div>
-      <div className={classes.anchorLink} id={`${demoName}.js`} />
-      <div className={classes.anchorLink} id={`${demoName}.tsx`} />
+      </DemoRoot>
+      <AnchorLink id={`${demoName}.js`} />
+      <AnchorLink id={`${demoName}.tsx`} />
       {demoOptions.hideToolbar ? null : (
         <NoSsr defer fallback={<DemoToolbarFallback />}>
           <React.Suspense fallback={<DemoToolbarFallback />}>
@@ -279,16 +249,15 @@ export default function Demo(props) {
       )}
       <Collapse in={openDemoSource} unmountOnExit>
         <div>
-          <HighlightedCode
-            className={classes.code}
+          <Code
             id={demoSourceId}
-            code={showPreview && !codeOpen ? jsx : demoData.raw}
+            code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
             language={demoData.sourceLanguage}
           />
         </div>
       </Collapse>
       {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
-    </div>
+    </Root>
   );
 }
 

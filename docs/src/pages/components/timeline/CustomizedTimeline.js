@@ -1,41 +1,26 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Timeline from '@material-ui/lab/Timeline';
-import TimelineItem from '@material-ui/lab/TimelineItem';
-import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
-import TimelineConnector from '@material-ui/lab/TimelineConnector';
-import TimelineContent from '@material-ui/lab/TimelineContent';
-import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
-import TimelineDot from '@material-ui/lab/TimelineDot';
-import FastfoodIcon from '@material-ui/icons/Fastfood';
-import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-import HotelIcon from '@material-ui/icons/Hotel';
-import RepeatIcon from '@material-ui/icons/Repeat';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles((theme) => ({
-  timelineContent: {
-    padding: '12px 16px',
-  },
-  secondaryTail: {
-    backgroundColor: theme.palette.secondary.main,
-  },
-  verticallyCenterContent: {
-    margin: 'auto 0',
-  },
-}));
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
+import TimelineDot from '@mui/lab/TimelineDot';
+import FastfoodIcon from '@mui/icons-material/Fastfood';
+import LaptopMacIcon from '@mui/icons-material/LaptopMac';
+import HotelIcon from '@mui/icons-material/Hotel';
+import RepeatIcon from '@mui/icons-material/Repeat';
+import Typography from '@mui/material/Typography';
 
 export default function CustomizedTimeline() {
-  const classes = useStyles();
-
   return (
-    <Timeline align="alternate">
+    <Timeline position="alternate">
       <TimelineItem>
         <TimelineOppositeContent
-          className={classes.verticallyCenterContent}
+          sx={{ m: 'auto 0' }}
           align="right"
           variant="body2"
-          color="textSecondary"
+          color="text.secondary"
         >
           9:30 am
         </TimelineOppositeContent>
@@ -46,7 +31,7 @@ export default function CustomizedTimeline() {
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent className={classes.timelineContent}>
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
           <Typography variant="h6" component="span">
             Eat
           </Typography>
@@ -55,9 +40,9 @@ export default function CustomizedTimeline() {
       </TimelineItem>
       <TimelineItem>
         <TimelineOppositeContent
-          className={classes.verticallyCenterContent}
+          sx={{ m: 'auto 0' }}
           variant="body2"
-          color="textSecondary"
+          color="text.secondary"
         >
           10:00 am
         </TimelineOppositeContent>
@@ -68,7 +53,7 @@ export default function CustomizedTimeline() {
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent className={classes.timelineContent}>
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
           <Typography variant="h6" component="span">
             Code
           </Typography>
@@ -81,9 +66,9 @@ export default function CustomizedTimeline() {
           <TimelineDot color="primary" variant="outlined">
             <HotelIcon />
           </TimelineDot>
-          <TimelineConnector className={classes.secondaryTail} />
+          <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
         </TimelineSeparator>
-        <TimelineContent className={classes.timelineContent}>
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
           <Typography variant="h6" component="span">
             Sleep
           </Typography>
@@ -92,13 +77,13 @@ export default function CustomizedTimeline() {
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
-          <TimelineConnector className={classes.secondaryTail} />
+          <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
           <TimelineDot color="secondary">
             <RepeatIcon />
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent className={classes.timelineContent}>
+        <TimelineContent sx={{ py: '12px', px: 2 }}>
           <Typography variant="h6" component="span">
             Repeat
           </Typography>

@@ -4,7 +4,8 @@
     "classes": { "type": { "name": "object" } },
     "completed": { "type": { "name": "bool" } },
     "error": { "type": { "name": "bool" } },
-    "icon": { "type": { "name": "node" } }
+    "icon": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "StepIcon",
   "styles": {
@@ -14,9 +15,9 @@
   },
   "spread": true,
   "forwardsRefTo": "SVGSVGElement",
-  "filename": "/packages/material-ui/src/StepIcon/StepIcon.js",
+  "filename": "/packages/mui-material/src/StepIcon/StepIcon.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

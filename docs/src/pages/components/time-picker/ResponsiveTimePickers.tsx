@@ -1,10 +1,11 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import TimePicker from '@material-ui/lab/TimePicker';
-import MobileTimePicker from '@material-ui/lab/MobileTimePicker';
-import DesktopTimePicker from '@material-ui/lab/DesktopTimePicker';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import Stack from '@mui/material/Stack';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import TimePicker from '@mui/lab/TimePicker';
+import MobileTimePicker from '@mui/lab/MobileTimePicker';
+import DesktopTimePicker from '@mui/lab/DesktopTimePicker';
 
 export default function ResponsiveTimePickers() {
   const [value, setValue] = React.useState<Date | null>(
@@ -13,14 +14,14 @@ export default function ResponsiveTimePickers() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div style={{ width: 300 }}>
+      <Stack spacing={3}>
         <MobileTimePicker
           label="For mobile"
           value={value}
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => <TextField {...params} />}
         />
         <DesktopTimePicker
           label="For desktop"
@@ -28,14 +29,14 @@ export default function ResponsiveTimePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => <TextField {...params} />}
         />
         <TimePicker
           value={value}
           onChange={setValue}
-          renderInput={(params) => <TextField {...params} margin="normal" />}
+          renderInput={(params) => <TextField {...params} />}
         />
-      </div>
+      </Stack>
     </LocalizationProvider>
   );
 }

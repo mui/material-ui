@@ -2,7 +2,7 @@
 title: React Speed Dial component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: SpeedDial'
-0: 'https://material.io/components/buttons-floating-action-button#types-of-transitions'
+materialDesign: 'https://material.io/components/buttons-floating-action-button#types-of-transitions'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 ---
 
@@ -20,9 +20,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 {{"demo": "pages/components/speed-dial/BasicSpeedDial.js"}}
 
+## Песочница
+
+{{"demo": "pages/components/speed-dial/PlaygroundSpeedDial.js"}}
+
 ## Controlled speed dial
 
-You can provide an alternate icon for the closed and open states using the `icon` and `openIcon` props of the `SpeedDialIcon` component.
+Вы можете задать альтернативную иконку для закрытого и открытого состояний, используя свойства `icon` и `openIcon` компонента `SpeedDialIcon`.
 
 The SpeedDialActions tooltips can be be displayed persistently so that users don't have to long-press in order to see the tooltip on touch devices.
 

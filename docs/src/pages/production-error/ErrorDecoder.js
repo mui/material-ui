@@ -1,24 +1,21 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
-import { styled } from '@material-ui/core/styles';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import { renderInline as renderInlineMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import { renderInline as renderInlineMarkdown } from '@mui/markdown';
 
 const ErrorMessageSection = styled('div')({
   // reset display: block from Demo
   display: 'block',
 });
 
-// use elevation={2}
-const ErrorMessageMarkdown = styled(MarkdownElement)(({ theme }) => {
-  return {
-    boxShadow: theme.shadows['2'],
-    color: theme.palette.error.main,
-    padding: theme.spacing(1, 2),
-  };
-});
+const ErrorMessageMarkdown = styled(MarkdownElement)(({ theme }) => ({
+  boxShadow: theme.shadows['2'],
+  color: theme.palette.error.main,
+  padding: theme.spacing(1, 2),
+}));
 
 export default function ErrorDecoder() {
   const {

@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/core/Autocomplete';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 
@@ -9,7 +8,7 @@ export default function Highlights() {
   return (
     <Autocomplete
       id="highlights-demo"
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       options={top100Films}
       getOptionLabel={(option) => option.title}
       renderInput={(params) => (

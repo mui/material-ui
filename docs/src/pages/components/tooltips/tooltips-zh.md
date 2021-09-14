@@ -14,13 +14,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 简单的文字提示
+## 简单的工具提示
 
 {{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
 ## 文字提示的位置
 
-`Tooltip` 有 12 个**位置** 选项。 They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
+`Tooltip` 有 12 个**位置** 选项。 它们没有方向箭头，而是依靠源头发出的运动来传递方向。
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
@@ -61,9 +61,9 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## 受控的文字提示
+## 可控的工具提示
 
-你可以使用 `open`， `onOpen` 和 `onClose` 属性来控制工具提示的行为。
+使用 `open`， `onOpen` 和 `onClose` 这些属性，您可以控制工具提示的行为。
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 

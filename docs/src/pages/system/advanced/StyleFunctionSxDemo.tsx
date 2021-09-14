@@ -1,14 +1,14 @@
 import * as React from 'react';
 import styled, { InterpolationFunction, ThemeProvider } from 'styled-components';
-import { unstable_styleFunctionSx, SxProps } from '@material-ui/system';
-import NoSsr from '@material-ui/core/NoSsr';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { unstable_styleFunctionSx, SxProps } from '@mui/system';
+import NoSsr from '@mui/core/NoSsr';
+import { createTheme } from '@mui/material/styles';
 
 interface DivProps {
   sx?: SxProps;
 }
 
-const theme = createMuiTheme();
+const theme = createTheme();
 
 const Div = styled('div')<DivProps>(
   unstable_styleFunctionSx as InterpolationFunction<DivProps>,

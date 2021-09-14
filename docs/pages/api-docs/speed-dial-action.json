@@ -6,6 +6,7 @@
     "icon": { "type": { "name": "node" } },
     "id": { "type": { "name": "string" } },
     "open": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
     "TooltipClasses": { "type": { "name": "object" } },
     "tooltipOpen": { "type": { "name": "bool" } },
     "tooltipPlacement": {
@@ -33,9 +34,9 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/material-ui/src/SpeedDialAction/SpeedDialAction.js",
+  "filename": "/packages/mui-material/src/SpeedDialAction/SpeedDialAction.js",
   "inheritance": { "component": "Tooltip", "pathname": "/api/tooltip/" },
   "demos": "<ul><li><a href=\"/components/speed-dial/\">Speed Dial</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

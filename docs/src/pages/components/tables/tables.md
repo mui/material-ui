@@ -29,7 +29,7 @@ A simple example with no frills.
 The `Table` component has a close mapping to the native `<table>` elements.
 This constraint makes building rich data tables challenging.
 
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data.
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data.
 While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
 {{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
@@ -48,10 +48,10 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## Customized tables
+## Customization
 
-Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -78,11 +78,11 @@ The `ActionsComponent` prop of the `TablePagination` component allows the implem
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
-## Fixed header
+## Sticky header
 
-An example of a table with scrollable rows and fixed column headers.
-It leverages the `stickyHeader` prop.<br />
-(⚠️ no IE11 support)
+Here is an example of a table with scrollable rows and fixed column headers.
+It leverages the `stickyHeader` prop.
+(⚠️ no IE 11 support)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 

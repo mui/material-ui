@@ -1,5 +1,5 @@
 {
-  "props": { "classes": { "type": { "name": "object" } } },
+  "props": { "classes": { "type": { "name": "object" } }, "sx": { "type": { "name": "object" } } },
   "name": "StepConnector",
   "styles": {
     "classes": [
@@ -19,9 +19,9 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/StepConnector/StepConnector.js",
+  "filename": "/packages/mui-material/src/StepConnector/StepConnector.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

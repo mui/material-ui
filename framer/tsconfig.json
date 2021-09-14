@@ -4,5 +4,5 @@
     "skipLibCheck": true,
     "noUnusedLocals": true
   },
-  "include": ["Material-UI.framerfx/code"]
+  "include": ["Material-UI.framerfx/code", "types"]
 }

@@ -1,32 +1,30 @@
 const path = require('path');
-const React = require('react');
 
 const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
 
+function resolveAliasPath(relativeToBabelConf) {
+  const resolvedPath = path.relative(process.cwd(), path.resolve(__dirname, relativeToBabelConf));
+  return `./${resolvedPath.replace('\\', '/')}`;
+}
+
 const defaultAlias = {
-  '@material-ui/core': './packages/material-ui/src',
-  '@material-ui/docs': './packages/material-ui-docs/src',
-  '@material-ui/icons': './packages/material-ui-icons/src',
-  '@material-ui/lab': './packages/material-ui-lab/src',
-  '@material-ui/styled-engine': './packages/material-ui-styled-engine/src',
-  '@material-ui/styled-engine-sc': './packages/material-ui-styled-engine-sc/src',
-  '@material-ui/styles': './packages/material-ui-styles/src',
-  '@material-ui/system': './packages/material-ui-system/src',
-  '@material-ui/unstyled': './packages/material-ui-unstyled/src',
-  '@material-ui/utils': './packages/material-ui-utils/src',
-  'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
+  '@mui/material': resolveAliasPath('./packages/mui-material/src'),
+  '@mui/docs': resolveAliasPath('./packages/mui-docs/src'),
+  '@mui/icons-material': resolveAliasPath('./packages/mui-icons-material/lib'),
+  '@mui/lab': resolveAliasPath('./packages/mui-lab/src'),
+  '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
+  '@mui/styled-engine-sc': resolveAliasPath('./packages/mui-styled-engine-sc/src'),
+  '@mui/styles': resolveAliasPath('./packages/mui-styles/src'),
+  '@mui/system': resolveAliasPath('./packages/mui-system/src'),
+  '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
+  '@mui/core': resolveAliasPath('./packages/mui-core/src'),
+  '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
+  '@mui/material-next': resolveAliasPath('./packages/mui-material-next/src'),
 };
 
 const productionPlugins = [
-  '@babel/plugin-transform-react-constant-elements',
   ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
-  [
-    'babel-plugin-transform-react-remove-prop-types',
-    {
-      mode: 'unsafe-wrap',
-    },
-  ],
 ];
 
 module.exports = function getBabelConfig(api) {
@@ -46,10 +44,7 @@ module.exports = function getBabelConfig(api) {
     [
       '@babel/preset-react',
       {
-        runtime: React.version.startsWith('16')
-          ? 'classic'
-          : // default in Babel 8
-            'automatic',
+        runtime: 'automatic',
       },
     ],
     '@babel/preset-typescript',
@@ -70,6 +65,7 @@ module.exports = function getBabelConfig(api) {
     // With our usage the transpiled loose mode is equivalent to spec mode.
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     ['@babel/plugin-proposal-private-methods', { loose: true }],
+    ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
     ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
     [
       '@babel/plugin-transform-runtime',
@@ -77,6 +73,12 @@ module.exports = function getBabelConfig(api) {
         useESModules,
         // any package needs to declare 7.4.4 as a runtime dependency. default is ^7.0.0
         version: '^7.4.4',
+      },
+    ],
+    [
+      'babel-plugin-transform-react-remove-prop-types',
+      {
+        mode: 'unsafe-wrap',
       },
     ],
   ];
@@ -95,9 +97,18 @@ module.exports = function getBabelConfig(api) {
   }
 
   return {
+    assumptions: {
+      noDocumentAll: true,
+    },
     presets,
     plugins,
     ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
+    overrides: [
+      {
+        exclude: /\.test\.(js|ts|tsx)$/,
+        plugins: ['@babel/plugin-transform-react-constant-elements'],
+      },
+    ],
     env: {
       coverage: {
         plugins: [
@@ -117,8 +128,11 @@ module.exports = function getBabelConfig(api) {
             'babel-plugin-module-resolver',
             {
               alias: {
+                ...defaultAlias,
                 modules: './modules',
+                'typescript-to-proptypes': './packages/typescript-to-proptypes/src',
               },
+              root: ['./'],
             },
           ],
         ],

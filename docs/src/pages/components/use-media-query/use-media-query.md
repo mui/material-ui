@@ -25,13 +25,13 @@ The media query string can be any valid CSS media query, e.g. [`'(prefers-color-
 
 ⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
-## Using Material-UI's breakpoint helpers
+## Using MUI's breakpoint helpers
 
-You can use Material-UI's [breakpoint helpers](/customization/breakpoints/) as follows:
+You can use MUI's [breakpoint helpers](/customization/breakpoints/) as follows:
 
 ```jsx
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
@@ -46,7 +46,7 @@ function MyComponent() {
 Alternatively, you can use a callback function, accepting the theme as a first argument:
 
 ```jsx
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function MyComponent() {
   const matches = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -104,7 +104,7 @@ const matches = useMediaQuery('(min-width:600px)', { noSsr: true });
 or it can turn it on globally with the theme:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiUseMediaQuery: {
       defaultProps: {
@@ -125,7 +125,7 @@ For instance, you could use:
 
 - [`<Box display>`](/system/display/#hiding-elements)
 - [`themes.breakpoints.up(x)`](/customization/breakpoints/#css-media-queries)
-- or [`<Hidden implementation="css">`](/components/hidden/#css)
+- or [`sx prop`](/system/basics/#heading-the-sx-prop)
 
 If none of the above alternatives are an option, you can proceed reading this section of the documentation.
 
@@ -144,7 +144,7 @@ For instance on the server-side:
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
@@ -191,19 +191,19 @@ You can reproduce the same behavior with a `useWidth` hook:
 
 #### Arguments
 
-1. `query` (_String_ | _Function_): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
-2. `options` (_Object_ [optional]):
+1. `query` (_string_ | _func_): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
+2. `options` (_object_ [optional]):
 
-- `options.defaultMatches` (_Boolean_ [optional]):
+- `options.defaultMatches` (_bool_ [optional]):
   As `window.matchMedia()` is unavailable on the server,
   we return a default matches during the first mount. The default value is `false`.
-- `options.matchMedia` (_Function_ [optional]): You can provide your own implementation of _matchMedia_. This can be used for handling an iframe content window.
-- `options.noSsr` (_Boolean_ [optional]): Defaults to `false`.
+- `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. This can be used for handling an iframe content window.
+- `options.noSsr` (_bool_ [optional]): Defaults to `false`.
   To perform the server-side hydration, the hook needs to render twice.
   A first time with `false`, the value of the server, and a second time with the resolved value.
   This double pass rendering cycle comes with a drawback. It's slower.
   You can set this option to `true` if you are doing **client-side only** rendering.
-- `options.ssrMatchMedia` (_Function_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
+- `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/theme-components/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
@@ -215,7 +215,7 @@ Note: You can change the default options using the [`default props`](/customizat
 
 ```jsx
 import * as React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function SimpleMediaQuery() {
   const matches = useMediaQuery('(min-width:600px)');
