@@ -62,9 +62,5 @@ Have a look at the older [versions](https://material-ui.com/versions/) for backw
 
 ## TypeScript
 
-<<<<<<< HEAD
 MUI requires a minimum version of TypeScript 3.5.
-=======
-Material-UI requires a minimum version of TypeScript 3.5.
-It aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with versions of TypeScript that are less than two years old.
->>>>>>> next iteration
+It aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old.
