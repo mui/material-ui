@@ -59,9 +59,7 @@ export default class MyDocument extends Document {
           {/* SEO */}
           <link
             rel="canonical"
-            href={`https://mui.com${
-              userLanguage === 'en' ? '' : `/${userLanguage}`
-            }${canonical}`}
+            href={`https://mui.com${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonical}`}
           />
           <link rel="alternate" href={`https://mui.com${canonical}`} hrefLang="x-default" />
           {LANGUAGES_SSR.map((userLanguage2) => (
