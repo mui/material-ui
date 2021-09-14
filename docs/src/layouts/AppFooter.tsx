@@ -13,6 +13,7 @@ import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import Link from 'docs/src/modules/components/Link';
+import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
 export default function AppFooter() {
   return (
@@ -139,7 +140,17 @@ export default function AppFooter() {
           <Stack spacing={2} direction="row">
             <IconButton
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
+              href="https://stackoverflow.com/questions/tagged/material-ui"
+              aria-label="Stack Overflow"
+              title="Stack Overflow"
+              size="small"
+            >
+              <SvgStackOverflow />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://github.com/mui-org"
               aria-label="github"
               title="GitHub"
@@ -149,7 +160,7 @@ export default function AppFooter() {
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               href="https://twitter.com/MaterialUI"
               aria-label="twitter"
               title="Twitter"
@@ -159,7 +170,7 @@ export default function AppFooter() {
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               href="https://www.linkedin.com/company/material-ui/"
               aria-label="linkedin"
               title="LinkedIn"
