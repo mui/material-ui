@@ -106,6 +106,7 @@ export default function AppFooter() {
                   fontSize: (theme) => theme.typography.pxToRem(10),
                   fontWeight: 700,
                   textTransform: 'uppercase',
+                  textDecoration: 'none',
                   color: '#fff',
                   backgroundColor: (theme) =>
                     theme.palette.mode === 'dark'
