@@ -14,6 +14,9 @@ export function Group({ desktopColumns = 1, ...props }: { desktopColumns?: numbe
         display: 'grid',
         gap: 1,
         gridTemplateColumns: `repeat(${desktopColumns}, 1fr)`,
+        '@media (prefers-reduced-motion: no-preference)': {
+          scrollBehavior: 'smooth',
+        },
         '& > *': {
           minWidth: {
             xs: desktopColumns === 1 ? 300 : 225,

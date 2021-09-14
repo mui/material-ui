@@ -9,13 +9,13 @@ export default function styled(tag, options) {
       if (styles.length === 0) {
         console.error(
           [
-            `Material-UI: Seems like you called \`styled(${component})()\` without a \`style\` argument.`,
+            `MUI: Seems like you called \`styled(${component})()\` without a \`style\` argument.`,
             'You must provide a `styles` argument: `styled("div")(styleYouForgotToPass)`.',
           ].join('\n'),
         );
       } else if (styles.some((style) => style === undefined)) {
         console.error(
-          `Material-UI: the styled(${component})(...args) API requires all its args to be defined.`,
+          `MUI: the styled(${component})(...args) API requires all its args to be defined.`,
         );
       }
       return stylesFactory(...styles);

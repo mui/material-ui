@@ -98,6 +98,6 @@ describe('<IconButton />', () => {
         'prop',
         'MockedName',
       );
-    }).toErrorDev(['Material-UI: You are providing an onClick event listener']);
+    }).toErrorDev(['MUI: You are providing an onClick event listener']);
   });
 });

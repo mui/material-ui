@@ -10,7 +10,7 @@ export default React.forwardRef(function DeprecatedToggleButtonGroup(props, ref)
   if (!warnedOnce) {
     console.warn(
       [
-        'Material-UI: The ToggleButtonGroup component was moved from the lab to the core.',
+        'MUI: The ToggleButtonGroup component was moved from the lab to the core.',
         '',
         "You should use `import { ToggleButtonGroup } from '@mui/material'`",
         "or `import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'`",

@@ -28,7 +28,7 @@ const links = (
         activeClassName="Mui-active"
         href="/branding/mui-x/"
       >
-        {t1('Material-UI X')}
+        {t1('MUI X')}
       </Link>
     </li>
     <li>

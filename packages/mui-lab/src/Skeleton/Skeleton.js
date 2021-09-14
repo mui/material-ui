@@ -10,7 +10,7 @@ export default React.forwardRef(function DeprecatedSkeleton(props, ref) {
   if (!warnedOnce) {
     console.warn(
       [
-        'Material-UI: The Skeleton component was moved from the lab to the core.',
+        'MUI: The Skeleton component was moved from the lab to the core.',
         '',
         "You should use `import { Skeleton } from '@mui/material'`",
         "or `import Skeleton from '@mui/material/Skeleton'`",

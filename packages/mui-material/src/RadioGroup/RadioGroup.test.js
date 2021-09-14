@@ -361,7 +361,7 @@ describe('<RadioGroup />', () => {
       expect(() => {
         setProps({ value: undefined });
       }).toErrorDev(
-        'Material-UI: A component is changing the controlled value state of RadioGroup to be uncontrolled.',
+        'MUI: A component is changing the controlled value state of RadioGroup to be uncontrolled.',
       );
     });
 
@@ -375,7 +375,7 @@ describe('<RadioGroup />', () => {
       expect(() => {
         setProps({ value: 'foo' });
       }).toErrorDev(
-        'Material-UI: A component is changing the uncontrolled value state of RadioGroup to be controlled.',
+        'MUI: A component is changing the uncontrolled value state of RadioGroup to be controlled.',
       );
     });
   });

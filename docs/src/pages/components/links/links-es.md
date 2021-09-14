@@ -12,11 +12,11 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 ## Enlaces simples
 
-The Link component is built on top of the [Typography](/api/typography/) component. You can leverage its properties.
+Los enlaces estan contruidos sobre el componente [Tipografia](/api/typography/). Puedes aprovechar sus propiedades.
 
 {{"demo": "pages/components/links/Links.js"}}
 
-However, the Link component has different default properties than the Typography component:
+Sin embargo, los Enlaces tienen propiedades por defecto distintas a las de las Tipografias:
 
 - `color="primary"` as the link needs to stand out.
 - `variant="inherit"` as the link will, most of the time, be used as a child of a Typography component.

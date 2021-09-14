@@ -17,7 +17,7 @@ yarn add @mui/lab
 ```
 
 The lab has a peer dependency on the Material Design components.
-If you are not already using Material-UI in your project, you can install it with:
+If you are not already using MUI in your project, you can install it with:
 
 <!-- #default-branch-switch -->
 

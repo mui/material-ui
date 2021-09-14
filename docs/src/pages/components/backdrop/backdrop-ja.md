@@ -4,7 +4,7 @@ components: Backdrop, BackdropUnstyled
 githubLabel: 'component: Backdrop'
 ---
 
-# Backdrop
+# 背景
 
 <p class="description">背景コンポーネントは、特定の要素やその一部に重点を置くために使用されます。</p>
 

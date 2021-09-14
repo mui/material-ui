@@ -32,7 +32,7 @@ describe('@mui/envinfo', () => {
     );
   }
 
-  it('includes info about the environment relevant to Material-UI', function test() {
+  it('includes info about the environment relevant to MUI', function test() {
     // Need more time to download packages
     this.timeout(10000);
 

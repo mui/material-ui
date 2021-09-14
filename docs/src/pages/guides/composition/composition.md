@@ -1,10 +1,10 @@
 # Composition
 
-<p class="description">Material-UI tries to make composition as easy as possible.</p>
+<p class="description">MUI tries to make composition as easy as possible.</p>
 
 ## Wrapping components
 
-To provide maximum flexibility and performance, Material-UI needs a way to know the nature of the child elements a component receives.
+To provide maximum flexibility and performance, MUI needs a way to know the nature of the child elements a component receives.
 To solve this problem, we tag some of the components with a `muiName` static property when needed.
 
 You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution.
@@ -24,11 +24,11 @@ WrappedIcon.muiName = Icon.muiName;
 
 ## Component prop
 
-Material-UI allows you to change the root element that will be rendered via a prop called `component`.
+MUI allows you to change the root element that will be rendered via a prop called `component`.
 
 ### How does it work?
 
-The custom component will be rendered by Material-UI like this:
+The custom component will be rendered by MUI like this:
 
 ```js
 return React.createElement(props.component, props);
@@ -125,11 +125,11 @@ The component providing the `component` prop (e.g. ListItem) might not forward a
 
 ### With TypeScript
 
-Many Material-UI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation.
+Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation.
 For example, a Button's root node can be replaced with a React Router's Link, and any additional props that are passed to Button, such as `to`, will be spread to the Link component.
 For a code example concerning Button and react-router-dom checkout [these demos](/guides/routing/#component-prop).
 
-To be able to use props of such a Material-UI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the Material-UI component.
+To be able to use props of such a MUI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the MUI component.
 
 The examples below use `TypographyProps` but the same will work for any component which has props defined with `OverrideProps`.
 
@@ -183,14 +183,14 @@ Some of the components need access to the DOM node. This was previously possible
 by using `ReactDOM.findDOMNode`. This function is deprecated in favor of `ref` and
 ref forwarding. However, only the following component types can be given a `ref`:
 
-- Any Material-UI component
+- Any MUI component
 - class components i.e. `React.Component` or `React.PureComponent`
 - DOM (or host) components e.g. `div` or `button`
 - [React.forwardRef components](https://reactjs.org/docs/react-api.html#reactforwardref)
 - [React.lazy components](https://reactjs.org/docs/react-api.html#reactlazy)
 - [React.memo components](https://reactjs.org/docs/react-api.html#reactmemo)
 
-If you don't use one of the above types when using your components in conjunction with Material-UI, you might see a warning from
+If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from
 React in your console similar to:
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
@@ -218,7 +218,7 @@ Only the two most common use cases are covered. For more information see [this s
  <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
-To find out if the Material-UI component you're using has this requirement, check
+To find out if the MUI component you're using has this requirement, check
 out the props API documentation for that component. If you need to forward refs
 the description will link to this section.
 

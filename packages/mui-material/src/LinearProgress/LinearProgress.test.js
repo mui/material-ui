@@ -155,17 +155,17 @@ describe('<LinearProgress />', () => {
       expect(() => {
         ({ rerender } = render(<LinearProgress variant="determinate" value={undefined} />));
       }).toErrorDev([
-        'Material-UI: You need to provide a value prop',
-        !strictModeDoubleLoggingSupressed && 'Material-UI: You need to provide a value prop',
+        'MUI: You need to provide a value prop',
+        !strictModeDoubleLoggingSupressed && 'MUI: You need to provide a value prop',
       ]);
 
       expect(() => {
         rerender(<LinearProgress variant="buffer" value={undefined} />);
       }).toErrorDev([
-        'Material-UI: You need to provide a value prop',
-        'Material-UI: You need to provide a valueBuffer prop',
-        !strictModeDoubleLoggingSupressed && 'Material-UI: You need to provide a value prop',
-        !strictModeDoubleLoggingSupressed && 'Material-UI: You need to provide a valueBuffer prop',
+        'MUI: You need to provide a value prop',
+        'MUI: You need to provide a valueBuffer prop',
+        !strictModeDoubleLoggingSupressed && 'MUI: You need to provide a value prop',
+        !strictModeDoubleLoggingSupressed && 'MUI: You need to provide a valueBuffer prop',
       ]);
     });
   });

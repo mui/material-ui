@@ -1,12 +1,12 @@
 <p align="center">
-  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="150" src="https://material-ui.com/static/logo.svg" alt="Material-UI logo"></a></p>
+  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="150" src="https://material-ui.com/static/logo.svg" alt="MUI logo"></a></p>
 </p>
 
-<h1 align="center">Material-UI</h1>
+<h1 align="center">MUI</h1>
 
 <div align="center">
 
-Quickly build beautiful [React](https://reactjs.org/) apps. Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with [Material Design](https://material.io/design/introduction/).
+Quickly build beautiful [React](https://reactjs.org/) apps. MUI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with [Material Design](https://material.io/design/introduction/).
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui-org/material-ui/blob/master/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@mui/material/latest.svg)](https://www.npmjs.com/package/@mui/material)
@@ -24,7 +24,7 @@ Quickly build beautiful [React](https://reactjs.org/) apps. Material-UI is a sim
 
 ## Installation
 
-Material-UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
+MUI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
 
 **[Stable channel v5](https://material-ui.com/)**
 
@@ -47,7 +47,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
 
-## Who sponsors Material-UI?
+## Who sponsors MUI?
 
 ### Diamond 💎
 
@@ -56,7 +56,7 @@ Please note that `@next` will only point to pre-releases; to get the latest stab
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="doit-intl" href="https://www.doit-intl.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/8424863?s=256" alt="doit-intl" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
 </p>
 
-Diamond Sponsors are those who have pledged \$1,500/month or more to Material-UI.
+Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
 
 ### Gold 🏆
 
@@ -82,7 +82,7 @@ Direct
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="elevator" href="https://www.elevatormag.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://material-ui.com/static/sponsors/elevator.png" alt="elevator" title="The dopest new hip hop, upcoming artsits, music news, culture, and style" height="57" width="191" loading="lazy"></a>
 </p>
 
-Gold Sponsors are those who have pledged \$500/month or more to Material-UI.
+Gold Sponsors are those who have pledged \$500/month or more to MUI.
 
 ### There is more!
 
@@ -125,14 +125,14 @@ Check out our [documentation website](https://material-ui.com/).
 
 ## Premium Themes
 
-You can find complete templates & themes in the [Material-UI store](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
+You can find complete templates & themes in the [MUI store](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
 
 ## Contributing
 
-Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to Material-UI.
+Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to MUI.
 
 Notice that contributions go far beyond pull requests and commits.
-Although we love giving you the opportunity to put your stamp on Material-UI, we also are thrilled to receive a variety of [other contributions](https://material-ui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project).
+Although we love giving you the opportunity to put your stamp on MUI, we also are thrilled to receive a variety of [other contributions](https://material-ui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project).
 
 ## Changelog
 
@@ -149,7 +149,7 @@ This project is licensed under the terms of the
 
 ## Sponsoring services
 
-These great services sponsor Material-UI's core infrastructure:
+These great services sponsor MUI's core infrastructure:
 
 [<img loading="lazy" alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height="25">](https://github.com/)
 

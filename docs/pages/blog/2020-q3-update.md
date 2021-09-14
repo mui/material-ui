@@ -25,7 +25,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
   </video>
 
 - ⚛️ We have prepared the support for the upcoming release of [React v17](https://reactjs.org/blog/2020/08/10/react-v17-rc.html). Most of the work was about better handling events, and updating our test infrastructure to run the whole test suite with the _latest_ and _next_ version of React.<br />We have also improved `StrictMode` support. The last standing issues are being addressed with the work on the style engine. More on that later in the post.
-- 💅 We have introduced a new dynamic variant API. This API allows developers to add new variants to Material-UI components right from the theme, without having to wrap the components. For instance with the Button:
+- 💅 We have introduced a new dynamic variant API. This API allows developers to add new variants to MUI components right from the theme, without having to wrap the components. For instance with the Button:
 
   ```tsx
   // Define the style that should be applied for specific props.
@@ -72,19 +72,19 @@ Here are the most significant improvements since June 2020. This was a dense qua
 
   After 6 months of development since the initial commit (March 15th, 2020), you can start using the component! (It targets v4.)
 
-- ⚡️ The data grid effort has led to the introduction of a new repository: [_mui-org/material-ui-x_](https://github.com/mui-org/material-ui-x). This is the repository that will host all the future commercial components, all the components that we can't sustain with the open-source model. Material-UI X is our next iteration in scaling Material-UI, both as a company and as a comprehensive React library of components. While we have an existing sustainability model that can support, in long term, up to 10 people full-time, we are keen to push it by an order of magnitude.
+- ⚡️ The data grid effort has led to the introduction of a new repository: [_mui-org/material-ui-x_](https://github.com/mui-org/material-ui-x). This is the repository that will host all the future commercial components, all the components that we can't sustain with the open-source model. MUI X is our next iteration in scaling MUI, both as a company and as a comprehensive React library of components. While we have an existing sustainability model that can support, in long term, up to 10 people full-time, we are keen to push it by an order of magnitude.
 - 🛠 We have migrated parts of the codebase to TypeScript.<br />
   We had to work on the code infrastructure of _mui-org/material-ui_ to prepare to host the date picker components that are written in TypeScript inside the lab (coming from _mui-org/material-ui-pickers_ that we will archive once we can).
 
   <img src="/static/blog/2020-q3-update/typescript-mui.png" alt="" style="width: 299px; margin-bottom: 8px;" />
 
-  <p class="blog-description">Material-UI's repository</p>
+  <p class="blog-description">MUI's repository</p>
 
   On the other hand, we started using TypeScript from day one for _mui-org/material-ui-x_.
 
   <img src="/static/blog/2020-q3-update/typescript-mui-x.png" alt="" style="width: 299px; margin-bottom: 8px;" />
 
-  <p class="blog-description">Material-UI X's repository</p>
+  <p class="blog-description">MUI X's repository</p>
 
 - 🐙 We have migrated large parts of the test suite to react-testing-library.<br>
   15 months ago, we introduced the very [first test](https://github.com/mui-org/material-ui/pull/15732) using the library (to replace enzyme). Last month, react-testing-library had [more downloads](https://npm-stat.com/charts.html?package=enzyme&package=%40testing-library%2Freact&from=2019-10-10&to=2020-10-10) than enzyme!
@@ -121,7 +121,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
 
 ## Company
 
-We are thrilled to welcome two new full-time developers to Material-UI:
+We are thrilled to welcome two new full-time developers to MUI:
 
 - [Marija Najdova](https://github.com/mnajdova). Marija joins us from the Fluent-UI React team at Microsoft. She's allowing the community team to move faster. You can learn more about her in the [introduction blog post](/blog/marija-najdova-joining/).
 
@@ -142,7 +142,7 @@ We are thrilled to welcome two new full-time developers to Material-UI:
 
 - ⭐️ From 59.0k to 61.6k stars, leave us yours [🌟](https://github.com/mui-org/material-ui).
 - 👨‍👩‍👧‍👦 From 1,825 to 1,934 contributors on GitHub. We add on average 1 new contributor every day.
-- 🏢 We have welcomed two new full-time developers to Material-UI.
+- 🏢 We have welcomed two new full-time developers to MUI.
 
 ## Our roadmap intent for Q4 2020
 

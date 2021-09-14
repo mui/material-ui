@@ -90,12 +90,12 @@ describe('<Tabs />', () => {
       expect(() => {
         render(<Tabs value={0} centered variant="scrollable" />);
       }).toErrorDev([
-        'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
+        'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
         !strictModeDoubleLoggingSupressed &&
-          'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
-        'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
+          'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
+        'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
         !strictModeDoubleLoggingSupressed &&
-          'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
+          'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
       ]);
     });
   });
@@ -355,7 +355,7 @@ describe('<Tabs />', () => {
             );
           }).toErrorDev([
             [
-              'Material-UI: The `value` provided to the Tabs component is invalid.',
+              'MUI: The `value` provided to the Tabs component is invalid.',
               'The Tab with this `value` ("hidden-tab") is not part of the document layout.',
               "Make sure the tab item is present in the document or that it's not `display: none`.",
             ].join('\n'),

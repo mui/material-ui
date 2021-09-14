@@ -94,9 +94,9 @@ describe('<Paper />', () => {
       expect(() => {
         render(<Paper elevation={25} />);
       }).toErrorDev([
-        'Material-UI: The elevation provided <Paper elevation={25}> is not available in the theme.',
+        'MUI: The elevation provided <Paper elevation={25}> is not available in the theme.',
         !strictModeDoubleLoggingSupressed &&
-          'Material-UI: The elevation provided <Paper elevation={25}> is not available in the theme.',
+          'MUI: The elevation provided <Paper elevation={25}> is not available in the theme.',
       ]);
     });
 
@@ -109,7 +109,7 @@ describe('<Paper />', () => {
           'MockedName',
         );
       }).toErrorDev([
-        'Material-UI: Combining `elevation={5}` with `variant="outlined"` has no effect. Either use `elevation={0}` or use a different `variant`.',
+        'MUI: Combining `elevation={5}` with `variant="outlined"` has no effect. Either use `elevation={0}` or use a different `variant`.',
       ]);
     });
   });

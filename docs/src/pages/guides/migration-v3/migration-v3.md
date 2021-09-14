@@ -10,7 +10,7 @@ Looking for the v3 docs? [Find them here](https://material-ui.com/versions/).
 
 ## Introduction
 
-This is a reference for upgrading your site from Material-UI v3 to v4.
+This is a reference for upgrading your site from MUI v3 to v4.
 While there's a lot covered here, you probably won't need to do everything for your site.
 We'll do our best to keep things easy to follow, and as sequential as possible so you can quickly get rocking on v4!
 
@@ -23,9 +23,9 @@ The _why_ is covered in the [release blog post on Medium](https://medium.com/mat
 
 The very first thing you will need to do is to update your dependencies.
 
-### Update Material-UI version
+### Update MUI version
 
-You need to update your `package.json` to use the latest version of Material-UI.
+You need to update your `package.json` to use the latest version of MUI.
 
 ```json
 "dependencies": {
@@ -48,9 +48,9 @@ yarn add @mui/material
 The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`.
 This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
 
-### Update Material-UI Styles version
+### Update MUI Styles version
 
-If you were previously using `@mui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles.
+If you were previously using `@mui/styles` with v3 you need to update your `package.json` to use the latest version of MUI Styles.
 
 ```json
 "dependencies": {
@@ -80,7 +80,7 @@ yarn add @mui/styles
 
 ### Styles
 
-- ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9.
+- ⚠️ MUI depends on JSS v10. JSS v10 is not backward compatible with v9.
   Make sure JSS v9 is not installed in your environment.
   (Removing `react-jss` from your `package.json` can help).
   The StylesProvider component replaces the JssProvider one.
@@ -457,7 +457,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 ### UMD
 
-- This change eases the use of Material-UI with a CDN:
+- This change eases the use of MUI with a CDN:
 
   ```diff
   const {

@@ -6,7 +6,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
 materialDesign: https://material.io/components/data-tables
 ---
 
-# Table (tаблица)
+# Table (таблица)
 
 <p class="description">Таблицы отображают наборы данных. Они могут быть полностью модифицированы.</p>
 
@@ -70,7 +70,7 @@ The [`DataGrid` component](/components/data-grid/) is designed for use-cases tha
 
 ### Пользовательские действия разбивки на страницы
 
-Свойство `Action` компонента `TablePagination` позволяет реализовать собственную обработку пользовательский событий.
+The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 

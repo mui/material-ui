@@ -1,12 +1,12 @@
 ---
-description: 2019 Material-UI Developer Survey results
+description: 2019 MUI Developer Survey results
 ---
 
-# 2019 Material-UI Developer Survey results
+# 2019 MUI Developer Survey results
 
 Olivier Tassinari, Matt Brookes. March 16, 2019.
 
-While we are currently working on the upcoming release of Material-UI v4, we need to prioritize our
+While we are currently working on the upcoming release of MUI v4, we need to prioritize our
 roadmap for the coming year. To refine our focus, we launched a developer survey last month,
 to which we received 734 contributions. Thank you for your participation!
 The survey is now closed and this is a summary of the results.
@@ -18,21 +18,21 @@ The survey was broken into three sections, "Introduction", "About you" and "Your
 Here we asked for the good, the bad and the ugly. Thankfully, it's mostly good, but we can focus
 on the things that will make it even better.
 
-### 1. How would you feel if you could no longer use Material-UI?
+### 1. How would you feel if you could no longer use MUI?
 
 <img src="/static/blog/2019-survey/1.png" style="display: block; margin: 0 auto;" alt="Pie chart: 74.7% Very disappointed, 18.9% disappointed, 6.4% not disappointed." />
 
 An overwhelming majority of respondents (over 93%), would be disappointed or very disappointed if
-they could no longer use Material-UI. The benchmark for "very disappointed" is 40%,
-so we're on the right track. Don't worry, Material-UI isn't going away any time soon –
+they could no longer use MUI. The benchmark for "very disappointed" is 40%,
+so we're on the right track. Don't worry, MUI isn't going away any time soon –
 we want to focus on making even more of you "very disappointed", as it were!
 
 Curiously, the 6.4% who said they would _not_ be disappointed if they could no longer use
-Material-UI collectively gave a Net Promoter Score of 68%, which is
+MUI collectively gave a Net Promoter Score of 68%, which is
 [higher than that of all respondents as a whole](#5-how-likely-is-it-that-you-would-recommend-material-ui-to-a-friend-or-colleague),
 so we know they love us really. 😘
 
-### 2. Who do you think would most benefit from Material-UI?
+### 2. Who do you think would most benefit from MUI?
 
 This word cloud was generated with [wordclouds.com](https://wordclouds.com).
 
@@ -41,17 +41,17 @@ This word cloud was generated with [wordclouds.com](https://wordclouds.com).
 Developers, developers, developers! (And "anyone" and "everyone", apparently! ) This is understandable, given the
 [job role demographic](#7-which-of-the-following-best-describes-your-current-job-role)
 of the majority of respondents. We'll continue to work on the developer experience, making it
-easier to get started with, use, and customize Material-UI.
+easier to get started with, use, and customize MUI.
 
-### 3. What is the main benefit you receive from Material-UI?
+### 3. What is the main benefit you receive from MUI?
 
-<img src="/static/blog/2019-survey/3.png" style="display: block; margin: 0 auto;" alt="Word cloud of the main benefit of Material-UI" />
+<img src="/static/blog/2019-survey/3.png" style="display: block; margin: 0 auto;" alt="Word cloud of the main benefit of MUI" />
 
 The responses variously commented on being able to focus on the business logic, time saved,
 good looking components, ease of use, design consistency, good documentation.
 We'll make sure that we continue to do more of the things that benefit you the most.
 
-### 4. How can we improve Material-UI for you?
+### 4. How can we improve MUI for you?
 
 We have grouped the answers into different categories.
 The prefix corresponds to the number of times the concern was mentioned.
@@ -161,7 +161,7 @@ It's sorted descending, with the most important concerns first:
 - 1 **Styles: better docs**
 - 1 **Testing**
 
-### 5. How likely is it that you would recommend Material-UI to a friend or colleague?
+### 5. How likely is it that you would recommend MUI to a friend or colleague?
 
 <figure style="margin-inline-start: 0;">
   <img src="/static/blog/2019-survey/5a.png" style="display: block; margin: 0 auto;" alt="Bar chart of raw data" />
@@ -173,13 +173,13 @@ It's sorted descending, with the most important concerns first:
   <figcaption style="font-style: italic; text-align: center;">Result.</figcaption>
 </figure>
 
-Developers gave Material-UI a [Net Promoter Score](https://en.wikipedia.org/wiki/Net_Promoter)
+Developers gave MUI a [Net Promoter Score](https://en.wikipedia.org/wiki/Net_Promoter)
 (promoters less detractors) of 66%. Given the NPS range of -100 to +100, a "positive" score or NPS
 above 0 is considered "good", +50 is "Excellent", and above 70 is considered "world class."
 
 ## About you
 
-### 6. How did you hear about Material-UI?
+### 6. How did you hear about MUI?
 
 Multiple options were allowed.
 
@@ -206,9 +206,9 @@ No huge surprises here!
 
 <img  src="/static/blog/2019-survey/8.png" style="display: block; margin: 0 auto;" alt="Bar chart: 61 Hobby, 98 Self-employed, 181 x 2-10, 167 x 11-50, 126 x 51-500, 89 x 500 +" />
 
-Material-UI is most popular with small to medium sized organisations,
+MUI is most popular with small to medium sized organisations,
 perhaps because beyond a certain size, organizations have teams building their own design system and framework.
-We want to continue to make it easy to use the component logic of Material-UI while allowing
+We want to continue to make it easy to use the component logic of MUI while allowing
 designers to give it a bespoke look and feel for their organization.
 
 ### 9. How long have you been developing with JavaScript
@@ -221,28 +221,28 @@ A nice bell curve, with the majority of developers having 1 to 5 years experienc
 
 <img src="/static/blog/2019-survey/10.png" style="display: block; margin: 0 auto;" alt="Bar chart: 99	x I'm just getting started!, 77	x 6 months +, 301 x 1 year +, 171 x 3 years +, 32 x 5 years - bleeding edge baby!" />
 
-### 11. How long have you been developing with Material-UI?
+### 11. How long have you been developing with MUI?
 
 <img src="/static/blog/2019-survey/11.png" style="display: block; margin: 0 auto;" alt="Bar chart: 160	x I'm just getting started!, 147	x 6 months +, 293	x 1 year +, 71 x 3 years +, 11 x Four years + – I'm a pioneer!" />
 
 We missed a trick by not including "2 years +" here, so "1 year +" looks stacked.
-The number of users of Material-UI continues to grow at a steady pace, and once on board, many
+The number of users of MUI continues to grow at a steady pace, and once on board, many
 developers stick with it.
 
-### 12. What were you primarily using before Material-UI?
+### 12. What were you primarily using before MUI?
 
 <img src="/static/blog/2019-survey/12.png" style="display: block; margin: 0 auto;" alt="Bar chart: 55% Bootstrap, 18% Custom, 12% Other, 7% Semantic-IU, 6% Materialize, 3% React Toolbox" />
 
 Given its relative popularity, and the move from CSS / HTML / jQuery towards front-end frameworks,
 it should come as no big surprise to see that the majority of respondents were previously using Bootstrap.
-Custom solutions have also been replaced by Material-UI as your go-to UI library, along with a
+Custom solutions have also been replaced by MUI as your go-to UI library, along with a
 long-tail of other frameworks.
 
-### 13. How many Material-UI based projects have you built?
+### 13. How many MUI based projects have you built?
 
 <img src="/static/blog/2019-survey/13.png" style="display: block; margin: 0 auto;" alt="Pie chart: 10.7% I'm just getting started, 23.5% 1, 52.5% 2-5, 11.1% 6-10, 2.2% 10+" />
 
-Over three quarters of you have built two or more projects with Material-UI, with 13.3% having six
+Over three quarters of you have built two or more projects with MUI, with 13.3% having six
 or more projects under your belt. The 2.2% with ten or more, we salute you!
 
 ## Your product

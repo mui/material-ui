@@ -291,7 +291,7 @@ Slide.propTypes /* remove-proptypes */ = {
         ) {
           return new Error(
             [
-              'Material-UI: The `container` prop provided to the component is invalid.',
+              'MUI: The `container` prop provided to the component is invalid.',
               'The anchor element should be part of the document layout.',
               "Make sure the element is present in the document or that it's not display none.",
             ].join('\n'),
@@ -305,7 +305,7 @@ Slide.propTypes /* remove-proptypes */ = {
       ) {
         return new Error(
           [
-            'Material-UI: The `container` prop provided to the component is invalid.',
+            'MUI: The `container` prop provided to the component is invalid.',
             'It should be an HTML element instance.',
           ].join('\n'),
         );

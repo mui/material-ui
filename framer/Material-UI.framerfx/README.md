@@ -1,8 +1,8 @@
-# Material-UI
+# MUI
 
-This is the official resource for Material-UI React components in Framer.
+This is the official resource for MUI React components in Framer.
 
-[Material-UI](https://material-ui.com/) is a library of React components for faster and simpler web development.
+[MUI](https://material-ui.com/) is a library of React components for faster and simpler web development.
 You can build your own design system, or start with Material Design.
 
 ## Supported components
@@ -40,7 +40,7 @@ The following components are currently supported:
 ### Icons
 
 Icons can be specified using either snake_case (as documented on material.io),
-or PascalCase, as used in [the Material-UI documentation](https://material-ui.com/components/material-icons/).
+or PascalCase, as used in [the MUI documentation](https://material-ui.com/components/material-icons/).
 Simply type the icon name in the appropriate property control.
 
 The icon theme can be chosen from the related select field.
@@ -57,7 +57,7 @@ If multiple options are supplied, they take the following priority:
 
 ## Resources
 
-- [Material-UI documentation](https://material-ui.com/)
+- [MUI documentation](https://material-ui.com/)
 - [GitHub repository](https://github.com/mui-org/material-ui/tree/next/framer)
 
 ## Releases
@@ -71,8 +71,8 @@ If multiple options are supplied, they take the following priority:
 - Add size (medium or small) to the Checkbox and Radio and TextField components.
 - Add variant (elevation or outlined) to the Paper component.
 - Add color (primary or secondary) to the TextField component.
-- Fix an issue that caused the Material-UI Framer package to appear to have no components,
-  and existing projects using Material-UI to break.
+- Fix an issue that caused the MUI Framer package to appear to have no components,
+  and existing projects using MUI to break.
 
 ### 1.0.0 2019-11-11
 

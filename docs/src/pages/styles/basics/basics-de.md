@@ -6,7 +6,7 @@ Material-UI hat das Ziel, solide Grundlagen für dynamische UIs zu schaffen. Mat
 
 ## Wieso die Styling-Lösung von Material-UI benutzten?
 
-In früheren Versionen hat Material-UI LESS verwendet, eine benutzerdefinierte Inline-Lösung zum Schreiben der Stile der Komponenten. Diese Ansätze erwiesen sich jedoch als begrenzt Einsetzbar. [Eine *CSS-in-JS* Lösung](https://github.com/oliviertassinari/a-journey-toward-better-style) überwindet viele dieser Einschränkungen, und **schaltet viele großartige Funktionen frei** (Theme-Verschachtelung, dynamische Stile, Selbsthilfe, etc.).
+Sie können eine Funktion an `makeStyles` ("Interpolation") übergeben, um den generierten Wert basierend auf den Eigenschaften der Komponente anzupassen. Die Funktion kann auf Stilregelebene oder auf CSS-Eigenschaftsebene bereitgestellt werden:
 
 Die Styling-Lösung von Material-UI ist von vielen anderen Styling-Bibliotheken wie [styled-components](https://www.styled-components.com/) und [emotion](https://emotion.sh/) inspiriert.
 

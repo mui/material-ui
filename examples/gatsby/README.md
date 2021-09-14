@@ -27,7 +27,7 @@ or:
 ## The idea behind the example
 
 The project uses [Gatsby](https://github.com/gatsbyjs/gatsby), which is a static site generator for React.
-It includes `@mui/material` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5.
+It includes `@mui/material` and its peer dependencies, including `emotion`, the default style engine in MUI v5.
 If you prefer, you can [use styled-components instead](https://material-ui.com/guides/interoperability/#styled-components).
 
 ## What's next?

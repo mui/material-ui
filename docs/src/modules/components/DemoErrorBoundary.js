@@ -54,7 +54,7 @@ export default class DemoErrorBoundary extends React.Component {
 ## Your Environment
 | Tech         | Version |
 |--------------|---------|
-| Material-UI  | v${process.env.LIB_VERSION}  |
+| MUI  | v${process.env.LIB_VERSION}  |
 | netlify deploy | ${process.env.NETLIFY_DEPLOY_URL} |
 | Browser      | ${
           typeof window !== 'undefined' && window.navigator

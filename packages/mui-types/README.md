@@ -1,3 +1,3 @@
 # @mui/types
 
-Utility types used by Material-UI.
+Utility types used by MUI.

@@ -139,7 +139,7 @@ function useToolbar(controlRefs, options = {}) {
       // eslint-disable-next-line no-lonely-if
       if (process.env.NODE_ENV !== 'production') {
         console.error(
-          'Material-UI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
+          'MUI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
             'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
         );
       }
@@ -151,7 +151,7 @@ function useToolbar(controlRefs, options = {}) {
     handleToolbarFocus = (event) => {
       if (findControlIndex(event.target) === -1) {
         console.error(
-          'Material-UI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
+          'MUI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
             'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
         );
       }

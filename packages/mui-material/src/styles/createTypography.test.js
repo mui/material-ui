@@ -78,13 +78,13 @@ describe('createTypography', () => {
     it('logs an error if `fontSize` is not of type number', () => {
       expect(() => {
         createTypography({}, { fontSize: '1' });
-      }).toErrorDev('Material-UI: `fontSize` is required to be a number.');
+      }).toErrorDev('MUI: `fontSize` is required to be a number.');
     });
 
     it('logs an error if `htmlFontSize` is not of type number', () => {
       expect(() => {
         createTypography({}, { htmlFontSize: '1' });
-      }).toErrorDev('Material-UI: `htmlFontSize` is required to be a number.');
+      }).toErrorDev('MUI: `htmlFontSize` is required to be a number.');
     });
   });
 });

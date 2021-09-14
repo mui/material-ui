@@ -360,7 +360,7 @@ function App() {
   return (
     <div className="App">
       <Portal container={container}>
-        <span>Portaled</span>
+        <span>传送的子组件</span>
       </Portal>
       <div ref={handleRef} />
     </div>
