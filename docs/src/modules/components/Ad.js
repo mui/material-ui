@@ -40,7 +40,7 @@ const inHouseAds = [
     name: 'scaffoldhub',
     link: 'https://scaffoldhub.io/?partner=1',
     img: '/static/ads-in-house/scaffoldhub.png',
-    description: '<b>ScaffoldHub</b>. Automate building your full-stack Material-UI web-app.',
+    description: '<b>ScaffoldHub</b>. Automate building your full-stack MUI web-app.',
   },
   {
     name: 'templates',
@@ -61,21 +61,19 @@ const inHouseAds = [
     link: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
     img: '/static/ads-in-house/tidelift.png',
     description:
-      '<b>Material-UI for enterprise</b>. Save time and reduce risk. Managed open source — backed by maintainers.',
+      '<b>MUI for enterprise</b>. Save time and reduce risk. Managed open source — backed by maintainers.',
   },
   {
     name: 'sketch',
     link: 'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
     img: '/static/ads-in-house/sketch.png',
-    description:
-      '<b>For Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
+    description: '<b>For Sketch</b>. A large UI kit with over 600 handcrafted MUI symbols 💎.',
   },
   {
     name: 'figma',
     link: 'https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
     img: '/static/ads-in-house/figma.png',
-    description:
-      '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',
+    description: '<b>For Figma</b>. A large UI kit with over 600 handcrafted MUI components 🎨.',
   },
 ];
 

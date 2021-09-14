@@ -2,8 +2,8 @@
   "name": "@mui/private-theming",
   "version": "5.0.0-rc.1",
   "private": false,
-  "author": "Material-UI Team",
-  "description": "Material-UI Theming - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
+  "author": "MUI Team",
+  "description": "MUI Theming - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
   "main": "./src/index.js",
   "keywords": [
     "react",

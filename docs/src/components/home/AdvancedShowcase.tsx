@@ -1,265 +1,16 @@
 import * as React from 'react';
-import { DataGrid, GridCellParams, GridColDef } from '@material-ui/data-grid';
-import { debounce } from '@mui/material/utils';
-import { alpha } from '@mui/material/styles';
-import GlobalStyles from '@mui/material/GlobalStyles';
+import { DataGrid, GridCellParams, GridRenderEditCellParams, GridColDef } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Chip from '@mui/material/Chip';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-import Slider from '@mui/material/Slider';
-import Select from '@mui/material/Select';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
-import ReportProblemIcon from '@mui/icons-material/ReportProblem';
-import InfoIcon from '@mui/icons-material/Info';
-import AutorenewIcon from '@mui/icons-material/Autorenew';
-import DoneIcon from '@mui/icons-material/Done';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-
-const ProgressBar = React.memo(function ProgressBar(props: ProgressBarProps) {
-  const { value } = props;
-  const valueInPercent = value * 100;
-
-  return (
-    <Box
-      sx={{
-        lineHeight: 1,
-        position: 'relative',
-        p: 0.5,
-        borderRadius: '3px',
-        width: '100%',
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
-      }}
-    >
-      <Box
-        sx={{ fontWeight: 'bold', color: 'text.primary', position: 'relative', zIndex: 1 }}
-      >{`${valueInPercent.toLocaleString()} %`}</Box>
-      <Box
-        sx={{
-          borderRadius: '3px',
-          position: 'absolute',
-          height: '100%',
-          left: 0,
-          top: 0,
-          ...(valueInPercent < 30 && {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.700' : 'error.200'),
-          }),
-          ...(valueInPercent >= 30 &&
-            valueInPercent <= 70 && {
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'warning.900' : 'warning.400'),
-            }),
-          ...(valueInPercent > 70 && {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'success.800' : 'success.300'),
-          }),
-          width: `${valueInPercent}%`,
-        }}
-      />
-    </Box>
-  );
-});
-
-interface StatusProps {
-  status: string;
-}
-
-const Status = React.memo((props: StatusProps) => {
-  const { status } = props;
-  let label = status;
-  if (status === 'PartiallyFilled') {
-    label = 'Partial';
-  }
-  return (
-    <Chip
-      size="small"
-      label={label}
-      variant="outlined"
-      sx={{
-        lineHeight: 1,
-        fontSize: '10px',
-        fontWeight: 'bold',
-        ...(status === 'Open' && {
-          borderColor: 'primary.500',
-          bgcolor: (theme) => alpha(theme.palette.primary[500], 0.1),
-          color: (theme) => (theme.palette.mode === 'dark' ? 'primary.300' : 'primary.600'),
-        }),
-        ...(status === 'Filled' && {
-          borderColor: 'success.500',
-          bgcolor: (theme) => alpha(theme.palette.success[500], 0.1),
-          color: (theme) => (theme.palette.mode === 'dark' ? 'success.500' : 'success.800'),
-        }),
-        ...(status === 'PartiallyFilled' && {
-          borderColor: 'warning.600',
-          bgcolor: (theme) => alpha(theme.palette.warning[500], 0.1),
-          color: (theme) => (theme.palette.mode === 'dark' ? 'warning.300' : 'warning.900'),
-        }),
-        ...(status === 'Rejected' && {
-          borderColor: 'error.500',
-          bgcolor: (theme) => alpha(theme.palette.error[500], 0.1),
-          color: (theme) => (theme.palette.mode === 'dark' ? 'error.400' : 'error.600'),
-        }),
-      }}
-    />
-  );
-});
-
-function ValueLabelComponent(props: {
-  open: boolean;
-  value: number;
-  children: React.ReactElement;
-}) {
-  const { children, open, value } = props;
-  return (
-    <Tooltip open={open} enterTouchDelay={0} placement="top" title={value} arrow>
-      {children}
-    </Tooltip>
-  );
-}
-
-function EditProgress(props: GridCellParams) {
-  const { id, value, api, field } = props;
-  const [valueState, setValueState] = React.useState(Number(value));
-
-  const updateCellEditProps = React.useCallback(
-    (newValue) => {
-      api.setEditCellValue({ id, field, value: newValue });
-    },
-    [api, field, id],
-  );
-
-  const debouncedUpdateCellEditProps = React.useMemo(
-    () => debounce(updateCellEditProps, 60),
-    [updateCellEditProps],
-  );
-
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    setValueState(newValue as number);
-    debouncedUpdateCellEditProps(newValue);
-  };
-
-  React.useEffect(() => {
-    setValueState(Number(value));
-  }, [value]);
-
-  const handleRef = (element: any) => {
-    if (element) {
-      element.querySelector('[role="slider"]')?.focus();
-    }
-  };
-
-  return (
-    <Slider
-      ref={handleRef}
-      sx={{
-        p: 0,
-        height: '100%',
-        borderRadius: '0px',
-        '& .MuiSlider-rail': {
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
-        },
-        '& .MuiSlider-track': {
-          border: 0,
-          ...(valueState < 0.3 && {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.800' : 'error.500'),
-          }),
-          ...(valueState >= 0.3 &&
-            valueState <= 0.7 && {
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'warning.800' : 'warning.500'),
-            }),
-          ...(valueState > 0.7 && {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'success.800' : 'success.500'),
-          }),
-        },
-        '& .MuiSlider-thumb': {
-          cursor: 'col-resize',
-          height: '100%',
-          width: 5,
-          borderRadius: '0px',
-          marginTop: 0,
-          backgroundColor: alpha('#000000', 0.2),
-        },
-      }}
-      value={valueState}
-      max={1}
-      step={0.00001}
-      onChange={handleChange}
-      components={{
-        ValueLabel: ValueLabelComponent,
-      }}
-      valueLabelDisplay="auto"
-      valueLabelFormat={(newValue) => `${(newValue * 100).toLocaleString()} %`}
-    />
-  );
-}
-
-const STATUS_OPTIONS = ['Open', 'PartiallyFilled', 'Filled', 'Rejected'];
-
-function EditStatus(props: GridCellParams) {
-  const { id, value, api, field } = props;
-
-  const handleChange = (event: any) => {
-    api.setEditCellValue({ id, field, value: event.target.value }, event);
-    if (!event.key) {
-      api.commitCellChange({ id, field });
-      api.setCellMode(id, field, 'view');
-    }
-  };
-
-  const handleClose = (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => {
-    if (reason === 'backdropClick') {
-      api.setCellMode(id, field, 'view');
-    }
-  };
-
-  return (
-    <Select
-      value={value}
-      onChange={handleChange}
-      MenuProps={{
-        onClose: handleClose,
-      }}
-      autoFocus
-      fullWidth
-      open
-    >
-      {STATUS_OPTIONS.map((option) => {
-        let IconComponent: any = null;
-        if (option === 'Rejected') {
-          IconComponent = ReportProblemIcon;
-        } else if (option === 'Open') {
-          IconComponent = InfoIcon;
-        } else if (option === 'PartiallyFilled') {
-          IconComponent = AutorenewIcon;
-        } else if (option === 'Filled') {
-          IconComponent = DoneIcon;
-        }
-
-        let label = option;
-        if (option === 'PartiallyFilled') {
-          label = 'Partially Filled';
-        }
-
-        return (
-          <MenuItem
-            key={option}
-            value={option}
-            dense
-            sx={{ '& .MuiListItemIcon-root': { minWidth: 24, '& > svg': { fontSize: '1rem' } } }}
-          >
-            <ListItemIcon>
-              <IconComponent />
-            </ListItemIcon>
-            <ListItemText primary={label} />
-          </MenuItem>
-        );
-      })}
-    </Select>
-  );
-}
+import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
+import ProgressBar from 'docs/src/components/x-grid/ProgressBar';
+import EditProgress from 'docs/src/components/x-grid/EditProgress';
+import Status from 'docs/src/components/x-grid/Status';
+import EditStatus from 'docs/src/components/x-grid/EditStatus';
 
 const columns: Array<GridColDef> = [
   {
@@ -280,7 +31,7 @@ const columns: Array<GridColDef> = [
     renderCell: (params: GridCellParams) => {
       return <ProgressBar value={Number(params.value)!} />;
     },
-    renderEditCell: (params: GridCellParams) => {
+    renderEditCell: (params: GridRenderEditCellParams) => {
       return <EditProgress {...params} />;
     },
   },
@@ -293,15 +44,11 @@ const columns: Array<GridColDef> = [
     renderCell: (params: GridCellParams) => {
       return <Status status={(params.value || '').toString()} />;
     },
-    renderEditCell: (params: GridCellParams) => {
+    renderEditCell: (params: GridRenderEditCellParams) => {
       return <EditStatus {...params} />;
     },
   },
 ];
-
-interface ProgressBarProps {
-  value: number;
-}
 
 const code = `<DataGrid
   density="compact"
@@ -1935,83 +1682,6 @@ export default function DataTable() {
     <ShowcaseContainer
       previewSx={{
         py: 2,
-        '& .MuiDataGrid-root': {
-          border: 'none',
-          bgcolor: 'background.paper',
-          fontSize: '0.75rem',
-          borderRadius: '0px',
-          '& .MuiCheckbox-root': {
-            color: 'grey.700',
-            p: 0.5,
-            '& > svg': {
-              fontSize: '1.25rem',
-            },
-          },
-          // table head elements
-          '& .MuiDataGrid-menuIcon svg': {
-            fontSize: '1rem',
-          },
-          '& .MuiDataGrid-columnsContainer': {
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200',
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff'),
-          },
-          '& .MuiDataGrid-columnHeaderTitleContainer': {
-            padding: 0,
-          },
-          '& .MuiDataGrid-columnSeparator': {
-            display: 'none',
-          },
-          '& .MuiDataGrid-columnHeaderTitle': {
-            flexGrow: 1,
-          },
-          // -------------------------------
-          // table body elements
-          '& .MuiDataGrid-viewport': {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
-          },
-          '& .MuiDataGrid-cell': {
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-          },
-          '& .MuiDataGrid-editInputCell': {
-            fontSize: '0.75rem',
-            '& > input': {
-              px: 1,
-            },
-          },
-          '& .MuiDataGrid-cell--editing': {
-            '& .MuiSelect-root': {
-              '& .MuiListItemIcon-root': {
-                display: 'none',
-              },
-              '& .MuiTypography-root': {
-                fontSize: '0.75rem',
-              },
-            },
-          },
-          '& .MuiTablePagination-root': {
-            mr: 1,
-            '& .MuiIconButton-root': {
-              '&:not([disabled])': {
-                color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : 'primary.main'),
-              },
-              borderRadius: 1,
-              p: 0.5,
-              border: '1px solid',
-              bgcolor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.600' : 'transparent',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
-              '&:last-of-type': {
-                ml: 1,
-              },
-              '& > svg': {
-                fontSize: '1.25rem',
-              },
-            },
-          },
-        },
       }}
       preview={
         <Paper
@@ -2023,17 +1693,7 @@ export default function DataTable() {
             bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff'),
           }}
         >
-          <GlobalStyles
-            styles={{
-              '.MuiDataGrid-gridMenuList': {
-                boxShadow: '0px 4px 20px rgb(61 71 82 / 25%)',
-                borderRadius: '10px',
-                '& .MuiMenuItem-root': {
-                  fontSize: '0.75rem',
-                },
-              },
-            }}
-          />
+          <XGridGlobalStyles />
           <Box
             sx={{
               textAlign: 'center',

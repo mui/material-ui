@@ -9,7 +9,7 @@ export default function getStylesCreator(stylesOrCreator) {
     if (typeof stylesOrCreator !== 'object' && !themingEnabled) {
       console.error(
         [
-          'Material-UI: The `styles` argument provided is invalid.',
+          'MUI: The `styles` argument provided is invalid.',
           'You need to provide a function generating the styles or a styles object.',
         ].join('\n'),
       );
@@ -27,7 +27,7 @@ export default function getStylesCreator(stylesOrCreator) {
             // TODO: prepend error message/name instead
             console.error(
               [
-                'Material-UI: The `styles` argument provided is invalid.',
+                'MUI: The `styles` argument provided is invalid.',
                 'You are providing a function without a theme in the context.',
                 'One of the parent elements needs to use a ThemeProvider.',
               ].join('\n'),
@@ -55,7 +55,7 @@ export default function getStylesCreator(stylesOrCreator) {
           if (!stylesWithOverrides[key]) {
             console.warn(
               [
-                'Material-UI: You are trying to override a style that does not exist.',
+                'MUI: You are trying to override a style that does not exist.',
                 `Fix the \`${key}\` key of \`theme.components.${name}.styleOverrides\`.`,
                 '',
                 `If you intentionally wanted to add a new key, please use the theme.components[${name}].variants option.`,

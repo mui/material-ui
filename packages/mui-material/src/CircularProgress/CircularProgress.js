@@ -225,7 +225,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   disableShrink: chainPropTypes(PropTypes.bool, (props) => {
     if (props.disableShrink && props.variant && props.variant !== 'indeterminate') {
       return new Error(
-        'Material-UI: You have provided the `disableShrink` prop ' +
+        'MUI: You have provided the `disableShrink` prop ' +
           'with a variant other than `indeterminate`. This will have no effect.',
       );
     }

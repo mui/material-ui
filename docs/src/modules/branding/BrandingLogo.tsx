@@ -16,7 +16,7 @@ export default function BrandingLogo(props: BrandingLogoProps) {
         height="32"
         width={variant.indexOf('lockup') !== -1 ? 178 : 36}
         src={`/static/branding/logo-${variant}.svg`}
-        alt={t1('Material-UI Logo')}
+        alt={t1('MUI Logo')}
       />
     </Box>
   );

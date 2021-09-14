@@ -104,7 +104,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         if (renders.current === 20) {
           console.error(
             [
-              'Material-UI: Too many re-renders. The layout is unstable.',
+              'MUI: Too many re-renders. The layout is unstable.',
               'TextareaAutosize limits the number of renders to prevent an infinite loop.',
             ].join('\n'),
           );

@@ -205,7 +205,7 @@ export default function createPalette(palette) {
       if (contrast < 3) {
         console.error(
           [
-            `Material-UI: The contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
+            `MUI: The contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
             'falls below the WCAG recommended absolute minimum contrast ratio of 3:1.',
             'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
           ].join('\n'),
@@ -224,7 +224,7 @@ export default function createPalette(palette) {
 
     if (!color.hasOwnProperty('main')) {
       throw new MuiError(
-        'Material-UI: The color%s provided to augmentColor(color) is invalid.\n' +
+        'MUI: The color%s provided to augmentColor(color) is invalid.\n' +
           'The color object needs to have a `main` property or a `%s` property.',
         name ? ` (${name})` : '',
         mainShade,
@@ -233,7 +233,7 @@ export default function createPalette(palette) {
 
     if (typeof color.main !== 'string') {
       throw new MuiError(
-        'Material-UI: The color%s provided to augmentColor(color) is invalid.\n' +
+        'MUI: The color%s provided to augmentColor(color) is invalid.\n' +
           '`color.main` should be a string, but `%s` was provided instead.\n' +
           '\n' +
           'Did you intend to use one of the following approaches?\n' +
@@ -265,7 +265,7 @@ export default function createPalette(palette) {
 
   if (process.env.NODE_ENV !== 'production') {
     if (!modes[mode]) {
-      console.error(`Material-UI: The palette mode \`${mode}\` is not supported.`);
+      console.error(`MUI: The palette mode \`${mode}\` is not supported.`);
     }
   }
 

@@ -2,7 +2,7 @@
   "name": "@mui/system",
   "version": "5.0.0-rc.1",
   "private": false,
-  "author": "Material-UI Team",
+  "author": "MUI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
   "main": "./src/index.js",
   "keywords": [

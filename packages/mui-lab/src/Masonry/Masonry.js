@@ -93,7 +93,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       if (masonryRef.current.clientHeight === 1998 && !didWarn) {
         console.warn(
           [
-            'Material-UI: The Masonry can have the maximum height of 2,000px on Chrome browser.',
+            'MUI: The Masonry can have the maximum height of 2,000px on Chrome browser.',
             'Items that go beyond this height fail to be rendered on Chrome browser.',
             'You can find more in this open issue: https://github.com/mui-org/material-ui/issues/27934',
           ].join('\n'),

@@ -145,7 +145,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       if (process.env.NODE_ENV !== 'production') {
         if (!anchorPosition) {
           console.error(
-            'Material-UI: You need to provide a `anchorPosition` prop when using ' +
+            'MUI: You need to provide a `anchorPosition` prop when using ' +
               '<Popover anchorReference="anchorPosition" />.',
           );
         }
@@ -174,7 +174,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       ) {
         console.warn(
           [
-            'Material-UI: The `anchorEl` prop provided to the component is invalid.',
+            'MUI: The `anchorEl` prop provided to the component is invalid.',
             'The anchor element should be part of the document layout.',
             "Make sure the element is present in the document or that it's not display none.",
           ].join('\n'),
@@ -248,7 +248,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         if (elemRect.height > heightThreshold && elemRect.height && heightThreshold) {
           console.error(
             [
-              'Material-UI: The popover component is too tall.',
+              'MUI: The popover component is too tall.',
               `Some part of it can not be seen on the screen (${
                 elemRect.height - heightThreshold
               }px).`,
@@ -412,7 +412,7 @@ Popover.propTypes /* remove-proptypes */ = {
         ) {
           return new Error(
             [
-              'Material-UI: The `anchorEl` prop provided to the component is invalid.',
+              'MUI: The `anchorEl` prop provided to the component is invalid.',
               'The anchor element should be part of the document layout.',
               "Make sure the element is present in the document or that it's not display none.",
             ].join('\n'),
@@ -421,7 +421,7 @@ Popover.propTypes /* remove-proptypes */ = {
       } else {
         return new Error(
           [
-            'Material-UI: The `anchorEl` prop provided to the component is invalid.',
+            'MUI: The `anchorEl` prop provided to the component is invalid.',
             `It should be an Element instance but it's \`${resolvedAnchorEl}\` instead.`,
           ].join('\n'),
         );

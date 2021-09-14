@@ -97,7 +97,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
     if (theme.shadows[elevation] === undefined) {
       console.error(
         [
-          `Material-UI: The elevation provided <Paper elevation={${elevation}}> is not available in the theme.`,
+          `MUI: The elevation provided <Paper elevation={${elevation}}> is not available in the theme.`,
           `Please make sure that \`theme.shadows[${elevation}]\` is defined.`,
         ].join('\n'),
       );
@@ -146,7 +146,7 @@ Paper.propTypes /* remove-proptypes */ = {
     const { elevation, variant } = props;
     if (elevation > 0 && variant === 'outlined') {
       return new Error(
-        `Material-UI: Combining \`elevation={${elevation}}\` with \`variant="${variant}"\` has no effect. Either use \`elevation={0}\` or use a different \`variant\`.`,
+        `MUI: Combining \`elevation={${elevation}}\` with \`variant="${variant}"\` has no effect. Either use \`elevation={0}\` or use a different \`variant\`.`,
       );
     }
 

@@ -2,8 +2,8 @@
   "name": "@mui/styles",
   "version": "5.0.0-rc.1",
   "private": false,
-  "author": "Material-UI Team",
-  "description": "Material-UI Styles - The styling solution of Material-UI.",
+  "author": "MUI Team",
+  "description": "MUI Styles - The styling solution of MUI.",
   "main": "./src/index.js",
   "keywords": [
     "react",

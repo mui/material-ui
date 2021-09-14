@@ -138,10 +138,10 @@ describe('<InputAdornment />', () => {
           </FormControl>,
         );
       }).toErrorDev([
-        'Material-UI: The `InputAdornment` variant infers the variant ' +
+        'MUI: The `InputAdornment` variant infers the variant ' +
           'prop you do not have to provide one.',
         !strictModeDoubleLoggingSupressed &&
-          'Material-UI: The `InputAdornment` variant infers the variant ' +
+          'MUI: The `InputAdornment` variant infers the variant ' +
             'prop you do not have to provide one.',
       ]);
     });

@@ -1,8 +1,8 @@
-# Careers at Material-UI
+# Careers at MUI
 
-<p class="description">We build the next generation of tools for UI development. Material-UI is focused on making React UI development faster, simpler, and accessible to more people.</p>
+<p class="description">We build the next generation of tools for UI development. MUI is focused on making React UI development faster, simpler, and accessible to more people.</p>
 
-The open-source project started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React UI libraries, backed by a vibrant community of more than 2M developers in over 180 countries.
+The open-source project started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React UI libraries, backed by a vibrant community of more than 2M developers in over 180 countries.
 
 The company is bootstrapped (so far).
 It was incorporated in mid-2019 and yet growing fast (x2-3 YoY).
@@ -20,7 +20,7 @@ We doubled the team in 2020 and are on track to do the same in 2021.
 
 - **Remote**: Our entire company is distributed.
 - **Gatherings**: We meet up once or twice a year for a short week of meetings, events, and fun!
-- **Equipment**: Material-UI will let you choose new hardware of your choice (up to $2,500 USD).
+- **Equipment**: MUI will let you choose new hardware of your choice (up to $2,500 USD).
 - **Flexible hours**: We work from different timezones. When the work is done doesn't really matter.
 - **Time off**: We provide five weeks of paid time off.
 
@@ -71,7 +71,7 @@ If you don't want to wait for the positions to be opened, you can jump ahead and
 
 ### Customer Success
 
-- **Support Engineer**. Ensure that our users wildly succeed on their journey with Material-UI. You'll directly work with users, customers, and potential customers to unblock them from using the products, triage and resolve issues, and use this direct feedback to drive improvements in Material-UI.
+- **Support Engineer**. Ensure that our users wildly succeed on their journey with MUI. You'll directly work with users, customers, and potential customers to unblock them from using the products, triage and resolve issues, and use this direct feedback to drive improvements in MUI.
 
 ## FAQs
 
@@ -79,10 +79,10 @@ If you don't want to wait for the positions to be opened, you can jump ahead and
 
 No. If a job is visible on our careers page, then you can still apply.
 
-### Does Material-UI do whiteboarding during interviews?
+### Does MUI do whiteboarding during interviews?
 
 No. We ask applicants to complete challenges that are close to their future day-to-day contributions.
 
-### Does Material-UI offer contractor job opportunities?
+### Does MUI offer contractor job opportunities?
 
 Yes. People outside of France will be hired as full-time contractors. (Benefits may vary.)

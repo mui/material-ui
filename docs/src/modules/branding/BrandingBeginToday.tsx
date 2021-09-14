@@ -58,10 +58,10 @@ export default function BrandingBeginToday() {
           }}
         />
         <Typography variant="h2" align="center">
-          Begin with Material-UI today
+          Begin with MUI today
         </Typography>
         <Typography align="center" sx={{ mt: 2, mb: 4, fontSize: [16, 18] }}>
-          Start with Material-UI and discover the benefits
+          Start with MUI and discover the benefits
         </Typography>
         <Button
           component={Link}

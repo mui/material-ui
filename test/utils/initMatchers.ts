@@ -427,7 +427,7 @@ chai.use((chaiAPI, utils) => {
         "Looks like the error was not minified. This can happen if the error code hasn't been generated yet. Run `yarn extract-error-codes` and try again.",
       );
       // TODO: Investigate if `as any` can be removed after https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48634 is resolved.
-      (this as any).to.throw('Minified Material-UI error', 'helper');
+      (this as any).to.throw('Minified MUI error', 'helper');
     }
   });
 });

@@ -19,7 +19,7 @@ NProgress.configure({
 const styles = (theme) => {
   if (!theme.nprogress.color) {
     throw new Error(
-      'Material-UI: You need to provide a `theme.nprogress.color` property' +
+      'MUI: You need to provide a `theme.nprogress.color` property' +
         ' for using the `NProgressBar` component.',
     );
   }

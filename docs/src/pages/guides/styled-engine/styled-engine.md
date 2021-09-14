@@ -2,9 +2,9 @@
 
 <p class="description">Configuring your preferred styling library.</p>
 
-The default style library used for generating CSS styles for Material-UI components is [emotion](https://github.com/emotion-js/emotion).
-All of the Material-UI components rely on the `styled()` API to inject CSS into the page.
-This API is supported by multiple popular styling libraries, which makes it possible to switch between them in Material-UI.
+The default style library used for generating CSS styles for MUI components is [emotion](https://github.com/emotion-js/emotion).
+All of the MUI components rely on the `styled()` API to inject CSS into the page.
+This API is supported by multiple popular styling libraries, which makes it possible to switch between them in MUI.
 
 ## How to switch to styled-components
 
@@ -38,4 +38,4 @@ You can use the [create-react-app-with-styled-components example](https://github
 
 > **Note**: `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself. See the [Installation guide](/getting-started/installation/) for more info.
 
-> **Note:** This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with Material-UI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.
+> **Note:** This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with MUI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.
