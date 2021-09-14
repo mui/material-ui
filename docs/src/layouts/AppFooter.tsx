@@ -96,18 +96,17 @@ export default function AppFooter() {
             </Typography>
             <Link href={ROUTES.about}>About</Link>
             <Link href={ROUTES.vision}>Vision</Link>
-            <Link href={ROUTES.careers}>
-              Careers{' '}
+            <Box sx={{ display: 'flex', alignItems: 'end' }}>
+              <Link href={ROUTES.careers}>Careers </Link>
               <Box
                 sx={{
                   px: 0.5,
                   py: 0.3,
                   ml: 1,
                   borderRadius: 0.5,
-                  fontSize: (theme) => theme.typography.pxToRem(10),
+                  fontSize: (theme) => theme.typography.pxToRem(9),
                   fontWeight: 700,
                   textTransform: 'uppercase',
-                  textDecoration: 'none',
                   color: '#fff',
                   backgroundColor: (theme) =>
                     theme.palette.mode === 'dark'
@@ -117,7 +116,7 @@ export default function AppFooter() {
               >
                 Hiring
               </Box>
-            </Link>
+            </Box>
             <Link href={ROUTES.support}>Support</Link>
             <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
               Contact us
@@ -142,22 +141,22 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://stackoverflow.com/questions/tagged/material-ui"
-              aria-label="Stack Overflow"
-              title="Stack Overflow"
-              size="small"
-            >
-              <SvgStackOverflow />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener noreferrer"
               href="https://github.com/mui-org"
               aria-label="github"
               title="GitHub"
               size="small"
             >
               <GitHubIcon />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://stackoverflow.com/questions/tagged/material-ui"
+              aria-label="Stack Overflow"
+              title="Stack Overflow"
+              size="small"
+            >
+              <SvgStackOverflow />
             </IconButton>
             <IconButton
               target="_blank"
