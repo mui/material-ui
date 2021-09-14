@@ -103,7 +103,7 @@ export default function AppFooter() {
                   py: 0.3,
                   ml: 1,
                   borderRadius: 0.5,
-                  fontSize: (theme) => theme.typography.pxToRem(12),
+                  fontSize: (theme) => theme.typography.pxToRem(10),
                   fontWeight: 700,
                   textTransform: 'uppercase',
                   color: '#fff',
