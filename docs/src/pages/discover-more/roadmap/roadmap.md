@@ -29,7 +29,7 @@ Here are the top priorities:
 
 Our GitHub project's roadmap is where you can learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
 
-- [MUI community](https://github.com/mui-org/material-ui/projects/25). This repository focuses on empowering the creation of great design systems with React, as well as providing two ready to use themes (Material Design so far, another one coming in the near future).
+- [MUI community](https://github.com/mui-org/material-ui/projects/25). This repository focuses on empowering the creation of great design systems with React, as well as providing two ready-to-use themes (Material Design so far, another one coming in the near future).
 - [MUI X](https://github.com/mui-org/material-ui-x/projects/1). This repository focuses on providing advanced React components.
 
 ## New components
