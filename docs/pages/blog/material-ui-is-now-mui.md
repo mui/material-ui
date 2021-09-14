@@ -6,7 +6,7 @@ authors: ['oliviertassinari', 'danilo-leal', 'mbrookes']
 card: true
 ---
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/intro.png" alt="" style="width: 600px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/intro.png" alt="" style="width: 100%; margin-bottom: 16px;" />
 
 Starting today, we are evolving our brand identity. We are clarifying the difference between our company and our products.
 
@@ -71,11 +71,11 @@ It's basically the same, to keep it familiar.
 We're keeping the geometrical shape, to resonate with the _building blocks_ idea of the components.
 We're also reducing the emphasis on the smart 3D perspective, stepping away from the notion of elevation Material Design coined.
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/old-new.png" alt="" style="width: 302px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/old-new.png" alt="" style="width: 100%; margin-bottom: 16px;" />
 
 To better identify, market, and promote each product, we are introducing logos for each one of them.
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="" style="width: 427px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="" style="width: 100%; margin-bottom: 16px;" />
 
 ### New package names
 
@@ -90,7 +90,7 @@ You'll find a completely different theme from Material Design, new typeface, col
 All done using the sophisticated theming features.
 We want to position the company in a broader space, better explain and share what we do and who we are.
 
-<a href="/"><img loading="lazy" src="/static/blog/material-ui-is-now-mui/palette.png" alt="" style="width: 408px; margin-bottom: 16px;" /></a>
+<a href="/"><img loading="lazy" src="/static/blog/material-ui-is-now-mui/palette.png" alt="" style="width: 100%; margin-bottom: 16px;" /></a>
 
 <p class="blog-description">The color palette of our brand.</p>
 
