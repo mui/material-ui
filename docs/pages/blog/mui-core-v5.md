@@ -34,7 +34,7 @@ This release features some major highlights:
 
 ## High-level goals for v5
 
-In our last survey, [60% fewer](/blog/2020-developer-survey-results/#comparison-with-last-year) developers were complaining about improving Material Design implementation than they did a year before.
+In our last survey, the number of developers that complained about improving Material Design implementation was down by [60%](/blog/2020-developer-survey-results/#comparison-with-last-year) compared to the year before.
 At the same time, 400% more developers were struggling to customize the components.
 
 It is based on this context that we started to work on v5 in 2019.
@@ -87,8 +87,7 @@ While MUI is compatible with any styling solution (as long as the styles have mo
    It would mean giving up on the custom React JSS wrapper we maintain.
    From our experience, maintaining a custom styling solution takes a considerable amount of time. Is it the best use of our time?
 
-After [exploring](https://github.com/mui-org/material-ui/issues/22342) many different options.
-We settled on what we believe is a great tradeoff to **solve** the above issues:
+After [exploring](https://github.com/mui-org/material-ui/issues/22342) many different options, we settled on what we believe is a great tradeoff to **solve** the above issues:
 
 1. We have made `styled` the lowest level primitive to add styles.
    This API is already known by many.
