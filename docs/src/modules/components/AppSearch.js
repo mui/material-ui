@@ -298,6 +298,17 @@ export default function AppSearch() {
           searchParameters={{
             facetFilters: ['version:next', facetFilterLanguage],
           }}
+          placeholder="Search..."
+          transformItems={(items) => {
+            return items.map((item) => {
+              const parseUrl = document.createElement('a');
+              parseUrl.href = item.url;
+              return {
+                ...item,
+                url: `${parseUrl.pathname}${parseUrl.hash}`,
+              };
+            });
+          }}
         />
       )}
     </React.Fragment>
