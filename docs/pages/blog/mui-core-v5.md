@@ -604,7 +604,7 @@ It's new, link core and x roadmaps.
 
 #### Unstyled components and hooks
 
-We still have a lot of work to do to have a great set of unstyled components.
+We still have a lot of work to do to have a full set of unstyled components.
 You can keep track of our progress in [#27170](https://github.com/mui-org/material-ui/issues/27170).
 
 Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
