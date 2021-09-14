@@ -43,7 +43,7 @@ withStyles（styles）;
 //           “string” 类型不能赋予给这些类型：'"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'。
 ```
 
-问题是 `flexDirection` 属性的类型被推断为 `string`，这样太随意了。 要解决此问题，您可以将样式对象直接传递给 `withStyles`：
+问题是 `flexDirection` 属性的类型被推断为 `string`，这太过随意。 要解决此问题，您可以将样式对象直接传递给 `withStyles`：
 
 ```ts
 withStyles({
@@ -129,7 +129,7 @@ const ambiguousStyles = createStyles({
   },
 });
 
-// 这样定义就可以
+// 这样定义即可
 const ambiguousStyles = createStyles({
   contentClass: {
     minHeight: '100vh',
@@ -161,7 +161,7 @@ const styles = (theme: Theme) =>
   });
 
 interface Props {
-  // 未被注入样式的属性
+  // 非样式的属性
   foo: number;
   bar: boolean;
   // 已被注入样式的属性

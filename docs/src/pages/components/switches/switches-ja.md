@@ -61,7 +61,7 @@ You can control the switch with the `checked` and `onChange` props:
 
 ## When to use
 
-- [Checkboxと スイッチ](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+- [Checkboxと スイッチ Switches](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## アクセシビリティ
 

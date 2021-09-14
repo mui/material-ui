@@ -88,8 +88,8 @@ Material-UI 使用 `rem` 单元来定义字体的大小。 浏览器 `<html>` �
 ```js
 const theme = createTheme({
   typography: {
-    // In Chinese and Japanese the characters are usually larger,
-    // so a smaller fontsize may be appropriate.
+    // 中文字符和日文字符通常比较大，
+    // 所以选用一个略小的 fontsize 会比较合适。
     fontSize: 12,
   },
 });

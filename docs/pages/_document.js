@@ -82,7 +82,7 @@ export default class MyDocument extends Document {
           <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
             rel="stylesheet"
           />
           <link // prevent font flash
@@ -105,6 +105,14 @@ export default class MyDocument extends Document {
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `@font-face{font-family:'PlusJakartaSans-Bold';font-style:normal;font-weight:700;font-display:swap;src:url('/static/fonts/PlusJakartaSans-Bold-subset.woff2') format('woff2');}`,
+            }}
+          />
+          <style
+            // Loads IBM Plex Sans: 400,500,700 & IBM Plex Mono: 400, 600
+            // use https://cssminifier.com/ to minify
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Regular.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Regular.woff) format('woff'),url(/static/fonts/IBMPlexSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Medium.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Medium.woff) format('woff'),url(/static/fonts/IBMPlexSans-Medium.ttf) format('truetype');font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Bold.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Bold.woff) format('woff'),url(/static/fonts/IBMPlexSans-Bold.ttf) format('truetype');font-weight:700;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Mono';src:url(/static/fonts/IBMPlexMono-Regular.woff2) format('woff2'),url(/static/fonts/IBMPlexMono-Regular.woff) format('woff'),url(/static/fonts/IBMPlexMono-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Mono';src:url(/static/fonts/IBMPlexMono-SemiBold.woff2) format('woff2'),url(/static/fonts/IBMPlexMono-SemiBold.woff) format('woff'),url(/static/fonts/IBMPlexMono-SemiBold.ttf) format('truetype');font-weight:600;font-style:normal;font-display:swap}`,
             }}
           />
         </Head>

@@ -148,8 +148,8 @@ const ambiguousStyles = createStyles({
 Da, wenn eine Komponente mit `withStyles(styles)` dekoriert ist, eine spezielle `classes` Eigenschaft injiziert bekommt, möchten Sie die Eigenschaften entsprechend definieren:
 
 ```ts
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
+*/ },
+  button: { /* ... */ },
   paper: { /* ... */ },
   button: { /* ... */ },
 });

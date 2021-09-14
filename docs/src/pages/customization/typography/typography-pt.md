@@ -146,7 +146,7 @@ Você pode querer alterar o tamanho da fonte padrão do elemento `<html>`. Por e
 
 > ⚠️ Alterar o tamanho da fonte pode prejudicar a acessibilidade ♿️. A maioria dos navegadores concordou com o tamanho padrão de 16 pixels, mas o usuário pode alterá-lo. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
-Uma propriedade de tema `htmlFontSize` é fornecida para este caso de uso, que informa ao Material-UI qual é o tamanho da fonte no elemento `<html>`. Isso é usado para ajustar o valor `rem`, para que o tamanho da fonte calculado sempre corresponda à especificação.
+Uma propriedade de tema `htmlFontSize` é fornecida para estas situações, que informa ao Material-UI qual é o tamanho da fonte no elemento `<html>`. Isso é usado para ajustar o valor `rem`, para que o tamanho da fonte calculado sempre corresponda à especificação.
 
 ```js
 const theme = createTheme({

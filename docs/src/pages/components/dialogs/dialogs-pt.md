@@ -71,7 +71,7 @@ O diálogo tem um botão de fechar para facilitar a utilização.
 
 ## Tamanhos opcionais
 
-Você pode definir uma largura máxima usando um enumerador na propriedade `maxWidth` combinando com a propriedade booleana `fullWidth`. Quando a propriedade `fullWidth` for verdadeira, a caixa de diálogo será adaptada com base no valor definido em `maxWidth`.
+Você pode definir uma largura máxima usando um enumerador na propriedade `maxWidth` combinando com a propriedade booleana `fullWidth`. Quando a propriedade `fullWidth` for verdadeira, o diálogo será adaptado com base no valor definido em `maxWidth`.
 
 {{"demo": "pages/components/dialogs/MaxWidthDialog.js"}}
 

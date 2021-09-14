@@ -106,7 +106,7 @@ The following demo doesn't follow the Material Design guidelines, but illustrate
 
 ## Grille imbriquée
 
-The `container` and `item` properties are two independent booleans. They can be combined.
+The `container` and `item` properties are two independent booleans. Ils peuvent être combinés.
 
 > Un **container** flex est la boîte générée par un élément avec un affichage calculé de `flex` ou `inline-flex`. Les enfants entrants d'un conteneur flex sont appelés éléments** flex **et sont disposés à l'aide du modèle d'agencement Flex.
 

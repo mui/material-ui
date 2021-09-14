@@ -47,7 +47,7 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 ## Alinhar itens da lista
 
-Você deve alterar o alinhamento do item da lista ao exibir 3 linhas ou mais, alterando a propriedade `alignItems = "flex-start"`.
+Você deve alterar o alinhamento do item da lista ao exibir 3 linhas ou mais, alterando a propriedade `alignItems="flex-start"`.
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 

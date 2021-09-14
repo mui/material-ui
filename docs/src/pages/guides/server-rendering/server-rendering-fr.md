@@ -110,10 +110,15 @@ import cache from './cache';
 
 const { extractCritical } = createEmotionServer(cache);
 
-function handleRender(req, res) {
-  const sheets = new ServerStyleSheets();
+  // Send the rendered page back to the client.
+  res.send(renderFullPage(html, css));
+}
 
-  // Render the component to a string.
+const app = express();
+
+app.use('/build', express.static('build'));
+
+// This is fired every time the server-side receives a request.
   const html = ReactDOMServer.renderToString(
     sheets.collect(
       <CacheProvider value={cache}>

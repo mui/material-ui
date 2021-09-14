@@ -43,7 +43,7 @@ Por exemplo, por padrão um componente `List` irá renderizar um elemento `<ul>`
 </List>
 ```
 
-Esse padrão é muito poderoso e permite uma grande flexibilidade, além de uma maneira de interoperar com outras bibliotecas, como a sua biblioteca de formulários ou roteamento favorita. Mas também **vem com uma pequena advertência!**
+Esse padrão é muito poderoso e permite uma grande flexibilidade, além de uma maneira de interoperar com outras bibliotecas, como a sua biblioteca de formulários ou roteamento favorita. Mas também **vem com algumas advertências!**
 
 ### Advertência com o uso de funções em linha
 

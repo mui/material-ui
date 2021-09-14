@@ -14,7 +14,7 @@ Here are the most significant improvements since March 2020:
 
 - 🚧 Work has started on [the next major version: v5](https://github.com/mui-org/material-ui/issues/20012).<br />
   The last 14 months have been spent focusing on improving the library under the v4.x development branch, while not introducing any breaking changes. During this period we have identified several important areas for improvement. While the absence of breaking changes is a significant time-saver for developers, it also limits the scope of the problems that can be solved and the quality of the solutions. We're excited about what comes next!<br /><br />
-  You can find the documentation for the next version at http://material-ui.com/. The next 6-8 months will see weekly releases as always, following [the roadmap](https://github.com/mui-org/material-ui/issues/20012) and [milestone](https://github.com/mui-org/material-ui/milestone/35).
+  You can find the documentation for the next version at https://material-ui.com/. The next 6-8 months will see weekly releases as always, following [the roadmap](https://github.com/mui-org/material-ui/issues/20012) and [milestone](https://github.com/mui-org/material-ui/milestone/35).
 
 - 📍 The icons package has been updated with changes made by Google, leading to [200+ new icons](https://material-ui.com/components/material-icons/).
 
