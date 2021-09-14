@@ -621,7 +621,7 @@ Don't hesitate to let us know what you think!
 
 ### Second design system
 
-Developing a new design system is one of the main initiatives, alongside this new brand and the unstyled components, to grow MUI beyond Material Design. Its codename is **Joy** and we have just started [the high-level discussion](https://github.com/mui-org/material-ui/discussions/27803) around it if you want more context. 
+Developing a new design system is one of the main initiatives, alongside this new brand and the unstyled components, to grow MUI beyond Material Design. Its codename is **Joy** and we have just started [the high-level discussion](https://github.com/mui-org/material-ui/discussions/27803) around it if you want more context.
 
 It will be built on top of our foundation packages (the base/unstyled components and `@mui/system`) to provide a close DX and API as Material Design. We plan on having built-in CSS variables generated from the theme, a great dark mode API, a custom look and feel, and more.
 
