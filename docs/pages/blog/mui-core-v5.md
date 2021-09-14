@@ -1,6 +1,6 @@
 ---
 title: Introducing MUI Core v5.0
-description: MUI Core v5.0 is out 🎉
+description: After over 400 days of development and over 40 canary releases, we are excited to introduce MUI Core v5.0.0!
 date: 2021-09-15T00:00:00.000Z
 authors: ['mbrookes', 'eps1lon', 'mnajdova', 'michaldudak', 'siriwatknp']
 card: true
@@ -41,7 +41,7 @@ It is based on this context that we started to work on v5 in 2019.
 Our primary focus was to revamp the **customization Developer Experience (DX)**.
 It had become clear that design and DX were key to unlock the next stage of growth.
 
-The last major iteration on the library was done with MUI v4, released [2.5 years ago]((/blog/material-ui-v4-is-out/)).
+The last major iteration on the library was done with MUI v4, released [2.5 years ago](/blog/material-ui-v4-is-out/).
 It's been a while, a too-long period without innovation.
 So, we have approached v5 with a focus on delivering **long-term value**.
 For instance, we have stopped all development in v4 as soon as we started to work on v5.
