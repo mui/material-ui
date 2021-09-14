@@ -75,7 +75,11 @@ however we're reducing the emphasis on the 3D perspective, stepping away from th
 
 To better identify, market, and promote each product, we're introducing logos for each one of them.
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="" style="width: 100%; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="" style="width: 600px; margin-bottom: 16px;" />
+
+- **MUI Core** contains ready to use, forever free, foundational components.
+- **MUI X** includes Powerful and robust components for your complex apps.
+- **MUI Templates** is a collection of fully built, out-of-the-box, React templates for your application. They are developed by the community curated by us for quality.
 
 ### New package names
 
@@ -89,7 +93,7 @@ Lastly, to celebrate the start of a new chapter for the company with the release
 You'll find a completely different theme from Material Design – new typeface, colors, box-shadows, and more,
 all done using the sophisticated theming features of v5.
 
-<a href="/"><img loading="lazy" src="/static/blog/material-ui-is-now-mui/palette.png" alt="" style="width: 100%; margin-bottom: 16px;" /></a>
+<a href="/"><img loading="lazy" src="/static/blog/material-ui-is-now-mui/palette.png" alt="" style="width: 600px; margin-bottom: 16px;" /></a>
 
 <p class="blog-description">The color palette of our brand.</p>
 
