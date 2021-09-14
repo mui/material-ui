@@ -107,7 +107,7 @@ The first immediate benefit was at the **performance** level. the `<Box>` compon
 We would like to thanks all the community contributors that made the migration of the components and documentation possible in [#24405](https://github.com/mui-org/material-ui/issues/24405) and [#16947](https://github.com/mui-org/material-ui/issues/16947): [@natac13](https://github.com/natac13), [@vicasas](https://github.com/vicasas), [@mngu](https://github.com/mngu), [@kodai3](https://github.com/kodai3), [@xs9627](https://github.com/xs9627), [@povilass](https://github.com/povilass), [@duganbrett](https://github.com/duganbrett), [@vinyldarkscratch](https://github.com/vinyldarkscratch), and more.
 It was a major undertaking!
 
-Going forward, developers can either keep using JSS with the legacy `@mui/styles` package [or migrate](/guides/migration-v4/#migrate-makestyles-to-emotion).
+Going forward, developers can either keep using JSS with the legacy `@mui/styles` package [or migrate from JSS](/guides/migration-v4/#migrate-from-jss).
 We recommend the latter to match the core components.
 
 ### The `sx` prop
