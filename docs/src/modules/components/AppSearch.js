@@ -7,7 +7,6 @@ import '@docsearch/css';
 import { styled, alpha } from '@mui/material/styles';
 import Input from '@mui/material/Input';
 import SearchIcon from '@mui/icons-material/Search';
-import { Tooltip } from '@mui/material';
 
 const RootDiv = styled('div')(({ theme }) => {
   return {
