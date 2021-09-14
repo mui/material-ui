@@ -2,20 +2,18 @@
 
 <p class="description">Yeah, v5 has been released!</p>
 
-If you're looking for the v4 docs, you can [find them here](https://mui.com/versions/).
+If you're looking for the v4 docs, you can [find the latest version here](https://mui.com/versions/).
 
 ## Introduction
 
-This is a reference for upgrading your site from MUI v4 to v5.
+This is a reference for upgrading your site from MUI Core v4 to v5.
 While there's a lot covered here, you probably won't need to do everything.
 We'll do our best to keep things easy to follow, and as sequential as possible, so you can quickly get rocking on v5!
 
-> 💡 We are excited to share that the org & package names have been changed from `@material-ui` to `@mui` as part of the rebranding effort! For more details about it, check the [GitHub discussion](https://github.com/mui-org/material-ui/discussions/27803).
-
 ## Why you should migrate
 
-To get the benefits of bug fixes and a lot of improvements such as the new styling engine. This documentation page covers the _how_ of migrating from v4 to v5.
-The _why_ will be covered in an upcoming blog post on Medium.
+To get the benefits of bug fixes and a lot of improvements such as the new styling engine. This documentation page covers the **how** of migrating from v4 to v5.
+The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 
 ## Migration steps
 
@@ -28,7 +26,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
   - [link-underline-hover (optional)](#link-underline-hover)
 - [Handling Breaking Changes](#handling-breaking-changes)
 - [Migrate theme's `styleOverrides` to emotion](#migrate-themes-styleoverrides-to-emotion)
-- [Migrate `makeStyles` to emotion](#migrate-makestyles-to-emotion)
+- [Migrate from JSS](#migrate-from-jss)
 - [Troubleshooting](#troubleshooting)
 
 > 💡 Prefer to create small commits on any changes to help the migration goes smoother.
@@ -76,38 +74,46 @@ function App() {
 
 ## Update MUI version
 
-To use the `v5` version of MUI.
-
-> 💡 If you want to use MUI v5 with **styled-components** instead of emotion, check out [the installation guide](/getting-started/installation/#npm)
+To use the `v5` version of MUI Core, you first need to update the package names:
 
 ```sh
-npm install @mui/material @emotion/react @emotion/styled
-
-// or with `yarn`
-yarn add @mui/material @emotion/react @emotion/styled
+@material-ui/core -> @mui/material
+@material-ui/system -> @mui/system
+@material-ui/unstyled -> @mui/core
+@material-ui/styles -> @mui/styles
+@material-ui/icons -> @mui/icons-material
+@material-ui/lab -> @mui/lab
+@material-ui/types -> @mui/types
+@material-ui/styled-engine -> @mui/styled-engine
+@material-ui/styled-engine-sc ->@mui/styled-engine-sc
+@material-ui/private-theming -> @mui/private-theming
+@material-ui/codemod -> @mui/codemod
+@material-ui/docs -> @mui/docs
+@material-ui/envinfo -> @mui/envinfo
 ```
 
-**Optional** if your project includes `@mui/icons-material` and/or `@mui/lab`, use the `v5` version of them.
+The org & package names have been changed from `@material-ui` to [`@mui`](https://www.npmjs.com/org/mui) as part of the rebranding effort.
+For more details about it, check our [blog post](/blog/material-ui-is-now-mui/) or [#27803](https://github.com/mui-org/material-ui/discussions/27803).
+
+Then, you need to add the new peer dependencies on emotion:
 
 ```sh
-npm install @mui/icons-material @mui/lab
+npm install @emotion/react @emotion/styled
 
 // or with `yarn`
-yarn add @mui/icons-material @mui/lab
+yarn add @emotion/react @emotion/styled
 ```
 
-> **Note:** if you are using `@material-ui/pickers`, it has moved to `@mui/lab`. The details is in "Handling breaking changes" section.
+> 💡 If you want to use MUI Core v5 with **styled-components** instead of emotion, check out [the installation guide](/getting-started/installation/#npm).
 
-In this migration process, you will need to install/update `@mui/styles` (JSS) for temporary transition to v5.
+If you are using `@material-ui/pickers`, it has moved to `@mui/lab`. You can follow [these steps](#material-ui-pickers).
 
-```sh
-npm install @mui/styles
+You should have installed `@mui/styles` now.
+It includes JSS, which duplicate with emotion.
+It's meant to allow a gradual migration to v5.
+You should be able to remove the dependency following [these steps](#migrate-from-jss).
 
-// or with `yarn`
-yarn add @mui/styles
-```
-
-> After the migration, you should remove all `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
+After the upgrade and migration of the packages, you can remove the old `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
 
 ## Run codemods
 
@@ -2375,10 +2381,10 @@ const theme = createTheme({
 
 Take a look at the whole [list of global state classnames](/customization/how-to-customize/#state-classes) available.
 
-## Migrate `makeStyles` to emotion
+## Migrate from JSS
 
 This is the last step in the migration process to remove `@mui/styles` package from your codebase.
-We recommend two options.
+We can use one of these two options, by order of preference:
 
 ### 1. Use `styled` or `sx` API
 
