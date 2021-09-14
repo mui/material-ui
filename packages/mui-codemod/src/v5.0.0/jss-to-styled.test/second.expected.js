@@ -13,10 +13,14 @@ const classes = {
   container: `${PREFIX}-container`,
   title: `${PREFIX}-title`,
   actions: `${PREFIX}-actions`,
-  apply: `${PREFIX}-apply`,
+  apply: `${PREFIX}-apply`
 };
 
-const Root = styled('div')(({ theme }) => ({
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
   [`&.${classes.root}`]: {
     height: '70vh',
     minHeight: 500,
@@ -52,10 +56,12 @@ const Root = styled('div')(({ theme }) => ({
 
   [`& .${classes.apply}`]: {
     marginRight: theme.spacing(2),
-  },
+  }
 }));
 
 function AffiliatesHero() {
+
+
   return (
     <Root className={classes.root}>
       <Container className={classes.container}>
