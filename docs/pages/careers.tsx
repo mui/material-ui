@@ -40,7 +40,7 @@ const Role = ({
     }}
   >
     <div>
-      <Typography variant="body1" color="text.primary" fontWeight={600} sx={{ my: 1 }}>
+      <Typography variant="body1" color="text.primary" fontWeight={700} sx={{ my: 1 }}>
         {title}
       </Typography>
       <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 700 }}>
@@ -275,7 +275,7 @@ function CareersContent() {
               ].map((text) => (
                 <Box key={text} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
                   <IconImage name="yes" />
-                  <Typography variant="body2" color="text.primary" fontWeight={600} sx={{ ml: 1 }}>
+                  <Typography variant="body2" color="text.primary" fontWeight={700} sx={{ ml: 1 }}>
                     {text}
                   </Typography>
                 </Box>
@@ -311,7 +311,7 @@ function CareersContent() {
                 <Box key={textArray[0]} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
                   <IconImage name="yes" />
                   <Typography variant="body2" color="text.primary" sx={{ ml: 1 }}>
-                    <span style={{ fontWeight: 600 }}>{`${textArray[0]}  `}</span>
+                    <span style={{ fontWeight: 700 }}>{`${textArray[0]}  `}</span>
                     {textArray[1]}
                   </Typography>
                 </Box>

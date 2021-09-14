@@ -149,7 +149,7 @@ const SearchDiv = styled('div')(({ theme }) => {
 const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(13),
-    fontWeight: 600,
+    fontWeight: 700,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[700],
     lineHeight: '21px',
     border: `1px solid ${
