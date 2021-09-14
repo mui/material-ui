@@ -4,15 +4,14 @@ import { styled, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import Brightness2RoundedIcon from '@mui/icons-material/Brightness2Rounded';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
@@ -20,12 +19,6 @@ import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-
-const DrawerPaper = styled(Paper)({
-  width: 360,
-  borderTopRightRadius: 0,
-  borderBottomRightRadius: 0,
-});
 
 const Heading = styled(Typography)({
   margin: '20px 0 10px',
@@ -78,7 +71,7 @@ function AppSettingsDrawer(props) {
       anchor="right"
       onClose={onClose}
       open={open}
-      PaperProps={{ component: DrawerPaper }}
+      PaperProps={{ elevation: 0, sx: { width: 360 } }}
       {...other}
     >
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
@@ -106,7 +99,7 @@ function AppSettingsDrawer(props) {
             data-ga-event-category="settings"
             data-ga-event-action="light"
           >
-            <Brightness7Icon fontSize="small" />
+            <LightModeIcon fontSize="small" />
             {t('settings.light')}
           </IconToggleButton>
           <IconToggleButton
@@ -124,7 +117,7 @@ function AppSettingsDrawer(props) {
             data-ga-event-category="settings"
             data-ga-event-action="dark"
           >
-            <Brightness2RoundedIcon fontSize="small" />
+            <DarkModeOutlinedIcon fontSize="small" />
             {t('settings.dark')}
           </IconToggleButton>
         </ToggleButtonGroup>

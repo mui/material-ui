@@ -416,7 +416,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 - Introduce a new Timeline component (#21331) @mnajdova.
   <img width="244" alt="timeline" src="https://user-images.githubusercontent.com/3165635/84400961-ff381900-ac02-11ea-8e5e-beb6c0840fe0.png">
-  You can find the component in the [lab](http://material-ui.com/components/timeline/).
+  You can find the component in the [lab](https://material-ui.com/components/timeline/).
 
 - Simplify the theme overrides with TypeScript for the components in the lab (#21279) @CarsonF.
 
@@ -558,9 +558,9 @@ Here are some highlights ✨:
     <Avatar />
   </Skeleton>
   ```
-  Follow [the docs to learn more](http://material-ui.com/components/skeleton/#inferring-dimensions).
+  Follow [the docs to learn more](https://material-ui.com/components/skeleton/#inferring-dimensions).
 - ♿️ Add tabs accessibility docs section (#20965) @eps1lon.
-  The behavior of the [keyboard navigation](http://material-ui.com/components/tabs/#keyboard-navigation) can be customized with the `selectionFollowsFocus` prop.
+  The behavior of the [keyboard navigation](https://material-ui.com/components/tabs/#keyboard-navigation) can be customized with the `selectionFollowsFocus` prop.
 - ℹ Improve tooltip arrow customizability (#21095) @sakulstra.
   The arrow background color and border can now be customized independently.
   <img src="https://user-images.githubusercontent.com/3165635/82205669-328acf00-9907-11ea-8fa0-f9784ad2b718.png" width="90" />
@@ -13124,7 +13124,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
   - `ThemeManager` produces `mui theme` from `raw theme`. Raw themes may be user-defined.
   - Functions in `ThemeManager` allow to modify theme variables. Component-level styles may be
   - overridden in the `mui theme`.
-  - See new documentation [here](http://material-ui.com/#/customization/themes)
+  - See new documentation [here](https://material-ui.com/#/customization/themes)
 - Function names in the context-pure mixin have been changed (#1711)
   - `getContextProps()` has been changed to `getRelevantContextKeys()`
 
@@ -13157,7 +13157,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 
 - The Table component is now composable. (#1199)
   - JSON objects to create the table and the table component will no longer generate the table for you.
-    The docs site provides a complete example of how a table might look: http://material-ui.com/#/components/table.
+    The docs site provides a complete example of how a table might look: https://material-ui.com/#/components/table.
     The example also includes a 'super header' and 'super footer' row.
   - **Upgrade Path:** Instead of passing in the raw JSON data, you'll need to generate the appropriate
     TableHeader/TableRow/TableHeaderColumn components and pass them in as children. The same should be applied

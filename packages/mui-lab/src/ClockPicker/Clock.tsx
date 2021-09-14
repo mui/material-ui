@@ -83,7 +83,7 @@ const ClockAmButton = styled(IconButton, { skipSx: true })<{ ownerState: ClockPr
   ({ theme, ownerState }) => ({
     zIndex: 1,
     position: 'absolute',
-    bottom: 8,
+    bottom: ownerState.ampmInClock ? 64 : 8,
     left: 8,
     ...(ownerState.meridiemMode === 'am' && {
       backgroundColor: theme.palette.primary.main,
@@ -99,7 +99,7 @@ const ClockPmButton = styled(IconButton, { skipSx: true })<{ ownerState: ClockPr
   ({ theme, ownerState }) => ({
     zIndex: 1,
     position: 'absolute',
-    bottom: 8,
+    bottom: ownerState.ampmInClock ? 64 : 8,
     right: 8,
     ...(ownerState.meridiemMode === 'pm' && {
       backgroundColor: theme.palette.primary.main,
@@ -209,7 +209,7 @@ function Clock<TDate>(props: ClockProps<TDate>) {
   // Focusing in passive effects in Popper causes scroll jump.
   useEnhancedEffect(() => {
     if (autoFocus) {
-      // The ref not being resolved would be a bug in Material-UI.
+      // The ref not being resolved would be a bug in MUI.
       listboxRef.current!.focus();
     }
   }, [autoFocus]);

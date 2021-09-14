@@ -311,15 +311,6 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
-    pathname: 'https://material-ui.com/store/',
-    title: 'Premium themes',
-    linkProps: {
-      'data-ga-event-category': 'store',
-      'data-ga-event-action': 'click',
-      'data-ga-event-label': 'sidenav',
-    },
-  },
-  {
     pathname: '/discover-more',
     icon: 'AddIcon',
     children: [
@@ -333,9 +324,19 @@ const pages: readonly MuiPage[] = [
       { pathname: '/discover-more/languages' },
     ],
   },
+  {
+    pathname: 'https://material-ui.com/store/',
+    title: 'Templates',
+    icon: 'ReaderIcon',
+    linkProps: {
+      'data-ga-event-category': 'store',
+      'data-ga-event-action': 'click',
+      'data-ga-event-label': 'sidenav',
+    },
+  },
   { pathname: '/versions', ordered: false },
   { pathname: '/', ordered: false, disableDrawer: true },
-  { pathname: 'https://medium.com/material-ui', title: 'Blog' },
+  { pathname: 'https://medium.com/material-ui', title: 'Blog', icon: 'BookIcon' },
 ];
 
 export default pages;

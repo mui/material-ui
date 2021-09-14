@@ -4,7 +4,7 @@
 
 ## Methodology
 
-Material-UI is community driven – issues that resonate most with the community get the most attention.
+MUI is community driven – issues that resonate most with the community get the most attention.
 Please **upvote** (👍) on GitHub the issues you are most interested in.
 Thank you for participating [in the developer survey](/blog/2020-developer-survey-results/).
 
@@ -29,17 +29,17 @@ Here are the top priorities:
 
 Our GitHub project's roadmap is where you can learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
 
-- [Material-UI community](https://github.com/mui-org/material-ui/projects/25). This repository focuses on empowering the creation of great design systems with React, as well as providing two ready to use themes (Material Design so far, another one coming in the near future).
-- [Material-UI X](https://github.com/mui-org/material-ui-x/projects/1). This repository focuses on providing advanced React components.
+- [MUI community](https://github.com/mui-org/material-ui/projects/25). This repository focuses on empowering the creation of great design systems with React, as well as providing two ready to use themes (Material Design so far, another one coming in the near future).
+- [MUI X](https://github.com/mui-org/material-ui-x/projects/1). This repository focuses on providing advanced React components.
 
 ## New components
 
-Here are the components we will work on being supported in the Material-UI ecosystem, no matter if they are part of the [community edition](https://github.com/mui-org/material-ui) (MIT license) or [Material-UI X](https://github.com/mui-org/material-ui-x), a paid extension for enterprises:
+Here are the components we will work on being supported in the MUI ecosystem, no matter if they are part of the [community edition](https://github.com/mui-org/material-ui) (MIT license) or [MUI X](https://github.com/mui-org/material-ui-x), a paid extension for enterprises:
 
 - 🧪 Close to becoming stable, already released as unstable
 - 🛠 Work in progress, will be or already released as unstable
 - ⏳ Planning to build
-- ⭐️ We will make some of the features available in [Material-UI X](https://github.com/mui-org/material-ui-x) (parts won't be MIT)
+- ⭐️ We will make some of the features available in [MUI X](https://github.com/mui-org/material-ui-x) (parts won't be MIT)
 
 | Name                                                                              | Status |
 | :-------------------------------------------------------------------------------- | ------ |
@@ -74,4 +74,4 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Tree View - Drag & Drop                                                           | ⏳⭐️  |
 | Tree View - Virtualization                                                        | ⏳⭐️  |
 
-> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction, for informational purposes only. We may decide to add or remove new items at any time, depending on our capability to deliver while meeting our quality standards. The development, releases, and timing of any features or functionality remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.
+> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction, for informational purposes only. We may decide to add or remove new items at any time, depending on our capability to deliver while meeting our quality standards. The development, releases, and timing of any features or functionality remains at the sole discretion of MUI. The roadmap does not represent a commitment, obligation, or promise to deliver at any time.

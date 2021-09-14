@@ -6,12 +6,12 @@
 
 L'utilitaire space convertit les marges abrégées et les accessoires de remplissage en déclarations CSS de marge et de remplissage. Les accessoires sont nommés au format `{property}{sides}`.
 
-Where *property* is one of:
+Où *propriété* correspond à :
 
-- `m` - for classes that set *margin*
-- `p` - for classes that set *padding*
+- `m` - pour les classes qui définissent une *marge*
+- `p` - pour les classes qui définissent le *padding*
 
-Where *sides* is one of:
+Où *côtés* est l'un des :
 
 - `t` - for classes that set *margin-top* or *padding-top*
 - `b` - for classes that set *margin-bottom* or *padding-bottom*
@@ -25,7 +25,7 @@ Where *sides* is one of:
 
 En fonction de l'entrée et de la configuration du thème, la transformation suivante est appliquée :
 
-- input: `number` & theme: `number`: the property is multiplied by the theme value.
+- entrée : `numéro` & theme : `nombre` : la propriété est multipliée par la valeur du thème.
 
 ```jsx
 const theme = {
@@ -38,7 +38,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 16px;
 ```
 
-- input: `number` & theme: `array`: the property is value is used as the array index.
+- entrée : `numéro` & thème : `tableau` : la propriété est la valeur est utilisée comme index du tableau.
 
 ```jsx
 const theme = {
@@ -50,7 +50,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 3px;
 ```
 
-- input: `number` & theme: `function`: the function is called with the property value.
+- entrée : `numéro` & thème : `fonction` : la fonction est appelée avec la valeur de la propriété.
 
 ```jsx
 const theme = {
@@ -61,7 +61,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 4px;
 ```
 
-- input: `string`: the property is passed as raw CSS value.
+- input : `string` : la propriété est passée en tant que valeur CSS brute.
 
 ```jsx
 <Box sx={{ m: "2rem" }} /> // margin: 2rem;

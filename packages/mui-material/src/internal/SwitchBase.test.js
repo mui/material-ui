@@ -407,7 +407,7 @@ describe('<SwitchBase />', () => {
         React.version.startsWith('16')
           ? 'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.'
           : 'Warning: A component is changing an uncontrolled input to be controlled.',
-        'Material-UI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
+        'MUI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
       ]);
     });
 
@@ -430,7 +430,7 @@ describe('<SwitchBase />', () => {
         React.version.startsWith('16')
           ? 'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.'
           : 'Warning: A component is changing an uncontrolled input to be controlled.',
-        'Material-UI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
+        'MUI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
       ]);
     });
   });

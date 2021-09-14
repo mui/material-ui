@@ -69,7 +69,7 @@ function App() {
 
 ## Render input
 
-We introduced a new **required** `renderInput` prop. This simplifies using non-Material-UI text field input components.
+We introduced a new **required** `renderInput` prop. This simplifies using non-MUI text field input components.
 
 ```jsx
 <DatePicker renderInput={(props) => <TextField {...props} />} />

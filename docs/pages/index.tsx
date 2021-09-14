@@ -167,6 +167,7 @@ export default function LandingPage() {
         </main>
         <AppFooter />
       </Box>
+      {/* #major-version-switch */}
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
@@ -175,7 +176,7 @@ export default function LandingPage() {
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Material-UI",
+  "name": "MUI",
   "url": "https://material-ui.com/",
   "logo": "https://material-ui.com/static/logo.png",
   "sameAs": [

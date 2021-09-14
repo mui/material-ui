@@ -180,7 +180,7 @@ const futureRolesData = {
     {
       title: 'Support Engineer',
       description:
-        'Ensure that our users wildly succeed on their journey with Material-UI. You’ll directly work with users, customers, and potential customers to unblock them from using the products, triage and resolve issues, and use this direct feedback to drive direct improvements in Material-UI.',
+        'Ensure that our users wildly succeed on their journey with MUI. You’ll directly work with users, customers, and potential customers to unblock them from using the products, triage and resolve issues, and use this direct feedback to drive direct improvements in MUI.',
     },
   ],
 };
@@ -577,7 +577,7 @@ export default function Careers() {
     <BrandingProvider>
       <Head
         title="Careers - MUI"
-        description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+        description="MUI (formerly MUI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
       />
       <AppHeader />
       <main>

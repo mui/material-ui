@@ -1,4 +1,5 @@
 import { deepmerge } from '@mui/utils';
+import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import { createTheme, ThemeOptions, Theme } from '@mui/material/styles';
 
 declare module '@mui/material/styles/createPalette' {
@@ -214,6 +215,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
       fontFamilyCode: ['"IBM Plex Mono"', ...systemFont].join(','),
       fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
+      fontFamilySystem: systemFont.join(','),
       fontWeightExtraBold: 800,
       h1: {
         fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
@@ -396,6 +398,16 @@ export function getThemedComponents(theme: Theme) {
           },
         },
       },
+      MuiSelect: {
+        defaultProps: {
+          IconComponent: ArrowDropDownRounded,
+        },
+        styleOverrides: {
+          iconFilled: {
+            top: 'calc(50% - .25em)',
+          },
+        },
+      },
       MuiTab: {
         defaultProps: {
           disableTouchRipple: true,
@@ -486,6 +498,12 @@ export function getThemedComponents(theme: Theme) {
             width: 32,
             height: 20,
             padding: 0,
+            '& .MuiSwitch-switchBase': {
+              '&.Mui-checked': {
+                transform: 'translateX(11px)',
+                color: '#fff',
+              },
+            },
           },
           switchBase: {
             height: 20,
@@ -494,10 +512,6 @@ export function getThemedComponents(theme: Theme) {
             color: '#fff',
             '&.Mui-checked + .MuiSwitch-track': {
               opacity: 1,
-            },
-            '&.Mui-checked': {
-              transform: 'translateX(11px)',
-              color: '#fff',
             },
           },
           track: {

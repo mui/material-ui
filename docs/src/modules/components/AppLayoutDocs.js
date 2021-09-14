@@ -60,14 +60,14 @@ const StyledAppContainer = styled(AppContainer, {
   };
 });
 
-const ActionsDiv = styled('div')({
-  position: 'absolute',
-  right: 20,
-  top: 120,
+const ActionsDiv = styled('div')(({ theme }) => ({
   display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-end',
-});
+  marginTop: -10,
+  marginBottom: -15,
+  [theme.breakpoints.up('lg')]: {
+    justifyContent: 'flex-end',
+  },
+}));
 
 function AppLayoutDocs(props) {
   const {
@@ -87,10 +87,10 @@ function AppLayoutDocs(props) {
   return (
     <AppFrame>
       <AdManager>
-        <Head title={`${title} - Material-UI`} description={description} />
+        <Head title={`${title} - MUI`} description={description} />
         {disableAd ? null : (
           <AdGuest>
-            <Ad placement="body" />
+            <Ad />
           </AdGuest>
         )}
         <Main disableToc={disableToc}>

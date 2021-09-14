@@ -135,7 +135,7 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 <!-- #default-branch-switch -->
 
-- 📦 [5.6 kB gzipped](https://bundlephobia.com/result?p=@mui/core@next)
+- 📦 [5.6 kB gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
 
 The slider also comes with an unstyled version.
 It's ideal for doing heavy customizations and minimizing bundle size.

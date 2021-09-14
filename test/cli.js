@@ -35,7 +35,7 @@ async function run(argv) {
   if (argv.bail) {
     args.push('--bail');
   }
-  if (argv.inspectBrk) {
+  if (argv.debug) {
     args.push('--inspect-brk');
   }
   if (!argv.single) {
@@ -79,11 +79,6 @@ yargs
         })
         .option('bail', {
           alias: 'b',
-          description: 'Stop on first error.',
-          type: 'boolean',
-        })
-        .option('inspect-brk', {
-          alias: 'd',
           description: 'Stop on first error.',
           type: 'boolean',
         })

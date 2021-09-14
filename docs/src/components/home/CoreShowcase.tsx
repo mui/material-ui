@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme, styled, alpha } from '@mui/material/styles';
-import { shouldForwardProp } from '@mui/system';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -12,6 +11,7 @@ import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
 import TouchAppRounded from '@mui/icons-material/TouchAppRounded';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
+import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const darkDesignTokens = getDesignTokens('dark');
 
@@ -53,24 +53,6 @@ darkBrandingTheme = createTheme(darkBrandingTheme, {
     },
   },
 });
-
-const FlashCode = styled('div', {
-  shouldForwardProp: (prop) =>
-    shouldForwardProp(prop) && prop !== 'endLine' && prop !== 'startLine',
-})<{ endLine?: number; startLine?: number }>(({ theme, startLine = 0, endLine = 1 }) => ({
-  borderRadius: 2,
-  pointerEvents: 'none',
-  position: 'absolute',
-  left: 0,
-  right: 0,
-  top: `calc(0.75rem * 1.5 * ${startLine})`,
-  height: `calc(0.75rem * 1.5 * ${endLine - startLine + 1})`,
-  transition: '0.3s',
-  ...theme.typography.caption,
-  backgroundColor: alpha(theme.palette.primary.main, 0.2),
-  border: '1px solid',
-  borderColor: theme.palette.primary.dark,
-}));
 
 const lineMapping: Record<string, number | number[]> = {
   avatar: 2,

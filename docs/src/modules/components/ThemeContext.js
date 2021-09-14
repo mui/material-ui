@@ -228,6 +228,12 @@ export function ThemeProvider(props) {
           ...paletteColors,
           mode: paletteMode,
         },
+        // v5 migration
+        props: {
+          MuiBadge: {
+            overlap: 'rectangular',
+          },
+        },
         spacing,
       },
       dense ? highDensity : null,

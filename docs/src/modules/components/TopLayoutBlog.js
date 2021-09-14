@@ -87,7 +87,7 @@ function TopLayoutBlog(props) {
   return (
     <AppFrame disableDrawer>
       <Head
-        title={`${finalTitle} - Material-UI`}
+        title={`${finalTitle} - MUI`}
         description={description}
         largeCard={headers.card === 'true' ? true : undefined}
         card={

@@ -11,7 +11,7 @@ const LinkBehavior = React.forwardRef<
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
-  // Map href (Material-UI) -> to (react-router)
+  // Map href (MUI) -> to (react-router)
   return <RouterLink data-testid="custom-link" ref={ref} to={href} {...other} />;
 });
 

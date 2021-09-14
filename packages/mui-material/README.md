@@ -8,10 +8,10 @@ Install the package in your project directory with:
 
 ```sh
 // with npm
-npm install @mui/material@next
+npm install @mui/material
 
 // with yarn
-yarn add @mui/material@next
+yarn add @mui/material
 ```
 
 ## Documentation

@@ -1,6 +1,6 @@
-## Material-UI's sponsors
+## MUI's sponsors
 
-The continued development and maintenance of Material-UI is made possible by these generous sponsors:
+The continued development and maintenance of MUI is made possible by these generous sponsors:
 
 ### Diamond 💎
 
@@ -29,4 +29,4 @@ _1/3 slots available_
 
 ### There are more!
 
-See the full list of [our sponsors](/discover-more/backers/), and learn how you can contribute to the future of Material-UI.
+See the full list of [our sponsors](/discover-more/backers/), and learn how you can contribute to the future of MUI.

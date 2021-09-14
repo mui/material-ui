@@ -64,7 +64,7 @@ But this summary is just scratching the surface. We have accepted 572 commits fr
 
 ## Company
 
-We are thrilled to welcome two new full-time developers on Material-UI:
+We are thrilled to welcome two new full-time developers on MUI:
 
 - [Dmitriy Kovalenko](https://github.com/dmtrKovalenko), the author of @material-ui/pickers.
   <img src="https://avatars0.githubusercontent.com/u/16926049" alt="dmitriy" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
@@ -84,8 +84,8 @@ We are thrilled to welcome two new full-time developers on Material-UI:
 
 We'll do our best, no guarantee!
 
-- 📣 We will analyze and publish the results of the "Material-UI Developer Survey 2020". If you haven't contributed to it yet, you can follow this link to [fill it in](https://forms.gle/TYWRdvgyZs4AhZNv8), thanks!
-- 🎨 We will release Figma assets for Material-UI.
+- 📣 We will analyze and publish the results of the "MUI Developer Survey 2020". If you haven't contributed to it yet, you can follow this link to [fill it in](https://forms.gle/TYWRdvgyZs4AhZNv8), thanks!
+- 🎨 We will release Figma assets for MUI.
 
   <img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="max-width: 160px; margin-bottom: 24px;" />
 

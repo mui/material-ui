@@ -6,9 +6,27 @@ import AddCircleOutlineRounded from '@mui/icons-material/AddCircleOutlineRounded
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
 export default (function More(props: ButtonBaseProps) {
+  const ref = React.useRef<null | HTMLButtonElement>(null);
   return (
     <ButtonBase
+      ref={ref}
       {...props}
+      onClick={(event) => {
+        if (ref.current) {
+          ref.current.scrollIntoView({ block: 'nearest' });
+        }
+        if (props.onClick) {
+          props.onClick(event);
+        }
+      }}
+      onFocusVisible={(event) => {
+        if (ref.current) {
+          ref.current.scrollIntoView({ block: 'nearest' });
+        }
+        if (props.onFocusVisible) {
+          props.onFocusVisible(event);
+        }
+      }}
       sx={{
         p: 2,
         display: 'flex',

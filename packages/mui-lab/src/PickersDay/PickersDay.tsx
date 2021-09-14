@@ -269,7 +269,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   // Focusing in passive effects in Popper causes scroll jump.
   useEnhancedEffect(() => {
     if (autoFocus && !disabled && !isAnimating && !outsideCurrentMonth) {
-      // ref.current being null would be a bug in Material-UI
+      // ref.current being null would be a bug in MUI
       ref.current!.focus();
     }
   }, [autoFocus, disabled, isAnimating, outsideCurrentMonth]);

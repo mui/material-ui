@@ -64,9 +64,12 @@ module.exports = {
       config.externals = [
         (ctx, callback) => {
           const { request } = ctx;
-          const hasDependencyOnRepoPackages = ['notistack', '@material-ui/data-grid'].includes(
-            request,
-          );
+          const hasDependencyOnRepoPackages = [
+            'notistack',
+            '@mui/x-data-grid',
+            '@mui/x-data-grid-pro',
+            '@mui/x-data-grid-generator',
+          ].includes(request);
 
           if (hasDependencyOnRepoPackages) {
             return callback(null);
@@ -106,7 +109,8 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)(notistack|@material-ui(\/|\\)data-grid)/,
+            include:
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -174,7 +178,7 @@ module.exports = {
     REACT_STRICT_MODE: reactStrictMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     // #default-branch-switch
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/next',
+    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/master',
     SOURCE_CODE_REPO: 'https://github.com/mui-org/material-ui',
     STAGING: staging,
   },

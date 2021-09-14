@@ -10,7 +10,7 @@ export default function useMediaQuery(queryInput, options = {}) {
     if (typeof queryInput === 'function' && theme === null) {
       console.error(
         [
-          'Material-UI: The `query` argument provided is invalid.',
+          'MUI: The `query` argument provided is invalid.',
           'You are providing a function without a theme in the context.',
           'One of the parent elements needs to use a ThemeProvider.',
         ].join('\n'),
@@ -22,7 +22,7 @@ export default function useMediaQuery(queryInput, options = {}) {
   query = query.replace(/^@media( ?)/m, '');
 
   // Wait for jsdom to support the match media feature.
-  // All the browsers Material-UI support have this built-in.
+  // All the browsers MUI support have this built-in.
   // This defensive check is here for simplicity.
   // Most of the time, the match media logic isn't central to people tests.
   const supportMatchMedia =

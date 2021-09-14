@@ -86,7 +86,7 @@ describe('<TrapFocus />', () => {
           <UnfocusableDialog />
         </TrapFocus>,
       );
-    }).toErrorDev('Material-UI: The modal content node does not accept focus');
+    }).toErrorDev('MUI: The modal content node does not accept focus');
   });
 
   it('should not attempt to focus nonexistent children', () => {
