@@ -36,6 +36,9 @@ This release features some major highlights:
   - [Change on the supported platforms](#change-on-the-supported-platforms)
 - [Design kits](#design-kits)
 - [What's next?](#whats-next)
+  - [Unstyled components and hooks](#unstyled-components-and-hooks)
+  - [Second design system](#second-design-system)
+  - [MUI X](#mui-x)
 
 ## High-level goals for v5
 
@@ -436,6 +439,15 @@ Bonus point, we run [React v18](https://github.com/reactwg/react-18) (unreleased
 - Why does it even exist
 - Present the new Data Grid component, hopefully, released as v5.0.0 at the same time.
 
+### Date pickers
+
+- Transfer of ownership from third-party to mui-org.
+
+### Data Grid
+
+- See next section
+- Covered a bit in https://material-ui.com/blog/2020-q3-update/
+
 ## New components
 
 This release comes with eight new components!
@@ -524,15 +536,6 @@ The following components are now available in the lab:
 
   <a href="/components/masonry/"><img src="/static/blog/mui-core-v5/masonry.png" alt="" style="width: 505px; margin-bottom: 16px;" /></a>
 
-### Date pickers
-
-- Transfer of ownership from third-party to mui-org.
-
-### Data Grid
-
-- See next section
-- Covered a bit in https://material-ui.com/blog/2020-q3-update/
-
 ## v4 migration
 
 We have been meticulous to minimize the pain on the migration from v4 to v5. We know how daunting an upgrade can be.
@@ -600,9 +603,7 @@ These changes have allowed us to save [6 kB gzipped](https://github.com/mui-org/
 
 It's new, link core and x roadmaps.
 
-### Core
-
-#### Unstyled components and hooks
+### Unstyled components and hooks
 
 We still have a lot of work to do to have a full set of unstyled components.
 You can keep track of our progress in [#27170](https://github.com/mui-org/material-ui/issues/27170).
@@ -617,8 +618,6 @@ You can help us shape these new packages by taking part in discussions.
 There are [RFCs](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+label%3Adiscussion+%5BRFC%5D) waiting for responses.
 Don't hesitate to let us know what you think!
 
-#### Joy
-
 ### Second design system
 
 Developing a new design system is one of the main initiatives, alongside this new brand and the unstyled components, to grow MUI beyond Material Design. Its codename is **Joy** and we have just started [the high-level discussion](https://github.com/mui-org/material-ui/discussions/27803) around it if you want more context.
@@ -629,12 +628,13 @@ We're prioritizing developing first the most frequently used components as we pl
 
 We'll keep you updated about the progress. And as always, you're invited for contributing to it as well. Stay tuned!
 
-### X
+### MUI X
 
 - Data grid
 
 ## Thank you
 
-Finally, one last thank you to everyone who's contributed to MUI v5.
+Finally, one last thank you to everyone who's contributed to MUI Core v5.
+We have almost reached 6,000 commits on this effort, alone.
 The whole team is very excited about this release! It's just the beginning.
 We will keep working hard to deliver the best possible React UI components while making it accessible to the many.
