@@ -531,8 +531,23 @@ It's new, link core and x roadmaps.
 
 ### Core
 
-- Unstyled
-- Joy
+#### Unstyled components and hooks
+
+We still have a lot of work to do to have a great unstyled package.
+You can keep track of our progress in [#27170](https://github.com/mui-org/material-ui/issues/27170).
+
+Our high-level plan is to use the unstyled components and hooks as a base of Material components.
+We are aiming to complete this effort with the next major release (v6).
+As of now, you can evaluate the unstyled primitives in the `@mui/base` package or check out the new implementation of Material components in `@mui/material-next` package.
+Please note that both packages are in alpha and breaking changes can and will occur.
+We want to take the opportunity to create the best APIs we possibly can.
+
+You can help us shape these new packages by taking part in discussions.
+There are [RFCs](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+label%3Adiscussion+%5BRFC%5D) waiting for responses.
+Do not hesitate to let us know what you think.
+We highly value the voice of the community.
+
+#### Joy
 
 ### X
 
