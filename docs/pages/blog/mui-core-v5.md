@@ -129,7 +129,7 @@ We started to [explore](https://medium.com/material-ui/introducing-material-ui-d
    This is especially true when more than one person is building the application, as there has to be some coordination amongst members of the team regarding the choice of design tokens and how they are used, what parts of the theme structure should be used with what CSS properties, and so on.
 
 In v5, we have pushed the solution one step further with the `sx` prop.
-The prop is now available on **all** the components thanks to the migration away from JSS.
+The prop is now available on **all** the components (made possible by emotion).
 It exposes a superset of the CSS API: the normal CSS properties, shorthands, and media query helpers.
 
 For instance, you can add two vertical margin units with:
