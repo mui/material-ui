@@ -25,9 +25,8 @@ The community [loved it](https://news.ycombinator.com/item?id=8582439) and was c
 We made it easy for the community to contribute and started actively reviewing pull requests and guiding issues.
 Over 2,200 developers cared enough about our mission to contribute, so far.
 Things started to really take off with [the release of v1](/blog/material-ui-v1-is-out/) in 2018.
-The frontend community was actively migrating to React, but didn't have the bandwidth to rebuild legacy interfaces from scratch.
-
-and before we knew it, we had grown into the most popular React UI component library.
+The frontend community was actively migrating to React, but didn't have the bandwidth to rebuild legacy interfaces from scratch,
+so before we knew it, we had grown into the most popular React UI component library.
 The components were heavily used and customized to build customer-facing applications, internal tools, and mobile-hybrid apps.
 
 ## A larger focus

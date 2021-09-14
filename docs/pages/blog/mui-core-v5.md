@@ -2,7 +2,7 @@
 title: Introducing MUI Core v5.0
 description: After over 400 days of development and over 40 canary releases, we are excited to introduce MUI Core v5.0.0!
 date: 2021-09-15T00:00:00.000Z
-authors: ['mbrookes', 'eps1lon', 'mnajdova', 'michaldudak', 'siriwatknp']
+authors: ['otassinari', 'eps1lon', 'mnajdova', 'michaldudak', 'siriwatknp']
 card: true
 ---
 
@@ -10,7 +10,7 @@ After over 400 days of development and over 40 canary releases, we are excited t
 This release features some major highlights:
 
 - [High-level goals for v5](#high-level-goals-for-v5)
-- [A new branding](#a-new-branding)
+- [A new brand](#a-new-brand)
 - [Improved customizability](#improved-customizability)
   - [Migration from JSS to emotion](#migration-from-jss-to-emotion)
   - [The sx prop](#the-sx-prop)
@@ -38,22 +38,22 @@ This release features some major highlights:
 
 ## High-level goals for v5
 
-In our last survey, the number of developers that complained about improving Material Design implementation was down by [60%](/blog/2020-developer-survey-results/#comparison-with-last-year) compared to the year before.
-At the same time, 400% more developers were struggling to customize the components.
+In our last survey, the number of developers that commented about improving the Material Design implementation was down by [60%](/blog/2020-developer-survey-results/#comparison-with-last-year) compared to the year before.
+At the same time, 5X more developers were struggling to customize the components.
 
 It is based on this context that we started to work on v5 in 2019.
 Our primary focus was to revamp the **customization Developer Experience (DX)**.
-It had become clear that design and DX were key to unlock the next stage of growth.
+It had become clear that design and DX were key to unlocking the next stage of growth.
 
-The last major iteration on the library was done with MUI v4, released [2.5 years ago](/blog/material-ui-v4-is-out/).
-It's been a while, a too-long period without innovation.
+The last major iteration on the library was completed with MUI v4, released [two-and-a-half years ago](/blog/material-ui-v4-is-out/),
+meaning over a year without innovation.
 So, we have approached v5 with a focus on delivering **long-term value**.
-For instance, we have stopped all development in v4 as soon as we started to work on v5.
-We have taken the liberty of introducing breaking changes anytime we have identified a long-term potential.
+For instance, we stopped all development on v4 as soon as we started to work on v5,
+and have taken the liberty of introducing breaking changes anytime we have identified a long-term potential.
 
 You can find the initial RFC plan for v5 in [issue #20012](https://github.com/mui-org/material-ui/issues/20012).
 
-## A new branding
+## A new brand
 
 Material-UI **is now MUI**! Head to the [dedicated blog post](/blog/material-ui-is-now-mui/) to learn more.
 
@@ -63,8 +63,8 @@ Material-UI **is now MUI**! Head to the [dedicated blog post](/blog/material-ui-
 
 The first step we took to improve the customization experience was to rethink the styling solution from a blank page.
 
-If you have been following us for a long time, you have probably noticed that we have iterated, a lot, on the styling solution in 7 years.
-We have started with Less, then inline-style, then JSS, and now emotion. Why change it again? We went on solving the following **problems**:
+If you have been following MUI for a long time, you have probably noticed that we have iterated (a lot!) on the styling solution over the last seven years.
+We started with Less, then inline-styles, then JSS, and now emotion. Why change it again? We wanted to solve the following **problems**:
 
 1. The React community is settling on `styled` as the **most popular** CSS-in-JS API. We have used popularity as a proxy for "best".
 
@@ -81,15 +81,15 @@ const StyledDiv = styled.div`
 
 <p class="blog-description"><a href="https://codesandbox.io/s/elastic-yonath-uedfv?file=/src/App.js">Codesandbox</a></p>
 
-You can find it on [styled-components](https://styled-components.com/), [emotion](https://emotion.sh/docs/styled), [goober](https://goober.js.org/), [stitches](https://stitches.dev/docs/api#styled), or [linaria](https://linaria.dev/).
-While MUI is compatible with any styling solution (as long as the styles have more specificity, e.g. Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](/styles/basics/#hook-api) API.
+You can find it in [styled-components](https://styled-components.com/), [emotion](https://emotion.sh/docs/styled), [goober](https://goober.js.org/), [stitches](https://stitches.dev/docs/api#styled), or [linaria](https://linaria.dev/).
+While MUI is compatible with any styling solution (as long as the styles have more specificity, for example Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](/styles/basics/#hook-api) API.
 
 2. Our React integration with JSS (`@mui/styles`) is **too slow** to unlock the next layer of customization DX we aim for.
-   The static CSS generation using v4 was fast enough, even [faster](https://codesandbox.io/s/nb05w?file=/src/App.js) than emotion.
-   However, the dynamic style generation was too slow to be used in production. We would have needed to reimplement it.
-3. Many developers were advocating for MUI to [migrate to styled-components](https://github.com/mui-org/material-ui/issues/6115).
-   It would mean giving up on the custom React JSS wrapper we maintain.
-   From our experience, maintaining a custom styling solution takes a considerable amount of time. Is it the best use of our time?
+   The static CSS generation using v4 was fast enough, even [faster](https://codesandbox.io/s/nb05w?file=/src/App.js) than emotion,
+   however the dynamic style generation was too slow to be used in production. We would have needed to reimplement it.
+3. Many developers were advocating for MUI to [migrate to styled-components](https://github.com/mui-org/material-ui/issues/6115),
+   which would allow us to drop the custom React JSS wrapper we maintain.
+   From our experience, maintaining a custom styling solution takes a considerable amount of time.
 
 After [exploring](https://github.com/mui-org/material-ui/issues/22342) many different options, we settled on what we believe is a great tradeoff to **solve** the above issues:
 
@@ -99,16 +99,16 @@ After [exploring](https://github.com/mui-org/material-ui/issues/22342) many diff
 
    - `@mui/styled-engine`: implemented with emotion (default).
    - `@mui/styled-engine-sc`: implemented with styled-components
-   - If you are using a different styled engine, feel free to contribute a wrapper. For instance, there is [one attempt with goober](https://github.com/mui-org/material-ui/pull/27776), a library obsessing on bundle size (3kB gzipped).
+   - If you are using a different styling library, feel free to contribute a wrapper. For instance, there is [one attempt with goober](https://github.com/mui-org/material-ui/pull/27776), a library obsessing on bundle size (3kB gzipped).
 
-   This allows developers to swap between different styled engines. For instance, styled-components users do no longer need to bundle emotion **and** styled-component, nor do they need to configure the server-side rendering for each.
-   How does the [swap works](/guides/styled-engine/#how-to-switch-to-styled-components)? The same way it does from React to Preact.
+   This allows developers to swap between different style engines. For example, styled-components users no longer need to bundle emotion **and** styled-component, nor do they need to configure the server-side rendering for each.
+   How does the [swap work](/guides/styled-engine/#how-to-switch-to-styled-components)? The same way it does from React to Preact.
 
-3. For the last couple of months we have been [sponsoring](https://opencollective.com/emotion) emotion with a $100/month grant. We are now increasing this amount to $1,000/month. It's in our best interest to help ensure the library keeps pushing the envelope, staying state of the art in a competitive space.
+3. For the last couple of months we have been [sponsoring](https://opencollective.com/emotion) emotion with a $100/month grant. We are now increasing this amount to $1,000/month. It's in our best interest to help ensure the library keeps pushing the envelope, leading the state of the art in a competitive space.
 
-The first immediate benefit was at the **performance** level. the `<Box>` component is [x5-x10 more performant](https://codesandbox.io/s/zlh5w?file=/src/App.js) in v5, compared to v4.
+The first immediate benefit of the move to emotion was **performance**. The `<Box>` component is [x5-x10 more performant](https://codesandbox.io/s/zlh5w?file=/src/App.js) in v5, compared to v4.
 
-We would like to thanks all the community contributors that made the migration of the components and documentation possible in [#24405](https://github.com/mui-org/material-ui/issues/24405) and [#16947](https://github.com/mui-org/material-ui/issues/16947): [@natac13](https://github.com/natac13), [@vicasas](https://github.com/vicasas), [@mngu](https://github.com/mngu), [@kodai3](https://github.com/kodai3), [@xs9627](https://github.com/xs9627), [@povilass](https://github.com/povilass), [@duganbrett](https://github.com/duganbrett), [@vinyldarkscratch](https://github.com/vinyldarkscratch), and more.
+We would like to thank all the community contributors that made the migration of the components and documentation possible in [#24405](https://github.com/mui-org/material-ui/issues/24405) and [#16947](https://github.com/mui-org/material-ui/issues/16947): [@natac13](https://github.com/natac13), [@vicasas](https://github.com/vicasas), [@mngu](https://github.com/mngu), [@kodai3](https://github.com/kodai3), [@xs9627](https://github.com/xs9627), [@povilass](https://github.com/povilass), [@duganbrett](https://github.com/duganbrett), [@vinyldarkscratch](https://github.com/vinyldarkscratch), and more.
 It was a major undertaking!
 
 Going forward, developers can either keep using JSS with the legacy `@mui/styles` package [or migrate from JSS](/guides/migration-v4/#migrate-from-jss).
@@ -117,10 +117,10 @@ We recommend the latter to match the core components.
 ### The `sx` prop
 
 While the `styled` API is great to style complex components or to create highly reused components, there are cases where it's overkill.
-We started to [explore](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df) this **problem** three years ago with the introduction of the `<Box>` component to solve:
+We started to [explore](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df) this **problem** three years ago with the introduction of the `<Box>` component to solve the following concerns:
 
 1. **Switching context** wastes time.
-   The styled API forces to constantly jump between the usage of the styled components and where they are defined.
+   The styled API forces you to constantly jump between the use of the styled components and where they are defined.
    Could we move the style descriptions right where we need them?
 2. **Naming things** is hard.
    Have you ever found yourself struggling to find a good name for a styled component?
@@ -130,7 +130,7 @@ We started to [explore](https://medium.com/material-ui/introducing-material-ui-d
 
 In v5, we have pushed the solution one step further with the `sx` prop.
 The prop is now available on **all** the components thanks to the migration away from JSS.
-It exposes as a superset of the CSS API, the normal CSS properties, shorthands, and media query helpers.
+It exposes a superset of the CSS API: the normal CSS properties, shorthands, and media query helpers.
 
 For instance, you can add two vertical margin units with:
 
@@ -141,8 +141,8 @@ For instance, you can add two vertical margin units with:
 
 <p class="blog-description"><a href="https://codesandbox.io/s/nostalgic-williams-zmo5r?file=/src/App.js">Codesandbox</a></p>
 
-Developers seem to already [love it](https://twitter.com/AnsonLowZF/status/1397034690771443715).
-You can find a [side-by-side comparison](/system/basics/#why-use-the-system) of `styled` vs. `sx` in the documentation to determine when you want to use the prop.
+Developers already seem to [love it](https://twitter.com/AnsonLowZF/status/1397034690771443715).
+You can find a [side-by-side comparison](/system/basics/#why-use-the-system) of `styled` vs. `sx` in the documentation to determine when you should use the prop.
 Find where your cursor is. Some developers use it for everything, others with parsimony.
 
 The four components categorized as CSS utilities: Box, Grid, Typography, and Stack also expose a subset of the `sx` prop as flat props, for instance:
@@ -158,20 +158,20 @@ See the [API tradeoff](/system/basics/#api-tradeoff) section of the documentatio
 ### Dynamic props
 
 React is about composition. Developers can import one component, extend it, and re-export the wrapper.
-It's how developers have extended our core components up until v4. However:
+It's how developers have extended the core components up until v4. However:
 
 1. Each time you create a new component, it's another import option for your team.
-   Now, you have to enforce that the right component is imported.
+   Now, you have to ensure that the right component is imported.
 2. Adding a new `color="success"` prop to a Button component requires non-trivial CSS customizations.
    How do you ensure that all the styles (hover, focus, focus-visible) are consistent with the other built-in colors?
 3. It adds a boilerplate.
 
-It's why v5 comes with the capability to extend the built-in behavior of the components; right from the theme.
-It was one of the most upvoted GitHub issues: [#13875](https://github.com/mui-org/material-ui/issues/13875).
+For this reason v5 comes with the capability to extend the built-in behavior of the components, right from the theme.
+This was one of the most upvoted GitHub issues: [#13875](https://github.com/mui-org/material-ui/issues/13875).
 In practice, the change makes the MUI Core components extendable placeholders.
 
 **First**, you can use the [existing style mapping](/customization/palette/#adding-new-colors) of the components.
-For instance, you can add a new neutral color to the palette. The Button computes the right derivative colors.
+For example, you can add a new `neutral` color to the palette, and the Button computes the right derivative colors.
 
 ```jsx
 import { createTheme, Button } from '@mui/material';
@@ -208,7 +208,7 @@ declare module '@mui/material/Button' {
 
 <p class="blog-description"><a href="https://codesandbox.io/s/stupefied-mclaren-ho4zs?file=/src/App.tsx">Codesandbox</a></p>
 
-**Second**, you can add [custom variants](/customization/theme-components/#adding-new-component-variants) in the theme, overriding the CSS for specific prop combinations.
+**Second**, you can add [custom variants](/customization/theme-components/#adding-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
 
 ```jsx
 import { createTheme, Button } from '@mui/material';
@@ -248,14 +248,14 @@ declare module '@mui/material/Button' {
 ### Global class names
 
 In v3, we heard how frustrating using the `classes` prop API correctly can sometimes be.
-In v4, we made [a step](/blog/material-ui-v4-is-out/#customization) toward adding global class names.
+In v4, we made [a step](/blog/material-ui-v4-is-out/#customization) towards adding global class names.
 They are present, as long as no more than one ThemeProvider is used.
 
 v5 doubles down on this direction by always adding global class names on the host DOM nodes.
-These class names are available for customizing the child elements.
-It can simplify the customization of complex components.
+These class names are available for customizing the child elements,
+which can simplify the customization of complex components.
 
-For instance, compare these three options to turn the outlined input's border color red:
+For example, compare these three options to turn the outlined input's border color red:
 
 ```tsx
 import TextField from '@mui/material/TextField';
@@ -305,13 +305,13 @@ They estimate that applying new styles on top of the Material Design components 
 They estimate that it will be performant enough, and they won't miss too much freedom.
 
 This tradeoff works **really well** when having a small, constrained engineering team or a large team building internal (/secondary) tools.
-But what about the medium/large size engineering team that works on ambitious projects? Shouldn't they have a better option than building the components from scratch to not include Material Design and maximize freedom?
+But what about the medium/large size engineering team that works on ambitious projects? Shouldn't they have a better option for not including Material Design and maximizing freedom than building the components from scratch?
 
-We started working on this exact problem.
-We are isolating the logic of the Material Design components into hooks and unstyled components.
+We have started working on this exact problem,
+isolating the logic of the Material Design components into hooks and unstyled components.
 While the effort is still in alpha, you can already find the first building blocks in the `@mui/base` package.
 
-For instance, it's featuring:
+So far it features:
 
 - [Autocomplete](/components/autocomplete/#useautocomplete)
 - [Button](/components/buttons/#unstyled)
@@ -356,24 +356,24 @@ You can use [#27170](https://github.com/mui-org/material-ui/issues/27170) to fol
 ### Smaller demos in the docs
 
 We have used the migration of the demos from JSS to emotion as an opportunity to rework them.
-Many of the demos were added taking into account how they would help maintainers work on the components.
-We have reversed the priority, putting the developers using them [first](https://github.com/mui-org/material-ui/issues/22484).
+Many of the demos were originally added taking into account how they would help maintainers work on the components.
+Instead we have reversed the priority, putting the developers using them [first](https://github.com/mui-org/material-ui/issues/22484).
 
-In practice, it means that we have focused on breaking down complex demos into smaller ones.
-We aim for having as many "inline preview" as possible. It saves one click to expand the demo and the mental overhead of figuring out the part of the code that map with what you saw interesting on the screen.
+In practice, this means breaking down complex demos into smaller ones.
+We aim to have as many "inline preview" as possible. It saves one click to expand the demo, and the mental overhead of figuring out what part of the code maps with what of interest you saw on the screen.
 
 <a href="/components/buttons/#basic-button"><img src="/static/blog/mui-core-v5/inline-preview.png" alt="" style="width: 649px; margin-bottom: 16px;" /></a>
 
 ### Props descriptions in IntelliSense
 
 The best documentation is the one you don't need to open.
-We have moved all the props' descriptions to TypeScript, so the IntelliSense in your editor can show you more context.
+We have moved all the prop descriptions to TypeScript, so IntelliSense in your editor can show you more context.
 
 <img src="/static/blog/mui-core-v5/prop-descriptions.png" alt="" style="width: 649px; margin-bottom: 16px;" />
 
 <p class="blog-description">The popup explains what the <code>forcePopupIcon</code> prop is for.</p>
 
-These TypeScript props' descriptions are also used to generate the [API pages](/api/autocomplete/#props) of the documentation, so there is a single source of truth.
+These TypeScript prop descriptions are also used to generate the [API pages](/api/autocomplete/#props) of the documentation, so there is a single source of truth.
 
 ### Migration from Enzyme to Testing Library
 
@@ -403,28 +403,28 @@ This release comes with eight new components!
 
 ### Improved Grid
 
-The development of the Grid was mostly put on hold for the last 3 years, blocked by the size of the statically generated CSS with JSS.
-The [migration to emotion](#migration-from-jss-to-emotion) has unlocked the following, frequently requested, changes:
+The development of the Grid was mostly put on hold for the last three years, blocked by the size of the statically generated CSS with JSS.
+The [migration to emotion](#migration-from-jss-to-emotion) has unlocked the following frequently requested changes:
 
-We have added support for [row & column](/components/grid/#row-amp-column-spacing) spacing:
+Support for [row & column](/components/grid/#row-amp-column-spacing) spacing:
 
 ```jsx
 <Grid container rowSpacing={1} columnSpacing={2} />
 ```
 
-We have added support for [responsive values](/components/grid/#responsive-values) on all the props:
+Support for [responsive values](/components/grid/#responsive-values) on all the props:
 
 ```jsx
 <Grid container spacing={{ xs: 2, md: 3 }} />
 ```
 
-We have added support for a different [number of columns](/components/grid/#columns) than 12:
+Support for a different [number of columns](/components/grid/#columns) than 12:
 
 ```jsx
 <Grid container columns={16}>
 ```
 
-We have added an alternative implementation that uses [CSS grid](/components/grid/#css-grid-layout):
+An alternative implementation that uses [CSS grid](/components/grid/#css-grid-layout):
 
 ```jsx
 <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
@@ -450,19 +450,19 @@ We have made them [available](/components/material-icons/) in the `@mui/icons-ma
 
 ### Stack
 
-We have introduced a new `<Stack>` component.
-It handles one-dimensional layouts, it's similar to how Figma handles auto-layout.
+We have introduced a new `<Stack>` component
+to handle one-dimensional layouts. It's's similar to how Figma handles auto-layout.
 
 <a href="/components/stack/"><img src="/static/blog/mui-core-v5/stack.png" alt="" style="width: 532px; margin-bottom: 16px;" /></a>
 
-> Note that you might already be using `<Box display="flex" gap={1}>` to solve the same problem.
-> However [browser support](https://caniuse.com/flexbox-gap) for the flexbox `gap` CSS property is lacking in Safari.
+> Note that you might already be using `<Box display="flex" gap={1}>` to solve the same problem,
+> however [browser support](https://caniuse.com/flexbox-gap) for the flexbox `gap` CSS property is lacking in Safari.
 
 You can find [more details](/components/stack/) in the documentation.
 
 ### Promotion from the lab
 
-We have promoted six component from the lab, after over two years iterating on feedback:
+We have moved six components from the lab to the main component package, after over two years iterating on feedback:
 
 - [Autocomplete](/components/autocomplete/)
 - [Pagination](/components/pagination/)
@@ -475,13 +475,13 @@ We have promoted six component from the lab, after over two years iterating on f
 
 The lab hosts the incubator components that are not yet ready to move to the core.
 The main difference between the lab and the core is how the components are versioned.
-Having a separate lab package allows us to release breaking changes when necessary while the core package follows a [slower-moving policy](/versions/#release-frequency).
+Having a separate lab package allows us to release breaking changes when necessary while the core package follows a [slower cadence](/versions/#release-frequency).
 
 The following components are now available in the lab:
 
-- [LoadingButton](/components/buttons/#loading-buttons). It does what you would expect. It renders the `Button` in a loading/pending state.
-- [TrapFocus](/components/trap-focus/). This component traps the focus within a DOM node. For instance, it's used by the Modal for accessibility reasons.
-- [Masonry](/components/masonry/). One great use case for this component is when using the `Grid` component leads to wasting space. It's frequently used in dashboards.
+- [LoadingButton](/components/buttons/#loading-buttons). It does what you would expect. It renders the `Button` with a configurable loading/pending state.
+- [TrapFocus](/components/trap-focus/). This component traps the keyboard focus within a DOM node. For example, it's used by the Modal to prevent tabbing out of the component for accessibility reasons.
+- [Masonry](/components/masonry/). One great use case for this component is when using the `Grid` component leads to wasted space. It's frequently used in dashboards.
 
   <a href="/components/masonry/"><img src="/static/blog/mui-core-v5/masonry.png" alt="" style="width: 505px; margin-bottom: 16px;" /></a>
 
@@ -545,20 +545,20 @@ npm install @mui/icons-material @mui/lab
 yarn add @mui/icons-material @mui/lab
 ```
 
-### Change on the supported platforms
+### Changes to the supported platforms
 
-This breaking change is the opportunity to drop the support of legacy upstream dependencies.
+This breaking change is an opportunity to drop the support of legacy upstream dependencies.
 
 - We have updated the minimum supported TypeScript version from 3.2 to **3.5**.
-  It aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with versions of TypeScript that are less than two years old.
+  This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with versions of TypeScript that are less than two years old.
 - We have updated the minimum supported node.js version from 8.0 to **12.17**.
-  It aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode.
+  This aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode.
 - We have updated the minimum supported React version from 16.8 to **17.0**.
-  The breaking changes released between the two versions are [minors](https://reactjs.org/blog/2020/10/20/react-v17.html).
-- We have updated the browsers support.
-  - IE: **partial**. We have kept the logic that we added in the past to support IE 11.
-    However, we have stopped active work on it. We can't guarentee that it works correctly. It's discontinued.
-  - Edge: from 14 to **91**. The minimum version is based on Chromium.
+  The breaking changes released between the two versions are [very limited](https://reactjs.org/blog/2020/10/20/react-v17.html).
+- We have updated the supported browsers.
+  - IE: **partial**. We have kept the logic added in the past to support IE 11,
+    however we have stopped actively working on it. We can't guarantee that it works correctly. It's discontinued.
+  - Edge: from 14 to **91**. The minimum version based on Chromium.
   - Firefox: from 52 to **78**.
   - Chrome: from 49 to **90**. We have [assumed](https://developers.google.com/search/blog/2019/05/the-new-evergreen-googlebot) that Googlebot is always using the latest version of Chrome.
   - Safari: from 10 to **12.5**
@@ -583,16 +583,15 @@ It's new, link core and x roadmaps.
 We still have a lot of work to do to have a great set of unstyled components.
 You can keep track of our progress in [#27170](https://github.com/mui-org/material-ui/issues/27170).
 
-Our high-level plan is to use the unstyled components and hooks as a base of Material components.
-We are aiming to complete this effort with the next major release (v6).
-As of now, you can evaluate the unstyled primitives in the `@mui/base` package or check out the next implementation of the Material Design components in the `@mui/material-next` package (targeted at v6).
-Please note that both packages are in an alpha state so we can release breaking changes.
-We want to take the opportunity to create the best APIs we possibly can.
+Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
+We are aiming to complete this work with the next major release (v6).
+As of now, you can evaluate the unstyled primitives in the `@mui/base` package, or check out the next implementation of the Material Design components in the `@mui/material-next` package (targeted at v6).
+Please note that both packages are in an alpha state so that we can release breaking changes –
+we want to take the opportunity to create the best APIs we possibly can.
 
 You can help us shape these new packages by taking part in discussions.
 There are [RFCs](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+label%3Adiscussion+%5BRFC%5D) waiting for responses.
-Do not hesitate to let us know what you think.
-We highly value the voice of the community, this package is built to serve you.
+Don't hesitate to let us know what you think!
 
 #### Joy
 
@@ -614,4 +613,4 @@ We will keep you posted about the progress, stay tuned.
 
 Finally, one last thank you to everyone who's contributed to MUI v5.
 The whole team is very excited about this release! It's just the beginning.
-We will keep working hard on delivering the best possible React UI components while making it accessible to the many.
+We will keep working hard to deliver the best possible React UI components, while making it accessible to the many.
