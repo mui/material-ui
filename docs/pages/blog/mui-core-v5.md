@@ -41,9 +41,9 @@ It is based on this context that we started to work on v5 in 2019.
 Our primary focus was to revamp the **customization Developer Experience (DX)**.
 It had become clear that design and DX were key to unlock the next stage of growth.
 
-At the same time, the last major iteration on the library was done with MUI v4, released [2.5 years ago](/blog/material-ui-v4-is-out/).
-It's a long period not to innovate.
-We have approached v5 by focusing on the value it would deliver **long term**.
+The last major iteration on the library was done with MUI v4, released [2.5 years ago]((/blog/material-ui-v4-is-out/)).
+It's been a while, a too-long period without innovation.
+So, we have approached v5 with a focus on delivering **long-term value**.
 For instance, we have stopped all development in v4 as soon as we started to work on v5.
 We have taken the liberty of introducing breaking changes anytime we have identified a long-term potential.
 
@@ -100,7 +100,7 @@ After [exploring](https://github.com/mui-org/material-ui/issues/22342) many diff
    This allows developers to swap between different styled engines. For instance, styled-components users do no longer need to bundle emotion **and** styled-component, nor do they need to configure the server-side rendering for each.
    How does the [swap works](/guides/styled-engine/#how-to-switch-to-styled-components)? The same way it does from React to Preact.
 
-3. We have started to [sponsor](https://opencollective.com/emotion) emotion with a $1,000/month grant. It's in our best interest to help ensure the library keeps pushing the envelope, staying state of the art in a competitive space.
+3. For the last couple of months we have been [sponsoring](https://opencollective.com/emotion) emotion with a $100/month grant. We are now increasing this amount to $1,000/month. It's in our best interest to help ensure the library keeps pushing the envelope, staying state of the art in a competitive space.
 
 The first immediate benefit was at the **performance** level. the `<Box>` component is [x5-x10 more performant](https://codesandbox.io/s/zlh5w?file=/src/App.js) in v5, compared to v4.
 
@@ -303,7 +303,7 @@ They estimate that it will be performant enough, and they won't miss too much fr
 This tradeoff works **really well** when having a small, constrained engineering team or a large team building internal (/secondary) tools.
 But what about the medium/large size engineering team that works on ambitious projects? Shouldn't they have a better option than building the components from scratch to not include Material Design and maximize freedom?
 
-This is this problem that our team started working on.
+We started working on this exact problem.
 We are isolating the logic of the Material Design components into hooks and unstyled components.
 While the effort is still in alpha, you can already find the first building blocks in the `@mui/base` package.
 

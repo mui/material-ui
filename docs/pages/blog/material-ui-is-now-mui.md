@@ -23,10 +23,10 @@ The community [loved it](https://news.ycombinator.com/item?id=8582439) and was c
 We have made it smooth for the community to contribute.
 We started actively reviewing pull requests and guiding issues.
 Things started to really take off with [the release of v1](/blog/material-ui-v1-is-out/) in 2018.
-The frontend community was actively migrating to React and in desperate need to move fast.
+The frontend community was actively migrating to React, in desperate need to transition quickly,
 
 Before we realized it, we had grown into the most popular React UI components library.
-We were heavily used and customized to build: customer-facing applications, internal tools, and mobile-hybrid applications.
+The components were heavily used and customized to build customer-facing applications, internal tools, and mobile-hybrid apps.
 
 ## A larger focus
 
@@ -35,7 +35,7 @@ At the same time, 400% more developers were struggling to customize the componen
 
 It is based on this context that we started to work on v5 in 2019.
 Our primary focus was to revamp the **customization DX**.
-It had become clear that design and DX were key to unlock the next stage of growth.
+It had become clear that design (aesthetic, UX) and DX were key to unlock the next stage of growth.
 
 The new branding comes to support the v5.0.0 release while also creating space for new initiatives that broaden the company horizon. It's a big deal!
 
@@ -53,7 +53,7 @@ We have seen too many people confusing Material-UI with a Google effort or a syn
 We are now called **MUI**. It stands for **M**aterials to build **UI**s
 and is pronounced [/ɛmjuːaɪ/](http://ipa-reader.xyz/?text=%C9%9Bmju%CB%90a%C9%AA).
 
-It's shorter, it distinguishes ourselves, it's already how many people abbreviate us.
+It's shorter, it distinguishes ourselves and it's familiar - many people already used it for abbreviating us.
 More importantly, it allows for the release of products not directly coupled to Material Design, such as unstyled/headless version of the components, a brand new second design system as an alternative to MD, and more.
 
 ### A new domain name
@@ -71,7 +71,7 @@ We're also reducing the emphasis on the smart 3D perspective, stepping away from
 
 <img loading="lazy" src="/static/blog/material-ui-is-now-mui/old-new.png" alt="" style="width: 302px; margin-bottom: 16px;" />
 
-We are introducing logos for each of our products:
+To better identify, market, and promote each product, we are introducing logos for each one of them.
 
 <img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="" style="width: 427px; margin-bottom: 16px;" />
 
