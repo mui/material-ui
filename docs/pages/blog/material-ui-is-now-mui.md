@@ -1,5 +1,5 @@
 ---
-title: Material-UI is now MUI
+title: Material-UI is now MUI!
 description: Starting today, we are evolving our brand identity. We are clarifying the difference between our company and our products.
 date: 2021-09-15T00:00:00.000Z
 authors: ['oliviertassinari', 'danilo-leal', 'mbrookes']
@@ -35,8 +35,8 @@ In our last survey, the number of developers that commented about improving the 
 At the same time, 5X more developers were struggling to customize the components.
 
 It was based on this context that we started work on v5 in 2019.
-Our primary focus was to revamp the **customization DX**.
-It had become clear that design (aesthetic, UX) and DX were key to unlock the next stage of growth.
+Our primary focus was to revamp the **customization Developer Experience (DX)**.
+It had become clear that design (aesthetic, UX) and DX were key to unlocking the next stage of growth.
 
 The new brand supports the v5.0.0 release while also creating space for new initiatives that broaden the company horizon. It's a big deal!
 
