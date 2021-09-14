@@ -254,9 +254,10 @@ jobs:
       - restore_cache:
           name: Restore generated declaration files
           keys:
-            # We assume that the target branch is `next` and that declaration files are persisted in commit order.
+            # #default-branch-switch
+            # We assume that the target branch is `master` and that declaration files are persisted in commit order.
             # "If there are multiple matches, the most recently generated cache will be used."
-            - typescript-declaration-files-next
+            - typescript-declaration-files-master
 
       - run:
           name: Diff declaration files
