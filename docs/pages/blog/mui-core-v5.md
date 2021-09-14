@@ -545,7 +545,6 @@ npm install @mui/icons-material @mui/lab
 yarn add @mui/icons-material @mui/lab
 ```
 
-
 ### Change on the supported platforms
 
 This breaking change is the opportunity to drop the support of legacy upstream dependencies.

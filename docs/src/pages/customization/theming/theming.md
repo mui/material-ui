@@ -233,7 +233,7 @@ Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
 
 #### Returns
 
-`theme` (_object_): A complete, ready to use theme object.
+`theme` (_object_): A complete, ready-to-use theme object.
 
 #### Examples
 

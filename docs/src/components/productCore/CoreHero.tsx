@@ -206,7 +206,7 @@ export default function Hero() {
             <GradientText>free forever</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            Get a growing list of components, ready to use, free forever and with accessibility
+            Get a growing list of components, ready-to-use, free forever and with accessibility
             always in mind. We&apos;ve built the foundational UI blocks for your design system so
             you don&apos;t have to.
           </Typography>
