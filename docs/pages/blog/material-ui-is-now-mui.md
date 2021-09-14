@@ -6,6 +6,8 @@ authors: ['oliviertassinari', 'danilo-leal', 'mbrookes']
 card: true
 ---
 
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/intro.png" alt="" style="width: 600px; margin-bottom: 16px;" />
+
 Starting today, we are evolving our brand identity. We are clarifying the difference between our company and our products.
 
 - Material-UI: the organization is now called [**MUI**](https://github.com/mui-org/).
