@@ -218,8 +218,9 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
+   * Set to `false` to remove the `icon`.
    */
-  icon: PropTypes.node,
+  icon: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([PropTypes.node, false]),
   /**
    * The component maps the `severity` prop to a range of different icons,
    * for instance success to `<SuccessOutlined>`.
