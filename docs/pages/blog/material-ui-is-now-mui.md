@@ -58,11 +58,12 @@ More importantly, it allows for the release of products not directly coupled to 
 
 ### A new domain name
 
-A new name wouldn't be so official without a new domain. So, we have moved home from https://material-ui.com/ to https://mui.com/, a very easy-to-type (and find) 3 letters domain.
+A new name wouldn't be so official without a new domain.
+So, we have moved home from https://material-ui.com/ to https://mui.com/, a very easy-to-type (and find) 3 letters domain.
 
 ### New logos
 
-We've tightened up the company's logo to match the new branding. 
+We've tightened up the company's logo to match the new branding.
 
 It's basically the same, to keep it familiar.
 We're keeping the geometrical shape, to resonate with the _building blocks_ idea of the components.
@@ -98,6 +99,6 @@ We're grateful to have you together with us, supporting the library and making i
 If you spot any errors or inconsistencies, please warn us so we fix them.
 
 Material Design will continue to be supported with the same attention to detail as before.
-We hope to keep serving those who like the library for closely following MD while also leveraging the strong foundation built so far to offer new components, designs, and products. 
+We hope to keep serving those who like the library for closely following MD while also leveraging the strong foundation built so far to offer new components, designs, and products.
 
 Hope you like it and happy building!
