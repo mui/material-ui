@@ -45,7 +45,7 @@ At the same time, the last major iteration on the library was done with MUI v4, 
 It's a long period not to innovate.
 We have approached v5 by focusing on the value it would deliver **long term**.
 For instance, we have stopped all development in v4 as soon as we started to work on v5.
-We have taken the liberty to introduce breaking changes anytime we have identified a long-term potential.
+We have taken the liberty of introducing breaking changes anytime we have identified a long-term potential.
 
 You can find the initial RFC plan for v5 in [issue #20012](https://github.com/mui-org/material-ui/issues/20012).
 
@@ -167,7 +167,7 @@ It was one of the most upvoted GitHub issues: [#13875](https://github.com/mui-or
 In practice, the change makes the MUI Core components extendable placeholders.
 
 **First**, you can use the [existing style mapping](/customization/palette/#adding-new-colors) of the components.
-For instance, you can add a new neutral color to lette. The Button computes the right derivative colors.
+For instance, you can add a new neutral color to the palette. The Button computes the right derivative colors.
 
 ```jsx
 import { createTheme, Button } from '@mui/material';
@@ -247,11 +247,11 @@ In v3, we heard how frustrating using the `classes` prop API correctly can somet
 In v4, we made [a step](/blog/material-ui-v4-is-out/#customization) toward adding global class names.
 They are present, as long as no more than one ThemeProvider is used.
 
-v5 double down on this direction by always adding global class names on the host DOM nodes.
+v5 doubles down on this direction by always adding global class names on the host DOM nodes.
 These class names are available for customizing the child elements.
 It can simplify the customization of complex components.
 
-For instance, compare these tree options to turn the input outlined border color red:
+For instance, compare these three options to turn the outlined input's border color red:
 
 ```tsx
 import TextField from '@mui/material/TextField';
@@ -300,7 +300,7 @@ When they depend on us, they make a tradeoff.
 They estimate that applying new styles on top of the Material Design components will be faster than creating components from scratch or picking another library.
 They estimate that it will be performant enough, and they won't miss too much freedom.
 
-This tradeoff work **really well** when having a small, constrained engineering team or a large team building internal (/secondary) tools.
+This tradeoff works **really well** when having a small, constrained engineering team or a large team building internal (/secondary) tools.
 But what about the medium/large size engineering team that works on ambitious projects? Shouldn't they have a better option than building the components from scratch to not include Material Design and maximize freedom?
 
 This is this problem that our team started working on.
