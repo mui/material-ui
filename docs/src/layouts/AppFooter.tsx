@@ -95,7 +95,27 @@ export default function AppFooter() {
             </Typography>
             <Link href={ROUTES.about}>About</Link>
             <Link href={ROUTES.vision}>Vision</Link>
-            <Link href={ROUTES.careers}>Careers</Link>
+            <Link href={ROUTES.careers}>
+              Careers{' '}
+              <Box
+                sx={{
+                  px: 0.5,
+                  py: 0.3,
+                  ml: 1,
+                  borderRadius: 0.5,
+                  fontSize: (theme) => theme.typography.pxToRem(12),
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  color: '#fff',
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.error[800]
+                      : theme.palette.error.main,
+                }}
+              >
+                Hiring
+              </Box>
+            </Link>
             <Link href={ROUTES.support}>Support</Link>
             <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
               Contact us
