@@ -37,7 +37,7 @@ This release features some major highlights:
 In our last survey, [60% fewer](/blog/2020-developer-survey-results/#comparison-with-last-year) developers were complaining about improving Material Design implementation than they did a year before.
 At the same time, 400% more developers were struggling to customize the components.
 
-It's the context in which we started working on v5 in 2019.
+It is based on this context that we started to work on v5 in 2019.
 Our primary focus was to revamp the **customization DX**.
 It had become clear that design and DX were key to unlock the next stage of growth.
 
