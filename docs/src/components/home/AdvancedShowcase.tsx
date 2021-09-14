@@ -21,11 +21,11 @@ const columns: Array<GridColDef> = [
     editable: true,
   },
   { field: 'commodity', headerName: 'Commodity', width: 132, editable: true },
-  { field: 'traderName', headerName: 'Trader Name', width: 148, editable: true },
+  { field: 'traderName', headerName: 'Trader Name', width: 143, editable: true },
   {
     field: 'filledQuantity',
     headerName: 'Filled',
-    width: 100,
+    width: 85,
     sortable: false,
     editable: true,
     renderCell: (params: GridCellParams) => {
@@ -38,7 +38,7 @@ const columns: Array<GridColDef> = [
   {
     field: 'status',
     headerName: 'Status',
-    width: 100,
+    width: 78,
     sortable: false,
     editable: true,
     renderCell: (params: GridCellParams) => {
