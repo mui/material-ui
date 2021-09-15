@@ -32,6 +32,7 @@ import { buildTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
+import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Button', 'Text field', 'Table', 'Alert', 'Tooltip'] as const;
 
@@ -161,7 +162,7 @@ export default function CoreComponents() {
                 <Item icon={React.cloneElement(icons[name])} title={name} />
               </Highlighter>
             ))}
-            <More />
+            <More href={ROUTES.components} />
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>

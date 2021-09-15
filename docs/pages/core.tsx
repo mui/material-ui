@@ -15,8 +15,8 @@ export default function Home() {
   return (
     <BrandingProvider>
       <Head
-        title="MUI: A popular React UI framework"
-        description="The ultimate solution for your UI. MUI provides a robust, customizible and accessible library of foundational and advanced components, enabling you to build your own design system and develop React applications faster."
+        title="MUI: Ready to use components, free forever"
+        description="Get a growing list of components, ready to use, free forever and with accessibility always in mind. We've built the foundational UI blocks for your design system so you don't have to."
       />
       <CssBaseline />
       <AppHeader />

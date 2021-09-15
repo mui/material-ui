@@ -114,8 +114,8 @@ export default function TaskCard() {
             >
               <CodeRounded color="primary" />
             </Box>
-            <Typography variant="h6" component="div" sx={{ mt: 1.5 }}>
-              Check for the API response and return the proper method
+            <Typography variant="h6" component="div" sx={{ mt: 1.5, fontWeight: 500 }}>
+              Check the docs for getting every component API
             </Typography>
           </Box>
           <Box sx={{ display: 'flex' }}>

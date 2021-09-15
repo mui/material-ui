@@ -6,7 +6,7 @@ import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
 
 const ThemeModeToggle = (props: { checked: boolean; onChange: (checked: boolean) => void }) => {
   return (
-    <Tooltip title={props.checked ? 'Turn on the light' : 'Switch to dark mode'}>
+    <Tooltip title={props.checked ? 'Turn on the light' : 'Turn off the light'}>
       <IconButton
         disableTouchRipple
         onClick={() => props.onChange(!props.checked)}

@@ -203,12 +203,12 @@ export default function Hero() {
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Ready to use components, <br />
-            <GradientText>forever free</GradientText>
+            <GradientText>free forever</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            Get a growing list of components, ready to use, forever free with built-in
-            accessibility. We&apos;ve built the foundational UI blocks for your design system so you
-            don&apos;t have to.
+            Get a growing list of components, ready to use, free forever and with accessibility
+            always in mind. We&apos;ve built the foundational UI blocks for your design system so
+            you don&apos;t have to.
           </Typography>
           <GetStartedButtons sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} />
         </Box>
