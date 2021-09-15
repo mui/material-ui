@@ -240,7 +240,7 @@ export default function AppNavDrawerItem(props) {
           depth={depth}
           hasIcon={hasIcon}
           disableRipple
-          className={topLevel && 'algolia-lvl0'}
+          className={topLevel ? 'algolia-lvl0' : null}
           onClick={handleClick}
         >
           {iconElement}
