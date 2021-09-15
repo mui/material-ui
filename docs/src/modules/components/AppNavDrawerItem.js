@@ -128,8 +128,8 @@ const ItemButton = styled(Item, {
       }
       return theme.palette.text.primary;
     })(),
-    fontSize: depth === 1 ? theme.typography.pxToRem(12) : theme.typography.pxToRem(14.5),
-    fontWeight: depth === 1 ? 700 : 500,
+    fontSize: theme.typography.pxToRem(depth === 0 ? 14.5 : 12),
+    fontWeight: depth === 0 ? 500 : 700,
     margin: theme.spacing(0.5, 0),
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
