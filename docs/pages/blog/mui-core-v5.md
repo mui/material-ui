@@ -181,7 +181,7 @@ For this reason, v5 comes with the capability to extend the built-in behavior of
 This was one of the most upvoted GitHub issues: [#13875](https://github.com/mui-org/material-ui/issues/13875).
 In practice, this change makes the MUI Core components extendable placeholders.
 
-**First**, you can use the [existing style mapping](https://mui.com/customization/palette/#adding-new-colors) of the components.
+**First**, you can use the [existing style mapping](/customization/palette/#adding-new-colors) of the components.
 For example, you can add a new `neutral` color to the palette, and the Button computes the right derivative colors.
 
 ```jsx
@@ -219,7 +219,7 @@ declare module '@mui/material/Button' {
 
 <p class="blog-description"><a href="https://codesandbox.io/s/stupefied-mclaren-ho4zs?file=/src/App.tsx">Codesandbox</a></p>
 
-**Second**, you can add [custom variants](https://mui.com/customization/theme-components/#adding-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
+**Second**, you can add [custom variants](/customization/theme-components/#adding-new-component-variants) to the theme, overriding the CSS for specific component prop combinations.
 
 ```jsx
 import { createTheme, Button } from '@mui/material';
@@ -324,12 +324,12 @@ While the effort is still in alpha, you can already find the first building bloc
 
 So far it features:
 
-- [Autocomplete](https://mui.com/components/autocomplete/#useautocomplete)
-- [Button](https://mui.com/components/buttons/#unstyled)
-- [Modal](https://mui.com/components/modal/#unstyled)
-- [Pagination](https://mui.com/components/pagination/#usepagination)
-- [Slider](https://mui.com/components/slider/#unstyled)
-- [Switch](https://mui.com/components/switches/#unstyled-switches)
+- [Autocomplete](/components/autocomplete/#useautocomplete)
+- [Button](/components/buttons/#unstyled)
+- [Modal](/components/modal/#unstyled)
+- [Pagination](/components/pagination/#usepagination)
+- [Slider](/components/slider/#unstyled)
+- [Switch](/components/switches/#unstyled-switches)
 
 ```jsx
 const CustomButton = React.forwardRef(function CustomButton(
@@ -475,25 +475,25 @@ This release comes with eight new components!
 The development of the Grid was mostly put on hold for the last three years, blocked by the size of the statically generated CSS with JSS.
 The [migration to emotion](#migration-from-jss-to-emotion) has unlocked the following frequently requested changes:
 
-Support for [row & column](https://mui.com/components/grid/#row-amp-column-spacing) spacing:
+Support for [row & column](/components/grid/#row-amp-column-spacing) spacing:
 
 ```jsx
 <Grid container rowSpacing={1} columnSpacing={2} />
 ```
 
-Support for [responsive values](https://mui.com/components/grid/#responsive-values) on all the props:
+Support for [responsive values](/components/grid/#responsive-values) on all the props:
 
 ```jsx
 <Grid container spacing={{ xs: 2, md: 3 }} />
 ```
 
-Support for a different [number of columns](https://mui.com/components/grid/#columns) than 12:
+Support for a different [number of columns](/components/grid/#columns) than 12:
 
 ```jsx
 <Grid container columns={16}>
 ```
 
-An alternative implementation that uses [CSS grid](https://mui.com/components/grid/#css-grid-layout):
+An alternative implementation that uses [CSS grid](/components/grid/#css-grid-layout):
 
 ```jsx
 <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
@@ -515,7 +515,7 @@ An alternative implementation that uses [CSS grid](https://mui.com/components/gr
 ### More Material Design icons
 
 The Material Design team at Google has released 600 new icons in five different themes since we released v4.
-We have made them [available](https://mui.com/components/material-icons/) in the `@mui/icons-material` package.
+We have made them [available](/components/material-icons/) in the `@mui/icons-material` package.
 
 ### Stack
 
@@ -527,18 +527,18 @@ to handle one-dimensional layouts. It's's similar to how Figma handles auto-layo
 > Note that you might already be using `<Box display="flex" gap={1}>` to solve the same problem,
 > however, [browser support](https://caniuse.com/flexbox-gap) for the flexbox `gap` CSS property is lacking in Safari.
 
-You can find [more details](https://mui.com/components/stack/) in the documentation.
+You can find [more details](/components/stack/) in the documentation.
 
 ### Promotion from the lab
 
 We have moved six components from the lab to the main component package, after over two years iterating on feedback:
 
-- [Autocomplete](https://mui.com/components/autocomplete/)
-- [Pagination](https://mui.com/components/pagination/)
-- [Rating](https://mui.com/components/rating/)
-- [Skeleton](https://mui.com/components/skeleton/)
-- [Speed Dial](https://mui.com/components/speed-dial/)
-- [Toggle Buttons](https://mui.com/components/toggle-button/)
+- [Autocomplete](/components/autocomplete/)
+- [Pagination](/components/pagination/)
+- [Rating](/components/rating/)
+- [Skeleton](/components/skeleton/)
+- [Speed Dial](/components/speed-dial/)
+- [Toggle Buttons](/components/toggle-button/)
 
 ### New in the lab
 
@@ -548,9 +548,9 @@ Having a separate lab package allows us to release breaking changes when necessa
 
 The following components are now available in the lab:
 
-- [LoadingButton](https://mui.com/components/buttons/#loading-buttons). It does what you would expect. It renders the `Button` with a configurable loading/pending state.
-- [TrapFocus](https://mui.com/components/trap-focus/). This component traps the keyboard focus within a DOM node. For example, it's used by the Modal to prevent tabbing out of the component for accessibility reasons.
-- [Masonry](https://mui.com/components/masonry/). One great use case for this component is when using the `Grid` component leads to wasted space. It's frequently used in dashboards.
+- [LoadingButton](/components/buttons/#loading-buttons). It does what you would expect. It renders the `Button` with a configurable loading/pending state.
+- [TrapFocus](/components/trap-focus/). This component traps the keyboard focus within a DOM node. For example, it's used by the Modal to prevent tabbing out of the component for accessibility reasons.
+- [Masonry](/components/masonry/). One great use case for this component is when using the `Grid` component leads to wasted space. It's frequently used in dashboards.
 
   <a href="/components/masonry/"><img src="/static/blog/mui-core-v5/masonry.png" alt="" style="width: 505px; margin-bottom: 16px;" /></a>
 
@@ -648,7 +648,7 @@ To continue improving the customization experience, we are doubling down on the 
 These components and hooks contain the main functionalities and accessibility, without being opinionated about how styles are applied nor what styles.
 We still have work to do to have a full set of unstyled components.
 
-You can read more about them in [the docs](https://mui.com/customization/unstyled-components/) and keep track of our progress in [#27170](https://github.com/mui-org/material-ui/issues/27170).
+You can read more about them in [the docs](/customization/unstyled-components/) and keep track of our progress in [#27170](https://github.com/mui-org/material-ui/issues/27170).
 
 Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
 We are aiming to complete this work with the next major release (v6).
