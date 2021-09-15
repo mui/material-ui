@@ -457,10 +457,10 @@ Bonus point, we run [React v18](https://github.com/reactwg/react-18) (unreleased
 We have transferd the ownership of the `@material-ui/pickers` from [Dmitriy Kovalenko](https://github.com/dmtrKovalenko) to the main organization.
 They are now part of the `@mui/lab` package.
 
-We spent a lot of time on making sure they are consistent and have the same level of exelence as the other core components.
+We spent a lot of time on making sure they are consistent and have the same level of exellence as the other core components.
 It is interesting that these components are the first TypeScript components we have in the project.
 
-At this moment they are on the border between the Core and the X project. It is too hard to maintain them as part of the Core, but on the other hand they are too popular and widely used to be in the X. We will keep investigating on what would be the best place for them in the upcoming period.
+At this moment they are on the border between the Core and the X project. It is too hard to maintain them as part of the Core, but on the other hand, they are too popular and widely used to be in the X. We will keep investigating on what will be the best place for them going forward.
 
 ## New components
 
