@@ -1,5 +1,43 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.0.0
+<!-- generated comparing v5.0.0-rc.1..next -->
+_Sep 15, 2021_
+
+[MUI v5 is out 🎉](https://mui.com/blog/mui-core-v5/)
+
+A big thanks to everyone who contributed in any way and made the release possible!
+
+### `@mui/material@5.0.0`
+
+- &#8203;<!-- 15 -->[Autocomplete] Fix reset value on blur for freeSolo input (#28190) @praveenkumar-kalidass
+- &#8203;<!-- 14 -->[ButtonBase] Revert to the pre-unstyled implementation (#28225) @michaldudak
+- &#8203;<!-- 13 -->[Checkbox] Fix color proptype typo (#28265) @sydneyjodon-wk
+
+### `@mui/lab@5.0.0-alpha.46`
+
+- &#8203;<!-- 09 -->[DateTimePicker] Change bottom position of AM/PM buttons (#27534) @nikitabobers
+- &#8203;<!-- 02 -->[pickers] Add visual regression tests for open views (#28224) @eps1lon
+
+### Docs
+
+- &#8203;<!-- 08 -->[docs] Fix quotes in font-face literal (#28260) @Aurelain
+- &#8203;<!-- 07 -->[docs] Update redirects to X's docs (#28263) @m4theushw
+- &#8203;<!-- 06 -->[docs] Change Material-UI to MUI in the console (#28270) @mbrookes
+- &#8203;<!-- 05 -->[docs] Docs redesign adjustments (#28203) @mnajdova
+- &#8203;<!-- 04 -->[docs] How to compose theme in steps (#28246) @goncalovf
+- &#8203;<!-- 03 -->[docs] Fix DataGrid demo console warning in Table docs (#28235) @ZeeshanTamboli
+- &#8203;<!-- 01 -->[website] Add product-x page (#28106) @siriwatknp
+
+### Core
+
+- &#8203;<!-- 12 -->[core] Replace Material-UI with MUI (#28243) @mnajdova
+- &#8203;<!-- 11 -->[core] Prepare for v5 stable release (#28240) @mnajdova
+- &#8203;<!-- 10 -->[core] Mark lines that needs to be changed with a major release (#28238) @mnajdova
+
+All contributors of this release in alphabetical order: @Aurelain, @eps1lon, @goncalovf, @m4theushw, @mbrookes, @michald
+udak, @mnajdova, @nikitabobers, @praveenkumar-kalidass, @siriwatknp, @sydneyjodon-wk, @ZeeshanTamboli
+
 ## 5.0.0-rc.1
 
 <!-- generated comparing v5.0.0-rc.0..next -->
