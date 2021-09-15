@@ -92,7 +92,7 @@ In conclusion, we decided to go with the first implementation: **CSS Grid + Conf
 
 After finishing up the implementation, we found that Chrome limits the number of rows of each CSS grid to 1,000 at the maximum. Overflowing items beyond the 1,000th row are simply squashed. You can find a thread with regard to this [here](https://bugs.chromium.org/p/chromium/issues/detail?id=688640).
 
-This is a serious problem for us because our implementation has the row height of `1px` and it is not that difficult for a masonry to go beyond a height of `1,000px`. Your MUI Masonry will fail to be larger than `1,000px` on Chrome. It has no problem on Firefox or Safari, but since Chrome has the biggest market share of browsers, this definitely needs to be fixed.
+This is a serious problem for us because our implementation has the row height of `1px` and it is not that difficult for a masonry to go beyond a height of `1,000px`. As a hot fix, we se the row height to `2px` for the time being. So, your MUI Masonry will fail to be larger than `2,000px` on Chrome. It has no problem on Firefox or Safari, but since Chrome has the biggest market share of browsers, this definitely needs to be fixed.
 
 ## Conclusion
 
