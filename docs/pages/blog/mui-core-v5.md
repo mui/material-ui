@@ -612,15 +612,10 @@ We now have the MUI components available in the three main design tools out ther
 
 ## What's next?
 
-```sh
-- Retrospective on what we aimed for in v4 and what we delivered
-  https://material-ui.com/blog/material-ui-v4-is-out/#whats-next
-- Retrospective on our growth in the React community,
-  ~25% of the market, aim for 50% by 2025.
-  Did a bit of this in https://material-ui.com/blog/2020-q3-update/
-- Retrospective on yes, we succesffuly managed to make this effort sustainable
-  echos back to https://material-ui.com/blog/material-ui-v4-is-out/#premium-themes-store-%E2%9C%A8
-```
+Looking back, we are glad to say that, together, we have accomplished most of the objectives we defined in the [v4 release blog post](/blog/material-ui-v4-is-out/#whats-next).
+We are also proud to share that currently we are at around 25% of market share in the React community. We aim to grow till around 50% by 2025.
+This is an ambitious goal, but not impossible. We have managed to make this effort sustainable in the past, for example by introducing the [premium themes store](/blog/material-ui-v4-is-out/#premium-themes-store).
+In the following sections we are going to share our public roadmaps and the high level areas we plan to focus on.
 
 ### A public roadmap
 
