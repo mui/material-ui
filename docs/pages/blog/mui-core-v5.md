@@ -658,7 +658,7 @@ Don't hesitate to let us know what you think!
 
 Developing a new design system is one of the main initiatives, alongside this new brand and the unstyled components, to grow MUI beyond Material Design. Its codename is **Joy** and we have just started [the high-level discussion](https://github.com/mui-org/material-ui/discussions/27803) around it.
 
-It will be built on top of our foundation packages (the base/unstyled components and `@mui/system`) to provide a close DX and API as Material Design. We plan on having built-in CSS variables generated from the theme, a great dark mode API, a custom look and feel, and more.
+It will be built on top of our foundation packages (the base/unstyled components and `@mui/system`) to provide the API shaped similarly to our Material Design components. We plan on having built-in CSS variables generated from the theme, a great dark mode API, a custom look and feel, and more.
 
 We're prioritizing developing first the most frequently used components as we plan on releasing them continuously with each milestone. We intend on having on Joy all the components already available on Material Design so that developers can then pick between them focusing on the design they like the most. The main difference will be at the theme structure, where we want to achieve the right amount of flexibility while providing an amazing design by default.
 
