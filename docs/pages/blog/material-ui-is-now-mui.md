@@ -74,7 +74,7 @@ however, we're reducing the emphasis on the 3D perspective, stepping away from t
 
 To better identify, market, and promote each product, we're introducing logos for each one of them.
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="" style="width: 600px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="Logos for MUI Core, MUI X and Templates" style="width: 600px; margin-bottom: 16px;" />
 
 - **MUI Core** contains ready-to-use, forever free, foundational components.
 - **MUI X** includes Powerful and robust components for your complex apps.
