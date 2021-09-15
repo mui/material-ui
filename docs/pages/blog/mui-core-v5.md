@@ -577,7 +577,7 @@ If you are starting your upgrade, these are the three things you should look int
 
 To support our [new brand](/blog/material-ui-is-now-mui/), we changed some of the terminology used in the project.
 The npm packages have been renamed.
-For more details on this check [the migration guide](/guides/migration-v4/#update-mui-version).
+For more details on this, check [the migration guide](/guides/migration-v4/#update-mui-version).
 
 ### Change of the styling solution
 
