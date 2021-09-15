@@ -6,7 +6,7 @@ authors: ['oliviertassinari', 'danilo-leal', 'mbrookes']
 card: true
 ---
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/intro.png" alt="" style="width: 100%; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/intro.png" alt="The new MUI logo" style="width: 100%; margin-bottom: 16px;" />
 
 Starting today we are evolving our brand identity to clarifying the difference between our company and our products.
 
@@ -76,8 +76,8 @@ To better identify, market, and promote each product, we're introducing logos fo
 
 <img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="Logos for MUI Core, MUI X and Templates" style="width: 600px; margin-bottom: 16px;" />
 
-- **MUI Core** contains ready-to-use, forever free, foundational components.
-- **MUI X** includes Powerful and robust components for your complex apps.
+- **MUI Core** contains ready-to-use, free forever, foundational components.
+- **MUI X** includes advanced and powerful components for complex use-cases.
 - **Templates** is a collection of fully built, out-of-the-box, React templates for your application. They are developed by the community curated by us for quality.
 
 ### New package names
@@ -93,7 +93,7 @@ Lastly, to celebrate the start of a new chapter for the company with the release
 You'll find a completely different theme from Material Design – new typeface, colors, box-shadows, and more,
 all done using the flexible theming features of v5.
 
-<a href="/"><img loading="lazy" src="/static/blog/material-ui-is-now-mui/palette.png" alt="Selection of the new color palette and gradients" style="width: 600px; margin-bottom: 16px;" /></a>
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/palette.png" alt="Selection of the new color palette and gradients" style="width: 600px; margin-bottom: 16px;" />
 
 <p class="blog-description">The color palette of our brand.</p>
 
@@ -107,6 +107,6 @@ There are many more exciting things to come in the future as we roll into this n
 We're grateful to have you with us, supporting the library, and helping it grow and mature.
 
 Material Design will continue to be supported with the same attention to detail as before.
-We hope to keep serving those who like the library for closely following MD, while also leveraging the strong foundation built so far to offer new components, designs, and products.
+We aim to keep serving those who like the library for closely following MD, while also leveraging the strong foundation built so far to offer new components, designs, and products.
 
 We hope you like it. Happy building!

@@ -159,7 +159,7 @@ They expose a subset of the `sx` prop as flat props, for instance:
 <Typography color="grey.600">
 
 // is equivalent to
-<Typography sx={{ color: "grey.600" }}>
+<Typography sx={{ color: 'grey.600' }}>
 ```
 
 <p class="blog-description"><a href="https://codesandbox.io/s/keen-worker-zo2r3?file=/src/App.tsx">Codesandbox</a></p>
