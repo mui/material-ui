@@ -6,7 +6,7 @@ authors: ['oliviertassinari', 'danilo-leal', 'mbrookes']
 card: true
 ---
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/intro.png" alt="" style="width: 100%; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/intro.png" alt="The new MUI logo" style="width: 100%; margin-bottom: 16px;" />
 
 Starting today we are evolving our brand identity to clarifying the difference between our company and our products.
 
