@@ -8,6 +8,12 @@ _Sep 15, 2021_
 
 After over 400 days of development and over 40 canary releases, we are excited to introduce [MUI Core v5.0.0](https://mui.com/blog/mui-core-v5/)!
 
+Some statistics with the released of v5.0.0 compared to the one of v4.0.0:
+
+- 5,832 new commits
+- From 2M downloads/month to 9.5M downloads/month on npm
+- From 350k users/month to 700k users/month on the documentation
+
 A big thanks to everyone who contributed in any way and made the release possible!
 
 The 5.0.0 version includes all changes done in the alpha, beta, and rc releases listed below.
