@@ -42,6 +42,7 @@ This release features some major highlights:
   - [Unstyled components and hooks](#unstyled-components-and-hooks)
   - [Second design system](#second-design-system)
   - [MUI X](#mui-x)
+  - [Design kits](#design-kits-2)
 
 ## High-level goals for v5
 
@@ -616,23 +617,19 @@ These changes have allowed us to save [6 kB gzipped](https://github.com/mui-org/
 
 ## Design kits
 
-We now have design kits for the MUI components available in the three main design tools out there: Figma, Sketch, and Adobe XD. If you work together with a designer or team of designers, having them use the design kits makes for easier communication, as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling much faster development.
+We now have design kits for the MUI components available in the three main design tools out there: [Figma](/store/items/figma-react/), [Sketch](/store/items/sketch-react/), and [Adobe XD](/store/items/adobe-xd-react/). If you work together with a designer or team of designers, having them use the design kits makes for easier communication, as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling much faster development.
 
-<a href="https://mui.com/store/#design"><img src="/static/blog/mui-core-v5/design-kits.png" alt="Screenshot of buttons in the Figma design kit" style="width: 649px; margin-bottom: 16px;" /></a>
+<a href="https://mui.com/store/#design"><img src="/static/blog/mui-core-v5/design-kits.png" alt="Screenshot of buttons in the Figma design kit" style="width: 700px; margin-bottom: 16px;" /></a>
 
-### What's new in design kits v5
+<p class="blog-description">The design kits</p>
 
-Material-UI for Figma is the first design kit that benefits from the v5 update, and we're more excited than ever to get the kits into designers' hands! We understand that designers are generally more creative and productive when their physical and digital work environment is looking fresh — that is why our kits are now cleaner in every aspect, leveraging naming, easy component-showcasing, and consistency.
-​
+Figma is the first design kit that benefits from the v5 update, and we're more excited than ever to get the kits into designers' hands! We understand that designers are generally more creative and productive when their physical and digital work environment is looking fresh — that is why our kits are now cleaner in every aspect, leveraging naming, easy component-showcasing, and consistency.
+
 Some major changes to the components:
 
 - We’ve added the new colors that v5 introduces (error, warning, info & success)
 - All new components are covered
 - States such as hover have been added for all relevant components
-
-### What’s coming next:
-
-Over our extended research and surveys with leading companies, we concluded that accessibility is something we need to take more seriously in our design libraries so we are planning to introduce more user interaction states for prototyping more "close to digital reality" mockups.
 
 ## What's next?
 
@@ -695,6 +692,12 @@ We'll keep you updated about the progress. And as always, you're invited to cont
 - We will keep focusing on the data grid
 - We will expand to a second component, once we hit a point of diminushing efficiency on the data  grid
 ```
+
+### Design kits
+
+We plan to run extended research and surveys.
+We have already identified that accessibility is something leading companies care about.
+We are planning to cover more user interaction states for prototyping, e.g. focus-visible.
 
 ## Thank you
 
