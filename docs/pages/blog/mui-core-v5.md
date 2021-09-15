@@ -630,7 +630,7 @@ We offer this transparency into what we plan to work on, so that you can plan be
 From high level perspective, we plan to focus in the upcoming period on the following topics:
 
 - Core project:
-  - unstyled components and hooks, to push even further the customization level we offer for the components
+  - unstyled components and hooks, to push the customization level of components even further
   - second design system, that will help us grow MUI beyond Material Design
 - X project:
   - continue our focus on the `DataGrid` component, by releasing the stable 5.0 version and developing more features
