@@ -213,7 +213,7 @@ If you are using Create React App, you will need to use a couple of projects tha
 
 #### 2. Convert all your imports
 
-Finally, you can convert your existing codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod.
+Finally, you can convert your existing codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#top-level-imports) codemod.
 It will perform the following diffs:
 
 ```diff

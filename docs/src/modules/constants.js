@@ -54,7 +54,8 @@ const LANGUAGES_LABEL = [
 ];
 
 const SOURCE_CODE_ROOT_URL =
-  process.env.SOURCE_CODE_ROOT_URL || 'https://github.com/mui-org/material-ui/blob/master';
+  // #default-branch-switch
+  process.env.SOURCE_CODE_ROOT_URL || 'https://github.com/mui-org/material-ui/blob/v4.x';
 const SOURCE_CODE_REPO = process.env.SOURCE_CODE_REPO || 'https://github.com/mui-org/material-ui';
 
 const BANNER_HEIGHT = 36;

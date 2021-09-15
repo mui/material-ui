@@ -5,7 +5,7 @@
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/gatsby
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/v4.x | tar -xz --strip=2  material-ui-master/examples/gatsby
 cd gatsby
 ```
 
@@ -18,7 +18,7 @@ npm run develop
 
 or:
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/gatsby)
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/v4.x/examples/gatsby)
 
 ## The idea behind the example
 
@@ -27,4 +27,4 @@ or:
 ## gatsby-theme-material-ui
 
 Looking for an example with less boilerplate but also less freedom?
-Check [`/examples/gatsby-theme`](https://github.com/mui-org/material-ui/tree/master/examples/gatsby-theme) out.
+Check [`/examples/gatsby-theme`](https://github.com/mui-org/material-ui/tree/v4.x/examples/gatsby-theme) out.
