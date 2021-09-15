@@ -19,8 +19,8 @@ MUI v4 has finally arrived. We are so excited about this release, as it defines 
 ## Summary
 
 - [High-level goals for v4](#high-level-goals-for-v4)
-- [What's new?](#whats-new)
-- [What's next?](#whats-next)
+  - [What's new?](#whats-new)
+  - [What's next?](#whats-next)
 - [Premium themes store](#premium-themes-store)
 
 ## High-level goals for v4
@@ -317,7 +317,7 @@ import { Button } from '@mui/material';
 
 How are we going to sustain this ambitious roadmap?
 We will follow the Bootstrap model.
-We are working on [a Premium themes store](https://mui.com/store/).
+We are working on [a Premium themes store](https://material-ui.com/store/).
 
 We have built partnerships with the best theme authors of the ecosystem.
 Within a few weeks, you should find a collection of the best MUI templates and themes 😍.

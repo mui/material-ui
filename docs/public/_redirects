@@ -28,7 +28,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /r/issue-template-latest https://codesandbox.io/s/material-ui-issue-latest-s2dsx
 /r/ts-issue-template https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEMhhYowZABsAtHOCdhlMnToE5o-MAii4AESwgIACgBKVnYuHgBNeSghCBUsDSA 302
 /r/custom-component-variants /customization/components/#adding-new-component-variants
-/r/x-license https://mui.com/store/items/material-ui-pro/
+/r/x-license https://material-ui.com/store/items/material-ui-pro/
 /r/migration-v4 /guides/migration-v4/
 
 /x/license/ https://docs.google.com/document/d/1nkd5JP5wCefo6UwpVi6PnbTaw8DxhstkCZlfHV5ZgfI/edit?usp=sharing 301
@@ -135,7 +135,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /api/expansion-panel-actions/ /api/accordion-actions/ 301
 /api/expansion-panel-details/ /api/accordion-details/ 301
 /api/expansion-panel-summary/ /api/accordion-summary/ 301
-/premium-themes* https://mui.com/store/ 301
+/premium-themes* https://material-ui.com/store/ 301
 /customization/themes/ /customization/theming/ 301
 https://v1-5-0.mui.com/* https://v1.mui.com/:splat 301!
 https://v3-9-0.mui.com/* https://v3.mui.com/:splat 301!
