@@ -380,7 +380,7 @@ We aim to have as many "inline previews" as possible. It saves one click to expa
 The best documentation is the one you don't need to open.
 We have moved all the prop descriptions to TypeScript, so IntelliSense in your editor can show you more context.
 
-<img src="/static/blog/mui-core-v5/prop-descriptions.png" alt="" style="width: 649px; margin-bottom: 16px;" />
+<img src="/static/blog/mui-core-v5/prop-descriptions.png" alt="Screenshot of the added prop descriptions due to IntelliSense" style="width: 649px; margin-bottom: 16px;" />
 
 <p class="blog-description">The popup explains what the <code>forcePopupIcon</code> prop is for.</p>
 
