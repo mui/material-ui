@@ -10,7 +10,7 @@ After over 400 days of development and over 40 canary releases, we are excited t
 
 A big thanks to everyone who contributed in any way and made the release possible!
 
-The 5.0.0 version includes all changes done in the alpha, beta and rc releases listed below.
+The 5.0.0 version includes all changes done in the alpha, beta, and rc releases listed below.
 
 These are the changes done from the last release candidate version (5.0.0-rc.1):
 
