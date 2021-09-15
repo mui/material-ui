@@ -1,3 +1,7 @@
+---
+description: The development process of MUI Masonry
+---
+
 # The Journey of Developing MUI Masonry Component
 
 ## Request from the community
@@ -64,7 +68,7 @@ The idea of this implementation is to create a flexbox container, `<Masonry />`,
 
 `nth-child()` and `order` can be used together to place every child in the right place. For instance, in order to maintain a masonry with three columns, `order: 1` should be assigned to `nth-child(3n+1)`, `order: 2` to `nth-child(3n+2)` and `order: 3` to `nth-child(3n)`. As you may have already realised, the vaues of `nth-child()` and `order` should be tweaked depending on the number of columns. Therefore, again, the server-side rendering is not possible in this implementation.
 
-Furthermore, the column spanning option is not feasible because CSS Flexbox doesn't provide spanning properties like CSS Grid does. Lastly, in this implementation, one of our must-have requirements, **"each item is pushed to the shortest column"**, does not come for free while it does in the first approach. In order to achieve this, it is required to iterate through every child and find the shortest column at each time to configure `order` accordingly. Still, even if it is not free, it is absolutely possible.
+Furthermore, the column spanning option is not feasible because CSS Flexbox doesn't provide spanning properties like CSS Grid does. Lastly, in this implementation, one of our must-have requirements, **"each item is pushed to the shortest column"**, does not come for free as opposed to the first approach. In order to achieve this requirement, it is necessary to iterate through every child and find the shortest column at each time to configure `order` accordingly. Still, even if it is not free, it is absolutely possible.
 
 Overall, this approach satisfies all the requirements except the server-side rendering and the column spanning option.
 
@@ -72,7 +76,7 @@ We have looked at both our options for building a masonry component. What would 
 
 ## We chose CSS Grid over CSS Flexbox
 
-One one hand, the first apporach, **CSS Grid + Configuring `grid-row-start` or `grid-row-end` of items**, supports the column spanning feature with no extra effort.
+On one hand, the first apporach, **CSS Grid + Configuring `grid-row-start` or `grid-row-end` of items**, supports the column spanning feature with no extra effort.
 
 On the other hand, it has one serious limitation as mentioned earlier.
 
@@ -88,7 +92,7 @@ In order to retain the rendered heights of children as much as possible, we can 
 
 In conclusion, we decided to go with the first implementation: **CSS Grid + Configuring `grid-row-start` or `grid-row-end` of items**.
 
-## Chrome...betrayed us
+## Chrome is giving us a hard time
 
 After finishing up the implementation, we found that Chrome limits the number of rows of each CSS grid to 1,000 at the maximum. Overflowing items beyond the 1,000th row are simply squashed. You can find a thread with regard to this [here](https://bugs.chromium.org/p/chromium/issues/detail?id=688640).
 
