@@ -495,7 +495,7 @@ The [picker components](/components/pickers/) are now part of the `@mui/lab` pac
 
 We spent a lot of time making sure they are consistent.
 We are now working toward reaching the same level of excellence as the other core components.
-These were our first TypeScript component in the codebase.
+These were our first TypeScript components in the codebase.
 
 The date range picker will be part of the Pro plan, while the other date picker components are MIT licensed.
 
