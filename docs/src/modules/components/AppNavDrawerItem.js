@@ -187,7 +187,7 @@ export default function AppNavDrawerItem(props) {
   };
 
   const hasIcon = icon && iconsMap[icon];
-  const IconComponent = hasIcon ? iconsMap[icon] : React.Fragment;
+  const IconComponent = hasIcon ? iconsMap[icon] : null;
   const iconProps = hasIcon ? { fontSize: 'small', color: 'primary' } : {};
   const iconElement = hasIcon ? (
     <Box
@@ -197,8 +197,7 @@ export default function AppNavDrawerItem(props) {
         alignItems: 'center',
         height: '100%',
         marginRight: 1.5,
-        py: 0.5,
-        px: 0.5,
+        p: 0.5,
         borderRadius: '5px',
         backgroundColor: (theme) =>
           theme.palette.mode === 'dark'
