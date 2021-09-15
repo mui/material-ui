@@ -107,6 +107,6 @@ There are many more exciting things to come in the future as we roll into this n
 We're grateful to have you with us, supporting the library, and helping it grow and mature.
 
 Material Design will continue to be supported with the same attention to detail as before.
-We hope to keep serving those who like the library for closely following MD, while also leveraging the strong foundation built so far to offer new components, designs, and products.
+We aim to keep serving those who like the library for closely following MD, while also leveraging the strong foundation built so far to offer new components, designs, and products.
 
 We hope you like it. Happy building!
