@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.8",
-    "@mui/utils": "5.0.0",
+    "@mui/utils": "^5.0.0",
     "prop-types": "^15.7.2"
   },
   "sideEffects": false,
