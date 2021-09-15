@@ -458,10 +458,10 @@ The `DataGridPro` on the other hand is available under a paid commercial license
 
 ### Date Picker
 
-We have transferd the ownership of the `@material-ui/pickers` from [Dmitriy Kovalenko](https://github.com/dmtrKovalenko) to the main organization.
-They are now part of the `@mui/lab` package.
+We have transferred the ownership of the `@material-ui/pickers` from [Dmitriy Kovalenko](https://github.com/dmtrKovalenko) to the main organization.
+The components are now part of the `@mui/lab` package.
 
-We spent a lot of time on making sure they are consistent and have the same level of exellence as the other core components.
+We spent a lot of time making sure they are consistent and have the same level of excellence as the other core components.
 It is interesting that these components are the first TypeScript components we have in the project.
 
 At this moment they are on the border between the Core and the X project. It is too hard to maintain them as part of the Core, but on the other hand, they are too popular and widely used to be in the X. We will keep investigating on what will be the best place for them going forward.
@@ -556,10 +556,13 @@ The following components are now available in the lab:
 
 ## v4 migration
 
-We have been meticulous to minimize the pain on the migration from v4 to v5. We know how daunting an upgrade can be.
+We have been meticulous to minimize the pain on the migration from v4 to v5.
+We know how daunting an upgrade can be.
 
 We have used all the tools at our disposal.
-We have [worked with the React core team](https://github.com/facebook/react/pull/20463) to make React devtools display warnings directly in the components panel. This should make it easier to find where components need to be updated for v5. See this [CHANGELOG section](https://github.com/facebook/react/blob/main/packages/react-devtools/CHANGELOG.md#expose-dev-mode-warnings-in-devtools-ui) for more details on it.
+We have [worked with the React core team](https://github.com/facebook/react/pull/20463) to make React DevTools display warnings directly in the components panel.
+This should make it easier to find where components need to be updated for v5.
+See this [CHANGELOG section](https://github.com/facebook/react/blob/main/packages/react-devtools/CHANGELOG.md#expose-dev-mode-warnings-in-devtools-ui) for more details on it.
 
 In the following sections, we will cover some high-level changes required for a successful upgrade.
 We have documented all the breaking changes, we have added as many deprecations as we could, we wrote codemods to automate the laborious tasks, and more!
@@ -631,7 +634,7 @@ You can use our GitHub project's roadmap to learn about what features we're work
 
 We offer this transparency into what we plan to work on, so that you can plan better and share feedback earlier to influence what we’re building.
 
-From high level perspective, we plan to focus in the upcoming period on the following topics:
+From a high level perspective, we plan to focus in the upcoming period on the following topics:
 
 - Core project:
   - unstyled components and hooks, to push the customization level of components even further
@@ -674,7 +677,7 @@ We'll keep you updated about the progress. And as always, you're invited to cont
 
 ```sh
 - We will keep focusing on the data grid
-- We will expend to a second component, once we hit a point of diminushing efficiency on the data  grid
+- We will expand to a second component, once we hit a point of diminushing efficiency on the data  grid
 ```
 
 ## Thank you
