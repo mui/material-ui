@@ -49,7 +49,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 - `@types/react`
 - `@types/react-dom`
 
-> 📝 Please make sure that your application is still **running** without error and **commit** the change before continuing to the next step.
+> 📝 Please make sure that your application is still **running** without errors and **commit** the change before continuing to the next step.
 
 ## `ThemeProvider` setup
 
@@ -153,7 +153,7 @@ For more details, check out [variant-prop codemod](https://github.com/mui-org/ma
 
 Transform `<Link/>` component by apply `underline="hover"` if no `underline` prop defined (because default `underline` has changed from `"hover"` in **v4** to `"always"` in **v5**).
 
-> ❗️ You should **NOT** use this codemod if you already defined default `underline: "always"` in the theme.
+> ❗️ You should **NOT** use this codemod if you have already defined default `underline: "always"` in the theme.
 
 ```js
 // if you have theme setup like this, ❌ don't run this codemod.
@@ -167,7 +167,7 @@ createMuiTheme({
 });
 ```
 
-However, if you want to keep `variant="hover"` in your components, run this codemod or configure theme default props.
+However, if you want to keep `variant="hover"`, run this codemod or configure theme default props.
 
 ```sh
 npx @mui/codemod@next v5.0.0/link-underline-hover <path>
