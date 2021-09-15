@@ -438,9 +438,41 @@ Bonus point, we run [React v18](https://github.com/reactwg/react-18) (unreleased
 
 ## A new product line: X
 
-The MUI X product line will contain all future commercial components and all the components that we can't sustain with the open-source model. MUI X is our next iteration in scaling MUI, both as a company and as a comprehensive React library of components.
-
 <img loading="lazy" src="/static/blog/mui-core-v5/mui-x-blog-hero.png" alt="Mockup of some MUI X components" style="width: 700px; margin-bottom: 16px;" />
+
+We are very excited to introduce a new product line to the MUI family: **MUI X**!
+MUI X embodies our initiative to solve the main pain point developers have reported two years in a row during our developer's survey: [2020](/blog/2020-developer-survey-results/#5-how-can-we-improve-material-ui-for-you), [2019](/blog/2019-developer-survey-results/#4-how-can-we-improve-material-ui-for-you).
+We have heard you, you want **more components**.
+
+In practice, there are so many different components that you might need that, our team can't cover it all.
+Instead, we are focusing on the **hardest** and **most requested** components, leaving the long tail to our [community of contributors](/discover-more/related-projects/#components).
+
+We started working on this effort over a year ago, in a new GitHub repository: [mui-org/material-ui-x](https://github.com/mui-org/material-ui-x).
+You might wonder, why work on it as a different product? We quickly realized that the team working on MUI X would need to become, at least, two times larger than the team working on MUI Core.
+Building a great data grid or charting solution takes a considerable amount of time.
+And yet, focusing on MUI Core is **foundamental** for the adoption of MUI.
+
+You can see this separation of purpose more clearly from the vision and mission statmemnts of the two products:
+
+- **MUI Core**:
+  - Vision: Create robust foundations to build UI components. "robust" is measured by how many developers decided to depend on it.
+  - Mission: Unlock design skills to the developers while allowing them to build UIs fast.
+- **MUI X**:
+  - Vision: Create the last UI component library developers will ever need. High quality, consistent, feature-rich, and covering the most frequent/challenging use cases.
+  - Mission: Make building rich, data intensive dynamic apps a breeze.
+
+Taking on the mission MUI X also required to make a major change to our monetization strategy.
+MUI Core has a positive cashflow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://tldrlegal.com/license/mit-license) license model works great for it.
+
+However, none of these revenue sources would scale with the outcome and amount of work required for MUI X.
+It's why we are using an open core license model for this new product.
+The X components come in [three different plans](/pricing/):
+
+- **Community.** This plan contains the MIT components that are sustainable by the contributions of the open-source community. Free forever.
+- **Pro.** This plan contains the features that are at the limit of what the open-source model can sustain. For instance, providing a very comprehensive set of components. From a price perspective, the plan is designed to be accessible to most professionals.
+- **Premium.** This plan contains the most advanced features.
+
+Let's have a look at our first commponent:
 
 ### Data Grid
 
