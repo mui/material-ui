@@ -13,13 +13,7 @@ const dateAdapterPackageMapping: Record<string, string> = {
   AdapterMoment: 'moment',
 };
 
-export function titleize(hyphenedString: string): string {
-  if (process.env.NODE_ENV !== 'production') {
-    if (typeof hyphenedString !== 'string' || hyphenedString.length <= 0) {
-      console.error('titleize(hyphenedString) expects a non empty string argument.');
-    }
-  }
-
+function titleize(hyphenedString: string): string {
   return hyphenedString
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
