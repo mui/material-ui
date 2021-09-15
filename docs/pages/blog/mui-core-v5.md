@@ -445,8 +445,13 @@ The MUI X product line will contain all future commercial components and all the
 
 ### Data Grid
 
+We have started the `DataGrid` and `DataGridPro` components more than a year ago with the ambition to deliver the best-in-class React data grid.
+
+To achieve this we have a twin licensing model.
+The `DataGrid` component is available under an MIT license for the features that can be relatively easily implemented, and that can be sustained with an open-source model.
+The `DataGridPro` on the other hand is available under a paid commercial license for the more advanced features.
+
 ```sh
-- What's the ambition with the component
 - Do a quick presentation of what's available
 - Covered a bit in https://material-ui.com/blog/2020-q3-update/
 ```
