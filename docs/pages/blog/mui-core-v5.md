@@ -455,11 +455,11 @@ You might wonder, why work on it as a different product? Building a great data g
 Although each product has its unique vision and mission statements, they complement each other. A solid MUI Core foundation is essential for the MUI X adoption.
 
 - **MUI Core:**
-- Vision: Create robust foundations to build UI components. "Robust" is measured by how many developers decide to depend on it.
-- Mission: Unlock design skills to developers while allowing them to build UIs fast.
+  - Vision: Create robust foundations to build UI components. "Robust" is measured by how many developers decide to depend on it.
+  - Mission: Unlock design skills to developers while allowing them to build UIs fast.
 - **MUI X:**
-- Vision: Create the last UI component library developers will ever need. High quality, consistent, feature-rich, and covering the most frequent/challenging use-cases.
-- Mission: Make building rich, data-intensive, dynamic apps a breeze.
+  - Vision: Create the last UI component library developers will ever need. High quality, consistent, feature-rich, and covering the most frequent/challenging use-cases.
+  - Mission: Make building rich, data-intensive, dynamic apps a breeze.
 
 MUI Core has a positive cashflow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://tldrlegal.com/license/mit-license) license model works great for it.
 
