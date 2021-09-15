@@ -6,10 +6,11 @@ import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import { useRouter } from 'next/router';
+import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import AppFooter from 'docs/src/modules/components/AppFooter';
+import AppFooter from 'docs/src/layouts/AppFooter';
 import { exactProp } from '@mui/utils';
 import MarkdownElement from './MarkdownElement';
 
@@ -164,6 +165,7 @@ function TopLayoutBlog(props) {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}
         </AppContainer>
+        <Divider />
         <AppFooter />
       </div>
     </AppFrame>

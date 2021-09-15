@@ -29,7 +29,7 @@ const References = ({
         textAlign="center"
         variant="body2"
         sx={{
-          minHeight: 42, // a hack to reduce CLS (layout shift)
+          minHeight: 42, // hard-coded to reduce CLS (layout shift)
           mt: 4,
           mx: 'auto',
           maxWidth: 400,

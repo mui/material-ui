@@ -124,4 +124,4 @@ Note that work must be MUI related.
 We don't accept general React development work.
 Our contracting price is $200/hour or $1,500/day.
 
-[Send us an email](mailto:custom-work@material-ui.com)
+[Send us an email](mailto:custom-work@mui.com)

@@ -75,7 +75,7 @@ const ItemLink = styled(Item, {
         theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[500],
       backgroundColor:
         theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.primary[50],
-      fontWeight: 600,
+      fontWeight: 700,
       '&:hover': {
         backgroundColor: alpha(
           theme.palette.primary.main,
@@ -96,6 +96,10 @@ const ItemLink = styled(Item, {
     paddingLeft: 36 + (depth > 2 ? (depth - 2) * 10 : 0),
     ...(hasIcon && {
       paddingLeft: 2,
+    }),
+    ...(depth === 0 && {
+      fontSize: theme.typography.pxToRem(14.5),
+      color: theme.palette.text.primary,
     }),
   };
 });
@@ -208,21 +212,24 @@ export default function AppNavDrawerItem(props) {
 
   if (href) {
     return (
-      <StyledLi {...other} depth={depth}>
-        <ItemLink
-          component={Link}
-          activeClassName="app-drawer-active"
-          href={href}
-          underline="none"
-          onClick={onClick}
-          depth={depth}
-          hasIcon={hasIcon}
-          {...linkProps}
-        >
-          {iconElement}
-          {title}
-        </ItemLink>
-      </StyledLi>
+      <React.Fragment>
+        <StyledLi {...other} depth={depth}>
+          <ItemLink
+            component={Link}
+            activeClassName="app-drawer-active"
+            href={href}
+            underline="none"
+            onClick={onClick}
+            depth={depth}
+            hasIcon={hasIcon}
+            {...linkProps}
+          >
+            {iconElement}
+            {title}
+          </ItemLink>
+        </StyledLi>
+        {depth === 0 && <Divider sx={{ my: 1.2 }} />}
+      </React.Fragment>
     );
   }
 

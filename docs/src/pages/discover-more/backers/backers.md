@@ -16,7 +16,7 @@ The core of MUI is a crowd-funded open-source project, licensed under the permis
 _1/3 slots available_
 
 Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
-Please contact us at diamond@material-ui.com to subscribe to this tier.
+Please contact us at diamond@mui.com to subscribe to this tier.
 
 ### Gold 🏆
 

@@ -243,7 +243,7 @@ function AppFrame(props) {
             <MenuIcon />
           </NavIconButton>
           <GrowingDiv />
-          <Stack direction="row" gap={2.5}>
+          <Stack direction="row" spacing={2}>
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton

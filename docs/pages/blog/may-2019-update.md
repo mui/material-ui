@@ -33,6 +33,6 @@ _(We'll do our best, no guarantee!)_
   - A dedicated communication channel giving priority access to MUI engineers.
   - Architecture Reviews. Sit down with a MUI engineer and walk through all aspects of your MUI project and current tech stack or architecture, to identify issues and opportunities for improvement.
 
-You can contact us at advisory@material-ui.com.
+You can contact us at advisory@mui.com.
 
 - ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
