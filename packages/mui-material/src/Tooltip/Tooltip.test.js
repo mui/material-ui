@@ -1131,7 +1131,6 @@ describe('<Tooltip />', () => {
     });
 
     it('ensures text-selection is reset after single press', () => {
-
       const { getByRole } = render(
         <Tooltip title="Hello World">
           <button type="submit">Hello World</button>
