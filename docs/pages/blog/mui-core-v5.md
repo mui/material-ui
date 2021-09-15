@@ -35,7 +35,7 @@ This release features some major highlights:
 - [v4 migration](#v4-migration)
   - [Change of the package names](#change-of-the-package-names)
   - [Change of the styling solution](#change-of-the-styling-solution)
-  - [Change to the supported platforms](#change-to-the-supported-platforms)
+  - [Changes to the supported platforms](#changes-to-the-supported-platforms)
 - [Design kits](#design-kits)
 - [What's next?](#whats-next)
   - [A public roadmap](#a-public-roadmap)
@@ -594,7 +594,7 @@ If you are not ready to migrate away from the `makeStyles` API now, you can:
 
 You can find more information for this on the [Migrate from JSS](https://mui.com/guides/migration-v4/#migrate-from-jss) section of the migration guide.
 
-### Change to the supported platforms
+### Changes to the supported platforms
 
 This breaking change is an opportunity to drop the support of legacy upstream dependencies.
 
@@ -616,7 +616,23 @@ These changes have allowed us to save [6 kB gzipped](https://github.com/mui-org/
 
 ## Design kits
 
-We now have the MUI components available in the three main design tools out there: Figma, Sketch, and Adobe XD. If you work together with a team of designers, having them using the UI kits makes for easier communication as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling a much faster development.
+We now have design kits for the MUI components available in the three main design tools out there: Figma, Sketch, and Adobe XD. If you work together with a designer or team of designers, having them use the design kits makes for easier communication, as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling much faster development.
+
+<a href="https://mui.com/store/#design"><img src="/static/blog/mui-core-v5/design-kits.png" alt="Screenshot of buttons in the Figma design kit" style="width: 649px; margin-bottom: 16px;" /></a>
+
+### What's new in design kits v5
+
+Material-UI for Figma is the first design kit that benefits from the v5 update, and we're more excited than ever to get the kits into designers' hands! We understand that designers are generally more creative and productive when their physical and digital work environment is looking fresh — that is why our kits are now cleaner in every aspect, leveraging naming, easy component-showcasing, and consistency.
+​
+Some major changes to the components:
+
+- We’ve added the new colors that v5 introduces (error, warning, info & success)
+- All new components are covered
+- States such as hover have been added for all relevant components
+
+### What’s coming next:
+
+Over our extended research and surveys with leading companies, we concluded that accessibility is something we need to take more seriously in our design libraries so we are planning to introduce more user interaction states for prototyping more "close to digital reality" mockups.
 
 ## What's next?
 
