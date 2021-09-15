@@ -11,11 +11,29 @@ https://next.material-ui.com/* https://mui.com/:splat 301!
 
 # Support multiple domains
 https://material-ui.dev/* https://mui.com/:splat 301!
-https://material-ui.com/* https://mui.com/:splat 301!
 https://v0.material-ui.com/* https://v0.mui.com/:splat 301!
 https://v1.material-ui.com/* https://v1.mui.com/:splat 301!
 https://v3.material-ui.com/* https://v3.mui.com/:splat 301!
 https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
+
+# Redirect all except the store
+https://material-ui.com https://mui.com 301!
+https://material-ui.com/api-docs/* https://mui.com/api-docs/:splat 301!
+https://material-ui.com/api/* https://mui.com/api/:splat 301!
+https://material-ui.com/blog/* https://mui.com/blog/:splat 301!
+https://material-ui.com/company/* https://mui.com/company/:splat 301!
+https://material-ui.com/components/* https://mui.com/components/:splat 301!
+https://material-ui.com/customization/* https://mui.com/customization/:splat 301!
+https://material-ui.com/discover-more/* https://mui.com/discover-more/:splat 301!
+https://material-ui.com/getting-started/* https://mui.com/getting-started/:splat 301!
+https://material-ui.com/guides/* https://mui.com/guides/:splat 301!
+https://material-ui.com/performance/* https://mui.com/performance/:splat 301!
+https://material-ui.com/styles/* https://mui.com/styles/:splat 301!
+https://material-ui.com/system/* https://mui.com/system/:splat 301!
+https://material-ui.com/versions https://mui.com/versions 301!
+
+# Temporarily access the store from the legacy domain
+https://mui.com/store/* https://material-ui.com/store/:splat 302!
 
 # For links hosted in the code published on npm
 /r/styles-instance-warning /getting-started/faq/#i-have-several-instances-of-styles-on-the-page 302
@@ -28,7 +46,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /r/issue-template-latest https://codesandbox.io/s/material-ui-issue-latest-s2dsx
 /r/ts-issue-template https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEMhhYowZABsAtHOCdhlMnToE5o-MAii4AESwgIACgBKVnYuHgBNeSghCBUsDSA 302
 /r/custom-component-variants /customization/components/#adding-new-component-variants
-/r/x-license https://mui.com/store/items/material-ui-pro/
+/r/x-license https://material-ui.com/store/items/material-ui-pro/
 /r/migration-v4 /guides/migration-v4/
 
 /x/license/ https://docs.google.com/document/d/1nkd5JP5wCefo6UwpVi6PnbTaw8DxhstkCZlfHV5ZgfI/edit?usp=sharing 301
@@ -135,7 +153,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /api/expansion-panel-actions/ /api/accordion-actions/ 301
 /api/expansion-panel-details/ /api/accordion-details/ 301
 /api/expansion-panel-summary/ /api/accordion-summary/ 301
-/premium-themes* https://mui.com/store/ 301
+/premium-themes* https://material-ui.com/store/ 301
 /customization/themes/ /customization/theming/ 301
 https://v1-5-0.mui.com/* https://v1.mui.com/:splat 301!
 https://v3-9-0.mui.com/* https://v3.mui.com/:splat 301!
