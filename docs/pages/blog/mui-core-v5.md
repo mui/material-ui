@@ -565,7 +565,7 @@ If you are starting your upgrade, these are the three things you should look int
   If you are not familiar with what a codemod is, check out [Effective Refactoring with Codemods by Edd Yerburgh](https://www.youtube.com/watch?v=H9qtLutnT_g&ab_channel=Pusher).
 - 📄 Lastly, we have prepared a step-by-step [migration guide](/guides/migration-v4/).
   This guide is the one place where you can find all information required for upgrading to v5.
-
+- We've [worked with the React core team to make React devtools display warnings](https://github.com/facebook/react/pull/20463) directly in the components panel. This should make it easier to find where components need to be updated for v5: https://github.com/facebook/react/blob/main/packages/react-devtools/CHANGELOG.md#expose-dev-mode-warnings-in-devtools-ui
 In the following sections, we will cover some high-level changes required for a successful upgrade.
 
 ### Change of the package names
