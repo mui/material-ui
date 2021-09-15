@@ -374,14 +374,14 @@ Instead, we have reversed the priority, putting the developers using them [first
 In practice, this means breaking down complex demos into smaller ones.
 We aim to have as many "inline previews" as possible. It saves one click to expand the demo, and the mental overhead of figuring out what part of the code maps with what of interest you saw on the screen.
 
-<a href="/components/buttons/#basic-button"><img src="/static/blog/mui-core-v5/inline-preview.png" alt="Screenshot of the new code inline preview in our docs" style="width: 649px; margin-bottom: 16px;" /></a>
+<a href="/components/buttons/#basic-button"><img loading="lazy" src="/static/blog/mui-core-v5/inline-preview.png" alt="Screenshot of the new code inline preview in our docs" style="width: 649px; margin-bottom: 16px;" /></a>
 
 ### Props descriptions in IntelliSense
 
 The best documentation is the one you don't need to open.
 We have moved all the prop descriptions to TypeScript, so IntelliSense in your editor can show you more context.
 
-<img src="/static/blog/mui-core-v5/prop-descriptions.png" alt="Screenshot of the added prop descriptions due to IntelliSense" style="width: 649px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/mui-core-v5/prop-descriptions.png" alt="Screenshot of the added prop descriptions due to IntelliSense" style="width: 649px; margin-bottom: 16px;" />
 
 <p class="blog-description">The popup explains what the <code>forcePopupIcon</code> prop is for.</p>
 
@@ -420,7 +420,7 @@ Overall, the language stats of GitHub give some qualitative measure of the progr
 - 07/2021: 35.4%
 - Today: 36.1%
 
-<img src="/static/blog/mui-core-v5/typescript.png" alt="Screenshot of our current language distribution. 36.1% TypeScript, 63.9% JavaScript." style="width: 310px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/mui-core-v5/typescript.png" alt="Screenshot of our current language distribution. 36.1% TypeScript, 63.9% JavaScript." style="width: 310px; margin-bottom: 16px;" />
 
 We expect the adoption of TypeScript to increase during the lifecycle of v5.
 With this organic adoption strategy, it might take us two years to close [#15984](https://github.com/mui-org/material-ui/issues/15984).
@@ -523,7 +523,7 @@ We have made them [available](/components/material-icons/) in the `@mui/icons-ma
 We have introduced a new `<Stack>` component
 to handle one-dimensional layouts. It's's similar to how Figma handles auto-layout.
 
-<a href="/components/stack/"><img src="/static/blog/mui-core-v5/stack.png" alt="" style="width: 532px; margin-bottom: 16px;" /></a>
+<a href="/components/stack/"><img loading="lazy" src="/static/blog/mui-core-v5/stack.png" alt="" style="width: 532px; margin-bottom: 16px;" /></a>
 
 > Note that you might already be using `<Box display="flex" gap={1}>` to solve the same problem,
 > however, [browser support](https://caniuse.com/flexbox-gap) for the flexbox `gap` CSS property is lacking in Safari.
@@ -553,7 +553,7 @@ The following components are now available in the lab:
 - [TrapFocus](/components/trap-focus/). This component traps the keyboard focus within a DOM node. For example, it's used by the Modal to prevent tabbing out of the component for accessibility reasons.
 - [Masonry](/components/masonry/). One great use case for this component is when using the `Grid` component leads to wasted space. It's frequently used in dashboards.
 
-  <a href="/components/masonry/"><img src="/static/blog/mui-core-v5/masonry.png" alt="" style="width: 505px; margin-bottom: 16px;" /></a>
+  <a href="/components/masonry/"><img loading="lazy" src="/static/blog/mui-core-v5/masonry.png" alt="" style="width: 505px; margin-bottom: 16px;" /></a>
 
 ## v4 migration
 
@@ -619,7 +619,7 @@ These changes have allowed us to save [6 kB gzipped](https://github.com/mui-org/
 
 We now have design kits for the MUI components available in the three main design tools out there: [Figma](/store/items/figma-react/), [Sketch](/store/items/sketch-react/), and [Adobe XD](/store/items/adobe-xd-react/). If you work together with a designer or team of designers, having them use the design kits makes for easier communication, as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling much faster development.
 
-<a href="https://mui.com/store/#design"><img src="/static/blog/mui-core-v5/design-kits.png" alt="Screenshot of buttons in the Figma design kit" style="width: 700px; margin-bottom: 16px;" /></a>
+<a href="https://mui.com/store/#design"><img loading="lazy" src="/static/blog/mui-core-v5/design-kits.png" alt="Screenshot of buttons in the Figma design kit" style="width: 700px; margin-bottom: 16px;" /></a>
 
 <p class="blog-description">The design kits</p>
 
