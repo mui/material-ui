@@ -12,6 +12,10 @@ https://next.material-ui.com/* https://mui.com/:splat 301!
 # Support multiple domains
 https://material-ui.dev/* https://mui.com/:splat 301!
 https://material-ui.com/* https://mui.com/:splat 301!
+https://v0.material-ui.com/* https://v0.mui.com/:splat 301!
+https://v1.material-ui.com/* https://v1.mui.com/:splat 301!
+https://v3.material-ui.com/* https://v3.mui.com/:splat 301!
+https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 
 # For links hosted in the code published on npm
 /r/styles-instance-warning /getting-started/faq/#i-have-several-instances-of-styles-on-the-page 302
