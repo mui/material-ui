@@ -53,11 +53,11 @@ It is based on this context that we started to work on v5 in 2019.
 Our primary focus was to revamp the **customization Developer Experience (DX)**.
 It had become clear that design (aesthetic, UX) and DX were key to unlocking the next stage of growth.
 
-The last major iteration on the library was completed with MUI v4, released [two-and-a-half years ago](https://mui.com/blog/material-ui-v4-is-out/),
+The last major iteration on the library was completed with v4, released [two-and-a-half years ago](https://mui.com/blog/material-ui-v4-is-out/),
 meaning over a year without innovation.
 So, we have approached v5 with a focus on delivering **long-term value**.
 For instance, we stopped all development on v4 as soon as we started to work on v5,
-and have taken the liberty of introducing breaking changes anytime we have identified a long-term potential.
+and have taken the liberty of introducing breaking changes anytime we have identified a long-term upside.
 
 You can find the initial RFC plan for v5 in [issue #20012](https://github.com/mui-org/material-ui/issues/20012).
 
@@ -74,7 +74,7 @@ The first step we took to improve the customization experience was to rethink th
 If you have been following MUI for a long time, you have probably noticed that we have iterated (a lot!) on the styling solution over the last seven years.
 We started with Less, then inline-styles, then JSS, and now emotion. Why change it again? We wanted to solve the following **problems**:
 
-1. The React community is settling on `styled` as the **most popular** CSS-in-JS API. We have used popularity as a proxy for "best".
+1. The React community is settling on `styled()` as the **most popular** CSS-in-JS API. We have used popularity as a proxy for "best".
 
 ```jsx
 const StyledDiv = styled('div')({
@@ -101,7 +101,7 @@ While MUI is compatible with any styling solution (as long as the styles have mo
 
 After [exploring](https://github.com/mui-org/material-ui/issues/22342) many different options, we settled on what we believe is a great tradeoff to **solve** the above issues:
 
-1. We have made `styled` the lowest level primitive to add styles.
+1. We have made `styled()` the lowest level primitive to add styles.
    This API is already known by many.
 2. We have defined a common interface with concrete implementations:
 
@@ -124,7 +124,7 @@ We recommend the latter to match the core components.
 
 ### The `sx` prop
 
-While the `styled` API is great to style complex components or to create highly reused components, there are cases where it's overkill.
+While the `styled()` API is great to style complex components or to create highly reused components, there are cases where it's overkill.
 We started to [explore](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df) this **problem** three years ago with the introduction of the `<Box>` component to solve the following concerns:
 
 1. **Switching context** wastes time.
@@ -150,7 +150,7 @@ For instance, you can add one unit of vertical margin with:
 <p class="blog-description"><a href="https://codesandbox.io/s/nostalgic-williams-zmo5r?file=/src/App.js">Codesandbox</a></p>
 
 Developers already seem to [love it](https://twitter.com/AnsonLowZF/status/1397034690771443715).
-You can find a [side-by-side comparison](https://mui.com/system/basics/#why-use-the-system) of `styled` vs. `sx` in the documentation to determine when you should use the prop.
+You can find a [side-by-side comparison](https://mui.com/system/basics/#why-use-the-system) of `styled()` vs. `sx` in the documentation to determine when you should use the prop.
 Some developers use `sx` for everything, others only in simple cases.
 
 The four components categorized as CSS utilities: Box, Grid, Typography, and Stack pushes the approach one step further.
@@ -617,7 +617,7 @@ These changes have allowed us to save [6 kB gzipped](https://github.com/mui-org/
 
 ## Design kits
 
-We now have design kits for the MUI components available in the three main design tools out there: [Figma](/store/items/figma-react/), [Sketch](/store/items/sketch-react/), and [Adobe XD](/store/items/adobe-xd-react/). If you work together with a designer or team of designers, having them use the design kits makes for easier communication, as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling much faster development.
+We now have design kits for the MUI components available in the three main design tools out there: [Figma](https://material-ui.com/store/items/figma-react/), [Sketch](https://material-ui.com/store/items/sketch-react/), and [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/). If you work together with a designer or team of designers, having them use the design kits makes for easier communication, as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling much faster development.
 
 <a href="https://mui.com/store/#design"><img loading="lazy" src="/static/blog/mui-core-v5/design-kits.png" alt="Screenshot of buttons in the Figma design kit" style="width: 700px; margin-bottom: 16px;" /></a>
 
