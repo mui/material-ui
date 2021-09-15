@@ -2,7 +2,7 @@
 
 <p class="description">Yeah, v4 has been released!</p>
 
-Looking for the v3 docs? [Find them here](https://mui.com/versions/).
+Looking for the v3 docs? You can [find the latest version here](https://mui.com/versions/).
 
 > This document is a work in progress.
 > Have you upgraded your site and run into something that's not covered here?

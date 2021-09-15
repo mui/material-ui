@@ -2,7 +2,7 @@
 
 <p class="description">Yeah, v5 has been released!</p>
 
-If you're looking for the v4 docs, you can [find them here](https://mui.com/versions/).
+If you're looking for the v4 docs, you can [find the latest version here](https://mui.com/versions/).
 
 ## Introduction
 
@@ -2538,7 +2538,7 @@ In some cases, you might want to create multiple styled components in a file ins
 
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
-The API is similar to JSS `makeStyles` but work with emotion.
+The API is similar to JSS `makeStyles` but works with emotion.
 
   <!-- Add material-ui component migration example -->
 
