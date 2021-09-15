@@ -5,7 +5,7 @@
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/nextjs-with-typescript
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/v4.x | tar -xz --strip=2  material-ui-master/examples/nextjs-with-typescript
 cd nextjs-with-typescript
 ```
 
@@ -18,7 +18,7 @@ npm run dev
 
 or:
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/nextjs-with-typescript)
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/v4.x/examples/nextjs-with-typescript)
 
 ## The idea behind the example
 
