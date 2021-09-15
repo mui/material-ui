@@ -23,7 +23,7 @@
   },
   "homepage": "https://mui.com/components/material-icons/",
   "scripts": {
-    "build": "cp -r lib/ build/ && yarn build:typings && yarn build:copy-files",
+    "build": "shx cp -r lib/ build/ && yarn build:typings && yarn build:copy-files",
     "build:lib": "yarn build:node && yarn build:stable",
     "build:lib:clean": "rimraf lib/ && yarn build:lib",
     "build:legacy": "echo 'Skip legacy build'",
@@ -56,6 +56,7 @@
   "devDependencies": {
     "fs-extra": "^10.0.0",
     "mustache": "^4.2.0",
+    "shx": "^0.3.3",
     "svgo": "^2.4.0",
     "yargs": "^17.0.1"
   },
