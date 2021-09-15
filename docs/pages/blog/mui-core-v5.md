@@ -624,15 +624,27 @@ We now have the MUI components available in the three main design tools out ther
 
 ### A public roadmap
 
-```sh
-- It's new, link core and x roadmaps.
-  Can use https://github.blog/2020-07-28-announcing-the-github-public-roadmap/ as inspiration
-- Use what come bellow as key effort we want to take on
-```
+You can use our GitHub project's roadmap to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
+
+- [MUI Core](https://github.com/mui-org/material-ui/projects/25)
+- [MUI X](https://github.com/mui-org/material-ui-x/projects/1)
+
+We offer this transparency into what we plan to work on, so that you can plan better and share feedback earlier to influence what we’re building.
+
+From high level perspective, we plan to focus in the upcoming period on the following topics:
+
+- Core project:
+  - unstyled components and hooks, to push even further the customization level we offer for the components
+  - second design system, that will help us grow MUI beyound Material Design
+- X project:
+  - continue our focus on the `DataGrid` component, by releasing the v5 stable release and developing more features
+  - expand to a second component as part of the X package
+
+You can find more information about the new areas we are going to work on in the next sections.
 
 ### Unstyled components and hooks
 
-To continue expanding on the customization effort, we plan to provide a version of the components that contain only the core functionality and accessibility support features, allowing you to add whatever styling strategy you wish. We're just starting and there's a lot of work to do to have a full set of unstyled components. 
+To continue expanding on the customization effort, we plan to provide a version of the components that contain only the core functionality and accessibility support features, allowing you to add whatever styling strategy you wish. We're just starting and there's a lot of work to do to have a full set of unstyled components.
 
 You can keep track of our progress in [#27170](https://github.com/mui-org/material-ui/issues/27170).
 
