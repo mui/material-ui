@@ -420,7 +420,7 @@ Overall, the language stats of GitHub give some qualitative measure of the progr
 - 07/2021: 35.4%
 - Today: 36.1%
 
-<img loading="lazy" src="/static/blog/mui-core-v5/typescript.png" alt="Screenshot of our current language distribution. 36.1% TypeScript, 63.9% JavaScript." style="width: 310px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/mui-core-v5/typescript.png" alt="Screenshot of our current language distribution. 36.1% TypeScript, 63.9% JavaScript." style="width: 700px; margin-bottom: 16px;" />
 
 We expect the adoption of TypeScript to increase during the lifecycle of v5.
 With this organic adoption strategy, it might take us two years to close [#15984](https://github.com/mui-org/material-ui/issues/15984).
@@ -440,9 +440,7 @@ Bonus point, we run [React v18](https://github.com/reactwg/react-18) (unreleased
 
 The MUI X product line will contain all future commercial components and all the components that we can't sustain with the open-source model. MUI X is our next iteration in scaling MUI, both as a company and as a comprehensive React library of components.
 
-```sh
-- What's available in it. Present the new Data Grid component
-```
+<img loading="lazy" src="/static/blog/mui-core-v5/mui-x-blog-hero.png" alt="Mockup of some MUI X components" style="width: 700px; margin-bottom: 16px;" />
 
 ### Data Grid
 
@@ -452,10 +450,9 @@ To achieve this we have a twin licensing model.
 The `DataGrid` component is available under an MIT license for the features that can be relatively easily implemented, and that can be sustained with an open-source model.
 The `DataGridPro` on the other hand is available under a paid commercial license for the more advanced features.
 
-```sh
-- Do a quick presentation of what's available
-- Covered a bit in https://material-ui.com/blog/2020-q3-update/
-```
+<img loading="lazy" src="/static/blog/mui-core-v5/data-grid.gif" alt="Screen recording of the Data Grid component demo" style="width: 700px; margin-bottom: 16px;" />
+
+<a href="/components/data-grid/demo/"><p class="blog-description">Check the Data Grid demo here.</p></a>
 
 ### Date Picker
 
@@ -523,7 +520,7 @@ We have made them [available](/components/material-icons/) in the `@mui/icons-ma
 We have introduced a new `<Stack>` component
 to handle one-dimensional layouts. It's's similar to how Figma handles auto-layout.
 
-<a href="/components/stack/"><img loading="lazy" src="/static/blog/mui-core-v5/stack.png" alt="" style="width: 532px; margin-bottom: 16px;" /></a>
+<a href="/components/stack/"><img loading="lazy" src="/static/blog/mui-core-v5/stack.png" alt="Screenshot of the Stack component and its code preview" style="width: 700px; margin-bottom: 16px;" /></a>
 
 > Note that you might already be using `<Box display="flex" gap={1}>` to solve the same problem,
 > however, [browser support](https://caniuse.com/flexbox-gap) for the flexbox `gap` CSS property is lacking in Safari.
@@ -553,7 +550,7 @@ The following components are now available in the lab:
 - [TrapFocus](/components/trap-focus/). This component traps the keyboard focus within a DOM node. For example, it's used by the Modal to prevent tabbing out of the component for accessibility reasons.
 - [Masonry](/components/masonry/). One great use case for this component is when using the `Grid` component leads to wasted space. It's frequently used in dashboards.
 
-  <a href="/components/masonry/"><img loading="lazy" src="/static/blog/mui-core-v5/masonry.png" alt="" style="width: 505px; margin-bottom: 16px;" /></a>
+  <a href="/components/masonry/"><img loading="lazy" src="/static/blog/mui-core-v5/masonry.png" alt="Screenshot of the Masonry component and its code preview" style="width: 700px; margin-bottom: 16px;" /></a>
 
 ## v4 migration
 
