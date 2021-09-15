@@ -2532,7 +2532,7 @@ In some cases, you might want to create multiple styled components in a file ins
 
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
-The API is similar to JSS `makeStyles` but work with emotion.
+The API is similar to JSS `makeStyles` but works with emotion.
 
   <!-- Add material-ui component migration example -->
 
