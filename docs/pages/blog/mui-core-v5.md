@@ -644,7 +644,9 @@ You can find more information about the new areas we are going to work on in the
 
 ### Unstyled components and hooks
 
-To continue expanding on the customization effort, we plan to provide a version of the components that contain only the core functionality and accessibility support features, allowing you to add whatever styling strategy you wish. We're just starting and there's a lot of work to do to have a full set of unstyled components.
+To continue improving the customization experience, we are doubling down on the version of the components without styles.
+These components and hooks contain the main functionalities and accessibility, without being opinionated about how styles are applied nor what styles.
+We still have work to do to have a full set of unstyled components.
 
 You can read more about them in [the docs](https://mui.com/customization/unstyled-components/) and keep track of our progress in [#27170](https://github.com/mui-org/material-ui/issues/27170).
 
