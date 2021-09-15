@@ -681,7 +681,7 @@ We hope we can reach 50% of the React community by 2026. This is an ambitious go
 
 ### A public roadmap
 
-You can use our GitHub project's roadmap to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
+You can use our GitHub's quarterly public roadmap to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
 
 - [MUI Core](https://github.com/mui-org/material-ui/projects/25)
 - [MUI X](https://github.com/mui-org/material-ui-x/projects/1)
@@ -690,12 +690,12 @@ We offer this transparency into what we plan to work on, so that you can plan be
 
 From a high level perspective, we plan to focus in the upcoming period on the following topics:
 
-- Core project:
-  - unstyled components and hooks, to push the customization level of components even further
+- Core product:
+  - unstyled components and hooks, we want to continue improving the customization experience
   - second design system, that will help us grow MUI beyond Material Design
-- X project:
-  - continue our focus on the `DataGrid` component, by releasing the stable 5.0 version and developing more features
-  - expand to a second component as part of the X package
+- X product:
+  - focus on the data grid component, by releasing the stable 5.0 version and developing the advanced features in our roadmap
+  - expand to a second component once the data grid is on the right path
 
 You can find more information about the new areas we are going to work on in the next sections.
 
@@ -729,10 +729,10 @@ We'll keep you updated about the progress. And as always, you're invited to cont
 
 ### MUI X
 
-```sh
-- We will keep focusing on the data grid
-- We will expand to a second component, once we hit a point of diminushing efficiency on the data  grid
-```
+The data grid is the cornerstone of any application manipulating data. We plan to focus on it as long as necessary to deliver most of the advanced features.
+We still have column pinning, tree data, grouping, pivoting, excel export, and more to build!
+
+Once we would have grown the team, and made enough progress, we will expand to a second component.
 
 ### Design kits
 
