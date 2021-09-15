@@ -93,7 +93,7 @@ Lastly, to celebrate the start of a new chapter for the company with the release
 You'll find a completely different theme from Material Design – new typeface, colors, box-shadows, and more,
 all done using the flexible theming features of v5.
 
-<a href="/"><img loading="lazy" src="/static/blog/material-ui-is-now-mui/palette.png" alt="Selection of the new color palette and gradients" style="width: 600px; margin-bottom: 16px;" /></a>
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/palette.png" alt="Selection of the new color palette and gradients" style="width: 600px; margin-bottom: 16px;" />
 
 <p class="blog-description">The color palette of our brand.</p>
 
