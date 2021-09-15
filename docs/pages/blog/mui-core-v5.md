@@ -437,8 +437,9 @@ Bonus point, we run [React v18](https://github.com/reactwg/react-18) (unreleased
 
 ## A new product line: X
 
-```sh
 The MUI X product line will contain all future commercial components and all the components that we can't sustain with the open-source model. MUI X is our next iteration in scaling MUI, both as a company and as a comprehensive React library of components.
+
+```sh
 - What's available in it. Present the new Data Grid component
 ```
 
