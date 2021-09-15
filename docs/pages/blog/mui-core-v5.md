@@ -671,7 +671,7 @@ We are also proud to share that the monetization initiatives we have started rig
 [We are hiring](/careers/) for growing our existing products, but also to explore a bold new product vertical, aligned with our mission.
 
 We couldn't be more grateful for the trust that the React community put in us.
-On average, we won 4% of market share in the React community, every year.
+On average, we won 4% of market share in the React community every year.
 
 <a href="https://docs.google.com/spreadsheets/d/1l5j3Xjtvm9XZtmb4ulLiWElQaXSlZlyCWT5ONrQMpBo/edit#gid=0"><img loading="lazy" src="/static/blog/mui-core-v5/react-market.png" alt="MUI market shares in download relative to react-dom" style="width: 439px; margin-bottom: 16px;" /></a>
 
