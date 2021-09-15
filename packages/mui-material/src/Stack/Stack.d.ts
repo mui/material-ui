@@ -37,11 +37,11 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Stack](https://material-ui.com/components/stack/)
+ * - [Stack](https://mui.com/components/stack/)
  *
  * API:
  *
- * - [Stack API](https://material-ui.com/api/stack/)
+ * - [Stack API](https://mui.com/api/stack/)
  */
 declare const Stack: OverridableComponent<StackTypeMap>;
 

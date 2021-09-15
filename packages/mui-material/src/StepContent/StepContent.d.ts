@@ -45,10 +45,10 @@ export type StepContentClasskey = keyof NonNullable<StepContentProps['classes']>
  *
  * Demos:
  *
- * - [Steppers](https://material-ui.com/components/steppers/)
+ * - [Steppers](https://mui.com/components/steppers/)
  *
  * API:
  *
- * - [StepContent API](https://material-ui.com/api/step-content/)
+ * - [StepContent API](https://mui.com/api/step-content/)
  */
 export default function StepContent(props: StepContentProps): JSX.Element;

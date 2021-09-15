@@ -10,8 +10,7 @@ import Divider from '@mui/material/Divider';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import Typography from '@mui/material/Typography';
-import { Route, MemoryRouter } from 'react-router';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, Route, MemoryRouter } from 'react-router-dom';
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;

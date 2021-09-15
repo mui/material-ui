@@ -54,7 +54,7 @@ MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license))
 Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy.
 The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/guides/migration-v4/).
+Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://mui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/guides/migration-v4/).
 The open-source community is always welcome to submit new features and bug fixes as well.
 
 The current status of each MUI version is as follows:

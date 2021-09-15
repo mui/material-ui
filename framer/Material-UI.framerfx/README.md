@@ -2,7 +2,7 @@
 
 This is the official resource for MUI React components in Framer.
 
-[MUI](https://material-ui.com/) is a library of React components for faster and simpler web development.
+[MUI](https://mui.com/) is a library of React components for faster and simpler web development.
 You can build your own design system, or start with Material Design.
 
 ## Supported components
@@ -40,7 +40,7 @@ The following components are currently supported:
 ### Icons
 
 Icons can be specified using either snake_case (as documented on material.io),
-or PascalCase, as used in [the MUI documentation](https://material-ui.com/components/material-icons/).
+or PascalCase, as used in [the MUI documentation](https://mui.com/components/material-icons/).
 Simply type the icon name in the appropriate property control.
 
 The icon theme can be chosen from the related select field.
@@ -57,7 +57,7 @@ If multiple options are supplied, they take the following priority:
 
 ## Resources
 
-- [MUI documentation](https://material-ui.com/)
+- [MUI documentation](https://mui.com/)
 - [GitHub repository](https://github.com/mui-org/material-ui/tree/next/framer)
 
 ## Releases

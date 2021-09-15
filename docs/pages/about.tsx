@@ -660,8 +660,7 @@ function AboutContent() {
                   <Link href="https://github.com/mui-org/material-ui/issues">issues</Link>.
                 </li>
                 <li>
-                  Help <Link href="https://translate.material-ui.com/">translate</Link> the
-                  documentation.
+                  Help <Link href="https://translate.mui.com/">translate</Link> the documentation.
                 </li>
                 <li>
                   Answer questions on{' '}

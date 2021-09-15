@@ -2,7 +2,7 @@
   {
     "id": 35,
     "title": "Let's translate!",
-    "text": "<a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" data-ga-event-category=\"l10n\" data-ga-event-action=\"notification\" data-ga-event-label=\"zh\" href=\"https://translate.material-ui.com/\">帮助 MUI 将文档翻译成中文</a>. 🇨🇳",
+    "text": "<a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" data-ga-event-category=\"l10n\" data-ga-event-action=\"notification\" data-ga-event-label=\"zh\" href=\"https://translate.mui.com/\">帮助 MUI 将文档翻译成中文</a>. 🇨🇳",
     "userLanguage": "zh"
   },
   {
