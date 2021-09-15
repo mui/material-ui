@@ -450,17 +450,17 @@ But, in practice, we wouldn't probably cover all the possible components you mig
 Instead, we are focusing on the **hardest** and **most requested** components, leaving the long tail to our [community of contributors](/discover-more/related-projects/#components).
 
 We started working on this effort over a year ago, in a new GitHub repository: [mui-org/material-ui-x](https://github.com/mui-org/material-ui-x).
-You might wonder, why work on it as a different product? Building a great data grid or charting solution takes a considerable amount of time. Taking on the challenge of developing them required us to think about a different monetization strategy and we quickly realized that the team working on MUI X would need to become, at least, two times larger than the one working on MUI Core, which already has the community contribution. 
+You might wonder, why work on it as a different product? Building a great data grid or charting solution takes a considerable amount of time. Taking on the challenge of developing them required us to think about a different monetization strategy and we quickly realized that the team working on MUI X would need to become, at least, two times larger than the one working on MUI Core, which already has the community contribution.
 
-Although each product has its unique vision and mission statements, they complement each other. A solid MUI Core foundation is essential for the MUI X adoption. 
+Although each product has its unique vision and mission statements, they complement each other. A solid MUI Core foundation is essential for the MUI X adoption.
 
 - **MUI Core:**
-- Vision: Create robust foundations to build UI components. "Robust" is measured by how many developers decide to depend on it. 
+- Vision: Create robust foundations to build UI components. "Robust" is measured by how many developers decide to depend on it.
 - Mission: Unlock design skills to developers while allowing them to build UIs fast.
 - **MUI X:**
 - Vision: Create the last UI component library developers will ever need. High quality, consistent, feature-rich, and covering the most frequent/challenging use-cases.
 - Mission: Make building rich, data-intensive, dynamic apps a breeze.
-MUI Core has a positive cashflow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://tldrlegal.com/license/mit-license) license model works great for it.
+  MUI Core has a positive cashflow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://tldrlegal.com/license/mit-license) license model works great for it.
 
 However, none of these revenue sources would scale with the outcome and amount of work required for MUI X.
 It's why we are using an [open core license model](https://medium.com/open-consensus/2-open-core-definition-examples-tradeoffs-e4d0c044da7c) for this new product.
