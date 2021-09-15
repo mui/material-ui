@@ -4,7 +4,7 @@ components: Backdrop, BackdropUnstyled
 githubLabel: 'component: Backdrop'
 ---
 
-# Backdrop
+# Hintergrund
 
 <p class="description">Die Hintergrundkomponente wird verwendet, um ein bestimmtes Element oder Teile davon hervorzuheben.</p>
 

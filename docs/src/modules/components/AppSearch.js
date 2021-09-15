@@ -128,6 +128,8 @@ const RootDiv = styled('div')(({ theme }) => {
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200]
     }`,
     borderRadius: 10,
+    transitionProperty: 'all',
+    transitionDuration: '150ms',
   };
 });
 
@@ -147,7 +149,7 @@ const SearchDiv = styled('div')(({ theme }) => {
 const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(13),
-    fontWeight: 600,
+    fontWeight: 700,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[700],
     lineHeight: '21px',
     border: `1px solid ${
@@ -156,7 +158,7 @@ const Shortcut = styled('div')(({ theme }) => {
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
     padding: theme.spacing(0, 0.7),
     position: 'absolute',
-    right: theme.spacing(1),
+    right: theme.spacing(0.5),
     height: 23,
     top: 'calc(50% - 11px)',
     borderRadius: 5,

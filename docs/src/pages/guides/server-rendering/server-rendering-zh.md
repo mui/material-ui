@@ -116,7 +116,7 @@ function handleRender(req, res) {
   const { extractCriticalToChunks, constructStyleTagsFromChunks } =
     createEmotionServer(cache);
 
-  // Render the component to a string.
+  // 将组件渲染成字符串。
   const html = ReactDOMServer.renderToString(
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>

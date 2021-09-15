@@ -75,7 +75,7 @@ export default function ThemeSlider() {
               },
               rail: {
                 opacity: 1,
-                backgroundColor: mode === 'dark' ? primaryDark[900] : grey[200],
+                backgroundColor: mode === 'dark' ? primaryDark[600] : grey[200],
               },
               track: {
                 border: 'none',
@@ -90,9 +90,11 @@ export default function ThemeSlider() {
               vertical: {
                 '& .MuiSlider-mark[data-index="0"]': {
                   bottom: '2px !important',
+                  backgroundColor: mode === 'dark' ? primary[400] : grey[500],
                 },
                 '& .MuiSlider-mark[data-index="4"]': {
                   bottom: 'unset !important',
+                  backgroundColor: mode === 'dark' ? primary[400] : grey[500],
                 },
                 '& .MuiSlider-valueLabel': {
                   backgroundColor: 'transparent',
@@ -135,7 +137,6 @@ export default function ThemeSlider() {
               height: 180,
               padding: '0.75rem 0',
               borderRadius: 4,
-              bgcolor: mode === 'dark' ? primaryDark[700] : '#fff',
             }}
           >
             <Slider

@@ -390,7 +390,7 @@ TextField.propTypes /* remove-proptypes */ = {
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    */
-  type: PropTypes.string,
+  type: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The value of the `input` element, required for a controlled component.
    */

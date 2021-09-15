@@ -57,7 +57,7 @@ export default function ThemeChip() {
                 marginBottom: '1px',
                 fontSize: '0.875rem',
                 lineHeight: 1.5,
-                fontWeight: 600,
+                fontWeight: 700,
               },
               filled: {
                 color: mode === 'dark' ? '#fff' : grey[800],

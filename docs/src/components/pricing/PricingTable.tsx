@@ -135,7 +135,7 @@ const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }
           variant="caption"
           color="text.secondary"
           fontWeight="normal"
-          sx={{ display: 'block', mt: 0.5 }}
+          sx={{ display: 'block', mt: 0.8, textAlign: 'center' }}
         >
           {metadata}
         </Typography>
@@ -255,7 +255,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
     {...props}
     sx={{
       py: 2,
-      pl: 2,
+      px: 2,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -288,7 +288,7 @@ const RowHead = ({
       p: 1,
       transition: 'none',
       typography: 'body2',
-      fontWeight: 600,
+      fontWeight: 700,
       display: 'flex',
       alignItems: 'center',
       ...props.sx,
@@ -308,14 +308,14 @@ const rowHeaders: Record<string, React.ReactNode> = {
   '@mui/core': (
     <ColumnHead
       {...{
-        label: '@mui/core-base',
+        label: '@mui/base',
         tooltip: 'The unstyled components and react hooks.',
       }}
     />
   ),
   '@mui/unstyled': (
     <ColumnHead
-      {...{ label: '@mui/core-material', tooltip: 'Core components following Material Design.' }}
+      {...{ label: '@mui/material', tooltip: 'Core components following Material Design.' }}
     />
   ),
   '@mui/system': (
@@ -523,7 +523,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/filter-multicolumn': <IconImage name="no" />,
   'data-grid/pagination': <IconImage name="yes" />,
   'data-grid/pagination-large': <IconImage name="no" />,
-  'data-grid/edit-row': <IconImage name="time" />,
+  'data-grid/edit-row': <IconImage name="yes" />,
   'data-grid/edit-cell': <IconImage name="yes" />,
   'data-grid/file-csv': <IconImage name="yes" />,
   'data-grid/file-print': <IconImage name="time" />,
@@ -575,7 +575,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/filter-multicolumn': <IconImage name="yes" />,
   'data-grid/pagination': <IconImage name="yes" />,
   'data-grid/pagination-large': <IconImage name="yes" />,
-  'data-grid/edit-row': <IconImage name="time" />,
+  'data-grid/edit-row': <IconImage name="yes" />,
   'data-grid/edit-cell': <IconImage name="yes" />,
   'data-grid/file-csv': <IconImage name="yes" />,
   'data-grid/file-print': <IconImage name="time" />,
@@ -627,7 +627,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/filter-multicolumn': <IconImage name="yes" />,
   'data-grid/pagination': <IconImage name="yes" />,
   'data-grid/pagination-large': <IconImage name="yes" />,
-  'data-grid/edit-row': <IconImage name="time" />,
+  'data-grid/edit-row': <IconImage name="yes" />,
   'data-grid/edit-cell': <IconImage name="yes" />,
   'data-grid/file-csv': <IconImage name="yes" />,
   'data-grid/file-print': <IconImage name="time" />,
@@ -871,7 +871,9 @@ export default function PricingTable({
           </Box>
         </Box>
       )}
-      <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>Core</RowHead>
+      <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>
+        MUI Core
+      </RowHead>
       {renderRow('@mui/core')}
       {divider}
       {renderRow('@mui/unstyled')}
@@ -879,7 +881,7 @@ export default function PricingTable({
       {renderRow('@mui/system')}
 
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
-        Advanced
+        MUI X
       </RowHead>
       <Box sx={{ position: 'relative', minHeight: 58, '& svg': { transition: '0.3s' }, ...gridSx }}>
         <Cell />
@@ -924,6 +926,15 @@ export default function PricingTable({
             top: 0,
             width: '100%',
             height: '100%',
+            '&:hover': {
+              bgcolor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primaryDark[900], 0.3)
+                  : alpha(theme.palette.grey[50], 0.4),
+              '@media (hover: none)': {
+                bgcolor: 'initial',
+              },
+            },
           }}
         >
           Data Grid

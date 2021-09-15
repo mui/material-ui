@@ -151,7 +151,7 @@ Toutefois :
 ```jsx
 <span style={{ cursor: 'not-allowed' }}>
     <Button component={Link} disabled>
-      disabled
+      désactivé
     </Button>
   </span>
 ```

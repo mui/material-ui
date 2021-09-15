@@ -12,4 +12,4 @@ The versions of the project that are currently supported with security updates.
 
 ## Reporting a Vulnerability
 
-You can report a vulnerability by contacting us via email at [security@material-ui.com](mailto:security@material-ui.com).
+You can report a vulnerability by contacting us via email at [security@mui.com](mailto:security@mui.com).

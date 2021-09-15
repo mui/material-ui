@@ -92,7 +92,7 @@ Se você estiver usando TypeScript, você também deverá usar a [extensão de m
 ```ts
 declare module '@material-ui/core/styles' {
   interface BreakpointOverrides {
-    xs: false; // removes the `xs` breakpoint
+    xs: false; // remove o ponto de quebra `xs`
     sm: false;
     md: false;
     lg: false;

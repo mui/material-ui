@@ -55,7 +55,7 @@ Los botones delineados también son una alternativa de menos énfasis que los bo
 Todos los componentes aceptan un controlador `onClick` el cual se aplica al elemento raíz en el DOM.
 
 ```jsx
-<Button onClick={() => { alert('clicked') }}>Click me</Button>
+<Button onClick={() => { alert('pulsado') }}>Hazme click</Button>
 ```
 
 Ten en cuenta que la documentación [evita](/guides/api/#native-properties) mencionar las propiedades nativas (existen varias) en la sección API de los componentes.
@@ -151,7 +151,7 @@ Sin embargo:
 ```jsx
 <span style={{ cursor: 'not-allowed' }}>
     <Button component={Link} disabled>
-      disabled
+      Deshabilitado
     </Button>
   </span>
 ```

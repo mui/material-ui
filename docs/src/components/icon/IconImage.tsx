@@ -14,9 +14,6 @@ export type IconImageProps = {
     | 'yes'
     | 'no'
     | 'time'
-    | 'give-feedback'
-    | 'join-community'
-    | 'support-us'
     | 'spotify'
     | 'amazon'
     | 'nasa'
@@ -53,12 +50,6 @@ export default function IconImage({ name, ...props }: IconImageProps) {
     category = 'pricing/';
     width = '18';
     height = '18';
-  }
-  if (['give-feedback', 'join-community', 'support-us'].indexOf(name) !== -1) {
-    category = 'about/';
-    mode = '';
-    width = '28';
-    height = '28';
   }
   if (
     [

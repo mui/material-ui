@@ -6,7 +6,7 @@ Material UI busca proveer fundamentos sólidos para la construcción de UIs de m
 
 ## ¿Por qué usar la solución de estilo de Material-UI?
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the component styles, but these approaches have proven to be limited. [A *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations, and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
+En versiones anteriores, Material-UI usaba LESS. Luego utilizaba una solución a medida para escribir los estilos de los componentes componentes pero ambas soluciones resultaron ser limitadas. [A *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations, and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 
 Material-UI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
