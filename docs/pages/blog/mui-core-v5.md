@@ -419,7 +419,7 @@ Overall, the language stats of GitHub give some qualitative measure of the progr
 - 07/2021: 35.4%
 - Today: 36.1%
 
-<img src="/static/blog/mui-core-v5/typescript.png" alt="" style="width: 310px; margin-bottom: 16px;" />
+<img src="/static/blog/mui-core-v5/typescript.png" alt="Screenshot of our current language distribution. 36.1% TypeScript, 63.9% JavaScript." style="width: 310px; margin-bottom: 16px;" />
 
 We expect the adoption of TypeScript to increase during the lifecycle of v5.
 With this organic adoption strategy, it might take us two years to close [#15984](https://github.com/mui-org/material-ui/issues/15984).
