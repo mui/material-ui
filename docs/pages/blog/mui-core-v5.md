@@ -662,7 +662,7 @@ It will be built on top of our foundation packages (the base/unstyled components
 
 We're aiming for developing the most frequently used components first, as we plan on releasing them continuously with each milestone. We intend to have Joy versions of all components already available on Material Design so that developers can then pick between them, choosing the design they like the most. The main difference will be the theme structure, where we want to achieve the right amount of flexibility while providing an amazing design by default.
 
-We'll keep you updated about the progress. And as always, you're invited for contributing to it as well. Stay tuned!
+We'll keep you updated about the progress. And as always, you're invited to contribute to it as well. Stay tuned!
 
 ### MUI X
 
