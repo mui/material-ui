@@ -608,9 +608,7 @@ These changes have allowed us to save [6 kB gzipped](https://github.com/mui-org/
 
 ## Design kits
 
-```sh
-- Now we have Figma, Adobe XD, and Sketch
-```
+We now have the MUI components available in the three main design tools out there: Figma, Sketch, and Adobe XD. If you work together with a team of designers, having them using the UI kits makes for easier communication as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling a much faster development.
 
 ## What's next?
 
