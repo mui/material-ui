@@ -440,7 +440,9 @@ Bonus point, we run [React v18](https://github.com/reactwg/react-18) (unreleased
 
 <img loading="lazy" src="/static/blog/mui-core-v5/mui-x-blog-hero.png" alt="Mockup of some MUI X components" style="width: 700px; margin-bottom: 16px;" />
 
-We are very excited to introduce a new product line to the MUI family: **MUI X**!
+We are very excited to introduce a new product line to the MUI family: [**MUI X**](/x/)!
+We have recently released our [first stable version](https://github.com/mui-org/material-ui-x/releases/tag/v4.0.0).
+
 MUI X embodies our initiative to solve the main pain point developers have reported two years in a row during our developer's survey: [2020](/blog/2020-developer-survey-results/#5-how-can-we-improve-material-ui-for-you), [2019](/blog/2019-developer-survey-results/#4-how-can-we-improve-material-ui-for-you).
 We have heard you, you want **more components**.
 
