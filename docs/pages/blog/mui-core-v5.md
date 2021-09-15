@@ -497,7 +497,7 @@ We spent a lot of time making sure they are consistent.
 We are now working toward reaching the same level of excellence as the other core components.
 These were our first TypeScript component in the codebase.
 
-The date range picker will be part of the Pro plan, while the other simpler components are aimed to be MIT licensed.
+The date range picker will be part of the Pro plan, while the other date picker components are MIT licensed.
 
 ## New components
 
@@ -666,9 +666,18 @@ Some major changes to the components:
 ## What's next?
 
 Looking back, we are glad to say that, together, we have accomplished most of the objectives we defined in the [v4 release blog post](https://mui.com/blog/material-ui-v4-is-out/#whats-next).
-We are also proud to share that currently we are at around 25% of market share in the React community. We aim to grow till around 50% by 2025.
-This is an ambitious goal, but not impossible. We have managed to make this effort sustainable in the past, for example by introducing the [premium themes store](https://mui.com/blog/material-ui-v4-is-out/#premium-themes-store).
-In the following sections, we share our public roadmaps and the high-level areas we plan to focus on.
+
+We are also proud to share that the monetization initiatives we have started right after the release of v4 are working, e.g. [the store](/blog/material-ui-v4-is-out/#premium-themes-store-✨). We have incorporated a company two years ago, grown between x2-3 a year since, and are now over 10 people at the company with a positive cashflow 🚀. We are on track to reach 16 people by December 2021 .
+[We are hiring](/careers/) for growing our existing producs, but also to explore a bold new product vertical, aligned with or mission.
+
+We couldn't be more grateful for the trust that the React community put in us.
+On average, we won 4% of market share in the React community, every year.
+
+<a href="https://docs.google.com/spreadsheets/d/1l5j3Xjtvm9XZtmb4ulLiWElQaXSlZlyCWT5ONrQMpBo/edit#gid=0"><img loading="lazy" src="/static/blog/mui-core-v5/react-market.png" alt="MUI market shares in download relative to react-dom" style="width: 439px; margin-bottom: 16px;" /></a>
+
+<p class="blog-description">MUI market shares in download relative to react-dom</p>
+
+We hope we can reach 50% of the React community by 2026. This is an ambitious goal, but not impossible.
 
 ### A public roadmap
 
