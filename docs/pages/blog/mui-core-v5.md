@@ -484,7 +484,7 @@ To achieve this we have a twin licensing model.
 The `DataGrid` component is available under an MIT license for the features that can be relatively easily implemented, and that can be sustained with an open-source model.
 The `DataGridPro` on the other hand is available under a paid commercial license for the more advanced features.
 
-<img loading="lazy" src="/static/blog/mui-core-v5/data-grid.gif" alt="Screen recording of the Data Grid component demo" style="width: 700px; margin-bottom: 16px;" />
+<a href="/components/data-grid/demo/"><img loading="lazy" src="/static/blog/mui-core-v5/data-grid.gif" alt="Screen recording of the Data Grid component demo" style="width: 700px; margin-bottom: 16px;" /></a>
 
 <a href="/components/data-grid/demo/"><p class="blog-description">Check the Data Grid demo here.</p></a>
 
