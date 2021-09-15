@@ -633,7 +633,7 @@ From high level perspective, we plan to focus in the upcoming period on the foll
   - unstyled components and hooks, to push even further the customization level we offer for the components
   - second design system, that will help us grow MUI beyound Material Design
 - X project:
-  - continue our focus on the `DataGrid` component, by releasing the v5 stable release and developing more features
+  - continue our focus on the `DataGrid` component, by releasing the stable 5.0 version and developing more features
   - expand to a second component as part of the X package
 
 You can find more information about the new areas we are going to work on in the next sections.
