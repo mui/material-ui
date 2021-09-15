@@ -632,7 +632,8 @@ We now have the MUI components available in the three main design tools out ther
 
 ### Unstyled components and hooks
 
-We still have a lot of work to do to have a full set of unstyled components.
+To continue expanding on the customization effort, we plan to provide a version of the components that contain only the core functionality and accessibility support features, allowing you to add whatever styling strategy you wish. We're just starting and there's a lot of work to do to have a full set of unstyled components. 
+
 You can keep track of our progress in [#27170](https://github.com/mui-org/material-ui/issues/27170).
 
 Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
