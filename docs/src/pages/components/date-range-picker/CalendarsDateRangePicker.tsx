@@ -11,7 +11,7 @@ export default function CalendarsDateRangePicker() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Box>
+      <div>
         <Typography sx={{ mt: 2, mb: 1 }}>1 calendar </Typography>
         <DateRangePicker
           calendars={1}
@@ -57,7 +57,7 @@ export default function CalendarsDateRangePicker() {
             </React.Fragment>
           )}
         />
-      </Box>
+      </div>
     </LocalizationProvider>
   );
 }

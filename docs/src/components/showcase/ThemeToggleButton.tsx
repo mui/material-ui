@@ -84,7 +84,7 @@ export default function ThemeToggleButton() {
             styleOverrides: {
               root: {
                 textTransform: 'none',
-                fontWeight: 600,
+                fontWeight: 700,
                 color: mode === 'dark' ? grey[300] : grey[700],
                 borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
                 '&.Mui-selected': {
@@ -111,8 +111,8 @@ export default function ThemeToggleButton() {
           onChange={(event, value) => setLang(value)}
           aria-label="language"
         >
-          <ToggleButton value="javascript">Javascript</ToggleButton>
-          <ToggleButton value="html">HTML</ToggleButton>
+          <ToggleButton value="javascript">React</ToggleButton>
+          <ToggleButton value="html">TypeScript</ToggleButton>
           <ToggleButton value="css">CSS</ToggleButton>
         </ToggleButtonGroup>
       </Fade>

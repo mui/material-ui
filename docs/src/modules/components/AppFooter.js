@@ -19,7 +19,7 @@ const Badge = styled('span')(({ theme }) => ({
   fontSize: '10px',
   lineHeight: '1.3',
   textTransform: 'uppercase',
-  fontWeight: '600',
+  fontWeight: '700',
   letterSpacing: '0.5px',
   display: 'inline-block',
 }));

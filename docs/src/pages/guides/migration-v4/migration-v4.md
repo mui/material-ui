@@ -2630,7 +2630,7 @@ For more details, checkout [this issue](https://github.com/mui-org/material-ui/i
 
 Since `makeStyles` is now exported from `@mui/styles` package which does not know about `Theme` in the core package. To fix this, you need to augment the `DefaultTheme` (empty object) in `@mui/styles` with `Theme` from the core. [Read more about module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
 
-**Typescript Project**
+**TypeScript Project**
 
 Put this snippet to your theme file:
 

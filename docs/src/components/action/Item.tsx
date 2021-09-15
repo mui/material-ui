@@ -87,8 +87,10 @@ export default function Item({
         ...props.sx,
       }}
     >
-      <Box sx={{ mr: 2, lineHeight: 0 }}>{icon}</Box>
-      <div>
+      <Box component="span" sx={{ mr: 2, lineHeight: 0 }}>
+        {icon}
+      </Box>
+      <span>
         <Typography
           component="span"
           color="text.primary"
@@ -109,7 +111,7 @@ export default function Item({
             {description}
           </Typography>
         )}
-      </div>
+      </span>
     </Box>
   );
 }
