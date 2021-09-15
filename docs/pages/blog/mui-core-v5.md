@@ -491,7 +491,7 @@ The `DataGridPro` on the other hand is available under a paid commercial license
 ### Date Picker
 
 We have transferred the ownership of the `@material-ui/pickers` from [Dmitriy Kovalenko](https://github.com/dmtrKovalenko) to the main organization.
-The components are now part of the `@mui/lab` package.
+The [picker components](/components/pickers/) are now part of the `@mui/lab` package.
 
 We spent a lot of time making sure they are consistent and have the same level of excellence as the other core components.
 It is interesting that these components are the first TypeScript components we have in the project.
