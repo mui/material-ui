@@ -667,7 +667,7 @@ Some major changes to the components:
 
 Looking back, we are glad to say that, together, we have accomplished most of the objectives we defined in the [v4 release blog post](https://mui.com/blog/material-ui-v4-is-out/#whats-next).
 
-We are also proud to share that the monetization initiatives we have started right after the release of v4 are working, e.g. [the store](/blog/material-ui-v4-is-out/#premium-themes-store-✨). We have incorporated a company two years ago, grown between x2-3 a year since, and are now over 10 people at the company with a positive cashflow 🚀. We are on track to reach 16 people by December 2021 .
+We are also proud to share that the monetization initiatives we have started right after the release of v4 are working, e.g. [the store](/blog/material-ui-v4-is-out/#premium-themes-store-✨). We have incorporated a company two years ago, grown between x2-3 a year since, and are now over 10 people at the company with a positive cashflow 🚀. We are on track to reach 16 people by December 2021.
 [We are hiring](/careers/) for growing our existing producs, but also to explore a bold new product vertical, aligned with or mission.
 
 We couldn't be more grateful for the trust that the React community put in us.
