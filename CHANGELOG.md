@@ -4,7 +4,7 @@
 <!-- generated comparing v5.0.0-rc.1..next -->
 _Sep 15, 2021_
 
-[MUI v5 is out 🎉](https://mui.com/blog/mui-core-v5/)
+After over 400 days of development and over 40 canary releases, we are excited to introduce [MUI Core v5.0.0](https://mui.com/blog/mui-core-v5/)!
 
 A big thanks to everyone who contributed in any way and made the release possible!
 
