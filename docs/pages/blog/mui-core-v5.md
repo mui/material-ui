@@ -660,7 +660,7 @@ Developing a new design system is one of the main initiatives, alongside this ne
 
 It will be built on top of our foundation packages (the base/unstyled components and `@mui/system`) to provide the API shaped similarly to our Material Design components. We plan on having built-in CSS variables generated from the theme, a great dark mode API, a custom look and feel, and more.
 
-We're prioritizing developing first the most frequently used components as we plan on releasing them continuously with each milestone. We intend on having on Joy all the components already available on Material Design so that developers can then pick between them focusing on the design they like the most. The main difference will be at the theme structure, where we want to achieve the right amount of flexibility while providing an amazing design by default.
+We're aiming for developing the most frequently used components first, as we plan on releasing them continuously with each milestone. We intend to have Joy versions of all components already available on Material Design so that developers can then pick between them, choosing the design they like the most. The main difference will be the theme structure, where we want to achieve the right amount of flexibility while providing an amazing design by default.
 
 We'll keep you updated about the progress. And as always, you're invited for contributing to it as well. Stay tuned!
 
