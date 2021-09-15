@@ -174,9 +174,9 @@ export default function ThemeAccordion() {
               <Box sx={{ display: 'flex' }}>
                 <Folder fontSize="small" />
                 <div>
-                  <Typography>Libs</Typography>
+                  <Typography>Hacks</Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Cool ones we used on some our apps.
+                    Some of our secrets to make this website.
                   </Typography>
                 </div>
               </Box>

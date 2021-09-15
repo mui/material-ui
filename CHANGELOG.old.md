@@ -2756,7 +2756,7 @@ Here are some highlights ✨:
 
 ### Docs
 
-- [docs] Add Typescript example for switch label position (#16959) @nowNick
+- [docs] Add TypeScript example for switch label position (#16959) @nowNick
 - [docs] Adjust React + Material-UI + Firebase for v2.0 (#16988) @Phoqe
 - [docs] Improve instructions for Babel import plugins (#16993) @lookfirst
 - [docs] Make it easier to find material icons (#16956) @oliviertassinari
@@ -2819,7 +2819,7 @@ Here are some highlights ✨:
 - [docs] Fix build on windows (#16870) @merceyz
 - [docs] Fix grammatical error in components docs (#16886) @Dasbachc
 - [docs] Hide header in DefaultTheme demo (#16937) @rogerclotet
-- [docs] Migrate WithTheme demo to Typescript (#16941) @rogerclotet
+- [docs] Migrate WithTheme demo to TypeScript (#16941) @rogerclotet
 - [docs] Batch small changes (#16864) @oliviertassinari
 - [docs] Batch small changes (#16883) @oliviertassinari
 

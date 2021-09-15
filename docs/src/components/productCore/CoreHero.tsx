@@ -199,16 +199,16 @@ export default function Hero() {
               '& > *': { mr: 1, width: 28, height: 28 },
             }}
           >
-            <IconImage name="product-core" /> Core
+            <IconImage name="product-core" /> MUI Core
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            Ready to use, <br />
-            <GradientText>forever free</GradientText>,<br /> components
+            Ready to use components, <br />
+            <GradientText>free forever</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            Get a growing list of components, ready to use, forever free with built-in
-            accessibility. We&apos;ve built the foundational UI blocks for your design system so you
-            don&apos;t have to.
+            Get a growing list of components, ready to use, free forever and with accessibility
+            always in mind. We&apos;ve built the foundational UI blocks for your design system so
+            you don&apos;t have to.
           </Typography>
           <GetStartedButtons sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} />
         </Box>
@@ -231,7 +231,7 @@ export default function Hero() {
             })
           }
         >
-          <Paper sx={{ maxWidth: 672, p: 2, mb: 4 }}>
+          <Paper sx={{ maxWidth: 780, p: 2, mb: 4 }}>
             <Stepper activeStep={1}>
               <Step>
                 <StepLabel>Search for React UI libraries</StepLabel>
@@ -247,14 +247,14 @@ export default function Hero() {
           <Box
             sx={{
               '& > div': {
-                width: 320,
+                width: 370,
                 display: 'inline-flex',
                 verticalAlign: 'top',
               },
             }}
           >
             <Stack spacing={4}>
-              <Box>
+              <div>
                 <Accordion
                   elevation={0}
                   variant="outlined"
@@ -300,7 +300,7 @@ export default function Hero() {
                     <Typography variant="body2">Secret Files</Typography>
                   </AccordionSummary>
                 </Accordion>
-              </Box>
+              </div>
               {/* <DatePickerDemo /> */}
               <Alert variant="filled" color="info" icon={<CheckCircleRounded fontSize="small" />}>
                 Check out this library!
@@ -375,7 +375,7 @@ export default function Hero() {
                 </Typography>
                 <SlideDemo />
               </Paper>
-              <TextField defaultValue="Ultraviolet" label="Basement" />
+              <TextField id="core-hero-input" defaultValue="Ultraviolet" label="Basement" />
               <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <BadgeVisibilityDemo />
                 <Paper
@@ -383,7 +383,7 @@ export default function Hero() {
                   elevation={0}
                   sx={{
                     py: 2,
-                    px: 1,
+                    px: 2,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -396,22 +396,19 @@ export default function Hero() {
                 <CardHeader
                   avatar={
                     <Avatar
-                      sx={{ bgcolor: 'primary.50', color: 'primary.600' }}
-                      aria-label="recipe"
+                      sx={{ bgcolor: 'primary.50', color: 'primary.600', fontWeight: 'bold' }}
                     >
-                      <b>YN</b>
+                      YN
                     </Avatar>
                   }
                   title="Yosemite National Park"
                   subheader="California, United States"
                 />
                 <CardMedia
-                  sx={{
-                    height: 0,
-                    paddingTop: '34%', // 16:9
-                  }}
+                  height={125}
+                  alt=""
+                  component="img"
                   image="/static/images/cards/yosemite.jpeg"
-                  title="Paella dish"
                 />
                 <CardContent sx={{ pb: 0 }}>
                   <Typography variant="body2" color="text.secondary">
