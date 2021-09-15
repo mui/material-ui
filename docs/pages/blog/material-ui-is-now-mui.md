@@ -14,7 +14,9 @@ Starting today we are evolving our brand identity to clarifying the difference b
 - Material-UI: the set of foundational MIT React components is now called [**MUI Core**](https://github.com/mui-org/material-ui).
 - Material-UI X: the set of advanced React components is now called [**MUI X**](https://github.com/mui-org/material-ui-x).
 
-The new identity matches with the increased scope of our focus.
+Our previous name was no longer serving our areas of focus.
+We have grown our product offering.
+We needed a new identity to match our increased scope.
 
 ## The origin
 
