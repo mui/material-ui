@@ -17,6 +17,7 @@ export default function Home() {
       <Head
         title="MUI: Performant advanced components."
         description="We are kicking it off with the most powerful Data Grid on the market and there's a lot more to come. Build complex applications with our advanced components."
+        card="/static/social-previews/x-preview.jpg"
       />
       <CssBaseline />
       <AppHeader />
