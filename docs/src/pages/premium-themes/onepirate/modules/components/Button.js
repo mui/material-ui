@@ -22,7 +22,7 @@ const ButtonRoot = styled(MuiButton)(({ theme, size }) => ({
   }),
 }));
 
-// See https://material-ui.com/guides/typescript/#usage-of-component-prop for why the types uses `C`.
+// See https://mui.com/guides/typescript/#usage-of-component-prop for why the types uses `C`.
 function Button(props) {
   return <ButtonRoot {...props} />;
 }

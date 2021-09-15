@@ -19,7 +19,7 @@ export interface ThemeOptions extends SystemThemeOptions {
 }
 
 /**
- * Our [TypeScript guide on theme customization](https://material-ui.com/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
+ * Our [TypeScript guide on theme customization](https://mui.com/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
 export interface Theme extends SystemTheme {
   mixins: Mixins;

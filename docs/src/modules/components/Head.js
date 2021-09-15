@@ -4,12 +4,12 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
+// #major-version-switch
 const HOST = 'https://mui.com';
 
 export default function Head(props) {
   const t = useTranslate();
   const {
-    // #major-version-switch
     card = '/static/social-previews/default-preview.jpg',
     children,
     description = t('strapline'),

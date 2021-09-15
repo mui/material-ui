@@ -24,7 +24,7 @@ At the same time, the list of icons has grown. You can find 10 new brand icons a
 
   ![TypeScript](/static/blog/august-2019-update/typescript.png)
 
-- 🎨 We have worked on seeding https://material-ui.com/store/.
+- 🎨 We have worked on seeding https://mui.com/store/.
 - 📖 We have updated our ROADMAP. [Check it out](/discover-more/roadmap/).
 
 But this summary is just scratching the surface. We have accepted 193 commits from 74 different contributors. We have changed 5,875 files with 35,101 additions and 14,701 deletions.

@@ -14,7 +14,7 @@ MUI v4 has finally arrived. We are so excited about this release, as it defines 
 
 ![TypeScript switch](/static/blog/material-ui-v4-is-out/banner.png)
 
-<p class="blog-description">https://material-ui.com/</p>
+<p class="blog-description">https://mui.com/</p>
 
 ## Summary
 
@@ -27,7 +27,7 @@ MUI v4 has finally arrived. We are so excited about this release, as it defines 
 
 MUI v1 was [released](https://medium.com/material-ui/material-ui-v1-is-out-e73ce13463eb) one year ago. Version 4 is our most important major release since then. For those unfamiliar with the history of the project, we didn't release a v2, and v3 only introduced a slight browsers support change.
 
-This release happens within our [fixed frequency](https://material-ui.com/versions/#release-frequency) release strategy. We try to release a major at least every 12 months and at most every 6 months. The migration from v0 to v1 was painful, it almost felt like using two different UI libraries. We've done our best to minimize the time needed to migrate from v3 to v4. To help ease the transition, you can follow this [migration guide](/guides/migration-v3/) 📚. It shouldn't take more than a few hours.
+This release happens within our [fixed frequency](https://mui.com/versions/#release-frequency) release strategy. We try to release a major at least every 12 months and at most every 6 months. The migration from v0 to v1 was painful, it almost felt like using two different UI libraries. We've done our best to minimize the time needed to migrate from v3 to v4. To help ease the transition, you can follow this [migration guide](/guides/migration-v3/) 📚. It shouldn't take more than a few hours.
 
 This release is influenced by two major factors. First, following the Developer Survey we ran in March, we have [analyzed the results](/blog/2019-developer-survey-results/) and used them to change [our priorities](/discover-more/roadmap/#our-priorities) for the coming year. Secondly, we needed to be up to date with the latest best practices in the React community and with the Material Design Specification.
 
@@ -37,11 +37,11 @@ The Material Design team at Google has made the customization of their design sy
 
 ![Demo1](/static/blog/material-ui-v4-is-out/demo1.png)
 
-<p class="blog-description"><a href="https://material-ui.com/components/text-fields/#customized-inputs">live demo</a></p>
+<p class="blog-description"><a href="https://mui.com/components/text-fields/#customized-inputs">live demo</a></p>
 
 ![Demo2](/static/blog/material-ui-v4-is-out/demo2.png)
 
-<p class="blog-description"><a href="https://material-ui.com/components/tabs/#customized-tabs">live demo</a></p>
+<p class="blog-description"><a href="https://mui.com/components/tabs/#customized-tabs">live demo</a></p>
 
 ![Demo3](/static/blog/material-ui-v4-is-out/demo3.png)
 
@@ -317,7 +317,7 @@ import { Button } from '@mui/material';
 
 How are we going to sustain this ambitious roadmap?
 We will follow the Bootstrap model.
-We are working on [a Premium themes store](https://material-ui.com/store/).
+We are working on [a Premium themes store](https://mui.com/store/).
 
 We have built partnerships with the best theme authors of the ecosystem.
 Within a few weeks, you should find a collection of the best MUI templates and themes 😍.

@@ -92,9 +92,7 @@ function TopLayoutBlog(props) {
         description={description}
         largeCard={headers.card === 'true' ? true : undefined}
         card={
-          headers.card === 'true'
-            ? `https://material-ui.com/static${router.pathname}/card.png`
-            : undefined
+          headers.card === 'true' ? `https://mui.com/static${router.pathname}/card.png` : undefined
         }
       />
       <div className={classes.root}>

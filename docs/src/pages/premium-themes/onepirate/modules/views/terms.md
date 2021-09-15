@@ -2,7 +2,7 @@ Last modified: October 7th, 2018.
 
 ## 1. Services
 
-- 1.1 These MUI Terms of Service (these "Terms") apply to the features and functions provided by Functional Software, Inc. ("MUI," "our," or "we") via material-ui.com (the "Site") (collectively, the "Services"). By accessing or using the Site or the Services, you agree to be bound by these Terms. If you do not agree to these Terms, you are not allowed to use the Site or the Services. The "Effective Date" of these Terms is the date you first use the Site, or access any of the Services.
+- 1.1 These MUI Terms of Service (these "Terms") apply to the features and functions provided by Functional Software, Inc. ("MUI," "our," or "we") via mui.com (the "Site") (collectively, the "Services"). By accessing or using the Site or the Services, you agree to be bound by these Terms. If you do not agree to these Terms, you are not allowed to use the Site or the Services. The "Effective Date" of these Terms is the date you first use the Site, or access any of the Services.
 
 - 1.2 If you are using the Site or accessing the Services in your capacity as an employee, consultant or agent of a company or other entity, you represent that you are an employee, consultant or agent of that company or entity, and that you have the authority to bind that company or entity to these Terms. For the purpose of these Terms, you (and, if applicable, the company or entity that you represent) will be referred to as "Customer" or "you".
 
@@ -14,7 +14,7 @@ Last modified: October 7th, 2018.
 
 ## 2. Privacy
 
-Please see MUI' privacy policy at www.material-ui.com/privacy for information about how we collect, use, and disclose information about users of the Site and the Services. By using the Site and the Services, you consent to our collection, use, and disclosure of information as set forth in our privacy policy, as we may update that policy from time to time.
+Please see MUI' privacy policy at www.mui.com/privacy for information about how we collect, use, and disclose information about users of the Site and the Services. By using the Site and the Services, you consent to our collection, use, and disclosure of information as set forth in our privacy policy, as we may update that policy from time to time.
 
 ## 3. Registration
 

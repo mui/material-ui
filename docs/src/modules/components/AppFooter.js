@@ -215,7 +215,7 @@ export default function AppFooter() {
                 versionNumber: (
                   <Link
                     color="inherit"
-                    href={`https://material-ui.com${languagePrefix}/versions/`}
+                    href={`https://mui.com${languagePrefix}/versions/`}
                     aria-label={`v${process.env.LIB_VERSION}. View versions page.`}
                   >
                     {`v${process.env.LIB_VERSION}`}

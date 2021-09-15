@@ -19,11 +19,11 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
  *
  * Demos:
  *
- * - [Css Baseline](https://material-ui.com/components/css-baseline/)
+ * - [Css Baseline](https://mui.com/components/css-baseline/)
  *
  * API:
  *
- * - [ScopedCssBaseline API](https://material-ui.com/api/scoped-css-baseline/)
+ * - [ScopedCssBaseline API](https://mui.com/api/scoped-css-baseline/)
  */
 declare const ScopedCssBaseline: OverridableComponent<ScopedCssBaselineTypeMap>;
 
@@ -36,10 +36,10 @@ export type ScopedCssBaselineProps<
  *
  * Demos:
  *
- * - [Css Baseline](https://material-ui.com/components/css-baseline/)
+ * - [Css Baseline](https://mui.com/components/css-baseline/)
  *
  * API:
  *
- * - [ScopedCssBaseline API](https://material-ui.com/api/scoped-css-baseline/)
+ * - [ScopedCssBaseline API](https://mui.com/api/scoped-css-baseline/)
  */
 export default ScopedCssBaseline;

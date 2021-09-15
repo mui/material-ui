@@ -18,7 +18,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
 - 🧪 We have promoted 7 components from the lab to the core: Alert, Autocomplete, Pagination, Rating, Skeleton, SpeedDial, and ToggleButton.
   Thank you for all your feedback on these components.
   While we still plan a couple of breaking changes on them, we are confident that they have reached the same level of quality as the other core components.
-- 👮 We have introduced a new component in the lab, the [TrapFocus](https://material-ui.com/components/trap-focus/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
+- 👮 We have introduced a new component in the lab, the [TrapFocus](https://mui.com/components/trap-focus/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
 
   <video autoplay muted loop style="max-height: 416px; margin-bottom: 24px;">
     <source src="/static/blog/2020-q3-update/trap-focus.mp4" type="video/mp4" />
@@ -91,7 +91,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
 
   <img src="/static/blog/2020-q3-update/react-testing-library.png" alt="" style="width: 640px; margin-bottom: 40px; margin-top: 24px;" />
 
-- 💅 We have completed the first iteration of the unstyled components for v5.<br />You can find a [new version](https://material-ui.com/components/slider-styled/#UnstyledSlider.tsx) of the slider in the lab without any styles.
+- 💅 We have completed the first iteration of the unstyled components for v5.<br />You can find a [new version](https://mui.com/components/slider-styled/#UnstyledSlider.tsx) of the slider in the lab without any styles.
   The unstyled component weighs in at [5.2 kB gzipped](https://bundlephobia.com/result?p=@mui/lab@5.0.0-alpha.12), compared with 26 kB for the styled version (when used standalone). The component is best suited for use when you want to fully customize the look, without reimplementing the JavaScript and accessibility logic.<br />
   We're also pushing in this direction to address a concern we hear from large enterprises
   that want to be able to go one layer down in the abstraction, in order to gain more control.
@@ -103,7 +103,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
   Note that we have experimented with headless components (hooks only) in the past. For instance, you can leverage the [useAutocomplete](/components/autocomplete/#useautocomplete), and [usePagination](/components/pagination/#usepagination) hooks. However, we are pushing with unstyled first as a required step for the next item: ⬇️.
 
 - 👩‍🎨 We have completed the first iteration of the new styling solution of v5.<br />
-  You can find a [new version](https://material-ui.com/components/slider-styled/) of the slider in the lab powered by [emotion](https://emotion.sh/docs/introduction).<br />
+  You can find a [new version](https://mui.com/components/slider-styled/) of the slider in the lab powered by [emotion](https://emotion.sh/docs/introduction).<br />
   If you are already using styled-components in your application, you can swap emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
   The new styling solution saves 2kB+ gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using styled-components or emotion.<br />
   Last but not least, this change allows us to take advantage of dynamic style props. We will use them for dynamic color props, variant props, and new style props available in the core components.
