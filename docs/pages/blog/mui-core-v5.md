@@ -454,13 +454,13 @@ Bonus point, we run [React v18](https://github.com/reactwg/react-18) (unreleased
 
 ### Date Picker
 
-```sh
-- Transfer of ownership from Dmitriy to main organization.
-- Now in the lab
-- Spend a lot of time on consistency
-- Fist TypeScript component
-- Currently as the border between Core and X, hard to maintain in Core -> X, too popular for X -> Core?
-```
+We have transferd the ownership of the `@material-ui/pickers` from [Dmitriy Kovalenko](https://github.com/dmtrKovalenko) to the main organization.
+They are now part of the `@mui/lab` package.
+
+We spent a lot of time on making sure they are consistent and have the same level of exelence as the other core components.
+It is interesting that these components are the first TypeScript components we have in the project.
+
+At this moment they are on the border between the Core and the X project. It is too hard to maintain them as part of the Core, but on the other hand they are too popular and widely used to be in the X. We will keep investigating on what would be the best place for them in the upcoming period.
 
 ## New components
 
