@@ -433,7 +433,7 @@ Thanks for the patience, this has been an old and [frequently requested](https:/
 
 Bonus point, we run [React v18](https://github.com/reactwg/react-18) (unreleased) in a nightly build, in strict mode, without any test failures.
 
-> ⚠️ `@mui/styles` is not compatible with strict mode nor concurrent mode.
+> ⚠️ `@mui/styles` is not compatible with strict mode nor concurrent features.
 
 ## A new product line: X
 
