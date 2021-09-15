@@ -35,7 +35,7 @@ This release features some major highlights:
 - [v4 migration](#v4-migration)
   - [Change of the package names](#change-of-the-package-names)
   - [Change of the styling solution](#change-of-the-styling-solution)
-  - [Change on the supported platforms](#change-on-the-supported-platforms)
+  - [Change to the supported platforms](#change-to-the-supported-platforms)
 - [Design kits](#design-kits)
 - [What's next?](#whats-next)
   - [A public roadmap](#a-public-roadmap)
