@@ -17,7 +17,6 @@ Some statistics with the released of v5.0.0 compared to the one of v4.0.0:
 A big thanks to the 600+ contributors who made the release possible!
 
 The 5.0.0 version includes all changes done in the alpha, beta, and rc releases listed below.
-
 These are the changes done from the last release candidate version (5.0.0-rc.1):
 
 ### `@mui/material@5.0.0`
