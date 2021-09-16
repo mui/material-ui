@@ -68,6 +68,8 @@ You can find the initial RFC plan for v5 in [issue #20012](https://github.com/mu
 
 Material-UI is now **MUI**! Head to the [dedicated blog post](https://mui.com/blog/material-ui-is-now-mui/) to learn more.
 
+We hope you are going to enjoy the DX improvement of only having to type 3 letters to type to find us on the internet: [mui.com](https://mui.com) and to import us from npm `@mui`!
+
 ## Improved customizability
 
 ### Migration from JSS to emotion
@@ -464,7 +466,7 @@ Although each product has its unique vision and mission statements, they complem
   - Vision: Create the last UI component library developers will ever need. High quality, consistent, feature-rich, and covering the most frequent/challenging use-cases.
   - Mission: Make building rich, data-intensive, dynamic apps a breeze.
 
-MUI Core has a positive cashflow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://tldrlegal.com/license/mit-license) license model works great for it.
+MUI Core has a positive cash flow thanks to its paid templates, design assets, ads on the documentation, and backers/sponsors (❤️). The [MIT](https://tldrlegal.com/license/mit-license) license model works great for it.
 
 However, none of these revenue sources would scale with the outcome and amount of work required for MUI X.
 It's why we are using an [open core license model](https://medium.com/open-consensus/2-open-core-definition-examples-tradeoffs-e4d0c044da7c) for this new product.
@@ -474,7 +476,7 @@ The X components come in [three different plans](/pricing/):
 - **Pro.** This plan contains the features that are at the limit of what the open-source model can sustain. For instance, providing a very comprehensive set of components. From a price perspective, the plan is designed to be accessible to most professionals.
 - **Premium.** This plan contains the most advanced features.
 
-Let's have a look at our first commponent:
+Let's have a look at our first component:
 
 ### Data Grid
 
@@ -667,11 +669,18 @@ Some major changes to the components:
 
 Looking back, we are glad to say that, together, we have accomplished most of the objectives we defined in the [v4 release blog post](https://mui.com/blog/material-ui-v4-is-out/#whats-next).
 
+Some statistics with the released of v5.0.0 compared to the one of v4.0.0:
+
+- 5,832 new commits
+- 657 new contributors
+- From 2M downloads/month to 9.5M downloads/month on npm
+- From 350k users/month to 700k users/month on the documentation
+
 We are also proud to share that the monetization initiatives we have started right after the release of v4 are working, e.g. [the store](/blog/material-ui-v4-is-out/#premium-themes-store-✨). We have incorporated the company two years ago, grown between x2-3 a year since, and we're now over 10 people with a positive cashflow 🚀. We are on track to reach 16 people by December 2021.
 [We are hiring](/careers/) for growing our existing products, but also to explore a bold new product vertical, aligned with our mission.
 
 We couldn't be more grateful for the trust that the React community put in us.
-On average, we won 4% of market share in the React community every year.
+On average, we win 4% of market shares in the React community every year.
 
 <a href="https://docs.google.com/spreadsheets/d/1l5j3Xjtvm9XZtmb4ulLiWElQaXSlZlyCWT5ONrQMpBo/edit#gid=0"><img loading="lazy" src="/static/blog/mui-core-v5/react-market.png" alt="MUI market shares in download relative to react-dom" style="width: 439px; margin-bottom: 16px;" /></a>
 
@@ -686,9 +695,9 @@ You can use our public roadmap on GitHub to learn about what features we're work
 - [MUI Core](https://github.com/mui-org/material-ui/projects/25)
 - [MUI X](https://github.com/mui-org/material-ui-x/projects/1)
 
-We offer this transparency into what we plan to work on, so that you can plan better and share feedback earlier to influence what we’re building.
+We offer this transparency into what we plan to work on so that you can plan better and share feedback earlier to influence what we’re building.
 
-From a high level perspective, we plan to focus in the upcoming period on the following topics:
+From a high-level perspective, we plan to focus in the upcoming period on the following topics:
 
 - Core product:
   - Unstyled components and hooks. We want to continue improving the customization experience.
@@ -714,7 +723,7 @@ Please note that both packages are in an alpha state so that we can release brea
 we want to take the opportunity to create the best APIs we possibly can.
 
 You can help us shape these new packages by taking part in discussions.
-There are [RFCs](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+label%3Adiscussion+%5BRFC%5D) waiting for responses.
+There are [RFCs](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+label%3Adiscussion+%5BRFC%5D) waiting for your feedback.
 Don't hesitate to let us know what you think!
 
 ### Second design system
@@ -732,7 +741,7 @@ We'll keep you updated about the progress. And as always, you're invited to cont
 The data grid is the cornerstone of any application manipulating large amounts of data. We plan to focus on it as long as necessary to deliver most of the advanced features.
 We still have column pinning, tree data, grouping, pivoting, excel export, and more to build!
 
-Once we would have grown the team, and made enough progress, we will expand to a second component.
+Once we would have grown the team and made enough progress, we will expand to a second component.
 
 ### Design kits
 
@@ -743,6 +752,5 @@ We are planning to cover more user interaction states for prototyping, e.g. focu
 ## Thank you
 
 Finally, one last thank you to everyone who's contributed to MUI Core v5.
-We have reached almost 6,000 commits on this effort alone.
 The whole team is very excited about this release! It's just the beginning.
 We will keep working hard to deliver the best possible React UI components while making it accessible to the many.
