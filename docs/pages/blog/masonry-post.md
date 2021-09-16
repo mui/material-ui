@@ -86,7 +86,7 @@ On one hand, the first apporach, **CSS Grid + Configuring `grid-row-start` or `g
 
 On the other hand, it has one serious limitation as mentioned earlier.
 
-> If the row height is `10px`, the height of `<MasonryItem />` is a multitude of `10px`, such as `100px`, `110px`, ... and so on.
+> If the row height is `10px`, the height of `<MasonryItem />` is a multiple of `10px`: `100px`, `110px`, ... and so on.
 
 As a result, the heights of items are likely to be tweaked. Because we can't span a part of a row, `span` in `grid-row-end` should always be followed by a whole number. For instance, `grid-row-end: span 10.5` is not possible. Rather, it should be either `span 10` or `span 11`. Let's say that the row height of a masonry is `10px` and the rendered height of an item is `105px`. We can either make it `100px` or `110px`, but not exactly `105px`. This can disturb the experience of our MUI users.
 
