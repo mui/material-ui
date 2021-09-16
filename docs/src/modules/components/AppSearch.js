@@ -235,7 +235,7 @@ export default function AppSearch() {
         inputSelector: '#docsearch-input',
         algoliaOptions: {
           // #major-version-switch - Except changing this line you need to update https://github.com/algolia/docsearch-configs/blob/master/configs/material-ui.json
-          facetFilters: ['version:next', facetFilterLanguage],
+          facetFilters: ['version:master', facetFilterLanguage],
         },
         autocompleteOptions: {
           openOnFocus: true,
