@@ -63,7 +63,7 @@ Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://github.com/tidelift.png?size=192" alt="tidelift" title="Enterprise-ready open source software" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://github.com/tidelift.png?size=192" alt="tidelift" title="Enterprise-ready open-source software" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://github.com/teambit.png?size=192" alt="bitsrc" title="The fastest way to share code" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="movavi" href="https://spicefactory.co/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/13365608?s=192" alt="Next gen digital product studio." loading="lazy" /></a>
 </p>
@@ -79,7 +79,7 @@ via [OpenCollective](https://opencollective.com/material-ui)
 Direct
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="elevator" href="https://www.elevatormag.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://mui.com/static/sponsors/elevator.png" alt="elevator" title="The dopest new hip hop, upcoming artsits, music news, culture, and style" height="57" width="191" loading="lazy"></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="elevator" href="https://www.elevatormag.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://mui.com/static/sponsors/elevator.png" alt="elevator" title="The dopest new hip hop, upcoming artists, music news, culture, and style" height="57" width="191" loading="lazy"></a>
 </p>
 
 Gold Sponsors are those who have pledged \$500/month or more to MUI.

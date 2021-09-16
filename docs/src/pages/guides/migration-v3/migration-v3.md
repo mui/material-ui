@@ -2,7 +2,7 @@
 
 <p class="description">Yeah, v4 has been released!</p>
 
-Looking for the v3 docs? [Find them here](https://mui.com/versions/).
+Looking for the v3 docs? You can [find the latest version here](https://mui.com/versions/).
 
 > This document is a work in progress.
 > Have you upgraded your site and run into something that's not covered here?
@@ -16,8 +16,8 @@ We'll do our best to keep things easy to follow, and as sequential as possible s
 
 ## Why you should migrate
 
-This documentation page covers the _how_ of migrating from v3 to v4.
-The _why_ is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+This documentation page covers the **how** of migrating from v3 to v4.
+The **why** is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
 ## Updating your dependencies
 

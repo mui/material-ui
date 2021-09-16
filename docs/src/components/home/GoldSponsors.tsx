@@ -15,7 +15,7 @@ const GOLDs = [
     src: '/static/sponsors/tidelift.svg',
     srcSet: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
-    description: 'Enterprise-ready open source software.',
+    description: 'Enterprise-ready open-source software.',
     // Tidelift requests this format.
     href: 'https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
   },
@@ -44,7 +44,7 @@ const GOLDs = [
     src: '/static/sponsors/elevator-logo.png',
     srcSet: '/static/sponsors/elevator-logo-2x.png 2x',
     name: 'Elevator',
-    description: 'The dopest new hip hop, upcoming artsits, music.',
+    description: 'The dopest new hip hop, upcoming artists, music.',
     href: 'https://www.elevatormag.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {

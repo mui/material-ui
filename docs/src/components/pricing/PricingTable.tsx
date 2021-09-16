@@ -308,12 +308,12 @@ const rowHeaders: Record<string, React.ReactNode> = {
   '@mui/core': (
     <ColumnHead
       {...{
-        label: '@mui/base',
+        label: '@mui/core',
         tooltip: 'The unstyled components and react hooks.',
       }}
     />
   ),
-  '@mui/unstyled': (
+  '@mui/material': (
     <ColumnHead
       {...{ label: '@mui/material', tooltip: 'Core components following Material Design.' }}
     />
@@ -503,7 +503,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
 const communityData: Record<string, React.ReactNode> = {
   // Core
   '@mui/core': <IconImage name="yes" />,
-  '@mui/unstyled': <IconImage name="yes" />,
+  '@mui/material': <IconImage name="yes" />,
   '@mui/system': <IconImage name="yes" />,
   // Advanced
   'data-grid/column-groups': <IconImage name="time" />,
@@ -555,7 +555,7 @@ const communityData: Record<string, React.ReactNode> = {
 const proData: Record<string, React.ReactNode> = {
   // Core
   '@mui/core': <IconImage name="yes" />,
-  '@mui/unstyled': <IconImage name="yes" />,
+  '@mui/material': <IconImage name="yes" />,
   '@mui/system': <IconImage name="yes" />,
   // Advanced
   'data-grid/column-groups': <IconImage name="time" />,
@@ -607,7 +607,7 @@ const proData: Record<string, React.ReactNode> = {
 const premiumData: Record<string, React.ReactNode> = {
   // Core
   '@mui/core': <IconImage name="yes" />,
-  '@mui/unstyled': <IconImage name="yes" />,
+  '@mui/material': <IconImage name="yes" />,
   '@mui/system': <IconImage name="yes" />,
   // Advanced
   'data-grid/column-groups': <IconImage name="time" />,
@@ -876,7 +876,7 @@ export default function PricingTable({
       </RowHead>
       {renderRow('@mui/core')}
       {divider}
-      {renderRow('@mui/unstyled')}
+      {renderRow('@mui/material')}
       {divider}
       {renderRow('@mui/system')}
 
