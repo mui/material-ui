@@ -1130,6 +1130,23 @@ describe('<Tooltip />', () => {
       expect(document.body.style.WebkitUserSelect.toLowerCase()).to.equal('revert');
     });
 
+    it('ensures text-selection is reset after single press', () => {
+      const { getByRole } = render(
+        <Tooltip title="Hello World">
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+      document.body.style.WebkitUserSelect = 'revert';
+
+      fireEvent.touchStart(getByRole('button'));
+
+      expect(document.body.style.WebkitUserSelect).to.equal('none');
+
+      fireEvent.touchEnd(getByRole('button'));
+
+      expect(document.body.style.WebkitUserSelect).to.equal('revert');
+    });
+
     it('restores user-select when unmounted during longpress', () => {
       const enterTouchDelay = 700;
       const enterDelay = 100;
