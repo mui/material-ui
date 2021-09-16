@@ -4,9 +4,9 @@ import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import { alpha, styled } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import SearchIcon from '@mui/icons-material/Search';
+import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
-import '@docsearch/css';
 
 function isAppleDevice() {
   if (typeof navigator !== 'undefined') {
@@ -63,6 +63,10 @@ const Shortcut = styled('div')(({ theme }) => {
 });
 
 export default function AppSearch() {
+  useLazyCSS(
+    'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
+    '#app-search',
+  );
   const userLanguage = useUserLanguage();
   const searchButtonRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -152,7 +156,10 @@ export default function AppSearch() {
               '--docsearch-hit-shadow': 0,
               '--docsearch-footer-shadow': 0,
               '--docsearch-spacing': theme.spacing(1.5),
-              '--docsearch-hit-active-color': theme.palette.primary.main,
+              '--docsearch-hit-active-color':
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[300]
+                  : theme.palette.primary[600],
               '--docsearch-logo-color': theme.palette.grey[600],
               '--docsearch-searchbox-focus-background': 'unset',
               '--docsearch-footer-background': 'unset',
@@ -268,33 +275,26 @@ export default function AppSearch() {
                   : theme.palette.grey[50],
               border: '1px solid transparent',
               borderRadius: theme.shape.borderRadius,
-              '& .DocSearch-Hit-Container': {
-                '& .DocSearch-Hit-content-wrapper': {
-                  paddingLeft: theme.spacing(2),
-                  flexDirection: 'column-reverse',
-                  '& .DocSearch-Hit-title': {
-                    // content -- mismatching classname
-                    fontSize: theme.typography.pxToRem(14),
-                    color: `${theme.palette.text.secondary}`,
-                    padding: `${theme.spacing(0.5)} 0`,
-                  },
-                  '& .DocSearch-Hit-path': {
-                    // title  -- mismatching classname
-                    fontSize: theme.typography.pxToRem(14),
-                    fontWeight: 700,
-                    color: `${theme.palette.text.primary}`,
-                    paddingTop: theme.spacing(0.5),
-                  },
-                },
-                '& .DocSearch-Hit-action': {
-                  '& .DocSearch-Hit-Select-Icon': {
-                    height: '15px',
-                    width: '15px',
-                  },
-                },
-              },
             },
-            [`& .DocSearch-Hit[aria-selected='true'] a`]: {
+            '& .DocSearch-Hit-content-wrapper': {
+              padding: theme.spacing(0.5, 0),
+              paddingLeft: theme.spacing(2),
+              flexDirection: 'column-reverse',
+            },
+            '& .DocSearch-Hit-title': {
+              fontSize: theme.typography.pxToRem(14),
+              color: `${theme.palette.text.secondary}`,
+            },
+            '& .DocSearch-Hit-path': {
+              fontSize: theme.typography.pxToRem(14),
+              fontWeight: 700,
+              color: `${theme.palette.text.primary}`,
+            },
+            '& .DocSearch-Hit-Select-Icon': {
+              height: '15px',
+              width: '15px',
+            },
+            '& .DocSearch-Hit[aria-selected="true"] a': {
               backgroundColor:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[700]
