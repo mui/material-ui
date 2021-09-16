@@ -335,7 +335,7 @@ So far it features:
 - [Modal](/components/modal/#unstyled)
 - [Pagination](/components/pagination/#usepagination)
 - [Slider](/components/slider/#unstyled)
-- [Switch](/components/switches/#unstyled-switches)
+- [Switch](/components/switches/#unstyled)
 
 ```jsx
 const CustomButton = React.forwardRef(function CustomButton(
