@@ -43,6 +43,10 @@ const authors = {
     name: 'Danilo Leal',
     github: 'danilo-leal',
   },
+  bennyjoo: {
+    name: 'Benny Joo',
+    github: 'hbjORbj'
+  }
 };
 
 const styles = (theme) => ({

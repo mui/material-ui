@@ -1,5 +1,9 @@
 ---
-description: The development process of MUI Masonry
+title: The Journey of Developing MUI Masonry Component
+description: The development process of MUI Masonry Component
+date: 2021-09-17T00:00:00.000Z
+authors: ['bennyjoo"]
+card: true
 ---
 
 # The Journey of Developing MUI Masonry Component
