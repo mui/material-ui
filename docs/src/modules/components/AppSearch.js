@@ -256,10 +256,8 @@ export default function AppSearch() {
               top: 'initial',
               paddingTop: theme.spacing(2),
               background: theme.palette.background.paper,
-              letterSpacing: '0.5px',
-              fontSize: theme.typography.pxToRem(11),
-              fontWeight: 'bold',
-              textTransform: 'uppercase',
+              fontSize: theme.typography.pxToRem(13),
+              fontWeight: 500,
               color: theme.palette.text.secondary,
             },
             '& .DocSearch-Hit': {
@@ -269,15 +267,17 @@ export default function AppSearch() {
               },
             },
             '& .DocSearch-Hit a': {
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[900]
-                  : theme.palette.grey[50],
+              backgroundColor: 'transparent',
+              padding: theme.spacing(1, 0),
+              paddingLeft: theme.spacing(2),
               border: '1px solid transparent',
-              borderRadius: theme.shape.borderRadius,
+              borderBottomColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[100],
             },
             '& .DocSearch-Hit-content-wrapper': {
-              padding: theme.spacing(0.5, 0),
+              // padding: theme.spacing(0.5, 0),
               paddingLeft: theme.spacing(2),
               flexDirection: 'column-reverse',
             },
@@ -297,12 +297,13 @@ export default function AppSearch() {
             '& .DocSearch-Hit[aria-selected="true"] a': {
               backgroundColor:
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
+                  ? theme.palette.primaryDark[800]
                   : theme.palette.primary[50],
               borderColor:
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[300]
+                  ? theme.palette.primaryDark[400]
                   : theme.palette.primary[500],
+              borderRadius: theme.shape.borderRadius,
             },
             '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
               color: `${
