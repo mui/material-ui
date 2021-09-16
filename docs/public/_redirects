@@ -10,7 +10,7 @@
 https://next.material-ui.com/* https://mui.com/:splat 301!
 
 # Support multiple domains
-https://material-ui.dev/* https://mui.com/:splat 301!
+https://material-ui.com/* https://mui.com/:splat 301!
 https://v0.material-ui.com/* https://v0.mui.com/:splat 301!
 https://v1.material-ui.com/* https://v1.mui.com/:splat 301!
 https://v3.material-ui.com/* https://v3.mui.com/:splat 301!
