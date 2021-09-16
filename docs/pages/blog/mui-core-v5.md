@@ -1,7 +1,7 @@
 ---
 title: Introducing MUI Core v5.0
 description: After over 400 days of development and over 40 canary releases, we are excited to introduce MUI Core v5.0.0!
-date: 2021-09-15T00:00:00.000Z
+date: 2021-09-16T00:00:00.000Z
 authors: ['oliviertassinari', 'eps1lon', 'mnajdova', 'michaldudak', 'siriwatknp']
 card: true
 ---
