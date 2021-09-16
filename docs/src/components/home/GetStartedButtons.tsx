@@ -10,8 +10,9 @@ import Link from 'docs/src/modules/components/Link';
 
 export default function GetStartedButtons({
   installation = 'npm install @mui/material',
+  to = ROUTES.documentation,
   ...props
-}: { installation?: string } & BoxProps) {
+}: { installation?: string; to?: string } & BoxProps) {
   const [copied, setCopied] = React.useState(false);
   const handleCopy = () => {
     setCopied(true);
@@ -30,7 +31,7 @@ export default function GetStartedButtons({
       }}
     >
       <Button
-        href={ROUTES.documentation}
+        href={to}
         component={Link}
         noLinkStyle
         size="large"

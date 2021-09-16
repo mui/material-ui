@@ -880,7 +880,7 @@ describe('<Slider />', () => {
           'prop',
           'MockedSlider',
         );
-      }).toErrorDev('Material-UI: You need to use the `getAriaValueText` prop instead of');
+      }).toErrorDev('MUI: You need to use the `getAriaValueText` prop instead of');
     });
 
     it('should warn if aria-label is provided', () => {
@@ -891,7 +891,7 @@ describe('<Slider />', () => {
           'prop',
           'MockedSlider',
         );
-      }).toErrorDev('Material-UI: You need to use the `getAriaLabel` prop instead of');
+      }).toErrorDev('MUI: You need to use the `getAriaLabel` prop instead of');
     });
 
     it('should warn when switching from controlled to uncontrolled', () => {
@@ -900,7 +900,7 @@ describe('<Slider />', () => {
       expect(() => {
         setProps({ value: undefined });
       }).toErrorDev(
-        'Material-UI: A component is changing the controlled value state of Slider to be uncontrolled.',
+        'MUI: A component is changing the controlled value state of Slider to be uncontrolled.',
       );
     });
 
@@ -910,7 +910,7 @@ describe('<Slider />', () => {
       expect(() => {
         setProps({ value: [20, 50] });
       }).toErrorDev(
-        'Material-UI: A component is changing the uncontrolled value state of Slider to be controlled.',
+        'MUI: A component is changing the uncontrolled value state of Slider to be controlled.',
       );
     });
   });

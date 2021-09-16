@@ -124,7 +124,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   if (process.env.NODE_ENV !== 'production') {
     if (select && !children) {
       console.error(
-        'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
+        'MUI: `children` must be passed when using the `TextField` component with `select`.',
       );
     }
   }
@@ -390,7 +390,7 @@ TextField.propTypes /* remove-proptypes */ = {
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    */
-  type: PropTypes.string,
+  type: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The value of the `input` element, required for a controlled component.
    */

@@ -4,8 +4,8 @@ export default function adaptV4Theme(inputTheme) {
   if (process.env.NODE_ENV !== 'production') {
     console.warn(
       [
-        'Material-UI: adaptV4Theme() is deprecated.',
-        'Follow the upgrade guide on https://material-ui.com/r/migration-v4#theme.',
+        'MUI: adaptV4Theme() is deprecated.',
+        'Follow the upgrade guide on https://mui.com/r/migration-v4#theme.',
       ].join('\n'),
     );
   }

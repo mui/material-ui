@@ -3,8 +3,7 @@ import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import Fade from '@mui/material/Fade';
+import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
@@ -12,8 +11,24 @@ import { PrefetchStoreTemplateImages } from 'docs/src/components/home/StoreTempl
 import { PrefetchDesignKitImages } from 'docs/src/components/home/DesignKits';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
-const CoreShowcase = dynamic(() => import('./CoreShowcase'));
-const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'));
+function createLoading(sx: BoxProps['sx']) {
+  return () => (
+    <Box
+      sx={{
+        borderRadius: 1,
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
+        ...sx,
+      }}
+    />
+  );
+}
+
+const CoreShowcase = dynamic(() => import('./CoreShowcase'), {
+  loading: createLoading({ height: 723, mt: { md: 2 } }),
+});
+const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'), {
+  loading: createLoading({ height: 750, mt: { md: 2 } }),
+});
 const StoreTemplatesBanner = dynamic(() => import('./StoreTemplatesBanner'));
 const DesignKits = dynamic(() => import('./DesignKits'));
 
@@ -45,7 +60,7 @@ const ProductSuite = () => {
                     <GradientText>production</GradientText>
                   </Typography>
                 }
-                description="We bring together a suite of products integrated to make your life easier when it comes to setting up design systems."
+                description="A suite of products integrated to make your life easier when it comes to setting up design systems."
               />
             </Box>
             <Box sx={{ mt: 4 }} />
@@ -65,20 +80,8 @@ const ProductSuite = () => {
               <React.Fragment>
                 <PrefetchStoreTemplateImages />
                 <PrefetchDesignKitImages />
-                {productIndex === 0 && (
-                  <Fade in timeout={700}>
-                    <div>
-                      <CoreShowcase />
-                    </div>
-                  </Fade>
-                )}
-                {productIndex === 1 && (
-                  <Fade in timeout={700}>
-                    <div>
-                      <AdvancedShowcase />
-                    </div>
-                  </Fade>
-                )}
+                {productIndex === 0 && <CoreShowcase />}
+                {productIndex === 1 && <AdvancedShowcase />}
                 {productIndex === 2 && <StoreTemplatesBanner />}
                 {productIndex === 3 && <DesignKits />}
               </React.Fragment>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, screen, ErrorBoundary } from 'test/utils';
+import { createClientRender, screen, ErrorBoundary, act, fireEvent } from 'test/utils';
 import { useAutocomplete, createFilterOptions } from '@mui/core/AutocompleteUnstyled';
 
 describe('useAutocomplete', () => {
@@ -256,10 +256,10 @@ describe('useAutocomplete', () => {
 
     const devErrorMessages = [
       "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
-      'Material-UI: Unable to find the input element.',
+      'MUI: Unable to find the input element.',
       "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
       // strict effects runs effects twice
-      React.version.startsWith('18') && 'Material-UI: Unable to find the input element.',
+      React.version.startsWith('18') && 'MUI: Unable to find the input element.',
       React.version.startsWith('18') &&
         "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
       'The above error occurred in the <ul> component',
@@ -277,5 +277,25 @@ describe('useAutocomplete', () => {
         </ErrorBoundary>,
       );
     }).toErrorDev(devErrorMessages);
+  });
+
+  describe('prop: freeSolo', () => {
+    it('should not reset if the component value does not change on blur', () => {
+      const Test = (props) => {
+        const { options } = props;
+        const { getInputProps } = useAutocomplete({ options, open: true, freeSolo: true });
+
+        return <input {...getInputProps()} />;
+      };
+      render(<Test options={['foo', 'bar']} />);
+      const input = screen.getByRole('textbox');
+
+      act(() => {
+        fireEvent.change(input, { target: { value: 'free' } });
+        input.blur();
+      });
+
+      expect(input.value).to.equal('free');
+    });
   });
 });

@@ -10,11 +10,11 @@ import useInput from './useInput';
  *
  * Demos:
  *
- * - [Text Fields](https://material-ui.com/components/text-fields/)
+ * - [Text Fields](https://mui.com/components/text-fields/)
  *
  * API:
  *
- * - [InputUnstyled API](https://material-ui.com/api/input-unstyled/)
+ * - [InputUnstyled API](https://mui.com/api/input-unstyled/)
  */
 const InputUnstyled = React.forwardRef(function InputUnstyled(
   props: InputUnstyledProps,

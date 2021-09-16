@@ -2,33 +2,31 @@
 
 <p class="description">Yeah, v5 has been released!</p>
 
-If you're looking for the v4 docs, you can [find them here](https://material-ui.com/versions/).
+If you're looking for the v4 docs, you can [find the latest version here](https://mui.com/versions/).
 
 ## Introduction
 
-This is a reference for upgrading your site from Material-UI v4 to v5.
+This is a reference for upgrading your site from MUI Core v4 to v5.
 While there's a lot covered here, you probably won't need to do everything.
 We'll do our best to keep things easy to follow, and as sequential as possible, so you can quickly get rocking on v5!
 
-> 💡 We are excited to share that the org & package names have been changed from `@material-ui` to `@mui` as part of the rebranding effort! For more details about it, check the [GitHub discussion](https://github.com/mui-org/material-ui/discussions/27803).
-
 ## Why you should migrate
 
-To get the benefits of bug fixes and a lot of improvements such as the new styling engine. This documentation page covers the _how_ of migrating from v4 to v5.
-The _why_ will be covered in an upcoming blog post on Medium.
+To get the benefits of bug fixes and a lot of improvements such as the new styling engine. This documentation page covers the **how** of migrating from v4 to v5.
+The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 
 ## Migration steps
 
 - [Update React & TypeScript](#update-react-amp-typescript-version)
 - [ThemeProvider setup](#themeprovider-setup)
-- [Update Material-UI](#update-material-ui-version)
+- [Update MUI](#update-material-ui-version)
 - [Run codemods](#run-codemods)
   - [🪄 preset-safe](#preset-safe)
   - [variant-prop (optional)](#variant-prop)
   - [link-underline-hover (optional)](#link-underline-hover)
 - [Handling Breaking Changes](#handling-breaking-changes)
 - [Migrate theme's `styleOverrides` to emotion](#migrate-themes-styleoverrides-to-emotion)
-- [Migrate `makeStyles` to emotion](#migrate-makestyles-to-emotion)
+- [Migrate from JSS](#migrate-from-jss)
 - [Troubleshooting](#troubleshooting)
 
 > 💡 Prefer to create small commits on any changes to help the migration goes smoother.
@@ -40,7 +38,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 - The minimum supported version of **TypeScript** was increased from v3.2 to v3.5.
 
   > We try to align with types released from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
-  > We will not change the minimum supported version in a major version of Material-UI.
+  > We will not change the minimum supported version in a major version of MUI.
   > However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier)
 
 **Note:** if your project includes these packages, please upgrade them to the `latest` version.
@@ -74,40 +72,48 @@ function App() {
 
 > 📝 Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
 
-## Update Material-UI version
+## Update MUI version
 
-To use the `next` version of Material-UI.
-
-> 💡 If you want to use Material-UI v5 with **styled-components** instead of emotion, check out [the installation guide](/getting-started/installation/#npm)
+To use the `v5` version of MUI Core, you first need to update the package names:
 
 ```sh
-npm install @mui/material@next @emotion/react @emotion/styled
-
-// or with `yarn`
-yarn add @mui/material@next @emotion/react @emotion/styled
+@material-ui/core -> @mui/material
+@material-ui/system -> @mui/system
+@material-ui/unstyled -> @mui/core
+@material-ui/styles -> @mui/styles
+@material-ui/icons -> @mui/icons-material
+@material-ui/lab -> @mui/lab
+@material-ui/types -> @mui/types
+@material-ui/styled-engine -> @mui/styled-engine
+@material-ui/styled-engine-sc ->@mui/styled-engine-sc
+@material-ui/private-theming -> @mui/private-theming
+@material-ui/codemod -> @mui/codemod
+@material-ui/docs -> @mui/docs
+@material-ui/envinfo -> @mui/envinfo
 ```
 
-**Optional** if your project includes `@mui/icons-material` and/or `@mui/lab`, use the `next` version of them.
+The org & package names have been changed from `@material-ui` to [`@mui`](https://www.npmjs.com/org/mui) as part of the rebranding effort.
+For more details about it, check our [blog post](/blog/material-ui-is-now-mui/) or [#27803](https://github.com/mui-org/material-ui/discussions/27803).
+
+Then, you need to add the new peer dependencies on emotion:
 
 ```sh
-npm install @mui/icons-material@next @mui/lab@next
+npm install @emotion/react @emotion/styled
 
 // or with `yarn`
-yarn add @mui/icons-material@next @mui/lab@next
+yarn add @emotion/react @emotion/styled
 ```
 
-> **Note:** if you are using `@material-ui/pickers`, it has moved to `@mui/lab`. The details is in "Handling breaking changes" section.
+> 💡 If you want to use MUI Core v5 with **styled-components** instead of emotion, check out [the installation guide](/getting-started/installation/#npm).
 
-In this migration process, you will need to install/update `@mui/styles` (JSS) for temporary transition to v5.
+If you are using `@material-ui/pickers`, it has moved to `@mui/lab`. You can follow [these steps](#material-ui-pickers).
 
-```sh
-npm install @mui/styles@next
+You should have installed `@mui/styles` now.
+It includes JSS, which duplicate with emotion.
+It's meant to allow a gradual migration to v5.
+You should be able to remove the dependency following [these steps](#migrate-from-jss).
 
-// or with `yarn`
-yarn add @mui/styles@next
-```
-
-> After the migration, you should remove all `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
+After the upgrade and migration of the packages, you can remove the old `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
 
 ## Run codemods
 
@@ -118,10 +124,10 @@ We have prepared these codemods to ease your migration experience.
 This codemod contains most of the transformers that are useful for migration. (**This codemod should be applied only once per folder**)
 
 ```sh
-npx @mui/codemod@next v5.0.0/preset-safe <path>
+npx @mui/codemod v5.0.0/preset-safe <path>
 ```
 
-> If you want to run the transformers one by one, check out [preset-safe codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#-preset-safe) for more details.
+> If you want to run the transformers one by one, check out [preset-safe codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#-preset-safe) for more details.
 
 ### variant-prop
 
@@ -144,10 +150,10 @@ createMuiTheme({
 However, if you want to keep `variant="standard"` to you components, run this codemod or configure theme default props.
 
 ```sh
-npx @mui/codemod@next v5.0.0/variant-prop <path>
+npx @mui/codemod v5.0.0/variant-prop <path>
 ```
 
-For more details, checkout [variant-prop codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#variant-prop).
+For more details, checkout [variant-prop codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#variant-prop).
 
 ### link-underline-hover
 
@@ -170,10 +176,10 @@ createMuiTheme({
 However, if you want to keep `variant="hover"` to you components, run this codemod or configure theme default props.
 
 ```sh
-npx @mui/codemod@next v5.0.0/link-underline-hover <path>
+npx @mui/codemod v5.0.0/link-underline-hover <path>
 ```
 
-For more details, checkout [link-underline-hover codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#link-underline-hover).
+For more details, checkout [link-underline-hover codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#link-underline-hover).
 
 Once you have completed the codemod step, try running your application again. At this point, it should be running without error. Otherwise check out the [Troubleshooting](#troubleshooting) section. Next step, handling breaking changes in each component.
 
@@ -220,13 +226,13 @@ export default function GlobalCssPriority() {
   return (
     {/* Inject emotion before JSS */}
     <StyledEngineProvider injectFirst>
-      {/* Your component tree. Now you can override Material-UI's styles. */}
+      {/* Your component tree. Now you can override MUI's styles. */}
     </StyledEngineProvider>
   );
 }
 ```
 
-> **Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by Material-UI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`.
+> **Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by MUI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`.
 >
 > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
@@ -245,13 +251,13 @@ Here is an example:
  export default function PlainCssPriority() {
    return (
      <CacheProvider value={cache}>
-       {/* Your component tree. Now you can override Material-UI's styles. */}
+       {/* Your component tree. Now you can override MUI's styles. */}
      </CacheProvider>
    );
  }
 ```
 
-> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/next/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
+> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
 
 ### Theme structure
 
@@ -359,7 +365,7 @@ The following changes are supported by the adapter:
    }
   ```
 
-- The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
+- The `theme.palette.text.hint` key was unused in MUI components, and has been removed.
   If you depend on it, you can add it back:
 
   ```diff
@@ -445,7 +451,7 @@ The following changes are supported by the adapter:
 
 #### ThemeProvider
 
-If you are using the utilities from `@mui/styles` together with the `@mui/material`, you should replace the use of `ThemeProvider` from `@mui/styles` with the one exported from `@mui/material/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@mui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+If you are using the utilities from `@mui/styles` together with the `@mui/material`, you should replace the use of `ThemeProvider` from `@mui/styles` with the one exported from `@mui/material/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@mui/styles`, like `makeStyles`, `withStyles` etc. and the MUI components.
 
 ```diff
 -import { ThemeProvider } from '@mui/styles';
@@ -955,7 +961,7 @@ As the core components use emotion as their style engine, the props used by emot
 
   (Note that the system grid function wasn't documented in v4.)
 
-- The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material-UI component.
+- The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a MUI component.
 
   ```diff
   -<Box sx={{ border: '1px dashed grey' }} clone>
@@ -964,7 +970,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
   ```
 
-- The ability to pass a render prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material-UI component.
+- The ability to pass a render prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a MUI component.
 
   ```diff
   -<Box sx={{ border: '1px dashed grey' }}>
@@ -973,7 +979,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
   ```
 
-  For non-Material-UI components, use the `component` prop.
+  For non-MUI components, use the `component` prop.
 
   ```diff
   -<Box sx={{ border: '1px dashed grey' }}>
@@ -2212,7 +2218,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The default background color is now `#fff` in light mode and `#121212` in dark mode.
   This matches the Material Design guidelines.
-- Breakpoints are now treated as values instead of [ranges](https://v4.material-ui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above.
+- Breakpoints are now treated as values instead of [ranges](https://v4.mui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above.
   `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive).
   When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up.
 
@@ -2375,19 +2381,19 @@ const theme = createTheme({
 
 Take a look at the whole [list of global state classnames](/customization/how-to-customize/#state-classes) available.
 
-## Migrate `makeStyles` to emotion
+## Migrate from JSS
 
 This is the last step in the migration process to remove `@mui/styles` package from your codebase.
-We recommend two options.
+We can use one of these two options, by order of preference:
 
 ### 1. Use `styled` or `sx` API
 
 #### Codemod
 
-We provide [a codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
+We provide [a codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
 
 ```sh
-npx @mui/codemod@next v5.0.0/jss-to-styled <path>
+npx @mui/codemod v5.0.0/jss-to-styled <path>
 ```
 
 **Example transformation**:
@@ -2528,15 +2534,15 @@ In some cases, you might want to create multiple styled components in a file ins
  }
 ```
 
-> **Note:** [https://siriwatk.dev/tool/jss-to-styled](https://siriwatk.dev/tool/jss-to-styled) is a tool that helps converting JSS to multiple styled components without increasing CSS specificity. (This tool is **not maintained** by Material-UI)
+> **Note:** [https://siriwatk.dev/tool/jss-to-styled](https://siriwatk.dev/tool/jss-to-styled) is a tool that helps converting JSS to multiple styled components without increasing CSS specificity. (This tool is **not maintained** by MUI)
 
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
-The API is similar to JSS `makeStyles` but work with emotion.
+The API is similar to JSS `makeStyles` but works with emotion.
 
   <!-- Add material-ui component migration example -->
 
-> **Note:** this library is **not maintained** by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repository](https://github.com/garronej/tss-react/issues/new).
+> **Note:** this library is **not maintained** by MUI. If you have any issue regarding to it, please open an issue in [tss-react repository](https://github.com/garronej/tss-react/issues/new).
 
 💡 Once you migrate all of the styling, remove unnecessary `@mui/styles` by
 
@@ -2630,7 +2636,7 @@ For more details, checkout [this issue](https://github.com/mui-org/material-ui/i
 
 Since `makeStyles` is now exported from `@mui/styles` package which does not know about `Theme` in the core package. To fix this, you need to augment the `DefaultTheme` (empty object) in `@mui/styles` with `Theme` from the core. [Read more about module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
 
-**Typescript Project**
+**TypeScript Project**
 
 Put this snippet to your theme file:
 
@@ -2665,7 +2671,7 @@ You should replace the import, [more details about this error](https://github.co
 You can use this codemod (**recommended**) to fix all the import in your project:
 
 ```sh
-npx @mui/codemod@next v5.0.0/optimal-imports <path>
+npx @mui/codemod v5.0.0/optimal-imports <path>
 ```
 
 or fix it manually like this:

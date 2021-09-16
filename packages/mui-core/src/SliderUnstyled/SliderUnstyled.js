@@ -814,7 +814,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
 
     if (range && props['aria-label'] != null) {
       return new Error(
-        'Material-UI: You need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.',
+        'MUI: You need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.',
       );
     }
 
@@ -832,7 +832,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
 
     if (range && props['aria-valuetext'] != null) {
       return new Error(
-        'Material-UI: You need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.',
+        'MUI: You need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.',
       );
     }
 

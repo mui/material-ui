@@ -300,9 +300,9 @@ describe('<TextareaAutosize />', () => {
         expect(() => {
           forceUpdate();
         }).toErrorDev([
-          'Material-UI: Too many re-renders.',
-          !strictModeDoubleLoggingSupressed && 'Material-UI: Too many re-renders.',
-          !strictModeDoubleLoggingSupressed && 'Material-UI: Too many re-renders.',
+          'MUI: Too many re-renders.',
+          !strictModeDoubleLoggingSupressed && 'MUI: Too many re-renders.',
+          !strictModeDoubleLoggingSupressed && 'MUI: Too many re-renders.',
         ]);
       });
     });

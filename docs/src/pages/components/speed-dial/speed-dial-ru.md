@@ -26,7 +26,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 ## Controlled speed dial
 
-You can provide an alternate icon for the closed and open states using the `icon` and `openIcon` props of the `SpeedDialIcon` component.
+Вы можете задать альтернативную иконку для закрытого и открытого состояний, используя свойства `icon` и `openIcon` компонента `SpeedDialIcon`.
 
 The SpeedDialActions tooltips can be be displayed persistently so that users don't have to long-press in order to see the tooltip on touch devices.
 

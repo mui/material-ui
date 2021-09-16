@@ -6,12 +6,12 @@
 
 La utilidad espacial convierte el abreviado del margen corto y los accesorios de relleno en márgenes y declaraciones CSS. Los props se nombran usando el formato `{property}{sides}`.
 
-Where *property* is one of:
+Donde *property* es una de:
 
-- `m` - for classes that set *margin*
-- `p` - for classes that set *padding*
+- `m` - para clases que establecen *margen*
+- `p` - para clases que establecen *padding*
 
-Where *sides* is one of:
+Donde *sides* es uno de:
 
 - `t` - for classes that set *margin-top* or *padding-top*
 - `b` - for classes that set *margin-bottom* or *padding-bottom*
@@ -25,7 +25,7 @@ Where *sides* is one of:
 
 Dependiendo del input y la configuración del tema, se aplica la siguiente transformación:
 
-- input: `number` & theme: `number`: the property is multiplied by the theme value.
+- input: `número` & theme: `número`: la propiedad se multiplica por el valor del tema.
 
 ```jsx
 const theme = {

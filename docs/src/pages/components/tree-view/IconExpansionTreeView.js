@@ -119,7 +119,7 @@ export default function IconExpansionTreeView() {
       </CustomTreeItem>
       <CustomTreeItem nodeId="5" label="Documents">
         <CustomTreeItem nodeId="10" label="OSS" />
-        <CustomTreeItem nodeId="6" label="Material-UI">
+        <CustomTreeItem nodeId="6" label="MUI">
           <CustomTreeItem nodeId="7" label="src">
             <CustomTreeItem nodeId="8" label="index.js" />
             <CustomTreeItem nodeId="9" label="tree-view.js" />

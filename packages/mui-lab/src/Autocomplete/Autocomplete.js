@@ -10,7 +10,7 @@ export default React.forwardRef(function DeprecatedAutocomplete(props, ref) {
   if (!warnedOnce) {
     console.warn(
       [
-        'Material-UI: The Autocomplete component was moved from the lab to the core.',
+        'MUI: The Autocomplete component was moved from the lab to the core.',
         '',
         "You should use `import { Autocomplete } from '@mui/material'`",
         "or `import Autocomplete from '@mui/material/Autocomplete'`",

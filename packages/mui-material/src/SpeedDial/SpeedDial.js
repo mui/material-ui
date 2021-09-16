@@ -335,7 +335,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       if (isFragment(child)) {
         console.error(
           [
-            "Material-UI: The SpeedDial component doesn't accept a Fragment as a child.",
+            "MUI: The SpeedDial component doesn't accept a Fragment as a child.",
             'Consider providing an array instead.',
           ].join('\n'),
         );
@@ -527,7 +527,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition) component.
    */
   TransitionProps: PropTypes.object,
 };

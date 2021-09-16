@@ -36,7 +36,7 @@ describe('<TreeView />', () => {
       expect(() => {
         setProps({ expanded: undefined });
       }).toErrorDev(
-        'Material-UI: A component is changing the controlled expanded state of TreeView to be uncontrolled.',
+        'MUI: A component is changing the controlled expanded state of TreeView to be uncontrolled.',
       );
     });
 
@@ -50,7 +50,7 @@ describe('<TreeView />', () => {
       expect(() => {
         setProps({ selected: undefined });
       }).toErrorDev(
-        'Material-UI: A component is changing the controlled selected state of TreeView to be uncontrolled.',
+        'MUI: A component is changing the controlled selected state of TreeView to be uncontrolled.',
       );
     });
 

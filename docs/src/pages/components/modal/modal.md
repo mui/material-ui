@@ -41,7 +41,7 @@ Notice that you can disable the outline (often blue or gold) with the `outline: 
 
 ## Unstyled
 
-- 📦 [4.7 kB gzipped](https://bundlephobia.com/result?p=@mui/core@next)
+- 📦 [4.7 kB gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
 
 The modal also comes with an unstyled version.
 It's ideal for doing heavy customizations and minimizing bundle size.

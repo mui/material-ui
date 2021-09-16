@@ -184,7 +184,7 @@ export default function CustomizedSwitches() {
     <FormGroup>
       <FormControlLabel
         control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-        label="Material-UI switch"
+        label="MUI switch"
       />
       <FormControlLabel
         control={<Android12Switch defaultChecked />}

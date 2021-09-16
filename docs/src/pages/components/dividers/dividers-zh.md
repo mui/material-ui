@@ -23,7 +23,7 @@ materialDesign: https://material.io/components/dividers
 
 在一个列表中，请确保您将 `Divider` 渲染成一个 `<li>` 元素，这样才能遵循 HTML5 规范。 下面的例子展示了两种实现方式。
 
-## 内嵌分隔线
+## 内凹分隔线
 
 {{"demo": "pages/components/dividers/InsetDividers.js", "bg": true}}
 

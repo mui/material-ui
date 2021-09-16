@@ -80,11 +80,11 @@ const TimelineRoot = styled('ul' as const, {
  *
  * Demos:
  *
- * - [Timeline](https://material-ui.com/components/timeline/)
+ * - [Timeline](https://mui.com/components/timeline/)
  *
  * API:
  *
- * - [Timeline API](https://material-ui.com/api/timeline/)
+ * - [Timeline API](https://mui.com/api/timeline/)
  */
 const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Timeline(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimeline' });
@@ -136,10 +136,10 @@ Timeline.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Timeline](https://material-ui.com/components/timeline/)
+ * - [Timeline](https://mui.com/components/timeline/)
  *
  * API:
  *
- * - [Timeline API](https://material-ui.com/api/timeline/)
+ * - [Timeline API](https://mui.com/api/timeline/)
  */
 export default Timeline;

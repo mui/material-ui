@@ -19,7 +19,7 @@ NProgress.configure({
 const styles = (theme) => {
   if (!theme.nprogress.color) {
     throw new Error(
-      'Material-UI: You need to provide a `theme.nprogress.color` property' +
+      'MUI: You need to provide a `theme.nprogress.color` property' +
         ' for using the `NProgressBar` component.',
     );
   }
@@ -87,7 +87,7 @@ const GlobalStyles = withStyles(styles, { defaultTheme, flip: false, name: 'MuiN
 );
 
 /**
- * Elegant and ready to use wrapper on top of https://github.com/rstacruz/nprogress/.
+ * Elegant and ready-to-use wrapper on top of https://github.com/rstacruz/nprogress/.
  * The implementation is highly inspired by the YouTube one.
  */
 function NProgressBar(props) {
