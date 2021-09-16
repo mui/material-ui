@@ -173,7 +173,7 @@ export default function AppSearch() {
                 theme.palette.mode === 'dark'
                   ? alpha(theme.palette.grey[900], 0.7)
                   : alpha(theme.palette.grey[900], 0.2),
-              backdropFilter: 'blur(4px)',
+              backdropFilter: 'blur(2px)',
             },
             '& .DocSearch-Help': {
               fontSize: '0.875rem',
