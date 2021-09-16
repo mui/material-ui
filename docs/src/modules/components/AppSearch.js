@@ -277,7 +277,6 @@ export default function AppSearch() {
                   : theme.palette.grey[100],
             },
             '& .DocSearch-Hit-content-wrapper': {
-              // padding: theme.spacing(0.5, 0),
               paddingLeft: theme.spacing(2),
               flexDirection: 'column-reverse',
             },
