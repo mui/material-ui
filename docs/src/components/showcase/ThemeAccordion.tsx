@@ -51,7 +51,7 @@ export default function ThemeAccordion() {
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
    * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://material-ui.com/customization/palette/#toggling-color-mode
+   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
    */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
@@ -174,9 +174,9 @@ export default function ThemeAccordion() {
               <Box sx={{ display: 'flex' }}>
                 <Folder fontSize="small" />
                 <div>
-                  <Typography>Libs</Typography>
+                  <Typography>Hacks</Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Cool ones we used on some our apps.
+                    Some of our secrets to make this website.
                   </Typography>
                 </div>
               </Box>

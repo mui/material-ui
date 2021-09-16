@@ -36,10 +36,10 @@ Esses componentes usam o componente `SvgIcon` do Material-UI para renderizar o c
 Se você ainda não estiver usando Material-UI no seu projeto, você pode adicioná-lo com:
 
 ```sh
-// usando npm
+// utilizando o npm
 npm install @material-ui/core
 
-// usando yarn
+// utilizando o yarn
 yarn add @material-ui/core
 ```
 
@@ -165,7 +165,7 @@ Se você descobrir que há problemas de leiaute ao usar FontAwesomeIcon de `@for
 
 [Fonte Awesome](https://fontawesome.com/icons) pode ser usada com o componente `Icon` da seguinte forma:
 
-Nota: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) já agrupou cada um desses ícones SVG com o componente `SvgIcon`, para que você não precise fazer isso.
+Nota: A biblioteca [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) já agrupou cada um desses ícones SVG com o componente `SvgIcon`, para que você não precise fazer isso.
 
 A propriedade `fullWidth` de FontAwesomeIcon também pode ser usada para aproximar as dimensões corretas, mas não é garantida.
 
@@ -240,7 +240,7 @@ Então, você pode usar a fonte de dois tons diretamente:
 
 ### Fonte Awesome
 
-[Fonte Awesome](https://fontawesome.com/icons) pode ser usada com o componente `Icon` da seguinte forma:
+A [fonte Awesome](https://fontawesome.com/icons) pode ser usada com o componente `Icon` da seguinte forma:
 
 {{"demo": "pages/components/icons/FontAwesomeIcon.js"}}
 

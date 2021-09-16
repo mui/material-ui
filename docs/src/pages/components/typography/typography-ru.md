@@ -40,7 +40,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 ```
 
-For more info check out [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
+Для получения дополнительной информации ознакомьтесь с [Fontsource](https://github.com/DecliningLotus/fontsource/blob/master/packages/roboto/README.md).
 
 Fontsource может быть настроен на загрузку определенных подмножеств, жирности и стилей. Стандартная конфигурация оформления в стиле Material-UI зависит только от жирности шрифта: 300, 400, 500 и 700.
 
@@ -60,10 +60,11 @@ The Typography component makes it easy to apply a default set of font weights an
 
 The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element. It's important to realize that the style of a typography component is independent from the semantic underlying element.
 
-- You can change the underlying element for a one time occasion with the `component` property:
+- Вы можете изменить лежащий в основе элемент один раз с помощью свойства `component`:
 
 ```jsx
-{/* There is already an h1 in the page, let's not duplicate it. */}
+Heading
+</Typography> {/* There is already an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
   h1. */}
 <Typography variant="h1" component="h2">

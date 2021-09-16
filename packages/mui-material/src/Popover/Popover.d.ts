@@ -123,7 +123,7 @@ export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition) component.
    * @default {}
    */
   TransitionProps?: TransitionProps;
@@ -137,12 +137,12 @@ export interface PopoverActions {
  *
  * Demos:
  *
- * - [Menus](https://material-ui.com/components/menus/)
- * - [Popover](https://material-ui.com/components/popover/)
+ * - [Menus](https://mui.com/components/menus/)
+ * - [Popover](https://mui.com/components/popover/)
  *
  * API:
  *
- * - [Popover API](https://material-ui.com/api/popover/)
- * - inherits [Modal API](https://material-ui.com/api/modal/)
+ * - [Popover API](https://mui.com/api/popover/)
+ * - inherits [Modal API](https://mui.com/api/modal/)
  */
 export default function Popover(props: PopoverProps): JSX.Element;

@@ -20,7 +20,7 @@ const Navigation = styled('nav')(({ theme }) => ({
   '& li': {
     color: theme.palette.text.secondary,
     ...theme.typography.body2,
-    fontWeight: 600,
+    fontWeight: 700,
     '& > a, & > div': {
       display: 'inline-block',
       color: 'inherit',
@@ -87,14 +87,14 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         >
           {icon}
         </Box>
-        <Box>
-          <Typography color="text.primary" variant="body2" fontWeight={600}>
+        <div>
+          <Typography color="text.primary" variant="body2" fontWeight={700}>
             {name}
           </Typography>
           <Typography color="text.secondary" variant="body2">
             {description}
           </Typography>
-        </Box>
+        </div>
       </Box>
     );
   },
@@ -224,7 +224,7 @@ export default function HeaderNavBar() {
                       minWidth: 498,
                       overflow: 'hidden',
                       borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200',
+                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
                       bgcolor: (theme) =>
                         theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
                       boxShadow: (theme) =>
@@ -253,8 +253,8 @@ export default function HeaderNavBar() {
                           role="menuitem"
                           href={ROUTES.productCore}
                           icon={<IconImage name="product-core" />}
-                          name="Core"
-                          description="Ready to use, forever free, out-of-the-box, components."
+                          name="MUI Core"
+                          description="Ready to use, free forever, foundational components."
                           onKeyDown={handleKeyDown}
                         />
                       </li>
@@ -266,10 +266,10 @@ export default function HeaderNavBar() {
                           icon={<IconImage name="product-advanced" />}
                           name={
                             <Box component="span" display="inline-flex" alignItems="center">
-                              Advanced&nbsp;
+                              MUI&nbsp;X
                             </Box>
                           }
-                          description="Powerful components for your complex apps."
+                          description="Advanced and powerful components for complex use-cases."
                           onKeyDown={handleKeyDown}
                         />
                       </li>
@@ -280,7 +280,7 @@ export default function HeaderNavBar() {
                           href={ROUTES.productTemplates}
                           icon={<IconImage name="product-templates" />}
                           name="Templates"
-                          description="Get a fully built template for you application."
+                          description="Fully built, out-of-the-box, templates for your application."
                           onKeyDown={handleKeyDown}
                         />
                       </li>
@@ -291,7 +291,7 @@ export default function HeaderNavBar() {
                           href={ROUTES.productDesignKits}
                           icon={<IconImage name="product-designkits" />}
                           name="Design Kits"
-                          description="Pick your favorite design tool to enjoy."
+                          description="Our components available in your favorite design tool."
                           onKeyDown={handleKeyDown}
                         />
                       </li>

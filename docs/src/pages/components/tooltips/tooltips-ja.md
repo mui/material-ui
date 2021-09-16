@@ -38,7 +38,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 ## Custom child element
 
-ツールチップは、DOMイベントリスナーをその子要素に適用する必要があります。 If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
+ツールチップは、DOMイベントリスナーをその子要素に適用する必要があります。 子要素がカスタムの React 要素である場合は、そのプロパティを元のDOM要素に伝播させる必要があります。
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {

@@ -43,7 +43,7 @@ Here are the most significant improvements since December 2020.
 
   <img src="/static/blog/2021-q1-update/stack.png" alt="" style="width: 502px; margin-bottom: 16px;" />
 
-  You can find [more details](https://material-ui.com/components/stack/) in the documentation.
+  You can find [more details](https://mui.com/components/stack/) in the documentation.
 
 - 🎨 We have improved the support for custom colors and variants.
   This is [one](https://github.com/mui-org/material-ui/issues/13875) of the most upvoted issues in the GitHub issue tracker.
@@ -120,7 +120,7 @@ We have primarily focused on the data grid components, fixing a lot of bugs, but
 The date picker is at the border between the advanced components and the design system realms.
 
 - 📚 We have fixed the generation of the API pages.
-  We now document all the props supported by the public pickers components, e.g. [DatePicker](https://material-ui.com/api/date-picker/).
+  We now document all the props supported by the public pickers components, e.g. [DatePicker](https://mui.com/api/date-picker/).
 - ⚙️ We have mostly focused on addressing the technical debt present in the picker components (ported from `@materal-ui/pickers`).
 
 #### Data Grid
@@ -197,7 +197,7 @@ We will cross the ten-person milestone in the coming weeks (11).
 
 We have the following objectives:
 
-- Finish the implementation of the rebranding. A preview, the [about](https://material-ui.com/branding/about/) and [pricing](https://material-ui.com/branding/pricing/) pages.
+- Finish the implementation of the rebranding. A preview, the [about](https://mui.com/branding/about/) and [pricing](https://mui.com/branding/pricing/) pages.
 - Onboard the new members and scale our processes as we double the size of the organization this quarter.
 
 ### Core components

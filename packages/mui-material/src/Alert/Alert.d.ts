@@ -74,11 +74,11 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
  *
  * Demos:
  *
- * - [Alert](https://material-ui.com/components/alert/)
+ * - [Alert](https://mui.com/components/alert/)
  *
  * API:
  *
- * - [Alert API](https://material-ui.com/api/alert/)
- * - inherits [Paper API](https://material-ui.com/api/paper/)
+ * - [Alert API](https://mui.com/api/alert/)
+ * - inherits [Paper API](https://mui.com/api/paper/)
  */
 export default function Alert(props: AlertProps): JSX.Element;

@@ -40,6 +40,9 @@ export default function transformer(file, api, options) {
     if (!prefix) {
       // 3. use name export that is Capitalize
       root.find(j.ExportNamedDeclaration).forEach((path) => {
+        if (path.node.declaration.type !== 'VariableDeclaration') {
+          return;
+        }
         const name = path.node.declaration.declarations[0].id.name;
         if (!prefix && name.match(/^[A-Z]/)) {
           prefix = name;

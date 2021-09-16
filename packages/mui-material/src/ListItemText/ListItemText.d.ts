@@ -64,11 +64,11 @@ export interface ListItemTextProps<
  *
  * Demos:
  *
- * - [Lists](https://material-ui.com/components/lists/)
+ * - [Lists](https://mui.com/components/lists/)
  *
  * API:
  *
- * - [ListItemText API](https://material-ui.com/api/list-item-text/)
+ * - [ListItemText API](https://mui.com/api/list-item-text/)
  */
 export default function ListItemText<
   PrimaryTypographyComponent extends React.ElementType = 'span',

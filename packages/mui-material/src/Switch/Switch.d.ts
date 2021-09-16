@@ -56,12 +56,12 @@ export interface SwitchProps
  *
  * Demos:
  *
- * - [Switches](https://material-ui.com/components/switches/)
- * - [Transfer List](https://material-ui.com/components/transfer-list/)
+ * - [Switches](https://mui.com/components/switches/)
+ * - [Transfer List](https://mui.com/components/transfer-list/)
  *
  * API:
  *
- * - [Switch API](https://material-ui.com/api/switch/)
- * - inherits [IconButton API](https://material-ui.com/api/icon-button/)
+ * - [Switch API](https://mui.com/api/switch/)
+ * - inherits [IconButton API](https://mui.com/api/icon-button/)
  */
 export default function Switch(props: SwitchProps): JSX.Element;

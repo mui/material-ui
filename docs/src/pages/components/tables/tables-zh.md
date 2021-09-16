@@ -70,7 +70,7 @@ The [`DataGrid` component](/components/data-grid/) is designed for use-cases tha
 
 ### 自定义表格分页操作
 
-通过 `TablePagination` 组件的 `Action` 属性，可以实现自定义操作。
+`TablePagination` 组件的 ` ActionsComponent ` 属性能够让您实现一些自定义的行为。
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 

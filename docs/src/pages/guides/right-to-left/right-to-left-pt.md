@@ -1,6 +1,6 @@
 # Da direita para a esquerda
 
-<p class="description">Idiomas direita-para-esquerda como árabe, persa ou hebraico são suportados. Para alterar a direção dos componentes de Material-UI, você deve seguir as etapas a seguir.</p>
+<p class="description">Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Para alterar a direção dos componentes de Material-UI, você deve seguir as etapas a seguir.</p>
 
 ## Passos
 

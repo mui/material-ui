@@ -62,7 +62,7 @@ function renderFullPage(html, css) {
 }
 
 function handleRender(req, res) {
-  /* ... */
+  /* ... res.send(renderFullPage(html, css));
 }
 
 const app = express();
@@ -118,7 +118,7 @@ function handleRender(req, res) {
   const { extractCriticalToChunks, constructStyleTagsFromChunks } =
     createEmotionServer(cache);
 
-  // Render the component to a string.
+// This is fired every time the server-side receives a request.
   const html = ReactDOMServer.renderToString(
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>

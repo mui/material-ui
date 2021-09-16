@@ -8,10 +8,10 @@
 
 其中_属性_是其中之一：
 
-- `m` - 对于设置*margin*
-- `p` - 对于设置*padding*
+- `m` - 能够设置 *margin* 的类名
+- `p` - 能够设置 *padding* 的类名
 
-哪边*边*是其中之一：
+而 *sides* 是以下其中之一：
 
 - `t` - 对于设置* margin-top*或*padding-top*的类
 - `b` - 对于设置*margin-bottom的类*或*padding-bottom*的类
@@ -25,7 +25,7 @@
 
 根据输入和主题配置，您可以应用以下的转换：
 
-- 输入：`数字` & 主题：`数字` ：该属性乘以主题值。
+- input: `number` & theme: `number`: 该属性乘以 theme 的值。
 
 ```jsx
 const theme = {
@@ -38,7 +38,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 16px;
 ```
 
-- 输入：`数字` & 主题：`数组` ：属性值用作数组索引。
+- input: `number` & theme: `array` ：属性值用作数组索引。
 
 ```jsx
 const theme = {
@@ -50,7 +50,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 3px;
 ```
 
-- 输入：`数字` & 主题：`功能` ：使用属性值调用该函数。
+- input: `number` & theme: `function`：使用属性值调用该函数。
 
 ```jsx
 const theme = {
@@ -61,7 +61,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 4px;
 ```
 
-- input: `string`: 该属性作为原始CSS值传递。
+- input: `string`: 该属性作为原始的 CSS 值传递。
 
 ```jsx
 <Box sx={{ m: "2rem" }} /> // margin: 2rem;

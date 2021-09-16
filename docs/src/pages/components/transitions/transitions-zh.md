@@ -56,9 +56,9 @@ export default Main() {
 
 ## Slide 滑动
 
-从屏幕边缘滑入。 `direction` 属性控制从屏幕的哪一个边缘开始。
+从屏幕边缘滑入。 使用 `direction` 属性能够控制从屏幕的哪一个边缘开始过渡。
 
-过渡组件的 `mountOnEnter` 属性使子组件无法被挂载，直到 `in` 为 `true`。 这可以保证相对上定位好的组件不会从屏幕外面的位置滚动到视图中。 同样的， 在组件从屏幕中过渡完后，`unmountOnExit` 属性将次组件从 DOM 中移除。
+过渡组件的 `mountOnEnter` 属性，保证了只有 `in` 是`true`时，子组件才会被渲染。 这可以保证相对上定位好的组件不会从屏幕外面的位置滚动到视图中。 同样的， 在组件从屏幕中过渡完后，`unmountOnExit` 属性将次组件从 DOM 中移除。
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 

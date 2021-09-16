@@ -2,7 +2,7 @@
 
 <p class="description"><strong>Palette</strong>: A palette is a collection of colors, i.e. hues and their shades. Out of the box you get access to all colors in the Material Design guidelines.</p>
 
-Material Design[color system](https://material.io/design/color/)を使用すると、自分のブランドやスタイルを反映した色のテーマを作成できます。
+Material Designの[color system](https://material.io/design/color/)を使用すると、自分のブランドやスタイルを反映した色のテーマを作成できます。
 
 ## Picking colors
 

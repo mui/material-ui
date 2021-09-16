@@ -81,7 +81,7 @@ function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* content */}</Toolbar>
+        <Toolbar>{/* contenido */}</Toolbar>
       </AppBar>
       <div className={classes.offset} />
     </React.Fragment>

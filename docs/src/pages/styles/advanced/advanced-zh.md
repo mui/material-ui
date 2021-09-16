@@ -122,8 +122,8 @@ function Parent() {
 
 ```jsx
 const Nested = withStyles({
-  root: {}, // a style rule
-  label: {}, // a nested style rule
+  root: {}, // 一个样式规则
+  label: {}, // 一个嵌套的样式规则
 })(({ classes }) => (
   <button className={classes.root}>
     <span className={classes.label}>{/* 'jss2 my-label' Nested*/}</span>
@@ -220,7 +220,7 @@ const useStyles = makeStyles({
 
 ### injectFirst
 
-`StylesProvider`组件的属性 `injectFirst` 会把style标签注入到head的**前部**(意味着更低的权重)。
+`StylesProvider` 组件有一个 `injectFirst` 属性，用于将样式标签**首先**从页头（优先级较低）注入：
 
 ```jsx
 import { StylesProvider } from '@material-ui/styles';
@@ -259,12 +259,12 @@ export default function MyComponent() {
   // Order doesn't matter
   const className = clsx(classes.root, classesBase.root);
 
-  // color: red 🔴 wins.
+  // color: 红色 🔴 胜出。
   return <div className={className} />;
 }
 ```
 
-Hook 调用顺序和类名顺序**不影响**注入属性权重 。
+Hook 的调用顺序和类名连接顺序都**不会影响**注入顺序的权重。
 
 ### insertionPoint
 
@@ -287,7 +287,7 @@ import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  // 当将样式注入到 DOM 中时，定义了一个自定义插入点以供 JSS 查询。 
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -313,7 +313,7 @@ import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  // 当将样式注入到 DOM 中时，定义了一个自定义插入点以供 JSS 查询。 
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
@@ -335,7 +335,7 @@ document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
   ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  // 我们定义了一个自定义插入点，JSS在DOM中注入样式时会查找该插入点。
   insertionPoint: 'jss-insertion-point',
 });
 

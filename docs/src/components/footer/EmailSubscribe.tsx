@@ -9,6 +9,7 @@ import FormLabel from '@mui/material/FormLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputBase from '@mui/material/InputBase';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import getBuildContextVars from 'docs/src/getBuildContextVars';
 
 const Form = styled('form')({});
 
@@ -31,21 +32,18 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     event.preventDefault();
     setForm((current) => ({ ...current, status: 'loading' }));
     try {
-      await fetch(
-        'https://f0433e60.sibforms.com/serve/MUIEAMMuohK-i-XUkJaUj3Lq3zr3rVeAPmgssEBsyiTktpqrImORJiFMQ1PLfZ1W1PGb-FzKhlfuPWlLNfx90j5R2qC7C219ec8AVcBsxlIRDG5znwaXr6gzAyth6W93bLiK4otXL_iBLFV43QqHrKZKORXA0LGq6seXbasTiAHh5EtqWFGK2zw8mlwYssGnIT_7ZZXiWC_iqubZ',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          mode: 'no-cors',
-          body: searchParams({
-            EMAIL: form.email,
-            email_address_check: '',
-            locale: 'en',
-          }),
+      await fetch(getBuildContextVars().EMAIL_SUBSCRIBE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-      );
+        mode: 'no-cors',
+        body: searchParams({
+          EMAIL: form.email,
+          email_address_check: '',
+          locale: 'en',
+        }),
+      });
       setForm((current) => ({ ...current, status: 'sent' }));
     } catch (error) {
       setForm((current) => ({ ...current, status: 'failure' }));
@@ -77,7 +75,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           ),
         }}
       >
-        <AlertTitle sx={{ typography: 'body2', fontWeight: 600 }}>
+        <AlertTitle sx={{ typography: 'body2', fontWeight: 700 }}>
           Thanks! Check your email.
         </AlertTitle>
         You should get a <strong>confirmation email</strong> soon. Open it up and confirm your email
@@ -89,9 +87,9 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     <Form onSubmit={handleSubmit} sx={sx}>
       <FormLabel
         htmlFor="email-subscribe"
-        sx={{ typography: 'caption', mb: 0.5, color: 'text.secondary' }}
+        sx={{ typography: 'caption', mb: 0.5, color: 'text.secondary', fontWeight: 500 }}
       >
-        Email
+        Enter your email:
       </FormLabel>
       <Box
         sx={{

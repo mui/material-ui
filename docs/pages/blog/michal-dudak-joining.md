@@ -28,6 +28,6 @@ Michał is the third of a series of five new positions we have recently opened a
 We will reach 11 people by the end of June.
 We have opened these positions as our revenue growth allows.
 These new roles will help accelerate our mission, strengthen our existing offering, and initiate a new vertical.
-You can find the next positions we aim to fill in [the Career page](https://material-ui.com/company/careers/#future-roles).
+You can find the next positions we aim to fill in [the Career page](https://mui.com/company/careers/#future-roles).
 
 We couldn't be more excited to have Michał on the team!

@@ -1,5 +1,5 @@
 const FEATURE_TOGGLE = {
-  nav_products: false,
+  nav_products: true,
 };
 
 export default FEATURE_TOGGLE;
