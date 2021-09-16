@@ -176,7 +176,7 @@ export default function AppSearch() {
               backdropFilter: 'blur(2px)',
             },
             '& .DocSearch-Help': {
-              fontSize: '0.875rem',
+              fontSize: theme.typography.pxToRem(14),
               '& a': {
                 color: 'var(--docsearch-highlight-color)',
               },
