@@ -124,7 +124,7 @@ export default function AppSearch() {
             apiKey="1d8534f83b9b0cfea8f16498d19fbcab"
             indexName="material-ui"
             searchParameters={{
-              facetFilters: ['version:next', facetFilterLanguage],
+              facetFilters: ['version:master', facetFilterLanguage],
             }}
             placeholder="Search..."
             transformItems={(items) => {
