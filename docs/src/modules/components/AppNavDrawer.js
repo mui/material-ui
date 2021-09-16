@@ -54,28 +54,17 @@ PersistScroll.propTypes = {
 };
 
 // https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
-const ToolbarIE11 = styled('div')({
-  display: 'flex',
-  position: 'sticky',
-  top: 0,
-  zIndex: 1050,
-  backgroundColor: 'inherit',
-});
+const ToolbarIE11 = styled('div')({ display: 'flex' });
 
 const ToolbarDiv = styled('div')(({ theme }) => {
   return {
     ...theme.mixins.toolbar,
     paddingLeft: theme.spacing(3),
-    height: '65px',
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
-    borderBottom: '1px solid',
-    borderColor:
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
   };
 });
 
@@ -86,8 +75,6 @@ const StyledDrawer = styled(Drawer)(({ theme }) => {
     },
     [theme.breakpoints.up('lg')]: {
       display: 'block',
-      position: 'relative',
-      zIndex: 1000,
     },
   };
 });
@@ -180,7 +167,7 @@ function AppNavDrawer(props) {
         <ToolbarIE11>
           <ToolbarDiv>
             <NextLink href="/" passHref onClick={onClose}>
-              <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0 }}>
+              <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0, mr: 2 }}>
                 <SvgMuiLogo width={32} />
               </Box>
             </NextLink>
@@ -189,18 +176,13 @@ function AppNavDrawer(props) {
                 component="a"
                 href={`https://material-ui.com${languagePrefix}/versions/`}
                 onClick={onClose}
-                variant="outlined"
                 size="small"
                 sx={{
                   color: (theme) =>
                     theme.palette.mode === 'dark'
                       ? theme.palette.primary[300]
                       : theme.palette.primary[500],
-                  borderColor: (theme) =>
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[700]
-                      : theme.palette.grey[200],
-                  mr: 2,
+                  mr: 3,
                 }}
               >
                 {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
@@ -209,7 +191,7 @@ function AppNavDrawer(props) {
             ) : null}
           </ToolbarDiv>
         </ToolbarIE11>
-        {/* <Divider /> */}
+        <Divider />
         <DiamondSponsors spot="drawer" />
         <Divider />
         {navItems}
