@@ -22,6 +22,6 @@ export type ExpansionPanelActionsClassKey = 'root' | 'spacing';
  * or `import AccordionActions from '@material-ui/core/AccordionActions'`.
  * API:
  *
- * - [ExpansionPanelActions API](https://material-ui.com/api/expansion-panel-actions/)
+ * - [ExpansionPanelActions API](https://mui.com/api/expansion-panel-actions/)
  */
 export default function ExpansionPanelActions(props: ExpansionPanelActionsProps): JSX.Element;

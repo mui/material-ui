@@ -46,7 +46,7 @@ Page.getInitialProps = async () => {
   // Current version.
   versions.push({
     version: `v${process.env.LIB_VERSION}`,
-    url: 'https://material-ui.com',
+    url: 'https://mui.com',
   });
   // Legacy documentation.
   versions.push({

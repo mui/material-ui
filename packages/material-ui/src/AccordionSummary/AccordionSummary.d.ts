@@ -29,12 +29,12 @@ export type AccordionSummaryTypeMap<
  *
  * Demos:
  *
- * - [Accordion](https://material-ui.com/components/accordion/)
+ * - [Accordion](https://mui.com/components/accordion/)
  *
  * API:
  *
- * - [AccordionSummary API](https://material-ui.com/api/accordion-summary/)
- * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
+ * - [AccordionSummary API](https://mui.com/api/accordion-summary/)
+ * - inherits [ButtonBase API](https://mui.com/api/button-base/)
  */
 declare const AccordionSummary: ExtendButtonBase<AccordionSummaryTypeMap>;
 

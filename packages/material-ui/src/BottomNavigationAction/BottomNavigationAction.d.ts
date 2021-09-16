@@ -42,12 +42,12 @@ export type BottomNavigationActionTypeMap<
  *
  * Demos:
  *
- * - [Bottom Navigation](https://material-ui.com/components/bottom-navigation/)
+ * - [Bottom Navigation](https://mui.com/components/bottom-navigation/)
  *
  * API:
  *
- * - [BottomNavigationAction API](https://material-ui.com/api/bottom-navigation-action/)
- * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
+ * - [BottomNavigationAction API](https://mui.com/api/bottom-navigation-action/)
+ * - inherits [ButtonBase API](https://mui.com/api/button-base/)
  */
 declare const BottomNavigationAction: ExtendButtonBase<BottomNavigationActionTypeMap<
   {},

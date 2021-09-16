@@ -128,7 +128,7 @@ function computeApiDescription(api, options) {
 }
 
 async function annotateComponentDefinition(component, api) {
-  const HOST = 'https://material-ui.com';
+  const HOST = 'https://mui.com';
 
   const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
   const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });

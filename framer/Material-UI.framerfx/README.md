@@ -37,7 +37,7 @@ The following components are currently supported:
 ### Icons
 
 Icons can be specified using either snake_case (as documented on material.io),
-or PascalCase, as used in [the Material-UI documentation](https://material-ui.com/components/material-icons/).
+or PascalCase, as used in [the Material-UI documentation](https://mui.com/components/material-icons/).
 Simply type the icon name in the appropriate property control.
 
 The icon theme can be chosen from the related select field.
@@ -54,7 +54,7 @@ If multiple options are supplied, they take the following priority:
 
 ## Resources
 
-- [Material-UI documentation](https://material-ui.com/)
+- [Material-UI documentation](https://mui.com/)
 - [GitHub repo](https://github.com/mui-org/material-ui/tree/v4.x/framer)
 
 ## Releases

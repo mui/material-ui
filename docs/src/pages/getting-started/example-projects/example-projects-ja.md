@@ -20,7 +20,7 @@ Create React AppはReactを学ぶのに良いプロジェクトです。 どの�
 
 ## 更に高度なサンプルプロジェクト
 
-より完全で現実的な例から始めたい場合 [プレミアムテーマ & テンプレート](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) をご覧ください:
+より完全で現実的な例から始めたい場合 [プレミアムテーマ & テンプレート](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) をご覧ください:
 
 ### Gratuit
 

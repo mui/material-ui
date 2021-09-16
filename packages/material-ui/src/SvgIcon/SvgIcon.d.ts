@@ -47,12 +47,12 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
  *
  * Demos:
  *
- * - [Icons](https://material-ui.com/components/icons/)
- * - [Material Icons](https://material-ui.com/components/material-icons/)
+ * - [Icons](https://mui.com/components/icons/)
+ * - [Material Icons](https://mui.com/components/material-icons/)
  *
  * API:
  *
- * - [SvgIcon API](https://material-ui.com/api/svg-icon/)
+ * - [SvgIcon API](https://mui.com/api/svg-icon/)
  */
 declare const SvgIcon: OverridableComponent<SvgIconTypeMap>;
 

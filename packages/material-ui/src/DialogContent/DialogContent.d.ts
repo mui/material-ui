@@ -19,10 +19,10 @@ export type DialogContentClassKey = 'root' | 'dividers';
  *
  * Demos:
  *
- * - [Dialogs](https://material-ui.com/components/dialogs/)
+ * - [Dialogs](https://mui.com/components/dialogs/)
  *
  * API:
  *
- * - [DialogContent API](https://material-ui.com/api/dialog-content/)
+ * - [DialogContent API](https://mui.com/api/dialog-content/)
  */
 export default function DialogContent(props: DialogContentProps): JSX.Element;

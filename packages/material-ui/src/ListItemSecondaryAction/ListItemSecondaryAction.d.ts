@@ -14,10 +14,10 @@ export type ListItemSecondaryActionClassKey = 'root';
  * Must be used as the last child of ListItem to function properly.
  * Demos:
  *
- * - [Lists](https://material-ui.com/components/lists/)
+ * - [Lists](https://mui.com/components/lists/)
  *
  * API:
  *
- * - [ListItemSecondaryAction API](https://material-ui.com/api/list-item-secondary-action/)
+ * - [ListItemSecondaryAction API](https://mui.com/api/list-item-secondary-action/)
  */
 export default function ListItemSecondaryAction(props: ListItemSecondaryActionProps): JSX.Element;

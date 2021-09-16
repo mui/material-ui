@@ -2,7 +2,7 @@
 
 <p class="description">Sim, v4 foi lançada!</p>
 
-Procurando pelos documentos da v3? [Encontre-os aqui](https://material-ui.com/versions/).
+Procurando pelos documentos da v3? [Encontre-os aqui](https://mui.com/versions/).
 
 > Este documento está em constante evolução. Você atualizou seu site e encontrou algo que não é abordado aqui? [Adicione suas alterações no GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md).
 
@@ -154,7 +154,7 @@ yarn add @material-ui/styles
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
-  Indo adiante, você pode usar o tema para implementar [uma função de transformação de espaçamento de grade customizada](https://material-ui.com/system/spacing/#transformation).
+  Indo adiante, você pode usar o tema para implementar [uma função de transformação de espaçamento de grade customizada](https://mui.com/system/spacing/#transformation).
 - [Container] Movido de `@material-ui/lab` to `@material-ui/core`.
 
   ```diff

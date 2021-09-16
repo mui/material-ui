@@ -247,7 +247,7 @@ const pages = [
     ],
   },
   {
-    pathname: 'https://material-ui.com/store/',
+    pathname: 'https://mui.com/store/',
     title: 'Premium themes',
     linkProps: {
       'data-ga-event-category': 'store',

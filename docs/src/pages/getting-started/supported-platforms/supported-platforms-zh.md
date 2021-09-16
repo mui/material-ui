@@ -25,7 +25,7 @@ Material-UI 支持所有主流浏览器和平台的最新稳定版本。 我们�
 
 ## React
 
-Material-UI 支持最新版本的 React，从 16.8.0 开始（带有 hook 的版本）。 我们同时提供了向后兼容的 [版本](https://material-ui.com/versions/)。
+Material-UI 支持最新版本的 React，从 16.8.0 开始（带有 hook 的版本）。 我们同时提供了向后兼容的 [版本](https://mui.com/versions/)。
 
 ## TypeScript
 

@@ -8,7 +8,7 @@ Si vous ne pouvez toujours pas trouver ce que vous cherchez, vous pouvez consult
 
 Il y a plusieurs façons de soutenir Material-UI :
 
-- **Faites passer le mot**. Évangéliser Material-UI en affichant un [lien vers material-ui.com](https://material-ui.com/) sur votre site web, chaque lien compte. Suivez-nous sur [Twitter](https://twitter.com/MaterialUI), aimer et retweeter les nouvelles importantes. Ou parlez simplement de nous avec vos amis.
+- **Faites passer le mot**. Évangéliser Material-UI en affichant un [lien vers material-ui.com](https://mui.com/) sur votre site web, chaque lien compte. Suivez-nous sur [Twitter](https://twitter.com/MaterialUI), aimer et retweeter les nouvelles importantes. Ou parlez simplement de nous avec vos amis.
 - **donnez nous vos retours**. Dites-nous ce que nous faisons bien ou ce que nous pouvons améliorer. Merci de voter 👍 les problèmes qui vous voudriez le plus voir résolus.
 - **Aidez les nouveaux utilisateurs**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Apportez des modifications**. 

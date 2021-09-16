@@ -33,10 +33,10 @@ export interface TextareaAutosizeProps
  *
  * Demos:
  *
- * - [Textarea Autosize](https://material-ui.com/components/textarea-autosize/)
+ * - [Textarea Autosize](https://mui.com/components/textarea-autosize/)
  *
  * API:
  *
- * - [TextareaAutosize API](https://material-ui.com/api/textarea-autosize/)
+ * - [TextareaAutosize API](https://mui.com/api/textarea-autosize/)
  */
 export default function TextareaAutosize(props: TextareaAutosizeProps): JSX.Element;

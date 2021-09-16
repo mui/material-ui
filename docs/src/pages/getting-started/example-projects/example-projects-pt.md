@@ -20,7 +20,7 @@ O código-fonte deste site de documentação também está incluído no reposit�
 
 ## Projetos de exemplo mais avançados
 
-Se você quer começar com um exemplo mais completo e do mundo real, você pode dar uma olhada nos [temas premium & templates](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) ou:
+Se você quer começar com um exemplo mais completo e do mundo real, você pode dar uma olhada nos [temas premium & templates](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) ou:
 
 ### Grátis
 

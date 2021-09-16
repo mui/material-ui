@@ -52,10 +52,10 @@ export type LinearProgressClassKey =
  * attribute to `true` on that region until it has finished loading.
  * Demos:
  *
- * - [Progress](https://material-ui.com/components/progress/)
+ * - [Progress](https://mui.com/components/progress/)
  *
  * API:
  *
- * - [LinearProgress API](https://material-ui.com/api/linear-progress/)
+ * - [LinearProgress API](https://mui.com/api/linear-progress/)
  */
 export default function LinearProgress(props: LinearProgressProps): JSX.Element;

@@ -46,6 +46,6 @@ export interface TrapFocusProps {
  * Utility component that locks focus inside the component.
  * API:
  *
- * - [Unstable_TrapFocus API](https://material-ui.com/api/unstable-trap-focus/)
+ * - [Unstable_TrapFocus API](https://mui.com/api/unstable-trap-focus/)
  */
 export default function Unstable_TrapFocus(props: TrapFocusProps): JSX.Element;

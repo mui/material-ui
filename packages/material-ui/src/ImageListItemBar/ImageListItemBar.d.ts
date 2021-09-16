@@ -47,10 +47,10 @@ export type ImageListItemBarClassKey =
  *
  * Demos:
  *
- * - [Image List](https://material-ui.com/components/image-list/)
+ * - [Image List](https://mui.com/components/image-list/)
  *
  * API:
  *
- * - [ImageListItemBar API](https://material-ui.com/api/image-list-item-bar/)
+ * - [ImageListItemBar API](https://mui.com/api/image-list-item-bar/)
  */
 export default function ImageListItemBar(props: ImageListItemBarProps): JSX.Element;

@@ -39,11 +39,11 @@ export type StepperClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeL
  *
  * Demos:
  *
- * - [Steppers](https://material-ui.com/components/steppers/)
+ * - [Steppers](https://mui.com/components/steppers/)
  *
  * API:
  *
- * - [Stepper API](https://material-ui.com/api/stepper/)
- * - inherits [Paper API](https://material-ui.com/api/paper/)
+ * - [Stepper API](https://mui.com/api/stepper/)
+ * - inherits [Paper API](https://mui.com/api/paper/)
  */
 export default function Stepper(props: StepperProps): JSX.Element;

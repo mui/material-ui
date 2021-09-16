@@ -29,11 +29,11 @@ export type InputClassKey =
  *
  * Demos:
  *
- * - [Text Fields](https://material-ui.com/components/text-fields/)
+ * - [Text Fields](https://mui.com/components/text-fields/)
  *
  * API:
  *
- * - [Input API](https://material-ui.com/api/input/)
- * - inherits [InputBase API](https://material-ui.com/api/input-base/)
+ * - [Input API](https://mui.com/api/input/)
+ * - inherits [InputBase API](https://mui.com/api/input-base/)
  */
 export default function Input(props: InputProps): JSX.Element;

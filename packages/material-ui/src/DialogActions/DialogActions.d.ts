@@ -19,10 +19,10 @@ export type DialogActionsClassKey = 'root' | 'spacing';
  *
  * Demos:
  *
- * - [Dialogs](https://material-ui.com/components/dialogs/)
+ * - [Dialogs](https://mui.com/components/dialogs/)
  *
  * API:
  *
- * - [DialogActions API](https://material-ui.com/api/dialog-actions/)
+ * - [DialogActions API](https://mui.com/api/dialog-actions/)
  */
 export default function DialogActions(props: DialogActionsProps): JSX.Element;

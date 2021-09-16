@@ -45,11 +45,11 @@ export interface SliderTypeMap<P = {}, D extends React.ElementType = 'span'> {
  *
  * Demos:
  *
- * - [Slider](https://material-ui.com/components/slider/)
+ * - [Slider](https://mui.com/components/slider/)
  *
  * API:
  *
- * - [Slider API](https://material-ui.com/api/slider/)
+ * - [Slider API](https://mui.com/api/slider/)
  */
 declare const Slider: OverridableComponent<SliderTypeMap>;
 

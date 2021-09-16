@@ -29,17 +29,17 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
 }
 
 /**
- * The Grow transition is used by the [Tooltip](https://material-ui.com/components/tooltips/) and
- * [Popover](https://material-ui.com/components/popover/) components.
+ * The Grow transition is used by the [Tooltip](https://mui.com/components/tooltips/) and
+ * [Popover](https://mui.com/components/popover/) components.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  * Demos:
  *
- * - [Popover](https://material-ui.com/components/popover/)
- * - [Transitions](https://material-ui.com/components/transitions/)
+ * - [Popover](https://mui.com/components/popover/)
+ * - [Transitions](https://mui.com/components/transitions/)
  *
  * API:
  *
- * - [Grow API](https://material-ui.com/api/grow/)
+ * - [Grow API](https://mui.com/api/grow/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition#Transition-props)
  */
 export default function Grow(props: GrowProps): JSX.Element;

@@ -25,7 +25,7 @@ Material-UIはサーバサイドレンダリングをサポートしてるので
 
 ## React
 
-Material-UIは、^16.8. 0(フックのついた方) 以降のReactの最新バージョンをサポートします。 下位互換性については、古い [バージョン](https://material-ui.com/versions/) を参照してください。
+Material-UIは、^16.8. 0(フックのついた方) 以降のReactの最新バージョンをサポートします。 下位互換性については、古い [バージョン](https://mui.com/versions/) を参照してください。
 
 ## TypeScript
 

@@ -18,10 +18,10 @@ export type TimelineClassKey = 'root' | 'alignLeft' | 'alignRight' | 'alignAlter
  *
  * Demos:
  *
- * - [Timeline](https://material-ui.com/components/timeline/)
+ * - [Timeline](https://mui.com/components/timeline/)
  *
  * API:
  *
- * - [Timeline API](https://material-ui.com/api/timeline/)
+ * - [Timeline API](https://mui.com/api/timeline/)
  */
 export default function Timeline(props: TimelineProps): JSX.Element;

@@ -20,9 +20,9 @@ You can find the documentation for the next version at http://next.material-ui.c
 
   <img src="/static/blog/2020-q2-update/icons.png" alt="icons" style="width: 615px; margin-bottom: 24px;" />
 
-- 🎨 [Figma assets](https://material-ui.com/store/items/figma-react/) for Material-UI extend the support for design tools beyond Sketch.
+- 🎨 [Figma assets](https://mui.com/store/items/figma-react/) for Material-UI extend the support for design tools beyond Sketch.
 
-  <a href="https://material-ui.com/store/items/figma-react/"><img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="width: 160px; margin-bottom: 24px;" /></a>
+  <a href="https://mui.com/store/items/figma-react/"><img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="width: 160px; margin-bottom: 24px;" /></a>
 
   Adobe XD and Framer support are also up for consideration if they attract a significant audience, but not until we've polished the Sketch and Figma assets.
 
@@ -88,7 +88,7 @@ We'll do our best, no guarantee!
 
 - ⚙️ To make significant progress with the v5 roadmap.
 
-- 🌏 Translate the API pages, for instance, the [Alert API](https://material-ui.com/api/alert/) can only be consumed in English.
+- 🌏 Translate the API pages, for instance, the [Alert API](https://mui.com/api/alert/) can only be consumed in English.
 
 - 📆 Migrate the date picker components to the main repository to ensure high consistency with the core components. Keep investing in the component to make it part of the v5 release schedule.
 

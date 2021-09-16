@@ -17,13 +17,13 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
  *
  * Demos:
  *
- * - [Breadcrumbs](https://material-ui.com/components/breadcrumbs/)
- * - [Links](https://material-ui.com/components/links/)
+ * - [Breadcrumbs](https://mui.com/components/breadcrumbs/)
+ * - [Links](https://mui.com/components/links/)
  *
  * API:
  *
- * - [Link API](https://material-ui.com/api/link/)
- * - inherits [Typography API](https://material-ui.com/api/typography/)
+ * - [Link API](https://mui.com/api/link/)
+ * - inherits [Typography API](https://mui.com/api/typography/)
  */
 declare const Link: OverridableComponent<LinkTypeMap>;
 

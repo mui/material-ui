@@ -14,12 +14,12 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
  *
  * Demos:
  *
- * - [Icons](https://material-ui.com/components/icons/)
- * - [Material Icons](https://material-ui.com/components/material-icons/)
+ * - [Icons](https://mui.com/components/icons/)
+ * - [Material Icons](https://mui.com/components/material-icons/)
  *
  * API:
  *
- * - [Icon API](https://material-ui.com/api/icon/)
+ * - [Icon API](https://mui.com/api/icon/)
  */
 declare const Icon: OverridableComponent<IconTypeMap>;
 

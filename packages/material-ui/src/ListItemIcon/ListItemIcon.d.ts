@@ -15,10 +15,10 @@ export type ListItemIconClassKey = 'root' | 'alignItemsFlexStart';
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  * Demos:
  *
- * - [Lists](https://material-ui.com/components/lists/)
+ * - [Lists](https://mui.com/components/lists/)
  *
  * API:
  *
- * - [ListItemIcon API](https://material-ui.com/api/list-item-icon/)
+ * - [ListItemIcon API](https://mui.com/api/list-item-icon/)
  */
 export default function ListItemIcon(props: ListItemIconProps): JSX.Element;

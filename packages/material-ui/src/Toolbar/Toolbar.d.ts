@@ -13,11 +13,11 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [App Bar](https://material-ui.com/components/app-bar/)
+ * - [App Bar](https://mui.com/components/app-bar/)
  *
  * API:
  *
- * - [Toolbar API](https://material-ui.com/api/toolbar/)
+ * - [Toolbar API](https://mui.com/api/toolbar/)
  */
 declare const Toolbar: OverridableComponent<ToolbarTypeMap>;
 

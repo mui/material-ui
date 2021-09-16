@@ -16,4 +16,4 @@ yarn add @material-ui/core
 
 ## Documentation
 
-[The documentation](https://material-ui.com/)
+[The documentation](https://mui.com/)

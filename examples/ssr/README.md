@@ -21,4 +21,4 @@ or:
 
 ## The idea behind the example
 
-This is the reference implementation of the [Server Rendering tutorial](https://material-ui.com/guides/server-rendering/).
+This is the reference implementation of the [Server Rendering tutorial](https://mui.com/guides/server-rendering/).

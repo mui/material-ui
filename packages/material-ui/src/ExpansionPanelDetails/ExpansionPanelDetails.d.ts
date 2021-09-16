@@ -18,6 +18,6 @@ export type ExpansionPanelDetailsClassKey = 'root';
  * or `import AccordionDetails from '@material-ui/core/AccordionDetails'`.
  * API:
  *
- * - [ExpansionPanelDetails API](https://material-ui.com/api/expansion-panel-details/)
+ * - [ExpansionPanelDetails API](https://mui.com/api/expansion-panel-details/)
  */
 export default function ExpansionPanelDetails(props: ExpansionPanelDetailsProps): JSX.Element;

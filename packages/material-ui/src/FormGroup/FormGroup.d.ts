@@ -21,11 +21,11 @@ export type FormGroupClassKey = 'root' | 'row';
  * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  * Demos:
  *
- * - [Checkboxes](https://material-ui.com/components/checkboxes/)
- * - [Switches](https://material-ui.com/components/switches/)
+ * - [Checkboxes](https://mui.com/components/checkboxes/)
+ * - [Switches](https://mui.com/components/switches/)
  *
  * API:
  *
- * - [FormGroup API](https://material-ui.com/api/form-group/)
+ * - [FormGroup API](https://mui.com/api/form-group/)
  */
 export default function FormGroup(props: FormGroupProps): JSX.Element;

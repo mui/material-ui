@@ -146,11 +146,11 @@ export type DialogClassKey =
  * Dialogs are overlaid modal paper based components with a backdrop.
  * Demos:
  *
- * - [Dialogs](https://material-ui.com/components/dialogs/)
+ * - [Dialogs](https://mui.com/components/dialogs/)
  *
  * API:
  *
- * - [Dialog API](https://material-ui.com/api/dialog/)
- * - inherits [Modal API](https://material-ui.com/api/modal/)
+ * - [Dialog API](https://mui.com/api/dialog/)
+ * - inherits [Modal API](https://mui.com/api/modal/)
  */
 export default function Dialog(props: DialogProps): JSX.Element;

@@ -63,11 +63,11 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
  * Chips represent complex entities in small blocks, such as a contact.
  * Demos:
  *
- * - [Chips](https://material-ui.com/components/chips/)
+ * - [Chips](https://mui.com/components/chips/)
  *
  * API:
  *
- * - [Chip API](https://material-ui.com/api/chip/)
+ * - [Chip API](https://mui.com/api/chip/)
  */
 declare const Chip: OverridableComponent<ChipTypeMap>;
 

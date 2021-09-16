@@ -45,6 +45,6 @@ export type GridListTileBarClassKey =
  * or `import ImageListItemBar from '@material-ui/core/ImageListItemBar'`.
  * API:
  *
- * - [GridListTileBar API](https://material-ui.com/api/grid-list-tile-bar/)
+ * - [GridListTileBar API](https://mui.com/api/grid-list-tile-bar/)
  */
 export default function GridListTileBar(props: GridListTileBarProps): JSX.Element;

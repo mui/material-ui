@@ -145,11 +145,11 @@ export type SelectClassKey =
  *
  * Demos:
  *
- * - [Selects](https://material-ui.com/components/selects/)
+ * - [Selects](https://mui.com/components/selects/)
  *
  * API:
  *
- * - [Select API](https://material-ui.com/api/select/)
- * - inherits [Input API](https://material-ui.com/api/input/)
+ * - [Select API](https://mui.com/api/select/)
+ * - inherits [Input API](https://mui.com/api/input/)
  */
 export default function Select(props: SelectProps): JSX.Element;

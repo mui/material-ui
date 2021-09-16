@@ -51,7 +51,7 @@ export type ExpansionPanelClassKey = 'root' | 'rounded' | 'expanded' | 'disabled
  * or `import Accordion from '@material-ui/core/Accordion'`.
  * API:
  *
- * - [ExpansionPanel API](https://material-ui.com/api/expansion-panel/)
- * - inherits [Paper API](https://material-ui.com/api/paper/)
+ * - [ExpansionPanel API](https://mui.com/api/expansion-panel/)
+ * - inherits [Paper API](https://mui.com/api/paper/)
  */
 export default function ExpansionPanel(props: ExpansionPanelProps): JSX.Element;

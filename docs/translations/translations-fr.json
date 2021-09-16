@@ -226,7 +226,7 @@
     "/styles": "Styles",
     "/styles/basics": "Bases",
     "/styles/advanced": "Avancé",
-    "https://material-ui.com/store/": "Thèmes Premium",
+    "https://mui.com/store/": "Thèmes Premium",
     "/components/material-icons": "Icônes Material",
     "/components/textarea-autosize": "Textarea Autosize (taille auto)",
     "/components/rating": "Rating (Notation)",

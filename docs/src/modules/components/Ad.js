@@ -69,7 +69,7 @@ const inHouseAds = [
   {
     name: 'templates',
     link:
-      'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
+      'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
     img: '/static/ads-in-house/themes-2.jpg',
     description:
       '<b>Premium Templates</b>. Start your project with the best templates for admins, dashboards and more.',
@@ -77,7 +77,7 @@ const inHouseAds = [
   {
     name: 'themes',
     link:
-      'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-themes',
+      'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-themes',
     img: '/static/ads-in-house/themes.png',
     description:
       '<b>Premium Themes</b>. Kickstart your application development with a ready-made theme.',
@@ -93,7 +93,7 @@ const inHouseAds = [
   {
     name: 'sketch',
     link:
-      'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
+      'https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
     img: '/static/ads-in-house/sketch.png',
     description:
       '<b>For Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
@@ -101,7 +101,7 @@ const inHouseAds = [
   {
     name: 'figma',
     link:
-      'https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
+      'https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
     img: '/static/ads-in-house/figma.png',
     description:
       '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',

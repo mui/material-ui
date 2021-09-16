@@ -15,11 +15,11 @@ export type CardClassKey = 'root';
  *
  * Demos:
  *
- * - [Cards](https://material-ui.com/components/cards/)
+ * - [Cards](https://mui.com/components/cards/)
  *
  * API:
  *
- * - [Card API](https://material-ui.com/api/card/)
- * - inherits [Paper API](https://material-ui.com/api/paper/)
+ * - [Card API](https://mui.com/api/card/)
+ * - inherits [Paper API](https://mui.com/api/paper/)
  */
 export default function Card(props: CardProps): JSX.Element;

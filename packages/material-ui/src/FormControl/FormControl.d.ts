@@ -66,7 +66,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  * -   Input
  * -   InputLabel
  *
- * You can find one composition example below and more going to [the demos](https://material-ui.com/components/text-fields/#components).
+ * You can find one composition example below and more going to [the demos](https://mui.com/components/text-fields/#components).
  *
  * ```jsx
  * <FormControl>
@@ -79,14 +79,14 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  * ⚠️Only one input can be used within a FormControl.
  * Demos:
  *
- * - [Checkboxes](https://material-ui.com/components/checkboxes/)
- * - [Radio Buttons](https://material-ui.com/components/radio-buttons/)
- * - [Switches](https://material-ui.com/components/switches/)
- * - [Text Fields](https://material-ui.com/components/text-fields/)
+ * - [Checkboxes](https://mui.com/components/checkboxes/)
+ * - [Radio Buttons](https://mui.com/components/radio-buttons/)
+ * - [Switches](https://mui.com/components/switches/)
+ * - [Text Fields](https://mui.com/components/text-fields/)
  *
  * API:
  *
- * - [FormControl API](https://material-ui.com/api/form-control/)
+ * - [FormControl API](https://mui.com/api/form-control/)
  */
 declare const FormControl: OverridableComponent<FormControlTypeMap>;
 

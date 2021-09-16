@@ -155,7 +155,7 @@ function AppDrawer(props) {
             <Link
               color="textSecondary"
               variant="caption"
-              href={`https://material-ui.com${languagePrefix}/versions/`}
+              href={`https://mui.com${languagePrefix}/versions/`}
               onClick={onClose}
             >
               {`v${process.env.LIB_VERSION}`}

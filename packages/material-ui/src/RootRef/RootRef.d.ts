@@ -7,7 +7,7 @@ export interface RootRefProps<T = any> {
 /**
  * ⚠️⚠️⚠️
  * If you want the DOM element of a Material-UI component check out
- * [FAQ: How can I access the DOM element?](https://material-ui.com/getting-started/faq/#how-can-i-access-the-dom-element)
+ * [FAQ: How can I access the DOM element?](https://mui.com/getting-started/faq/#how-can-i-access-the-dom-element)
  * first.
  *
  * This component uses `findDOMNode` which is deprecated in React.StrictMode.
@@ -40,7 +40,7 @@ export interface RootRefProps<T = any> {
  * @deprecated
  * API:
  *
- * - [RootRef API](https://material-ui.com/api/root-ref/)
+ * - [RootRef API](https://mui.com/api/root-ref/)
  */
 declare const RootRef: React.ComponentType<RootRefProps>;
 

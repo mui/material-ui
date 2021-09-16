@@ -59,7 +59,7 @@ Converts all `@material-ui/core` imports more than 1 level deep to the optimal f
 find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v4.0.0/optimal-imports.js
 ```
 
-Head to https://material-ui.com/guides/minimizing-bundle-size/ to understand when it's useful.
+Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
 
 #### `top-level-imports`
 
@@ -75,7 +75,7 @@ Converts all `@material-ui/core` submodule imports to the root module:
 find src -name '*.js' -print | xargs npx jscodeshift -t node_modules/@material-ui/codemod/lib/v4.0.0/top-level-imports.js
 ```
 
-Head to https://material-ui.com/guides/minimizing-bundle-size/ to understand when it's useful.
+Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
 
 ### v1.0.0
 

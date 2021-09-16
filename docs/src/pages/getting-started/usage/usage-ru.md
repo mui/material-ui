@@ -51,7 +51,7 @@ Material-UI предоставляет опциональный компонен
 
 ## Версионная документация
 
-Данная документация всегда отражает последнюю стабильную версию Material-UI. You can find older versions of the documentation on a [separate page](https://material-ui.com/versions/).
+Данная документация всегда отражает последнюю стабильную версию Material-UI. You can find older versions of the documentation on a [separate page](https://mui.com/versions/).
 
 ## Дальнейшие шаги
 

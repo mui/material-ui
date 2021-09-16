@@ -31,11 +31,11 @@ export interface BottomNavigationTypeMap<P = {}, D extends React.ElementType = '
  *
  * Demos:
  *
- * - [Bottom Navigation](https://material-ui.com/components/bottom-navigation/)
+ * - [Bottom Navigation](https://mui.com/components/bottom-navigation/)
  *
  * API:
  *
- * - [BottomNavigation API](https://material-ui.com/api/bottom-navigation/)
+ * - [BottomNavigation API](https://mui.com/api/bottom-navigation/)
  */
 declare const BottomNavigation: OverridableComponent<BottomNavigationTypeMap>;
 

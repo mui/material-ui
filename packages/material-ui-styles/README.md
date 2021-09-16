@@ -16,4 +16,4 @@ yarn add @material-ui/styles
 
 ## Documentation
 
-[The documentation](https://material-ui.com/styles/basics/)
+[The documentation](https://mui.com/styles/basics/)

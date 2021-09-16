@@ -16,4 +16,4 @@ yarn add @material-ui/system
 
 ## Documentation
 
-[The documentation](https://material-ui.com/system/basics/)
+[The documentation](https://mui.com/system/basics/)

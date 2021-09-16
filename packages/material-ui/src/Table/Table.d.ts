@@ -18,11 +18,11 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
  *
  * Demos:
  *
- * - [Tables](https://material-ui.com/components/tables/)
+ * - [Tables](https://mui.com/components/tables/)
  *
  * API:
  *
- * - [Table API](https://material-ui.com/api/table/)
+ * - [Table API](https://mui.com/api/table/)
  */
 declare const Table: OverridableComponent<TableTypeMap>;
 

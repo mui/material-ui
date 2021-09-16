@@ -20,7 +20,7 @@ Create React App - отличный проект для изучения React. 
 
 ## Более продвинутые примеры проектов
 
-Если вы хотите начать с более полного и реального примера вы можете посмотреть [premium themes & templates](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) или:
+Если вы хотите начать с более полного и реального примера вы можете посмотреть [premium themes & templates](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=example-projects-store) или:
 
 ### Free
 

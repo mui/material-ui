@@ -61,11 +61,11 @@ export type InputLabelClassKey =
  *
  * Demos:
  *
- * - [Text Fields](https://material-ui.com/components/text-fields/)
+ * - [Text Fields](https://mui.com/components/text-fields/)
  *
  * API:
  *
- * - [InputLabel API](https://material-ui.com/api/input-label/)
- * - inherits [FormLabel API](https://material-ui.com/api/form-label/)
+ * - [InputLabel API](https://mui.com/api/input-label/)
+ * - inherits [FormLabel API](https://mui.com/api/form-label/)
  */
 export default function InputLabel(props: InputLabelProps): JSX.Element;

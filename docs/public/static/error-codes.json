@@ -1,5 +1,5 @@
 {
-  "1": "Material-UI: Expected valid input target. Did you use a custom `inputComponent` and forget to forward refs? See https://material-ui.com/r/input-component-ref-interface for more info.",
+  "1": "Material-UI: Expected valid input target. Did you use a custom `inputComponent` and forget to forward refs? See https://mui.com/r/input-component-ref-interface for more info.",
   "2": "Material-UI: The `value` prop must be an array when using the `Select` component with `multiple`.",
   "3": "Material-UI: Unsupported `%s` color.\nWe support the following formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla().",
   "4": "Material-UI: The color provided to augmentColor(color) is invalid.\nThe color object needs to have a `main` property or a `%s` property.",

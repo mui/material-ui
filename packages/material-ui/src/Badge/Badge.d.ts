@@ -75,12 +75,12 @@ export type BadgeClassKey =
  *
  * Demos:
  *
- * - [Avatars](https://material-ui.com/components/avatars/)
- * - [Badges](https://material-ui.com/components/badges/)
+ * - [Avatars](https://mui.com/components/avatars/)
+ * - [Badges](https://mui.com/components/badges/)
  *
  * API:
  *
- * - [Badge API](https://material-ui.com/api/badge/)
+ * - [Badge API](https://mui.com/api/badge/)
  */
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 

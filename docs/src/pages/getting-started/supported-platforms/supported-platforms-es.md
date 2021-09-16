@@ -25,7 +25,7 @@ El CSS servido en ésta documentación se procesa con [`autoprefixer`](https://w
 
 ## React
 
-Material-UI supports the most recent versions of React, starting with ^16.8.0 (the one with the hooks). Have a look at the older [versions](https://material-ui.com/versions/) for backward compatibility.
+Material-UI supports the most recent versions of React, starting with ^16.8.0 (the one with the hooks). Have a look at the older [versions](https://mui.com/versions/) for backward compatibility.
 
 ## TypeScript
 

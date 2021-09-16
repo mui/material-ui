@@ -17,7 +17,7 @@ export interface GridListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  * or `import ImageList from '@material-ui/core/ImageList'`.
  * API:
  *
- * - [GridList API](https://material-ui.com/api/grid-list/)
+ * - [GridList API](https://mui.com/api/grid-list/)
  */
 declare const GridList: OverridableComponent<GridListTypeMap>;
 

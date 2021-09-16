@@ -108,7 +108,7 @@ The date picker is at the border between the core component and advanced compone
 
 - 🚨 We have continued to work on breaking changes to reach a stable version.
   We think that the component is good enough for use in production (and many developers already are using it), but we want to get the public API right before committing to a stable release.
-- ✍️ We have added support for the [cell edit mode](https://material-ui.com/components/data-grid/editing/).
+- ✍️ We have added support for the [cell edit mode](https://mui.com/components/data-grid/editing/).
 
   <img loading="lazy" src="/static/blog/2021-q2-update/cell-edit.gif" alt="" style="width: 842px; margin-bottom: 16px;" />
 
@@ -154,7 +154,7 @@ We have added support of a dark mode and polished the kit.
 
 ### OKRs
 
-In the first quarter, we focused on introducing a [handbook](https://material-ui.com/blog/2021-q1-update/#handbook) to share our culture and to help solve the N(N-1)/2 communication channels problem that comes with a larger team.
+In the first quarter, we focused on introducing a [handbook](https://mui.com/blog/2021-q1-update/#handbook) to share our culture and to help solve the N(N-1)/2 communication channels problem that comes with a larger team.
 
 This quarter, we took on a new initiative to help us solve three problems:
 

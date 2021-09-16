@@ -14,10 +14,10 @@ export type TimelineConnectorClassKey = 'root';
  *
  * Demos:
  *
- * - [Timeline](https://material-ui.com/components/timeline/)
+ * - [Timeline](https://mui.com/components/timeline/)
  *
  * API:
  *
- * - [TimelineConnector API](https://material-ui.com/api/timeline-connector/)
+ * - [TimelineConnector API](https://mui.com/api/timeline-connector/)
  */
 export default function TimelineConnector(props: TimelineConnectorProps): JSX.Element;

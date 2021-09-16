@@ -229,12 +229,12 @@ export type TextFieldClassKey = 'root';
  * It's important to understand that the text field is a simple abstraction
  * on top of the following components:
  *
- * -   [FormControl](https://material-ui.com/api/form-control/)
- * -   [InputLabel](https://material-ui.com/api/input-label/)
- * -   [FilledInput](https://material-ui.com/api/filled-input/)
- * -   [OutlinedInput](https://material-ui.com/api/outlined-input/)
- * -   [Input](https://material-ui.com/api/input/)
- * -   [FormHelperText](https://material-ui.com/api/form-helper-text/)
+ * -   [FormControl](https://mui.com/api/form-control/)
+ * -   [InputLabel](https://mui.com/api/input-label/)
+ * -   [FilledInput](https://mui.com/api/filled-input/)
+ * -   [OutlinedInput](https://mui.com/api/outlined-input/)
+ * -   [Input](https://mui.com/api/input/)
+ * -   [FormHelperText](https://mui.com/api/form-helper-text/)
  *
  * If you wish to alter the props applied to the `input` element, you can do so as follows:
  *
@@ -253,13 +253,13 @@ export type TextFieldClassKey = 'root';
  * -   using the underlying components directly as shown in the demos
  * Demos:
  *
- * - [Autocomplete](https://material-ui.com/components/autocomplete/)
- * - [Pickers](https://material-ui.com/components/pickers/)
- * - [Text Fields](https://material-ui.com/components/text-fields/)
+ * - [Autocomplete](https://mui.com/components/autocomplete/)
+ * - [Pickers](https://mui.com/components/pickers/)
+ * - [Text Fields](https://mui.com/components/text-fields/)
  *
  * API:
  *
- * - [TextField API](https://material-ui.com/api/text-field/)
- * - inherits [FormControl API](https://material-ui.com/api/form-control/)
+ * - [TextField API](https://mui.com/api/text-field/)
+ * - inherits [FormControl API](https://mui.com/api/form-control/)
  */
 export default function TextField(props: TextFieldProps): JSX.Element;

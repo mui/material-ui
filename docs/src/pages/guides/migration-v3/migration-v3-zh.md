@@ -2,7 +2,7 @@
 
 <p class="description">是的，我们已经发布了 v4 版本！</p>
 
-您还在找 v3 版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
+您还在找 v3 版本的文档吗？ [您可以在这里找到它们](https://mui.com/versions/) 。
 
 > 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md)。
 
@@ -139,7 +139,7 @@ yarn add @material-ui/styles
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
-  从今往后，您可以使用主题来实现 [一个自定义的网格间距变换函数](https://material-ui.com/system/spacing/#transformation)。
+  从今往后，您可以使用主题来实现 [一个自定义的网格间距变换函数](https://mui.com/system/spacing/#transformation)。
 - [Container] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
 
   ```diff

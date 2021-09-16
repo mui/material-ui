@@ -23,10 +23,10 @@ export type AvatarGroupClassKey = 'root' | 'avatar';
  *
  * Demos:
  *
- * - [Avatars](https://material-ui.com/components/avatars/)
+ * - [Avatars](https://mui.com/components/avatars/)
  *
  * API:
  *
- * - [AvatarGroup API](https://material-ui.com/api/avatar-group/)
+ * - [AvatarGroup API](https://mui.com/api/avatar-group/)
  */
 export default function AvatarGroup(props: AvatarGroupProps): JSX.Element;

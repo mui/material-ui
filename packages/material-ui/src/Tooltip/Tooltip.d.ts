@@ -131,10 +131,10 @@ export type TooltipClassKey =
  *
  * Demos:
  *
- * - [Tooltips](https://material-ui.com/components/tooltips/)
+ * - [Tooltips](https://mui.com/components/tooltips/)
  *
  * API:
  *
- * - [Tooltip API](https://material-ui.com/api/tooltip/)
+ * - [Tooltip API](https://mui.com/api/tooltip/)
  */
 export default function Tooltip(props: TooltipProps): JSX.Element;

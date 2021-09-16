@@ -17,10 +17,10 @@ export type CssBaselineClassKey = '@global';
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  * Demos:
  *
- * - [Css Baseline](https://material-ui.com/components/css-baseline/)
+ * - [Css Baseline](https://mui.com/components/css-baseline/)
  *
  * API:
  *
- * - [CssBaseline API](https://material-ui.com/api/css-baseline/)
+ * - [CssBaseline API](https://mui.com/api/css-baseline/)
  */
 export default function CssBaseline(props: CssBaselineProps): JSX.Element;

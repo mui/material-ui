@@ -22,10 +22,10 @@ export type StepConnectorClasskey =
  *
  * Demos:
  *
- * - [Steppers](https://material-ui.com/components/steppers/)
+ * - [Steppers](https://mui.com/components/steppers/)
  *
  * API:
  *
- * - [StepConnector API](https://material-ui.com/api/step-connector/)
+ * - [StepConnector API](https://mui.com/api/step-connector/)
  */
 export default function StepConnector(props: StepConnectorProps): JSX.Element;

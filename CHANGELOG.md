@@ -1,4 +1,4 @@
-### [Versions](https://material-ui.com/versions/)
+### [Versions](https://mui.com/versions/)
 
 ## 4.12.3
 
@@ -438,7 +438,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 - Minify error messages in production (#21214) @eps1lon.
 
   Using the [React error decoder](https://reactjs.org/docs/error-decoder.html/) as inspiration, the exceptions thrown by Material-UI in production are now minified.
-  You will be redirected to the documentation to [decode the error](https://material-ui.com/production-error/?code=4&args%5B%5D=500).
+  You will be redirected to the documentation to [decode the error](https://mui.com/production-error/?code=4&args%5B%5D=500).
 
 ### `@material-ui/core@v4.10.2`
 
@@ -2167,7 +2167,7 @@ Here are some highlights ✨:
 
 - 🔍 Introduce a new Autocomplete component in the lab to support the autocomplete, combobox and multi-select use cases (#17037) @dreamsinspace.
 
-  This [new component](https://material-ui.com/components/autocomplete/) will replace the [third-party integration examples](https://material-ui.com/components/integrated-autocomplete/) once it graduates from the lab to the core.
+  This [new component](https://mui.com/components/autocomplete/) will replace the [third-party integration examples](https://mui.com/components/integrated-autocomplete/) once it graduates from the lab to the core.
   It was one of the [most requested features](https://twitter.com/MaterialUI/status/1148901411180163073) (by number of 👍 on the corresponding issue).
 
 - 📚 Show the JSX by default for small examples (#17831) @mbrookes.
@@ -2286,10 +2286,10 @@ Here are some highlights ✨:
 
   This change removes the need to install the `@material-ui/styles` package directly.
   It prevents the duplication of `@material-ui/styles` in bundles and avoids confusion.
-  You can [learn more about the difference](https://material-ui.com/styles/basics/#material-ui-core-styles-vs-material-ui-styles) in the documentation.
+  You can [learn more about the difference](https://mui.com/styles/basics/#material-ui-core-styles-vs-material-ui-styles) in the documentation.
 - ♿️ Improve the accessibility of the table and select components (#17696, #17773) @adeelibr, @eps1lon.
 - 📊 Launch a [developer survey](https://www.surveymonkey.com/r/5XHDL76) as a precursor to a major DatePicker enhancement effort.
-- 💄 Add support for different [slider track mode](https://material-ui.com/components/slider/#track) (#17714) @slipmat.
+- 💄 Add support for different [slider track mode](https://mui.com/components/slider/#track) (#17714) @slipmat.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.5.1`
@@ -2684,7 +2684,7 @@ Big thanks to the 22 contributors who made this release possible!
 
 Here are some highlights ✨:
 
-- 🔍 Introduce a [material icons search](https://material-ui.com/components/material-icons/) (#16956).
+- 🔍 Introduce a [material icons search](https://mui.com/components/material-icons/) (#16956).
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.3.3`
@@ -2835,10 +2835,10 @@ Here are some highlights ✨:
 
   This is a first step toward a feature rich tree view component.
   We will keep iterate on it to add customization demos, filter, drag and drop, and checkboxes.
-  You can find the documentation under [this URL](https://material-ui.com/components/tree-view/).
+  You can find the documentation under [this URL](https://mui.com/components/tree-view/).
 - 💄 Support vertical tabs (#16628) @josephpung.
 
-  You can learn more about it following [this URL](https://material-ui.com/components/tabs/#vertical-tabs).
+  You can learn more about it following [this URL](https://mui.com/components/tabs/#vertical-tabs).
 - 📚 Remove the prop-types from TypeScript demos (#16521) @merceyz.
 
   The runtime prop-types are often redundant with the static type checks.
@@ -2864,7 +2864,7 @@ Here are some highlights ✨:
 
 - 💄 Support small switch (#16620) @darkowic.
 
-  You can learn more about it following [this URL](https://material-ui.com/components/switches/#sizes).
+  You can learn more about it following [this URL](https://mui.com/components/switches/#sizes).
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.3.0`
@@ -3786,7 +3786,7 @@ We will focus or effort on the stability of the library for the next two weeks.
 We don't plan more breaking changes, at the exception of changes that are required to fix bugs or that have minor impacts.
 We hope we can release v4 on May 15th, one year after v1.
 
-Please try the beta out! You can find an [upgrade guide](https://material-ui.com/guides/migration-v3/) to ease the transition.
+Please try the beta out! You can find an [upgrade guide](https://mui.com/guides/migration-v3/) to ease the transition.
 You will learn more about v4 in the final release blog post and our plans for the future.
 
 ### `@material-ui/core@v4.0.0-beta.0`
@@ -3920,7 +3920,7 @@ Here are the last breaking changes we want to introduce:
 
 We have done a lot of changes in the alpha phase.
 The beta phase will be used to stabilize the library, we might have introduced bugs.
-We will encourage people to try the beta out. We hope the migration will be smooth [with the upgrade guide](https://material-ui.com/guides/migration-v3/).
+We will encourage people to try the beta out. We hope the migration will be smooth [with the upgrade guide](https://mui.com/guides/migration-v3/).
 
 We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 
@@ -4774,7 +4774,7 @@ Remove the first option argument of `withTheme()`. The first argument was a plac
 This is our first unstable release toward Material-UI v4.0.0. We try to release a major every 6-12 months.
 This gives us the opportunity to remove deprecated APIs, upgrade our peer dependencies and more importantly, keep up with the direction the community is taking.
 
-- You can find the documentation following this URL: https://material-ui.com/.
+- You can find the documentation following this URL: https://mui.com/.
 - You can track our progress following this URL: https://github.com/mui-org/material-ui/milestone/25.
 
 A big thanks to the 28 contributors who made this release possible!
@@ -4809,7 +4809,7 @@ In order to support arbitrary spacing values and to remove the need to mentally 
 -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
 +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
 ```
-Going forward, you can use the theme to implement a custom Grid spacing transformation function: https://material-ui.com/system/spacing/#transformation.
+Going forward, you can use the theme to implement a custom Grid spacing transformation function: https://mui.com/system/spacing/#transformation.
 
 - [theme] Make theme.palette.augmentColor() pure (#13899) @ryancogswell
 
@@ -4979,7 +4979,7 @@ Big thanks to the 16 contributors who made this release possible!
 Here are some highlights ✨:
 
 - ⚛️ Add a new Breadcrumb component to the lab (#14084) @mbrookes
-https://material-ui.com/lab/breadcrumbs
+https://mui.com/lab/breadcrumbs
 - 📝 AppBar and Textfield demos in TypeScript (#13229) @eps1lon
 - 📝 Prepare support for 5 new documentation languages
 https://translate.material-ui.com/project/material-ui-docs
@@ -5278,7 +5278,7 @@ Here are some highlights ✨:
 - System package 💎 & Box component 🛠️
 - Demos 100% powered by React hooks ⚛️ (#13497) @adeelibr
 - Massive speed-up of the SSR performance 🚀
-- A new Instagram demo theme 💅 https://material-ui.com/premium-themes/instapaper/
+- A new Instagram demo theme 💅 https://mui.com/premium-themes/instapaper/
 - And many more 🐛 bug fixes and 📝 documentation improvements.
 
 ### `@material-ui/core@v3.8.0`
@@ -5346,7 +5346,7 @@ Big thanks to the 15 contributors who made this release possible!
 Here are some highlights ✨:
 
 - ⚛️ Introduce a new useMediaQuery hook (#13867) @joshwooding
-https://material-ui.com/layout/use-media-query
+https://mui.com/layout/use-media-query
 - ⛄️ Support uncontrolled RadioGroup mode (#13929) @rfbotto
 - And many more 🐛 bug fixes and 📝 documentation improvements.
 
@@ -5399,7 +5399,7 @@ Here are some highlights ✨:
 #### Deprecations
 
 We are allowing more align variants (left, center, right, inherit, justify).
-Following our [API guideline](https://material-ui.com/guides/api/), we are using an enum over a boolean.
+Following our [API guideline](https://mui.com/guides/api/), we are using an enum over a boolean.
 Keep in mind that monetary or generally number fields **should be right aligned** as that allows
 you to add them up quickly in your head without having to worry about decimals.
 
@@ -5456,7 +5456,7 @@ Big thanks to the 20 contributors who made this release possible!
 Here are some highlights ✨:
 
 - 🎨 Add a new Onepirate theme demo (#13769) @oliviertassinari
-You can preview it following [this link](https://material-ui.com/premium-themes/paperbase/).
+You can preview it following [this link](https://mui.com/premium-themes/paperbase/).
 - 📝 Add virtualized table demo (#13786) @joshwooding
 - 🚀 Avoid unnecessary Table re-rendering (#13832) @petrjaros
 - And many more 🐛 bug fixes and documentation improvements.
@@ -5570,7 +5570,7 @@ As a consequence, this is a dense release.
 Here are some highlights ✨:
 
 - 🎨 Add a new Firebase theme demo (#13579) @siriwatknp.
-You can preview it following [this link](https://material-ui.com/premium-themes/paperbase/).
+You can preview it following [this link](https://mui.com/premium-themes/paperbase/).
 - ⚛️ Introduce a new Fab component (#13573) @mbrookes.
 - ⛏ Fix more StrictMode warnings (#13590) @eps1lon.
 - And many more 🐛 bug fixes and 📝 documentation improvements.
@@ -6052,7 +6052,7 @@ Here are some highlights ✨:
 
 This is a backward compatible change.
 You can opt-in the usage of the new Material Design typography specification.
-To learn more about the upgrade path, follow https://material-ui.com/style/typography/#migration-to-typography-v2.
+To learn more about the upgrade path, follow https://mui.com/style/typography/#migration-to-typography-v2.
 
 - [Button] Deprecate flat and raised variant naming (#13113) @eps1lon
 
@@ -7273,7 +7273,7 @@ N/A
 Our first stable v1 release! 🎉
 
 It has taken us two years to do it, but Material-UI v1 has finally arrived!
-We are so excited about this release, as it's setting a new course for the project. Thank you to *everyone*, especially to [the team](https://material-ui.com/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you**.
+We are so excited about this release, as it's setting a new course for the project. Thank you to *everyone*, especially to [the team](https://mui.com/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you**.
 
 Some statistics with v1 while it was in alpha and beta:
 - 304 contributors
@@ -7921,7 +7921,7 @@ Big thanks to the 25 contributors who made this release possible.
 
 Here are some highlights ✨:
 
-- Add a [swipeable drawer](https://material-ui.com/demos/drawers/#swipeable-temporary-drawer) component (#9730) @leMaik.
+- Add a [swipeable drawer](https://mui.com/demos/drawers/#swipeable-temporary-drawer) component (#9730) @leMaik.
 - Add a [StackBlitz](https://stackblitz.com/) edit link (#10758).
 - Add a new npm package: [@material-ui/docs](https://www.npmjs.com/package/@material-ui/docs) (#10699).
 - And many more bug fixes and documentation improvements.
@@ -7930,7 +7930,7 @@ Here are some highlights ✨:
 
 - [Grid] Change the default spacing value: 0 (#10768) @oliviertassinari
 
-The negative margin implementation solution currently used comes with [serious limitations](https://material-ui.com/components/grid/#negative-margin).
+The negative margin implementation solution currently used comes with [serious limitations](https://mui.com/components/grid/#negative-margin).
 Material-UI is the only library with a non-zero default spacing between the items.
 Having zero spacing by default will ease the usage of the component.
 
@@ -11417,7 +11417,7 @@ We are now at 93.53%. That's pretty great.
 One year from now, we were struggling with removing all the mixins from the project.
 Now, it's about rewriting all our components.
 We gonna try doing frequent alpha releases to keep some intertie. At least once per week would be good.
-As always, we are keeping the [documentation](https://material-ui.com) up to date.
+As always, we are keeping the [documentation](https://mui.com) up to date.
 
 #### Component Fixes / Enhancements
 

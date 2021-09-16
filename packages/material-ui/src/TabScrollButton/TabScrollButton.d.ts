@@ -26,10 +26,10 @@ export type TabScrollButtonClassKey = 'root' | 'vertical' | 'disabled';
  *
  * Demos:
  *
- * - [Tabs](https://material-ui.com/components/tabs/)
+ * - [Tabs](https://mui.com/components/tabs/)
  *
  * API:
  *
- * - [TabScrollButton API](https://material-ui.com/api/tab-scroll-button/)
+ * - [TabScrollButton API](https://mui.com/api/tab-scroll-button/)
  */
 export default function TabScrollButton(props: TabScrollButtonProps): JSX.Element;

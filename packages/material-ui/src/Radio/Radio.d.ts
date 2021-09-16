@@ -33,11 +33,11 @@ export type RadioClassKey = SwitchBaseClassKey | 'colorPrimary' | 'colorSecondar
  *
  * Demos:
  *
- * - [Radio Buttons](https://material-ui.com/components/radio-buttons/)
+ * - [Radio Buttons](https://mui.com/components/radio-buttons/)
  *
  * API:
  *
- * - [Radio API](https://material-ui.com/api/radio/)
- * - inherits [IconButton API](https://material-ui.com/api/icon-button/)
+ * - [Radio API](https://mui.com/api/radio/)
+ * - inherits [IconButton API](https://mui.com/api/icon-button/)
  */
 export default function Radio(props: RadioProps): JSX.Element;

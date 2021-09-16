@@ -84,7 +84,7 @@ function createTheme(options = {}, ...args) {
                   2,
                 ),
                 '',
-                'https://material-ui.com/r/pseudo-classes-guide',
+                'https://mui.com/r/pseudo-classes-guide',
               ].join('\n'),
             );
           }

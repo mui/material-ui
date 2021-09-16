@@ -20,10 +20,10 @@ export type DialogTitleClassKey = 'root';
  *
  * Demos:
  *
- * - [Dialogs](https://material-ui.com/components/dialogs/)
+ * - [Dialogs](https://mui.com/components/dialogs/)
  *
  * API:
  *
- * - [DialogTitle API](https://material-ui.com/api/dialog-title/)
+ * - [DialogTitle API](https://mui.com/api/dialog-title/)
  */
 export default function DialogTitle(props: DialogTitleProps): JSX.Element;

@@ -6,4 +6,4 @@ Simply copy the files into your project, or one of the [example applications](ht
 
 ## Demo
 
-View the demo at https://material-ui.com/getting-started/templates/dashboard/.
+View the demo at https://mui.com/getting-started/templates/dashboard/.

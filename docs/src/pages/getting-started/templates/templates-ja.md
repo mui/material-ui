@@ -18,6 +18,6 @@ So far we have demos for a dashboard, sign in page, sign up page, blog page, che
 
 ## プレミアムテーマ
 
-さらに何かをお探しですか？ 完全なテンプレートとテーマは<a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">premium themes section</a>に掲載しています。
+さらに何かをお探しですか？ 完全なテンプレートとテーマは<a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">premium themes section</a>に掲載しています。
 
-<a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>
+<a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>

@@ -49,7 +49,7 @@ export default function Themes() {
             {t('themesDescr')}
           </Typography>
           <Link
-            href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=home-store"
+            href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=home-store"
             data-ga-event-category="store"
             data-ga-event-action="click"
             data-ga-event-label="home"
@@ -72,7 +72,7 @@ export default function Themes() {
               data-ga-event-category="store"
               data-ga-event-action="click"
               data-ga-event-label="home"
-              href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=home-store"
+              href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=home-store"
               className={classes.button}
             >
               {t('themesButton')}

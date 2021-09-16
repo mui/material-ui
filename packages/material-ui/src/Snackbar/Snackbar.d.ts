@@ -144,10 +144,10 @@ export type SnackbarClassKey =
  *
  * Demos:
  *
- * - [Snackbars](https://material-ui.com/components/snackbars/)
+ * - [Snackbars](https://mui.com/components/snackbars/)
  *
  * API:
  *
- * - [Snackbar API](https://material-ui.com/api/snackbar/)
+ * - [Snackbar API](https://mui.com/api/snackbar/)
  */
 export default function Snackbar(props: SnackbarProps): JSX.Element;

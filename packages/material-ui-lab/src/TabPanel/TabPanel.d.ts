@@ -20,10 +20,10 @@ export interface TabPanelProps
  *
  * Demos:
  *
- * - [Tabs](https://material-ui.com/components/tabs/)
+ * - [Tabs](https://mui.com/components/tabs/)
  *
  * API:
  *
- * - [TabPanel API](https://material-ui.com/api/tab-panel/)
+ * - [TabPanel API](https://mui.com/api/tab-panel/)
  */
 export default function TabPanel(props: TabPanelProps): JSX.Element;

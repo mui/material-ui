@@ -32,8 +32,8 @@ export type ExpansionPanelSummaryTypeMap<
  * or `import AccordionSummary from '@material-ui/core/AccordionSummary'`.
  * API:
  *
- * - [ExpansionPanelSummary API](https://material-ui.com/api/expansion-panel-summary/)
- * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
+ * - [ExpansionPanelSummary API](https://mui.com/api/expansion-panel-summary/)
+ * - inherits [ButtonBase API](https://mui.com/api/button-base/)
  */
 declare const ExpansionPanelSummary: ExtendButtonBase<ExpansionPanelSummaryTypeMap>;
 

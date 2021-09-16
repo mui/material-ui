@@ -15,12 +15,12 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  *
  * Demos:
  *
- * - [Lists](https://material-ui.com/components/lists/)
- * - [Transfer List](https://material-ui.com/components/transfer-list/)
+ * - [Lists](https://mui.com/components/lists/)
+ * - [Transfer List](https://mui.com/components/transfer-list/)
  *
  * API:
  *
- * - [List API](https://material-ui.com/api/list/)
+ * - [List API](https://mui.com/api/list/)
  */
 declare const List: OverridableComponent<ListTypeMap>;
 

@@ -88,12 +88,12 @@ export type CheckboxClassKey =
  *
  * Demos:
  *
- * - [Checkboxes](https://material-ui.com/components/checkboxes/)
- * - [Transfer List](https://material-ui.com/components/transfer-list/)
+ * - [Checkboxes](https://mui.com/components/checkboxes/)
+ * - [Transfer List](https://mui.com/components/transfer-list/)
  *
  * API:
  *
- * - [Checkbox API](https://material-ui.com/api/checkbox/)
- * - inherits [IconButton API](https://material-ui.com/api/icon-button/)
+ * - [Checkbox API](https://mui.com/api/checkbox/)
+ * - inherits [IconButton API](https://mui.com/api/icon-button/)
  */
 export default function Checkbox(props: CheckboxProps): JSX.Element;

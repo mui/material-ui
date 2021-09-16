@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="150" src="https://material-ui.com/static/logo.svg" alt="Material-UI logo"></a></p>
+  <a href="https://mui.com/" rel="noopener" target="_blank"><img width="150" src="https://mui.com/static/logo.svg" alt="Material-UI logo"></a></p>
 </p>
 
 <h1 align="center">Material-UI</h1>
@@ -26,7 +26,7 @@
 
 Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
 
-**[Stable channel v4](https://material-ui.com/)**
+**[Stable channel v4](https://mui.com/)**
 
 ```sh
 // with npm
@@ -51,8 +51,8 @@ yarn add @material-ui/core@next
 <details>
   <summary>Older versions</summary>
 
-  - **[v3.x](https://v3.material-ui.com/)** ([Migration from v3 to v4](https://material-ui.com/guides/migration-v3/))
-  - **[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://material-ui.com/guides/migration-v0x/))
+  - **[v3.x](https://v3.material-ui.com/)** ([Migration from v3 to v4](https://mui.com/guides/migration-v3/))
+  - **[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://mui.com/guides/migration-v0x/))
 
 </details>
 
@@ -90,14 +90,14 @@ via [OpenCollective](https://opencollective.com/material-ui)
 Direct
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="elevator" href="https://www.elevatormag.com/" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://material-ui.com/static/sponsors/elevator.png" alt="elevator" title="The dopest new hip hop, upcoming artsits, music news, culture, and style" height="57" width="191" loading="lazy"></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="elevator" href="https://www.elevatormag.com/" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://mui.com/static/sponsors/elevator.png" alt="elevator" title="The dopest new hip hop, upcoming artsits, music news, culture, and style" height="57" width="191" loading="lazy"></a>
 </p>
 
 Gold Sponsors are those who have pledged \$500/month or more to Material-UI.
 
 ### There is more!
 
-See the full list of [our backers](https://material-ui.com/discover-more/backers/).
+See the full list of [our backers](https://mui.com/discover-more/backers/).
 
 ## Usage
 
@@ -128,22 +128,22 @@ There is a StackOverflow tag called "material-ui" that you can use to tag your q
 ## Examples
 
 Are you looking for an example project to get started?
-[We host some](https://material-ui.com/getting-started/example-projects/).
+[We host some](https://mui.com/getting-started/example-projects/).
 
 ## Documentation
 
-Check out our [documentation website](https://material-ui.com/).
+Check out our [documentation website](https://mui.com/).
 
 ## Premium Themes
 
-You can find complete templates & themes in the [Material-UI store](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
+You can find complete templates & themes in the [Material-UI store](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
 
 ## Contributing
 
 Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to Material-UI.
 
 Notice that contributions go far beyond pull requests and commits.
-Although we love giving you the opportunity to put your stamp on Material-UI, we also are thrilled to receive a variety of [other contributions](https://material-ui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project).
+Although we love giving you the opportunity to put your stamp on Material-UI, we also are thrilled to receive a variety of [other contributions](https://mui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project).
 
 ## Changelog
 
@@ -151,7 +151,7 @@ If you have recently updated, please read the [changelog](https://github.com/mui
 
 ## Roadmap
 
-The future plans and high priority features and enhancements can be found in the [roadmap](https://material-ui.com/discover-more/roadmap/) file.
+The future plans and high priority features and enhancements can be found in the [roadmap](https://mui.com/discover-more/roadmap/) file.
 
 ## License
 

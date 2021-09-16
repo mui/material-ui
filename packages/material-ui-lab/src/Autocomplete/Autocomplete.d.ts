@@ -211,11 +211,11 @@ export type AutocompleteClassKey =
  *
  * Demos:
  *
- * - [Autocomplete](https://material-ui.com/components/autocomplete/)
+ * - [Autocomplete](https://mui.com/components/autocomplete/)
  *
  * API:
  *
- * - [Autocomplete API](https://material-ui.com/api/autocomplete/)
+ * - [Autocomplete API](https://mui.com/api/autocomplete/)
  */
 export default function Autocomplete<
   T,

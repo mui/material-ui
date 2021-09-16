@@ -12,7 +12,7 @@ function roundWithDeprecationWarning(value) {
       console.warn(
         [
           'Material-UI: The `theme.typography.round` helper is deprecated.',
-          'Head to https://material-ui.com/r/migration-v4/#theme for a migration path.',
+          'Head to https://mui.com/r/migration-v4/#theme for a migration path.',
         ].join('\n'),
       );
       warnedOnce = true;

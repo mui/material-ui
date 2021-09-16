@@ -15,7 +15,7 @@ const withMobileDialog = (options = {}) => (Component) => {
       console.warn(
         [
           'Material-UI: The `withMobileDialog` function is deprecated.',
-          'Head to https://material-ui.com/r/migration-v4/#dialog for a migration path.',
+          'Head to https://mui.com/r/migration-v4/#dialog for a migration path.',
         ].join('\n'),
       );
       warnedOnce = true;

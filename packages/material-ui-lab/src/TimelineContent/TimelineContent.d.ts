@@ -14,10 +14,10 @@ export type TimelineContentClassKey = 'root';
  *
  * Demos:
  *
- * - [Timeline](https://material-ui.com/components/timeline/)
+ * - [Timeline](https://mui.com/components/timeline/)
  *
  * API:
  *
- * - [TimelineContent API](https://material-ui.com/api/timeline-content/)
+ * - [TimelineContent API](https://mui.com/api/timeline-content/)
  */
 export default function TimelineContent(props: TimelineContentProps): JSX.Element;
