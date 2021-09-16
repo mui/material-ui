@@ -226,8 +226,6 @@ export function getDependencies(
  * @return The cookie value
  */
 export function getCookie(name: string): string | undefined {
-  // `process.browser` is set by nextjs where we only use `getCookie`
-  // but this file is imported from nodejs scripts so TypeScript complains for that environment.
   if (typeof document !== 'undefined') {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
