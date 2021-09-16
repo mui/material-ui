@@ -223,7 +223,7 @@ export default function AppSearch() {
                         : theme.palette.background.paper,
                     backgroundColor:
                       theme.palette.mode === 'dark'
-                        ? theme.palette.primaryDark[500]
+                        ? theme.palette.primaryDark[700]
                         : theme.palette.grey[500],
                   },
                   '&::-webkit-scrollbar-track': {
@@ -234,7 +234,7 @@ export default function AppSearch() {
                     paddingTop: theme.spacing(2),
                     background: theme.palette.background.paper,
                     letterSpacing: '0.5px',
-                    fontSize: theme.typography.pxToRem(12),
+                    fontSize: theme.typography.pxToRem(11),
                     fontWeight: 'bold',
                     textTransform: 'uppercase',
                     color: theme.palette.text.secondary,
@@ -330,6 +330,7 @@ export default function AppSearch() {
               };
             });
           }}
+          onClose={() => setIsModalOpen(false)}
         />
       )}
     </React.Fragment>
