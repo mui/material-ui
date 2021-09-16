@@ -15,7 +15,7 @@ export default function DesignKits() {
   return (
     <BrandingProvider>
       <Head
-        title="MUI in your favorite design tool."
+        title="MUI in your favorite design tool"
         description="Pick your favorite design tool to enjoy and use MUI components. Boost consistency and facilitate communication when working with developers."
         card="/static/social-previews/designkits-preview.jpg"
       />

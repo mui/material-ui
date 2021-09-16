@@ -14,7 +14,7 @@ export default function Templates() {
   return (
     <BrandingProvider>
       <Head
-        title="MUI: Fully built templates for your app."
+        title="Fully built templates for your app - MUI"
         description="A collection of 4.5 average rating templates, selected and curated by MUI's team of maintainers to get your projects up and running today."
         card="/static/social-previews/templates-preview.jpg"
       />
