@@ -48,20 +48,20 @@ export default class MyDocument extends Document {
           {/* SEO */}
           <link
             rel="canonical"
-            href={`https://material-ui.com${rewriteUrlForNextExport(
+            href={`https://mui.com${rewriteUrlForNextExport(
               `${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonical}`,
             )}`}
           />
           <link
             rel="alternate"
-            href={`https://material-ui.com${rewriteUrlForNextExport(canonical)}`}
+            href={`https://mui.com${rewriteUrlForNextExport(canonical)}`}
             hrefLang="x-default"
           />
           {LANGUAGES_SSR.map((userLanguage2) => (
             <link
               key={userLanguage2}
               rel="alternate"
-              href={`https://material-ui.com${rewriteUrlForNextExport(
+              href={`https://mui.com${rewriteUrlForNextExport(
                 `${userLanguage2 === 'en' ? '' : `/${userLanguage2}`}${canonical}`,
               )}`}
               hrefLang={userLanguage2}
