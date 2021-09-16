@@ -2,7 +2,3 @@
 	path = examples/razzle-styled-example
 	url = https://github.com/kireerik/razzle-material-ui-styled-example.git
 	branch = master
-[submodule "examples/browserify-gulp-example"]
-	path = examples/browserify-gulp-example
-	url = https://github.com/callemall/material-ui-browserify-gulp-example.git
-	branch = master
