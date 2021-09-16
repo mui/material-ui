@@ -8,7 +8,7 @@ The breakpoints are used internally in various components to make them responsiv
 
 ## 默认的断点
 
-每个断点（一个键）匹配一个*固定*的屏幕宽度（一个值）：
+每个断点（一个键）匹配了一个*固定*的屏幕宽度（一个值）：
 
 - ** xs， ** 超小：0px
 - ** sm， **小：600px
@@ -102,7 +102,7 @@ const theme = createTheme({
 ```ts
 declare module '@material-ui/core/styles' {
   interface BreakpointOverrides {
-    xs: false; // removes the `xs` breakpoint
+    xs: false; // 移除 `xs` 断点
     sm: false;
     md: false;
     lg: false;

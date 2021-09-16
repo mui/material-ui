@@ -128,7 +128,6 @@ async function reportBundleSize() {
 
   const detailedComparisonRoute = `/size-comparison?buildId=${azureBuildId}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit}&prNumber=${danger.github.pr.number}`;
   const detailedComparisonUrl = `https://mui-dashboard.netlify.app${detailedComparisonRoute}`;
-  const detailedComparisonUrlExperimental = `https://mui-maintainer-dashboard-remix.vercel.app/${detailedComparisonRoute}`;
 
   const comparison = await loadComparison(mergeBaseCommit, upstreamRef);
 
@@ -146,13 +145,11 @@ async function reportBundleSize() {
       markdown(importantChanges.join('\n'));
     }
 
-    const details = `[Details of bundle changes](${detailedComparisonUrl}) ([experimental](${detailedComparisonUrlExperimental}))`;
+    const details = `[Details of bundle changes](${detailedComparisonUrl})`;
 
     markdown(details);
   } else {
-    markdown(
-      `[No bundle size changes](${detailedComparisonUrl}) ([experimental](${detailedComparisonUrlExperimental}))`,
-    );
+    markdown(`[No bundle size changes](${detailedComparisonUrl})`);
   }
 }
 

@@ -37,7 +37,7 @@ export type FormControlUnstyledOwnerState = Omit<
  * *   Input
  * *   InputLabel
  *
- * You can find one composition example below and more going to [the demos](https://material-ui.com/components/text-fields/#components).
+ * You can find one composition example below and more going to [the demos](https://mui.com/components/text-fields/#components).
  *
  * ```jsx
  * <FormControl>
@@ -52,11 +52,11 @@ export type FormControlUnstyledOwnerState = Omit<
  *
  * Demos:
  *
- * - [Text Fields](https://material-ui.com/components/text-fields/)
+ * - [Text Fields](https://mui.com/components/text-fields/)
  *
  * API:
  *
- * - [FormControlUnstyled API](https://material-ui.com/api/form-control-unstyled/)
+ * - [FormControlUnstyled API](https://mui.com/api/form-control-unstyled/)
  */
 const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
   D extends React.ElementType = FormControlUnstyledTypeMap['defaultComponent'],

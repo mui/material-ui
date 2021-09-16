@@ -504,5 +504,64 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
+
+    describe('bugs - #28317 export function declaration', () => {
+      it('transforms as needed', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-styled.test/exportFunction.actual.js'),
+            path: require.resolve('./jss-to-styled.test/exportFunction.actual.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-styled.test/exportFunction.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-styled.test/exportFunction.expected.js'),
+            path: require.resolve('./jss-to-styled.test/exportFunction.expected.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-styled.test/exportFunction.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
+    describe('bugs - #28317 export class declaration', () => {
+      it('transforms as needed', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-styled.test/exportClass.actual.js'),
+            path: require.resolve('./jss-to-styled.test/exportClass.actual.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-styled.test/exportClass.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-styled.test/exportClass.expected.js'),
+            path: require.resolve('./jss-to-styled.test/exportClass.expected.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-styled.test/exportClass.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
   });
 });

@@ -18,7 +18,7 @@
     "transformOrigin": "This is the point on the popover which will attach to the anchor&#39;s origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].",
     "TransitionComponent": "Компонент, используемый в анимации сворачивания. <a href=\"/components/transitions/#transitioncomponent-prop\">Прочтите это руководство</a>, чтобы узнать больше о требованиях к этому компоненту.",
     "transitionDuration": "Set to &#39;auto&#39; to automatically calculate transition time based on height.",
-    "TransitionProps": "Свойства, передаваемые в анимируемый компонент. По умолчанию элемент основывается на компоненте <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a>."
+    "TransitionProps": "Свойства, передаваемые в анимируемый компонент. По умолчанию элемент основывается на компоненте <a href=\"https://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a>."
   },
   "classDescriptions": {
     "root": {

@@ -10,7 +10,7 @@ export default function EarlyBird() {
         sx={{
           borderRadius: 1,
           p: 2,
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primary.900' : 'primary.50'),
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'primary.50'),
           border: '1px solid',
           borderColor: (theme) =>
             theme.palette.mode === 'dark' ? 'primaryDark.500' : 'primary.100',
@@ -31,7 +31,7 @@ export default function EarlyBird() {
             🐦&nbsp;&nbsp;Early bird special!
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 700 }}>
-            Buy now at a reduced price (~25% off), and get early access to MUI X, with the added
+            Buy now at a reduced price (~25% off), and get early access to MUI X Pro, with the added
             opportunity to influence its development. This perpetual license gives access to support
             and updates for one year. The early bird special is available for a limited time, so
             don&apos;t miss this opportunity!

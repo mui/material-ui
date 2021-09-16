@@ -9,7 +9,7 @@ materialDesign: https://material.io/design/typography/the-type-system.html
 
 <p class="description">使用文字铸排可以尽可能清晰、高效地展示您的设计和内容。</p>
 
-大量字阶和样式会影响任何布局的美观性。 一个带有限量字阶的[文字铸排比例（typographic scale）](https://material.io/design/typography/#type-scale)能够和排版网格搭配工作。
+大量字阶和样式会影响任何布局的美观性。 一个带有限量字阶的 [文字铸排比例（typographic scale）](https://material.io/design/typography/#type-scale) 能够和排版网格搭配工作。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

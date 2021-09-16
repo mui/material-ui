@@ -13,6 +13,7 @@ import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import Link from 'docs/src/modules/components/Link';
+import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
 export default function AppFooter() {
   return (
@@ -24,7 +25,7 @@ export default function AppFooter() {
           gridAutoColumns: '1fr',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: (theme) => theme.spacing(4, 2),
+          gap: (theme) => theme.spacing(4),
           gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
           gridTemplateRows: 'auto',
           '& a:not(.MuiIconButton-root)': {
@@ -61,8 +62,8 @@ export default function AppFooter() {
               <Typography fontWeight="bold" variant="body2">
                 Products
               </Typography>
-              <Link href={ROUTES.productCore}>Core</Link>
-              <Link href={ROUTES.productAdvanced}>Advanced X</Link>
+              <Link href={ROUTES.productCore}>MUI Core</Link>
+              <Link href={ROUTES.productAdvanced}>MUI X</Link>
               <Link href={ROUTES.productTemplates}>Templates</Link>
               <Link href={ROUTES.productDesignKits}>Design Kits</Link>
             </Box>
@@ -95,9 +96,29 @@ export default function AppFooter() {
             </Typography>
             <Link href={ROUTES.about}>About</Link>
             <Link href={ROUTES.vision}>Vision</Link>
-            <Link href={ROUTES.careers}>Careers</Link>
+            <Box sx={{ display: 'flex', alignItems: 'end' }}>
+              <Link href={ROUTES.careers}>Careers </Link>
+              <Box
+                sx={{
+                  px: 0.5,
+                  py: 0.3,
+                  ml: 1,
+                  borderRadius: 0.5,
+                  fontSize: (theme) => theme.typography.pxToRem(9),
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  color: '#fff',
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.error[800]
+                      : theme.palette.error.main,
+                }}
+              >
+                Hiring
+              </Box>
+            </Box>
             <Link href={ROUTES.support}>Support</Link>
-            <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@material-ui.com">
+            <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
               Contact us
             </Link>
           </Box>
@@ -119,7 +140,7 @@ export default function AppFooter() {
           <Stack spacing={2} direction="row">
             <IconButton
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               href="https://github.com/mui-org"
               aria-label="github"
               title="GitHub"
@@ -129,7 +150,17 @@ export default function AppFooter() {
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
+              href="https://stackoverflow.com/questions/tagged/material-ui"
+              aria-label="Stack Overflow"
+              title="Stack Overflow"
+              size="small"
+            >
+              <SvgStackOverflow />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://twitter.com/MaterialUI"
               aria-label="twitter"
               title="Twitter"
@@ -139,7 +170,7 @@ export default function AppFooter() {
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               href="https://www.linkedin.com/company/material-ui/"
               aria-label="linkedin"
               title="LinkedIn"

@@ -38,14 +38,16 @@ const SearchButton = styled('button')(({ theme }) => {
     }`,
     borderRadius: 10,
     cursor: 'pointer',
+    transitionProperty: 'all',
+    transitionDuration: '150ms',
   };
 });
 
 const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(13),
-    fontWeight: 600,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[600],
+    fontWeight: 700,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[700],
     lineHeight: '21px',
     border: `1px solid ${
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.grey[200]

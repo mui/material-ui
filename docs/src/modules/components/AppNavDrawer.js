@@ -174,7 +174,7 @@ function AppNavDrawer(props) {
             {process.env.LIB_VERSION ? (
               <Button
                 component="a"
-                href={`https://material-ui.com${languagePrefix}/versions/`}
+                href={`https://mui.com${languagePrefix}/versions/`}
                 onClick={onClose}
                 size="small"
                 sx={{

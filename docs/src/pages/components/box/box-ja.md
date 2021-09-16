@@ -9,7 +9,7 @@ githubLabel: 'component: Box'
 
 Boxコンポーネントは、`@material-ui/system`で公開される[すべてのスタイル関数](/system/basics/#all-inclusive) をパッケージ化します。
 
-[The palette](/system/palette/) style関数。
+[palette](/system/palette/) style関数。
 
 ## 例
 
