@@ -1,5 +1,85 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.0.0
+
+<!-- generated comparing v5.0.0-rc.1..next -->
+
+_Sep 16, 2021_
+
+After over 400 days of development and over 40 canary releases, we are excited to introduce [MUI Core v5.0.0](https://mui.com/blog/mui-core-v5/)!
+
+Some statistics with the released of v5.0.0 compared to the one of v4.0.0:
+
+- 5,832 new commits
+- From 2M downloads/month to 9.5M downloads/month on npm
+- From 350k users/month to 700k users/month on the documentation
+
+A big thanks to the 600+ contributors who made the release possible!
+
+The 5.0.0 version includes all changes done in the alpha, beta, and rc releases listed below.
+These are the changes done from the last release candidate version (5.0.0-rc.1):
+
+### `@mui/material@5.0.0`
+
+- &#8203;<!-- 15 -->[Autocomplete] Fix reset value on blur for freeSolo input (#28190) @praveenkumar-kalidass
+- &#8203;<!-- 14 -->[ButtonBase] Revert to the pre-unstyled implementation (#28225) @michaldudak
+- &#8203;<!-- 13 -->[Checkbox] Fix color proptype typo (#28265) @sydneyjodon-wk
+- &#8203;<!-- 40 -->[Tooltip] Ensure user-select CSS property is reverted after touch end (#28372) @tholman
+
+### `@mui/system@5.0.0`
+
+- &#8203;<!-- 25 -->[system] Fix missing typings for createSpacing (#28361) @eps1lon
+
+### `@mui/codemod@5.0.0`
+
+- &#8203;<!-- 21 -->[codemod] Fix jss-to-styled to support other export class, function etc. (#28321) @jedwards1211
+
+### `@mui/lab@5.0.0-alpha.46`
+
+- &#8203;<!-- 09 -->[DateTimePicker] Change bottom position of AM/PM buttons (#27534) @nikitabobers
+- &#8203;<!-- 02 -->[pickers] Add visual regression tests for open views (#28224) @eps1lon
+
+### Docs
+
+- &#8203;<!-- 38 -->[blog] Introducing MUI Core v5.0 (#27912) @oliviertassinari
+- &#8203;<!-- 08 -->[docs] Fix quotes in font-face literal (#28260) @Aurelain
+- &#8203;<!-- 07 -->[docs] Update redirects to X's docs (#28263) @m4theushw
+- &#8203;<!-- 06 -->[docs] Change Material-UI to MUI in the console (#28270) @mbrookes
+- &#8203;<!-- 05 -->[docs] Docs redesign adjustments (#28203) @mnajdova
+- &#8203;<!-- 04 -->[docs] How to compose theme in steps (#28246) @goncalovf
+- &#8203;<!-- 03 -->[docs] Fix DataGrid demo console warning in Table docs (#28235) @ZeeshanTamboli
+- &#8203;<!-- 32 -->[docs] Fix typo in v4 to v5 migration guide (#28353) @zadeviggers
+- &#8203;<!-- 17 -->[docs] Fix typo in transition docs (#28312) @tamboliasir1
+- &#8203;<!-- 20 -->[docs] Use https for material-ui & reactcommunity links (#28304) @aghArdeshir
+- &#8203;<!-- 22 -->[docs] Add IBM Plex font locally (#28325) @siriwatknp
+- &#8203;<!-- 26 -->[docs] Fix failing client-side navigation for /api routes (#28356) @eps1lon
+- &#8203;<!-- 29 -->[docs] Update the nav order (#28323) @mbrookes
+- &#8203;<!-- 30 -->[docs] Compress images with ImageOptim @oliviertassinari
+- &#8203;<!-- 34 -->[docs] Replace remaining unstyled package reference (#28351) @michaldudak
+- &#8203;<!-- 35 -->[docs] No import from react-router (#28329) @eps1lon
+- &#8203;<!-- 36 -->[website] Refine website before go-live (#28081) @siriwatknp
+- &#8203;<!-- 31 -->[website] Update manifest to new logo (#28355) @siriwatknp
+- &#8203;<!-- 01 -->[website] Add product-x page (#28106) @siriwatknp
+- &#8203;<!-- 24 -->[website] Revert store URL to material-ui.com/store (#28365) @michaldudak
+- &#8203;<!-- 33 -->[website] Rename domain to mui.com (#28332) @mnajdova
+
+### Core
+
+- &#8203;<!-- 12 -->[core] Replace Material-UI with MUI (#28243) @mnajdova
+- &#8203;<!-- 11 -->[core] Prepare for v5 stable release (#28240) @mnajdova
+- &#8203;<!-- 10 -->[core] Mark lines that needs to be changed with a major release (#28238) @mnajdova
+- &#8203;<!-- 18 -->[core] Various updates to what we consider the default branch (#28328) @eps1lon
+- &#8203;<!-- 23 -->[core] Remove experimental bundle size tracking page (#28334) @eps1lon
+- &#8203;<!-- 27 -->[core] Support release:build with cmd.exe (#28318) @michaldudak
+- &#8203;<!-- 28 -->[core] Remove unnecessary titleize warning (#28349) @eps1lon
+- &#8203;<!-- 37 -->[core] Batch small fixes (#28381) @oliviertassinari
+- &#8203;<!-- 16 -->[test] Recommend yarn t over test:watch (#28254) @eps1lon
+- &#8203;<!-- 19 -->[test] Lazily import fixtures (#28239) @eps1lon
+- &#8203;<!-- 39 -->[test] Assert on user-select that has the same value across browsers (#28378) @eps1lon
+
+All contributors of this release in alphabetical order: @aghArdeshir, @Aurelain, @eps1lon, @goncalovf, @jedwards1211, @m4theushw, @mbrookes, @michald
+udak, @mnajdova, @nikitabobers, @praveenkumar-kalidass, @siriwatknp, @sydneyjodon-wk, @tamboliasir1, @tholman, @zadeviggers, @ZeeshanTamboli
+
 ## 5.0.0-rc.1
 
 <!-- generated comparing v5.0.0-rc.0..next -->
