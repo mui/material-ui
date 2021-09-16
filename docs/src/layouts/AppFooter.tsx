@@ -25,7 +25,7 @@ export default function AppFooter() {
           gridAutoColumns: '1fr',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: (theme) => theme.spacing(4),
+          gap: 4,
           gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
           gridTemplateRows: 'auto',
           '& a:not(.MuiIconButton-root)': {
