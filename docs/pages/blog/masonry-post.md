@@ -6,8 +6,6 @@ authors: ['bennyjoo"]
 card: true
 ---
 
-# The Journey of developing the MUI Masonry component
-
 ## Request from the community
 
 Just over two years ago, a [request](https://github.com/mui-org/material-ui/issues/17000) for a masonry component was opened. Upvoted by around 200 MUI users, this was one of the most popular component requests so far.
