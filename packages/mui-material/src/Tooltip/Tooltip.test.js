@@ -1118,7 +1118,7 @@ describe('<Tooltip />', () => {
           <button type="submit">Hello World</button>
         </Tooltip>,
       );
-      document.body.style.WebkitUserSelect = 'revert';
+      document.body.style.WebkitUserSelect = 'text';
 
       fireEvent.touchStart(getByRole('button'));
 
@@ -1127,7 +1127,7 @@ describe('<Tooltip />', () => {
       act(() => {
         clock.tick(enterTouchDelay + enterDelay);
       });
-      expect(document.body.style.WebkitUserSelect.toLowerCase()).to.equal('revert');
+      expect(document.body.style.WebkitUserSelect).to.equal('text');
     });
 
     it('ensures text-selection is reset after single press', () => {
@@ -1136,7 +1136,7 @@ describe('<Tooltip />', () => {
           <button type="submit">Hello World</button>
         </Tooltip>,
       );
-      document.body.style.WebkitUserSelect = 'revert';
+      document.body.style.WebkitUserSelect = 'text';
 
       fireEvent.touchStart(getByRole('button'));
 
@@ -1144,7 +1144,7 @@ describe('<Tooltip />', () => {
 
       fireEvent.touchEnd(getByRole('button'));
 
-      expect(document.body.style.WebkitUserSelect).to.equal('revert');
+      expect(document.body.style.WebkitUserSelect).to.equal('text');
     });
 
     it('restores user-select when unmounted during longpress', () => {
@@ -1164,14 +1164,14 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
 
-      document.body.style.WebkitUserSelect = 'revert';
+      document.body.style.WebkitUserSelect = 'text';
       // Let updates flush before unmounting
       act(() => {
         fireEvent.touchStart(getByRole('button'));
       });
       unmount();
 
-      expect(document.body.style.WebkitUserSelect.toLowerCase()).to.equal('revert');
+      expect(document.body.style.WebkitUserSelect).to.equal('text');
     });
   });
 });
