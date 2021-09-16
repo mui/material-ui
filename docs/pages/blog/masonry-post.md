@@ -21,25 +21,24 @@ According to the 70 responses from our survey, we learned that MUI users want to
 - insert each item in the shortest column in a masonry
 
 ![Screenshot 2021-09-15 at 09 29 54](https://user-images.githubusercontent.com/32841130/133398931-a9ee1aa8-11ca-47e7-a356-d051dab30435.png)
+
 ![Screenshot 2021-09-15 at 09 29 59](https://user-images.githubusercontent.com/32841130/133398945-0e3ea284-8d67-47a3-afad-36a95a6f6925.png)
+
 ![Screenshot 2021-09-15 at 09 30 06](https://user-images.githubusercontent.com/32841130/133398964-059e0faf-d624-472d-8fbb-9b1ede41cce6.png)
 
 With the help of these survey results, we came up with the following requirements:
 
 **Must-have**:
-
 - Items can have arbitrary heights.
 - Items should flow horizontally.
 - Each item is pushed to the shortest column.
 
 **Should-have**:
-
 - The number of columns, `columns`, and the spacing between items, `spacing`, can be passed into the component.
 - Responsive number of columns (breakpoints)
 - Responsive spacing (breakpoints)
 
 **Nice-to-have**:
-
 - Server side rendering
 - Span multiple columns in a masonry
 - Performance
@@ -92,11 +91,41 @@ The second approach, **CSS Flexbox + Configuring `order` of items**, has no such
 
 So, we have some trade-offs here. You can't go wrong with either approach. However, what if this _"item's height should be in multitude of row height"_ limitation of the first approach goes away? The decision making would be much easier then, right? So, we have found a workaround to this.
 
-In order to retain the rendered heights of children as much as possible, we can set the height of each row to `1px`. Even if an item has a rendered height of `105px`, we have no problem! We will assign `span 105` to its `grid-row-end` property. Technically, this item is composed of 105 rows. (Spoiler: this leads to another serious problem later...) To go a little deeper on the technical side, setting the height of row to `1px` can be done by setting the height of implicit grid rows to `0px` and the default grid-gap to `1px`: `grid-auto-rows: 0; grid-gap: 1`.
+In order to retain the rendered heights of children as much as possible, we can set the height of each row to `1px`. Even if an item has a rendered height of `105px`, we have no problem! We will assign `span 105` to its `grid-row-end` property. Technically, this item is composed of 105 rows. (Spoiler: this leads to another serious problem later...) 
 
-In conclusion, we decided to go with the first implementation: **CSS Grid + Configuring `grid-row-start` or `grid-row-end` of items**.
+In conclusion, we chose the first implementation: **CSS Grid + Configuring `grid-row-start` or `grid-row-end` of items**.
 
-## Chrome is giving us a hard time
+## Breakdown of MUI Masonry Implementation
+
+As briefly discussed above, `<Masonry />` and `<MasonryItem />` are needed to implement a whole masonry component. I will explain the behind-the-secnes of each of the two in detail.
+
+### `<Masonry />`
+
+This component is a CSS grid container that wraps around a list of `<MasonryItem />`s. Passing an element or elements other than `<MasonryItem />` will not lead to anything.
+
+`<Masonry />` receives two special props: `columns` and `spacing`. `columns` is the number of columns of the masonry, while `spacing` is the gap between items of the masonry. Both props can be a fixed value, such as `3` and `4`, or responsive values, such as `{ xs: 3, sm: 4, md: 5 }` and `[ xs: 3, sm: 4, md: 5]`. Further details can be found in its [API documents](https://next.material-ui.com/api/masonry/).
+
+The key to this implementation is to set the row height to `1px`. This can be done by setting the height of implicit grid rows to `0px` and the row gap to `1px`. In more detail, the following code, `grid-auto-rows: 0; row-gap: 1`, does the job.
+
+The property `grid-template-columns` should change in response to the `columns` prop. For example, if `columns` is `3`, `<Masonry />` will have the following property: `grid-template-columns: repeat(3, 1fr)`. 
+
+The property `column-gap` should change in response to the `spacing` prop. For example, if `spacing` is `2`, `<Masonry />` will have the following property: `column-gap: theme.spacing(2)`. It is worth noting here that `spacing` is a factor of the theme's spacing. You may ask why we only change the `column-gap`. What about the `row-gap`? As we already discussed, `row-gap: 1` should always be held in order for this implementation to work. Otherwise, `<MasonryItem />` cannot span in a multitude of `1px`.
+
+This is pretty much the gem of `<Masonry />`. It is much simpler relative to `<MasonryItem />`, which we are now moving on to look in detail.
+
+### `<MasonryItem />`
+
+This component is a CSS grid item that wraps around one and only child. Through the use of `React.Children.only()`, we enforce that only one child is passed to the component. MUI users can always create more `<MasonryItem />` to add more children. 
+
+`<MasonryItem />` receives two special props: `columnSpan` and `defaultHeight`. `columnSpan` is the number of columns taken up by the component, while `defaultHeight`, which is provided for optional server-side rendering, is the initial height of the component. Both props receive a fixed value. Further details can be found in its [API documents](https://next.material-ui.com/api/masonry-item/).
+
+`<MasonryItem />` utilises a Web API called [ResizeObserver API](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver). It detects changes to the dimensions of an element. We use this API to observe the child passed to `<MasonryItem />`. Every time the child's height changes, which is commonly caused by window resizing or zooming, these two properties, `grid-row-end` and `padding-bottom`, also get updated. `grid-row-end` changes so that the height of `<MasonryItem />`, by spanning a correct number of rows, matches its child's height. `padding-bottom` changes so that the vertical gap between `<MasonryItem />`s stays correct.
+
+If user wants to use the column spanning feature and therefore passes `columnSpan` prop to the component, the property `grid-column-end` is assined the given value. For example, if `columnSpan` is `3`, `grid-column-end` is set to `span 3` and the component will span three columns.
+
+If user wants to use server-side rendering and hence passes `defaultHeight` prop to the component, ResizeObserver API is not used so that the component, `<MasonryItem />`, is set to the given height and retains it. However, if `defaultHeight` is larger than the height of its child, there will be unwanted gap between the component and the child. If it is less, some parts of the child will not be displayed. Hence, the prop `defaultHeight` should be used with special attention to enjoy both benefits of a solid masonry and server-side rendering.
+
+## Yet...Chrome hit us from the back
 
 After finishing up the implementation, we found that Chrome limits the number of rows of each CSS grid to 1,000 at the maximum. Overflowing items beyond the 1,000th row are simply squashed. You can find a thread with regard to this [here](https://bugs.chromium.org/p/chromium/issues/detail?id=688640).
 
