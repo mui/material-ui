@@ -707,7 +707,7 @@ export default function About() {
   return (
     <BrandingProvider>
       <Head
-        title="MUI: About us"
+        title="About us - MUI"
         description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
       />
       <AppHeader />

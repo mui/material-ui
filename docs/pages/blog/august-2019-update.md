@@ -24,7 +24,7 @@ At the same time, the list of icons has grown. You can find 10 new brand icons a
 
   ![TypeScript](/static/blog/august-2019-update/typescript.png)
 
-- 🎨 We have worked on seeding https://mui.com/store/.
+- 🎨 We have worked on seeding https://material-ui.com/store/.
 - 📖 We have updated our ROADMAP. [Check it out](/discover-more/roadmap/).
 
 But this summary is just scratching the surface. We have accepted 193 commits from 74 different contributors. We have changed 5,875 files with 35,101 additions and 14,701 deletions.
@@ -33,6 +33,6 @@ But this summary is just scratching the surface. We have accepted 193 commits fr
 
 _(We'll do our best, no guarantee!)_
 
-- 🔍 We will keep working on providing ready to use autocomplete, combo box, and multi-select components. We announced it last month but have made little progress so far due to focusing on fixing bugs in existing components. Let's make it happen!
+- 🔍 We will keep working on providing ready-to-use autocomplete, combo box, and multi-select components. We announced it last month but have made little progress so far due to focusing on fixing bugs in existing components. Let's make it happen!
 
 - ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.

@@ -165,7 +165,6 @@ module.exports = {
       },
     };
   },
-  trailingSlash: true,
   env: {
     COMMIT_REF: process.env.COMMIT_REF,
     ENABLE_AD: process.env.ENABLE_AD,
@@ -223,8 +222,13 @@ module.exports = {
     return map;
   },
   reactStrictMode,
+  trailingSlash: true,
   async rewrites() {
-    return [{ source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' }];
+    return [
+      { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
+      // Make sure to include the trailing slash if `trailingSlash` option is set
+      { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
+    ];
   },
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
   optimizeFonts: false,

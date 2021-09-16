@@ -48,7 +48,11 @@ const Plan = React.forwardRef<
           fullWidth
           component={Link}
           noLinkStyle
-          href={plan === 'community' ? '/getting-started/usage/' : '/store/items/material-ui-pro/'}
+          href={
+            plan === 'community'
+              ? '/getting-started/usage/'
+              : 'https://material-ui.com/store/items/material-ui-pro/'
+          }
           endIcon={<KeyboardArrowRightRounded />}
           sx={{ py: 1 }}
         >

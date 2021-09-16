@@ -51,15 +51,12 @@ function handleClick(event) {
   handleEvent(event, activeElement.getAttribute('href'));
 }
 
-let bound = false;
-
 export default function MarkdownLinks() {
   React.useEffect(() => {
-    if (bound) {
-      return;
-    }
-    bound = true;
     document.addEventListener('click', handleClick);
+    return () => {
+      document.addEventListener('click', handleClick);
+    };
   }, []);
 
   return null;

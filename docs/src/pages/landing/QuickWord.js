@@ -8,7 +8,7 @@ const backers = [
   {
     href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
     alt: 'tidelift',
-    title: 'Tidelift — Enterprise-ready open source software',
+    title: 'Tidelift — Enterprise-ready open-source software',
   },
   {
     href: 'https://bit.dev',
