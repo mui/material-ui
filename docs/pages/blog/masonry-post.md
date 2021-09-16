@@ -29,16 +29,19 @@ According to the 70 responses from our survey, we learned that MUI users want to
 With the help of these survey results, we came up with the following requirements:
 
 **Must-have**:
+
 - Items can have arbitrary heights.
 - Items should flow horizontally.
 - Each item is pushed to the shortest column.
 
 **Should-have**:
+
 - The number of columns, `columns`, and the spacing between items, `spacing`, can be passed into the component.
 - Responsive number of columns (breakpoints)
 - Responsive spacing (breakpoints)
 
 **Nice-to-have**:
+
 - Server side rendering
 - Span multiple columns in a masonry
 - Performance
@@ -91,7 +94,7 @@ The second approach, **CSS Flexbox + Configuring `order` of items**, has no such
 
 So, we have some trade-offs here. You can't go wrong with either approach. However, what if this _"item's height should be in multitude of row height"_ limitation of the first approach goes away? The decision making would be much easier then, right? So, we have found a workaround to this.
 
-In order to retain the rendered heights of children as much as possible, we can set the height of each row to `1px`. Even if an item has a rendered height of `105px`, we have no problem! We will assign `span 105` to its `grid-row-end` property. Technically, this item is composed of 105 rows. (Spoiler: this leads to another serious problem later...) 
+In order to retain the rendered heights of children as much as possible, we can set the height of each row to `1px`. Even if an item has a rendered height of `105px`, we have no problem! We will assign `span 105` to its `grid-row-end` property. Technically, this item is composed of 105 rows. (Spoiler: this leads to another serious problem later...)
 
 In conclusion, we chose the first implementation: **CSS Grid + Configuring `grid-row-start` or `grid-row-end` of items**.
 
@@ -107,7 +110,7 @@ This component is a CSS grid container that wraps around a list of `<MasonryItem
 
 The key to this implementation is to set the row height to `1px`. This can be done by setting the height of implicit grid rows to `0px` and the row gap to `1px`. In more detail, the following code, `grid-auto-rows: 0; row-gap: 1`, does the job.
 
-The property `grid-template-columns` should change in response to the `columns` prop. For example, if `columns` is `3`, `<Masonry />` will have the following property: `grid-template-columns: repeat(3, 1fr)`. 
+The property `grid-template-columns` should change in response to the `columns` prop. For example, if `columns` is `3`, `<Masonry />` will have the following property: `grid-template-columns: repeat(3, 1fr)`.
 
 The property `column-gap` should change in response to the `spacing` prop. For example, if `spacing` is `2`, `<Masonry />` will have the following property: `column-gap: theme.spacing(2)`. It is worth noting here that `spacing` is a factor of the theme's spacing. You may ask why we only change the `column-gap`. What about the `row-gap`? As we already discussed, `row-gap: 1` should always be held in order for this implementation to work. Otherwise, `<MasonryItem />` cannot span in a multitude of `1px`.
 
@@ -115,7 +118,7 @@ This is pretty much the gem of `<Masonry />`. It is much simpler relative to `<M
 
 ### `<MasonryItem />`
 
-This component is a CSS grid item that wraps around one and only child. Through the use of `React.Children.only()`, we enforce that only one child is passed to the component. MUI users can always create more `<MasonryItem />` to add more children. 
+This component is a CSS grid item that wraps around one and only child. Through the use of `React.Children.only()`, we enforce that only one child is passed to the component. MUI users can always create more `<MasonryItem />` to add more children.
 
 `<MasonryItem />` receives two special props: `columnSpan` and `defaultHeight`. `columnSpan` is the number of columns taken up by the component, while `defaultHeight`, which is provided for optional server-side rendering, is the initial height of the component. Both props receive a fixed value. Further details can be found in its [API documents](https://next.material-ui.com/api/masonry-item/).
 
