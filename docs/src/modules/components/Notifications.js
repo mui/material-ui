@@ -103,7 +103,7 @@ export default function Notifications() {
         .then((newMessages) => {
           if (active) {
             const seen = getCookie('lastSeenNotification');
-            const lastSeenNotification = seen === '' ? 0 : parseInt(seen, 10);
+            const lastSeenNotification = seen === undefined ? 0 : parseInt(seen, 10);
             setNotifications({
               messages: newMessages || [],
               lastSeen: lastSeenNotification,

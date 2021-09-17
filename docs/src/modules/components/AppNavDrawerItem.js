@@ -124,7 +124,7 @@ const ItemButton = styled(Item, {
         if (theme.palette.mode === 'dark') {
           return alpha(theme.palette.grey[500], 0.5);
         }
-        return theme.palette.grey[500];
+        return theme.palette.grey[600];
       }
       return theme.palette.text.primary;
     })(),
@@ -140,7 +140,7 @@ const ItemButton = styled(Item, {
         if (theme.palette.mode === 'dark') {
           return alpha(theme.palette.grey[500], 0.5);
         }
-        return theme.palette.grey[500];
+        return theme.palette.grey[600];
       })(),
       cursor: depth === 0 ? '' : 'text',
     },

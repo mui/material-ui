@@ -6,17 +6,14 @@
 
 /size-snapshot https://s3.eu-central-1.amazonaws.com/eps1lon-material-ui/artifacts/master/latest/size-snapshot.json 200
 
-# To add when we finish work on v5
-https://next.material-ui.com/* https://mui.com/:splat 301!
+# To add when we finish work on v6
+# https://next.mui.com/* https://mui.com/:splat 301!
 
 # Support multiple domains
-https://material-ui.dev/* https://mui.com/:splat 301!
-https://v0.material-ui.com/* https://v0.mui.com/:splat 301!
-https://v1.material-ui.com/* https://v1.mui.com/:splat 301!
-https://v3.material-ui.com/* https://v3.mui.com/:splat 301!
-https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
+# TODO add back
+# https://material-ui.com/* https://mui.com/:splat 301!
 
-# Redirect all except the store
+# Redirect all except /store/
 https://material-ui.com https://mui.com 301!
 https://material-ui.com/api-docs/* https://mui.com/api-docs/:splat 301!
 https://material-ui.com/api/* https://mui.com/api/:splat 301!
@@ -167,6 +164,11 @@ https://v3-9-0.mui.com/* https://v3.mui.com/:splat 301!
 /components/slider-styled/ /components/slider/ 301
 /customization/styled/ /system/styled/ 301
 /api/data-grid/x-grid/ /api/data-grid/data-grid-pro/ 301
+https://next.material-ui.com/* https://mui.com/:splat 301!
+https://v0.material-ui.com/* https://v0.mui.com/:splat 301!
+https://v1.material-ui.com/* https://v1.mui.com/:splat 301!
+https://v3.material-ui.com/* https://v3.mui.com/:splat 301!
+https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 
 # Proxies
 

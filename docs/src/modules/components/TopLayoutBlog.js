@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createTheme } from '@mui/material/styles';
+import { styled, createTheme } from '@mui/material/styles';
 import { withStyles } from '@mui/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
@@ -10,7 +10,6 @@ import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import { exactProp } from '@mui/utils';
 import MarkdownElement from './MarkdownElement';
@@ -23,6 +22,26 @@ const authors = {
   mbrookes: {
     name: 'Matt Brookes',
     github: 'mbrookes',
+  },
+  eps1lon: {
+    name: 'Sebastian Silbermann',
+    github: 'eps1lon',
+  },
+  mnajdova: {
+    name: 'Marija Najdova',
+    github: 'mnajdova',
+  },
+  michaldudak: {
+    name: 'Michał Dudak',
+    github: 'michaldudak',
+  },
+  siriwatknp: {
+    name: 'Siriwat Kunaporn',
+    github: 'siriwatknp',
+  },
+  'danilo-leal': {
+    name: 'Danilo Leal',
+    github: 'danilo-leal',
   },
 };
 
@@ -68,16 +87,23 @@ const styles = (theme) => ({
     color: theme.palette.text.secondary,
     ...theme.typography.body2,
   },
-  avatar: {
+});
+
+const AuthorsContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  marginBottom: theme.spacing(1),
+  '& .author': {
     display: 'flex',
     alignItems: 'center',
-    paddingBottom: theme.spacing(5),
+    paddingBottom: theme.spacing(3),
+    paddingRight: theme.spacing(2),
     fontWeight: theme.typography.fontWeightMedium,
     '& .MuiAvatar-root': {
       marginRight: theme.spacing(1),
     },
   },
-});
+}));
 
 function TopLayoutBlog(props) {
   const { classes, docs } = props;
@@ -120,14 +146,17 @@ function TopLayoutBlog(props) {
               <MarkdownElement>
                 <h1>{headers.title}</h1>
               </MarkdownElement>
-              <Stack direction="row" spacing={3}>
+              <AuthorsContainer>
                 {headers.authors.map((author) => (
-                  <div key={author} className={classes.avatar}>
-                    <Avatar src={`https://github.com/${authors[author].github}.png`} />
-                    <Typography>{authors[author].name}</Typography>
+                  <div key={author} className="author">
+                    <Avatar
+                      sx={{ width: 32, height: 32 }}
+                      src={`https://github.com/${authors[author].github}.png`}
+                    />
+                    <Typography variant="body2">{authors[author].name}</Typography>
                   </div>
                 ))}
-              </Stack>
+              </AuthorsContainer>
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {
