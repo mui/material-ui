@@ -85,16 +85,29 @@ export default function AppSearch() {
   const macOS = isAppleDevice();
   const addStartScreen = () => {
     const StartScreen = document.querySelector('.DocSearch-StartScreen');
-    if (StartScreen) {
-      const StartScreenContent = document.createElement('ul');
-      StartScreenContent.className = 'DocSearch-StartScreenContent';
-      StartScreen.appendChild(StartScreenContent);
-      const itemNames = ['Component', 'API', 'Example'];
-      for (const itemName of itemNames) {
-        const item = document.createElement('li');
-        item.className = 'DocSearch-StartScreenItem';
-        item.appendChild(document.createTextNode(itemName));
-        StartScreenContent.appendChild(item);
+    const notAdded = document.querySelector('.DocSearch-StartScreenCategory') === null;
+    if (StartScreen && notAdded) {
+      const categories = ['Getting Started', 'Common Topics', 'Components', 'Native'];
+      const items = [
+        ['Installation Guide', 'Running an App', 'App Structure', 'Theming Basics'],
+        ['Testing', 'Storage', 'Life Cycle Events', 'Navigation'],
+        ['a', 'b', 'c'],
+        ['a', 'b', 'c'],
+      ];
+      for (let i = 0; i < categories.length; i += 1) {
+        const StartScreenCategory = document.createElement('div');
+        StartScreenCategory.className = 'DocSearch-StartScreenCategory';
+        const StartScreenTitle = document.createElement('div');
+        StartScreenTitle.className = 'DocSearch-StartScreenTitle';
+        StartScreenTitle.appendChild(document.createTextNode(categories[i]));
+        StartScreenCategory.appendChild(StartScreenTitle);
+        StartScreen.appendChild(StartScreenCategory);
+        items[i].forEach((itemName) => {
+          const StartScreenItem = document.createElement('div');
+          StartScreenItem.className = 'DocSearch-StartScreenItem';
+          StartScreenItem.appendChild(document.createTextNode(itemName));
+          StartScreenCategory.appendChild(StartScreenItem);
+        });
       }
     }
   };
@@ -204,14 +217,25 @@ export default function AppSearch() {
             },
             '& .DocSearch-StartScreen': {
               width: '100%',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              rowGap: theme.spacing(2),
+              textAlign: 'left',
             },
-            '& .DocSearch-StartScreenContent': {
-              width: '100%',
+            '& .DocSearch-StartScreenCategory': {
+              display: 'flex',
+              flexDirection: 'column',
+            },
+            '& .DocSearch-StartScreenTitle': {
+              padding: theme.spacing(1),
+              color: theme.palette.grey[600],
+              fontWeight: 600,
             },
             '& .DocSearch-StartScreenItem': {
               width: '100%',
-              padding: theme.spacing(1),
-              color: 'blue',
+              padding: theme.spacing(1.5),
+              color: theme.palette.text.primary,
+              fontWeight: 500,
             },
             '& .DocSearch-Help': {
               display: 'none',
