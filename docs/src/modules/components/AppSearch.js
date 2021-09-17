@@ -22,7 +22,7 @@ const SearchButton = styled('button')(({ theme }) => {
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
       alignItems: 'center',
-      minWidth: 186,
+      minWidth: 210,
     },
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
@@ -32,8 +32,8 @@ const SearchButton = styled('button')(({ theme }) => {
       backgroundColor:
         theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
     },
-    color: theme.palette.mode === 'dark' ? 'white' : theme.palette.grey[600],
-    fontSize: '1rem',
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.pxToRem(15),
     border: `1px solid ${
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200]
     }`,
@@ -153,7 +153,8 @@ export default function AppSearch() {
           sx={{
             color: (theme) =>
               theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.primary[500],
-            mx: 1,
+            ml: 0.5,
+            mr: 1,
           }}
         />
         {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
