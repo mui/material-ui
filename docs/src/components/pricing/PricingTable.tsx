@@ -87,7 +87,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
   }
   if (plan === 'pro') {
     return (
-      <Box>
+      <div>
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
           <Typography
             variant="body2"
@@ -121,13 +121,13 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
             / developer.
           </Typography>
         </Box>
-        <Box>
+        <div>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
             Price capped at 10 developers.
             <br /> * Early bird special.
           </Typography>
-        </Box>
-      </Box>
+        </div>
+      </div>
     );
   }
   return (
