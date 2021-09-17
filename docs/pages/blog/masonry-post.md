@@ -31,6 +31,7 @@ With the help of these survey results, we came up with the following requirement
 - Items can have arbitrary heights.
 - Items should flow horizontally.
 - Each item is pushed to the shortest column.
+- High performance
 
 **Should-have**:
 
@@ -42,7 +43,6 @@ With the help of these survey results, we came up with the following requirement
 
 - Server side rendering
 - Span multiple columns in a masonry
-- Performance
 - Logical tab order
 - Support for lazy loading/virtualisation
 
@@ -50,7 +50,7 @@ In short, we wanted to build a masonry component that is light-weight enough to 
 
 ## Two possible solutions: CSS Grid or CSS Flexbox?
 
-Since our goal was to develop a light-weight masonry component, an absolute positioning implementation, which most existing masonry libraries make use of, was not an option. It requires too much JavaScript, and therefore it is likely to be heavy-weight.
+Since our goal was to develop a light-weight, performant masonry component, an absolute positioning implementation, which most existing masonry libraries make use of, was not an option. It requires too much JavaScript, and therefore it is likely to be heavy-weight.
 
 This left either CSS Grid or CSS Flexbox, but each came with its own advantages and disadvantages.
 
@@ -60,11 +60,11 @@ The idea is to create a grid container, `<Masonry />`, that contains grid items,
 
 One important thing to note is that simply setting a fixed height to `<MasonryItem />` will not do anything. Because it is a CSS grid item, it is constrained to the row height configured in its grid container, `<Masonry />`. So, we should use a property called `grid-row-start` or `grid-row-end`. Both properties span the height of a grid item to a specific number of rows. For example, applying `grid-row-end: span 10` to a `<MasonryItem />` spans its height to amount to 10 rows.
 
-This means that a `<MasonryItem />`'s height is always a multiple of the row height configured in `<Masonry />`. If the row height is `10px`, the height of `<MasonryItem />` is a multiple of `10px`: `100px`, `110px`, ... and so on. This limitation gives rise to a serious problem. However, there is always a solution, and both the problem and the solution are introduced in the next section.
+This means that a `<MasonryItem />`'s height is always a multiple of the row height configured in `<Masonry />`. If the row height is `10px`, the height of `<MasonryItem />` is a multiple of `10px`: `100px`, `110px`, ... and so on. This limitation leads to a serious problem. However, there is always a solution, and both the problem and the solution are introduced in the [next section](#we-chose-css-grid-over-css-flexbox).
 
 On the other hand, there is an amazing benefit to this implementation: it places a grid item to the shortest column by default. (Spoiler: this isn't the case in the other option). Also, this implementation makes it extremely handy to support the column spanning feature. We can use `grid-column-start` or `grid-column-end` to span the width of a grid item. Both of these advantages lead to less dependence on JavaScript, which meets our goal of making a light-weight component.
 
-Overall, this approach satisfies all the requirements discussed earlier except for server-side rendering. Still, this implementation seems like a fairly sufficient candidate to me. What do you think? Let's have a look at the other option, and it might be easier to decide.
+Overall, this approach satisfies all the requirements discussed earlier except for server-side rendering. Still, this implementation seemed like a fairly sufficient candidate to me. Let's have a look at the other option, and it might be easier to conclude how we came to the final implementation.
 
 **2. CSS Flexbox + Configuring `order` of items**
 
@@ -94,7 +94,7 @@ The second approach, **CSS Flexbox + Configuring `order` of items**, has no such
 
 So, we have some trade-offs here. You can't go wrong with either approach, however, what if this _"item's height should be in multitude of row height"_ limitation of the first approach goes away? The decision making would be much easier then. So, we have found a workaround for this.
 
-In order to retain the rendered heights of children as much as possible, we can set the height of each row to `1px`. Even if an item has a rendered height of `105px`, we have no problem! We will assign `span 105` to its `grid-row-end` property. Technically, this item is composed of 105 rows. (Spoiler: this leads to another serious problem later...)
+In order to retain the rendered heights of children as much as possible, we can set the height of each row to `1px`. Even if an item has a rendered height of `105px`, we have no problem! We will assign `span 105` to its `grid-row-end` property. Technically, this item is composed of 105 rows. (Spoiler: this leads to [another serious problem](#yet-chrome-hit-us-from-the-back) later...)
 
 In conclusion, we chose the first implementation: **CSS Grid + Configuring `grid-row-start` or `grid-row-end` of items**.
 
