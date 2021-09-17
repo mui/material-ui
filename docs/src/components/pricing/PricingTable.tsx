@@ -87,29 +87,46 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
   }
   if (plan === 'pro') {
     return (
-      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
-        <Typography
-          variant="body2"
-          fontWeight="bold"
-          color="error.500"
-          sx={{
-            borderRadius: 0.5,
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
-            // bgcolor: 'error.200',
-            textDecoration: 'line-through',
-            p: '4px',
-          }}
-        >
-          $249
-        </Typography>
-        <Box sx={{ width: 10 }} />
-        <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
-          $186
-        </Typography>
-        <Box sx={{ width: 5 }} />
-        <Typography variant="body2" color="text.secondary">
-          / developer.
-        </Typography>
+      <Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
+          <Typography
+            variant="body2"
+            fontWeight="bold"
+            color="error.500"
+            sx={{
+              borderRadius: 0.5,
+              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
+              // bgcolor: 'error.200',
+              textDecoration: 'line-through',
+              p: '4px',
+            }}
+          >
+            $249
+          </Typography>
+          <Box sx={{ width: 10 }} />
+          <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
+            $186
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            component="div"
+            fontWeight="bold"
+            color="primary.main"
+            sx={{ mb: 1 }}
+          >
+            *
+          </Typography>
+          <Box sx={{ width: 5 }} />
+          <Typography variant="body2" color="text.secondary">
+            / developer.
+          </Typography>
+        </Box>
+        <Box>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            Price capped at 10 developers.
+            <br /> * Early bird special.
+          </Typography>
+        </Box>
       </Box>
     );
   }
@@ -840,9 +857,6 @@ export default function PricingTable({
               <PlanName plan="pro" />
             </div>
             <PlanPrice plan="pro" />
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              Price capped at 10 developers.
-            </Typography>
             <Button
               component={Link}
               noLinkStyle

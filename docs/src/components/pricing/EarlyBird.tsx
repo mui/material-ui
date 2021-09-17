@@ -2,6 +2,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Link from 'docs/src/modules/components/Link';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
 export default function EarlyBird() {
   return (
@@ -36,6 +39,17 @@ export default function EarlyBird() {
             and updates for one year. The early bird special is available for a limited time, so
             don&apos;t miss this opportunity!
           </Typography>
+          <Button
+            component={Link}
+            noLinkStyle
+            href="https://material-ui.com/store/items/material-ui-pro/"
+            variant="contained"
+            fullWidth
+            endIcon={<KeyboardArrowRightRounded />}
+            sx={{ py: 1, mt: 2, width: { xs: '100%', md: '20%' } }}
+          >
+            Buy now
+          </Button>
         </div>
       </Box>
     </Container>
