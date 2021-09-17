@@ -59,6 +59,15 @@ const Shortcut = styled('div')(({ theme }) => {
     height: 23,
     top: 'calc(50% - 11px)',
     borderRadius: 5,
+    transition: theme.transitions.create('opacity', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    // So that clicks target the input.
+    // Makes the text non selectable but neither is the placeholder or adornment.
+    pointerEvents: 'none',
+    '&.Mui-focused': {
+      opacity: 0,
+    },
   };
 });
 
