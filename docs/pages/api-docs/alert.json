@@ -10,7 +10,7 @@
         "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       }
     },
-    "icon": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;false" } },
+    "icon": { "type": { "name": "node" } },
     "iconMapping": {
       "type": {
         "name": "shape",
