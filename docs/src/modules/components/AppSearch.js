@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { createPortal } from 'react-dom';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
-import { alpha, styled } from '@mui/material/styles';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import SearchIcon from '@mui/icons-material/Search';
-import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
+import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
+import * as React from 'react';
+import { createPortal } from 'react-dom';
 
 function isAppleDevice() {
   if (typeof navigator !== 'undefined') {
@@ -83,7 +83,21 @@ export default function AppSearch() {
   const facetFilterLanguage =
     LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
   const macOS = isAppleDevice();
-
+  const addStartScreen = () => {
+    const StartScreen = document.querySelector('.DocSearch-StartScreen');
+    if (StartScreen) {
+      const StartScreenContent = document.createElement('ul');
+      StartScreenContent.className = 'DocSearch-StartScreenContent';
+      StartScreen.appendChild(StartScreenContent);
+      const itemNames = ['Component', 'API', 'Example'];
+      for (const itemName of itemNames) {
+        const item = document.createElement('li');
+        item.className = 'DocSearch-StartScreenItem';
+        item.appendChild(document.createTextNode(itemName));
+        StartScreenContent.appendChild(item);
+      }
+    }
+  };
   const onOpen = React.useCallback(() => {
     setIsOpen(true);
   }, [setIsOpen]);
@@ -106,6 +120,10 @@ export default function AppSearch() {
     onClose,
     onInput,
     searchButtonRef,
+  });
+
+  React.useEffect(() => {
+    addStartScreen();
   });
 
   return (
@@ -184,11 +202,19 @@ export default function AppSearch() {
                   : alpha(theme.palette.grey[900], 0.2),
               backdropFilter: 'blur(2px)',
             },
+            '& .DocSearch-StartScreen': {
+              width: '100%',
+            },
+            '& .DocSearch-StartScreenContent': {
+              width: '100%',
+            },
+            '& .DocSearch-StartScreenItem': {
+              width: '100%',
+              padding: theme.spacing(1),
+              color: 'blue',
+            },
             '& .DocSearch-Help': {
-              fontSize: theme.typography.pxToRem(14),
-              '& a': {
-                color: 'var(--docsearch-highlight-color)',
-              },
+              display: 'none',
             },
             '& .DocSearch-Modal': {
               boxShadow: `0px 4px 20px ${
