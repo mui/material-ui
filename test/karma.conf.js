@@ -19,9 +19,9 @@ if (process.env.CIRCLECI) {
 
 const browserStack = {
   // |commits in PRs| >> |Merged commits|.
-  // Since we have limited ressources on browserstack we often time out on PRs.
-  // However, browserstack rarely fails with a true-positive so we use it as a stop gap for release not merge.
-  // But always enable it locally since people usually have to explicitly have to expose their browserstack access key anyway.
+  // Since we have limited ressources on BrowserStack we often time out on PRs.
+  // However, BrowserStack rarely fails with a true-positive so we use it as a stop gap for release not merge.
+  // But always enable it locally since people usually have to explicitly have to expose their BrowserStack access key anyway.
   enabled: !CI || !isPR || process.env.BROWSERSTACK_FORCE === 'true',
   username: process.env.BROWSERSTACK_USERNAME,
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
@@ -206,11 +206,11 @@ module.exports = function setKarmaConfig(config) {
     };
 
     // -1 because chrome headless runs in the local machine
-    const browserstackBrowsersUsed = newConfig.browsers.length - 1;
+    const browserStackBrowsersUsed = newConfig.browsers.length - 1;
 
     // default 1000, Avoid Rate Limit Exceeded
     newConfig.browserStack.pollingTimeout =
-      ((MAX_CIRCLE_CI_CONCURRENCY * AVERAGE_KARMA_BUILD * browserstackBrowsersUsed) /
+      ((MAX_CIRCLE_CI_CONCURRENCY * AVERAGE_KARMA_BUILD * browserStackBrowsersUsed) /
         MAX_REQUEST_PER_SECOND_BROWSERSTACK) *
       1000;
   }

@@ -32,7 +32,7 @@ yarn add @mui/material @mui/styled-engine-sc styled-components
 
 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
 
-## Roboto Font
+## Roboto font
 
 MUI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto)
 font in mind. So be sure to follow [these instructions](/components/typography/#general).
@@ -45,7 +45,7 @@ For instance, via Google Web Fonts:
 />
 ```
 
-## Font Icons
+## Font icons
 
 To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font.
 Here are [some instructions](/components/icons/#font-icons)
@@ -59,7 +59,7 @@ For instance, via Google Web Fonts:
 />
 ```
 
-## SVG Icons
+## SVG icons
 
 In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/)
 you must first install the [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) package:
