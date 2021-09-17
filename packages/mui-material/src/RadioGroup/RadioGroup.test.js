@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
 import FormGroup from '@mui/material/FormGroup';
 import Radio from '@mui/material/Radio';
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
@@ -95,6 +95,25 @@ describe('<RadioGroup />', () => {
 
     expect(radios[0].name).to.match(/^mui-[0-9]+/);
     expect(radios[1].name).to.match(/^mui-[0-9]+/);
+  });
+
+  it('should support number value', () => {
+    render(
+      <RadioGroup name="group" defaultValue={1}>
+        <Radio value={1} />
+        <Radio value={2} />
+      </RadioGroup>,
+    );
+
+    const radios = screen.getAllByRole('radio');
+    expect(radios[0]).to.have.attribute('value', '1');
+    expect(radios[0].checked).to.equal(true);
+    expect(radios[1].checked).to.equal(false);
+
+    fireEvent.click(radios[1]);
+
+    expect(radios[0].checked).to.equal(false);
+    expect(radios[1].checked).to.equal(true);
   });
 
   describe('imperative focus()', () => {
