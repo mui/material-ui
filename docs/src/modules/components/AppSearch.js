@@ -90,14 +90,14 @@ export default function AppSearch() {
       const pairs = [
         {
           category: 'Getting Started',
-          items: ['Installation Guide', 'Running an App', 'App Structure', 'Theming Basics'],
+          items: ['Installation', 'Usage', 'Learn'],
         },
         {
-          category: 'Common Topics',
-          items: ['Testing', 'Storage', 'Life Cycle Events', 'Navigation'],
+          category: 'Popular Searches',
+          items: ['Material Icons', 'Text Fields', 'Button'],
         },
-        { category: 'Components', items: ['a', 'b', 'c'] },
-        { category: 'Native', items: ['a', 'b', 'c'] },
+        { category: 'Customization', items: ['How To Customize', 'Theming', 'Default Theme'] },
+        { category: 'System', items: ['Basics', 'Properties', 'The sx prop'] },
       ];
       for (const pair of pairs) {
         const { category, items } = pair;
@@ -233,13 +233,15 @@ export default function AppSearch() {
               flexDirection: 'column',
             },
             '& .DocSearch-StartScreenTitle': {
-              padding: theme.spacing(1),
-              color: theme.palette.grey[600],
-              fontWeight: 600,
+              padding: theme.spacing(0, 1),
+              paddingBottom: theme.spacing(1),
+              fontSize: theme.typography.pxToRem(13),
+              fontWeight: 500,
+              color: theme.palette.text.secondary,
             },
             '& .DocSearch-StartScreenItem': {
               width: '100%',
-              padding: theme.spacing(1.5),
+              padding: theme.spacing(1, 1),
               color: theme.palette.text.primary,
               fontWeight: 500,
             },
