@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
-import NProgress from 'nprogress';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiLink from '@mui/material/Link';
 import AppBar from '@mui/material/AppBar';
@@ -18,8 +17,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import NProgressBar from '@mui/docs/NProgressBar';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
+import AppProgressBar from 'docs/src/modules/components/AppProgressBar';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
@@ -31,25 +30,6 @@ import LanguageIcon from '@mui/icons-material/Translate';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
-
-export function NextNProgressBar() {
-  const router = useRouter();
-  React.useEffect(() => {
-    const nProgressStart = () => NProgress.start();
-    const nProgressDone = () => NProgress.done();
-
-    router.events.on('routeChangeStart', nProgressStart);
-    router.events.on('routeChangeComplete', nProgressDone);
-    router.events.on('routeChangeError', nProgressDone);
-    return () => {
-      router.events.off('routeChangeStart', nProgressStart);
-      router.events.off('routeChangeComplete', nProgressDone);
-      router.events.off('routeChangeError', nProgressDone);
-    };
-  }, [router]);
-
-  return <NProgressBar />;
-}
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 export function DeferredAppSearch() {
@@ -224,7 +204,7 @@ function AppFrame(props) {
 
   return (
     <RootDiv>
-      <NextNProgressBar />
+      <AppProgressBar />
       <CssBaseline />
       <SkipLink color="secondary" href="#main-content">
         {t('appFrame.skipToContent')}
