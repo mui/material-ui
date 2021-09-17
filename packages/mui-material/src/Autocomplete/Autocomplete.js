@@ -239,6 +239,7 @@ const AutocompletePaper = styled(Paper, {
 })(({ theme }) => ({
   ...theme.typography.body1,
   overflow: 'auto',
+  marginBottom: theme.spacing(1),
 }));
 
 const AutocompleteLoading = styled('div', {
