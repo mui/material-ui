@@ -87,22 +87,28 @@ export default function AppSearch() {
     const StartScreen = document.querySelector('.DocSearch-StartScreen');
     const notAdded = document.querySelector('.DocSearch-StartScreenCategory') === null;
     if (StartScreen && notAdded) {
-      const categories = ['Getting Started', 'Common Topics', 'Components', 'Native'];
-      const items = [
-        ['Installation Guide', 'Running an App', 'App Structure', 'Theming Basics'],
-        ['Testing', 'Storage', 'Life Cycle Events', 'Navigation'],
-        ['a', 'b', 'c'],
-        ['a', 'b', 'c'],
+      const pairs = [
+        {
+          category: 'Getting Started',
+          items: ['Installation Guide', 'Running an App', 'App Structure', 'Theming Basics'],
+        },
+        {
+          category: 'Common Topics',
+          items: ['Testing', 'Storage', 'Life Cycle Events', 'Navigation'],
+        },
+        { category: 'Components', items: ['a', 'b', 'c'] },
+        { category: 'Native', items: ['a', 'b', 'c'] },
       ];
-      for (let i = 0; i < categories.length; i += 1) {
+      for (const pair of pairs) {
+        const { category, items } = pair;
         const StartScreenCategory = document.createElement('div');
         StartScreenCategory.className = 'DocSearch-StartScreenCategory';
         const StartScreenTitle = document.createElement('div');
         StartScreenTitle.className = 'DocSearch-StartScreenTitle';
-        StartScreenTitle.appendChild(document.createTextNode(categories[i]));
+        StartScreenTitle.appendChild(document.createTextNode(category));
         StartScreenCategory.appendChild(StartScreenTitle);
         StartScreen.appendChild(StartScreenCategory);
-        items[i].forEach((itemName) => {
+        items.forEach((itemName) => {
           const StartScreenItem = document.createElement('div');
           StartScreenItem.className = 'DocSearch-StartScreenItem';
           StartScreenItem.appendChild(document.createTextNode(itemName));
