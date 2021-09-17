@@ -73,6 +73,7 @@ function areEqualValues(a, b) {
     return a === b;
   }
 
+  // The value could be a number, the DOM will stringify it anyway.
   return String(a) === String(b);
 }
 

@@ -205,10 +205,10 @@ export interface InputBaseComponentProps
  *
  * Demos:
  *
- * - [Text Fields](https://material-ui.com/components/text-fields/)
+ * - [Text Fields](https://mui.com/components/text-fields/)
  *
  * API:
  *
- * - [InputBase API](https://material-ui.com/api/input-base/)
+ * - [InputBase API](https://mui.com/api/input-base/)
  */
 export default function InputBase(props: InputBaseProps): JSX.Element;

@@ -459,7 +459,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       children.props.onTouchEnd(event);
     }
 
-    clearTimeout(touchTimer.current);
+    stopTouchInteraction();
     clearTimeout(leaveTimer.current);
     leaveTimer.current = setTimeout(() => {
       handleClose(event);

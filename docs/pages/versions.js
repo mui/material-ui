@@ -52,19 +52,19 @@ Page.getInitialProps = async () => {
       versions.push({
         version,
         // Replace dot with dashes for Netlify branch subdomains
-        url: `https://${version.replace(/\./g, '-')}.material-ui.com`,
+        url: `https://${version.replace(/\./g, '-')}.mui.com`,
       });
     }
   });
   // Current version.
   versions.push({
     version: `v${process.env.LIB_VERSION}`,
-    url: 'https://material-ui.com',
+    url: 'https://mui.com',
   });
   // Legacy documentation.
   versions.push({
     version: 'v0',
-    url: 'https://v0.material-ui.com',
+    url: 'https://v0.mui.com',
   });
   versions.sort((a, b) => formatVersion(b.version).localeCompare(formatVersion(a.version)));
 
@@ -74,7 +74,7 @@ Page.getInitialProps = async () => {
   ) {
     versions.unshift({
       version: `v${Number(versions[0].version[1]) + 1} pre-release`,
-      url: 'https://next.material-ui.com',
+      url: 'https://next.mui.com',
     });
   }
 

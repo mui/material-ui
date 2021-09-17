@@ -29,8 +29,8 @@ export default function HeroPricing() {
           Start using <GradientText>MUI</GradientText> for free!
         </Typography>
         <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 500 }}>
-          The community edition lets you get going right away. Switch to MUI X to get more
-          components & premium support.
+          The community edition lets you get going right away. Switch to MUI&nbsp;X&nbsp;Pro to get
+          more components & premium support.
         </Typography>
       </Box>
       <Divider />

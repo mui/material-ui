@@ -5,7 +5,7 @@ export default function adaptV4Theme(inputTheme) {
     console.warn(
       [
         'MUI: adaptV4Theme() is deprecated.',
-        'Follow the upgrade guide on https://material-ui.com/r/migration-v4#theme.',
+        'Follow the upgrade guide on https://mui.com/r/migration-v4#theme.',
       ].join('\n'),
     );
   }

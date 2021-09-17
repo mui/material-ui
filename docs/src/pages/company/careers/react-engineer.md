@@ -13,7 +13,7 @@
 
 ## About us
 
-See the [careers](/company/careers/) and [about us](https://material-ui.com/branding/about/) pages.
+See the [careers](/company/careers/) and [about us](https://mui.com/branding/about/) pages.
 
 ### Why we're hiring
 

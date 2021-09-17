@@ -13,13 +13,7 @@ const dateAdapterPackageMapping: Record<string, string> = {
   AdapterMoment: 'moment',
 };
 
-export function titleize(hyphenedString: string): string {
-  if (process.env.NODE_ENV !== 'production') {
-    if (typeof hyphenedString !== 'string' || hyphenedString.length <= 0) {
-      console.error('titleize(hyphenedString) expects a non empty string argument.');
-    }
-  }
-
+function titleize(hyphenedString: string): string {
   return hyphenedString
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -232,9 +226,7 @@ export function getDependencies(
  * @return The cookie value
  */
 export function getCookie(name: string): string | undefined {
-  // `process.browser` is set by nextjs where we only use `getCookie`
-  // but this file is imported from nodejs scripts so TypeScript complains for that environment.
-  if ((process as any).browser) {
+  if (typeof document !== 'undefined') {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) {
