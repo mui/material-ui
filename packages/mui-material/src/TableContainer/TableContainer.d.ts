@@ -25,11 +25,11 @@ export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'di
  *
  * Demos:
  *
- * - [Tables](https://material-ui.com/components/tables/)
+ * - [Tables](https://mui.com/components/tables/)
  *
  * API:
  *
- * - [TableContainer API](https://material-ui.com/api/table-container/)
+ * - [TableContainer API](https://mui.com/api/table-container/)
  */
 declare const TableContainer: OverridableComponent<TableContainerTypeMap>;
 

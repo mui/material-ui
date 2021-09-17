@@ -414,11 +414,11 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/components/date-picker/)
  *
  * API:
  *
- * - [CalendarPicker API](https://material-ui.com/api/calendar-picker/)
+ * - [CalendarPicker API](https://mui.com/api/calendar-picker/)
  */
 export default CalendarPicker as <TDate>(
   props: CalendarPickerPropsWithClasses<TDate> & React.RefAttributes<HTMLDivElement>,

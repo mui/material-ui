@@ -33,11 +33,11 @@ export interface MasonryItemTypeMap<P = {}, D extends React.ElementType = 'div'>
  *
  * Demos:
  *
- * - [Masonry](https://material-ui.com/components/masonry/)
+ * - [Masonry](https://mui.com/components/masonry/)
  *
  * API:
  *
- * - [MasonryItem API](https://material-ui.com/api/masonry-item/)
+ * - [MasonryItem API](https://mui.com/api/masonry-item/)
  */
 declare const MasonryItem: OverridableComponent<MasonryItemTypeMap>;
 

@@ -374,7 +374,7 @@ function getInheritance(
 /**
  * Produces markdown of the description that can be hosted anywhere.
  *
- * By default we assume that the markdown is hosted on material-ui.com which is
+ * By default we assume that the markdown is hosted on mui.com which is
  * why the source includes relative url. We transform them to absolute urls with
  * this method.
  */
@@ -400,19 +400,19 @@ async function computeApiDescription(api: ReactApi, options: { host: string }): 
  * /**
  *  * Demos:
  *  *
- *  * - [Icons](https://material-ui.com/components/icons/)
- *  * - [Material Icons](https://material-ui.com/components/material-icons/)
+ *  * - [Icons](https://mui.com/components/icons/)
+ *  * - [Material Icons](https://mui.com/components/material-icons/)
  *  *
  *  * API:
  *  *
- *  * - [Icon API](https://material-ui.com/api/icon/)
+ *  * - [Icon API](https://mui.com/api/icon/)
  */
 async function annotateComponentDefinition(context: {
   component: { filename: string };
   api: ReactApi;
 }) {
   const { api, component } = context;
-  const HOST = 'https://material-ui.com';
+  const HOST = 'https://mui.com';
 
   const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
   const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });

@@ -29,24 +29,24 @@ const faqData = [
     detail: (
       <React.Fragment>
         The number of licenses purchased must correspond to the number of concurrent developers
-        contributing changes to the front-end code of a project that uses MUI X. However, the number
-        of developer licenses required is capped at 10 developers for the <b>Pro plan</b> and 10
-        developers/project for the <b>Premium plan</b>, developers above this cap don't need to be
-        licensed.
+        contributing changes to the front-end code of a project that uses MUI X Pro. However, the
+        number of developer licenses required is capped at 10 developers for the <b>Pro plan</b> and
+        10 developers/project for the <b>Premium plan</b>, developers above this cap don't need to
+        be licensed.
         <br />
         <br />
         <b>Example 1.</b> Company 'A' is developing an application named 'AppA'. The app needs to
         render 10K rows of data in a table and allow users to group, filter, and sort. The dev team
-        adds MUI X to the project to satisfy that requirement. 5 front-end and 10 back-end
+        adds MUI X Pro to the project to satisfy that requirement. 5 front-end and 10 back-end
         developers are working on 'AppA'. Only 1 developer is tasked with configuring and modifying
         the data grid. The front-end developers and only are contributing code to the front-end.
         Company 'A' purchases 5 licenses.
         <br />
         <br />
         <b>Example 2.</b> A UI development team at Company 'A' creates its own UI library for
-        internal development and includes MUI X as a component. The team working on 'AppA' uses the
-        new library and so does the team working on 'AppB'. 'AppA' has 5 front-end developers and
-        'AppB' has 3. There are 2 front-end developers on the UI development team. Company 'B'
+        internal development and includes MUI X Pro as a component. The team working on 'AppA' uses
+        the new library and so does the team working on 'AppB'. 'AppA' has 5 front-end developers
+        and 'AppB' has 3. There are 2 front-end developers on the UI development team. Company 'B'
         purchases 10 licenses.
       </React.Fragment>
     ),
@@ -252,11 +252,11 @@ export default function FAQ() {
                 Got any questions unanswered or need more help?
               </Typography>
             </Box>
-            <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
+            <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
               Email us at <Link href="mailto:sales@mui.com">sales@mui.com</Link> for sales-related
               questions.
             </Typography>
-            <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
+            <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
               For product-related problems, please open
               <Link href="https://github.com/mui-org/material-ui-x/issues/new/choose">
                 a new GitHub issue

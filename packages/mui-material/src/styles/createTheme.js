@@ -77,7 +77,7 @@ function createTheme(options = {}, ...args) {
                   2,
                 ),
                 '',
-                'https://material-ui.com/r/state-classes-guide',
+                'https://mui.com/r/state-classes-guide',
               ].join('\n'),
             );
           }

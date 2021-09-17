@@ -11,15 +11,15 @@ import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const DIAMONDs = [
   {
-    src: 'https://avatars3.githubusercontent.com/u/1287123?s=40',
-    srcSet: 'https://avatars3.githubusercontent.com/u/1287123?s=80 2x',
+    src: '/static/sponsors/octopus.svg',
+    srcSet: '/static/sponsors/octopus.svg',
     name: 'Octopus Deploy',
     description: 'Repeatable reliable deployments.',
     href: 'https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://avatars3.githubusercontent.com/u/8424863?s=40',
-    srcSet: 'https://avatars3.githubusercontent.com/u/8424863?s=80 2x',
+    src: '/static/sponsors/doit-square.svg',
+    srcSet: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
     description: 'Management platform for Google Cloud and AWS.',
     href: 'https://www.doit-intl.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
@@ -34,26 +34,7 @@ export default function DiamondSponsors() {
   });
   return (
     <Box ref={ref}>
-      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-        <Box
-          sx={{
-            display: 'inline-block',
-            mr: 1,
-            mt: 0.2,
-            borderRadius: 1,
-            width: 12,
-            height: 12,
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[200]
-                : theme.palette.primary[500],
-            border: '3px solid',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[500]
-                : theme.palette.primary[100],
-          }}
-        />
+      <Box sx={{ mb: 2 }}>
         <Typography
           component="h3"
           variant="h5"
@@ -94,22 +75,27 @@ export default function DiamondSponsors() {
               target="_blank"
               rel="noopener noreferrer"
               color="primary"
-              sx={{ mr: 2, border: '1px solid', borderColor: 'divider' }}
+              sx={{
+                mr: 2,
+                border: '1px solid',
+                borderColor: (theme) =>
+                  theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
+              }}
             >
               <AddRounded />
             </IconButton>
-            <Box>
+            <div>
               <Typography variant="body2" color="text.primary" fontWeight="bold">
                 Become our sponsor!
               </Typography>
-              <Typography variant="body2" color="text.primary">
+              <Typography variant="body2" color="text.secondary">
                 To join us, contact us at{' '}
                 <Link href="mailto:diamond@mui.com" target="_blank" rel="noopener noreferrer">
                   diamond@mui.com
                 </Link>{' '}
                 for pre-approval.
               </Typography>
-            </Box>
+            </div>
           </Paper>
         </Grid>
       </Grid>

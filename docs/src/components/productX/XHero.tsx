@@ -81,7 +81,7 @@ export default function XHero() {
                   theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
               }}
             >
-              <Typography color="primary.main" fontWeight={600}>
+              <Typography color="primary.main" fontWeight={700}>
                 Trades, October 2020
               </Typography>
             </Box>

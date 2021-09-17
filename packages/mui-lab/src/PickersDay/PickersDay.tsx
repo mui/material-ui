@@ -494,11 +494,11 @@ PickersDay.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/components/date-picker/)
  *
  * API:
  *
- * - [PickersDay API](https://material-ui.com/api/pickers-day/)
+ * - [PickersDay API](https://mui.com/api/pickers-day/)
  */
 export default React.memo(PickersDay, areDayPropsEqual) as <TDate>(
   props: PickersDayProps<TDate> & React.RefAttributes<HTMLButtonElement>,

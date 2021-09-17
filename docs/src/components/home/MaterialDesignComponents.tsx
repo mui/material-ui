@@ -183,7 +183,7 @@ function Demo({
 }
 
 const StyledChip = styled(Chip)(({ theme }) => ({
-  fontWeight: 600,
+  fontWeight: 700,
   transition: 'none',
   '&.MuiChip-outlined': {
     border: 'none',
@@ -246,7 +246,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
           text: {
             color:
               theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[100]
+                ? theme.palette.primaryDark[200]
                 : theme.palette.primaryDark[700],
           },
           sizeMedium: {
@@ -267,6 +267,16 @@ export function buildTheme(theme: Theme): ThemeOptions {
               fontSize: '1rem',
             },
           },
+          outlined: {
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[200]
+                : theme.palette.primaryDark[700],
+            color:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[200]
+                : theme.palette.primaryDark[700],
+          },
         },
       },
       MuiAlert: {
@@ -279,18 +289,22 @@ export function buildTheme(theme: Theme): ThemeOptions {
             '& .MuiAlert-icon': {
               color:
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primary[500]
+                  ? theme.palette.primaryDark[100]
                   : theme.palette.primaryDark[800],
             },
           },
           filled: {
+            backgroundColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[800]
+                : theme.palette.primaryDark[700],
             '& .MuiAlert-icon': {
-              color: theme.palette.mode === 'dark' ? theme.palette.primary[500] : '#fff',
+              color: theme.palette.primary[100],
             },
           },
           message: {
             padding: 0,
-            fontWeight: 600,
+            fontWeight: 700,
           },
           standardInfo: {
             backgroundColor: theme.palette.primaryDark[100],
@@ -331,11 +345,11 @@ export function buildTheme(theme: Theme): ThemeOptions {
                   : theme.palette.grey[300],
             },
             '& .MuiInputBase-input': {
-              fontWeight: 600,
+              fontWeight: 700,
             },
             '& .MuiFilledInput-root': {
               backgroundColor:
-                theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#fff',
+                theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : '#fff',
               '&:after': {
                 borderColor:
                   theme.palette.mode === 'dark'
@@ -344,7 +358,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
               },
               '&:hover': {
                 backgroundColor:
-                  theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#fff',
+                  theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : '#fff',
               },
             },
             '& .MuiInputLabel-filled.Mui-focused': {
@@ -355,7 +369,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
               '&:after': {
                 borderColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primary[500]
+                    ? theme.palette.primaryDark[500]
                     : theme.palette.primaryDark[800],
               },
             },
@@ -400,7 +414,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
               fontSize: '1.125rem',
               color:
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primary[500]
+                  ? theme.palette.primary[300]
                   : theme.palette.primaryDark[400],
             },
           },
@@ -420,7 +434,7 @@ export default function MaterialDesignComponents() {
     setTheme(createTheme(customized ? buildTheme(globalTheme) : { palette: { mode } }));
   }, [mode, customized, globalTheme]);
   return (
-    <Box>
+    <div>
       <Box
         sx={{
           mt: { xs: 2, md: 4 },
@@ -570,6 +584,6 @@ export default function MaterialDesignComponents() {
           </Button>
         </Box>
       </Grid>
-    </Box>
+    </div>
   );
 }
