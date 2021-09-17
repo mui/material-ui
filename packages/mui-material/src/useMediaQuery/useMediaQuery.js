@@ -4,7 +4,18 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 export default function useMediaQuery(queryInput, options = {}) {
   const theme = useTheme();
-  const props = getThemeProps({ name: 'MuiUseMediaQuery', props: {}, theme });
+  // Wait for jsdom to support the match media feature.
+  // All the browsers MUI support have this built-in.
+  // This defensive check is here for simplicity.
+  // Most of the time, the match media logic isn't central to people tests.
+  const supportMatchMedia =
+    typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
+  const {
+    defaultMatches = false,
+    matchMedia = supportMatchMedia ? window.matchMedia : null,
+    noSsr = false,
+    ssrMatchMedia = null,
+  } = getThemeProps({ name: 'MuiUseMediaQuery', props: options, theme });
 
   if (process.env.NODE_ENV !== 'production') {
     if (typeof queryInput === 'function' && theme === null) {
@@ -20,23 +31,6 @@ export default function useMediaQuery(queryInput, options = {}) {
 
   let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
   query = query.replace(/^@media( ?)/m, '');
-
-  // Wait for jsdom to support the match media feature.
-  // All the browsers MUI support have this built-in.
-  // This defensive check is here for simplicity.
-  // Most of the time, the match media logic isn't central to people tests.
-  const supportMatchMedia =
-    typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
-
-  const {
-    defaultMatches = false,
-    matchMedia = supportMatchMedia ? window.matchMedia : null,
-    noSsr = false,
-    ssrMatchMedia = null,
-  } = {
-    ...props,
-    ...options,
-  };
 
   const [match, setMatch] = React.useState(() => {
     if (noSsr && supportMatchMedia) {
