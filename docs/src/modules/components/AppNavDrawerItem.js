@@ -209,6 +209,12 @@ export default function AppNavDrawerItem(props) {
     </Box>
   ) : null;
 
+  const divider = depth === 0 && (
+    <li>
+      <Divider sx={{ my: 1.2 }} />
+    </li>
+  );
+
   if (href) {
     return (
       <React.Fragment>
@@ -227,7 +233,7 @@ export default function AppNavDrawerItem(props) {
             {title}
           </ItemLink>
         </StyledLi>
-        {depth === 0 && <Divider sx={{ my: 1.2 }} />}
+        {divider}
       </React.Fragment>
     );
   }
@@ -255,7 +261,7 @@ export default function AppNavDrawerItem(props) {
           children
         )}
       </StyledLi>
-      {depth === 0 && <Divider sx={{ my: 1.2 }} />}
+      {divider}
     </React.Fragment>
   );
 }
