@@ -88,7 +88,7 @@ export interface StyledOptions {
 export interface MuiStyledOptions {
   name?: string;
   slot?: string;
-  overridesResolver?: (props: any, styles: Record<string, any>) => Record<string, any>;
+  overridesResolver?: (props: any, styles: Record<string, CSSInterpolation>) => CSSInterpolation;
   skipVariantsResolver?: boolean;
   skipSx?: boolean;
 }

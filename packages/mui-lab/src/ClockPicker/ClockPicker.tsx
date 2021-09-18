@@ -29,6 +29,8 @@ export interface ClockPickerClasses {
 
 export type ClockPickerClassKey = keyof ClockPickerClasses;
 
+export interface ClockPickerComponentsPropsOverrides {}
+
 export function getClockPickerUtilityClass(slot: string) {
   return generateUtilityClass('MuiClockPicker', slot);
 }
@@ -104,8 +106,8 @@ export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate>
    * The props used for each slot inside.
    */
   componentsProps?: {
-    leftArrowButton?: any;
-    rightArrowButton?: any;
+    leftArrowButton?: React.SVGAttributes<SVGSVGElement> & ClockPickerComponentsPropsOverrides;
+    rightArrowButton?: React.SVGAttributes<SVGSVGElement> & ClockPickerComponentsPropsOverrides;
   };
 
   /**
@@ -178,7 +180,7 @@ const defaultGetSecondsClockNumberText = (seconds: string) => `${seconds} second
  *
  * API:
  *
- * - [ClockPicker API](https://material-ui.com/api/clock-picker/)
+ * - [ClockPicker API](https://mui.com/api/clock-picker/)
  */
 function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
   const props = useThemeProps<Theme, ClockPickerProps<TDate>, 'MuiClockPicker'>({
@@ -540,10 +542,10 @@ ClockPicker.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Time Picker](https://material-ui.com/components/time-picker/)
+ * - [Time Picker](https://mui.com/components/time-picker/)
  *
  * API:
  *
- * - [ClockPicker API](https://material-ui.com/api/clock-picker/)
+ * - [ClockPicker API](https://mui.com/api/clock-picker/)
  */
 export default ClockPicker as <TDate>(props: ClockPickerProps<TDate>) => JSX.Element;

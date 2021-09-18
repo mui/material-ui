@@ -10,4 +10,13 @@ describe('borders', () => {
       borderRadius: 4,
     });
   });
+
+  it('should work with 0', () => {
+    const output = borders({
+      borderRadius: 0,
+    });
+    expect(output).to.deep.equal({
+      borderRadius: 0,
+    });
+  });
 });

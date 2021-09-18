@@ -4,6 +4,8 @@ import { BackdropUnstyledProps } from '../BackdropUnstyled';
 import { PortalProps } from '../Portal';
 import { ModalUnstyledClasses } from './modalUnstyledClasses';
 
+export interface ModalUnstyledComponentsPropsOverrides {}
+
 export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
@@ -40,10 +42,7 @@ export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
      * @default {}
      */
     componentsProps?: {
-      root?: {
-        as: React.ElementType;
-        ownerState?: Omit<ModalUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
-      };
+      root?: React.HTMLAttributes<HTMLDivElement> & ModalUnstyledComponentsPropsOverrides;
     };
     /**
      * An HTML element or function that returns one.
@@ -141,23 +140,23 @@ export type ExtendModalUnstyled<M extends OverridableTypeMap> = OverridableCompo
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
- * *   [Dialog](https://material-ui.com/api/dialog/)
- * *   [Drawer](https://material-ui.com/api/drawer/)
- * *   [Menu](https://material-ui.com/api/menu/)
- * *   [Popover](https://material-ui.com/api/popover/)
+ * *   [Dialog](https://mui.com/api/dialog/)
+ * *   [Drawer](https://mui.com/api/drawer/)
+ * *   [Menu](https://mui.com/api/menu/)
+ * *   [Popover](https://mui.com/api/popover/)
  *
- * If you are creating a modal dialog, you probably want to use the [Dialog](https://material-ui.com/api/dialog/) component
+ * If you are creating a modal dialog, you probably want to use the [Dialog](https://mui.com/api/dialog/) component
  * rather than directly using Modal.
  *
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  *
  * Demos:
  *
- * - [Modal](https://material-ui.com/components/modal/)
+ * - [Modal](https://mui.com/components/modal/)
  *
  * API:
  *
- * - [ModalUnstyled API](https://material-ui.com/api/modal-unstyled/)
+ * - [ModalUnstyled API](https://mui.com/api/modal-unstyled/)
  */
 declare const ModalUnstyled: OverridableComponent<ModalUnstyledTypeMap>;
 

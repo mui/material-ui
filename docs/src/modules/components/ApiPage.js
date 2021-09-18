@@ -207,7 +207,7 @@ function ApiDocs(props) {
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
 
   const source = filename
-    .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg || 'core'}`)
+    .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
     // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
@@ -264,7 +264,7 @@ function ApiDocs(props) {
       disableAd={false}
       disableToc={false}
       location={apiSourceLocation}
-      title={`${componentName} API – Material-UI`}
+      title={`${componentName} API – MUI`}
       toc={toc}
     >
       <MarkdownElement>

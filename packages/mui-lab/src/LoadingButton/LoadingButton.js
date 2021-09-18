@@ -169,12 +169,12 @@ LoadingButton.propTypes /* remove-proptypes */ = {
   loadingPosition: chainPropTypes(PropTypes.oneOf(['start', 'end', 'center']), (props) => {
     if (props.loadingPosition === 'start' && !props.startIcon) {
       return new Error(
-        `Material-UI: The loadingPosition="start" should be used in combination with startIcon.`,
+        `MUI: The loadingPosition="start" should be used in combination with startIcon.`,
       );
     }
     if (props.loadingPosition === 'end' && !props.endIcon) {
       return new Error(
-        `Material-UI: The loadingPosition="end" should be used in combination with endIcon.`,
+        `MUI: The loadingPosition="end" should be used in combination with endIcon.`,
       );
     }
     return null;

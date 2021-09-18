@@ -10,7 +10,7 @@ export default React.forwardRef(function DeprecatedSpeedDialAction(props, ref) {
   if (!warnedOnce) {
     console.warn(
       [
-        'Material-UI: The SpeedDialAction component was moved from the lab to the core.',
+        'MUI: The SpeedDialAction component was moved from the lab to the core.',
         '',
         "You should use `import { SpeedDialAction } from '@mui/material'`",
         "or `import SpeedDialAction from '@mui/material/SpeedDialAction'`",

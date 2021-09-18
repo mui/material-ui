@@ -25,11 +25,11 @@ export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'>
  *
  * Demos:
  *
- * - [Tables](https://material-ui.com/components/tables/)
+ * - [Tables](https://mui.com/components/tables/)
  *
  * API:
  *
- * - [TableHead API](https://material-ui.com/api/table-head/)
+ * - [TableHead API](https://mui.com/api/table-head/)
  */
 declare const TableHead: OverridableComponent<TableHeadTypeMap>;
 

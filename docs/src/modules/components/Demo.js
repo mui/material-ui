@@ -7,7 +7,6 @@ import NoSsr from '@mui/material/NoSsr';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
-import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
@@ -176,6 +175,10 @@ export default function Demo(props) {
   }
 
   const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false);
+  const shownOnce = React.useRef(false);
+  if (codeOpen) {
+    shownOnce.current = true;
+  }
 
   React.useEffect(() => {
     const navigatedDemoName = getDemoName(window.location.hash);
@@ -184,12 +187,8 @@ export default function Demo(props) {
     }
   }, [demoName]);
 
-  const jsx = getJsxPreview(demoData.raw || '');
   const showPreview =
-    !demoOptions.hideToolbar &&
-    demoOptions.defaultCodeOpen !== false &&
-    jsx !== demoData.raw &&
-    jsx.split(/\n/).length <= 17;
+    !demoOptions.hideToolbar && demoOptions.defaultCodeOpen !== false && Boolean(demo.jsxPreview);
 
   const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
 
@@ -252,7 +251,7 @@ export default function Demo(props) {
         <div>
           <Code
             id={demoSourceId}
-            code={showPreview && !codeOpen ? jsx : demoData.raw}
+            code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
             language={demoData.sourceLanguage}
           />
         </div>

@@ -8,7 +8,7 @@ title: 9+ Free React Templates
 
 <!-- #default-branch-switch -->
 
-The templates can be combined with one of the [example projects](https://github.com/mui-org/material-ui/tree/next/examples) to form a complete starter.
+The templates can be combined with one of the [example projects](https://github.com/mui-org/material-ui/tree/master/examples) to form a complete starter.
 
 Sections of each layout are clearly defined either by comments or use of separate files,
 making it simple to extract parts of a page (such as a "hero unit", or footer, for example)

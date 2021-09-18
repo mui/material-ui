@@ -1,6 +1,6 @@
 # Theming
 
-<p class="description">Customize Material-UI with your theme. You can change the colors, the typography and much more.</p>
+<p class="description">Customize MUI with your theme. You can change the colors, the typography and much more.</p>
 
 The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
 
@@ -11,14 +11,14 @@ To promote greater consistency between apps, light and dark theme types are avai
 ## Theme provider
 
 If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application.
-However, this is optional; Material-UI components come with a default theme.
+However, this is optional; MUI components come with a default theme.
 
 `ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
 You can learn more about this in [the API section](/styles/api/#themeprovider).
 
 ## Theme configuration variables
 
-Changing the theme configuration variables is the most effective way to match Material-UI to your needs.
+Changing the theme configuration variables is the most effective way to match MUI to your needs.
 The following sections cover the most important theme variables:
 
 - [`.palette`](/customization/palette/)
@@ -33,7 +33,7 @@ You can check out the [default theme section](/customization/default-theme/) to 
 
 ### Custom variables
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
+When using MUI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
 ```jsx
@@ -72,8 +72,8 @@ declare module '@mui/material/styles' {
 
 The community has built great tools to build a theme:
 
-- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the Material-UI component library. Includes basic site templates to show various components and how they are affected by the theme
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating Material-UI themes via Material Design Color Tool.
+- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Includes basic site templates to show various components and how they are affected by the theme
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating MUI themes via Material Design Color Tool.
 - [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
 
 ## Accessing the theme in a component
@@ -91,14 +91,6 @@ You can extend the outer theme by providing a function:
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
-**A note on performance**
-
-The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes.
-The main point to understand is that the injected CSS is cached with the following tuple `(styles, theme)`.
-
-- `theme`: If you provide a new theme at each render, a new CSS object will be computed and injected. Both for UI consistency and performance, it's better to render a limited number of theme objects.
-- `styles`: The larger the styles object is, the more work is needed.
-
 ## API
 
 ### `createTheme(options, ...args) => theme`
@@ -109,6 +101,16 @@ Generate a theme base on the options received.
 
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
+
+> Note: Only the first argument (`options`) is being processed by the `createdTheme` function.
+> If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+
+```js
+import { deepmerge } from '@mui/utils';
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme(deepmerge(options1, options2));
+```
 
 #### Returns
 
@@ -127,6 +129,58 @@ const theme = createTheme({
     },
     secondary: {
       main: green[500],
+    },
+  },
+});
+```
+
+#### Theme composition: using theme options to define other options
+
+When the value for a theme option is dependent on another theme option, you should compose the theme in steps.
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0052cc',
+    },
+    secondary: {
+      main: '#edf2ff',
+    },
+  },
+});
+
+theme = createTheme(theme, {
+  palette: {
+    info: {
+      main: theme.palette.secondary.main,
+    },
+  },
+});
+```
+
+Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options (example above) or to override the design of specific components (example below).
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+let theme = createTheme({
+  shape: {
+    borderRadius: 4,
+  },
+});
+
+theme = createTheme(theme, {
+  components: {
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          // apply theme's border-radius instead of component's default
+          borderRadius: theme.shape.borderRadius,
+        },
+      },
     },
   },
 });
@@ -179,7 +233,7 @@ Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
 
 #### Returns
 
-`theme` (_object_): A complete, ready to use theme object.
+`theme` (_object_): A complete, ready-to-use theme object.
 
 #### Examples
 

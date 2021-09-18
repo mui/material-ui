@@ -1,0 +1,4 @@
+<React.Fragment>
+  <MyButton color="red">Red</MyButton>
+  <MyButton color="blue">Blue</MyButton>
+</React.Fragment>

@@ -9,7 +9,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 <p class="description">Alert показывает короткое и важное сообщение для того, чтобы привлечь внимание пользователя, не отвлекая его.</p>
 
-**Примечание:** Этот компонент не задокументирован в [гайдлайнах Material Design](https://material.io/), но Material-UI поддерживает его.
+**Примечание:** Этот компонент не задокументирован в [руководствах Material Design](https://material.io/), но Material-UI поддерживает его.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

@@ -13,13 +13,7 @@ const dateAdapterPackageMapping: Record<string, string> = {
   AdapterMoment: 'moment',
 };
 
-export function titleize(hyphenedString: string): string {
-  if (process.env.NODE_ENV !== 'production') {
-    if (typeof hyphenedString !== 'string' || hyphenedString.length <= 0) {
-      console.error('titleize(hyphenedString) expects a non empty string argument.');
-    }
-  }
-
+function titleize(hyphenedString: string): string {
   return hyphenedString
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -77,7 +71,7 @@ const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled
 function addTypeDeps(deps: Record<string, string>): void {
   const packagesWithDTPackage = Object.keys(deps)
     .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
-    // All the Material-UI packages come with bundled types
+    // All the MUI packages come with bundled types
     .filter((name) => name.indexOf('@mui/') !== 0);
 
   packagesWithDTPackage.forEach((name) => {
@@ -132,7 +126,7 @@ function getMuiPackageVersion(packageName: string, commitRef?: string): string {
     process.env.SOURCE_CODE_REPO !== 'https://github.com/mui-org/material-ui'
   ) {
     // #default-branch-switch
-    return 'next';
+    return 'latest';
   }
   const shortSha = commitRef.slice(0, 8);
   return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@mui/${packageName}`;
@@ -170,6 +164,7 @@ export function getDependencies(
     '@mui/private-theming': getMuiPackageVersion('theming', muiCommitRef),
     '@mui/core': getMuiPackageVersion('core', muiCommitRef),
     '@mui/utils': getMuiPackageVersion('utils', muiCommitRef),
+    '@mui/material-next': getMuiPackageVersion('material-next', muiCommitRef),
   };
 
   // TODO: Where is this coming from and why does it need to be injected this way.
@@ -231,9 +226,7 @@ export function getDependencies(
  * @return The cookie value
  */
 export function getCookie(name: string): string | undefined {
-  // `process.browser` is set by nextjs where we only use `getCookie`
-  // but this file is imported from nodejs scripts so TypeScript complains for that environment.
-  if ((process as any).browser) {
+  if (typeof document !== 'undefined') {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) {

@@ -22,7 +22,7 @@ export default function createTypography(palette, typography) {
     fontWeightRegular = 400,
     fontWeightMedium = 500,
     fontWeightBold = 700,
-    // Tell Material-UI what's the font-size on the html element.
+    // Tell MUI what's the font-size on the html element.
     // 16px is the default font-size used by browsers.
     htmlFontSize = 16,
     // Apply the CSS properties to all the variants.
@@ -33,11 +33,11 @@ export default function createTypography(palette, typography) {
 
   if (process.env.NODE_ENV !== 'production') {
     if (typeof fontSize !== 'number') {
-      console.error('Material-UI: `fontSize` is required to be a number.');
+      console.error('MUI: `fontSize` is required to be a number.');
     }
 
     if (typeof htmlFontSize !== 'number') {
-      console.error('Material-UI: `htmlFontSize` is required to be a number.');
+      console.error('MUI: `htmlFontSize` is required to be a number.');
     }
   }
 

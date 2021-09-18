@@ -1,11 +1,11 @@
-# Material-UI Testing
+# MUI Testing
 
 Thanks for writing tests! Here's a quick run-down on our current setup.
 
 ## Getting started
 
 1. Add a unit test to `packages/*/src/TheUnitInQuestion/TheUnitInQuestion.test.js` or an integration test `packages/*/test/`.
-2. Run `yarn test:watch`.
+2. Run `yarn t TheUnitInQuestion`.
 3. Implement the tested behavior
 4. Open a PR once the test passes or you want somebody to review your work
 
@@ -107,7 +107,7 @@ With the regression tests:
 
 ## Commands
 
-Material-UI uses a wide range of tests approach as each of them comes with a different
+MUI uses a wide range of tests approach as each of them comes with a different
 trade-off, mainly completeness vs. speed.
 
 ### React API level
@@ -116,11 +116,11 @@ trade-off, mainly completeness vs. speed.
 
 To run all of the unit and integration tests run `yarn test:unit`
 
-If you want to `grep` for certain tests add `-g STRING_TO_GREP`.
+If you want to `grep` for certain tests add `-g STRING_TO_GREP` though for development we recommend `yarn t <testFilePattern>`.
 
 #### Watch the core mocha unit/integration test suite.
 
-`yarn test:watch`
+`yarn t <testFilePattern>`
 
 First, we have the **unit test** suite.
 It uses [mocha](https://mochajs.org) and a thin wrapper around `@testing-library/react`.
@@ -154,7 +154,7 @@ Our tests run on different browsers to increase the coverage:
 ##### BrowserStack
 
 We only use BrowserStack for non-PR commits to save ressources.
-Browserstack rarely reports actual issues so we only use it as a stop-gap for releases not merges.
+BrowserStack rarely reports actual issues so we only use it as a stop-gap for releases not merges.
 
 To force a run of BrowserStack on a PR you have to run the pipeline with `browserstack-force` set to `true`.
 For example, you've opened a PR with the number 64209 and now after everything is green you want to make sure the change passes all browsers:

@@ -86,7 +86,7 @@ export default function ComponentLinkHeader(props) {
             size="small"
             variant="outlined"
             rel="nofollow"
-            href={`https://bundlephobia.com/result?p=${packageName}@next`}
+            href={`https://bundlephobia.com/result?p=${packageName}@latest`}
             icon={<BundleSizeIcon />}
             data-ga-event-category="ComponentLinkHeader"
             data-ga-event-action="click"

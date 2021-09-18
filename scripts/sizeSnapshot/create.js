@@ -24,7 +24,10 @@ async function getRollupSize(snapshotPath) {
 
   return Object.entries(rollupSnapshot).map(([bundlePath, snapshot]) => [
     // path in the snapshot is relative the snapshot itself
-    path.relative(workspaceRoot, path.join(path.dirname(snapshotPath), bundlePath)),
+    path
+      .relative(workspaceRoot, path.join(path.dirname(snapshotPath), bundlePath))
+      // Ensure original ID when the package was located in `packages/material-ui/`
+      .replace('mui-material', 'material-ui'),
     normalizeRollupSnapshot(snapshot),
   ]);
 }

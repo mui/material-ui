@@ -27,6 +27,7 @@ const alias = {
   '@mui/private-theming': '../packages/mui-private-theming/src',
   '@mui/utils': '../packages/mui-utils/src',
   '@mui/core': '../packages/mui-core/src',
+  '@mui/material-next': '../packages/mui-material-next/src',
   docs: './',
   modules: '../modules',
   pages: './pages',

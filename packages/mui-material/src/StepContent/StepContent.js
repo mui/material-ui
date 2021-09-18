@@ -62,9 +62,7 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
 
   if (process.env.NODE_ENV !== 'production') {
     if (orientation !== 'vertical') {
-      console.error(
-        'Material-UI: <StepContent /> is only designed for use with the vertical stepper.',
-      );
+      console.error('MUI: <StepContent /> is only designed for use with the vertical stepper.');
     }
   }
 
@@ -141,7 +139,7 @@ StepContent.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition) component.
    */
   TransitionProps: PropTypes.object,
 };

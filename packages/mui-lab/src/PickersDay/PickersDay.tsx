@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { SxProps } from '@mui/system';
+import { CSSInterpolation, SxProps } from '@mui/system';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import {
@@ -183,7 +183,7 @@ const styleArg = ({ theme, ownerState }: { theme: Theme; ownerState: OwnerState 
 
 const overridesResolver = (
   props: { ownerState: OwnerState },
-  styles: Record<PickersDayClassKey, object>,
+  styles: Record<PickersDayClassKey, CSSInterpolation>,
 ) => {
   const { ownerState } = props;
   return [
@@ -269,7 +269,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   // Focusing in passive effects in Popper causes scroll jump.
   useEnhancedEffect(() => {
     if (autoFocus && !disabled && !isAnimating && !outsideCurrentMonth) {
-      // ref.current being null would be a bug in Material-UI
+      // ref.current being null would be a bug in MUI
       ref.current!.focus();
     }
   }, [autoFocus, disabled, isAnimating, outsideCurrentMonth]);
@@ -494,11 +494,11 @@ PickersDay.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/components/date-picker/)
  *
  * API:
  *
- * - [PickersDay API](https://material-ui.com/api/pickers-day/)
+ * - [PickersDay API](https://mui.com/api/pickers-day/)
  */
 export default React.memo(PickersDay, areDayPropsEqual) as <TDate>(
   props: PickersDayProps<TDate> & React.RefAttributes<HTMLButtonElement>,

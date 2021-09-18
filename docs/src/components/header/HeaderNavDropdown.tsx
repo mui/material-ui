@@ -45,13 +45,13 @@ const UList = styled('ul')({
 
 const PRODUCTS = [
   {
-    name: 'Core',
-    description: 'Ready to use, forever free, foundational components.',
+    name: 'MUI Core',
+    description: 'Ready to use, free forever, foundational components.',
     href: ROUTES.productCore,
   },
   {
-    name: 'Advanced',
-    description: 'Powerful and robust components for your complex apps.',
+    name: 'MUI X',
+    description: 'Advanced and powerful components for complex use-cases.',
     href: ROUTES.productAdvanced,
   },
   {
@@ -82,7 +82,7 @@ export default function HeaderNavDropdown() {
           p: '6.5px',
           borderRadius: 1,
           border: '1px solid',
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'transparent'),
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'transparent'),
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
           '& svg': { width: 18, height: 18 },
           '&:focus': {

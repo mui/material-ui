@@ -302,9 +302,8 @@ describe('useMediaQuery', () => {
       expect(() => {
         render(<MyComponent />);
       }).toErrorDev([
-        'Material-UI: The `query` argument provided is invalid',
-        !strictModeDoubleLoggingSupressed &&
-          'Material-UI: The `query` argument provided is invalid',
+        'MUI: The `query` argument provided is invalid',
+        !strictModeDoubleLoggingSupressed && 'MUI: The `query` argument provided is invalid',
       ]);
     });
   });

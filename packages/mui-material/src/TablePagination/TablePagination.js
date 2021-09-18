@@ -351,7 +351,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
     const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
     if (page < 0 || page > newLastPage) {
       return new Error(
-        'Material-UI: The page prop of a TablePagination is out of range ' +
+        'MUI: The page prop of a TablePagination is out of range ' +
           `(0 to ${newLastPage}, but page is ${page}).`,
       );
     }

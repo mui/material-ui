@@ -9,6 +9,8 @@ export interface InputBasePropsSizeOverrides {}
 
 export interface InputBasePropsColorOverrides {}
 
+export interface InputBaseComponentsPropsOverrides {}
+
 export interface InputBaseProps
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement>,
@@ -51,26 +53,13 @@ export interface InputBaseProps
     Root?: React.ElementType;
     Input?: React.ElementType;
   };
-
   /**
    * The props used for each slot inside the Input.
    * @default {}
    */
   componentsProps?: {
-    root?: {
-      as: React.ElementType;
-      ownerState?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
-        hiddenLabel?: boolean;
-        focused?: boolean;
-      };
-    };
-    input?: {
-      as?: React.ElementType;
-      ownerState?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
-        hiddenLabel?: boolean;
-        focused?: boolean;
-      };
-    };
+    root?: React.HTMLAttributes<HTMLDivElement> & InputBaseComponentsPropsOverrides;
+    input?: React.InputHTMLAttributes<HTMLInputElement> & InputBaseComponentsPropsOverrides;
   };
   /**
    * The default value. Use when the component is not controlled.
@@ -216,10 +205,10 @@ export interface InputBaseComponentProps
  *
  * Demos:
  *
- * - [Text Fields](https://material-ui.com/components/text-fields/)
+ * - [Text Fields](https://mui.com/components/text-fields/)
  *
  * API:
  *
- * - [InputBase API](https://material-ui.com/api/input-base/)
+ * - [InputBase API](https://mui.com/api/input-base/)
  */
 export default function InputBase(props: InputBaseProps): JSX.Element;

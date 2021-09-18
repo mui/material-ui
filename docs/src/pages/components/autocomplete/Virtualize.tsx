@@ -13,25 +13,21 @@ const LISTBOX_PADDING = 8; // px
 function renderRow(props: ListChildComponentProps) {
   const { data, index, style } = props;
   const dataSet = data[index];
+  const inlineStyle = {
+    ...style,
+    top: (style.top as number) + LISTBOX_PADDING,
+  };
 
   if (dataSet.hasOwnProperty('group')) {
     return (
-      <ListSubheader key={dataSet.key} component="div">
+      <ListSubheader key={dataSet.key} component="div" style={inlineStyle}>
         {dataSet.group}
       </ListSubheader>
     );
   }
 
   return (
-    <Typography
-      component="li"
-      {...dataSet[0]}
-      noWrap
-      style={{
-        ...style,
-        top: (style.top as number) + LISTBOX_PADDING,
-      }}
-    >
+    <Typography component="li" {...dataSet[0]} noWrap style={inlineStyle}>
       {dataSet[1]}
     </Typography>
   );

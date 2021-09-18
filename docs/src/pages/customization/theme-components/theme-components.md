@@ -4,7 +4,7 @@
 
 ## Global style overrides
 
-You can use the theme's `styleOverrides` key to potentially change every single style injected by Material-UI into the DOM.
+You can use the theme's `styleOverrides` key to potentially change every single style injected by MUI into the DOM.
 
 ```js
 const theme = createTheme({
@@ -31,7 +31,7 @@ To override a lab component's styles with TypeScript, check [this section of the
 
 ## Default props
 
-You can change the default of every prop of a Material-UI component.
+You can change the default of every prop of a MUI component.
 A `defaultProps` key is exposed in the theme's `components` key for this use case.
 
 ```js
@@ -54,7 +54,7 @@ To override lab component styles with TypeScript, check [this page](/components/
 
 ## Adding new component variants
 
-You can use the `variants` key in the theme's `components` section to add new variants to Material-UI components. These new variants can specify what styles the component should have when specific props are applied.
+You can use the `variants` key in the theme's `components` section to add new variants to MUI components. These new variants can specify what styles the component should have when specific props are applied.
 
 The definitions are specified in an array, under the component's name. For each of them a CSS class is added to the HTML `<head>`. The order is important, so make sure that the styles that should win are specified last.
 

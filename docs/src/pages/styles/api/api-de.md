@@ -227,7 +227,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## `ThemeProvider`
 
-Diese Komponente hat eine `Theme` Eigenschaft. Diese wird durch den Kontext in der React-Struktur verfügbar gemacht. Es sollte vorzugsweise an der **Wurzel Ihres Komponentenbaums** verwendet werden.
+Die `innerRef` Eigenschaft ist veraltet. Es sollte vorzugsweise an der **Wurzel Ihres Komponentenbaums** verwendet werden.
 
 ### Eigenschaften
 

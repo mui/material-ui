@@ -3,6 +3,8 @@ import * as React from 'react';
 
 export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
+export interface FormControlUnstyledComponentsPropsOverrides {}
+
 export interface FormControlUnstyledOwnProps {
   /**
    * The content of the component.
@@ -21,7 +23,7 @@ export interface FormControlUnstyledOwnProps {
     Root?: React.ElementType;
   };
   componentsProps?: {
-    root?: object;
+    root?: React.HTMLAttributes<HTMLDivElement> & FormControlUnstyledComponentsPropsOverrides;
   };
   defaultValue?: unknown;
   /**

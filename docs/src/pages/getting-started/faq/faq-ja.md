@@ -112,7 +112,7 @@ Notice that the usage of `CssBaseline` is required for the above approach to wor
 
 ## When should I use inline-style vs. CSS?
 
-経験則として、動的styleプロパティにはinline-styleのみを使用してください。 CSSの代替手段は、次のようなより多くの利点を提供します。
+経験則として、動的styleプロパティにはinline-styleのみを使用してください。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。
 
 - auto-prefixing
 - デバックのしやすさ

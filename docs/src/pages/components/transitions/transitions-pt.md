@@ -8,7 +8,7 @@ githubLabel: 'component: Transition'
 
 <p class="description">Transições ajudam a deixar a interface expressiva e fácil de usar.</p>
 
-Material-UI provê um número de transições que podem ser usadas para introduzir algumas [animações](https://material.io/design/motion/) básicas para os componentes de sua aplicação.
+Material-UI provê um número de transições que podem ser usadas para introduzir alguns [movimentos](https://material.io/design/motion/) básicos para os componentes de sua aplicação.
 
 [A paleta](/system/palette/) com funções de estilo.
 
@@ -58,7 +58,7 @@ The second example demonstrates how to change the `transform-origin`, and condit
 
 Deslize a partir da borda da tela. A propriedade `direction` controla em qual borda da tela a transição começa.
 
-A propriedade de transição do componente `mountOnEnter` impede que o componente filho seja montado até que `in` seja `true`. Isso evita que o componente relativamente posicionado role para a visão a partir da posição fora da tela. Da mesma forma, a propriedade `unmountOnExit` remove o componente do DOM após a transição ter sido exibida (`in` = `false`).
+A propriedade `mountOnEnter` do componente de transição impede que o componente filho seja montado até que `in` seja `true`. Isso evita que o componente relativamente posicionado role para a visão a partir da posição de fora da tela. Da mesma forma, a propriedade `unmountOnExit` remove o componente do DOM após a transição ter sido exibida para fora da tela.
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
