@@ -250,6 +250,7 @@
     "/components/data-grid/filtering": "Filtering",
     "/components/data-grid/pagination": "Pagination",
     "/components/data-grid/selection": "Selection",
+    "/components/data-grid/events": "Events",
     "/components/data-grid/export": "Export",
     "/components/data-grid/components": "Components",
     "/components/data-grid/style": "Style",
