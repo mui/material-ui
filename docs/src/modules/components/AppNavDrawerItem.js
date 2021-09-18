@@ -191,6 +191,7 @@ export default function AppNavDrawerItem(props) {
   const iconProps = hasIcon ? { fontSize: 'small', color: 'primary' } : {};
   const iconElement = hasIcon ? (
     <Box
+      component="span"
       sx={{
         '& svg': { fontSize: (theme) => theme.typography.pxToRem(14) },
         display: 'flex',
