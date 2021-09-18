@@ -1,12 +1,12 @@
+import * as React from 'react';
+import { createPortal } from 'react-dom';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
-import SearchIcon from '@mui/icons-material/Search';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import SearchIcon from '@mui/icons-material/Search';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import * as React from 'react';
-import { createPortal } from 'react-dom';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -115,7 +115,14 @@ export default function AppSearch() {
   }, [setIsOpen]);
 
   const onClose = React.useCallback(() => {
-    setIsOpen(false);
+    const modal = document.querySelector('.DocSearch-Container');
+    if (modal) {
+      // fade out transition
+      modal.style.opacity = 0;
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 400);
+    }
   }, [setIsOpen]);
 
   const onInput = React.useCallback(
@@ -137,6 +144,16 @@ export default function AppSearch() {
   React.useEffect(() => {
     addStartScreen();
   });
+
+  React.useEffect(() => {
+    // add transition to Modal
+    if (isOpen) {
+      const modal = document.querySelector('.DocSearch-Container');
+      if (modal) {
+        modal.style.opacity = 1;
+      }
+    }
+  }, [isOpen]);
 
   return (
     <React.Fragment>
@@ -208,6 +225,8 @@ export default function AppSearch() {
           },
           body: {
             '.DocSearch-Container': {
+              transition: 'opacity 0.4s',
+              opacity: 0,
               zIndex: theme.zIndex.tooltip + 100,
               backgroundColor:
                 theme.palette.mode === 'dark'
