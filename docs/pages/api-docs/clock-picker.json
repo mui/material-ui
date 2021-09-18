@@ -44,6 +44,5 @@
   "filename": "/packages/mui-lab/src/ClockPicker/ClockPicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

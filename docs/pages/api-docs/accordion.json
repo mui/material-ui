@@ -23,6 +23,5 @@
   "filename": "/packages/mui-material/src/Accordion/Accordion.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/accordion/\">Accordion</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

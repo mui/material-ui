@@ -43,6 +43,5 @@
   "filename": "/packages/mui-material/src/CircularProgress/CircularProgress.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/progress/\">Progress</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

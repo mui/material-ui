@@ -18,6 +18,5 @@
   "filename": "/packages/mui-material/src/TableRow/TableRow.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }
