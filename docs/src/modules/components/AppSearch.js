@@ -69,6 +69,7 @@ export default function AppSearch() {
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
   );
+  const FADE_DURATION = 300; // ms
   const userLanguage = useUserLanguage();
   const searchButtonRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -121,7 +122,7 @@ export default function AppSearch() {
       modal.style.opacity = 0;
       setTimeout(() => {
         setIsOpen(false);
-      }, 400);
+      }, FADE_DURATION);
     }
   }, [setIsOpen]);
 
@@ -225,7 +226,7 @@ export default function AppSearch() {
           },
           body: {
             '.DocSearch-Container': {
-              transition: 'opacity 0.4s',
+              transition: `opacity ${FADE_DURATION}ms`,
               opacity: 0,
               zIndex: theme.zIndex.tooltip + 100,
               backgroundColor:
