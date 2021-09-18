@@ -26,25 +26,4 @@ module.exports = {
     },
     extensions: ['.js', '.ts', '.tsx', '.d.ts'],
   },
-  output: {
-    path: path.join(__dirname, 'build'),
-    filename: 'bundle.js',
-    publicPath: '/build/',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|ts|tsx)$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          cacheDirectory: true,
-        },
-      },
-      {
-        test: /\.md$/,
-        loader: 'raw-loader',
-      },
-    ],
-  },
 };

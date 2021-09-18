@@ -64,13 +64,11 @@ module.exports = function setKarmaConfig(config) {
         timeout: (process.env.CIRCLECI === 'true' ? 6 : 2) * 1000,
       },
     },
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'webpack'],
     files: [
       {
         pattern: 'test/karma.tests.js',
-        watched: true,
-        served: true,
-        included: true,
+        watched: false,
       },
       {
         pattern: 'test/assets/*.png',
@@ -109,12 +107,18 @@ module.exports = function setKarmaConfig(config) {
     webpack: {
       mode: 'development',
       devtool: CI ? 'inline-source-map' : 'eval-source-map',
+      optimization: {
+        nodeEnv: 'test',
+      },
       plugins: [
         new webpack.DefinePlugin({
-          'process.env.NODE_ENV': JSON.stringify('test'),
           'process.env.CI': JSON.stringify(process.env.CI),
           'process.env.KARMA': JSON.stringify(true),
           'process.env.TEST_GATE': JSON.stringify(process.env.TEST_GATE),
+        }),
+        new webpack.ProvidePlugin({
+          // required by enzyme > cheerio > parse5 > util
+          process: 'process/browser',
         }),
       ],
       module: {
@@ -138,17 +142,19 @@ module.exports = function setKarmaConfig(config) {
           },
         ],
       },
-      node: {
-        // Some tests import fs
-        fs: 'empty',
-      },
       resolve: {
         extensions: ['.js', '.ts', '.tsx'],
+        fallback: {
+          // needed by sourcemap
+          fs: false,
+          path: false,
+          // needed by enzyme > cheerio
+          stream: false,
+        },
       },
-    },
-    webpackMiddleware: {
-      noInfo: true,
-      writeToDisk: CI,
+      // TODO: 'browserslist:modern'
+      // See https://github.com/webpack/webpack/issues/14203
+      target: 'web',
     },
     customLaunchers: {
       chromeHeadless: {
