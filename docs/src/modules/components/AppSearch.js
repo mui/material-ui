@@ -8,13 +8,6 @@ import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 
-function isAppleDevice() {
-  if (typeof navigator !== 'undefined') {
-    return /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
-  }
-  return '';
-}
-
 const SearchButton = styled('button')(({ theme }) => {
   return {
     display: 'none',
@@ -82,7 +75,7 @@ export default function AppSearch() {
   const [initialQuery, setInitialQuery] = React.useState(undefined);
   const facetFilterLanguage =
     LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
-  const macOS = isAppleDevice();
+  const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
   const addStartScreen = () => {
     const StartScreen = document.querySelector('.DocSearch-StartScreen');
     const notAdded = document.querySelector('.DocSearch-StartScreenCategory') === null;
