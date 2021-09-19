@@ -239,7 +239,6 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The props used for each slot inside.
-   * @default {}
    */
   componentsProps: PropTypes.object,
   /**
