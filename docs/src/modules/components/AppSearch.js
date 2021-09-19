@@ -126,7 +126,13 @@ const NewStartScreen = () => {
             {category.name}
           </div>
           {items.map(({ name, link }) => (
-            <a key={name} className="DocSearch-NewStartScreenItem" href={link} rel="noreferrer" target="_blank">
+            <a
+              key={name}
+              className="DocSearch-NewStartScreenItem"
+              href={link}
+              rel="noreferrer"
+              target="_blank"
+            >
               {name}
               <KeyboardArrowRightRounded
                 fontSize="small"
