@@ -17067,7 +17067,7 @@ yargs@^17.0.1:
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
 
-yarn-deduplicate@^3.0.0:
+yarn-deduplicate@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/yarn-deduplicate/-/yarn-deduplicate-3.1.0.tgz#3018d93e95f855f236a215b591fe8bc4bcabba3e"
   integrity sha512-q2VZ6ThNzQpGfNpkPrkmV7x5HT9MOhCUsTxVTzyyZB0eSXz1NTodHn+r29DlLb+peKk8iXxzdUVhQG9pI7moFw==
