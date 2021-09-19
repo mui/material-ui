@@ -216,6 +216,7 @@
     "docs",
     "docs/packages/*",
     "framer",
+    "framer/Material-UI.framerfx",
     "test"
   ]
 }
