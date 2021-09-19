@@ -59,10 +59,10 @@
     prop-types "^15.7.2"
     react-is "^17.0.2"
 
-"@mui/icons-material@^5.0.0-rc.0":
-  version "5.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.0.0-rc.0.tgz#6ae79f68a96f3253b1d986534188bba0dd2563db"
-  integrity sha512-iOxnvEADBvh4j5FRKqdn/5MEzkfX8Kl4xa/VkYblmLzAC6Sdrhy1NIR4ln3ipQ9N98YCwMhHcjS3OujwRwLy+g==
+"@mui/icons-material@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.0.0.tgz#f6282b6044d221d80729bffe976ede2072c8d313"
+  integrity sha512-Vl5pMIdD1MC+LVBEKDQkWeoU/0mdxx/WLBuTVo5y2yzOzEp8gcwkegtiUyN1gubiXcqzNNZQNvJ6/YSdFRr84Q==
   dependencies:
     "@babel/runtime" "^7.14.8"
 
