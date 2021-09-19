@@ -2869,10 +2869,10 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/chai-dom@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@types/chai-dom/-/chai-dom-0.0.10.tgz#0a1d454a5b6a153b3e49b7d4c8354acc0b9f412e"
-  integrity sha512-C5M5ht5visUd0fEB+drAL4IoqhPZnF9Ts9N+FnRU+IdxHHNGzeqquEtdhZAjLi0t4uzKnqS5lU2SuTwG9d6+8w==
+"@types/chai-dom@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@types/chai-dom/-/chai-dom-0.0.11.tgz#1058e77194560bd4d3117773602654e052cc2e0d"
+  integrity sha512-qLGx6pHrcCfjkpfuh8aBj7xBm8wo2F9aTgv9p+/X0zBAsR3c1wxJguDFnV5cXxUQJKY9BdwE6PVy7W4PT5IAlA==
   dependencies:
     "@types/chai" "*"
 
