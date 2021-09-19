@@ -12,7 +12,7 @@
 
 ## About us
 
-See the [careers](/company/careers/) and [about us](/about/) pages.
+See the [careers](/careers/) and [about us](/about/) pages.
 
 ### Why we're hiring
 
@@ -60,7 +60,7 @@ You will be joining the advanced components team.
 
 ## Compensation
 
-Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/company/careers/#perks-amp-benefits) page.
+Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/careers/#perks-amp-benefits) page.
 
 ## Apply
 
