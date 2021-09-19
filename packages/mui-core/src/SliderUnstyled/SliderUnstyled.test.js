@@ -102,7 +102,6 @@ describe('<SliderUnstyled />', () => {
   });
 
   [
-    // FIXME: broken
     ['readonly range', Object.freeze([1, 2])],
     ['range', [1, 2]],
   ].forEach(([valueLabel, value]) => {
