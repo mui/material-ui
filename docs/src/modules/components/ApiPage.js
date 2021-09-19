@@ -1,11 +1,11 @@
-/* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
+/* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { exactProp } from '@material-ui/utils';
-import { styled } from '@material-ui/core/styles';
-import Alert from '@material-ui/core/Alert';
-import Typography from '@material-ui/core/Typography';
+import { exactProp } from '@mui/utils';
+import { styled } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
+import Typography from '@mui/material/Typography';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
@@ -56,7 +56,7 @@ function PropsTable(props) {
                 <td align="left">
                   {propData.deprecated && (
                     <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
-                      <strong>Deprecated</strong>
+                      <strong>{t('api-docs.deprecated')}</strong>
                       {propData.deprecationInfo && ' - '}
                       {propData.deprecationInfo && (
                         <span
@@ -207,10 +207,7 @@ function ApiDocs(props) {
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
 
   const source = filename
-    .replace(
-      /\/packages\/material-ui(-(.+?))?\/src/,
-      (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
-    )
+    .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
     // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
@@ -267,7 +264,7 @@ function ApiDocs(props) {
       disableAd={false}
       disableToc={false}
       location={apiSourceLocation}
-      title={`${componentName} API – Material-UI`}
+      title={`${componentName} API – MUI`}
       toc={toc}
     >
       <MarkdownElement>

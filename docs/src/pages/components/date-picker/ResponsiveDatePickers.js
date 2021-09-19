@@ -1,11 +1,11 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DatePicker from '@material-ui/lab/DatePicker';
-import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
-import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
-import Stack from '@material-ui/core/Stack';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
+import MobileDatePicker from '@mui/lab/MobileDatePicker';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import Stack from '@mui/material/Stack';
 
 export default function ResponsiveDatePickers() {
   const [value, setValue] = React.useState(new Date());

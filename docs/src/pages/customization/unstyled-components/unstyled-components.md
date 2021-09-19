@@ -1,8 +1,8 @@
 # Unstyled components
 
-<p class="description">Implementing a custom design system using Material-UI.</p>
+<p class="description">Implementing a custom design system using MUI.</p>
 
-Material-UI unstyled provides a set of components without any styles.
+MUI unstyled provides a set of components without any styles.
 These can be used to implement a custom design system that is not based on Material Design.
 
 So far, just a few components have been created,
@@ -18,7 +18,7 @@ If you:
 - need precise control over the rendered HTML of the components,
 - or need to implement custom components but don't want to deal with accessibility features on your own,
 
-then you will find `material-ui/unstyled` useful.
+then you will find `@mui/core` useful.
 
 If, however, you:
 
@@ -26,7 +26,7 @@ If, however, you:
 - need to customize Material Design with your brand colors,
 - or need to implement a design system based on Material Design,
 
-then you may be better off using the `@material-ui/core` package and [customizing it](/customization/how-to-customize/).
+then you may be better off using the `@mui/material` package and [customizing it](/customization/how-to-customize/).
 
 ## Components vs. hooks
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
 
 const theme = createTheme({
   direction: 'rtl', // Both here and <body dir="rtl">

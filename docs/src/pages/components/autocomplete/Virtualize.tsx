@@ -1,37 +1,33 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete, { autocompleteClasses } from '@material-ui/core/Autocomplete';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import Popper from '@material-ui/core/Popper';
-import { useTheme, styled } from '@material-ui/core/styles';
+import TextField from '@mui/material/TextField';
+import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import ListSubheader from '@mui/material/ListSubheader';
+import Popper from '@mui/material/Popper';
+import { useTheme, styled } from '@mui/material/styles';
 import { VariableSizeList, ListChildComponentProps } from 'react-window';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 
 const LISTBOX_PADDING = 8; // px
 
 function renderRow(props: ListChildComponentProps) {
   const { data, index, style } = props;
   const dataSet = data[index];
+  const inlineStyle = {
+    ...style,
+    top: (style.top as number) + LISTBOX_PADDING,
+  };
 
   if (dataSet.hasOwnProperty('group')) {
     return (
-      <ListSubheader key={dataSet.key} component="div">
+      <ListSubheader key={dataSet.key} component="div" style={inlineStyle}>
         {dataSet.group}
       </ListSubheader>
     );
   }
 
   return (
-    <Typography
-      component="li"
-      {...dataSet[0]}
-      noWrap
-      style={{
-        ...style,
-        top: (style.top as number) + LISTBOX_PADDING,
-      }}
-    >
+    <Typography component="li" {...dataSet[0]} noWrap style={inlineStyle}>
       {dataSet[1]}
     </Typography>
   );

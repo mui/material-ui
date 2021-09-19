@@ -1,9 +1,9 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Stack from '@material-ui/core/Stack';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import TimePicker from '@material-ui/lab/TimePicker';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import TimePicker from '@mui/lab/TimePicker';
 
 export default function TimeValidationTimePicker() {
   const [value, setValue] = React.useState<Date | null>(

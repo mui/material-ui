@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { Theme, styled } from '@material-ui/core/styles';
-import { SxProps } from '@material-ui/system';
-import Alert from '@material-ui/core/Alert';
-import AlertTitle from '@material-ui/core/AlertTitle';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import InputBase from '@material-ui/core/InputBase';
-import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
+import { Theme, styled } from '@mui/material/styles';
+import { SxProps } from '@mui/system';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import FormLabel from '@mui/material/FormLabel';
+import FormHelperText from '@mui/material/FormHelperText';
+import InputBase from '@mui/material/InputBase';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 const Form = styled('form')({});
 
@@ -32,7 +32,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     setForm((current) => ({ ...current, status: 'loading' }));
     try {
       await fetch(
-        'https://f0433e60.sibforms.com/serve/MUIEAMMuohK-i-XUkJaUj3Lq3zr3rVeAPmgssEBsyiTktpqrImORJiFMQ1PLfZ1W1PGb-FzKhlfuPWlLNfx90j5R2qC7C219ec8AVcBsxlIRDG5znwaXr6gzAyth6W93bLiK4otXL_iBLFV43QqHrKZKORXA0LGq6seXbasTiAHh5EtqWFGK2zw8mlwYssGnIT_7ZZXiWC_iqubZ',
+        'https://f0433e60.sibforms.com/serve/MUIEAHEhgYhMvLAw0tycwk1BQaIB-q0akob3JdtDBmHLhSR-jLheJ2T44LFCz27alz9wq_Nkdz9EK7Y8hzM1vQND9kTFyKkkhTIbEzXaH5d-_S9Fw4PXS1zAK8efPY6nhCdoAop1SKTeZ_GAPW5S0xBFQRLUGYbvvRgE4Q2Ki_f1KjbiCqaRuzmj_I3SD1r0CoR4INmK3CLtF4kF',
         {
           method: 'POST',
           headers: {
@@ -77,7 +77,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           ),
         }}
       >
-        <AlertTitle sx={{ typography: 'body2', fontWeight: 600 }}>
+        <AlertTitle sx={{ typography: 'body2', fontWeight: 700 }}>
           Thanks! Check your email.
         </AlertTitle>
         You should get a <strong>confirmation email</strong> soon. Open it up and confirm your email
@@ -89,9 +89,9 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     <Form onSubmit={handleSubmit} sx={sx}>
       <FormLabel
         htmlFor="email-subscribe"
-        sx={{ typography: 'caption', mb: 0.5, color: 'text.secondary' }}
+        sx={{ typography: 'caption', mb: 0.5, color: 'text.secondary', fontWeight: 500 }}
       >
-        Email
+        Enter your email:
       </FormLabel>
       <Box
         sx={{

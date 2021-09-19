@@ -9,7 +9,7 @@
   "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiAccordionActions" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/AccordionActions/AccordionActions.js",
+  "filename": "/packages/mui-material/src/AccordionActions/AccordionActions.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/accordion/\">Accordion</a></li></ul>",
   "styledComponent": true,

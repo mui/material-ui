@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
+import { styled } from '@mui/material/styles';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 const AntTabs = styled(Tabs)({
   borderBottom: '1px solid #e8e8e8',

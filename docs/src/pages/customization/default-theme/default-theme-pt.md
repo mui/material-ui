@@ -8,7 +8,7 @@ Explore o objeto de tema padrão:
 
 {{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideToolbar": true, "bg": "inline"}}
 
-> Dica: você pode visualizar o objeto de tema usado na documentação no console do seu navegador com a variável `theme`, exposta em todas as páginas de documentação. Observe que **o site de documentação está usando um tema personalizado**.
+> Dica: você pode visualizar o objeto de tema usado na documentação no console do seu navegador com a variável `theme`, exposta em todas as páginas de documentação. Observe que **o site de documentação está usando um tema customizado**.
 
 <!-- #default-branch-switch -->
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Chip from '@material-ui/core/Chip';
-import Stack from '@material-ui/core/Stack';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 const primary = {
   50: '#F0F7FF',
@@ -33,7 +33,7 @@ export default function ThemeChip() {
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
    * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://next.material-ui.com/customization/palette/#toggling-color-mode
+   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
    */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
@@ -55,9 +55,9 @@ export default function ThemeChip() {
             styleOverrides: {
               label: {
                 marginBottom: '1px',
-                fontSize: 14,
+                fontSize: '0.875rem',
                 lineHeight: 1.5,
-                fontWeight: 600,
+                fontWeight: 700,
               },
               filled: {
                 color: mode === 'dark' ? '#fff' : grey[800],

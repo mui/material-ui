@@ -30,7 +30,7 @@ Componentのアニメーションは、JavaScript が読み込まれる前でも
 
 ### Circular determinate
 
-{{"demo": "pages/components/progress/CircularDeterminate.js"}}
+{{"demo": "pages/components/progress/CircularIntegration.js"}}
 
 ### Interactive integration
 

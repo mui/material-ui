@@ -30,7 +30,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLElement",
-  "filename": "/packages/material-ui/src/Container/Container.js",
+  "filename": "/packages/mui-material/src/Container/Container.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/container/\">Container</a></li></ul>",
   "styledComponent": true,

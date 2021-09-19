@@ -1,29 +1,28 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import Slide from '@material-ui/core/Slide';
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import CloseRounded from '@material-ui/icons/CloseRounded';
-import MarkEmailReadTwoTone from '@material-ui/icons/MarkEmailReadTwoTone';
+import Slide from '@mui/material/Slide';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import CloseRounded from '@mui/icons-material/CloseRounded';
+import MarkEmailReadTwoTone from '@mui/icons-material/MarkEmailReadTwoTone';
 
 export default function NewsletterToast() {
   const router = useRouter();
-  const { newsletter } = router.query;
-  const [hidden, setHidden] = React.useState(newsletter !== 'subscribed');
+  const [hidden, setHidden] = React.useState(router.query.newsletter !== 'subscribed');
   React.useEffect(() => {
-    if (newsletter === 'subscribed') {
+    if (router.query.newsletter === 'subscribed') {
       setHidden(false);
       router.replace(router.pathname);
     }
-  }, [newsletter, router]);
+  }, [router.query.newsletter, router]);
   React.useEffect(() => {
     const time = setTimeout(() => {
       if (!hidden) {
         setHidden(true);
       }
-    }, 3000);
+    }, 4000);
     return () => {
       clearTimeout(time);
     };
@@ -68,7 +67,7 @@ export default function NewsletterToast() {
               You have subscribed to MUI newsletter.
             </Typography>
           </div>
-          <IconButton aria-hidden size="small" onClick={() => setHidden(true)}>
+          <IconButton aria-hidden size="small" onClick={() => setHidden(true)} aria-label="close">
             <CloseRounded fontSize="small" />
           </IconButton>
         </Card>

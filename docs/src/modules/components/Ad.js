@@ -1,42 +1,23 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
 import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const styles = (theme) => ({
-  'placement-body-image': {
-    margin: theme.spacing(4, 1, 3),
-    minHeight: 126,
-  },
-  'placement-body-inline': {
-    margin: theme.spacing(4, 0, 3),
-    minHeight: 126,
-    display: 'flex',
-    alignItems: 'flex-end',
-  },
-  'placement-body-inline2': {
-    margin: theme.spacing(4, 0, 3),
-    minHeight: 126,
-    display: 'flex',
-    alignItems: 'flex-end',
-  },
-  paper: {
-    border: `2px solid ${theme.palette.primary.main}`,
-  },
-});
-
 function PleaseDisableAdblock(props) {
   const t = useTranslate();
 
   return (
-    <Paper component="span" elevation={0} sx={{ display: 'block', p: 1.5 }} {...props}>
+    <Paper
+      component="span"
+      elevation={0}
+      sx={{ display: 'block', p: 1.5, border: '2px solid', borderColor: 'primary.main' }}
+      {...props}
+    >
       <Typography variant="body2" display="block" component="span" gutterBottom>
         {t('likeMui')}
       </Typography>
@@ -59,7 +40,7 @@ const inHouseAds = [
     name: 'scaffoldhub',
     link: 'https://scaffoldhub.io/?partner=1',
     img: '/static/ads-in-house/scaffoldhub.png',
-    description: '<b>ScaffoldHub</b>. Automate building your full-stack Material-UI web-app.',
+    description: '<b>ScaffoldHub</b>. Automate building your full-stack MUI web-app.',
   },
   {
     name: 'templates',
@@ -80,21 +61,19 @@ const inHouseAds = [
     link: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
     img: '/static/ads-in-house/tidelift.png',
     description:
-      '<b>Material-UI for enterprise</b>. Save time and reduce risk. Managed open source — backed by maintainers.',
+      '<b>MUI for enterprise</b>. Save time and reduce risk. Managed open source — backed by maintainers.',
   },
   {
     name: 'sketch',
     link: 'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
     img: '/static/ads-in-house/sketch.png',
-    description:
-      '<b>For Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
+    description: '<b>For Sketch</b>. A large UI kit with over 600 handcrafted MUI symbols 💎.',
   },
   {
     name: 'figma',
     link: 'https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
     img: '/static/ads-in-house/figma.png',
-    description:
-      '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',
+    description: '<b>For Figma</b>. A large UI kit with over 600 handcrafted MUI components 🎨.',
   },
 ];
 
@@ -133,9 +112,7 @@ class AdErrorBoundary extends React.Component {
   }
 }
 
-function Ad(props) {
-  const { classes } = props;
-
+function Ad() {
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
 
@@ -149,7 +126,7 @@ function Ad(props) {
     children = <span />;
   } else if (adblock) {
     if (randomAdblock < 0.2) {
-      children = <PleaseDisableAdblock className={classes.paper} />;
+      children = <PleaseDisableAdblock />;
       label = 'in-house-adblock';
     } else {
       children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
@@ -238,8 +215,21 @@ function Ad(props) {
       sx={{
         position: 'relative',
         display: 'block',
+        m: (theme) => theme.spacing(4, 0, 3),
+        ...(adShape === 'image' && {
+          minHeight: 126,
+        }),
+        ...(adShape === 'inline' && {
+          minHeight: 126,
+          display: 'flex',
+          alignItems: 'flex-end',
+        }),
+        ...(adShape === 'inline2' && {
+          minHeight: 126,
+          display: 'flex',
+          alignItems: 'flex-end',
+        }),
       }}
-      className={classes[`placement-body-${adShape}`]}
       data-ga-event-category="ad"
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
@@ -249,9 +239,4 @@ function Ad(props) {
   );
 }
 
-Ad.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-const defaultTheme = createTheme();
-export default React.memo(withStyles(styles, { defaultTheme })(Ad));
+export default Ad;

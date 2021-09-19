@@ -1,16 +1,17 @@
 import * as React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Toolbar from '@material-ui/core/Toolbar';
-import Paper from '@material-ui/core/Paper';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
+import CssBaseline from '@mui/material/CssBaseline';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Toolbar from '@mui/material/Toolbar';
+import Paper from '@mui/material/Paper';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
@@ -19,7 +20,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://mui.com/">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -43,7 +44,9 @@ function getStepContent(step) {
   }
 }
 
-function CheckoutContent() {
+const theme = createTheme();
+
+export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -55,7 +58,7 @@ function CheckoutContent() {
   };
 
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar
         position="absolute"
@@ -63,7 +66,7 @@ function CheckoutContent() {
         elevation={0}
         sx={{
           position: 'relative',
-          borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
+          borderBottom: (t) => `1px solid ${t.palette.divider}`,
         }}
       >
         <Toolbar>
@@ -120,10 +123,6 @@ function CheckoutContent() {
         </Paper>
         <Copyright />
       </Container>
-    </React.Fragment>
+    </ThemeProvider>
   );
-}
-
-export default function Checkout() {
-  return <CheckoutContent />;
 }

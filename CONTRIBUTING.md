@@ -1,15 +1,15 @@
-# Contributing to Material-UI
+# Contributing to MUI
 
-If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the Material-UI community. Here are a few guidelines that will help you along the way.
+If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the MUI community. Here are a few guidelines that will help you along the way.
 
 ## Code of Conduct
 
-Material-UI has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it.
+MUI has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it.
 Please read [the full text](/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
 
 ## A large spectrum of contributions
 
-There are [many ways](https://material-ui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project) to contribute to Material-UI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
+There are [many ways](https://mui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project) to contribute to MUI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
 
 ## Your first Pull Request
 
@@ -33,7 +33,7 @@ If there has been no activity on the issue for 7 to 14 days, it is safe to assum
 
 ## Sending a Pull Request
 
-Material-UI is a community project, so Pull Requests are always welcome, but, before working on a large change, it is best to open an issue first to discuss it with the maintainers.
+MUI is a community project, so Pull Requests are always welcome, but, before working on a large change, it is best to open an issue first to discuss it with the maintainers.
 
 When in doubt, keep your Pull Requests small. To give a Pull Request the best chance of getting accepted, don't bundle more than one feature or bug fix per Pull Request. It's often best to create two smaller Pull Requests than one big one.
 
@@ -47,11 +47,13 @@ cd material-ui
 git remote add upstream https://github.com/mui-org/material-ui.git
 ```
 
-3. Synchronize your local `next` branch with the upstream one:
+<!-- #default-branch-switch -->
+
+3. Synchronize your local `master` branch with the upstream one:
 
 ```sh
-git checkout next
-git pull upstream next
+git checkout master
+git pull upstream master
 ```
 
 4. Install the dependencies with yarn (npm isn't supported):
@@ -78,7 +80,7 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 
 ### Trying changes on the documentation site
 
-The documentation site is built with Material-UI and contains examples of all the components.
+The documentation site is built with MUI and contains examples of all the components.
 This is a great place to experiment with your changes.
 It's the local development environment used by the maintainers.
 
@@ -105,7 +107,7 @@ Make sure the following is true:
   - If this is a common use case, consider adding an example to the documentation.
 - When adding new features or modifying existing ones, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/HEAD/test/README.md).
 - If props were added or prop types were changed, the TypeScript declarations were updated.
-- When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-lab).
+- When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/HEAD/packages/mui-lab).
 - The branch is not [behind its target branch](https://github.community/t/branch-10-commits-behind/2403).
 
 Because we will only merge a Pull Request for which all tests pass. The following items need to be true:
@@ -130,7 +132,7 @@ The following section gives an overview of what each check is responsible for.
 ##### ci/codesandbox
 
 This task should not fail in isolation. It creates multiple sandboxes on CodeSandbox.com that use the version
-of Material-UI that was built from this Pull Request. Use it to test more complex scenarios.
+of MUI that was built from this Pull Request. Use it to test more complex scenarios.
 
 ##### ci/circleci: checkout
 
@@ -150,7 +152,7 @@ If `yarn test:unit` passes locally, but fails in CI, consider [Accessibility tre
 
 ##### ci/circleci: test_browser-1
 
-Runs the unit tests in multiple browsers (via Browserstack). The log of the failed
+Runs the unit tests in multiple browsers (via BrowserStack). The log of the failed
 build should list which browsers failed. If Chrome failed then `yarn test:karma`
 should<sup>[1](test/README.md#accessiblity-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
 If `yarn test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessiblity-tree-exclusion).
@@ -195,7 +197,7 @@ on _Details_ to find out more about them.
 ### Updating the component API documentation
 
 The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the [JSDoc](https://jsdoc.app/about-getting-started.html) in the TypeScript declarations.
-Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/material-ui/src/Button/Button.d.ts` for `<Button>`) and then run:
+Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/mui-material/src/Button/Button.d.ts` for `<Button>`) and then run:
 
 ```sh
 $ yarn proptypes
@@ -204,7 +206,7 @@ $ yarn docs:api
 
 ### Coding style
 
-Please follow the coding style of the project. Material-UI uses prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
+Please follow the coding style of the project. MUI uses prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
 
 - `yarn prettier` reformats the code.
 - `yarn lint` runs manually the linting rules.
@@ -244,7 +246,7 @@ about translations](#translations).
 
 #### 3. Write the content of the demo
 
-Material-UI documents how to use this library with TypeScript.
+MUI documents how to use this library with TypeScript.
 
 If you are familiar with this language, write the demo in TypeScript, and only, in a \*.tsx file.
 When you're done run `yarn docs:typescript:formatted` to automatically create the JavaScript version.
@@ -269,24 +271,24 @@ index 791a7da1f4..a5db13b414 100644
 @@ -61,7 +61,7 @@
    "dependencies": {
      "@babel/runtime": "^7.4.4",
-     "@material-ui/styled-engine": "^5.0.0-alpha.16",
--    "@material-ui/core": "^5.0.0-alpha.15",
-+    "@material-ui/core": "https://pkg.csb.dev/mui-org/material-ui/commit/371c952b/@material-ui/core",
-     "@material-ui/system": "^5.0.0-alpha.16",
+     "@mui/styled-engine": "^5.0.0-alpha.16",
+-    "@mui/material": "^5.0.0-alpha.15",
++    "@mui/material": "https://pkg.csb.dev/mui-org/material-ui/commit/371c952b/@mui/material",
+     "@mui/system": "^5.0.0-alpha.16",
 ```
 
 Alternatively, you can open the Netlify preview of the documentation, and open any demo in Codesandbox. The documentation automatically configures the dependencies to use the preview packages.
 
 ## Translations
 
-Translations are handled via [Crowdin](https://translate.material-ui.com).
+Translations are handled via [Crowdin](https://translate.mui.com).
 You don't need to apply any changes to localized versions of our markdown files
 i.e. files having a `-locale` suffix. Crowdin automatically takes care of syncing
 these changes across the localized versions.
 
 ## Roadmap
 
-To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://material-ui.com/discover-more/roadmap/).
+To get a sense of where MUI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://mui.com/discover-more/roadmap/).
 
 ## License
 

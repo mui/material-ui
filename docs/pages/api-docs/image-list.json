@@ -12,8 +12,8 @@
     "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
-        "name": "union",
-        "description": "'masonry'<br>&#124;&nbsp;'quilted'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;'woven'<br>&#124;&nbsp;string"
+        "name": "enum",
+        "description": "'masonry'<br>&#124;&nbsp;'quilted'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;'woven'"
       },
       "default": "'standard'"
     }
@@ -26,7 +26,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLUListElement",
-  "filename": "/packages/material-ui/src/ImageList/ImageList.js",
+  "filename": "/packages/mui-material/src/ImageList/ImageList.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/image-list/\">Image List</a></li></ul>",
   "styledComponent": true,

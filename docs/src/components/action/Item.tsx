@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import { useTheme } from '@mui/material/styles';
+import Box, { BoxProps } from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 export function Group({ desktopColumns = 1, ...props }: { desktopColumns?: number } & BoxProps) {
   const theme = useTheme();
@@ -14,6 +14,9 @@ export function Group({ desktopColumns = 1, ...props }: { desktopColumns?: numbe
         display: 'grid',
         gap: 1,
         gridTemplateColumns: `repeat(${desktopColumns}, 1fr)`,
+        '@media (prefers-reduced-motion: no-preference)': {
+          scrollBehavior: 'smooth',
+        },
         '& > *': {
           minWidth: {
             xs: desktopColumns === 1 ? 300 : 225,
@@ -84,16 +87,31 @@ export default function Item({
         ...props.sx,
       }}
     >
-      {icon}
-      <Typography
-        component="span"
-        color="text.primary"
-        sx={{ ml: 2 }}
-        variant="body2"
-        fontWeight="bold"
-      >
-        {title}
-      </Typography>
+      <Box component="span" sx={{ mr: 2, lineHeight: 0 }}>
+        {icon}
+      </Box>
+      <span>
+        <Typography
+          component="span"
+          color="text.primary"
+          variant="body2"
+          fontWeight="bold"
+          sx={{ display: 'block' }}
+        >
+          {title}
+        </Typography>
+        {description && (
+          <Typography
+            component="span"
+            color="text.secondary"
+            variant="body2"
+            fontWeight="regular"
+            sx={{ mt: 0.5 }}
+          >
+            {description}
+          </Typography>
+        )}
+      </span>
     </Box>
   );
 }

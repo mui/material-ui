@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import Fade from '@material-ui/core/Fade';
-import Typography from '@material-ui/core/Typography';
-import Timeline from '@material-ui/lab/Timeline';
-import TimelineItem from '@material-ui/lab/TimelineItem';
-import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
-import TimelineConnector from '@material-ui/lab/TimelineConnector';
-import TimelineContent from '@material-ui/lab/TimelineContent';
-import TimelineDot from '@material-ui/lab/TimelineDot';
-import InfoOutlined from '@material-ui/icons/InfoOutlined';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Fade from '@mui/material/Fade';
+import Typography from '@mui/material/Typography';
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineDot from '@mui/lab/TimelineDot';
+import InfoOutlined from '@mui/icons-material/InfoOutlined';
 
 const primary = {
   50: '#F0F7FF',
@@ -55,7 +55,7 @@ export default function BasicTimeline() {
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
    * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://next.material-ui.com/customization/palette/#toggling-color-mode
+   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
    */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
@@ -155,7 +155,7 @@ export default function BasicTimeline() {
                 variant="body2"
                 sx={{ mb: 1 }}
               >
-                Add these properties:
+                Use the sx prop to add these properties:
               </Typography>
               <InfoOutlined fontSize="small" sx={{ ml: 'auto', color: 'grey.500' }} />
             </Box>

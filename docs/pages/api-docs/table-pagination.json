@@ -51,7 +51,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLTableCellElement",
-  "filename": "/packages/material-ui/src/TablePagination/TablePagination.js",
+  "filename": "/packages/mui-material/src/TablePagination/TablePagination.js",
   "inheritance": { "component": "TableCell", "pathname": "/api/table-cell/" },
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
   "styledComponent": true,

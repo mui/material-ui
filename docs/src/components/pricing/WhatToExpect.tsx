@@ -1,13 +1,13 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import LocalOfferOutlinedIcon from '@material-ui/icons/LocalOfferOutlined';
-import AllInclusiveOutlinedIcon from '@material-ui/icons/AllInclusiveOutlined';
-import ReplayRoundedIcon from '@material-ui/icons/ReplayRounded';
-import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
+import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
+import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
 export default function WhatToExpect() {
   return (
@@ -30,7 +30,7 @@ export default function WhatToExpect() {
                 variant="body2"
                 sx={{ ml: 1 }}
               >
-                Volumn discount
+                Volume discount
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
@@ -59,7 +59,7 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase you are granted a license to use a version of the product in
+              With your purchase, you are granted a license to use a version of the product in
               perpetuity. There are no further charges unless you choose to renew support and
               maintenance to cover newer versions. Please note that while the use of the software is
               perpetual, support and maintenance are not. We roll bug fixes, performance
@@ -104,7 +104,7 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase you receive support and maintenance for one year. After this time,
+              With your purchase, you receive support and maintenance for one year. After this time,
               you can continue to use your licensed versions in perpetuity, but will no longer be
               able to update to the latest version.
             </Typography>

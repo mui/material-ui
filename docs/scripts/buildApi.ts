@@ -27,9 +27,9 @@ import generatePropTypeDescription, {
   isElementAcceptingRefProp,
 } from 'docs/src/modules/utils/generatePropTypeDescription';
 import { findPages, findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
-import { getHeaders, renderInline as renderMarkdownInline } from '@material-ui/markdown';
+import { getHeaders, renderInline as renderMarkdownInline } from '@mui/markdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
-import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
+import createGenerateClassName from '@mui/styles/createGenerateClassName';
 import * as ttp from 'typescript-to-proptypes';
 import { getLineFeed, getUnstyledFilename } from './helpers';
 
@@ -374,7 +374,7 @@ function getInheritance(
 /**
  * Produces markdown of the description that can be hosted anywhere.
  *
- * By default we assume that the markdown is hosted on material-ui.com which is
+ * By default we assume that the markdown is hosted on mui.com which is
  * why the source includes relative url. We transform them to absolute urls with
  * this method.
  */
@@ -400,19 +400,19 @@ async function computeApiDescription(api: ReactApi, options: { host: string }): 
  * /**
  *  * Demos:
  *  *
- *  * - [Icons](https://material-ui.com/components/icons/)
- *  * - [Material Icons](https://material-ui.com/components/material-icons/)
+ *  * - [Icons](https://mui.com/components/icons/)
+ *  * - [Material Icons](https://mui.com/components/material-icons/)
  *  *
  *  * API:
  *  *
- *  * - [Icon API](https://material-ui.com/api/icon/)
+ *  * - [Icon API](https://mui.com/api/icon/)
  */
 async function annotateComponentDefinition(context: {
   component: { filename: string };
   api: ReactApi;
 }) {
   const { api, component } = context;
-  const HOST = 'https://material-ui.com';
+  const HOST = 'https://mui.com';
 
   const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
   const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
@@ -844,7 +844,7 @@ async function buildDocs(options: {
       try {
         prop = createDescribeableProp(propDescriptor, propName);
       } catch (error) {
-        propErrors.push([propName, error]);
+        propErrors.push([propName, error as Error]);
         prop = null;
       }
       if (prop === null) {
@@ -1113,7 +1113,7 @@ async function run(argv: {
   /**
    * components: Array<{ filename: string }>
    * e.g.
-   * [{ filename: '/Users/user/Projects/material-ui/packages/material-ui/src/Accordion/Accordion.js'}, ...]
+   * [{ filename: '/Users/user/Projects/material-ui/packages/mui-material/src/Accordion/Accordion.js'}, ...]
    */
   const components = componentDirectories
     .reduce((directories, componentDirectory) => {
@@ -1155,7 +1155,7 @@ async function run(argv: {
         program,
         workspaceRoot,
       });
-    } catch (error) {
+    } catch (error: any) {
       error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
       throw error;
     }

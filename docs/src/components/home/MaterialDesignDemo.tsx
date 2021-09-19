@@ -1,23 +1,23 @@
 import * as React from 'react';
-import MuiAvatar from '@material-ui/core/Avatar';
-import MuiBox from '@material-ui/core/Box';
-import MuiChip from '@material-ui/core/Chip';
-import MuiDivider from '@material-ui/core/Divider';
-import MuiIconButton from '@material-ui/core/IconButton';
-import MuiCard, { CardProps } from '@material-ui/core/Card';
-import MuiSwitch from '@material-ui/core/Switch';
-import MuiTypography from '@material-ui/core/Typography';
-import MuiStack from '@material-ui/core/Stack';
-import MuiEdit from '@material-ui/icons/Edit';
-import MuiLocationOn from '@material-ui/icons/LocationOn';
+import MuiAvatar from '@mui/material/Avatar';
+import MuiBox from '@mui/material/Box';
+import MuiChip from '@mui/material/Chip';
+import MuiDivider from '@mui/material/Divider';
+import MuiIconButton from '@mui/material/IconButton';
+import MuiCard, { CardProps } from '@mui/material/Card';
+import MuiSwitch from '@mui/material/Switch';
+import MuiTypography from '@mui/material/Typography';
+import MuiStack from '@mui/material/Stack';
+import MuiEdit from '@mui/icons-material/Edit';
+import MuiLocationOn from '@mui/icons-material/LocationOn';
 import { withPointer } from 'docs/src/components/home/ElementPointer';
-import { grey } from '@material-ui/core/colors';
+import { grey } from '@mui/material/colors';
 
 export const componentCode = `<Card>
   <Box sx={{ p: 2, display: 'flex' }}>
     <Avatar variant="rounded" src="avatar1.jpg" />
     <Stack spacing={0.5}>
-      <Typography fontWeight={600}>Michael Scott</Typography>
+      <Typography fontWeight={700}>Michael Scott</Typography>
       <Typography variant="body2" color="text.secondary">
       <LocationOn sx={{color: grey[500]}} /> Scranton, PA
       </Typography>
@@ -68,7 +68,7 @@ export default function MaterialDesignDemo(props: CardProps) {
             '& svg': { fontSize: 20, verticalAlign: 'bottom', mr: 0.5 },
           }}
         >
-          <Typography fontWeight={600}>Michael Scott</Typography>
+          <Typography fontWeight={700}>Michael Scott</Typography>
           <Typography2 variant="body2" color="text.secondary">
             <LocationOn sx={{ color: grey[500] }} />
             Scranton, PA

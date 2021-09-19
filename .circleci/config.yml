@@ -1,6 +1,10 @@
 version: 2.1
 
 parameters:
+  browserstack-force:
+    description: Whether to force browserstack usage. We have limited resources on browserstack so the pipeline might decide to skip browserstack if this parameter isn't set to true.
+    type: boolean
+    default: false
   react-dist-tag:
     description: The dist-tag of react to be used
     type: string
@@ -24,6 +28,7 @@ defaults: &defaults
     # Keep in sync with "Save playwright cache"
     PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
     # expose it globally otherwise we have to thread it from each job to the install command
+    BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
     REACT_DIST_TAG: << parameters.react-dist-tag >>
     TEST_GATE: << parameters.test-gate >>
   working_directory: /tmp/material-ui
@@ -147,13 +152,13 @@ jobs:
             # latest commit
             LATEST_COMMIT=$(git rev-parse HEAD)
 
-            # latest commit where packages/material-ui-icons was changed
-            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/material-ui-icons)
+            # latest commit where packages/mui-icons-material was changed
+            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/mui-icons-material)
 
             if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
               echo "changes, let's run the tests"
-              yarn workspace @material-ui/icons build:typings
-              yarn workspace @material-ui/icons test:built-typings
+              yarn workspace @mui/icons-material build:typings
+              yarn workspace @mui/icons-material test:built-typings
             else
               echo "no changes"
             fi
@@ -243,22 +248,23 @@ jobs:
       - run:
           name: Test module augmenation
           command: |
-            yarn workspace @material-ui/core typescript:module-augmentation
-            yarn workspace @material-ui/unstyled typescript:module-augmentation
+            yarn workspace @mui/material typescript:module-augmentation
+            yarn workspace @mui/core typescript:module-augmentation
 
       - restore_cache:
           name: Restore generated declaration files
           keys:
-            # We assume that the target branch is `next` and that declaration files are persisted in commit order.
+            # #default-branch-switch
+            # We assume that the target branch is `master` and that declaration files are persisted in commit order.
             # "If there are multiple matches, the most recently generated cache will be used."
-            - typescript-declaration-files-next
+            - typescript-declaration-files-master
 
       - run:
           name: Diff declaration files
           command: |
-            git add -f packages/material-ui/build || echo '/core declarations do not exist'
-            git add -f packages/material-ui-lab/build || echo '/lab declarations do not exist'
-            git add -f packages/material-ui-utils/build || echo '/utils declarations do not exist'
+            git add -f packages/mui-material/build || echo '/material declarations do not exist'
+            git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
+            git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
             yarn lerna run --parallel build:types
             git --no-pager diff
 
@@ -270,9 +276,9 @@ jobs:
           key: typescript-declaration-files-{{ .Branch }}-{{ .Revision }}
           paths:
             # packages with generated declaration files
-            - packages/material-ui/build
-            - packages/material-ui-lab/build
-            - packages/material-ui-utils/build
+            - packages/mui-material/build
+            - packages/mui-lab/build
+            - packages/mui-utils/build
   test_types_next:
     <<: *defaults
     steps:
@@ -306,9 +312,9 @@ jobs:
       - run:
           name: Diff declaration files
           command: |
-            git add -f packages/material-ui/build || echo '/core declarations do not exist'
-            git add -f packages/material-ui-lab/build || echo '/lab declarations do not exist'
-            git add -f packages/material-ui-utils/build || echo '/utils declarations do not exist'
+            git add -f packages/mui-material/build || echo '/core declarations do not exist'
+            git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
+            git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
             yarn lerna run --parallel build:types
             git --no-pager diff
 
@@ -362,8 +368,8 @@ jobs:
           name: yarn test:e2e
           command: yarn test:e2e
       - run:
-          name: Can we generate the @material-ui/core umd build?
-          command: yarn workspace @material-ui/core build:umd
+          name: Can we generate the @mui/material umd build?
+          command: yarn workspace @mui/material build:umd
       - run:
           name: Test umd release
           command: yarn test:umd
@@ -417,7 +423,7 @@ jobs:
       - install_js
       - run:
           name: Build packages for fixtures
-          command: yarn lerna run --scope "@material-ui/*" build
+          command: yarn lerna run --scope "@mui/*" build
       - persist_to_workspace:
           root: packages
           paths:

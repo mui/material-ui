@@ -1,31 +1,24 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
-import ToggleButton from '@material-ui/core/ToggleButton';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Brightness2RoundedIcon from '@material-ui/icons/Brightness2Rounded';
-import Brightness7Icon from '@material-ui/icons/Brightness7';
-import SettingsBrightnessIcon from '@material-ui/icons/SettingsBrightness';
-import FormatTextdirectionLToRIcon from '@material-ui/icons/FormatTextdirectionLToR';
-import FormatTextdirectionRToLIcon from '@material-ui/icons/FormatTextdirectionRToL';
+import { styled, useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Drawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
+import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
+import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-
-const DrawerPaper = styled(Paper)({
-  width: 360,
-  borderTopRightRadius: 0,
-  borderBottomRightRadius: 0,
-});
 
 const Heading = styled(Typography)({
   margin: '20px 0 10px',
@@ -78,7 +71,7 @@ function AppSettingsDrawer(props) {
       anchor="right"
       onClose={onClose}
       open={open}
-      PaperProps={{ component: DrawerPaper }}
+      PaperProps={{ elevation: 0, sx: { width: 360 } }}
       {...other}
     >
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
@@ -106,7 +99,7 @@ function AppSettingsDrawer(props) {
             data-ga-event-category="settings"
             data-ga-event-action="light"
           >
-            <Brightness7Icon fontSize="small" />
+            <LightModeIcon fontSize="small" />
             {t('settings.light')}
           </IconToggleButton>
           <IconToggleButton
@@ -124,7 +117,7 @@ function AppSettingsDrawer(props) {
             data-ga-event-category="settings"
             data-ga-event-action="dark"
           >
-            <Brightness2RoundedIcon fontSize="small" />
+            <DarkModeOutlinedIcon fontSize="small" />
             {t('settings.dark')}
           </IconToggleButton>
         </ToggleButtonGroup>
@@ -163,7 +156,7 @@ function AppSettingsDrawer(props) {
           href="/customization/color/#playground"
           data-ga-event-category="settings"
           data-ga-event-action="colors"
-          variant="body1"
+          variant="body2"
         >
           {t('settings.editWebsiteColors')}
         </Link>

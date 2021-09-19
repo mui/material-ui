@@ -94,7 +94,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
   "forwardsRefTo": "undefined",
-  "filename": "/packages/material-ui-lab/src/StaticDateRangePicker/StaticDateRangePicker.tsx",
+  "filename": "/packages/mui-lab/src/StaticDateRangePicker/StaticDateRangePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-range-picker/\">Date Range Picker</a></li></ul>",
   "styledComponent": true,

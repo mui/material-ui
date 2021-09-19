@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Fade from '@material-ui/core/Fade';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Fade from '@mui/material/Fade';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 const primary = {
   50: '#F0F7FF',
@@ -23,7 +23,7 @@ export default function ThemeTabs() {
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
    * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://next.material-ui.com/customization/palette/#toggling-color-mode
+   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
    */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;

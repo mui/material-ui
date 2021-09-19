@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import { debounce } from '@material-ui/core/utils';
+import Box, { BoxProps } from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { debounce } from '@mui/material/utils';
 
 const PointerContext = React.createContext<undefined | ((data: Data) => void)>(undefined);
 
@@ -48,11 +48,11 @@ export default function PointerContainer({
     name: null,
     target: null,
   });
-  /* eslint-disable react-hooks/exhaustive-deps */
-  const handleMouseOver = React.useCallback(
-    debounce((elementData: Data) => {
-      setData(elementData);
-    }, 200),
+  const handleMouseOver = React.useMemo(
+    () =>
+      debounce((elementData: Data) => {
+        setData(elementData);
+      }, 200),
     [],
   );
   React.useEffect(() => {

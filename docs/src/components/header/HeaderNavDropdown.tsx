@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Collapse from '@material-ui/core/Collapse';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
 import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
@@ -45,13 +45,13 @@ const UList = styled('ul')({
 
 const PRODUCTS = [
   {
-    name: 'Core',
-    description: 'Ready to use, forever free, foundational components.',
+    name: 'MUI Core',
+    description: 'Ready to use, free forever, foundational components.',
     href: ROUTES.productCore,
   },
   {
-    name: 'Advanced',
-    description: 'Powerful and robust components for your complex apps.',
+    name: 'MUI X',
+    description: 'Advanced and powerful components for complex use-cases.',
     href: ROUTES.productAdvanced,
   },
   {
@@ -82,7 +82,7 @@ export default function HeaderNavDropdown() {
           p: '6.5px',
           borderRadius: 1,
           border: '1px solid',
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'transparent'),
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'transparent'),
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
           '& svg': { width: 18, height: 18 },
           '&:focus': {

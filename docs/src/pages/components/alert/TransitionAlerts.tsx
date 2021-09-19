@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Alert from '@material-ui/core/Alert';
-import IconButton from '@material-ui/core/IconButton';
-import Collapse from '@material-ui/core/Collapse';
-import Button from '@material-ui/core/Button';
-import CloseIcon from '@material-ui/icons/Close';
+import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function TransitionAlerts() {
   const [open, setOpen] = React.useState(true);

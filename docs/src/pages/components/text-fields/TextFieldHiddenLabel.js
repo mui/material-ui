@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Stack from '@material-ui/core/Stack';
-import TextField from '@material-ui/core/TextField';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
 
 export default function TextFieldHiddenLabel() {
   return (

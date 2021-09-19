@@ -28,11 +28,14 @@ module.exports = {
       },
       {
         test: /\.(jpg|gif|png)$/,
-        loader: 'url-loader',
+        type: 'asset/inline',
       },
     ],
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
   },
+  // TODO: 'browserslist:modern'
+  // See https://github.com/webpack/webpack/issues/14203
+  target: 'web',
 };

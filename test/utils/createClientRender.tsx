@@ -335,7 +335,11 @@ export function createClientRender(
       const filename = new Error()
         .stack!.split(/\r?\n/)
         .map((line) => {
-          const fileMatch = line.match(/\(([^)]+):\d+:\d+\)/);
+          const fileMatch =
+            // chrome: "    at Context.beforeHook (webpack-internal:///./test/utils/createClientRender.tsx:257:24)""
+            line.match(/\(([^)]+):\d+:\d+\)/) ??
+            // firefox: "beforeHook@webpack-internal:///./test/utils/createClientRender.tsx:257:24"
+            line.match(/@(.*?):\d+:\d+$/);
           if (fileMatch === null) {
             return null;
           }

@@ -6,12 +6,12 @@
 
 スペースユーティリティは、簡易マージンとパディングプロップをマージンとパディングのCSS宣言に変換します。 プロップには、`{property}{sides}`という形式で名前が付けられます。 プロップには、`{property}{sides}`という形式で名前が付けられます。
 
-Where *property* is one of:
+*property*は次のいずれかであり
 
-- `m` - for classes that set *margin*
-- `p` - for classes that set *padding*
+- `m` - *margin*を設定するためのclass
+- `p` - *padding*を設定するためのclass
 
-Where *sides* is one of:
+*sides* は次のいずれかである。
 
 - `t` - for classes that set *margin-top* or *padding-top*
 - `b` - for classes that set *margin-bottom* or *padding-bottom*
@@ -25,7 +25,7 @@ Where *sides* is one of:
 
 入力内容とTheme (テーマ) 設定によって、以下の様に間隔の変更ができます。
 
-- input: `number` & theme: `number`: the property is multiplied by the theme value.
+- 入力: `number` & テーマ: `number`: テーマに設定された間隔を入力された数字倍に変形します。.
 
 ```jsx
 const theme = {
@@ -38,7 +38,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 16px;
 ```
 
-- input: `number` & theme: `array`: the property is value is used as the array index.
+- 入力: `number` & テーマ: `配列`: テーマに設定された値を配列としてインデックスから参照できます。
 
 ```jsx
 const theme = {
@@ -50,7 +50,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 3px;
 ```
 
-- input: `number` & theme: `function`: the function is called with the property value.
+- 入力: `number` & テーマ: `関数`: 入力された値が関数に渡され、結果をプロパティとして利用します。
 
 ```jsx
 const theme = {
@@ -61,7 +61,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 4px;
 ```
 
-- input: `string`: the property is passed as raw CSS value.
+- 入力: `string`: 入力された値はそのまま生のCSSの値として適用されます。
 
 ```jsx
 <Box sx={{ m: "2rem" }} /> // margin: 2rem;

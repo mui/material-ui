@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import TreeView from '@material-ui/lab/TreeView';
-import TreeItem from '@material-ui/lab/TreeItem';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import TreeView from '@mui/lab/TreeView';
+import TreeItem from '@mui/lab/TreeItem';
 
 export default function ControlledTreeView() {
   const [expanded, setExpanded] = React.useState<string[]>([]);
@@ -56,7 +56,7 @@ export default function ControlledTreeView() {
           <TreeItem nodeId="4" label="Webstorm" />
         </TreeItem>
         <TreeItem nodeId="5" label="Documents">
-          <TreeItem nodeId="6" label="Material-UI">
+          <TreeItem nodeId="6" label="MUI">
             <TreeItem nodeId="7" label="src">
               <TreeItem nodeId="8" label="index.js" />
               <TreeItem nodeId="9" label="tree-view.js" />

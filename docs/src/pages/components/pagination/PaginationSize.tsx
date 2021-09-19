@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Pagination from '@material-ui/core/Pagination';
-import Stack from '@material-ui/core/Stack';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 export default function PaginationSize() {
   return (

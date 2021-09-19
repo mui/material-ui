@@ -4,7 +4,7 @@ import { CODE_VARIANTS, LANGUAGES } from '../constants';
 
 /**
  * Mapping from the date adapter sub-packages to the npm packages they require.
- * @example `@material-ui/lab/AdapterDateFns` has a peer dependency on `date-fns`.
+ * @example `@mui/lab/AdapterDateFns` has a peer dependency on `date-fns`.
  */
 const dateAdapterPackageMapping: Record<string, string> = {
   AdapterDateFns: 'date-fns',
@@ -13,13 +13,7 @@ const dateAdapterPackageMapping: Record<string, string> = {
   AdapterMoment: 'moment',
 };
 
-export function titleize(hyphenedString: string): string {
-  if (process.env.NODE_ENV !== 'production') {
-    if (typeof hyphenedString !== 'string' || hyphenedString.length <= 0) {
-      console.error('titleize(hyphenedString) expects a non empty string argument.');
-    }
-  }
-
+function titleize(hyphenedString: string): string {
   return hyphenedString
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -77,8 +71,8 @@ const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled
 function addTypeDeps(deps: Record<string, string>): void {
   const packagesWithDTPackage = Object.keys(deps)
     .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
-    // All the Material-UI packages come with bundled types
-    .filter((name) => name.indexOf('@material-ui/') !== 0);
+    // All the MUI packages come with bundled types
+    .filter((name) => name.indexOf('@mui/') !== 0);
 
   packagesWithDTPackage.forEach((name) => {
     let resolvedName = name;
@@ -104,13 +98,13 @@ function includePeerDependencies(
     '@emotion/styled': versions['@emotion/styled'],
   };
 
-  if (newDeps['@material-ui/lab']) {
-    newDeps['@material-ui/core'] = versions['@material-ui/core'];
+  if (newDeps['@mui/lab']) {
+    newDeps['@mui/material'] = versions['@mui/material'];
   }
 
   if (newDeps['@material-ui/data-grid']) {
-    newDeps['@material-ui/core'] = versions['@material-ui/core'];
-    newDeps['@material-ui/styles'] = versions['@material-ui/styles'];
+    newDeps['@mui/material'] = versions['@mui/material'];
+    newDeps['@mui/styles'] = versions['@mui/styles'];
   }
 
   // TODO: Where is this coming from and why does it need to be injected this way.
@@ -132,10 +126,10 @@ function getMuiPackageVersion(packageName: string, commitRef?: string): string {
     process.env.SOURCE_CODE_REPO !== 'https://github.com/mui-org/material-ui'
   ) {
     // #default-branch-switch
-    return 'next';
+    return 'latest';
   }
   const shortSha = commitRef.slice(0, 8);
-  return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@material-ui/${packageName}`;
+  return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@mui/${packageName}`;
 }
 
 /**
@@ -148,7 +142,7 @@ export function getDependencies(
   options: {
     codeLanguage?: 'JS' | 'TS';
     /**
-     * If specified use `@material-ui/*` packages from a specific commit.
+     * If specified use `@mui/*` packages from a specific commit.
      */
     muiCommitRef?: string;
   } = {},
@@ -161,15 +155,16 @@ export function getDependencies(
     'react-dom': 'latest',
     '@emotion/react': 'latest',
     '@emotion/styled': 'latest',
-    '@material-ui/core': getMuiPackageVersion('core', muiCommitRef),
-    '@material-ui/icons': getMuiPackageVersion('icons', muiCommitRef),
-    '@material-ui/lab': getMuiPackageVersion('lab', muiCommitRef),
-    '@material-ui/styled-engine': getMuiPackageVersion('styled-engine', muiCommitRef),
-    '@material-ui/styles': getMuiPackageVersion('styles', muiCommitRef),
-    '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
-    '@material-ui/private-theming': getMuiPackageVersion('theming', muiCommitRef),
-    '@material-ui/unstyled': getMuiPackageVersion('unstyled', muiCommitRef),
-    '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),
+    '@mui/material': getMuiPackageVersion('material', muiCommitRef),
+    '@mui/icons-material': getMuiPackageVersion('icons-material', muiCommitRef),
+    '@mui/lab': getMuiPackageVersion('lab', muiCommitRef),
+    '@mui/styled-engine': getMuiPackageVersion('styled-engine', muiCommitRef),
+    '@mui/styles': getMuiPackageVersion('styles', muiCommitRef),
+    '@mui/system': getMuiPackageVersion('system', muiCommitRef),
+    '@mui/private-theming': getMuiPackageVersion('theming', muiCommitRef),
+    '@mui/core': getMuiPackageVersion('core', muiCommitRef),
+    '@mui/utils': getMuiPackageVersion('utils', muiCommitRef),
+    '@mui/material-next': getMuiPackageVersion('material-next', muiCommitRef),
   };
 
   // TODO: Where is this coming from and why does it need to be injected this way.
@@ -196,7 +191,7 @@ export function getDependencies(
     }
 
     // e.g date-fns
-    const dateAdapterMatch = m[2].match(/^@material-ui\/lab\/(Adapter.*)/);
+    const dateAdapterMatch = m[2].match(/^@mui\/lab\/(Adapter.*)/);
     if (dateAdapterMatch !== null) {
       const packageName = dateAdapterPackageMapping[dateAdapterMatch[1]];
       if (packageName === undefined) {
@@ -215,9 +210,9 @@ export function getDependencies(
     deps.typescript = 'latest';
   }
 
-  if (!deps['@material-ui/core']) {
-    // The `index.js` imports StyledEngineProvider from '@material-ui/core', so we need to make sure we have it as a dependency
-    const name = '@material-ui/core';
+  if (!deps['@mui/material']) {
+    // The `index.js` imports StyledEngineProvider from '@mui/material', so we need to make sure we have it as a dependency
+    const name = '@mui/material';
     deps[name] = versions[name] ? versions[name] : 'latest';
   }
 
@@ -231,9 +226,7 @@ export function getDependencies(
  * @return The cookie value
  */
 export function getCookie(name: string): string | undefined {
-  // `process.browser` is set by nextjs where we only use `getCookie`
-  // but this file is imported from nodejs scripts so TypeScript complains for that environment.
-  if ((process as any).browser) {
+  if (typeof document !== 'undefined') {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) {

@@ -1,3 +1,9 @@
+/* eslint-disable import/first */
+import { LicenseInfo } from '@mui/x-data-grid-pro';
+
+// Remove the license warning from demonstration purposes
+LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
+
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import * as React from 'react';
@@ -10,7 +16,7 @@ import { create } from 'jss';
 import jssRtl from 'jss-rtl';
 import { CacheProvider } from '@emotion/react';
 import { useRouter } from 'next/router';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 import pages from 'docs/src/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
@@ -232,7 +238,7 @@ async function registerServiceWorker() {
   if (
     'serviceWorker' in navigator &&
     process.env.NODE_ENV === 'production' &&
-    window.location.host.indexOf('material-ui.com') !== -1
+    window.location.host.indexOf('mui.com') !== -1
   ) {
     // register() automatically attempts to refresh the sw.js.
     const registration = await navigator.serviceWorker.register('/sw.js');
@@ -261,12 +267,12 @@ if (process.browser && process.env.NODE_ENV === 'production') {
   console.log(
     `%c
 
-███╗   ███╗ █████╗ ████████╗███████╗██████╗ ██╗ █████╗ ██╗      ██╗   ██╗██╗
-████╗ ████║██╔══██╗╚══██╔══╝██╔════╝██╔══██╗██║██╔══██╗██║      ██║   ██║██║
-██╔████╔██║███████║   ██║   █████╗  ██████╔╝██║███████║██║█████╗██║   ██║██║
-██║╚██╔╝██║██╔══██║   ██║   ██╔══╝  ██╔══██╗██║██╔══██║██║╚════╝██║   ██║██║
-██║ ╚═╝ ██║██║  ██║   ██║   ███████╗██║  ██║██║██║  ██║███████╗ ╚██████╔╝██║
-╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚══════╝  ╚═════╝ ╚═╝
+███╗   ███╗ ██╗   ██╗ ██████╗
+████╗ ████║ ██║   ██║   ██╔═╝
+██╔████╔██║ ██║   ██║   ██║
+██║╚██╔╝██║ ██║   ██║   ██║
+██║ ╚═╝ ██║ ╚██████╔╝ ██████╗
+╚═╝     ╚═╝  ╚═════╝  ╚═════╝
 
 Tip: you can access the documentation \`theme\` object directly in the console.
 `,
@@ -317,11 +323,7 @@ function AppWrapper(props) {
 
   const activePage = findActivePage(pages, router.pathname);
 
-  let fonts = [
-    // TODO: remove this values, they are considered blocking resources and slow all the pages on first render.
-    'https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&display=swap',
-    'https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap',
-  ];
+  let fonts = [];
   if (router.pathname.match(/onepirate/)) {
     fonts = [
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',

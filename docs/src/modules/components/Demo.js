@@ -1,13 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { alpha, styled } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import Collapse from '@material-ui/core/Collapse';
-import NoSsr from '@material-ui/core/NoSsr';
+import { alpha, styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import NoSsr from '@mui/material/NoSsr';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
-import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
@@ -20,7 +19,7 @@ const DemoToolbarFallbackRoot = styled('div')(({ theme }) => {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
-      height: theme.spacing(6),
+      height: theme.spacing(8),
     },
   };
 });
@@ -113,7 +112,8 @@ const DemoRoot = styled('div', {
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
-    backgroundColor: theme.palette.mode === 'dark' ? '#333' : theme.palette.grey[100],
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100],
   }),
   ...(hiddenToolbar && {
     paddingTop: theme.spacing(2),
@@ -175,6 +175,10 @@ export default function Demo(props) {
   }
 
   const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false);
+  const shownOnce = React.useRef(false);
+  if (codeOpen) {
+    shownOnce.current = true;
+  }
 
   React.useEffect(() => {
     const navigatedDemoName = getDemoName(window.location.hash);
@@ -183,12 +187,8 @@ export default function Demo(props) {
     }
   }, [demoName]);
 
-  const jsx = getJsxPreview(demoData.raw || '');
   const showPreview =
-    !demoOptions.hideToolbar &&
-    demoOptions.defaultCodeOpen !== false &&
-    jsx !== demoData.raw &&
-    jsx.split(/\n/).length <= 17;
+    !demoOptions.hideToolbar && demoOptions.defaultCodeOpen !== false && Boolean(demo.jsxPreview);
 
   const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
 
@@ -251,7 +251,7 @@ export default function Demo(props) {
         <div>
           <Code
             id={demoSourceId}
-            code={showPreview && !codeOpen ? jsx : demoData.raw}
+            code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
             language={demoData.sourceLanguage}
           />
         </div>

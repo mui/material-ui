@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import NoSsr from '@material-ui/core/NoSsr';
-import Divider from '@material-ui/core/Divider';
+import NoSsr from '@mui/material/NoSsr';
+import Divider from '@mui/material/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Hero from 'docs/src/components/home/Hero';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
@@ -19,8 +19,8 @@ export default function Home() {
   return (
     <BrandingProvider>
       <Head
-        title="MUI: A popular React UI framework"
-        description="The ultimate solution for your UI. MUI provides a robust, customizible and accessible library of foundational and advanced components, enabling you to build your own design system and develop React applications faster."
+        title="MUI: The React component library you always wanted"
+        description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design. You will develop React applications faster."
       />
       <NoSsr>
         <NewsletterToast />
@@ -46,9 +46,9 @@ export default function Home() {
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Material-UI",
-  "url": "https://material-ui.com/",
-  "logo": "https://material-ui.com/static/logo.png",
+  "name": "MUI",
+  "url": "https://mui.com/",
+  "logo": "https://mui.com/static/logo.png",
   "sameAs": [
     "https://twitter.com/materialUI",
     "https://github.com/mui-org/material-ui",

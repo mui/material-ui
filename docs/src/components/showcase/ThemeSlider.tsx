@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Fade from '@material-ui/core/Fade';
-import Slider from '@material-ui/core/Slider';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Fade from '@mui/material/Fade';
+import Slider from '@mui/material/Slider';
 
 const primary = {
   50: '#F0F7FF',
@@ -50,7 +50,7 @@ export default function ThemeSlider() {
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
    * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://next.material-ui.com/customization/palette/#toggling-color-mode
+   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
    */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
@@ -75,7 +75,7 @@ export default function ThemeSlider() {
               },
               rail: {
                 opacity: 1,
-                backgroundColor: mode === 'dark' ? primaryDark[900] : grey[200],
+                backgroundColor: mode === 'dark' ? primaryDark[600] : grey[200],
               },
               track: {
                 border: 'none',
@@ -90,9 +90,11 @@ export default function ThemeSlider() {
               vertical: {
                 '& .MuiSlider-mark[data-index="0"]': {
                   bottom: '2px !important',
+                  backgroundColor: mode === 'dark' ? primary[400] : grey[500],
                 },
                 '& .MuiSlider-mark[data-index="4"]': {
                   bottom: 'unset !important',
+                  backgroundColor: mode === 'dark' ? primary[400] : grey[500],
                 },
                 '& .MuiSlider-valueLabel': {
                   backgroundColor: 'transparent',
@@ -135,7 +137,6 @@ export default function ThemeSlider() {
               height: 180,
               padding: '0.75rem 0',
               borderRadius: 4,
-              bgcolor: mode === 'dark' ? primaryDark[700] : '#fff',
             }}
           >
             <Slider

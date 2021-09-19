@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { jssPreset, StylesProvider, makeStyles } from '@material-ui/styles';
+import { jssPreset, StylesProvider, makeStyles } from '@mui/styles';
 import { create } from 'jss';
 import jssTemplate from 'jss-plugin-template';
 

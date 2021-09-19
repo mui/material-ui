@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import Chip from '@material-ui/core/Chip';
-import Fade from '@material-ui/core/Fade';
-import Typography from '@material-ui/core/Typography';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Chip from '@mui/material/Chip';
+import Fade from '@mui/material/Fade';
+import Typography from '@mui/material/Typography';
 
-declare module '@material-ui/core/Chip' {
+declare module '@mui/material/Chip' {
   interface ChipPropsVariantOverrides {
     notification: true;
   }
@@ -57,7 +57,7 @@ export default function NotificationCard() {
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
    * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://next.material-ui.com/customization/palette/#toggling-color-mode
+   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
    */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
@@ -108,7 +108,7 @@ export default function NotificationCard() {
             variants: [
               {
                 props: { variant: 'notification' },
-                style: { color: '#fff', fontSize: 12, height: 18 },
+                style: { color: '#fff', fontSize: '0.75rem', height: 18 },
               },
             ],
           },

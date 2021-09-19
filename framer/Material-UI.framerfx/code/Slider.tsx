@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiSlider from '@material-ui/core/Slider';
+import MuiSlider from '@mui/material/Slider';
 
 interface Props {
   disabled?: boolean;

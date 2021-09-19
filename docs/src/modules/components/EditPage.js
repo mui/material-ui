@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 export default function EditPage(props) {
@@ -8,7 +8,7 @@ export default function EditPage(props) {
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
-  const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
+  const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
   const crowdInPath = markdownLocation.substring(0, markdownLocation.lastIndexOf('/'));
 
@@ -26,6 +26,10 @@ export default function EditPage(props) {
       data-ga-event-category={userLanguage === 'en' ? undefined : 'l10n'}
       data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
       data-ga-event-label={userLanguage === 'en' ? undefined : userLanguage}
+      sx={{
+        color: (theme) =>
+          theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+      }}
     >
       {t('editPage')}
     </Button>

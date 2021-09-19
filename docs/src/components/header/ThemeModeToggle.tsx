@@ -1,12 +1,12 @@
 import * as React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import DarkModeOutlined from '@material-ui/icons/DarkModeOutlined';
-import LightModeOutlined from '@material-ui/icons/LightModeOutlined';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
+import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
 
 const ThemeModeToggle = (props: { checked: boolean; onChange: (checked: boolean) => void }) => {
   return (
-    <Tooltip title={props.checked ? 'Turn on the light' : 'Switch to dark mode'}>
+    <Tooltip title={props.checked ? 'Turn on the light' : 'Turn off the light'}>
       <IconButton
         disableTouchRipple
         onClick={() => props.onChange(!props.checked)}
@@ -15,10 +15,10 @@ const ThemeModeToggle = (props: { checked: boolean; onChange: (checked: boolean)
           borderRadius: 1,
           p: '6.5px',
           border: '1px solid',
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'transparent'),
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'transparent'),
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
           '& svg': {
-            fontSize: 18,
+            fontSize: (theme) => theme.typography.pxToRem(18),
           },
         }}
       >

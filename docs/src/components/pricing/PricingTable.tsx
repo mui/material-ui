@@ -1,18 +1,18 @@
 import * as React from 'react';
-import { alpha } from '@material-ui/core/styles';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import Collapse from '@material-ui/core/Collapse';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import { alpha } from '@mui/material/styles';
+import Box, { BoxProps } from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Collapse from '@mui/material/Collapse';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Link from 'docs/src/modules/components/Link';
 import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
-import LaunchRounded from '@material-ui/icons/LaunchRounded';
-import UnfoldMoreRounded from '@material-ui/icons/UnfoldMoreRounded';
+import LaunchRounded from '@mui/icons-material/LaunchRounded';
+import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
 
 const planInfo = {
   community: {
@@ -29,7 +29,7 @@ const planInfo = {
   premium: {
     color: 'gold',
     title: 'Premium',
-    description: 'Unlock all the most advances features including premium support.',
+    description: 'Unlock all the most advanced features including premium support.',
   },
 } as const;
 
@@ -135,7 +135,7 @@ const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }
           variant="caption"
           color="text.secondary"
           fontWeight="normal"
-          sx={{ display: 'block', mt: 0.5 }}
+          sx={{ display: 'block', mt: 0.8, textAlign: 'center' }}
         >
           {metadata}
         </Typography>
@@ -255,7 +255,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
     {...props}
     sx={{
       py: 2,
-      pl: 2,
+      px: 2,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -288,7 +288,7 @@ const RowHead = ({
       p: 1,
       transition: 'none',
       typography: 'body2',
-      fontWeight: 600,
+      fontWeight: 700,
       display: 'flex',
       alignItems: 'center',
       ...props.sx,
@@ -300,7 +300,7 @@ const RowHead = ({
 );
 
 function getUrl(hash: string) {
-  return `https://material-ui.com/components/data-grid${hash}`;
+  return `https://mui.com/components/data-grid${hash}`;
 }
 
 const rowHeaders: Record<string, React.ReactNode> = {
@@ -308,14 +308,14 @@ const rowHeaders: Record<string, React.ReactNode> = {
   '@mui/core': (
     <ColumnHead
       {...{
-        label: '@mui/core-base',
+        label: '@mui/core',
         tooltip: 'The unstyled components and react hooks.',
       }}
     />
   ),
-  '@mui/unstyled': (
+  '@mui/material': (
     <ColumnHead
-      {...{ label: '@mui/core-material', tooltip: 'Core components following Material Design.' }}
+      {...{ label: '@mui/material', tooltip: 'Core components following Material Design.' }}
     />
   ),
   '@mui/system': (
@@ -503,7 +503,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
 const communityData: Record<string, React.ReactNode> = {
   // Core
   '@mui/core': <IconImage name="yes" />,
-  '@mui/unstyled': <IconImage name="yes" />,
+  '@mui/material': <IconImage name="yes" />,
   '@mui/system': <IconImage name="yes" />,
   // Advanced
   'data-grid/column-groups': <IconImage name="time" />,
@@ -523,7 +523,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/filter-multicolumn': <IconImage name="no" />,
   'data-grid/pagination': <IconImage name="yes" />,
   'data-grid/pagination-large': <IconImage name="no" />,
-  'data-grid/edit-row': <IconImage name="time" />,
+  'data-grid/edit-row': <IconImage name="yes" />,
   'data-grid/edit-cell': <IconImage name="yes" />,
   'data-grid/file-csv': <IconImage name="yes" />,
   'data-grid/file-print': <IconImage name="time" />,
@@ -555,7 +555,7 @@ const communityData: Record<string, React.ReactNode> = {
 const proData: Record<string, React.ReactNode> = {
   // Core
   '@mui/core': <IconImage name="yes" />,
-  '@mui/unstyled': <IconImage name="yes" />,
+  '@mui/material': <IconImage name="yes" />,
   '@mui/system': <IconImage name="yes" />,
   // Advanced
   'data-grid/column-groups': <IconImage name="time" />,
@@ -575,7 +575,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/filter-multicolumn': <IconImage name="yes" />,
   'data-grid/pagination': <IconImage name="yes" />,
   'data-grid/pagination-large': <IconImage name="yes" />,
-  'data-grid/edit-row': <IconImage name="time" />,
+  'data-grid/edit-row': <IconImage name="yes" />,
   'data-grid/edit-cell': <IconImage name="yes" />,
   'data-grid/file-csv': <IconImage name="yes" />,
   'data-grid/file-print': <IconImage name="time" />,
@@ -607,7 +607,7 @@ const proData: Record<string, React.ReactNode> = {
 const premiumData: Record<string, React.ReactNode> = {
   // Core
   '@mui/core': <IconImage name="yes" />,
-  '@mui/unstyled': <IconImage name="yes" />,
+  '@mui/material': <IconImage name="yes" />,
   '@mui/system': <IconImage name="yes" />,
   // Advanced
   'data-grid/column-groups': <IconImage name="time" />,
@@ -627,7 +627,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/filter-multicolumn': <IconImage name="yes" />,
   'data-grid/pagination': <IconImage name="yes" />,
   'data-grid/pagination-large': <IconImage name="yes" />,
-  'data-grid/edit-row': <IconImage name="time" />,
+  'data-grid/edit-row': <IconImage name="yes" />,
   'data-grid/edit-cell': <IconImage name="yes" />,
   'data-grid/file-csv': <IconImage name="yes" />,
   'data-grid/file-print': <IconImage name="time" />,
@@ -661,6 +661,7 @@ const RowCategory = (props: BoxProps) => (
     {...props}
     sx={{
       typography: 'caption',
+      display: 'block',
       fontWeight: 500,
       bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
       py: 1,
@@ -845,7 +846,7 @@ export default function PricingTable({
             <Button
               component={Link}
               noLinkStyle
-              href="/store/items/material-ui-pro/"
+              href="https://material-ui.com/store/items/material-ui-pro/"
               variant="contained"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
@@ -870,15 +871,17 @@ export default function PricingTable({
           </Box>
         </Box>
       )}
-      <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>Core</RowHead>
+      <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>
+        MUI Core
+      </RowHead>
       {renderRow('@mui/core')}
       {divider}
-      {renderRow('@mui/unstyled')}
+      {renderRow('@mui/material')}
       {divider}
       {renderRow('@mui/system')}
 
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
-        Advanced
+        MUI X
       </RowHead>
       <Box sx={{ position: 'relative', minHeight: 58, '& svg': { transition: '0.3s' }, ...gridSx }}>
         <Cell />
@@ -923,6 +926,15 @@ export default function PricingTable({
             top: 0,
             width: '100%',
             height: '100%',
+            '&:hover': {
+              bgcolor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primaryDark[900], 0.3)
+                  : alpha(theme.palette.grey[50], 0.4),
+              '@media (hover: none)': {
+                bgcolor: 'initial',
+              },
+            },
           }}
         >
           Data Grid

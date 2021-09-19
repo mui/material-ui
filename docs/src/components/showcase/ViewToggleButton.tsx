@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import ToggleButton from '@material-ui/core/ToggleButton';
-import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-import ViewQuiltRounded from '@material-ui/icons/ViewQuiltRounded';
-import ViewModuleRounded from '@material-ui/icons/ViewModuleRounded';
-import ViewAgendaRounded from '@material-ui/icons/ViewAgendaRounded';
-import ViewWeekRounded from '@material-ui/icons/ViewWeekRounded';
-import ViewSidebarRounded from '@material-ui/icons/ViewSidebarRounded';
+import ViewQuiltRounded from '@mui/icons-material/ViewQuiltRounded';
+import ViewModuleRounded from '@mui/icons-material/ViewModuleRounded';
+import ViewAgendaRounded from '@mui/icons-material/ViewAgendaRounded';
+import ViewWeekRounded from '@mui/icons-material/ViewWeekRounded';
+import ViewSidebarRounded from '@mui/icons-material/ViewSidebarRounded';
 
 const primary = {
   50: '#F0F7FF',
@@ -64,7 +64,7 @@ export default function ViewToggleButton() {
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
    * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://next.material-ui.com/customization/palette/#toggling-color-mode
+   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
    */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;

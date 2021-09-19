@@ -3,12 +3,12 @@ import frLocale from 'date-fns/locale/fr';
 import ruLocale from 'date-fns/locale/ru';
 import deLocale from 'date-fns/locale/de';
 import enLocale from 'date-fns/locale/en-US';
-import ToggleButton from '@material-ui/core/ToggleButton';
-import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
-import TextField from '@material-ui/core/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import DatePicker from '@material-ui/lab/DatePicker';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import DatePicker from '@mui/lab/DatePicker';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 const localeMap = {
   en: enLocale,

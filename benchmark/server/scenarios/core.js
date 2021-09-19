@@ -2,8 +2,8 @@
 import Benchmark from 'benchmark';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { StylesProvider } from '@material-ui/styles';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import { StylesProvider } from '@mui/styles';
+import ButtonBase from '@mui/material/ButtonBase';
 
 const suite = new Benchmark.Suite('core', {
   onError: (event) => {
@@ -24,7 +24,7 @@ suite
   .add('ButtonBase', () => {
     ReactDOMServer.renderToString(
       <StylesProvider sheetsManager={new Map()}>
-        <ButtonBase>Material-UI</ButtonBase>
+        <ButtonBase>MUI</ButtonBase>
       </StylesProvider>,
     );
   })
@@ -43,10 +43,10 @@ suite
     );
   })
   .add('ButtonBase enable ripple', () => {
-    ReactDOMServer.renderToString(<ButtonBase>Material-UI</ButtonBase>);
+    ReactDOMServer.renderToString(<ButtonBase>MUI</ButtonBase>);
   })
   .add('ButtonBase disable ripple', () => {
-    ReactDOMServer.renderToString(<ButtonBase disableRipple>Material-UI</ButtonBase>);
+    ReactDOMServer.renderToString(<ButtonBase disableRipple>MUI</ButtonBase>);
   })
   .on('cycle', (event) => {
     console.log(String(event.target));

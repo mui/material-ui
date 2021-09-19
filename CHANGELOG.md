@@ -1,4 +1,264 @@
-### [Versions](https://material-ui.com/versions/)
+### [Versions](https://mui.com/versions/)
+
+## 5.0.0
+
+<!-- generated comparing v5.0.0-rc.1..next -->
+
+_Sep 16, 2021_
+
+After over 400 days of development and over 40 canary releases, we are excited to introduce [MUI Core v5.0.0](https://mui.com/blog/mui-core-v5/)!
+
+Some statistics with the released of v5.0.0 compared to the one of v4.0.0:
+
+- 5,832 new commits
+- From 2M downloads/month to 9.5M downloads/month on npm
+- From 350k users/month to 700k users/month on the documentation
+
+A big thanks to the 600+ contributors who made the release possible!
+
+The 5.0.0 version includes all changes done in the alpha, beta, and rc releases listed below.
+These are the changes done from the last release candidate version (5.0.0-rc.1):
+
+### `@mui/material@5.0.0`
+
+- &#8203;<!-- 15 -->[Autocomplete] Fix reset value on blur for freeSolo input (#28190) @praveenkumar-kalidass
+- &#8203;<!-- 14 -->[ButtonBase] Revert to the pre-unstyled implementation (#28225) @michaldudak
+- &#8203;<!-- 13 -->[Checkbox] Fix color proptype typo (#28265) @sydneyjodon-wk
+- &#8203;<!-- 40 -->[Tooltip] Ensure user-select CSS property is reverted after touch end (#28372) @tholman
+
+### `@mui/system@5.0.0`
+
+- &#8203;<!-- 25 -->[system] Fix missing typings for createSpacing (#28361) @eps1lon
+
+### `@mui/codemod@5.0.0`
+
+- &#8203;<!-- 21 -->[codemod] Fix jss-to-styled to support other export class, function etc. (#28321) @jedwards1211
+
+### `@mui/lab@5.0.0-alpha.46`
+
+- &#8203;<!-- 09 -->[DateTimePicker] Change bottom position of AM/PM buttons (#27534) @nikitabobers
+- &#8203;<!-- 02 -->[pickers] Add visual regression tests for open views (#28224) @eps1lon
+
+### Docs
+
+- &#8203;<!-- 38 -->[blog] Introducing MUI Core v5.0 (#27912) @oliviertassinari
+- &#8203;<!-- 08 -->[docs] Fix quotes in font-face literal (#28260) @Aurelain
+- &#8203;<!-- 07 -->[docs] Update redirects to X's docs (#28263) @m4theushw
+- &#8203;<!-- 06 -->[docs] Change Material-UI to MUI in the console (#28270) @mbrookes
+- &#8203;<!-- 05 -->[docs] Docs redesign adjustments (#28203) @mnajdova
+- &#8203;<!-- 04 -->[docs] How to compose theme in steps (#28246) @goncalovf
+- &#8203;<!-- 03 -->[docs] Fix DataGrid demo console warning in Table docs (#28235) @ZeeshanTamboli
+- &#8203;<!-- 32 -->[docs] Fix typo in v4 to v5 migration guide (#28353) @zadeviggers
+- &#8203;<!-- 17 -->[docs] Fix typo in transition docs (#28312) @tamboliasir1
+- &#8203;<!-- 20 -->[docs] Use https for material-ui & reactcommunity links (#28304) @aghArdeshir
+- &#8203;<!-- 22 -->[docs] Add IBM Plex font locally (#28325) @siriwatknp
+- &#8203;<!-- 26 -->[docs] Fix failing client-side navigation for /api routes (#28356) @eps1lon
+- &#8203;<!-- 29 -->[docs] Update the nav order (#28323) @mbrookes
+- &#8203;<!-- 30 -->[docs] Compress images with ImageOptim @oliviertassinari
+- &#8203;<!-- 34 -->[docs] Replace remaining unstyled package reference (#28351) @michaldudak
+- &#8203;<!-- 35 -->[docs] No import from react-router (#28329) @eps1lon
+- &#8203;<!-- 36 -->[website] Refine website before go-live (#28081) @siriwatknp
+- &#8203;<!-- 31 -->[website] Update manifest to new logo (#28355) @siriwatknp
+- &#8203;<!-- 01 -->[website] Add product-x page (#28106) @siriwatknp
+- &#8203;<!-- 24 -->[website] Revert store URL to material-ui.com/store (#28365) @michaldudak
+- &#8203;<!-- 33 -->[website] Rename domain to mui.com (#28332) @mnajdova
+
+### Core
+
+- &#8203;<!-- 12 -->[core] Replace Material-UI with MUI (#28243) @mnajdova
+- &#8203;<!-- 11 -->[core] Prepare for v5 stable release (#28240) @mnajdova
+- &#8203;<!-- 10 -->[core] Mark lines that needs to be changed with a major release (#28238) @mnajdova
+- &#8203;<!-- 18 -->[core] Various updates to what we consider the default branch (#28328) @eps1lon
+- &#8203;<!-- 23 -->[core] Remove experimental bundle size tracking page (#28334) @eps1lon
+- &#8203;<!-- 27 -->[core] Support release:build with cmd.exe (#28318) @michaldudak
+- &#8203;<!-- 28 -->[core] Remove unnecessary titleize warning (#28349) @eps1lon
+- &#8203;<!-- 37 -->[core] Batch small fixes (#28381) @oliviertassinari
+- &#8203;<!-- 16 -->[test] Recommend yarn t over test:watch (#28254) @eps1lon
+- &#8203;<!-- 19 -->[test] Lazily import fixtures (#28239) @eps1lon
+- &#8203;<!-- 39 -->[test] Assert on user-select that has the same value across browsers (#28378) @eps1lon
+
+All contributors of this release in alphabetical order: @aghArdeshir, @Aurelain, @eps1lon, @goncalovf, @jedwards1211, @m4theushw, @mbrookes, @michald
+udak, @mnajdova, @nikitabobers, @praveenkumar-kalidass, @siriwatknp, @sydneyjodon-wk, @tamboliasir1, @tholman, @zadeviggers, @ZeeshanTamboli
+
+## 5.0.0-rc.1
+
+<!-- generated comparing v5.0.0-rc.0..next -->
+
+_Sep 8, 2021_
+
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+- 📚 Improved the codemod and migration guide for upgrading to v5
+- 🐛 Fixed some bugs and regressions
+
+### `@mui/material@5.0.0-rc.1`
+
+- &#8203;<!-- 46 -->[Autocomplete] Fix virtualization regression (#28129) @oliviertassinari
+- &#8203;<!-- 45 -->[Button] Use deeper imports from unstyled, correct docs (#28074) @michaldudak
+- &#8203;<!-- 44 -->[ButtonBase] Fix ripple persisting on blur (#28186) @michaldudak
+- &#8203;<!-- 14 -->[Link] Infer `ref` type from `component` (#28101) @eps1lon
+- &#8203;<!-- 11 -->[Popper] Fix bundle size regression (#27910) @oliviertassinari
+- &#8203;<!-- 10 -->[Select] Merge `ref` of `Select` and `input` element (#28054) @DouglasPds
+- &#8203;<!-- 07 -->[Tabs] Improve error message formatting for invalid `value` (#28172) @eps1lon
+
+### `@mui/system@5.0.0-rc.1`
+
+- &#8203;<!-- 47 -->[system] Change type of return value of overridesResolver (#28220) @hbjORbj
+- &#8203;<!-- 09 -->[system] Fix zero value condition (#28219) @siriwatknp
+- &#8203;<!-- 08 -->[system] Shorten class names in production (#27932) @oliviertassinari
+
+### `@mui/codemod@5.0.0-rc.1`
+
+- &#8203;<!-- 42 -->[codemod] Fix various reported issues on `preset-safe` (#28183) @mnajdova
+
+### `@mui/lab@5.0.0-alpha.46`
+
+- &#8203;<!-- 43 -->[ClockPicker] Fix to narrow hover area for am hours in am/pm clock (#28207) @eps1lon
+- &#8203;<!-- 13 -->[Masonry] Improve the styling on the demos (#27957) @hbjORbj
+- &#8203;<!-- 12 -->[MasonryItem] Fix crash on unmount when using React 18 (#28202) @eps1lon
+
+### Docs
+
+- &#8203;<!-- 33 -->[docs] Fixes makeStyles migration example (#28213) @RomarQ
+- &#8203;<!-- 32 -->[docs] Fix some outdated migration guide (#28222) @siriwatknp
+- &#8203;<!-- 31 -->[docs] Update previews (#28223) @eps1lon
+- &#8203;<!-- 30 -->[docs] Demo how to use a specific slide direction for Snackbar (#28211) @goncalovf
+- &#8203;<!-- 29 -->[docs] Improve docs for creating dark theme (#28104) @mnajdova
+- &#8203;<!-- 28 -->[docs] Don't use Material theme in unstyled demos (#28073) @michaldudak
+- &#8203;<!-- 27 -->[docs] Fix api doc import example (#28199) @siriwatknp
+- &#8203;<!-- 26 -->[docs] Remove demo for re-creating Material-UI switches (#28042) @eps1lon
+- &#8203;<!-- 25 -->[docs] Improve legibility of CTA on landing page (#28124) @akashshyamdev
+- &#8203;<!-- 24 -->[docs] Fix Link outdated default underline prop (#28134) @outofgamut
+- &#8203;<!-- 23 -->[docs] Fix branding theme leaking on the templates (#28120) @mnajdova
+- &#8203;<!-- 22 -->[docs] Fix wrong package name in codemod (#28118) @aleccaputo
+- &#8203;<!-- 21 -->[docs] Cancelled subscription @oliviertassinari
+- &#8203;<!-- 20 -->[docs] Remove style duplication (#28087) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Fix migration guide typo (#28113) @paullaros
+- &#8203;<!-- 18 -->[docs] Reorder app bar actions (#28089) @mnajdova
+- &#8203;<!-- 17 -->[docs] Support Material design theme in MarkdownElement (#28109) @eps1lon
+- &#8203;<!-- 16 -->[docs] Improve diamond sponsors in the navigation (#28090) @mnajdova
+- &#8203;<!-- 15 -->[docs] Remove unnecessary comma (#28072) @michaldudak
+- &#8203;<!-- 04 -->[website] Add new careers page (#28184) @hbjORbj
+- &#8203;<!-- 03 -->[website] Disable Next.js font optimization (#28128) @michaldudak
+- &#8203;<!-- 02 -->[website] Polish design-kits & templates (#28131) @siriwatknp
+- &#8203;<!-- 01 -->[website] Update utm referral params #28040 @siriwatknp
+
+### Core
+
+- &#8203;<!-- 41 -->[core] Misc bundle size tracking improvements (#28205) @eps1lon
+- &#8203;<!-- 40 -->[core] Ensure code preview is valid JavaScript (#28215) @eps1lon
+- &#8203;<!-- 39 -->[core] Create @mui/material-next package (#28200) @michaldudak
+- &#8203;<!-- 38 -->[core] Rename directories to match the new package names (#28185) @mnajdova
+- &#8203;<!-- 37 -->[core] Remove unused include (#28187) @eps1lon
+- &#8203;<!-- 36 -->[core] Fix PR detection mechanism for upstream PRs (#28171) @eps1lon
+- &#8203;<!-- 35 -->[core] Simplify ResizeObserver logic (#28037) @oliviertassinari
+- &#8203;<!-- 34 -->[core] Include TS modules in rollup import resolution (#28094) @michaldudak
+- &#8203;<!-- 06 -->[test] Update test to consider unsuppressed double render logs in React 18 (#28068) @eps1lon
+- &#8203;<!-- 05 -->[typescript] Make types of componentsProps consistent (#27499) @michaldudak
+
+All contributors of this release in alphabetical order: @akashshyamdev, @aleccaputo, @DouglasPds, @eps1lon, @goncalovf,
+@hbjORbj, @michaldudak, @mnajdova, @oliviertassinari, @outofgamut, @paullaros, @RomarQ, @siriwatknp
+
+## 5.0.0-rc.0
+
+<!-- generated comparing v5.0.0-beta.5..next -->
+
+_Sep 1, 2021_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 🎉 Renamed packages to `@mui/*` as part of rebranding the company, following the strategy of expanding the library scope beyond Material Design. For more details about it, check the [GitHub discussion](https://github.com/mui-org/material-ui/discussions/27803).
+- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) or head to [migration guide](https://mui.com/guides/migration-v4/#preset-safe)
+- 🧪 Added new `<Mansory>` component to the lab, [check it out](https://mui.com/components/masonry/). It has been crafted by our first intern, @hbjORbj 👏!
+
+### `@mui/material@5.0.0-rc.0`
+
+#### Breaking changes
+
+- &#8203;<!-- 33 -->[core] Rename packages (#28049) @mnajdova
+
+  replace `@material-ui/*` prefix with `@mui/*`:
+
+  ```
+  @material-ui/system -> @mui/system
+  @material-ui/styles -> @mui/styles
+  @material-ui/lab -> @mui/lab
+  @material-ui/types -> @mui/types
+  @material-ui/styled-engine -> @mui/styled-engine
+  @material-ui/styled-engine-sc ->@mui/styled-engine-sc
+  @material-ui/private-theming -> @mui/private-theming
+  @material-ui/codemod -> @mui/codemod
+  ```
+
+  except these 3 packages that are renamed.
+
+  ```
+  @material-ui/core => @mui/material        // represents Material Design components.
+  @material-ui/icons => @mui/icons-material // represents Material Design icons.
+  @material-ui/unstyled => @mui/core        // fully functional components with minimum styles.
+  ```
+
+  > **Note**: `@mui/core` (previously `@material-ui/unstyled`) is not the same as `@material-ui/core`.
+
+  We encourage you to use the [codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) for smooth migration.
+
+#### Changes
+
+- &#8203;<!-- 39 -->[Autocomplete] Update warning for `value` prop (#27977) @vedadeepta
+- &#8203;<!-- 37 -->[ButtonGroup] Update PropTypes to match augmentable interface (#27944) @aaronlademann-wf
+- &#8203;<!-- 36 -->[CardMedia] Add `image` role if `image` prop is specified but no image `component` is specified (#27676) @eps1lon
+- &#8203;<!-- 10 -->[InputBase] Fix autofill issue (#28070) @mnajdova
+- &#8203;<!-- 08 -->[Tabs] Fix indicator position when tab size changes (ResizeObserver) (#27791) @hbjORbj
+- &#8203;<!-- 06 -->[TextareaAutosize] Sync height when the width of the textarea changes (#27840) @hbjORbj
+- &#8203;<!-- 05 -->[ToggleButtonGroup] Add "disabled" prop (#27998) @chetas411
+- &#8203;<!-- 34 -->[core] Export types for module augmentation (#28078) @m4theushw
+
+### `@mui/core@5.0.0-alpha.45`
+
+- &#8203;<!-- 38 -->[Button] Create ButtonUnstyled and useButton (#27600) @michaldudak
+
+### `@mui/lab@5.0.0-rc.0`
+
+- &#8203;<!-- 09 -->[Masonry] Add new component (#27439) @hbjORbj
+
+### `@mui/codemod@5.0.0-rc.0`
+
+- &#8203;<!-- 35 -->[codemod] Add `mui-replace` codemod transform (#28060) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 28 -->[docs] Fix preview for multiline JSX attributes (#28092) @eps1lon
+- &#8203;<!-- 27 -->[docs] Add a recommendation for hoisting GlobalStyles to static constant (#28088) @mnajdova
+- &#8203;<!-- 26 -->[docs] Update toolbar menu to behave closer to default (#28086) @oliviertassinari
+- &#8203;<!-- 25 -->[docs] Markdown redesign polish (#27956) @mnajdova
+- &#8203;<!-- 24 -->[docs] Fully translated /api/\* pages (#28044) @eps1lon
+- &#8203;<!-- 23 -->[docs] Fix matchSorter import path in Autocomplete (#28063) @StefanBRas
+- &#8203;<!-- 22 -->[docs] Fix Fab demo overflow on mobile (#28033) @rajzik
+- &#8203;<!-- 21 -->[docs] Add notistack example compatible with v5.x.x (#27881) @iamhosseindhv
+- &#8203;<!-- 20 -->[docs] Change sign-up template autocomplete to use "new-password" (#28028) @StefanTobler
+- &#8203;<!-- 19 -->[docs] Improve the support expectations for developers (#27999) @oliviertassinari
+- &#8203;<!-- 18 -->[docs] Don't use nested ternary (#27986) @eps1lon
+- &#8203;<!-- 17 -->[docs] Sync redirections from X into Core @oliviertassinari
+- &#8203;<!-- 16 -->[docs] Fix typo '.MuiOutinedInput' -> '.MuiOutlinedInput' (#27997) @rsxdalv
+- &#8203;<!-- 15 -->[docs] fix floating action button broken demo (#27976) @rajzik
+- &#8203;<!-- 14 -->[docs] Update correct variable name (#27960) @bene-we
+- &#8203;<!-- 13 -->[docs] Fix Performance typo (#27965) @tdmiller1
+- &#8203;<!-- 12 -->[docs] Add GridExportCSVOptions page to documentation pages (#27951) @flaviendelangle
+- &#8203;<!-- 04 -->[website] Add product core page (#27952) @siriwatknp
+- &#8203;<!-- 03 -->[website] Make AppBar height and border consistent with nav header (#28085) @michaldudak
+- &#8203;<!-- 02 -->[website] Fix typos in the rebranding (#28069) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Refine home, pricing and about pages (#27927) @siriwatknp
+
+### Core
+
+- &#8203;<!-- 11 -->[eslint-plugin-material-ui] Only require translation of word characters and not API (#28043) @eps1lon
+- &#8203;<!-- 32 -->[core] Use lintable pattern for debounced callbacks (#27985) @eps1lon
+- &#8203;<!-- 31 -->[core] Remove file-wide disables of `no-use-before-define` (#27984) @eps1lon
+- &#8203;<!-- 30 -->[core] Improve `release:changelog` script (#27941) @eps1lon
+- &#8203;<!-- 29 -->[core] Enforce curly braces for block statements (#27946) @eps1lon
+- &#8203;<!-- 07 -->[test] Disable BrowserStack for PRs (#28041) @eps1lon
+
+All contributors of this release in alphabetical order: @aaronlademann-wf, @bene-we, @chetas411, @eps1lon, @flaviendelangle, @hbjORbj, @iamhosseindhv, @m4theushw, @michaldudak, @mnajdova, @oliviertassinari, @rajzik, @rsxdalv, @siriwatknp, @StefanBRas, @StefanTobler, @tdmiller1, @vedadeepta
 
 ## 5.0.0-beta.5
 
@@ -155,7 +415,7 @@ All contributors of this release in alphabetical order: @aaronlademann-wf, @alex
 
 _Aug 13, 2021_
 
-Big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
 - 🐛 Grid's "auto" behavior has been fixed by @aaronlademann-wf (#27514)
 - ♿ An important bug with the keyboard navigation in MenuList was fixed (#27526) @ryancogswell
@@ -229,7 +489,7 @@ All contributors of this release in alphabetical order: @aaronlademann-wf, @abri
 
 _Aug 6, 2021_
 
-Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
 - &#8203;<!-- 28 -->✨ `jss-to-styled` codemod has been improved to support `createStyles` and `<React.Fragment>` usage (#27578) @mnajdova
 
@@ -298,7 +558,7 @@ All contributors of this release in alphabetical order: @bezpalko, @eps1lon, @fl
 
 _Jul 26, 2021_
 
-Big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
 
 - ✨ We introduced new codemod for converting JSS styles to emotion (#27292) @siriwatknp
   It should help adoption of v5, by making possible the removal of JSS sooner.
@@ -396,19 +656,19 @@ y, @sashkopavlenko, @siriwatknp, @tudi2d, @turtleseason, @WeldonTan
 
 _Jul 14, 2021_
 
-Big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
 - ✨ We have introduced a new unstyled component: the Switch (#26688) @michaldudak
-  You can find two new versions of the Switch. A component without any styles: [`SwitchUnstyled`](https://next.material-ui.com/components/switches/#unstyled-switches), and a hook: [`useSwitch`](https://next.material-ui.com/components/switches/#useswitch-hook).
+  You can find two new versions of the Switch. A component without any styles: [`SwitchUnstyled`](https://mui.com/components/switches/#unstyled), and a hook: [`useSwitch`](https://mui.com/components/switches/#useswitch-hook).
 
-  <a href="https://next.material-ui.com/components/switches/#unstyled-switches"><img width="832" alt="switch" src="https://user-images.githubusercontent.com/3165635/125192249-236f8a80-e247-11eb-9df9-17d476379a32.png"></a>
+  <a href="https://mui.com/components/switches/#unstyled"><img width="832" alt="switch" src="https://user-images.githubusercontent.com/3165635/125192249-236f8a80-e247-11eb-9df9-17d476379a32.png"></a>
 
   You can follow our progress at https://github.com/mui-org/material-ui/issues/27170.
 
 - 💄 We have updated the default `info` `success` `warning` color to be more accessible (#26817) @siriwatknp.
-  You can find the new [default values](https://next.material-ui.com/customization/palette/#default-values) in the documentation.
+  You can find the new [default values](https://mui.com/customization/palette/#default-values) in the documentation.
 
-  <a href="https://next.material-ui.com/customization/palette/#default-values"><img width="780" alt="colors" src="https://user-images.githubusercontent.com/3165635/125192657-4864fd00-e249-11eb-9dc1-44857b25b3b8.png"></a>
+  <a href="https://mui.com/customization/palette/#default-values"><img width="780" alt="colors" src="https://user-images.githubusercontent.com/3165635/125192657-4864fd00-e249-11eb-9dc1-44857b25b3b8.png"></a>
 
 ### `@material-ui/core@5.0.0-beta.1`
 
@@ -507,11 +767,11 @@ All contributors of this release in alphabetical order: @eps1lon, @mbrookes, @mi
 
 _Jul 01, 2021_
 
-Big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
 - 🎉 This is the first beta release of v5! A huge thanks to everyone who helped to make this happen! We're targeting the 1st of September for a stable release, and will use the next two months to polish v5, and ease the migration from v4. You can follow [the v5 stable milestone](https://github.com/mui-org/material-ui/milestone/44) for more details. We now encourage any new projects to start on v5.
 - 🚀 We have completed all the planned breaking changes.
-- ⚒️ We added the codemod CLI to simplify migration to v5 (#26941) @eps1lon. You can find it at [`@material-ui/codemod`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod).
+- ⚒️ We added the codemod CLI to simplify migration to v5 (#26941) @eps1lon. You can find it at [`@material-ui/codemod`](https://github.com/mui-org/material-ui/tree/HEAD/packages/mui-codemod).
 - 🐛 The majority of other changes in this release were bug fixes, test utilities and docs.
 
 ### `@material-ui/core@5.0.0-beta.0`
@@ -643,17 +903,17 @@ All contributors of this release in alphabetical order: @ansh-saini, @BC-M, @Car
 
 _Jun 23, 2021_
 
-Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🚀 We have only 2 left in the [breaking changes](https://github.com/mui-org/material-ui/issues/20012). The plan to release 5.0.0-beta.0 is on July 1st and will start to promote its usage over v4.
 - 🎨 We have updated `Slider` to match current [Material Design guidelines](https://material.io/components/sliders).
 
-  <a href="https://next.material-ui.com/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
+  <a href="https://mui.com/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
 
-- 💡 `IconButton` now supports 3 sizes (`small, medium, large`). [See demo](https://next.material-ui.com/components/buttons/#sizes-2).
+- 💡 `IconButton` now supports 3 sizes (`small, medium, large`). [See demo](https://mui.com/components/buttons/#sizes-2).
 - ♿️ We have improved the default style of the `Link` to be more accessible (#26145) @ahmed-28
 
-  <a href="https://next.material-ui.com/components/links/"><img width="543" alt="" src="https://user-images.githubusercontent.com/3165635/123097983-ef1b6200-d430-11eb-97da-b491fba5df49.png"></a>
+  <a href="https://mui.com/components/links/"><img width="543" alt="" src="https://user-images.githubusercontent.com/3165635/123097983-ef1b6200-d430-11eb-97da-b491fba5df49.png"></a>
 
 ### `@material-ui/core@5.0.0-alpha.38`
 
@@ -731,13 +991,13 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 - &#8203;<!-- 08 -->[Slider] Adjust css to match the specification (#26632) @siriwatknp
 
-  Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](https://next.material-ui.com/components/slider/).
+  Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](https://mui.com/components/slider/).
 
-  <a href="https://next.material-ui.com/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
+  <a href="https://mui.com/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
 
-  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](https://next.material-ui.com/components/slider/#sizes).
+  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](https://mui.com/components/slider/#sizes).
 
-  <a href="https://next.material-ui.com/components/slider/#sizes"><img width="330" alt="" src="https://user-images.githubusercontent.com/3165635/123076549-8aa0d880-d419-11eb-8835-06cd2b21b2d3.png" style="margin: auto"></a>
+  <a href="https://mui.com/components/slider/#sizes"><img width="330" alt="" src="https://user-images.githubusercontent.com/3165635/123076549-8aa0d880-d419-11eb-8835-06cd2b21b2d3.png" style="margin: auto"></a>
 
 - &#8203;<!-- 14 -->[IconButton] Remove label span (#26801) @siriwatknp
 
@@ -845,7 +1105,7 @@ All contributors of this release in alphabetical order: @ahmed-28, @brunocavalca
 
 _Jun 15, 2021_
 
-Big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
 
 - 💄 Add support for responsive props on the Grid component (#26590) @likitarai1.
   This fixes a longstanding issue. You can now specify different values for each breakpoint.
@@ -858,7 +1118,7 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
   </Grid>
   ```
 
-  Head to the [documentation](https://next.material-ui.com/components/grid/#responsive-values) for more details.
+  Head to the [documentation](https://mui.com/components/grid/#responsive-values) for more details.
 
 - ⚒️ We've introduced a new `useTheme` and `useThemeProps` hooks in the `@material-ui/system` package.
   We believe that this package can be used as a standalone styling solution for building custom design systems (#26649) @mnajdova.
@@ -961,17 +1221,17 @@ All contributors of this release in alphabetical order: @chadmuro, @eps1lon, @li
 
 _Jun 8, 2021_
 
-Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - ⚒️ We've introduced a new `ListItemButton` component that should prevent common mistakes when using `<ListItem button />` and help with customization and TypeScript support (#26446) @siriwatknp.
 - 👩‍🎤 `experimentalStyled` is now available without the `experimental` prefix.
   We're confident that its API shouldn't receive any major changes until the stable release of v5 (#26558) @mnajdova.
 - 📦 `@material-ui/icons` only ships ES modules and no longer CommonJS modules.
   This reduces the download size of the package from 1.7 MB to 1.2 MB and install size from 15.6 MB to 6.7 MB (#26310) @eps1lon.
-- 💄 Add support for [row and column spacing](https://next.material-ui.com/components/grid/#row-amp-column-spacing) in the Grid component (#26559) @likitarai1.
+- 💄 Add support for [row and column spacing](https://mui.com/components/grid/#row-amp-column-spacing) in the Grid component (#26559) @likitarai1.
   <img width="549" alt="grid spacing demo" src="https://user-images.githubusercontent.com/3165635/121089288-383fa500-c7e7-11eb-8c43-53457b7430f1.png">
 
-  Note that this feature was already available for [CSS grid users](https://next.material-ui.com/components/grid/#css-grid-layout) with the `rowGap` and `columnGap` props.
+  Note that this feature was already available for [CSS grid users](https://mui.com/components/grid/#css-grid-layout) with the `rowGap` and `columnGap` props.
 
 ### `@material-ui/core@5.0.0-alpha.36`
 
@@ -1070,11 +1330,11 @@ All contributors of this release in alphabetical order: @coder-freestyle, @eps1l
 
 _May 31, 2021_
 
-Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 We have completed the migration to emotion of all the components (`@material-ui/core` and `@material-ui/lab`) @siriwatknp, @mnajdova.
 - 📦 Save [10 kB gzipped](https://bundlephobia.com/result?p=@material-ui/core@5.0.0-alpha.34) by removing the dependency on `@material-ui/styles` (JSS) from the core and the lab (#26377, #26382, #26376) @mnajdova.
-- ⚒️ Add many new [codemods](https://github.com/mui-org/material-ui/blob/HEAD/packages/material-ui-codemod/README.md) to automate the migration from v4 to v5 (#24867) @mbrookes.
+- ⚒️ Add many new [codemods](https://github.com/mui-org/material-ui/blob/HEAD/packages/mui-codemod/README.md) to automate the migration from v4 to v5 (#24867) @mbrookes.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@5.0.0-alpha.35`
@@ -1233,7 +1493,7 @@ _May 18, 2021_
 
 <!-- generated comparing v5.0.0-alpha.33..next -->
 
-Big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
 
 - 💥 Make progress with the breaking changes. We have done 89 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We will release 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
 - 🚀 Make progress with components migration to emotion. We have done 153 of the 168 components (almost there!)
@@ -1312,7 +1572,7 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
   />
   ```
 
-> Follow [this link](https://next.material-ui.com/guides/migration-v4/#main-content) for full migration from v4 => v5
+> Follow [this link](https://mui.com/guides/migration-v4/#main-content) for full migration from v4 => v5
 
 #### Changes
 
@@ -1380,7 +1640,7 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
 
 - &#8203;<!-- 60 -->[core] Skip sx prop in internal components (#26235) @mnajdova
 - &#8203;<!-- 59 -->[core] Remove `withStyles` dependencies from `@material-ui/core/styles` (#26277) @mnajdova
-- &#8203;<!-- 55 -->[core] Include human readable target in the browserstack build (#26322) @eps1lon
+- &#8203;<!-- 55 -->[core] Include human readable target in the BrowserStack build (#26322) @eps1lon
 - &#8203;<!-- 53 -->[core] Fix NotchedOutlineProps type (#26305) @gnowland
 - &#8203;<!-- 51 -->[core] Add file for git-blame --ignore-revs-file (#26295) @eps1lon
 - &#8203;<!-- 49 -->[core] Ensure component class keys aren't missing (#25754) @eps1lon
@@ -1396,7 +1656,7 @@ All contributors of this release in alphabetical order: @arpitBhalla, @atisheyJa
 
 _May 9, 2021_
 
-Big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
 - 💥 Make progress with the breaking changes. We have done 81 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We will release 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -1563,7 +1823,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 
 - &#8203;<!-- 64 -->[withWidth] Remove API (#26136) @m4theushw
 
-  Removed in favor of the `useMediaQuery` hook. You can reproduce the same functionality creating a custom hook as described [here](https://next.material-ui.com/components/use-media-query/#migrating-from-withwidth).
+  Removed in favor of the `useMediaQuery` hook. You can reproduce the same functionality creating a custom hook as described [here](https://mui.com/components/use-media-query/#migrating-from-withwidth).
 
 - &#8203;<!-- 75 -->[Autocomplete] Rename values of the reason argument (#26172) @m4theushw
 
@@ -1738,7 +1998,7 @@ All contributors of this release in alphabetical order: @anish-khanna, @anshuman
 
 _Apr 27, 2021_
 
-Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 We have completed the migration to emotion of all components in `@material-ui/core`. We will focus on the components in `@material-ui/lab` next.
 - 💥 Make progress with the breaking changes plan. We have done 38 out of 41 breaking changes that can be deprecated. We have done 21 out of the 39 that can't have deprecations. Once done, we will focus on updating the component for better following material design, and to improve the aesthetic.
@@ -1892,7 +2152,7 @@ All contributors of this release in alphabetical order: @DanailH, @dtassone, @ep
 
 _Apr 20, 2021_
 
-Big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate 4 components to emotion.
 - 💥 Resume work on the breaking changes, aim for v5.0.0-beta.0 in the next coming months.
@@ -1903,7 +2163,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 #### Breaking changes
 
 - [FormControl] Change default variant from standard to outlined (#24895) @petyosi
-  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
+  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/mui-codemod#variant-prop) will automatically update your code.
 
   ```diff
   -<FormControl value="Standard" />
@@ -1915,7 +2175,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 - [Menu] The `selectedMenu` variant will not vertically align the selected item with the anchor anymore. (#25691) @m4theushw
 - [Popover] Remove the `getContentAnchorEl` prop to simplify the positioning logic. (#25691) @m4theushw
 - [Select] Change default variant from standard to outlined (#24895) @petyosi
-  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
+  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/mui-codemod#variant-prop) will automatically update your code.
 
   ```diff
   -<Select value="Standard" />
@@ -2038,7 +2298,7 @@ All contributors of this release in alphabetical order: @ahmed-28, @catchanuj, @
 
 _Apr 12, 2021_
 
-Big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate 9 components to emotion.
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -2108,7 +2368,7 @@ All contributors of this release in alphabetical order: @alcwhite, @bhairavee23,
 
 _Apr 4, 2021_
 
-Big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
 
 - 🙌 Add support in the Grid for any spacing value (#25503) @ZakMiller.
   For instance:
@@ -2191,7 +2451,7 @@ All contributors of this release in alphabetical order: @Andarist, @ashishshukla
 
 _Mar 22, 2021_
 
-Big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Convert 9 components to emotion (#25267, #25216, #25264, #25197, #25372, #25281, #25210, #25279, #2528) @natac13 @tomasznguyen @kayuapi.
   85% of the components have been migrated so far, thanks to the help of the community.
@@ -2202,7 +2462,7 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
 
   <img width="830" alt="stack" src="https://user-images.githubusercontent.com/3165635/112068427-29434200-8b6a-11eb-94e8-057535423b0f.png">
 
-  See the documentation for [more details](https://next.material-ui.com/components/stack/).
+  See the documentation for [more details](https://mui.com/components/stack/).
 
 - And many more 🐛 bug fixes and 📚 improvements.
 
@@ -2327,7 +2587,7 @@ All contributors of this release in alphabetical order: @aheimlich, @AlfredoGJ, 
 
 _Mar 5, 2021_
 
-Big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Convert 8 components to emotion (#25091, #25158, #25146, #25142, #25166) @natac13, @mngu, @m4theushw, @praveenkumar-kalidass.
 - 📚 Convert 5 components demos to emotion (#25164, #25183, #25180, #25145, #25138) @vicasas
@@ -2400,7 +2660,7 @@ All contributors of this release in alphabetical order: @beaudry, @eps1lon, @m4t
 
 _Feb 27, 2021_
 
-Big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Convert 11 components to emotion (#24696, #24631, #24857, #25048, #24693, #24663, #25007, #24688, #24665, #24878, #24571) @praveenkuma @natac13 @xs9627 @povilass @m4theushw @natac13 @natac13 @DanailH @duganbrett @duganbrett @praveenkumar-kalidass @vinyldarkscratch.
   75% of the components have been migrated so far, thanks to the help of the community.
@@ -2586,7 +2846,7 @@ All contributors of this release in alphabetical order: @DanailH, @dborstelmann,
 
 _Feb 11, 2021_
 
-Big thanks to the 30 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 30 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Convert 32 components to emotion. Around 64% of the components have been migrated so far, thanks to the help of the community. We aim to migrate them all before the end of Q1 2021.
   The podium of the most active community members in the migration 🏆:
@@ -2603,7 +2863,7 @@ Big thanks to the 30 contributors who made this release possible. Here are some 
   ```
 
 - 📅 Focus on the date pickers, 5 fixes and 3 docs improvements.
-- 💅 Provide a new [`darkScrollbar()`](https://next.material-ui.com/components/css-baseline/#scrollbars) CSS utility to improve the native scrollbar in dark mode. The documentation uses it.
+- 💅 Provide a new [`darkScrollbar()`](https://mui.com/components/css-baseline/#scrollbars) CSS utility to improve the native scrollbar in dark mode. The documentation uses it.
 
 ### `@material-ui/core@5.0.0-alpha.25`
 
@@ -2757,7 +3017,7 @@ All contributors of this release in alphabetical order: @anthonyraymond, @Arnaul
 
 _Jan 26, 2021_
 
-Big thanks to the 23 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 23 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Convert 31 components to emotion. Around 40% of the components have been migrated so far thanks to the help of the community.
 - 🐛 Fix two long-standing issues with the Grid. Solve the horizontal scrollbar as well as dimensions when nesting (#24332) @greguintow.
@@ -2880,7 +3140,7 @@ All contributors of this release in alphabetical order: @artola, @CyanoFresh, @d
 
 ###### _Jan 14, 2021_
 
-Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
 - 📚 Only document public paths in module augmentation (#24267) @eps1lon
 - 👩‍🎤 Migrate the Paper and CssBaseline to emotion (#24397, #24176) @povilass @mnajdova
@@ -2951,7 +3211,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 
 ### Docs
 
-- [docs] Add example perfomance Stepper vertical (#24292) @vicasas
+- [docs] Add example performance Stepper vertical (#24292) @vicasas
 - [docs] Change Link example from JS to TS (#24291) @vicasas
 - [docs] Do not show 'Add' if user input matches existing option (#24333) @ramdog
 - [docs] Focus docs search input when the shortcut is clicked (#24296) @eps1lon
@@ -2995,7 +3255,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 
 ###### _Jan 4, 2021_
 
-Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - ♿️ Fix major accessibility issue with the Autocomplete (#24213) @inform880
 - 👩‍🎤 Migrate the Container to emotion (#24227) @oliviertassinari
@@ -3047,7 +3307,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 ###### _Dec 30, 2020_
 
-Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate the Avatar to emotion (#24114) @oliviertassinari
 - 👩‍🎤 Migrate the Button to emotion (#24107, #24100) @mnajdova
@@ -3120,7 +3380,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 ###### _Dec 21, 2020_
 
-Big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate the Typography to emotion (#23841) @DanailH
 
@@ -3198,7 +3458,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 
 ###### _Dec 13, 2020_
 
-Big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate the Badge to emotion (#23745) @mnajdova.
 - 🌏 Add infrastructure to translate the API pages (#23852) @mbrookes.
@@ -3326,7 +3586,7 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 
 ###### _Dec 3, 2020_
 
-Big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
 - Fix most of the issues with the system (#23716, #23635, #23737, #23733, #23700, #23688) @mnajdova.
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -3337,7 +3597,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 
 - [Box] Remove deprecated props (#23716) @mnajdova
   All props are now available under the `sx` prop. A deprecation will be landing in v4.
-  Thanks to @mbrookes developers can automate the migration with a [codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#box-sx-prop).
+  Thanks to @mbrookes developers can automate the migration with a [codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#box-sx-prop).
 
   ```diff
   -<Box p={2} bgColor="primary.main">
@@ -3418,7 +3678,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 
 ###### _Nov 23, 2020_
 
-Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 📚 Improve the IntelliSense support for the `sx` prop (#23599) @mnajdova.
   You should now get a description for each property of the system. For instance with `mx`:
@@ -3452,7 +3712,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
   );
   ```
 
-  This enforces emotion being injected first. [More details](https://next.material-ui.com/guides/interoperability/#css-injection-order) in the documentation.
+  This enforces emotion being injected first. [More details](https://mui.com/guides/interoperability/#css-injection-order) in the documentation.
 
 - [Autocomplete] Rename `closeIcon` prop with `clearIcon` to avoid confusion (#23617) @akhilmhdh.
 
@@ -3585,14 +3845,14 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 ###### _Nov 14, 2020_
 
-Big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
 
 - 📅 Migrate the date picker to the lab (#22692) @dmtrKovalenko.
-  We have integrated the components with the code infrastructure. Next we will migrate all the GitHub issues from [material-ui-pickers](https://github.com/mui-org/material-ui-pickers) and archive the repository. This migration will help provide first-class support for the date picker components. The component will stay in the lab as long as necessary to reach the high quality bar we have for core components. You can find the [new documentation here](https://next.material-ui.com/components/pickers/).
+  We have integrated the components with the code infrastructure. Next we will migrate all the GitHub issues from [material-ui-pickers](https://github.com/mui-org/material-ui-pickers) and archive the repository. This migration will help provide first-class support for the date picker components. The component will stay in the lab as long as necessary to reach the high quality bar we have for core components. You can find the [new documentation here](https://mui.com/components/pickers/).
 
   While the source code is currently hosted in the [main repository](https://github.com/mui-org/material-ui), we might move it to the [x repository](https://github.com/mui-org/material-ui-x) in the future, depending on what is easier for the commercial date range picker. The date picker will stay open source no matter what.
 
-- 📚 Revamp the documentation for [the system](https://next.material-ui.com/system/basics/). The System contains CSS utilities. The documentation now promotes the use of the `sx` prop. It's ideal for adding one-off styles, e.g. padding, but when pushed to its limits, it can be used to implement quickly a complete page.
+- 📚 Revamp the documentation for [the system](https://mui.com/system/basics/). The System contains CSS utilities. The documentation now promotes the use of the `sx` prop. It's ideal for adding one-off styles, e.g. padding, but when pushed to its limits, it can be used to implement quickly a complete page.
 - 👩‍🎨 Upgrade emotion to v11 (#23007) @mnajdova.
 - And many more 🐛 bug fixes and 📚 improvements.
 
@@ -3601,7 +3861,7 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
 #### Breaking changes
 
 - [TextField] Change default variant from standard to outlined (#23503) @mbrookes
-  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
+  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/mui-codemod#variant-prop) will automatically update your code.
 
   ```diff
   -<TextField value="Standard" />
@@ -3689,12 +3949,12 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
 
 ###### _Nov 4, 2020_
 
-Big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
 
 - ⚛️ Add support for React 17 (#23311) @eps1lon.
   React 17 release is unusual because it doesn't add any new developer-facing features. It was released a couple of days ago. You can learn more about it in the [introduction post](https://reactjs.org/blog/2020/10/20/react-v17.html). Material-UI now supports `^16.8.0 || ^17.0.0`.
 - 🛠 Introduce a new `@material-ui/unstyled` package (#23270) @mnajdova.
-  This package will host the unstyled version of the components. In this first iteration, only the Slider is available. You can find it documented under the [same page](https://next.material-ui.com/components/slider-styled/#unstyled-slider) as the styled version.
+  This package will host the unstyled version of the components. In this first iteration, only the Slider is available. You can find it documented under the [same page](https://mui.com/components/slider-styled/#unstyled-slider) as the styled version.
 
   **Why an unstyled package?**
 
@@ -3704,7 +3964,7 @@ Big thanks to the 20 contributors who made this release possible. Here are some 
 
   Another reason for introducing this package is to prepare the groundwork for a [second theme](https://github.com/mui-org/material-ui/issues/22485) (not Material Design based).
 
-  A note on the terminology: "unstyled" means that the components have the same API as the "styled" components but come without CSS. Material-UI also contains "headless" components that exposes a hook API, e.g. [useAutocomplete](https://next.material-ui.com/components/autocomplete/#useautocomplete) or [usePagination](https://next.material-ui.com/components/pagination/#usepagination).
+  A note on the terminology: "unstyled" means that the components have the same API as the "styled" components but come without CSS. Material-UI also contains "headless" components that exposes a hook API, e.g. [useAutocomplete](https://mui.com/components/autocomplete/#useautocomplete) or [usePagination](https://mui.com/components/pagination/#usepagination).
 
   This change is part of our strategy to iterate on the v5 architecture with the `Slider` first. In the next alpha release, we plan to replace the v4 slider with the v5 slider. Once the new approach is stress-tested and validated, we will roll it out to all the components.
 
@@ -3801,7 +4061,7 @@ Big thanks to the 20 contributors who made this release possible. Here are some 
 
 ###### _Oct 23, 2020_
 
-Big thanks to the 23 contributors who made this release possible.
+A big thanks to the 23 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 💄 Introduce a new `sx` prop (#23053, #23205) @mnajdova
@@ -3972,11 +4232,11 @@ Here are some highlights ✨:
 
 ###### _Oct 17, 2020_
 
-Big thanks to the 25 contributors who made this release possible.
+A big thanks to the 25 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 📦 Ship modern bundle (#22814) @eps1lon.
-  This is a significant update to the [browsers supported](https://next.material-ui.com/getting-started/supported-platforms/) by Material-UI.
+  This is a significant update to the [browsers supported](https://mui.com/getting-started/supported-platforms/) by Material-UI.
   The previous policy was defined 2 years ago, and the landscape has evolved since then. The package now includes 4 bundles:
 
   1. `stable` (default, formerly `esm`) which targets a snapshot (on release) of `> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11"`
@@ -3987,13 +4247,13 @@ Here are some highlights ✨:
   The change yields a 6% reduction in bundle size 📦 (Babel only).
   In the coming weeks, we will refactor the internals to take advantage of the new browser capabilities that dropping these older platforms allows. For instance, we might be able to remove the span we render inside the `<Button>` to work around [Flexbug #9](https://github.com/philipwalton/flexbugs/blob/master/README.md#flexbug-9).
 
-  Check the updated [Supported platforms documentation](https://next.material-ui.com/getting-started/supported-platforms/) and [new "minimizing bundle size" guide](https://next.material-ui.com/guides/minimizing-bundle-size/).
+  Check the updated [Supported platforms documentation](https://mui.com/getting-started/supported-platforms/) and [new "minimizing bundle size" guide](https://mui.com/guides/minimizing-bundle-size/).
 
   If you target IE11, you need to use the new bundle (`legacy`). We are treating IE11 as a second class-citizen, which is a continuation of the direction taken in #22873.
 
 - 🚀 Improve the internal benchmark suite (#22923, #23058) @mnajdova.
-  This was a prerequisite step to improve the [system](https://next.material-ui.com/system/basics/). We needed to be able to measure performance. After #22945, we have measured that the `Box` component is x3 faster in v5-alpha compared to v4.
-- ✏️ A new blog post: [Q3 2020 Update](https://material-ui.com/blog/2020-q3-update/) (#23055) @oliviertassinari.
+  This was a prerequisite step to improve the [system](https://mui.com/system/basics/). We needed to be able to measure performance. After #22945, we have measured that the `Box` component is x3 faster in v5-alpha compared to v4.
+- ✏️ A new blog post: [Q3 2020 Update](https://mui.com/blog/2020-q3-update/) (#23055) @oliviertassinari.
 - 🐙 Migrate more tests to react-testing-library @deiga, @Morteza-Jenabzadeh, @nicholas-l.
 - And many more 🐛 bug fixes and 📚 improvements.
 
@@ -4098,7 +4358,7 @@ Here are some highlights ✨:
 
 ###### _Oct 11, 2020_
 
-Big thanks to the 45 contributors who made this release possible.
+A big thanks to the 45 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 🧪 The promotion of 4 components from the lab to core: Autocomplete, Pagination, SpeedDial, and ToggleButton. These components have been in the lab for more than 10 months @mbrookes.
@@ -4106,7 +4366,7 @@ Here are some highlights ✨:
   The early benchmark we have run shows that performance has improved. We will share more detailed results in #21657.
 - 🐙 Migrate a large portion of the tests from enzyme to react-testing-library @eladmotola, @baterson, @bewong89, @devrasec, @guillermaster, @itamar244, @jeferson-sb, @The24thDS.
   Last month, react-testing-library had [more downloads](https://npm-stat.com/charts.html?package=enzyme&package=%40testing-library%2Freact&from=2019-10-10&to=2020-10-10) than enzyme in the ecosystem!
-- 🏷 Add support for tooltips [following the cursor](https://next.material-ui.com/components/tooltips/#follow-cursor) (#22876) @xtrixia.
+- 🏷 Add support for tooltips [following the cursor](https://mui.com/components/tooltips/#follow-cursor) (#22876) @xtrixia.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v5.0.0-alpha.12`
@@ -4322,28 +4582,28 @@ Here are some highlights ✨:
 
 ###### _Sep 26, 2020_
 
-Big thanks to the 29 contributors who made this release possible.
+A big thanks to the 29 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 👩‍🎨 A first iteration on the new styling solution.
 
-  You can find a [new version](https://next.material-ui.com/components/slider-styled/) of the slider in the lab powered by [emotion](https://emotion.sh/).
+  You can find a [new version](https://mui.com/components/slider-styled/) of the slider in the lab powered by [emotion](https://emotion.sh/).
 
   In the event that you are already using styled-components in your application, you can swap emotion for styled-components 💅. Check [this CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) for a demo. It relies on aliases to prevent any bundle size overhead.
 
   The new styling solution saves 2kB gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using emotion or styled-components.
 
-  Last but not least, the change allows us to take advantage dynamic style props. We will use them for dynamic color props, variant props, and new style props (an improved [system](https://material-ui.com/system/basics/)).
+  Last but not least, the change allows us to take advantage dynamic style props. We will use them for dynamic color props, variant props, and new style props (an improved [system](https://mui.com/system/basics/)).
 
   This change has been in our roadmap for more than a year.
   We announced it in the [v4 release blog post](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701) as a direction v5 would take.
 
 - 🛠 A first iteration on the unstyled components.
 
-  You can find a [new version](https://next.material-ui.com/components/slider-styled/#UnstyledSlider.tsx) of the slider in the lab without any styles.
+  You can find a [new version](https://mui.com/components/slider-styled/#UnstyledSlider.tsx) of the slider in the lab without any styles.
   The unstyled component weighs 6.5 kB gzipped, compared with 26 kB for the styled version when used standalone. The component is best suited for use when you want to fully customize the look of the component without reimplementing the JavaScript and accessibility logic.
 
-- ⚡️ A first alpha of the [DataGrid](https://material-ui.com/components/data-grid/) component.
+- ⚡️ A first alpha of the [DataGrid](https://mui.com/components/data-grid/) component.
 
   It has taken 6 months of development since the initial commit (March 15th, 2020) to make the first alpha release of the grid. The component comes in two versions:
   @material-ui/data-grid is licensed under MIT, while @material-ui/x-grid is licensed under a commercial license.
@@ -4556,7 +4816,7 @@ More documentation are coming.
 
 ###### _Sep 15, 2020_
 
-Big thanks to the 16 contributors who made this release possible.
+A big thanks to the 16 contributors who made this release possible.
 Here are some highlights ✨:
 
 - Keep working on the breaking changes before v5-beta.
@@ -4686,7 +4946,7 @@ Here are some highlights ✨:
 
 ###### _Sep 6, 2020_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 💎 A new diamond sponsor: [DoiT](https://www.doit-intl.com/), thank you!
@@ -4739,7 +4999,7 @@ Here are some highlights ✨:
 
 ###### _Aug 31, 2020_
 
-Big thanks to the 19 contributors who made this release possible.
+A big thanks to the 19 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 🎨 Inverse the customization API of the theme to be component-centric (#22347, #22293) @mnajdova.
@@ -4763,7 +5023,7 @@ const theme = createMuiTheme({
 });
 ```
 
-- ✨ Add [text in divider](https://next.material-ui.com/components/dividers/#dividers-with-text) support (#22285) @ShehryarShoukat96
+- ✨ Add [text in divider](https://mui.com/components/dividers/#dividers-with-text) support (#22285) @ShehryarShoukat96
 
   ```jsx
   <Divider>{'CENTER'}</Divider>
@@ -4915,7 +5175,7 @@ const theme = createMuiTheme({
 
 ###### _Aug 22, 2020_
 
-Big thanks to the 22 contributors who made this release possible.
+A big thanks to the 22 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 💎 A new diamond sponsor: [Octopus](https://octopus.com/), thank you!
@@ -5045,7 +5305,7 @@ Here are some highlights ✨:
 
 ###### _Aug 13, 2020_
 
-Big thanks to the 26 contributors who made this release possible.
+A big thanks to the 26 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 💅 Introduce a new dynamic variant API (#21648) @mnajdova.
@@ -5078,9 +5338,9 @@ Here are some highlights ✨:
   <Button variant="dashed" />;
   ```
 
-  More details in [the documentation](https://material-ui.com/customization/components/#adding-new-component-variants) and [RFC](#21749).
+  More details in [the documentation](https://mui.com/customization/components/#adding-new-component-variants) and [RFC](#21749).
 
-- 👮 Add documentation for the [TrapFocus](https://next.material-ui.com/components/trap-focus/) component (#22062) @oliviertassinari.
+- 👮 Add documentation for the [TrapFocus](https://mui.com/components/trap-focus/) component (#22062) @oliviertassinari.
 - ⚛️ Prepare support for React v17 (#22093, #22105, #22143, #22111) @eps1lon.
 - 🚧 We have undertaken breaking changes.
 
@@ -5331,7 +5591,7 @@ Here are some highlights ✨:
 
 ###### _July 28, 2020_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 ### `@material-ui/core@v5.0.0-alpha.5`
 
@@ -5402,7 +5662,7 @@ Big thanks to the 18 contributors who made this release possible.
 
 ###### _July 19, 2020_
 
-Big thanks to the 11 contributors who made this release possible.
+A big thanks to the 11 contributors who made this release possible.
 
 ### `@material-ui/core@v5.0.0-alpha.4`
 
@@ -5444,7 +5704,7 @@ Big thanks to the 11 contributors who made this release possible.
 
 ###### _July 12, 2020_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 ### `@material-ui/core@v5.0.0-alpha.3`
 
@@ -5493,7 +5753,7 @@ Big thanks to the 14 contributors who made this release possible.
 
 ###### _July 4, 2020_
 
-Big thanks to the 16 contributors who made this release possible.
+A big thanks to the 16 contributors who made this release possible.
 
 ### `@material-ui/core@v5.0.0-alpha.2`
 
@@ -5555,7 +5815,7 @@ Big thanks to the 16 contributors who made this release possible.
 
 ###### _June 27, 2020_
 
-Big thanks to the 33 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 33 contributors who made this release possible. Here are some highlights ✨:
 
 - 🔄 Introduce a new `LoadingButton` component in the lab (#21389) @mnajdova.
 - 📍 Synchronize icons with Google, add 200 new icons (#21498) @alecananian
@@ -5586,7 +5846,7 @@ Big thanks to the 33 contributors who made this release possible. Here are some 
   />
   ```
 
-- [Typography] Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://material-ui.com/system/basics/) (#21413) @mnajdova.
+- [Typography] Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://mui.com/system/basics/) (#21413) @mnajdova.
 
   ```diff
   -import Typography from '@material-ui/core/Typography';

@@ -117,7 +117,7 @@
   "name": "MobileDateTimePicker",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
-  "filename": "/packages/material-ui-lab/src/MobileDateTimePicker/MobileDateTimePicker.tsx",
+  "filename": "/packages/mui-lab/src/MobileDateTimePicker/MobileDateTimePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-time-picker/\">Date Time Picker</a></li></ul>",
   "styledComponent": true,

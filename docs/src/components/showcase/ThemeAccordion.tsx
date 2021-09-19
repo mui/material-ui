@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Box from '@material-ui/core/Box';
-import Fade from '@material-ui/core/Fade';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Folder from '@material-ui/icons/Folder';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Box from '@mui/material/Box';
+import Fade from '@mui/material/Fade';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Folder from '@mui/icons-material/Folder';
 
 const primary = {
   50: '#F0F7FF',
@@ -51,7 +51,7 @@ export default function ThemeAccordion() {
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
    * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://next.material-ui.com/customization/palette/#toggling-color-mode
+   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
    */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
@@ -174,9 +174,9 @@ export default function ThemeAccordion() {
               <Box sx={{ display: 'flex' }}>
                 <Folder fontSize="small" />
                 <div>
-                  <Typography>Libs</Typography>
+                  <Typography>Hacks</Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Cool ones we used on some our apps.
+                    Some of our secrets to make this website.
                   </Typography>
                 </div>
               </Box>

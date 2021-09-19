@@ -18,7 +18,7 @@ packageName: '@material-ui/lab'
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
-## 多选
+## 多种选择
 
 树视图也支持多选。
 

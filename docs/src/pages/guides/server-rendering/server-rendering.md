@@ -1,13 +1,13 @@
-# Server Rendering
+# Server rendering
 
 <p class="description">The most common use case for server-side rendering is to handle the initial render when a user (or search engine crawler) first requests your app.</p>
 
 When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client.
 From that point on, the client takes over rendering duties.
 
-## Material-UI on the server
+## MUI on the server
 
-Material-UI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated.
+MUI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated.
 It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker (FOUC).
 To inject the style down to the client, we need to:
 
@@ -29,8 +29,8 @@ Create a theme that will be shared between the client and the server:
 `theme.js`
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
+import { createTheme } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
 
 // Create a theme instance.
 const theme = createTheme({
@@ -88,7 +88,7 @@ inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemePr
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-Material-UI is using emotion as its default styled engine.
+MUI is using emotion as its default styled engine.
 We need to extract the styles from the emotion instance.
 For this, we need to share the same cache configuration for both the client and server:
 
@@ -110,8 +110,8 @@ We will see how this is passed along in the `renderFullPage` function.
 import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
@@ -187,8 +187,8 @@ Let's take a look at the client file:
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
 import App from './App';
 import theme from './theme';

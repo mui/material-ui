@@ -1,15 +1,15 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
-import { Theme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Typography from '@material-ui/core/Typography';
-import Stack from '@material-ui/core/Stack';
+import { Theme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Link from 'docs/src/modules/components/Link';
 
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
 
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
@@ -29,6 +29,7 @@ function ProductItem({
 }) {
   return (
     <Box
+      component="span"
       sx={{
         display: 'flex',
         p: 2,
@@ -36,12 +37,27 @@ function ProductItem({
         alignItems: { md: 'center' },
       }}
     >
-      <Box sx={{ mr: 2, mb: { xs: 1, md: 0 } }}>{icon}</Box>
-      <Box>
-        <Typography color="text.primary" variant="body2" fontWeight="bold">
+      <Box component="span" sx={{ mr: 2, mb: { xs: 1, md: 0 } }}>
+        {icon}
+      </Box>
+      <span>
+        <Typography
+          component="span"
+          color="text.primary"
+          variant="body2"
+          fontWeight="bold"
+          display="block"
+        >
           {name}
         </Typography>
-        <Typography color="text.secondary" variant="body2" fontWeight="regular" sx={{ my: 0.5 }}>
+        <Typography
+          component="span"
+          color="text.secondary"
+          variant="body2"
+          fontWeight="regular"
+          display="block"
+          sx={{ my: 0.5 }}
+        >
           {description}
         </Typography>
         <Link
@@ -64,7 +80,7 @@ function ProductItem({
           <span>Learn more</span>{' '}
           <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
         </Link>
-      </Box>
+      </span>
     </Box>
   );
 }
@@ -83,8 +99,8 @@ const ProductsSwitcher = ({
     <ProductItem
       aria-label="Go to core components page"
       icon={<IconImage name="product-core" />}
-      name="Core"
-      description="Ready to use, forever free, foundational components."
+      name="MUI Core"
+      description="Ready to use, free foverer, foundational components."
       href={ROUTES.productCore}
     />,
     <ProductItem
@@ -92,10 +108,10 @@ const ProductsSwitcher = ({
       icon={<IconImage name="product-advanced" />}
       name={
         <Box component="span" display="inline-flex" alignItems="center">
-          Advanced&nbsp;
+          MUI X
         </Box>
       }
-      description="Powerful and robust components for your complex apps."
+      description="Advanced and powerful components for complex use-cases."
       href={ROUTES.productAdvanced}
     />,
     <ProductItem

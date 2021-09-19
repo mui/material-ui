@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Stack from '@material-ui/core/Stack';
-import Slider from '@material-ui/core/Slider';
+import Stack from '@mui/material/Stack';
+import Slider from '@mui/material/Slider';
 
 function valuetext(value: number) {
   return `${value}°C`;

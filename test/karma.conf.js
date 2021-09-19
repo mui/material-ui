@@ -3,6 +3,9 @@ const path = require('path');
 const webpack = require('webpack');
 
 const CI = Boolean(process.env.CI);
+// renovate PRs are based off of  upstream branches.
+// Their CI run will be a branch based run not PR run and therefore won't have a CIRCLE_PR_NUMBER
+const isPR = Boolean(process.env.CIRCLE_PULL_REQUEST);
 
 let build = `material-ui local ${new Date().toISOString()}`;
 
@@ -15,6 +18,11 @@ if (process.env.CIRCLECI) {
 }
 
 const browserStack = {
+  // |commits in PRs| >> |Merged commits|.
+  // Since we have limited ressources on BrowserStack we often time out on PRs.
+  // However, BrowserStack rarely fails with a true-positive so we use it as a stop gap for release not merge.
+  // But always enable it locally since people usually have to explicitly have to expose their BrowserStack access key anyway.
+  enabled: !CI || !isPR || process.env.BROWSERSTACK_FORCE === 'true',
   username: process.env.BROWSERSTACK_USERNAME,
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
   build,
@@ -56,13 +64,11 @@ module.exports = function setKarmaConfig(config) {
         timeout: (process.env.CIRCLECI === 'true' ? 6 : 2) * 1000,
       },
     },
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'webpack'],
     files: [
       {
         pattern: 'test/karma.tests.js',
-        watched: true,
-        served: true,
-        included: true,
+        watched: false,
       },
       {
         pattern: 'test/assets/*.png',
@@ -101,12 +107,18 @@ module.exports = function setKarmaConfig(config) {
     webpack: {
       mode: 'development',
       devtool: CI ? 'inline-source-map' : 'eval-source-map',
+      optimization: {
+        nodeEnv: 'test',
+      },
       plugins: [
         new webpack.DefinePlugin({
-          'process.env.NODE_ENV': JSON.stringify('test'),
           'process.env.CI': JSON.stringify(process.env.CI),
           'process.env.KARMA': JSON.stringify(true),
           'process.env.TEST_GATE': JSON.stringify(process.env.TEST_GATE),
+        }),
+        new webpack.ProvidePlugin({
+          // required by enzyme > cheerio > parse5 > util
+          process: 'process/browser',
         }),
       ],
       module: {
@@ -130,17 +142,19 @@ module.exports = function setKarmaConfig(config) {
           },
         ],
       },
-      node: {
-        // Some tests import fs
-        fs: 'empty',
-      },
       resolve: {
         extensions: ['.js', '.ts', '.tsx'],
+        fallback: {
+          // needed by sourcemap
+          fs: false,
+          path: false,
+          // needed by enzyme > cheerio
+          stream: false,
+        },
       },
-    },
-    webpackMiddleware: {
-      noInfo: true,
-      writeToDisk: CI,
+      // TODO: 'browserslist:modern'
+      // See https://github.com/webpack/webpack/issues/14203
+      target: 'web',
     },
     customLaunchers: {
       chromeHeadless: {
@@ -153,7 +167,7 @@ module.exports = function setKarmaConfig(config) {
 
   let newConfig = baseConfig;
 
-  if (browserStack.accessKey) {
+  if (browserStack.enabled && browserStack.accessKey) {
     newConfig = {
       ...baseConfig,
       browserStack,
@@ -198,11 +212,11 @@ module.exports = function setKarmaConfig(config) {
     };
 
     // -1 because chrome headless runs in the local machine
-    const browserstackBrowsersUsed = newConfig.browsers.length - 1;
+    const browserStackBrowsersUsed = newConfig.browsers.length - 1;
 
     // default 1000, Avoid Rate Limit Exceeded
     newConfig.browserStack.pollingTimeout =
-      ((MAX_CIRCLE_CI_CONCURRENCY * AVERAGE_KARMA_BUILD * browserstackBrowsersUsed) /
+      ((MAX_CIRCLE_CI_CONCURRENCY * AVERAGE_KARMA_BUILD * browserStackBrowsersUsed) /
         MAX_REQUEST_PER_SECOND_BROWSERSTACK) *
       1000;
   }

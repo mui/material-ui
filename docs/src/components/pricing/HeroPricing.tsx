@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 
 export default function HeroPricing() {
@@ -29,8 +29,8 @@ export default function HeroPricing() {
           Start using <GradientText>MUI</GradientText> for free!
         </Typography>
         <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 500 }}>
-          The community edition lets you get going right away. Switch to MUI X to get more
-          components & premium support.
+          The community edition lets you get going right away. Switch to MUI&nbsp;X&nbsp;Pro to get
+          more components & premium support.
         </Typography>
       </Box>
       <Divider />
