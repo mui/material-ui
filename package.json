@@ -94,7 +94,7 @@
     "@types/react": "^17.0.21",
     "@types/sinon": "^10.0.2",
     "@types/webpack": "^4.41.22",
-    "@types/yargs": "^17.0.0",
+    "@types/yargs": "^17.0.2",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
     "argos-cli": "^0.3.3",
@@ -177,7 +177,7 @@
     "webpack": "^5.52.0",
     "webpack-bundle-analyzer": "^4.1.0",
     "webpack-cli": "^4.8.0",
-    "yargs": "^17.0.1",
+    "yargs": "^17.1.1",
     "yarn-deduplicate": "^3.1.0"
   },
   "resolutions": {
