@@ -311,7 +311,7 @@ function CareersContent() {
         <Container sx={{ py: { xs: 4, md: 8 } }}>
           <Grid container alignItems="center" spacing={{ xs: 2, sm: 4 }}>
             <Grid item xs={12} md={6}>
-              <Typography variant="h2" sx={{ my: 1 }}>
+              <Typography variant="h2" sx={{ my: 1 }} id="perks-amp-benefits">
                 {'Perks & benefits'}
               </Typography>
               <Typography color="text.secondary" sx={{ mb: 2 }}>
@@ -399,7 +399,7 @@ function CareersContent() {
           }}
         >
           <div>
-            <Typography variant="h2" sx={{ my: 1 }}>
+            <Typography variant="h2" sx={{ my: 1 }} id="open-roles">
               Open roles
             </Typography>
             <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
@@ -459,7 +459,7 @@ function CareersContent() {
               }}
             >
               <div>
-                <Typography variant="h2" sx={{ my: 1 }}>
+                <Typography variant="h2" sx={{ my: 1 }} id="future-roles">
                   Future roles
                 </Typography>
                 <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
