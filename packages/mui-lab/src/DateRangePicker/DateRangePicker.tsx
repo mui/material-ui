@@ -71,7 +71,10 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
 
 export interface DateRangePickerProps<TDate>
   extends BaseDateRangePickerProps<TDate>,
-    ResponsiveWrapperProps {}
+    ResponsiveWrapperProps {
+      componentsProps?: BaseDateRangePickerProps<TDate>['componentsProps'] &
+        ResponsiveWrapperProps['componentsProps'];
+    }
 
 type DateRangePickerComponent = (<TDate>(
   props: DateRangePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,

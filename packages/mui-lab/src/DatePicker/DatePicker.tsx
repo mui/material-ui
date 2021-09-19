@@ -9,6 +9,11 @@ export interface DatePickerProps<TDate = unknown>
   extends DesktopDatePickerProps<TDate>,
     MobileDatePickerProps<TDate> {
   /**
+   * The props used for each slot inside.
+   */
+  componentsProps?: DesktopDatePickerProps<TDate>['componentsProps'] &
+    MobileDatePickerProps<TDate>['componentsProps'];
+  /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
    * @default '@media (pointer: fine)'
    * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")

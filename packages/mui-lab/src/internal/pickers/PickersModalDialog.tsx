@@ -18,6 +18,13 @@ export interface ExportedPickerModalProps {
    */
   cancelText?: React.ReactNode;
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps?: {
+    clearButton?: any; // TODO: Consider changing 'any' to 'Partial<ButtonProps>'.
+  };
+  /**
    * Clear text message.
    * @default 'Clear'
    */
@@ -86,6 +93,7 @@ const PickersModalDialog = (props: React.PropsWithChildren<PickersModalDialogPro
     children,
     clearable = false,
     clearText = 'Clear',
+    componentsProps = {},
     DialogProps = {},
     okText = 'OK',
     onAccept,
@@ -99,12 +107,14 @@ const PickersModalDialog = (props: React.PropsWithChildren<PickersModalDialogPro
 
   const ownerState = props;
 
+  const clearButtonProps = componentsProps.clearButton ?? {};
+
   return (
     <PickersModalDialogRoot open={open} onClose={onDismiss} {...DialogProps}>
       <PickersModalDialogContent>{children}</PickersModalDialogContent>
       <PickersModalDialogActions ownerState={ownerState}>
         {clearable && (
-          <Button data-mui-test="clear-action-button" onClick={onClear}>
+          <Button data-mui-test="clear-action-button" onClick={onClear} {...clearButtonProps}>
             {clearText}
           </Button>
         )}

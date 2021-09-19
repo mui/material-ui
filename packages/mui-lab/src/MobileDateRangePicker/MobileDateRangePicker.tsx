@@ -76,7 +76,10 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
 
 export interface MobileDateRangePickerProps<TDate = unknown>
   extends BaseDateRangePickerProps<TDate>,
-    MobileWrapperProps {}
+    MobileWrapperProps {
+      componentsProps?: BaseDateRangePickerProps<TDate>['componentsProps'] &
+        MobileWrapperProps['componentsProps'];
+    }
 
 type MobileDateRangePickerComponent = (<TDate>(
   props: MobileDateRangePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
