@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "claudia-api-builder": "^4.1.2",
-    "uuid": "^8.3.1"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "claudia": "^5.13.1"
