@@ -136,12 +136,12 @@ const faqData = [
   },
 ];
 
-const openRolesData = {
-  engineering: {
+const openRolesData = [
+  {
     title: 'Engineering',
     roles: [],
   },
-  product: {
+  {
     title: 'Product',
     roles: [
       {
@@ -164,10 +164,10 @@ const openRolesData = {
       },
     ],
   },
-};
+];
 
-const futureRolesData = {
-  operations: {
+const futureRolesData = [
+  {
     title: 'Operations',
     roles: [
       {
@@ -177,7 +177,7 @@ const futureRolesData = {
       },
     ],
   },
-  engineering: {
+  {
     title: 'Engineering',
     roles: [
       {
@@ -194,7 +194,7 @@ const futureRolesData = {
       },
     ],
   },
-  product: {
+  {
     title: 'Product',
     roles: [
       {
@@ -204,7 +204,7 @@ const futureRolesData = {
       },
     ],
   },
-};
+];
 
 function renderFAQItem(index: number, defaultExpanded?: boolean) {
   const faq = faqData[index];
@@ -428,7 +428,7 @@ function CareersContent() {
             />
           }
         >
-          {Object.values(openRolesData).map((category) => {
+          {openRolesData.map((category) => {
             const roles = category.roles;
             return (
               <React.Fragment>
@@ -474,7 +474,7 @@ function CareersContent() {
               spacing={2}
               divider={<Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />}
             >
-              {Object.values(futureRolesData).map((category) => {
+              {futureRolesData.map((category) => {
                 const roles = category.roles;
                 return (
                   <React.Fragment>
@@ -496,7 +496,6 @@ function CareersContent() {
         </Box>
       </ThemeProvider>
       {/* Frequently asked questions */}
-
       <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
         <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
           Frequently asked questions
