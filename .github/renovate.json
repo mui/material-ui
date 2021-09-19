@@ -42,11 +42,6 @@
       ]
     },
     {
-      "groupName": "raw-loader",
-      "matchPackageNames": ["raw-loader"],
-      "allowedVersions": "< 2.0.0"
-    },
-    {
       "groupName": "react-spring",
       "matchPackageNames": ["react-spring"],
       "allowedVersions": "< 9.0.0"
