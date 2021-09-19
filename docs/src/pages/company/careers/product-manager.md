@@ -25,7 +25,7 @@ We believe that the best way to improve on these dimensions is to eliminate [80%
 
 ### Why this is interesting
 
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use Material-UI every month.
+Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
 
 But providing React components isn't enough.
 In our [last developer survey](/blog/2020-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
