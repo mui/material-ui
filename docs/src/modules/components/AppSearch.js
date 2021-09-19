@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { createPortal } from 'react-dom';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
-import { alpha, styled } from '@mui/material/styles';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import SearchIcon from '@mui/icons-material/Search';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
+import * as React from 'react';
+import { createPortal } from 'react-dom';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -64,6 +64,41 @@ const Shortcut = styled('div')(({ theme }) => {
   };
 });
 
+const startScreenOptions = [
+  {
+    category: 'Getting Started',
+    items: [
+      { name: 'Installation', link: '/getting-started/installation/' },
+      { name: 'Usage', link: '/getting-started/usage/' },
+      { name: 'Learn', link: '/getting-started/learn/' },
+    ],
+  },
+  {
+    category: 'Popular Searches',
+    items: [
+      { name: 'Material Icons', link: '/components/material-icons/' },
+      { name: 'Text Fields', link: '/components/text-fields/' },
+      { name: 'Button', link: '/components/buttons' },
+    ],
+  },
+  {
+    category: 'Customization',
+    items: [
+      { name: 'How To Customize', link: '/customization/how-to-customize/' },
+      { name: 'Theming', link: '/customization/theming/' },
+      { name: 'Default Theme', link: '/customization/default-theme/' },
+    ],
+  },
+  {
+    category: 'System',
+    items: [
+      { name: 'Basics', link: '/system/basics/' },
+      { name: 'Properties', link: '/system/properties/' },
+      { name: 'The sx prop', link: '/system/the-sx-prop/' },
+    ],
+  },
+];
+
 export default function AppSearch() {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
@@ -78,37 +113,29 @@ export default function AppSearch() {
     LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
   const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
   const addStartScreen = () => {
-    const StartScreen = document.querySelector('.DocSearch-StartScreen');
-    const notAdded = document.querySelector('.DocSearch-StartScreenCategory') === null;
-    if (StartScreen && notAdded) {
-      const pairs = [
-        {
-          category: 'Getting Started',
-          items: ['Installation', 'Usage', 'Learn'],
-        },
-        {
-          category: 'Popular Searches',
-          items: ['Material Icons', 'Text Fields', 'Button'],
-        },
-        { category: 'Customization', items: ['How To Customize', 'Theming', 'Default Theme'] },
-        { category: 'System', items: ['Basics', 'Properties', 'The sx prop'] },
-      ];
-      for (const pair of pairs) {
-        const { category, items } = pair;
-        const StartScreenCategory = document.createElement('div');
-        StartScreenCategory.className = 'DocSearch-StartScreenCategory';
-        const StartScreenTitle = document.createElement('div');
-        StartScreenTitle.className = 'DocSearch-StartScreenTitle';
-        StartScreenTitle.appendChild(document.createTextNode(category));
-        StartScreenCategory.appendChild(StartScreenTitle);
-        StartScreen.appendChild(StartScreenCategory);
-        items.forEach((itemName) => {
-          const StartScreenItem = document.createElement('div');
-          StartScreenItem.className = 'DocSearch-StartScreenItem';
-          StartScreenItem.appendChild(document.createTextNode(itemName));
-          StartScreenCategory.appendChild(StartScreenItem);
+    const dropDown = document.querySelector('.DocSearch-Dropdown');
+    const notAdded = document.querySelector('.DocSearch-NewStartScreen') === null;
+    if (dropDown && notAdded) {
+      const startScreen = document.createElement('div');
+      startScreen.className = 'DocSearch-NewStartScreen';
+      dropDown.appendChild(startScreen);
+      startScreenOptions.forEach(({ category, items }) => {
+        const startScreenCategory = document.createElement('div');
+        startScreenCategory.className = 'DocSearch-NewStartScreenCategory';
+        const startScreenTitle = document.createElement('div');
+        startScreenTitle.className = 'DocSearch-NewStartScreenTitle';
+        startScreenTitle.appendChild(document.createTextNode(category));
+        startScreenCategory.appendChild(startScreenTitle);
+        startScreen.appendChild(startScreenCategory);
+        items.forEach(({ name, link }) => {
+          const startScreenItem = document.createElement('a');
+          startScreenItem.href = link;
+          startScreenItem.target = '_blank'; // open a new tab
+          startScreenItem.className = 'DocSearch-NewStartScreenItem';
+          startScreenItem.appendChild(document.createTextNode(name));
+          startScreenCategory.appendChild(startScreenItem);
         });
-      }
+      });
     }
   };
   const onOpen = React.useCallback(() => {
@@ -143,17 +170,26 @@ export default function AppSearch() {
   });
 
   React.useEffect(() => {
-    addStartScreen();
-  });
-
-  React.useEffect(() => {
     // add transition to Modal
     if (isOpen) {
       const modal = document.querySelector('.DocSearch-Container');
+      const searchInput = document.querySelector('.DocSearch-Input');
       if (modal) {
         modal.style.opacity = 1;
+        addStartScreen();
+      }
+      if (searchInput) {
+        const handleInput = (e) => {
+          const newStartScreen = document.querySelector('.DocSearch-NewStartScreen');
+          newStartScreen.style.display = e.target.value !== '' ? 'none' : 'grid';
+        };
+        searchInput.addEventListener('input', handleInput);
+        return () => {
+          searchInput.removeEventListener('input', handleInput);
+        };
       }
     }
+    return () => {};
   }, [isOpen]);
 
   return (
@@ -236,31 +272,34 @@ export default function AppSearch() {
               backdropFilter: 'blur(2px)',
             },
             '& .DocSearch-StartScreen': {
+              display: 'none',
+            },
+            '& .DocSearch-NewStartScreen': {
               width: '100%',
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
               rowGap: theme.spacing(2),
-              textAlign: 'left',
+              padding: theme.spacing(2, 2),
             },
-            '& .DocSearch-StartScreenCategory': {
+            '& .DocSearch-NewStartScreenCategory': {
               display: 'flex',
               flexDirection: 'column',
             },
-            '& .DocSearch-StartScreenTitle': {
-              padding: theme.spacing(0, 1),
-              paddingBottom: theme.spacing(1),
+            '& .DocSearch-NewStartScreenTitle': {
+              padding: theme.spacing(0.5, 1),
               fontSize: theme.typography.pxToRem(13),
               fontWeight: 500,
               color: theme.palette.text.secondary,
             },
-            '& .DocSearch-StartScreenItem': {
+            '& .DocSearch-NewStartScreenItem': {
+              cursor: 'pointer',
               width: '100%',
               padding: theme.spacing(1, 1),
-              color: theme.palette.text.primary,
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[300]
+                  : theme.palette.primary[500],
               fontWeight: 500,
-            },
-            '& .DocSearch-Help': {
-              display: 'none',
             },
             '& .DocSearch-Modal': {
               boxShadow: `0px 4px 20px ${
