@@ -34,7 +34,7 @@ They are working on a couple of new projects every year, and where the integrati
 
 ## About the role
 
-You will be joining the advanced components team.
+You will initiate the exploration of a bold new product vertical.
 
 ### What you'll do on a day-to-day basis
 

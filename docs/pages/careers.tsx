@@ -145,16 +145,16 @@ const openRolesData = [
     title: 'Product',
     roles: [
       {
-        title: 'Technical Product Manager',
-        description:
-          'You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features. Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning.',
-        url: '/company/technical-product-manager/',
-      },
-      {
-        title: 'Product Manager',
+        title: 'Product Manager - Low code',
         description:
           'You will initiate the exploration of a bold new product vertical. We are looking for an experienced and ambitious product manager who is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
         url: '/company/product-manager/',
+      },
+      {
+        title: 'Technical Product Manager - MUI X',
+        description:
+          'You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features. Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning.',
+        url: '/company/technical-product-manager/',
       },
       {
         title: 'Developer Advocate',
