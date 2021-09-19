@@ -227,7 +227,9 @@ export function getDependencies(
  */
 export function getCookie(name: string): string | undefined {
   if (typeof document === 'undefined') {
-    throw new Error('getCookie() is not supported on the server. Fallback to a different value when rendering on the server.');
+    throw new Error(
+      'getCookie() is not supported on the server. Fallback to a different value when rendering on the server.',
+    );
   }
 
   const value = `; ${document.cookie}`;
