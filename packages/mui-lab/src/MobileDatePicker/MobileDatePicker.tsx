@@ -19,12 +19,12 @@ const valueManager: PickerStateValueManager<unknown, unknown> = {
 export interface MobileDatePickerProps<TDate = unknown>
   extends BaseDatePickerProps<TDate>,
     MobileWrapperProps {
-      /**
-       * The props used for each slot inside.
-       */
-      componentsProps?: BaseDatePickerProps<TDate>['componentsProps'] &
-        MobileWrapperProps['componentsProps'];
-    }
+  /**
+   * The props used for each slot inside.
+   */
+  componentsProps?: BaseDatePickerProps<TDate>['componentsProps'] &
+    MobileWrapperProps['componentsProps'];
+}
 
 type MobileDatePickerComponent = (<TDate>(
   props: MobileDatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
