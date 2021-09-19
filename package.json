@@ -178,7 +178,7 @@
     "webpack-bundle-analyzer": "^4.1.0",
     "webpack-cli": "^4.8.0",
     "yargs": "^17.0.1",
-    "yarn-deduplicate": "^3.0.0"
+    "yarn-deduplicate": "^3.1.0"
   },
   "resolutions": {
     "**/@babel/core": "^7.15.0",
