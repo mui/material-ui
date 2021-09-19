@@ -1,5 +1,10 @@
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import SearchIcon from '@mui/icons-material/Search';
+import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
@@ -7,6 +12,7 @@ import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
+import ReactDOMServer from 'react-dom/server';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -64,40 +70,75 @@ const Shortcut = styled('div')(({ theme }) => {
   };
 });
 
-const startScreenOptions = [
-  {
-    category: 'Getting Started',
-    items: [
-      { name: 'Installation', link: '/getting-started/installation/' },
-      { name: 'Usage', link: '/getting-started/usage/' },
-      { name: 'Learn', link: '/getting-started/learn/' },
-    ],
-  },
-  {
-    category: 'Popular Searches',
-    items: [
-      { name: 'Material Icons', link: '/components/material-icons/' },
-      { name: 'Text Fields', link: '/components/text-fields/' },
-      { name: 'Button', link: '/components/buttons' },
-    ],
-  },
-  {
-    category: 'Customization',
-    items: [
-      { name: 'How To Customize', link: '/customization/how-to-customize/' },
-      { name: 'Theming', link: '/customization/theming/' },
-      { name: 'Default Theme', link: '/customization/default-theme/' },
-    ],
-  },
-  {
-    category: 'System',
-    items: [
-      { name: 'Basics', link: '/system/basics/' },
-      { name: 'Properties', link: '/system/properties/' },
-      { name: 'The sx prop', link: '/system/the-sx-prop/' },
-    ],
-  },
-];
+const NewStartScreen = () => {
+  const startScreenOptions = [
+    {
+      category: {
+        name: 'Getting Started',
+        icon: <ArticleOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+      },
+      items: [
+        { name: 'Installation', link: '/getting-started/installation/' },
+        { name: 'Usage', link: '/getting-started/usage/' },
+        { name: 'Learn', link: '/getting-started/learn/' },
+      ],
+    },
+    {
+      category: {
+        name: 'Popular Searches',
+        icon: <ToggleOffOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+      },
+      items: [
+        { name: 'Material Icons', link: '/components/material-icons/' },
+        { name: 'Text Fields', link: '/components/text-fields/' },
+        { name: 'Button', link: '/components/buttons' },
+      ],
+    },
+    {
+      category: {
+        name: 'Customization',
+        icon: <CreateOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+      },
+      items: [
+        { name: 'How To Customize', link: '/customization/how-to-customize/' },
+        { name: 'Theming', link: '/customization/theming/' },
+        { name: 'Default Theme', link: '/customization/default-theme/' },
+      ],
+    },
+    {
+      category: {
+        name: 'System',
+        icon: <BuildOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+      },
+      items: [
+        { name: 'Basics', link: '/system/basics/' },
+        { name: 'Properties', link: '/system/properties/' },
+        { name: 'The sx prop', link: '/system/the-sx-prop/' },
+      ],
+    },
+  ];
+  return (
+    <div className="DocSearch-NewStartScreen">
+      {startScreenOptions.map(({ category, items }) => (
+        <div key={category.name} className="DocSearch-NewStartScreenCategory">
+          <div className="DocSearch-NewStartScreenTitle">
+            {category.icon}
+            {category.name}
+          </div>
+          {items.map(({ name, link }) => (
+            <a key={name} className="DocSearch-NewStartScreenItem" href={link} rel="noreferrer" target="_blank">
+              {name}
+              <KeyboardArrowRightRounded
+                fontSize="small"
+                className="DocSearch-NewStartScreenItemIcon"
+              />
+            </a>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default function AppSearch() {
   useLazyCSS(
@@ -116,26 +157,9 @@ export default function AppSearch() {
     const dropDown = document.querySelector('.DocSearch-Dropdown');
     const notAdded = document.querySelector('.DocSearch-NewStartScreen') === null;
     if (dropDown && notAdded) {
-      const startScreen = document.createElement('div');
-      startScreen.className = 'DocSearch-NewStartScreen';
-      dropDown.appendChild(startScreen);
-      startScreenOptions.forEach(({ category, items }) => {
-        const startScreenCategory = document.createElement('div');
-        startScreenCategory.className = 'DocSearch-NewStartScreenCategory';
-        const startScreenTitle = document.createElement('div');
-        startScreenTitle.className = 'DocSearch-NewStartScreenTitle';
-        startScreenTitle.appendChild(document.createTextNode(category));
-        startScreenCategory.appendChild(startScreenTitle);
-        startScreen.appendChild(startScreenCategory);
-        items.forEach(({ name, link }) => {
-          const startScreenItem = document.createElement('a');
-          startScreenItem.href = link;
-          startScreenItem.target = '_blank'; // open a new tab
-          startScreenItem.className = 'DocSearch-NewStartScreenItem';
-          startScreenItem.appendChild(document.createTextNode(name));
-          startScreenCategory.appendChild(startScreenItem);
-        });
-      });
+      const startScreenWrapper = document.createElement('div');
+      startScreenWrapper.innerHTML = ReactDOMServer.renderToStaticMarkup(<NewStartScreen />);
+      dropDown.appendChild(startScreenWrapper);
     }
   };
   const onOpen = React.useCallback(() => {
@@ -181,7 +205,9 @@ export default function AppSearch() {
       if (searchInput) {
         const handleInput = (e) => {
           const newStartScreen = document.querySelector('.DocSearch-NewStartScreen');
-          newStartScreen.style.display = e.target.value !== '' ? 'none' : 'grid';
+          if (newStartScreen) {
+            newStartScreen.style.display = e.target.value !== '' ? 'none' : 'grid';
+          }
         };
         searchInput.addEventListener('input', handleInput);
         return () => {
@@ -286,12 +312,23 @@ export default function AppSearch() {
               flexDirection: 'column',
             },
             '& .DocSearch-NewStartScreenTitle': {
+              display: 'flex',
+              alignItems: 'center',
               padding: theme.spacing(0.5, 1),
               fontSize: theme.typography.pxToRem(13),
               fontWeight: 500,
               color: theme.palette.text.secondary,
             },
+            '& .DocSearch-NewStartScreenTitleIcon': {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[300]
+                  : theme.palette.primary[500],
+              marginRight: theme.spacing(1),
+            },
             '& .DocSearch-NewStartScreenItem': {
+              display: 'flex',
+              alignItems: 'center',
               cursor: 'pointer',
               width: '100%',
               padding: theme.spacing(1, 1),
@@ -300,6 +337,9 @@ export default function AppSearch() {
                   ? theme.palette.primaryDark[300]
                   : theme.palette.primary[500],
               fontWeight: 500,
+            },
+            '& .DocSearch-NewStartScreenItemIcon': {
+              marginLeft: theme.spacing(1),
             },
             '& .DocSearch-Modal': {
               boxShadow: `0px 4px 20px ${
