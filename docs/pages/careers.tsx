@@ -398,7 +398,7 @@ function CareersContent() {
             alignItems: 'center',
           }}
         >
-          <div>
+          <div id="#open-roles">
             <Typography variant="h2" sx={{ my: 1 }} id="open-roles">
               Open roles
             </Typography>
