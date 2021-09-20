@@ -239,7 +239,7 @@ describe('useMediaQuery', () => {
     });
   });
 
-  describe.skip('server-side', () => {
+  describe('server-side', () => {
     it('should use the ssr match media ponyfill', () => {
       function MyComponent() {
         const matches = useMediaQuery('(min-width:2000px)');

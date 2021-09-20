@@ -77,11 +77,11 @@
     "@babel/register": "^7.16.0",
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
-    "@eps1lon/enzyme-adapter-react-17": "^0.1.0",
+    "@eps1lon/enzyme-adapter-react-17": "npm:@eps1lon/enzyme-adapter-react-next",
     "@octokit/rest": "^18.12.0",
     "@rollup/plugin-replace": "^3.0.0",
     "@testing-library/dom": "^8.11.1",
-    "@testing-library/react": "^12.1.2",
+    "@testing-library/react": "alpha",
     "@types/chai": "^4.2.22",
     "@types/chai-dom": "^0.0.11",
     "@types/enzyme": "^3.10.10",
@@ -196,7 +196,13 @@
     "**/@types/react": "^17.0.34",
     "**/@types/react-dom": "^17.0.11",
     "**/cross-fetch": "^3.1.4",
-    "**/react-is": "^17.0.2"
+    "**/react-is": "^17.0.2",
+    "react": "0.0.0-experimental-6c3dcc7a4-20211027",
+    "react-test-renderer": "0.0.0-experimental-6c3dcc7a4-20211027",
+    "react-is": "0.0.0-experimental-6c3dcc7a4-20211027",
+    "react-dom": "0.0.0-experimental-6c3dcc7a4-20211027",
+    "scheduler": "0.0.0-experimental-6c3dcc7a4-20211027",
+    "use-sync-external-store": "0.0.0-experimental-6c3dcc7a4-20211027"
   },
   "nyc": {
     "include": [
