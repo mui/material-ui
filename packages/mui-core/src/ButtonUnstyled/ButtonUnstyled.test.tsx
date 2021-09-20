@@ -28,9 +28,13 @@ describe('<ButtonUnstyled />', () => {
     });
 
     it('is set when the root component is an component that renders an HTML component other than a button', () => {
-      const WrappedSpan = (props: React.HTMLAttributes<HTMLSpanElement>) => (
-        <span role={props.role} />
+      const WrappedSpan = React.forwardRef(
+        (
+          props: React.HTMLAttributes<HTMLSpanElement>,
+          ref: React.ForwardedRef<HTMLSpanElement>,
+        ) => <span role={props.role} ref={ref} />,
       );
+
       const { getByRole } = render(<ButtonUnstyled component={WrappedSpan} />);
       expect(getByRole('button')).not.to.equal(null);
     });
