@@ -1,3 +1,6 @@
+import * as React from 'react';
+import { createPortal } from 'react-dom';
+import ReactDOMServer from 'react-dom/server';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
@@ -10,9 +13,7 @@ import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import * as React from 'react';
-import { createPortal } from 'react-dom';
-import ReactDOMServer from 'react-dom/server';
+import Link from 'docs/src/modules/components/Link';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -78,9 +79,9 @@ const NewStartScreen = () => {
         icon: <ArticleOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Installation', link: '/getting-started/installation/' },
-        { name: 'Usage', link: '/getting-started/usage/' },
-        { name: 'Learn', link: '/getting-started/learn/' },
+        { name: 'Installation', href: '/getting-started/installation/' },
+        { name: 'Usage', href: '/getting-started/usage/' },
+        { name: 'Learn', href: '/getting-started/learn/' },
       ],
     },
     {
@@ -89,9 +90,9 @@ const NewStartScreen = () => {
         icon: <ToggleOffOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Material Icons', link: '/components/material-icons/' },
-        { name: 'Text Fields', link: '/components/text-fields/' },
-        { name: 'Button', link: '/components/buttons' },
+        { name: 'Material Icons', href: '/components/material-icons/' },
+        { name: 'Text Fields', href: '/components/text-fields/' },
+        { name: 'Button', href: '/components/buttons' },
       ],
     },
     {
@@ -100,9 +101,9 @@ const NewStartScreen = () => {
         icon: <CreateOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'How To Customize', link: '/customization/how-to-customize/' },
-        { name: 'Theming', link: '/customization/theming/' },
-        { name: 'Default Theme', link: '/customization/default-theme/' },
+        { name: 'How To Customize', href: '/customization/how-to-customize/' },
+        { name: 'Theming', href: '/customization/theming/' },
+        { name: 'Default Theme', href: '/customization/default-theme/' },
       ],
     },
     {
@@ -111,9 +112,9 @@ const NewStartScreen = () => {
         icon: <BuildOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Basics', link: '/system/basics/' },
-        { name: 'Properties', link: '/system/properties/' },
-        { name: 'The sx prop', link: '/system/the-sx-prop/' },
+        { name: 'Basics', href: '/system/basics/' },
+        { name: 'Properties', href: '/system/properties/' },
+        { name: 'The sx prop', href: '/system/the-sx-prop/' },
       ],
     },
   ];
@@ -125,20 +126,11 @@ const NewStartScreen = () => {
             {category.icon}
             {category.name}
           </div>
-          {items.map(({ name, link }) => (
-            <a
-              key={name}
-              className="DocSearch-NewStartScreenItem"
-              href={link}
-              rel="noreferrer"
-              target="_blank"
-            >
+          {items.map(({ name, href }) => (
+            <Link key={name} className="DocSearch-NewStartScreenItem" href={href}>
               {name}
-              <KeyboardArrowRightRounded
-                fontSize="small"
-                className="DocSearch-NewStartScreenItemIcon"
-              />
-            </a>
+              <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
+            </Link>
           ))}
         </div>
       ))}
@@ -310,8 +302,8 @@ export default function AppSearch() {
               width: '100%',
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
-              rowGap: theme.spacing(2),
-              padding: theme.spacing(2, 2),
+              gap: theme.spacing(2),
+              padding: theme.spacing(2, 2, 4),
             },
             '& .DocSearch-NewStartScreenCategory': {
               display: 'flex',
@@ -320,9 +312,8 @@ export default function AppSearch() {
             '& .DocSearch-NewStartScreenTitle': {
               display: 'flex',
               alignItems: 'center',
-              padding: theme.spacing(0.5, 1),
+              padding: theme.spacing(2, 1),
               fontSize: theme.typography.pxToRem(13),
-              fontWeight: 500,
               color: theme.palette.text.secondary,
             },
             '& .DocSearch-NewStartScreenTitleIcon': {
@@ -331,21 +322,30 @@ export default function AppSearch() {
                   ? theme.palette.primaryDark[300]
                   : theme.palette.primary[500],
               marginRight: theme.spacing(1),
+              fontSize: '1.125rem',
             },
             '& .DocSearch-NewStartScreenItem': {
               display: 'flex',
               alignItems: 'center',
               cursor: 'pointer',
               width: '100%',
-              padding: theme.spacing(1, 1),
+              padding: theme.spacing(0.5, 1),
               color:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[300]
                   : theme.palette.primary[500],
               fontWeight: 500,
+              fontSize: '0.875rem',
+              '&:hover, &:focus': {
+                '.DocSearch-NewStartScreenItemIcon': {
+                  marginLeft: theme.spacing(1),
+                },
+              },
             },
             '& .DocSearch-NewStartScreenItemIcon': {
-              marginLeft: theme.spacing(1),
+              marginLeft: theme.spacing(0.5),
+              transition: 'margin 0.2s',
+              fontSize: '1rem',
             },
             '& .DocSearch-Modal': {
               boxShadow: `0px 4px 20px ${
