@@ -6,8 +6,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import Masonry from '@mui/lab/Masonry';
-import MasonryItem from '@mui/lab/MasonryItem';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -17,68 +15,11 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import Link from 'docs/src/modules/components/Link';
-import { MuiPage } from 'docs/src/pages';
-
-function getMasonryItemHeight(menuLenght: number) {
-  return (
-    21 + // category header
-    16 + // list padding top, bottom
-    20 + // bottom box
-    menuLenght * 30 // each menu is 30px
-  );
-}
 
 export default function Home() {
   const { pages } = React.useContext(PageContext);
   const t = useTranslate();
   const componentPageData = pages.find(({ pathname }) => pathname === '/components');
-  function renderCategory(page: MuiPage) {
-    return (
-      <Box key={page.pathname}>
-        <Typography
-          component="h2"
-          variant="body2"
-          sx={{
-            fontWeight: 500,
-            bgcolor: 'transparent',
-            color: 'grey.600',
-            px: 1,
-          }}
-        >
-          {pageToTitleI18n(page, t)}
-        </Typography>
-        <List>
-          {(page.children || []).map((nestedPage) => (
-            <ListItem key={nestedPage.pathname} disablePadding>
-              <ListItemButton
-                component={Link}
-                noLinkStyle
-                href={nestedPage.pathname}
-                sx={{
-                  px: 1,
-                  py: 0.5,
-                  fontSize: '0.84375rem',
-                  fontWeight: 500,
-                  '&:hover, &:focus': { '& svg': { opacity: 1 } },
-                }}
-              >
-                {pageToTitleI18n(nestedPage, t) || ''}
-                <KeyboardArrowRightRounded
-                  sx={{
-                    ml: 'auto',
-                    fontSize: '1.125rem',
-                    opacity: 0,
-                    color: 'primary.main',
-                  }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Box sx={{ height: 20 }} />
-      </Box>
-    );
-  }
   return (
     <BrandingProvider>
       <Head
@@ -91,31 +32,56 @@ export default function Home() {
           <Typography component="h1" variant="h2" sx={{ mb: 4, pl: 1 }}>
             All Components
           </Typography>
-          <Masonry
-            columns={{ sm: 3, md: 4 }}
-            spacing={2}
-            sx={{
-              display: { xs: 'none', sm: 'grid' },
-            }}
-          >
-            {(componentPageData?.children || []).map((page) => {
-              return (
-                <MasonryItem
-                  key={page.pathname}
-                  defaultHeight={getMasonryItemHeight((page.children || []).length)}
-                >
-                  {renderCategory(page)}
-                </MasonryItem>
-              );
-            })}
-          </Masonry>
           <Box
             sx={{
-              display: { xs: 'grid', sm: 'none' },
+              display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
             }}
           >
-            {(componentPageData?.children || []).map((page) => renderCategory(page))}
+            {(componentPageData?.children || []).map((page) => (
+              <Box key={page.pathname} sx={{ pb: 2 }}>
+                <Typography
+                  component="h2"
+                  variant="body2"
+                  sx={{
+                    fontWeight: 500,
+                    bgcolor: 'transparent',
+                    color: 'grey.600',
+                    px: 1,
+                  }}
+                >
+                  {pageToTitleI18n(page, t)}
+                </Typography>
+                <List>
+                  {(page.children || []).map((nestedPage) => (
+                    <ListItem key={nestedPage.pathname} disablePadding>
+                      <ListItemButton
+                        component={Link}
+                        noLinkStyle
+                        href={nestedPage.pathname}
+                        sx={{
+                          px: 1,
+                          py: 0.5,
+                          fontSize: '0.84375rem',
+                          fontWeight: 500,
+                          '&:hover, &:focus': { '& svg': { opacity: 1 } },
+                        }}
+                      >
+                        {pageToTitleI18n(nestedPage, t) || ''}
+                        <KeyboardArrowRightRounded
+                          sx={{
+                            ml: 'auto',
+                            fontSize: '1.125rem',
+                            opacity: 0,
+                            color: 'primary.main',
+                          }}
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            ))}
           </Box>
         </Section>
       </main>
