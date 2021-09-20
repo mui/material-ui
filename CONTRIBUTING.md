@@ -101,7 +101,9 @@ the results. If any of them fail, refer to [Checks and how to fix them](#checks-
 
 Make sure the following is true:
 
-- The branch is targeted at `next` for ongoing development. We do our best to keep `next` in good shape, with all tests passing. Code that lands in `next` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `next` at any time.
+<!-- #default-branch-switch -->
+
+- The branch is targeted at `master` for ongoing development. We do our best to keep `master` in good shape, with all tests passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
 - If a feature is being added:
   - If the result was already achievable with the core library, explain why this feature needs to be added to the core.
   - If this is a common use case, consider adding an example to the documentation.

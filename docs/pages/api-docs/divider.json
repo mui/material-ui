@@ -52,6 +52,5 @@
   "filename": "/packages/mui-material/src/Divider/Divider.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/dividers/\">Dividers</a></li>\n<li><a href=\"/components/lists/\">Lists</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

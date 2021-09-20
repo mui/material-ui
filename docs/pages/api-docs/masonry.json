@@ -26,6 +26,5 @@
   "filename": "/packages/mui-lab/src/Masonry/Masonry.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/masonry/\">Masonry</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -94,7 +94,7 @@
     "@types/react": "^17.0.21",
     "@types/sinon": "^10.0.2",
     "@types/webpack": "^4.41.22",
-    "@types/yargs": "^17.0.0",
+    "@types/yargs": "^17.0.2",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
     "argos-cli": "^0.3.3",
@@ -107,7 +107,7 @@
     "babel-plugin-tester": "^10.1.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chai": "^4.3.4",
-    "chai-dom": "^1.9.0",
+    "chai-dom": "^1.10.0",
     "chalk": "^4.1.2",
     "compression-webpack-plugin": "^6.0.2",
     "concurrently": "^6.2.1",
@@ -127,7 +127,7 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-mocha": "^9.0.0",
-    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react": "^7.25.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "fast-glob": "^3.2.7",
     "format-util": "^1.0.5",
@@ -172,12 +172,11 @@
     "terser-webpack-plugin": "^4.2.3",
     "tslint": "5.14.0",
     "typescript": "^4.4.3",
-    "unist-util-visit": "^2.0.2",
-    "url-loader": "^4.1.0",
+    "unist-util-visit": "^2.0.3",
     "webpack": "^5.52.0",
-    "webpack-bundle-analyzer": "^4.1.0",
+    "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.8.0",
-    "yargs": "^17.0.1",
+    "yargs": "^17.1.1",
     "yarn-deduplicate": "^3.1.0"
   },
   "resolutions": {
@@ -216,6 +215,7 @@
     "docs",
     "docs/packages/*",
     "framer",
+    "framer/Material-UI.framerfx",
     "test"
   ]
 }

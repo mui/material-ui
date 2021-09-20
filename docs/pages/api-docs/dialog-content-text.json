@@ -11,6 +11,5 @@
   "filename": "/packages/mui-material/src/DialogContentText/DialogContentText.js",
   "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
   "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }
