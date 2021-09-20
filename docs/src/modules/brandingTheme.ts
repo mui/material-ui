@@ -374,6 +374,16 @@ export function getThemedComponents(theme: Theme) {
           },
         },
       },
+      MuiListItemButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: 5,
+            '&:hover, &:focus': {
+              backgroundColor: theme.palette.mode === 'dark' ? '' : theme.palette.grey[100],
+            },
+          },
+        },
+      },
       MuiSelect: {
         defaultProps: {
           IconComponent: ArrowDropDownRounded,
