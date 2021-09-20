@@ -92,7 +92,12 @@ function roundValueToStep(value, step, min) {
   return Number(nearest.toFixed(getDecimalPrecision(step)));
 }
 
-function setValueIndex({ values, newValue, index }) {
+function setValueIndex({ values, source, newValue, index }) {
+  // Performance shortcut
+  if (source[index] === newValue) {
+    return source;
+  }
+
   const output = values.slice();
   output[index] = newValue;
   return output.sort(asc);
@@ -343,6 +348,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       const previousValue = newValue;
       newValue = setValueIndex({
         values,
+        source: valueDerived,
         newValue,
         index,
       });
@@ -375,7 +381,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     axis += '-reverse';
   }
 
-  const getFingerNewValue = ({ finger, move = false, values: values2 }) => {
+  const getFingerNewValue = ({ finger, move = false, values: values2, source }) => {
     const { current: slider } = sliderRef;
     const { width, height, bottom, left } = slider.getBoundingClientRect();
     let percent;
@@ -422,6 +428,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       const previousValue = newValue;
       newValue = setValueIndex({
         values: values2,
+        source,
         newValue,
         index: activeIndex,
       });
@@ -456,6 +463,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       finger,
       move: true,
       values,
+      source: valueDerived,
     });
 
     focusThumb({ sliderRef, activeIndex, setActive });
@@ -478,7 +486,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       return;
     }
 
-    const { newValue } = getFingerNewValue({ finger, values });
+    const { newValue } = getFingerNewValue({ finger, values, source: valueDerived });
 
     setActive(-1);
     if (nativeEvent.type === 'touchend') {
@@ -507,7 +515,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       touchId.current = touch.identifier;
     }
     const finger = trackFinger(nativeEvent, touchId);
-    const { newValue, activeIndex } = getFingerNewValue({ finger, values });
+    const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
     setValueState(newValue);
@@ -564,7 +572,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     // Avoid text selection
     event.preventDefault();
     const finger = trackFinger(event, touchId);
-    const { newValue, activeIndex } = getFingerNewValue({ finger, values });
+    const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
     setValueState(newValue);
