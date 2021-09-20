@@ -123,8 +123,9 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
         </Box>
         <div>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            <Link href="#EarlyBird">* Early bird special.</Link>
+            <br />
             Price capped at 10 developers.
-            <br /> * Early bird special.
           </Typography>
         </div>
       </div>
