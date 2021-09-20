@@ -172,7 +172,7 @@
     "terser-webpack-plugin": "^4.2.3",
     "tslint": "5.14.0",
     "typescript": "^4.4.3",
-    "unist-util-visit": "^2.0.2",
+    "unist-util-visit": "^2.0.3",
     "webpack": "^5.52.0",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.8.0",
