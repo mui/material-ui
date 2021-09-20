@@ -1,15 +1,17 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { ThemeProvider as MuiThemeProvider, styled } from '@mui/material/styles';
+import { ThemeProvider, styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
 import Link from 'docs/src/modules/components/Link';
+import MuiLink from '@mui/material/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
@@ -22,40 +24,61 @@ import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
 import ROUTES from 'docs/src/route';
 
-const Role = ({
-  title,
-  description,
-  url,
-}: {
-  title: string;
+interface RoleProps {
   description: string;
+  title: string;
   url?: string;
-}) => (
-  <Box
-    sx={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: { xs: 'start', sm: 'center' },
-      flexDirection: { xs: 'column', sm: 'row' },
-    }}
-  >
+}
+
+function Role(props: RoleProps) {
+  if (props.url) {
+    return (
+      <Box
+        component={Link}
+        href={props.url}
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'start',
+          flexDirection: { xs: 'column', lg: 'row' },
+        }}
+      >
+        <span>
+          <Typography
+            component="span"
+            variant="body1"
+            color="text.primary"
+            fontWeight={700}
+            sx={{ display: 'block', my: 1 }}
+          >
+            {props.title}
+          </Typography>
+          <Typography
+            component="span"
+            color="text.secondary"
+            sx={{ display: 'block', mb: 1, maxWidth: 700 }}
+          >
+            {props.description}
+          </Typography>
+        </span>
+        <MuiLink component="span" variant="body2" sx={{ my: 1 }}>
+          More about this role <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
+        </MuiLink>
+      </Box>
+    );
+  }
+
+  return (
     <div>
       <Typography variant="body1" color="text.primary" fontWeight={700} sx={{ my: 1 }}>
-        {title}
+        {props.title}
       </Typography>
       <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 700 }}>
-        {description}
+        {props.description}
       </Typography>
     </div>
-    {url && (
-      <div style={{ display: 'flex', alignSelf: 'start', paddingTop: '0.5em' }}>
-        <Link href={url} variant="body2" aria-label={`See ${title} role`}>
-          More about this role <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
-        </Link>
-      </div>
-    )}
-  </Box>
-);
+  );
+}
 
 const Accordion = styled(MuiAccordion)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -99,91 +122,89 @@ const AccordionDetails = styled(MuiAccordionDetail)(({ theme }) => ({
 const faqData = [
   {
     summary: 'Are there application deadlines?',
-    detail: (
-      <React.Fragment>
-        No. If a job is visible on our careers page, then you can still apply.
-      </React.Fragment>
-    ),
+    detail: 'No. If a job is visible on our careers page, then you can still apply.',
   },
   {
     summary: 'Does MUI do whiteboarding during interviews?',
-    detail: (
-      <React.Fragment>
-        No. We ask applicants to complete challenges that are close to their future day-to-day
-        contributions.
-      </React.Fragment>
-    ),
+    detail:
+      'No. We ask applicants to complete challenges that are close to their future day-to-day contributions.',
   },
   {
     summary: 'Does MUI offer contract job opportunities?',
-    detail: (
-      <React.Fragment>
-        Yes. People outside of France will be hired as full-time contractors. (Benefits may vary.)
-      </React.Fragment>
-    ),
+    detail:
+      'Yes. People outside of France will be hired as full-time contractors. (Benefits may vary.)',
   },
 ];
 
-const openRolesData = {
-  engineering: [
-    {
-      title: 'Full-stack Engineer',
-      description:
-        'You will initiate the development of a bold new product vertical. We are looking for an experienced and ambitious full-stack engineer that is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
-      url: '/company/full-stack-engineer/',
-    },
-    {
-      title: 'React Engineer',
-      description:
-        'You will support the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption of the free open-source tier (freemium/open-core business model).',
-      url: '/company/react-engineer/',
-    },
-  ],
-  product: [
-    {
-      title: 'Technical Product Manager',
-      description:
-        'You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features. Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning.',
-      url: '/company/technical-product-manager/',
-    },
-    {
-      title: 'Product Manager',
-      description:
-        'You will initiate the exploration of a bold new product vertical. We are looking for an experienced and ambitious product manager who is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
-      url: '/company/product-manager/',
-    },
-    {
-      title: 'Developer Advocate',
-      description:
-        'You will educate users on the latest features, craft high-quality examples and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components.',
-      url: '/company/developer-advocate/',
-    },
-  ],
-};
+const openRolesData = [
+  {
+    title: 'Engineering',
+    roles: [],
+  },
+  {
+    title: 'Product',
+    roles: [
+      {
+        title: 'Product Manager - Low code',
+        description:
+          'You will initiate the exploration of a bold new product vertical. We are looking for an experienced and ambitious product manager who is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
+        url: '/company/product-manager/',
+      },
+      {
+        title: 'Technical Product Manager - MUI X',
+        description:
+          'You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features. Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning.',
+        url: '/company/technical-product-manager/',
+      },
+      {
+        title: 'Developer Advocate',
+        description:
+          'You will educate users on the latest features, craft high-quality examples and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components.',
+        url: '/company/developer-advocate/',
+      },
+    ],
+  },
+];
 
-const futureRolesData = {
-  product: [
-    {
-      title: 'Product Designer',
-      description:
-        'Design is critical to the success of our mission. We will be looking for skills that complement our lead designer. It could be a graphic designer or a UX expert for instance, depending on our exact needs.',
-    },
-  ],
-  operations: [
-    {
-      title: 'Head of talent',
-      description:
-        'Recruit an exceptional team and lay the foundations for a modern corporation. We will be looking for a self-starter who acts as a strategic designer, builder, and champion for our engineering-centric and customer-oriented culture. They will serve as part of the company’s leadership team, collaborating to continuously evolve our high-performance, high-engagement crew.',
-    },
-  ],
-  customerSuccess: [
-    {
-      title: 'Support Engineer',
-      description:
-        'Ensure that our users wildly succeed on their journey with MUI. You’ll directly work with users, customers, and potential customers to unblock them from using the products, triage and resolve issues, and use this direct feedback to drive direct improvements in MUI.',
-    },
-  ],
-};
+const futureRolesData = [
+  {
+    title: 'Operations',
+    roles: [
+      {
+        title: 'Head of talent',
+        description:
+          'Recruit an exceptional team and lay the foundations for a modern corporation. We will be looking for a self-starter who acts as a strategic designer, builder, and champion for our engineering-centric and customer-oriented culture. They will serve as part of the company’s leadership team, collaborating to continuously evolve our high-performance, high-engagement crew.',
+      },
+    ],
+  },
+  {
+    title: 'Engineering',
+    roles: [
+      {
+        title: 'Full-stack Engineer',
+        description:
+          'You will initiate the development of a bold new product vertical. We are looking for an experienced and ambitious full-stack engineer that is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
+        url: '/company/full-stack-engineer/',
+      },
+      {
+        title: 'React Engineer',
+        description:
+          'You will support the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption of the free open-source tier (freemium/open-core business model).',
+        url: '/company/react-engineer/',
+      },
+    ],
+  },
+  {
+    title: 'Product',
+    roles: [
+      {
+        title: 'Product Designer',
+        description:
+          'Design is critical to the success of our mission. We will be looking for skills that complement our lead designer. It could be a graphic designer or a UX expert for instance, depending on our exact needs.',
+      },
+    ],
+  },
+];
 
 function renderFAQItem(index: number, defaultExpanded?: boolean) {
   const faq = faqData[index];
@@ -290,7 +311,7 @@ function CareersContent() {
         <Container sx={{ py: { xs: 4, md: 8 } }}>
           <Grid container alignItems="center" spacing={{ xs: 2, sm: 4 }}>
             <Grid item xs={12} md={6}>
-              <Typography variant="h2" sx={{ my: 1 }}>
+              <Typography variant="h2" sx={{ my: 1 }} id="perks-amp-benefits">
                 {'Perks & benefits'}
               </Typography>
               <Typography color="text.secondary" sx={{ mb: 2 }}>
@@ -378,7 +399,7 @@ function CareersContent() {
           }}
         >
           <div>
-            <Typography variant="h2" sx={{ my: 1 }}>
+            <Typography variant="h2" sx={{ my: 1 }} id="open-roles">
               Open roles
             </Typography>
             <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
@@ -395,18 +416,9 @@ function CareersContent() {
               theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
           }}
         />
-        <Typography
-          component="h3"
-          variant="h5"
-          color="primary"
-          fontWeight="extraBold"
-          sx={{ mb: 2 }}
-        >
-          Engineering
-        </Typography>
-        {openRolesData.engineering.map((role) => (
-          <React.Fragment>
-            <Role title={role.title} description={role.description} url={role.url} />
+        <Stack
+          spacing={2}
+          divider={
             <Divider
               sx={{
                 my: { xs: 1, sm: 2 },
@@ -414,39 +426,30 @@ function CareersContent() {
                   theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
               }}
             />
-          </React.Fragment>
-        ))}
-        <Typography
-          component="h3"
-          variant="h5"
-          color="primary"
-          fontWeight="extraBold"
-          sx={{ mb: 2 }}
+          }
         >
-          Product
-        </Typography>
-        {openRolesData.product.map((role, idx, arr) => (
-          <React.Fragment>
-            <Role title={role.title} description={role.description} url={role.url} />
-            {idx < arr.length - 1 && (
-              <Divider
-                sx={{
-                  my: { xs: 1, sm: 2 },
-                  borderColor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
-                }}
-              />
-            )}
-          </React.Fragment>
-        ))}
+          {openRolesData.map((category) => {
+            const roles = category.roles;
+            return (
+              <React.Fragment>
+                <Typography component="h3" variant="h5" color="primary" fontWeight="extraBold">
+                  {category.title}
+                </Typography>
+                {roles.length > 0 ? (
+                  roles.map((role) => (
+                    <Role title={role.title} description={role.description} url={role.url} />
+                  ))
+                ) : (
+                  <Typography color="text.secondary">No open roles.</Typography>
+                )}
+              </React.Fragment>
+            );
+          })}
+        </Stack>
       </Container>
       {/* Future roles */}
-      <MuiThemeProvider theme={brandingDarkTheme}>
-        <Box
-          sx={{
-            bgcolor: 'primaryDark.700',
-          }}
-        >
+      <ThemeProvider theme={brandingDarkTheme}>
+        <Box sx={{ bgcolor: 'primaryDark.700' }}>
           <Container sx={{ py: { xs: 4, md: 8 } }}>
             <Box
               sx={{
@@ -456,82 +459,43 @@ function CareersContent() {
               }}
             >
               <div>
-                <Typography variant="h2" sx={{ my: 1 }}>
+                <Typography variant="h2" sx={{ my: 1 }} id="future-roles">
                   Future roles
                 </Typography>
                 <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
                   In the future, we will need to fill the following positions. If you don&apos;t
-                  want to wait for the positions to be opened, you can jump ahead and submit an open
-                  application.
+                  want to wait for the positions to be opened, you can jump ahead and submit an{' '}
+                  <Link href="https://airtable.com/shr9JdBSiE6noobhc">open application.</Link>
                 </Typography>
               </div>
             </Box>
             <Divider sx={{ my: { xs: 2, sm: 4 }, borderColor: 'primaryDark.600' }} />
-            <Typography
-              component="h3"
-              variant="h5"
-              color="primary"
-              fontWeight="extraBold"
-              sx={{ mb: 2 }}
+            <Stack
+              spacing={2}
+              divider={<Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />}
             >
-              Engineering
-            </Typography>
-            <Typography color="text.secondary" sx={{ mb: 1 }}>
-              No plans yet.
-            </Typography>
-            <Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />
-            <Typography
-              component="h3"
-              variant="h5"
-              color="primary"
-              fontWeight="extraBold"
-              sx={{ mb: 2 }}
-            >
-              Product
-            </Typography>
-            {futureRolesData.product.map((role) => (
-              <React.Fragment>
-                <Role title={role.title} description={role.description} />
-                <Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />
-              </React.Fragment>
-            ))}
-            <Typography
-              component="h3"
-              variant="h5"
-              color="primary"
-              fontWeight="extraBold"
-              sx={{ mb: 2 }}
-            >
-              Operations
-            </Typography>
-            {futureRolesData.operations.map((role) => (
-              <React.Fragment>
-                <Role title={role.title} description={role.description} />
-                <Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />
-              </React.Fragment>
-            ))}
-            <Typography
-              component="h3"
-              variant="h5"
-              color="primary"
-              fontWeight="extraBold"
-              sx={{ mb: 2 }}
-            >
-              Customer Success
-            </Typography>
-            {futureRolesData.customerSuccess.map((role, idx, arr) => (
-              <React.Fragment>
-                <Role title={role.title} description={role.description} />
-                {idx < arr.length - 1 && (
-                  <Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />
-                )}
-              </React.Fragment>
-            ))}
+              {futureRolesData.map((category) => {
+                const roles = category.roles;
+                return (
+                  <React.Fragment>
+                    <Typography component="h3" variant="h5" color="primary" fontWeight="extraBold">
+                      {category.title}
+                    </Typography>
+                    {roles.length > 0 ? (
+                      roles.map((role) => (
+                        <Role title={role.title} description={role.description} />
+                      ))
+                    ) : (
+                      <Typography color="text.secondary">No plans yet.</Typography>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </Stack>
           </Container>
         </Box>
-      </MuiThemeProvider>
+      </ThemeProvider>
       {/* Frequently asked questions */}
-
       <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
         <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
           Frequently asked questions
