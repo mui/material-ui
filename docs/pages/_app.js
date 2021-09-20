@@ -14,7 +14,6 @@ import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import jssRtl from 'jss-rtl';
-import { CacheProvider } from '@emotion/react';
 import { useRouter } from 'next/router';
 import { StylesProvider, jssPreset } from '@mui/styles';
 import pages from 'docs/src/pages';
@@ -306,7 +305,7 @@ function findActivePage(currentPages, pathname) {
 }
 
 function AppWrapper(props) {
-  const { children, pageProps } = props;
+  const { children, emotionCache, pageProps } = props;
 
   const router = useRouter();
 
@@ -342,7 +341,9 @@ function AppWrapper(props) {
           <PageContext.Provider value={{ activePage, pages }}>
             <StylesProvider jss={jss}>
               <ThemeProvider>
-                <DocsStyledEngineProvider>{children}</DocsStyledEngineProvider>
+                <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                  {children}
+                </DocsStyledEngineProvider>
               </ThemeProvider>
             </StylesProvider>
           </PageContext.Provider>
@@ -357,6 +358,7 @@ function AppWrapper(props) {
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
+  emotionCache: PropTypes.object.isRequired,
   pageProps: PropTypes.object.isRequired,
 };
 
@@ -364,11 +366,9 @@ export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
-    <CacheProvider value={emotionCache}>
-      <AppWrapper pageProps={pageProps}>
-        <Component {...pageProps} />
-      </AppWrapper>
-    </CacheProvider>
+    <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
+      <Component {...pageProps} />
+    </AppWrapper>
   );
 }
 
