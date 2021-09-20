@@ -19,6 +19,15 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import Link from 'docs/src/modules/components/Link';
 import { MuiPage } from 'docs/src/pages';
 
+function getMasonryItemHeight(menuLenght: number) {
+  return (
+    21 + // category header
+    16 + // list padding top, bottom
+    20 + // bottom box
+    menuLenght * 30 // each menu is 30px
+  );
+}
+
 export default function Home() {
   const { pages } = React.useContext(PageContext);
   const t = useTranslate();
@@ -90,7 +99,14 @@ export default function Home() {
             }}
           >
             {(componentPageData?.children || []).map((page) => {
-              return <MasonryItem key={page.pathname}>{renderCategory(page)}</MasonryItem>;
+              return (
+                <MasonryItem
+                  key={page.pathname}
+                  defaultHeight={getMasonryItemHeight((page.children || []).length)}
+                >
+                  {renderCategory(page)}
+                </MasonryItem>
+              );
             })}
           </Masonry>
           <Box
