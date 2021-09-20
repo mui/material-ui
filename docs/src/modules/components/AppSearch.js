@@ -143,7 +143,7 @@ export default function AppSearch() {
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
   );
-  const FADE_DURATION = 300; // ms
+  const FADE_DURATION = 120; // ms
   const userLanguage = useUserLanguage();
   const searchButtonRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
