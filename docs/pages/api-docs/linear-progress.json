@@ -49,6 +49,5 @@
   "filename": "/packages/mui-material/src/LinearProgress/LinearProgress.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/progress/\">Progress</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

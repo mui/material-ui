@@ -120,6 +120,5 @@
   "filename": "/packages/mui-lab/src/MobileDateTimePicker/MobileDateTimePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-time-picker/\">Date Time Picker</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

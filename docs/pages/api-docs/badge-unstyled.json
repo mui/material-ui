@@ -64,6 +64,5 @@
   "filename": "/packages/mui-core/src/BadgeUnstyled/BadgeUnstyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/badges/\">Badges</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }
