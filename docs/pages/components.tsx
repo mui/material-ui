@@ -32,7 +32,7 @@ export default function Home() {
           sx={{
             fontWeight: 500,
             bgcolor: 'transparent',
-            color: (theme) => (theme.palette.mode === 'dark' ? '' : 'grey.600'),
+            color: 'grey.600',
             px: 1,
           }}
         >
@@ -79,7 +79,7 @@ export default function Home() {
       <AppHeader />
       <main>
         <Section bg="gradient" sx={{ py: { xs: 2, sm: 4 } }}>
-          <Typography component="h1" variant="h2" sx={{ mb: 3 }}>
+          <Typography component="h1" variant="h2" sx={{ mb: 4, pl: 1 }}>
             All Components
           </Typography>
           <Masonry
