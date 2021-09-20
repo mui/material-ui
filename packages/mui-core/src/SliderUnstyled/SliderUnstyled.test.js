@@ -102,8 +102,8 @@ describe('<SliderUnstyled />', () => {
   });
 
   [
-    ['readonly range', Object.freeze([1, 2])],
-    ['range', [1, 2]],
+    ['readonly range', Object.freeze([2, 1])],
+    ['range', [2, 1]],
   ].forEach(([valueLabel, value]) => {
     it(`calls onChange even if the ${valueLabel} did not change`, () => {
       const handleChange = spy();
@@ -129,7 +129,8 @@ describe('<SliderUnstyled />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       // It should return the same value so that React.setState can make the update a noop.
-      expect(handleChange.args[0][1]).to.equal(value);
+      expect(handleChange.args[0][1]).not.to.equal(value);
+      expect(handleChange.args[0][1]).to.deep.equal(value.slice().sort((a, b) => a - b));
     });
   });
 });
