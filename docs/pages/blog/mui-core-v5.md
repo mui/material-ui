@@ -676,7 +676,7 @@ Some statistics with the released of v5.0.0 compared to the one of v4.0.0:
 - From 2M downloads/month to 9.5M downloads/month on npm
 - From 350k users/month to 700k users/month on the documentation
 
-We're also proud to share that the monetization initiatives we started right after the release of v4, such as [the store](/blog/material-ui-v4-is-out/#premium-themes-store-✨), are working. We incorporated the company two years ago, have grown between x2-3 a year since, and we're now over 10 people, with a positive cash flow 🚀. We are on track to reach 16 people by December 2021.
+We're also proud to share that the monetization initiatives we started right after the release of v4, such as [the store](/blog/material-ui-v4-is-out/#premium-themes-store-✨), are working. We incorporated the company two years ago, have grown 2-3X per year since, and we're now over 10 people, with a positive cash flow 🚀. We are on track to reach 16 people by December 2021.
 [We're hiring](/careers/) to grow our existing products, but also to explore a bold new product vertical, aligned with our mission.
 
 We couldn't be more grateful for the trust that the React community puts in us.
