@@ -322,7 +322,7 @@ export default function AppSearch() {
                   ? theme.palette.primaryDark[300]
                   : theme.palette.primary[500],
               marginRight: theme.spacing(1),
-              fontSize: '1.125rem',
+              fontSize: theme.typography.pxToRem(18),
             },
             '& .DocSearch-NewStartScreenItem': {
               display: 'flex',
@@ -335,7 +335,7 @@ export default function AppSearch() {
                   ? theme.palette.primaryDark[300]
                   : theme.palette.primary[500],
               fontWeight: 500,
-              fontSize: '0.875rem',
+              fontSize: theme.typography.pxToRem(14),
               '&:hover, &:focus': {
                 '.DocSearch-NewStartScreenItemIcon': {
                   marginLeft: theme.spacing(1),
@@ -345,7 +345,7 @@ export default function AppSearch() {
             '& .DocSearch-NewStartScreenItemIcon': {
               marginLeft: theme.spacing(0.5),
               transition: 'margin 0.2s',
-              fontSize: '1rem',
+              fontSize: theme.typography.pxToRem(16),
             },
             '& .DocSearch-Modal': {
               boxShadow: `0px 4px 20px ${
