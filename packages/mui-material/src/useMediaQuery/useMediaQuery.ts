@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { getThemeProps, useThemeWithoutDefault as useTheme } from '@mui/system';
-import useEnhancedEffect from '../utils/useEnhancedEffect';
+import { useSyncExternalStore } from 'use-sync-external-store';
 
 /**
  * @deprecated Not used internally. Use `MediaQueryListEvent` from lib.dom.d.ts instead.
@@ -26,6 +26,11 @@ export type MuiMediaQueryListListener = (event: MuiMediaQueryListEvent) => void;
 export interface Options {
   defaultMatches?: boolean;
   matchMedia?: typeof window.matchMedia;
+  /**
+   * This option is kept for backwards compatibility and has no longer any effect.
+   * It's previous behavior is now handled automatically.
+   */
+  // TODO: Deprecate for v6
   noSsr?: boolean;
   ssrMatchMedia?: (query: string) => { matches: boolean };
 }
@@ -44,7 +49,6 @@ export default function useMediaQuery<Theme = unknown>(
   const {
     defaultMatches = false,
     matchMedia = supportMatchMedia ? window.matchMedia : null,
-    noSsr = false,
     ssrMatchMedia = null,
   } = getThemeProps({ name: 'MuiUseMediaQuery', props: options, theme });
 
@@ -63,42 +67,32 @@ export default function useMediaQuery<Theme = unknown>(
   let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
   query = query.replace(/^@media( ?)/m, '');
 
-  const [match, setMatch] = React.useState(() => {
-    if (noSsr && supportMatchMedia) {
-      return matchMedia!(query).matches;
+  const getDefaultSnapshot = React.useCallback(() => defaultMatches, [defaultMatches]);
+  const getServerSnapshot = React.useMemo(() => {
+    if (ssrMatchMedia !== null) {
+      const { matches } = ssrMatchMedia(query);
+      return () => matches;
     }
-    if (ssrMatchMedia) {
-      return ssrMatchMedia(query).matches;
-    }
-
-    // Once the component is mounted, we rely on the
-    // event listeners to return the correct matches value.
-    return defaultMatches;
-  });
-
-  useEnhancedEffect(() => {
-    let active = true;
-
-    if (!supportMatchMedia) {
-      return undefined;
+    return getDefaultSnapshot;
+  }, [getDefaultSnapshot, query, ssrMatchMedia]);
+  const [getSnapshot, subscribe] = React.useMemo(() => {
+    if (matchMedia === null) {
+      return [getDefaultSnapshot, () => {}];
     }
 
-    const queryList = matchMedia!(query);
-    const updateMatch = () => {
-      // Workaround Safari wrong implementation of matchMedia
-      // TODO can we remove it?
-      // https://github.com/mui-org/material-ui/pull/17315#issuecomment-528286677
-      if (active) {
-        setMatch(queryList.matches);
-      }
-    };
-    updateMatch();
-    queryList.addListener(updateMatch);
-    return () => {
-      active = false;
-      queryList.removeListener(updateMatch);
-    };
-  }, [query, matchMedia, supportMatchMedia]);
+    const mediaQueryList = matchMedia(query);
+
+    return [
+      () => mediaQueryList.matches,
+      (notify: () => {}) => {
+        mediaQueryList.addEventListener('change', notify);
+        return () => {
+          mediaQueryList.removeEventListener('change', notify);
+        };
+      },
+    ];
+  }, [getDefaultSnapshot, matchMedia, query]);
+  const match = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
