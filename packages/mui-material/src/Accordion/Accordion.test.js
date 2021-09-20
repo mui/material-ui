@@ -126,7 +126,7 @@ describe('<Accordion />', () => {
             'prop',
             'MockedName',
           );
-        }).toErrorDev(['Material-UI: Expected the first child']);
+        }).toErrorDev(['MUI: Expected the first child']);
       });
 
       it('needs a valid element as the first child', () => {
@@ -137,7 +137,7 @@ describe('<Accordion />', () => {
             'prop',
             'MockedName',
           );
-        }).toErrorDev(["Material-UI: The Accordion doesn't accept a Fragment"]);
+        }).toErrorDev(["MUI: The Accordion doesn't accept a Fragment"]);
       });
     });
 
@@ -155,7 +155,7 @@ describe('<Accordion />', () => {
     const wrapper = render(<Accordion expanded>{minimalChildren}</Accordion>);
 
     expect(() => wrapper.setProps({ expanded: undefined })).to.toErrorDev(
-      'Material-UI: A component is changing the controlled expanded state of Accordion to be uncontrolled.',
+      'MUI: A component is changing the controlled expanded state of Accordion to be uncontrolled.',
     );
   });
 
@@ -163,7 +163,7 @@ describe('<Accordion />', () => {
     const { setProps } = render(<Accordion>{minimalChildren}</Accordion>);
 
     expect(() => setProps({ expanded: true })).toErrorDev(
-      'Material-UI: A component is changing the uncontrolled expanded state of Accordion to be controlled.',
+      'MUI: A component is changing the uncontrolled expanded state of Accordion to be controlled.',
     );
   });
 });

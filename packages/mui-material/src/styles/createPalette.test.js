@@ -145,25 +145,25 @@ describe('createPalette()', () => {
     it('throws an exception when an invalid mode is specified', () => {
       expect(() => {
         createPalette({ mode: 'foo' });
-      }).toErrorDev('Material-UI: The palette mode `foo` is not supported');
+      }).toErrorDev('MUI: The palette mode `foo` is not supported');
     });
 
     it('throws an exception when a wrong color is provided', () => {
       expect(() => createPalette({ primary: '#fff' })).toThrowMinified(
         [
-          'Material-UI: The color (primary) provided to augmentColor(color) is invalid.',
+          'MUI: The color (primary) provided to augmentColor(color) is invalid.',
           'The color object needs to have a `main` property or a `500` property.',
         ].join('\n'),
       );
       expect(() => createPalette({ primary: { main: { foo: 'bar' } } })).toThrowMinified(
         [
-          'Material-UI: The color (primary) provided to augmentColor(color) is invalid.',
+          'MUI: The color (primary) provided to augmentColor(color) is invalid.',
           '`color.main` should be a string, but `{"foo":"bar"}` was provided instead.',
         ].join('\n'),
       );
       expect(() => createPalette({ primary: { main: undefined } })).toThrowMinified(
         [
-          'Material-UI: The color (primary) provided to augmentColor(color) is invalid.',
+          'MUI: The color (primary) provided to augmentColor(color) is invalid.',
           '`color.main` should be a string, but `undefined` was provided instead.',
         ].join('\n'),
       );

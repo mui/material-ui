@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 <p class="description">Tooltips muestran texto informativo cuando los usuarios se desplazan, se concentran o tocan un elemento.</p>
 
-When activated, [Tooltips](https://material.io/design/components/tooltips.html) display a text label identifying an element, such as a description of its function.
+Cuando se activa, [Tooltips](https://material.io/design/components/tooltips.html) muestran una etiqueta de texto que identifica un elemento, como una descripción de su función.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

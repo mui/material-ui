@@ -12,6 +12,5 @@
   "filename": "/packages/mui-lab/src/TabPanel/TabPanel.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

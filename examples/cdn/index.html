@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@mui/material@next/umd/material-ui.development.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@mui/material@latest/umd/material-ui.development.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
     <!-- Fonts to support Material Design -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
@@ -56,10 +56,10 @@ function ProTip() {
     <Typography sx={{ mt: 6, mb: 3 }} color="text.secondary">
       <LightBulbIcon sx={{ mr: 1, verticalAlign: 'top' }} />
       Pro tip: See more{' '}
-      <Link href="https://material-ui.com/getting-started/templates/">
+      <Link href="https://mui.com/getting-started/templates/">
         templates
       </Link>{' '}
-      on the Material-UI documentation.
+      on the MUI documentation.
     </Typography>
   );
 }
@@ -68,7 +68,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://mui.com/">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -82,7 +82,7 @@ function App() {
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
-          CDN v5-beta example
+          CDN v5 example
         </Typography>
         <ProTip />
         <Copyright />

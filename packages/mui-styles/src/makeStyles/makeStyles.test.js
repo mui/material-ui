@@ -74,7 +74,7 @@ describe('makeStyles', () => {
 
       expect(() => {
         output.wrapper.setProps({ classes: { bar: 'foo' } });
-      }).toErrorDev('Material-UI: The key `bar` provided to the classes prop is not implemented');
+      }).toErrorDev('MUI: The key `bar` provided to the classes prop is not implemented');
 
       const baseClasses = output.classes;
       const extendedClasses = output.classes;
@@ -95,7 +95,7 @@ describe('makeStyles', () => {
 
       expect(() => {
         output.wrapper.setProps({ classes: { root: {} } });
-      }).toErrorDev('Material-UI: The key `root` provided to the classes prop is not valid');
+      }).toErrorDev('MUI: The key `root` provided to the classes prop is not valid');
 
       const extendedClasses = output.classes;
       expect(extendedClasses).to.deep.equal({ root: `${baseClasses.root} [object Object]` });
@@ -110,8 +110,8 @@ describe('makeStyles', () => {
           mountWithProps2({});
         }).to.throw('theme.spacing is not a function');
       }).toErrorDev([
-        'Material-UI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
-        'Material-UI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
+        'MUI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
+        'MUI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
         'Uncaught [TypeError: theme.spacing is not a function',
         'The above error occurred in the <TestComponent> component',
       ]);
@@ -123,7 +123,7 @@ describe('makeStyles', () => {
       expect(() => {
         mountWithProps2 = createGetClasses(undefined);
       }).toErrorDev(
-        'Material-UI: The `styles` argument provided is invalid.\nYou need to provide a function generating the styles or a styles object.',
+        'MUI: The `styles` argument provided is invalid.\nYou need to provide a function generating the styles or a styles object.',
       );
 
       expect(() => {
@@ -157,7 +157,7 @@ describe('makeStyles', () => {
           </ThemeProvider>,
         );
       }).toWarnDev([
-        'Material-UI: You are trying to override a style that does not exist.\n' +
+        'MUI: You are trying to override a style that does not exist.\n' +
           'Fix the `foo` key of `theme.components.Test.styleOverrides`.',
       ]);
     });
@@ -339,7 +339,7 @@ describe('makeStyles', () => {
           return <div className={classes.root} />;
         }
 
-        const wrapper = mount(
+        mount(
           <ThemeProvider theme={theme}>
             <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
               <Test />
@@ -347,7 +347,6 @@ describe('makeStyles', () => {
           </ThemeProvider>,
         );
 
-        const div = wrapper.find('div').instance();
         expect(sheetsRegistry.registry.length).to.equal(1);
         expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
           root: { margin: null, padding: 3 },

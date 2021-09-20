@@ -12,6 +12,5 @@
   "filename": "/packages/mui-material/src/FormGroup/FormGroup.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/switches/\">Switches</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

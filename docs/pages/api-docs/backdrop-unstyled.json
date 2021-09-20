@@ -21,6 +21,5 @@
   "filename": "/packages/mui-core/src/BackdropUnstyled/BackdropUnstyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/backdrop/\">Backdrop</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

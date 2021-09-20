@@ -1,18 +1,18 @@
 ---
-title: Danilo Leal joins Material-UI
-description: We are excited to share that Danilo Leal has joined Material-UI.
+title: Danilo Leal joins MUI
+description: We are excited to share that Danilo Leal has joined MUI.
 date: 2021-07-15T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
 ---
 
-We are excited to share that [Danilo Leal](https://daniloleal.co/) has joined Material-UI!
+We are excited to share that [Danilo Leal](https://daniloleal.co/) has joined MUI!
 He started a couple of days ago as a lead designer.
 
-Before joining Material-UI, he worked as a designer at Loggi, a Brazilian logistics unicorn.
+Before joining MUI, he worked as a designer at Loggi, a Brazilian logistics unicorn.
 He has spent the last five years diving into product design, product strategy, and design systems.
 Danilo strongly believes that code is a fundamental piece of a designer's work. It is, after all, the real medium through where users experience the product.
-For instance, one of his continuous contributions to Loggi was deep-diving into Material-UI's codebase to fulfill Loggi's customization needs.
+For instance, one of his continuous contributions to Loggi was deep-diving into MUI's codebase to fulfill Loggi's customization needs.
 
 His aspirations are well aligned with where we want to push the company in the long term.
 He wants to challenge the status quo.
@@ -25,4 +25,4 @@ Then, he will likely focus on a [second design system](https://github.com/mui-or
 
 We couldn't be more excited to have Danilo on the team! He's the first designer to join us, ever.
 A focus area with high potential 🌈 and that we have underinvested in for too long.
-See the other areas we want to invest in: we are [hiring](/company/careers/#open-roles).
+See the other areas we want to invest in: we are [hiring](/careers/#open-roles).

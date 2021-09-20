@@ -18,6 +18,5 @@
   "filename": "/packages/mui-material/src/ImageListItem/ImageListItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/image-list/\">Image List</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -6,12 +6,12 @@
   },
   "license": "MIT",
   "description": "Logs infos about the environment relevant to @mui/*",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "bin": "./envinfo.js",
   "dependencies": {
     "envinfo": "^7.8.1"
   },
-  "author": "Material-UI Team",
+  "author": "MUI Team",
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },

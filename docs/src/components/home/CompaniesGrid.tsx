@@ -46,37 +46,37 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     name: 'southwest',
     alt: 'Southwest logo',
     width: 125,
-    height: 19,
+    height: 52,
   },
   {
     name: 'boeing',
     alt: 'Boeing logo',
     width: 95,
-    height: 22,
+    height: 52,
   },
   {
     name: 'siemens',
     alt: 'Siemens logo',
     width: 105,
-    height: 25,
+    height: 52,
   },
   {
     name: 'deloitte',
     alt: 'Deloitte logo',
     width: 97,
-    height: 21,
+    height: 52,
   },
   {
     name: 'volvo',
     alt: 'Volvo logo',
     width: 131,
-    height: 18,
+    height: 52,
   },
   {
     name: 'unity',
     alt: 'Unity logo',
     width: 69,
-    height: 25,
+    height: 52,
   },
 ];
 

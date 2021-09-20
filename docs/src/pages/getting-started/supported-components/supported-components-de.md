@@ -55,7 +55,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - Thumbnail
   - **Controls ✓**
     - **Checkbox ✓**
-    - **Expand/collapse ✓** (bzw. Verschachtelt)
+    - **Text field dropdown menu ✓** (Select)
     - **Switch ✓**
     - Reorder
 - ******** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)******

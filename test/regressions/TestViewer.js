@@ -67,13 +67,15 @@ function TestViewer(props) {
           },
         }}
       />
-      <Box
-        aria-busy={!ready}
-        data-testid="testcase"
-        sx={{ bgcolor: 'background.default', display: 'inline-block', p: 1 }}
-      >
-        {children}
-      </Box>
+      <React.Suspense fallback={<div aria-busy />}>
+        <Box
+          aria-busy={!ready}
+          data-testid="testcase"
+          sx={{ bgcolor: 'background.default', display: 'inline-block', p: 1 }}
+        >
+          {children}
+        </Box>
+      </React.Suspense>
     </React.Fragment>
   );
 }

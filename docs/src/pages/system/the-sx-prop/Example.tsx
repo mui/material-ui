@@ -17,8 +17,7 @@ export default function Example() {
       <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
         98.3 K
       </Box>
-      <Box
-        component={TrendingUpIcon}
+      <TrendingUpIcon
         sx={{ color: 'success.dark', fontSize: 16, verticalAlign: 'sub' }}
       />
       <Box

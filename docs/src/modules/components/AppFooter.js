@@ -19,7 +19,7 @@ const Badge = styled('span')(({ theme }) => ({
   fontSize: '10px',
   lineHeight: '1.3',
   textTransform: 'uppercase',
-  fontWeight: '600',
+  fontWeight: '700',
   letterSpacing: '0.5px',
   display: 'inline-block',
 }));
@@ -95,7 +95,7 @@ export default function AppFooter() {
               <Logo>
                 <img src="/static/logo_raw.svg" alt="" />
                 <Link underline="hover" variant="body1" color="inherit" href="/">
-                  Material-UI
+                  MUI
                 </Link>
               </Logo>
             </Grid>
@@ -215,7 +215,7 @@ export default function AppFooter() {
                 versionNumber: (
                   <Link
                     color="inherit"
-                    href={`https://material-ui.com${languagePrefix}/versions/`}
+                    href={`https://mui.com${languagePrefix}/versions/`}
                     aria-label={`v${process.env.LIB_VERSION}. View versions page.`}
                   >
                     {`v${process.env.LIB_VERSION}`}
@@ -235,7 +235,7 @@ export default function AppFooter() {
             </Interpolate>
             {' Copyright © '}
             {new Date().getFullYear()}
-            {' Material-UI. '}
+            {' MUI. '}
           </VersionTypography>
         </Footer>
       </Container>

@@ -72,15 +72,15 @@ import { createTheme } from '@material-ui/core/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      // light: will be calculated from palette.primary.main,
+      // light : sera calculé à partir de palette.primary.main,
       main: '#ff4400',
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
+      // dark : sera calculé à partir de palette.primary.main,
+      // contrastText : sera calculé pour contraster avec palette.primary.main
     },
     secondary: {
       light: '#0066ff',
       main: '#0044ff',
-      // dark: will be calculated from palette.secondary.main,
+      // sombre : sera calculé à partir de palette.secondaire.main,
       contrastText: '#ffcc00',
     },
     // Used by `getContrastText()` to maximize the contrast between
@@ -186,7 +186,7 @@ While it's only a single property value change, internally it modifies several p
 
 {{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
-### User preference
+### Préférence de l'utilisateur
 
 You can use the React context to toggle the mode with a button inside your page.
 

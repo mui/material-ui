@@ -78,10 +78,10 @@ const theme = createTheme(
 
 Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/locale/index.ts) no repositório do GitHub.
 
-Para criar sua própria tradução, ou para personalizar o texto em Inglês. copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
+Para criar sua própria tradução, ou para personalizar o texto em inglês, copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 
 Por favor, considere contribuir com novas traduções de volta para o Material-UI abrindo uma pull request. No entanto, Material-UI visa suportar [100 mais comuns](https://en.wikipedia.org/wiki/List_of_languages_by_number_of_native_speakers) [localidades](https://www.ethnologue.com/guides/ethnologue200), nós podemos não aceitar contribuições para localidades que não são frequentemente usadas, por exemplo `gl-ES` que tem "apenas" 2.5 milhões de falantes nativos.
 
 ## Suporte RTL
 
-Idiomas direita-para-esquerda como árabe, persa ou hebraico são suportados. Siga [este guia](/guides/right-to-left/) para usá-los.
+Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Siga [este guia](/guides/right-to-left/) para usá-los.

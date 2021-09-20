@@ -160,7 +160,7 @@ function Unstable_TrapFocus(props) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(
             [
-              'Material-UI: The modal content node does not accept focus.',
+              'MUI: The modal content node does not accept focus.',
               'For the benefit of assistive technologies, ' +
                 'the tabIndex of the node is being set to "-1".',
             ].join('\n'),

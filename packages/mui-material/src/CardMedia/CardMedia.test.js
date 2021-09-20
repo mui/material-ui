@@ -101,7 +101,7 @@ describe('<CardMedia />', () => {
       expect(() => {
         PropTypes.checkPropTypes(CardMedia.propTypes, { classes: {} }, 'prop', 'MockedName');
       }).toErrorDev(
-        'Material-UI: Either `children`, `image`, `src` or `component` prop must be specified.',
+        'MUI: Either `children`, `image`, `src` or `component` prop must be specified.',
       );
     });
   });

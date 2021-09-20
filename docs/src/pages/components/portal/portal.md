@@ -24,7 +24,7 @@ You have to wait for the client-side hydration to see the children.
 
 ## Unstyled
 
-- 📦 [970 B gzipped](https://bundlephobia.com/result?p=@mui/core@next)
+- 📦 [970 B gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
 
 As the component does not have any styles, it also comes with the unstyled package.
 

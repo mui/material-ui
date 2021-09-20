@@ -72,19 +72,19 @@ import { createTheme } from '@material-ui/core/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      // light: will be calculated from palette.primary.main,
+      // light: 这将从 palette.primary.main 中进行计算，
       main: '#ff4400',
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
+      // dark: 这将从 palette.primary.main 中进行计算，
+      // contrastText: 这将计算与 palette.primary.main 的对比度
     },
     secondary: {
       light: '#0066ff',
       main: '#0044ff',
-      // dark: will be calculated from palette.secondary.main,
+      // dark: 这将从 palette.secondary.main 中进行计算，
       contrastText: '#ffcc00',
     },
-    // Used by `getContrastText()` to maximize the contrast between
-    // the background and the text.
+    // 使用 `getContrastText()` 来最大化
+    // 背景和文本的对比度
     contrastThreshold: 3,
     // 使用下面的函数用于将颜色的亮度在其调色板中
     // 移动大约两个指数。
@@ -147,7 +147,7 @@ const theme = createTheme({
 <!-- tested with packages/material-ui/test/typescript/augmentation/paletteColors.spec.ts -->
 
 ```ts
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
     status: {
       danger: React.CSSProperties['color'];

@@ -32,6 +32,7 @@ import { buildTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
+import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Button', 'Text field', 'Table', 'Alert', 'Tooltip'] as const;
 
@@ -152,7 +153,7 @@ export default function CoreComponents() {
                   <GradientText>40+</GradientText> building block components
                 </Typography>
               }
-              description="We have built the foundational components for your design system, enabling you to launch even faster that cool product you've been thinking about. We got your back!"
+              description="We've built the foundational components for your design system, enabling you to launch that cool product you've been thinking about even faster. We got your back!"
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
@@ -161,7 +162,7 @@ export default function CoreComponents() {
                 <Item icon={React.cloneElement(icons[name])} title={name} />
               </Highlighter>
             ))}
-            <More />
+            <More href={ROUTES.components} />
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -223,7 +224,7 @@ export default function CoreComponents() {
                     variant="outlined"
                     sx={{
                       mx: 'auto',
-                      my: 2,
+                      my: 4,
                       maxWidth: 320,
                       '& .MuiTableBody-root > .MuiTableRow-root:last-of-type > .MuiTableCell-root':
                         {
@@ -231,7 +232,13 @@ export default function CoreComponents() {
                         },
                     }}
                   >
-                    <Table aria-label="demo table">
+                    <Table
+                      aria-label="demo table"
+                      sx={{
+                        backgroundColor: (theme) =>
+                          theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff',
+                      }}
+                    >
                       <TableHead>
                         <TableRow>
                           <TableCell>Dessert</TableCell>

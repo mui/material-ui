@@ -21,13 +21,11 @@ module.exports = function setKarmaConfig(config) {
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 300000, // default 10000
     colors: true,
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'webpack'],
     files: [
       {
         pattern: 'test/karma.tests.js',
-        watched: true,
-        served: true,
-        included: true,
+        watched: false,
       },
       {
         pattern: 'test/assets/*.png',
@@ -67,22 +65,24 @@ module.exports = function setKarmaConfig(config) {
     webpack: {
       // TODO: profile in production
       mode: 'development',
-      // Works with source-map-support in production.
-      // Even though it's documented as "no":
       // https://webpack.js.org/configuration/devtool/#devtool
-      devtool: 'inline-source-map',
+      devtool: 'eval-cheap-source-map',
       optimization: {
         // Helps debugging and build perf.
         // Bundle size is irrelevant for local serving.
         minimize: false,
+        // TODO: profile in production
+        nodeEnv: 'test',
       },
       plugins: [
         new webpack.DefinePlugin({
-          // TODO: profile in production
-          'process.env.NODE_ENV': JSON.stringify('test'),
           'process.env.CI': JSON.stringify(process.env.CI),
           'process.env.KARMA': JSON.stringify(true),
           'process.env.TEST_GATE': JSON.stringify('enable-dispatching-profiler'),
+        }),
+        new webpack.ProvidePlugin({
+          // required by enzyme > cheerio > parse5 > util
+          process: 'process/browser',
         }),
       ],
       module: {
@@ -97,10 +97,6 @@ module.exports = function setKarmaConfig(config) {
           },
         ],
       },
-      node: {
-        // Some tests import fs
-        fs: 'empty',
-      },
       resolve: {
         alias: {
           // "How to use profiling in production"
@@ -108,7 +104,17 @@ module.exports = function setKarmaConfig(config) {
           'react-dom$': 'react-dom/profiling',
         },
         extensions: ['.js', '.ts', '.tsx'],
+        fallback: {
+          // needed by sourcemap
+          fs: false,
+          path: false,
+          // needed by enzyme > cheerio
+          stream: false,
+        },
       },
+      // TODO: 'browserslist:modern'
+      // See https://github.com/webpack/webpack/issues/14203
+      target: 'web',
     },
     webpackMiddleware: {
       noInfo: true,
@@ -138,7 +144,10 @@ module.exports = function setKarmaConfig(config) {
           os: 'OS X',
           os_version: 'Catalina',
           browser: 'chrome',
-          browser_version: '90.0',
+          // We support Chrome 90.x
+          // However, >=88 fails on seemingly all focus-related tests.
+          // TODO: Investigate why.
+          browser_version: '87.0',
         },
         // No accurate performance timings (integer precision instead of double).
         firefox: {

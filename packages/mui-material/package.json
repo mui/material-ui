@@ -1,9 +1,9 @@
 {
   "name": "@mui/material",
-  "version": "5.0.0-rc.1",
+  "version": "5.0.0",
   "private": false,
-  "author": "Material-UI Team",
-  "description": "Quickly build beautiful React apps. Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with Material Design.",
+  "author": "MUI Team",
+  "description": "Quickly build beautiful React apps. MUI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with Material Design.",
   "main": "./src/index.ts",
   "keywords": [
     "react",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://material-ui.com/",
+  "homepage": "https://mui.com/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/material-ui"
@@ -35,7 +35,7 @@
     "build:copy-files": "node ../../scripts/copy-files.js",
     "build:types": "node ../../scripts/buildTypes",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
-    "release": "yarn build && npm publish build --tag next",
+    "release": "yarn build && npm publish build",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.{js,ts,tsx}'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
@@ -60,18 +60,18 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.8",
-    "@mui/core": "5.0.0-alpha.46",
-    "@mui/system": "5.0.0-rc.1",
-    "@mui/types": "7.0.0-rc.1",
-    "@mui/utils": "5.0.0-rc.1",
+    "@mui/core": "5.0.0-alpha.47",
+    "@mui/system": "^5.0.0",
+    "@mui/types": "^7.0.0",
+    "@mui/utils": "^5.0.0",
     "@popperjs/core": "^2.4.4",
-    "@types/react-transition-group": "^4.2.0",
+    "@types/react-transition-group": "^4.4.3",
     "clsx": "^1.1.1",
-    "csstype": "^3.0.8",
+    "csstype": "^3.0.9",
     "hoist-non-react-statics": "^3.3.2",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2",
-    "react-transition-group": "^4.4.0"
+    "react-transition-group": "^4.4.2"
   },
   "sideEffects": false,
   "publishConfig": {

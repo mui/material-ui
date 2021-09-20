@@ -54,7 +54,7 @@ Fixed tabs should be used with a limited number of tabs, and when a consistent p
 
 ### 居中对齐
 
-而对于较大的视图，则应使用 `centered` 此属性。
+而对于较大的视图，则应使用 `centered` 属性。
 
 {{"demo": "pages/components/tabs/CenteredTabs.js", "bg": true}}
 
@@ -142,7 +142,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 下面的两个演示只是在键盘导航行为上有所区别。 Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
 
 ```jsx
-/* Tabs where selection follows focus */
+/* 那个跟随焦点的选项卡 */
 <Tabs selectionFollowsFocus />
 ```
 

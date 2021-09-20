@@ -25,6 +25,5 @@
   "filename": "/packages/mui-material/src/MenuItem/MenuItem.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/menus/\">Menus</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

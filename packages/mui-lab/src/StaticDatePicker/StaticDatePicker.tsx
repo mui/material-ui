@@ -31,11 +31,11 @@ type StaticDatePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/components/date-picker/)
  *
  * API:
  *
- * - [StaticDatePicker API](https://material-ui.com/api/static-date-picker/)
+ * - [StaticDatePicker API](https://mui.com/api/static-date-picker/)
  */
 const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
   inProps: StaticDatePickerProps<TDate>,
@@ -286,12 +286,12 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
    */
   reduceAnimations: PropTypes.bool,
   /**
-   * Custom renderer for day. Check the [PickersDay](https://material-ui.com/api/pickers-day/) component.
+   * Custom renderer for day. Check the [PickersDay](https://mui.com/api/pickers-day/) component.
    */
   renderDay: PropTypes.func,
   /**
    * The `renderInput` prop allows you to customize the rendered input.
-   * The `props` argument of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api) that you need to forward.
+   * The `props` argument of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api) that you need to forward.
    * Pay specific attention to the `ref` and `inputProps` keys.
    * @example ```jsx
    * renderInput={props => <TextField {...props} />}

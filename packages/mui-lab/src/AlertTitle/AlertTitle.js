@@ -10,7 +10,7 @@ export default React.forwardRef(function DeprecatedAlertTitle(props, ref) {
   if (!warnedOnce) {
     console.warn(
       [
-        'Material-UI: The AlertTitle component was moved from the lab to the core.',
+        'MUI: The AlertTitle component was moved from the lab to the core.',
         '',
         "You should use `import { AlertTitle } from '@mui/material'`",
         "or `import AlertTitle from '@mui/material/AlertTitle'`",

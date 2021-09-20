@@ -74,7 +74,7 @@ function HiddenCss(props) {
 
     if (unknownProps.length > 0) {
       console.error(
-        `Material-UI: Unsupported props received by \`<Hidden implementation="css" />\`: ${unknownProps.join(
+        `MUI: Unsupported props received by \`<Hidden implementation="css" />\`: ${unknownProps.join(
           ', ',
         )}. Did you forget to wrap this component in a ThemeProvider declaring these breakpoints?`,
       );

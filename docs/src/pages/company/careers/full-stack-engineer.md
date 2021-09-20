@@ -13,7 +13,7 @@
 
 ## About us
 
-See the [careers](/company/careers/) and [about us](https://next.material-ui.com/branding/about/) pages.
+See the [careers](/careers/) and [about us](/about/) pages.
 
 ### Why we're hiring
 
@@ -26,7 +26,7 @@ We believe that the best way to improve on these dimensions is to eliminate [80%
 
 ### Why this is interesting
 
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use Material-UI every month.
+Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
 
 But providing React components isn't enough.
 In our [last developer survey](/blog/2020-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
@@ -51,7 +51,7 @@ You are curious, you enjoy taking risks, and learning.
 
 ### Skills you should have
 
-- **Expertise in the modern JavaScript ecosystem**. Material-UI is built on the shoulders of giants, making use of technologies such as ES2020+, TypeScript, Node.js, React, Next.js, and Babel. The knowledge of SQL, Docker, and the AWS stack will prove itself valuable.
+- **Expertise in the modern JavaScript ecosystem**. MUI is built on the shoulders of giants, making use of technologies such as ES2020+, TypeScript, Node.js, React, Next.js, and Babel. The knowledge of SQL, Docker, and the AWS stack will prove itself valuable.
 - ​You are autonomous and a faster learner. You are proactive and can start projects without constant direction.
 - You ship code often that is elegant to use and read, and you take ownership of it. You can be relied upon throughout its lifecycle.
 - You can put a lot of thoughts into design, product roadmap, and the details of each feature. You won't only take a project and make it "functional."
@@ -64,7 +64,7 @@ You are curious, you enjoy taking risks, and learning.
 
 ## Compensation
 
-Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/company/careers/#perks-amp-benefits) page.
+Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/careers/#perks-amp-benefits) page.
 
 ## Apply
 

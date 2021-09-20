@@ -238,7 +238,7 @@ O CSS é gerado apenas no primeiro carregamento da página. Em seguida, o CSS n�
 
 #### Ação a tomar
 
-A solução de estilo depende de um cache, o *sheets manager*, para injetar apenas o CSS uma vez por tipo de componente (se você usar dois botões, você só precisa do CSS do botão uma vez). Você precisa criar **uma nova instância de `sheets` para cada requisição **.
+A solução de estilo depende de um cache, o *sheets manager*, para injetar apenas o CSS uma vez por tipo de componente (se você usar dois botões, você só precisa do CSS do botão uma vez). Você precisa criar **uma nova instância de `sheets` para cada requisição**.
 
 exemplo de correção:
 
