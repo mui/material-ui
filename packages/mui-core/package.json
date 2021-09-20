@@ -47,7 +47,7 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.14.8",
+    "@babel/runtime": "^7.15.4",
     "@emotion/is-prop-valid": "^1.1.0",
     "@mui/utils": "^5.0.0",
     "clsx": "^1.1.1",
