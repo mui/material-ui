@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
+import NextLink from 'next/link';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
@@ -13,7 +14,6 @@ import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import Link from 'docs/src/modules/components/Link';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -127,10 +127,12 @@ const NewStartScreen = () => {
             {category.name}
           </div>
           {items.map(({ name, href }) => (
-            <Link key={name} className="DocSearch-NewStartScreenItem" href={href}>
-              {name}
-              <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
-            </Link>
+            <NextLink key={name} href={href}>
+              <a href={href} className="DocSearch-NewStartScreenItem">
+                {name}
+                <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
+              </a>
+            </NextLink>
           ))}
         </div>
       ))}
@@ -151,15 +153,6 @@ export default function AppSearch() {
   const facetFilterLanguage =
     LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
   const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-  const addStartScreen = () => {
-    const dropDown = document.querySelector('.DocSearch-Dropdown');
-    const notAdded = document.querySelector('.DocSearch-NewStartScreen') === null;
-    if (dropDown && notAdded) {
-      const startScreenWrapper = document.createElement('div');
-      startScreenWrapper.innerHTML = ReactDOMServer.renderToStaticMarkup(<NewStartScreen />);
-      dropDown.appendChild(startScreenWrapper);
-    }
-  };
   const onOpen = React.useCallback(() => {
     setIsOpen(true);
   }, [setIsOpen]);
@@ -192,6 +185,16 @@ export default function AppSearch() {
   });
 
   React.useEffect(() => {
+    const addStartScreen = () => {
+      const dropDown = document.querySelector('.DocSearch-Dropdown');
+      const isExisted = document.querySelector('.DocSearch-NewStartScreen');
+      if (dropDown && !isExisted) {
+        dropDown.insertAdjacentHTML(
+          'beforeend',
+          ReactDOMServer.renderToStaticMarkup(<NewStartScreen />),
+        );
+      }
+    };
     // add transition to Modal
     if (isOpen) {
       const modal = document.querySelector('.DocSearch-Container');
@@ -404,6 +407,7 @@ export default function AppSearch() {
               },
             },
             '& .DocSearch-Dropdown': {
+              minHeight: 384, // = StartScreen height, to prevent layout shift when first char
               '&::-webkit-scrollbar-thumb': {
                 borderColor:
                   theme.palette.mode === 'dark'
