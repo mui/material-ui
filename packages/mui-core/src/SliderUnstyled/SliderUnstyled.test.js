@@ -128,7 +128,6 @@ describe('<SliderUnstyled />', () => {
       });
 
       expect(handleChange.callCount).to.equal(1);
-      // It should return the same value so that React.setState can make the update a noop.
       expect(handleChange.args[0][1]).not.to.equal(value);
       expect(handleChange.args[0][1]).to.deep.equal(value.slice().sort((a, b) => a - b));
     });
