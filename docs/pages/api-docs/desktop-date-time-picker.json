@@ -13,7 +13,7 @@
     "components": {
       "type": {
         "name": "shape",
-        "description": "{ LeftArrowButton?: elementType, LeftArrowIcon?: elementType, RightArrowButton?: elementType, RightArrowIcon?: elementType, SwitchViewButton?: elementType, SwitchViewIcon?: elementType }"
+        "description": "{ LeftArrowButton?: elementType, LeftArrowIcon?: elementType, OpenPickerIcon?: elementType, RightArrowButton?: elementType, RightArrowIcon?: elementType, SwitchViewButton?: elementType, SwitchViewIcon?: elementType }"
       },
       "default": "{}"
     },
@@ -47,18 +47,12 @@
     "leftArrowButtonText": { "type": { "name": "string" } },
     "loading": { "type": { "name": "bool" } },
     "mask": { "type": { "name": "string" } },
-    "maxDateTime": {
-      "type": {
-        "name": "union",
-        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      }
-    },
-    "minDateTime": {
-      "type": {
-        "name": "union",
-        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      }
-    },
+    "maxDate": { "type": { "name": "any" } },
+    "maxDateTime": { "type": { "name": "any" } },
+    "maxTime": { "type": { "name": "any" } },
+    "minDate": { "type": { "name": "any" } },
+    "minDateTime": { "type": { "name": "any" } },
+    "minTime": { "type": { "name": "any" } },
     "minutesStep": { "type": { "name": "number" }, "default": "1" },
     "onAccept": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
@@ -69,7 +63,6 @@
     "onYearChange": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } },
     "OpenPickerButtonProps": { "type": { "name": "object" } },
-    "openPickerIcon": { "type": { "name": "node" } },
     "openTo": {
       "type": {
         "name": "enum",
@@ -100,8 +93,8 @@
     "timeIcon": { "type": { "name": "node" } },
     "ToolbarComponent": { "type": { "name": "elementType" }, "default": "DateTimePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
-    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
-    "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
+    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "'–'" },
+    "toolbarTitle": { "type": { "name": "node" }, "default": "'Select date & time'" },
     "TransitionComponent": { "type": { "name": "elementType" } },
     "value": {
       "type": {
@@ -119,9 +112,8 @@
   "name": "DesktopDateTimePicker",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
-  "filename": "/packages/material-ui-lab/src/DesktopDateTimePicker/DesktopDateTimePicker.tsx",
+  "filename": "/packages/mui-lab/src/DesktopDateTimePicker/DesktopDateTimePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-time-picker/\">Date Time Picker</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

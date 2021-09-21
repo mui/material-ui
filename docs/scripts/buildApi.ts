@@ -27,12 +27,9 @@ import generatePropTypeDescription, {
   isElementAcceptingRefProp,
 } from 'docs/src/modules/utils/generatePropTypeDescription';
 import { findPages, findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
-import {
-  getHeaders,
-  renderInline as renderMarkdownInline,
-} from 'docs/src/modules/utils/parseMarkdown';
+import { getHeaders, renderInline as renderMarkdownInline } from '@mui/markdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
-import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
+import createGenerateClassName from '@mui/styles/createGenerateClassName';
 import * as ttp from 'typescript-to-proptypes';
 import { getLineFeed, getUnstyledFilename } from './helpers';
 
@@ -178,14 +175,14 @@ function createDescribeableProp(
 
     if (shouldHaveDefaultAnnotation) {
       throw new Error(
-        `JSDOC @default annotation not found. Add \`@default ${defaultValue.value}\` to the JSDOC of this prop.`,
+        `JSDoc @default annotation not found. Add \`@default ${defaultValue.value}\` to the JSDoc of this prop.`,
       );
     }
   } else if (jsdocDefaultValue !== undefined) {
     // `defaultValue` can't be undefined or we would've thrown earlier.
     if (jsdocDefaultValue.value !== defaultValue!.value) {
       throw new Error(
-        `Expected JSDOC @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
+        `Expected JSDoc @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
       );
     }
   }
@@ -212,12 +209,15 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   }
 
   if (type.type === 'TypeApplication') {
-    const arrayTypeName = resolveType(type.applications[0]);
-    return `${arrayTypeName}[]`;
+    return `${resolveType(type.expression)}<${type.applications
+      .map((typeApplication) => {
+        return resolveType(typeApplication);
+      })
+      .join(', ')}>`;
   }
 
   if (type.type === 'UnionType') {
-    return type.elements.map((t) => resolveType(t)).join(' \\| ');
+    return type.elements.map((t) => resolveType(t)).join(' | ');
   }
 
   if ('name' in type) {
@@ -374,7 +374,7 @@ function getInheritance(
 /**
  * Produces markdown of the description that can be hosted anywhere.
  *
- * By default we assume that the markdown is hosted on material-ui.com which is
+ * By default we assume that the markdown is hosted on mui.com which is
  * why the source includes relative url. We transform them to absolute urls with
  * this method.
  */
@@ -400,19 +400,19 @@ async function computeApiDescription(api: ReactApi, options: { host: string }): 
  * /**
  *  * Demos:
  *  *
- *  * - [Icons](https://material-ui.com/components/icons/)
- *  * - [Material Icons](https://material-ui.com/components/material-icons/)
+ *  * - [Icons](https://mui.com/components/icons/)
+ *  * - [Material Icons](https://mui.com/components/material-icons/)
  *  *
  *  * API:
  *  *
- *  * - [Icon API](https://material-ui.com/api/icon/)
+ *  * - [Icon API](https://mui.com/api/icon/)
  */
 async function annotateComponentDefinition(context: {
   component: { filename: string };
   api: ReactApi;
 }) {
   const { api, component } = context;
-  const HOST = 'https://material-ui.com';
+  const HOST = 'https://mui.com';
 
   const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
   const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
@@ -440,7 +440,7 @@ async function annotateComponentDefinition(context: {
           const bindingId = babelPath.node.declaration.name;
           const binding = babelPath.scope.bindings[bindingId];
 
-          // The JSDOC MUST be located at the declaration
+          // The JSDoc MUST be located at the declaration
           if (babel.types.isFunctionDeclaration(binding.path.node)) {
             // For function declarations the binding is equal to the declaration
             // /**
@@ -619,7 +619,7 @@ function extractClassConditions(descriptions: any) {
     [key: string]: { description: string; conditions?: string; nodeName?: string };
   } = {};
   const stylesRegex =
-    /((Styles|Pseudo-class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
+    /((Styles|State class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
 
   Object.entries(descriptions).forEach(([className, description]: any) => {
     if (className) {
@@ -807,13 +807,7 @@ async function buildDocs(options: {
 
   reactApi.styles = await parseStyles(reactApi, program);
 
-  // TODO: Drop once migration to emotion is complete since this will always be true.
-  let jssComponent = false;
-  const component = await import(componentObject.filename);
-  if (component?.default?.options !== undefined) {
-    jssComponent = true;
-    reactApi.styles.name = component.default.options.name;
-  } else if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
+  if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
     reactApi.styles.name = generateMuiName(reactApi.name);
   }
   reactApi.styles.classes.forEach((key) => {
@@ -836,13 +830,15 @@ async function buildDocs(options: {
     default: string | undefined;
     required: boolean | undefined;
     type: { name: string | undefined; description: string | undefined };
+    deprecated: true | undefined;
+    deprecationInfo: string | undefined;
   }>(
     Object.entries(reactApi.props).map(([propName, propDescriptor]) => {
       let prop: DescribeablePropDescriptor | null;
       try {
         prop = createDescribeableProp(propDescriptor, propName);
       } catch (error) {
-        propErrors.push([propName, error]);
+        propErrors.push([propName, error as Error]);
         prop = null;
       }
       if (prop === null) {
@@ -856,14 +852,9 @@ async function buildDocs(options: {
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';
       } else if (propName === 'sx') {
-        description +=
-          ' See the <a href="/system/basics/#the-sx-prop">`sx` page</a> for more details.';
+        description += ' See the <a href="/system/the-sx-prop/">`sx` page</a> for more details.';
       }
-
-      componentApi.propDescriptions = {
-        ...componentApi.propDescriptions,
-        [propName]: description && description.replace(/\n@default.*$/, ''),
-      };
+      componentApi.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
 
       // Only keep `default` for bool props if it isn't 'false'.
       let defaultValue: string | undefined;
@@ -882,6 +873,8 @@ async function buildDocs(options: {
         /\.isRequired/.test(prop.type.raw) ||
         (chainedPropType !== false && chainedPropType.required);
 
+      const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
+
       return [
         propName,
         {
@@ -893,6 +886,9 @@ async function buildDocs(options: {
           default: defaultValue,
           // undefined values are not serialized => saving some bytes
           required: requiredProp || undefined,
+          deprecated: !!deprecation || undefined,
+          deprecationInfo:
+            renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
         },
       ];
     }),
@@ -973,7 +969,6 @@ async function buildDocs(options: {
     filename: toGithubPath(reactApi.filename, workspaceRoot),
     inheritance: reactApi.inheritance,
     demos: generateDemoList(reactApi),
-    styledComponent: !jssComponent,
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
 
@@ -1111,7 +1106,7 @@ async function run(argv: {
   /**
    * components: Array<{ filename: string }>
    * e.g.
-   * [{ filename: '/Users/user/Projects/material-ui/packages/material-ui/src/Accordion/Accordion.js'}, ...]
+   * [{ filename: '/Users/user/Projects/material-ui/packages/mui-material/src/Accordion/Accordion.js'}, ...]
    */
   const components = componentDirectories
     .reduce((directories, componentDirectory) => {
@@ -1153,7 +1148,7 @@ async function run(argv: {
         program,
         workspaceRoot,
       });
-    } catch (error) {
+    } catch (error: any) {
       error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
       throw error;
     }

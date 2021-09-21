@@ -66,7 +66,11 @@ async function main() {
   async function takeScreenshot({ testcase, route }) {
     const screenshotPath = path.resolve(screenshotDir, `.${route}.png`);
     await fse.ensureDir(path.dirname(screenshotPath));
-    await testcase.screenshot({ path: screenshotPath, type: 'png' });
+
+    const explicitScreenshotTarget = await page.$('[data-testid="screenshot-target"]');
+    const screenshotTarget = explicitScreenshotTarget || testcase;
+
+    await screenshotTarget.screenshot({ path: screenshotPath, type: 'png' });
   }
 
   // prepare screenshots
@@ -99,6 +103,17 @@ async function main() {
         await takeScreenshot({ testcase, route: '/regression-Rating/FocusVisibleRating2' });
         await page.keyboard.press('ArrowLeft');
         await takeScreenshot({ testcase, route: '/regression-Rating/FocusVisibleRating3' });
+      });
+
+      it('should handle focus-visible with precise ratings correctly', async () => {
+        const index = routes.findIndex(
+          (route) => route === '/regression-Rating/PreciseFocusVisibleRating',
+        );
+        const testcase = await renderFixture(index);
+        await page.keyboard.press('Tab');
+        await takeScreenshot({ testcase, route: '/regression-Rating/PreciseFocusVisibleRating2' });
+        await page.keyboard.press('ArrowRight');
+        await takeScreenshot({ testcase, route: '/regression-Rating/PreciseFocusVisibleRating3' });
       });
     });
 

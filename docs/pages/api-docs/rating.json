@@ -24,7 +24,7 @@
     "size": {
       "type": {
         "name": "union",
-        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },
@@ -57,9 +57,8 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/material-ui/src/Rating/Rating.js",
+  "filename": "/packages/mui-material/src/Rating/Rating.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/rating/\">Rating</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

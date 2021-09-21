@@ -57,8 +57,8 @@ const theme = createTheme({
           font-style: normal;
           font-display: swap;
           font-weight: 400;
-          src: "local('Raleway'), local('Raleway-Regular'), url(${RalewayWoff2}) format('woff2')";
-          unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+          src: local('Raleway'), local('Raleway-Regular'), url(${RalewayWoff2}) format('woff2');
+          unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
         }
       `,
     },
@@ -84,13 +84,13 @@ Note that if you want to add additional `@font-face` declarations, you need to u
 
 ## Font size
 
-Material-UI uses `rem` units for the font size.
+MUI uses `rem` units for the font size.
 The browser `<html>` element default font size is `16px`, but browsers have an option to change this value,
 so `rem` units allow us to accommodate the user's settings, resulting in a better accessibility support.
 Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings
 for devices that can be vastly different in size and viewing distance.
 
-To change the font-size of Material-UI you can provide a `fontSize` property.
+To change the font-size of MUI you can provide a `fontSize` property.
 The default value is `14px`.
 
 ```js
@@ -105,9 +105,9 @@ const theme = createTheme({
 
 The computed font size by the browser follows this mathematical equation:
 
-<img src="/static/images/font-size.png" alt="font size calculation" style="width: 458px;" />
+<img src="/static/images/font-size.svg" alt="font size calculation" style="width: 458px;" />
 
-<!-- https://latex.codecogs.com/png.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
+<!-- https://latex.codecogs.com/svg.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
 
 ### Responsive font sizes
 
@@ -137,7 +137,7 @@ To automate this setup, you can use the [`responsiveFontSizes()`](/customization
 You can see this in action in the example below. Adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
 
 ```js
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -156,13 +156,13 @@ You might want to change the `<html>` element default font size. For instance, w
 > ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
 The `theme.typography.htmlFontSize` property is provided for this use case,
-which tells Material-UI what the font-size on the `<html>` element is.
+which tells MUI what the font-size on the `<html>` element is.
 This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createTheme({
   typography: {
-    // Tell Material-UI what's the font-size on the html element is.
+    // Tell MUI what's the font-size on the html element is.
     htmlFontSize: 10,
   },
 });
@@ -238,12 +238,12 @@ const theme = createTheme({
 
 > If you aren't using TypeScript you should skip this step.
 
-You need to make sure that the typings for the theme's `typography` variants and the `Typogrpahy`'s `variant` prop reflects the new set of variants.
+You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
 
-<!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
+<!-- Tested with packages/mui-material/test/typescript/augmentation/typographyVariants.spec.ts -->
 
 ```ts
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface TypographyVariants {
     poster: React.CSSProperties;
   }
@@ -255,7 +255,7 @@ declare module '@material-ui/core/styles' {
 }
 
 // Update the Typography's variant prop options
-declare module '@material-ui/core/Typography' {
+declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     poster: true;
     h3: false;

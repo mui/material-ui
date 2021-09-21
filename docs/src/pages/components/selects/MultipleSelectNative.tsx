@@ -1,7 +1,7 @@
 import * as React from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const names = [
   'Oliver Hansen',
@@ -18,8 +18,8 @@ const names = [
 
 export default function MultipleSelectNative() {
   const [personName, setPersonName] = React.useState<string[]>([]);
-  const handleChangeMultiple = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const { options } = event.target as HTMLSelectElement;
+  const handleChangeMultiple = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { options } = event.target;
     const value: string[] = [];
     for (let i = 0, l = options.length; i < l; i += 1) {
       if (options[i].selected) {
@@ -39,6 +39,7 @@ export default function MultipleSelectNative() {
           multiple
           native
           value={personName}
+          // @ts-ignore Typings are not considering `native`
           onChange={handleChangeMultiple}
           label="Native"
           inputProps={{

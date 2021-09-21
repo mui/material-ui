@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createTheme } from '@material-ui/core/styles';
-import { withStyles } from '@material-ui/styles';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import TwitterIcon from '@material-ui/icons/Twitter';
+import { createTheme } from '@mui/material/styles';
+import { withStyles } from '@mui/styles';
+import CardMedia from '@mui/material/CardMedia';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const activeCore = [
   {
@@ -31,13 +31,6 @@ const activeCore = [
     twitter: 'sebsilbermann',
     flag: 'Core components team',
     location: 'Dresden, Germany',
-  },
-  {
-    name: 'Damien Tassone',
-    github: 'dtassone',
-    twitter: 'madKakoO',
-    flag: 'Advanced components team',
-    location: 'Barcelona, Spain',
   },
   {
     name: 'Marija Najdova',
@@ -80,6 +73,19 @@ const activeCore = [
     flag: 'Core components team',
     location: 'Bangkok, Thailand',
   },
+  {
+    name: 'Flavien Delangle',
+    github: 'flaviendelangle',
+    flag: 'Advanced components team',
+    location: 'Lille, France',
+  },
+  {
+    name: 'Danilo Leal',
+    github: 'danilo-leal',
+    twitter: 'danilobleal',
+    flag: 'Lead Designer',
+    location: 'São Paulo, Brazil',
+  },
 ];
 
 const community = [
@@ -114,6 +120,13 @@ const community = [
     twitter: 'oleg008',
     flag: 'JSS',
     location: 'Berlin, Germany',
+  },
+  {
+    name: 'Ryan Cogswell',
+    github: 'ryancogswell',
+    twitter: 'ryanecogswell',
+    flag: 'Stack Overflow',
+    location: 'Minnesota, United States',
   },
 ];
 
@@ -184,7 +197,7 @@ const styles = (theme) => ({
     padding: theme.spacing(1),
   },
   container: {
-    margin: theme.spacing(2, 0, 4),
+    margin: theme.spacing(2, -2, 4),
   },
 });
 
@@ -285,7 +298,7 @@ some of whom have chosen to be featured below.`}
         title="Community emeriti"
         description={`We honor some no-longer-active core team members who have made
 valuable contributions in the past.
-They advise us from time-to-time.`}
+They advise us from time to time.`}
         members={emeriti}
         {...props}
       />

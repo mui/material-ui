@@ -1,0 +1,3 @@
+<ThemeProvider theme={darkModeTheme}>
+  <MyApp />
+</ThemeProvider>

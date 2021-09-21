@@ -5,11 +5,7 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import rtlPlugin from 'stylis-plugin-rtl';
 import rtlPluginSc from 'stylis-plugin-rtl-sc';
-import { useTheme } from '@material-ui/core/styles';
-
-// Cache for the ltr version of the styles
-export const cacheLtr = createCache({ key: 'css', prepend: true });
-cacheLtr.compat = true;
+import { useTheme } from '@mui/material/styles';
 
 // Cache for the rtl version of the styles
 const cacheRtl = createCache({
@@ -17,16 +13,25 @@ const cacheRtl = createCache({
   prepend: true,
   stylisPlugins: [rtlPlugin],
 });
-cacheRtl.compat = true;
 
 export default function StyledEngineProvider(props) {
   const theme = useTheme();
 
   const rtl = theme.direction === 'rtl';
+  let Wrapper = React.Fragment;
+  let wraperProps = {};
+
+  // Only happens client-side after the hydration
+  if (rtl) {
+    Wrapper = CacheProvider;
+    wraperProps = {
+      value: cacheRtl,
+    };
+  }
 
   return (
     <StyleSheetManager stylisPlugins={rtl ? [rtlPluginSc] : []}>
-      <CacheProvider value={rtl ? cacheRtl : cacheLtr}>{props.children}</CacheProvider>
+      <Wrapper {...wraperProps}>{props.children}</Wrapper>
     </StyleSheetManager>
   );
 }

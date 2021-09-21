@@ -6,7 +6,7 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'primary'"
     },
@@ -58,9 +58,8 @@
   },
   "spread": false,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/material-ui/src/Switch/Switch.js",
+  "filename": "/packages/mui-material/src/Switch/Switch.js",
   "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },
   "demos": "<ul><li><a href=\"/components/switches/\">Switches</a></li>\n<li><a href=\"/components/transfer-list/\">Transfer List</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

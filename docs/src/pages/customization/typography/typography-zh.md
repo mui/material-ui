@@ -35,34 +35,29 @@ const theme = createTheme({
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
-
-const raleway = {
-  fontFamily: 'Raleway',
-  fontStyle: 'normal',
-  fontDisplay: 'swap',
-  fontWeight: 400,
-  src: `
-    local('Raleway'),
-    local('Raleway-Regular'),
-    url(${RalewayWoff2}) format('woff2')
-  `,
-  unicodeRange:
-    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
-};
 ```
 
 接下来，您需要做的是修改主题，来使用这一个新的字体。 如果想在全局定义 Raleway 作为一个字体，您可以使用 [`CssBaseline`](/components/css-baseline/) 组件（或者你也可以选择你想要的任意其他 CSS 方案)。
 
 ```jsx
+import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
+
 const theme = createTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
   },
   components: {
     MuiCssBaseline: {
-      styleOverrides: {
-        '@font-face': [raleway],
-      },
+      styleOverrides: `
+        @font-face {
+          font-family: 'Raleway';
+          font-style: normal;
+          font-display: swap;
+          font-weight: 400;
+          src: "local('Raleway'), local('Raleway-Regular'), url(${RalewayWoff2}) format('woff2')";
+          unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+        }
+      `,
     },
   },
 });
@@ -71,10 +66,18 @@ const theme = createTheme({
 return (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    {children}
+    <Box
+      sx={{
+        fontFamily: 'Raleway',
+      }}
+    >
+      Raleway
+    </Box>
   </ThemeProvider>
 );
 ```
+
+Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previosly defined `@font-face` declarations won't be replaced.
 
 ## 字体大小（Font size）
 
@@ -148,7 +151,7 @@ theme = responsiveFontSizes(theme);
 ```js
 const theme = createTheme({
   typography: {
-    // 告知 Material-UI 此 html 元素的具体字体大小。
+    // Tell Material-UI what's the font-size on the html element is.
     htmlFontSize: 10,
   },
 });
@@ -202,11 +205,11 @@ const theme = createTheme({
 
 {{"demo": "pages/customization/typography/TypographyVariants.js"}}
 
-## Adding & disabling variants
+## 添加 & 禁用变体
 
-In addition to using the default typography variants, you can add custom ones, or disable any you don't need. Here is what you need to do:
+除了使用默认的排版变体外，你还可以添加自定义的排版，或者禁用任何你不需要的排版。 Here is what you need to do:
 
-**Step 1. Step 1. Update the theme's typography object**
+**Step 1. Step 1. Step 1. Update the theme's typography object**
 
 ```js
 const theme = createTheme({
@@ -220,28 +223,28 @@ const theme = createTheme({
 });
 ```
 
-**Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
+**Step 2. Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
 
 > If you aren't using TypeScript you should skip this step.
 
-You need to make sure that the typings for the theme's `typography` variants and the `Typogrpahy`'s `variant` prop reflects the new set of variants.
+You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
 
 <!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
 
 ```ts
-declare module '@material-ui/core/styles/createTypography' {
-  interface Typography {
+declare module '@material-ui/core/styles' {
+  interface TypographyVariants {
     poster: React.CSSProperties;
   }
 
   // allow configuration using `createTheme`
-  interface TypographyOptions {
+  interface TypographyVariantsOptions {
     poster?: React.CSSProperties;
   }
 }
 
 // Update the Typography's variant prop options
-declare module '@material-ui/core/Typography/Typography' {
+declare module '@material-ui/core/Typography' {
   interface TypographyPropsVariantOverrides {
     poster: true;
     h3: false;
@@ -249,7 +252,7 @@ declare module '@material-ui/core/Typography/Typography' {
 }
 ```
 
-**Step 3. Step 3. You can now use the new variant**
+**Step 3. Step 3. Step 3. You can now use the new variant**
 
 {{"demo": "pages/customization/typography/TypographyCustomVariant.js", "hideToolbar": true}}
 

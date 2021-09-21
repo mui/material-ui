@@ -280,7 +280,9 @@ function plugin(
           });
         },
         exit(path) {
-          if (alreadyImported || !needImport) return;
+          if (alreadyImported || !needImport) {
+            return;
+          }
 
           const propTypesImport = babel.template.ast(
             `import ${importName} from 'prop-types'`,
@@ -307,9 +309,13 @@ function plugin(
           return;
         }
 
-        if (!node.id) return;
+        if (!node.id) {
+          return;
+        }
         const props = propTypes.body.find((prop) => prop.name === node.id!.name);
-        if (!props) return;
+        if (!props) {
+          return;
+        }
 
         // Prevent visiting again
         (node as any).hasBeenVisited = true;
@@ -335,11 +341,15 @@ function plugin(
           return;
         }
 
-        if (!babelTypes.isIdentifier(node.id)) return;
+        if (!babelTypes.isIdentifier(node.id)) {
+          return;
+        }
         const nodeName = node.id.name;
 
         const props = propTypes.body.find((prop) => prop.name === nodeName);
-        if (!props) return;
+        if (!props) {
+          return;
+        }
 
         function getFromProp(propsNode: babelTypes.Node) {
           // Prevent visiting again
@@ -381,11 +391,15 @@ function plugin(
           return;
         }
 
-        if (!babelTypes.isIdentifier(node.id)) return;
+        if (!babelTypes.isIdentifier(node.id)) {
+          return;
+        }
         const nodeName = node.id.name;
 
         const props = propTypes.body.find((prop) => prop.name === nodeName);
-        if (!props) return;
+        if (!props) {
+          return;
+        }
 
         // Prevent visiting again
         (node as any).hasBeenVisited = true;

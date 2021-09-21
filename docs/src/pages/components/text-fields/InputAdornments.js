@@ -1,16 +1,16 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import FilledInput from '@material-ui/core/FilledInput';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import FilledInput from '@mui/material/FilledInput';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export default function InputAdornments() {
   const [values, setValues] = React.useState({
@@ -44,7 +44,7 @@ export default function InputAdornments() {
           id="outlined-start-adornment"
           sx={{ m: 1, width: '25ch' }}
           InputProps={{
-            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+            startAdornment: <InputAdornment position="start">kg</InputAdornment>,
           }}
         />
         <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
@@ -52,7 +52,7 @@ export default function InputAdornments() {
             id="outlined-adornment-weight"
             value={values.weight}
             onChange={handleChange('weight')}
-            endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+            endAdornment={<InputAdornment position="end">kg</InputAdornment>}
             aria-describedby="outlined-weight-helper-text"
             inputProps={{
               'aria-label': 'weight',
@@ -75,7 +75,7 @@ export default function InputAdornments() {
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
@@ -99,7 +99,7 @@ export default function InputAdornments() {
           id="filled-start-adornment"
           sx={{ m: 1, width: '25ch' }}
           InputProps={{
-            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+            startAdornment: <InputAdornment position="start">kg</InputAdornment>,
           }}
           variant="filled"
         />
@@ -108,7 +108,7 @@ export default function InputAdornments() {
             id="filled-adornment-weight"
             value={values.weight}
             onChange={handleChange('weight')}
-            endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+            endAdornment={<InputAdornment position="end">kg</InputAdornment>}
             aria-describedby="filled-weight-helper-text"
             inputProps={{
               'aria-label': 'weight',
@@ -131,7 +131,7 @@ export default function InputAdornments() {
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
@@ -153,7 +153,7 @@ export default function InputAdornments() {
           id="standard-start-adornment"
           sx={{ m: 1, width: '25ch' }}
           InputProps={{
-            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+            startAdornment: <InputAdornment position="start">kg</InputAdornment>,
           }}
           variant="standard"
         />
@@ -162,7 +162,7 @@ export default function InputAdornments() {
             id="standard-adornment-weight"
             value={values.weight}
             onChange={handleChange('weight')}
-            endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+            endAdornment={<InputAdornment position="end">kg</InputAdornment>}
             aria-describedby="standard-weight-helper-text"
             inputProps={{
               'aria-label': 'weight',
@@ -184,7 +184,7 @@ export default function InputAdornments() {
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
                 >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }

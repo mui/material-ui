@@ -1,12 +1,13 @@
 import * as React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import AlarmIcon from '@material-ui/icons/Alarm';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AlarmIcon from '@mui/icons-material/Alarm';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 export default function IconButtons() {
   return (
-    <div>
+    <Stack direction="row" spacing={1}>
       <IconButton aria-label="delete">
         <DeleteIcon />
       </IconButton>
@@ -19,6 +20,6 @@ export default function IconButtons() {
       <IconButton color="primary" aria-label="add to shopping cart">
         <AddShoppingCartIcon />
       </IconButton>
-    </div>
+    </Stack>
   );
 }

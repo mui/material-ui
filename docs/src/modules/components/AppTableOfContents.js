@@ -2,57 +2,79 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
-import Typography from '@material-ui/core/Typography';
+import { styled, alpha } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const Nav = styled('nav')(({ theme }) => {
+  return {
     top: 70,
     // Fix IE11 position sticky issue.
     marginTop: 70,
-    width: 175,
+    width: 210,
     flexShrink: 0,
     position: 'sticky',
     height: 'calc(100vh - 70px)',
     overflowY: 'auto',
-    padding: theme.spacing(2, 2, 2, 0),
+    padding: theme.spacing(2, 4, 2, 0),
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
-  },
-  contents: {
+  };
+});
+
+const NavLabel = styled(Typography)(({ theme }) => {
+  return {
     marginTop: theme.spacing(2),
-    paddingLeft: theme.spacing(1),
-  },
-  ul: {
-    padding: 0,
-    margin: 0,
-    listStyle: 'none',
-  },
-  item: {
-    fontSize: '.8125rem',
-    padding: theme.spacing(0.5, 0, 0.5, '5px'),
-    borderLeft: `3px solid transparent`,
+    paddingLeft: theme.spacing(1.5),
+    fontSize: theme.typography.pxToRem(12),
+    fontWeight: 700,
+    color:
+      theme.palette.mode === 'dark' ? alpha(theme.palette.grey[500], 0.5) : theme.palette.grey[500],
+  };
+});
+
+const NavList = styled(Typography)({
+  padding: 0,
+  margin: 0,
+  listStyle: 'none',
+});
+
+const NavItem = styled(Link, {
+  shouldForwardProp: (prop) => prop !== 'active' && prop !== 'secondary',
+})(({ active, secondary, theme }) => {
+  const activeStyles = {
+    borderLeftColor:
+      theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[600],
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+    fontWeight: 700,
+  };
+
+  return {
+    fontSize: theme.typography.pxToRem(13),
+    padding: theme.spacing(0, 1, 0, secondary ? 3 : '10px'),
+    margin: theme.spacing(0.5, 0, 1, 0),
+    borderLeft: `2px solid transparent`,
     boxSizing: 'border-box',
+    fontWeight: theme.typography.fontWeightMedium,
     '&:hover': {
       borderLeftColor:
-        theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
+        theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[700],
+      color:
+        theme.palette.mode === 'light' ? theme.palette.primary[500] : theme.palette.primary[400],
     },
-    '&$active,&:active': {
-      borderLeftColor:
-        theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
-    },
-  },
-  secondaryItem: {
-    paddingLeft: theme.spacing(2.5),
-  },
-  active: {},
-}));
+    ...(!active && {
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
+    }),
+    // TODO: We probably want `aria-current="location"` instead.
+    // If so, are we sure "current" and "active" states should have the same styles?
+    ...(active && activeStyles),
+    '&:active': activeStyles,
+  };
+});
 
 // TODO: these nodes are mutable sources. Use createMutableSource once it's stable
 function getItemsClient(headings) {
@@ -99,7 +121,6 @@ function useThrottledOnScroll(callback, delay) {
 
 export default function AppTableOfContents(props) {
   const { items } = props;
-  const classes = useStyles();
   const t = useTranslate();
 
   const itemsWithNodeRef = React.useRef([]);
@@ -183,46 +204,40 @@ export default function AppTableOfContents(props) {
   );
 
   const itemLink = (item, secondary) => (
-    <Link
+    <NavItem
       display="block"
-      color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
       href={`${activePage.linkProps?.as ?? activePage.pathname}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
-      className={clsx(
-        classes.item,
-        { [classes.secondaryItem]: secondary },
-        activeState === item.hash ? classes.active : undefined,
-      )}
+      active={activeState === item.hash}
+      secondary={secondary}
     >
       <span dangerouslySetInnerHTML={{ __html: item.text }} />
-    </Link>
+    </NavItem>
   );
 
   return (
-    <nav className={classes.root} aria-label={t('pageTOC')}>
+    <Nav aria-label={t('pageTOC')}>
       {items.length > 0 ? (
         <React.Fragment>
-          <Typography gutterBottom className={classes.contents}>
-            {t('tableOfContents')}
-          </Typography>
-          <Typography component="ul" className={classes.ul}>
+          <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>
+          <NavList component="ul">
             {items.map((item) => (
               <li key={item.text}>
                 {itemLink(item)}
                 {item.children.length > 0 ? (
-                  <ul className={classes.ul}>
+                  <NavList as="ul">
                     {item.children.map((subitem) => (
                       <li key={subitem.text}>{itemLink(subitem, true)}</li>
                     ))}
-                  </ul>
+                  </NavList>
                 ) : null}
               </li>
             ))}
-          </Typography>
+          </NavList>
         </React.Fragment>
       ) : null}
-    </nav>
+    </Nav>
   );
 }
 

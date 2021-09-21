@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
-import Box from '@material-ui/core/Box';
-import Stack from '@material-ui/core/Stack';
+import { styled, Box } from '@mui/system';
+import BadgeUnstyled from '@mui/core/BadgeUnstyled';
 
 const StyledBadge = styled(BadgeUnstyled)`
   box-sizing: border-box;
@@ -74,13 +72,13 @@ function BadgeContent() {
 
 export default function UnstyledBadge() {
   return (
-    <Stack spacing={4} direction="row">
+    <Box sx={{ '& > :not(style) + :not(style)': { ml: 4 } }}>
       <StyledBadge badgeContent={5} overlap="circular">
         <BadgeContent />
       </StyledBadge>
       <StyledBadge badgeContent={5} variant="dot" overlap="circular">
         <BadgeContent />
       </StyledBadge>
-    </Stack>
+    </Box>
   );
 }

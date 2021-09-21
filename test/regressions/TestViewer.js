@@ -1,37 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useFakeTimers } from 'sinon';
-import { withStyles } from '@material-ui/styles';
-import { createTheme, StyledEngineProvider } from '@material-ui/core/styles';
-
-const styles = (theme) => ({
-  '@global': {
-    html: {
-      WebkitFontSmoothing: 'antialiased', // Antialiasing.
-      MozOsxFontSmoothing: 'grayscale', // Antialiasing.
-      // Do the opposite of the docs in order to help catching issues.
-      boxSizing: 'content-box',
-    },
-    '*, *::before, *::after': {
-      boxSizing: 'inherit',
-      // Disable transitions to avoid flaky screenshots
-      transition: 'none !important',
-      animation: 'none !important',
-    },
-    body: {
-      margin: 0,
-      overflowX: 'hidden',
-    },
-  },
-  root: {
-    backgroundColor: theme.palette.background.default,
-    display: 'inline-block',
-    padding: theme.spacing(1),
-  },
-});
+import Box from '@mui/material/Box';
+import GlobalStyles from '@mui/material/GlobalStyles';
 
 function TestViewer(props) {
-  const { children, classes } = props;
+  const { children } = props;
 
   // We're simulating `act(() => ReactDOM.render(children))`
   // In the end children passive effects should've been flushed.
@@ -72,19 +46,42 @@ function TestViewer(props) {
   }, []);
 
   return (
-    // TODO v5: remove once migration to emotion is completed
-    <StyledEngineProvider injectFirst>
-      <div aria-busy={!ready} data-testid="testcase" className={classes.root}>
-        {children}
-      </div>
-    </StyledEngineProvider>
+    <React.Fragment>
+      <GlobalStyles
+        styles={{
+          html: {
+            WebkitFontSmoothing: 'antialiased', // Antialiasing.
+            MozOsxFontSmoothing: 'grayscale', // Antialiasing.
+            // Do the opposite of the docs in order to help catching issues.
+            boxSizing: 'content-box',
+          },
+          '*, *::before, *::after': {
+            boxSizing: 'inherit',
+            // Disable transitions to avoid flaky screenshots
+            transition: 'none !important',
+            animation: 'none !important',
+          },
+          body: {
+            margin: 0,
+            overflowX: 'hidden',
+          },
+        }}
+      />
+      <React.Suspense fallback={<div aria-busy />}>
+        <Box
+          aria-busy={!ready}
+          data-testid="testcase"
+          sx={{ bgcolor: 'background.default', display: 'inline-block', p: 1 }}
+        >
+          {children}
+        </Box>
+      </React.Suspense>
+    </React.Fragment>
   );
 }
 
 TestViewer.propTypes = {
   children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
 };
 
-const defaultTheme = createTheme();
-export default withStyles(styles, { defaultTheme })(TestViewer);
+export default TestViewer;

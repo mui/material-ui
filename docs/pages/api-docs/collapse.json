@@ -35,12 +35,11 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Collapse/Collapse.js",
+  "filename": "/packages/mui-material/src/Collapse/Collapse.js",
   "inheritance": {
     "component": "Transition",
     "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
   },
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li>\n<li><a href=\"/components/lists/\">Lists</a></li>\n<li><a href=\"/components/transitions/\">Transitions</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

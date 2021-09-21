@@ -21,12 +21,11 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Zoom/Zoom.js",
+  "filename": "/packages/mui-material/src/Zoom/Zoom.js",
   "inheritance": {
     "component": "Transition",
     "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
   },
   "demos": "<ul><li><a href=\"/components/transitions/\">Transitions</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

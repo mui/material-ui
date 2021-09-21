@@ -63,10 +63,10 @@ In general, radio buttons should have a value selected by default. If this is no
 
 {{"demo": "pages/components/radio-buttons/ErrorRadios.js"}}
 
-## Customized radios
+## Customization
 
-Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
@@ -79,7 +79,7 @@ The Radio component uses this hook internally.
 ### API
 
 ```jsx
-import { useRadioGroup } from '@material-ui/core/RadioGroup';
+import { useRadioGroup } from '@mui/material/RadioGroup';
 ```
 
 #### Returns

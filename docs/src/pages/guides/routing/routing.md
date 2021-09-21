@@ -5,7 +5,7 @@
 ## Navigation components
 
 There are two main components available to perform navigations.
-The most common one is the [`Link`](/components/link/) as its name might suggest.
+The most common one is the [`Link`](/components/links/) as its name might suggest.
 It renders a native `<a>` element and applies the `href` as an attribute.
 
 {{"demo": "pages/guides/routing/LinkDemo.js"}}
@@ -20,7 +20,7 @@ For instance, with a `Button` component:
 
 In real-life applications, using a native `<a>` element is rarely enough.
 You can improve the user experience by using an enhanced Link component systematically.
-The theme of Material-UI allows configuring this component once.
+The theme of MUI allows configuring this component once.
 For instance, with react-router:
 
 ```jsx
@@ -29,7 +29,7 @@ const LinkBehavior = React.forwardRef<
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
-  // Map href (Material-UI) -> to (react-router)
+  // Map href (MUI) -> to (react-router)
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 
@@ -58,22 +58,33 @@ const theme = createTheme({
 ## `component` prop
 
 You can achieve the integration with third-party routing libraries with the `component` prop.
-You can learn more about this prop in the [composition guide](/guides/composition/#component-prop).
+You can learn more about this prop in the [**composition guide**](/guides/composition/#component-prop).
+
+### Link
 
 Here are a few demos with [react-router](https://github.com/ReactTraining/react-router).
 You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
-### Link
-
 {{"demo": "pages/guides/routing/LinkRouter.js"}}
-
-### Tabs
-
-{{"demo": "pages/guides/routing/TabsRouter.js", "defaultCodeOpen": false}}
 
 ### Button
 
 {{"demo": "pages/guides/routing/ButtonRouter.js"}}
+
+**Note**: The button base component adds the `role="button"` attribute when it identifies the intent to render a button without a native `<button>` element.
+This can create issues when rendering a link.
+If you are not using one of the `href`, `to`, or `component="a"` props, you need to override the `role` attribute.
+The above demo achieves this by setting `role={undefined}` **after** the spread props.
+
+```jsx
+const LinkBehavior = React.forwardRef((props, ref) => (
+  <RouterLink ref={ref} to="/" {...props} role={undefined} />
+));
+```
+
+### Tabs
+
+{{"demo": "pages/guides/routing/TabsRouter.js", "defaultCodeOpen": false}}
 
 ### List
 
@@ -84,7 +95,7 @@ You can apply the same strategy with all the components: BottomNavigation, Card,
 ### Next.js
 
 Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link).
-The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with Material-UI.
+The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with MUI.
 
 - The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component.
   This component is unstyled and only responsible for handling the navigation.
@@ -92,7 +103,7 @@ The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/n
   This is similar to react-router's Link component.
 
   ```tsx
-  import Button from '@material-ui/core/Button';
+  import Button from '@mui/material/Button';
   import { NextLinkComposed } from '../src/Link';
 
   export default function Index() {
@@ -112,7 +123,7 @@ The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/n
 
 - The second version of the adapter is the `Link` component.
   This component is styled.
-  It leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
+  It leverages the [link component of MUI](https://mui.com/components/links/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';

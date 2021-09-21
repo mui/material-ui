@@ -2,7 +2,7 @@
 
 <p class="description">Comece com React e Material-UI em pouco tempo.</p>
 
-Componentes do Material-UI funcionam isoladamente. **Eles são auto-suficientes**, e só irão injetar os estilos que eles precisam para exibir. Eles não contam com qualquer folha de estilo global como [normalize.css](https://github.com/necolas/normalize.css/).
+Componentes do Material-UI funcionam isoladamente. **Eles são independentes**, e só irão injetar os estilos que eles precisam para exibir. Eles não contam com qualquer folha de estilo global como [normalize.css](https://github.com/necolas/normalize.css/).
 
 Você pode usar qualquer um dos componentes conforme demonstrado na documentação. Por favor, consulte a [página de demonstração](/components/buttons/) de cada componente para ver como eles devem ser importados.
 
@@ -18,7 +18,7 @@ import Button from '@material-ui/core/Button';
 function App() {
   return (
     <Button variant="contained" color="primary">
-      Olá Mundo
+      Hello World
     </Button>
   );
 } ReactDOM.render(<App />, document.querySelector('#app'));

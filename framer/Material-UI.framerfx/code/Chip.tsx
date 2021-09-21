@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiChip from '@material-ui/core/Chip';
+import MuiChip from '@mui/material/Chip';
 import { Icon } from './Icon';
 import { Avatar } from './Avatar';
 

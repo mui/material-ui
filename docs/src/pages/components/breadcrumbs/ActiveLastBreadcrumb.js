@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from '@material-ui/core/Link';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
 
 function handleClick(event) {
   event.preventDefault();
@@ -11,18 +11,23 @@ export default function ActiveLastBreadcrumb() {
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
-        <Link color="inherit" href="/">
-          Material-UI
+        <Link underline="hover" color="inherit" href="/">
+          MUI
         </Link>
-        <Link color="inherit" href="/getting-started/installation/">
+        <Link
+          underline="hover"
+          color="inherit"
+          href="/getting-started/installation/"
+        >
           Core
         </Link>
         <Link
+          underline="hover"
           color="text.primary"
           href="/components/breadcrumbs/"
           aria-current="page"
         >
-          Breadcrumb
+          Breadcrumbs
         </Link>
       </Breadcrumbs>
     </div>

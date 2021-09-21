@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 export default function ColorTextFields() {
   return (
@@ -12,22 +12,13 @@ export default function ColorTextFields() {
       noValidate
       autoComplete="off"
     >
+      <TextField label="Outlined secondary" color="secondary" focused />
+      <TextField label="Filled success" variant="filled" color="success" focused />
       <TextField
-        id="outlined-secondary"
-        label="Outlined secondary"
-        color="secondary"
-      />
-      <TextField
-        id="filled-secondary"
-        label="Filled secondary"
-        variant="filled"
-        color="secondary"
-      />
-      <TextField
-        id="standard-secondary"
-        label="Standard secondary"
-        color="secondary"
+        label="Standard warning"
         variant="standard"
+        color="warning"
+        focused
       />
     </Box>
   );

@@ -1,15 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import url from 'url';
-import Box from '@material-ui/core/Box';
-import ExpandIcon from '@material-ui/icons/ExpandMore';
-import CollapseIcon from '@material-ui/icons/ChevronRight';
-import TreeView from '@material-ui/lab/TreeView';
-import MuiTreeItem, { treeItemClasses } from '@material-ui/lab/TreeItem';
+import Box from '@mui/material/Box';
+import ExpandIcon from '@mui/icons-material/ExpandMore';
+import CollapseIcon from '@mui/icons-material/ChevronRight';
+import TreeView from '@mui/lab/TreeView';
+import MuiTreeItem, { treeItemClasses } from '@mui/lab/TreeItem';
 import clsx from 'clsx';
-import { styled, createTheme, lighten } from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+import { styled, createTheme, lighten } from '@mui/material/styles';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 /**
@@ -238,9 +237,18 @@ function DefaultTheme() {
   const [darkTheme, setDarkTheme] = React.useState(false);
 
   React.useEffect(() => {
-    const URL = url.parse(document.location.href, true);
-    // 'expend-path' is for backwards compatibility of any external links with a prior typo.
-    const expandPath = URL.query['expand-path'] || URL.query['expend-path'];
+    let expandPath;
+    decodeURI(document.location.search.slice(1))
+      .split('&')
+      .forEach((param) => {
+        const [name, value] = param.split('=');
+        if (name === 'expand-path') {
+          expandPath = value;
+        } else if (name === 'expend-path' && !expandPath) {
+          // 'expend-path' is for backwards compatibility of any external links with a prior typo.
+          expandPath = value;
+        }
+      });
 
     if (!expandPath) {
       return;

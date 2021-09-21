@@ -1,12 +1,12 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import NoSsr from '@material-ui/core/NoSsr';
+import NoSsr from '@mui/material/NoSsr';
 import {
   createTheme,
   ThemeProvider as MuiThemeProvider,
-} from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
-import Avatar from '@material-ui/core/Avatar';
+} from '@mui/material/styles';
+import { deepPurple } from '@mui/material/colors';
+import Avatar from '@mui/material/Avatar';
 
 const customTheme = createTheme({
   palette: {
@@ -16,7 +16,7 @@ const customTheme = createTheme({
   },
 });
 
-const Styledvatar = styled(Avatar)`
+const StyledAvatar = styled(Avatar)`
   ${({ theme }) => `
   cursor: pointer;
   background-color: ${theme.palette.primary.main};
@@ -35,7 +35,7 @@ export default function TransitionHover() {
     <NoSsr>
       <MuiThemeProvider theme={customTheme}>
         <ThemeProvider theme={customTheme}>
-          <Styledvatar>OP</Styledvatar>
+          <StyledAvatar>OP</StyledAvatar>
         </ThemeProvider>
       </MuiThemeProvider>
     </NoSsr>

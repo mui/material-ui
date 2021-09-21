@@ -21,7 +21,6 @@
   "styles": {
     "classes": [
       "root",
-      "label",
       "text",
       "textInherit",
       "textPrimary",
@@ -62,17 +61,15 @@
       "loadingIndicatorStart",
       "loadingIndicatorEnd",
       "endIconLoadingEnd",
-      "startIconLoadingStart",
-      "labelLoadingCenter"
+      "startIconLoadingStart"
     ],
     "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" },
     "name": "MuiLoadingButton"
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/material-ui-lab/src/LoadingButton/LoadingButton.js",
+  "filename": "/packages/mui-lab/src/LoadingButton/LoadingButton.js",
   "inheritance": { "component": "Button", "pathname": "/api/button/" },
   "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

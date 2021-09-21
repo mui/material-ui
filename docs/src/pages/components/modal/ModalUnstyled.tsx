@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import ModalUnstyled from '@material-ui/unstyled/ModalUnstyled';
+import { styled, Box } from '@mui/system';
+import ModalUnstyled from '@mui/core/ModalUnstyled';
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;

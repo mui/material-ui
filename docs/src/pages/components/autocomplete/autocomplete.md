@@ -116,8 +116,14 @@ It accepts almost the same options as the Autocomplete component minus all the p
 related to the rendering of JSX.
 The Autocomplete component is built on this hook.
 
-```jsx
-import useAutocomplete from '@material-ui/core/useAutocomplete';
+```tsx
+import { useAutocomplete } from '@mui/core/AutocompleteUnstyled';
+```
+
+The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
+
+```tsx
+import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
 - 📦 [4.5 kB gzipped](/size-snapshot).
@@ -223,7 +229,7 @@ The component exposes a factory to create a filter method that can provided to t
 You can use it to change the default option filter behavior.
 
 ```js
-import { createFilterOptions } from '@material-ui/core/Autocomplete';
+import { createFilterOptions } from '@mui/material/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`
@@ -261,7 +267,7 @@ const filterOptions = createFilterOptions({
 For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
 
 ```jsx
-import matchSorter from 'match-sorter';
+import { matchSorter } from 'match-sorter';
 
 const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 
@@ -294,10 +300,10 @@ If you would like to prevent the default key handler behavior, you can set the e
 
 ### autocomplete/autofill
 
-The browsers have heuristics to help the users fill the form inputs.
-However, it can harm the UX of the component.
+Browsers have heuristics to help the user fill in form inputs.
+However, this can harm the UX of the component.
 
-By default, the component disables the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
+By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
 Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)).
 A possible workaround is to remove the `id` to have the component generate a random one.
 

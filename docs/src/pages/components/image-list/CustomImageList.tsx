@@ -1,14 +1,17 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
-import ImageListItemBar from '@material-ui/core/ImageListItemBar';
-import IconButton from '@material-ui/core/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import IconButton from '@mui/material/IconButton';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 function srcset(image: string, width: number, height: number, rows = 1, cols = 1) {
-  return `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format 1x,
-  ${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format&dpr=2 2x`;
+  return {
+    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
+    srcSet: `${image}?w=${width * cols}&h=${
+      height * rows
+    }&fit=crop&auto=format&dpr=2 2x`,
+  };
 }
 
 export default function CustomImageList() {
@@ -30,7 +33,7 @@ export default function CustomImageList() {
         return (
           <ImageListItem key={item.img} cols={cols} rows={rows}>
             <img
-              srcSet={srcset(item.img, 250, 200, rows, cols)}
+              {...srcset(item.img, 250, 200, rows, cols)}
               alt={item.title}
               loading="lazy"
             />

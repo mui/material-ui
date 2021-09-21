@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
-import Slide, { SlideProps } from '@material-ui/core/Slide';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Slide, { SlideProps } from '@mui/material/Slide';
 
 type TransitionProps = Omit<SlideProps, 'direction'>;
 
@@ -23,8 +23,9 @@ function TransitionDown(props: TransitionProps) {
 
 export default function DirectionSnackbar() {
   const [open, setOpen] = React.useState(false);
-  const [transition, setTransition] =
-    React.useState<React.ComponentType<TransitionProps> | undefined>(undefined);
+  const [transition, setTransition] = React.useState<
+    React.ComponentType<TransitionProps> | undefined
+  >(undefined);
 
   const handleClick = (Transition: React.ComponentType<TransitionProps>) => () => {
     setTransition(() => Transition);

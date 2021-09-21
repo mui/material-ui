@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { configure, fireEvent, getConfig } from '@testing-library/react';
 
 const noWrapper = (callback) => callback();
@@ -7,6 +8,11 @@ const noWrapper = (callback) => callback();
  * @returns {void}
  */
 function withMissingActWarningsIgnored(callback) {
+  if (React.version.startsWith('18')) {
+    callback();
+    return;
+  }
+
   const originalConsoleError = console.error;
   console.error = function silenceMissingActWarnings(message, ...args) {
     const isMissingActWarning = /not wrapped in act\(...\)/.test(message);

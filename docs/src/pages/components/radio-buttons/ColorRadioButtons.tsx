@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { green } from '@material-ui/core/colors';
-import Radio from '@material-ui/core/Radio';
+import { pink } from '@mui/material/colors';
+import Radio from '@mui/material/Radio';
 
 export default function ColorRadioButtons() {
   const [selectedValue, setSelectedValue] = React.useState('a');
@@ -21,13 +21,14 @@ export default function ColorRadioButtons() {
     <div>
       <Radio {...controlProps('a')} />
       <Radio {...controlProps('b')} color="secondary" />
-      <Radio {...controlProps('c')} color="default" />
+      <Radio {...controlProps('c')} color="success" />
+      <Radio {...controlProps('d')} color="default" />
       <Radio
-        {...controlProps('d')}
+        {...controlProps('e')}
         sx={{
-          color: green[800],
+          color: pink[800],
           '&.Mui-checked': {
-            color: green[600],
+            color: pink[600],
           },
         }}
       />

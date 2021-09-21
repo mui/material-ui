@@ -1,17 +1,17 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 export default function ColorButtons() {
   return (
-    <Box sx={{ '& > :not(style)': { m: 1 } }}>
+    <Stack direction="row" spacing={2}>
       <Button color="secondary">Secondary</Button>
-      <Button variant="contained" color="secondary">
-        Secondary
+      <Button variant="contained" color="success">
+        Success
       </Button>
-      <Button variant="outlined" color="secondary">
-        Secondary
+      <Button variant="outlined" color="error">
+        Error
       </Button>
-    </Box>
+    </Stack>
   );
 }

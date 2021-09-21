@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 
 export default function WovenImageList() {
   return (
@@ -9,8 +8,8 @@ export default function WovenImageList() {
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img
-            srcSet={`${item.img}?w=161&fit=crop&auto=format 1x,
-                ${item.img}?w=161&fit=crop&auto=format&dpr=2 2x`}
+            src={`${item.img}?w=161&fit=crop&auto=format`}
+            srcSet={`${item.img}?w=161&fit=crop&auto=format&dpr=2 2x`}
             alt={item.title}
             loading="lazy"
           />

@@ -1,52 +1,67 @@
 /* eslint-disable no-restricted-globals */
 import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
-import DialogActions from '@material-ui/core/DialogActions';
-import TextField from '@material-ui/core/TextField';
-import Collapse from '@material-ui/core/Collapse';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
-import ThumbUpIcon from '@material-ui/icons/ThumbUpAlt';
-import ThumbDownIcon from '@material-ui/icons/ThumbDownAlt';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Snackbar from '@material-ui/core/Snackbar';
+import { styled } from '@mui/material/styles';
+import DialogActions from '@mui/material/DialogActions';
+import TextField from '@mui/material/TextField';
+import Collapse from '@mui/material/Collapse';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import ThumbUpIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbDownIcon from '@mui/icons-material/ThumbDownAlt';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import Snackbar from '@mui/material/Snackbar';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const Footer = styled('footer')(({ theme }) => {
+  return {
     marginTop: theme.spacing(12),
-  },
-  pagination: {
+  };
+});
+
+const PaginationDiv = styled('div')(({ theme }) => {
+  return {
     margin: theme.spacing(3, 0, 4),
     display: 'flex',
     justifyContent: 'space-between',
     [theme.breakpoints.down('sm')]: {
       flexWrap: 'wrap',
     },
-  },
-  pageLinkButton: {
+  };
+});
+
+const PageLinkButton = styled(Button)(({ theme }) => {
+  return {
     textTransform: 'none',
-    fontWeight: theme.typography.fontWeightRegular,
-  },
-  feedbackMessage: {
-    margin: theme.spacing(0, 2),
-  },
-  feedback: {
+    fontWeight: theme.typography.fontWeightMedium,
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+  };
+});
+
+const FeedbackGrid = styled(Grid)(({ theme }) => {
+  return {
     width: 'auto',
+    color: theme.palette.text.secondary,
     [theme.breakpoints.down('sm')]: {
       order: 3,
+      marginTop: 40,
       width: '100%',
     },
-  },
-}));
+  };
+});
+
+const FeedbackMessage = styled(Typography)(({ theme }) => {
+  return {
+    margin: theme.spacing(0, 2),
+  };
+});
 
 /**
  * @typedef {import('docs/src/pages').MuiPage} MuiPage
@@ -78,7 +93,7 @@ function orderedPages(pages, current = []) {
 }
 
 async function postFeedback(data) {
-  const env = window.location.host.indexOf('material-ui.com') !== -1 ? 'prod' : 'dev';
+  const env = window.location.host.indexOf('mui.com') !== -1 ? 'prod' : 'dev';
   try {
     const response = await fetch(`${process.env.FEEDBACK_URL}/${env}/feedback`, {
       method: 'POST',
@@ -94,7 +109,7 @@ async function postFeedback(data) {
 }
 
 async function getUserFeedback(id) {
-  const env = location.hostname === 'material-ui.com' ? 'prod' : 'dev';
+  const env = location.hostname === 'mui.com' ? 'prod' : 'dev';
   const URL = `${process.env.FEEDBACK_URL}/${env}/feedback/${id}`;
 
   try {
@@ -160,7 +175,6 @@ function usePageNeighbours() {
 }
 
 export default function AppLayoutDocsFooter() {
-  const classes = useStyles();
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const { activePage } = React.useContext(PageContext);
@@ -232,68 +246,64 @@ export default function AppLayoutDocsFooter() {
 
   return (
     <React.Fragment>
-      <footer className={classes.root}>
+      <Footer>
         {hidePagePagination ? null : (
           <React.Fragment>
             <Divider />
-            <div className={classes.pagination}>
+            <PaginationDiv>
               {prevPage !== null ? (
-                <Button
+                <PageLinkButton
                   component={Link}
                   noLinkStyle
                   href={prevPage.pathname}
-                  size="large"
-                  className={classes.pageLinkButton}
+                  size="medium"
                   startIcon={<ChevronLeftIcon />}
                 >
                   {pageToTitleI18n(prevPage, t)}
-                </Button>
+                </PageLinkButton>
               ) : (
                 <div />
               )}
-              <Grid
+              <FeedbackGrid
                 container
                 role="group"
                 justifyContent="center"
                 alignItems="center"
                 aria-labelledby="feedback-message"
-                className={classes.feedback}
               >
-                <Typography
+                <FeedbackMessage
                   align="center"
                   component="div"
                   id="feedback-message"
-                  variant="subtitle1"
-                  className={classes.feedbackMessage}
+                  variant="body2"
                 >
                   {t('feedbackMessage')}
-                </Typography>
+                </FeedbackMessage>
                 <div>
                   <Tooltip title={t('feedbackYes')}>
                     <IconButton onClick={handleClickThumb(1)} aria-pressed={rating === 1}>
-                      <ThumbUpIcon color={rating === 1 ? 'primary' : undefined} />
+                      <ThumbUpIcon fontSize="small" color={rating === 1 ? 'primary' : undefined} />
                     </IconButton>
                   </Tooltip>
                   <Tooltip title={t('feedbackNo')}>
                     <IconButton onClick={handleClickThumb(0)} aria-pressed={rating === 0}>
-                      <ThumbDownIcon color={rating === 0 ? 'error' : undefined} />
+                      <ThumbDownIcon fontSize="small" color={rating === 0 ? 'error' : undefined} />
                     </IconButton>
                   </Tooltip>
                 </div>
-              </Grid>
+              </FeedbackGrid>
               {nextPage !== null ? (
-                <Button
+                <PageLinkButton
                   component={Link}
                   noLinkStyle
                   href={nextPage.pathname}
-                  size="large"
-                  className={classes.pageLinkButton}
+                  size="medium"
                   endIcon={<ChevronRightIcon />}
                 >
                   {pageToTitleI18n(nextPage, t)}
-                </Button>
+                </PageLinkButton>
               ) : null}
-            </div>
+            </PaginationDiv>
           </React.Fragment>
         )}
         <Collapse in={commentOpen} onEntered={handleEntered}>
@@ -330,7 +340,7 @@ export default function AppLayoutDocsFooter() {
             </DialogActions>
           </form>
         </Collapse>
-      </footer>
+      </Footer>
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}

@@ -19,7 +19,11 @@
     "clearOnEscape": { "type": { "name": "bool" } },
     "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
     "closeText": { "type": { "name": "string" }, "default": "'Close'" },
-    "defaultValue": { "type": { "name": "any" }, "default": "props.multiple ? [] : null" },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "defaultValue": {
+      "type": { "name": "custom", "description": "any" },
+      "default": "props.multiple ? [] : null"
+    },
     "disableClearable": { "type": { "name": "bool" } },
     "disableCloseOnSelect": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
@@ -71,7 +75,7 @@
     "size": {
       "type": {
         "name": "union",
-        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },
@@ -111,9 +115,8 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Autocomplete/Autocomplete.js",
+  "filename": "/packages/mui-material/src/Autocomplete/Autocomplete.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

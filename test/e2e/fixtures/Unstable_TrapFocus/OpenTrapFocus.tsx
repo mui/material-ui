@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
+import TrapFocus from '@mui/material/Unstable_TrapFocus';
 
 export default function BaseTrapFocus() {
   return (
@@ -7,7 +7,7 @@ export default function BaseTrapFocus() {
       <button type="button" autoFocus data-testid="initial-focus">
         initial focus
       </button>
-      <TrapFocus getDoc={() => document} isEnabled={() => true} open>
+      <TrapFocus isEnabled={() => true} open>
         <div tabIndex={-1} data-testid="root">
           <div>Title</div>
           <button type="button">x</button>

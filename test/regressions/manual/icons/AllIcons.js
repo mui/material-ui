@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as icons from '@material-ui/icons';
+import * as icons from '@mui/icons-material';
 
 export default function AllIcons() {
   return (

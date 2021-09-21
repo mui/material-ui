@@ -1,5 +1,5 @@
 ---
-title: React Badge component
+title: Composant React Badge
 components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
@@ -10,7 +10,7 @@ githubLabel: 'component: Badge'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic badges
+## Badges Basique
 
 Exemples de badges contenant du texte, utilisant les couleurs primaires et secondaires. Le badge est appliqué aux enfants.
 
@@ -24,7 +24,7 @@ Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus
 
 ## Visibilité du badge
 
-La visibilité des badges peut être contrôlée à l'aide de la propriété `invisible`.
+La visibilité des badges peut être contrôlée en utilisant le prop `invisible`.
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
@@ -34,7 +34,7 @@ Le badge se cache automatiquement quand badgeContent est null. Vous pouvez la re
 
 ## Valeur maximale
 
-Vous pouvez utiliser la propriété `max` pour limiter la valeur du contenu du badge.
+Vous pouvez utiliser le prop `max` pour plafonner la valeur du contenu du badge.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
@@ -46,7 +46,7 @@ La propriété `dot` change un badge en petit point. Cela peut être utilisé co
 
 ## Chevauchement des badges
 
-You can use the `overlap` property to place the badge relative to the corner of the wrapped element.
+Vous pouvez utiliser le prop `overlap` pour placer le badge relatif au coin de l'élément enveloppé.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
@@ -56,6 +56,18 @@ Vous pouvez utiliser le prop `anchorOrigin` pour déplacer le badge dans n'impor
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
 
-## Unstyled badge
+## Unstyled
+
+The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+```js
+import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
+```
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}
+
+## Accessibilité
+
+You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
+
+{{"demo": "pages/components/badges/AccessibleBadges.js"}}

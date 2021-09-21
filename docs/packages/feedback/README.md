@@ -1,6 +1,6 @@
 # Rating
 
-This Lambda function stores and retrieves page feedback using DynamoDB. It is already deployed in the Material-UI AWS account. Request credentials if you need to update dev for testing, or to deploy a new prod version.
+This Lambda function stores and retrieves page feedback using DynamoDB. It is already deployed in the MUI AWS account. Request credentials if you need to update dev for testing, or to deploy a new prod version.
 
 If you wish to deploy your own instance for testing, follow the steps below.
 

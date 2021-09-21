@@ -1,4 +1,0 @@
-<div>
-  <Button />
-  <Button />
-</div>

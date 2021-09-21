@@ -5,7 +5,7 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'action'<br>&#124;&nbsp;'disabled'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+        "description": "'inherit'<br>&#124;&nbsp;'action'<br>&#124;&nbsp;'disabled'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'inherit'"
     },
@@ -41,9 +41,8 @@
   },
   "spread": true,
   "forwardsRefTo": "SVGSVGElement",
-  "filename": "/packages/material-ui/src/SvgIcon/SvgIcon.js",
+  "filename": "/packages/mui-material/src/SvgIcon/SvgIcon.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/icons/\">Icons</a></li>\n<li><a href=\"/components/material-icons/\">Material Icons</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

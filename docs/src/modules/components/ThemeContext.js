@@ -4,16 +4,20 @@ import {
   ThemeProvider as MuiThemeProvider,
   createTheme as createLegacyModeTheme,
   unstable_createMuiStrictModeTheme as createStrictModeTheme,
-  darken,
-} from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
-import { blue, pink } from '@material-ui/core/colors';
-import darkScrollbar from '@material-ui/core/darkScrollbar';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/core/utils';
+} from '@mui/material/styles';
+import { deepmerge } from '@mui/utils';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@mui/material/locale';
+import darkScrollbar from '@mui/material/darkScrollbar';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
+import {
+  getDesignTokens,
+  getThemedComponents,
+  getMetaThemeColor,
+} from 'docs/src/modules/brandingTheme';
 
 const languageMap = {
   en: enUS,
@@ -27,13 +31,12 @@ const languageMap = {
   ja: jaJP,
 };
 
-export const themeColor = blue[700];
-
 const themeInitialOptions = {
   dense: false,
   direction: 'ltr',
   paletteColors: {},
   spacing: 8, // spacing unit
+  paletteMode: 'light',
 };
 
 const highDensity = {
@@ -123,66 +126,68 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 let createTheme;
-if (process.env.REACT_MODE === 'legacy') {
-  createTheme = createLegacyModeTheme;
-} else {
+if (process.env.REACT_STRICT_MODE) {
   createTheme = createStrictModeTheme;
+} else {
+  createTheme = createLegacyModeTheme;
 }
 
 export function ThemeProvider(props) {
   const { children } = props;
-
-  const [themeOptions, dispatch] = React.useReducer((state, action) => {
-    switch (action.type) {
-      case 'SET_SPACING':
-        return {
-          ...state,
-          spacing: action.payload,
-        };
-      case 'INCREASE_SPACING': {
-        return {
-          ...state,
-          spacing: state.spacing + 1,
-        };
-      }
-      case 'DECREASE_SPACING': {
-        return {
-          ...state,
-          spacing: state.spacing - 1,
-        };
-      }
-      case 'SET_DENSE':
-        return {
-          ...state,
-          dense: action.payload,
-        };
-      case 'RESET_DENSITY':
-        return {
-          ...state,
-          dense: themeInitialOptions.dense,
-          spacing: themeInitialOptions.spacing,
-        };
-      case 'RESET_COLORS':
-        return {
-          ...state,
-          paletteColors: themeInitialOptions.paletteColors,
-        };
-      case 'CHANGE':
-        return {
-          ...state,
-          paletteMode: action.payload.paletteMode || state.paletteMode,
-          direction: action.payload.direction || state.direction,
-          paletteColors: action.payload.paletteColors || state.paletteColors,
-        };
-      default:
-        throw new Error(`Unrecognized type ${action.type}`);
-    }
-  }, themeInitialOptions);
-
-  const userLanguage = useUserLanguage();
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
-  const { dense, direction, paletteColors, paletteMode = preferredMode, spacing } = themeOptions;
+  const [themeOptions, dispatch] = React.useReducer(
+    (state, action) => {
+      switch (action.type) {
+        case 'SET_SPACING':
+          return {
+            ...state,
+            spacing: action.payload,
+          };
+        case 'INCREASE_SPACING': {
+          return {
+            ...state,
+            spacing: state.spacing + 1,
+          };
+        }
+        case 'DECREASE_SPACING': {
+          return {
+            ...state,
+            spacing: state.spacing - 1,
+          };
+        }
+        case 'SET_DENSE':
+          return {
+            ...state,
+            dense: action.payload,
+          };
+        case 'RESET_DENSITY':
+          return {
+            ...state,
+            dense: themeInitialOptions.dense,
+            spacing: themeInitialOptions.spacing,
+          };
+        case 'RESET_COLORS':
+          return {
+            ...state,
+            paletteColors: themeInitialOptions.paletteColors,
+          };
+        case 'CHANGE':
+          return {
+            ...state,
+            paletteMode: action.payload.paletteMode || state.paletteMode,
+            direction: action.payload.direction || state.direction,
+            paletteColors: action.payload.paletteColors || state.paletteColors,
+          };
+        default:
+          throw new Error(`Unrecognized type ${action.type}`);
+      }
+    },
+    { ...themeInitialOptions, paletteMode: preferredMode },
+  );
+
+  const userLanguage = useUserLanguage();
+  const { dense, direction, paletteColors, paletteMode, spacing } = themeOptions;
 
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
@@ -202,22 +207,32 @@ export function ThemeProvider(props) {
     document.body.dir = direction;
   }, [direction]);
 
+  React.useEffect(() => {
+    const metas = document.querySelectorAll('meta[name="theme-color"]');
+    metas.forEach((meta) => {
+      meta.setAttribute('content', getMetaThemeColor(paletteMode));
+    });
+  }, [paletteMode]);
+
   const theme = React.useMemo(() => {
-    const nextTheme = createTheme(
+    const brandingDesignTokens = getDesignTokens(paletteMode);
+    let nextTheme = createTheme(
       {
         direction,
+        ...brandingDesignTokens,
         nprogress: {
-          color: paletteMode === 'light' ? '#000' : '#fff',
+          color: brandingDesignTokens.palette.primary.main,
         },
         palette: {
-          primary: {
-            main: paletteMode === 'light' ? blue[700] : blue[200],
-          },
-          secondary: {
-            main: paletteMode === 'light' ? darken(pink.A400, 0.1) : pink[200],
-          },
-          mode: paletteMode,
+          ...brandingDesignTokens.palette,
           ...paletteColors,
+          mode: paletteMode,
+        },
+        // v5 migration
+        props: {
+          MuiBadge: {
+            overlap: 'rectangular',
+          },
         },
         spacing,
       },
@@ -234,11 +249,7 @@ export function ThemeProvider(props) {
       languageMap[userLanguage],
     );
 
-    nextTheme.palette.background.level2 =
-      paletteMode === 'light' ? nextTheme.palette.grey[100] : '#333';
-
-    nextTheme.palette.background.level1 =
-      paletteMode === 'light' ? '#fff' : nextTheme.palette.grey[900];
+    nextTheme = deepmerge(nextTheme, getThemedComponents(nextTheme));
 
     return nextTheme;
   }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);

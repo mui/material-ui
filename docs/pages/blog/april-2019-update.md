@@ -16,7 +16,7 @@ Here are the most significant improvements in April:
   Supporting these TypeScript demos has one important implication, it forces us to have working TypeScript definitions ✨.
 
 - 🎀 We have migrated a large chunk of our components from classes to hooks. **@joshwooding** has lead the effort. We will explain why in the v4 release blog post.
-- 📐 We have updated our components to better match the Material Design specification
+- 📐 We have updated our components to better match the Material Design guidelines
   (Snackbar, List, Checkbox, Radio & Switch).
 - 🎁 We have added a demo for building a [TransferList](/components/transfer-list/) component.
 
@@ -46,7 +46,7 @@ But this summary is just scratching the surface. We have accepted 243 commits fr
 
 _(We'll do our best, no guarantee!)_
 
-- We will release Material-UI v4 stable during the React Europe conference.
+- We will release MUI v4 stable during the React Europe conference.
 - We will start an effort to support more components. So far, we have identified a couple of useful ones:
   - Layout
   - Combobox

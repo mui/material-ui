@@ -1,6 +1,6 @@
 # API Design Approach
 
-<p class="description">We have learned a great deal regarding how Material-UI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
+<p class="description">We have learned a great deal regarding how MUI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 
 > API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
 
@@ -45,7 +45,7 @@ We avoid documenting native properties supported by the DOM like [`className`](/
 
 All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) prop to customize the styles.
 The classes design answers two constraints:
-to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
+to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
 
 - The class applied to the root element is always called `root`.
 - All the default styles are grouped in a single class.
@@ -89,14 +89,16 @@ Nested components inside a component have:
 
 ### Property naming
 
-The name of a boolean prop should be chosen based on the **default value**.
-For example, the `disabled` attribute on an input element, if supplied, defaults to `true`.
-This choice allows the shorthand notation:
+The name of a boolean prop should be chosen based on the **default value**. This choice allows:
 
-```diff
--<Input enabled={false} />
-+<Input disabled />
-```
+- the shorthand notation. For example, the `disabled` attribute on an input element, if supplied, defaults to `true`:
+
+  ```jsx
+  <Input enabled={false} /> ❌
+  <Input disabled /> ✅
+  ```
+
+- developers to know what the default value is from the name of the boolean prop. It's always the opposite.
 
 ### Controlled components
 
@@ -136,7 +138,7 @@ For example, let's take a button that has different types. Each option has its p
   bounds the number of props exposed,
   and can easily support new values in the future.
 
-The Material-UI components use a combination of the two approaches according to the following rules:
+The MUI components use a combination of the two approaches according to the following rules:
 
 - A _boolean_ is used when **2** possible values are required.
 - An _enum_ is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.

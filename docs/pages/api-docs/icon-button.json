@@ -5,7 +5,7 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'inherit'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+        "description": "'inherit'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'default'"
     },
@@ -22,7 +22,7 @@
     "size": {
       "type": {
         "name": "union",
-        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },
@@ -39,16 +39,16 @@
       "colorSecondary",
       "disabled",
       "sizeSmall",
-      "label"
+      "sizeMedium",
+      "sizeLarge"
     ],
     "globalClasses": { "disabled": "Mui-disabled" },
     "name": "MuiIconButton"
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/material-ui/src/IconButton/IconButton.js",
+  "filename": "/packages/mui-material/src/IconButton/IconButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

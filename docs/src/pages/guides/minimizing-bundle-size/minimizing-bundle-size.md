@@ -1,22 +1,22 @@
-# Minimizing Bundle Size
+# Minimizing bundle size
 
 <p class="description">Learn more about the tools you can leverage to reduce the bundle size.</p>
 
 ## Bundle size matters
 
-The bundle size of Material-UI is taken very seriously. Size snapshots are taken
+The bundle size of MUI is taken very seriously. Size snapshots are taken
 on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot)).
 Combined with [dangerJS](https://danger.systems/js/) we can inspect
 [detailed bundle size changes](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
 
 ## When and how to use tree-shaking?
 
-Tree-shaking of Material-UI works out of the box in modern frameworks.
-Material-UI exposes its full API on the top-level `material-ui` import.
+Tree-shaking of MUI works out of the box in modern frameworks.
+MUI exposes its full API on the top-level `material-ui` import.
 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 ⚠️ The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler
@@ -24,8 +24,9 @@ that doesn't support tree-shaking.
 
 ## Development environment
 
-Development bundles can contain the full library which can lead to **slower startup times**. This is especially noticeable if you
-import from `@material-ui/icons`. Startup times can be approximately 6x slower than without named imports from the top-level API.
+Development bundles can contain the full library which can lead to **slower startup times**.
+This is especially noticeable if you import from `@mui/icons-material`.
+Startup times can be approximately 6x slower than without named imports from the top-level API.
 
 If this is an issue for you, you have various options:
 
@@ -36,42 +37,42 @@ For instance, use:
 
 ```js
 // 🚀 Fast
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 ```
 
-instead of top level imports (without a Babel plugin):
+instead of top-level imports (without a Babel plugin):
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
-This is the option we document in all the demos, since it requires no configuration.
-It is encouraged for library authors extending the components.
+This is the option we document in all the demos since it requires no configuration.
+It is encouraged for library authors that are extending the components.
 Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
 
-While importing directly in this manner doesn't use the exports in [the main file of `@material-ui/core`](https://unpkg.com/@material-ui/core), this file can serve as a handy reference as to which modules are public.
+While importing directly in this manner doesn't use the exports in [the main file of `@mui/material`](https://unpkg.com/@mui/material), this file can serve as a handy reference as to which modules are public.
 
-Be aware that we only support first and second level imports.
+Be aware that we only support first and second-level imports.
 Anything deeper is considered private and can cause issues, such as module duplication in your bundle.
 
 ```js
 // ✅ OK
-import { Add as AddIcon } from '@material-ui/icons';
-import { Tabs } from '@material-ui/core';
-//                                 ^^^^ 1st or top-level
+import { Add as AddIcon } from '@mui/icons-material';
+import { Tabs } from '@mui/material';
+//                         ^^^^^^^^ 1st or top-level
 
 // ✅ OK
-import AddIcon from '@material-ui/icons/Add';
-import Tabs from '@material-ui/core/Tabs';
-//                                  ^^^^ 2nd level
+import AddIcon from '@mui/icons-material/Add';
+import Tabs from '@mui/material/Tabs';
+//                              ^^^^ 2nd level
 
 // ❌ NOT OK
-import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
-//                                               ^^^^^^^^^^^^ 3rd level
+import TabIndicator from '@mui/material/Tabs/TabIndicator';
+//                                           ^^^^^^^^^^^^ 3rd level
 ```
 
-If you're using `eslint` you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/rules/no-restricted-imports). The following `.eslintrc` configuration will highlight problematic imports from `@material-ui` packages:
+If you're using `eslint` you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/rules/no-restricted-imports). The following `.eslintrc` configuration will highlight problematic imports from `@mui` packages:
 
 ```json
 {
@@ -79,7 +80,7 @@ If you're using `eslint` you can catch problematic imports with the [`no-restric
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
       }
     ]
   }
@@ -90,13 +91,13 @@ If you're using `eslint` you can catch problematic imports with the [`no-restric
 
 This option provides the best User Experience and Developer Experience:
 
-- UX: The Babel plugin enables top level tree-shaking even if your bundler doesn't support it.
+- UX: The Babel plugin enables top-level tree-shaking even if your bundler doesn't support it.
 - DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
 - DX: This syntax reduces the duplication of code, requiring only a single import for multiple modules.
   Overall, the code is easier to read, and you are less likely to make a mistake when importing a new module.
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 However, you need to apply the two following steps correctly.
@@ -116,7 +117,7 @@ Pick one of the following plugins:
     [
       'babel-plugin-import',
       {
-        libraryName: '@material-ui/core',
+        libraryName: '@mui/material',
         libraryDirectory: '',
         camel2DashComponentName: false,
       },
@@ -125,7 +126,7 @@ Pick one of the following plugins:
     [
       'babel-plugin-import',
       {
-        libraryName: '@material-ui/icons',
+        libraryName: '@mui/icons-material',
         libraryDirectory: '',
         camel2DashComponentName: false,
       },
@@ -136,26 +137,17 @@ Pick one of the following plugins:
   module.exports = { plugins };
   ```
 
-- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) with the following configuration:
+- [babel-plugin-direct-import](https://github.com/umidbekk/babel-plugin-direct-import) with the following configuration:
 
-  `yarn add -D babel-plugin-transform-imports`
+  `yarn add -D babel-plugin-direct-import`
 
   Create a `.babelrc.js` file in the root directory of your project:
 
   ```js
   const plugins = [
     [
-      'babel-plugin-transform-imports',
-      {
-        '@material-ui/core': {
-          transform: '@material-ui/core/${member}',
-          preventFullImport: true,
-        },
-        '@material-ui/icons': {
-          transform: '@material-ui/icons/${member}',
-          preventFullImport: true,
-        },
-      },
+      'babel-plugin-direct-import',
+      { modules: ['@mui/material', '@mui/icons-material'] },
     ],
   ];
 
@@ -196,13 +188,13 @@ Enjoy significantly faster start times.
 
 #### 2. Convert all your imports
 
-Finally, you can convert your existing codebase to this option with this [top-level-imports codemod](https://www.npmjs.com/package/@material-ui/codemod#top-level-imports).
+Finally, you can convert your existing codebase to this option with this [top-level-imports codemod](https://www.npmjs.com/package/@mui/codemod#top-level-imports).
 It will perform the following diffs:
 
 ```diff
--import Button from '@material-ui/core/Button';
--import TextField from '@material-ui/core/TextField';
-+import { Button, TextField } from '@material-ui/core';
+-import Button from '@mui/material/Button';
+-import TextField from '@mui/material/TextField';
++import { Button, TextField } from '@mui/material';
 ```
 
 ## Available bundles
@@ -213,12 +205,12 @@ The package published on npm is **transpiled**, with [Babel](https://github.com/
 
 ### Modern bundle
 
-The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@material-ui/core/modern/).
+The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@mui/material/modern/).
 It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge).
 This can be used to make separate bundles targeting different browsers.
 
 ### Legacy bundle
 
 If you need to support IE 11 you cannot use the default or modern bundle without transpilation.
-However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@material-ui/core/legacy/).
+However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@mui/material/legacy/).
 You don't need any additional polyfills.

@@ -1,6 +1,6 @@
 ---
 title: Text Field React component
-components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
+components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: TextField'
 materialDesign: https://material.io/components/text-fields
 ---
@@ -22,7 +22,7 @@ It comes with three variants: outlined (default), filled, and standard.
 
 **Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/)
 ([here's why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)),
-but Material-UI will continue to support it.
+but MUI will continue to support it.
 
 ## Form props
 
@@ -75,15 +75,18 @@ The `filled` variant input height can be further reduced by rendering the label 
 
 {{"demo": "pages/components/text-fields/TextFieldHiddenLabel.js"}}
 
-## Layout
+## Margin
 
-`margin` prop can be used to alter the vertical spacing of inputs.
-Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will.
-`dense` and `normal` alter other styles to meet the specification.
+The `margin` prop can be used to alter the vertical spacing of the text field.
+Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do.
+
+{{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
+
+## Full width
 
 `fullWidth` can be used to make the input take up the full width of its container.
 
-{{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
+{{"demo": "pages/components/text-fields/FullWidthTextField.js"}}
 
 ## Uncontrolled vs. Controlled
 
@@ -119,10 +122,10 @@ The `color` prop changes the highlight color of the text field when focused.
 
 {{"demo": "pages/components/text-fields/ColorTextFields.js"}}
 
-## Customized inputs
+## Customization
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here are some examples of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -142,7 +145,7 @@ This hook returns the context value of the parent `FormControl` component.
 **API**
 
 ```jsx
-import { useFormControl } from '@material-ui/core/FormControl';
+import { useFormControl } from '@mui/material/FormControl';
 ```
 
 **Returns**
@@ -230,7 +233,7 @@ This can be fixed by passing a space character to the `helperText` prop:
 You can use third-party libraries to format an input.
 You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
 
-The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
+The following demo uses the [react-imask](https://github.com/uNmAnNeR/imaskjs) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
@@ -298,6 +301,6 @@ In order for the text field to be accessible, **the input should be linked to th
 For more advanced use cases, you might be able to take advantage of:
 
 - [react-hook-form](https://react-hook-form.com/): React hook for form validation.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using Material-UI with [formik](https://jaredpalmer.com/formik).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using Material-UI with [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material-UI with [React Final Form](https://final-form.org/react).
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using MUI with [formik](https://jaredpalmer.com/formik).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).

@@ -17,14 +17,15 @@ Vous êtes peut-être familier avec [normalize.css](https://github.com/necolas/n
 import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-export default function MyApp() {
+export default function MonApp() {
   return (
     <React.Fragment>
       <CssBaseline />
-      {/* The rest of your application */}
+      {/* Le reste de votre application */}
     </React.Fragment>
   );
 }
+
 ```
 
 ## Scope sur les enfants
@@ -36,14 +37,17 @@ import * as React from 'react';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
 import MyApp from './MyApp';
 
-export default function MyApp() {
+import CssBaseline from '@material-ui/core/CssBaseline';
+function MyApp() {
   return (
     <ScopedCssBaseline>
-      {/* The rest of your application */}
       <MyApp />
+      {/* The rest of your application */}
     </ScopedCssBaseline>
   );
 }
+
+export default MyApp
 ```
 
 ⚠ Assurez-vous d'abord d'importer `ScopedCssBaseline` pour éviter les conflits de taille de boîte comme dans l'exemple ci-dessus.
@@ -61,9 +65,25 @@ Les éléments `<html>` et `<body>` sont mis à jour pour fournir de meilleurs p
 
 - la taille de la boîte `box-sizing` est définie globalement sur l'élément `<html>` à `border-box`. Chaque élément, y compris `* :: before` et `* :: after` est déclaré hériter de cette propriété, ce qui garantit que la largeur déclarée de l'élément n'est jamais dépassée en raison d'un remplissage ou d'une bordure.
 
-### Scrollbars
+### Barres de défilement
 
-In dark mode, the colors of the scrollbars are customized to provide a better contrast.
+In dark mode, the colors of the scrollbars are customized to provide a better contrast. Add this code to your theme (for dark mode).
+
+```jsx
+import darkScrollbar from '@material-ui/core/darkScrollbar';
+
+const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: theme.palette.mode === 'dark' ? darkScrollbar() : null,
+      },
+    },
+  },
+});
+```
+
+This website uses `darkScrollbar` when dark mode is enabled. Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
 
 ### Typographie
 

@@ -1,18 +1,18 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { createTheme } from '@material-ui/core/styles';
-import { withStyles } from '@material-ui/styles';
-import List from '@material-ui/core/List';
-import Drawer from '@material-ui/core/Drawer';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Divider from '@material-ui/core/Divider';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Box from '@material-ui/core/Box';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
+import NextLink from 'next/link';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import { styled } from '@mui/material/styles';
+import List from '@mui/material/List';
+import Drawer from '@mui/material/Drawer';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Box from '@mui/material/Box';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
-import Link from 'docs/src/modules/components/Link';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
@@ -53,31 +53,35 @@ PersistScroll.propTypes = {
   slot: PropTypes.string.isRequired,
 };
 
-const styles = (theme) => ({
-  paper: {
-    width: 240,
-    backgroundColor: theme.palette.background.level1,
-  },
-  title: {
-    color: theme.palette.text.secondary,
-    marginBottom: theme.spacing(0.5),
-    '&:hover': {
-      color: theme.palette.primary.main,
-    },
-  },
-  // https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
-  toolbarIe11: {
-    display: 'flex',
-  },
-  toolbar: {
+// https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
+const ToolbarIE11 = styled('div')({ display: 'flex' });
+
+const ToolbarDiv = styled('div')(({ theme }) => {
+  return {
     ...theme.mixins.toolbar,
     paddingLeft: theme.spacing(3),
     display: 'flex',
     flexGrow: 1,
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-  },
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  };
+});
+
+const StyledDrawer = styled(Drawer)(({ theme }) => {
+  return {
+    [theme.breakpoints.up('xs')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.up('lg')]: {
+      display: 'block',
+    },
+  };
+});
+
+const SwipeableDrawerPaperComponent = styled('div')({
+  width: 250,
+  boxShadow: 'none',
 });
 
 function renderNavItems(options) {
@@ -117,6 +121,7 @@ function reduceChildRoutes(context) {
         topLevel={topLevel && !page.subheader}
         openImmediately={topLevel || Boolean(page.subheader)}
         title={title}
+        icon={page.icon}
       >
         {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
       </AppNavDrawerItem>,
@@ -133,6 +138,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={page.pathname}
         onClick={onClose}
+        icon={page.icon}
       />,
     );
   }
@@ -146,7 +152,7 @@ function reduceChildRoutes(context) {
 const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 function AppNavDrawer(props) {
-  const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
+  const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePage, pages } = React.useContext(PageContext);
   const userLanguage = useUserLanguage();
   const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
@@ -158,40 +164,46 @@ function AppNavDrawer(props) {
 
     return (
       <React.Fragment>
-        <div className={classes.toolbarIe11}>
-          <div className={classes.toolbar}>
-            <Link className={classes.title} href="/" onClick={onClose} variant="h6" color="inherit">
-              Material-UI
-            </Link>
+        <ToolbarIE11>
+          <ToolbarDiv>
+            <NextLink href="/" passHref onClick={onClose}>
+              <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0, mr: 2 }}>
+                <SvgMuiLogo width={32} />
+              </Box>
+            </NextLink>
             {process.env.LIB_VERSION ? (
-              <Link
-                color="text.secondary"
-                variant="caption"
-                href={`https://material-ui.com${languagePrefix}/versions/`}
+              <Button
+                component="a"
+                href={`https://mui.com${languagePrefix}/versions/`}
                 onClick={onClose}
+                size="small"
+                sx={{
+                  color: (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primary[300]
+                      : theme.palette.primary[500],
+                  mr: 3,
+                }}
               >
                 {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
                 {`v${process.env.LIB_VERSION}`}
-              </Link>
+              </Button>
             ) : null}
-          </div>
-        </div>
+          </ToolbarDiv>
+        </ToolbarIE11>
         <Divider />
-        <Box sx={{ mx: 3, my: 2 }}>
-          <DiamondSponsors spot="drawer" />
-        </Box>
+        <DiamondSponsors spot="drawer" />
+        <Divider />
         {navItems}
+        <Box sx={{ height: 40 }} />
       </React.Fragment>
     );
-  }, [activePage, pages, onClose, t, classes, languagePrefix]);
+  }, [activePage, pages, onClose, t, languagePrefix]);
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>
       {disablePermanent || mobile ? (
         <SwipeableDrawer
-          classes={{
-            paper: clsx(classes.paper, 'algolia-drawer'),
-          }}
           disableBackdropTransition={!iOS}
           variant="temporary"
           open={mobileOpen}
@@ -200,6 +212,14 @@ function AppNavDrawer(props) {
           ModalProps={{
             keepMounted: true,
           }}
+          PaperProps={{
+            className: 'algolia-drawer',
+            component: SwipeableDrawerPaperComponent,
+            sx: {
+              background: (theme) =>
+                theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
+            },
+          }}
         >
           <PersistScroll slot="swipeable" enabled={mobileOpen}>
             {drawer}
@@ -207,25 +227,27 @@ function AppNavDrawer(props) {
         </SwipeableDrawer>
       ) : null}
       {disablePermanent || mobile ? null : (
-        <Drawer
-          classes={{
-            paper: classes.paper,
-          }}
+        <StyledDrawer
           variant="permanent"
-          sx={{ display: { xs: 'none', lg: 'block' } }}
+          PaperProps={{
+            component: SwipeableDrawerPaperComponent,
+            sx: {
+              background: (theme) =>
+                theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
+            },
+          }}
           open
         >
           <PersistScroll slot="side" enabled>
             {drawer}
           </PersistScroll>
-        </Drawer>
+        </StyledDrawer>
       )}
     </nav>
   );
 }
 
 AppNavDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   disablePermanent: PropTypes.bool.isRequired,
   mobileOpen: PropTypes.bool.isRequired,
@@ -233,5 +255,4 @@ AppNavDrawer.propTypes = {
   onOpen: PropTypes.func.isRequired,
 };
 
-const defaultTheme = createTheme();
-export default withStyles(styles, { defaultTheme })(AppNavDrawer);
+export default AppNavDrawer;

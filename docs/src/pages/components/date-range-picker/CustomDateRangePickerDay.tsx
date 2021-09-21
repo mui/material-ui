@@ -1,59 +1,44 @@
 import * as React from 'react';
-import { createTheme, Theme } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/styles';
-import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import { DateRange } from '@material-ui/lab/DateRangePicker';
-import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
-import DateRangePickerDay, {
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { DateRange } from '@mui/lab/DateRangePicker';
+import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
+import MuiDateRangePickerDay, {
   DateRangePickerDayProps,
-} from '@material-ui/lab/DateRangePickerDay';
-import clsx from 'clsx';
+} from '@mui/lab/DateRangePickerDay';
 
-const defaultTheme = createTheme();
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    highlight: {
+const DateRangePickerDay = styled(MuiDateRangePickerDay)(
+  ({ theme, isHighlighting, isStartOfHighlighting, isEndOfHighlighting }) => ({
+    ...(isHighlighting && {
       borderRadius: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
       '&:hover, &:focus': {
         backgroundColor: theme.palette.primary.dark,
       },
-    },
-    firstHighlight: {
+    }),
+    ...(isStartOfHighlighting && {
       borderTopLeftRadius: '50%',
       borderBottomLeftRadius: '50%',
-    },
-    endHighlight: {
+    }),
+    ...(isEndOfHighlighting && {
       borderTopRightRadius: '50%',
       borderBottomRightRadius: '50%',
-    },
+    }),
   }),
-  { defaultTheme },
-);
+) as React.ComponentType<DateRangePickerDayProps<Date>>;
 
 export default function CustomDateRangePickerDay() {
-  const classes = useStyles();
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
 
   const renderWeekPickerDay = (
     date: Date,
     dateRangePickerDayProps: DateRangePickerDayProps<Date>,
   ) => {
-    return (
-      <DateRangePickerDay
-        {...dateRangePickerDayProps}
-        className={clsx(dateRangePickerDayProps.className, {
-          [classes.firstHighlight]: dateRangePickerDayProps.isStartOfHighlighting,
-          [classes.endHighlight]: dateRangePickerDayProps.isEndOfHighlighting,
-          [classes.highlight]: dateRangePickerDayProps.isHighlighting,
-        })}
-      />
-    );
+    return <DateRangePickerDay {...dateRangePickerDayProps} />;
   };
 
   return (

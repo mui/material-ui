@@ -2,7 +2,7 @@
 title: React Date Range Picker component
 components: DateRangePicker, DateRangePickerDay, DesktopDateRangePicker, MobileDateRangePicker, StaticDateRangePicker
 githubLabel: 'component: DateRangePicker'
-packageName: '@material-ui/lab'
+packageName: '@mui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -12,7 +12,7 @@ materialDesign: https://material.io/components/date-pickers
 
 > ⚠️ Pro component
 > <br /><br />
-> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license).
+> The date range picker is intended for MUI X Pro, a commercial set of advanced components built on top of the community edition (MIT license).
 > <br /><br />
 > This paid extension will include more advanced components (rich data grid, date range picker, tree view drag & drop, etc.). [Early access](https://material-ui.com/store/items/material-ui-pro/) starts at an affordable price.
 
@@ -27,9 +27,9 @@ This component relies on the date management library of your choice. It supports
 Please install any of these libraries and set up the right date engine by wrapping your root (or the highest level you wish the pickers to be available) with `LocalizationProvider`:
 
 ```jsx
-// or @material-ui/lab/dateAdapter/{dayjs,luxon,moment} or any valid date-io adapter
-import DateFnsAdapter from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+// or @mui/lab/dateAdapter/{dayjs,luxon,moment} or any valid date-io adapter
+import DateFnsAdapter from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 function App() {
   return (

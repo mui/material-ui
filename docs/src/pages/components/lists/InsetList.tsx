@@ -1,25 +1,29 @@
 import * as React from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import StarIcon from '@material-ui/icons/Star';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import StarIcon from '@mui/icons-material/Star';
 
 export default function InsetList() {
   return (
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      component="nav"
       aria-label="contacts"
     >
-      <ListItem button>
-        <ListItemIcon>
-          <StarIcon />
-        </ListItemIcon>
-        <ListItemText primary="Chelsea Otakan" />
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemIcon>
+            <StarIcon />
+          </ListItemIcon>
+          <ListItemText primary="Chelsea Otakan" />
+        </ListItemButton>
       </ListItem>
-      <ListItem button>
-        <ListItemText inset primary="Eric Hoffman" />
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemText inset primary="Eric Hoffman" />
+        </ListItemButton>
       </ListItem>
     </List>
   );

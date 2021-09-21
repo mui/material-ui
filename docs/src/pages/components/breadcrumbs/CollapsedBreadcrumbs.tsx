@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 
 function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   event.preventDefault();
@@ -13,16 +13,16 @@ export default function CollapsedBreadcrumbs() {
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs maxItems={2} aria-label="breadcrumb">
-        <Link color="inherit" href="#">
+        <Link underline="hover" color="inherit" href="#">
           Home
         </Link>
-        <Link color="inherit" href="#">
+        <Link underline="hover" color="inherit" href="#">
           Catalog
         </Link>
-        <Link color="inherit" href="#">
+        <Link underline="hover" color="inherit" href="#">
           Accessories
         </Link>
-        <Link color="inherit" href="#">
+        <Link underline="hover" color="inherit" href="#">
           New Collection
         </Link>
         <Typography color="text.primary">Belts</Typography>

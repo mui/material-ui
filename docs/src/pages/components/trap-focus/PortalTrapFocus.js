@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Portal from '@material-ui/core/Portal';
-import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
+import Box from '@mui/material/Box';
+import Portal from '@mui/material/Portal';
+import TrapFocus from '@mui/material/Unstable_TrapFocus';
 
 export default function PortalTrapFocus() {
   const [open, setOpen] = React.useState(false);

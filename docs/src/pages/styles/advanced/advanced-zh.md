@@ -6,7 +6,7 @@
 
 若您想将主题传递到 React 组件树，请将添加 `ThemeProvider` 包装到应用程序的顶层。 然后，您可以在样式函数中访问主题对象。
 
-> 此示例为自定义组件创建了一个主题对象（theme object）。 如果你想要使用 Material-UI 的部分组件，那么则需要通过使用 `createTheme()` 方法来提供一个更丰富的主题结构。 请前往 [theming 部分](/customization/theming/) 学习如何构建自己的 Material-UI 主题。
+> 此示例为自定义组件创建了一个主题对象（theme object）。 If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. 请前往 [theming 部分](/customization/theming/) 学习如何构建自己的 Material-UI 主题。
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -122,8 +122,8 @@ function Parent() {
 
 ```jsx
 const Nested = withStyles({
-  root: {}, // a style rule
-  label: {}, // a nested style rule
+  root: {}, // 一个样式规则
+  label: {}, // 一个嵌套的样式规则
 })(({ classes }) => (
   <button className={classes.root}>
     <span className={classes.label}>{/* 'jss2 my-label' Nested*/}</span>
@@ -177,7 +177,7 @@ JSS 使用插件来扩展其核心，您可以挑选所需的功能，并且只�
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 import rtl from 'jss-rtl';
 
 const jss = create({
@@ -220,13 +220,15 @@ const useStyles = makeStyles({
 
 ### injectFirst
 
-`StylesProvider`组件的属性 `injectFirst` 会把style标签注入到head的**前部**(意味着更低的权重)。
+`StylesProvider` 组件有一个 `injectFirst` 属性，用于将样式标签**首先**从页头（优先级较低）注入：
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import { StylesProvider } from '@material-ui/styles';
 
-<StylesProvider injectFirst>{/* 你的组件树。
-      样式化组件可以覆盖 Material-UI 的样式。 */}</StylesProvider>;
+<StylesProvider injectFirst>
+  {/* 你的组件树。
+      样式化组件可以覆盖 Material-UI 的样式。 */}
+</StylesProvider>;
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
@@ -235,7 +237,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -250,19 +252,19 @@ const useStyles = makeStyles({
 });
 
 export default function MyComponent() {
-  // 下列函数先后顺序不重要
+  // Order doesn't matter
   const classes = useStyles();
   const classesBase = useStylesBase();
 
-  // 下列函数先后顺序不重要
+  // Order doesn't matter
   const className = clsx(classes.root, classesBase.root);
 
-  // color: red 🔴 优先渲染。
+  // color: 红色 🔴 胜出。
   return <div className={className} />;
 }
 ```
 
-Hook 调用顺序和类名顺序**不影响**注入属性权重 。
+Hook 的调用顺序和类名连接顺序都**不会影响**注入顺序的权重。
 
 ### insertionPoint
 
@@ -281,7 +283,7 @@ JSS [提供了一种机制](https://github.com/cssinjs/jss/blob/master/docs/setu
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -307,7 +309,7 @@ export default function App() {
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -326,7 +328,7 @@ codesandbox.io 阻止访问 `<head>` 元素。 要解决这个问题，您可以
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -348,7 +350,7 @@ This example returns a string of HTML and inlines the critical CSS required, rig
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/core/styles';
+import { ServerStyleSheets } from '@material-ui/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();

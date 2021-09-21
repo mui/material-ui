@@ -113,8 +113,8 @@ const transitionCallbacks = [
 ];
 /**
  * These are components that use props implemented by external components.
- * Those props have their own JSDOC which we don't want to emit in our docs
- * but do want them to have JSDOC in IntelliSense
+ * Those props have their own JSDoc which we don't want to emit in our docs
+ * but do want them to have JSDoc in IntelliSense
  * TODO: In the future we want to ignore external docs on the initial load anyway
  * since they will be fetched dynamically.
  */
@@ -144,6 +144,12 @@ function sortBreakpointsLiteralByViewportAscending(a: ttp.LiteralType, b: ttp.Li
 
   return breakpointOrder.indexOf(a.value) - breakpointOrder.indexOf(b.value);
 }
+
+function sortSizeByScaleAscending(a: ttp.LiteralType, b: ttp.LiteralType) {
+  const sizeOrder: readonly unknown[] = ['"small"', '"medium"', '"large"'];
+  return sizeOrder.indexOf(a.value) - sizeOrder.indexOf(b.value);
+}
+
 // Custom order of literal unions by component
 const getSortLiteralUnions: ttp.InjectOptions['getSortLiteralUnions'] = (component, propType) => {
   if (
@@ -151,6 +157,10 @@ const getSortLiteralUnions: ttp.InjectOptions['getSortLiteralUnions'] = (compone
     (propType.name === 'initialWidth' || propType.name === 'only')
   ) {
     return sortBreakpointsLiteralByViewportAscending;
+  }
+
+  if (propType.name === 'size') {
+    return sortSizeByScaleAscending;
   }
 
   return undefined;
@@ -294,9 +304,10 @@ async function run(argv: HandlerArgv) {
 
   const allFiles = await Promise.all(
     [
-      path.resolve(__dirname, '../packages/material-ui-unstyled/src'),
-      path.resolve(__dirname, '../packages/material-ui/src'),
-      path.resolve(__dirname, '../packages/material-ui-lab/src'),
+      path.resolve(__dirname, '../packages/mui-core/src'),
+      path.resolve(__dirname, '../packages/mui-material/src'),
+      path.resolve(__dirname, '../packages/mui-lab/src'),
+      path.resolve(__dirname, '../packages/mui-material-next/src'),
     ].map((folderPath) =>
       glob('+([A-Z])*/+([A-Z])*.*@(d.ts|ts|tsx)', {
         absolute: true,

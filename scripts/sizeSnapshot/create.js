@@ -24,7 +24,10 @@ async function getRollupSize(snapshotPath) {
 
   return Object.entries(rollupSnapshot).map(([bundlePath, snapshot]) => [
     // path in the snapshot is relative the snapshot itself
-    path.relative(workspaceRoot, path.join(path.dirname(snapshotPath), bundlePath)),
+    path
+      .relative(workspaceRoot, path.join(path.dirname(snapshotPath), bundlePath))
+      // Ensure original ID when the package was located in `packages/material-ui/`
+      .replace('mui-material', 'material-ui'),
     normalizeRollupSnapshot(snapshot),
   ]);
 }
@@ -49,17 +52,37 @@ async function getWebpackSizes(webpackEnvironment) {
       throw new Error(
         `The following errors occured during bundling of ${Object.keys(
           entrypoints,
-        )} with webpack: \n${errors.join('\n')}`,
+        )} with webpack: \n${errors
+          .map((error) => {
+            return `${JSON.stringify(error, null, 2)}`;
+          })
+          .join('\n')}`,
       );
     }
 
-    const stats = webpackStats.toJson({ all: false, assets: true });
+    const stats = webpackStats.toJson({
+      all: false,
+      assets: true,
+      entrypoints: true,
+      relatedAssets: true,
+    });
     const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
 
-    Object.entries(stats.assetsByChunkName).forEach(([chunkName, assetName]) => {
-      const parsedSize = assets.get(assetName).size;
-      const gzipSize = assets.get(`${assetName}.gz`).size;
-      sizes.push([chunkName, { parsed: parsedSize, gzip: gzipSize }]);
+    Object.values(stats.entrypoints).forEach((entrypoint) => {
+      let parsedSize = 0;
+      let gzipSize = 0;
+
+      entrypoint.assets.forEach(({ name, size }) => {
+        const asset = assets.get(name);
+        const gzippedAsset = asset.related.find((relatedAsset) => {
+          return relatedAsset.type === 'gzipped';
+        });
+
+        parsedSize += size;
+        gzipSize += gzippedAsset.size;
+      });
+
+      sizes.push([entrypoint.name, { parsed: parsedSize, gzip: gzipSize }]);
     });
   });
 
@@ -69,7 +92,7 @@ async function getWebpackSizes(webpackEnvironment) {
 async function run(argv) {
   const { analyze, accurateBundles } = argv;
 
-  const rollupBundles = [path.join(workspaceRoot, 'packages/material-ui/size-snapshot.json')];
+  const rollupBundles = [path.join(workspaceRoot, 'packages/mui-material/size-snapshot.json')];
   const bundleSizes = lodash.fromPairs([
     ...(await getWebpackSizes({ analyze, accurateBundles })),
     ...lodash.flatten(await Promise.all(rollupBundles.map(getRollupSize))),

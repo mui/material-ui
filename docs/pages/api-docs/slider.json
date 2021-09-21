@@ -45,6 +45,10 @@
       "default": "'horizontal'"
     },
     "scale": { "type": { "name": "func" }, "default": "(x) => x" },
+    "size": {
+      "type": { "name": "enum", "description": "'small'<br>&#124;&nbsp;'medium'" },
+      "default": "'medium'"
+    },
     "step": { "type": { "name": "number" }, "default": "1" },
     "sx": { "type": { "name": "object" } },
     "tabIndex": { "type": { "name": "number" } },
@@ -92,17 +96,18 @@
       "markLabelActive",
       "colorPrimary",
       "colorSecondary",
+      "sizeSmall",
       "thumbColorPrimary",
-      "thumbColorSecondary"
+      "thumbColorSecondary",
+      "thumbSizeSmall"
     ],
     "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
     "name": "MuiSlider"
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/material-ui/src/Slider/Slider.js",
+  "filename": "/packages/mui-material/src/Slider/Slider.js",
   "inheritance": { "component": "SliderUnstyled", "pathname": "/api/slider-unstyled/" },
   "demos": "<ul><li><a href=\"/components/slider/\">Slider</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

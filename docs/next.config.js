@@ -6,19 +6,11 @@ const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
-/**
- * @typedef {'legacy' | 'root'} ReactRenderMode
- *
- * Values explained:
- * - legacy - `ReactDOM.render(<App />, container)`
- * - legacy-strict - `ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, container)`
- * - concurrent - `ReactDOM.createRoot(container).render(<App />)`
- *
- * @type {ReactRenderMode | 'legacy-strict'}
- */
-const reactMode = 'legacy';
-// eslint-disable-next-line no-console
-console.log(`Using React '${reactMode}' mode.`);
+const reactStrictMode = true;
+if (reactStrictMode) {
+  // eslint-disable-next-line no-console
+  console.log(`Using React.StrictMode.`);
+}
 const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
 const vercelDeploy = Boolean(process.env.VERCEL);
 
@@ -31,11 +23,15 @@ if (staging) {
 }
 
 module.exports = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   typescript: {
     // Motivated by https://github.com/zeit/next.js/issues/7687
     ignoreDevErrors: true,
     ignoreBuildErrors: true,
   },
+  webpack5: true,
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
@@ -46,8 +42,9 @@ module.exports = {
           analyzerMode: 'server',
           generateStatsFile: true,
           analyzerPort: options.isServer ? 8888 : 8889,
-          // Will be available at `.next/stats.json`
-          statsFilename: 'stats.json',
+          reportTitle: `${options.isServer ? 'server' : 'client'} docs bundle`,
+          // Will be available at `.next/${statsFilename}`
+          statsFilename: `stats-${options.isServer ? 'server' : 'client'}.json`,
         }),
       );
     }
@@ -65,15 +62,19 @@ module.exports = {
       }
 
       config.externals = [
-        (context, request, callback) => {
-          const hasDependencyOnRepoPackages = ['notistack', '@material-ui/data-grid'].includes(
-            request,
-          );
+        (ctx, callback) => {
+          const { request } = ctx;
+          const hasDependencyOnRepoPackages = [
+            'notistack',
+            '@mui/x-data-grid',
+            '@mui/x-data-grid-pro',
+            '@mui/x-data-grid-generator',
+          ].includes(request);
 
           if (hasDependencyOnRepoPackages) {
             return callback(null);
           }
-          return nextExternals(context, request, callback);
+          return nextExternals(ctx, callback);
         },
       ];
     }
@@ -89,21 +90,27 @@ module.exports = {
           ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
         ],
       },
-      node: {
-        fs: 'empty',
-      },
       module: {
         ...config.module,
         rules: config.module.rules.concat([
-          // used in some /getting-started/templates
           {
             test: /\.md$/,
-            loader: 'raw-loader',
+            oneOf: [
+              {
+                resourceQuery: /@mui\/markdown/,
+                use: require.resolve('@mui/markdown/loader'),
+              },
+              {
+                // used in some /getting-started/templates
+                type: 'asset/source',
+              },
+            ],
           },
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)(notistack|@material-ui(\/|\\)data-grid)/,
+            include:
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -116,19 +123,29 @@ module.exports = {
                     {
                       alias: {
                         // all packages in this monorepo
-                        '@material-ui/core': '../packages/material-ui/src',
-                        '@material-ui/docs': '../packages/material-ui-docs/src',
-                        '@material-ui/icons': '../packages/material-ui-icons/lib',
-                        '@material-ui/lab': '../packages/material-ui-lab/src',
-                        '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
-                        '@material-ui/styled-engine-sc':
-                          '../packages/material-ui-styled-engine-sc/src',
-                        '@material-ui/styles': '../packages/material-ui-styles/src',
-                        '@material-ui/system': '../packages/material-ui-system/src',
-                        '@material-ui/private-theming':
-                          '../packages/material-ui-private-theming/src',
-                        '@material-ui/utils': '../packages/material-ui-utils/src',
-                        '@material-ui/unstyled': '../packages/material-ui-unstyled/src',
+                        '@mui/material': '../packages/mui-material/src',
+                        '@mui/docs': '../packages/mui-docs/src',
+                        '@mui/icons-material': '../packages/mui-icons-material/lib',
+                        '@mui/lab': '../packages/mui-lab/src',
+                        '@mui/styled-engine': '../packages/mui-styled-engine/src',
+                        '@mui/styles': '../packages/mui-styles/src',
+                        '@mui/system': '../packages/mui-system/src',
+                        '@mui/private-theming': '../packages/mui-private-theming/src',
+                        '@mui/utils': '../packages/mui-utils/src',
+                        '@mui/core': '../packages/mui-core/src',
+                        '@mui/material-next': '../packages/mui-material-next/src',
+                        // all legacy package names in this monorepo
+                        '@material-ui/core': '../packages/mui-material/src',
+                        '@material-ui/docs': '../packages/mui-docs/src',
+                        '@material-ui/icons': '../packages/mui-icons-material/lib',
+                        '@material-ui/lab': '../packages/mui-lab/src',
+                        '@material-ui/styled-engine': '../packages/mui-styled-engine/src',
+                        '@material-ui/styles': '../packages/mui-styles/src',
+                        '@material-ui/system': '../packages/mui-system/src',
+                        '@material-ui/private-theming': '../packages/mui-private-theming/src',
+                        '@material-ui/utils': '../packages/mui-utils/src',
+                        '@material-ui/unstyled': '../packages/mui-core/src',
+                        '@material-ui/core/*': '../packages/mui-material/src/*',
                       },
                       transformFunctions: ['require'],
                     },
@@ -141,14 +158,13 @@ module.exports = {
           {
             test: /\.(js|mjs|tsx|ts)$/,
             include: [workspaceRoot],
-            exclude: /(node_modules|material-ui-icons)/,
+            exclude: /(node_modules|mui-icons-material)/,
             use: options.defaultLoaders.babel,
           },
         ]),
       },
     };
   },
-  trailingSlash: true,
   env: {
     COMMIT_REF: process.env.COMMIT_REF,
     ENABLE_AD: process.env.ENABLE_AD,
@@ -158,10 +174,10 @@ module.exports = {
     NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL || 'http://localhost:3000',
     NETLIFY_SITE_NAME: process.env.SITE_NAME || 'material-ui',
     PULL_REQUEST: process.env.PULL_REQUEST === 'true',
-    REACT_MODE: reactMode,
+    REACT_STRICT_MODE: reactStrictMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     // #default-branch-switch
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/next',
+    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/master',
     SOURCE_CODE_REPO: 'https://github.com/mui-org/material-ui',
     STAGING: staging,
   },
@@ -205,11 +221,15 @@ module.exports = {
 
     return map;
   },
-  experimental: {
-    reactRoot: !reactMode.startsWith('legacy'),
-  },
-  reactStrictMode: reactMode === 'legacy-strict',
+  reactStrictMode,
+  trailingSlash: true,
   async rewrites() {
-    return [{ source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' }];
+    return [
+      { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
+      // Make sure to include the trailing slash if `trailingSlash` option is set
+      { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
+    ];
   },
+  // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
+  optimizeFonts: false,
 };

@@ -1,30 +1,29 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import { styled } from '@mui/material/styles';
+import MuiPaper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 import copy from 'clipboard-copy';
-import clsx from 'clsx';
-import InputBase from '@material-ui/core/InputBase';
-import Typography from '@material-ui/core/Typography';
+import InputBase from '@mui/material/InputBase';
+import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
-import Grid from '@material-ui/core/Grid';
-import Dialog from '@material-ui/core/Dialog';
+import Grid from '@mui/material/Grid';
+import Dialog from '@mui/material/Dialog';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import Button from '@material-ui/core/Button';
-import FlexSearch from 'flexsearch';
-import SearchIcon from '@material-ui/icons/Search';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import Button from '@mui/material/Button';
+import { Index as FlexSearchIndex } from 'flexsearch';
+import SearchIcon from '@mui/icons-material/Search';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import * as mui from '@material-ui/icons';
+import * as mui from '@mui/icons-material';
 import synonyms from './synonyms';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -39,26 +38,26 @@ if (process.env.NODE_ENV !== 'production') {
 // and comment `import * as mui`, and the `if` block above.
 // It will be much faster than working with all of the icons.
 
-// import Menu from '@material-ui/icons/Menu';
-// import MenuOutlined from '@material-ui/icons/MenuOutlined';
-// import MenuRounded from '@material-ui/icons/MenuRounded';
-// import MenuTwoTone from '@material-ui/icons/MenuTwoTone';
-// import MenuSharp from '@material-ui/icons/MenuSharp';
-// import ExitToApp from '@material-ui/icons/ExitToApp';
-// import ExitToAppOutlined from '@material-ui/icons/ExitToAppOutlined';
-// import ExitToAppRounded from '@material-ui/icons/ExitToAppRounded';
-// import ExitToAppTwoTone from '@material-ui/icons/ExitToAppTwoTone';
-// import ExitToAppSharp from '@material-ui/icons/ExitToAppSharp';
-// import Delete from '@material-ui/icons/Delete';
-// import DeleteOutlined from '@material-ui/icons/DeleteOutlined';
-// import DeleteRounded from '@material-ui/icons/DeleteRounded';
-// import DeleteTwoTone from '@material-ui/icons/DeleteTwoTone';
-// import DeleteSharp from '@material-ui/icons/DeleteSharp';
-// import DeleteForever from '@material-ui/icons/DeleteForever';
-// import DeleteForeverOutlined from '@material-ui/icons/DeleteForeverOutlined';
-// import DeleteForeverRounded from '@material-ui/icons/DeleteForeverRounded';
-// import DeleteForeverTwoTone from '@material-ui/icons/DeleteForeverTwoTone';
-// import DeleteForeverSharp from '@material-ui/icons/DeleteForeverSharp';
+// import Menu from '@mui/icons-material/Menu';
+// import MenuOutlined from '@mui/icons-material/MenuOutlined';
+// import MenuRounded from '@mui/icons-material/MenuRounded';
+// import MenuTwoTone from '@mui/icons-material/MenuTwoTone';
+// import MenuSharp from '@mui/icons-material/MenuSharp';
+// import ExitToApp from '@mui/icons-material/ExitToApp';
+// import ExitToAppOutlined from '@mui/icons-material/ExitToAppOutlined';
+// import ExitToAppRounded from '@mui/icons-material/ExitToAppRounded';
+// import ExitToAppTwoTone from '@mui/icons-material/ExitToAppTwoTone';
+// import ExitToAppSharp from '@mui/icons-material/ExitToAppSharp';
+// import Delete from '@mui/icons-material/Delete';
+// import DeleteOutlined from '@mui/icons-material/DeleteOutlined';
+// import DeleteRounded from '@mui/icons-material/DeleteRounded';
+// import DeleteTwoTone from '@mui/icons-material/DeleteTwoTone';
+// import DeleteSharp from '@mui/icons-material/DeleteSharp';
+// import DeleteForever from '@mui/icons-material/DeleteForever';
+// import DeleteForeverOutlined from '@mui/icons-material/DeleteForeverOutlined';
+// import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
+// import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
+// import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
 
 // const mui = {
 //   ExitToApp,
@@ -83,8 +82,6 @@ if (process.env.NODE_ENV !== 'production') {
 //   DeleteForeverSharp,
 // };
 
-const defaultTheme = createTheme();
-
 function selectNode(node) {
   // Clear any current selection
   const selection = window.getSelection();
@@ -96,8 +93,42 @@ function selectNode(node) {
   selection.addRange(range);
 }
 
+const StyledIcon = styled('span')(({ theme }) => ({
+  display: 'inline-block',
+  width: 86,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  margin: '0 4px',
+  fontSize: 12,
+  '& p': {
+    margin: 0,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+}));
+
+const StyledSvgIcon = styled(Box)(({ theme }) => ({
+  boxSizing: 'content-box',
+  cursor: 'pointer',
+  color: theme.palette.text.primary,
+  borderRadius: theme.shape.borderRadius,
+  transition: theme.transitions.create(['background-color', 'box-shadow'], {
+    duration: theme.transitions.duration.shortest,
+  }),
+  fontSize: 40,
+  padding: theme.spacing(2),
+  margin: theme.spacing(0.5, 0),
+  '&:hover': {
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[1],
+  },
+}));
+
 const Icons = React.memo(function Icons(props) {
-  const { icons, classes, handleOpenClick } = props;
+  const { icons, handleOpenClick } = props;
 
   const handleIconClick = (icon) => () => {
     if (Math.random() < 0.1) {
@@ -125,21 +156,20 @@ const Icons = React.memo(function Icons(props) {
       {icons.map((icon) => {
         /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
         return (
-          // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-          <span
+          <StyledIcon
             key={icon.importName}
             onClick={handleIconClick(icon)}
-            className={clsx('markdown-body', classes.icon)}
+            className="markdown-body"
           >
-            <icon.Component
+            <StyledSvgIcon
+              component={icon.Component}
               tabIndex={-1}
               onClick={handleOpenClick}
               title={icon.importName}
-              className={classes.iconSvg}
             />
             <p onClick={handleLabelClick}>{icon.importName}</p>
             {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
-          </span>
+          </StyledIcon>
         );
       })}
     </div>
@@ -147,90 +177,90 @@ const Icons = React.memo(function Icons(props) {
 });
 
 Icons.propTypes = {
-  classes: PropTypes.object.isRequired,
   handleOpenClick: PropTypes.func.isRequired,
   icons: PropTypes.array.isRequired,
 };
 
-const useDialogStyles = makeStyles(
-  (theme) => ({
-    title: {
-      display: 'inline-block',
-      cursor: 'pointer',
-      transition: theme.transitions.create('background-color', {
-        duration: theme.transitions.duration.shortest,
-      }),
-      '&:hover': {
-        backgroundColor: '#96c6fd80',
-      },
-    },
-    markdown: {
-      cursor: 'pointer',
-      transition: theme.transitions.create('background-color', {
-        duration: theme.transitions.duration.shortest,
-      }),
-      '&:hover': {
-        '& code': {
-          backgroundColor: '#96c6fd80',
-        },
-      },
-      '& pre': {
-        borderRadius: 0,
-        margin: 0,
-      },
-    },
-    import: {
-      textAlign: 'right',
-      padding: theme.spacing(0.5, 1),
-    },
-    canvas: {
-      fontSize: 210,
-      marginTop: theme.spacing(2),
-      color: theme.palette.text.primary,
-      backgroundSize: '30px 30px',
-      backgroundColor: 'transparent',
-      backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
-      backgroundImage:
-        theme.palette.mode === 'light'
-          ? 'linear-gradient(45deg, #e6e6e6 25%, transparent 25%), linear-gradient(-45deg, #e6e6e6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6e6e6 75%), linear-gradient(-45deg, transparent 75%, #e6e6e6 75%)'
-          : 'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
-    },
-    fontSize: {
-      margin: theme.spacing(2),
-    },
-    context: {
-      margin: theme.spacing(0.5),
-      padding: theme.spacing(1, 2),
-      borderRadius: theme.shape.borderRadius,
-      boxSizing: 'content-box',
-    },
-    contextPrimary: {
-      color: theme.palette.primary.main,
-    },
-    contextPrimaryInverse: {
-      color: theme.palette.primary.contrastText,
-      backgroundColor: theme.palette.primary.main,
-    },
-    contextTextPrimary: {
-      color: theme.palette.text.primary,
-    },
-    contextTextPrimaryInverse: {
-      color: theme.palette.background.paper,
-      backgroundColor: theme.palette.text.primary,
-    },
-    contextTextSecondary: {
-      color: theme.palette.text.secondary,
-    },
-    contextTextSecondaryInverse: {
-      color: theme.palette.background.paper,
-      backgroundColor: theme.palette.text.secondary,
-    },
+const ImportLink = styled(Link)(({ theme }) => ({
+  textAlign: 'right',
+  padding: theme.spacing(0.5, 1),
+}));
+
+const Markdown = styled(HighlightedCode)(({ theme }) => ({
+  cursor: 'pointer',
+  transition: theme.transitions.create('background-color', {
+    duration: theme.transitions.duration.shortest,
   }),
-  { defaultTheme },
-);
+  '&:hover': {
+    '& code': {
+      backgroundColor: '#96c6fd80',
+    },
+  },
+  '& pre': {
+    borderRadius: 0,
+    margin: 0,
+  },
+}));
+
+const Title = styled(Typography)(({ theme }) => ({
+  display: 'inline-block',
+  cursor: 'pointer',
+  transition: theme.transitions.create('background-color', {
+    duration: theme.transitions.duration.shortest,
+  }),
+  '&:hover': {
+    backgroundColor: '#96c6fd80',
+  },
+}));
+
+const CanvasComponent = styled(Box)(({ theme }) => ({
+  fontSize: 210,
+  marginTop: theme.spacing(2),
+  color: theme.palette.text.primary,
+  backgroundSize: '30px 30px',
+  backgroundColor: 'transparent',
+  backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
+  backgroundImage:
+    theme.palette.mode === 'light'
+      ? 'linear-gradient(45deg, #e6e6e6 25%, transparent 25%), linear-gradient(-45deg, #e6e6e6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e6e6e6 75%), linear-gradient(-45deg, transparent 75%, #e6e6e6 75%)'
+      : 'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
+}));
+
+const FontSizeComponent = styled('span')(({ theme }) => ({
+  margin: theme.spacing(2),
+}));
+
+const ContextComponent = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'contextColor',
+})(({ theme, contextColor }) => ({
+  margin: theme.spacing(0.5),
+  padding: theme.spacing(1, 2),
+  borderRadius: theme.shape.borderRadius,
+  boxSizing: 'content-box',
+  ...(contextColor === 'primary' && {
+    color: theme.palette.primary.main,
+  }),
+  ...(contextColor === 'primaryInverse' && {
+    color: theme.palette.primary.contrastText,
+    backgroundColor: theme.palette.primary.main,
+  }),
+  ...(contextColor === 'textPrimary' && {
+    color: theme.palette.text.primary,
+  }),
+  ...(contextColor === 'textPrimaryInverse' && {
+    color: theme.palette.background.paper,
+    backgroundColor: theme.palette.text.primary,
+  }),
+  ...(contextColor === 'textSecondary' && {
+    color: theme.palette.text.secondary,
+  }),
+  ...(contextColor === 'textSecondaryInverse' && {
+    color: theme.palette.background.paper,
+    backgroundColor: theme.palette.text.secondary,
+  }),
+}));
 
 const DialogDetails = React.memo(function DialogDetails(props) {
-  const classes = useDialogStyles();
   const { open, selectedIcon, handleClose } = props;
 
   const t = useTranslate();
@@ -245,13 +275,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
   };
 
   return (
-    <Dialog
-      fullWidth
-      maxWidth="sm"
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="icon-dialog-title"
-    >
+    <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose}>
       {selectedIcon ? (
         <React.Fragment>
           <DialogTitle disableTypography>
@@ -262,15 +286,9 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                 onExited: () => setCopied1(false),
               }}
             >
-              <Typography
-                component="h2"
-                variant="h6"
-                className={classes.title}
-                id="icon-dialog-title"
-                onClick={handleClick(1)}
-              >
+              <Title component="h2" variant="h6" onClick={handleClick(1)}>
                 {selectedIcon.importName}
-              </Typography>
+              </Title>
             </Tooltip>
           </DialogTitle>
           <Tooltip
@@ -278,80 +296,78 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             title={copied2 ? t('copied') : t('clickToCopy')}
             TransitionProps={{ onExited: () => setCopied2(false) }}
           >
-            <HighlightedCode
-              className={classes.markdown}
+            <Markdown
               onClick={handleClick(2)}
-              code={`import ${selectedIcon.importName}Icon from '@material-ui/icons/${selectedIcon.importName}';`}
+              code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
               language="js"
             />
           </Tooltip>
-          <Link
-            className={classes.import}
+          <ImportLink
             color="text.secondary"
             href="/components/icons/"
             variant="caption"
           >
             {t('searchIcons.learnMore')}
-          </Link>
+          </ImportLink>
           <DialogContent>
             <Grid container>
               <Grid item xs>
                 <Grid container justifyContent="center">
-                  <selectedIcon.Component className={classes.canvas} />
+                  <CanvasComponent component={selectedIcon.Component} />
                 </Grid>
               </Grid>
               <Grid item xs>
                 <Grid container alignItems="flex-end" justifyContent="center">
                   <Grid item>
                     <Tooltip title="fontSize small">
-                      <selectedIcon.Component
-                        className={classes.fontSize}
+                      <FontSizeComponent
+                        as={selectedIcon.Component}
                         fontSize="small"
                       />
                     </Tooltip>
                   </Grid>
                   <Grid item>
                     <Tooltip title="fontSize medium">
-                      <selectedIcon.Component className={classes.fontSize} />
+                      <FontSizeComponent as={selectedIcon.Component} />
                     </Tooltip>
                   </Grid>
                   <Grid item>
                     <Tooltip title="fontSize large">
-                      <selectedIcon.Component
-                        className={classes.fontSize}
+                      <FontSizeComponent
+                        as={selectedIcon.Component}
                         fontSize="large"
                       />
                     </Tooltip>
                   </Grid>
                 </Grid>
                 <Grid container justifyContent="center">
-                  <selectedIcon.Component
-                    className={clsx(classes.context, classes.contextPrimary)}
+                  <ContextComponent
+                    component={selectedIcon.Component}
+                    contextColor="primary"
                   />
-                  <selectedIcon.Component
-                    className={clsx(classes.context, classes.contextPrimaryInverse)}
-                  />
-                </Grid>
-                <Grid container justifyContent="center">
-                  <selectedIcon.Component
-                    className={clsx(classes.context, classes.contextTextPrimary)}
-                  />
-                  <selectedIcon.Component
-                    className={clsx(
-                      classes.context,
-                      classes.contextTextPrimaryInverse,
-                    )}
+                  <ContextComponent
+                    component={selectedIcon.Component}
+                    contextColor="primaryInverse"
                   />
                 </Grid>
                 <Grid container justifyContent="center">
-                  <selectedIcon.Component
-                    className={clsx(classes.context, classes.contextTextSecondary)}
+                  <ContextComponent
+                    component={selectedIcon.Component}
+                    contextColor="textPrimary"
                   />
-                  <selectedIcon.Component
-                    className={clsx(
-                      classes.context,
-                      classes.contextTextSecondaryInverse,
-                    )}
+                  <ContextComponent
+                    component={selectedIcon.Component}
+                    contextColor="textPrimaryInverse"
+                  />
+                </Grid>
+                <Grid container justifyContent="center">
+                  <ContextComponent
+                    component={selectedIcon.Component}
+                    contextColor="textSecondary"
+                  />
+                  <ContextComponent
+                    component={selectedIcon.Component}
+                    contextColor="textSecondaryInverse"
                   />
                 </Grid>
               </Grid>
@@ -374,71 +390,26 @@ DialogDetails.propTypes = {
   selectedIcon: PropTypes.object,
 };
 
-const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      minHeight: 500,
-    },
-    form: {
-      margin: theme.spacing(2, 0),
-    },
-    paper: {
-      position: 'sticky',
-      top: 80,
-      padding: '2px 4px',
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: theme.spacing(2),
-      width: '100%',
-    },
-    input: {
-      marginLeft: 8,
-      flex: 1,
-    },
-    iconButton: {
-      padding: 10,
-    },
-    icon: {
-      display: 'inline-block',
-      width: 86,
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-      margin: '0 4px',
-      fontSize: 12,
-      '& p': {
-        margin: 0,
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-      },
-    },
-    iconSvg: {
-      boxSizing: 'content-box',
-      cursor: 'pointer',
-      color: theme.palette.text.primary,
-      borderRadius: theme.shape.borderRadius,
-      transition: theme.transitions.create(['background-color', 'box-shadow'], {
-        duration: theme.transitions.duration.shortest,
-      }),
-      fontSize: 40,
-      padding: theme.spacing(2),
-      margin: theme.spacing(0.5, 0),
-      '&:hover': {
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: theme.shadows[1],
-      },
-    },
-    results: {
-      marginBottom: theme.spacing(1),
-    },
-  }),
-  { defaultTheme },
-);
+const Form = styled('form')(({ theme }) => ({
+  margin: theme.spacing(2, 0),
+}));
 
-const searchIndex = FlexSearch.create({
-  async: true,
+const Paper = styled(MuiPaper)(({ theme }) => ({
+  position: 'sticky',
+  top: 80,
+  padding: '2px 4px',
+  display: 'flex',
+  alignItems: 'center',
+  marginBottom: theme.spacing(2),
+  width: '100%',
+}));
+
+const Input = styled(InputBase)({
+  marginLeft: 8,
+  flex: 1,
+});
+
+const searchIndex = new FlexSearchIndex({
   tokenize: 'full',
 });
 
@@ -464,7 +435,7 @@ const allIcons = Object.keys(mui)
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
     }
-    searchIndex.add(importName, searchable);
+    searchIndex.addAsync(importName, searchable);
 
     const icon = {
       importName,
@@ -477,7 +448,6 @@ const allIcons = Object.keys(mui)
   });
 
 export default function SearchIcons() {
-  const classes = useStyles();
   const [theme, setTheme] = React.useState('Filled');
   const [keys, setKeys] = React.useState(null);
   const [open, setOpen] = React.useState(false);
@@ -498,7 +468,7 @@ export default function SearchIcons() {
         if (value === '') {
           setKeys(null);
         } else {
-          searchIndex.search(value).then((results) => {
+          searchIndex.searchAsync(value).then((results) => {
             setKeys(results);
 
             // Keep track of the no results so we can add synonyms in the future.
@@ -531,9 +501,9 @@ export default function SearchIcons() {
   );
 
   return (
-    <Grid container className={classes.root}>
+    <Grid container sx={{ minHeight: 500 }}>
       <Grid item xs={12} sm={3}>
-        <form className={classes.form}>
+        <Form>
           <RadioGroup>
             {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
               (currentTheme) => {
@@ -553,27 +523,24 @@ export default function SearchIcons() {
               },
             )}
           </RadioGroup>
-        </form>
+        </Form>
       </Grid>
       <Grid item xs={12} sm={9}>
-        <Paper className={classes.paper}>
-          <IconButton className={classes.iconButton} aria-label="search">
+        <Paper>
+          <IconButton sx={{ padding: '10px' }} aria-label="search">
             <SearchIcon />
           </IconButton>
-          <InputBase
+          <Input
             autoFocus
             onChange={(event) => {
               handleChange(event.target.value);
             }}
-            className={classes.input}
             placeholder="Search icons…"
             inputProps={{ 'aria-label': 'search icons' }}
           />
         </Paper>
-        <Typography
-          className={classes.results}
-        >{`${icons.length} matching results`}</Typography>
-        <Icons icons={icons} classes={classes} handleOpenClick={handleOpenClick} />
+        <Typography sx={{ mb: 1 }}>{`${icons.length} matching results`}</Typography>
+        <Icons icons={icons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails
         open={open}

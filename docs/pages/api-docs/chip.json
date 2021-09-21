@@ -7,7 +7,7 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'default'"
     },
@@ -79,9 +79,8 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Chip/Chip.js",
+  "filename": "/packages/mui-material/src/Chip/Chip.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/chips/\">Chips</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

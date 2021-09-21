@@ -1,10 +1,10 @@
 {
   "name": "feedback",
-  "version": "5.0.0-alpha.24",
+  "version": "5.0.0",
   "description": "Store and retrieve page ratings and comments",
   "main": "./index.js",
   "license": "MIT",
-  "author": "Material-UI Team",
+  "author": "MUI Team",
   "private": true,
   "files": [
     "*.js"
@@ -19,12 +19,12 @@
   },
   "dependencies": {
     "claudia-api-builder": "^4.1.2",
-    "uuid": "^8.3.1"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "claudia": "^5.12.0"
+    "claudia": "^5.13.1"
   },
   "optionalDependencies": {
-    "aws-sdk": "^2.766.0"
+    "aws-sdk": "^2.991.0"
   }
 }

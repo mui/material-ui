@@ -1,11 +1,12 @@
 import * as React from 'react';
-import Stack from '@material-ui/core/Stack';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function CircularColor() {
   return (
-    <Stack sx={{ color: 'warning.main' }} spacing={2} direction="row">
+    <Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
       <CircularProgress color="secondary" />
+      <CircularProgress color="success" />
       <CircularProgress color="inherit" />
     </Stack>
   );

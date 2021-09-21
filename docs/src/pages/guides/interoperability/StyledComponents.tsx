@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Slider from '@material-ui/core/Slider';
-import Box from '@material-ui/core/Box';
+import { styled } from '@mui/material/styles';
+import Slider from '@mui/material/Slider';
+import Box from '@mui/material/Box';
 
 const SliderCustomized = styled(Slider)`
   color: #20b2aa;

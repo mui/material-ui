@@ -1,27 +1,24 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { createTheme } from '@material-ui/core/styles';
-import { withStyles } from '@material-ui/styles';
+import { styled } from '@mui/material/styles';
 import NProgress from 'nprogress';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import MuiLink from '@material-ui/core/Link';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Tooltip from '@material-ui/core/Tooltip';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import NoSsr from '@material-ui/core/NoSsr';
-import LanguageIcon from '@material-ui/icons/Translate';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Divider from '@material-ui/core/Divider';
-import SettingsIcon from '@material-ui/icons/Settings';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import NProgressBar from '@material-ui/docs/NProgressBar';
+import CssBaseline from '@mui/material/CssBaseline';
+import MuiLink from '@mui/material/Link';
+import AppBar from '@mui/material/AppBar';
+import Stack from '@mui/material/Stack';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import Tooltip from '@mui/material/Tooltip';
+import Box from '@mui/material/Box';
+import NoSsr from '@mui/material/NoSsr';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Divider from '@mui/material/Divider';
+import SettingsIcon from '@mui/icons-material/SettingsOutlined';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import NProgressBar from '@mui/docs/NProgressBar';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
@@ -30,11 +27,12 @@ import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import LanguageIcon from '@mui/icons-material/Translate';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
-const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
+const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
 
-function NextNProgressBar() {
+export function NextNProgressBar() {
   const router = useRouter();
   React.useEffect(() => {
     const nProgressStart = () => NProgress.start();
@@ -54,7 +52,7 @@ function NextNProgressBar() {
 }
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
-function DeferredAppSearch() {
+export function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
     setMounted(true);
@@ -77,23 +75,22 @@ function DeferredAppSearch() {
   );
 }
 
-const styles = (theme) => ({
-  '@global': {
-    '#main-content': {
+const RootDiv = styled('div')(({ theme }) => {
+  return {
+    display: 'flex',
+    background: theme.palette.mode === 'dark' && theme.palette.primaryDark[900],
+    // TODO: Should be handled by the main component
+    '& #main-content': {
       outline: 0,
     },
-  },
-  root: {
-    display: 'flex',
-    backgroundColor: theme.palette.background.level1,
-  },
-  grow: {
-    flex: '1 1 auto',
-  },
-  skipNav: {
+  };
+});
+
+const SkipLink = styled(MuiLink)(({ theme }) => {
+  return {
     position: 'fixed',
     padding: theme.spacing(1),
-    backgroundColor: theme.palette.background.paper,
+    background: theme.palette.background.paper,
     transition: theme.transitions.create('top', {
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.leavingScreen,
@@ -111,40 +108,73 @@ const styles = (theme) => ({
     '@media print': {
       display: 'none',
     },
-  },
-  appBar: {
+  };
+});
+
+const StyledAppBar = styled(AppBar, {
+  shouldForwardProp: (prop) => prop !== 'disablePermanent',
+})(({ disablePermanent, theme }) => {
+  return {
+    padding: '0 2px',
     transition: theme.transitions.create('width'),
-  },
-  language: {
-    margin: theme.spacing(0, 0.5, 0, 1),
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'block',
-    },
-  },
-  appBarHome: {
+    ...(disablePermanent && {
+      boxShadow: 'none',
+    }),
+    ...(!disablePermanent && {
+      [theme.breakpoints.up('lg')]: {
+        width: 'calc(100% - 240px)',
+      },
+    }),
     boxShadow: 'none',
-  },
-  appBarShift: {
-    [theme.breakpoints.up('lg')]: {
-      width: 'calc(100% - 240px)',
+    borderStyle: 'solid',
+    borderColor:
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
+    borderWidth: 0,
+    borderBottomWidth: 'thin',
+    background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
+    '& .MuiIconButton-root': {
+      border: `1px solid ${
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200]
+      }`,
+      borderRadius: theme.shape.borderRadius,
+      color: theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
+      background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
     },
-  },
-  drawer: {
+  };
+});
+
+const GrowingDiv = styled('div')({
+  flex: '1 1 auto',
+});
+
+const NavIconButton = styled(IconButton, {
+  shouldForwardProp: (prop) => prop !== 'disablePermanent',
+})(({ disablePermanent, theme }) => {
+  if (disablePermanent) {
+    return {};
+  }
+  return {
+    [theme.breakpoints.up('lg')]: {
+      display: 'none',
+    },
+  };
+});
+
+const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) => {
+  if (disablePermanent) {
+    return {};
+  }
+  return {
     [theme.breakpoints.up('lg')]: {
       flexShrink: 0,
       width: 240,
     },
-  },
-  navIconHide: {
-    [theme.breakpoints.up('lg')]: {
-      display: 'none',
-    },
-  },
+  };
 });
 
 function AppFrame(props) {
-  const { children, classes, disableDrawer = false } = props;
+  const { children, disableDrawer = false } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
@@ -181,119 +211,114 @@ function AppFrame(props) {
   const { canonical } = pathnameToLanguage(router.asPath);
   const { activePage } = React.useContext(PageContext);
 
-  let disablePermanent = false;
-  let navIconClassName = '';
-  let appBarClassName = classes.appBar;
+  const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
-  if (activePage?.disableDrawer === true || disableDrawer === true) {
-    disablePermanent = true;
-    appBarClassName += ` ${classes.appBarHome}`;
-  } else {
-    navIconClassName = classes.navIconHide;
-    appBarClassName += ` ${classes.appBarShift}`;
-  }
+  const languageButtonProps = {
+    color: 'inherit',
+    onClick: handleLanguageIconClick,
+    'aria-owns': languageMenu ? 'language-menu' : undefined,
+    'aria-haspopup': 'true',
+    'data-ga-event-category': 'header',
+    'data-ga-event-action': 'language',
+  };
 
   return (
-    <div className={classes.root}>
+    <RootDiv>
       <NextNProgressBar />
       <CssBaseline />
-      <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
+      <SkipLink color="secondary" href="#main-content">
         {t('appFrame.skipToContent')}
-      </MuiLink>
+      </SkipLink>
       <MarkdownLinks />
-      <AppBar className={appBarClassName}>
+      <StyledAppBar disablePermanent={disablePermanent}>
         <Toolbar>
-          <IconButton
+          <NavIconButton
             edge="start"
             color="inherit"
             aria-label={t('appFrame.openDrawer')}
+            disablePermanent={disablePermanent}
             onClick={handleNavDrawerOpen}
-            className={navIconClassName}
           >
             <MenuIcon />
-          </IconButton>
-          <div className={classes.grow} />
-          <DeferredAppSearch />
-          <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
-            <Button
-              color="inherit"
-              aria-owns={languageMenu ? 'language-menu' : undefined}
-              aria-haspopup="true"
-              onClick={handleLanguageIconClick}
-              data-ga-event-category="header"
-              data-ga-event-action="language"
-            >
-              <LanguageIcon />
-              <span className={classes.language}>
-                {LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
-              </span>
-              <ExpandMoreIcon fontSize="small" />
-            </Button>
-          </Tooltip>
-          <NoSsr defer>
-            <Menu
-              id="language-menu"
-              anchorEl={languageMenu}
-              open={Boolean(languageMenu)}
-              onClose={handleLanguageMenuClose}
-            >
-              {LANGUAGES_LABEL.map((language) => (
+          </NavIconButton>
+          <GrowingDiv />
+          <Stack direction="row" spacing={2}>
+            <DeferredAppSearch />
+            <Tooltip title={t('appFrame.github')} enterDelay={300}>
+              <IconButton
+                component="a"
+                color="inherit"
+                href={process.env.SOURCE_CODE_REPO}
+                data-ga-event-category="header"
+                data-ga-event-action="github"
+                sx={{ px: '10px' }}
+              >
+                <GitHubIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Notifications />
+            <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
+              <IconButton
+                {...languageButtonProps}
+                sx={{
+                  px: '10px',
+                }}
+              >
+                <LanguageIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
+                <SettingsIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <NoSsr defer>
+              <Menu
+                id="language-menu"
+                anchorEl={languageMenu}
+                open={Boolean(languageMenu)}
+                onClose={handleLanguageMenuClose}
+              >
+                {LANGUAGES_LABEL.map((language) => (
+                  <MenuItem
+                    component="a"
+                    data-no-link="true"
+                    href={language.code === 'en' ? canonical : `/${language.code}${canonical}`}
+                    key={language.code}
+                    selected={userLanguage === language.code}
+                    onClick={handleLanguageMenuClose}
+                    lang={language.code}
+                    hrefLang={language.code}
+                  >
+                    {language.text}
+                  </MenuItem>
+                ))}
+                <Box sx={{ my: 1 }}>
+                  <Divider />
+                </Box>
                 <MenuItem
                   component="a"
                   data-no-link="true"
-                  href={language.code === 'en' ? canonical : `/${language.code}${canonical}`}
-                  key={language.code}
-                  selected={userLanguage === language.code}
+                  href={
+                    userLanguage === 'en'
+                      ? `${CROWDIN_ROOT_URL}`
+                      : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
+                  }
+                  rel="noopener nofollow"
+                  target="_blank"
+                  key={userLanguage}
+                  lang={userLanguage}
+                  hrefLang="en"
                   onClick={handleLanguageMenuClose}
-                  lang={language.code}
-                  hrefLang={language.code}
                 >
-                  {language.text}
+                  {t('appFrame.helpToTranslate')}
                 </MenuItem>
-              ))}
-              <Box sx={{ my: 1 }}>
-                <Divider />
-              </Box>
-              <MenuItem
-                component="a"
-                data-no-link="true"
-                href={
-                  userLanguage === 'en'
-                    ? `${CROWDIN_ROOT_URL}`
-                    : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
-                }
-                rel="noopener nofollow"
-                target="_blank"
-                key={userLanguage}
-                lang={userLanguage}
-                hrefLang="en"
-                onClick={handleLanguageMenuClose}
-              >
-                {t('appFrame.helpToTranslate')}
-              </MenuItem>
-            </Menu>
-          </NoSsr>
-          <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-            <IconButton color="inherit" onClick={handleSettingsDrawerOpen}>
-              <SettingsIcon />
-            </IconButton>
-          </Tooltip>
-          <Notifications />
-          <Tooltip title={t('appFrame.github')} enterDelay={300}>
-            <IconButton
-              component="a"
-              color="inherit"
-              href={process.env.SOURCE_CODE_REPO}
-              data-ga-event-category="header"
-              data-ga-event-action="github"
-            >
-              <GitHubIcon />
-            </IconButton>
-          </Tooltip>
+              </Menu>
+            </NoSsr>
+          </Stack>
         </Toolbar>
-      </AppBar>
-      <AppNavDrawer
-        className={disablePermanent ? '' : classes.drawer}
+      </StyledAppBar>
+      <StyledAppNavDrawer
         disablePermanent={disablePermanent}
         onClose={handleNavDrawerClose}
         onOpen={handleNavDrawerOpen}
@@ -301,15 +326,13 @@ function AppFrame(props) {
       />
       {children}
       <AppSettingsDrawer onClose={handleSettingsDrawerClose} open={settingsOpen} />
-    </div>
+    </RootDiv>
   );
 }
 
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
   disableDrawer: PropTypes.bool,
 };
 
-const defaultTheme = createTheme();
-export default withStyles(styles, { defaultTheme })(AppFrame);
+export default AppFrame;

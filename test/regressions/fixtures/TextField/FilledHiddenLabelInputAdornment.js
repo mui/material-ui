@@ -1,6 +1,6 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 
 export default function FilledHiddenLabelInputAdornment() {
   return (
@@ -10,7 +10,7 @@ export default function FilledHiddenLabelInputAdornment() {
       defaultValue="Value"
       variant="filled"
       InputProps={{
-        startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+        startAdornment: <InputAdornment position="start">kg</InputAdornment>,
       }}
     />
   );

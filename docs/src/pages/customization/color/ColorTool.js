@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { rgbToHex, useTheme } from '@material-ui/core/styles';
-import * as colors from '@material-ui/core/colors';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Input from '@material-ui/core/Input';
-import Radio from '@material-ui/core/Radio';
-import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import CheckIcon from '@material-ui/icons/Check';
-import Slider from '@material-ui/core/Slider';
-import { capitalize } from '@material-ui/core/utils';
+import PropTypes from 'prop-types';
+import { rgbToHex, useTheme } from '@mui/material/styles';
+import * as colors from '@mui/material/colors';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Input from '@mui/material/Input';
+import Radio from '@mui/material/Radio';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import CheckIcon from '@mui/icons-material/Check';
+import Slider from '@mui/material/Slider';
+import { capitalize } from '@mui/material/utils';
 import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
 import ColorDemo from './ColorDemo';
 
@@ -18,7 +19,25 @@ const defaults = {
   primary: '#2196f3',
   secondary: '#f50057',
 };
-const hues = Object.keys(colors).slice(1, 17);
+const hues = [
+  'red',
+  'pink',
+  'purple',
+  'deepPurple',
+  'indigo',
+  'blue',
+  'lightBlue',
+  'cyan',
+  'teal',
+  'green',
+  'lightGreen',
+  'lime',
+  'yellow',
+  'amber',
+  'orange',
+  'deepOrange',
+];
+
 const shades = [
   900,
   800,
@@ -35,6 +54,34 @@ const shades = [
   'A200',
   'A100',
 ];
+
+const TooltipRadio = React.forwardRef(function TooltipRadio(props, ref) {
+  const {
+    'aria-labelledby': ariaLabelledBy,
+    'aria-label': ariaLabel,
+    inputProps,
+    ...other
+  } = props;
+
+  return (
+    <Radio
+      ref={ref}
+      {...other}
+      inputProps={{
+        ...inputProps,
+        'aria-labelledby': ariaLabelledBy,
+        'aria-label': ariaLabel,
+      }}
+    />
+  );
+});
+
+TooltipRadio.propTypes = {
+  // possibly opaque identifier
+  'aria-label': PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  'aria-labelledby': PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  inputProps: PropTypes.object,
+};
 
 function ColorTool() {
   const dispatch = React.useContext(DispatchContext);
@@ -202,14 +249,13 @@ function ColorTool() {
 
             return (
               <Tooltip placement="right" title={hue} key={hue}>
-                <Radio
+                <TooltipRadio
                   sx={{ p: 0 }}
                   color="default"
                   checked={state[intent] === backgroundColor}
                   onChange={handleChangeHue(intent)}
                   value={hue}
                   name={intent}
-                  aria-labelledby={`tooltip-${intent}-${hue}`}
                   icon={
                     <Box
                       sx={{ width: 48, height: 48 }}

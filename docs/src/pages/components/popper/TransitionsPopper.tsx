@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Popper from '@material-ui/core/Popper';
-import Fade from '@material-ui/core/Fade';
+import Box from '@mui/material/Box';
+import Popper from '@mui/material/Popper';
+import Fade from '@mui/material/Fade';
 
 export default function TransitionsPopper() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);

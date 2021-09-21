@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Slider from '@material-ui/core/Slider';
-import { createTheme, ThemeProvider, Theme } from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { green } from '@material-ui/core/colors';
-import Switch from '@material-ui/core/Switch';
+import Slider from '@mui/material/Slider';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { green } from '@mui/material/colors';
+import Switch from '@mui/material/Switch';
 
 export default function DynamicThemeNesting() {
   const [success, setSuccess] = React.useState(false);
@@ -40,7 +40,7 @@ export default function DynamicThemeNesting() {
         }
         label="Success"
       />
-      <ThemeProvider<Theme> theme={theme}>
+      <ThemeProvider theme={theme}>
         <Slider defaultValue={30} sx={{ width: 300, mt: 1 }} />
       </ThemeProvider>
     </React.Fragment>

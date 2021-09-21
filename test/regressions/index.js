@@ -1,24 +1,29 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
 // Get all the fixtures specifically written for preventing visual regressions.
-const requireRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/);
+const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
 const regressionFixtures = [];
-requireRegressionFixtures.keys().forEach((path) => {
+importRegressionFixtures.keys().forEach((path) => {
   const [suite, name] = path
     .replace('./', '')
     .replace(/\.\w+$/, '')
     .split('/');
 
-  regressionFixtures.push({
-    path,
-    suite: `regression-${suite}`,
-    name,
-    Component: requireRegressionFixtures(path).default,
-  });
+  // TODO: Why does webpack include a key for the absolute and relative path?
+  // We just want the relative path
+  if (path.startsWith('./')) {
+    regressionFixtures.push({
+      path,
+      suite: `regression-${suite}`,
+      name,
+      Component: React.lazy(() => importRegressionFixtures(path)),
+    });
+  }
 }, []);
 
 const blacklist = [
@@ -68,6 +73,7 @@ const blacklist = [
   'docs-components-hidden', // Need to dynamically resize to test
   'docs-components-icons/FontAwesomeIconSize.png', // Relies on cascading network requests
   'docs-components-image-list', // Image don't load
+  'docs-components-masonry/ImageMasonry.png', // Image don't load
   'docs-components-material-icons/synonyms.png', // No component
   'docs-components-menus', // Need interaction
   'docs-components-modal/KeepMountedModal.png', // Needs interaction
@@ -196,23 +202,23 @@ function excludeDemoFixture(suite, name) {
 }
 
 // Also use some of the demos to avoid code duplication.
-const requireDemos = require.context('docs/src/pages', true, /js$/);
+const importDemos = require.context('docs/src/pages', true, /js$/, 'lazy');
 const demoFixtures = [];
-requireDemos.keys().forEach((path) => {
+importDemos.keys().forEach((path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
-  if (!excludeDemoFixture(suite, name)) {
+  // TODO: Why does webpack include a key for the absolute and relative path?
+  // We just want the relative path
+  if (path.startsWith('./') && !excludeDemoFixture(suite, name)) {
     demoFixtures.push({
       path,
       suite,
       name,
-      Component: requireDemos(path).default,
+      Component: React.lazy(() => importDemos(path)),
     });
   }
 }, []);
-
-const fixtures = regressionFixtures.concat(demoFixtures);
 
 if (unusedBlacklistPatterns.size > 0) {
   console.warn(
@@ -222,7 +228,9 @@ if (unusedBlacklistPatterns.size > 0) {
   );
 }
 
-function App() {
+function App(props) {
+  const { fixtures } = props;
+
   function computeIsDev() {
     if (window.location.hash === '#dev') {
       return true;
@@ -320,8 +328,12 @@ function App() {
   );
 }
 
+App.propTypes = {
+  fixtures: PropTypes.array,
+};
+
 const container = document.getElementById('react-root');
-const children = <App />;
+const children = <App fixtures={regressionFixtures.concat(demoFixtures)} />;
 if (typeof ReactDOM.unstable_createRoot === 'function') {
   const root = ReactDOM.unstable_createRoot(container);
   root.render(children);
