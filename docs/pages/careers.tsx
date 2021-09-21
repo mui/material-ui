@@ -391,24 +391,16 @@ function CareersContent() {
       </div>
       {/* Open roles */}
       <Container sx={{ py: { xs: 4, md: 8 } }}>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
-          <div>
-            <Typography variant="h2" sx={{ my: 1 }} id="open-roles">
-              Open roles
-            </Typography>
-            <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
-              The company is bootstrapped (so far). It was incorporated in mid-2019 and yet growing
-              fast (x2-3 YoY). We doubled the team in 2020 and are on track to do the same in 2021.
-              We&apos;re looking for help keep growing in the following areas:
-            </Typography>
-          </div>
-        </Box>
+        <div>
+          <Typography variant="h2" sx={{ my: 1 }} id="open-roles">
+            Open roles
+          </Typography>
+          <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
+            The company is bootstrapped (so far). It was incorporated in mid-2019 and yet growing
+            fast (x2-3 YoY). We doubled the team in 2020 and are on track to do the same in 2021.
+            We&apos;re looking for help keep growing in the following areas:
+          </Typography>
+        </div>
         <Divider
           sx={{
             my: { xs: 2, sm: 4 },
