@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { describeConformance, fireEvent, screen, fireTouchChangedEvent } from 'test/utils';
+import { describeConformance, fireEvent, fireTouchChangedEvent } from 'test/utils';
 import MobileTimePicker from '@material-ui/lab/MobileTimePicker';
 import {
   createPickerMount,
@@ -10,7 +10,6 @@ import {
   adapterToUse,
   getByMuiTest,
 } from '../internal/pickers/test-utils';
-import { getMeridiem } from '../internal/pickers/time-utils';
 
 function createMouseEventWithOffsets(
   type: 'mousedown' | 'mousemove' | 'mouseup',
@@ -47,14 +46,14 @@ describe('<MobileTimePicker />', () => {
   );
 
   it('accepts time on clock mouse move', () => {
-    const handleChange = spy();
+    const onChangeMock = spy();
     render(
       <MobileTimePicker
         ampm
         open
         value={adapterToUse.date('2018-01-01T00:00:00.000')}
-        onChange={handleChange}
-        renderInput={(props) => <TextField {...props} />}
+        onChange={onChangeMock}
+        renderInput={(props) => <TextField variant="outlined" {...props} />}
       />,
     );
 
@@ -68,7 +67,7 @@ describe('<MobileTimePicker />', () => {
     fireEvent(getByMuiTest('clock'), createMouseEventWithOffsets('mouseup', fakeEventOptions));
 
     expect(getByMuiTest('hours')).to.have.text('11');
-    expect(handleChange.callCount).to.equal(1);
+    expect(onChangeMock.callCount).to.equal(1);
   });
 
   it('accepts time on clock touch move', function test() {
@@ -76,14 +75,14 @@ describe('<MobileTimePicker />', () => {
       this.skip();
     }
 
-    const handleChange = spy();
+    const onChangeMock = spy();
     render(
       <MobileTimePicker
         ampm
         open
         openTo="minutes"
         value={adapterToUse.date('2018-01-01T00:00:00.000')}
-        onChange={handleChange}
+        onChange={onChangeMock}
         renderInput={(params) => <TextField {...params} />}
       />,
     );
@@ -128,25 +127,5 @@ describe('<MobileTimePicker />', () => {
 
     expect(getByMuiTest('hours')).not.to.have.text('--');
     expect(getByMuiTest('minutes')).not.to.have.text('--');
-  });
-
-  it('should change meridiem', () => {
-    const handleChange = spy();
-    const value = adapterToUse.date('2018-01-01T00:00:00.000');
-    render(
-      <MobileTimePicker
-        ampm
-        open
-        value={value}
-        onChange={handleChange}
-        renderInput={(props) => <TextField {...props} />}
-      />,
-    );
-
-    expect(getMeridiem(value, adapterToUse)).to.equal('am');
-    const pmButton = screen.getByRole('button', { name: 'PM' });
-    fireEvent.click(pmButton);
-    expect(handleChange.callCount).to.equal(1);
-    expect(getMeridiem(handleChange.args[0][0], adapterToUse)).to.equal('pm');
   });
 });
