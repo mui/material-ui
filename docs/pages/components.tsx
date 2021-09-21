@@ -15,11 +15,40 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import Link from 'docs/src/modules/components/Link';
+import { MuiPage } from 'docs/src/pages';
 
 export default function Components() {
   const { pages } = React.useContext(PageContext);
   const t = useTranslate();
   const componentPageData = pages.find(({ pathname }) => pathname === '/components');
+  function renderItem(aPage: MuiPage) {
+    return (
+      <ListItem key={aPage.pathname} disablePadding>
+        <ListItemButton
+          component={Link}
+          noLinkStyle
+          href={aPage.pathname}
+          sx={{
+            px: 1,
+            py: 0.5,
+            fontSize: '0.84375rem',
+            fontWeight: 500,
+            '&:hover, &:focus': { '& svg': { opacity: 1 } },
+          }}
+        >
+          {pageToTitleI18n(aPage, t) || ''}
+          <KeyboardArrowRightRounded
+            sx={{
+              ml: 'auto',
+              fontSize: '1.125rem',
+              opacity: 0,
+              color: 'primary.main',
+            }}
+          />
+        </ListItemButton>
+      </ListItem>
+    );
+  }
   return (
     <BrandingProvider>
       <Head
@@ -45,7 +74,6 @@ export default function Components() {
                   variant="body2"
                   sx={{
                     fontWeight: 500,
-                    bgcolor: 'transparent',
                     color: 'grey.600',
                     px: 1,
                   }}
@@ -53,32 +81,28 @@ export default function Components() {
                   {pageToTitleI18n(page, t)}
                 </Typography>
                 <List>
-                  {(page.children || []).map((nestedPage) => (
-                    <ListItem key={nestedPage.pathname} disablePadding>
-                      <ListItemButton
-                        component={Link}
-                        noLinkStyle
-                        href={nestedPage.pathname}
-                        sx={{
-                          px: 1,
-                          py: 0.5,
-                          fontSize: '0.84375rem',
-                          fontWeight: 500,
-                          '&:hover, &:focus': { '& svg': { opacity: 1 } },
-                        }}
-                      >
-                        {pageToTitleI18n(nestedPage, t) || ''}
-                        <KeyboardArrowRightRounded
-                          sx={{
-                            ml: 'auto',
-                            fontSize: '1.125rem',
-                            opacity: 0,
-                            color: 'primary.main',
-                          }}
-                        />
-                      </ListItemButton>
-                    </ListItem>
-                  ))}
+                  {(page.children || []).map((nestedPage) => {
+                    if (nestedPage.children) {
+                      return (
+                        <ListItem key={nestedPage.pathname} sx={{ py: 0, px: 1 }}>
+                          <Box sx={{ width: '100%', pt: 1 }}>
+                            <Typography
+                              component="div"
+                              variant="body2"
+                              sx={{
+                                fontWeight: 500,
+                                color: 'grey.600',
+                              }}
+                            >
+                              {pageToTitleI18n(nestedPage, t) || ''}
+                            </Typography>
+                            <List>{nestedPage.children.map(renderItem)}</List>
+                          </Box>
+                        </ListItem>
+                      );
+                    }
+                    return renderItem(nestedPage);
+                  })}
                 </List>
               </Box>
             ))}
