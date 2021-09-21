@@ -12,6 +12,5 @@
   "filename": "/packages/mui-material/src/TableHead/TableHead.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

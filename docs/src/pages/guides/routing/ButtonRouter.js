@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { MemoryRouter as Router } from 'react-router';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, MemoryRouter as Router } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 const LinkBehavior = React.forwardRef((props, ref) => (

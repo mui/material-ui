@@ -57,7 +57,7 @@ You can learn more about this in the [overrides documentation page](/customizati
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch).
 
-## Unstyled switches
+## Unstyled
 
 The switch also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 

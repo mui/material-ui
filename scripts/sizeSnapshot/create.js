@@ -52,17 +52,37 @@ async function getWebpackSizes(webpackEnvironment) {
       throw new Error(
         `The following errors occured during bundling of ${Object.keys(
           entrypoints,
-        )} with webpack: \n${errors.join('\n')}`,
+        )} with webpack: \n${errors
+          .map((error) => {
+            return `${JSON.stringify(error, null, 2)}`;
+          })
+          .join('\n')}`,
       );
     }
 
-    const stats = webpackStats.toJson({ all: false, assets: true });
+    const stats = webpackStats.toJson({
+      all: false,
+      assets: true,
+      entrypoints: true,
+      relatedAssets: true,
+    });
     const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
 
-    Object.entries(stats.assetsByChunkName).forEach(([chunkName, assetName]) => {
-      const parsedSize = assets.get(assetName).size;
-      const gzipSize = assets.get(`${assetName}.gz`).size;
-      sizes.push([chunkName, { parsed: parsedSize, gzip: gzipSize }]);
+    Object.values(stats.entrypoints).forEach((entrypoint) => {
+      let parsedSize = 0;
+      let gzipSize = 0;
+
+      entrypoint.assets.forEach(({ name, size }) => {
+        const asset = assets.get(name);
+        const gzippedAsset = asset.related.find((relatedAsset) => {
+          return relatedAsset.type === 'gzipped';
+        });
+
+        parsedSize += size;
+        gzipSize += gzippedAsset.size;
+      });
+
+      sizes.push([entrypoint.name, { parsed: parsedSize, gzip: gzipSize }]);
     });
   });
 

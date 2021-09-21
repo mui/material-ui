@@ -28,11 +28,11 @@ type MobileTimePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Time Picker](https://material-ui.com/components/time-picker/)
+ * - [Time Picker](https://mui.com/components/time-picker/)
  *
  * API:
  *
- * - [MobileTimePicker API](https://material-ui.com/api/mobile-time-picker/)
+ * - [MobileTimePicker API](https://mui.com/api/mobile-time-picker/)
  */
 const MobileTimePicker = React.forwardRef(function MobileTimePicker<TDate>(
   inProps: MobileTimePickerProps<TDate>,
@@ -273,7 +273,7 @@ MobileTimePicker.propTypes /* remove-proptypes */ = {
   readOnly: PropTypes.bool,
   /**
    * The `renderInput` prop allows you to customize the rendered input.
-   * The `props` argument of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api) that you need to forward.
+   * The `props` argument of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api) that you need to forward.
    * Pay specific attention to the `ref` and `inputProps` keys.
    * @example ```jsx
    * renderInput={props => <TextField {...props} />}

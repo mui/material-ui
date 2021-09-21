@@ -74,7 +74,7 @@ export interface UseSwitchProps {
  *
  * Demos:
  *
- * - [Switches](https://material-ui.com/components/switches/)
+ * - [Switches](https://mui.com/components/switches/)
  */
 export default function useSwitch(props: UseSwitchProps) {
   const {

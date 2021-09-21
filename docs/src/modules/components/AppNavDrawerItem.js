@@ -75,7 +75,7 @@ const ItemLink = styled(Item, {
         theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[500],
       backgroundColor:
         theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.primary[50],
-      fontWeight: 600,
+      fontWeight: 700,
       '&:hover': {
         backgroundColor: alpha(
           theme.palette.primary.main,
@@ -96,6 +96,10 @@ const ItemLink = styled(Item, {
     paddingLeft: 36 + (depth > 2 ? (depth - 2) * 10 : 0),
     ...(hasIcon && {
       paddingLeft: 2,
+    }),
+    ...(depth === 0 && {
+      fontSize: theme.typography.pxToRem(14.5),
+      color: theme.palette.text.primary,
     }),
   };
 });
@@ -120,13 +124,13 @@ const ItemButton = styled(Item, {
         if (theme.palette.mode === 'dark') {
           return alpha(theme.palette.grey[500], 0.5);
         }
-        return theme.palette.grey[500];
+        return theme.palette.grey[600];
       }
       return theme.palette.text.primary;
     })(),
-    fontSize: depth === 1 ? theme.typography.pxToRem(12) : theme.typography.pxToRem(14.5),
-    fontWeight: depth === 1 ? 700 : 500,
-    margin: theme.spacing(0.5, 0),
+    fontSize: theme.typography.pxToRem(depth === 0 ? 14.5 : 12),
+    fontWeight: depth === 0 ? 500 : 700,
+    margin: depth === 0 ? theme.spacing(0.5, 0) : '8px 0 4px',
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
       color: (() => {
@@ -136,7 +140,7 @@ const ItemButton = styled(Item, {
         if (theme.palette.mode === 'dark') {
           return alpha(theme.palette.grey[500], 0.5);
         }
-        return theme.palette.grey[500];
+        return theme.palette.grey[600];
       })(),
       cursor: depth === 0 ? '' : 'text',
     },
@@ -157,7 +161,7 @@ const ItemButton = styled(Item, {
 const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(
   ({ theme, depth }) => {
     return {
-      padding: depth === 0 ? '0 10px' : '4px 0',
+      padding: depth === 0 ? '0 10px' : '2px 0',
       marginTop: depth === 0 ? theme.spacing(1) : undefined,
       display: 'block',
     };
@@ -183,18 +187,18 @@ export default function AppNavDrawerItem(props) {
   };
 
   const hasIcon = icon && iconsMap[icon];
-  const IconComponent = hasIcon ? iconsMap[icon] : React.Fragment;
+  const IconComponent = hasIcon ? iconsMap[icon] : null;
   const iconProps = hasIcon ? { fontSize: 'small', color: 'primary' } : {};
   const iconElement = hasIcon ? (
     <Box
+      component="span"
       sx={{
         '& svg': { fontSize: (theme) => theme.typography.pxToRem(14) },
         display: 'flex',
         alignItems: 'center',
         height: '100%',
         marginRight: 1.5,
-        py: 0.5,
-        px: 0.5,
+        p: 0.5,
         borderRadius: '5px',
         backgroundColor: (theme) =>
           theme.palette.mode === 'dark'
@@ -206,23 +210,32 @@ export default function AppNavDrawerItem(props) {
     </Box>
   ) : null;
 
+  const divider = depth === 0 && (
+    <li>
+      <Divider sx={{ my: 1.2 }} />
+    </li>
+  );
+
   if (href) {
     return (
-      <StyledLi {...other} depth={depth}>
-        <ItemLink
-          component={Link}
-          activeClassName="app-drawer-active"
-          href={href}
-          underline="none"
-          onClick={onClick}
-          depth={depth}
-          hasIcon={hasIcon}
-          {...linkProps}
-        >
-          {iconElement}
-          {title}
-        </ItemLink>
-      </StyledLi>
+      <React.Fragment>
+        <StyledLi {...other} depth={depth}>
+          <ItemLink
+            component={Link}
+            activeClassName="app-drawer-active"
+            href={href}
+            underline="none"
+            onClick={onClick}
+            depth={depth}
+            hasIcon={hasIcon}
+            {...linkProps}
+          >
+            {iconElement}
+            {title}
+          </ItemLink>
+        </StyledLi>
+        {divider}
+      </React.Fragment>
     );
   }
 
@@ -234,7 +247,7 @@ export default function AppNavDrawerItem(props) {
           depth={depth}
           hasIcon={hasIcon}
           disableRipple
-          className={topLevel && 'algolia-lvl0'}
+          className={topLevel ? 'algolia-lvl0' : null}
           onClick={handleClick}
         >
           {iconElement}
@@ -249,7 +262,7 @@ export default function AppNavDrawerItem(props) {
           children
         )}
       </StyledLi>
-      {depth === 0 && <Divider sx={{ my: 1.2 }} />}
+      {divider}
     </React.Fragment>
   );
 }

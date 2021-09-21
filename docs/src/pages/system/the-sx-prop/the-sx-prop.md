@@ -131,7 +131,7 @@ The spacing properties: `margin`, `padding` and the corresponding longhand prope
 // equivalent to margin: theme => theme.spacing(2)
 ```
 
-The following aliases are availabel for the spacing properties:
+The following aliases are available for the spacing properties:
 
 | Prop | CSS property                    |
 | :--- | :------------------------------ |

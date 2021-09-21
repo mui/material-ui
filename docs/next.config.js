@@ -24,7 +24,6 @@ if (staging) {
 
 module.exports = {
   eslint: {
-    // TODO: https://github.com/mui-org/material-ui/issues/25966
     ignoreDuringBuilds: true,
   },
   typescript: {
@@ -43,8 +42,9 @@ module.exports = {
           analyzerMode: 'server',
           generateStatsFile: true,
           analyzerPort: options.isServer ? 8888 : 8889,
-          // Will be available at `.next/stats.json`
-          statsFilename: 'stats.json',
+          reportTitle: `${options.isServer ? 'server' : 'client'} docs bundle`,
+          // Will be available at `.next/${statsFilename}`
+          statsFilename: `stats-${options.isServer ? 'server' : 'client'}.json`,
         }),
       );
     }
@@ -165,7 +165,6 @@ module.exports = {
       },
     };
   },
-  trailingSlash: true,
   env: {
     COMMIT_REF: process.env.COMMIT_REF,
     ENABLE_AD: process.env.ENABLE_AD,
@@ -223,8 +222,13 @@ module.exports = {
     return map;
   },
   reactStrictMode,
+  trailingSlash: true,
   async rewrites() {
-    return [{ source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' }];
+    return [
+      { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
+      // Make sure to include the trailing slash if `trailingSlash` option is set
+      { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
+    ];
   },
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
   optimizeFonts: false,

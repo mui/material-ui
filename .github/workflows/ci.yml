@@ -32,6 +32,8 @@ jobs:
           # Don't need playwright in this job
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
       - run: yarn release:build
+      # double run to check if cleanup works
+      - run: yarn release:build
       - run: yarn release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

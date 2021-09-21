@@ -56,6 +56,5 @@
   "filename": "/packages/mui-material/src/Drawer/Drawer.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/drawers/\">Drawers</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

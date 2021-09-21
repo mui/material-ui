@@ -9,11 +9,11 @@ import { TransitionProps as MuiTransitionProps } from '@mui/material/transitions
 
 export interface ExportedPickerPopperProps {
   /**
-   * Popper props passed down to [Popper](https://material-ui.com/api/popper/) component.
+   * Popper props passed down to [Popper](https://mui.com/api/popper/) component.
    */
   PopperProps?: Partial<MuiPopperProps>;
   /**
-   * Custom component for popper [Transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).
+   * Custom component for popper [Transition](https://mui.com/components/transitions/#transitioncomponent-prop).
    */
   TransitionComponent?: React.JSXElementConstructor<MuiTransitionProps>;
 }

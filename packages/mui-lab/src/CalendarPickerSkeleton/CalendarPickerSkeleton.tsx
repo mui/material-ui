@@ -111,11 +111,11 @@ const monthMap = [
  *
  * Demos:
  *
- * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/components/date-picker/)
  *
  * API:
  *
- * - [CalendarPickerSkeleton API](https://material-ui.com/api/calendar-picker-skeleton/)
+ * - [CalendarPickerSkeleton API](https://mui.com/api/calendar-picker-skeleton/)
  */
 function CalendarPickerSkeleton(props: CalendarPickerSkeletonProps) {
   const { className, ...other } = useThemeProps<
@@ -153,11 +153,11 @@ function CalendarPickerSkeleton(props: CalendarPickerSkeletonProps) {
  *
  * Demos:
  *
- * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/components/date-picker/)
  *
  * API:
  *
- * - [CalendarPickerSkeleton API](https://material-ui.com/api/calendar-picker-skeleton/)
+ * - [CalendarPickerSkeleton API](https://mui.com/api/calendar-picker-skeleton/)
  */
 
 CalendarPickerSkeleton.propTypes /* remove-proptypes */ = {

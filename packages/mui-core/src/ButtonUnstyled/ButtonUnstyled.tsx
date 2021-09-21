@@ -30,11 +30,11 @@ const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
  *
  * Demos:
  *
- * - [Buttons](https://material-ui.com/components/buttons/)
+ * - [Buttons](https://mui.com/components/buttons/)
  *
  * API:
  *
- * - [ButtonUnstyled API](https://material-ui.com/api/button-unstyled/)
+ * - [ButtonUnstyled API](https://mui.com/api/button-unstyled/)
  */
 const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   D extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],

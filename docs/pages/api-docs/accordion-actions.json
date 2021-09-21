@@ -12,6 +12,5 @@
   "filename": "/packages/mui-material/src/AccordionActions/AccordionActions.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/accordion/\">Accordion</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -4,7 +4,7 @@
   "description": "MUI Framer components",
   "version": "1.1.0",
   "license": "MIT",
-  "homepage": "https://material-ui.com/",
+  "homepage": "https://mui.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui.git",
@@ -14,13 +14,13 @@
     "url": "https://github.com/mui-org/material-ui/issues"
   },
   "dependencies": {
-    "@mui/material": "^5.0.0-rc.0",
-    "@mui/icons-material": "^5.0.0-rc.0",
-    "@mui/utils": "^5.0.0-rc.0",
+    "@mui/material": "^5.0.0",
+    "@mui/icons-material": "^5.0.0",
+    "@mui/utils": "^5.0.0",
     "lodash": "^4.17.21"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.20",
+    "@types/react": "^17.0.21",
     "framer": "^1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

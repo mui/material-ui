@@ -24,6 +24,5 @@
   "filename": "/packages/mui-core/src/SwitchUnstyled/SwitchUnstyled.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/switches/\">Switches</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

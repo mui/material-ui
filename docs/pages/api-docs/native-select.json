@@ -39,6 +39,5 @@
   "filename": "/packages/mui-material/src/NativeSelect/NativeSelect.js",
   "inheritance": { "component": "Input", "pathname": "/api/input/" },
   "demos": "<ul><li><a href=\"/components/selects/\">Selects</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -118,6 +118,5 @@
   "filename": "/packages/mui-material/src/Autocomplete/Autocomplete.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }
