@@ -22,6 +22,5 @@
   "filename": "/packages/mui-material/src/CardHeader/CardHeader.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

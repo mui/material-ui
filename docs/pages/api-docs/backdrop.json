@@ -25,6 +25,5 @@
   "filename": "/packages/mui-material/src/Backdrop/Backdrop.js",
   "inheritance": { "component": "Fade", "pathname": "/api/fade/" },
   "demos": "<ul><li><a href=\"/components/backdrop/\">Backdrop</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

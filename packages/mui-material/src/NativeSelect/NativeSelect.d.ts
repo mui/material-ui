@@ -28,7 +28,7 @@ export interface NativeSelectProps
    */
   input?: React.ReactElement<any, any>;
   /**
-   * <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes">Attributes</a> applied to the `select` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attributes) applied to the `select` element.
    */
   inputProps?: Partial<NativeSelectInputProps>;
   /**

@@ -11,6 +11,5 @@
   "filename": "/packages/mui-lab/src/CalendarPickerSkeleton/CalendarPickerSkeleton.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

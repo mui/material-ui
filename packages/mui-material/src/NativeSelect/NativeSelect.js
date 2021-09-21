@@ -97,7 +97,7 @@ NativeSelect.propTypes /* remove-proptypes */ = {
    */
   input: PropTypes.element,
   /**
-   * <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes">Attributes</a> applied to the `select` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attributes) applied to the `select` element.
    */
   inputProps: PropTypes.object,
   /**

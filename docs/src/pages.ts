@@ -153,6 +153,7 @@ const pages: readonly MuiPage[] = [
           {
             pathname: '/components/data-grid',
             subheader: '/components/data-grid/overview',
+            title: 'Overview',
           },
           { pathname: '/components/data-grid/demo' },
           { pathname: '/components/data-grid/getting-started' },
@@ -164,6 +165,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/components/data-grid/filtering' },
           { pathname: '/components/data-grid/pagination' },
           { pathname: '/components/data-grid/selection' },
+          { pathname: '/components/data-grid/events' },
           { pathname: '/components/data-grid/export' },
           { pathname: '/components/data-grid/components' },
           { pathname: '/components/data-grid/style' },
@@ -209,14 +211,19 @@ const pages: readonly MuiPage[] = [
         title: 'Data Grid',
         children: [
           { pathname: '/api-docs/data-grid', title: 'API Reference' },
-          { pathname: '/api-docs/data-grid/data-grid' },
-          { pathname: '/api-docs/data-grid/x-grid' },
-          { pathname: '/api-docs/data-grid/grid-api' },
-          { pathname: '/api-docs/data-grid/grid-col-def' },
-          { pathname: '/api-docs/data-grid/grid-cell-params' },
-          { pathname: '/api-docs/data-grid/grid-row-params' },
-          { pathname: '/api-docs/data-grid/grid-export-csv-options' },
-        ],
+          { pathname: '/api-docs/data-grid/data-grid', title: 'DataGrid' },
+          { pathname: '/api-docs/data-grid/data-grid-pro', title: 'DataGridPro' },
+          { pathname: '/api-docs/data-grid/grid-api', title: 'GridApi' },
+          { pathname: '/api-docs/data-grid/grid-col-def', title: 'GridColDef' },
+          { pathname: '/api-docs/data-grid/grid-cell-params', title: 'GridCellParams' },
+          { pathname: '/api-docs/data-grid/grid-row-params', title: 'GridRowParams' },
+          {
+            pathname: '/api-docs/data-grid/grid-export-csv-options',
+            title: 'GridExportCSVOptions',
+          },
+        ].map((page) => {
+          return { ...page, linkProps: { as: page.pathname.replace(/^\/api-docs/, '/api') } };
+        }),
       },
     ]
       .sort((a, b) =>

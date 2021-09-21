@@ -1,6 +1,10 @@
+---
+title: Styles API
+---
+
 # API
 
-<p class="description">The API reference of @mui/material/styles.</p>
+<p class="description">The API reference of @mui/styles.</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 

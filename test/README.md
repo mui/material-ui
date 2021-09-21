@@ -154,7 +154,7 @@ Our tests run on different browsers to increase the coverage:
 ##### BrowserStack
 
 We only use BrowserStack for non-PR commits to save ressources.
-Browserstack rarely reports actual issues so we only use it as a stop-gap for releases not merges.
+BrowserStack rarely reports actual issues so we only use it as a stop-gap for releases not merges.
 
 To force a run of BrowserStack on a PR you have to run the pipeline with `browserstack-force` set to `true`.
 For example, you've opened a PR with the number 64209 and now after everything is green you want to make sure the change passes all browsers:

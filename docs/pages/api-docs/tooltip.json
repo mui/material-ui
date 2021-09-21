@@ -56,6 +56,5 @@
   "filename": "/packages/mui-material/src/Tooltip/Tooltip.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tooltips/\">Tooltips</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }
