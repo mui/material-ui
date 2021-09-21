@@ -124,12 +124,12 @@ const ItemButton = styled(Item, {
         if (theme.palette.mode === 'dark') {
           return alpha(theme.palette.grey[500], 0.5);
         }
-        return theme.palette.grey[500];
+        return theme.palette.grey[600];
       }
       return theme.palette.text.primary;
     })(),
     fontSize: theme.typography.pxToRem(depth === 0 ? 14.5 : 12),
-    fontWeight: depth === 0 ? 600 : 700,
+    fontWeight: depth === 0 ? 500 : 700,
     margin: depth === 0 ? theme.spacing(0.5, 0) : '8px 0 4px',
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
@@ -140,7 +140,7 @@ const ItemButton = styled(Item, {
         if (theme.palette.mode === 'dark') {
           return alpha(theme.palette.grey[500], 0.5);
         }
-        return theme.palette.grey[500];
+        return theme.palette.grey[600];
       })(),
       cursor: depth === 0 ? '' : 'text',
     },
@@ -191,6 +191,7 @@ export default function AppNavDrawerItem(props) {
   const iconProps = hasIcon ? { fontSize: 'small', color: 'primary' } : {};
   const iconElement = hasIcon ? (
     <Box
+      component="span"
       sx={{
         '& svg': { fontSize: (theme) => theme.typography.pxToRem(14) },
         display: 'flex',
@@ -208,6 +209,12 @@ export default function AppNavDrawerItem(props) {
       <IconComponent {...iconProps} />
     </Box>
   ) : null;
+
+  const divider = depth === 0 && (
+    <li>
+      <Divider sx={{ my: 1.2 }} />
+    </li>
+  );
 
   if (href) {
     return (
@@ -227,7 +234,7 @@ export default function AppNavDrawerItem(props) {
             {title}
           </ItemLink>
         </StyledLi>
-        {depth === 0 && <Divider sx={{ my: 1.2 }} />}
+        {divider}
       </React.Fragment>
     );
   }
@@ -255,7 +262,7 @@ export default function AppNavDrawerItem(props) {
           children
         )}
       </StyledLi>
-      {depth === 0 && <Divider sx={{ my: 1.2 }} />}
+      {divider}
     </React.Fragment>
   );
 }

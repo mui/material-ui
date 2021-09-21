@@ -233,7 +233,6 @@ function AppFrame(props) {
       <StyledAppBar disablePermanent={disablePermanent}>
         <Toolbar>
           <NavIconButton
-            fontSize="small"
             edge="start"
             color="inherit"
             aria-label={t('appFrame.openDrawer')}

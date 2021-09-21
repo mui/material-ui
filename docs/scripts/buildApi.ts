@@ -807,13 +807,7 @@ async function buildDocs(options: {
 
   reactApi.styles = await parseStyles(reactApi, program);
 
-  // TODO: Drop once migration to emotion is complete since this will always be true.
-  let jssComponent = false;
-  const component = await import(componentObject.filename);
-  if (component?.default?.options !== undefined) {
-    jssComponent = true;
-    reactApi.styles.name = component.default.options.name;
-  } else if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
+  if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
     reactApi.styles.name = generateMuiName(reactApi.name);
   }
   reactApi.styles.classes.forEach((key) => {
@@ -975,7 +969,6 @@ async function buildDocs(options: {
     filename: toGithubPath(reactApi.filename, workspaceRoot),
     inheritance: reactApi.inheritance,
     demos: generateDemoList(reactApi),
-    styledComponent: !jssComponent,
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
 

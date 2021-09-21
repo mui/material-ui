@@ -177,15 +177,11 @@ export default function CoreComponents() {
               >
                 {demo === 'Button' && (
                   <Stack
-                    gap={2}
+                    spacing={2}
+                    direction={{ xs: 'column', sm: 'row' }}
                     sx={{
                       height: '100%',
                       py: 5,
-                      display: 'flex',
-                      flexDirection: {
-                        xs: 'column',
-                        sm: 'row',
-                      },
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexWrap: 'wrap',
@@ -232,13 +228,7 @@ export default function CoreComponents() {
                         },
                     }}
                   >
-                    <Table
-                      aria-label="demo table"
-                      sx={{
-                        backgroundColor: (theme) =>
-                          theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff',
-                      }}
-                    >
+                    <Table aria-label="demo table">
                       <TableHead>
                         <TableRow>
                           <TableCell>Dessert</TableCell>

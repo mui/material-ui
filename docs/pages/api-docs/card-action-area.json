@@ -15,6 +15,5 @@
   "filename": "/packages/mui-material/src/CardActionArea/CardActionArea.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

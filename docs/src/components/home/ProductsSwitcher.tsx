@@ -100,7 +100,7 @@ const ProductsSwitcher = ({
       aria-label="Go to core components page"
       icon={<IconImage name="product-core" />}
       name="MUI Core"
-      description="Ready to use, free foverer, foundational components."
+      description="Ready-to-use foundational components, free forever."
       href={ROUTES.productCore}
     />,
     <ProductItem

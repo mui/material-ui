@@ -87,7 +87,7 @@ const GlobalStyles = withStyles(styles, { defaultTheme, flip: false, name: 'MuiN
 );
 
 /**
- * Elegant and ready to use wrapper on top of https://github.com/rstacruz/nprogress/.
+ * Elegant and ready-to-use wrapper on top of https://github.com/rstacruz/nprogress/.
  * The implementation is highly inspired by the YouTube one.
  */
 function NProgressBar(props) {

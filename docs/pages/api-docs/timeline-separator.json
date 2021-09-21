@@ -11,6 +11,5 @@
   "filename": "/packages/mui-lab/src/TimelineSeparator/TimelineSeparator.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -27,6 +27,5 @@
   "filename": "/packages/mui-material/src/Table/Table.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

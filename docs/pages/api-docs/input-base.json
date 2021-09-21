@@ -79,6 +79,5 @@
   "filename": "/packages/mui-material/src/InputBase/InputBase.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -35,6 +35,5 @@
   "filename": "/packages/mui-core/src/ModalUnstyled/ModalUnstyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/modal/\">Modal</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }
