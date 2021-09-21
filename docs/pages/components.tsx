@@ -16,7 +16,7 @@ import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import Link from 'docs/src/modules/components/Link';
 
-export default function Home() {
+export default function Components() {
   const { pages } = React.useContext(PageContext);
   const t = useTranslate();
   const componentPageData = pages.find(({ pathname }) => pathname === '/components');
