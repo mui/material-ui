@@ -187,8 +187,8 @@ export default function AppSearch() {
   React.useEffect(() => {
     const addStartScreen = () => {
       const dropDown = document.querySelector('.DocSearch-Dropdown');
-      const isExisted = document.querySelector('.DocSearch-NewStartScreen');
-      if (dropDown && !isExisted) {
+      const isExisting = document.querySelector('.DocSearch-NewStartScreen');
+      if (dropDown && !isExisting) {
         dropDown.insertAdjacentHTML(
           'beforeend',
           ReactDOMServer.renderToStaticMarkup(<NewStartScreen />),
