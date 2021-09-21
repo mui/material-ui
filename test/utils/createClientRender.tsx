@@ -169,36 +169,10 @@ const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueri
   },
 );
 
-// https://github.com/testing-library/dom-testing-library/issues/723
-// hide ByLabelText queries since they only support firefox >= 56, not IE 1:
-// - HTMLInputElement.prototype.labels https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/labels
-
-function queryAllByLabelText(element: any, label: string): HTMLElement[] {
-  throw new Error(
-    `*ByLabelText() relies on features that are not available in older browsers. Prefer \`*ByRole(someRole, { name: '${label}' })\` `,
-  );
-}
-const [queryByLabelText, getAllByLabelText, getByLabelText, findAllByLabelText, findByLabelText] =
-  buildQueries(
-    queryAllByLabelText,
-    function getMultipleError() {
-      throw new Error('not implemented');
-    },
-    function getMissingError() {
-      throw new Error('not implemented');
-    },
-  );
-
 const customQueries = {
   queryDescriptionOf,
   getDescriptionOf,
   findDescriptionOf,
-  queryAllByLabelText,
-  queryByLabelText,
-  getAllByLabelText,
-  getByLabelText,
-  findAllByLabelText,
-  findByLabelText,
 };
 
 interface RenderConfiguration {
@@ -548,9 +522,7 @@ export function act(callback: () => void) {
 
 export * from '@testing-library/react/pure';
 export { cleanup, fireEvent };
-// We import from `@testing-library/react` and `@testing-library/dom` before creating a JSDOM.
-// At this point a global document isn't available yet. Now it is.
-export const screen = within(document.body);
+export const screen = within(document.body, { ...queries, ...customQueries });
 
 export function render() {
   throw new Error(
