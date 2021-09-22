@@ -60,11 +60,6 @@ export function DeferredAppSearch() {
 
   return (
     <React.Fragment>
-      <link
-        rel="preload"
-        href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css"
-        as="style"
-      />
       {/* Suspense isn't supported for SSR yet */}
       {mounted ? (
         <React.Suspense fallback={null}>
