@@ -51,11 +51,11 @@ The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 
 ## `ThemeProvider` setup
 
-Make sure that `ThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<ThemeProvider>`.
-This is because we are going to use `@mui/styles` temporarily, which requires `ThemeProvider`.
+Before upgrading to v5, please make sure that `ThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<ThemeProvider>`.
+This is because we are going to use `@mui/styles` **temporarily** (JSS style-engine), which requires `ThemeProvider`.
 
 ```js
-import { ThemeProvider, createMuiTheme, makeStyles } from '@mui/material/styles';
+import { ThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
 
 const theme = createMuiTheme();
 
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => {
 });
 
 function App() {
-  const classes = useStyles(); // ❌ If you have this, consider moving <ThemeProvider> to HOC and wrap the App
+  const classes = useStyles(); // ❌ If you have this, consider moving it inside a component that wrapped with <ThemeProvider>
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }
 ```
@@ -76,6 +76,21 @@ function App() {
 ## Update MUI version
 
 To use the `v5` version of MUI Core, you first need to update the package names:
+
+```sh
+npm install @mui/material @mui/styles
+
+// or with `yarn`
+yarn add @mui/material @mui/styles
+```
+
+**Optional**: if you have one these packages, install the new package separately
+
+- For `@material-ui/lab`, install `@mui/lab`
+- For `@material-ui/icons`, install `@mui/icons-material`
+
+<details>
+<summary>See all packages change</summary>
 
 ```text
 @material-ui/core -> @mui/material
@@ -96,6 +111,8 @@ To use the `v5` version of MUI Core, you first need to update the package names:
 The org & package names have been changed from `@material-ui` to [`@mui`](https://www.npmjs.com/org/mui) as part of the rebranding effort.
 For more details about it, check our [blog post](/blog/material-ui-is-now-mui/) or [#27803](https://github.com/mui-org/material-ui/discussions/27803).
 
+</details>
+
 Then, you need to add the new peer dependencies - emotion packages:
 
 ```sh
@@ -109,12 +126,14 @@ yarn add @emotion/react @emotion/styled
 
 If you are using `@material-ui/pickers`, it has moved to `@mui/lab`. You can follow [these steps](#material-ui-pickers).
 
-You should have installed `@mui/styles` now.
+You should have installed `@mui/styles` by now.
 It includes JSS, which duplicate with emotion.
 It's meant to allow a gradual migration to v5.
 You should be able to remove the dependency following [these steps](#migrate-from-jss).
 
-After the upgrade and migration of the packages, you can remove the old `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
+> 📝 Please make sure that your application is still **running** without errors and **commit** the change before continuing the next step.
+
+Once you application has completely migrated to MUI v5, you can remove the old `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
 
 ## Run codemods
 
@@ -1095,10 +1114,16 @@ As the core components use emotion as their style engine, the props used by emot
   To return to the previous size, you can override it in the theme:
 
   ```js
-  const theme = createTheme({
-    typography: {
-      body1: {
-        fontSize: '0.875rem',
+  const theme = createMuiTheme({
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          body: {
+            fontSize: '0.875rem',
+            lineHeight: 1.43,
+            letterSpacing: '0.01071em',
+          },
+        },
       },
     },
   });
@@ -2737,3 +2762,17 @@ function App(props) {
 
 export default App;
 ```
+
+### TypeError: Cannot read properties of undefined (reading 'pxToRem')
+
+The root cause of this error comes from accessing empty theme. Make sure that you have follow these checklist:
+
+- `styled` should only be imported from `@mui/material/styles` (If you are not using standalone `@mui/system`)
+
+  ```js
+  import { styled } from '@mui/material/styles';
+  ```
+
+- Make sure that no `useStyles` is called outside of `<ThemeProvider>`. If you have, consider fixing it like [this suggestion](#makestyles-typeerror-cannot-read-property-drawer-of-undefined)
+
+For more details, [checkout this issue](https://github.com/mui-org/material-ui/issues/28496)

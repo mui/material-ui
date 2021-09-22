@@ -9,7 +9,7 @@ import { ParseableDate } from '../internal/pickers/constants/prop-types';
 import { BasePickerProps, ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { ExportedDateInputProps } from '../internal/pickers/PureDateInput';
 
-export type DateTimePickerView = 'year' | 'day' | 'month' | 'hours' | 'minutes';
+export type DateTimePickerView = 'year' | 'day' | 'month' | 'hours' | 'minutes' | 'seconds';
 
 export interface BaseDateTimePickerProps<TDate>
   extends ExportedClockPickerProps<TDate>,

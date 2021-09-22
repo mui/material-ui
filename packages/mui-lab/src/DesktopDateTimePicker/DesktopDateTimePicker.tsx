@@ -334,7 +334,7 @@ DesktopDateTimePicker.propTypes /* remove-proptypes */ = {
   /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']),
+  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']),
   /**
    * Force rendering in particular orientation.
    */
@@ -441,7 +441,7 @@ DesktopDateTimePicker.propTypes /* remove-proptypes */ = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(
-    PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']).isRequired,
+    PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'seconds', 'year']).isRequired,
   ),
 } as any;
 

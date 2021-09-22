@@ -93,6 +93,5 @@
   "filename": "/packages/mui-lab/src/TimePicker/TimePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/pickers/\">Pickers</a></li>\n<li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

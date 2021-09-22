@@ -27,7 +27,7 @@ const browserStack = {
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
   build,
   // https://github.com/browserstack/api#timeout300
-  timeout: 6 * 60, // Maximum time before a worker is terminated. Default 5 minutes.
+  timeout: 10 * 60, // Maximum time before a worker is terminated. Default 5 minutes.
 };
 
 process.env.CHROME_BIN = playwright.chromium.executablePath();

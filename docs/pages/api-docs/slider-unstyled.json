@@ -112,6 +112,5 @@
   "filename": "/packages/mui-core/src/SliderUnstyled/SliderUnstyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/slider/\">Slider</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -191,6 +191,7 @@ export default function AppNavDrawerItem(props) {
   const iconProps = hasIcon ? { fontSize: 'small', color: 'primary' } : {};
   const iconElement = hasIcon ? (
     <Box
+      component="span"
       sx={{
         '& svg': { fontSize: (theme) => theme.typography.pxToRem(14) },
         display: 'flex',
@@ -208,6 +209,12 @@ export default function AppNavDrawerItem(props) {
       <IconComponent {...iconProps} />
     </Box>
   ) : null;
+
+  const divider = depth === 0 && (
+    <li>
+      <Divider sx={{ my: 1.2 }} />
+    </li>
+  );
 
   if (href) {
     return (
@@ -227,7 +234,7 @@ export default function AppNavDrawerItem(props) {
             {title}
           </ItemLink>
         </StyledLi>
-        {depth === 0 && <Divider sx={{ my: 1.2 }} />}
+        {divider}
       </React.Fragment>
     );
   }
@@ -255,7 +262,7 @@ export default function AppNavDrawerItem(props) {
           children
         )}
       </StyledLi>
-      {depth === 0 && <Divider sx={{ my: 1.2 }} />}
+      {divider}
     </React.Fragment>
   );
 }

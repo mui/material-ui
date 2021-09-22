@@ -37,6 +37,5 @@
   "filename": "/packages/mui-material/src/SpeedDialAction/SpeedDialAction.js",
   "inheritance": { "component": "Tooltip", "pathname": "/api/tooltip/" },
   "demos": "<ul><li><a href=\"/components/speed-dial/\">Speed Dial</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

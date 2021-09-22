@@ -106,6 +106,5 @@
   "filename": "/packages/mui-lab/src/DateRangePicker/DateRangePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-range-picker/\">Date Range Picker</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

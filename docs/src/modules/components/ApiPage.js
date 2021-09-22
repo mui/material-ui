@@ -193,8 +193,6 @@ function ApiDocs(props) {
     name: componentName,
     props: componentProps,
     spread,
-    // TODO: Drop once migration to emotion is complete since this will always be true.
-    styledComponent,
     styles: componentStyles,
   } = pageContent;
 
@@ -341,20 +339,9 @@ import { ${componentName} } from '${source}';`}
             />
             <br />
             <span dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
-            {styledComponent ? (
-              <span
-                dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStylesStyledComponent') }}
-              />
-            ) : (
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.overrideStylesJss').replace(
-                    /{{URL}}/,
-                    `${process.env.SOURCE_CODE_ROOT_URL}${filename}`,
-                  ),
-                }}
-              />
-            )}
+            <span
+              dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStylesStyledComponent') }}
+            />
           </React.Fragment>
         ) : null}
         <Heading hash="demos" />

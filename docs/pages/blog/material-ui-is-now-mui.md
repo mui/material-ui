@@ -78,7 +78,7 @@ To better identify, market, and promote each product, we're introducing logos fo
 
 <img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="Logos for MUI Core, MUI X and Templates" style="width: 600px; margin-bottom: 16px;" />
 
-- **MUI Core** contains ready-to-use, free forever, foundational components.
+- **MUI Core** contains ready-to-use foundational components, free forever.
 - **MUI X** includes advanced and powerful components for complex use-cases.
 - **Templates** is a collection of fully built, out-of-the-box, React templates for your application. They are developed by the community curated by us for quality.
 

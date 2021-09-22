@@ -53,6 +53,5 @@
   "filename": "/packages/mui-material/src/InputLabel/InputLabel.js",
   "inheritance": { "component": "FormLabel", "pathname": "/api/form-label/" },
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

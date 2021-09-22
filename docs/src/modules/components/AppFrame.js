@@ -60,11 +60,6 @@ export function DeferredAppSearch() {
 
   return (
     <React.Fragment>
-      <link
-        rel="preload"
-        href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css"
-        as="style"
-      />
       {/* Suspense isn't supported for SSR yet */}
       {mounted ? (
         <React.Suspense fallback={null}>
@@ -233,7 +228,6 @@ function AppFrame(props) {
       <StyledAppBar disablePermanent={disablePermanent}>
         <Toolbar>
           <NavIconButton
-            fontSize="small"
             edge="start"
             color="inherit"
             aria-label={t('appFrame.openDrawer')}

@@ -37,14 +37,16 @@ Fade.propTypes = {
 };
 
 export default function SpringPopper() {
+  const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
+    setAnchorEl(event.currentTarget);
+    setOpen((previousOpen) => !previousOpen);
   };
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'spring-popper' : undefined;
+  const canBeOpen = open && Boolean(anchorEl);
+  const id = canBeOpen ? 'spring-popper' : undefined;
 
   return (
     <div>
