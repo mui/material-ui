@@ -58,22 +58,6 @@ const styles = (theme) => ({
   },
 });
 
-const AuthorsContainer = styled('div')(({ theme }) => ({
-  display: 'flex',
-  flexWrap: 'wrap',
-  marginBottom: theme.spacing(1),
-  '& .author': {
-    display: 'flex',
-    alignItems: 'center',
-    paddingBottom: theme.spacing(3),
-    paddingRight: theme.spacing(2),
-    fontWeight: theme.typography.fontWeightMedium,
-    '& .MuiAvatar-root': {
-      marginRight: theme.spacing(1),
-    },
-  },
-}));
-
 const steps = [
   {
     pathname: '/learn/basics/overview',
@@ -82,6 +66,32 @@ const steps = [
   {
     pathname: '/learn/basics/introduction',
     title: 'Introduction',
+  },
+  {
+    title: 'Understanding MUI',
+  },
+  {
+    pathname: '/learn/basics/setting-up-mui',
+    title: 'Setting up MUI',
+  },
+  {
+    pathname: '/learn/basics/creating-a-simple-log-in-ui',
+    title: 'Creating a simple log-in UI',
+  },
+  {
+    pathname: '/learn/basics/navigating-the-documentation',
+    title: 'Navigating the documentation',
+  },
+  {
+    title: 'Customization',
+  },
+  {
+    pathname: '/learn/basics/define-custom-colors-and-font',
+    title: 'Define custom colors and font',
+  },
+  {
+    pathname: '/learn/basics/customize-the-built-in-components',
+    title: 'Customize the built-in components',
   },
 ];
 
@@ -105,9 +115,7 @@ function TopLayoutBlog(props) {
         <AppContainer component="main" className={classes.container}>
           <ul>
             {steps.map((step) => (
-              <li>
-                <Link href={step.pathname}>{step.title}</Link>
-              </li>
+              <li>{step.pathname ? <Link href={step.pathname}>{step.title}</Link> : step.title}</li>
             ))}
           </ul>
           {headers.title ? (
