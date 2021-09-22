@@ -1,6 +1,6 @@
 ### [Versions](https://mui.com/versions/)
 
-## 5.0.0
+## 5.0.1
 <!-- generated comparing v5.0.0..master -->
 _Sep 22, 2021_
 
