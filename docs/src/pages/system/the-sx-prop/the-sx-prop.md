@@ -86,7 +86,7 @@ The `zIndex` property maps its value to the `theme.zIndex` value.
 
 ```jsx
 <Box sx={{ zIndex: 'tooltip' }} />
-// equivalent to backgroundColor: theme => theme.zIndex.tooltip
+// equivalent to zIndex: theme => theme.zIndex.tooltip
 ```
 
 _Head to the [positions page](/system/positions/) for more details._
