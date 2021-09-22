@@ -9,21 +9,21 @@ export default function Lesson(props: any) {
   const { learn, preparedMarkdown } = props;
   return (
     <div>
-      {`Lesson ${learn.chapter}/${learn.lesson}`}
+      {`Lesson ${learn.course}/${learn.lesson}`}
       <TopLayoutBlog docs={preparedMarkdown.docs} />
     </div>
   );
 }
 
-export async function getStaticProps({ params }: any) {
+export async function getServerSideProps({ params }: any) {
   const directory = path.resolve(process.cwd(), 'src/pages/learn');
   const learnPages = findPagesMarkdown(directory);
   const page = learnPages.find(
-    (learnPage) => learnPage.pathname === `/learn/${params.chapter}/${params.lesson}`,
+    (learnPage) => learnPage.pathname === `/learn/${params.course}/${params.lesson}`,
   )!;
   const markdown = fs.readFileSync(page.filename, { encoding: 'utf8' });
   const preparedMarkdown = prepareMarkdown({
-    pageFilename: `learn/${params.chapter}`,
+    pageFilename: `learn/${params.course}`,
     translations: [
       {
         filename: '',
@@ -37,23 +37,5 @@ export async function getStaticProps({ params }: any) {
       learn: params,
       preparedMarkdown,
     },
-  };
-}
-
-export async function getStaticPaths() {
-  const learnPages = findPagesMarkdown(path.resolve(process.cwd(), 'src/pages/learn'));
-
-  return {
-    paths: learnPages.map((learnPage) => {
-      const [, , chapter, lesson] = learnPage.pathname.split('/');
-
-      return {
-        params: {
-          chapter,
-          lesson,
-        },
-      };
-    }),
-    fallback: false,
   };
 }

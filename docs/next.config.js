@@ -219,21 +219,21 @@ module.exports = {
     //   });
     // }
 
-    const learnPages = findPagesMarkdown(path.resolve(process.cwd(), 'src/pages/learn'));
-
-    learnPages.forEach((learnPage) => {
-      const [, , chapter, lesson] = learnPage.pathname.split('/');
-      map[learnPage.pathname] = {
-        page: '/learn/[chapter]/[lesson]',
-        query: {
-          userLanguage: 'en',
-          chapter,
-          lesson,
-        },
-      };
-    });
-
-    delete map['/learn/[chapter]/[lesson]'];
+    if (process.env.NODE_ENV === 'production') {
+      const learnPages = findPagesMarkdown(path.resolve(process.cwd(), 'src/pages/learn'));
+      learnPages.forEach((learnPage) => {
+        const [, , course, lesson] = learnPage.pathname.split('/');
+        map[learnPage.pathname] = {
+          page: '/learn/[course]/[lesson]',
+          query: {
+            userLanguage: 'en',
+            course,
+            lesson,
+          },
+        };
+      });
+      delete map['/learn/[course]/[lesson]'];
+    }
 
     return map;
   },
