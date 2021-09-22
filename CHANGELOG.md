@@ -9,7 +9,7 @@ _Sep 22, 2021_
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - 🔎 Improve the search on the documentation.
-- 📚 Improved the v4 migration guide
+- 📚 Improve the v4 to v5 migration guide.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@mui/material@5.0.1`
