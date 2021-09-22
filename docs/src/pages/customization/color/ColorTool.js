@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { rgbToHex, useTheme } from '@mui/material/styles';
+import { rgbToHex, useTheme, createTheme } from '@mui/material/styles';
 import * as colors from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -175,6 +175,38 @@ function ColorTool() {
     document.cookie = 'paletteColors=;path=/;max-age=0';
   };
 
+  const handleExportTheme = () => {
+    const customTheme = createTheme({
+      palette: {
+        primary: {
+          main: state.primary,
+        },
+        secondary: {
+          main: state.secondary,
+        },
+      },
+    });
+
+    const {
+      palette: { getContrastText, augmentColor, ...palette },
+      typography: { pxToRem, ...typography },
+    } = customTheme;
+
+    const content = { palette, typography };
+    const blob = new Blob([JSON.stringify(content, null, 2)], {
+      type: 'application/json',
+    });
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'custom-theme.json';
+    a.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+    });
+  };
+
   const colorBar = (color) => {
     const background = theme.palette.augmentColor({
       color: {
@@ -302,6 +334,14 @@ function ColorTool() {
         </Button>
         <Button variant="outlined" onClick={handleResetDocsColors} sx={{ ml: 1 }}>
           Reset Docs Colors
+        </Button>
+        <Button
+          variant="outlined"
+          color="inherit"
+          onClick={handleExportTheme}
+          sx={{ ml: 1 }}
+        >
+          Export Theme
         </Button>
       </Grid>
     </Grid>
