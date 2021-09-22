@@ -15,7 +15,7 @@ export default function Lesson(props: any) {
   );
 }
 
-export async function getServerSideProps({ params }: any) {
+export async function getStaticProps({ params }: any) {
   const directory = path.resolve(process.cwd(), 'src/pages/learn');
   const learnPages = findPagesMarkdown(directory);
   const page = learnPages.find(
@@ -37,5 +37,23 @@ export async function getServerSideProps({ params }: any) {
       learn: params,
       preparedMarkdown,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  const learnPages = findPagesMarkdown(path.resolve(process.cwd(), 'src/pages/learn'));
+
+  return {
+    paths: learnPages.map((learnPage) => {
+      const [, , course, lesson] = learnPage.pathname.split('/');
+
+      return {
+        params: {
+          course,
+          lesson,
+        },
+      };
+    }),
+    fallback: false,
   };
 }
