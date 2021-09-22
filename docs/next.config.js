@@ -208,9 +208,9 @@ module.exports = {
     // We want to speed-up the build of pull requests.
     // For crowdin PRs we want to build all locales for testing.
     // if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify && !vercelDeploy) {
-      // eslint-disable-next-line no-console
-      console.log('Considering only English for SSR');
-      traverse(pages, 'en');
+    // eslint-disable-next-line no-console
+    console.log('Considering only English for SSR');
+    traverse(pages, 'en');
     // } else {
     //   // eslint-disable-next-line no-console
     //   console.log('Considering various locales for SSR');
@@ -222,7 +222,7 @@ module.exports = {
     const learnPages = findPagesMarkdown(path.resolve(process.cwd(), 'src/pages/learn'));
 
     learnPages.forEach((learnPage) => {
-      const [,, chapter, lesson] = learnPage.pathname.split('/');
+      const [, , chapter, lesson] = learnPage.pathname.split('/');
       map[learnPage.pathname] = {
         page: '/learn/[chapter]/[lesson]',
         query: {
@@ -230,8 +230,8 @@ module.exports = {
           chapter,
           lesson,
         },
-      }
-    })
+      };
+    });
 
     delete map['/learn/[chapter]/[lesson]'];
 
