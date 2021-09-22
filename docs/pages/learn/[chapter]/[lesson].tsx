@@ -17,10 +17,13 @@ export default function Lesson(props: any) {
 
 export async function getStaticProps({ params }: any) {
   const directory = path.resolve(process.cwd(), 'src/pages/learn');
-  const pages = findPagesMarkdown(directory);
-  const page = pages.find((page) => page.pathname === `/learn/${params.chapter}/${params.lesson}`)
+  const learnPages = findPagesMarkdown(directory);
+  const page = learnPages.find(
+    (learnPage) => learnPage.pathname === `/learn/${params.chapter}/${params.lesson}`,
+  )!;
   const markdown = fs.readFileSync(page.filename, { encoding: 'utf8' });
   const preparedMarkdown = prepareMarkdown({
+    pageFilename: `learn/${params.chapter}`,
     translations: [
       {
         filename: '',
@@ -38,15 +41,19 @@ export async function getStaticProps({ params }: any) {
 }
 
 export async function getStaticPaths() {
+  const learnPages = findPagesMarkdown(path.resolve(process.cwd(), 'src/pages/learn'));
+
   return {
-    paths: [
-      {
+    paths: learnPages.map((learnPage) => {
+      const [, , chapter, lesson] = learnPage.pathname.split('/');
+
+      return {
         params: {
-          chapter: 'introduction',
-          lesson: 'what-is-mui',
+          chapter,
+          lesson,
         },
-      },
-    ],
+      };
+    }),
     fallback: false,
   };
 }
