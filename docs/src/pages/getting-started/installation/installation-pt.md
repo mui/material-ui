@@ -10,10 +10,10 @@ Para instalar e salvar em suas dependências do `package.json`, execute:
 
 ```sh
 // usando npm
-npm install @material-ui/core@next @emotion/react @emotion/styled
+npm install @mui/material @emotion/react @emotion/styled
 
 // usando yarn
-yarn add @material-ui/core@next @emotion/react @emotion/styled
+yarn add @mui/material @emotion/react @emotion/styled
 ```
 
 <!-- #react-peer-version -->
@@ -24,10 +24,10 @@ Or if you want to use `styled-components` as a styling engine:
 
 ```sh
 // with npm
-npm install @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
+npm install @mui/material @mui/styled-engine-sc styled-components
 
 // with yarn
-yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
+yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
@@ -54,10 +54,10 @@ Para usar os ícones SVG pré-definidos do Material, como os encontrados na [dem
 
 ```sh
 // usando npm
-npm install @material-ui/icons
+npm install @mui/icons-material
 
 // usando yarn
-yarn add @material-ui/icons
+yarn add @mui/icons-material
 ```
 
 ## CDN
