@@ -1,7 +1,9 @@
 ### [Versions](https://mui.com/versions/)
 
 ## 5.0.1
+
 <!-- generated comparing v5.0.0..master -->
+
 _Sep 22, 2021_
 
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
@@ -22,7 +24,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 ### `@mui/lab@5.0.0-alpha.48`
 
 - &#8203;<!-- 36 -->[DateTimePicker] Support `seconds` `view` (#25095) @breitembach
-- &#8203;<!-- 13 -->[TimePicker] Fire change event when meridiem changes (#26600)  @coder-freestyle
+- &#8203;<!-- 13 -->[TimePicker] Fire change event when meridiem changes (#26600) @coder-freestyle
 
 ### Docs
 
@@ -64,7 +66,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - &#8203;<!-- 39 -->[core] Switch to webpack 5 (#28248) @eps1lon
 - &#8203;<!-- 38 -->[core] Batch small changes (#28177) @oliviertassinari
 - &#8203;<!-- 37 -->[core] Update publish tag to latest (#28382) @mnajdova
-- &#8203;<!-- 19 -->[framer] Update @mui/* dependencies (#28469) @eps1lon
+- &#8203;<!-- 19 -->[framer] Update @mui/\* dependencies (#28469) @eps1lon
 - &#8203;<!-- 17 -->[test] Add custom queries to `screen` (#28507) @eps1lon
 - &#8203;<!-- 16 -->[test] Run listChangedFiles against master (#28504) @eps1lon
 - &#8203;<!-- 15 -->[test] Increase BrowserStack timeout for Firefox (#28476) @oliviertassinari
