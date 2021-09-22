@@ -1,8 +1,8 @@
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
-const { findPages } = require('./src/modules/utils/find');
-const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
+const { findPages, findPagesMarkdown } = require('./src/modules/utils/find');
+const { LANGUAGES } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -11,8 +11,8 @@ if (reactStrictMode) {
   // eslint-disable-next-line no-console
   console.log(`Using React.StrictMode.`);
 }
-const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
-const vercelDeploy = Boolean(process.env.VERCEL);
+// const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
+// const vercelDeploy = Boolean(process.env.VERCEL);
 
 const staging =
   process.env.REPOSITORY_URL === undefined ||
@@ -207,17 +207,33 @@ module.exports = {
 
     // We want to speed-up the build of pull requests.
     // For crowdin PRs we want to build all locales for testing.
-    if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify && !vercelDeploy) {
+    // if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify && !vercelDeploy) {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
       traverse(pages, 'en');
-    } else {
-      // eslint-disable-next-line no-console
-      console.log('Considering various locales for SSR');
-      LANGUAGES_SSR.forEach((userLanguage) => {
-        traverse(pages, userLanguage);
-      });
-    }
+    // } else {
+    //   // eslint-disable-next-line no-console
+    //   console.log('Considering various locales for SSR');
+    //   LANGUAGES_SSR.forEach((userLanguage) => {
+    //     traverse(pages, userLanguage);
+    //   });
+    // }
+
+    const learnPages = findPagesMarkdown(path.resolve(process.cwd(), 'src/pages/learn'));
+
+    learnPages.forEach((learnPage) => {
+      const [,, chapter, lesson] = learnPage.pathname.split('/');
+      map[learnPage.pathname] = {
+        page: '/learn/[chapter]/[lesson]',
+        query: {
+          userLanguage: 'en',
+          chapter,
+          lesson,
+        },
+      }
+    })
+
+    delete map['/learn/[chapter]/[lesson]'];
 
     return map;
   },
