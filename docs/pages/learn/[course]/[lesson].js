@@ -3,7 +3,6 @@ import fs from 'fs';
 import * as React from 'react';
 import { findPagesMarkdown } from 'docs/src/modules/utils/find';
 import { prepareMarkdown } from '@mui/markdown';
-import { styled } from '@mui/material/styles';
 import { withStyles } from '@mui/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
