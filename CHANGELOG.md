@@ -8,7 +8,7 @@ _Sep 22, 2021_
 
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
-- 🔎 Improved the search on the documentation
+- 🔎 Improve the search on the documentation.
 - 📚 Improved the v4 migration guide
 - And many more 🐛 bug fixes and 📚 improvements.
 
