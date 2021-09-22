@@ -42,6 +42,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - &#8203;<!-- 22 -->[docs] Fix the notification display logic (#28389) @oliviertassinari
 - &#8203;<!-- 21 -->[docs] Add notification for v5 @oliviertassinari
 - &#8203;<!-- 20 -->[docs] Fix typo (#28521) @valse
+- &#8203;<!-- 12 -->[website] Implement algolia redesign (#28252) @hbjORbj
 - &#8203;<!-- 11 -->[website] Update data-grid dependencies #28531 @siriwatknp
 - &#8203;<!-- 10 -->[website] Cleanup unused files after rebranding (#28505) @siriwatknp
 - &#8203;<!-- 09 -->[website] Update /company pages to use marketing website Header and Footer (#28498) @danilo-leal
@@ -56,6 +57,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 ### Core
 
+- &#8203;<!-- 44 -->[core] Fix release:changelog base branch (#28533) @mnajdova
 - &#8203;<!-- 42 -->[core] Remove code handling JSS components (#28421) @eps1lon
 - &#8203;<!-- 41 -->[core] Remove unused dependencies (#28468) @eps1lon
 - &#8203;<!-- 40 -->[core] Ensure both docs bundles are analyzeable (#28410) @eps1lon
@@ -68,7 +70,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - &#8203;<!-- 15 -->[test] Increase BrowserStack timeout for Firefox (#28476) @oliviertassinari
 - &#8203;<!-- 14 -->[test] Use testing-library alpha when running React 18 tests (#28267) @eps1lon
 
-All contributors of this release in alphabetical order: @breitembach, @chetrit, @coder-freestyle, @danilo-leal, @danwoods, @eps1lon, @michaldudak, @mnajdova, @nguyenkhanhnam, @oliviertassinari, @sakura90, @siriwatknp, @valse, @xenostar
+All contributors of this release in alphabetical order: @breitembach, @chetrit, @coder-freestyle, @danilo-leal, @danwoods, @eps1lon, @hbjORbj, @michaldudak, @mnajdova, @nguyenkhanhnam, @oliviertassinari, @sakura90, @siriwatknp, @valse, @xenostar
 
 ## 5.0.0
 
