@@ -174,6 +174,7 @@ yargs
           type: 'string',
         })
         .option('release', {
+          // #default-branch-switch
           default: 'master',
           describe: 'Ref which we want to release',
           type: 'string',
