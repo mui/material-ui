@@ -257,6 +257,16 @@ const Root = styled('div')(({ theme }) => ({
       theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300]
     }`,
   },
+  '& details': {
+    marginBottom: theme.spacing(1.5),
+    padding: theme.spacing(0.5, 0, 0.5, 1),
+    '& summary': {
+      cursor: 'pointer',
+    },
+    '& pre': {
+      marginTop: theme.spacing(1),
+    },
+  },
 }));
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
