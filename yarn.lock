@@ -1019,7 +1019,7 @@
     core-js-pure "^3.16.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@7.0.0", "@babel/runtime@7.15.3", "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.14.8", "@babel/runtime@^7.15.4", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
+"@babel/runtime@7.0.0", "@babel/runtime@7.15.3", "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.15.4", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
   version "7.15.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
   integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
@@ -2138,17 +2138,6 @@
   resolved "https://registry.yarnpkg.com/@material-ui/types/-/types-6.0.2.tgz#a6d384196c6e2e130eb2765b62d944c0b1ea1015"
   integrity sha512-/XUca4wUb9pWimLLdM1PE8KS8rTbDEGohSGkGtk3WST7lm23m+8RYv9uOmrvOg/VSsl4bMiOv4t2/LCb+RLbTg==
 
-"@material-ui/utils@^5.0.0-beta.4":
-  version "5.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/@material-ui/utils/-/utils-5.0.0-beta.5.tgz#de492037e1f1f0910fda32e6f11b66dfcde2a1c2"
-  integrity sha512-wtJ3ovXWZdTAz5eLBqvMpYH/IBJb3qMQbGCyL1i00+sf7AUlAuv4QLx+QtX/siA6L7IpxUQVfqpoCpQH1eYRpQ==
-  dependencies:
-    "@babel/runtime" "^7.14.8"
-    "@types/prop-types" "^15.7.4"
-    "@types/react-is" "^16.7.1 || ^17.0.0"
-    prop-types "^15.7.2"
-    react-is "^17.0.2"
-
 "@mdx-js/react@^1.6.22":
   version "1.6.22"
   resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.6.22.tgz#ae09b4744fddc74714ee9f9d6f17a66e77c43573"
@@ -2162,43 +2151,44 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@mui/x-data-grid-generator@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-4.0.0.tgz#fcb63b4bb81e28eca64589e0c0d227d3f5608cab"
-  integrity sha512-ZuJs/46NSPz9YwO7qSyABMN0xybFaEm2Oo204boHbE+Lc2UfgNNM6b/p54a9rWwN391oFqzIyta3AMzb8KbHYQ==
+"@mui/x-data-grid-generator@^5.0.0-beta.1":
+  version "5.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-5.0.0-beta.1.tgz#38459921b45cd5cc626de7657317c96331b9ce65"
+  integrity sha512-1Z6RiVGOFYk3G6UZkEhEGgojipOfAj5lSIE+v4Wr0WrQZ4eRmB6/c9WKH6NdrbtTSjstJqmoFOMHbA940dO/JQ==
   dependencies:
+    "@mui/core" "^5.0.0-alpha.46"
     "@types/chance" "^1.1.3"
     chance "^1.1.7"
     clsx "^1.1.1"
     lru-cache "^6.0.0"
 
-"@mui/x-data-grid-pro@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-4.0.0.tgz#e132a56f5a6d262eefe0885d22ef825395bbdd86"
-  integrity sha512-XsWb8RUJXO0gr3nvTY1g3Gkjy6Z5wxqc2FoRkkYkLh+MEIcdZQY+/g7ArKAK7KHmWGZHfeOD1U/s/7qxJRsIdA==
+"@mui/x-data-grid-pro@^5.0.0-beta.1":
+  version "5.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-5.0.0-beta.1.tgz#1d0353674a15f4bb5515700449a3aaba986eafde"
+  integrity sha512-g2VFG71bHFeQN5d4h3WkJNJnAfJRXPWvFT06kOpcON8cXnN6GctpdTAYGXbJOfBn8Y8OTNuyvmTgINFmBLzt7w==
   dependencies:
-    "@material-ui/utils" "^5.0.0-beta.4"
-    "@mui/x-license-pro" "4.0.0"
+    "@mui/utils" "^5.0.0"
+    "@mui/x-license-pro" "5.0.0-beta.1"
     clsx "^1.0.4"
     prop-types "^15.7.2"
     reselect "^4.0.0"
 
-"@mui/x-data-grid@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-4.0.0.tgz#e9e9c33a8b86e85872c48f30f4a8de72ee819153"
-  integrity sha512-BYn7uLx5tJbMarcWltjjVArWNBdC22/2xOpq3Azhltbb3TRx3h2RLUeKwZI685xmGHmzvtu6QqaoYqQgFe/h+g==
+"@mui/x-data-grid@^5.0.0-beta.1":
+  version "5.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-5.0.0-beta.1.tgz#29fc77c95c772b3ace4f9a99f88753a6c88396f1"
+  integrity sha512-EPpCNZ2WPt4AsSTVxdLWRgeF8Z7GNpnPZtP8vhN+a1Xcm1a1zq8rGnFqkwWTzrm4vZa1Kf3aWyBjnMUgVey/bQ==
   dependencies:
-    "@material-ui/utils" "^5.0.0-beta.4"
+    "@mui/utils" "^5.0.0"
     clsx "^1.1.1"
     prop-types "^15.7.2"
     reselect "^4.0.0"
 
-"@mui/x-license-pro@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-license-pro/-/x-license-pro-4.0.0.tgz#cea1aa4ef9a500deaa7469420060a8e6353dfec9"
-  integrity sha512-UchQWGpaTzBpQvhrS3ni85zfXEdjuU9jD9Tem2wlbOD43PoSLhS65p9QKp0QPM18+ERnaslIYarCPY8ajPmURA==
+"@mui/x-license-pro@5.0.0-beta.1":
+  version "5.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@mui/x-license-pro/-/x-license-pro-5.0.0-beta.1.tgz#e214352b0ce510a654078c821576505ea7bbdfbc"
+  integrity sha512-hBllbniWL41b+09zosjVtnEcbWdKKAfdFLNKxbvbSChRlG941Bn44cfT3LUi3uFSdesB1PqPW0lhxJ4nUB39FQ==
   dependencies:
-    "@material-ui/utils" "^5.0.0-beta.4"
+    "@mui/utils" "^5.0.0"
     esm "^3.2.25"
     yargs "^17.0.1"
 

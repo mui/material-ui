@@ -69,6 +69,7 @@ module.exports = {
             '@mui/x-data-grid',
             '@mui/x-data-grid-pro',
             '@mui/x-data-grid-generator',
+            '@mui/x-license-pro',
           ].includes(request);
 
           if (hasDependencyOnRepoPackages) {
