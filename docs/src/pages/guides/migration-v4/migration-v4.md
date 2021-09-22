@@ -78,13 +78,14 @@ function App() {
 To use the `v5` version of MUI Core, you first need to update the package names:
 
 ```sh
-npm install @mui/material @mui/styles 
+npm install @mui/material @mui/styles
 
 // or with `yarn`
 yarn add @mui/material @mui/styles
 ```
 
 **Optional**: if you have one these packages, install the new package separately
+
 - For `@material-ui/lab`, install `@mui/lab`
 - For `@material-ui/icons`, install `@mui/icons-material`
 
@@ -109,6 +110,7 @@ yarn add @mui/material @mui/styles
 
 The org & package names have been changed from `@material-ui` to [`@mui`](https://www.npmjs.com/org/mui) as part of the rebranding effort.
 For more details about it, check our [blog post](/blog/material-ui-is-now-mui/) or [#27803](https://github.com/mui-org/material-ui/discussions/27803).
+
 </details>
 
 Then, you need to add the new peer dependencies - emotion packages:
