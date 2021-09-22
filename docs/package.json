@@ -23,6 +23,7 @@
     "@babel/runtime-corejs2": "^7.15.4",
     "@date-io/core": "^2.0.0",
     "@date-io/date-fns-jalali": "^2.10.8",
+    "@docsearch/react": "^3.0.0-alpha.40",
     "@emotion/cache": "^11.4.0",
     "@emotion/react": "^11.4.1",
     "@emotion/server": "^11.4.0",
