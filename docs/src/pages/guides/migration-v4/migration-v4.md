@@ -1114,10 +1114,16 @@ As the core components use emotion as their style engine, the props used by emot
   To return to the previous size, you can override it in the theme:
 
   ```js
-  const theme = createTheme({
-    typography: {
-      body1: {
-        fontSize: '0.875rem',
+  const theme = createMuiTheme({
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          body: {
+            fontSize: '0.875rem',
+            lineHeight: 1.43,
+            letterSpacing: '0.01071em',
+          },
+        },
       },
     },
   });
