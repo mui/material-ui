@@ -174,7 +174,7 @@ yargs
           type: 'string',
         })
         .option('release', {
-          default: 'next',
+          default: 'master',
           describe: 'Ref which we want to release',
           type: 'string',
         });
