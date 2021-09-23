@@ -26,7 +26,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 const lightTheme = createTheme();
 const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
-export default function LearnPage({ to = ROUTES.documentation, ...props }) {
+export default function LearnPage({ to = ROUTES.learn, ...props }) {
   const [customized, setCustomized] = React.useState(true);
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
