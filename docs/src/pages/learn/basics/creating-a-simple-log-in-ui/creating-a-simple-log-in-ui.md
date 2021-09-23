@@ -7,6 +7,7 @@
 First up, include all the components we are going to be using at the top of your `jsx` file.
 
 ```jsx
+import * as React from 'react';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -122,6 +123,7 @@ Final step is to add links to the `Create account` and `Forgot password?` pages.
 And we are all done. You can check the full code below.
 
 ```jsx
+import * as React from 'react';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -138,20 +140,29 @@ export default function LogInScreen() {
         <Typography variant="h6" component="h1">
           Log In
         </Typography>
-
         <Box component="form" noValidate autoComplete="off">
           <Box mt={2}>
-            <TextField type="email" label="Email" fullWidth margin="dense" />
-            <TextField type="password" label="Password" fullWidth margin="dense" />
+            <TextField
+              variant="filled"
+              type="email"
+              label="Email"
+              fullWidth
+              margin="dense"
+            />
+            <TextField
+              variant="filled"
+              type="password"
+              label="Password"
+              fullWidth
+              margin="dense"
+            />
           </Box>
-
           <Box mt={3}>
             <Button type="submit" variant="contained" fullWidth>
               Log In
             </Button>
           </Box>
         </Box>
-
         <Grid
           container
           justifyContent="space-between"

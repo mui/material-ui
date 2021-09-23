@@ -23,8 +23,14 @@ export default function LogInScreen() {
             </Typography>
             <Box component="form" noValidate autoComplete="off">
               <Box mt={2}>
-                <TextField type="email" label="Email" fullWidth margin="dense" />
-                <TextField type="password" label="Password" fullWidth margin="dense" />
+                <TextField variant="filled" type="email" label="Email" fullWidth margin="dense" />
+                <TextField
+                  variant="filled"
+                  type="password"
+                  label="Password"
+                  fullWidth
+                  margin="dense"
+                />
               </Box>
               <Box mt={3}>
                 <Button type="submit" variant="contained" fullWidth>
