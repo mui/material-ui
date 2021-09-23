@@ -434,4 +434,22 @@ describe('<SwitchBase />', () => {
       ]);
     });
   });
+
+  describe('checkbox form submission', () => {
+    it('dont set a void string as value', () => {
+      const { getByRole } = render(
+        <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" />,
+      );
+
+      expect(getByRole('checkbox')).not.to.have.property('value', '');
+    });
+
+    it('allows to overwrite value', () => {
+      const { getByRole } = render(
+        <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" value="off" />,
+      );
+
+      expect(getByRole('checkbox')).to.have.property('value', 'off');
+    });
+  });
 });
