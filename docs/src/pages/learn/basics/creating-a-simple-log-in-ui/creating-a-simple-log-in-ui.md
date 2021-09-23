@@ -132,7 +132,7 @@ Final step is to add links to the `Create account` and `Forgot password?` pages.
           Create account
         </Link>
       </Grid>
-      <Grid container justifyContent="flex-end" xs>
+      <Grid item>
         <Link href="#" variant="body2">
           Forgot password?
         </Link>
@@ -200,7 +200,7 @@ export default function LogInScreen() {
               Create account
             </Link>
           </Grid>
-          <Grid container justifyContent="flex-end" xs>
+          <Grid item>
             <Link href="#" variant="body2">
               Forgot password?
             </Link>

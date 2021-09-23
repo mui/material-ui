@@ -51,7 +51,7 @@ export default function LogInScreen() {
                   Create account
                 </Link>
               </Grid>
-              <Grid container justifyContent="flex-end" xs>
+              <Grid item>
                 <Link href="/drafts" variant="body2">
                   Forgot password?
                 </Link>
