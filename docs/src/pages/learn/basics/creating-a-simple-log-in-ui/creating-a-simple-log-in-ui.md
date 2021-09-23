@@ -136,7 +136,7 @@ import Grid from '@mui/material/Grid';
 export default function LogInScreen() {
   return (
     <Container mt={10} maxWidth="xs" component={Box}>
-      <Paper p={2} component={Box}>
+      <Paper p={2} variant="outlined" component={Box}>
         <Typography variant="h6" component="h1">
           Log In
         </Typography>
