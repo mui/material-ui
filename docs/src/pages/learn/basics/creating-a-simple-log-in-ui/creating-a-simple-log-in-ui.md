@@ -57,8 +57,20 @@ Building the form is easy - just use the `TextField` and `Button`.
 
     <Box component="form" noValidate autoComplete="off">
       <Box mt={2}>
-        <TextField type="email" label="Email" fullWidth margin="dense" />
-        <TextField type="password" label="Password" fullWidth margin="dense" />
+        <TextField
+          variant="filled"
+          type="email"
+          label="Email"
+          fullWidth
+          margin="dense"
+        />
+        <TextField
+          variant="filled"
+          type="password"
+          label="Password"
+          fullWidth
+          margin="dense"
+        />
       </Box>
 
       <Box mt={3}>
@@ -84,8 +96,20 @@ Final step is to add links to the `Create account` and `Forgot password?` pages.
 
     <Box component="form" noValidate autoComplete="off">
       <Box mt={2}>
-        <TextField type="email" label="Email" fullWidth margin="dense" />
-        <TextField type="password" label="Password" fullWidth margin="dense" />
+        <TextField
+          variant="filled"
+          type="email"
+          label="Email"
+          fullWidth
+          margin="dense"
+        />
+        <TextField
+          variant="filled"
+          type="password"
+          label="Password"
+          fullWidth
+          margin="dense"
+        />
       </Box>
 
       <Box mt={3}>
