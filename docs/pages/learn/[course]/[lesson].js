@@ -9,6 +9,7 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import { useRouter } from 'next/router';
 import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
@@ -100,6 +101,13 @@ function TopLayoutBlog(props) {
   const finalTitle = title || headers.title;
   const router = useRouter();
 
+  const currentStepIndex = steps.findIndex(
+    (step) => step.pathname === `/learn/${router.query.course}/${router.query.lesson}`,
+  );
+  const nextStep = steps[currentStepIndex + 1].pathname
+    ? steps[currentStepIndex + 1]
+    : steps[currentStepIndex + 2];
+
   return (
     <AppFrame disableDrawer>
       <Head
@@ -114,7 +122,9 @@ function TopLayoutBlog(props) {
         <AppContainer component="main" className={classes.container}>
           <ul>
             {steps.map((step) => (
-              <li>{step.pathname ? <Link href={step.pathname}>{step.title}</Link> : step.title}</li>
+              <li key={step.title}>
+                {step.pathname ? <Link href={step.pathname}>{step.title}</Link> : step.title}
+              </li>
             ))}
           </ul>
           {headers.title ? (
@@ -135,6 +145,15 @@ function TopLayoutBlog(props) {
           {rendered.map((chunk, index) => {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}
+          {currentStepIndex !== 0 ? (
+            <React.Fragment>
+              <Divider sx={{ mb: 2 }} />
+              <Typography>
+                {'Next, '}
+                <Link href={nextStep.pathname}>{`${nextStep.title} >`}</Link>
+              </Typography>
+            </React.Fragment>
+          ) : null}
         </AppContainer>
         <Divider />
         <AppFooter />

@@ -187,7 +187,3 @@ export default function LogInScreen() {
   );
 }
 ```
-
----
-
-Next, [Navigating the MUI documentation >](/learn/basics/navigating-the-documentation/)
