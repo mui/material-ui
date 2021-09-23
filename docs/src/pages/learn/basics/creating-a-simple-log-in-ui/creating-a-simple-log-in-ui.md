@@ -6,11 +6,11 @@
 
 ## Importing the needed components
 
-The first step is scanning what components are being used so we import them to your project.
+The first step is scanning what components are being used so you import them to your project.
 
 <img src="/static/learn/component-link.png">
 
-To import your components, you just need to use `@mui/material/[component]` at the top of your `tsx` file. The final result is:
+To import your components, you just need to use `@mui/material/[componentName]` at the top of your `tsx` file. The final result is:
 
 ```jsx
 import * as React from 'react';
@@ -36,9 +36,9 @@ export default function LogInScreen() {
 
 ## Creating the sign-in container
 
-If we look at our design, we see that most of the components are bounded within a box that is centered on the screen. To create it, we'll use the `Container` and `Paper` components we imported.
+If we look at our design, we see that all interactive components are bounded within a box that is centered on the screen. We'll use the `Container` as the basis and a `Paper` to be bound the components.
 
-To have them look exactly like the design, we need to add some props to the components. Each one of them has its own list of props that allow for built-in customizations. The `Container`, for instance, has a prop called `maxWidth` which controls the component width. If we go to the component API documentation, we see that this prop receives size values, such as xs, sm, md, and lg. For this design, we can use `sm` because we don't want the container to be very big. The code, with some more other props, should be looking like this:
+To have them look exactly like the design, we need to add some styling props to the components. Each one of them has its own list of props that allow for built-in customizations. The `Container`, for instance, has a prop called `maxWidth` which controls the component maximum width. If we go to the component API documentation, we see that this prop receives size values, such as xs, sm, md, and lg. For this design, we can use `sm` because we don't want the container to be very big. The code, with some more other props, should be looking like this:
 
 ```jsx
 <Container mt={10} maxWidth="xs" component={Box}></Container>
