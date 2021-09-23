@@ -32,13 +32,11 @@ export default function LogInScreen() {
 By using `Container` and `Paper` components we can quicly build the outer container for our log-in form. Use the `Typography` to set a nice header text.
 
 ```jsx
-<Container
-  mt={10}
-  maxWidth="xs"
-  component={Box}
->
+<Container mt={10} maxWidth="xs" component={Box}>
   <Paper p={2} component={Box}>
-    <Typography variant="h6" component="h1">Log In</Typography>
+    <Typography variant="h6" component="h1">
+      Log In
+    </Typography>
   </Paper>
 </Container>
 ```
@@ -50,26 +48,22 @@ By setting the `component={Box}` prop we can then add spacing to those elements.
 Building the form is easy - just use the `TextField` and `Button`.
 
 ```jsx
-<Container
-  mt={10}
-  maxWidth="xs"
-  component={Box}
->
+<Container mt={10} maxWidth="xs" component={Box}>
   <Paper p={2} component={Box}>
-    <Typography variant="h6" component="h1">Log In</Typography>
+    <Typography variant="h6" component="h1">
+      Log In
+    </Typography>
 
-    <Box
-      component="form"
-      noValidate
-      autoComplete="off"
-    >
+    <Box component="form" noValidate autoComplete="off">
       <Box mt={2}>
         <TextField type="email" label="Email" fullWidth margin="dense" />
         <TextField type="password" label="Password" fullWidth margin="dense" />
       </Box>
 
       <Box mt={3}>
-        <Button type="submit" variant="contained" fullWidth>Log In</Button>
+        <Button type="submit" variant="contained" fullWidth>
+          Log In
+        </Button>
       </Box>
     </Box>
   </Paper>
@@ -81,28 +75,22 @@ Building the form is easy - just use the `TextField` and `Button`.
 Final step is to add links to the `Create account` and `Forgot password?` pages.
 
 ```jsx
-<Container
-  mt={10}
-  maxWidth="xs"
-  component={Box}
->
+<Container mt={10} maxWidth="xs" component={Box}>
   <Paper p={2} component={Box}>
     <Typography variant="h6" component="h1">
       Log In
     </Typography>
 
-    <Box
-      component="form"
-      noValidate
-      autoComplete="off"
-    >
+    <Box component="form" noValidate autoComplete="off">
       <Box mt={2}>
         <TextField type="email" label="Email" fullWidth margin="dense" />
         <TextField type="password" label="Password" fullWidth margin="dense" />
       </Box>
 
       <Box mt={3}>
-        <Button type="submit" variant="contained" fullWidth>Log In</Button>
+        <Button type="submit" variant="contained" fullWidth>
+          Log In
+        </Button>
       </Box>
     </Box>
 
@@ -115,10 +103,14 @@ Final step is to add links to the `Create account` and `Forgot password?` pages.
       component={Box}
     >
       <Grid item xs>
-        <Link href="#" variant="body2">Create account</Link>
+        <Link href="#" variant="body2">
+          Create account
+        </Link>
       </Grid>
       <Grid container justifyContent="flex-end" xs>
-        <Link href="#" variant="body2">Forgot password?</Link>
+        <Link href="#" variant="body2">
+          Forgot password?
+        </Link>
       </Grid>
     </Grid>
   </Paper>
@@ -141,28 +133,22 @@ import Grid from '@mui/material/Grid';
 
 export default function LogInScreen() {
   return (
-    <Container
-      mt={10}
-      maxWidth="xs"
-      component={Box}
-    >
+    <Container mt={10} maxWidth="xs" component={Box}>
       <Paper p={2} component={Box}>
         <Typography variant="h6" component="h1">
           Log In
         </Typography>
 
-        <Box
-          component="form"
-          noValidate
-          autoComplete="off"
-        >
+        <Box component="form" noValidate autoComplete="off">
           <Box mt={2}>
             <TextField type="email" label="Email" fullWidth margin="dense" />
             <TextField type="password" label="Password" fullWidth margin="dense" />
           </Box>
 
           <Box mt={3}>
-            <Button type="submit" variant="contained" fullWidth>Log In</Button>
+            <Button type="submit" variant="contained" fullWidth>
+              Log In
+            </Button>
           </Box>
         </Box>
 
@@ -175,10 +161,14 @@ export default function LogInScreen() {
           component={Box}
         >
           <Grid item xs>
-            <Link href="#" variant="body2">Create account</Link>
+            <Link href="#" variant="body2">
+              Create account
+            </Link>
           </Grid>
           <Grid container justifyContent="flex-end" xs>
-            <Link href="#" variant="body2">Forgot password?</Link>
+            <Link href="#" variant="body2">
+              Forgot password?
+            </Link>
           </Grid>
         </Grid>
       </Paper>
