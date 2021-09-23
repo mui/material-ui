@@ -259,6 +259,11 @@ function loadDependencies() {
     'https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Two+Tone',
     document.querySelector('#material-icon-font'),
   );
+
+  loadCSS(
+    'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Lato&family=Roboto&family=Roboto+Slab:wght@100;400&display=swap',
+    document.querySelector('#google-fonts'),
+  );
 }
 
 if (process.browser && process.env.NODE_ENV === 'production') {

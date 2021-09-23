@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
+import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -36,49 +36,57 @@ function ColorDemo(props) {
     },
   });
 
+  const customTheme = createTheme({
+    typography: {
+      fontFamily: data.fontFamily,
+    },
+  });
+
   return (
-    <Box sx={{ position: 'relative', overflow: 'hidden' }}>
-      <Box sx={{ position: 'relative', height: 390, bgcolor: 'background.paper' }}>
-        <Box
-          sx={{ width: '100%', height: 24 }}
-          style={{ backgroundColor: primary.dark }}
-        />
-        <AppBar position="static" style={{ backgroundColor: primary.main }}>
-          <Toolbar style={{ color: primary.contrastText }}>
-            <IconButton
-              edge="start"
-              sx={{ mr: '20px' }}
-              color="inherit"
-              aria-label="menu"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography component="div" variant="h6" color="inherit">
-              Color
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Box component="pre" sx={{ m: 2, fontSize: 16 }}>
-          {`{
+    <ThemeProvider theme={customTheme}>
+      <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+        <Box sx={{ position: 'relative', height: 390, bgcolor: 'background.paper' }}>
+          <Box
+            sx={{ width: '100%', height: 24 }}
+            style={{ backgroundColor: primary.dark }}
+          />
+          <AppBar position="static" style={{ backgroundColor: primary.main }}>
+            <Toolbar style={{ color: primary.contrastText }}>
+              <IconButton
+                edge="start"
+                sx={{ mr: '20px' }}
+                color="inherit"
+                aria-label="menu"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography component="div" variant="h6" color="inherit">
+                My App
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Box component="pre" sx={{ m: 2, fontSize: 16 }}>
+            {`{
   palette: {
     primary: ${primary.output},
     secondary: ${secondary.output},
   },
 }`}
+          </Box>
+          <Fab
+            sx={{
+              position: 'absolute',
+              bottom: theme.spacing(2),
+              right: theme.spacing(2),
+            }}
+            style={{ backgroundColor: secondary.main }}
+            aria-label="add"
+          >
+            <AddIcon htmlColor={secondary.contrastText} />
+          </Fab>
         </Box>
-        <Fab
-          sx={{
-            position: 'absolute',
-            bottom: theme.spacing(2),
-            right: theme.spacing(2),
-          }}
-          style={{ backgroundColor: secondary.main }}
-          aria-label="add"
-        >
-          <AddIcon htmlColor={secondary.contrastText} />
-        </Fab>
       </Box>
-    </Box>
+    </ThemeProvider>
   );
 }
 

@@ -207,6 +207,7 @@ MyDocument.getInitialProps = async (ctx) => {
       // Styles fragment is rendered after the app and page rendering finish.
       styles: [
         <style id="material-icon-font" key="material-icon-font" />,
+        <style id="google-fonts" key="google-fonts" />,
         <style id="font-awesome-css" key="font-awesome-css" />,
         styledComponentsSheet.getStyleElement(),
         ...emotionStyleTags,

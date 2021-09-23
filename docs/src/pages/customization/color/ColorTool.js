@@ -2,7 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { rgbToHex, useTheme, createTheme } from '@mui/material/styles';
 import * as colors from '@mui/material/colors';
+import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Input from '@mui/material/Input';
 import Radio from '@mui/material/Radio';
@@ -14,6 +16,8 @@ import Slider from '@mui/material/Slider';
 import { capitalize } from '@mui/material/utils';
 import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
 import ColorDemo from './ColorDemo';
+
+const FONT_FAMILIES = ['IBM Plex Sans', 'Lato', 'Roboto Slab', 'Roboto'];
 
 const defaults = {
   primary: '#2196f3',
@@ -87,6 +91,7 @@ function ColorTool() {
   const dispatch = React.useContext(DispatchContext);
   const theme = useTheme();
   const [state, setState] = React.useState({
+    fontFamily: 'Roboto',
     primary: defaults.primary,
     secondary: defaults.secondary,
     primaryInput: defaults.primary,
@@ -153,6 +158,13 @@ function ColorTool() {
     });
   };
 
+  const handleChangeFontFamily = (event, newValue) => {
+    setState({
+      ...state,
+      fontFamily: newValue,
+    });
+  };
+
   const handleChangeDocsColors = () => {
     const paletteColors = {
       primary: { main: state.primary },
@@ -184,6 +196,9 @@ function ColorTool() {
         secondary: {
           main: state.secondary,
         },
+      },
+      typography: {
+        fontFamily: state.fontFamily,
       },
     });
 
@@ -248,7 +263,7 @@ function ColorTool() {
     const color = state[`${intent}`];
 
     return (
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid item xs={12} sm={6}>
         <Typography component="label" gutterBottom htmlFor={intent} variant="h6">
           {capitalize(intent)}
         </Typography>
@@ -323,8 +338,28 @@ function ColorTool() {
 
   return (
     <Grid container spacing={5} sx={{ p: 0 }}>
-      {colorPicker('primary')}
-      {colorPicker('secondary')}
+      <Grid item xs={12} sm={6} md={8}>
+        <Grid container spacing={5}>
+          <Grid item xs={12}>
+            <Autocomplete
+              value={state.fontFamily}
+              onChange={handleChangeFontFamily}
+              options={FONT_FAMILIES}
+              autoHighlight
+              fullWidth
+              disableClearable
+              renderOption={(optionProps, option) => (
+                <li {...optionProps} style={{ fontFamily: option }}>
+                  {option}
+                </li>
+              )}
+              renderInput={(params) => <TextField {...params} label="Font family" />}
+            />
+          </Grid>
+          {colorPicker('primary')}
+          {colorPicker('secondary')}
+        </Grid>
+      </Grid>
       <Grid item xs={12} sm={6} md={4}>
         <ColorDemo data={state} />
       </Grid>
