@@ -15,3 +15,7 @@ Aside from having a big list (and always growing) of supported components, MUI o
 ## Is it a safe library to use?
 
 MUI is not only a library but also a company of +10 people (and hiring). It has a core team of maintainers and a +2k community of contributors frequently submitting issues, pull requests and making the project more stable and resilient. It's already on its fifth version that just came out containing a bunch of improvements and news. Multiple companies, including Fortune 500's, rely on MUI for their UIs.
+
+---
+
+Next, [Setting up MUI >](/learn/basics/setting-up-mui/)

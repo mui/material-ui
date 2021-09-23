@@ -38,4 +38,6 @@ To use the font Icon component, you must first add the Material icons font. Here
 
 For more detailed installation [check here >](/getting-started/installation/)
 
+---
+
 Next, [Creating a simple log-in UI >](/learn/basics/creating-a-simple-log-in-ui/)
