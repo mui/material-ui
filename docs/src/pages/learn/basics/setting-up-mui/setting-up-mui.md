@@ -2,9 +2,9 @@
 
 <p class="description">Setting up MUI is easy, just follow the steps bellow.</p>
 
-## Install MUI
+## Installing MUI
 
-To install and save the bare minimum need for MUI to work, run:
+Start by copying the installation command below to install the library in your project. You can choose npm or yarn, what's best for you.
 
 ```sh
 // with npm
@@ -14,9 +14,9 @@ npm install @mui/material @emotion/react @emotion/styled
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
-## Add Roboto font
+## Adding the Roboto typeface
 
-MUI was designed with the Roboto font in mind. So be sure to follow these instructions. For instance, via Google Web Fonts:
+MUI contains Material Design by default which was designed with the Roboto font in mind. So, be sure to add it to your project. You can install it, for instance, via Google Web Fonts:
 
 ```html
 <link
@@ -25,9 +25,9 @@ MUI was designed with the Roboto font in mind. So be sure to follow these instru
 />
 ```
 
-## Add Font icons
+## Adding Font icons
 
-To use the font Icon component, you must first add the Material icons font. Here are some instructions on how to do so. For instance, via Google Web Fonts:
+To use the Font Icon component, used by a lot of the components, you must first add the Material Icons font. To do so, you can use again Google Web Fonts:
 
 ```html
 <link

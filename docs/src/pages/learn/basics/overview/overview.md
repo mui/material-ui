@@ -1,26 +1,20 @@
-# Learn the basics of MUI
+# MUI for Beginners
 
-<p class="description">Learn how to quickly build a great looking UI with MUI.</p>
+<p class="description">Learn the basics of the library while building your first UI.</p>
 
-## Course description
+## Course final product
 
-After the course, you will be able to use the simplest MUI's components.
-For the purpose of this course, we will build the following sign-in screen:
+You'll leave this course having this great looking sign-in UI built with foundational MUI components. We'll learn how to install them, how to use their props and how to make a simple yet stylistic customization.
 
 <img src="/static/learn/overview.png">
 
-<br />
-
-[Get started >](/learn/basics/introduction/)
-
-## Prerequisites
-
-- JavaScript
-- React
-
-## Course details
+### Course details
 
 - Introduced: 22/09/2021
 - Last updated: 22/09/2021
-- 11 lessons
-- 40 minutes
+- 11 lessons.
+- 40 minutes approximately.
+
+## Ready?
+
+Jump on board and [let's get started >](/learn/basics/introduction/).

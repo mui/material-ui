@@ -29,7 +29,7 @@ const styles = (theme) => ({
       marginBottom: theme.spacing(4),
     },
     '& .markdown-body': {
-      fontSize: theme.typography.pxToRem(17),
+      fontSize: theme.typography.pxToRem(16),
       lineHeight: 1.7,
       [theme.breakpoints.up('md')]: {
         paddingRight: theme.spacing(4),
@@ -64,7 +64,7 @@ const steps = [
     title: 'MUI for beginners',
   },
   {
-    title: 'Chapter 1 - Getting started',
+    title: 'Chapter 1: Getting started',
   },
   {
     pathname: '/learn/basics/introduction',
@@ -75,18 +75,18 @@ const steps = [
     title: 'Setting up MUI',
   },
   {
-    title: 'Chapter 2 - Understanding MUI',
+    title: 'Chapter 2: Understanding MUI',
   },
   {
     pathname: '/learn/basics/creating-a-simple-log-in-ui',
     title: 'Creating a simple log-in UI',
   },
   {
-    pathname: '/learn/basics/navigating-the-documentation',
+    pathname: '/learn/basics/navigating-the-docs',
     title: 'Navigating the documentation',
   },
   {
-    title: 'Chapter 3 - Customization',
+    title: 'Chapter 3: Customization',
   },
   {
     pathname: '/learn/basics/define-custom-colors-and-font',

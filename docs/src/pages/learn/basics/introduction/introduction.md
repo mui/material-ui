@@ -2,7 +2,7 @@
 
 <p class="description">Here we begin our journey to building a great looking sign-in page with MUI.</p>
 
-Before we dive in, let's see what using this library can bring to the application or website you are building.
+<img src="/static/learn/intro.png">
 
 ## What's MUI?
 
