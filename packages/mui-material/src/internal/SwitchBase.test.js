@@ -441,7 +441,7 @@ describe('<SwitchBase />', () => {
         <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" />,
       );
 
-      expect(getByRole('checkbox')).to.not.have.property('value', '');
+      expect(getByRole('checkbox')).not.to.have.property('value', '');
     });
 
     it('allows to overwrite value', () => {
