@@ -40,7 +40,7 @@ It was based on this context that we started work on v5 in 2019.
 Our primary focus was to revamp the **customization Developer Experience (DX)**.
 It had become clear that design (aesthetic, UX) and DX were key to unlocking the next stage of growth.
 
-The new brand supports the v5.0.0 release while also creating space for new initiatives that broaden the company horizon. It's a big deal!
+The new brand supports the [v5.0.0 release](/blog/mui-core-v5/) while also creating space for new initiatives that broaden the company horizon. It's a big deal!
 
 Our ultimate goal is to become the most effective and efficient tool to build UIs while making it accessible to the many.
 
