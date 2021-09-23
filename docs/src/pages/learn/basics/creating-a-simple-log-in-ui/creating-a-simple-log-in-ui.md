@@ -4,7 +4,7 @@
 
 ## Include all the needed components
 
-First up, include all the components we are going to be using at the top of your `jsx` file.
+First up, include all the components we are going to be using at the top of your `tsx` file.
 
 ```jsx
 import * as React from 'react';
