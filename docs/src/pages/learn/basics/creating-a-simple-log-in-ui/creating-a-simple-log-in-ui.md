@@ -211,3 +211,5 @@ export default function LogInScreen() {
   );
 }
 ```
+
+You should see the following: [demo-chapter2.tsx](/learn/basics/demo-chapter2/).

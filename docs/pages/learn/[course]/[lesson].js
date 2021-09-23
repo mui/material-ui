@@ -61,18 +61,21 @@ const styles = (theme) => ({
 const steps = [
   {
     pathname: '/learn/basics/overview',
-    title: 'Overview',
+    title: 'MUI for beginners',
+  },
+  {
+    title: 'Chapter 1 - Getting started',
   },
   {
     pathname: '/learn/basics/introduction',
     title: 'Introduction',
   },
   {
-    title: 'Understanding MUI',
-  },
-  {
     pathname: '/learn/basics/setting-up-mui',
     title: 'Setting up MUI',
+  },
+  {
+    title: 'Chapter 2 - Understanding MUI',
   },
   {
     pathname: '/learn/basics/creating-a-simple-log-in-ui',
@@ -83,7 +86,7 @@ const steps = [
     title: 'Navigating the documentation',
   },
   {
-    title: 'Customization',
+    title: 'Chapter 3 - Customization',
   },
   {
     pathname: '/learn/basics/define-custom-colors-and-font',
