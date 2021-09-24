@@ -31,7 +31,6 @@ export interface MonthPickerProps<TDate> {
   disablePast?: boolean | null;
   /** If `true` future days are disabled. */
   disableFuture?: boolean | null;
-  inputFormat?: string;
   /** Minimal selectable date. */
   minDate: TDate;
   /** Maximal selectable date. */
@@ -42,7 +41,6 @@ export interface MonthPickerProps<TDate> {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  renderInput?: () => void;
   sx?: SxProps<Theme>;
 }
 
@@ -81,9 +79,8 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   inProps: MonthPickerProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const { inputFormat, renderInput, ...rest } = inProps;
   const props = useThemeProps<Theme, MonthPickerProps<TDate>, 'MuiMonthPicker'>({
-    props: rest,
+    props: inProps,
     name: 'MuiMonthPicker',
   });
 
