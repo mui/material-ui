@@ -68,7 +68,7 @@ function ModeToggle() {
           label={mode === 'dark' ? 'Turn on the light' : 'Switch to dark mode'}
           control={<Checkbox />}
           checked={mode === 'dark'}
-          onChange={(event: any) => {
+          onChange={(event) => {
             setMode(event.target.checked ? 'dark' : 'light');
           }}
           sx={{ color: (theme) => theme.alias.textMain }}
