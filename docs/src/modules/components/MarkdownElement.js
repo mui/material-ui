@@ -28,35 +28,23 @@ const Root = styled('div')(({ theme }) => ({
       maxWidth: 'calc(100vw - 32px - 16px)',
     },
   },
-  // inline code
-  '& code': {
+  // inline code & block code
+  '& code, & code[class*="language-"]': {
     direction: 'ltr',
-    lineHeight: 1.4,
-    letterSpacing: 0.2,
     display: 'inline-block',
-    fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
-    fontWeight: 500,
+    ...theme.typography.caption,
+    fontFamily: theme.typography.fontFamilyCode,
+    fontWeight: 400,
     WebkitFontSmoothing: 'subpixel-antialiased',
     padding: '0 5px',
     color: theme.palette.text.primary,
     backgroundColor: alpha(theme.palette.primary.light, 0.15),
-    fontSize: theme.typography.pxToRem(13),
     borderRadius: 5,
   },
   '& code[class*="language-"]': {
-    backgroundColor: blueDark[800],
     color: '#fff',
-    // Avoid layout jump after hydration (style injected by prism)
-    lineHeight: 1.5,
-  },
-  // code blocks
-  '& pre code': {
-    fontSize: theme.typography.pxToRem(13),
-    fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
-    fontWeight: 500,
-  },
-  '& .token.operator': {
-    background: 'transparent',
+    backgroundColor: blueDark[800],
+    fontSize: theme.typography.pxToRem(14),
   },
   '& h1': {
     ...theme.typography.h3,
@@ -141,7 +129,7 @@ const Root = styled('div')(({ theme }) => ({
   },
   '& h2 code': {
     fontSize: theme.typography.pxToRem(27),
-    fontWeight: 'bold',
+    fontWeight: theme.fontWeightBold,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : blueDark[700],
   },
   '& table': {
@@ -154,8 +142,11 @@ const Root = styled('div')(({ theme }) => ({
     borderCollapse: 'collapse',
     marginBottom: '20px',
     borderSpacing: 0,
-    '& .prop-name': {
-      fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
+    '& .prop-name, & .prop-type, & .prop-default': {
+      fontWeight: 400,
+      fontFamily: theme.typography.fontFamilyCode,
+      WebkitFontSmoothing: 'subpixel-antialiased',
+      fontSize: theme.typography.pxToRem(13),
     },
     '& .required': {
       color: theme.palette.mode === 'light' ? '#006500' : '#a5ffa5',
@@ -164,11 +155,9 @@ const Root = styled('div')(({ theme }) => ({
       color: theme.palette.type === 'light' ? '#080065' : '#a5b3ff',
     },
     '& .prop-type': {
-      fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
       color: theme.palette.mode === 'light' ? '#932981' : '#ffb6ec',
     },
     '& .prop-default': {
-      fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
       borderBottom: `1px dotted ${theme.palette.divider}`,
     },
   },
