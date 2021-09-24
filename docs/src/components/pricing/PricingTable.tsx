@@ -102,7 +102,6 @@ export function PlanPrice(props: PlanPriceProps) {
             sx={{
               borderRadius: 0.5,
               bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
-              // bgcolor: 'error.200',
               textDecoration: 'line-through',
               p: '4px',
             }}
