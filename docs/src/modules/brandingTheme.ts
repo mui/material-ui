@@ -128,7 +128,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       ...(mode === 'light' && {
         text: {
           primary: grey[900],
-          secondary: grey[800],
+          secondary: grey[700],
         },
       }),
       ...(mode === 'dark' && {
