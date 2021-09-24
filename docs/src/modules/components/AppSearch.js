@@ -422,6 +422,13 @@ export default function AppSearch() {
                 backgroundColor: theme.palette.background.paper,
               },
             },
+            '& .DocSearch-Dropdown-Container': {
+              '& .DocSearch-Hits:first-of-type': {
+                '& .DocSearch-Hit-source': {
+                  paddingTop: theme.spacing(1),
+                },
+              },
+            },
             '& .DocSearch-Hit-source': {
               top: 'initial',
               paddingTop: theme.spacing(2),
@@ -432,13 +439,13 @@ export default function AppSearch() {
             },
             '& .DocSearch-Hit': {
               paddingBottom: 0,
-              '&:not(:last-of-type)': {
-                marginBottom: theme.spacing(0.5),
+              '&:not(:first-of-type)': {
+                marginTop: -1,
               },
             },
             '& .DocSearch-Hit a': {
               backgroundColor: 'transparent',
-              padding: theme.spacing(1, 0),
+              padding: theme.spacing(0.25, 0),
               paddingLeft: theme.spacing(2),
               border: '1px solid transparent',
               borderBottomColor:
