@@ -38,6 +38,7 @@ export interface PickerProps<TDateValue = any> extends ExportedPickerProps {
     currentWrapperVariant: WrapperVariant,
     isFinish?: PickerSelectionState,
   ) => void;
+  renderInput?: (...args: any) => JSX.Element;
   toggleMobileKeyboardView: () => void;
 }
 
@@ -84,6 +85,8 @@ function Picker(props: PickerProps) {
   } = props;
   const isLandscape = useIsLandscape(views, orientation);
   const wrapperVariant = React.useContext(WrapperVariantContext);
+
+  const { renderInput, inputFormat, ...rest } = other;
 
   const toShowToolbar =
     typeof showToolbar === 'undefined' ? wrapperVariant !== 'desktop' : showToolbar;
@@ -148,7 +151,7 @@ function Picker(props: PickerProps) {
                 onChange={handleChangeAndOpenNext}
                 view={openView}
                 views={views.filter(isDatePickerView)}
-                {...other}
+                {...rest}
               />
             )}
 
