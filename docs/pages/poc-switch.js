@@ -6,18 +6,19 @@ import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import SwitchUnstyled from '@mui/core/SwitchUnstyled';
 import JoySwitch from 'docs/src/joy/JoySwitch';
+import ButtonBase from '@mui/material/ButtonBase';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
-  padding: 7,
+  padding: '9px 7px',
   '& .MuiSwitch-switchBase': {
     margin: 1,
     padding: 0,
     transform: 'translateX(6px)',
     '&.Mui-checked': {
       color: '#fff',
-      transform: 'translateX(22px)',
+      transform: 'translateX(26px)',
       '& .MuiSwitch-thumb:before': {
         backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
           '#fff',
@@ -31,8 +32,8 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
   '& .MuiSwitch-thumb': {
     backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
-    width: 32,
-    height: 32,
+    width: 28,
+    height: 28,
     '&:before': {
       content: "''",
       position: 'absolute',
@@ -208,6 +209,12 @@ export default function POCSwitch() {
           <JoySwitch />
           <JoySwitch sx={{ '--switch-track-radius': '20px' }} />
           <JoySwitch
+            components={{
+              Thumb: ButtonBase, // how to make ripple work?
+            }}
+            componentsProps={{
+              thumb: { disableTouchRipple: false },
+            }}
             sx={{
               '--switch-track-radius': '20px',
               '--switch-thumb-size': '20px',
@@ -218,6 +225,9 @@ export default function POCSwitch() {
               '& .MuiSwitch-track': {
                 backgroundColor: '#000',
                 opacity: 0.38,
+              },
+              '& .MuiSwitch-thumb': {
+                zIndex: 1,
               },
               '&.Mui-checked': {
                 '& .MuiSwitch-track': {
