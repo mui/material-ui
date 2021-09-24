@@ -71,7 +71,13 @@ export function PlanName({
   );
 }
 
-export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
+interface PlanPriceProps {
+  plan: 'community' | 'pro' | 'premium';
+}
+
+export function PlanPrice(props: PlanPriceProps) {
+  const { plan } = props;
+
   if (plan === 'community') {
     return (
       <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
@@ -132,7 +138,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
     );
   }
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
       <Typography variant="h4" component="div" fontWeight="bold" color="grey.600">
         $599
       </Typography>
@@ -836,9 +842,7 @@ export default function PricingTable({
             Plans
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
-            <div>
-              <PlanName plan="community" />
-            </div>
+            <PlanName plan="community" />
             <PlanPrice plan="community" />
             <Button
               component={Link}
@@ -854,9 +858,7 @@ export default function PricingTable({
           </Box>
           <ColumnHeadHighlight>
             <Recommended />
-            <div>
-              <PlanName plan="pro" />
-            </div>
+            <PlanName plan="pro" />
             <PlanPrice plan="pro" />
             <Button
               component={Link}
@@ -874,6 +876,9 @@ export default function PricingTable({
             <Box sx={{ opacity: 0.5 }}>
               <PlanName plan="premium" />
               <PlanPrice plan="premium" />
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontSize: 13 }}>
+                Price capped at 10 developers per application
+              </Typography>
             </Box>
             <Button
               variant="outlined"
