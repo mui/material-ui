@@ -8,6 +8,7 @@ import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, classes } = ownerState;
@@ -279,6 +280,7 @@ const ButtonEndIcon = styled('span', {
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiButton' });
+  const buttonGroupProps = React.useContext(ButtonGroupContext);
   const {
     children,
     color = 'primary',
@@ -294,10 +296,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     type,
     variant = 'text',
     ...other
-  } = props;
+  } = props || buttonGroupProps;
 
   const ownerState = {
-    ...props,
+    ...(props || buttonGroupProps),
     color,
     component,
     disabled,

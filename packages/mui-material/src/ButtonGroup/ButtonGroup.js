@@ -8,6 +8,7 @@ import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
+import ButtonGroupContext from './ButtonGroupContext';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -208,7 +209,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      {React.Children.map(children, (child) => {
+      {React.Children.forEach(children, (child) => {
         if (!React.isValidElement(child)) {
           return null;
         }
@@ -224,18 +225,23 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
           }
         }
 
-        return React.cloneElement(child, {
-          className: clsx(classes.grouped, child.props.className),
-          color: child.props.color || color,
-          disabled: child.props.disabled || disabled,
-          disableElevation: child.props.disableElevation || disableElevation,
+        return null;
+      })}
+      <ButtonGroupContext.Provider
+        value={{
+          className: clsx(classes.grouped),
+          color,
+          disabled,
+          disableElevation,
           disableFocusRipple,
           disableRipple,
           fullWidth,
-          size: child.props.size || size,
-          variant: child.props.variant || variant,
-        });
-      })}
+          size,
+          variant,
+        }}
+      >
+        {children}
+      </ButtonGroupContext.Provider>
     </ButtonGroupRoot>
   );
 });
