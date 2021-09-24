@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import Switch, { switchClasses as classes } from '@mui/material/Switch';
 import FormControl from '@mui/material/FormControl';
@@ -49,6 +50,34 @@ describe('<Switch />', () => {
     const { getByRole } = render(<Switch defaultChecked />);
 
     expect(getByRole('checkbox')).to.have.property('checked', true);
+  });
+
+  it('slots overrides should work', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const inputStyle = {
+      marginTop: '13px',
+    };
+
+    const theme = createTheme({
+      components: {
+        MuiSwitch: {
+          styleOverrides: {
+            input: inputStyle,
+          },
+        },
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Switch />
+      </ThemeProvider>,
+    );
+
+    expect(container.getElementsByClassName(classes.input)[0]).to.toHaveComputedStyle(inputStyle);
   });
 
   specify('the switch can be disabled', () => {
