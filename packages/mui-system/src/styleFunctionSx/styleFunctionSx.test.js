@@ -234,7 +234,7 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme,
         sx: {
-          background: (theme) => theme.palette.primary.main,
+          background: (t) => t.palette.primary.main,
         },
       });
 
@@ -246,7 +246,7 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme,
         sx: {
-          ':hover': (theme) => ({ background: theme.palette.primary.main }),
+          ':hover': (t) => ({ background: t.palette.primary.main }),
         },
       });
 
@@ -258,7 +258,7 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme,
         sx: {
-          '& .test-classname': (theme) => ({ background: theme.palette.primary.main }),
+          '& .test-classname': (t) => ({ background: t.palette.primary.main }),
         },
       });
 
