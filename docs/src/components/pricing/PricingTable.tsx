@@ -127,26 +127,29 @@ export function PlanPrice(props: PlanPriceProps) {
             / developer.
           </Typography>
         </Box>
-        <div>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            <Link href="#EarlyBird">* Early bird special.</Link>
-            <br />
-            Price capped at 10 developers.
-          </Typography>
-        </div>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          <Link href="#early-bird">* Early bird special.</Link>
+          <br />
+          Price capped at 10 developers.
+        </Typography>
       </div>
     );
   }
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-      <Typography variant="h4" component="div" fontWeight="bold" color="grey.600">
-        $599
+    <div>
+      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+        <Typography variant="h4" component="div" fontWeight="bold" color="grey.600">
+          $599
+        </Typography>
+        <Box sx={{ width: 5 }} />
+        <Typography variant="body2" color="text.secondary">
+          / developer.
+        </Typography>
+      </Box>
+      <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+        Price capped at 10 developers per application
       </Typography>
-      <Box sx={{ width: 5 }} />
-      <Typography variant="body2" color="text.secondary">
-        / developer.
-      </Typography>
-    </Box>
+    </div>
   );
 }
 
@@ -876,9 +879,6 @@ export default function PricingTable({
             <Box sx={{ opacity: 0.5 }}>
               <PlanName plan="premium" />
               <PlanPrice plan="premium" />
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontSize: 13 }}>
-                Price capped at 10 developers per application
-              </Typography>
             </Box>
             <Button
               variant="outlined"
