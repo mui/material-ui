@@ -29,8 +29,8 @@ The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 - [Migrate from JSS](#migrate-from-jss)
 - [Troubleshooting](#troubleshooting)
 
-> 💡 Prefer to create small commits on any changes to help the migration go smoother.
-> If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with the following title format: `[Migration] Summary of your issue`.
+> 💡 Aim to create small commits on any changes to help the migration go more smoothly.
+> If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with this title format: `[Migration] Summary of your issue`.
 
 ## Update React & TypeScript version
 
@@ -47,7 +47,7 @@ The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 - `@types/react`
 - `@types/react-dom`
 
-> 📝 Please make sure that your application is still **running** without errors and **commit** the change before continuing the next step.
+> 📝 Please make sure that your application is still **running** without errors and **commit** the change before continuing to the next step.
 
 ## `ThemeProvider` setup
 
@@ -193,7 +193,7 @@ createMuiTheme({
 });
 ```
 
-However, if you want to keep `variant="hover"` to you components, run this codemod or configure theme default props.
+If, however, you want to keep `variant="hover"`, run this codemod or configure theme default props.
 
 ```sh
 npx @mui/codemod v5.0.0/link-underline-hover <path>
