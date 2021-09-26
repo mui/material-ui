@@ -78,7 +78,7 @@
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@eps1lon/enzyme-adapter-react-17": "^0.1.0",
-    "@octokit/rest": "^18.10.0",
+    "@octokit/rest": "^18.11.1",
     "@rollup/plugin-replace": "^3.0.0",
     "@testing-library/dom": "^8.5.0",
     "@testing-library/react": "^12.1.0",
