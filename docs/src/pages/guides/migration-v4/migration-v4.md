@@ -396,7 +396,9 @@ The following changes are supported by the adapter:
   +  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
   +});
   ```
+
   TypeScript: You can add it to the palette using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
+
   ```ts
   declare module '@mui/material/styles/createPalette' {
     interface TypeText {
