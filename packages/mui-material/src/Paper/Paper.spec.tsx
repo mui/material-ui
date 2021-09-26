@@ -9,7 +9,6 @@ const PaperTest = () => (
     <Paper component="a" href="test" />
 
     <Paper component={CustomComponent} stringProp="test" numberProp={0} />
-    {/* @ts-expect-error */}
     <Paper component={CustomComponent} />
   </div>
 );
