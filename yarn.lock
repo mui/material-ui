@@ -2300,13 +2300,13 @@
     clsx "^1.1.1"
     lru-cache "^6.0.0"
 
-"@mui/x-data-grid-pro@^5.0.0-beta.1":
-  version "5.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-5.0.0-beta.1.tgz#1d0353674a15f4bb5515700449a3aaba986eafde"
-  integrity sha512-g2VFG71bHFeQN5d4h3WkJNJnAfJRXPWvFT06kOpcON8cXnN6GctpdTAYGXbJOfBn8Y8OTNuyvmTgINFmBLzt7w==
+"@mui/x-data-grid-pro@^5.0.0-beta.2":
+  version "5.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-5.0.0-beta.2.tgz#b23e7425876e85f355c46f79d1f7ab247177584d"
+  integrity sha512-jPruT3f+fD1YQ9CrznaPjHhyXsBBWmhUT+LmX9LYDjJ/cOFAEqCebBKADT5kJp2ZNlJjUWvgt0uylSUeEbXxjA==
   dependencies:
     "@mui/utils" "^5.0.0"
-    "@mui/x-license-pro" "5.0.0-beta.1"
+    "@mui/x-license-pro" "5.0.0-beta.2"
     clsx "^1.0.4"
     prop-types "^15.7.2"
     reselect "^4.0.0"
@@ -2321,10 +2321,10 @@
     prop-types "^15.7.2"
     reselect "^4.0.0"
 
-"@mui/x-license-pro@5.0.0-beta.1":
-  version "5.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-license-pro/-/x-license-pro-5.0.0-beta.1.tgz#e214352b0ce510a654078c821576505ea7bbdfbc"
-  integrity sha512-hBllbniWL41b+09zosjVtnEcbWdKKAfdFLNKxbvbSChRlG941Bn44cfT3LUi3uFSdesB1PqPW0lhxJ4nUB39FQ==
+"@mui/x-license-pro@5.0.0-beta.2":
+  version "5.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@mui/x-license-pro/-/x-license-pro-5.0.0-beta.2.tgz#7c625c13cae2ea6629711a8ab6f049f2ece118b2"
+  integrity sha512-VxnwhfsB6+YVzhjfuk1yU5ax2CCcIswwVzDVNNYqB0Th8rE6LtYDiJBLEiWPJv6N1w7Ryqlp66eNXzIL8lKn8A==
   dependencies:
     "@mui/utils" "^5.0.0"
     esm "^3.2.25"
