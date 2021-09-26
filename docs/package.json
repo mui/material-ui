@@ -41,7 +41,7 @@
     "@mui/styles": "^5.0.1",
     "@mui/system": "^5.0.1",
     "@mui/types": "^7.0.0",
-    "@mui/x-data-grid": "^5.0.0-beta.1",
+    "@mui/x-data-grid": "^5.0.0-beta.2",
     "@mui/x-data-grid-generator": "^5.0.0-beta.1",
     "@mui/x-data-grid-pro": "^5.0.0-beta.1",
     "@trendmicro/react-interpolate": "^0.5.5",

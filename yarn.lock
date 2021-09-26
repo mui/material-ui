@@ -2311,10 +2311,10 @@
     prop-types "^15.7.2"
     reselect "^4.0.0"
 
-"@mui/x-data-grid@^5.0.0-beta.1":
-  version "5.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-5.0.0-beta.1.tgz#29fc77c95c772b3ace4f9a99f88753a6c88396f1"
-  integrity sha512-EPpCNZ2WPt4AsSTVxdLWRgeF8Z7GNpnPZtP8vhN+a1Xcm1a1zq8rGnFqkwWTzrm4vZa1Kf3aWyBjnMUgVey/bQ==
+"@mui/x-data-grid@^5.0.0-beta.2":
+  version "5.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-5.0.0-beta.2.tgz#369fd29c4f29de731b825f0dade7fc3be9ee66fa"
+  integrity sha512-3pY8i6ABfBH16UhuA4loD66buwPABEmfhBq/JZKUA7BkaqrsDvNv2ceuhAwVWK4KzlKiPNcUtmtJ3d+joWw4Og==
   dependencies:
     "@mui/utils" "^5.0.0"
     clsx "^1.1.1"
