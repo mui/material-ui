@@ -10,10 +10,10 @@ Material-UI 可以通过 [npm 包](https://www.npmjs.com/package/@material-ui/co
 
 ```sh
 // 使用 npm
-npm install @material-ui/core@next @emotion/react @emotion/styled
+npm install @mui/material @emotion/react @emotion/styled
 
 // 使用 yarn
-yarn add @material-ui/core@next @emotion/react @emotion/styled
+yarn add @mui/material @emotion/react @emotion/styled
 ```
 
 <!-- #react-peer-version -->
