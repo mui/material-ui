@@ -556,11 +556,6 @@ export interface Components {
     styleOverrides?: ComponentsOverrides['MuiTooltip'];
     variants?: ComponentsVariants['MuiTooltip'];
   };
-  MuiTouchRipple?: {
-    defaultProps?: ComponentsProps['MuiTouchRipple'];
-    styleOverrides?: ComponentsOverrides['MuiTouchRipple'];
-    variants?: ComponentsVariants['MuiTouchRipple'];
-  };
   MuiTypography?: {
     defaultProps?: ComponentsProps['MuiTypography'];
     styleOverrides?: ComponentsOverrides['MuiTypography'];

@@ -112,7 +112,6 @@ import { ToggleButtonProps } from '../ToggleButton';
 import { ToggleButtonGroupProps } from '../ToggleButtonGroup';
 import { ToolbarProps } from '../Toolbar';
 import { TooltipProps } from '../Tooltip';
-import { TouchRippleProps } from '../ButtonBase/TouchRipple';
 import { TypographyProps } from '../Typography';
 
 export type ComponentsProps = {
@@ -233,7 +232,6 @@ export interface ComponentsPropsList {
   MuiToggleButtonGroup: ToggleButtonGroupProps;
   MuiToolbar: ToolbarProps;
   MuiTooltip: TooltipProps;
-  MuiTouchRipple: TouchRippleProps;
   MuiTypography: TypographyProps;
   MuiUseMediaQuery: useMediaQueryOptions;
 }

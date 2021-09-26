@@ -52,6 +52,7 @@ describe('<TouchRipple />', () => {
       'componentProp',
       'componentsProp',
       'refForwarding',
+      'themeDefaultProps',
       'themeStyleOverrides',
       'themeVariants',
     ],

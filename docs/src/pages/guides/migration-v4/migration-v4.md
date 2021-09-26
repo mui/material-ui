@@ -2207,6 +2207,10 @@ As the core components use emotion as their style engine, the props used by emot
   +<Tooltip>
   ```
 
+### TouchRipple
+
+`@mui/material/ButtonBase/TouchRipple` is now considered private and has therefore been removed from the `ThemeOptions` object. Customization can still be done via the `ButtonBase.TouchRippleProps` property.
+
 ### Typography
 
 - Remove the `srOnly` variant. You can use the `visuallyHidden` utility in conjunction with the `sx` prop instead.

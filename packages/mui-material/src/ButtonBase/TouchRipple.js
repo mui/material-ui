@@ -4,7 +4,6 @@ import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
 import { keyframes } from '@mui/system';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
 import Ripple from './Ripple';
 import touchRippleClasses from './touchRippleClasses';
 
@@ -118,9 +117,7 @@ export const TouchRippleRipple = styled(Ripple, {
  *
  * TODO v5: Make private
  */
-const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTouchRipple' });
-
+const TouchRipple = React.forwardRef(function TouchRipple(props, ref) {
   const { center: centerProp = false, classes = {}, className, ...other } = props;
   const [ripples, setRipples] = React.useState([]);
   const nextKey = React.useRef(0);
