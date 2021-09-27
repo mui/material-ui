@@ -1,5 +1,6 @@
 import * as React from 'react';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import Stack from '@mui/material/Stack';
 import { styled } from '@mui/system';
 import CssVarsProvider, { useModeToggle } from 'docs/src/cssVars/CssVarsProvider';
 
@@ -25,27 +26,37 @@ const Button = styled('button')(({ theme }) => ({
   cursor: 'pointer',
 }));
 
+const InternalText = (props) => {
+  const [count, setCount] = React.useState(0);
+  React.useEffect(() => {
+    setCount((c) => c + 1);
+  }, [setCount]);
+  return <div {...props}>I render {count} times</div>;
+};
+
+const Text = styled(InternalText)(({ theme }) => ({
+  color: theme.vars['palette-text'],
+  fontFamily: 'IBM Plex Sans',
+}));
+
 const Content = () => {
   const { allModes, mode, setMode } = useModeToggle();
   return (
-    <div>
-      <Button
-        onClick={() => {
-          const index = allModes.indexOf(mode);
-          const nextMode = allModes[index + 1 > allModes.length - 1 ? 0 : index + 1];
-          setMode(nextMode);
-        }}
-      >
-        Switch mode
-      </Button>
-    </div>
+    <Button
+      onClick={() => {
+        const index = allModes.indexOf(mode);
+        const nextMode = allModes[index + 1 > allModes.length - 1 ? 0 : index + 1];
+        setMode(nextMode);
+      }}
+    >
+      Switch mode
+    </Button>
   );
 };
 
 export default function CssVars() {
   return (
     <CssVarsProvider
-      preferSystem
       themes={{
         light: {
           palette: {
@@ -53,12 +64,8 @@ export default function CssVars() {
               main: '#ff5252',
               contrastText: '#fff',
             },
+            text: grey[900],
             background: grey[100],
-          },
-          typography: {
-            button: {
-              fontSize: 16,
-            },
           },
         },
         dark: {
@@ -67,27 +74,28 @@ export default function CssVars() {
               main: '#8a2121',
               contrastText: '#fff',
             },
+            text: grey[200],
             background: grey[900],
-          },
-          typography: {
-            button: {
-              fontSize: 16,
-            },
           },
         },
         blue: {
           palette: {
             primary: {
-              main: '#8a2121',
+              main: '#007FFF',
               contrastText: '#fff',
             },
-            background: grey[900],
+            text: '#C2E0FF',
+            background: '#003A75',
           },
-          typography: {
-            button: {
-              fontFamily: '',
-              fontSize: 16,
+        },
+        trueDark: {
+          palette: {
+            primary: {
+              main: '#46505A',
+              contrastText: '#F0F7FF',
             },
+            text: '#e5e5e5',
+            background: '#000',
           },
         },
       }}
@@ -99,7 +107,10 @@ export default function CssVars() {
           },
         })}
       />
-      <Content />
+      <Stack alignItems="center" justifyContent="center" sx={{ minHeight: '100vh' }}>
+        <Text sx={{ mb: 2 }} />
+        <Content />
+      </Stack>
     </CssVarsProvider>
   );
 }

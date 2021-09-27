@@ -11,9 +11,23 @@ export const useModeToggle = () => React.useContext(ModeContext);
 
 const storageKey = 'mui-mode';
 
-export function getInitColorModeScript() {
-  // TODO optimize variables to letters
-  // https://github.com/pacocoursey/next-themes/blob/52e76f4ed5aec50015e6c1ce2fb48eb500303ea8/index.tsx#L237
+export function getInitColorModeScript(options = {}) {
+  const { preferSystem } = options;
+  if (preferSystem) {
+    return `(function() { try {
+      var mode = localStorage.getItem('${storageKey}');
+      if (mode) {
+        if (mode === 'system') {
+          const media = window.matchMedia('(prefers-color-scheme: dark)')
+          if (media.matches) {
+            document.body.dataset.theme = 'dark';
+          }
+        } else {
+          document.body.dataset.theme = mode;
+        }
+      }
+    } catch (e) {} })();`;
+  }
   return `(function() { try {
     var mode = localStorage.getItem('${storageKey}');
     if (mode) {
@@ -26,13 +40,13 @@ const resolveMode = (key, fallback) => {
   if (typeof window === 'undefined') {
     return fallback;
   }
-  let theme;
+  let value;
   try {
-    theme = localStorage.getItem(key) || undefined;
+    value = localStorage.getItem(key) || undefined;
   } catch (e) {
     // Unsupported
   }
-  return theme || fallback;
+  return value || fallback;
 };
 
 export default function CssVarsProvider({
@@ -58,9 +72,9 @@ export default function CssVarsProvider({
     }
   });
 
-  // React.useEffect(() => {
-  //   alert('blocking render');
-  // }, []);
+  React.useEffect(() => {
+    alert('blocking render');
+  }, []);
 
   React.useEffect(() => {
     if (preferSystem) {
