@@ -200,6 +200,16 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const context = React.useMemo(() => ({  className: clsx(classes.grouped),
+    color,
+    disabled,
+    disableElevation,
+    disableFocusRipple,
+    disableRipple,
+    fullWidth,
+    size,
+    variant }), [color, disabled, disableElevation, disableFocusRipple, disableRipple, fullWidth, size, variant, classes.grouped]);
+
   return (
     <ButtonGroupRoot
       as={component}
@@ -228,17 +238,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
         return null;
       })}
       <ButtonGroupContext.Provider
-        value={{
-          className: clsx(classes.grouped),
-          color,
-          disabled,
-          disableElevation,
-          disableFocusRipple,
-          disableRipple,
-          fullWidth,
-          size,
-          variant,
-        }}
+        value={context}
       >
         {children}
       </ButtonGroupContext.Provider>
