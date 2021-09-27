@@ -1,7 +1,7 @@
 ---
 title: The journey of developing the new Masonry component
 description: Benny Joo recaps the development process of the Masonry component.
-date: 2021-09-17T00:00:00.000Z
+date: 2021-09-27T00:00:00.000Z
 authors: ['bennyjoo"]
 card: true
 ---
