@@ -92,7 +92,7 @@
     "@types/mocha": "^9.0.0",
     "@types/prettier": "^2.3.2",
     "@types/react": "^17.0.21",
-    "@types/sinon": "^10.0.2",
+    "@types/sinon": "^10.0.4",
     "@types/webpack": "^4.41.22",
     "@types/yargs": "^17.0.2",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
