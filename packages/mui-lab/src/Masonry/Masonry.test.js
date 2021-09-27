@@ -31,11 +31,13 @@ describe('<Masonry />', () => {
   };
   describe('style attribute:', () => {
     it('should render with correct default styles', () => {
+      const columns = 4;
+      const spacing = 1;
       expect(
         style({
           ownerState: {
-            columns: 4,
-            spacing: 1,
+            columns,
+            spacing,
             maxColumnHeight,
             maxNumOfRows,
           },
@@ -48,20 +50,22 @@ describe('<Masonry />', () => {
         boxSizing: 'border-box',
         '& *': {
           boxSizing: 'border-box',
-          margin: parseToNumber(theme.spacing(1)) / 2,
-          width: `${(100 / 4).toFixed(2)}%`,
+          margin: parseToNumber(theme.spacing(spacing)) / 2,
+          width: `calc(${(100 / columns).toFixed(1)}% - ${theme.spacing(spacing)})`,
         },
-        margin: -(parseToNumber(theme.spacing(1)) / 2),
-        height: maxColumnHeight + parseToNumber(theme.spacing(1)) * maxNumOfRows,
+        margin: -(parseToNumber(theme.spacing(spacing)) / 2),
+        height: maxColumnHeight + parseToNumber(theme.spacing(spacing)) * maxNumOfRows,
       });
     });
 
     it('should render with margin responsive to breakpoints', () => {
+      const columns = 4;
+      const spacing = { xs: 1, sm: 2, md: 3 };
       expect(
         style({
           ownerState: {
-            columns: 4,
-            spacing: { xs: 1, sm: 2, md: 3 },
+            columns,
+            spacing,
             maxColumnHeight,
             maxNumOfRows,
           },
@@ -74,38 +78,43 @@ describe('<Masonry />', () => {
         boxSizing: 'border-box',
         '& *': {
           boxSizing: 'border-box',
-          width: `${(100 / 4).toFixed(2)}%`,
+          width: `calc(${(100 / columns).toFixed(1)}% - 0px)`,
         },
         [`@media (min-width:${theme.breakpoints.values.xs}px)`]: {
           '& *': {
-            margin: parseToNumber(theme.spacing(1)) / 2,
+            margin: parseToNumber(theme.spacing(spacing.xs)) / 2,
+            width: `calc(${(100 / columns).toFixed(1)}% - ${theme.spacing(spacing.xs)})`,
           },
-          margin: -(parseToNumber(theme.spacing(1)) / 2),
-          height: maxColumnHeight + parseToNumber(theme.spacing(1)) * maxNumOfRows,
+          margin: -(parseToNumber(theme.spacing(spacing.xs)) / 2),
+          height: maxColumnHeight + parseToNumber(theme.spacing(spacing.xs)) * maxNumOfRows,
         },
         [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
           '& *': {
-            margin: parseToNumber(theme.spacing(2)) / 2,
+            margin: parseToNumber(theme.spacing(spacing.sm)) / 2,
+            width: `calc(${(100 / columns).toFixed(1)}% - ${theme.spacing(spacing.sm)})`,
           },
-          margin: -(parseToNumber(theme.spacing(2)) / 2),
-          height: maxColumnHeight + parseToNumber(theme.spacing(2)) * maxNumOfRows,
+          margin: -(parseToNumber(theme.spacing(spacing.sm)) / 2),
+          height: maxColumnHeight + parseToNumber(theme.spacing(spacing.sm)) * maxNumOfRows,
         },
         [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
           '& *': {
-            margin: parseToNumber(theme.spacing(3)) / 2,
+            margin: parseToNumber(theme.spacing(spacing.md)) / 2,
+            width: `calc(${(100 / columns).toFixed(1)}% - ${theme.spacing(spacing.md)})`,
           },
-          margin: -(parseToNumber(theme.spacing(3)) / 2),
-          height: maxColumnHeight + parseToNumber(theme.spacing(3)) * maxNumOfRows,
+          margin: -(parseToNumber(theme.spacing(spacing.md)) / 2),
+          height: maxColumnHeight + parseToNumber(theme.spacing(spacing.md)) * maxNumOfRows,
         },
       });
     });
 
     it('should render with columns responsive to breakpoints', () => {
+      const columns = { xs: 3, sm: 5, md: 7 };
+      const spacing = 1;
       expect(
         style({
           ownerState: {
-            columns: { xs: 3, sm: 5, md: 7 },
-            spacing: 1,
+            columns,
+            spacing,
             maxColumnHeight,
             maxNumOfRows,
           },
@@ -118,23 +127,23 @@ describe('<Masonry />', () => {
         boxSizing: 'border-box',
         '& *': {
           boxSizing: 'border-box',
-          margin: parseToNumber(theme.spacing(1)) / 2,
+          margin: parseToNumber(theme.spacing(spacing)) / 2,
         },
-        margin: -(parseToNumber(theme.spacing(1)) / 2),
-        height: maxColumnHeight + parseToNumber(theme.spacing(1)) * maxNumOfRows,
+        margin: -(parseToNumber(theme.spacing(spacing)) / 2),
+        height: maxColumnHeight + parseToNumber(theme.spacing(spacing)) * maxNumOfRows,
         [`@media (min-width:${theme.breakpoints.values.xs}px)`]: {
           '& *': {
-            width: `${(100 / 3).toFixed(2)}%`,
+            width: `calc(${(100 / columns.xs).toFixed(1)}% - ${theme.spacing(spacing)})`,
           },
         },
         [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
           '& *': {
-            width: `${(100 / 5).toFixed(2)}%`,
+            width: `calc(${(100 / columns.sm).toFixed(1)}% - ${theme.spacing(spacing)})`,
           },
         },
         [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
           '& *': {
-            width: `${(100 / 7).toFixed(2)}%`,
+            width: `calc(${(100 / columns.md).toFixed(1)}% - ${theme.spacing(spacing)})`,
           },
         },
       });
