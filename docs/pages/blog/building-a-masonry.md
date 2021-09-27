@@ -10,7 +10,8 @@ card: true
 
 Just over two years ago, a [request](https://github.com/mui-org/material-ui/issues/17000) for a masonry component was opened. Upvoted by around 200 MUI users, this was one of the most popular component requests so far.
 
-![Screenshot 2021-09-15 at 09 13 33](https://user-images.githubusercontent.com/32841130/133396518-74c7792e-e4bc-403d-aad4-2585a7876206.png)
+<img src="/static/blog/building-a-masonry/reactions-to-masonry-request.png" style="display: block; margin: 0 auto;" alt="Reactions to the initial request for masonry component" />
+<br />
 
 According to the 70 responses to our survey, we learned that, in a masonry, MUI users want to:
 
@@ -18,11 +19,18 @@ According to the 70 responses to our survey, we learned that, in a masonry, MUI 
 - span multiple columns,
 - insert each item in the shortest column.
 
-![Screenshot 2021-09-15 at 09 29 54](https://user-images.githubusercontent.com/32841130/133398931-a9ee1aa8-11ca-47e7-a356-d051dab30435.png)
+### 1. How many items do you need to display in the masonry?
 
-![Screenshot 2021-09-15 at 09 29 59](https://user-images.githubusercontent.com/32841130/133398945-0e3ea284-8d67-47a3-afad-36a95a6f6925.png)
+<img src="/static/blog/building-a-masonry/survery-response-to-q1.png" style="display: block; margin: 0 auto;" alt="Responses to the first survey question" />
 
-![Screenshot 2021-09-15 at 09 30 06](https://user-images.githubusercontent.com/32841130/133398964-059e0faf-d624-472d-8fbb-9b1ede41cce6.png)
+### 2. Do you need an item to span multiple columns?
+
+<img src="/static/blog/building-a-masonry/survery-response-to-q2.png" style="display: block; margin: 0 auto;" alt="Responses to the second survey question" />
+
+### 3. Do you need each item to be inserted in the column with the smallest height?
+
+  <img src="/static/blog/building-a-masonry/survery-response-to-q3.png" style="display: block; margin: 0 auto;" alt="Responses to the third survey question" />
+<br />
 
 With the help of these survey results, we came up with the following requirements:
 
