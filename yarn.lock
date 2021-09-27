@@ -9198,10 +9198,10 @@ image-size@1.0.0:
   dependencies:
     queue "6.0.2"
 
-imask@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/imask/-/imask-6.1.0.tgz#8dcf4c44c51c4297f691349b925b7d5b21edff1c"
-  integrity sha512-IuElVZpc7iuGw+CXfwoUZYpGdoD5H7cGo3S93gZPgjTTWfY5XAXCFL3g3b/ZJBZ18RG2dFF2kxAuuFlXMjq7oQ==
+imask@^6.2.0:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/imask/-/imask-6.2.2.tgz#c72c0ce9a52f57539ecdc264eccc2407d20e13b5"
+  integrity sha512-oREITqngsjD0YxO62UpVQSxLNjIcb/mNO9hX2F8xQ282Kj3X9KXEAobipbUXz5R5NgtiL6nOPrWwo+AnLuz5AQ==
 
 immediate@^3.2.3:
   version "3.2.3"
@@ -13494,12 +13494,12 @@ react-final-form@^6.5.3:
   dependencies:
     "@babel/runtime" "^7.12.1"
 
-react-imask@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/react-imask/-/react-imask-6.1.0.tgz#0b9b5e9b210aa82eb570f4b5b45199a888a0f8e7"
-  integrity sha512-wOiF9Vgce7HtWpk4mv0YOCOf6lpJdlA6RK0XTmX/XX2qZnA0+YpLIdVCq8Ym5zBxoeN07Nft3FAarHOuj+XhCA==
+react-imask@^6.2.2:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/react-imask/-/react-imask-6.2.2.tgz#1a6574828370158bfa7bf6bdf0db255206ef10c0"
+  integrity sha512-CKZhc3OrcMc+VjihSm4CLJlOXX1HIaVfTzLc498eN6RKveRUUqRAjqZWqLFoqg3D85p08WEl3NDLU7w5HdPcUw==
   dependencies:
-    imask "^6.1.0"
+    imask "^6.2.0"
     prop-types "^15.7.2"
 
 react-intersection-observer@^8.32.1:
