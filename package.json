@@ -82,7 +82,7 @@
     "@rollup/plugin-replace": "^3.0.0",
     "@testing-library/dom": "^8.5.0",
     "@testing-library/react": "^12.1.0",
-    "@types/chai": "^4.2.21",
+    "@types/chai": "^4.2.22",
     "@types/chai-dom": "^0.0.11",
     "@types/enzyme": "^3.10.9",
     "@types/format-util": "^1.0.1",
