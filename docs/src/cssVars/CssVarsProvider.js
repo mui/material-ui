@@ -34,6 +34,7 @@ const resolveMode = (key, fallback) => {
 
 export default function CssVarsProvider({ children, themes, fallbackMode = 'light' }) {
   const [mode, setMode] = React.useState(resolveMode(storageKey, 'light'));
+  const firstMount = React.useRef(true);
   let activeTheme = themes[mode];
   const styleSheet = {};
 
@@ -50,12 +51,21 @@ export default function CssVarsProvider({ children, themes, fallbackMode = 'ligh
   });
 
   React.useEffect(() => {
-    setTimeout(() => {
-      // setTimeout to demonstrate flash
-      document.body.dataset.theme = mode;
-      localStorage.setItem(storageKey, mode);
-    }, [300]);
-  }, [mode]);
+    if (firstMount.current) {
+      firstMount.current = false;
+      const timeout = setTimeout(() => {
+        // setTimeout to demonstrate flash
+        document.body.dataset.theme = mode;
+        localStorage.setItem(storageKey, mode);
+      }, [300]);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+    document.body.dataset.theme = mode;
+    localStorage.setItem(storageKey, mode);
+    return () => {};
+  }, [mode, firstMount]);
 
   // localStorage event handling
   React.useEffect(() => {

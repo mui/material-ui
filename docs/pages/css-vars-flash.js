@@ -49,7 +49,7 @@ const Content = () => {
         setMode(nextMode);
       }}
     >
-      Switch mode
+      This is &apos;{mode}&apos; mode, click to switch
     </Button>
   );
 };
