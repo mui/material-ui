@@ -160,7 +160,7 @@ export default function useButton(props: UseButtonProps) {
   if (hostElementName === 'BUTTON') {
     buttonProps.type = type ?? 'button';
     buttonProps.disabled = disabled;
-  } else {
+  } else if (hostElementName !== '') {
     if (!href && !to) {
       buttonProps.role = 'button';
     }
