@@ -1,6 +1,5 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { styled, useThemeProps } from '@mui/material/styles';
 import {
   createUnarySpacing,
   getValue,
@@ -8,8 +7,9 @@ import {
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
 import { deepmerge, unstable_useForkRef as useForkRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
-import { styled, useThemeProps } from '@mui/material/styles';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 import { getMasonryUtilityClass } from './masonryClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -74,12 +74,37 @@ export const style = ({ ownerState, theme }) => {
   });
 
   const columnStyleFromPropValue = (propValue) => {
+    const width = `${(100 / propValue).toFixed(1)}%`;
+    const spacing =
+      typeof spacingValues !== 'object' ? getValue(transformer, spacingValues) : '0px';
     return {
-      '& *': { width: `${(100 / propValue).toFixed(2)}%` },
+      '& *': { width: `calc(${width} - ${spacing})` },
     };
   };
 
   styles = deepmerge(styles, handleBreakpoints({ theme }, columnValues, columnStyleFromPropValue));
+
+  // configure width for responsive spacing values
+  if (typeof spacingValues === 'object') {
+    styles = deepmerge(
+      styles,
+      handleBreakpoints({ theme }, spacingValues, (propValue, breakpoint) => {
+        if (breakpoint) {
+          const lastBreakpoint = Object.keys(columnValues).pop();
+          const spacing = getValue(transformer, propValue);
+          const column =
+            typeof columnValues === 'object'
+              ? columnValues[breakpoint] || columnValues[lastBreakpoint]
+              : columnValues;
+          const width = `${(100 / column).toFixed(1)}%`;
+          return {
+            '& *': { width: `calc(${width} - ${spacing})` },
+          };
+        }
+        return null;
+      }),
+    );
+  }
 
   return styles;
 };
@@ -161,7 +186,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     const container = masonryRef.current;
     resizeObserver.observe(container);
     return () => {
-      resizeObserver.unobserve(container);
+      resizeObserver.disconnect();
     };
   }, []);
 
