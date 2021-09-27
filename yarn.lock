@@ -10290,7 +10290,7 @@ jss-plugin-rule-value-observable@10.8.0:
     jss "10.8.0"
     symbol-observable "^1.2.0"
 
-jss-plugin-template@10.8.0, jss-plugin-template@^10.7.1:
+jss-plugin-template@10.8.0, jss-plugin-template@^10.8.0:
   version "10.8.0"
   resolved "https://registry.yarnpkg.com/jss-plugin-template/-/jss-plugin-template-10.8.0.tgz#fb6873a98c2618a84e95e51444a74d6494f39f55"
   integrity sha512-YpyJ1fNoCltl/oaxYRpkFHu8oycDoZCVNVaNR05W6qU1ZKUk6CGr0VHuoWJrncvPDoclhCqEmh8Dzy3twHtWIQ==
