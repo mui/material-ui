@@ -33,7 +33,7 @@ const Root = styled('span')({
     borderRadius: 'var(--switch-track-radius)',
   },
   [`& .${switchUnstyledClasses.thumb}`]: {
-    transition: 'left 0.2s, right 0.2s',
+    transition: 'left 0.2s',
     position: 'absolute',
     top: '50%',
     left: 'calc(50% - var(--switch-track-width) / 2 + var(--switch-thumb-width) / 2 + var(--switch-thumb-offset))',
