@@ -262,7 +262,7 @@ function ApiDocs(props) {
       disableAd={false}
       disableToc={false}
       location={apiSourceLocation}
-      title={`${componentName} API – MUI`}
+      title={`${componentName} API`}
       toc={toc}
     >
       <MarkdownElement>
