@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { ThemeContext as StyledEngineThemeContext, GlobalStyles } from '@mui/styled-engine';
 import { ThemeProvider as MuiThemeProvider } from '@mui/private-theming';
 import { createCssVars } from './cssVars';
@@ -11,23 +10,7 @@ export const useModeToggle = () => React.useContext(ModeContext);
 
 const storageKey = 'mui-mode';
 
-export function getInitColorModeScript(options = {}) {
-  const { preferSystem } = options;
-  if (preferSystem) {
-    return `(function() { try {
-      var mode = localStorage.getItem('${storageKey}');
-      if (mode) {
-        if (mode === 'system') {
-          const media = window.matchMedia('(prefers-color-scheme: dark)')
-          if (media.matches) {
-            document.body.dataset.theme = 'dark';
-          }
-        } else {
-          document.body.dataset.theme = mode;
-        }
-      }
-    } catch (e) {} })();`;
-  }
+export function getInitColorModeScript() {
   return `(function() { try {
     var mode = localStorage.getItem('${storageKey}');
     if (mode) {
@@ -49,14 +32,8 @@ const resolveMode = (key, fallback) => {
   return value || fallback;
 };
 
-export default function CssVarsProvider({
-  children,
-  themes,
-  preferSystem,
-  fallbackMode = 'light',
-}) {
+export default function CssVarsProvider({ children, themes, fallbackMode = 'light' }) {
   const [mode, setMode] = React.useState(resolveMode(storageKey, 'light'));
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   let activeTheme = themes[mode];
   const styleSheet = {};
 
@@ -73,18 +50,11 @@ export default function CssVarsProvider({
   });
 
   React.useEffect(() => {
-    alert('blocking render');
-  }, []);
-
-  React.useEffect(() => {
-    if (preferSystem) {
-      setMode(prefersDarkMode ? 'dark' : 'light');
-    }
-  }, [preferSystem, setMode, prefersDarkMode]);
-
-  React.useEffect(() => {
-    document.body.dataset.theme = mode;
-    localStorage.setItem(storageKey, mode);
+    setTimeout(() => {
+      // setTimeout to demonstrate flash
+      document.body.dataset.theme = mode;
+      localStorage.setItem(storageKey, mode);
+    }, [300]);
   }, [mode]);
 
   // localStorage event handling

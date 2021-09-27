@@ -1,5 +1,13 @@
 /* eslint-disable */
-import { toCssVar } from './cssVarsUtils';
+const toCssVar = (key, prefix) => {
+  let cssVar = Array.isArray(key)
+    ? `--${key.join('-')}`
+    : `--${key.toString().replace(/\./g, '-')}`;
+  if (prefix) {
+    cssVar = cssVar.replace('--', `--${prefix}-`);
+  }
+  return cssVar;
+};
 
 const toCssUnit = (value) => {
   if (typeof value === 'number') {

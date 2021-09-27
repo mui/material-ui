@@ -33,7 +33,7 @@ const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA
 
 export default class MyDocument extends Document {
   render() {
-    const { canonical, userLanguage } = this.props;
+    const { canonical, userLanguage, ...props } = this.props;
 
     return (
       <Html lang={userLanguage}>
@@ -116,12 +116,15 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          <script
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: getInitColorModeScript(),
-            }}
-          />
+          {/* eslint-disable-next-line no-underscore-dangle */}
+          {props.__NEXT_DATA__ && props.__NEXT_DATA__.page === '/css-vars-no-flash' && (
+            <script
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: getInitColorModeScript(),
+              }}
+            />
+          )}
           <Main />
           <script
             // eslint-disable-next-line react/no-danger

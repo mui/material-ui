@@ -56,61 +56,63 @@ const Content = () => {
 
 export default function CssVars() {
   return (
-    <CssVarsProvider
-      themes={{
-        light: {
-          palette: {
-            primary: {
-              main: '#ff5252',
-              contrastText: '#fff',
+    <React.Fragment>
+      <CssVarsProvider
+        themes={{
+          light: {
+            palette: {
+              primary: {
+                main: '#ff5252',
+                contrastText: '#fff',
+              },
+              text: grey[900],
+              background: grey[100],
             },
-            text: grey[900],
-            background: grey[100],
           },
-        },
-        dark: {
-          palette: {
-            primary: {
-              main: '#8a2121',
-              contrastText: '#fff',
+          dark: {
+            palette: {
+              primary: {
+                main: '#8a2121',
+                contrastText: '#fff',
+              },
+              text: grey[200],
+              background: grey[900],
             },
-            text: grey[200],
-            background: grey[900],
           },
-        },
-        blue: {
-          palette: {
-            primary: {
-              main: '#007FFF',
-              contrastText: '#fff',
+          blue: {
+            palette: {
+              primary: {
+                main: '#007FFF',
+                contrastText: '#fff',
+              },
+              text: '#C2E0FF',
+              background: '#003A75',
             },
-            text: '#C2E0FF',
-            background: '#003A75',
           },
-        },
-        trueDark: {
-          palette: {
-            primary: {
-              main: '#46505A',
-              contrastText: '#F0F7FF',
+          trueDark: {
+            palette: {
+              primary: {
+                main: '#46505A',
+                contrastText: '#F0F7FF',
+              },
+              text: '#e5e5e5',
+              background: '#000',
             },
-            text: '#e5e5e5',
-            background: '#000',
           },
-        },
-      }}
-    >
-      <GlobalStyles
-        styles={(theme) => ({
-          body: {
-            backgroundColor: theme.vars['palette-background'],
-          },
-        })}
-      />
-      <Stack alignItems="center" justifyContent="center" sx={{ minHeight: '100vh' }}>
-        <Text sx={{ mb: 2 }} />
-        <Content />
-      </Stack>
-    </CssVarsProvider>
+        }}
+      >
+        <GlobalStyles
+          styles={(theme) => ({
+            body: {
+              backgroundColor: theme.vars['palette-background'],
+            },
+          })}
+        />
+        <Stack alignItems="center" justifyContent="center" sx={{ minHeight: '100vh' }}>
+          <Text sx={{ mb: 2 }} />
+          <Content />
+        </Stack>
+      </CssVarsProvider>
+    </React.Fragment>
   );
 }
