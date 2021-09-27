@@ -93,6 +93,7 @@
     "@types/prettier": "^2.4.2",
     "@types/react": "^17.0.34",
     "@types/sinon": "^10.0.6",
+    "@types/use-sync-external-store": "^0.0.0",
     "@types/webpack": "^5.28.0",
     "@types/yargs": "^17.0.5",
     "@typescript-eslint/eslint-plugin": "^4.33.0",

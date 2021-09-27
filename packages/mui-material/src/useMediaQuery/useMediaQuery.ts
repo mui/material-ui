@@ -77,14 +77,14 @@ export default function useMediaQuery<Theme = unknown>(
   }, [getDefaultSnapshot, query, ssrMatchMedia]);
   const [getSnapshot, subscribe] = React.useMemo(() => {
     if (matchMedia === null) {
-      return [getDefaultSnapshot, () => {}];
+      return [getDefaultSnapshot, () => () => {}];
     }
 
     const mediaQueryList = matchMedia(query);
 
     return [
       () => mediaQueryList.matches,
-      (notify: () => {}) => {
+      (notify: () => void) => {
         mediaQueryList.addEventListener('change', notify);
         return () => {
           mediaQueryList.removeEventListener('change', notify);

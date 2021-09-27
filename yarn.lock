@@ -3495,6 +3495,11 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
 
+"@types/use-sync-external-store@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/@types/use-sync-external-store/-/use-sync-external-store-0.0.0.tgz#ec2ebe41a1288e3d5d80aacc4a4c2873db4aafa8"
+  integrity sha512-dtA1bGSTAyPAcged3AjG9r3BOUzznqgpZkK8HnVrlOOkZunfKnqJikykxUg3xOrBvgGbROLNptpJLflqp8KvkQ==
+
 "@types/uuid@^8.3.1":
   version "8.3.1"
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.1.tgz#1a32969cf8f0364b3d8c8af9cc3555b7805df14f"
@@ -16326,7 +16331,7 @@ use-subscription@1.5.1:
   dependencies:
     object-assign "^4.1.1"
 
-use-sync-external-store@0.0.0-experimental-6c3dcc7a4-20211027, use-sync-external-store@0.0.0-experimental-bc9bb87c2-20210917:
+use-sync-external-store@0.0.0-experimental-6c3dcc7a4-20211027:
   version "0.0.0-experimental-6c3dcc7a4-20211027"
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-0.0.0-experimental-6c3dcc7a4-20211027.tgz#34bd61702b43f0445c6dc2f40bde80928105c104"
   integrity sha512-4Q1CvCm5Bjw7gppAu562dRxdvr0MDh1DIFxxZk/dh/fZ+BxHA7x0Qd3y5xqxBDOqQ7LrY9DvMzz75VJ/4pjRBw==
