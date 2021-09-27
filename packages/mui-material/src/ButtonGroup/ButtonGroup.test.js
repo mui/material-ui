@@ -160,7 +160,7 @@ describe('<ButtonGroup />', () => {
           }}
         </ButtonGroupContext.Consumer>
       </ButtonGroup>,
-    );    
+    );
     expect(context.variant).to.equal('outlined');
     expect(context.size).to.equal('medium');
     expect(context.fullWidth).to.equal(false);

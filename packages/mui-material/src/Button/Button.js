@@ -312,7 +312,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const ownerState = {
     ...props,
-    color: color || colorContext || 'primary' ,
+    color: color || colorContext || 'primary',
     component,
     disabled: disabled || disabledContext || false,
     disableElevation: disableElevation || disableElevationContext || false,
