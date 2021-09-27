@@ -280,35 +280,47 @@ const ButtonEndIcon = styled('span', {
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiButton' });
-  const buttonGroupProps = React.useContext(ButtonGroupContext);
+  const {
+    className: classNameContext,
+    color: colorContext,
+    disabled: disabledContext,
+    disableElevation: disableElevationContext,
+    disableFocusRipple: disableFocusRippleContext,
+    disableRipple: disableRippleContext,
+    fullWidth: fullWidthContext,
+    size: sizeContext,
+    variant: variantContext,
+  } = React.useContext(ButtonGroupContext);
   const {
     children,
-    color = 'primary',
-    component = 'button',
-    disabled = false,
-    disableElevation = false,
-    disableFocusRipple = false,
-    endIcon: endIconProp,
-    focusVisibleClassName,
-    fullWidth = false,
-    size = 'medium',
-    startIcon: startIconProp,
-    type,
-    variant = 'text',
-    ...other
-  } = props || buttonGroupProps;
-
-  const ownerState = {
-    ...(props || buttonGroupProps),
+    className,
     color,
-    component,
+    component = 'button',
     disabled,
     disableElevation,
     disableFocusRipple,
+    disableRipple,
+    endIcon: endIconProp,
+    focusVisibleClassName,
     fullWidth,
     size,
+    startIcon: startIconProp,
     type,
     variant,
+    ...other
+  } = props;
+
+  const ownerState = {
+    ...props,
+    color: color || colorContext || 'primary' ,
+    component,
+    disabled: disabled || disabledContext || false,
+    disableElevation: disableElevation || disableElevationContext || false,
+    disableFocusRipple: disableFocusRipple || disableFocusRippleContext || false,
+    fullWidth: fullWidth || fullWidthContext || false,
+    size: size || sizeContext || 'medium',
+    type,
+    variant: variant || variantContext || 'text',
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -328,8 +340,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       ownerState={ownerState}
+      className={className || classNameContext}
       component={component}
-      disabled={disabled}
+      disabled={disabled || disabledContext || false}
+      disableRipple={disableRipple || disableRippleContext}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
@@ -357,6 +371,10 @@ Button.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
