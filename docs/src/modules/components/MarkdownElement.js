@@ -32,7 +32,7 @@ const Root = styled('div')(({ theme }) => ({
   '& code, & code[class*="language-"]': {
     direction: 'ltr',
     display: 'inline-block',
-    ...theme.typography.caption,
+    ...theme.typography.body2,
     fontFamily: theme.typography.fontFamilyCode,
     fontWeight: 400,
     WebkitFontSmoothing: 'subpixel-antialiased',
