@@ -326,7 +326,6 @@ const pages: readonly MuiPage[] = [
       { pathname: '/discover-more/roadmap' },
       { pathname: '/discover-more/backers', title: 'Sponsors & Backers' },
       { pathname: '/discover-more/vision' },
-      { pathname: '/discover-more/team' },
       { pathname: '/discover-more/changelog' },
       { pathname: '/discover-more/languages' },
     ],
