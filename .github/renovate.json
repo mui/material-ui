@@ -51,6 +51,10 @@
       ]
     },
     {
+      "groupName": "MUI-X",
+      "matchPackagePatterns": ["@mui/x-*"]
+    },
+    {
       "groupName": "react-spring",
       "matchPackageNames": ["react-spring"],
       "allowedVersions": "< 9.0.0"
