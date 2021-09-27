@@ -190,8 +190,8 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     typography: {
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
       fontFamilyCode: [
-        '"IBM Plex Mono"',
         'Consolas',
+        'Menlo',
         'Monaco',
         'Andale Mono',
         'Ubuntu Mono',

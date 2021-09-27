@@ -42,9 +42,10 @@ const Root = styled('div')(({ theme }) => ({
     borderRadius: 5,
   },
   '& code[class*="language-"]': {
+    ...theme.typography.body2,
+    fontFamily: theme.typography.fontFamilyCode,
     color: '#fff',
     backgroundColor: blueDark[800],
-    fontSize: theme.typography.pxToRem(14),
   },
   '& h1': {
     ...theme.typography.h3,
