@@ -16,20 +16,20 @@ If a row is already filled with the specified number of columns, the next item s
 
 ## Basic masonry
 
-A simple example of a `<Masonry />`. `<Masonry />` is a container for one or more items. It can receive any element including `<div />` and `<img />`.
+A simple example of a `Masonry`. `Masonry` is a container for one or more items. It can receive any element including `<div />` and `<img />`.
 
 {{"demo": "pages/components/masonry/BasicMasonry.js", "bg": true}}
 
 ## Image masonry
 
-This example demonstrates the use of `<Masonry />` for images. `<Masonry />` orders its children by row.
+This example demonstrates the use of `Masonry` for images. `Masonry` orders its children by row.
 If you would like to order images by column, you can use `<ImageList variant="masonry" />`. More details on this component can be found in [Masonry Image List](/components/image-list/#masonry-image-list).
 
 {{"demo": "pages/components/masonry/ImageMasonry.js", "bg": true}}
 
 ## Columns
 
-This example demonstrates the use of the `columns` to configure the number of columns of a `<Masonry />`.
+This example demonstrates the use of the `columns` to configure the number of columns of a `Masonry`.
 
 {{"demo": "pages/components/masonry/FixedColumns.js", "bg": true}}
 
