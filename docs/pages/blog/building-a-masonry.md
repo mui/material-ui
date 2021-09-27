@@ -13,7 +13,7 @@ Just over two years ago, a [request](https://github.com/mui-org/material-ui/issu
 <img src="/static/blog/building-a-masonry/reactions-to-masonry-request.png" style="display: block; margin: 0 auto;" alt="Reactions to the initial request for masonry component" />
 <br />
 
-According to the 70 responses to our survey, we learned that, in a masonry, MUI users want to:
+According to the 70 responses to our survey, we learned that, in a masonry, a majority of MUI users want to:
 
 - display less than 50 items,
 - span multiple columns,
@@ -32,7 +32,7 @@ According to the 70 responses to our survey, we learned that, in a masonry, MUI 
   <img src="/static/blog/building-a-masonry/survery-response-to-q3.png" style="display: block; margin: 0 auto;" alt="Responses to the third survey question" />
 <br />
 
-With the help of these survey results, we came up with the following requirements:
+We also learned from the survey that most MUI users want to use a masonry component for image galleries and dashboards. With the help of these responses, we came up with the following requirements:
 
 **Must-have**:
 
