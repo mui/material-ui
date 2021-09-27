@@ -16,6 +16,7 @@ import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
 const savedScrollTop = {};
 
@@ -177,6 +178,8 @@ function AppNavDrawer(props) {
                 href={`https://mui.com${languagePrefix}/versions/`}
                 onClick={onClose}
                 size="small"
+                variant="outlined"
+                endIcon={<ArrowDropDownRoundedIcon fontSize="small" />}
                 sx={{
                   color: (theme) =>
                     theme.palette.mode === 'dark'
