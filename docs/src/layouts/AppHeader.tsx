@@ -8,9 +8,9 @@ import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 import { getCookie } from 'docs/src/modules/utils/helpers';
+import AppSearchDeferred from 'docs/src/modules/components/AppSearchDeferred';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import Link from 'docs/src/modules/components/Link';
-import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
 import ROUTES from 'docs/src/route';
 
 const Header = styled('header')(({ theme }) => ({
@@ -71,7 +71,7 @@ export default function AppHeader() {
         </Box>
         <Box sx={{ ml: 'auto' }} />
         <Box sx={{ mr: 2 }}>
-          <DeferredAppSearch />
+          <AppSearchDeferred />
         </Box>
         <Box sx={{ display: { md: 'none' }, mr: 1 }}>
           <HeaderNavDropdown />

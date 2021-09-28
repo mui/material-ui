@@ -19,6 +19,7 @@ import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppProgressBar from 'docs/src/modules/components/AppProgressBar';
+import AppSearchDeferred from 'docs/src/modules/components/AppSearchDeferred';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
@@ -30,25 +31,6 @@ import LanguageIcon from '@mui/icons-material/Translate';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
-
-const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
-export function DeferredAppSearch() {
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  return (
-    <React.Fragment>
-      {/* Suspense isn't supported for SSR yet */}
-      {mounted ? (
-        <React.Suspense fallback={null}>
-          <AppSearch />
-        </React.Suspense>
-      ) : null}
-    </React.Fragment>
-  );
-}
 
 const RootDiv = styled('div')(({ theme }) => {
   return {
@@ -218,7 +200,7 @@ function AppFrame(props) {
           </NavIconButton>
           <GrowingDiv />
           <Stack direction="row" spacing={2}>
-            <DeferredAppSearch />
+            <AppSearchDeferred />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
                 component="a"
