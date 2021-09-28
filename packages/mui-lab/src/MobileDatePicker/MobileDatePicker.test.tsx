@@ -59,7 +59,7 @@ describe('<MobileDatePicker />', () => {
       />,
     );
 
-    expect(screen.getByMuiTest('calendar-year-text')).to.have.text('2018');
+    expect(screen.getAllByMuiTest('calendar-year-text')[0]).to.have.text('2018');
     expect(screen.getByMuiTest('calendar-month-text')).to.have.text('January');
 
     // onChange must be dispatched with newly selected date
@@ -84,7 +84,7 @@ describe('<MobileDatePicker />', () => {
     fireEvent.click(screen.getByLabelText(/switch to year view/i));
     fireEvent.click(screen.getByText('2010', { selector: 'button' }));
 
-    expect(screen.getByMuiTest('calendar-year-text')).to.have.text('2010');
+    expect(screen.getAllByMuiTest('calendar-year-text')[0]).to.have.text('2010');
     expect(onChangeMock.callCount).to.equal(1);
   });
 
