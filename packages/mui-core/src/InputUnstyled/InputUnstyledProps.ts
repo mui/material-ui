@@ -1,12 +1,42 @@
 import React from 'react';
 import { OverrideProps } from '@mui/types';
 import { FormControlUnstyledState } from '../FormControlUnstyled/FormControlContext';
-import { UseInputProps } from './useInput';
 
 export interface InputOwnerState
   extends Omit<InputUnstyledProps, 'component' | 'components' | 'componentsProps'> {
   formControl: FormControlUnstyledState;
   focused: boolean;
+}
+
+export interface UseInputProps {
+  /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue?: unknown;
+  /**
+   * If `true`, the component is disabled.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  disabled?: boolean;
+  /**
+   * If `true`, the `input` will indicate an error.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  error?: boolean;
+  onBlur?: React.FocusEventHandler;
+  onClick?: React.MouseEventHandler;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onFocus?: React.FocusEventHandler;
+  componentsProps?: {
+    root?: React.HTMLAttributes<HTMLDivElement>;
+    input?: React.ComponentPropsWithRef<'input'>;
+  };
+  /**
+   * If `true`, the `input` element is required.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  required?: boolean;
+  value?: unknown;
 }
 
 export interface InputUnstyledOwnProps extends UseInputProps {

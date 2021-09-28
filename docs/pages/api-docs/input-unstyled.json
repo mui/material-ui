@@ -33,6 +33,5 @@
   "filename": "/packages/mui-core/src/InputUnstyled/InputUnstyled.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

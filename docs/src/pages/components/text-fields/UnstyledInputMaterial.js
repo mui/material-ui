@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import * as React from 'react';
 import { createTheme, ThemeProvider, Input, Stack, NoSsr } from '@mui/material';
 import { Input as InputNext } from '@mui/material-next';

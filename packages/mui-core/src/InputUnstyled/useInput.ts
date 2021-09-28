@@ -3,49 +3,7 @@ import MuiError from '@mui/utils/macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import useFormControl from '../FormControlUnstyled/useFormControl';
 import extractEventHandlers from '../utils/extractEventHandlers';
-
-export function hasValue(value: unknown) {
-  return value != null && !(Array.isArray(value) && value.length === 0);
-}
-
-export function isFilled(obj: HTMLInputElement | HTMLTextAreaElement, SSR = false) {
-  return (
-    obj &&
-    ((hasValue(obj.value) && obj.value !== '') ||
-      (SSR && hasValue(obj.defaultValue) && obj.defaultValue !== ''))
-  );
-}
-
-export interface UseInputProps {
-  /**
-   * The default value. Use when the component is not controlled.
-   */
-  defaultValue?: unknown;
-  /**
-   * If `true`, the component is disabled.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
-   */
-  disabled?: boolean;
-  /**
-   * If `true`, the `input` will indicate an error.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
-   */
-  error?: boolean;
-  onBlur?: React.FocusEventHandler;
-  onClick?: React.MouseEventHandler;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  onFocus?: React.FocusEventHandler;
-  componentsProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement>;
-    input?: React.ComponentPropsWithRef<'input'>;
-  };
-  /**
-   * If `true`, the `input` element is required.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
-   */
-  required?: boolean;
-  value?: unknown;
-}
+import { UseInputProps } from './InputUnstyledProps';
 
 export default function useInput(props: UseInputProps) {
   const {

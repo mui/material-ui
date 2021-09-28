@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { isHostComponent } from '@mui/core';
 import { OverridableComponent } from '@mui/types';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import appendOwnerState from '../utils/appendOwnerState';
+import isHostComponent from '../utils/isHostComponent';
 import classes from './inputUnstyledClasses';
 import InputUnstyledProps, { InputUnstyledTypeMap } from './InputUnstyledProps';
 import useInput from './useInput';
