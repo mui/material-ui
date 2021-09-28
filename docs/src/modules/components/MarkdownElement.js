@@ -33,6 +33,7 @@ const Root = styled('div')(({ theme }) => ({
     direction: 'ltr',
     display: 'inline-block',
     ...theme.typography.body2,
+    fontSize: theme.typography.pxToRem(13),
     fontFamily: theme.typography.fontFamilyCode,
     fontWeight: 400,
     WebkitFontSmoothing: 'subpixel-antialiased',
@@ -42,8 +43,6 @@ const Root = styled('div')(({ theme }) => ({
     borderRadius: 5,
   },
   '& code[class*="language-"]': {
-    ...theme.typography.body2,
-    fontFamily: theme.typography.fontFamilyCode,
     color: '#fff',
     backgroundColor: blueDark[800],
   },
