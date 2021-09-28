@@ -6,7 +6,7 @@ import * as React from 'react';
 const ButtonGroupContext = React.createContext({});
 
 if (process.env.NODE_ENV !== 'production') {
-    ButtonGroupContext.displayName = 'ButtonGroupContext';
-  }
+  ButtonGroupContext.displayName = 'ButtonGroupContext';
+}
 
 export default ButtonGroupContext;
