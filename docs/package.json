@@ -91,7 +91,7 @@
     "next": "^11.1.2",
     "notistack": "2.0.2",
     "nprogress": "^0.2.0",
-    "postcss": "^8.3.6",
+    "postcss": "^8.3.8",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-docgen": "^5.4.0",
