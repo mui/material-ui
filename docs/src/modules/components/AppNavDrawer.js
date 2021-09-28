@@ -186,11 +186,17 @@ function AppNavDrawer(props) {
                   variant="outlined"
                   endIcon={<ArrowDropDownRoundedIcon fontSize="small" />}
                   sx={{
+                    border: (theme) =>
+                      `1px solid  ${
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primaryDark[600]
+                          : theme.palette.grey[200]
+                      }`,
                     color: (theme) =>
                       theme.palette.mode === 'dark'
                         ? theme.palette.primary[300]
                         : theme.palette.primary[500],
-                    mr: 3,
+                    mr: 2,
                   }}
                 >
                   {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
