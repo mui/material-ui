@@ -177,6 +177,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /fr/* /:splat 200
 /de/* /:splat 200
 /ja/* /:splat 200
+/ru/* /:splat 200
+/es/* /:splat 200
 
 ## Store
 /store/* https://material-ui-store.netlify.app/:splat 200
