@@ -39,6 +39,5 @@
   "filename": "/packages/mui-lab/src/TimelineDot/TimelineDot.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

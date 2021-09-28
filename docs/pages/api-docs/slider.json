@@ -109,6 +109,5 @@
   "filename": "/packages/mui-material/src/Slider/Slider.js",
   "inheritance": { "component": "SliderUnstyled", "pathname": "/api/slider-unstyled/" },
   "demos": "<ul><li><a href=\"/components/slider/\">Slider</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -12,6 +12,5 @@
   "filename": "/packages/mui-material/src/Card/Card.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

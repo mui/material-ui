@@ -12,6 +12,5 @@
   "filename": "/packages/mui-material/src/DialogContent/DialogContent.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

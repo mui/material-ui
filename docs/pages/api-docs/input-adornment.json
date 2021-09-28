@@ -38,6 +38,5 @@
   "filename": "/packages/mui-material/src/InputAdornment/InputAdornment.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

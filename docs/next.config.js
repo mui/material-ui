@@ -24,7 +24,6 @@ if (staging) {
 
 module.exports = {
   eslint: {
-    // TODO: https://github.com/mui-org/material-ui/issues/25966
     ignoreDuringBuilds: true,
   },
   typescript: {
@@ -43,8 +42,9 @@ module.exports = {
           analyzerMode: 'server',
           generateStatsFile: true,
           analyzerPort: options.isServer ? 8888 : 8889,
-          // Will be available at `.next/stats.json`
-          statsFilename: 'stats.json',
+          reportTitle: `${options.isServer ? 'server' : 'client'} docs bundle`,
+          // Will be available at `.next/${statsFilename}`
+          statsFilename: `stats-${options.isServer ? 'server' : 'client'}.json`,
         }),
       );
     }
@@ -69,6 +69,7 @@ module.exports = {
             '@mui/x-data-grid',
             '@mui/x-data-grid-pro',
             '@mui/x-data-grid-generator',
+            '@mui/x-license-pro',
           ].includes(request);
 
           if (hasDependencyOnRepoPackages) {

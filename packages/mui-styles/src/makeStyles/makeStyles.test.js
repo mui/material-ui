@@ -339,7 +339,7 @@ describe('makeStyles', () => {
           return <div className={classes.root} />;
         }
 
-        const wrapper = mount(
+        mount(
           <ThemeProvider theme={theme}>
             <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
               <Test />
@@ -347,7 +347,6 @@ describe('makeStyles', () => {
           </ThemeProvider>,
         );
 
-        const div = wrapper.find('div').instance();
         expect(sheetsRegistry.registry.length).to.equal(1);
         expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
           root: { margin: null, padding: 3 },

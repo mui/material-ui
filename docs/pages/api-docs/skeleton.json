@@ -42,6 +42,5 @@
   "filename": "/packages/mui-material/src/Skeleton/Skeleton.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/skeleton/\">Skeleton</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -4,7 +4,12 @@ import { expect } from 'chai';
 import { spy, useFakeTimers, SinonSpy, SinonFakeTimers } from 'sinon';
 import { fireEvent, fireTouchChangedEvent, screen } from 'test/utils';
 import MobileDateTimePicker from '@mui/lab/MobileDateTimePicker';
-import { adapterToUse, getByMuiTest, createPickerRender } from '../internal/pickers/test-utils';
+import {
+  adapterToUse,
+  getByMuiTest,
+  queryByMuiTest,
+  createPickerRender,
+} from '../internal/pickers/test-utils';
 
 describe('<MobileDateTimePicker />', () => {
   let clock: SinonFakeTimers;
@@ -127,5 +132,35 @@ describe('<MobileDateTimePicker />', () => {
 
     fireEvent.click(screen.getByText('Cancel'));
     expect(onCloseMock.callCount).to.equal(1);
+  });
+
+  it('should render date and time by default', () => {
+    render(
+      <MobileDateTimePicker
+        renderInput={(params) => <TextField {...params} />}
+        onChange={() => {}}
+        open
+        value={adapterToUse.date('2021-11-20T10:01:22.000')}
+      />,
+    );
+
+    expect(queryByMuiTest(document.body, 'seconds')).to.equal(null);
+    expect(getByMuiTest('hours')).to.have.text('10');
+    expect(getByMuiTest('minutes')).to.have.text('01');
+    expect(getByMuiTest('datetimepicker-toolbar-year')).to.have.text('2021');
+    expect(getByMuiTest('datetimepicker-toolbar-day')).to.have.text('Nov 20');
+  });
+
+  it('can render seconds on view', () => {
+    render(
+      <MobileDateTimePicker
+        renderInput={(params) => <TextField {...params} />}
+        onChange={() => {}}
+        open
+        views={['seconds']}
+        value={adapterToUse.date('2021-11-20T10:01:22.000')}
+      />,
+    );
+    expect(getByMuiTest('seconds')).to.have.text('22');
   });
 });

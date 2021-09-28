@@ -128,7 +128,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       ...(mode === 'light' && {
         text: {
           primary: grey[900],
-          secondary: grey[800],
+          secondary: grey[700],
         },
       }),
       ...(mode === 'dark' && {
@@ -370,6 +370,16 @@ export function getThemedComponents(theme: Theme) {
             },
             '& svg:last-child': {
               marginLeft: 2,
+            },
+          },
+        },
+      },
+      MuiListItemButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: 5,
+            '&:hover, &:focus': {
+              backgroundColor: theme.palette.mode === 'dark' ? '' : theme.palette.grey[100],
             },
           },
         },

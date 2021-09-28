@@ -197,7 +197,7 @@ We will cross the ten-person milestone in the coming weeks (11).
 
 We have the following objectives:
 
-- Finish the implementation of the rebranding. A preview, the [about](https://mui.com/branding/about/) and [pricing](https://mui.com/branding/pricing/) pages.
+- Finish the implementation of the rebranding. A preview, the [about](/about/) and [pricing](/pricing/) pages.
 - Onboard the new members and scale our processes as we double the size of the organization this quarter.
 
 ### Core components

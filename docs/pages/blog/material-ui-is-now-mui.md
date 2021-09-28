@@ -40,7 +40,7 @@ It was based on this context that we started work on v5 in 2019.
 Our primary focus was to revamp the **customization Developer Experience (DX)**.
 It had become clear that design (aesthetic, UX) and DX were key to unlocking the next stage of growth.
 
-The new brand supports the v5.0.0 release while also creating space for new initiatives that broaden the company horizon. It's a big deal!
+The new brand supports the [v5.0.0 release](/blog/mui-core-v5/) while also creating space for new initiatives that broaden the company horizon. It's a big deal!
 
 Our ultimate goal is to become the most effective and efficient tool to build UIs while making it accessible to the many.
 
@@ -78,7 +78,7 @@ To better identify, market, and promote each product, we're introducing logos fo
 
 <img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="Logos for MUI Core, MUI X and Templates" style="width: 600px; margin-bottom: 16px;" />
 
-- **MUI Core** contains ready-to-use, free forever, foundational components.
+- **MUI Core** contains ready-to-use foundational components, free forever.
 - **MUI X** includes advanced and powerful components for complex use-cases.
 - **Templates** is a collection of fully built, out-of-the-box, React templates for your application. They are developed by the community curated by us for quality.
 
