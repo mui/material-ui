@@ -24,12 +24,32 @@ const useUtilityClasses = (ownerState) => {
 
 const computeBreakpointsBase = (breakpoints, prop) => {
   const base = {};
-  Object.keys(breakpoints.values).forEach((breakpoint) => {
-    if (prop[breakpoint] != null) {
-      base[breakpoint] = true;
-    }
-  });
+  if (Array.isArray(prop)) {
+    const arrayLen = prop.length;
+    Object.keys(breakpoints.values).forEach((breakpoint, i) => {
+      if (i < arrayLen) {
+        base[breakpoint] = true;
+      }
+    });
+  } else {
+    Object.keys(breakpoints.values).forEach((breakpoint) => {
+      if (prop[breakpoint] != null) {
+        base[breakpoint] = true;
+      }
+    });
+  }
   return base;
+};
+
+const validatePropValues = (base, prop) => {
+  const values = {};
+  if (Array.isArray(prop)) {
+    Object.keys(base).forEach((breakpoint, i) => {
+      values[breakpoint] = Number(prop[i]);
+    });
+    return values;
+  }
+  return prop;
 };
 
 export const style = ({ ownerState, theme }) => {
@@ -43,13 +63,15 @@ export const style = ({ ownerState, theme }) => {
     },
   };
 
+  const spacingBreakpointsBase = computeBreakpointsBase(theme.breakpoints, ownerState.spacing);
   const spacingValues = resolveBreakpointValues({
-    values: ownerState.spacing,
-    base: computeBreakpointsBase(theme.breakpoints, ownerState.spacing),
+    values: validatePropValues(spacingBreakpointsBase, ownerState.spacing),
+    base: spacingBreakpointsBase,
   });
 
   const transformer = createUnarySpacing(theme);
   const spacingStyleFromPropValue = (propValue) => {
+    propValue = Number(propValue);
     const spacing = Number(getValue(transformer, propValue).replace('px', ''));
     return {
       margin: -(spacing / 2),
@@ -68,15 +90,17 @@ export const style = ({ ownerState, theme }) => {
     handleBreakpoints({ theme }, spacingValues, spacingStyleFromPropValue),
   );
 
+  const columnBreakpointsBase = computeBreakpointsBase(theme.breakpoints, ownerState.columns);
   const columnValues = resolveBreakpointValues({
-    values: ownerState.columns,
-    base: computeBreakpointsBase(theme.breakpoints, ownerState.columns),
+    values: validatePropValues(columnBreakpointsBase, ownerState.columns),
+    base: columnBreakpointsBase,
   });
 
   const columnStyleFromPropValue = (propValue) => {
+    propValue = Number(propValue);
     const width = `${(100 / propValue).toFixed(1)}%`;
     const spacing =
-      typeof spacingValues !== 'object' ? getValue(transformer, spacingValues) : '0px';
+      typeof spacingValues !== 'object' ? getValue(transformer, Number(spacingValues)) : '0px';
     return {
       '& *': { width: `calc(${width} - ${spacing})` },
     };
@@ -90,6 +114,7 @@ export const style = ({ ownerState, theme }) => {
       styles,
       handleBreakpoints({ theme }, spacingValues, (propValue, breakpoint) => {
         if (breakpoint) {
+          propValue = Number(propValue);
           const lastBreakpoint = Object.keys(columnValues).pop();
           const spacing = getValue(transformer, propValue);
           const column =
@@ -188,7 +213,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     return () => {
       resizeObserver.disconnect();
     };
-  }, []);
+  }, [columns, spacing]);
 
   const handleRef = useForkRef(ref, masonryRef);
   const lineBreakStyle = {
