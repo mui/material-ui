@@ -28,7 +28,6 @@ const Root = styled('div')(({ theme }) => ({
       maxWidth: 'calc(100vw - 32px - 16px)',
     },
   },
-  // inline code & block code
   '& code, & code[class*="language-"]': {
     direction: 'ltr',
     display: 'inline-block',
@@ -38,10 +37,14 @@ const Root = styled('div')(({ theme }) => ({
     fontWeight: 400,
     WebkitFontSmoothing: 'subpixel-antialiased',
     padding: '0 5px',
-    color: theme.palette.text.primary,
-    backgroundColor: alpha(theme.palette.primary.light, 0.15),
     borderRadius: 5,
   },
+  // inline code
+  '& code': {
+    color: theme.palette.text.primary,
+    backgroundColor: alpha(theme.palette.primary.light, 0.15),
+  },
+  // block code
   '& code[class*="language-"]': {
     color: '#fff',
     backgroundColor: blueDark[800],
