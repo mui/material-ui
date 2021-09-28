@@ -7,7 +7,7 @@ import { useTheme, styled } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Root = styled('div')(({ theme }) => ({
-  margin: theme.spacing(2, 3),
+  margin: theme.spacing(2, 2),
   '& img': {
     display: 'inline-block',
   },
