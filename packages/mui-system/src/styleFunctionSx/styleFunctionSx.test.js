@@ -228,4 +228,42 @@ describe('styleFunctionSx', () => {
       });
     });
   });
+
+  describe('theme callback', () => {
+    it('works on CSS properties', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: {
+          background: (t) => t.palette.primary.main,
+        },
+      });
+
+      // Test the order
+      expect(result).to.deep.equal({ background: 'rgb(0, 0, 255)' });
+    });
+
+    it('works on pseudo selectors', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: {
+          ':hover': (t) => ({ background: t.palette.primary.main }),
+        },
+      });
+
+      // Test the order
+      expect(result).to.deep.equal({ ':hover': { background: 'rgb(0, 0, 255)' } });
+    });
+
+    it('works on nested selectors', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: {
+          '& .test-classname': (t) => ({ background: t.palette.primary.main }),
+        },
+      });
+
+      // Test the order
+      expect(result).to.deep.equal({ '& .test-classname': { background: 'rgb(0, 0, 255)' } });
+    });
+  });
 });

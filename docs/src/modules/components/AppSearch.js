@@ -12,7 +12,7 @@ import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
-import { useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 
 const SearchButton = styled('button')(({ theme }) => {
@@ -146,6 +146,7 @@ export default function AppSearch() {
     '#app-search',
   );
   const FADE_DURATION = 120; // ms
+  const t = useTranslate();
   const userLanguage = useUserLanguage();
   const searchButtonRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -219,6 +220,8 @@ export default function AppSearch() {
     return () => {};
   }, [isOpen]);
 
+  const search = `${t('algoliaSearch')}…`;
+
   return (
     <React.Fragment>
       <SearchButton ref={searchButtonRef} onClick={onOpen}>
@@ -231,8 +234,7 @@ export default function AppSearch() {
             mr: 1,
           }}
         />
-        {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-        <React.Fragment>Search...</React.Fragment>
+        {search}
         <Shortcut sx={{ ml: 'auto' }}>
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {macOS ? '⌘' : 'Ctrl+'}K
@@ -247,7 +249,7 @@ export default function AppSearch() {
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
             }}
-            placeholder="Search..."
+            placeholder={search}
             transformItems={(items) => {
               return items.map((item) => {
                 const parseUrl = document.createElement('a');
@@ -422,6 +424,13 @@ export default function AppSearch() {
                 backgroundColor: theme.palette.background.paper,
               },
             },
+            '& .DocSearch-Dropdown-Container': {
+              '& .DocSearch-Hits:first-of-type': {
+                '& .DocSearch-Hit-source': {
+                  paddingTop: theme.spacing(1),
+                },
+              },
+            },
             '& .DocSearch-Hit-source': {
               top: 'initial',
               paddingTop: theme.spacing(2),
@@ -432,13 +441,13 @@ export default function AppSearch() {
             },
             '& .DocSearch-Hit': {
               paddingBottom: 0,
-              '&:not(:last-of-type)': {
-                marginBottom: theme.spacing(0.5),
+              '&:not(:first-of-type)': {
+                marginTop: -1,
               },
             },
             '& .DocSearch-Hit a': {
               backgroundColor: 'transparent',
-              padding: theme.spacing(1, 0),
+              padding: theme.spacing(0.25, 0),
               paddingLeft: theme.spacing(2),
               border: '1px solid transparent',
               borderBottomColor:
