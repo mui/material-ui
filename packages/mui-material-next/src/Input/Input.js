@@ -1,8 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, shouldForwardProp } from '@mui/system';
-import { InputUnstyled, inputUnstyledClasses, isHostComponent } from '@mui/core';
+import { InputUnstyled, inputUnstyledClasses } from '@mui/core';
 import { capitalize } from '@mui/utils';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !== 'classes';
 
@@ -49,7 +50,7 @@ const InputRoot = styled('div', {
       !ownerState.disableUnderline && styles.underline,
     ];
   },
-})(({ theme, ownerState, color, size, fullWidth, disableUnderline }) => {
+})(({ theme, ownerState }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   return {
@@ -67,11 +68,11 @@ const InputRoot = styled('div', {
     },
     ...(ownerState.multiline && {
       padding: '4px 0 5px',
-      ...(size === 'small' && {
+      ...(ownerState.size === 'small' && {
         paddingTop: 1,
       }),
     }),
-    ...(fullWidth && {
+    ...(ownerState.fullWidth && {
       width: '100%',
     }),
     ...(ownerState.formControl && {
@@ -79,9 +80,9 @@ const InputRoot = styled('div', {
         marginTop: 16,
       },
     }),
-    ...(!disableUnderline && {
+    ...(!ownerState.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette[color].main}`,
+        borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -133,7 +134,7 @@ const InputInput = styled('input', {
   name: 'MuiInput',
   slot: 'Input',
   overridesResolver: inputOverridesResolver,
-})(({ theme, size, multiline, type }) => {
+})(({ theme, ownerState }) => {
   const light = theme.palette.mode === 'light';
   const placeholder = {
     color: 'currentColor',
@@ -202,16 +203,16 @@ const InputInput = styled('input', {
       animationDuration: '5000s',
       animationName: 'mui-auto-fill',
     },
-    ...(size === 'small' && {
+    ...(ownerState.size === 'small' && {
       paddingTop: 1,
     }),
-    ...(multiline && {
+    ...(ownerState.multiline && {
       height: 'auto',
       resize: 'none',
       padding: 0,
       paddingTop: 0,
     }),
-    ...(type === 'search' && {
+    ...(ownerState.type === 'search' && {
       // Improve type search style.
       MozAppearance: 'textfield',
       WebkitAppearance: 'textfield',
@@ -231,12 +232,23 @@ const Input = React.forwardRef(function Input(props, ref) {
     ...other
   } = props;
 
+  const InputWithAdornments = React.forwardRef(function InputWithAdornments(inputProps, inputRef) {
+    return (
+      <React.Fragment>
+        {startAdornment}
+        <InputInput {...inputProps} ref={inputRef} />
+        {endAdornment}
+      </React.Fragment>
+    );
+  });
+
   const components = {
     Root: InputRoot,
-    Input: InputInput,
+    Input: startAdornment || endAdornment ? InputWithAdornments : InputInput,
+    Textarea: TextareaAutosize,
   };
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color: 'primary',
     disableUnderline,
@@ -246,8 +258,8 @@ const Input = React.forwardRef(function Input(props, ref) {
   };
 
   const componentsProps = {
-    root: isHostComponent(InputRoot) ? {} : { ...styleProps },
-    input: isHostComponent(InputInput) ? {} : { ...styleProps },
+    root: { ownerState },
+    input: { ownerState },
   };
 
   return (

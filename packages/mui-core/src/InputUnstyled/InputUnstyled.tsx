@@ -1,7 +1,8 @@
+import * as React from 'react';
+import { isHostComponent } from '@mui/core';
 import { OverridableComponent } from '@mui/types';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import React from 'react';
 import appendOwnerState from '../utils/appendOwnerState';
 import classes from './inputUnstyledClasses';
 import InputUnstyledProps, { InputUnstyledTypeMap } from './InputUnstyledProps';
@@ -119,7 +120,9 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     ownerState,
   );
 
-  if (multiline && Input === 'input') {
+  if (multiline) {
+    const hasHostTexarea = isHostComponent(components.Textarea ?? 'textarea');
+
     if (rows) {
       if (process.env.NODE_ENV !== 'production') {
         if (minRows || maxRows) {
@@ -130,15 +133,15 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
       }
       inputProps = {
         type: undefined,
-        minRows: rows,
-        maxRows: rows,
+        minRows: hasHostTexarea ? undefined : rows,
+        maxRows: hasHostTexarea ? undefined : rows,
         ...inputProps,
       };
     } else {
       inputProps = {
         type: undefined,
-        maxRows,
-        minRows,
+        maxRows: hasHostTexarea ? undefined : maxRows,
+        minRows: hasHostTexarea ? undefined : minRows,
         ...inputProps,
       };
     }
