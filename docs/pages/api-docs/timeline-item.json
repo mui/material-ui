@@ -22,6 +22,5 @@
   "filename": "/packages/mui-lab/src/TimelineItem/TimelineItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

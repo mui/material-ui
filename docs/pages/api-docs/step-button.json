@@ -17,6 +17,5 @@
   "filename": "/packages/mui-material/src/StepButton/StepButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

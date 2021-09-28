@@ -201,6 +201,29 @@ describe('<DesktopTimePicker />', () => {
     expect(nextViewButton).to.have.attribute('disabled');
   });
 
+  it('fires a change event when meridiem changes', () => {
+    const handleChange = spy();
+    render(
+      <DesktopTimePicker
+        ampm
+        onChange={handleChange}
+        open
+        renderInput={(params) => <TextField {...params} />}
+        value={adapterToUse.date('2019-01-01T04:20:00.000')}
+      />,
+    );
+    const buttonPM = screen.getByRole('button', { name: 'PM' });
+
+    act(() => {
+      buttonPM.click();
+    });
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.firstCall.args[0]).toEqualDateTime(
+      adapterToUse.date('2019-01-01T16:20:00.000'),
+    );
+  });
+
   context('input validation', () => {
     const shouldDisableTime: TimePickerProps['shouldDisableTime'] = (value) => value === 10;
 

@@ -7,8 +7,8 @@ import { useSpring, animated } from 'react-spring/web.cjs';
 interface FadeProps {
   children?: React.ReactElement;
   in?: boolean;
-  onEnter?: () => {};
-  onExited?: () => {};
+  onEnter?: () => void;
+  onExited?: () => void;
 }
 
 const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, ref) {
@@ -36,14 +36,16 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
 });
 
 export default function SpringPopper() {
+  const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
+    setAnchorEl(event.currentTarget);
+    setOpen((previousOpen) => !previousOpen);
   };
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'spring-popper' : undefined;
+  const canBeOpen = open && Boolean(anchorEl);
+  const id = canBeOpen ? 'spring-popper' : undefined;
 
   return (
     <div>
