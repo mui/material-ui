@@ -222,7 +222,7 @@ function AppNavDrawer(props) {
                             : 'rgba(170, 180, 190, 0.3)'
                         }`,
                       '& .MuiMenuItem-root': {
-                        fontSize: '0.875rem',
+                        fontSize: theme.typography.pxToRem(14),
                         fontWeight: 500,
                         '&.Mui-selected': {
                           color: 'primary.main',
