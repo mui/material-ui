@@ -14,7 +14,6 @@ import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import jssRtl from 'jss-rtl';
-import { CacheProvider } from '@emotion/react';
 import { useRouter } from 'next/router';
 import { StylesProvider, jssPreset } from '@mui/styles';
 import pages from 'docs/src/pages';
@@ -238,7 +237,7 @@ async function registerServiceWorker() {
   if (
     'serviceWorker' in navigator &&
     process.env.NODE_ENV === 'production' &&
-    window.location.host.indexOf('material-ui.com') !== -1
+    window.location.host.indexOf('mui.com') !== -1
   ) {
     // register() automatically attempts to refresh the sw.js.
     const registration = await navigator.serviceWorker.register('/sw.js');
@@ -306,7 +305,7 @@ function findActivePage(currentPages, pathname) {
 }
 
 function AppWrapper(props) {
-  const { children, pageProps } = props;
+  const { children, emotionCache, pageProps } = props;
 
   const router = useRouter();
 
@@ -323,11 +322,7 @@ function AppWrapper(props) {
 
   const activePage = findActivePage(pages, router.pathname);
 
-  let fonts = [
-    // TODO: remove this values, they are considered blocking resources and slow all the pages on first render.
-    'https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&display=swap',
-    'https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap',
-  ];
+  let fonts = [];
   if (router.pathname.match(/onepirate/)) {
     fonts = [
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
@@ -346,7 +341,9 @@ function AppWrapper(props) {
           <PageContext.Provider value={{ activePage, pages }}>
             <StylesProvider jss={jss}>
               <ThemeProvider>
-                <DocsStyledEngineProvider>{children}</DocsStyledEngineProvider>
+                <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                  {children}
+                </DocsStyledEngineProvider>
               </ThemeProvider>
             </StylesProvider>
           </PageContext.Provider>
@@ -361,6 +358,7 @@ function AppWrapper(props) {
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
+  emotionCache: PropTypes.object.isRequired,
   pageProps: PropTypes.object.isRequired,
 };
 
@@ -368,11 +366,9 @@ export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
-    <CacheProvider value={emotionCache}>
-      <AppWrapper pageProps={pageProps}>
-        <Component {...pageProps} />
-      </AppWrapper>
-    </CacheProvider>
+    <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
+      <Component {...pageProps} />
+    </AppWrapper>
   );
 }
 

@@ -11,6 +11,5 @@
   "filename": "/packages/mui-material/src/AlertTitle/AlertTitle.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/alert/\">Alert</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

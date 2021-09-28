@@ -30,7 +30,7 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import LanguageIcon from '@mui/icons-material/Translate';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
-const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
+const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
 
 export function NextNProgressBar() {
   const router = useRouter();
@@ -60,11 +60,6 @@ export function DeferredAppSearch() {
 
   return (
     <React.Fragment>
-      <link
-        rel="preload"
-        href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css"
-        as="style"
-      />
       {/* Suspense isn't supported for SSR yet */}
       {mounted ? (
         <React.Suspense fallback={null}>
@@ -233,7 +228,6 @@ function AppFrame(props) {
       <StyledAppBar disablePermanent={disablePermanent}>
         <Toolbar>
           <NavIconButton
-            fontSize="small"
             edge="start"
             color="inherit"
             aria-label={t('appFrame.openDrawer')}
@@ -243,7 +237,7 @@ function AppFrame(props) {
             <MenuIcon />
           </NavIconButton>
           <GrowingDiv />
-          <Stack direction="row" gap={2.5}>
+          <Stack direction="row" spacing={2}>
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton

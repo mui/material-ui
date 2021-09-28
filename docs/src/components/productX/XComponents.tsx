@@ -121,16 +121,16 @@ export default function XComponents() {
           )}
           {demo === DEMOS[1] && (
             <Fade in timeout={500}>
-              <Box>
+              <div>
                 <XDateRangeDemo />
-              </Box>
+              </div>
             </Fade>
           )}
           {demo === DEMOS[2] && (
             <Fade in timeout={500}>
-              <Box>
+              <div>
                 <XTreeViewDemo />
-              </Box>
+              </div>
             </Fade>
           )}
           {(demo === DEMOS[3] || demo === DEMOS[4]) && (

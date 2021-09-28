@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "5.0.0-rc.1",
+  "version": "5.0.1",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -21,9 +21,9 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://material-ui.com/components/material-icons/",
+  "homepage": "https://mui.com/components/material-icons/",
   "scripts": {
-    "build": "cp -r lib/ build/ && yarn build:typings && yarn build:copy-files",
+    "build": "shx cp -r lib/ build/ && yarn build:typings && yarn build:copy-files",
     "build:lib": "yarn build:node && yarn build:stable",
     "build:lib:clean": "rimraf lib/ && yarn build:lib",
     "build:legacy": "echo 'Skip legacy build'",
@@ -51,13 +51,14 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.14.8"
+    "@babel/runtime": "^7.15.4"
   },
   "devDependencies": {
     "fs-extra": "^10.0.0",
     "mustache": "^4.2.0",
+    "shx": "^0.3.3",
     "svgo": "^2.4.0",
-    "yargs": "^17.0.1"
+    "yargs": "^17.1.1"
   },
   "sideEffects": false,
   "publishConfig": {

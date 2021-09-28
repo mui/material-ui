@@ -67,7 +67,7 @@ export default function MyComponent {
 
 ## `makeStyles(styles, [options]) => hook`
 
-链路的样式表中有一个功能组件的使用**钩**的模式。
+使用 **hook** 的模式与一个具有函数组件的样式表相连。
 
 ### 参数
 
@@ -149,7 +149,7 @@ const response = `
 
 ## `styled(Component)(styles, [options]) => Component`
 
-链路的样式表中有一个功能组件的使用**styled components**的模式。
+使用 **styled components** 的模式与一个具有函数组件的样式表相连。
 
 ### 参数
 
@@ -199,7 +199,7 @@ export default function StyledComponents() {
 
 此组件允许您调整样式方案的行为。 多亏了 context，选项可以在 React 树下层使用。
 
-它最好应在**组件树的根目录中使用** 。
+最好在**您的组件树的根目录**中使用它。
 
 ### 属性
 

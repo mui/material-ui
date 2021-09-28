@@ -25,7 +25,7 @@ export interface ExportedCalendarProps<TDate>
    */
   onChange: PickerOnChangeFn<TDate>;
   /**
-   * Custom renderer for day. Check the [PickersDay](https://material-ui.com/api/pickers-day/) component.
+   * Custom renderer for day. Check the [PickersDay](https://mui.com/api/pickers-day/) component.
    */
   renderDay?: (
     day: TDate,

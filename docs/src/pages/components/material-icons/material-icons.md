@@ -8,7 +8,7 @@ githubLabel: 'package: icons'
 
 # Material icons
 
-<p class="description">1,700+ React Material icons ready to use from the official website.</p>
+<p class="description">1,700+ React Material icons ready-to-use from the official website.</p>
 
 The following npm package,
 [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material),

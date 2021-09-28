@@ -140,7 +140,7 @@ export default function CoreShowcase() {
               MuiChip: {
                 styleOverrides: {
                   filled: {
-                    fontWeight: 600,
+                    fontWeight: 700,
                     '&.MuiChip-colorSuccess': {
                       backgroundColor:
                         mode === 'dark'
@@ -178,7 +178,7 @@ export default function CoreShowcase() {
   }
   return (
     <ShowcaseContainer
-      sx={{ mt: 2 }}
+      sx={{ mt: { md: 2 } }}
       previewSx={{
         minHeight: 220,
         pb: 4,
@@ -204,8 +204,8 @@ export default function CoreShowcase() {
               noWrap
               sx={{ opacity: 0.5 }}
             >
-              <TouchAppRounded sx={{ fontSize: '0.875rem', verticalAlign: 'text-bottom' }} /> Hover
-              the component to highlight the code.
+              <TouchAppRounded sx={{ fontSize: '0.875rem', verticalAlign: 'text-bottom' }} />
+              Hover over the component to highlight the code.
             </Typography>
           </Box>
           <ThemeProvider theme={theme}>

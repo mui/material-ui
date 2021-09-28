@@ -6,9 +6,9 @@ materialDesign: https://material.io/components/snackbars
 waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 ---
 
-# Snackbar
+# Всплывающий компонент
 
-<p class="description">Snackbars provide brief messages about app processes. The component is also known as a toast.</p>
+<p class="description">Всплывающие компоненты показывают краткие сообщения о процессах приложения. The component is also known as a toast.</p>
 
 [Snackbars](https://material.io/design/components/snackbars.html) inform users of a process that an app has performed or will perform. Они времени отображаются в нижней части экрана (данное поведение можно изменить). They shouldn't interrupt the user experience, and they don't require user input to disappear.
 

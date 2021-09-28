@@ -49,10 +49,10 @@ export default (function More(props: ButtonBaseProps) {
         ...props.sx,
       }}
     >
-      <Box sx={{ mr: 1, px: '3px', lineHeight: 0 }}>
+      <Box component="span" sx={{ mr: 1, px: '3px', lineHeight: 0 }}>
         <AddCircleOutlineRounded color="primary" fontSize="small" />
       </Box>
-      <Typography color="primary.main" variant="body2" fontWeight="bold">
+      <Typography component="span" color="primary.main" variant="body2" fontWeight="bold">
         Much more{' '}
         <KeyboardArrowRightRounded
           color="primary"

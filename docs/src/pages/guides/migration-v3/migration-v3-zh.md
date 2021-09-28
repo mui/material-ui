@@ -146,7 +146,7 @@ yarn add @material-ui/styles
 
   ```diff
     /**
-     * 在类别为`item` 组件之间定义间距。
+     * 在类别为 `item` 的组件之间定义间距。
      * 它只能用于类型为 `container` 的组件。
      */
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),

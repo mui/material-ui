@@ -87,7 +87,7 @@ Por padrão os elementos desabilitados como `<button>` não disparam interaçõe
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS *pointer-events: none;* ao seu elemento quando desativado:
+> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS *pointer-events: none;* ao seu elemento quando desabilitado:
 
 ```jsx
 <Tooltip title="Você não tem permissão para esta tarefa">

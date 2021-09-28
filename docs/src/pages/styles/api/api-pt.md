@@ -35,7 +35,7 @@ export default function App() {
 
 ## `createStyles(styles) => styles`
 
-Esta função realmente não "faz nada" em tempo de execução, é apenas uma função de identidade. Sua única finalidade é prevenir a ampliação de tipos do **TypeScript**, ao fornecer regras de estilo para `makeStyles`/`withStyles` que são uma função do `Tema`.
+Esta função realmente não "faz nada" em tempo de execução, é apenas uma função de identidade. Sua única finalidade é lidar com a ampliação de tipos do **TypeScript**, ao fornecer regras de estilo para `makeStyles`/`withStyles` que são uma função do `tema`.
 
 ### Argumentos
 
@@ -275,7 +275,7 @@ export default function MyComponent() {
 
 ## `withStyles(styles, [options]) => higher-order component`
 
-Vincula uma folha de estilos com um componente usando o padrão de **higher-order component**. Ele não modifica o componente passados para ele; em vez disso, ele retorna um novo componente, com a propriedade `classes`. Este objeto `classes` contém o nome das classes inseridas no DOM.
+Vincula uma folha de estilos com um componente usando o padrão de **higher-order component**. Ele não modifica o componente passado para ele; em vez disso, ele retorna um novo componente, com a propriedade `classes`. Este objeto `classes` contém o nome das classes inseridas no DOM.
 
 Alguns detalhes de implementação que podem ser interessantes para estar ciente:
 

@@ -129,12 +129,12 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
  *
  * Demos:
  *
- * - [Tables](https://material-ui.com/components/tables/)
+ * - [Tables](https://mui.com/components/tables/)
  *
  * API:
  *
- * - [TablePagination API](https://material-ui.com/api/table-pagination/)
- * - inherits [TableCell API](https://material-ui.com/api/table-cell/)
+ * - [TablePagination API](https://mui.com/api/table-pagination/)
+ * - inherits [TableCell API](https://mui.com/api/table-cell/)
  */
 declare const TablePagination: OverridableComponent<
   TablePaginationTypeMap<{}, React.JSXElementConstructor<TablePaginationBaseProps>>

@@ -12,6 +12,5 @@
   "filename": "/packages/mui-material/src/CardContent/CardContent.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

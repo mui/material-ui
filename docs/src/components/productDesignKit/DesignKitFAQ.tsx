@@ -25,13 +25,23 @@ const faqData = [
     ),
   },
   {
+    summary: 'How many licenses do I need?',
+    detail: (
+      <React.Fragment>
+        The number of licenses purchased must correspond to the maximum number of editors working
+        concurrently in a 24 hour period. An editor is somebody contributing changes to the designed
+        screens that use the UI kits. No licenses are required for viewing the designs.
+      </React.Fragment>
+    ),
+  },
+  {
     summary: 'The UI kit got an update. How do I get it?',
     detail: (
       <React.Fragment>
         We&apos;ll send you an email when a new release is available. You can access the item on the{' '}
-        <InternalLink href="/store/account/download">download</InternalLink> page of your store
-        account. You can find a detailed description of the changes under the &quot;Changelog&quot;
-        tab on this page.
+        <InternalLink href="https://material-ui.com/store/account/download">download</InternalLink>{' '}
+        page of your store account. You can find a detailed description of the changes under the
+        &quot;Changelog&quot; tab on this page.
       </React.Fragment>
     ),
   },
@@ -101,10 +111,10 @@ const AccordionDetails = styled(MuiAccordionDetail)(({ theme }) => ({
 }));
 
 export default function DesignKitFAQ() {
-  function renderItem(index: number, defaultExpanded?: boolean) {
+  function renderItem(index: number) {
     const faq = faqData[index];
     return (
-      <Accordion variant="outlined" defaultExpanded={defaultExpanded}>
+      <Accordion variant="outlined">
         <AccordionSummary
           expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
         >
@@ -132,12 +142,13 @@ export default function DesignKitFAQ() {
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-          {renderItem(0, true)}
+          {renderItem(0)}
           {renderItem(1)}
+          {renderItem(2)}
         </Grid>
         <Grid item xs={12} md={6}>
-          {renderItem(2)}
           {renderItem(3)}
+          {renderItem(4)}
           <Paper
             variant="outlined"
             sx={{

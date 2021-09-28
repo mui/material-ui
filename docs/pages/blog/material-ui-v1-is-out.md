@@ -8,7 +8,7 @@ The core team. May 18, 2018.
 
 > React components that implement Google's Material Design.
 
-![Our new [documentation](https://material-ui.com/) header & logo by @hai-cea](https://cdn-images-1.medium.com/max/2050/1*BKssrX-qEmyN6YaRNTvNlw.png)
+![Our new [documentation](https://mui.com/) header & logo by @hai-cea](https://cdn-images-1.medium.com/max/2050/1*BKssrX-qEmyN6YaRNTvNlw.png)
 
 <p class="blog-description">Our new documentation header & logo by @hai-cea</p>
 

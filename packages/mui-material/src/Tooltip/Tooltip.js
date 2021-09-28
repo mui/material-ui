@@ -459,7 +459,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       children.props.onTouchEnd(event);
     }
 
-    clearTimeout(touchTimer.current);
+    stopTouchInteraction();
     clearTimeout(leaveTimer.current);
     leaveTimer.current = setTimeout(() => {
       handleClose(event);
@@ -816,7 +816,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition) component.
    */
   TransitionProps: PropTypes.object,
 };

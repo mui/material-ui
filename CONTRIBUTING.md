@@ -9,7 +9,7 @@ Please read [the full text](/CODE_OF_CONDUCT.md) so that you can understand what
 
 ## A large spectrum of contributions
 
-There are [many ways](https://material-ui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project) to contribute to MUI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
+There are [many ways](https://mui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project) to contribute to MUI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
 
 ## Your first Pull Request
 
@@ -47,11 +47,13 @@ cd material-ui
 git remote add upstream https://github.com/mui-org/material-ui.git
 ```
 
-3. Synchronize your local `next` branch with the upstream one:
+<!-- #default-branch-switch -->
+
+3. Synchronize your local `master` branch with the upstream one:
 
 ```sh
-git checkout next
-git pull upstream next
+git checkout master
+git pull upstream master
 ```
 
 4. Install the dependencies with yarn (npm isn't supported):
@@ -99,7 +101,9 @@ the results. If any of them fail, refer to [Checks and how to fix them](#checks-
 
 Make sure the following is true:
 
-- The branch is targeted at `next` for ongoing development. We do our best to keep `next` in good shape, with all tests passing. Code that lands in `next` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `next` at any time.
+<!-- #default-branch-switch -->
+
+- The branch is targeted at `master` for ongoing development. We do our best to keep `master` in good shape, with all tests passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
 - If a feature is being added:
   - If the result was already achievable with the core library, explain why this feature needs to be added to the core.
   - If this is a common use case, consider adding an example to the documentation.
@@ -150,7 +154,7 @@ If `yarn test:unit` passes locally, but fails in CI, consider [Accessibility tre
 
 ##### ci/circleci: test_browser-1
 
-Runs the unit tests in multiple browsers (via Browserstack). The log of the failed
+Runs the unit tests in multiple browsers (via BrowserStack). The log of the failed
 build should list which browsers failed. If Chrome failed then `yarn test:karma`
 should<sup>[1](test/README.md#accessiblity-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
 If `yarn test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessiblity-tree-exclusion).
@@ -279,14 +283,14 @@ Alternatively, you can open the Netlify preview of the documentation, and open a
 
 ## Translations
 
-Translations are handled via [Crowdin](https://translate.material-ui.com).
+Translations are handled via [Crowdin](https://translate.mui.com).
 You don't need to apply any changes to localized versions of our markdown files
 i.e. files having a `-locale` suffix. Crowdin automatically takes care of syncing
 these changes across the localized versions.
 
 ## Roadmap
 
-To get a sense of where MUI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://material-ui.com/discover-more/roadmap/).
+To get a sense of where MUI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://mui.com/discover-more/roadmap/).
 
 ## License
 

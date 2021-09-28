@@ -9,7 +9,7 @@ materialDesign: 'https://material.io/components/buttons#toggle-button'
 
 <p class="description">Os botões de alternância podem ser usados para agrupar opções relacionadas.</p>
 
-Para enfatizar grupos de [botões de alternância](https://material.io/components/buttons#toggle-button) relacionados, o grupo deve ter um container em comum. O `ToggleButtonGroup` controla o estado selecionado de seus botões filhos através de sua propriedade `value`.
+Para enfatizar grupos de [botões de alternância](https://material.io/components/buttons#toggle-button) relacionados, o grupo deve ter um contêiner em comum. O `ToggleButtonGroup` controla o estado selecionado de seus botões filhos através de sua propriedade `value`.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

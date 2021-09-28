@@ -139,7 +139,8 @@ yargs
           default: 'write-changed',
         })
         .option('branch', {
-          default: 'next',
+          // #default-branch-switch
+          default: 'master',
           describe: 'The branch to diff against',
           type: 'string',
         });

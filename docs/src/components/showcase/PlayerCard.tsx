@@ -41,7 +41,7 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
    * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://material-ui.com/customization/palette/#toggling-color-mode
+   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
    */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
@@ -119,7 +119,7 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
           >
             <img
               alt="Beside Myself album cover"
-              style={{ borderRadius: 5, objectFit: 'cover', width: '100%' }}
+              style={{ borderRadius: 5, objectFit: 'cover' }}
               src="/static/images/cards/basement-beside-myself.jpeg"
               width="124"
               height="124"

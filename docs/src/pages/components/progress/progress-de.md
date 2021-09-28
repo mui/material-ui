@@ -30,7 +30,7 @@ materialDesign: https://material.io/components/progress-indicators
 
 ### Circular determinate
 
-{{"demo": "pages/components/progress/CircularDeterminate.js"}}
+{{"demo": "pages/components/progress/CircularIntegration.js"}}
 
 ### Interactive integration
 

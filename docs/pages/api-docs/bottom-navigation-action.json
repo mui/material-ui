@@ -19,6 +19,5 @@
   "filename": "/packages/mui-material/src/BottomNavigationAction/BottomNavigationAction.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/bottom-navigation/\">Bottom Navigation</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

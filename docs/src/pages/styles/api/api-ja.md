@@ -150,7 +150,7 @@ sheets.getStyleElement() => CSS React element`
 
 ## `styled(Component)(styles, [options]) => Component`
 
-Link a style sheet with a function component using the **styled components** pattern.
+⚠️ You must call `.collect()` before using this method.
 
 ### 引数
 
