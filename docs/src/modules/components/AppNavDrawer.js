@@ -225,7 +225,7 @@ function AppNavDrawer(props) {
                     },
                   }}
                 >
-                  <MenuItem selected>
+                  <MenuItem selected onClick={() => setAnchorEl(null)}>
                     {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
                     {`v${process.env.LIB_VERSION}`} <DoneRounded sx={{ fontSize: 16, ml: 0.25 }} />
                   </MenuItem>
