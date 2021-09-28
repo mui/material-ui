@@ -128,4 +128,34 @@ describe('<MobileDateTimePicker />', () => {
     fireEvent.click(screen.getByText('Cancel'));
     expect(onCloseMock.callCount).to.equal(1);
   });
+
+  it('should render date and time by default', () => {
+    render(
+      <MobileDateTimePicker
+        renderInput={(params) => <TextField {...params} />}
+        onChange={() => {}}
+        open
+        value={adapterToUse.date('2021-11-20T10:01:22.000')}
+      />,
+    );
+
+    expect(screen.queryByMuiTest('seconds')).to.equal(null);
+    expect(screen.getByMuiTest('hours')).to.have.text('10');
+    expect(screen.getByMuiTest('minutes')).to.have.text('01');
+    expect(screen.getByMuiTest('datetimepicker-toolbar-year')).to.have.text('2021');
+    expect(screen.getByMuiTest('datetimepicker-toolbar-day')).to.have.text('Nov 20');
+  });
+
+  it('can render seconds on view', () => {
+    render(
+      <MobileDateTimePicker
+        renderInput={(params) => <TextField {...params} />}
+        onChange={() => {}}
+        open
+        views={['seconds']}
+        value={adapterToUse.date('2021-11-20T10:01:22.000')}
+      />,
+    );
+    expect(screen.getByMuiTest('seconds')).to.have.text('22');
+  });
 });

@@ -25,7 +25,7 @@ Here is an example:
 
 {{"demo": "pages/customization/how-to-customize/SxProp.js"}}
 
-Next you'll see how you can you can use global class selectors for accessing slots inside the component. You'll also learn how to easily identify the classes which are available to you for each of the states and slots in the component.
+Next you'll see how you can use global class selectors for accessing slots inside the component. You'll also learn how to easily identify the classes which are available to you for each of the states and slots in the component.
 
 ### Overriding nested component styles
 

@@ -211,7 +211,7 @@ describe('<MobileDatePicker />', () => {
       />,
     );
 
-    expect(screen.queryAllByMuiTest(document.body, 'day')).to.have.length(0);
+    expect(screen.queryAllByMuiTest('day')).to.have.length(0);
     expect(screen.getByMuiTest('loading-progress')).toBeVisible();
   });
 

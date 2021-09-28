@@ -92,15 +92,10 @@ function roundValueToStep(value, step, min) {
   return Number(nearest.toFixed(getDecimalPrecision(step)));
 }
 
-function setValueIndex({ values, source, newValue, index }) {
-  // Performance shortcut
-  if (source[index] === newValue) {
-    return source;
-  }
-
+function setValueIndex({ values, newValue, index }) {
   const output = values.slice();
   output[index] = newValue;
-  return output;
+  return output.sort(asc);
 }
 
 function focusThumb({ sliderRef, activeIndex, setActive }) {
@@ -348,10 +343,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       const previousValue = newValue;
       newValue = setValueIndex({
         values,
-        source: valueDerived,
         newValue,
         index,
-      }).sort(asc);
+      });
 
       let activeIndex = index;
 
@@ -381,7 +375,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     axis += '-reverse';
   }
 
-  const getFingerNewValue = ({ finger, move = false, values: values2, source }) => {
+  const getFingerNewValue = ({ finger, move = false, values: values2 }) => {
     const { current: slider } = sliderRef;
     const { width, height, bottom, left } = slider.getBoundingClientRect();
     let percent;
@@ -428,10 +422,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       const previousValue = newValue;
       newValue = setValueIndex({
         values: values2,
-        source,
         newValue,
         index: activeIndex,
-      }).sort(asc);
+      });
 
       // Potentially swap the index if needed.
       if (!(disableSwap && move)) {
@@ -463,7 +456,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       finger,
       move: true,
       values,
-      source: valueDerived,
     });
 
     focusThumb({ sliderRef, activeIndex, setActive });
@@ -486,7 +478,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       return;
     }
 
-    const { newValue } = getFingerNewValue({ finger, values, source: valueDerived });
+    const { newValue } = getFingerNewValue({ finger, values });
 
     setActive(-1);
     if (nativeEvent.type === 'touchend') {
@@ -515,7 +507,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       touchId.current = touch.identifier;
     }
     const finger = trackFinger(nativeEvent, touchId);
-    const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
+    const { newValue, activeIndex } = getFingerNewValue({ finger, values });
     focusThumb({ sliderRef, activeIndex, setActive });
 
     setValueState(newValue);
@@ -572,7 +564,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     // Avoid text selection
     event.preventDefault();
     const finger = trackFinger(event, touchId);
-    const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
+    const { newValue, activeIndex } = getFingerNewValue({ finger, values });
     focusThumb({ sliderRef, activeIndex, setActive });
 
     setValueState(newValue);

@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import { exactProp } from '@mui/utils';
-import MarkdownElement from './MarkdownElement';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
 const authors = {
   oliviertassinari: {
