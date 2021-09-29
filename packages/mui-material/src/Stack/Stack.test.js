@@ -50,6 +50,7 @@ describe('<Stack />', () => {
         },
       },
       display: 'flex',
+      flexWrap: 'nowrap',
     });
   });
 
@@ -78,6 +79,7 @@ describe('<Stack />', () => {
         flexDirection: 'row',
       },
       display: 'flex',
+      flexWrap: 'nowrap',
     });
   });
 
@@ -105,6 +107,7 @@ describe('<Stack />', () => {
       },
       display: 'flex',
       flexDirection: 'column',
+      flexWrap: 'nowrap',
     });
   });
 
@@ -138,6 +141,7 @@ describe('<Stack />', () => {
       },
       display: 'flex',
       flexDirection: 'column',
+      flexWrap: 'nowrap',
     });
   });
 
@@ -157,6 +161,7 @@ describe('<Stack />', () => {
       },
       display: 'flex',
       flexDirection: 'row',
+      flexWrap: 'nowrap',
     });
   });
 
@@ -184,6 +189,45 @@ describe('<Stack />', () => {
         },
       },
       display: 'flex',
+      flexWrap: 'nowrap',
+    });
+  });
+
+  it('should handle spacing with flex wrap', () => {
+    expect(
+      style({
+        ownerState: {
+          direction: 'row',
+          spacing: { sm: 2, md: 0, lg: 4 },
+          wrap: 'wrap',
+        },
+        theme,
+      }),
+    ).to.deep.equal({
+      [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+        '& > :not(style)': {
+          marginBottom: '16px',
+          marginLeft: '16px',
+        },
+        margin: '-16px',
+      },
+      [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+        '& > :not(style)': {
+          marginBottom: '0px',
+          marginLeft: '0px',
+        },
+        margin: '-0px',
+      },
+      [`@media (min-width:${defaultTheme.breakpoints.values.lg}px)`]: {
+        '& > :not(style)': {
+          marginBottom: '32px',
+          marginLeft: '32px',
+        },
+        margin: '-32px',
+      },
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
     });
   });
 });

@@ -44,7 +44,7 @@ const getSideFromDirection = (direction) => {
 export const style = ({ ownerState, theme }) => {
   let styles = {
     display: 'flex',
-    flexWrap: ownerState.wrap,
+    flexWrap: ownerState.wrap || 'nowrap',
     ...handleBreakpoints({ theme }, ownerState.direction, (propValue) => ({
       flexDirection: propValue,
     })),
