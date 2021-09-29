@@ -96,23 +96,22 @@ export default styled;
 
 ## Difference with the `sx` prop
 
-We want the `styled` function to behave similarly to the `styled` function of other technologies, like Emotion or Styled Components. 
-The `sx` prop however, is a new way of styling your application, focused on fast customization. `styled` is a function, while `sx` is a prop of Mui components.
+The `styled` function is an extension of the `styled` utility provided by the underlying styled engine used, emotion or styled-components.
+It is guaranteed that it will produce the same output as the `styled` function coming from the styled engine for the same input.
+The [`sx`](/system/the-sx-prop/) prop, on the other hand, is a new way of styling your components, focused on fast customization. `styled` is a function, while `sx` is a prop of the MUI components.
 
-Therefore, you may observe a few differences:
+Therefore, you will notice the following differences:
 - `sx` provides more shortcuts than `styled`
 - the style definition slightly varies
 - patterns to use props are different
-
-You'll need to take those difference into account when refactoring your components.
 
 ### Using props
 
 With `styled`:
 ```js
-const MyStyledButton = styled("button")({
-  backgroundColor: props => props.myBackgroundColor
-})
+const MyStyledButton = styled("button")((props) => ({
+  backgroundColor: props.myBackgroundColor
+}))
 ```
 With `sx`:
 ```js
