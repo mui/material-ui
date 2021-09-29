@@ -170,8 +170,8 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
         const parentWidth = Number(
           window.getComputedStyle(masonryRef.current).width.replace('px', ''),
         );
-
         const width = Number(computedStyle.width.replace('px', ''));
+        const margin = Number(computedStyle.margin.replace('px', ''));
         const height = Number(computedStyle.height.replace('px', ''));
         // if any one of children is not rendered yet, container's height shouldn't be set;
         // this is especially crucial for image masonry
@@ -180,7 +180,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
           return;
         }
         if (!curNumOfCols) {
-          curNumOfCols = Math.floor(parentWidth / width);
+          curNumOfCols = Math.floor(parentWidth / (width + margin * 2));
         }
         if (!columnHeights) {
           columnHeights = new Array(curNumOfCols).fill(0);
