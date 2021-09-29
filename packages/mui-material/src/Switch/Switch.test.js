@@ -11,7 +11,10 @@ describe('<Switch />', () => {
     classes,
     render,
     muiName: 'MuiSwitch',
-    testDeepOverrides: { slotName: 'track', slotClassName: classes.track },
+    testDeepOverrides: [
+      { slotName: 'track', slotClassName: classes.track },
+      { slotName: 'input', slotClassName: classes.input },
+    ],
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp', 'propsSpread', 'themeDefaultProps', 'themeVariants'],
   }));
