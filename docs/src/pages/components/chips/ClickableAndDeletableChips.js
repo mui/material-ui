@@ -2,7 +2,7 @@ import * as React from 'react';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
-export default function ClickeableAndDeleteableChips() {
+export default function ClickableAndDeletableChips() {
   const handleClick = () => {
     console.info('You clicked the Chip.');
   };
@@ -14,12 +14,12 @@ export default function ClickeableAndDeleteableChips() {
   return (
     <Stack direction="row" spacing={1}>
       <Chip
-        label="Clickable Deleteable"
+        label="Clickable Deletable"
         onClick={handleClick}
         onDelete={handleDelete}
       />
       <Chip
-        label="Clickable Deleteable"
+        label="Clickable Deletable"
         variant="outlined"
         onClick={handleClick}
         onDelete={handleDelete}
