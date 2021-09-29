@@ -208,7 +208,7 @@ module.exports = {
 
     // We want to speed-up the build of pull requests.
     // For crowdin PRs we want to build all locales for testing.
-    if (!(process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify && !vercelDeploy)) {
+    if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify && !vercelDeploy) {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
       traverse(pages, 'en');
