@@ -171,12 +171,14 @@ https://v3.material-ui.com/* https://v3.mui.com/:splat 301!
 https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /company/careers/ /careers/ 301
 
-# Proxies
-
 ## Localization
-/fr/* /:splat 200
-/de/* /:splat 200
-/ja/* /:splat 200
+/fr/* /:splat 301
+/de/* /:splat 301
+/ja/* /:splat 301
+/ru/* /:splat 301
+/es/* /:splat 301
+
+# Proxies
 
 ## Store
 /store/* https://material-ui-store.netlify.app/:splat 200
