@@ -1,7 +1,9 @@
 ### [Versions](https://mui.com/versions/)
 
 ## 5.0.2
+
 <!-- generated comparing v5.0.1..master -->
+
 _Sep 29, 2021_
 
 A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
@@ -16,6 +18,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - &#8203;<!-- 03 -->[useMediaQuery] Add types for `matchMedia` option and deprecate exported interfaces (#28413) @eps1lon
 
 ### `@mui/codemod@5.0.2`
+
 - &#8203;<!-- 24 -->[codemod] Update the imports in `jss-to-styled` to match the new package names (#28667) @mnajdova
 
 ### `@mui/system@5.0.2`
