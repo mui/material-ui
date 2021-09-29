@@ -4,12 +4,7 @@ import { expect } from 'chai';
 import { spy, useFakeTimers, SinonSpy, SinonFakeTimers } from 'sinon';
 import { fireEvent, fireTouchChangedEvent, screen } from 'test/utils';
 import MobileDateTimePicker from '@mui/lab/MobileDateTimePicker';
-import {
-  adapterToUse,
-  getByMuiTest,
-  queryByMuiTest,
-  createPickerRender,
-} from '../internal/pickers/test-utils';
+import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<MobileDateTimePicker />', () => {
   let clock: SinonFakeTimers;
@@ -71,32 +66,32 @@ describe('<MobileDateTimePicker />', () => {
     render(<DateTimePickerWithState />);
     fireEvent.click(screen.getByLabelText(/choose date/i));
 
-    expect(getByMuiTest('datetimepicker-toolbar-day')).to.have.text('Enter Date');
-    expect(getByMuiTest('hours')).to.have.text('--');
-    expect(getByMuiTest('minutes')).to.have.text('--');
+    expect(screen.getByMuiTest('datetimepicker-toolbar-day')).to.have.text('Enter Date');
+    expect(screen.getByMuiTest('hours')).to.have.text('--');
+    expect(screen.getByMuiTest('minutes')).to.have.text('--');
 
     // 1. Year view
     fireEvent.click(screen.getByLabelText(/switch to year view/));
     fireEvent.click(screen.getByText('2010', { selector: 'button' }));
 
-    expect(getByMuiTest('datetimepicker-toolbar-year')).to.have.text('2010');
+    expect(screen.getByMuiTest('datetimepicker-toolbar-year')).to.have.text('2010');
 
     // 2. Date
     fireEvent.click(screen.getByLabelText('Jan 15, 2010'));
 
-    expect(getByMuiTest('datetimepicker-toolbar-day')).to.have.text('Jan 15');
+    expect(screen.getByMuiTest('datetimepicker-toolbar-day')).to.have.text('Jan 15');
 
     // 3. Hours
-    fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent);
-    fireTouchChangedEvent(getByMuiTest('clock'), 'touchend', clockTouchEvent);
+    fireTouchChangedEvent(screen.getByMuiTest('clock'), 'touchmove', clockTouchEvent);
+    fireTouchChangedEvent(screen.getByMuiTest('clock'), 'touchend', clockTouchEvent);
 
-    expect(getByMuiTest('hours')).to.have.text('11');
+    expect(screen.getByMuiTest('hours')).to.have.text('11');
 
     // 4. Minutes
-    fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent);
-    fireTouchChangedEvent(getByMuiTest('clock'), 'touchend', clockTouchEvent);
+    fireTouchChangedEvent(screen.getByMuiTest('clock'), 'touchmove', clockTouchEvent);
+    fireTouchChangedEvent(screen.getByMuiTest('clock'), 'touchend', clockTouchEvent);
 
-    expect(getByMuiTest('minutes')).to.have.text('53');
+    expect(screen.getByMuiTest('minutes')).to.have.text('53');
     expect(onChangeMock.callCount).to.equal(4);
 
     fireEvent.click(screen.getByText(/ok/i));
@@ -144,11 +139,11 @@ describe('<MobileDateTimePicker />', () => {
       />,
     );
 
-    expect(queryByMuiTest(document.body, 'seconds')).to.equal(null);
-    expect(getByMuiTest('hours')).to.have.text('10');
-    expect(getByMuiTest('minutes')).to.have.text('01');
-    expect(getByMuiTest('datetimepicker-toolbar-year')).to.have.text('2021');
-    expect(getByMuiTest('datetimepicker-toolbar-day')).to.have.text('Nov 20');
+    expect(screen.queryByMuiTest('seconds')).to.equal(null);
+    expect(screen.getByMuiTest('hours')).to.have.text('10');
+    expect(screen.getByMuiTest('minutes')).to.have.text('01');
+    expect(screen.getByMuiTest('datetimepicker-toolbar-year')).to.have.text('2021');
+    expect(screen.getByMuiTest('datetimepicker-toolbar-day')).to.have.text('Nov 20');
   });
 
   it('can render seconds on view', () => {
@@ -161,6 +156,6 @@ describe('<MobileDateTimePicker />', () => {
         value={adapterToUse.date('2021-11-20T10:01:22.000')}
       />,
     );
-    expect(getByMuiTest('seconds')).to.have.text('22');
+    expect(screen.getByMuiTest('seconds')).to.have.text('22');
   });
 });
