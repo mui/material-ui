@@ -93,3 +93,56 @@ const styled = createStyled({ defaultTheme });
 
 export default styled;
 ```
+
+## Difference with the `sx` prop
+
+We want the `styled` function to behave similarly to the `styled` function of other technologies, like Emotion or Styled Components. 
+The `sx` prop however, is a new way of styling your application, focused on fast customization. `styled` is a function, while `sx` is a prop of Mui components.
+
+Therefore, you may observe a few difference:
+- `sx` provides more shortcuts than `styled`
+- the style definition slightly varies
+- patterns to use props are different
+
+You'll need to take those difference into account when refactoring your components.
+
+### Using props
+
+With `styled`:
+```js
+const MyStyledButton = styled("button")({
+  backgroundColor: props => props.myBackgroundColor
+})
+```
+With `sx`:
+```js
+const MyStyledButton = (props) => (
+  <button sx={{backgroundColor: props.myCustomColor}}>
+     {props.children}
+  </button>
+})
+```
+
+### Using shortcuts
+
+`styled` won't provide the same shortcuts as `sx` do. 
+
+With `styled`:
+```js
+const MyStyledButton = styled("button")({
+  mx: 1, // ❌ this shortcut is only provided by the `sx` prop
+  margin: 1, // means "1px", NOT "theme.spacing(1)"
+})
+```
+
+With `sx`:
+```js
+const MyStyledButton = (props) => (
+  <button sx={{
+    mx: 1 // ✔️ this shortcut is specific to the `sx` prop,
+    margin: 1 // means "theme.spacing(1)", NOT "1px"
+  }}>
+     {props.children}
+  </button>
+})
+```
