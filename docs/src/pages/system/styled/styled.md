@@ -130,8 +130,8 @@ const MyStyledButton = (props) => (
 With `styled`:
 ```js
 const MyStyledButton = styled("button")({
-  mx: 1, // ❌ this shortcut is only provided by the `sx` prop
-  margin: 1, // means "1px", NOT "theme.spacing(1)"
+  mx: 1, // ❌ don't use this! This shortcut is only provided by the `sx` prop
+  padding: 1, // means "1px", NOT "theme.spacing(1)"
 })
 ```
 
@@ -139,8 +139,8 @@ With `sx`:
 ```js
 const MyStyledButton = (props) => (
   <button sx={{
-    mx: 1 // ✔️ this shortcut is specific to the `sx` prop,
-    margin: 1 // means "theme.spacing(1)", NOT "1px"
+    mx: 1, // ✔️ this shortcut is specific to the `sx` prop,
+    padding: 1 // means "theme.spacing(1)", NOT "1px"
   }}>
      {props.children}
   </button>
