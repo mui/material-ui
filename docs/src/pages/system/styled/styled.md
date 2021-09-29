@@ -99,7 +99,7 @@ export default styled;
 We want the `styled` function to behave similarly to the `styled` function of other technologies, like Emotion or Styled Components. 
 The `sx` prop however, is a new way of styling your application, focused on fast customization. `styled` is a function, while `sx` is a prop of Mui components.
 
-Therefore, you may observe a few difference:
+Therefore, you may observe a few differences:
 - `sx` provides more shortcuts than `styled`
 - the style definition slightly varies
 - patterns to use props are different
