@@ -69,15 +69,15 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   };
 
   const rootStateClasses = {
-    [classes.disabled]: disabled,
-    [classes.error]: error,
+    [classes.disabled]: disabledState,
+    [classes.error]: errorState,
     [classes.focused]: focused,
     [classes.formControl]: formControlContext,
     [classes.multiline]: multiline,
   };
 
   const inputStateClasses = {
-    [classes.disabled]: disabled,
+    [classes.disabled]: disabledState,
     [classes.multiline]: multiline,
   };
 

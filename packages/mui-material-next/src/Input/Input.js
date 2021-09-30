@@ -1,9 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { styled, shouldForwardProp } from '@mui/system';
-import { InputUnstyled, inputUnstyledClasses } from '@mui/core';
-import { capitalize } from '@mui/utils';
+import {
+  InputUnstyled,
+  inputUnstyledClasses,
+  unstable_composeClasses as composeClasses,
+} from '@mui/core';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import { getInputUtilityClass } from './inputClasses';
 
 const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !== 'classes';
 
@@ -36,6 +42,30 @@ const inputOverridesResolver = (props, styles) => {
     ownerState.endAdornment && styles.inputAdornedEnd,
     ownerState.hiddenLabel && styles.inputHiddenLabel,
   ];
+};
+
+const useUtilityClasses = (ownerState) => {
+  const { classes, color, endAdornment, fullWidth, hiddenLabel, size, startAdornment, type } =
+    ownerState;
+  const slots = {
+    root: [
+      `color${capitalize(color)}`,
+      fullWidth && 'fullWidth',
+      size === 'small' && 'sizeSmall',
+      startAdornment && 'adornedStart',
+      endAdornment && 'adornedEnd',
+      hiddenLabel && 'hiddenLabel',
+    ],
+    input: [
+      type === 'search' && 'inputTypeSearch',
+      size === 'small' && 'inputSizeSmall',
+      hiddenLabel && 'inputHiddenLabel',
+      startAdornment && 'inputAdornedStart',
+      endAdornment && 'inputAdornedEnd',
+    ],
+  };
+
+  return composeClasses(slots, getInputUtilityClass, classes);
 };
 
 const InputRoot = styled('div', {
@@ -220,8 +250,13 @@ const InputInput = styled('input', {
   };
 });
 
+const InputTextarea = React.forwardRef(function TextareaInput(props, ref) {
+  return <InputInput {...props} ref={ref} as={TextareaAutosize} />;
+});
+
 const Input = React.forwardRef(function Input(props, ref) {
   const {
+    className,
     color,
     disableUnderline = false,
     endAdornment,
@@ -245,7 +280,7 @@ const Input = React.forwardRef(function Input(props, ref) {
   const components = {
     Root: InputRoot,
     Input: startAdornment || endAdornment ? InputWithAdornments : InputInput,
-    Textarea: TextareaAutosize,
+    Textarea: InputTextarea,
   };
 
   const ownerState = {
@@ -257,9 +292,17 @@ const Input = React.forwardRef(function Input(props, ref) {
     size,
   };
 
+  const classes = useUtilityClasses(ownerState);
+
   const componentsProps = {
-    root: { ownerState },
-    input: { ownerState },
+    root: {
+      ownerState,
+      className: clsx(classes.root, className),
+    },
+    input: {
+      ownerState,
+      className: classes.input,
+    },
   };
 
   return (
@@ -294,6 +337,10 @@ Input.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * Class name applied to the root element.
+   */
+  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
