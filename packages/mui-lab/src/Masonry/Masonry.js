@@ -79,8 +79,8 @@ export const style = ({ ownerState, theme }) => {
         margin: spacing / 2,
       },
       ...(ownerState.maxColumnHeight &&
-        ownerState.maxNumOfRows && {
-          height: ownerState.maxColumnHeight + spacing * ownerState.maxNumOfRows,
+        ownerState.maxNumberOfRows && {
+          height: ownerState.maxColumnHeight + spacing * ownerState.maxNumberOfRows,
         }),
     };
   };
@@ -150,17 +150,17 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
   const masonryRef = React.useRef();
   const [maxColumnHeight, setMaxColumnHeight] = React.useState();
-  const [maxNumOfRows, setMaxNumOfRows] = React.useState();
+  const [maxNumberOfRows, setMaxNumberOfRows] = React.useState();
   const [numberOfLineBreaks, setNumberOfLineBreaks] = React.useState(0);
   const { children, className, component = 'div', columns = 4, spacing = 1, ...other } = props;
-  const ownerState = { ...props, spacing, columns, maxColumnHeight, maxNumOfRows };
+  const ownerState = { ...props, spacing, columns, maxColumnHeight, maxNumberOfRows };
   const classes = useUtilityClasses(ownerState);
 
   React.useEffect(() => {
     const handleResize = () => {
       let columnHeights;
-      let numOfRows;
-      let curNumOfCols;
+      let numberOfRows;
+      let currentNumberOfColumns;
       let skip = false;
       masonryRef.current.childNodes.forEach((child) => {
         if (child.nodeType !== Node.ELEMENT_NODE || child.dataset.class === 'line-break' || skip) {
@@ -179,27 +179,27 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
           skip = true;
           return;
         }
-        if (!curNumOfCols) {
-          curNumOfCols = Math.floor(parentWidth / (width + margin * 2));
+        if (!currentNumberOfColumns) {
+          currentNumberOfColumns = Math.floor(parentWidth / (width + margin * 2));
         }
         if (!columnHeights) {
-          columnHeights = new Array(curNumOfCols).fill(0);
+          columnHeights = new Array(currentNumberOfColumns).fill(0);
         }
-        if (!numOfRows) {
-          numOfRows = new Array(curNumOfCols).fill(0);
+        if (!numberOfRows) {
+          numberOfRows = new Array(currentNumberOfColumns).fill(0);
         }
 
         // find the current shortest column (where the current item will be placed)
         const curMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
         columnHeights[curMinColumnIndex] += height;
-        numOfRows[curMinColumnIndex] += 1;
+        numberOfRows[curMinColumnIndex] += 1;
         const order = curMinColumnIndex + 1;
         child.style.order = order;
       });
       if (!skip) {
         setMaxColumnHeight(Math.max(...columnHeights));
-        setMaxNumOfRows(Math.max(...numOfRows));
-        const numOfLineBreaks = curNumOfCols > 0 ? curNumOfCols - 1 : 0;
+        setMaxNumberOfRows(Math.max(...numberOfRows));
+        const numOfLineBreaks = currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0;
         setNumberOfLineBreaks(numOfLineBreaks);
       }
     };
