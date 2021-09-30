@@ -98,6 +98,7 @@ export default styled;
 
 The `styled` function is an extension of the `styled` utility provided by the underlying styled engine used, emotion or styled-components.
 It is guaranteed that it will produce the same output as the `styled` function coming from the styled engine for the same input.
+
 The [`sx`](/system/the-sx-prop/) prop, on the other hand, is a new way of styling your components, focused on fast customization. `styled` is a function, while `sx` is a prop of the MUI components.
 
 Therefore, you will notice the following differences:
