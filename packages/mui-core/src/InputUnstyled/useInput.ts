@@ -108,9 +108,9 @@ export default function useInput(props: UseInputProps) {
         const element = event.target || inputRef.current;
         if (element == null) {
           throw new MuiError(
-            'Material-UI: Expected valid input target. ' +
+            'MUI: Expected valid input target. ' +
               'Did you use a custom `components.Input` and forget to forward refs? ' +
-              'See https://material-ui.com/r/input-component-ref-interface for more info.',
+              'See https://mui.com/r/input-component-ref-interface for more info.',
           );
         }
       }
