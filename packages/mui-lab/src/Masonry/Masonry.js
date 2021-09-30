@@ -162,14 +162,15 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       let numberOfRows;
       let currentNumberOfColumns;
       let skip = false;
+      const parentWidth = Number(
+        window.getComputedStyle(masonryRef.current).width.replace('px', ''),
+      );
+
       masonryRef.current.childNodes.forEach((child) => {
         if (child.nodeType !== Node.ELEMENT_NODE || child.dataset.class === 'line-break' || skip) {
           return;
         }
         const computedStyle = window.getComputedStyle(child);
-        const parentWidth = Number(
-          window.getComputedStyle(masonryRef.current).width.replace('px', ''),
-        );
         const width = Number(computedStyle.width.replace('px', ''));
         const margin = Number(computedStyle.margin.replace('px', ''));
         const height = Number(computedStyle.height.replace('px', ''));
