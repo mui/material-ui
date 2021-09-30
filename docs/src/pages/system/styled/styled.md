@@ -178,7 +178,7 @@ const MyStyledButton = (props) => (
 })
 // NOTE: for direct theme access without modification, you can also use a shortcut
 const MyStyledButton = (props) => (
-  <button sx={{backgroundColor: "theme.palette.primary.main"}}>
+  <button sx={{backgroundColor: "primary.main"}}>
      {props.children}
   </button>
 })
