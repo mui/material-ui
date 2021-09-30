@@ -139,7 +139,7 @@ const MyStyledButton = (props) => (
 })
 ```
 
-### Patterns to use props are different
+### Patterns of how to use props are different
 
 With `styled`:
 ```js
