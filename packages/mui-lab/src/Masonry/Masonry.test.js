@@ -48,7 +48,7 @@ describe('<Masonry />', () => {
         flexFlow: 'column wrap',
         alignContent: 'space-between',
         boxSizing: 'border-box',
-        '& *': {
+        '& > *': {
           boxSizing: 'border-box',
           margin: parseToNumber(theme.spacing(spacing)) / 2,
           width: `calc(${(100 / columns).toFixed(1)}% - ${theme.spacing(spacing)})`,
@@ -76,12 +76,12 @@ describe('<Masonry />', () => {
         flexFlow: 'column wrap',
         alignContent: 'space-between',
         boxSizing: 'border-box',
-        '& *': {
+        '& > *': {
           boxSizing: 'border-box',
           width: `calc(${(100 / columns).toFixed(1)}% - 0px)`,
         },
         [`@media (min-width:${theme.breakpoints.values.xs}px)`]: {
-          '& *': {
+          '& > *': {
             margin: parseToNumber(theme.spacing(spacing.xs)) / 2,
             width: `calc(${(100 / columns).toFixed(1)}% - ${theme.spacing(spacing.xs)})`,
           },
@@ -89,7 +89,7 @@ describe('<Masonry />', () => {
           height: maxColumnHeight + parseToNumber(theme.spacing(spacing.xs)) * maxNumberOfRows,
         },
         [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
-          '& *': {
+          '& > *': {
             margin: parseToNumber(theme.spacing(spacing.sm)) / 2,
             width: `calc(${(100 / columns).toFixed(1)}% - ${theme.spacing(spacing.sm)})`,
           },
@@ -97,7 +97,7 @@ describe('<Masonry />', () => {
           height: maxColumnHeight + parseToNumber(theme.spacing(spacing.sm)) * maxNumberOfRows,
         },
         [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
-          '& *': {
+          '& > *': {
             margin: parseToNumber(theme.spacing(spacing.md)) / 2,
             width: `calc(${(100 / columns).toFixed(1)}% - ${theme.spacing(spacing.md)})`,
           },
@@ -125,24 +125,24 @@ describe('<Masonry />', () => {
         flexFlow: 'column wrap',
         alignContent: 'space-between',
         boxSizing: 'border-box',
-        '& *': {
+        '& > *': {
           boxSizing: 'border-box',
           margin: parseToNumber(theme.spacing(spacing)) / 2,
         },
         margin: -(parseToNumber(theme.spacing(spacing)) / 2),
         height: maxColumnHeight + parseToNumber(theme.spacing(spacing)) * maxNumberOfRows,
         [`@media (min-width:${theme.breakpoints.values.xs}px)`]: {
-          '& *': {
+          '& > *': {
             width: `calc(${(100 / columns.xs).toFixed(1)}% - ${theme.spacing(spacing)})`,
           },
         },
         [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
-          '& *': {
+          '& > *': {
             width: `calc(${(100 / columns.sm).toFixed(1)}% - ${theme.spacing(spacing)})`,
           },
         },
         [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
-          '& *': {
+          '& > *': {
             width: `calc(${(100 / columns.md).toFixed(1)}% - ${theme.spacing(spacing)})`,
           },
         },

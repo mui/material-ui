@@ -58,7 +58,7 @@ export const style = ({ ownerState, theme }) => {
     flexFlow: 'column wrap',
     alignContent: 'space-between',
     boxSizing: 'border-box',
-    '& *': {
+    '& > *': {
       boxSizing: 'border-box',
     },
   };
@@ -75,7 +75,7 @@ export const style = ({ ownerState, theme }) => {
     const spacing = Number(getValue(transformer, propValue).replace('px', ''));
     return {
       margin: -(spacing / 2),
-      '& *': {
+      '& > *': {
         margin: spacing / 2,
       },
       ...(ownerState.maxColumnHeight &&
@@ -102,7 +102,7 @@ export const style = ({ ownerState, theme }) => {
     const spacing =
       typeof spacingValues !== 'object' ? getValue(transformer, Number(spacingValues)) : '0px';
     return {
-      '& *': { width: `calc(${width} - ${spacing})` },
+      '& > *': { width: `calc(${width} - ${spacing})` },
     };
   };
 
@@ -123,7 +123,7 @@ export const style = ({ ownerState, theme }) => {
               : columnValues;
           const width = `${(100 / column).toFixed(1)}%`;
           return {
-            '& *': { width: `calc(${width} - ${spacing})` },
+            '& > *': { width: `calc(${width} - ${spacing})` },
           };
         }
         return null;
