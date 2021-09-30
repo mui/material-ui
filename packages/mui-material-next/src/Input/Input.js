@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { styled, shouldForwardProp } from '@mui/system';
+import { styled } from '@mui/material/styles';
+import { shouldForwardProp } from '@mui/system';
 import {
   InputUnstyled,
   inputUnstyledClasses,
@@ -258,6 +259,7 @@ const Input = React.forwardRef(function Input(props, ref) {
   const {
     className,
     color,
+    componentsProps = {},
     disableUnderline = false,
     endAdornment,
     fullWidth = false,
@@ -294,19 +296,26 @@ const Input = React.forwardRef(function Input(props, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const componentsProps = {
+  const amendedComponentsProps = {
     root: {
+      ...componentsProps.root,
       ownerState,
-      className: clsx(classes.root, className),
+      className: clsx(classes.root, className, componentsProps.root?.className),
     },
     input: {
+      ...componentsProps.input,
       ownerState,
-      className: classes.input,
+      className: clsx(classes.input, componentsProps.input?.className),
     },
   };
 
   return (
-    <InputUnstyled {...other} ref={ref} components={components} componentsProps={componentsProps} />
+    <InputUnstyled
+      {...other}
+      ref={ref}
+      components={components}
+      componentsProps={amendedComponentsProps}
+    />
   );
 });
 
