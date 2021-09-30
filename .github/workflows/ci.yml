@@ -38,6 +38,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: yarn release:tag
+        if: github.event_name != 'push' || (github.event_name == 'push' && github.repository == 'mui-org/material-ui')
         run: |
           git remote -v
           yarn release:tag --dryRun
