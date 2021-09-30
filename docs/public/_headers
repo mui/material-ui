@@ -4,6 +4,12 @@
 /static/images/*
   Cache-Control: public, max-age=86400
 
+# Redirecting svg to png would not work e.g.
+# /static/colors-preview/:color.svg /static/colors-preview/:color.png 301
+# So we need to use the old file name to fix previews for published packages.
+/static/colors-preview/*
+  Content-Type: image/png
+
 /favicon.ico
   Content-Type: image/x-icon
 

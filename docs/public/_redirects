@@ -170,7 +170,6 @@ https://v1.material-ui.com/* https://v1.mui.com/:splat 301!
 https://v3.material-ui.com/* https://v3.mui.com/:splat 301!
 https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /company/careers/ /careers/ 301
-/static/colors-preview/:color.svg /static/colors-preview/:color.png 301
 
 # Proxies
 
