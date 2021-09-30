@@ -22,6 +22,27 @@ Quickly build beautiful [React](https://reactjs.org/) apps. MUI is a simple and 
 
 </div>
 
+Table of Contents
+=================
+
+* [MUI](#mui)
+   * [Installation](#installation)
+   * [Who sponsors MUI?](#who-sponsors-mui)
+      * [Diamond <g-emoji class="g-emoji" alias="gem" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f48e.png">💎</g-emoji>](#diamond-)
+      * [Gold <g-emoji class="g-emoji" alias="trophy" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f3c6.png">🏆</g-emoji>](#gold-)
+      * [There is more!](#there-is-more)
+   * [Usage](#usage)
+   * [Questions](#questions)
+   * [Examples](#examples)
+   * [Documentation](#documentation)
+   * [Premium Themes](#premium-themes)
+   * [Contributing](#contributing)
+   * [Changelog](#changelog)
+   * [Roadmap](#roadmap)
+   * [License](#license)
+   * [Sponsoring services](#sponsoring-services)
+
+
 ## Installation
 
 MUI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
