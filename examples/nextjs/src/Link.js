@@ -20,6 +20,7 @@ export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props
       replace={replace}
       scroll={scroll}
       shallow={shallow}
+      passHref
       locale={locale}
     >
       <Anchor ref={ref} {...other} />
