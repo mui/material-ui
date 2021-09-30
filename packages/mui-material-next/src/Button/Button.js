@@ -412,7 +412,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     }, [enableTouchRipple]);
   }
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     centerRipple,
     color,
@@ -430,16 +430,16 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const startIcon = startIconProp && (
-    <ButtonStartIcon className={classes.startIcon} ownerState={styleProps}>
+    <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
       {startIconProp}
     </ButtonStartIcon>
   );
 
   const endIcon = endIconProp && (
-    <ButtonEndIcon className={classes.endIcon} ownerState={styleProps}>
+    <ButtonEndIcon className={classes.endIcon} ownerState={ownerState}>
       {endIconProp}
     </ButtonEndIcon>
   );
@@ -448,7 +448,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     <ButtonRoot
       as={ComponentProp}
       className={clsx(classes.root, className)}
-      ownerState={styleProps}
+      ownerState={ownerState}
       {...getRootProps(getRippleHandlers(props))}
       {...other}
     >
