@@ -151,7 +151,10 @@ module.exports = async function webpackConfig(webpack, environment) {
 
   const entries = await getWebpackEntries();
   const configurations = entries.map((entry) => {
-    return {
+    /**
+     * @type {import('webpack').Configuration}
+     */
+    const configuration = {
       // ideally this would be computed from the bundles peer dependencies
       // Ensure that `react` as well as `react/*` are considered externals but not `react*`
       externals: /^(date-fns|dayjs|luxon|moment|react|react-dom)(\/.*)?$/,
@@ -166,6 +169,12 @@ module.exports = async function webpackConfig(webpack, environment) {
       },
       output: {
         filename: '[name].js',
+        library: {
+          // TODO: Use `type: 'module'` once it is supported (currently incompatible with `externals`)
+          name: 'M',
+          type: 'var',
+          // type: 'module',
+        },
         path: path.join(__dirname, 'build'),
       },
       plugins: [
@@ -194,7 +203,12 @@ module.exports = async function webpackConfig(webpack, environment) {
         },
       },
       entry: { [entry.id]: path.join(workspaceRoot, entry.path) },
+      // TODO: 'browserslist:modern'
+      // See https://github.com/webpack/webpack/issues/14203
+      target: 'web',
     };
+
+    return configuration;
   });
 
   return configurations;

@@ -12,7 +12,7 @@
 
 ## About us
 
-See the [careers](/company/careers/) and [about us](/about/) pages.
+See the [careers](/careers/) and [about us](/about/) pages.
 
 ### Why we're hiring
 
@@ -25,7 +25,7 @@ We believe that the best way to improve on these dimensions is to eliminate [80%
 
 ### Why this is interesting
 
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use Material-UI every month.
+Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
 
 But providing React components isn't enough.
 In our [last developer survey](/blog/2020-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
@@ -34,7 +34,7 @@ They are working on a couple of new projects every year, and where the integrati
 
 ## About the role
 
-You will be joining the advanced components team.
+You will initiate the exploration of a bold new product vertical.
 
 ### What you'll do on a day-to-day basis
 
@@ -60,7 +60,7 @@ You will be joining the advanced components team.
 
 ## Compensation
 
-Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/company/careers/#perks-amp-benefits) page.
+Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/careers/#perks-amp-benefits) page.
 
 ## Apply
 

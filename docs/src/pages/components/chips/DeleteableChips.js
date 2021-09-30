@@ -9,8 +9,8 @@ export default function DeleteableChips() {
 
   return (
     <Stack direction="row" spacing={1}>
-      <Chip label="Deleteable" onDelete={handleDelete} />
-      <Chip label="Deleteable" variant="outlined" onDelete={handleDelete} />
+      <Chip label="Deletable" onDelete={handleDelete} />
+      <Chip label="Deletable" variant="outlined" onDelete={handleDelete} />
     </Stack>
   );
 }

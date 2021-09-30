@@ -15,6 +15,5 @@
   "filename": "/packages/mui-material/src/ListItemIcon/ListItemIcon.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

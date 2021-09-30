@@ -513,7 +513,7 @@ export default function transformer(file, api, options) {
         path.insertAfter(
           j.importDeclaration(
             [j.importSpecifier(j.identifier('styled'))],
-            j.literal('@material-ui/core/styles'),
+            j.literal('@mui/material/styles'),
           ),
         ),
       );

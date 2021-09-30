@@ -128,7 +128,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       ...(mode === 'light' && {
         text: {
           primary: grey[900],
-          secondary: grey[800],
+          secondary: grey[700],
         },
       }),
       ...(mode === 'dark' && {
@@ -189,7 +189,14 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     spacing: 10,
     typography: {
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
-      fontFamilyCode: ['"IBM Plex Mono"', ...systemFont].join(','),
+      fontFamilyCode: [
+        'Consolas',
+        'Menlo',
+        'Monaco',
+        'Andale Mono',
+        'Ubuntu Mono',
+        'monospace',
+      ].join(','),
       fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
       fontFamilySystem: systemFont.join(','),
       fontWeightExtraBold: 800,
@@ -299,7 +306,10 @@ export function getThemedComponents(theme: Theme) {
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[700]
                   : theme.palette.grey[50],
+              ...theme.typography.body2,
               fontFamily: theme.typography.fontFamilyCode,
+              fontWeight: 600,
+              WebkitFontSmoothing: 'subpixel-antialiased',
               '&:hover, &.Mui-focusVisible': {
                 borderColor: theme.palette.primary.main,
                 backgroundColor:
@@ -320,14 +330,6 @@ export function getThemedComponents(theme: Theme) {
                 color:
                   theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[700],
               },
-            },
-          },
-          {
-            props: { variant: 'code', size: 'large' },
-            style: {
-              ...theme.typography.body2,
-              fontFamily: theme.typography.fontFamilyCode,
-              fontWeight: theme.typography.fontWeightBold,
             },
           },
         ],
@@ -370,6 +372,16 @@ export function getThemedComponents(theme: Theme) {
             },
             '& svg:last-child': {
               marginLeft: 2,
+            },
+          },
+        },
+      },
+      MuiListItemButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: 5,
+            '&:hover, &:focus': {
+              backgroundColor: theme.palette.mode === 'dark' ? '' : theme.palette.grey[100],
             },
           },
         },

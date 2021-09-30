@@ -20,6 +20,5 @@
   "filename": "/packages/mui-core/src/ButtonUnstyled/ButtonUnstyled.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

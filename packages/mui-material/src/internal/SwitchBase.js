@@ -168,7 +168,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
         ownerState={ownerState}
         tabIndex={tabIndex}
         type={type}
-        value={value}
+        {...(type === 'checkbox' && value === undefined ? {} : { value })}
         {...inputProps}
       />
       {checked ? checkedIcon : icon}

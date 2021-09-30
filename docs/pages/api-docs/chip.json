@@ -82,6 +82,5 @@
   "filename": "/packages/mui-material/src/Chip/Chip.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/chips/\">Chips</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

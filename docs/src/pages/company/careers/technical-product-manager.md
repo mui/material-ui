@@ -12,7 +12,7 @@
 
 ## About us
 
-See the [careers](/company/careers/) and [about us](/about/) pages.
+See the [careers](/careers/) and [about us](/about/) pages.
 
 ### Why we're hiring
 
@@ -25,7 +25,7 @@ Our users are continuously providing feedback on the most important [pains they 
 
 ### Why this is interesting
 
-Our solution is empowering React developers to build awesome applications. It should be easy, it shouldn't require any advanced technical skills. Hundreds of thousands of developers use Material-UI every month.
+Our solution is empowering React developers to build awesome applications. It should be easy, it shouldn't require any advanced technical skills. Hundreds of thousands of developers use MUI every month.
 We are the second most used UI library in the world, after Bootstrap.
 
 Our enterprise components portfolio is still small, with a million interesting and challenging problems to solve.
@@ -60,7 +60,7 @@ You will be joining the advanced components team.
 
 ## Compensation
 
-Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/company/careers/#perks-amp-benefits) page.
+Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/careers/#perks-amp-benefits) page.
 
 ## Apply
 

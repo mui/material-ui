@@ -39,7 +39,7 @@ async function getBranches() {
 }
 
 Page.getInitialProps = async () => {
-  const FILTERED_BRANCHES = ['latest', 'l10n', 'next'];
+  const FILTERED_BRANCHES = ['latest', 'l10n', 'next', 'material-ui.com'];
 
   const branches = await getBranches();
   /**

@@ -87,6 +87,5 @@
   "filename": "/packages/mui-lab/src/MobileTimePicker/MobileTimePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

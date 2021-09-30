@@ -61,6 +61,5 @@
   "filename": "/packages/mui-material/src/Switch/Switch.js",
   "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },
   "demos": "<ul><li><a href=\"/components/switches/\">Switches</a></li>\n<li><a href=\"/components/transfer-list/\">Transfer List</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

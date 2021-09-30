@@ -30,19 +30,19 @@ You can use the following actions.
 - Chips with the `onClick` prop defined change appearance on focus, hover, and click.
 - Chips with the `onDelete` prop defined will display a delete icon which changes appearance on hover.
 
-### Clickeable
+### Clickable
 
 {{"demo": "pages/components/chips/ClickeableChips.js"}}
 
-### Deleteable
+### Deletable
 
 {{"demo": "pages/components/chips/DeleteableChips.js"}}
 
-### Clickeable and deleteable
+### Clickable and deletable
 
 {{"demo": "pages/components/chips/ClickeableAndDeleteableChips.js"}}
 
-### Clickeable link
+### Clickable link
 
 {{"demo": "pages/components/chips/ClickeableLinkChips.js"}}
 

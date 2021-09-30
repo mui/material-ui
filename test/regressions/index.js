@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
@@ -13,12 +14,16 @@ importRegressionFixtures.keys().forEach((path) => {
     .replace(/\.\w+$/, '')
     .split('/');
 
-  regressionFixtures.push({
-    path,
-    suite: `regression-${suite}`,
-    name,
-    Component: React.lazy(() => importRegressionFixtures(path)),
-  });
+  // TODO: Why does webpack include a key for the absolute and relative path?
+  // We just want the relative path
+  if (path.startsWith('./')) {
+    regressionFixtures.push({
+      path,
+      suite: `regression-${suite}`,
+      name,
+      Component: React.lazy(() => importRegressionFixtures(path)),
+    });
+  }
 }, []);
 
 const blacklist = [
@@ -106,6 +111,7 @@ const blacklist = [
   'docs-components-snackbars/SimpleSnackbar.png', // Needs interaction
   'docs-components-snackbars/TransitionsSnackbar.png', // Needs interaction
   'docs-components-speed-dial', // Needs interaction
+  'docs-components-stack/InteractiveStack.png', // Redundant
   'docs-components-steppers/HorizontalNonLinearStepper.png', // Redundant
   'docs-components-steppers/SwipeableTextMobileStepper.png', // Flaky image loading
   'docs-components-steppers/TextMobileStepper.png', // Flaky image loading
@@ -203,7 +209,9 @@ importDemos.keys().forEach((path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
-  if (!excludeDemoFixture(suite, name)) {
+  // TODO: Why does webpack include a key for the absolute and relative path?
+  // We just want the relative path
+  if (path.startsWith('./') && !excludeDemoFixture(suite, name)) {
     demoFixtures.push({
       path,
       suite,
@@ -213,8 +221,6 @@ importDemos.keys().forEach((path) => {
   }
 }, []);
 
-const fixtures = regressionFixtures.concat(demoFixtures);
-
 if (unusedBlacklistPatterns.size > 0) {
   console.warn(
     `The following patterns are unused:\n\n${Array.from(unusedBlacklistPatterns)
@@ -223,7 +229,9 @@ if (unusedBlacklistPatterns.size > 0) {
   );
 }
 
-function App() {
+function App(props) {
+  const { fixtures } = props;
+
   function computeIsDev() {
     if (window.location.hash === '#dev') {
       return true;
@@ -321,8 +329,12 @@ function App() {
   );
 }
 
+App.propTypes = {
+  fixtures: PropTypes.array,
+};
+
 const container = document.getElementById('react-root');
-const children = <App />;
+const children = <App fixtures={regressionFixtures.concat(demoFixtures)} />;
 if (typeof ReactDOM.unstable_createRoot === 'function') {
   const root = ReactDOM.unstable_createRoot(container);
   root.render(children);
