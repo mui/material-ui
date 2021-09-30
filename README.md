@@ -4,6 +4,8 @@
 
 <h1 align="center">Material-UI</h1>
 
+> MUI v5 is out! ✨ Check out the latest documentation [here](https://mui.com/).
+
 <div align="center">
 
 [React](https://reactjs.org/) components for faster and simpler web development. Build your own design system, or start with [Material Design](https://material.io/design/introduction/).
@@ -26,8 +28,6 @@
 
 Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
 
-**[Stable channel v4](https://mui.com/)**
-
 ```sh
 // with npm
 npm install @material-ui/core
@@ -36,17 +36,7 @@ npm install @material-ui/core
 yarn add @material-ui/core
 ```
 
-⚠️ All ongoing work has moved to v5. The development of v4 is limited to important bug fixes, security patches and easing the upgrade path to v5.
-
-**[Alpha channel v5](https://next.material-ui.com/)**
-
-```sh
-// with npm
-npm install @material-ui/core@next
-
-// with yarn
-yarn add @material-ui/core@next
-```
+Head to the [v4 documentation](https://v4.mui.com/) for more details.
 
 <details>
   <summary>Older versions</summary>
@@ -55,8 +45,6 @@ yarn add @material-ui/core@next
   - **[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://mui.com/guides/migration-v0x/))
 
 </details>
-
-Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
 
 ## Who sponsors Material-UI?
 
