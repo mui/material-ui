@@ -338,7 +338,7 @@ module.exports = {
       },
     },
     {
-      files: ['framer/Material-UI.framerfx/code/**/*.tsx'],
+      files: ['framer/MUI.framerfx/code/**/*.tsx'],
       rules: {
         // framer requires named exports
         'import/prefer-default-export': 'off',
