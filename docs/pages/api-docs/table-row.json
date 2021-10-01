@@ -3,14 +3,15 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" } },
     "hover": { "type": { "name": "bool" } },
     "selected": { "type": { "name": "bool" } },
     "sx": { "type": { "name": "object" } }
   },
   "name": "TableRow",
   "styles": {
-    "classes": ["root", "selected", "hover", "head", "footer"],
-    "globalClasses": { "selected": "Mui-selected" },
+    "classes": ["root", "disabled", "selected", "hover", "head", "footer"],
+    "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" },
     "name": "MuiTableRow"
   },
   "spread": true,

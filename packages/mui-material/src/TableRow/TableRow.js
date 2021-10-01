@@ -9,10 +9,17 @@ import styled from '../styles/styled';
 import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, selected, hover, head, footer } = ownerState;
+  const { classes, disabled, selected, hover, head, footer } = ownerState;
 
   const slots = {
-    root: ['root', selected && 'selected', hover && 'hover', head && 'head', footer && 'footer'],
+    root: [
+      'root',
+      disabled && 'disabled',
+      selected && 'selected',
+      hover && 'hover',
+      head && 'head',
+      footer && 'footer',
+    ],
   };
 
   return composeClasses(slots, getTableRowUtilityClass, classes);
@@ -32,6 +39,10 @@ const TableRowRoot = styled('tr', {
   verticalAlign: 'middle',
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
+  [`&.${tableRowClasses.disabled}`]: {
+    opacity: theme.palette.action.disabledOpacity,
+    pointerEvents: 'none',
+  },
   [`&.${tableRowClasses.hover}:hover`]: {
     backgroundColor: theme.palette.action.hover,
   },
@@ -56,6 +67,7 @@ const TableRow = React.forwardRef(function TableRow(inProps, ref) {
   const {
     className,
     component = defaultComponent,
+    disabled = false,
     hover = false,
     selected = false,
     ...other
@@ -65,6 +77,7 @@ const TableRow = React.forwardRef(function TableRow(inProps, ref) {
   const ownerState = {
     ...props,
     component,
+    disabled,
     hover,
     selected,
     head: tablelvl2 && tablelvl2.variant === 'head',
@@ -107,6 +120,11 @@ TableRow.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
   /**
    * If `true`, the table row will shade on hover.
    * @default false

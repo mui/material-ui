@@ -15,6 +15,11 @@ export interface TableRowTypeMap<P = {}, D extends React.ElementType = 'tr'> {
      */
     classes?: Partial<TableRowClasses>;
     /**
+     * If `true`, the component is disabled.
+     * @default false
+     */
+    disabled?: boolean;
+    /**
      * If `true`, the table row will shade on hover.
      * @default false
      */

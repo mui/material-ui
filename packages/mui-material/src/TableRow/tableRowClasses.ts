@@ -3,6 +3,8 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/core';
 export interface TableRowClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled: string;
   /** State class applied to the root element if `selected={true}`. */
   selected: string;
   /** State class applied to the root element if `hover={true}`. */
@@ -21,6 +23,7 @@ export function getTableRowUtilityClass(slot: string): string {
 
 const tableRowClasses: TableRowClasses = generateUtilityClasses('MuiTableRow', [
   'root',
+  'disabled',
   'selected',
   'hover',
   'head',
