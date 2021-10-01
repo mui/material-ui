@@ -252,6 +252,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     title,
     TransitionComponent = Grow,
     TransitionProps,
+    sx,
     ...other
   } = props;
 
@@ -649,6 +650,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         {...interactiveWrapperListeners}
         {...PopperProps}
         popperOptions={popperOptions}
+        sx={{ ...sx, ...PopperProps.sx }}
         ownerState={ownerState}
       >
         {({ TransitionProps: TransitionPropsInner }) => (
