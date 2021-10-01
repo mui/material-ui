@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { useTheme, styled } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -13,38 +14,29 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-const Placeholder = styled('a')(({ theme }) => ({
-  width: '100%',
-  height: 55,
-  fontSize: theme.typography.pxToRem(14),
-  fontWeight: 700,
-  alignItems: 'center',
-  justifyContent: 'center',
-  textDecoration: 'none',
-  borderRadius: theme.shape.borderRadius,
-  color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
-  border: `1px dashed ${theme.palette.divider}`,
-  transition: theme.transitions.create(['color', 'border-color']),
-  '&&': {
-    display: 'flex',
-  },
-  '&:hover': {
-    borderColor: 'currentColor',
-    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
-    backgroundColor:
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.primary[50],
-  },
-}));
-
 export default function DiamondSponsors(props) {
   const { spot } = props;
   const theme = useTheme();
   const t = useTranslate();
-
+  const boxStyle = {
+    width: '100%',
+    height: 55,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: `1px solid ${theme.palette.divider}`,
+    borderRadius: 1,
+    transition: theme.transitions.create(['color', 'border-color']),
+    '&:hover': {
+      borderColor: 'currentColor',
+      color:
+        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+    },
+  };
   return (
     <Root>
       <Typography variant="caption" color="primary.main" display="block" sx={{ mb: 2 }}>
-        {t('diamondSponsors')}
+        <Link href="/discover-more/backers/#diamond">{t('diamondSponsors')}</Link>
       </Typography>
       <Stack spacing={1.5}>
         <Box
@@ -55,23 +47,7 @@ export default function DiamondSponsors(props) {
           href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
-          sx={{
-            width: '100%',
-            height: 55,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            border: `1px solid ${theme.palette.divider}`,
-            borderRadius: 1,
-            transition: theme.transitions.create(['color', 'border-color']),
-            '&:hover': {
-              borderColor: 'currentColor',
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primary[500],
-            },
-          }}
+          sx={boxStyle}
         >
           <img
             width="137"
@@ -90,23 +66,7 @@ export default function DiamondSponsors(props) {
           href="https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
-          sx={{
-            width: '100%',
-            height: 55,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            border: `1px solid ${theme.palette.divider}`,
-            borderRadius: 1,
-            transition: theme.transitions.create(['color', 'border-color']),
-            '&:hover': {
-              borderColor: 'currentColor',
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primary[500],
-            },
-          }}
+          sx={boxStyle}
         >
           <img
             width="60"
@@ -125,23 +85,7 @@ export default function DiamondSponsors(props) {
           href="https://www.aptugo.com/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
-          sx={{
-            width: '100%',
-            height: 55,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            border: `1px solid ${theme.palette.divider}`,
-            borderRadius: 1,
-            transition: theme.transitions.create(['color', 'border-color']),
-            '&:hover': {
-              borderColor: 'currentColor',
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primary[500],
-            },
-          }}
+          sx={boxStyle}
         >
           <img
             width="137"
@@ -152,15 +96,6 @@ export default function DiamondSponsors(props) {
             loading="lazy"
           />
         </Box>
-        <Placeholder
-          aria-label={t('diamondSponsors')}
-          rel="noopener noreferrer"
-          target="_blank"
-          href="/discover-more/backers/#diamond"
-          // eslint-disable-next-line material-ui/no-hardcoded-labels
-        >
-          +1
-        </Placeholder>
       </Stack>
     </Root>
   );
