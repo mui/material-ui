@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import Link from 'docs/src/modules/components/Link';
 import Typography from '@mui/material/Typography';
 import { useTheme, styled } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
