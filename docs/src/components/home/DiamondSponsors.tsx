@@ -1,13 +1,13 @@
-import AddRounded from '@mui/icons-material/AddRounded';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import SponsorCard from 'docs/src/components/home/SponsorCard';
-import Link from 'docs/src/modules/components/Link';
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import AddRounded from '@mui/icons-material/AddRounded';
+import Link from 'docs/src/modules/components/Link';
+import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const DIAMONDs = [
   {
