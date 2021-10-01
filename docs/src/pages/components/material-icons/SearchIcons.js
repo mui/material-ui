@@ -21,6 +21,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
+import SvgIcon from '@mui/material/SvgIcon';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 // For Debugging
@@ -90,23 +91,24 @@ function selectNode(node) {
 }
 
 const StyledIcon = styled('span')(({ theme }) => ({
-  display: 'inline-block',
-  width: 86,
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  textAlign: 'center',
+  display: 'inline-flex',
+  flexDirection: 'column',
   color: theme.palette.text.secondary,
   margin: '0 4px',
-  fontSize: 12,
-  '& p': {
-    margin: 0,
+  '& > div': {
+    display: 'flex',
+  },
+  '& > div > *': {
+    flexGrow: 1,
+    fontSize: '.6rem',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
+    textAlign: 'center',
+    width: 0,
   },
 }));
 
-const StyledSvgIcon = styled(Box)(({ theme }) => ({
+const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
   boxSizing: 'content-box',
   cursor: 'pointer',
   color: theme.palette.text.primary,
@@ -114,7 +116,6 @@ const StyledSvgIcon = styled(Box)(({ theme }) => ({
   transition: theme.transitions.create(['background-color', 'box-shadow'], {
     duration: theme.transitions.duration.shortest,
   }),
-  fontSize: 40,
   padding: theme.spacing(2),
   margin: theme.spacing(0.5, 0),
   '&:hover': {
@@ -152,18 +153,18 @@ const Icons = React.memo(function Icons(props) {
       {icons.map((icon) => {
         /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
         return (
-          <StyledIcon
-            key={icon.importName}
-            onClick={handleIconClick(icon)}
-            className="markdown-body"
-          >
+          <StyledIcon key={icon.importName} onClick={handleIconClick(icon)}>
             <StyledSvgIcon
               component={icon.Component}
+              fontSize="large"
               tabIndex={-1}
               onClick={handleOpenClick}
               title={icon.importName}
             />
-            <p onClick={handleLabelClick}>{icon.importName}</p>
+            <div>
+              {/*  eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
+              <div onClick={handleLabelClick}>{icon.importName}</div>
+            </div>
             {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
           </StyledIcon>
         );
