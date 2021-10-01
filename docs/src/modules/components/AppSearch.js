@@ -268,6 +268,18 @@ export default function AppSearch() {
               facetFilters: ['version:master', facetFilterLanguage],
             }}
             placeholder={search}
+            transformItems={(items) => {
+              return items.map((item) => {
+                const parseUrl = document.createElement('a');
+                parseUrl.href = item.url;
+                return {
+                  ...item,
+                  // `url` contains the domain.
+                  // But we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
+                  url: `${parseUrl.pathname}${parseUrl.hash}`,
+                };
+              });
+            }}
             hitComponent={DocSearcHit}
             initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
             onClose={onClose}
