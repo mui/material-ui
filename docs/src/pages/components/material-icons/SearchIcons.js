@@ -23,21 +23,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import * as mui from '@mui/icons-material';
-import synonyms from './synonyms';
-
-if (process.env.NODE_ENV !== 'production') {
-  Object.keys(synonyms).forEach((icon) => {
-    if (!mui[icon]) {
-      console.warn(`The icon ${icon} no longer exists. Remove it from \`synonyms\``);
-    }
-  });
-}
-
-// If you're working on the logic, uncomment these imports
-// and comment `import * as mui`, and the `if` block above.
-// It will be much faster than working with all of the icons.
-
+// For Debugging
 // import Menu from '@mui/icons-material/Menu';
 // import MenuOutlined from '@mui/icons-material/MenuOutlined';
 // import MenuRounded from '@mui/icons-material/MenuRounded';
@@ -58,6 +44,8 @@ if (process.env.NODE_ENV !== 'production') {
 // import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
+import * as mui from '@mui/icons-material';
+import synonyms from './synonyms';
 
 // const mui = {
 //   ExitToApp,
@@ -81,6 +69,14 @@ if (process.env.NODE_ENV !== 'production') {
 //   DeleteForeverTwoTone,
 //   DeleteForeverSharp,
 // };
+
+if (process.env.NODE_ENV !== 'production') {
+  Object.keys(synonyms).forEach((icon) => {
+    if (!mui[icon]) {
+      console.warn(`The icon ${icon} no longer exists. Remove it from \`synonyms\``);
+    }
+  });
+}
 
 function selectNode(node) {
   // Clear any current selection
