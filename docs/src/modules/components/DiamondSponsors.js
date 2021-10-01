@@ -28,7 +28,7 @@ export default function DiamondSponsors(props) {
         sx={{
           '& a': {
             width: '100%',
-            height: 55,
+            height: 52,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
