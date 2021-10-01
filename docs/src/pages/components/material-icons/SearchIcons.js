@@ -151,7 +151,7 @@ const Icons = React.memo(function Icons(props) {
   return (
     <div>
       {icons.map((icon) => {
-        /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
+        /* eslint-disable jsx-a11y/click-events-have-key-events */
         return (
           <StyledIcon key={icon.importName} onClick={handleIconClick(icon)}>
             <StyledSvgIcon
