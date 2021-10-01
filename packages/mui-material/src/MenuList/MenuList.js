@@ -110,8 +110,8 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   const listRef = React.useRef(null);
   const textCriteriaRef = React.useRef({
     keys: [],
-    repeating: true,
-    previousKeyMatched: true,
+    repeating: false,
+    previousKeyMatched: false,
     lastTime: null,
   });
 
@@ -169,17 +169,20 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       const lowerKey = key.toLowerCase();
       const currTime = performance.now();
       if (criteria.keys.length > 0) {
-        // Reset
-        if (currTime - criteria.lastTime > 500) {
-          criteria.keys = [];
-          criteria.repeating = true;
-          criteria.previousKeyMatched = true;
-        } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
-          criteria.repeating = false;
+        if (criteria.lastTime) {
+          // Reset
+          if (currTime - criteria.lastTime > 500) {
+            criteria.keys = [];
+            criteria.repeating = false;
+            criteria.previousKeyMatched = false;
+          } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
+            criteria.repeating = false;
+          }
         }
       }
       criteria.lastTime = currTime;
       criteria.keys.push(lowerKey);
+
       const keepFocusOnCurrent =
         currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
       if (
