@@ -54,7 +54,7 @@ As the package aliases do not work with npm at this moment, you need to update y
  };
 ```
 
-If you are using TypeScript, you will need to also update the `tsconfig`.
+If you are using TypeScript, you will need to also update the TSConfig.
 
 **tsconfig.json**
 
