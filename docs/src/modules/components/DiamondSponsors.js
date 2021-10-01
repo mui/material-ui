@@ -18,36 +18,41 @@ export default function DiamondSponsors(props) {
   const { spot } = props;
   const theme = useTheme();
   const t = useTranslate();
-  const boxStyle = {
-    width: '100%',
-    height: 55,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    border: `1px solid ${theme.palette.divider}`,
-    borderRadius: 1,
-    transition: theme.transitions.create(['color', 'border-color']),
-    '&:hover': {
-      borderColor: 'currentColor',
-      color:
-        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
-    },
-  };
+
   return (
     <Root>
       <Typography variant="caption" color="primary.main" display="block" sx={{ mb: 2 }}>
         <Link href="/discover-more/backers/#diamond">{t('diamondSponsors')}</Link>
       </Typography>
-      <Stack spacing={1.5}>
-        <Box
-          component="a"
+      <Stack
+        spacing={1.5}
+        sx={{
+          '& a': {
+            width: '100%',
+            height: 55,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: `1px solid ${theme.palette.divider}`,
+            borderRadius: 1,
+            transition: theme.transitions.create(['color', 'border-color']),
+            '&:hover': {
+              borderColor: 'currentColor',
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[300]
+                  : theme.palette.primary[500],
+            },
+          },
+        }}
+      >
+        <a
           data-ga-event-category="sponsor"
           data-ga-event-action={spot}
           data-ga-event-label="octopus"
           href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
-          sx={boxStyle}
         >
           <img
             width="137"
@@ -57,16 +62,14 @@ export default function DiamondSponsors(props) {
             title="Repeatable, reliable deployments"
             loading="lazy"
           />
-        </Box>
-        <Box
-          component="a"
+        </a>
+        <a
           data-ga-event-category="sponsor"
           data-ga-event-action={spot}
           data-ga-event-label="doit"
           href="https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
-          sx={boxStyle}
         >
           <img
             width="60"
@@ -76,16 +79,14 @@ export default function DiamondSponsors(props) {
             title="Management Platform for Google Cloud and AWS"
             loading="lazy"
           />
-        </Box>
-        <Box
-          component="a"
+        </a>
+        <a
           data-ga-event-category="sponsor"
           data-ga-event-action={spot}
           data-ga-event-label="aptugo"
           href="https://www.aptugo.com/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
-          sx={boxStyle}
         >
           <img
             width="137"
@@ -95,7 +96,7 @@ export default function DiamondSponsors(props) {
             title="Augmented Software Development Platform"
             loading="lazy"
           />
-        </Box>
+        </a>
       </Stack>
     </Root>
   );
