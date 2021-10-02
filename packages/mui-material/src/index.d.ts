@@ -436,8 +436,8 @@ export * from './TabScrollButton';
 export { default as TextField } from './TextField';
 export * from './TextField';
 
-export { default as TextareaAutosize } from './TextareaAutosize';
-export * from './TextareaAutosize';
+export { default as TextareaAutosize } from '../../mui-core/src/TextareaAutosize';
+export * from '../../mui-core/src/TextareaAutosize';
 
 export { default as ToggleButton } from './ToggleButton';
 export * from './ToggleButton';

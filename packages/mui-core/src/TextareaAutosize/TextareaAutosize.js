@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import debounce from '../utils/debounce';
-import useForkRef from '../utils/useForkRef';
-import useEnhancedEffect from '../utils/useEnhancedEffect';
-import ownerWindow from '../utils/ownerWindow';
+import debounce from '../../../mui-material/src/utils/debounce';
+import useForkRef from '../../../mui-material/src/utils/useForkRef';
+import useEnhancedEffect from '../../../mui-material/src/utils/useEnhancedEffect';
+import ownerWindow from '../../../mui-material/src/utils/ownerWindow';
 
 function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
