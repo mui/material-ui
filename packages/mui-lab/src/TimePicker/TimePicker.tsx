@@ -95,6 +95,10 @@ TimePicker.propTypes /* remove-proptypes */ = {
    */
   ampmInClock: PropTypes.bool,
   /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
+  /**
    * Cancel text message.
    * @default 'Cancel'
    */
