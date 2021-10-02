@@ -12,12 +12,20 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
  * But we do use it in tests where usage of ISO dates without timezone is problematic
  */
 export class AdapterClassToUse extends AdapterDateFns {
-  date(value?: any): Date {
+  // Inlined AdapterDateFns#date which is not an instance method but instance property
+  date = (value?: any): Date => {
     if (typeof value === 'string') {
       return parseISO(value);
     }
-    return super.date(value);
-  }
+    if (typeof value === 'undefined') {
+      return new Date();
+    }
+    if (value === null) {
+      // @ts-expect-error AdapterDateFns#date says it returns NotNullable but that's not true
+      return null;
+    }
+    return new Date(value);
+  };
 }
 export const adapterToUse = new AdapterClassToUse();
 

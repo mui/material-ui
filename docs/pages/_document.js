@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ServerStyleSheets } from '@mui/styles';
+import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
@@ -158,7 +158,7 @@ MyDocument.getInitialProps = async (ctx) => {
   // 4. page.render
 
   // Render app and page and get the context of the page with collected side effects.
-  const materialSheets = new ServerStyleSheets();
+  const jssSheets = new JSSServerStyleSheets();
   const styledComponentsSheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
@@ -170,7 +170,7 @@ MyDocument.getInitialProps = async (ctx) => {
       originalRenderPage({
         enhanceApp: (App) => (props) =>
           styledComponentsSheet.collectStyles(
-            materialSheets.collect(<App emotionCache={cache} {...props} />),
+            jssSheets.collect(<App emotionCache={cache} {...props} />),
           ),
       });
 
@@ -185,7 +185,7 @@ MyDocument.getInitialProps = async (ctx) => {
       />
     ));
 
-    let css = materialSheets.toString();
+    let css = jssSheets.toString();
     // It might be undefined, e.g. after an error.
     if (css && process.env.NODE_ENV === 'production') {
       const result1 = await prefixer.process(css, { from: undefined });
