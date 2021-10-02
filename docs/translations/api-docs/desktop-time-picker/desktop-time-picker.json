@@ -25,6 +25,7 @@
     "onClose": "Callback fired when the popup requests to be closed. Use in controlled mode (see open).",
     "onError": "Callback that fired when input value or new <code>value</code> prop validation returns <strong>new</strong> validation error (or value is valid after error). In case of validation error detected <code>reason</code> prop return non-null value and <code>TextField</code> must be displayed in <code>error</code> state. This can be used to render appropriate form error.<br><a href=\"https://next.material-ui-pickers.dev/guides/forms\">Read the guide</a> about form integration and error displaying.",
     "onOpen": "Callback fired when the popup requests to be opened. Use in controlled mode (see open).",
+    "onViewChange": "Callback fired on view change.",
     "open": "Control the popup or dialog open state.",
     "OpenPickerButtonProps": "Props to pass to keyboard adornment button.",
     "openTo": "First view to show.",
