@@ -14,7 +14,7 @@ There are currently two packages available to choose from:
 - `@mui/styled-engine` - a thin wrapper around [emotion's `styled()`](https://emotion.sh/docs/styled) API, with the addition of few other required utilities, such as the `<GlobalStyles />` component, the `css` and `keyframe` helpers, etc. This is the default.
 - `@mui/styled-engine-sc` - a similar wrapper around `styled-components`.
 
-These two packages implement the same interface, which makes it makes possible to replace one with the other.
+These two packages implement the same interface, which makes it possible to replace one with the other.
 By default, `@mui/material` has `@mui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@mui/styled-engine-sc` using a package alias:
 
 **package.json**
