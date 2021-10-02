@@ -170,9 +170,6 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       onFocus(event);
     }
   };
-  if (icon) {
-    console.log(iconPosition);
-  }
   return (
     <TabRoot
       focusRipple={!disableFocusRipple}
