@@ -74,11 +74,13 @@ describe('<Collapse />', () => {
     };
     const handleExiting = spy();
     const handleExited = spy();
+    const handleAddEndListener = spy();
 
     beforeEach(() => {
       clock = useFakeTimers();
       const renderProps = render(
         <Collapse
+          addEndListener={handleAddEndListener}
           onEnter={handleEnterWrapper}
           onEntering={handleEnteringWrapper}
           onEntered={handleEntered}
@@ -109,6 +111,9 @@ describe('<Collapse />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(collapse);
       expect(handleEntering.args[0][1]).to.equal(false);
+      expect(handleAddEndListener.callCount).to.equal(1);
+      expect(handleAddEndListener.args[0][0]).to.equal(collapse);
+      expect(typeof handleAddEndListener.args[0][1]).to.equal('function');
       act(() => {
         clock.tick(300);
       });

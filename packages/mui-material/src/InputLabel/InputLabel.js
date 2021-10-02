@@ -39,7 +39,7 @@ const InputLabelRoot = styled(FormLabel, {
     return [
       { [`& .${formLabelClasses.asterisk}`]: styles.asterisk },
       styles.root,
-      !ownerState.formControl && styles.formControl,
+      ownerState.formControl && styles.formControl,
       ownerState.size === 'small' && styles.sizeSmall,
       ownerState.shrink && styles.shrink,
       !ownerState.disableAnimation && styles.animated,
