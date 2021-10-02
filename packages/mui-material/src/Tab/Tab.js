@@ -244,6 +244,7 @@ Tab.propTypes /* remove-proptypes */ = {
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   /**
    * The position for the icon
+   * @default 'top'
    */
   iconPosition: PropTypes.string,
   /**
