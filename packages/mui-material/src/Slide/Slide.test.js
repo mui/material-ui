@@ -67,6 +67,7 @@ describe('<Slide />', () => {
     });
 
     it('tests', () => {
+      const handleAddEndListener = spy();
       const handleEnter = spy();
       const handleEntering = spy();
       const handleEntered = spy();
@@ -77,6 +78,7 @@ describe('<Slide />', () => {
       let child;
       const { setProps } = render(
         <Slide
+          addEndListener={handleAddEndListener}
           onEnter={handleEnter}
           onEntering={handleEntering}
           onEntered={handleEntered}
@@ -93,6 +95,10 @@ describe('<Slide />', () => {
       );
 
       setProps({ in: true });
+
+      expect(handleAddEndListener.callCount).to.equal(1);
+      expect(handleAddEndListener.args[0][0]).to.equal(child);
+      expect(typeof handleAddEndListener.args[0][1]).to.equal('function');
 
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
