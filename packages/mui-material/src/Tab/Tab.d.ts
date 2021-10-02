@@ -33,6 +33,7 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
 
     /**
      * The position for the icon
+     * @default 'top'
      */
     iconPosition?: string;
     /**
