@@ -170,6 +170,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       onFocus(event);
     }
   };
+
   return (
     <TabRoot
       focusRipple={!disableFocusRipple}
@@ -195,6 +196,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
           {icon}
         </React.Fragment>
       )}
+
       {indicator}
     </TabRoot>
   );
@@ -240,11 +242,6 @@ Tab.propTypes /* remove-proptypes */ = {
    * The icon to display.
    */
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-
-  /**
-   * The position for the icon
-   */
-  iconPosition: PropTypes.string,
   /**
    * The label element.
    */
