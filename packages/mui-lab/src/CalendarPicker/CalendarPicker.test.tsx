@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { SinonFakeTimers, useFakeTimers } from 'sinon';
+import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
 import { fireEvent, screen, describeConformance } from 'test/utils';
 import CalendarPicker, { calendarPickerClasses as classes } from '@mui/lab/CalendarPicker';
 import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
@@ -62,12 +62,18 @@ describe('<CalendarPicker />', () => {
   });
 
   it('switches between views uncontrolled', () => {
+    const handleViewChange = spy();
     render(
-      <CalendarPicker date={adapterToUse.date('2019-01-01T00:00:00.000')} onChange={() => {}} />,
+      <CalendarPicker
+        date={adapterToUse.date('2019-01-01T00:00:00.000')}
+        onChange={() => {}}
+        onViewChange={handleViewChange}
+      />,
     );
 
     fireEvent.click(screen.getByLabelText(/switch to year view/i));
 
+    expect(handleViewChange.callCount).to.equal(1);
     expect(screen.queryByLabelText(/switch to year view/i)).to.equal(null);
     expect(screen.getByLabelText('year view is open, switch to calendar view')).toBeVisible();
   });
