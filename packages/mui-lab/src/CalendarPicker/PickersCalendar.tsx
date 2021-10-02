@@ -62,10 +62,10 @@ const PickersCalendarDayHeader = styled('div', { skipSx: true })({
   alignItems: 'center',
 });
 
-const PickersCalendarWeekDayLabel = styled(Typography, { skipSx: true })(({ theme }) => ({
+const PickersCalendarWeekDayLabel = styled(Typography, { skipSx: true })(({ theme, margin }) => ({
   width: 36,
   height: 40,
-  margin: '0 2px',
+  margin: `${margin}px`,
   textAlign: 'center',
   display: 'flex',
   justifyContent: 'center',
@@ -144,7 +144,7 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
     <React.Fragment>
       <PickersCalendarDayHeader>
         {utils.getWeekdays().map((day, i) => (
-          <PickersCalendarWeekDayLabel aria-hidden key={day + i.toString()} variant="caption">
+          <PickersCalendarWeekDayLabel aria-hidden key={day + i.toString()} variant="caption" margin={renderDay ? '0' : '0 2'}>
             {day.charAt(0).toUpperCase()}
           </PickersCalendarWeekDayLabel>
         ))}
