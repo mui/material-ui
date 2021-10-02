@@ -24,6 +24,13 @@ const DIAMONDs = [
     description: 'Management platform for Google Cloud and AWS.',
     href: 'https://www.doit-intl.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
+  {
+    src: '/static/sponsors/aptugo.svg',
+    srcSet: '/static/sponsors/aptugo.svg',
+    name: 'Aptugo',
+    description: "Build scalable Web and Mobile Apps fast and easy with Aptugo's visual interface.",
+    href: 'https://www.aptugo.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
 ];
 
 export default function DiamondSponsors() {
