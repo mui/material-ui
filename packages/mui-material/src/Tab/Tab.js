@@ -52,7 +52,8 @@ const TabRoot = styled(ButtonBase, {
   overflow: 'hidden',
   whiteSpace: 'normal',
   textAlign: 'center',
-  flexDirection: 'column',
+  flexDirection:
+    ownerState.iconPosition === 'top' || ownerState.iconPosition === 'bottom' ? 'column' : 'row',
   lineHeight: 1.25,
   ...(ownerState.icon &&
     ownerState.label && {
@@ -60,7 +61,13 @@ const TabRoot = styled(ButtonBase, {
       paddingTop: 9,
       paddingBottom: 9,
       [`& > *:first-child`]: {
-        marginBottom: 6,
+        margin: '0 3px',
+        ...(ownerState.iconPosition === 'top' && {
+          marginBottom: 6,
+        }),
+        ...(ownerState.iconPosition === 'bottom' && {
+          marginTop: 6,
+        }),
       },
     }),
   ...(ownerState.textColor === 'inherit' && {
@@ -111,6 +118,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     // eslint-disable-next-line react/prop-types
     fullWidth,
     icon,
+    iconPosition = 'top',
     // eslint-disable-next-line react/prop-types
     indicator,
     label,
@@ -134,6 +142,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     disableFocusRipple,
     selected,
     icon: !!icon,
+    iconPosition,
     label: !!label,
     fullWidth,
     textColor,
@@ -161,7 +170,9 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       onFocus(event);
     }
   };
-
+  if (icon) {
+    console.log(iconPosition);
+  }
   return (
     <TabRoot
       focusRipple={!disableFocusRipple}
@@ -176,8 +187,17 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       tabIndex={selected ? 0 : -1}
       {...other}
     >
-      {icon}
-      {label}
+      {iconPosition === 'top' || iconPosition === 'left' ? (
+        <React.Fragment>
+          {icon}
+          {label}
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          {label}
+          {icon}
+        </React.Fragment>
+      )}
       {indicator}
     </TabRoot>
   );
@@ -223,6 +243,11 @@ Tab.propTypes /* remove-proptypes */ = {
    * The icon to display.
    */
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+
+  /**
+   * The position for the icon
+   */
+  iconPosition: PropTypes.string,
   /**
    * The label element.
    */
