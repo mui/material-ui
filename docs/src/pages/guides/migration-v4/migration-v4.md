@@ -2583,7 +2583,7 @@ yarn remove @mui/styles
 
 ### Storybook emotion with v5
 
-If your project use Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of emotion.
+If your project uses Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of emotion.
 
 ```js
 // .storybook/main.js
@@ -2606,6 +2606,42 @@ module.exports = {
     };
   },
 };
+```
+
+and update `.storybook/preview.js` (otherwise, the "Docs" tab in storybook will display empty page)
+
+```js
+// .storybook/preview.js
+
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
+
+const defaultTheme = createTheme(); // or your custom theme
+
+const withThemeProvider = (Story, context) => {
+  return (
+    <EmotionThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={defaultTheme}>
+        <Story {...context} />
+      </ThemeProvider>
+    </EmotionThemeProvider>
+  );
+};
+
+export const decorators = [withThemeProvider];
+
+// ...other storybook exports
+```
+
+**Tested versions**
+```json
+{
+  "@storybook/react": "6.3.8",
+  "@storybook/addon-docs": "6.3.8",
+  "@emotion/react": "11.4.1",
+  "@emotion/styled": "11.3.0",
+  "@mui/material": "5.0.2"
+}
 ```
 
 For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133) on GitHub.
