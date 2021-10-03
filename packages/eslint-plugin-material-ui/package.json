@@ -5,7 +5,7 @@
   "description": "Custom eslint rules for MUI.",
   "main": "src/index.js",
   "dependencies": {
-    "emoji-regex": "^9.2.2"
+    "emoji-regex": "^10.0.0"
   },
   "devDependencies": {
     "@types/eslint": "^7.28.0",
