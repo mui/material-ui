@@ -90,7 +90,7 @@
     "@types/jsdom": "^16.2.13",
     "@types/lodash": "^4.14.175",
     "@types/mocha": "^9.0.0",
-    "@types/prettier": "^2.4.0",
+    "@types/prettier": "^2.4.1",
     "@types/react": "^17.0.24",
     "@types/sinon": "^10.0.4",
     "@types/webpack": "^4.41.22",
