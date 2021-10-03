@@ -77,7 +77,7 @@
     "doctrine": "^3.0.0",
     "express": "^4.17.1",
     "fg-loadcss": "^3.1.0",
-    "final-form": "^4.20.2",
+    "final-form": "^4.20.4",
     "flexsearch": "^0.7.21",
     "fs-extra": "^10.0.0",
     "json2mq": "^0.2.0",
