@@ -5538,10 +5538,10 @@ clean-css@^4.2.3:
   dependencies:
     source-map "~0.6.0"
 
-clean-css@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-5.2.0.tgz#44e4a04e8873ff0041df97acecf23a4a6519844e"
-  integrity sha512-2639sWGa43EMmG7fn8mdVuBSs6HuWaSor+ZPoFWzenBc6oN+td8YhTfghWXZ25G1NiiSvz8bOFBS7PdSbTiqEA==
+clean-css@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-5.2.1.tgz#e5bdb1bee5f332c67e98cb6181251d4f88c0a6ab"
+  integrity sha512-ooQCa1/70oRfVdUUGjKpbHuxgMgm8BsDT5EBqBGvPxMoRoGXf4PNx5mMnkjzJ9Ptx4vvmDdha0QVh86QtYIk1g==
   dependencies:
     source-map "~0.6.0"
 
