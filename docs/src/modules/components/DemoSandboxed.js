@@ -12,6 +12,7 @@ import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styl
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { getDesignTokens } from 'docs/src/modules/brandingTheme';
 
 function FramedDemo(props) {
   const { children, document } = props;
@@ -118,12 +119,14 @@ DemoFrame.propTypes = {
 };
 
 // Use the default MUI theme for the demos
-const theme = createTheme();
-const darkModeTheme = createTheme({ palette: { mode: 'dark' } });
-
 const getTheme = (outerTheme) => {
-  const resultTheme = outerTheme?.palette?.mode === 'dark' ? darkModeTheme : theme;
+  const resultTheme = createTheme({ palette: { mode: outerTheme?.palette?.mode || 'light' } });
   resultTheme.direction = outerTheme?.direction;
+  const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
+  if (outerTheme.palette.primary.main !== brandingDesignTokens.palette.primary.main) {
+    resultTheme.palette.primary = outerTheme.palette.primary;
+    resultTheme.palette.secondary = outerTheme.palette.secondary;
+  }
   return resultTheme;
 };
 
