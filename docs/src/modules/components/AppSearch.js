@@ -461,16 +461,14 @@ export default function AppSearch() {
             },
             '& .DocSearch-Hit-content-wrapper': {
               paddingLeft: theme.spacing(2),
-              flexDirection: 'column-reverse',
             },
             '& .DocSearch-Hit-title': {
               fontSize: theme.typography.pxToRem(14),
-              color: `${theme.palette.text.secondary}`,
+              color: `${theme.palette.text.primary}`,
             },
             '& .DocSearch-Hit-path': {
-              fontSize: theme.typography.pxToRem(14),
-              fontWeight: 700,
-              color: `${theme.palette.text.primary}`,
+              fontSize: theme.typography.pxToRem(12),
+              color: `${theme.palette.text.secondary}`,
             },
             '& .DocSearch-Hit-Select-Icon': {
               height: '15px',
