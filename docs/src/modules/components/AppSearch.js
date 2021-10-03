@@ -253,7 +253,11 @@ export default function AppSearch() {
             transformItems={(items) => {
               return items.map((item) => {
                 const parseUrl = document.createElement('a');
-                parseUrl.href = item.url;
+                if (['lvl2', 'lvl3'].includes(item.type)) {
+                  parseUrl.href = item.url.replace('#heading-', '#');
+                } else {
+                  parseUrl.href = item.url;
+                }
                 return {
                   ...item,
                   url: `${parseUrl.pathname}${parseUrl.hash}`,
