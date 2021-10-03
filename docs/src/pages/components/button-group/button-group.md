@@ -4,7 +4,7 @@ components: Button, ButtonGroup
 githubLabel: 'component: ButtonGroup'
 ---
 
-# Button group
+# ButtonGroup
 
 <p class="description">The ButtonGroup component can be used to group related buttons.</p>
 
