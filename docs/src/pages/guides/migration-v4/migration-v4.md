@@ -2613,8 +2613,8 @@ and update `.storybook/preview.js` (otherwise, the "Docs" tab in storybook will 
 ```js
 // .storybook/preview.js
 
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
 
 const defaultTheme = createTheme(); // or your custom theme
 
@@ -2634,6 +2634,7 @@ export const decorators = [withThemeProvider];
 ```
 
 **Tested versions**
+
 ```json
 {
   "@storybook/react": "6.3.8",
