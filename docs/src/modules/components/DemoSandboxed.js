@@ -13,6 +13,7 @@ import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { getDesignTokens } from 'docs/src/modules/brandingTheme';
+import { highDensity } from 'docs/src/modules/components/ThemeContext';
 
 function FramedDemo(props) {
   const { children, document } = props;
@@ -120,8 +121,18 @@ DemoFrame.propTypes = {
 
 // Use the default MUI theme for the demos
 const getTheme = (outerTheme) => {
-  const resultTheme = createTheme({ palette: { mode: outerTheme?.palette?.mode || 'light' } });
-  resultTheme.direction = outerTheme?.direction;
+  const resultTheme = createTheme(
+    { palette: { mode: outerTheme.palette.mode || 'light' } },
+    // To make DensityTool playground works
+    // check from MuiFormControl because brandingTheme does not customize this component
+    outerTheme.components?.MuiFormControl?.defaultProps?.margin === 'dense' ? highDensity : {},
+  );
+  if (outerTheme.direction) {
+    resultTheme.direction = outerTheme.direction;
+  }
+  if (outerTheme.spacing) {
+    resultTheme.spacing = outerTheme.spacing;
+  }
   const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
   if (outerTheme.palette.primary.main !== brandingDesignTokens.palette.primary.main) {
     resultTheme.palette.primary = outerTheme.palette.primary;
