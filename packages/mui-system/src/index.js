@@ -44,8 +44,4 @@ export { default as useTheme } from './useTheme';
 export { default as useThemeWithoutDefault } from './useThemeWithoutDefault';
 export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
-export { default as Unstable_CssVarsProvider } from './CssVarsProvider';
-export { useColorScheme as unstable_useColorScheme } from './CssVarsProvider';
-export { getInitColorSchemeScript as unstable_getInitColorSchemeScript } from './CssVarsProvider';
 export { default as unstable_createDesignSystem } from './createDesignSystem';
-export { default as unstable_createDesignSystem2 } from './createDesignSystem/createDesignSystem2';

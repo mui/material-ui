@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { GlobalStyles } from '@mui/styled-engine';
-import { deepmerge, unstable_capitalize as capitalize } from '@mui/utils';
-import cssVarsParser from '../CssVarsProvider/cssVarsParser';
+import { deepmerge } from '@mui/utils';
+import camelize from './camelize';
+import cssVarsParser from './cssVarsParser';
+import getInitColorSchemeScript from './getInitColorSchemeScript';
 
 interface ColorSchemeContextValue<ColorScheme extends string> {
   allColorSchemes: Array<ColorScheme>;
@@ -26,24 +28,18 @@ const resolveColorScheme = (key: string, fallback: string) => {
   return value || fallback;
 };
 
-const camelize = (str: string) =>
-  str
-    .split('-')
-    .map((word, index) => (index === 0 ? word : capitalize(word)))
-    .join('');
-
-// type MakeProps<
-//   ColorScheme extends string,
-//   ColorSchemeOverrides extends string,
-//   ColorSchemeTokens,
-// > = ColorSchemeOverrides extends string
-//   ? {
-//       colorSchemes: PartialDeep<Record<ColorScheme, ColorSchemeTokens>> &
-//         Record<ColorSchemeOverrides, ColorSchemeTokens>;
-//     }
-//   : {
-//       colorSchemes?: PartialDeep<Record<ColorScheme, ColorSchemeTokens>>;
-//     };
+type MakeProps<
+  ColorScheme extends string,
+  ColorSchemeOverrides extends string,
+  ColorSchemeTokens,
+> = [ColorSchemeOverrides] extends [never]
+  ? {
+      colorSchemes?: PartialDeep<Record<ColorScheme, ColorSchemeTokens>>;
+    }
+  : {
+      colorSchemes: PartialDeep<Record<ColorScheme, ColorSchemeTokens>> &
+        Record<ColorSchemeOverrides, ColorSchemeTokens>;
+    };
 
 export default function createCssVarsProvider<
   BaseTokens extends Record<string, any>,
@@ -80,14 +76,14 @@ export default function createCssVarsProvider<
     storageKey = 'mui-color-scheme',
     dataAttribute = 'color-scheme',
     defaultColorScheme = dsDefaultColorScheme,
-  }: React.PropsWithChildren<{
-    defaultColorScheme?: ColorScheme;
-    baseTheme?: PartialDeep<BaseTokens>;
-    colorSchemes: PartialDeep<Record<ColorScheme, ColorSchemeTokens>> &
-      Record<ColorSchemeOverrides, ColorSchemeTokens>;
-    storageKey?: string;
-    dataAttribute?: string;
-  }>) {
+  }: React.PropsWithChildren<
+    MakeProps<ColorScheme, ColorSchemeOverrides, ColorSchemeTokens> & {
+      defaultColorScheme?: ColorScheme;
+      baseTheme?: PartialDeep<BaseTokens>;
+      storageKey?: string;
+      dataAttribute?: string;
+    }
+  >) {
     const dataAttributeCamel = camelize(dataAttribute);
 
     const [colorScheme, setColorScheme] = React.useState<
@@ -124,6 +120,7 @@ export default function createCssVarsProvider<
     if (colorSchemesProp) {
       activeColorSchemeTokens = deepmerge(
         activeColorSchemeTokens,
+        // @ts-expect-error
         colorSchemesProp[colorScheme || defaultColorScheme],
       );
     }
@@ -163,28 +160,6 @@ export default function createCssVarsProvider<
         <GlobalStyles styles={styleSheet} />
         <ThemeContext.Provider value={activeTheme}>{children}</ThemeContext.Provider>
       </ColorSchemeContext.Provider>
-    );
-  }
-
-  function getInitColorSchemeScript({
-    storageKey = 'mui-color-scheme',
-    dataAttribute = 'color-scheme',
-  }: {
-    storageKey?: string;
-    dataAttribute?: string;
-  }) {
-    return (
-      <script
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{
-          __html: `(function() { try {
-          var colorScheme = localStorage.getItem('${storageKey}');
-          if (colorScheme) {
-            document.body.dataset.${camelize(dataAttribute)} = colorScheme;
-          }
-        } catch (e) {} })();`,
-        }}
-      />
     );
   }
 

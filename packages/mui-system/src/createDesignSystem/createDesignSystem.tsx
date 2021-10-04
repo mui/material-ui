@@ -1,29 +1,67 @@
 import * as React from 'react';
-import createCssVarsProvider from './createCssVarsProvider';
+import { deepmerge } from '@mui/utils';
+import createCssVarsProvider from './cssVars/createCssVarsProvider';
 import createStyled from '../createStyled';
 
-export default function createDesignSystem<
-  ThemeStructure extends object = {},
-  ColorScheme extends string = 'light',
->(options: { defaultTheme: ThemeStructure }) {
-  const { defaultTheme } = options;
-  const ThemeContext = React.createContext(defaultTheme);
+type PartialDeep<T extends Record<string, any>> = {
+  [K in keyof T]?: T[K] extends Record<string, any> ? PartialDeep<T[K]> : T[K];
+};
+
+export default function createDesignSystem2<
+  BaseTheme extends Record<string, any>,
+  ColorSchemeTokens extends Record<string, any>,
+  DefaultColorScheme extends string,
+  ColorSchemeOverrides extends string,
+  Theme extends Record<string, any> = BaseTheme & ColorSchemeTokens,
+>({
+  baseTheme,
+  colorSchemes,
+  defaultColorScheme,
+}: {
+  baseTheme: BaseTheme;
+  colorSchemes: Record<DefaultColorScheme, ColorSchemeTokens> &
+    Partial<Record<ColorSchemeOverrides, ColorSchemeTokens>>;
+  defaultColorScheme: DefaultColorScheme;
+}) {
+  let defaultTheme = {
+    ...baseTheme,
+    ...colorSchemes[defaultColorScheme],
+  } as Theme;
+
+  defaultTheme = {
+    ...defaultTheme,
+    vars: defaultTheme,
+  };
+
+  const ThemeContext = React.createContext<Theme>(defaultTheme);
 
   const useTheme = () => React.useContext(ThemeContext);
 
   const ThemeProvider = ({
-    theme,
     children,
-  }: React.PropsWithChildren<{ theme: ThemeStructure }>) => {
-    return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
+    theme,
+  }: React.PropsWithChildren<{ theme: PartialDeep<Theme> }>) => {
+    let mergedTheme = deepmerge(defaultTheme, theme);
+    mergedTheme = { ...mergedTheme, vars: mergedTheme };
+    return <ThemeContext.Provider value={mergedTheme}>{children}</ThemeContext.Provider>;
   };
 
-  const styled = createStyled<ThemeStructure>({ defaultTheme, useTheme });
+  const styled = createStyled<Theme>({ defaultTheme, useTheme });
 
   return {
-    ThemeProvider,
     useTheme,
+    ThemeProvider,
     styled,
-    ...createCssVarsProvider<ColorScheme>(ThemeProvider),
+    ...createCssVarsProvider<
+      BaseTheme,
+      ColorSchemeTokens,
+      DefaultColorScheme,
+      ColorSchemeOverrides,
+      Theme
+    >(ThemeContext, {
+      baseTheme,
+      colorSchemes,
+      defaultColorScheme,
+    }),
   };
 }

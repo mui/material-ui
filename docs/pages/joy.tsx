@@ -1,94 +1,21 @@
 import * as React from 'react';
-import { OverridableStringUnion } from '@mui/types';
-import { unstable_createDesignSystem2 as createDesignSystem } from '@mui/system';
 import Box from '@mui/material/Box';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Typography from '@mui/material/Typography';
 import BrandingProvider from 'docs/src/BrandingProvider';
+import { styled, ThemeProvider, CssVarsProvider, useColorScheme } from 'docs/src/JoyDesignSystem'; // @mui/joy
 
-interface JoyColorSchemeOverrides {}
-
-type JoyExtendedColorScheme = OverridableStringUnion<never, JoyColorSchemeOverrides>;
-
-interface JoyBaseTokens {
-  fontSize: {
-    md: string;
-  };
-  black: string;
-  white: string;
+declare module 'docs/src/JoyDesignSystem' {
+  interface JoyColorSchemeOverrides {
+    valentine: true;
+    trueDark: true;
+  }
 }
 
-interface JoyColorSchemeTokens {
-  palette: {
-    primary: {
-      500: string;
-    };
-    success: {
-      500: string;
-    };
-  };
-  background: {
-    app: string;
-  };
-}
-
-interface JoyTheme extends JoyBaseTokens, JoyColorSchemeTokens {
-  vars: JoyBaseTokens & JoyColorSchemeTokens;
-}
-
-const { ThemeProvider, styled, CssVarsProvider, useColorScheme } = createDesignSystem<
-  JoyBaseTokens,
-  JoyColorSchemeTokens,
-  'light' | 'dark',
-  JoyExtendedColorScheme,
-  JoyTheme
->({
-  baseTheme: {
-    black: '#000',
-    white: '#fff',
-    fontSize: {
-      md: '1rem',
-    },
-  },
-  colorSchemes: {
-    light: {
-      background: {
-        app: '#f9f9f9',
-      },
-      palette: {
-        primary: {
-          500: '#007FFF',
-        },
-        success: {
-          500: '#1AA251',
-        },
-      },
-    },
-    dark: {
-      palette: {
-        primary: {
-          500: '#0059B2',
-        },
-        success: {
-          500: '#178D46',
-        },
-      },
-      background: {
-        app: '#0A1929',
-      },
-    },
-  },
-  defaultColorScheme: 'light',
-});
-
-// =========================================================
-// =========================================================
-
-interface JoyColorSchemeOverrides {
-  valentine: true;
-  trueDark: true;
-}
+const Typography = styled('div')(({ theme: { vars } }) => ({
+  fontSize: vars.fontSize.md,
+  color: vars.background.contrast,
+}));
 
 const Button = styled('button')(({ theme }) => ({
   padding: '8px 16px',
@@ -133,7 +60,7 @@ const Toggle = () => {
   );
 };
 
-export default function CssVars2() {
+export default function Joy() {
   return (
     <BrandingProvider>
       <Box
@@ -156,12 +83,11 @@ export default function CssVars2() {
         <Typography sx={{ mb: 1 }}>Works without Provider</Typography>
         <Button>Default Button</Button>
         <br />
-        <Typography sx={{ mb: 1 }}>with ThemeProvider</Typography>
         <ThemeProvider theme={{ palette: { primary: { 500: '#ff5252' } } }}>
+          <Typography sx={{ mb: 1 }}>wrapped with {'<ThemeProvider>'}</Typography>
           <Button>Themed Button</Button>
         </ThemeProvider>
         <br />
-        <Typography sx={{ mb: 1 }}>Css Vars</Typography>
         <CssVarsProvider
           colorSchemes={{
             trueDark: {
@@ -175,6 +101,7 @@ export default function CssVars2() {
               },
               background: {
                 app: '#000',
+                contrast: '#fff',
               },
             },
             valentine: {
@@ -188,10 +115,12 @@ export default function CssVars2() {
               },
               background: {
                 app: '#ffdeed',
+                contrast: '#ff0000',
               },
             },
           }}
         >
+          <Typography sx={{ mb: 1 }}>wrapped with {'<CssVarsProvider>'}</Typography>
           <Toggle />
           <Button>Button with CssVars</Button>
         </CssVarsProvider>
