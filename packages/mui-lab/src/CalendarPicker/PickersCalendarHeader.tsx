@@ -49,6 +49,8 @@ export interface PickersCalendarHeaderProps<TDate>
       PickersCalendarHeaderComponentsPropsOverides;
   };
   currentMonth: TDate;
+  disabled?: boolean;
+  readonly?: boolean;
   views: readonly CalendarPickerView[];
   /**
    * Get aria-label text for switching between views button.
@@ -122,6 +124,7 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
     components = {},
     componentsProps = {},
     currentMonth: month,
+    disabled,
     disableFuture,
     disablePast,
     getViewSwitchingButtonText = getSwitchingViewAriaText,
@@ -131,6 +134,7 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
     onMonthChange,
     onViewChange,
     openView: currentView,
+    readonly,
     reduceAnimations,
     rightArrowButtonText = 'Next month',
     views,
@@ -143,11 +147,17 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
   const selectNextMonth = () => onMonthChange(utils.getNextMonth(month), 'left');
   const selectPreviousMonth = () => onMonthChange(utils.getPreviousMonth(month), 'right');
 
-  const isNextMonthDisabled = useNextMonthDisabled(month, { disableFuture, maxDate });
-  const isPreviousMonthDisabled = usePreviousMonthDisabled(month, { disablePast, minDate });
+  const isNextMonthDisabled = useNextMonthDisabled(month, {
+    disableFuture: disableFuture || disabled,
+    maxDate,
+  });
+  const isPreviousMonthDisabled = usePreviousMonthDisabled(month, {
+    disablePast: disablePast || disabled,
+    minDate,
+  });
 
   const handleToggleView = () => {
-    if (views.length === 1 || !onViewChange) {
+    if (views.length === 1 || !onViewChange || disabled || readonly) {
       return;
     }
 
@@ -198,7 +208,7 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
             {utils.format(month, 'year')}
           </PickersCalendarHeaderLabelItem>
         </FadeTransitionGroup>
-        {views.length > 1 && (
+        {views.length > 1 && !disabled && !readonly && (
           <PickersCalendarHeaderSwitchViewButton
             size="small"
             as={components.SwitchViewButton}

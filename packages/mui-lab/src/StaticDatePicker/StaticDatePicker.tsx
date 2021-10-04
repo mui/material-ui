@@ -126,7 +126,8 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
    */
   disableCloseOnSelect: PropTypes.bool,
   /**
-   * If `true`, the picker and text field are disabled.
+   * If `true`, the picker is disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -276,6 +277,11 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
    * Force rendering in particular orientation.
    */
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
+  /**
+   * Make picker read only.
+   * @default false
+   */
+  readonly: PropTypes.bool,
   /**
    * Make picker read only.
    */

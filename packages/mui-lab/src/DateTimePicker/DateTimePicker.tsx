@@ -169,7 +169,8 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    */
   disableCloseOnSelect: PropTypes.bool,
   /**
-   * If `true`, the picker and text field are disabled.
+   * If `true`, the picker is disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -367,6 +368,11 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    * Popper props passed down to [Popper](https://mui.com/api/popper/) component.
    */
   PopperProps: PropTypes.object,
+  /**
+   * Make picker read only.
+   * @default false
+   */
+  readonly: PropTypes.bool,
   /**
    * Make picker read only.
    */
