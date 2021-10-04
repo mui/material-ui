@@ -288,7 +288,7 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/themes/OverridesCss.js"}}
 
-每个组件的这些自定义点列表记录在 **Component API** 部分下。 例如，您可以查看 [按钮](/api/button/#css)。 或者，您可以随时查看 [实现](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js)。
+每个组件的这些自定义点列表记录在 **Component API** 部分下。 例如，您可以查看 [按钮](/api/button/#css)。 或者，您可以随时查看 [实现](https://github.com/mui-org/material-ui/blob/v3.x/packages/material-ui/src/Button/Button.js)。
 
 ### 属性
 

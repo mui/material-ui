@@ -37,7 +37,7 @@ const styles = theme => ({
   },
 });
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/v3.x';
 
 function MarkdownDocs(props) {
   const {

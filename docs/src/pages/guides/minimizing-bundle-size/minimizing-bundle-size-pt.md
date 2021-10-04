@@ -6,8 +6,8 @@
 
 The bundle size of Material-UI is taken very seriously, so [size-limit](https://github.com/ai/size-limit) is used to prevent introducing any size regression. The size of the bundle is checked at each commit:
 
-- When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L30).
-- When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L24). (styling, theming, etc.: ~18 kB gzipped)
+- When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/mui-org/material-ui/blob/v3.x/.size-limit.js#L30).
+- When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/mui-org/material-ui/blob/v3.x/.size-limit.js#L24). (styling, theming, etc.: ~18 kB gzipped)
 
 ## How to reduce the bundle size?
 
@@ -30,7 +30,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-While importing directly in this manner doesn't use the exports in [`material-ui/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public. Anything not listed there should be considered **private**, and subject to change without notice. For example, the `Tabs` component is a public module while `TabIndicator` is private.
+While importing directly in this manner doesn't use the exports in [`material-ui/index.js`](https://github.com/mui-org/material-ui/blob/v3.x/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public. Anything not listed there should be considered **private**, and subject to change without notice. For example, the `Tabs` component is a public module while `TabIndicator` is private.
 
 ### Option 2
 

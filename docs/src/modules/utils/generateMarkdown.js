@@ -7,7 +7,7 @@ import { _rewriteUrlForNextExport } from 'next/router';
 import { pageToTitle } from './helpers';
 import { LANGUAGES } from 'docs/src/modules/constants';
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/v3.x';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
 const DEMO_IGNORE = LANGUAGES.map(language => `-${language}.md`);

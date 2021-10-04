@@ -6,8 +6,8 @@
 
 Material-UI的包大小非常严重，因此使用 [大小限制](https://github.com/ai/size-limit) 来防止引入任何大小的回归。 每次提交时都会检查包的大小：
 
-- 导入 **所有组件**。 这让我们可以发现任何 [不需要的包大小增加](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L30)。
-- 导入 **单个组件**。 这让我们估计 [核心依赖关系](https://github.com/mui-org/material-ui/blob/master/.size-limit.js#L24)的开销。 （样式，主题等：~18 kB gzipped）
+- 导入 **所有组件**。 这让我们可以发现任何 [不需要的包大小增加](https://github.com/mui-org/material-ui/blob/v3.x/.size-limit.js#L30)。
+- 导入 **单个组件**。 这让我们估计 [核心依赖关系](https://github.com/mui-org/material-ui/blob/v3.x/.size-limit.js#L24)的开销。 （样式，主题等：~18 kB gzipped）
 
 ## 如何减少捆绑尺寸？
 
@@ -30,7 +30,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-虽然以这种方式直接导入不使用 [`material-ui / index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js)的导出，但此文件可以作为公共哪些模块的方便参考。 任何未在此处列出的内容都应被视为 **私有**，如有更改，恕不另行通知。 例如， `Tabs` 组件是公共模块，而 `TabIndicator` 是私有模块。
+虽然以这种方式直接导入不使用 [`material-ui / index.js`](https://github.com/mui-org/material-ui/blob/v3.x/packages/material-ui/src/index.js)的导出，但此文件可以作为公共哪些模块的方便参考。 任何未在此处列出的内容都应被视为 **私有**，如有更改，恕不另行通知。 例如， `Tabs` 组件是公共模块，而 `TabIndicator` 是私有模块。
 
 ### 选项2
 
