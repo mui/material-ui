@@ -108,6 +108,10 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
     year: number,
     isFinish: PickerSelectionState = 'finish',
   ) => {
+    if (readonly) {
+      return;
+    }
+
     const submitDate = (newDate: TDate) => {
       onChange(newDate, isFinish);
 
@@ -189,7 +193,6 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
             ref={selected ? selectedYearRef : undefined}
             disabled={
               disabled ||
-              readonly ||
               (disablePast && utils.isBeforeYear(year, now)) ||
               (disableFuture && utils.isAfterYear(year, now)) ||
               (shouldDisableYear && shouldDisableYear(year))
