@@ -4,6 +4,8 @@
 
 <h1 align="center">Material-UI</h1>
 
+> MUI v5 is out! ✨ Check out the latest documentation [here](https://mui.com/).
+
 <div align="center">
 
 [React](http://facebook.github.io/react/) components that implement [Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html).
@@ -26,9 +28,9 @@
 
 ## Installation
 
-Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
+Material-UI v3 is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
 
-**[Stable channel v3](https://material-ui.com/)**
+**[v3](https://v3.mui.com/)**
 ```sh
 // with npm
 npm install @material-ui/core
@@ -37,14 +39,7 @@ npm install @material-ui/core
 yarn add @material-ui/core
 ```
 
-**[Next channel v4.0.0-alpha](https://next.material-ui.com/)**
-```sh
-// with npm
-npm install @material-ui/core@next
-
-// with yarn
-yarn add @material-ui/core@next
-```
+Head to the [v3 documentation](https://v3.mui.com/) for more details.
 
 **[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://material-ui.com/guides/migration-v0x/))
 ```sh
@@ -54,9 +49,6 @@ npm install material-ui
 // with yarn
 yarn add material-ui
 ```
-
-
-Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
 
 ## Supporting Material-UI
 
