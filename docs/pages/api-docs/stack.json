@@ -26,6 +26,5 @@
   "filename": "/packages/mui-material/src/Stack/Stack.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/stack/\">Stack</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

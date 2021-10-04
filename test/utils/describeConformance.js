@@ -204,7 +204,7 @@ export function testReactTestRenderer(element) {
  * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
  * @property {Array<keyof typeof fullSuite>} [skip] - Skip the specified tests
  * @property {string} [testComponentsRootPropWith] - The host component that should be rendered instead.
- * @property {{ slotName: string, slotClassName: string }} [testDeepOverrides]
+ * @property {{ slotName: string, slotClassName: string } | Array<{ slotName: string, slotClassName: string }>} [testDeepOverrides]
  * @property {{ prop?: string, value?: any, styleKey: string }} [testStateOverrides]
  * @property {object} [testVariantProps]
  * @property {(mount: (node: React.ReactNode) => import('enzyme').ReactWrapper) => (node: React.ReactNode) => import('enzyme').ReactWrapper} [wrapMount] - You can use this option to mount the component with enzyme in a WrapperComponent. Make sure the returned node corresponds to the input node and not the wrapper component.
@@ -339,22 +339,37 @@ function testThemeStyleOverrides(element, getOptions) {
         mixBlendMode: 'darken',
       };
 
+      function resolveDeepOverrides(callback) {
+        if (!testDeepOverrides) {
+          return {};
+        }
+        const styles = {};
+        if (Array.isArray(testDeepOverrides)) {
+          testDeepOverrides.forEach((slot) => {
+            callback(styles, slot);
+          });
+        } else {
+          callback(styles, testDeepOverrides);
+        }
+        return styles;
+      }
+
       const theme = createTheme({
         components: {
           [muiName]: {
             styleOverrides: {
               [testRootOverrides.slotName]: {
                 ...testStyle,
-                ...(testDeepOverrides && {
-                  [`& .${testDeepOverrides.slotClassName}`]: {
+                ...resolveDeepOverrides((styles, slot) => {
+                  styles[`& .${slot.slotClassName}`] = {
                     fontVariantCaps: 'all-petite-caps',
-                  },
+                  };
                 }),
               },
-              ...(testDeepOverrides && {
-                [testDeepOverrides.slotName]: {
+              ...resolveDeepOverrides((styles, slot) => {
+                styles[slot.slotName] = {
                   mixBlendMode: 'darken',
-                },
+                };
               }),
             },
           },
@@ -374,19 +389,21 @@ function testThemeStyleOverrides(element, getOptions) {
       }
 
       if (testDeepOverrides) {
-        expect(
-          document.querySelector(`.${testDeepOverrides.slotClassName}`),
-        ).to.toHaveComputedStyle({
-          fontVariantCaps: 'all-petite-caps',
-          mixBlendMode: 'darken',
-        });
+        (Array.isArray(testDeepOverrides) ? testDeepOverrides : [testDeepOverrides]).forEach(
+          (slot) => {
+            expect(document.querySelector(`.${slot.slotClassName}`)).to.toHaveComputedStyle({
+              fontVariantCaps: 'all-petite-caps',
+              mixBlendMode: 'darken',
+            });
+          },
+        );
 
         const themeWithoutRootOverrides = createTheme({
           components: {
             [muiName]: {
               styleOverrides: {
-                ...(testDeepOverrides && {
-                  [testDeepOverrides.slotName]: testStyle,
+                ...resolveDeepOverrides((styles, slot) => {
+                  styles[slot.slotName] = testStyle;
                 }),
               },
             },
@@ -394,9 +411,14 @@ function testThemeStyleOverrides(element, getOptions) {
         });
 
         setProps({ theme: themeWithoutRootOverrides });
-        expect(
-          document.querySelector(`.${testDeepOverrides.slotClassName}`),
-        ).to.toHaveComputedStyle(testStyle);
+
+        (Array.isArray(testDeepOverrides) ? testDeepOverrides : [testDeepOverrides]).forEach(
+          (slot) => {
+            expect(document.querySelector(`.${slot.slotClassName}`)).to.toHaveComputedStyle(
+              testStyle,
+            );
+          },
+        );
       }
     });
 

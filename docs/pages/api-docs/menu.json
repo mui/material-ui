@@ -30,6 +30,5 @@
   "filename": "/packages/mui-material/src/Menu/Menu.js",
   "inheritance": { "component": "Popover", "pathname": "/api/popover/" },
   "demos": "<ul><li><a href=\"/components/app-bar/\">App Bar</a></li>\n<li><a href=\"/components/menus/\">Menus</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

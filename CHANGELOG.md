@@ -1,5 +1,135 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.0.2
+
+<!-- generated comparing v5.0.1..master -->
+
+_Sep 29, 2021_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔧 Improve `jss-to-styled` codemod to use new package names.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.0.2`
+
+- &#8203;<!-- 28 -->[Checkbox] Fix form submission with empty value (#28423) @garronej
+- &#8203;<!-- 08 -->[Slider] Don't error on minimal changes with readonly value (#28472) @eps1lon
+- &#8203;<!-- 07 -->[Switch] Fix style overrides on input (#28576) @praveenkumar-kalidass
+- &#8203;<!-- 03 -->[useMediaQuery] Add types for `matchMedia` option and deprecate exported interfaces (#28413) @eps1lon
+
+### `@mui/codemod@5.0.2`
+
+- &#8203;<!-- 27 -->[codemod] Add MenuItem v.1.0.0 transform for primaryText property (#28640) @dmitry-yudakov
+- &#8203;<!-- 26 -->[codemod] Update the imports in `jss-to-styled` to match the new package names (#28667) @mnajdova
+
+### `@mui/system@5.0.2`
+
+- &#8203;<!-- 06 -->[system] Fix types to support theme callbacks on pseudo and nested selectors (#28570) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 23 -->[docs] Remove languages: fr, de, ja, es, ru (#28663) @mnajdova
+- &#8203;<!-- 22 -->[docs] Improve old doc versions discoverability (#28651) @danilo-leal
+- &#8203;<!-- 21 -->[docs] Make the Toggle Button size demo use default icon size (#28656) @danilo-leal
+- &#8203;<!-- 20 -->[docs] Uniformize the code's font family (#28582) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Removed duplicate line in date-ranger-picker.md file (#28635) @naveen-bharathi
+- &#8203;<!-- 18 -->[docs] Fix title MUI x2 (#28634) @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Polish email validation logic (#28255) @kiznick
+- &#8203;<!-- 16 -->[docs] Improve migration-v4.md phrasing (#28253) @adamthewebguy
+- &#8203;<!-- 15 -->[docs] Fix color in example (#28527) @alexeagleson
+- &#8203;<!-- 14 -->[docs] Fix typo in generated class names section (#28549) @fxlemire
+- &#8203;<!-- 13 -->[docs] Mention Premium pricing cap (#28581) @oliviertassinari
+- &#8203;<!-- 12 -->[docs] Update examples to use latest mui #28565 @siriwatknp
+- &#8203;<!-- 11 -->[docs] Push the fixes on Next.js's Link to the examples (#28178) @oliviertassinari
+- &#8203;<!-- 10 -->[docs] Fix wrong name for zIndex's property example in /system/ (#28541) @chetrit
+- &#8203;<!-- 08 -->[examples] Nextjs Link missing passHref #28588 (#28661) @Brlaney
+- &#8203;<!-- 02 -->[website] Iteration on the pricing page (#28406) @danilo-leal
+- &#8203;<!-- 01 -->[website] Batch fixes (#28564) @siriwatknp
+
+### Core
+
+- &#8203;<!-- 25 -->[core] Improve Renovate groups (#28642) @eps1lon
+- &#8203;<!-- 24 -->[core] Batch small changes (#28553) @oliviertassinari
+- &#8203;<!-- 05 -->[test] Document where the value for SwitchBase#value comes from (#28638) @eps1lon
+- &#8203;<!-- 04 -->[test] Make `seconds` `views` test pass in browsers (#28511) @eps1lon
+
+All contributors of this release in alphabetical order: @adamthewebguy, @alexeagleson, @Brlaney, @chetrit, @danilo-leal, @dmitry-yudakov, @eps1lon, @fxlemire, @garronej, @kiznick, @mnajdova, @naveen-bharathi, @oliviertassinari, @praveenkumar-kalidass, @siriwatknp
+
+## 5.0.1
+
+<!-- generated comparing v5.0.0..master -->
+
+_Sep 22, 2021_
+
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔎 Improve the search on the documentation.
+- 📚 Improve the v4 to v5 migration guide.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.0.1`
+
+- &#8203;<!-- 18 -->[Radio] Fix support for number value type (#26772) @sakura90
+- &#8203;<!-- 12 -->[useMediaQuery] Reduce bundle size (#28412) @eps1lon
+
+### `@mui/codemod@5.0.1`
+
+- &#8203;<!-- 43 -->[codemod] Cover edge case for theme-spacing #28400 @siriwatknp
+
+### `@mui/lab@5.0.0-alpha.48`
+
+- &#8203;<!-- 36 -->[DateTimePicker] Support `seconds` `view` (#25095) @breitembach
+- &#8203;<!-- 13 -->[TimePicker] Fire change event when meridiem changes (#26600) @coder-freestyle
+
+### Docs
+
+- &#8203;<!-- 35 -->[docs] Fix missing exit animation for transition Poppers (#28506) @eps1lon
+- &#8203;<!-- 34 -->[docs] Fix migration v5 docs (#28530) @siriwatknp
+- &#8203;<!-- 33 -->[docs] Avoid re-mounting the whole tree when switching theme direction (#28495) @eps1lon
+- &#8203;<!-- 32 -->[docs] Fix html compliance (#28429) @oliviertassinari
+- &#8203;<!-- 31 -->[docs] Use hyphen-case for CSS properties in /system/properties (#28489) @chetrit
+- &#8203;<!-- 30 -->[docs] Update caret position in comments to match npm scope (#28426) @eps1lon
+- &#8203;<!-- 29 -->[docs] Fix CONTRIBUTING to point out to master as targeted branch (#28396) @mnajdova
+- &#8203;<!-- 28 -->[docs] Update examples to remove 'beta' (#28475) @oliviertassinari
+- &#8203;<!-- 27 -->[docs] Fix 404 links to MUI X API (#28176) @oliviertassinari
+- &#8203;<!-- 26 -->[docs] Fix broken/incorrect attributes links in Avatar and NativeSelect API pages (#28417) @xenostar
+- &#8203;<!-- 25 -->[docs] Explain how `<Alert icon={false} />` behaves (#28348) @nguyenkhanhnam
+- &#8203;<!-- 24 -->[docs] Fix typo in /system/the-sx-prop (#28393) @danwoods
+- &#8203;<!-- 23 -->[docs] Correct the migration doc (#28391) @michaldudak
+- &#8203;<!-- 22 -->[docs] Fix the notification display logic (#28389) @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Add notification for v5 @oliviertassinari
+- &#8203;<!-- 20 -->[docs] Fix typo (#28521) @valse
+- &#8203;<!-- 12 -->[website] Implement algolia redesign (#28252) @hbjORbj
+- &#8203;<!-- 11 -->[website] Update data-grid dependencies #28531 @siriwatknp
+- &#8203;<!-- 10 -->[website] Cleanup unused files after rebranding (#28505) @siriwatknp
+- &#8203;<!-- 09 -->[website] Update /company pages to use marketing website Header and Footer (#28498) @danilo-leal
+- &#8203;<!-- 08 -->[website] Optimize images (#28486) @michaldudak
+- &#8203;<!-- 07 -->[website] Add components index page (#28485) @siriwatknp
+- &#8203;<!-- 06 -->[website] Fix typo (#28478) @oliviertassinari
+- &#8203;<!-- 05 -->[website] Fix crash (#28474) @oliviertassinari
+- &#8203;<!-- 04 -->[website] Close the open engineering roles (#28428) @oliviertassinari
+- &#8203;<!-- 03 -->[website] Fix 40x links (#28401) @mnajdova
+- &#8203;<!-- 02 -->[website] Fix SEO issues reported by moz.com (#28402) @mnajdova
+- &#8203;<!-- 01 -->[website] Fix production issues (#28384) @siriwatknp
+
+### Core
+
+- &#8203;<!-- 44 -->[core] Fix release:changelog base branch (#28533) @mnajdova
+- &#8203;<!-- 42 -->[core] Remove code handling JSS components (#28421) @eps1lon
+- &#8203;<!-- 41 -->[core] Remove unused dependencies (#28468) @eps1lon
+- &#8203;<!-- 40 -->[core] Ensure both docs bundles are analyzeable (#28410) @eps1lon
+- &#8203;<!-- 39 -->[core] Switch to webpack 5 (#28248) @eps1lon
+- &#8203;<!-- 38 -->[core] Batch small changes (#28177) @oliviertassinari
+- &#8203;<!-- 37 -->[core] Update publish tag to latest (#28382) @mnajdova
+- &#8203;<!-- 19 -->[framer] Update @mui/\* dependencies (#28469) @eps1lon
+- &#8203;<!-- 17 -->[test] Add custom queries to `screen` (#28507) @eps1lon
+- &#8203;<!-- 16 -->[test] Run listChangedFiles against master (#28504) @eps1lon
+- &#8203;<!-- 15 -->[test] Increase BrowserStack timeout for Firefox (#28476) @oliviertassinari
+- &#8203;<!-- 14 -->[test] Use testing-library alpha when running React 18 tests (#28267) @eps1lon
+
+All contributors of this release in alphabetical order: @breitembach, @chetrit, @coder-freestyle, @danilo-leal, @danwoods, @eps1lon, @hbjORbj, @michaldudak, @mnajdova, @nguyenkhanhnam, @oliviertassinari, @sakura90, @siriwatknp, @valse, @xenostar
+
 ## 5.0.0
 
 <!-- generated comparing v5.0.0-rc.1..next -->

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementAcceptingRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/core';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
@@ -225,12 +225,15 @@ function composeEventHandler(handler, eventHandler) {
   };
 }
 
+// TODO (v6) Remove PopperComponent, PopperProps, TransitionComponent and TransitionProps.
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
     children,
     classes: classesProp,
+    components = {},
+    componentsProps = {},
     describeChild = false,
     disableFocusListener = false,
     disableHoverListener = false,
@@ -247,10 +250,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     onOpen,
     open: openProp,
     placement = 'bottom',
-    PopperComponent = Popper,
+    PopperComponent: PopperComponentProp,
     PopperProps = {},
     title,
-    TransitionComponent = Grow,
+    TransitionComponent: TransitionComponentProp = Grow,
     TransitionProps,
     ...other
   } = props;
@@ -615,18 +618,46 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     arrow,
     disableInteractive,
     placement,
-    PopperComponent,
+    PopperComponentProp,
     touch: ignoreNonTouchEvents.current,
   };
 
   const classes = useUtilityClasses(ownerState);
 
+  const PopperComponent = components.Popper ?? TooltipPopper;
+  const TransitionComponent = TransitionComponentProp ?? components.Transition ?? Grow;
+  const TooltipComponent = components.Tooltip ?? TooltipTooltip;
+  const ArrowComponent = components.Arrow ?? TooltipArrow;
+
+  const popperProps = appendOwnerState(
+    PopperComponent,
+    { ...PopperProps, ...componentsProps.popper },
+    ownerState,
+  );
+
+  const transitionProps = appendOwnerState(
+    TransitionComponent,
+    { ...TransitionProps, ...componentsProps.transition },
+    ownerState,
+  );
+
+  const tooltipProps = appendOwnerState(
+    TooltipComponent,
+    { ...componentsProps.tooltip },
+    ownerState,
+  );
+
+  const tooltipArrowProps = appendOwnerState(
+    ArrowComponent,
+    { ...componentsProps.arrow },
+    ownerState,
+  );
+
   return (
     <React.Fragment>
       {React.cloneElement(children, childrenProps)}
-      <TooltipPopper
-        as={PopperComponent}
-        className={classes.popper}
+      <PopperComponent
+        as={PopperComponentProp ?? Popper}
         placement={placement}
         anchorEl={
           followCursor
@@ -647,25 +678,32 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         id={id}
         transition
         {...interactiveWrapperListeners}
-        {...PopperProps}
+        {...popperProps}
+        className={clsx(classes.popper, componentsProps.popper?.className)}
         popperOptions={popperOptions}
-        ownerState={ownerState}
       >
         {({ TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent
             timeout={theme.transitions.duration.shorter}
             {...TransitionPropsInner}
-            {...TransitionProps}
+            {...transitionProps}
           >
-            <TooltipTooltip className={classes.tooltip} ownerState={ownerState}>
+            <TooltipComponent
+              {...tooltipProps}
+              className={clsx(classes.tooltip, componentsProps.tooltip?.className)}
+            >
               {title}
               {arrow ? (
-                <TooltipArrow className={classes.arrow} ref={setArrowRef} ownerState={ownerState} />
+                <ArrowComponent
+                  {...tooltipArrowProps}
+                  className={clsx(classes.arrow, componentsProps.arrow?.className)}
+                  ref={setArrowRef}
+                />
               ) : null}
-            </TooltipTooltip>
+            </TooltipComponent>
           </TransitionComponent>
         )}
-      </TooltipPopper>
+      </PopperComponent>
     </React.Fragment>
   );
 });
@@ -692,6 +730,22 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The components used for each slot inside the Tooltip.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Arrow: PropTypes.elementType,
+    Popper: PropTypes.elementType,
+    Tooltip: PropTypes.elementType,
+    Transition: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Tooltip.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.

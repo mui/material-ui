@@ -68,6 +68,5 @@
   "filename": "/packages/mui-material/src/Tabs/Tabs.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -28,6 +28,7 @@ const defaultTimeout = {
  */
 const Zoom = React.forwardRef(function Zoom(props, ref) {
   const {
+    addEndListener,
     appear = true,
     children,
     easing,
@@ -106,6 +107,13 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
 
   const handleExited = normalizedTransitionCallback(onExited);
 
+  const handleAddEndListener = (next) => {
+    if (addEndListener) {
+      // Old call signature before `react-transition-group` implemented `nodeRef`
+      addEndListener(nodeRef.current, next);
+    }
+  };
+
   return (
     <TransitionComponent
       appear={appear}
@@ -117,6 +125,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
       onExit={handleExit}
       onExited={handleExited}
       onExiting={handleExiting}
+      addEndListener={handleAddEndListener}
       timeout={timeout}
       {...other}
     >
@@ -142,6 +151,12 @@ Zoom.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * Add a custom transition end trigger. Called with the transitioning DOM
+   * node and a done callback. Allows for more fine grained transition end
+   * logic. Note: Timeouts are still used as a fallback if provided.
+   */
+  addEndListener: PropTypes.func,
   /**
    * Perform the enter transition when it first mounts if `in` is also `true`.
    * Set this to `false` to disable this behavior.

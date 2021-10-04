@@ -26,6 +26,5 @@
   "filename": "/packages/mui-material/src/ButtonBase/ButtonBase.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

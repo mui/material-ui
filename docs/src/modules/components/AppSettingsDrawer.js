@@ -38,9 +38,13 @@ function AppSettingsDrawer(props) {
   const t = useTranslate();
   const theme = useTheme();
   const changeTheme = useChangeTheme();
-  const [mode, setMode] = React.useState(getCookie('paletteMode') || 'system');
+  const [mode, setMode] = React.useState(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
+
+  React.useEffect(() => {
+    setMode(getCookie('paletteMode') || 'system');
+  }, [setMode]);
 
   const handleChangeThemeMode = (event, paletteMode) => {
     if (paletteMode === null) {

@@ -190,7 +190,7 @@ We have welcomed four new members to the company 🏢:
 
   <img loading="lazy" src="/static/blog/2021-q2-update/flavien.jpg" alt="flavien" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
-We are also **hiring** for various roles! If you're interested in joining us, check out our [jobs page](/company/careers/#open-roles).
+We are also **hiring** for various roles! If you're interested in joining us, check out our [jobs page](/careers/#open-roles).
 
 ## Our roadmap intent for Q3 2021
 
@@ -204,7 +204,7 @@ We have the following objectives:
 - Rebrand. We started this effort one year ago but, failed to execute on it.
   With [Danilo](https://github.com/danilo-leal) (design) and [Jun](https://github.com/siriwatknp) (code) in the team to own the effort, we can finally make it happen.
   We will take a step to distinguish ourselves from a strong association with Material Design.
-- Open and fill [4 roles](/company/careers/#open-roles). We need to strengthen the X team (advanced components)
+- Open and fill [4 roles](/careers/#open-roles). We need to strengthen the X team (advanced components)
   We also want to initiate the development of a bold new product vertical.
 
 ### Core components

@@ -3,12 +3,7 @@ import { expect } from 'chai';
 import { SinonFakeTimers, useFakeTimers } from 'sinon';
 import { fireEvent, screen, describeConformance } from 'test/utils';
 import CalendarPicker, { calendarPickerClasses as classes } from '@mui/lab/CalendarPicker';
-import {
-  adapterToUse,
-  wrapPickerMount,
-  createPickerRender,
-  getAllByMuiTest,
-} from '../internal/pickers/test-utils';
+import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<CalendarPicker />', () => {
   let clock: SinonFakeTimers;
@@ -47,7 +42,7 @@ describe('<CalendarPicker />', () => {
 
     expect(screen.getByText('January')).toBeVisible();
     expect(screen.getByText('2019')).toBeVisible();
-    expect(getAllByMuiTest('day')).to.have.length(31);
+    expect(screen.getAllByMuiTest('day')).to.have.length(31);
     // It should follow https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
     expect(
       document.querySelector('[role="grid"] > [role="row"] > [role="cell"] > button'),
@@ -63,7 +58,7 @@ describe('<CalendarPicker />', () => {
       />,
     );
 
-    expect(getAllByMuiTest('year')).to.have.length(200);
+    expect(screen.getAllByMuiTest('year')).to.have.length(200);
   });
 
   it('switches between views uncontrolled', () => {

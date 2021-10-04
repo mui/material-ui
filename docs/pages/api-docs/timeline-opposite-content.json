@@ -15,6 +15,5 @@
   "filename": "/packages/mui-lab/src/TimelineOppositeContent/TimelineOppositeContent.js",
   "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -9,6 +9,7 @@ import {
   cleanup,
   fireEvent as rtlFireEvent,
   queries,
+  queryHelpers,
   render as testingLibraryRender,
   prettyDOM,
   within,
@@ -169,23 +170,15 @@ const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueri
   },
 );
 
-// https://github.com/testing-library/dom-testing-library/issues/723
-// hide ByLabelText queries since they only support firefox >= 56, not IE 1:
-// - HTMLInputElement.prototype.labels https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/labels
-
-function queryAllByLabelText(element: any, label: string): HTMLElement[] {
-  throw new Error(
-    `*ByLabelText() relies on features that are not available in older browsers. Prefer \`*ByRole(someRole, { name: '${label}' })\` `,
-  );
-}
-const [queryByLabelText, getAllByLabelText, getByLabelText, findAllByLabelText, findByLabelText] =
+const queryAllByMuiTest = queryHelpers.queryAllByAttribute.bind(null, 'data-mui-test');
+const [queryByMuiTest, getAllByMuiTest, getByMuiTest, findAllByMuiTest, findByMuiTest] =
   buildQueries(
-    queryAllByLabelText,
-    function getMultipleError() {
-      throw new Error('not implemented');
+    queryAllByMuiTest,
+    function getMultipleError(container, dataMuiTest) {
+      return `Found multiple elements with the data-mui-test attribute of: ${dataMuiTest}`;
     },
-    function getMissingError() {
-      throw new Error('not implemented');
+    function getMissingError(container, dataMuiTest) {
+      return `Found no element with the data-mui-test attribute of: ${dataMuiTest}`;
     },
   );
 
@@ -193,12 +186,30 @@ const customQueries = {
   queryDescriptionOf,
   getDescriptionOf,
   findDescriptionOf,
-  queryAllByLabelText,
-  queryByLabelText,
-  getAllByLabelText,
-  getByLabelText,
-  findAllByLabelText,
-  findByLabelText,
+  /**
+   * @deprecated Use `queryAllByTestId` instead
+   */
+  queryAllByMuiTest,
+  /**
+   * @deprecated Use `queryByTestId` instead
+   */
+  queryByMuiTest,
+  /**
+   * @deprecated Use `getAllByTestId` instead
+   */
+  getAllByMuiTest,
+  /**
+   * @deprecated Use `getByTestId` instead
+   */
+  getByMuiTest,
+  /**
+   * @deprecated Use `findAllByTestId` instead
+   */
+  findAllByMuiTest,
+  /**
+   * @deprecated Use `findByTestId` instead
+   */
+  findByMuiTest,
 };
 
 interface RenderConfiguration {
@@ -548,9 +559,7 @@ export function act(callback: () => void) {
 
 export * from '@testing-library/react/pure';
 export { cleanup, fireEvent };
-// We import from `@testing-library/react` and `@testing-library/dom` before creating a JSDOM.
-// At this point a global document isn't available yet. Now it is.
-export const screen = within(document.body);
+export const screen = within(document.body, { ...queries, ...customQueries });
 
 export function render() {
   throw new Error(

@@ -17,6 +17,5 @@
   "filename": "/packages/mui-core/src/Unstable_TrapFocus/Unstable_TrapFocus.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/trap-focus/\">Trap Focus</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

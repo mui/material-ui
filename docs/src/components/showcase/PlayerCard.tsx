@@ -119,7 +119,7 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
           >
             <img
               alt="Beside Myself album cover"
-              style={{ borderRadius: 5, objectFit: 'cover', width: '100%' }}
+              style={{ borderRadius: 5, objectFit: 'cover' }}
               src="/static/images/cards/basement-beside-myself.jpeg"
               width="124"
               height="124"

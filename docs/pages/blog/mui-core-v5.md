@@ -676,10 +676,10 @@ Some statistics with the released of v5.0.0 compared to the one of v4.0.0:
 - From 2M downloads/month to 9.5M downloads/month on npm
 - From 350k users/month to 700k users/month on the documentation
 
-We are also proud to share that the monetization initiatives we have started right after the release of v4 are working, e.g. [the store](/blog/material-ui-v4-is-out/#premium-themes-store-✨). We have incorporated the company two years ago, grown between x2-3 a year since, and we're now over 10 people with a positive cashflow 🚀. We are on track to reach 16 people by December 2021.
-[We are hiring](/careers/) for growing our existing products, but also to explore a bold new product vertical, aligned with our mission.
+We're also proud to share that the monetization initiatives we started right after the release of v4, such as [the store](/blog/material-ui-v4-is-out/#premium-themes-store-✨), are working. We incorporated the company two years ago, have grown 2-3X per year since, and we're now over 10 people, with a positive cash flow 🚀. We are on track to reach 16 people by December 2021.
+[We're hiring](/careers/) to grow our existing products, but also to explore a bold new product vertical, aligned with our mission.
 
-We couldn't be more grateful for the trust that the React community put in us.
+We couldn't be more grateful for the trust that the React community puts in us.
 On average, we win 4% of market shares in the React community every year.
 
 <a href="https://docs.google.com/spreadsheets/d/1l5j3Xjtvm9XZtmb4ulLiWElQaXSlZlyCWT5ONrQMpBo/edit#gid=0"><img loading="lazy" src="/static/blog/mui-core-v5/react-market.png" alt="MUI market shares in download relative to react-dom" style="width: 439px; margin-bottom: 16px;" /></a>

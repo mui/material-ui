@@ -10,7 +10,6 @@ import {
   createPickerRender,
   FakeTransitionComponent,
   adapterToUse,
-  getByMuiTest,
 } from '../internal/pickers/test-utils';
 
 const UncontrolledOpenDesktopDatePicker = (({
@@ -273,7 +272,7 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    expect(getByMuiTest('picker-toolbar')).toBeVisible();
+    expect(screen.getByMuiTest('picker-toolbar')).toBeVisible();
   });
 
   describe('prop: PopperProps', () => {

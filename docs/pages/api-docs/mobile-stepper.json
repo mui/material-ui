@@ -42,6 +42,5 @@
   "filename": "/packages/mui-material/src/MobileStepper/MobileStepper.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }
