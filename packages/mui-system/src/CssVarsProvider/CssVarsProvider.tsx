@@ -20,6 +20,7 @@ type ColorScheme =
   | undefined;
 
 interface ColorSchemeContextValue {
+  allColorSchemes: Array<ColorScheme>;
   colorScheme: ColorScheme;
   setColorScheme: React.Dispatch<React.SetStateAction<ColorScheme>>;
 }
@@ -28,7 +29,7 @@ const ColorSchemeContext = React.createContext<ColorSchemeContextValue | undefin
 
 const resolveColorScheme = (key: string, fallback: ColorScheme) => {
   if (typeof window === 'undefined') {
-    return fallback;
+    return undefined;
   }
   let value;
   try {
@@ -47,59 +48,25 @@ export const useColorScheme = () => {
   return value;
 };
 
-export interface DesignTokens {
-  borderRadius: {
-    zero: 0;
-    xs: number | string;
-    sm: number | string;
-  };
-  palette: {
-    primary: {
-      50: string;
-      100: string;
-      500: string;
-    };
-  };
-}
-
-export interface PaletteRange {
-  500: string;
-}
-
-export interface ColorSchemePalette {
-  primary: PaletteRange;
-}
-
-export interface ColorSchemeShadow {
-  none: 'none';
-  xs: string;
-}
-
-export interface CssVarsProviderProps {
-  theme: DesignTokens;
+export interface CssVarsProviderProps<BaseTheme = {}, ColorSchema = {}> {
+  baseTheme: BaseTheme;
+  colorSchemes: Partial<Record<Exclude<ColorScheme, undefined>, ColorSchema>>;
   defaultColorScheme?: ColorScheme;
-  colorSchemes: Record<
-    Exclude<ColorScheme, undefined>,
-    {
-      palette: ColorSchemePalette;
-      shadow: ColorSchemeShadow;
-    }
-  >;
 }
 
-export default function CssVarsProvider({
+export default function CssVarsProvider<BaseTheme = {}, ColorSchema = {}>({
   children,
-  theme,
+  baseTheme,
   colorSchemes,
   defaultColorScheme = 'light',
-}: React.PropsWithChildren<CssVarsProviderProps>) {
+}: React.PropsWithChildren<CssVarsProviderProps<BaseTheme, ColorSchema>>) {
   const [colorScheme, setColorScheme] = React.useState<ColorSchemeContextValue['colorScheme']>(
     resolveColorScheme(STORAGE_KEY, 'light'),
   );
 
   React.useEffect(() => {
     if (colorScheme) {
-      document.body.dataset.theme = colorScheme;
+      document.body.dataset.colorScheme = colorScheme;
       localStorage.setItem(STORAGE_KEY, colorScheme);
     }
   }, [colorScheme]);
@@ -118,11 +85,12 @@ export default function CssVarsProvider({
     return () => window.removeEventListener('storage', handleStorage);
   }, [setColorScheme]);
 
-  const { css: rootCss, vars: rootVars } = cssVarsParser(theme);
+  const { css: rootCss, vars: rootVars } = cssVarsParser(baseTheme);
 
   let activeTheme = {
-    ...theme,
+    ...baseTheme,
     ...colorSchemes[colorScheme || defaultColorScheme],
+    vars: {},
   };
 
   activeTheme = { ...activeTheme, vars: rootVars };
@@ -132,20 +100,22 @@ export default function CssVarsProvider({
   Object.entries(colorSchemes).forEach(([key, scheme]) => {
     const { css, vars } = cssVarsParser(scheme);
     if (key === defaultColorScheme) {
-      styleSheet[':root'] = css;
+      styleSheet[':root'] = deepmerge(rootCss, css);
     } else {
-      styleSheet[`[data-theme="${key}"]`] = css;
+      styleSheet[`[data-color-scheme="${key}"]`] = css;
     }
     activeTheme = { ...activeTheme, vars: deepmerge(activeTheme.vars, vars) };
   });
 
   return (
-    <ColorSchemeContext.Provider value={{ colorScheme, setColorScheme }}>
-      <GlobalStyles
-        styles={{
-          ':root': rootCss,
-        }}
-      />
+    <ColorSchemeContext.Provider
+      value={{
+        colorScheme,
+        setColorScheme,
+        allColorSchemes: Object.keys(colorSchemes) as Array<ColorScheme>,
+      }}
+    >
+      <GlobalStyles styles={styleSheet} />
       <MuiThemeProvider theme={activeTheme}>
         <StyledEngineThemeContext.Provider value={activeTheme}>
           {children}

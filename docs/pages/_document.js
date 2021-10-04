@@ -7,6 +7,7 @@ import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
+import { unstable_getInitColorSchemeScript as getInitColorSchemeScript } from '@mui/system';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -115,6 +116,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
+          {getInitColorSchemeScript()}
           <Main />
           <script
             // eslint-disable-next-line react/no-danger
