@@ -62,6 +62,13 @@ You will initiate the exploration of a bold new product vertical.
 
 Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/careers/#perks-amp-benefits) page.
 
+## Interview process
+
+- We’ll screen the applicants to select the ones we believe there’s an initial fit.
+- Call to get to know you and your past experiences.
+- Challenge interview: We'll ask for a problem you think it's worth tackling and exercise how you were to build an end-to-end solution for it.
+- Chat with the CEO to understand vision, team, culture, and whatever other topics you wish.
+
 ## Apply
 
 [Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Product%20Manager)
