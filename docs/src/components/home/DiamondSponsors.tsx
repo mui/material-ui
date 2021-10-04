@@ -39,6 +39,8 @@ export default function DiamondSponsors() {
     threshold: 0,
     rootMargin: '500px',
   });
+  const maxNumberOfDiamondSponsors = 3;
+  const allSpotsAreFilled = maxNumberOfDiamondSponsors <= DIAMONDs.length;
   return (
     <Box ref={ref}>
       <Box sx={{ mb: 2 }}>
@@ -62,8 +64,7 @@ export default function DiamondSponsors() {
             <SponsorCard logoSize={64} inView={inView} item={item} />
           </Grid>
         ))}
-        {/* Display this once a spot for diamond sponsor is available */}
-        <Grid item xs={12} sm={6} md={4} sx={{ display: 'none' }}>
+        <Grid item xs={12} sm={6} md={4} sx={{ ...(allSpotsAreFilled && { display: 'none' }) }}>
           <Paper
             variant="outlined"
             sx={{
