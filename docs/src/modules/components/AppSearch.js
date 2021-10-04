@@ -14,18 +14,11 @@ import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
+import IconButton from '@mui/material/IconButton';
 
-const SearchButton = styled('button')(({ theme }) => {
+const SearchButton = styled(IconButton)(({ theme }) => {
   return {
-    display: 'none',
-    minHeight: 33,
-    [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-      alignItems: 'center',
-      minWidth: 210,
-    },
     fontFamily: theme.typography.fontFamily,
-    position: 'relative',
     backgroundColor:
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.grey[50],
     '&:hover': {
@@ -38,9 +31,18 @@ const SearchButton = styled('button')(({ theme }) => {
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200]
     }`,
     borderRadius: 10,
-    cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
+  };
+});
+
+const SearchLabel = styled('span')(({ theme }) => {
+  return {
+    display: 'none',
+    marginLeft: theme.spacing(0.5),
+    [theme.breakpoints.up('sm')]: {
+      display: 'inline-flex',
+    },
   };
 });
 
@@ -48,26 +50,14 @@ const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(13),
     fontWeight: 700,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[700],
     lineHeight: '21px',
+    marginLeft: theme.spacing(0.5),
     border: `1px solid ${
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.grey[200]
     }`,
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
     padding: theme.spacing(0, 0.7),
-    right: theme.spacing(1),
-    height: 23,
-    top: 'calc(50% - 11px)',
     borderRadius: 5,
-    transition: theme.transitions.create('opacity', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    // So that clicks target the input.
-    // Makes the text non selectable but neither is the placeholder or adornment.
-    pointerEvents: 'none',
-    '&.Mui-focused': {
-      opacity: 0,
-    },
   };
 });
 
@@ -224,21 +214,22 @@ export default function AppSearch() {
 
   return (
     <React.Fragment>
-      <SearchButton ref={searchButtonRef} onClick={onOpen}>
+      <SearchButton disableFocusRipple ref={searchButtonRef} onClick={onOpen}>
         <SearchIcon
           fontSize="small"
           sx={{
             color: (theme) =>
               theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.primary[500],
-            ml: 0.5,
-            mr: 1,
+            marginleft: 0.5,
           }}
         />
-        {search}
-        <Shortcut sx={{ ml: 'auto' }}>
-          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-          {macOS ? '⌘' : 'Ctrl+'}K
-        </Shortcut>
+        <SearchLabel>
+          {search}
+          <Shortcut>
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+            {macOS ? '⌘' : 'Ctrl+'}K
+          </Shortcut>
+        </SearchLabel>
       </SearchButton>
       {isOpen &&
         createPortal(
