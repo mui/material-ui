@@ -161,3 +161,4 @@ export {
   getInitColorSchemeScript as unstable_getInitColorSchemeScript,
   ColorSchemeOverrides,
 } from './CssVarsProvider';
+export { default as unstable_createDesignSystem } from './createDesignSystem';

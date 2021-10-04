@@ -1,22 +1,14 @@
 import * as React from 'react';
-import {
-  Unstable_CssVarsProvider as CssVarsProvider,
-  unstable_useColorScheme as useColorScheme,
-  createStyled,
-  GlobalStyles,
-} from '@mui/system';
+import { OverridableStringUnion } from '@mui/types';
+import { GlobalStyles, unstable_createDesignSystem as createDesignSystem } from '@mui/system';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import BrandingProvider from 'docs/src/BrandingProvider';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-// By default, system provide light & dark color scheme
-// use module augmentation to extend more color schemes
-declare module '@mui/system' {
-  interface ColorSchemeOverrides {
-    trueDark: true;
-    valentine: true;
-  }
-}
-
-interface IosBaseTheme {
+// demonstrate @mui/joy
+interface JoyBaseTokens {
   fontSize: {
     md: string;
   };
@@ -24,7 +16,14 @@ interface IosBaseTheme {
   white: string;
 }
 
-interface IosColorSchema {
+interface JoyColorSchemeOverrides {
+  light: true;
+  dark: true;
+}
+
+type JoyColorScheme = OverridableStringUnion<'light' | 'dark', JoyColorSchemeOverrides>;
+
+interface JoyColorSchemeTokens {
   palette: {
     primary: {
       500: string;
@@ -38,9 +37,83 @@ interface IosColorSchema {
   };
 }
 
-interface IosTheme extends IosBaseTheme, IosColorSchema {}
+interface JoyTheme extends JoyBaseTokens, JoyColorSchemeTokens {}
 
-const styled = createStyled<IosTheme & { vars: IosTheme }>();
+const defaultTheme = {
+  black: '#000',
+  white: '#fff',
+  fontSize: {
+    md: '1rem',
+  },
+  background: {
+    app: '#f9f9f9',
+  },
+  palette: {
+    primary: {
+      500: '#007FFF',
+    },
+    success: {
+      500: '#1AA251',
+    },
+  },
+};
+
+const { CssVarsProvider, useColorScheme, styled } = createDesignSystem<JoyTheme, JoyColorScheme>({
+  defaultTheme,
+});
+
+const { palette, ...defaultBaseTheme } = defaultTheme;
+
+const JoyCssVarsProvider = ({ children }: React.PropsWithChildren<{}>) => {
+  return (
+    <CssVarsProvider<JoyBaseTokens, JoyColorSchemeTokens>
+      defaultColorScheme="light"
+      baseTheme={defaultBaseTheme}
+      colorSchemes={{
+        light: {
+          palette: {
+            primary: {
+              500: '#007FFF',
+            },
+            success: {
+              500: '#1AA251',
+            },
+          },
+          background: {
+            app: '#F3F6F9',
+          },
+        },
+        dark: {
+          palette: {
+            primary: {
+              500: '#0059B2',
+            },
+            success: {
+              500: '#178D46',
+            },
+          },
+          background: {
+            app: '#0A1929',
+          },
+        },
+      }}
+    >
+      {children}
+    </CssVarsProvider>
+  );
+};
+
+// ======================================================================
+
+// In real application, use module augmentation to extend more color schemes
+// declare module '@mui/joy/styles' {
+//   interface ColorSchemeOverrides {
+//     trueDark: true;
+//   }
+// }
+interface JoyColorSchemeOverrides {
+  trueDark: true;
+}
 
 const Select = styled('select', { shouldForwardProp: () => true })(({ theme: { vars } }) => ({
   fontSize: vars.fontSize.md,
@@ -87,87 +160,33 @@ const Toggle = () => {
 
 export default function CssVars() {
   return (
-    <CssVarsProvider<IosBaseTheme, IosColorSchema>
-      baseTheme={{
-        fontSize: {
-          md: '1rem',
-        },
-        black: '#000',
-        white: '#fff',
-      }}
-      colorSchemes={{
-        light: {
-          palette: {
-            primary: {
-              500: '#007FFF',
-            },
-            success: {
-              500: '#1AA251',
-            },
-          },
-          background: {
-            app: '#F3F6F9',
-          },
-        },
-        dark: {
-          palette: {
-            primary: {
-              500: '#0059B2',
-            },
-            success: {
-              500: '#178D46',
-            },
-          },
-          background: {
-            app: '#0A1929',
-          },
-        },
-        trueDark: {
-          palette: {
-            primary: {
-              500: '#3b3b3b',
-            },
-            success: {
-              500: '#318200',
-            },
-          },
-          background: {
-            app: '#000',
-          },
-        },
-        valentine: {
-          palette: {
-            primary: {
-              500: '#ff0000',
-            },
-            success: {
-              500: '#dd00c1',
-            },
-          },
-          background: {
-            app: '#ffdeed',
-          },
-        },
-      }}
-    >
-      <GlobalStyles styles={{ body: { margin: 0, padding: 0 } }} />
-      <Box
-        justifyContent="center"
-        alignItems="center"
-        sx={{
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '16px',
-          bgcolor: 'var(--background-app)',
-        }}
-      >
-        <Toggle />
-        <Box sx={{ display: 'flex', gap: '16px' }}>
-          <Button>Primary</Button>
-          <Button color="success">Success</Button>
+    <BrandingProvider>
+      <JoyCssVarsProvider>
+        <GlobalStyles styles={{ body: { margin: 0, padding: 0 } }} />
+        <Box
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            minHeight: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+            bgcolor: 'var(--background-app)',
+          }}
+        >
+          <Typography sx={{ mb: 1 }}>@mui/joy</Typography>
+          <Toggle />
+          <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+            <Button>Primary</Button>
+            <Button color="success">Success</Button>
+          </Box>
+          <Typography sx={{ mb: 1 }}>@mui/material</Typography>
+          <ToggleButtonGroup>
+            <ToggleButton value="primary">It</ToggleButton>
+            <ToggleButton value="success">works</ToggleButton>
+          </ToggleButtonGroup>
         </Box>
-      </Box>
-    </CssVarsProvider>
+      </JoyCssVarsProvider>
+    </BrandingProvider>
   );
 }
