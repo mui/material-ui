@@ -19,7 +19,7 @@ By default, `@mui/material` has `@mui/styled-engine` as a dependency, but you ca
 
 ### yarn
 
-If you are using yarn, you can configure it using a package alias:
+If you are using yarn, you can configure it using a package resolution:
 
 **package.json**
 
