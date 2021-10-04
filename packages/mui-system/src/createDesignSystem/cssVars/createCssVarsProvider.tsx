@@ -120,7 +120,7 @@ export default function createCssVarsProvider<
     if (colorSchemesProp) {
       activeColorSchemeTokens = deepmerge(
         activeColorSchemeTokens,
-        // @ts-expect-error
+        // @ts-ignore neglect this internal ts error, I have tried to fix this with typeguard but the code is more complex than this line below
         colorSchemesProp[colorScheme || defaultColorScheme],
       );
     }
