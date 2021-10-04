@@ -62,7 +62,8 @@ export default function DiamondSponsors() {
             <SponsorCard logoSize={64} inView={inView} item={item} />
           </Grid>
         ))}
-        <Grid item xs={12} sm={6} md={4}>
+        {/* Display this once a spot for diamond sponsor is available */}
+        <Grid item xs={12} sm={6} md={4} sx={{ display: 'none' }}>
           <Paper
             variant="outlined"
             sx={{
