@@ -37,7 +37,9 @@ interface JoyColorSchemeTokens {
   };
 }
 
-interface JoyTheme extends JoyBaseTokens, JoyColorSchemeTokens {}
+interface JoyTheme extends JoyBaseTokens, JoyColorSchemeTokens {
+  vars: JoyBaseTokens & JoyColorSchemeTokens;
+}
 
 const defaultTheme = {
   black: '#000',
@@ -115,7 +117,7 @@ interface JoyColorSchemeOverrides {
   trueDark: true;
 }
 
-const Select = styled('select', { shouldForwardProp: () => true })(({ theme: { vars } }) => ({
+const Select = styled('select', { name: 'JoySelect', slot: 'Root' })(({ theme: { vars } }) => ({
   fontSize: vars.fontSize.md,
   padding: '4px 8px 4px 2px',
   borderRadius: 4,

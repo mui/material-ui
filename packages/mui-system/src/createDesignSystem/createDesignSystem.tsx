@@ -1,9 +1,9 @@
 import * as React from 'react';
-import styledEngineStyled from '@mui/styled-engine';
 import createCssVarsProvider from './createCssVarsProvider';
+import createStyled from '../createStyled';
 
 export default function createDesignSystem<
-  ThemeStructure = {},
+  ThemeStructure extends object = {},
   ColorScheme extends string = 'light',
 >(options: { defaultTheme: ThemeStructure }) {
   const { defaultTheme } = options;
@@ -18,17 +18,7 @@ export default function createDesignSystem<
     return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
   };
 
-  const styled = (tag: any, args: any) => {
-    return (styleFunction: any) => {
-      const Component = styledEngineStyled(tag, args)(styleFunction);
-
-      const StyledComponent = (props: any) => {
-        const theme = useTheme();
-        return <Component {...props} theme={theme} />;
-      };
-      return StyledComponent;
-    };
-  };
+  const styled = createStyled<ThemeStructure>({ defaultTheme, useTheme });
 
   return {
     ThemeProvider,
