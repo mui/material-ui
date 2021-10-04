@@ -7,7 +7,7 @@ type PartialDeep<T extends Record<string, any>> = {
   [K in keyof T]?: T[K] extends Record<string, any> ? PartialDeep<T[K]> : T[K];
 };
 
-export default function createDesignSystem2<
+export default function createDesignSystem<
   BaseTheme extends Record<string, any>,
   ColorSchemeTokens extends Record<string, any>,
   DefaultColorScheme extends string,

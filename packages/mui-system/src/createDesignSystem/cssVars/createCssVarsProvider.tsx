@@ -5,7 +5,7 @@ import camelize from './camelize';
 import cssVarsParser from './cssVarsParser';
 import getInitColorSchemeScript from './getInitColorSchemeScript';
 
-interface ColorSchemeContextValue<ColorScheme extends string> {
+export interface ColorSchemeContextValue<ColorScheme extends string> {
   allColorSchemes: Array<ColorScheme>;
   colorScheme: ColorScheme | undefined;
   setColorScheme: React.Dispatch<React.SetStateAction<ColorScheme | undefined>>;

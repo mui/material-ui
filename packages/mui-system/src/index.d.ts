@@ -156,3 +156,4 @@ export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 
 export { default as unstable_createDesignSystem } from './createDesignSystem';
+export * from './createDesignSystem';
