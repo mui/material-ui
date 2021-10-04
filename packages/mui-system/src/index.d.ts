@@ -162,3 +162,4 @@ export {
   ColorSchemeOverrides,
 } from './CssVarsProvider';
 export { default as unstable_createDesignSystem } from './createDesignSystem';
+export { default as unstable_createDesignSystem2 } from './createDesignSystem/createDesignSystem2';
