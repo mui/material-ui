@@ -103,6 +103,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     className,
     disabledItemsFocusable = false,
     disableListWrap = false,
+    isSubMenu,
     onKeyDown,
     variant = 'selectedMenu',
     ...other
@@ -151,50 +152,57 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
      */
     const currentFocus = ownerDocument(list).activeElement;
 
-    if (key === 'ArrowDown') {
-      // Prevent scroll of the page
-      event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, nextItem);
-    } else if (key === 'ArrowUp') {
-      event.preventDefault();
-      moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, previousItem);
-    } else if (key === 'Home') {
-      event.preventDefault();
-      moveFocus(list, null, disableListWrap, disabledItemsFocusable, nextItem);
-    } else if (key === 'End') {
-      event.preventDefault();
-      moveFocus(list, null, disableListWrap, disabledItemsFocusable, previousItem);
-    } else if (key.length === 1) {
-      const criteria = textCriteriaRef.current;
-      const lowerKey = key.toLowerCase();
-      const currTime = performance.now();
-      if (criteria.keys.length > 0) {
-        // Reset
-        if (currTime - criteria.lastTime > 500) {
-          criteria.keys = [];
-          criteria.repeating = true;
-          criteria.previousKeyMatched = true;
-        } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
-          criteria.repeating = false;
-        }
-      }
-      criteria.lastTime = currTime;
-      criteria.keys.push(lowerKey);
-      const keepFocusOnCurrent =
-        currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
-      if (
-        criteria.previousKeyMatched &&
-        (keepFocusOnCurrent ||
-          moveFocus(list, currentFocus, false, disabledItemsFocusable, nextItem, criteria))
-      ) {
+    if (!event.defaultPrevented) {
+      if (key === 'ArrowDown') {
+        // Prevent scroll of the page
         event.preventDefault();
-      } else {
-        criteria.previousKeyMatched = false;
+        moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, nextItem);
+      } else if (key === 'ArrowUp') {
+        event.preventDefault();
+        moveFocus(list, currentFocus, disableListWrap, disabledItemsFocusable, previousItem);
+      } else if (key === 'Home') {
+        event.preventDefault();
+        moveFocus(list, null, disableListWrap, disabledItemsFocusable, nextItem);
+      } else if (key === 'End') {
+        event.preventDefault();
+        moveFocus(list, null, disableListWrap, disabledItemsFocusable, previousItem);
+      } else if (key.length === 1) {
+        const criteria = textCriteriaRef.current;
+        const lowerKey = key.toLowerCase();
+        const currTime = performance.now();
+        if (criteria.keys.length > 0) {
+          // Reset
+          if (currTime - criteria.lastTime > 500) {
+            criteria.keys = [];
+            criteria.repeating = true;
+            criteria.previousKeyMatched = true;
+          } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
+            criteria.repeating = false;
+          }
+        }
+        criteria.lastTime = currTime;
+        criteria.keys.push(lowerKey);
+        const keepFocusOnCurrent =
+          currentFocus && !criteria.repeating && textCriteriaMatches(currentFocus, criteria);
+        if (
+          criteria.previousKeyMatched &&
+          (keepFocusOnCurrent ||
+            moveFocus(list, currentFocus, false, disabledItemsFocusable, nextItem, criteria))
+        ) {
+          event.preventDefault();
+        } else {
+          criteria.previousKeyMatched = false;
+        }
       }
     }
 
-    if (onKeyDown) {
+    if (!event.defaultPrevented && onKeyDown) {
       onKeyDown(event);
+    }
+
+    const capturedKeys = ['ArrowDown', 'ArrowUp', 'Home', 'End'];
+    if (isSubMenu && capturedKeys.includes(key)) {
+      event.preventDefault();
     }
   };
 
@@ -298,6 +306,10 @@ MenuList.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableListWrap: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  isSubMenu: PropTypes.bool,
   /**
    * @ignore
    */

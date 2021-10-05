@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import SubMenu from '@material-ui/core/SubMenu';
-import useTheme from '@material-ui/styles/useTheme';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import SubMenu from '@mui/material/SubMenu';
+import useTheme from '@mui/styles/useTheme';
 
 export default function CascadingMenu() {
   const theme = useTheme();

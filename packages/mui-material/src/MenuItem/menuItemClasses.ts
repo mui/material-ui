@@ -15,6 +15,8 @@ export interface MenuItemClasses {
   gutters: string;
   /** State class applied to the root element if `selected={true}`. */
   selected: string;
+  /** State class applied to the root element if its submenu is open. */
+  openSubMenuParent: string;
 }
 
 export type MenuItemClassKey = keyof MenuItemClasses;
@@ -31,6 +33,7 @@ const menuItemClasses: MenuItemClasses = generateUtilityClasses('MuiMenuItem', [
   'divider',
   'gutters',
   'selected',
+  'openSubMenuParent',
 ]);
 
 export default menuItemClasses;

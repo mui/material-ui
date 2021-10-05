@@ -57,6 +57,7 @@ export interface MenuProps extends StandardProps<PopoverProps> {
    * `classes` prop applied to the [`Popover`](/api/popover/) element.
    */
   PopoverClasses?: PopoverProps['classes'];
+  setParentOpenSubMenuIndex?: (index: number) => void;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
