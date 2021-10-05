@@ -4,7 +4,7 @@ import fr from 'date-fns/locale/fr';
 import TextField from '@mui/material/TextField';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import { fireEvent, screen } from 'test/utils';
-import { adapterToUse, getByMuiTest, createPickerRender } from '../internal/pickers/test-utils';
+import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<MobileDatePicker /> localization', () => {
   const render = createPickerRender({ locale: fr });
@@ -22,7 +22,7 @@ describe('<MobileDatePicker /> localization', () => {
     expect(screen.getByRole('textbox')).to.have.value('2018');
 
     fireEvent.click(screen.getByLabelText(/Choose date/));
-    expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('2018');
+    expect(screen.getByMuiTest('datepicker-toolbar-date').textContent).to.equal('2018');
   });
 
   it('format for year+month view', () => {
@@ -39,7 +39,7 @@ describe('<MobileDatePicker /> localization', () => {
     expect(screen.getByRole('textbox')).to.have.value('janvier 2018');
 
     fireEvent.click(screen.getByLabelText(/Choose date/));
-    expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('janvier');
+    expect(screen.getByMuiTest('datepicker-toolbar-date').textContent).to.equal('janvier');
   });
 
   it('format for year+month+day view', () => {
@@ -55,6 +55,6 @@ describe('<MobileDatePicker /> localization', () => {
     expect(screen.getByRole('textbox')).to.have.value('01/01/2018');
 
     fireEvent.click(screen.getByLabelText(/Choose date/));
-    expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('1 janvier');
+    expect(screen.getByMuiTest('datepicker-toolbar-date').textContent).to.equal('1 janvier');
   });
 });

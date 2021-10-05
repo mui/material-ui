@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+  unstable_setRef as setRef,
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
@@ -145,11 +146,21 @@ export default function useButton(props: UseButtonProps) {
     },
   );
 
+  const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
+  const handleRef = useForkRef(ref, handleOwnRef);
+
+  const [hostElementName, setHostElementName] = React.useState<string>('');
+
+  const updateRef = (instance: HTMLElement | null) => {
+    setHostElementName(instance?.tagName ?? '');
+    setRef(handleRef, instance);
+  };
+
   const buttonProps: Record<string, unknown> = {};
-  if (elementType === 'button') {
+  if (hostElementName === 'BUTTON') {
     buttonProps.type = type ?? 'button';
     buttonProps.disabled = disabled;
-  } else {
+  } else if (hostElementName !== '') {
     if (!href && !to) {
       buttonProps.role = 'button';
     }
@@ -157,9 +168,6 @@ export default function useButton(props: UseButtonProps) {
       buttonProps['aria-disabled'] = disabled;
     }
   }
-
-  const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
-  const handleRef = useForkRef(ref, handleOwnRef);
 
   const getRootProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
     const propsEventHandlers = extractEventHandlers(props);
@@ -187,7 +195,7 @@ export default function useButton(props: UseButtonProps) {
     return {
       tabIndex: disabled ? -1 : tabIndex,
       type,
-      ref: handleRef as React.Ref<any>,
+      ref: updateRef,
       ...buttonProps,
       ...mergedEventHandlers,
     };

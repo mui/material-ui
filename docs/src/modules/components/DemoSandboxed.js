@@ -127,6 +127,12 @@ const getTheme = (outerTheme) => {
   return resultTheme;
 };
 
+// TODO: Let demos decide whether they need JSS
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+  insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
+});
+
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
@@ -140,12 +146,14 @@ function DemoSandboxed(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
-        <Sandbox {...sandboxProps}>
-          {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
-          <Component />
-        </Sandbox>
-      </ThemeProvider>
+      <StylesProvider jss={jss}>
+        <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
+          <Sandbox {...sandboxProps}>
+            {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
+            <Component />
+          </Sandbox>
+        </ThemeProvider>
+      </StylesProvider>
     </DemoErrorBoundary>
   );
 }
