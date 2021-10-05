@@ -632,7 +632,11 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const popperProps = appendOwnerState(
     PopperComponent,
-    { ...PopperProps, ...componentsProps.popper, sx: { ...sx, ...PopperProps.sx, ...componentsProps.popper?.sx },
+    {
+      ...PopperProps,
+      ...componentsProps.popper,
+      sx: { ...sx, ...PopperProps.sx, ...componentsProps.popper?.sx },
+    },
     ownerState,
   );
 
