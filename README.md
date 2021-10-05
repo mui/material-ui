@@ -94,12 +94,16 @@ See the full list of [our backers](https://mui.com/discover-more/backers/).
 Here is a quick example to get you started, **it's all you need**:
 
 ```jsx
-import * as React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 
 function App() {
-  return <Button variant="contained">Hello World</Button>;
+  return (
+    <Button variant="contained" color="primary">
+      Hello World
+    </Button>
+  );
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'));
@@ -133,7 +137,7 @@ You can find complete templates & themes in the [MUI store](https://material-ui.
 Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to MUI.
 
 Notice that contributions go far beyond pull requests and commits.
-Although we love giving you the opportunity to put your stamp on MUI, we also are thrilled to receive a variety of [other contributions](https://mui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project).
+Although we love giving you the opportunity to put your stamp on MUI, we also are thrilled to receive a variety of [other contributions](https://mui.com/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project).
 
 ## Changelog
 
