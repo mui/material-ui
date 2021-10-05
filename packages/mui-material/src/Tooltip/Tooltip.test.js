@@ -90,6 +90,34 @@ describe('<Tooltip />', () => {
     });
   });
 
+  describe('prop: sx', () => {
+    it('should resolve the sx prop', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          PopperProps={{ 'data-testid': 'popper' }}
+          sx={{
+            width: '200px',
+            padding: '15px',
+          }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+
+      expect(getByTestId('popper')).toHaveComputedStyle({
+        width: '200px',
+        paddingTop: '15px',
+        paddingRight: '15px',
+        paddingBottom: '15px',
+        paddingLeft: '15px',
+      });
+    });
+  });
+
   describe('prop: title', () => {
     it('should display if the title is present', () => {
       const { getByRole } = render(
