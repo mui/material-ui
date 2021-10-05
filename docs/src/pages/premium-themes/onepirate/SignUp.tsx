@@ -60,7 +60,7 @@ function SignUp() {
                     autoFocus
                     component={RFTextField}
                     disabled={submitting || sent}
-                    autoComplete="fname"
+                    autoComplete="given-name"
                     fullWidth
                     label="First name"
                     name="firstName"
@@ -71,7 +71,7 @@ function SignUp() {
                   <Field
                     component={RFTextField}
                     disabled={submitting || sent}
-                    autoComplete="lname"
+                    autoComplete="family-name"
                     fullWidth
                     label="Last name"
                     name="lastName"

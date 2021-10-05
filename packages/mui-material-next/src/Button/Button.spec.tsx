@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button, { ButtonProps } from '@mui/material/Button';
+import Button, { ButtonProps } from '@mui/material-next/Button';
 import { Link as ReactRouterLink, LinkProps } from 'react-router-dom';
 import { expectType } from '@mui/types';
 
@@ -80,8 +80,8 @@ const ButtonTest = () => (
         TestOverride
       </Button>
     }
-    <Button startIcon={<FakeIcon />}>Start Icon</Button>
-    <Button endIcon={<FakeIcon />}>endIcon</Button>
+    <Button startIcon={FakeIcon}>Start Icon</Button>
+    <Button endIcon={FakeIcon}>endIcon</Button>
   </div>
 );
 

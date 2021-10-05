@@ -294,11 +294,11 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Benny Joo',
-    src: 'https://avatars.githubusercontent.com/u/32841130',
-    title: 'Intern',
+    src: '/static/branding/about/benny.jpg',
+    title: 'Core components team',
     location: 'London, UK',
     country: 'kr',
-    about: 'I do keto diet and love reading 📚',
+    about: 'Love reading 📚 and working out 🏋️‍♂️',
     github: 'hbjORbj',
   },
 ];
