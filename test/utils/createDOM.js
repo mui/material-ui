@@ -17,7 +17,12 @@ const whitelist = [
 const blacklist = ['sessionStorage', 'localStorage'];
 
 function createDOM() {
-  const dom = new JSDOM('', { pretendToBeVisual: true });
+  const dom = new JSDOM('', {
+    pretendToBeVisual: true,
+    // to be able to test localStorage
+    // https://github.com/jsdom/jsdom/issues/2304#issuecomment-662972525
+    url: 'http://localhost/',
+  });
   global.window = dom.window;
   // Not yet supported: https://github.com/jsdom/jsdom/issues/2152
   class Touch {

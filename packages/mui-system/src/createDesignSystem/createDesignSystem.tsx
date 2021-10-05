@@ -33,9 +33,15 @@ export default function createDesignSystem<
     vars: defaultTheme,
   };
 
-  const ThemeContext = React.createContext<Theme>(defaultTheme);
+  const ThemeContext = React.createContext<Theme | undefined>(defaultTheme);
 
-  const useTheme = () => React.useContext(ThemeContext);
+  const useTheme = () => {
+    const value = React.useContext(ThemeContext);
+    if (!value) {
+      throw new Error('useTheme cannot be used outside of ThemeProvider');
+    }
+    return value;
+  };
 
   const ThemeProvider = ({
     children,

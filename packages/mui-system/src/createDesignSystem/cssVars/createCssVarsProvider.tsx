@@ -45,10 +45,10 @@ export default function createCssVarsProvider<
   BaseTokens extends Record<string, any>,
   ColorSchemeTokens extends Record<string, any>,
   ColorScheme extends string,
-  ColorSchemeOverrides extends string,
+  ColorSchemeOverrides extends string = never,
   Theme extends Record<string, any> = BaseTokens & ColorSchemeTokens,
 >(
-  ThemeContext: React.Context<Theme>,
+  ThemeContext: React.Context<Theme | undefined>,
   options: {
     baseTheme: BaseTokens;
     colorSchemes: Record<ColorScheme, ColorSchemeTokens> &
