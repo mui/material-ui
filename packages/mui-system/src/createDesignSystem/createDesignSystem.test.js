@@ -3,11 +3,11 @@ import * as React from 'react';
 import { createClientRender, screen } from 'test/utils';
 import createDesignSystem from './createDesignSystem';
 
-const { styled, ThemeProvider, CssVarsProvider } = createDesignSystem({
+const { styled, ThemeProvider, CssVarsProvider, useTheme } = createDesignSystem({
   baseTheme: {
     fontSize: {
-      xs: '0.75rem',
-      md: '1rem',
+      xs: '12px',
+      md: '16px',
     },
   },
   colorSchemes: {
@@ -26,59 +26,51 @@ const Text = styled('span')(({ theme, size = 'md' }) => ({
 
 describe('createDesignSystem', () => {
   const render = createClientRender();
-  let storage = {};
-  before(() => {
-    // Create mocks of localStorage getItem and setItem functions
-    global.localStorage = {
-      getItem: (key) => storage[key],
-      setItem: (key, value) => {
-        storage[key] = value;
-      },
-    };
+  before(function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
   });
 
-  beforeEach(() => {
-    // clear the localstorage
-    storage = {};
-  });
-
-  it('can render a component with default theme', () => {
+  it('can render a component with default theme', function test() {
     render(<Text>Foo</Text>);
 
-    expect(screen.getByText('Foo')).toHaveComputedStyle({ fontSize: '1rem' });
+    expect(screen.getByText('Foo')).toHaveComputedStyle({ fontSize: '16px' });
   });
 
-  it('custom theme is merged inside ThemeProvider', () => {
+  it('custom theme is merged inside ThemeProvider', function test() {
     render(
-      <ThemeProvider theme={{ fontSize: { md: '1.5rem' } }}>
+      <ThemeProvider theme={{ fontSize: { md: '18px' } }}>
         <Text>Medium Text</Text>
         <Text size="xs">ExtraSmall Text</Text>
       </ThemeProvider>,
     );
 
-    expect(screen.getByText('Medium Text')).toHaveComputedStyle({ fontSize: '1.5rem' });
-    expect(screen.getByText('ExtraSmall Text')).toHaveComputedStyle({ fontSize: '0.75rem' });
+    expect(screen.getByText('Medium Text')).toHaveComputedStyle({ fontSize: '18px' });
+    expect(screen.getByText('ExtraSmall Text')).toHaveComputedStyle({ fontSize: '12px' });
   });
 
   it('use css variables with CssVarsProvider', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
+    const WrappedText = (props) => {
+      const theme = useTheme();
+      return <Text {...props}>{theme.vars.fontSize.md}</Text>;
+    };
     render(
-      <CssVarsProvider>
-        <Text>Foo</Text>
+      <CssVarsProvider baseTheme={{ fontSize: { md: '22px' } }}>
+        <WrappedText data-testid="css-vars-text" />
       </CssVarsProvider>,
     );
 
-    expect(screen.getByText('Foo')).toHaveComputedStyle({ fontSize: 'var(--fontSize-md)' });
+    expect(screen.getByTestId('css-vars-text')).toHaveComputedStyle({ fontSize: '22px' });
+    expect(screen.getByTestId('css-vars-text').textContent).to.equal('var(--fontSize-md)');
   });
 
   describe('multiple design systems', () => {
     const { styled: styled2, ThemeProvider: ThemeProvider2 } = createDesignSystem({
       baseTheme: {
         fontSize: {
-          xs: '0.75rem',
-          md: '2rem',
+          xs: '10px',
+          md: '24px',
         },
       },
       colorSchemes: {
@@ -95,10 +87,10 @@ describe('createDesignSystem', () => {
       fontSize: theme.vars.fontSize[size],
     }));
 
-    it('each design system is independent', () => {
+    it('each design system is independent', function test() {
       render(
-        <ThemeProvider theme={{ fontSize: { md: '1.1rem' } }}>
-          <ThemeProvider2 theme={{ fontSize: { md: '2.2rem' } }}>
+        <ThemeProvider theme={{ fontSize: { md: '17px' } }}>
+          <ThemeProvider2 theme={{ fontSize: { md: '25px' } }}>
             <Text>Text 1</Text>
             <Text2>Text 2</Text2>
           </ThemeProvider2>
@@ -106,9 +98,9 @@ describe('createDesignSystem', () => {
         </ThemeProvider>,
       );
 
-      expect(screen.getByText('Text 1')).toHaveComputedStyle({ fontSize: '1.1rem' });
-      expect(screen.getByText('Text 2')).toHaveComputedStyle({ fontSize: '2.2rem' });
-      expect(screen.getByText('TextDefault 2')).toHaveComputedStyle({ fontSize: '2rem' });
+      expect(screen.getByText('Text 1')).toHaveComputedStyle({ fontSize: '17px' });
+      expect(screen.getByText('Text 2')).toHaveComputedStyle({ fontSize: '25px' });
+      expect(screen.getByText('TextDefault 2')).toHaveComputedStyle({ fontSize: '24px' });
     });
   });
 });

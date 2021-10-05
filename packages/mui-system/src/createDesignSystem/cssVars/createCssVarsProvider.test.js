@@ -46,12 +46,15 @@ describe('createCssVarsProvider', () => {
   let storage = {};
   before(() => {
     // Create mocks of localStorage getItem and setItem functions
-    global.localStorage = {
-      getItem: spy((key) => storage[key]),
-      setItem: spy((key, value) => {
-        storage[key] = value;
-      }),
-    };
+    Object.defineProperty(global, 'localStorage', {
+      value: {
+        getItem: spy((key) => storage[key]),
+        setItem: spy((key, value) => {
+          storage[key] = value;
+        }),
+      },
+      configurable: true,
+    });
   });
 
   beforeEach(() => {
