@@ -14,6 +14,7 @@
     "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
+    "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "id": { "type": { "name": "string" } },
     "maxRows": { "type": { "name": "number" } },
@@ -23,6 +24,7 @@
     "placeholder": { "type": { "name": "string" } },
     "readOnly": { "type": { "name": "bool" } },
     "rows": { "type": { "name": "number" } },
+    "startAdornment": { "type": { "name": "node" } },
     "type": { "type": { "name": "string" }, "default": "'text'" },
     "value": { "type": { "name": "any" } }
   },

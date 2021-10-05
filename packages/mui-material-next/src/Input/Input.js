@@ -53,8 +53,6 @@ const useUtilityClasses = (ownerState) => {
       `color${capitalize(color)}`,
       fullWidth && 'fullWidth',
       size === 'small' && 'sizeSmall',
-      startAdornment && 'adornedStart',
-      endAdornment && 'adornedEnd',
       hiddenLabel && 'hiddenLabel',
     ],
     input: [
@@ -269,19 +267,9 @@ const Input = React.forwardRef(function Input(props, ref) {
     ...other
   } = props;
 
-  const InputWithAdornments = React.forwardRef(function InputWithAdornments(inputProps, inputRef) {
-    return (
-      <React.Fragment>
-        {startAdornment}
-        <InputInput {...inputProps} ref={inputRef} />
-        {endAdornment}
-      </React.Fragment>
-    );
-  });
-
   const components = {
     Root: InputRoot,
-    Input: startAdornment || endAdornment ? InputWithAdornments : InputInput,
+    Input: InputInput,
     Textarea: InputTextarea,
   };
 

@@ -33,6 +33,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     componentsProps = {},
     defaultValue,
     disabled,
+    endAdornment,
     error,
     id,
     maxRows,
@@ -45,6 +46,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     readOnly,
     rows,
     type = 'text',
+    startAdornment,
     value,
     ...other
   } = props;
@@ -56,7 +58,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     formControlContext,
     error: errorState,
     disabled: disabledState,
-  } = useInput(props);
+  } = useInput(props, componentsProps.input?.ref);
 
   const ownerState = {
     ...props,
@@ -72,8 +74,10 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     [classes.disabled]: disabledState,
     [classes.error]: errorState,
     [classes.focused]: focused,
-    [classes.formControl]: formControlContext,
+    [classes.formControl]: Boolean(formControlContext),
     [classes.multiline]: multiline,
+    [classes.adornedStart]: Boolean(startAdornment),
+    [classes.adornedEnd]: Boolean(endAdornment),
   };
 
   const inputStateClasses = {
@@ -151,7 +155,9 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
 
   return (
     <Root {...rootProps} ref={ref}>
+      {startAdornment}
       <Input {...inputProps} />
+      {endAdornment}
     </Root>
   );
 }) as OverridableComponent<InputUnstyledTypeMap>;
@@ -221,6 +227,10 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * Trailing adornment for this input.
+   */
+  endAdornment: PropTypes.node,
+  /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
@@ -267,6 +277,10 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.number,
+  /**
+   * Leading adornment for this input.
+   */
+  startAdornment: PropTypes.node,
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'

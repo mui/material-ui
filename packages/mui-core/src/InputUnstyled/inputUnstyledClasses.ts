@@ -6,6 +6,10 @@ export interface InputUnstyledClasses {
   root: string;
   /** Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: string;
+  /** Styles applied to the root element if `startAdornment` is provided. */
+  adornedStart: string;
+  /** Styles applied to the root element if `endAdornment` is provided. */
+  adornedEnd: string;
   /** Styles applied to the root element if the component is focused. */
   focused: string;
   /** Styles applied to the root element if `disabled={true}`. */
@@ -38,6 +42,8 @@ const inputBaseClasses: InputUnstyledClasses = generateUtilityClasses('MuiInput'
   'input',
   'inputMultiline',
   'inputTypeSearch',
+  'adornedStart',
+  'adornedEnd',
 ]);
 
 export default inputBaseClasses;

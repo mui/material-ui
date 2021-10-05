@@ -27,10 +27,6 @@ export interface UseInputProps {
   onClick?: React.MouseEventHandler;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler;
-  componentsProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement>;
-    input?: React.ComponentPropsWithRef<'input'>;
-  };
   /**
    * If `true`, the `input` element is required.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -72,9 +68,13 @@ export interface InputUnstyledOwnProps extends UseInputProps {
    * @default {}
    */
   componentsProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement> & { ownerState: InputOwnerState };
-    input?: React.HTMLAttributes<HTMLInputElement> & { ownerState: InputOwnerState };
+    root?: React.ComponentPropsWithRef<'div'> & { ownerState: InputOwnerState };
+    input?: React.ComponentPropsWithRef<'input'> & { ownerState: InputOwnerState };
   };
+  /**
+   * Trailing adornment for this input.
+   */
+  endAdornment?: React.ReactNode;
   /**
    * The id of the `input` element.
    */
@@ -103,6 +103,10 @@ export interface InputUnstyledOwnProps extends UseInputProps {
    * Number of rows to display when multiline option is set to true.
    */
   rows?: number;
+  /**
+   * Leading adornment for this input.
+   */
+  startAdornment?: React.ReactNode;
   /**
    * Minimum number of rows to display when multiline option is set to true.
    */
