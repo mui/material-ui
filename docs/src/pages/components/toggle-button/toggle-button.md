@@ -5,7 +5,7 @@ githubLabel: 'component: ToggleButton'
 materialDesign: https://material.io/components/buttons#toggle-button
 ---
 
-# ToggleButton
+# Toggle Buttons
 
 <p class="description">Toggle buttons can be used to group related options.</p>
 

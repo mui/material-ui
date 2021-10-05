@@ -5,7 +5,7 @@ githubLabel: 'component: Fab'
 materialDesign: https://material.io/components/buttons-floating-action-button
 ---
 
-# FloatingActionButton (FAB)
+# Floating action button
 
 <p class="description">A floating action button (FAB) performs the primary, or most common, action on a screen.</p>
 
