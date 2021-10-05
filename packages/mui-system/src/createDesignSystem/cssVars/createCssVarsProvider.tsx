@@ -11,8 +11,8 @@ export interface ColorSchemeContextValue<ColorScheme extends string> {
   setColorScheme: React.Dispatch<React.SetStateAction<ColorScheme | undefined>>;
 }
 
-type PartialDeep<T extends Record<string, any>> = {
-  [K in keyof T]?: T[K] extends Record<string, any> ? PartialDeep<T[K]> : T[K];
+type PartialDeep<T> = {
+  [K in keyof T]?: PartialDeep<T[K]>;
 };
 
 const resolveColorScheme = (key: string, fallback: string) => {

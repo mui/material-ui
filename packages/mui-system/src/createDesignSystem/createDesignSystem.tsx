@@ -3,8 +3,8 @@ import { deepmerge } from '@mui/utils';
 import createCssVarsProvider from './cssVars/createCssVarsProvider';
 import createStyled from '../createStyled';
 
-type PartialDeep<T extends Record<string, any>> = {
-  [K in keyof T]?: T[K] extends Record<string, any> ? PartialDeep<T[K]> : T[K];
+type PartialDeep<T> = {
+  [K in keyof T]?: PartialDeep<T[K]>;
 };
 
 export default function createDesignSystem<
@@ -52,7 +52,7 @@ export default function createDesignSystem<
     return <ThemeContext.Provider value={mergedTheme}>{children}</ThemeContext.Provider>;
   };
 
-  const styled = createStyled<Theme>({ defaultTheme, useTheme });
+  const styled = createStyled<Theme>({ useTheme });
 
   return {
     useTheme,
