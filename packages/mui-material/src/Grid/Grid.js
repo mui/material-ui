@@ -267,7 +267,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const rowSpacing = rowSpacingProp || spacing;
   const columnSpacing = columnSpacingProp || spacing;
 
-  const columns = React.useContext(GridContext) || columnsProp;
+  const columns = React.useContext(GridContext) || columnsProp > 12 ? 12 : columnsProp;
 
   const ownerState = {
     ...props,
