@@ -6,6 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/core';
 import capitalize from '../utils/capitalize';
 import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
 import styled, { rootShouldForwardProp } from '../styles/styled';
+import ClickAwayListener from '../ClickAwayListener';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, disabled, open } = ownerState;
@@ -116,24 +117,50 @@ const NativeSelectIcon = styled('svg', {
  * @ignore - internal component.
  */
 const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref) {
-  const { className, disabled, IconComponent, inputRef, variant = 'standard', ...other } = props;
+  const { className, disabled, IconComponent, inputRef, variant = 'standard', onChange, ...other } = props;
+  const [openState, setOpenState] = React.useState(false);
 
   const ownerState = {
     ...props,
     disabled,
     variant,
+    open: openState
   };
+
+  const handleMouseDown = event => {
+    // Ignore everything but left-click
+    if (event.button !== 0) {
+      return;
+    }
+    setOpenState(true);
+  };
+
+  const handleClose = () => {
+    setOpenState(false);
+  };
+
+  const onHandleChange  = event => {
+    if(onChange) {
+      onChange(event);
+    }
+    handleClose();
+  }
 
   const classes = useUtilityClasses(ownerState);
   return (
     <React.Fragment>
-      <NativeSelectSelect
-        ownerState={ownerState}
-        className={clsx(classes.select, className)}
-        disabled={disabled}
-        ref={inputRef || ref}
-        {...other}
-      />
+      <ClickAwayListener onClickAway={handleClose}>
+        <NativeSelectSelect
+          onMouseDown={handleMouseDown}
+          onBlur={handleClose}
+          ownerState={ownerState}
+          className={clsx(classes.select, className)}
+          disabled={disabled}
+          ref={inputRef || ref}
+          onChange={onHandleChange}
+          {...other}
+        />
+      </ClickAwayListener>
       {props.multiple ? null : (
         <NativeSelectIcon as={IconComponent} ownerState={ownerState} className={classes.icon} />
       )}
