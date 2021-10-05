@@ -149,15 +149,15 @@ how to fix the issues.
 ##### ci/circleci: test_unit-1
 
 Runs the unit tests in a `jsdom` environment. If this fails then `yarn test:unit`
-should<sup>[1](test/README.md#accessiblity-tree-exclusion)</sup> fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
-If `yarn test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessiblity-tree-exclusion).
+should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
+If `yarn test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
 ##### ci/circleci: test_browser-1
 
 Runs the unit tests in multiple browsers (via BrowserStack). The log of the failed
 build should list which browsers failed. If Chrome failed then `yarn test:karma`
-should<sup>[1](test/README.md#accessiblity-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
-If `yarn test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessiblity-tree-exclusion).
+should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
+If `yarn test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
 ##### ci/circleci: test_regression-1
 
