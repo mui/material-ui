@@ -100,75 +100,84 @@ describe('createStyled', () => {
       });
     });
 
-    it('Accepts function as override', () => {
-      const theme = createTheme({
-        components: {
-          MuiButton: {
-            styleOverrides: {
-              root: (props) => ({ ...(props.color === 'primary' && { color: 'pink' }) }),
-            },
-          },
-        },
-      });
-
-      const styled = createStyled({});
-      const Button = styled('button', {
-        shouldForwardProp: (prop) => prop !== 'color' && prop !== 'contained',
-        name: 'MuiButton',
-        slot: 'Root',
-        overridesResolver: (props, styles) => styles.root,
-      })({
-        display: 'flex',
-      });
-
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <Button color="primary" variant="contained" className="Mui-disabled">
-            Hello
-          </Button>
-        </ThemeProvider>,
-      );
-
-      expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
-        color: 'pink',
-      });
-    });
-
-    it('Accepts function and object as override', () => {
-      const theme = createTheme({
-        components: {
-          MuiButton: {
-            styleOverrides: {
-              root: (props) => ({ ...(props.color === 'primary' && { color: 'pink' }) }),
-              test: {
-                background: 'black',
+    describe('StyleOverrides', () => {
+      it('Accepts function as override', () => {
+        const theme = createTheme({
+          components: {
+            MuiButton: {
+              styleOverrides: {
+                root: (props) => ({
+                  ...(props.color !== 'primary' && { color: 'rgb(0, 0, 0)' }),
+                  fontWeight: '800',
+                }),
               },
             },
           },
-        },
+        });
+
+        const styled = createStyled({});
+        const Button = styled('button', {
+          shouldForwardProp: (prop) => prop !== 'color' && prop !== 'variant',
+          name: 'MuiButton',
+          slot: 'Root',
+          skipVariantsResolver: true,
+          overridesResolver: (props, styles) => styles.root,
+        })({
+          color: 'yellow',
+          fontWeight: 'normal',
+        });
+
+        const { container } = render(
+          <ThemeProvider theme={theme}>
+            <Button color="secondary">
+              Hello
+            </Button>
+          </ThemeProvider>,
+        );
+
+        expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
+          color: 'rgb(0, 0, 0)',
+          fontWeight: '800',
+        });
       });
 
-      const styled = createStyled({});
-      const Button = styled('button', {
-        shouldForwardProp: (prop) => prop !== 'color' && prop !== 'contained',
-        name: 'MuiButton',
-        slot: 'Root',
-        overridesResolver: (props, styles) => [styles.root, styles.test],
-      })({
-        display: 'flex',
-      });
+      it('Accepts function and object as override', () => {
+        const theme = createTheme({
+          components: {
+            MuiButton: {
+              styleOverrides: {
+                root: (props) => ({ ...(props.color === 'primary' && { color: 'rgb(1, 1, 1)' }) }),
+                containedSecondary: {
+                  fontWeight: 700,
+                },
+              },
+            },
+          },
+        });
 
-      const { container } = render(
-        <ThemeProvider theme={theme}>
-          <Button color="primary" variant="contained" className="Mui-disabled">
-            Hello
-          </Button>
-        </ThemeProvider>,
-      );
+        const styled = createStyled({});
+        const Button = styled('button', {
+          shouldForwardProp: (prop) => prop !== 'color' && prop !== 'variant',
+          name: 'MuiButton',
+          slot: 'Root',
+          overridesResolver: (props, styles) => [styles.root, styles.containedSecondary],
+        })({
+          color: 'rgb(100, 100, 100)',
+          fontWeight: 400,
+        });
 
-      expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
-        color: 'pink',
-        background: 'black',
+        const { container } = render(
+          <ThemeProvider theme={theme}>
+            <Button color="primary" variant="contained">
+              Hello
+            </Button>
+          </ThemeProvider>,
+        );
+
+        expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
+          color: 'rgb(1, 1, 1)',
+          fontWeight: '700',
+        });
       });
     });
   });
