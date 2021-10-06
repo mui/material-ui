@@ -45,7 +45,7 @@ function useFirstRender() {
   return firstRenderRef.current;
 }
 
-acceptLanguage.languages(['en', 'zh', 'pt', 'ru']);
+acceptLanguage.languages(['en', 'zh', 'pt']);
 
 function LanguageNegotiation() {
   const setUserLanguage = useSetUserLanguage();
