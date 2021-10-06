@@ -100,13 +100,13 @@ describe('createStyled', () => {
       });
     });
 
-    it('Accepts function with props as override', () => {
+    it('Accepts function as override', () => {
       const theme = createTheme({
         components: {
           MuiButton: {
             styleOverrides: {
-              root: (props) => ({ ...(props.color === 'primary' && { color: 'pink' }) })
-            }
+              root: (props) => ({ ...(props.color === 'primary' && { color: 'pink' }) }),
+            },
           },
         },
       });
@@ -131,6 +131,44 @@ describe('createStyled', () => {
 
       expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
         color: 'pink',
+      });
+    });
+
+    it('Accepts function and object as override', () => {
+      const theme = createTheme({
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: (props) => ({ ...(props.color === 'primary' && { color: 'pink' }) }),
+              test: {
+                background: 'black'
+              },
+            },
+          },
+        },
+      });
+
+      const styled = createStyled({});
+      const Button = styled('button', {
+        shouldForwardProp: (prop) => prop !== 'color' && prop !== 'contained',
+        name: 'MuiButton',
+        slot: 'Root',
+        overridesResolver: (props, styles) => [styles.root, styles.test],
+      })({
+        display: 'flex',
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Button color="primary" variant="contained" className="Mui-disabled">
+            Hello
+          </Button>
+        </ThemeProvider>,
+      );
+
+      expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
+        color: 'pink',
+        background: 'black'
       });
     });
   });
