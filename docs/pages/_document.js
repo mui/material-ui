@@ -7,7 +7,7 @@ import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
-import { getInitColorSchemeScript } from 'docs/src/JoyDesignSystem';
+import { getInitColorSchemeScript } from '@mui/joy/styles';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
