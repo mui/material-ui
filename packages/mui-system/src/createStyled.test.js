@@ -129,9 +129,7 @@ describe('createStyled', () => {
 
         const { container } = render(
           <ThemeProvider theme={theme}>
-            <Button color="secondary">
-              Hello
-            </Button>
+            <Button color="secondary">Hello</Button>
           </ThemeProvider>,
         );
 
