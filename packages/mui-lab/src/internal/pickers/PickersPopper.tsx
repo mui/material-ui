@@ -196,6 +196,7 @@ const PickersPopper = (props: PickerPopperProps) => {
     role,
     TransitionComponent = Grow,
     TrapFocusProps,
+    ...paperProps
   } = props;
 
   React.useEffect(() => {
@@ -255,8 +256,9 @@ const PickersPopper = (props: PickerPopperProps) => {
         >
           <TransitionComponent {...TransitionProps}>
             <PickersPopperPaper
-              tabIndex={-1}
               elevation={8}
+              {...paperProps}
+              tabIndex={-1}
               ref={handlePaperRef}
               onClick={onPaperClick}
               onTouchStart={onPaperTouchStart}

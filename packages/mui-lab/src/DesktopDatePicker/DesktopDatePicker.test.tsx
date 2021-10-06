@@ -303,6 +303,24 @@ describe('<DesktopDatePicker />', () => {
     });
   });
 
+  describe('prop: PaperProps', () => {
+    it('forwards data-testid prop', () => {
+      render(
+        <DesktopDatePicker
+          open
+          onChange={() => {}}
+          PaperProps={{
+            // @ts-expect-error `data-*` attributes are not recognized in props objects
+            'data-testid': 'paper',
+          }}
+          renderInput={(params) => <TextField {...params} />}
+          value={null}
+        />,
+      );
+      expect(screen.queryByTestId('paper')).toBeVisible();
+    });
+  });
+
   describe('scroll', () => {
     const NoTransition = React.forwardRef(function NoTransition(
       props: TransitionProps & { children?: React.ReactNode },

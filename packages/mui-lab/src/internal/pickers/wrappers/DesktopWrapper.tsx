@@ -1,10 +1,20 @@
 import * as React from 'react';
 import { useForkRef } from '@mui/material/utils';
+import { PaperProps as MuiPaperProps } from '@mui/material/Paper';
 import { WrapperVariantContext } from './WrapperVariantContext';
 import PickersPopper, { ExportedPickerPopperProps } from '../PickersPopper';
 import { DateInputPropsLike, PrivateWrapperProps } from './WrapperProps';
 
-export interface DesktopWrapperProps extends ExportedPickerPopperProps {
+interface ExportedPickerPaperProps {
+  /**
+   * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
+   */
+  PaperProps?: Partial<
+    Omit<MuiPaperProps, 'role' | 'tabIndex' | 'ref' | 'onClick' | 'onTouchStart' | 'ownerState'>
+  >;
+}
+
+export interface DesktopWrapperProps extends ExportedPickerPopperProps, ExportedPickerPaperProps {
   children?: React.ReactNode;
 }
 
@@ -23,6 +33,7 @@ function DesktopWrapper(props: InternalDesktopWrapperProps) {
     onDismiss,
     open,
     PopperProps,
+    PaperProps,
     TransitionComponent,
   } = props;
   const ownInputRef = React.useRef<HTMLInputElement>(null);
@@ -38,6 +49,7 @@ function DesktopWrapper(props: InternalDesktopWrapperProps) {
         TransitionComponent={TransitionComponent}
         PopperProps={PopperProps}
         onClose={onDismiss}
+        {...PaperProps}
       >
         {children}
       </PickersPopper>

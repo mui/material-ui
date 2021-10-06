@@ -50,6 +50,7 @@ const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
   const {
     onChange,
     PopperProps,
+    PaperProps,
     ToolbarComponent = DatePickerToolbar,
     TransitionComponent,
     value,
@@ -63,6 +64,7 @@ const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
       DateInputProps={AllDateInputProps}
       KeyboardDateInputComponent={KeyboardDateInput}
       PopperProps={PopperProps}
+      PaperProps={PaperProps}
       TransitionComponent={TransitionComponent}
     >
       <Picker
