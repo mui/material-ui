@@ -1,5 +1,12 @@
-import { styled as muiStyled } from '@mui/material/styles';
-import { breakpoints, display, compose, createTheme, spacing, style } from '@mui/system';
+import {
+  breakpoints,
+  display,
+  compose,
+  createTheme,
+  spacing,
+  style,
+  styled as muiStyled,
+} from '@mui/system';
 import * as React from 'react';
 import styled from 'styled-components';
 
