@@ -3,11 +3,13 @@ import Box from '@mui/material/Box';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import { styled, CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Switch from '@mui/joy/Switch';
+import { useControls, folder, Leva } from 'leva';
 
 declare module '@mui/joy/styles' {
   interface JoyColorSchemeOverrides {
     valentine: true;
     trueDark: true;
+    custom: true;
   }
 }
 
@@ -63,7 +65,60 @@ const Toggle = () => {
   );
 };
 
+const toPixel = (val: string | number) => (typeof val === 'number' ? `${val}px` : val);
+
 export default function Joy() {
+  const values = useControls({
+    track: folder({
+      width: {
+        value: 88,
+        min: 40,
+        max: 120,
+        step: 1,
+        suffix: 'px',
+      },
+      height: {
+        value: 40,
+        min: 8,
+        max: 64,
+        step: 1,
+        suffix: 'px',
+      },
+      radius: {
+        value: 8,
+        min: 0,
+        max: 32,
+        step: 1,
+        suffix: 'px',
+      },
+    }),
+    thumb: folder({
+      size: {
+        value: 32,
+        min: 20,
+        max: 72,
+        step: 1,
+        suffix: 'px',
+      },
+      offset: {
+        value: 0,
+        min: -50,
+        max: 50,
+        step: 1,
+        suffix: 'px',
+      },
+    }),
+    customColorScheme: folder({
+      palette: folder({
+        brand: '#000000',
+        neutral: '#dddddd',
+      }),
+      background: folder({
+        app: '#ffffff',
+        contrast: '#000000',
+      }),
+    }),
+  });
   return (
     <BrandingProvider>
       <Box
@@ -75,14 +130,15 @@ export default function Joy() {
           flexDirection: 'column',
           gap: '16px',
           bgcolor: 'var(--background-app)',
+          py: 10,
         }}
       >
         <CssVarsProvider
           colorSchemes={{
             trueDark: {
               palette: {
-                brand: '#3b3b3b',
-                neutral: '#e5e5e5',
+                brand: '#AAB4BE',
+                neutral: '#6a6a6a',
               },
               background: {
                 app: '#000',
@@ -92,17 +148,41 @@ export default function Joy() {
             valentine: {
               palette: {
                 brand: '#ff0000',
-                neutral: '#e5e5e5',
+                neutral: '#d99797',
               },
               background: {
                 app: '#ffdeed',
                 contrast: '#ff0000',
               },
             },
+            custom: {
+              palette: {
+                brand: values.brand,
+                neutral: values.neutral,
+              },
+              background: {
+                app: values.app,
+                contrast: values.contrast,
+              },
+            },
           }}
         >
-          <Switch />
-          <br />
+          <Leva />
+          <Box
+            sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            <Switch
+              sx={{
+                '--switch-track-width': toPixel(values.width),
+                '--switch-track-height': toPixel(values.height),
+                '--switch-track-radius': toPixel(values.radius),
+                '--switch-thumb-size': toPixel(values.size),
+                ...(typeof values.offset === 'string' && {
+                  '--switch-thumb-offset': values.offset,
+                }),
+              }}
+            />
+          </Box>
           <Typography sx={{ mb: 1, mt: 4 }}>Pick a color scheme</Typography>
           <Toggle />
         </CssVarsProvider>

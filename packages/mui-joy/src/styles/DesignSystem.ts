@@ -59,8 +59,8 @@ const { ThemeProvider, styled, CssVarsProvider, useColorScheme, getInitColorSche
       },
       dark: {
         palette: {
-          brand: '#1E4976',
-          neutral: '#B3C3D3',
+          brand: '#66B2FF',
+          neutral: '#46505A',
         },
         background: {
           app: '#0A1929',

@@ -65,6 +65,6 @@ const Root = styled('span', {
   },
 }));
 
-export default function Switch(props: SwitchUnstyledProps) {
+export default function Switch(props: SwitchUnstyledProps & { sx: any }) {
   return <SwitchUnstyled component={Root} {...props} />;
 }

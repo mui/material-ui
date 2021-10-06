@@ -85,6 +85,7 @@
     "jss": "^10.8.0",
     "jss-plugin-template": "^10.8.0",
     "jss-rtl": "^0.3.0",
+    "leva": "0.9.14",
     "lodash": "^4.17.21",
     "lz-string": "^1.4.4",
     "markdown-to-jsx": "^7.1.3",
