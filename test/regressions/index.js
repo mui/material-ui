@@ -111,6 +111,7 @@ const blacklist = [
   'docs-components-snackbars/SimpleSnackbar.png', // Needs interaction
   'docs-components-snackbars/TransitionsSnackbar.png', // Needs interaction
   'docs-components-speed-dial', // Needs interaction
+  'docs-components-stack/InteractiveStack.png', // Redundant
   'docs-components-steppers/HorizontalNonLinearStepper.png', // Redundant
   'docs-components-steppers/SwipeableTextMobileStepper.png', // Flaky image loading
   'docs-components-steppers/TextMobileStepper.png', // Flaky image loading

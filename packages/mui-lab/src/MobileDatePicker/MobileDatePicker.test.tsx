@@ -10,8 +10,6 @@ import {
   createPickerRender,
   FakeTransitionComponent,
   adapterToUse,
-  getByMuiTest,
-  queryAllByMuiTest,
   openMobilePicker,
 } from '../internal/pickers/test-utils';
 
@@ -61,8 +59,8 @@ describe('<MobileDatePicker />', () => {
       />,
     );
 
-    expect(getByMuiTest('calendar-year-text')).to.have.text('2018');
-    expect(getByMuiTest('calendar-month-text')).to.have.text('January');
+    expect(screen.getAllByMuiTest('calendar-year-text')[0]).to.have.text('2018');
+    expect(screen.getByMuiTest('calendar-month-text')).to.have.text('January');
 
     // onChange must be dispatched with newly selected date
     expect(onChangeMock.callCount).to.equal(
@@ -86,7 +84,7 @@ describe('<MobileDatePicker />', () => {
     fireEvent.click(screen.getByLabelText(/switch to year view/i));
     fireEvent.click(screen.getByText('2010', { selector: 'button' }));
 
-    expect(getByMuiTest('calendar-year-text')).to.have.text('2010');
+    expect(screen.getAllByMuiTest('calendar-year-text')[0]).to.have.text('2010');
     expect(onChangeMock.callCount).to.equal(1);
   });
 
@@ -105,7 +103,7 @@ describe('<MobileDatePicker />', () => {
     );
 
     fireEvent.click(screen.getByText('2010', { selector: 'button' }));
-    expect(getByMuiTest('datepicker-toolbar-date')).to.have.text('Fri, Jan 1');
+    expect(screen.getByMuiTest('datepicker-toolbar-date')).to.have.text('Fri, Jan 1');
   });
 
   it("doesn't close picker on selection in Mobile mode", () => {
@@ -155,7 +153,7 @@ describe('<MobileDatePicker />', () => {
       />,
     );
 
-    expect(getByMuiTest('picker-toolbar-title').textContent).to.equal('test');
+    expect(screen.getByMuiTest('picker-toolbar-title').textContent).to.equal('test');
   });
 
   it('prop `toolbarTitle` – should use label if no toolbar title', () => {
@@ -169,7 +167,7 @@ describe('<MobileDatePicker />', () => {
       />,
     );
 
-    expect(getByMuiTest('picker-toolbar-title').textContent).to.equal('Default label');
+    expect(screen.getByMuiTest('picker-toolbar-title').textContent).to.equal('Default label');
   });
 
   it('prop `toolbarFormat` – should format toolbar according to passed format', () => {
@@ -183,7 +181,7 @@ describe('<MobileDatePicker />', () => {
       />,
     );
 
-    expect(getByMuiTest('datepicker-toolbar-date').textContent).to.equal('January');
+    expect(screen.getByMuiTest('datepicker-toolbar-date').textContent).to.equal('January');
   });
 
   it('prop `onMonthChange` – dispatches callback when months switching', () => {
@@ -213,8 +211,8 @@ describe('<MobileDatePicker />', () => {
       />,
     );
 
-    expect(queryAllByMuiTest(document.body, 'day')).to.have.length(0);
-    expect(getByMuiTest('loading-progress')).toBeVisible();
+    expect(screen.queryAllByMuiTest('day')).to.have.length(0);
+    expect(screen.getByMuiTest('loading-progress')).toBeVisible();
   });
 
   it('prop `renderLoading` – displays custom loading indicator', () => {

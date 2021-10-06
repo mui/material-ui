@@ -140,6 +140,12 @@ export interface CreateStyledComponent<
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>;
 }
 
+export interface MUIStyledCommonProps<Theme extends object = DefaultTheme> {
+  theme?: Theme;
+  as?: React.ElementType;
+  sx?: SxProps<Theme>;
+}
+
 export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
@@ -148,11 +154,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
   ): CreateStyledComponent<
-    Pick<PropsOf<C>, ForwardedProps> & {
-      theme?: Theme;
-      as?: React.ElementType;
-      sx?: SxProps<Theme>;
-    },
+    Pick<PropsOf<C>, ForwardedProps> & MUIStyledCommonProps<Theme>,
     {},
     {
       ref?: React.Ref<InstanceType<C>>;
@@ -163,11 +165,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     component: C,
     options?: StyledOptions & MuiStyledOptions,
   ): CreateStyledComponent<
-    PropsOf<C> & {
-      theme?: Theme;
-      as?: React.ElementType;
-      sx?: SxProps<Theme>;
-    },
+    PropsOf<C> & MUIStyledCommonProps<Theme>,
     {},
     {
       ref?: React.Ref<InstanceType<C>>;
@@ -180,24 +178,12 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
-  ): CreateStyledComponent<
-    Pick<PropsOf<C>, ForwardedProps> & {
-      theme?: Theme;
-      as?: React.ElementType;
-      sx?: SxProps<Theme>;
-    }
-  >;
+  ): CreateStyledComponent<Pick<PropsOf<C>, ForwardedProps> & MUIStyledCommonProps<Theme>>;
 
   <C extends React.JSXElementConstructor<React.ComponentProps<C>>>(
     component: C,
     options?: StyledOptions & MuiStyledOptions,
-  ): CreateStyledComponent<
-    PropsOf<C> & {
-      theme?: Theme;
-      as?: React.ElementType;
-      sx?: SxProps<Theme>;
-    }
-  >;
+  ): CreateStyledComponent<PropsOf<C> & MUIStyledCommonProps<Theme>>;
 
   <
     Tag extends keyof JSX.IntrinsicElements,
@@ -206,25 +192,14 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     tag: Tag,
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps> & MuiStyledOptions,
   ): CreateStyledComponent<
-    {
-      theme?: Theme;
-      as?: React.ElementType;
-      sx?: SxProps<Theme>;
-    },
+    MUIStyledCommonProps<Theme>,
     Pick<JSX.IntrinsicElements[Tag], ForwardedProps>
   >;
 
   <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledOptions & MuiStyledOptions,
-  ): CreateStyledComponent<
-    {
-      theme?: Theme;
-      as?: React.ElementType;
-      sx?: SxProps<Theme>;
-    },
-    JSX.IntrinsicElements[Tag]
-  >;
+  ): CreateStyledComponent<MUIStyledCommonProps<Theme>, JSX.IntrinsicElements[Tag]>;
 }
 
 export function shouldForwardProp(propName: PropertyKey): boolean;

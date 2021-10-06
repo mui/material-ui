@@ -436,20 +436,21 @@ describe('<SwitchBase />', () => {
   });
 
   describe('checkbox form submission', () => {
-    it('dont set a void string as value', () => {
+    it('`value` falls back to the platform default if no `value` is set', () => {
       const { getByRole } = render(
         <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" />,
       );
 
-      expect(getByRole('checkbox')).not.to.have.property('value', '');
+      // https://html.spec.whatwg.org/multipage/input.html#dom-input-value-default-on
+      expect(getByRole('checkbox')).to.have.property('value', 'on');
     });
 
-    it('allows to overwrite value', () => {
+    it('`value` can be overwritten', () => {
       const { getByRole } = render(
-        <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" value="off" />,
+        <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" value="red" />,
       );
 
-      expect(getByRole('checkbox')).to.have.property('value', 'off');
+      expect(getByRole('checkbox')).to.have.property('value', 'red');
     });
   });
 });

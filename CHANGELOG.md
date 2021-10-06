@@ -1,5 +1,61 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.0.2
+
+<!-- generated comparing v5.0.1..master -->
+
+_Sep 29, 2021_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔧 Improve `jss-to-styled` codemod to use new package names.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.0.2`
+
+- &#8203;<!-- 28 -->[Checkbox] Fix form submission with empty value (#28423) @garronej
+- &#8203;<!-- 08 -->[Slider] Don't error on minimal changes with readonly value (#28472) @eps1lon
+- &#8203;<!-- 07 -->[Switch] Fix style overrides on input (#28576) @praveenkumar-kalidass
+- &#8203;<!-- 03 -->[useMediaQuery] Add types for `matchMedia` option and deprecate exported interfaces (#28413) @eps1lon
+
+### `@mui/codemod@5.0.2`
+
+- &#8203;<!-- 27 -->[codemod] Add MenuItem v.1.0.0 transform for primaryText property (#28640) @dmitry-yudakov
+- &#8203;<!-- 26 -->[codemod] Update the imports in `jss-to-styled` to match the new package names (#28667) @mnajdova
+
+### `@mui/system@5.0.2`
+
+- &#8203;<!-- 06 -->[system] Fix types to support theme callbacks on pseudo and nested selectors (#28570) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 23 -->[docs] Remove languages: fr, de, ja, es, ru (#28663) @mnajdova
+- &#8203;<!-- 22 -->[docs] Improve old doc versions discoverability (#28651) @danilo-leal
+- &#8203;<!-- 21 -->[docs] Make the Toggle Button size demo use default icon size (#28656) @danilo-leal
+- &#8203;<!-- 20 -->[docs] Uniformize the code's font family (#28582) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Removed duplicate line in date-ranger-picker.md file (#28635) @naveen-bharathi
+- &#8203;<!-- 18 -->[docs] Fix title MUI x2 (#28634) @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Polish email validation logic (#28255) @kiznick
+- &#8203;<!-- 16 -->[docs] Improve migration-v4.md phrasing (#28253) @adamthewebguy
+- &#8203;<!-- 15 -->[docs] Fix color in example (#28527) @alexeagleson
+- &#8203;<!-- 14 -->[docs] Fix typo in generated class names section (#28549) @fxlemire
+- &#8203;<!-- 13 -->[docs] Mention Premium pricing cap (#28581) @oliviertassinari
+- &#8203;<!-- 12 -->[docs] Update examples to use latest mui #28565 @siriwatknp
+- &#8203;<!-- 11 -->[docs] Push the fixes on Next.js's Link to the examples (#28178) @oliviertassinari
+- &#8203;<!-- 10 -->[docs] Fix wrong name for zIndex's property example in /system/ (#28541) @chetrit
+- &#8203;<!-- 08 -->[examples] Nextjs Link missing passHref #28588 (#28661) @Brlaney
+- &#8203;<!-- 02 -->[website] Iteration on the pricing page (#28406) @danilo-leal
+- &#8203;<!-- 01 -->[website] Batch fixes (#28564) @siriwatknp
+
+### Core
+
+- &#8203;<!-- 25 -->[core] Improve Renovate groups (#28642) @eps1lon
+- &#8203;<!-- 24 -->[core] Batch small changes (#28553) @oliviertassinari
+- &#8203;<!-- 05 -->[test] Document where the value for SwitchBase#value comes from (#28638) @eps1lon
+- &#8203;<!-- 04 -->[test] Make `seconds` `views` test pass in browsers (#28511) @eps1lon
+
+All contributors of this release in alphabetical order: @adamthewebguy, @alexeagleson, @Brlaney, @chetrit, @danilo-leal, @dmitry-yudakov, @eps1lon, @fxlemire, @garronej, @kiznick, @mnajdova, @naveen-bharathi, @oliviertassinari, @praveenkumar-kalidass, @siriwatknp
+
 ## 5.0.1
 
 <!-- generated comparing v5.0.0..master -->

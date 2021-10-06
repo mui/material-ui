@@ -54,6 +54,7 @@ Please note that `@next` will only point to pre-releases; to get the latest stab
 <p style="display: flex; justify-content: center;">
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="octopus" href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/1287123?s=256" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="doit-intl" href="https://www.doit-intl.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/8424863?s=256" alt="doit-intl" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="aptugo" href="https://www.aptugo.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://www.aptugo.com/img/favicon.png" alt="aptugo" title="Augmented Software Development Platform" loading="lazy" /></a>
 </p>
 
 Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
@@ -93,12 +94,16 @@ See the full list of [our backers](https://mui.com/discover-more/backers/).
 Here is a quick example to get you started, **it's all you need**:
 
 ```jsx
-import * as React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 
 function App() {
-  return <Button variant="contained">Hello World</Button>;
+  return (
+    <Button variant="contained" color="primary">
+      Hello World
+    </Button>
+  );
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'));
@@ -132,7 +137,7 @@ You can find complete templates & themes in the [MUI store](https://material-ui.
 Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to MUI.
 
 Notice that contributions go far beyond pull requests and commits.
-Although we love giving you the opportunity to put your stamp on MUI, we also are thrilled to receive a variety of [other contributions](https://mui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project).
+Although we love giving you the opportunity to put your stamp on MUI, we also are thrilled to receive a variety of [other contributions](https://mui.com/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project).
 
 ## Changelog
 

@@ -40,6 +40,7 @@ describe('<Zoom />', () => {
     });
 
     it('tests', () => {
+      const handleAddEndListener = spy();
       const handleEnter = spy();
       const handleEntering = spy();
       const handleEntered = spy();
@@ -48,6 +49,7 @@ describe('<Zoom />', () => {
       const handleExited = spy();
       const { container, setProps } = render(
         <Zoom
+          addEndListener={handleAddEndListener}
           onEnter={handleEnter}
           onEntering={handleEntering}
           onEntered={handleEntered}
@@ -61,6 +63,10 @@ describe('<Zoom />', () => {
       const child = container.querySelector('#test');
 
       setProps({ in: true });
+
+      expect(handleAddEndListener.callCount).to.equal(1);
+      expect(handleAddEndListener.args[0][0]).to.equal(child);
+      expect(typeof handleAddEndListener.args[0][1]).to.equal('function');
 
       expect(handleEnter.callCount).to.equal(1);
       expect(handleEnter.args[0][0]).to.equal(child);
