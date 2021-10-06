@@ -43,7 +43,7 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
       if (instance && instance.nodeName !== 'INPUT' && !instance.focus) {
         console.error(
           [
-            'Material-UI: You have provided a `inputComponent` to the input component',
+            'MUI: You have provided a `components.Input` to the input component',
             'that does not correctly handle the `ref` prop.',
             'Make sure the `ref` prop is called with a HTMLInputElement.',
           ].join('\n'),
@@ -130,27 +130,29 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
       otherHandlers.onClick?.(event);
     };
 
-  const getRootProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
+  const getRootProps = (externalProps?: Record<string, unknown>) => {
     // onBlur, onChange and onFocus are forwarded to the input slot.
     const propsEventHandlers = extractEventHandlers(props, ['onBlur', 'onChange', 'onFocus']);
-    const externalEventHandlers = { ...propsEventHandlers, ...otherHandlers };
+    const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
 
     return {
+      ...externalProps,
       ...externalEventHandlers,
       onClick: handleClick(externalEventHandlers),
     };
   };
 
-  const getInputProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
+  const getInputProps = (externalProps?: Record<string, unknown>) => {
     const propsEventHandlers: Record<string, React.EventHandler<any> | undefined> = {
       onBlur,
       onChange,
       onFocus,
     };
 
-    const externalEventHandlers = { ...propsEventHandlers, ...otherHandlers };
+    const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
 
     const mergedEventHandlers: Record<string, React.EventHandler<any>> = {
+      ...externalProps,
       ...externalEventHandlers,
       onBlur: handleBlur(externalEventHandlers),
       onChange: handleChange(externalEventHandlers),
@@ -158,13 +160,13 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
     };
 
     return {
+      ...mergedEventHandlers,
       'aria-invalid': error || undefined,
       defaultValue: defaultValue as string | number | readonly string[] | undefined,
       ref: handleInputRef,
       value: value as string | number | readonly string[] | undefined,
       required,
       disabled,
-      ...mergedEventHandlers,
     };
   };
 

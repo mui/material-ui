@@ -2,11 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled } from '@mui/material/styles';
-import { shouldForwardProp } from '@mui/system';
+import { shouldForwardProp, useThemeProps } from '@mui/system';
 import {
   InputUnstyled,
   inputUnstyledClasses,
   unstable_composeClasses as composeClasses,
+  appendOwnerState,
 } from '@mui/core';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
@@ -50,12 +51,14 @@ const useUtilityClasses = (ownerState) => {
     ownerState;
   const slots = {
     root: [
+      'root',
       `color${capitalize(color)}`,
       fullWidth && 'fullWidth',
       size === 'small' && 'sizeSmall',
       hiddenLabel && 'hiddenLabel',
     ],
     input: [
+      'input',
       type === 'search' && 'inputTypeSearch',
       size === 'small' && 'inputSizeSmall',
       hiddenLabel && 'inputHiddenLabel',
@@ -253,10 +256,14 @@ const InputTextarea = React.forwardRef(function TextareaInput(props, ref) {
   return <InputInput {...props} ref={ref} as={TextareaAutosize} />;
 });
 
-const Input = React.forwardRef(function Input(props, ref) {
+const Input = React.forwardRef(function Input(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiInput' });
   const {
+    classes: classesProp,
     className,
     color,
+    component,
+    components: componentsProp = {},
     componentsProps = {},
     disableUnderline = false,
     endAdornment,
@@ -268,9 +275,9 @@ const Input = React.forwardRef(function Input(props, ref) {
   } = props;
 
   const components = {
-    Root: InputRoot,
-    Input: InputInput,
-    Textarea: InputTextarea,
+    Root: component ?? componentsProp.Root ?? InputRoot,
+    Input: componentsProp.Input ?? InputInput,
+    Textarea: componentsProp.Textarea ?? InputTextarea,
   };
 
   const ownerState = {
@@ -285,20 +292,29 @@ const Input = React.forwardRef(function Input(props, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const amendedComponentsProps = {
-    root: {
-      ...componentsProps.root,
+    root: appendOwnerState(
+      components.Root,
+      {
+        ...componentsProps.root,
+        className: clsx(classes.root, className, componentsProps.root?.className),
+      },
       ownerState,
-      className: clsx(classes.root, className, componentsProps.root?.className),
-    },
-    input: {
-      ...componentsProps.input,
+    ),
+    input: appendOwnerState(
+      components.Input,
+      {
+        type: 'text',
+        ...componentsProps.input,
+        className: clsx(classes.input, componentsProps.input?.className),
+      },
       ownerState,
-      className: clsx(classes.input, componentsProps.input?.className),
-    },
+    ),
   };
 
   return (
     <InputUnstyled
+      startAdornment={startAdornment}
+      endAdornment={endAdornment}
       {...other}
       ref={ref}
       components={components}
@@ -343,6 +359,11 @@ Input.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The components used for each slot inside the InputBase.
    * Either a string to use a HTML element or a component.

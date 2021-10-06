@@ -40,10 +40,15 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     minRows,
     multiline = false,
     name,
+    onClick,
+    onChange,
     onKeyDown,
     onKeyUp,
+    onFocus,
+    onBlur,
     placeholder,
     readOnly,
+    required,
     rows,
     type = 'text',
     startAdornment,
@@ -58,7 +63,20 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     formControlContext,
     error: errorState,
     disabled: disabledState,
-  } = useInput(props, componentsProps.input?.ref);
+  } = useInput(
+    {
+      disabled,
+      defaultValue,
+      error,
+      onBlur,
+      onClick,
+      onChange,
+      onFocus,
+      required,
+      value,
+    },
+    componentsProps.input?.ref,
+  );
 
   const ownerState = {
     ...props,
@@ -104,9 +122,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   const rootProps = appendOwnerState(
     Root,
     {
-      ...other,
-      ...getRootProps(),
-      ...componentsProps.root,
+      ...getRootProps({ ...other, ...componentsProps.root }),
       className: clsx(classes.root, rootStateClasses, className, componentsProps.root?.className),
     },
     ownerState,
@@ -116,9 +132,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   let inputProps = appendOwnerState(
     Input,
     {
-      ...propsToForward,
-      ...getInputProps(),
-      ...componentsProps.input,
+      ...getInputProps({ ...componentsProps.input, ...propsToForward }),
       className: clsx(classes.input, inputStateClasses, componentsProps.input?.className),
     },
     ownerState,
@@ -259,6 +273,22 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
   onKeyDown: PropTypes.func,
   /**
    * @ignore
@@ -273,6 +303,11 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    * (not from interacting with the field).
    */
   readOnly: PropTypes.bool,
+  /**
+   * If `true`, the `input` element is required.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  required: PropTypes.bool,
   /**
    * Number of rows to display when multiline option is set to true.
    */

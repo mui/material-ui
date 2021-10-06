@@ -23,6 +23,7 @@
     "name": { "type": { "name": "string" } },
     "placeholder": { "type": { "name": "string" } },
     "readOnly": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" } },
     "rows": { "type": { "name": "number" } },
     "startAdornment": { "type": { "name": "node" } },
     "type": { "type": { "name": "string" }, "default": "'text'" },

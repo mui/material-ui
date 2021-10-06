@@ -188,7 +188,14 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
 export type InputProps<
   D extends React.ElementType = InputTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<InputTypeMap<P, D>, D>;
+> = OverrideProps<InputTypeMap<P, D>, D> & {
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
+  component?: D;
+};
 
 /**
  *
