@@ -2,7 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementAcceptingRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/core';
+import {
+  unstable_composeClasses as composeClasses,
+  appendOwnerState,
+  isHostComponent,
+} from '@mui/core';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
@@ -635,7 +639,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     {
       ...PopperProps,
       ...componentsProps.popper,
-      sx: { ...sx, ...PopperProps.sx, ...componentsProps.popper?.sx },
+      style: { ...PopperProps.style, ...componentsProps.popper?.style },
+      ...(!isHostComponent(PopperComponent) && {
+        sx: { ...sx, ...PopperProps.sx, ...componentsProps.popper?.sx },
+      }),
     },
     ownerState,
   );
@@ -662,10 +669,11 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     <React.Fragment>
       {React.cloneElement(children, childrenProps)}
       <PopperComponent
-        as={PopperComponentProp ?? Popper}
-        placement={placement}
-        anchorEl={
-          followCursor
+        id={id}
+        {...(!isHostComponent(PopperComponent) && {
+          as: PopperComponentProp ?? Popper,
+          placement: placement,
+          anchorEl: followCursor
             ? {
                 getBoundingClientRect: () => ({
                   top: positionRef.current.y,
@@ -676,16 +684,17 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
                   height: 0,
                 }),
               }
-            : childNode
-        }
-        popperRef={popperRef}
-        open={childNode ? open : false}
-        id={id}
-        transition
-        {...interactiveWrapperListeners}
+            : childNode,
+          popperRef: popperRef,
+          open: childNode ? open : false,
+          transition: true,
+          ...interactiveWrapperListeners,
+        })}
         {...popperProps}
         className={clsx(classes.popper, componentsProps.popper?.className)}
-        popperOptions={popperOptions}
+        {...(!isHostComponent(PopperComponent) && {
+          popperOptions,
+        })}
       >
         {({ TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent

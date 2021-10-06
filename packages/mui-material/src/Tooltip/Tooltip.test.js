@@ -116,6 +116,27 @@ describe('<Tooltip />', () => {
         paddingLeft: '15px',
       });
     });
+
+    it('should not spread sx on host elements', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          components={{ Popper: 'div' }}
+          PopperProps={{ 'data-testid': 'popper' }}
+          sx={{
+            width: '200px',
+            padding: '15px',
+          }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+
+      expect(getByTestId('popper')).not.to.have.attribute('sx');
+    });
   });
 
   describe('prop: title', () => {
