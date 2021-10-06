@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { GlobalStyles } from '@mui/styled-engine';
 import { deepmerge } from '@mui/utils';
-import camelize from './camelize';
+import getDataset from './getDataset';
 import cssVarsParser from './cssVarsParser';
 import getInitColorSchemeScript from './getInitColorSchemeScript';
 
@@ -84,7 +84,7 @@ export default function createCssVarsProvider<
       dataAttribute?: string;
     }
   >) {
-    const dataAttributeCamel = camelize(dataAttribute);
+    const dataAttributeCamel = getDataset(dataAttribute);
 
     const [colorScheme, setColorScheme] = React.useState<
       ColorSchemeContextValue<ColorScheme | ColorSchemeOverrides>['colorScheme']
