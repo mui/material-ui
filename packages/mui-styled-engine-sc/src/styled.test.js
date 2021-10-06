@@ -35,15 +35,7 @@ describe('styled', () => {
     expect(container.querySelector('[class^=TestComponent]')).not.to.equal(null);
   });
 
-  it("should not allow styled-components's APIs", () => {
-    expect(() => {
-      const StyledComponent = styled('span').attrs();
-      render(<StyledComponent />);
-    }).to.throw();
-
-    expect(() => {
-      const StyledComponent = styled('span').withComponent();
-      render(<StyledComponent />);
-    }).to.throw();
+  it("should not allow styled-components's APIs: .attrs", () => {
+    expect(typeof styled('span').attrs).to.equal('undefined');
   });
 });
