@@ -45,6 +45,7 @@ function useFirstRender() {
   return firstRenderRef.current;
 }
 
+// Set the locales that the documentation automatically redirects to.
 acceptLanguage.languages(LANGUAGES);
 
 function LanguageNegotiation() {
