@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import { Box } from '@mui/system';
+import { Box } from '@mui/material';
 
 export default function Example() {
   return (
