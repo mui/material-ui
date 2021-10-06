@@ -14,7 +14,7 @@ The following steps must be proposed as a pull request.
 
 1. Clean the generated changelog, to match the format of https://github.com/mui-org/material-ui/releases.
 1. Update the root `/package.json`'s version
-1. `yarn release:version`
+1. `yarn release:version` (🔔 manually remove `^` from packages with prerelease version, eg. `-alpha`)
 1. Open PR with changes and wait for review and green CI
 1. Merge PR once CI is green and it has been approved
 

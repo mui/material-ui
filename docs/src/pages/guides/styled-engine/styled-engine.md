@@ -15,7 +15,11 @@ There are currently two packages available to choose from:
 - `@mui/styled-engine-sc` - a similar wrapper around `styled-components`.
 
 These two packages implement the same interface, which makes it possible to replace one with the other.
-By default, `@mui/material` has `@mui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@mui/styled-engine-sc` using a package alias:
+By default, `@mui/material` has `@mui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@mui/styled-engine-sc`.
+
+### yarn
+
+If you are using yarn, you can configure it using a package resolution:
 
 **package.json**
 
@@ -32,6 +36,39 @@ By default, `@mui/material` has `@mui/styled-engine` as a dependency, but you ca
 +  },
  }
 ```
+
+### npm
+
+As package resolutions are not available in npm at this moment, you need to update you bundler's config to add this alias. Here is an example of how you can do it, if you use `webpack`:
+
+**webpack.alias.js**
+
+```diff
+ module.exports = {
+   //...
++  resolve: {
++    alias: {
++      '@mui/styled-engine': '@mui/styled-engine-sc'
++    },
++  },
+ };
+```
+
+If you are using TypeScript, you will need to also update the TSConfig.
+
+**tsconfig.json**
+
+```diff
+ {
+   "compilerOptions": {
++    "paths": {
++      "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
++    }
+   },
+ }
+```
+
+### Ready-to-use examples
 
 If you are using create-react-app, there is a ready-to-use template in the example projects.
 You can use the [create-react-app-with-styled-components example](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components), or its [TypeScript equivalent](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript).

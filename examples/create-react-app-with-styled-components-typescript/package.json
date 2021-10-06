@@ -3,8 +3,8 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@mui/material": "latest",
     "@mui/lab": "latest",
+    "@mui/material": "latest",
     "@mui/styled-engine-sc": "latest",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
@@ -16,10 +16,10 @@
   },
   "scripts": {
     "tsc": "./node_modules/.bin/tsc",
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
@@ -34,12 +34,12 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@types/styled-components": "latest",
-    "customize-cra": "latest",
-    "react-app-rewired": "latest",
+    "craco-alias": "^3.0.1",
     "typescript": "latest"
   }
 }

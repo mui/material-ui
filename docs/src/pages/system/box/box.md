@@ -88,5 +88,5 @@ const defaultTheme = createTheme({
 
 const Box = createBox({ defaultTheme });
 
-export default styled;
+export default Box;
 ```
