@@ -141,7 +141,7 @@ describe('createStyled', () => {
             styleOverrides: {
               root: (props) => ({ ...(props.color === 'primary' && { color: 'pink' }) }),
               test: {
-                background: 'black'
+                background: 'black',
               },
             },
           },
@@ -168,7 +168,7 @@ describe('createStyled', () => {
 
       expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
         color: 'pink',
-        background: 'black'
+        background: 'black',
       });
     });
   });

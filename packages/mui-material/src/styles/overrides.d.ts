@@ -112,10 +112,10 @@ import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography';
 import { ComponentsProps, ComponentsPropsList } from './props';
 
-export type OverridesStyleRules<Name extends keyof ComponentsPropsList, ClassKey extends string = string> = Record<
-  ClassKey,
-  CSSInterpolation | ((props: ComponentsProps[Name]) => CSSInterpolation)
->;
+export type OverridesStyleRules<
+  Name extends keyof ComponentsPropsList,
+  ClassKey extends string = string,
+> = Record<ClassKey, CSSInterpolation | ((props: ComponentsProps[Name]) => CSSInterpolation)>;
 
 export type ComponentsOverrides = {
   [Name in keyof ComponentNameToClassKey]?: Partial<
