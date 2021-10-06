@@ -177,6 +177,7 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
               {loadingIndicator}
             </LoadingButtonLoadingIndicator>
           )}
+
           {children}
         </React.Fragment>
       )}
