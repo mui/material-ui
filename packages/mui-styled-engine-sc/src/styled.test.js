@@ -34,4 +34,8 @@ describe('styled', () => {
     expect(container.firstChild).not.to.have.attribute('color');
     expect(container.querySelector('[class^=TestComponent]')).not.to.equal(null);
   });
+
+  it("should not allow styled-components's APIs: .attrs", () => {
+    expect(typeof styled('span').attrs).to.equal('undefined');
+  });
 });
