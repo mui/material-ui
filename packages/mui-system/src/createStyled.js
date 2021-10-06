@@ -57,6 +57,7 @@ export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
+
 export const systemDefaultTheme = createTheme();
 
 const lowercaseFirstLetter = (string) => {
@@ -131,7 +132,12 @@ export default function createStyled(input = {}) {
           const styleOverrides = getStyleOverrides(componentName, theme);
 
           if (styleOverrides) {
-            return overridesResolver(props, styleOverrides);
+            let overrides = overridesResolver(props, styleOverrides);
+            if (!Array.isArray(overrides)) {
+              overrides = [overrides];
+            }
+
+            return overrides.map(override => typeof override === 'function' ? override(props) : override);
           }
 
           return null;

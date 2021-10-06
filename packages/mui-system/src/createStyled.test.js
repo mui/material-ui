@@ -99,5 +99,39 @@ describe('createStyled', () => {
         height: '200px',
       });
     });
+
+    it('Accepts function with props as override', () => {
+      const theme = createTheme({
+        components: {
+          MuiButton: {
+            styleOverrides: {
+              root: (props) => ({ ...(props.color === 'primary' && { color: 'pink' }) })
+            }
+          },
+        },
+      });
+
+      const styled = createStyled({});
+      const Button = styled('button', {
+        shouldForwardProp: (prop) => prop !== 'color' && prop !== 'contained',
+        name: 'MuiButton',
+        slot: 'Root',
+        overridesResolver: (props, styles) => styles.root,
+      })({
+        display: 'flex',
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Button color="primary" variant="contained" className="Mui-disabled">
+            Hello
+          </Button>
+        </ThemeProvider>,
+      );
+
+      expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
+        color: 'pink',
+      });
+    });
   });
 });

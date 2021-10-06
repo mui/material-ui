@@ -110,15 +110,16 @@ import { ToolbarClassKey } from '../Toolbar';
 import { TooltipClassKey } from '../Tooltip';
 import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography';
+import { ComponentsProps, ComponentsPropsList } from './props';
 
-export type OverridesStyleRules<ClassKey extends string = string> = Record<
+export type OverridesStyleRules<Name extends keyof ComponentsPropsList, ClassKey extends string = string> = Record<
   ClassKey,
-  CSSInterpolation
+  CSSInterpolation | ((props: ComponentsProps[Name]) => CSSInterpolation)
 >;
 
 export type ComponentsOverrides = {
   [Name in keyof ComponentNameToClassKey]?: Partial<
-    OverridesStyleRules<ComponentNameToClassKey[Name]>
+    OverridesStyleRules<Name, ComponentNameToClassKey[Name]>
   >;
 } & {
   MuiCssBaseline?: CSSObject | string;
