@@ -1,5 +1,6 @@
-import * as React from 'react';
+import SliderUnstyled, { sliderUnstyledClasses as classes } from '@mui/core/SliderUnstyled';
 import { expect } from 'chai';
+import * as React from 'react';
 import { spy, stub } from 'sinon';
 import {
   createClientRender,
@@ -8,7 +9,6 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import SliderUnstyled, { sliderUnstyledClasses as classes } from '@mui/core/SliderUnstyled';
 
 describe('<SliderUnstyled />', () => {
   before(function beforeHook() {
@@ -66,6 +66,19 @@ describe('<SliderUnstyled />', () => {
     const { current: element } = elementRef;
     expect(element.getAttribute('ownerState')).to.equal(null);
     expect(element.getAttribute('theme')).to.equal(null);
+  });
+
+  describe('prop: marks', () => {
+    it('does not cause unknown-prop error', () => {
+      const marks = [
+        {
+          value: 33,
+        },
+      ];
+      expect(() => {
+        render(<SliderUnstyled marks={marks} />);
+      }).not.to.throw();
+    });
   });
 
   describe('prop: orientation', () => {
