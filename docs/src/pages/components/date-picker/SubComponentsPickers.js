@@ -16,11 +16,7 @@ export default function SubComponentsPickers() {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <CalendarPicker
-            date={date}
-            onChange={(newDate) => setDate(newDate)}
-            disabled
-          />
+          <CalendarPicker date={date} onChange={(newDate) => setDate(newDate)} />
         </Grid>
         <Grid item xs={12} md={6}>
           <MonthPicker
