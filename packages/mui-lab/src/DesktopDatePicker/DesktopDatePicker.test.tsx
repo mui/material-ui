@@ -275,6 +275,27 @@ describe('<DesktopDatePicker />', () => {
     expect(screen.getByMuiTest('picker-toolbar')).toBeVisible();
   });
 
+  it('switches between views uncontrolled', () => {
+    const handleViewChange = spy();
+    render(
+      <DesktopDatePicker
+        open
+        showToolbar
+        onChange={() => {}}
+        TransitionComponent={FakeTransitionComponent}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
+        renderInput={(params) => <TextField {...params} />}
+        onViewChange={handleViewChange}
+      />,
+    );
+
+    fireEvent.click(screen.getByLabelText(/switch to year view/i));
+
+    expect(handleViewChange.callCount).to.equal(1);
+    expect(screen.queryByLabelText(/switch to year view/i)).to.equal(null);
+    expect(screen.getByLabelText('year view is open, switch to calendar view')).toBeVisible();
+  });
+
   describe('prop: PopperProps', () => {
     it('forwards onClick and onTouchStart', () => {
       const handleClick = spy();
