@@ -1,7 +1,7 @@
 import * as React from 'react';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import { createTheme } from "@mui/material/styles";
-import { Box, ThemeProvider } from "@mui/system";
+import { createTheme } from '@mui/material/styles';
+import { Box, ThemeProvider } from '@mui/system';
 
 export default function Example() {
   return (
