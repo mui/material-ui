@@ -10,7 +10,7 @@ const Anchor = styled('a')({});
 
 interface NextLinkComposedProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    Omit<NextLinkProps, 'href' | 'as'> {
+  Omit<NextLinkProps, 'href' | 'as'> {
   to: NextLinkProps['href'];
   linkAs?: NextLinkProps['as'];
   href?: NextLinkProps['href'];
@@ -58,21 +58,35 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     ...other
   } = props;
 
+  let isExternal: boolean;
+  let pathname: string;
+  let hrefString: string;
+  if (typeof href === 'string') {
+    pathname = href;
+    hrefString = href;
+    try {
+      new URL(href);
+      isExternal = true;
+    } catch {
+      isExternal = false;
+    }
+  } else {
+    pathname = href.pathname ?? "";
+    hrefString = href.href ?? "";
+    isExternal = href.protocol != null && href.protocol.length > 0;
+  }
+
   const router = useRouter();
-  const pathname = typeof href === 'string' ? href : href.pathname;
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === pathname && activeClassName,
   });
 
-  const isExternal =
-    typeof href === 'string' && (href.indexOf('http') === 0 || href.indexOf('mailto:') === 0);
-
   if (isExternal) {
     if (noLinkStyle) {
-      return <Anchor className={className} href={href} ref={ref} {...other} />;
+      return <Anchor className={className} href={hrefString} ref={ref} {...other} />;
     }
 
-    return <MuiLink className={className} href={href} ref={ref} {...other} />;
+    return <MuiLink className={className} href={hrefString} ref={ref} {...other} />;
   }
 
   if (noLinkStyle) {
