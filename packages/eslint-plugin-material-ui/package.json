@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-material-ui",
-  "version": "5.0.0",
+  "version": "5.0.3",
   "private": true,
   "description": "Custom eslint rules for MUI.",
   "main": "src/index.js",
