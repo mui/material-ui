@@ -4,7 +4,7 @@
 
 <h1 align="center">Material-UI</h1>
 
-> MUI v5 is out! ✨ Check out the latest documentation [here](https://mui.com/).
+> Material-UI v3 is now legacy. You can find the full version history at https://mui.com/versions/.
 
 <div align="center">
 
