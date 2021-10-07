@@ -59,7 +59,7 @@ const TabRoot = styled(ButtonBase, {
       minHeight: 72,
       paddingTop: 9,
       paddingBottom: 9,
-      [`& > .MuiTab-iconLabel`]: {
+      [`& > label`]: {
         marginTop: 6,
       },
     }),
@@ -140,12 +140,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     wrapped,
   };
 
-  const label =
-    typeof labelProp === 'string' && !!icon ? (
-      <span className="MuiTab-iconLabel">{labelProp}</span>
-    ) : (
-      labelProp
-    );
+  const label = typeof labelProp === 'string' && !!icon ? <label>{labelProp}</label> : labelProp;
 
   const classes = useUtilityClasses(ownerState);
 
