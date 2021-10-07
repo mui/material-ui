@@ -1,38 +1,41 @@
 import * as React from 'react';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import { Box } from '@mui/material';
+import { createTheme } from "@mui/material/styles";
+import { Box, ThemeProvider } from "@mui/system";
 
 export default function Example() {
   return (
-    <Box
-      sx={{
-        bgcolor: 'background.paper',
-        boxShadow: 1,
-        borderRadius: 1,
-        p: 2,
-        minWidth: 300,
-      }}
-    >
-      <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
-      <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
-        98.3 K
-      </Box>
-      <TrendingUpIcon
-        sx={{ color: 'success.dark', fontSize: 16, verticalAlign: 'sub' }}
-      />
+    <ThemeProvider theme={createTheme()}>
       <Box
         sx={{
-          color: 'success.dark',
-          display: 'inline',
-          fontWeight: 'medium',
-          mx: 0.5,
+          bgcolor: 'background.paper',
+          boxShadow: 1,
+          borderRadius: 1,
+          p: 2,
+          minWidth: 300,
         }}
       >
-        18.77%
+        <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
+        <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
+          98.3 K
+        </Box>
+        <TrendingUpIcon
+          sx={{ color: 'success.dark', fontSize: 16, verticalAlign: 'sub' }}
+        />
+        <Box
+          sx={{
+            color: 'success.dark',
+            display: 'inline',
+            fontWeight: 'medium',
+            mx: 0.5,
+          }}
+        >
+          18.77%
+        </Box>
+        <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
+          vs. last week
+        </Box>
       </Box>
-      <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
-        vs. last week
-      </Box>
-    </Box>
+    </ThemeProvider>
   );
 }
