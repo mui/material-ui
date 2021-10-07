@@ -59,8 +59,8 @@ const TabRoot = styled(ButtonBase, {
       minHeight: 72,
       paddingTop: 9,
       paddingBottom: 9,
-      [`& > *:first-child`]: {
-        marginBottom: 6,
+      [`& > * + *`]: {
+        marginTop: 6,
       },
     }),
   ...(ownerState.textColor === 'inherit' && {
@@ -113,7 +113,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     icon,
     // eslint-disable-next-line react/prop-types
     indicator,
-    label,
+    label: labelProp,
     onChange,
     onClick,
     onFocus,
@@ -134,12 +134,13 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     disableFocusRipple,
     selected,
     icon: !!icon,
-    label: !!label,
+    label: !!labelProp,
     fullWidth,
     textColor,
     wrapped,
   };
 
+  const label = typeof labelProp === 'string' && !!icon ? <span>{labelProp}</span> : labelProp;
   const classes = useUtilityClasses(ownerState);
 
   const handleClick = (event) => {

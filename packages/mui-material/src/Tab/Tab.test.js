@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { expect } from 'chai';
-import { spy } from 'sinon';
-import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
-import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import ButtonBase from '@mui/material/ButtonBase';
+import Tab, { tabClasses as classes } from '@mui/material/Tab';
+import { expect } from 'chai';
+import * as React from 'react';
+import { spy } from 'sinon';
+import { act, createClientRender, describeConformance, fireEvent } from 'test/utils';
 
 describe('<Tab />', () => {
   const render = createClientRender();
@@ -103,6 +103,15 @@ describe('<Tab />', () => {
       const { getByRole } = render(<Tab label="foo" />);
 
       expect(getByRole('tab')).to.have.text('foo');
+    });
+
+    it('should create a wrapper with top margin when passed together with icon', () => {
+      const { getByRole } = render(<Tab icon={<div data-testid="icon" />} label="foo" />);
+      const wrapper = getByRole('tab').children[1];
+      expect(wrapper).not.to.equal(undefined);
+      expect(wrapper.tagName).to.equal('SPAN');
+      expect(wrapper).to.have.text('foo');
+      expect(wrapper).toHaveComputedStyle({ marginTop: '6px' });
     });
   });
 
