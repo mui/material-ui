@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
+import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
@@ -12,6 +13,7 @@ import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
+import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 
@@ -140,6 +142,22 @@ const NewStartScreen = () => {
   );
 };
 
+function DocSearcHit(props) {
+  const { children, hit } = props;
+
+  const parseUrl = document.createElement('a');
+  parseUrl.href = hit.url;
+
+  // `url` contains the domain.
+  // But we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
+  return <Link href={`${parseUrl.pathname}${parseUrl.hash}`}>{children}</Link>;
+}
+
+DocSearcHit.propTypes = {
+  children: PropTypes.node,
+  hit: PropTypes.object.isRequired,
+};
+
 export default function AppSearch() {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
@@ -256,10 +274,13 @@ export default function AppSearch() {
                 parseUrl.href = item.url;
                 return {
                   ...item,
+                  // `url` contains the domain.
+                  // But we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
                   url: `${parseUrl.pathname}${parseUrl.hash}`,
                 };
               });
             }}
+            hitComponent={DocSearcHit}
             initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
             onClose={onClose}
           />,

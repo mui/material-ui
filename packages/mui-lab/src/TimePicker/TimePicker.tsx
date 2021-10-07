@@ -260,6 +260,10 @@ TimePicker.propTypes /* remove-proptypes */ = {
    */
   onOpen: PropTypes.func,
   /**
+   * Callback fired on view change.
+   */
+  onViewChange: PropTypes.func,
+  /**
    * Control the popup or dialog open state.
    */
   open: PropTypes.bool,
