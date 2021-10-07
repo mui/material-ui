@@ -71,8 +71,8 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
       isExternal = false;
     }
   } else {
-    pathname = href.pathname ?? "";
-    hrefString = href.href ?? "";
+    pathname = href.pathname ?? '';
+    hrefString = href.href ?? '';
     isExternal = href.protocol != null && href.protocol.length > 0;
   }
 
