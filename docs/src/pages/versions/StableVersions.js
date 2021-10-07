@@ -50,7 +50,7 @@ class StableVersions extends React.Component {
     docs = docs.map(version => ({
       version,
       // Replace dot with dashes for Netlify branch subdomains
-      url: `https://${version.replace(/\./g, '-')}.material-ui.com`,
+      url: `https://${version.replace(/\./g, '-')}.mui.com`,
     }));
     // Current version.
     docs.push({
@@ -60,12 +60,12 @@ class StableVersions extends React.Component {
     // Legacy documentation.
     docs.push({
       version: 'v0.20.1',
-      url: 'https://v0.material-ui.com',
+      url: 'https://v0.mui.com',
     });
     docs = orderBy(docs, 'version', 'desc');
     docs = sortedUniqBy(docs, 'version');
     // The latest version is always using the naked domain.
-    docs[0].url = 'https://material-ui.com';
+    docs[0].url = 'https://v3.mui.com';
     this.setState({ docs });
   }
 

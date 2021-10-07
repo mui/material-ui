@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="150" src="https://material-ui.com/static/images/material-ui-logo.svg" alt="Material-UI logo"></a></p>
+  <a href="https://v3.mui.com/" rel="noopener" target="_blank"><img width="150" src="https://v3.mui.com/static/images/material-ui-logo.svg" alt="Material-UI logo"></a></p>
 </p>
 
 <h1 align="center">Material-UI</h1>
@@ -41,7 +41,7 @@ yarn add @material-ui/core
 
 Head to the [v3 documentation](https://v3.mui.com/) for more details.
 
-**[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://material-ui.com/guides/migration-v0x/))
+**[v0.x](https://v0.mui.com/)** ([Migration to v1](https://v3.mui.com/guides/migration-v0x/))
 ```sh
 // with npm
 npm install material-ui
@@ -85,7 +85,7 @@ via [OpenCollective](https://opencollective.com/material-ui)
 
 ### There is more!
 
-See the full list of [our backers](https://material-ui.com/discover-more/backers/).
+See the full list of [our backers](https://v3.mui.com/discover-more/backers/).
 
 ## Usage
 
@@ -120,11 +120,11 @@ There is a StackOverflow tag called "material-ui" that you can use to tag your q
 ## Examples
 
 Are you looking for an example project to get started?
-[We host some](https://material-ui.com/getting-started/example-projects/).
+[We host some](https://v3.mui.com/getting-started/example-projects/).
 
 ## Documentation
 
-Check out our [documentation website](https://material-ui.com/).
+Check out our [documentation website](https://v3.mui.com/).
 
 ## Contributing
 
@@ -137,7 +137,7 @@ Please read the [changelog](https://github.com/mui-org/material-ui/releases).
 
 ## Roadmap
 
-The future plans and high priority features and enhancements can be found in the [ROADMAP.md](https://material-ui.com/discover-more/roadmap/) file.
+The future plans and high priority features and enhancements can be found in the [ROADMAP.md](https://mui.com/discover-more/roadmap/) file.
 
 ## Thanks
 
