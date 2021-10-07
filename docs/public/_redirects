@@ -148,12 +148,12 @@ https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
 /store/* https://material-ui-store.netlify.app/:splat 200
 /store-staging/* https://master--material-ui-store.netlify.app/:splat 200
 
-## material-ui-x
+## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,
-## material-ui-x is configured to be hosted at the root.
-/api/*/ https://material-ui-x.netlify.app/api/:splat/ 200
-/:lang/api/*/ https://material-ui-x.netlify.app/:lang/api/:splat/ 200
-/components/* https://material-ui-x.netlify.app/components/:splat 200
-/:lang/components/* https://material-ui-x.netlify.app/:lang/components/:splat 200
-/_next/* https://material-ui-x.netlify.app/_next/:splat 200
-/static/x/* https://material-ui-x.netlify.app/static/x/:splat 200
+## X is configured to be hosted at the root.
+/api/*/ https://docs-v4--material-ui-x.netlify.app/api/:splat/ 200
+/:lang/api/*/ https://docs-v4--material-ui-x.netlify.app/:lang/api/:splat/ 200
+/components/* https://docs-v4--material-ui-x.netlify.app/components/:splat 200
+/:lang/components/* https://docs-v4--material-ui-x.netlify.app/:lang/components/:splat 200
+/_next/* https://docs-v4--material-ui-x.netlify.app/_next/:splat 200
+/static/x/* https://docs-v4--material-ui-x.netlify.app/static/x/:splat 200
