@@ -290,7 +290,6 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       ref={ref}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
-      {...other}
     >
       …
     </PaginationItemEllipsis>
