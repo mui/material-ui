@@ -1,6 +1,6 @@
 {
   "name": "benchmark",
-  "version": "5.0.3",
+  "version": "5.0.0",
   "private": true,
   "scripts": {
     "browser": "yarn webpack --config browser/webpack.config.js && node browser/scripts/benchmark.js",
