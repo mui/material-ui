@@ -8,14 +8,14 @@ Quando o servidor recebe a solicitação, ele renderiza o(s) componente(s) reque
 
 O Material-UI foi projetado em base com garantias de renderização no servidor, mas cabe a você certificar-se de que ele será integrado corretamente. É importante fornecer a página com o CSS necessário, caso contrário a página irá renderizar somente o HTML até o CSS ser injetado pelo cliente, causando uma tremulação (FOUC). Para injetar o estilo no cliente, precisamos:
 
-1. Create a fresh, new [`emotion cache`](https://emotion.sh/docs/@emotion/cache) instance on every request.
-2. Renderize a árvore React com o coletor do lado do servidor.
-3. Capture o CSS.
-4. Passe o CSS junto ao cliente.
+1. Criar uma nova instância do [`emotion cache`](https://emotion.sh/docs/@emotion/cache) em cada request.
+2. Renderizar a árvore React com o coletor do lado do servidor.
+3. Capturar o CSS.
+4. Passar o CSS para o cliente.
 
-On the client-side, the CSS will be injected a second time before removing the server-side injected CSS.
+No cliente, o css será injetado uma segunda vez antes de remover o css injetado no servidor.
 
-## Setting up
+## Configurando
 
 No passo a passo a seguir, vamos ver como configurar a renderização do lado do servidor.
 
@@ -49,7 +49,7 @@ export default theme;
 
 ### O lado do servidor
 
-A seguir um esboço para o aspecto do que o servidor deve lidar. We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come into the server. If you're unfamiliar with Express or middleware, know that the `handleRender` function will be called every time the server receives a request.
+A seguir um esboço para o aspecto do que o servidor deve lidar. Nós iremos configurar um [Express middleware](https://expressjs.com/en/guide/using-middleware.html) usando [app.use](https://expressjs.com/en/api.html) para manipular todas requests que chegarem no servidor. Se você não estiver familiarizado com o Express ou Middlewares, saiba que a função `handleRender` será executada cada vez que o servidor receber uma request.
 
 `server.js`
 
@@ -74,15 +74,15 @@ const port = 3000;
 app.listen(port);
 ```
 
-### Handling the request
+### Manipulando as requests
 
-The first thing that we need to do on every request is to create a new `emotion cache`.
+A primeira coisa que nós precisamos fazer em cada request é criar um novo `emotion cache`.
 
-When rendering, we will wrap `App`, the root component, inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
+Na renderização, vamos envolver o `App`, no componente raiz, dentro de um [`CacheProvider`](https://emotion.sh/docs/cache-provider) e [`ThemeProvider`](/styles/api/#themeprovider) para disponibilizar as configurações de estilo para todos componentes.
 
-The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. Para fazer isso, usamos [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
+O passo chave na renderização do servidor é renderizar o HTML inicial do componentes **antes** de enviar para o lado do cliente. Para fazer isso, usamos [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-Material-UI is using emotion as its default styled engine. We need to extract the styles from the emotion instance. For this, we need to share the same cache configuration for both the client and server:
+O Material-UI está usando o [`Emotion`](https://emotion.sh) como engine de estilos padrão. Portanto, precisamos extrair os estilos da instância do emotion. Para isso, precisaremos compartilhar a mesma configuração de cache entre cliente e servidor.
 
 `getCache.js`
 
@@ -96,7 +96,7 @@ export default function getCache() {
 }
 ```
 
-With this we are creating new emotion cache instance and using this to extract the critical styles for the html as well.
+Com isso, nós vamos criar uma nova instância do emotion cache e usá-la para extrair os estilos críticos para o html também.
 
 Vamos ver como isso é passado na função `renderFullPage`.
 
@@ -146,9 +146,9 @@ const port = 3000;
 app.listen(port);
 ```
 
-### Inject initial component HTML and CSS
+### Injetando HTML e CSS do componente inicial
 
-The final step on the server-side is to inject the initial component HTML and CSS into a template to be rendered on the client-side.
+O passo final no lado do servidor é injetar o HTML e CSS do componentes inicial em um template para ser renderizado no lado do cliente.
 
 ```js
 function renderFullPage(html, css) {
@@ -169,9 +169,9 @@ function renderFullPage(html, css) {
 }
 ```
 
-### The client-side
+### O lado do cliente
 
-The client-side is straightforward. All we need to do is use the same cache configuration as the server-side. Vamos dar uma olhada no arquivo do cliente:
+O lado do cliente é mais direto. Tudo que nós faremos é usar a mesma configuração de cache do lado do servidor. Vamos dar uma olhada no arquivo do cliente:
 
 `client.js`
 
@@ -202,7 +202,7 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 ## Implementações de referência
 
-We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/HEAD/examples) folder:
+Nós hospedamos diferentes referências de implementação que você pode encontrar em nosso [Repositório GitHub](https://github.com/mui-org/material-ui) dentro da pasta [`/examples`](https://github.com/mui-org/material-ui/tree/HEAD/examples):
 
 - [A implementação de referência deste tutorial](https://github.com/mui-org/material-ui/tree/HEAD/examples/ssr)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/HEAD/examples/gatsby)
