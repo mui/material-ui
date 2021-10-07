@@ -111,6 +111,7 @@ describe('<Tab />', () => {
       expect(wrapper).not.to.equal(undefined);
       expect(wrapper.tagName).to.equal('SPAN');
       expect(wrapper).to.have.text('foo');
+      expect(wrapper).to.have.class('MuiTab-iconLabel');
       expect(wrapper).toHaveComputedStyle({ marginTop: '6px' });
     });
   });
