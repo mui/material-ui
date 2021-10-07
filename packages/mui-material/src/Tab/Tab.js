@@ -22,6 +22,7 @@ const useUtilityClasses = (ownerState) => {
       selected && 'selected',
       disabled && 'disabled',
     ],
+    icon: [icon && label && 'iconWrapper'],
   };
 
   return composeClasses(slots, getTabUtilityClass, classes);
@@ -59,8 +60,8 @@ const TabRoot = styled(ButtonBase, {
       minHeight: 72,
       paddingTop: 9,
       paddingBottom: 9,
-      [`& > label`]: {
-        marginTop: 6,
+      [`& > .${tabClasses.iconWrapper}`]: {
+        marginBottom: 6,
       },
     }),
   ...(ownerState.textColor === 'inherit' && {
@@ -113,7 +114,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     icon,
     // eslint-disable-next-line react/prop-types
     indicator,
-    label: labelProp,
+    label,
     onChange,
     onClick,
     onFocus,
@@ -134,13 +135,11 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     disableFocusRipple,
     selected,
     icon: !!icon,
-    label: !!labelProp,
+    label: !!label,
     fullWidth,
     textColor,
     wrapped,
   };
-
-  const label = typeof labelProp === 'string' && !!icon ? <label>{labelProp}</label> : labelProp;
 
   const classes = useUtilityClasses(ownerState);
 
@@ -178,7 +177,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       tabIndex={selected ? 0 : -1}
       {...other}
     >
-      {icon}
+      {icon && <span className={classes.icon}>{icon}</span>}
       {label}
       {indicator}
     </TabRoot>
