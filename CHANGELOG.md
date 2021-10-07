@@ -45,6 +45,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 ### Docs
 
+- &#8203;<!-- 34 -->[docs] Add alike v4 default button color in migration (#28881) @siriwatknp
 - &#8203;<!-- 34 -->[docs] Use PNG instead of SVG for color preview (#28699) @eps1lon
 - &#8203;<!-- 33 -->[docs] Use client-side navigation when activating docsearch results (#28750) @eps1lon
 - &#8203;<!-- 32 -->[docs] Fluid icon size in icons search (#28747) @eps1lon
