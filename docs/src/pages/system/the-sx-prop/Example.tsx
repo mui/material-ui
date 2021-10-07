@@ -1,11 +1,28 @@
 import * as React from 'react';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import { createTheme } from '@mui/material/styles';
-import { Box, ThemeProvider } from '@mui/system';
+import { Box, ThemeProvider, createTheme } from '@mui/system';
+
+const theme = createTheme({
+  palette: {
+    background: {
+      paper: '#fff',
+    },
+    text: {
+      primary: '#173A5E',
+      secondary: '#46505A',
+    },
+    action: {
+      active: '#001E3C',
+    },
+    success: {
+      dark: '#009688',
+    },
+  },
+});
 
 export default function Example() {
   return (
-    <ThemeProvider theme={createTheme()}>
+    <ThemeProvider theme={theme}>
       <Box
         sx={{
           bgcolor: 'background.paper',
