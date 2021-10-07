@@ -177,7 +177,12 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       tabIndex={selected ? 0 : -1}
       {...other}
     >
-      {icon && <span className={classes.icon}>{icon}</span>}
+      {icon && (
+        <span style={{ display: 'inherit' }} className={classes.icon}>
+          {icon}
+        </span>
+      )}
+
       {label}
       {indicator}
     </TabRoot>
