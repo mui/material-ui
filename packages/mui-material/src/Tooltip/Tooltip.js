@@ -672,7 +672,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         id={id}
         {...(!isHostComponent(PopperComponent) && {
           as: PopperComponentProp ?? Popper,
-          placement: placement,
+          placement,
           anchorEl: followCursor
             ? {
                 getBoundingClientRect: () => ({
@@ -685,7 +685,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
                 }),
               }
             : childNode,
-          popperRef: popperRef,
+          popperRef,
           open: childNode ? open : false,
           transition: true,
           ...interactiveWrapperListeners,

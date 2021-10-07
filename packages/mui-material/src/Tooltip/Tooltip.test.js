@@ -122,7 +122,11 @@ describe('<Tooltip />', () => {
         <Tooltip
           title="Hello World"
           open
-          components={{ Popper: 'div' }}
+          components={{
+            Popper: ({ children, ...rest }) => (
+              <div data-testid={rest['data-testid']}>{children({})}</div>
+            ),
+          }}
           PopperProps={{ 'data-testid': 'popper' }}
           sx={{
             width: '200px',
