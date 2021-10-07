@@ -314,7 +314,6 @@
     "/guides/content-security-policy": "Política de Segurança de Conteúdo",
     "/guides/right-to-left": "Da direita para a esquerda",
     "/guides/flow": "Flow",
-    "https://material-ui.com/store/": "Temas premium",
     "/discover-more": "Descubra mais",
     "/discover-more/showcase": "Casos de sucesso",
     "/discover-more/related-projects": "Projetos relacionados",
@@ -324,6 +323,8 @@
     "/discover-more/team": "Equipe",
     "/discover-more/changelog": "Histórico de mudanças",
     "/discover-more/languages": "Idiomas",
+    "/about": "Sobre nós",
+    "https://material-ui.com/store/": "Temas premium",
     "/versions": "Versões",
     "https://medium.com/material-ui": "Blog"
   }
