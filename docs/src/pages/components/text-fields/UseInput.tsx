@@ -31,14 +31,7 @@ const CustomInput = React.forwardRef(function CustomInput(
   props: React.InputHTMLAttributes<HTMLInputElement>,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) {
-  const { getRootProps, getInputProps } = useInput({
-    ...props,
-    componentsProps: {
-      input: {
-        ref,
-      },
-    },
-  });
+  const { getRootProps, getInputProps } = useInput(props, ref);
 
   return (
     <div {...getRootProps()}>

@@ -91,27 +91,6 @@ describe('<Input />', () => {
       // check if focus not initiated again
       expect(handleFocus.callCount).to.equal(1);
     });
-
-    // IE11 bug
-    it('should not respond the focus event when disabled', () => {
-      const handleFocus = spy();
-      // non-native input simulating how IE11 treats disabled inputs
-      const { getByRole } = render(
-        <div onFocus={handleFocus}>
-          <Input
-            disabled
-            inputComponent="div"
-            inputProps={{ role: 'textbox', tabIndex: -1 }}
-            onFocus={handleFocus}
-          />
-        </div>,
-      );
-
-      act(() => {
-        getByRole('textbox').focus();
-      });
-      expect(handleFocus.called).to.equal(false);
-    });
   });
 
   it('should fire event callbacks', () => {
@@ -174,7 +153,8 @@ describe('<Input />', () => {
       let injectedProps;
       const MyInput = React.forwardRef(function MyInput(props, ref) {
         injectedProps = props;
-        return <input ref={ref} {...props} />;
+        const { ownerState, ...other } = props;
+        return <input ref={ref} {...other} />;
       });
 
       render(<Input components={{ Input: MyInput }} />);
@@ -268,7 +248,7 @@ describe('<Input />', () => {
       const OUTPUT_VALUE = 'test';
 
       const MyInput = React.forwardRef(function MyInput(props, ref) {
-        const { onChange, ...other } = props;
+        const { onChange, ownerState, ...other } = props;
 
         const handleChange = (e) => {
           onChange(e.target.value, OUTPUT_VALUE);
