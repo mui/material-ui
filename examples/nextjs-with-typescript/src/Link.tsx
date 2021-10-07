@@ -10,7 +10,7 @@ const Anchor = styled('a')({});
 
 interface NextLinkComposedProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    Omit<NextLinkProps, 'href' | 'as'> {
+  Omit<NextLinkProps, 'href' | 'as'> {
   to: NextLinkProps['href'];
   linkAs?: NextLinkProps['as'];
   href?: NextLinkProps['href'];
@@ -65,7 +65,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     pathname = href;
     hrefString = href;
     try {
-      new URL(href);
+      new URL(href); // Throws TypeError if input is invalid, e.g., having no protocol.
       isExternal = true;
     } catch {
       isExternal = false;
