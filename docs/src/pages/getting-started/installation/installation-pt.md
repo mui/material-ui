@@ -30,7 +30,7 @@ npm install @material-ui/core@next @material-ui/styled-engine-sc@next styled-com
 yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
 ```
 
-Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+> 💡 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
 
 ## Fonte Roboto
 
