@@ -58,22 +58,28 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     ...other
   } = props;
 
+  let hrefUrl: URL;
   let isExternal: boolean;
   let pathname: string;
   let hrefString: string;
-  if (typeof href === 'string') {
-    pathname = href;
-    hrefString = href;
-    try {
-      new URL(href); // Throws TypeError if input is invalid, e.g., having no protocol.
-      isExternal = true;
-    } catch {
-      isExternal = false;
+
+  try {
+    // The UrlObject type does not guarantee any fields are set.
+    hrefUrl = new URL(typeof href === 'string' ? href : href.href ?? '');
+    isExternal = true;
+    pathname = hrefUrl.pathname;
+    hrefString = hrefUrl.href;
+  } catch {
+    // If URL construction failed, then absence of protocol can be assumed,
+    // so this is likely a relative path.
+    isExternal = false;
+    if (typeof href === 'string') {
+      pathname = href;
+      hrefString = href;
+    } else {
+      pathname = href.pathname ?? '';
+      hrefString = href.href ?? '';
     }
-  } else {
-    pathname = href.pathname ?? '';
-    hrefString = href.href ?? '';
-    isExternal = href.protocol != null && href.protocol.length > 0;
   }
 
   const router = useRouter();
