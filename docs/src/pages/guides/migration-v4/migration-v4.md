@@ -1019,7 +1019,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Button>
   ```
 
-  If you prefer to use the `default` color in v4, take a look at this [CodeSandbox](https://codesandbox.io/s/basicbuttons-material-demo-forked-ctzt9?file=/demo.js)
+  If you prefer to use the `default` color in v4, take a look at this [CodeSandbox](https://codesandbox.io/s/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx)
 
 - `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
 
