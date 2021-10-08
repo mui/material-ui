@@ -22,6 +22,7 @@ const useUtilityClasses = (ownerState) => {
       selected && 'selected',
       disabled && 'disabled',
     ],
+    icon: [icon && 'iconWrapper'],
   };
 
   return composeClasses(slots, getTabUtilityClass, classes);
@@ -54,13 +55,19 @@ const TabRoot = styled(ButtonBase, {
   textAlign: 'center',
   flexDirection: 'column',
   lineHeight: 1.25,
+  ...(ownerState.icon && {
+    [`& > .${tabClasses.iconWrapper}`]: {
+      display: 'inherit',
+    },
+  }),
   ...(ownerState.icon &&
     ownerState.label && {
       minHeight: 72,
       paddingTop: 9,
       paddingBottom: 9,
-      [`& > *:first-child`]: {
+      [`& > .${tabClasses.iconWrapper}`]: {
         marginBottom: 6,
+        display: 'inherit',
       },
     }),
   ...(ownerState.textColor === 'inherit' && {
@@ -176,7 +183,8 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       tabIndex={selected ? 0 : -1}
       {...other}
     >
-      {icon}
+      {icon && <span className={classes.icon}>{icon}</span>}
+
       {label}
       {indicator}
     </TabRoot>
