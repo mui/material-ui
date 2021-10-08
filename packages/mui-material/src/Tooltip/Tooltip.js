@@ -749,7 +749,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components: PropTypes.shape({
+  components: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     Arrow: PropTypes.elementType,
     Popper: PropTypes.elementType,
     Tooltip: PropTypes.elementType,

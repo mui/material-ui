@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Tooltip from './Tooltip';
-import { TransitionProps } from '../transitions/transition';
+import Tooltip from '@mui/material/Tooltip';
+import { TransitionProps } from '@mui/material/transitions';
 
 interface InvalidPopperProps {
   children: JSX.Element;
