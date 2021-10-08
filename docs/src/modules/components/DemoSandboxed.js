@@ -134,6 +134,7 @@ const getTheme = (outerTheme) => {
     resultTheme.spacing = outerTheme.spacing;
   }
   const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
+  // Apply color from the color playground
   if (outerTheme.palette.primary.main !== brandingDesignTokens.palette.primary.main) {
     resultTheme.palette.primary = outerTheme.palette.primary;
     resultTheme.palette.secondary = outerTheme.palette.secondary;
