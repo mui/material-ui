@@ -29,6 +29,32 @@ The list of each component's classes is documented under the **CSS** section of 
 
 To override a lab component's styles with TypeScript, check [this section of the documentation](/components/about-the-lab/#typescript).
 
+### Props inside style overrides
+
+You can use `function` as a value of the style override. You can define styles based on combination of the props.
+
+```js
+const theme = createTheme({
+  components: {
+    // Name of the component
+    MuiButton: {
+      styleOverrides: {
+        // Name of the slot
+        root: (props) => ({
+          // Some CSS
+          border: 'none',
+          ...(props?.color === 'primary' && {
+            border: `1px solid ${blue[500]}`,
+          }),
+        }),
+      },
+    },
+  },
+});
+```
+
+{{"demo": "pages/customization/theme-components/GlobalThemeOverrideProps.js"}}
+
 ## Default props
 
 You can change the default of every prop of a MUI component.

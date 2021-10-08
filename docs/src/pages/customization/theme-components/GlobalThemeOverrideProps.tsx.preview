@@ -1,0 +1,4 @@
+<ThemeProvider theme={theme}>
+  <Button color="primary" sx={{ m: 1 }}>primary</Button>
+  <Button color="secondary" sx={{ m: 1 }}>primary</Button>
+</ThemeProvider>;
