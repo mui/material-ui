@@ -74,13 +74,5 @@ function styleTypeTest() {
 
   // theme should be optional
   const CustomComponentWithNoTheme = muiStyled('div')(compose(display, gap));
-  <CustomComponentWithNoTheme />;
-
-  const theme = createTheme();
-  const gapWithTheme = style({
-    prop: 'gap',
-    themeKey: 'spacing',
-  })({ theme });
-  const CustomComponentWithTheme = muiStyled('div')(compose(display, gapWithTheme));
-  <CustomComponentWithTheme />;
+  <CustomComponentWithNoTheme display="flex" gap={3} />;
 }
