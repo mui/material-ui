@@ -4,6 +4,8 @@ import BrandingProvider from 'docs/src/BrandingProvider';
 import { styled, CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Switch from '@mui/joy/Switch';
 import { useControls, folder, Leva } from 'leva';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 
 declare module '@mui/joy/styles' {
   interface JoyColorSchemeOverrides {
@@ -14,6 +16,19 @@ declare module '@mui/joy/styles' {
 }
 
 const Typography = styled('div')(({ theme: { vars } }) => ({
+  fontSize: vars.fontSize.md,
+  color: vars.background.contrast,
+}));
+
+const Info = (props) => {
+  const count = React.useRef(1);
+  React.useEffect(() => {
+    count.current = count.current + 1;
+  });
+  return <div {...props}>I render {count.current} times.</div>;
+};
+
+const StyledInfo = styled(Info)(({ theme: { vars } }) => ({
   fontSize: vars.fontSize.md,
   color: vars.background.contrast,
 }));
@@ -169,7 +184,12 @@ export default function Joy() {
         >
           <Leva />
           <Box
-            sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            sx={{
+              flexGrow: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
           >
             <Switch
               sx={{
@@ -181,6 +201,28 @@ export default function Joy() {
                   '--switch-thumb-offset': values.offset,
                 }),
               }}
+            />
+          </Box>
+          <StyledInfo />
+          <Box sx={{ p: 2, bgcolor: 'primaryDark.800', borderRadius: 1 }}>
+            <HighlightedCode
+              component={MarkdownElement}
+              code={`// Customization example using css variables
+                
+<Switch
+  sx={{
+    '--switch-track-width': ${toPixel(values.width)},
+    '--switch-track-height': ${toPixel(values.height)},
+    '--switch-track-radius': ${toPixel(values.radius)},
+    '--switch-thumb-size': ${toPixel(values.size)},${
+                typeof values.offset === 'string'
+                  ? `\n    '--switch-thumb-offset': ${values.offset}`
+                  : ''
+              }
+  }}
+/>
+            `}
+              language="jsx"
             />
           </Box>
           <Typography sx={{ mb: 1, mt: 4 }}>Pick a color scheme</Typography>
