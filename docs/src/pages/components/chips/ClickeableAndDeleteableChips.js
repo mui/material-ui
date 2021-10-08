@@ -14,12 +14,12 @@ export default function ClickeableAndDeleteableChips() {
   return (
     <Stack direction="row" spacing={1}>
       <Chip
-        label="Clickable Deleteable"
+        label="Clickable Deletable"
         onClick={handleClick}
         onDelete={handleDelete}
       />
       <Chip
-        label="Clickable Deleteable"
+        label="Clickable Deletable"
         variant="outlined"
         onClick={handleClick}
         onDelete={handleDelete}

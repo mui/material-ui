@@ -28,6 +28,7 @@ const styles = {
  */
 const Grow = React.forwardRef(function Grow(props, ref) {
   const {
+    addEndListener,
     appear = true,
     children,
     easing,
@@ -152,9 +153,13 @@ const Grow = React.forwardRef(function Grow(props, ref) {
 
   const handleExited = normalizedTransitionCallback(onExited);
 
-  const addEndListener = (next) => {
+  const handleAddEndListener = (next) => {
     if (timeout === 'auto') {
       timer.current = setTimeout(next, autoTimeout.current || 0);
+    }
+    if (addEndListener) {
+      // Old call signature before `react-transition-group` implemented `nodeRef`
+      addEndListener(nodeRef.current, next);
     }
   };
 
@@ -175,7 +180,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
       onExit={handleExit}
       onExited={handleExited}
       onExiting={handleExiting}
-      addEndListener={addEndListener}
+      addEndListener={handleAddEndListener}
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
     >
@@ -202,6 +207,12 @@ Grow.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * Add a custom transition end trigger. Called with the transitioning DOM
+   * node and a done callback. Allows for more fine grained transition end
+   * logic. Note: Timeouts are still used as a fallback if provided.
+   */
+  addEndListener: PropTypes.func,
   /**
    * Perform the enter transition when it first mounts if `in` is also `true`.
    * Set this to `false` to disable this behavior.

@@ -14,14 +14,14 @@ export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T |
  * Map of all CSS pseudo selectors (`:hover`, `:focus`, ...).
  */
 export type CSSPseudoSelectorProps<Theme extends object = {}> = {
-  [K in CSS.Pseudos]?: SystemStyleObject<Theme>;
+  [K in CSS.Pseudos]?: ((theme: Theme) => SystemStyleObject<Theme>) | SystemStyleObject<Theme>;
 };
 
 /**
  * Map all nested selectors.
  */
 export interface CSSSelectorObject<Theme extends object = {}> {
-  [cssSelector: string]: SystemStyleObject<Theme>;
+  [cssSelector: string]: ((theme: Theme) => SystemStyleObject<Theme>) | SystemStyleObject<Theme>;
 }
 
 /**
