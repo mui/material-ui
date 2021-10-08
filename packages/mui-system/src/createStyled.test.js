@@ -100,8 +100,8 @@ describe('createStyled', () => {
       });
     });
 
-    describe('StyleOverrides', () => {
-      it('Accepts function as override', () => {
+    describe('styleOverrides', () => {
+      it('accepts function as override', () => {
         const theme = createTheme({
           components: {
             MuiButton: {
@@ -139,7 +139,7 @@ describe('createStyled', () => {
         });
       });
 
-      it('Accepts function and object as override', () => {
+      it('accepts function and object as override', () => {
         const theme = createTheme({
           components: {
             MuiButton: {
