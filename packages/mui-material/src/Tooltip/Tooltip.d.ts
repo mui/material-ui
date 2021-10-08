@@ -27,7 +27,9 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * @default {}
    */
   components?: {
-    Popper?: React.ElementType;
+    Popper?: React.ComponentType<{
+      children: (transitionProps: TransitionProps) => JSX.Element;
+    }>;
     Transition?: React.ElementType;
     Tooltip?: React.ElementType;
     Arrow?: React.ElementType;
