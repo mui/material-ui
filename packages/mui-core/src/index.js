@@ -22,6 +22,8 @@ export * from './FormControlUnstyled';
 export { default as InputUnstyled } from './InputUnstyled';
 export * from './InputUnstyled';
 
+export * from './ListboxUnstyled';
+
 export { default as ModalUnstyled } from './ModalUnstyled';
 export * from './ModalUnstyled';
 
