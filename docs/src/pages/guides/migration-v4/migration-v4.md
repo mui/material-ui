@@ -2779,44 +2779,22 @@ For more details, [checkout this issue](https://github.com/mui-org/material-ui/i
 
 ### Styles broken after migrating to v5
 
-There are two reasons why the styles of the components may be migrated.
+There are two reasons why the styles of the components may be broken after you finished with all the steps in the previous sections.
 
 First, check if you have configured the `StyledEngineProvider` correct as shown in the [Style library](#style-library) section.
 
 If the `StyledEngineProvider` is already used at the top of your application and the styles are still broken, it may be the case that you still have `@material-ui/core` in your application.
 It may be coming from some of the dependencies that you have, that still depend on `@material-ui/core` (v4).
 
-The easiest way to check this is to search in your lock file (`package-lock.json` or `yarn.lock` depenending on what you are using) for the string "@material-ui/core".
-If you find it there, check which dependency depend on it, and make sure you upgrade that dependency to the version that supports v5.
+The easiest way to check this is to run `npm ls @material-ui/core` (or `yarn why @material-ui/core`) which will give you the necessary information.
 
 Here is one example:
 
-**package-lock.json**
-
-```json
-...
-    "node_modules/@mui/x-data-grid": {
-      "version": "4.0.1",
-      "resolved": "https://registry.npmjs.org/@mui/x-data-grid/-/x-data-grid-4.0.1.tgz",
-      "integrity": "...",
-      "dependencies": {
-        ...
-      },
-      "peerDependencies": {
-        "@material-ui/core": "^4.12.0 || ^5.0.0-beta.0",
-      }
-    },
-...
-    "@material-ui/core": {
-      "version": "4.12.3",
-      "resolved": "https://registry.npmjs.org/@material-ui/core/-/core-4.12.3.tgz",
-      "integrity": "...",
-      "peer": true,
-      "requires": {
-        ...
-      }
-    },
-...
+```sh
+$ npm ls @material-ui/core
+project@0.1.0 /path/to/project
+└─┬  @mui/x-data-grid@4.0.0
+  └── @material-ui/core@4.12.3
 ```
 
-In this `package-lock.json` file you can notice that `@mui/x-data-grid` has `@material-ui/core` in it's `peerDependencies`. You need to make sure to bump it to v5 so that it has `@mui/material` as a peer dependency instead.
+You can notice based on the output above that `@material-ui/core` is a dependency of `@mui/x-data-grid`. In this specific example, you need to bump the version of `@mui/x-data-grid` so that it depends on `@mui/material` instead.
