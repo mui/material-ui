@@ -182,6 +182,14 @@ export default function Joy() {
             },
           }}
         >
+          <Box component="h1" sx={{ mt: -3, '& > div': { fontSize: 24 } }}>
+            <Typography>CSS Variables demo</Typography>
+          </Box>
+          <Box component="div" sx={{ mb: 3, mt: -4 }}>
+            <Typography>
+              Try changing variables in the panel on the right to see the change.
+            </Typography>
+          </Box>
           <Leva />
           <Box
             sx={{
@@ -207,9 +215,7 @@ export default function Joy() {
           <Box sx={{ p: 2, bgcolor: 'primaryDark.800', borderRadius: 1 }}>
             <HighlightedCode
               component={MarkdownElement}
-              code={`// Customization example using css variables
-                
-<Switch
+              code={`<Switch
   sx={{
     '--switch-track-width': ${toPixel(values.width)},
     '--switch-track-height': ${toPixel(values.height)},
