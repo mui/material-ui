@@ -2776,3 +2776,47 @@ The root cause of this error comes from accessing empty theme. Make sure that yo
 - Make sure that no `useStyles` is called outside of `<ThemeProvider>`. If you have, consider fixing it like [this suggestion](#makestyles-typeerror-cannot-read-property-drawer-of-undefined)
 
 For more details, [checkout this issue](https://github.com/mui-org/material-ui/issues/28496)
+
+### Styles broken after migrating to v5
+
+There are two reasons why the styles of the components may be migrated.
+
+First, check if you have configured the `StyledEngineProvider` correct as shown in the [Style library](#style-library) section.
+
+If the `StyledEngineProvider` is already used at the top of your application and the styles are still broken, it may be the case that you still have `@material-ui/core` in your application.
+It may be coming from some of the dependencies that you have, that still depend on `@material-ui/core` (v4).
+
+The easiest way to check this is to search in your lock file (`package-lock.json` or `yarn.lock` depenending on what you are using) for the string "@material-ui/core".
+If you find it there, check which dependency depend on it, and make sure you upgrade that dependency to the version that supports v5.
+
+Here is one example:
+
+**package-lock.json**
+
+```json
+...
+    "node_modules/@mui/x-data-grid": {
+      "version": "4.0.1",
+      "resolved": "https://registry.npmjs.org/@mui/x-data-grid/-/x-data-grid-4.0.1.tgz",
+      "integrity": "...",
+      "dependencies": {
+        ...
+      },
+      "peerDependencies": {
+        "@material-ui/core": "^4.12.0 || ^5.0.0-beta.0",
+      }
+    },
+...
+    "@material-ui/core": {
+      "version": "4.12.3",
+      "resolved": "https://registry.npmjs.org/@material-ui/core/-/core-4.12.3.tgz",
+      "integrity": "...",
+      "peer": true,
+      "requires": {
+        ...
+      }
+    },
+...
+```
+
+In this `package-lock.json` file you can notice that `@mui/x-data-grid` has `@material-ui/core` in it's `peerDependencies`. You need to make sure to bump it to v5 so that it has `@mui/material` as a peer dependency instead.
