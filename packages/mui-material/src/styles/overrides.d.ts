@@ -113,13 +113,13 @@ import { TypographyClassKey } from '../Typography';
 import { ComponentsProps, ComponentsPropsList } from './props';
 
 export type OverridesStyleRules<
-  Name extends keyof ComponentsPropsList,
   ClassKey extends string = string,
+  Name extends keyof ComponentsPropsList = never,
 > = Record<ClassKey, CSSInterpolation | ((props: ComponentsProps[Name]) => CSSInterpolation)>;
 
 export type ComponentsOverrides = {
   [Name in keyof ComponentNameToClassKey]?: Partial<
-    OverridesStyleRules<Name, ComponentNameToClassKey[Name]>
+    OverridesStyleRules<ComponentNameToClassKey[Name], Name>
   >;
 } & {
   MuiCssBaseline?: CSSObject | string;
