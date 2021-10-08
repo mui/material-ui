@@ -322,9 +322,6 @@ export * from './Paper';
 export { default as Popover } from './Popover';
 export * from './Popover';
 
-export { default as Popper } from './Popper';
-export * from './Popper';
-
 export { default as Radio } from './Radio';
 export * from './Radio';
 

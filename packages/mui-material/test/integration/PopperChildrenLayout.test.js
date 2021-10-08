@@ -7,7 +7,7 @@ import Fade from '@mui/material/Fade';
 import Grow from '@mui/material/Grow';
 import Slide from '@mui/material/Slide';
 import Zoom from '@mui/material/Zoom';
-import Popper from '@mui/material/Popper';
+import Popper from '@mui/core/Popper';
 
 describe('<Popper />', () => {
   let isSafari;
