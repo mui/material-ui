@@ -13,7 +13,7 @@ function Head(props) {
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@MaterialUI" />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={`${title} [v3]`} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content="https://v3.mui.com/static/brand.png" />
       {/* Facebook */}
@@ -28,7 +28,7 @@ function Head(props) {
       <meta property="og:ttl" content="604800" />
       {/* Algolia */}
       <meta name="docsearch:language" content="en" />
-      <meta name="docsearch:version" content="master" />
+      <meta name="docsearch:version" content="v3" />
     </NextHead>
   );
 }

@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
-    paddingTop: 80,
+    paddingTop: 80 + 29,
     flex: '1 1 100%',
     maxWidth: '100%',
     margin: '0 auto',

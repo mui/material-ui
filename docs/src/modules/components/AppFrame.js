@@ -97,6 +97,13 @@ const styles = theme => ({
   appBarHome: {
     boxShadow: 'none',
   },
+  banner: {
+    display: 'block',
+    padding: 4,
+    textAlign: 'center',
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.getContrastText(theme.palette.primary.dark),
+  },
   appBarShift: {
     [theme.breakpoints.up('lg')]: {
       width: 'calc(100% - 240px)',
@@ -192,6 +199,15 @@ class AppFrame extends React.Component {
               <Notifications />
               <MarkdownLinks />
               <AppBar className={appBarClassName}>
+                <Link
+                  href="http://next.material-ui.com"
+                  color="inherit"
+                  className={classes.banner}
+                  variant="body2"
+                  noWrap
+                >
+                  {'Aww yeah, Material-UI v4 is here!'}
+                </Link>
                 <Toolbar>
                   <IconButton
                     color="inherit"

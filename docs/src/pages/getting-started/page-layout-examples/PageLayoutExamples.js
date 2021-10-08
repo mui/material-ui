@@ -38,7 +38,7 @@ const themes = [
     src: '/static/images/layouts/dashboard.png',
     href: '/getting-started/page-layout-examples/dashboard',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/dashboard',
+      'https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/dashboard',
   },
   {
     name: 'Sign-in',
@@ -46,7 +46,7 @@ const themes = [
     src: '/static/images/layouts/sign-in.png',
     href: '/getting-started/page-layout-examples/sign-in',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/sign-in',
+      'https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/sign-in',
   },
   {
     name: 'Blog',
@@ -56,7 +56,7 @@ const themes = [
     src: '/static/images/layouts/blog.png',
     href: '/getting-started/page-layout-examples/blog',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/blog',
+      'https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/blog',
   },
   {
     name: 'Checkout',
@@ -66,7 +66,7 @@ const themes = [
     src: '/static/images/layouts/checkout.png',
     href: '/getting-started/page-layout-examples/checkout',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/checkout',
+      'https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/checkout',
   },
   {
     name: 'Album',
@@ -74,7 +74,7 @@ const themes = [
     src: '/static/images/layouts/album.png',
     href: '/getting-started/page-layout-examples/album',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/album',
+      'https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/album',
   },
   {
     name: 'Pricing',
@@ -84,7 +84,7 @@ const themes = [
     src: '/static/images/layouts/pricing.png',
     href: '/getting-started/page-layout-examples/pricing',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/page-layout-examples/pricing',
+      'https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/pricing',
   },
 ];
 

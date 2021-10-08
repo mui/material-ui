@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
 import Tidelift from 'docs/src/modules/components/Tidelift';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
+import HomeUsers from 'docs/src/modules/components/HomeUsers';
 import HomeFooter from 'docs/src/modules/components/HomeFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
@@ -64,9 +65,9 @@ const styles = theme => ({
   },
   content: {
     paddingBottom: theme.spacing.unit * 8,
-    paddingTop: theme.spacing.unit * 8,
+    paddingTop: theme.spacing.unit * 8 + 29,
     [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing.unit * 12,
+      paddingTop: theme.spacing.unit * 12 + 29,
     },
   },
   button: {
@@ -173,6 +174,7 @@ class HomePage extends React.Component {
           </div>
           <HomeSteps />
           <HomeBackers />
+          <HomeUsers />
           <HomeFooter />
         </div>
         <script

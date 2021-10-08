@@ -15,9 +15,9 @@ const styles = theme => ({
     color: theme.palette.common.white,
     backgroundColor: '#626980', // Tidelift color.
     position: 'relative',
-    top: 56,
+    top: 56 + 29,
     [theme.breakpoints.up('sm')]: {
-      top: 64 + 36 / 2,
+      top: 64 + 36 / 2 + 29,
       left: 'auto',
       position: 'absolute',
       borderBottomLeftRadius: 36 / 2,

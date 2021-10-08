@@ -49,6 +49,24 @@ const themes = [
     href: 'https://www.creative-tim.com/product/material-dashboard-react?partner=104080',
   },
   {
+    name: 'React Material Admin',
+    description: 'React Material Admin is a react dashboard template. No jQuery and Bootstrap!',
+    src: '/static/themes/react-material-admin.png',
+    price: 'FREE',
+    category: 'Admin & Dashboard',
+    href: 'https://github.com/flatlogic/react-material-admin',
+  },
+  {
+    name: 'React Material Dashboard',
+    description:
+      'React Dashboard made with Material-UI’s components, ' +
+      'React and of course create-react-app to boost your app development process!',
+    src: '/static/themes/react-material-dashboard.jpg',
+    price: 'FREE',
+    category: 'Admin & Dashboard',
+    href: 'https://github.com/devias-io/react-material-dashboard',
+  },
+  {
     name: 'Material Kit',
     description: 'A Badass Material-UI Kit based on Material Design.',
     src: '/static/themes/creative-tim-kit.jpg',
@@ -120,7 +138,7 @@ function PremiumThemes(props) {
               data-ga-event-label={theme.name}
             />
             <CardContent className={classes.cardContent}>
-              <Grid container alignItems="center">
+              <Grid container alignItems="center" spacing={8}>
                 <Grid item xs>
                   <Typography gutterBottom variant="h5" align="left" component="h2">
                     {theme.name}
