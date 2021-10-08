@@ -22,8 +22,12 @@ const theme = createTheme({
 export default function GlobalThemeOverride() {
   return (
     <ThemeProvider theme={theme}>
-      <Button color="primary">primary</Button>
-      <Button color="secondary">primary</Button>
+      <Button color="primary" sx={{ m: 1 }}>
+        primary
+      </Button>
+      <Button color="secondary" sx={{ m: 1 }}>
+        secondary
+      </Button>
     </ThemeProvider>
   );
 }
