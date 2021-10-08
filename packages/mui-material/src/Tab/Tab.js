@@ -9,6 +9,9 @@ import styled from '../styles/styled';
 import unsupportedProp from '../utils/unsupportedProp';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
 
+const ignoreSsrFlag =
+  '/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */';
+
 const useUtilityClasses = (ownerState) => {
   const { classes, textColor, fullWidth, wrapped, icon, label, selected, disabled } = ownerState;
 
@@ -59,8 +62,10 @@ const TabRoot = styled(ButtonBase, {
       minHeight: 72,
       paddingTop: 9,
       paddingBottom: 9,
-      [`& > *:first-child`]: {
-        marginBottom: 6,
+      [`& > *`]: {
+        [`:first-child ${ignoreSsrFlag}`]: {
+          marginBottom: 6,
+        },
       },
     }),
   ...(ownerState.textColor === 'inherit' && {
