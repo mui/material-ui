@@ -4,7 +4,7 @@
 
 ## 内部
 
-我们认真对待测试。 我们已经编写并维持 **大范围** 的测试，以便我们能够 迭代与器件的可靠性，例如，通过提供的视觉回归测试 [的Argos-CI](https://www.argos-ci.com/mui-org/material-ui) 已被证明是真的很有帮助。 要了解有关内部测试的更多信息，您可以查看 [README](https://github.com/mui-org/material-ui/blob/master/test/README.md)。
+我们认真对待测试。 我们已经编写并维持 **大范围** 的测试，以便我们能够 迭代与器件的可靠性，例如，通过提供的视觉回归测试 [的Argos-CI](https://www.argos-ci.com/mui-org/material-ui) 已被证明是真的很有帮助。 要了解有关内部测试的更多信息，您可以查看 [README](https://github.com/mui-org/material-ui/blob/v3.x/test/README.md)。
 
 虽然我们已达到100％的测试覆盖率，但我们不鼓励用户也这样做。 [![覆盖状态](https://img.shields.io/codecov/c/github/mui-org/material-ui/master.svg)](https://codecov.io/gh/mui-org/material-ui/branch/master)
 

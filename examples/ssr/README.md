@@ -18,4 +18,4 @@ npm run start
 
 ## The idea behind the example
 
-This is the reference implementation of the [Server Rendering tutorial](https://material-ui.com/guides/server-rendering/).
+This is the reference implementation of the [Server Rendering tutorial](https://v3.mui.com/guides/server-rendering/).

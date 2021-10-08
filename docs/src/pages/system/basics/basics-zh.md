@@ -14,7 +14,7 @@
 - 🦎工作的任何主题的对象。
 - 💅工作的最受欢迎的CSS-在-JS解决方案。
 - 📦低于 [4KB压缩](https://bundlephobia.com/result?p=@material-ui/system)的。
-- 🚀 [足够快](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem) 不是一个瓶颈。
+- 🚀 [足够快](https://github.com/mui-org/material-ui/blob/v3.x/packages/material-ui-benchmark/README.md#material-uisystem) 不是一个瓶颈。
 
 重要的是要明白，这包暴露了纯(副作用)风格的功能，与此签署： `({ theme, ...style })=> 式`, **就是这**的。
 

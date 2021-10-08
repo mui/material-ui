@@ -127,7 +127,7 @@ MyDocument.getInitialProps = async ctx => {
     ...page,
     pageContext,
     url: ctx.req.url,
-    canonical: `https://material-ui.com${ctx.req.url.replace(/\/$/, '')}/`,
+    canonical: `https://mui.com${ctx.req.url.replace(/\/$/, '')}/`,
     styles: (
       <style
         id="jss-server-side"

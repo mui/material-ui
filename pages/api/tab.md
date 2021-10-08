@@ -49,7 +49,7 @@ This property accepts the following keys:
 | <span class="prop-name">labelWrapped</span> | Deprecated, the styles will be removed in v4.
 
 Have a look at [overriding with classes](/customization/overrides/#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Tab/Tab.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/blob/v3.x/packages/material-ui/src/Tab/Tab.js)
 for more detail.
 
 If using the `overrides` [key of the theme](/customization/themes/#css),

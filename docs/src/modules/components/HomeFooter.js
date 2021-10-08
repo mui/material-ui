@@ -83,7 +83,7 @@ function HomeFooter(props) {
       </Typography>
       <Typography className={classes.version}>
         {`Currently v${process.env.LIB_VERSION}. Released under the `}
-        <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/master/LICENSE">
+        <Link color="inherit" href="https://github.com/mui-org/material-ui/blob/v3.x/LICENSE">
           MIT License
         </Link>
         {'.'}

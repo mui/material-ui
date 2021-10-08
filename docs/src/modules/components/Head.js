@@ -15,16 +15,16 @@ function Head(props) {
       <meta name="twitter:site" content="@MaterialUI" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="https://material-ui.com/static/brand.png" />
+      <meta name="twitter:image" content="https://v3.mui.com/static/brand.png" />
       {/* Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta
         property="og:url"
-        content={`https://material-ui.com${_rewriteUrlForNextExport(router.asPath)}`}
+        content={`https://v3.mui.com${_rewriteUrlForNextExport(router.asPath)}`}
       />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content="https://material-ui.com/static/brand.png" />
+      <meta property="og:image" content="https://v3.mui.com/static/brand.png" />
       <meta property="og:ttl" content="604800" />
       {/* Algolia */}
       <meta name="docsearch:language" content="en" />
