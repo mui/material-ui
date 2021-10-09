@@ -1,4 +1,4 @@
-import { PopperProps } from '@mui/material/Popper';
+import { PopperProps } from '@mui/core/Popper';
 import { MUIStyledCommonProps, SxProps } from '@mui/system';
 import * as React from 'react';
 import { InternalStandardProps as StandardProps, Theme } from '..';
