@@ -24,7 +24,6 @@ export * from './ModalUnstyled';
 export { default as NoSsr } from './NoSsr';
 
 export { default as Popper } from './Popper';
-export * from './Popper';
 
 export { default as Portal } from './Portal';
 
