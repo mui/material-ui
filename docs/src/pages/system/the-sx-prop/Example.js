@@ -43,7 +43,7 @@ export default function Example() {
             mx: 0.5,
           }}
         >
-          18.77%
+          +18.77%
         </Box>
         <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
           vs. last week
