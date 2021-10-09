@@ -1,5 +1,4 @@
 import * as React from 'react';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { Box, ThemeProvider, createTheme } from '@mui/system';
 
 const theme = createTheme({
@@ -36,9 +35,6 @@ export default function Example() {
         <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
           98.3 K
         </Box>
-        <TrendingUpIcon
-          sx={{ color: 'success.dark', fontSize: 16, verticalAlign: 'sub' }}
-        />
         <Box
           sx={{
             color: 'success.dark',
