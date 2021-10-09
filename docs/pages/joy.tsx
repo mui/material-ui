@@ -211,7 +211,7 @@ export default function Joy() {
               }}
             />
           </Box>
-          <StyledInfo />
+          {/* <StyledInfo /> */}
           <Box sx={{ p: 2, bgcolor: 'primaryDark.800', borderRadius: 1 }}>
             <HighlightedCode
               component={MarkdownElement}
