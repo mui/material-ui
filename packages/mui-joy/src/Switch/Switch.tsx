@@ -21,6 +21,7 @@ const Root = styled('span', {
   '--switch-thumb-shadow': '0 0px 2px 0 rgba(0,0,0,0.38)',
   '--switch-thumb-offset': 'max((var(--switch-track-height) - var(--switch-thumb-size)) / 2, 0px)',
   position: 'relative',
+  display: 'inline-block',
   padding:
     'calc((var(--switch-thumb-size) / 2) - (var(--switch-track-height) / 2)) calc(-1 * var(--switch-thumb-offset))',
   color: 'var(--switch-base-color)',
