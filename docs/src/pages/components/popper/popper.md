@@ -72,3 +72,13 @@ There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcor
 state for you in most cases.
 
 {{"demo": "pages/components/popper/PopperPopupState.js"}}
+
+## Unstyled
+
+- 📦 [784 B gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
+
+As the component does not have any styles, it also comes with the unstyled package.
+
+```js
+import NoSsr from '@mui/core/Popper';
+```
