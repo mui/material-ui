@@ -75,10 +75,8 @@ state for you in most cases.
 
 ## Unstyled
 
-- 📦 [784 B gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
-
 As the component does not have any styles, it also comes with the unstyled package.
 
 ```js
-import NoSsr from '@mui/core/Popper';
+import Popper from '@mui/core/Popper';
 ```
