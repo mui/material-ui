@@ -168,7 +168,7 @@ We have spent half the time doing a [Hackathon](https://twitter.com/olivtassinar
 
 We have welcomed one new member to the company this quarter 🏢:
 
-- [Benny](/blog/siriwat-kunaporn-joining/), he was our first intern and is now the first Junior on the MUI Core team.
+- Benny, he was our first intern and is now the first Junior on the MUI Core team.
 
   <img loading="lazy" src="/static/blog/2021-q3-update/benny.jpg" alt="Benny" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
