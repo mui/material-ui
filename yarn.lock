@@ -2522,10 +2522,10 @@
     "@octokit/types" "^6.0.3"
     universal-user-agent "^6.0.0"
 
-"@octokit/openapi-types@^10.6.4":
-  version "10.6.4"
-  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-10.6.4.tgz#c8b5b1f5c60ab7c62858abe2ef57bc709f426a30"
-  integrity sha512-JVmwWzYTIs6jACYOwD6zu5rdrqGIYsiAsLzTCxdrWIPNKNVjEF6vPTL20shmgJ4qZsq7WPBcLXLsaQD+NLChfg==
+"@octokit/openapi-types@^11.1.0":
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-11.1.0.tgz#3c0d2d844b876314ad49d7f3d03eed4953038272"
+  integrity sha512-dWZfYvCCdjZzDYA3lIAMF72Q0jld8xidqCq5Ryw09eBJXZdcM6he0vWBTvw/b5UnGYqexxOyHWgfrsTlUJL3Gw==
 
 "@octokit/plugin-enterprise-rest@^6.0.1":
   version "6.0.1"
@@ -2539,12 +2539,12 @@
   dependencies:
     "@octokit/types" "^2.0.1"
 
-"@octokit/plugin-paginate-rest@^2.16.4":
-  version "2.16.7"
-  resolved "https://registry.yarnpkg.com/@octokit/plugin-paginate-rest/-/plugin-paginate-rest-2.16.7.tgz#d25b6e650ba5a007002986f5fda66958d44e70a4"
-  integrity sha512-TMlyVhMPx6La1Ud4PSY4YxqAvb9YPEMs/7R1nBSbsw4wNqG73aBqls0r0dRRCWe5Pm0ZUGS9a94N46iAxlOR8A==
+"@octokit/plugin-paginate-rest@^2.16.8":
+  version "2.16.9"
+  resolved "https://registry.yarnpkg.com/@octokit/plugin-paginate-rest/-/plugin-paginate-rest-2.16.9.tgz#a844157ce7c294747bda19ea9b9996298e0948f0"
+  integrity sha512-gfSCMgz5scFKsR0dW4jaYsDJVt/UwCHp4dF7sHlmSekZvwzvLiOAGZ4MQkEsL5DW9hIk2W+UQkYZMTA1b6Wsqw==
   dependencies:
-    "@octokit/types" "^6.31.3"
+    "@octokit/types" "^6.33.0"
 
 "@octokit/plugin-request-log@^1.0.0", "@octokit/plugin-request-log@^1.0.4":
   version "1.0.4"
@@ -2559,12 +2559,12 @@
     "@octokit/types" "^2.0.1"
     deprecation "^2.3.1"
 
-"@octokit/plugin-rest-endpoint-methods@5.11.4":
-  version "5.11.4"
-  resolved "https://registry.yarnpkg.com/@octokit/plugin-rest-endpoint-methods/-/plugin-rest-endpoint-methods-5.11.4.tgz#221dedcbdc45d6bfa54228d469e8c34acb4e0e34"
-  integrity sha512-iS+GYTijrPUiEiLoDsGJhrbXIvOPfm2+schvr+FxNMs7PeE9Nl4bAMhE8ftfNX3Z1xLxSKwEZh0O7GbWurX5HQ==
+"@octokit/plugin-rest-endpoint-methods@^5.12.0":
+  version "5.12.1"
+  resolved "https://registry.yarnpkg.com/@octokit/plugin-rest-endpoint-methods/-/plugin-rest-endpoint-methods-5.12.1.tgz#89747e3e39cbf411881de85dfdec18dfbc2e9b90"
+  integrity sha512-0nY3htfl6x9UkPcqv8pm9vOC/bTA7f4IMDWln13neHRdNWQvOQgZ9fRxK7BAc74rye4yVINEFi9Yb9rnGUvosA==
   dependencies:
-    "@octokit/types" "^6.31.2"
+    "@octokit/types" "^6.33.0"
     deprecation "^2.3.1"
 
 "@octokit/request-error@^1.0.2":
@@ -2619,15 +2619,15 @@
     once "^1.4.0"
     universal-user-agent "^4.0.0"
 
-"@octokit/rest@^18.1.0", "@octokit/rest@^18.11.4":
-  version "18.11.4"
-  resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-18.11.4.tgz#9fb6d826244554fbf8c110b9064018d7198eec51"
-  integrity sha512-QplypCyYxqMK05JdMSm/bDWZO8VWWaBdzQ9tbF9rEV9rIEiICh+v6q+Vu/Y5hdze8JJaxfUC+PBC7vrnEkZvZg==
+"@octokit/rest@^18.1.0", "@octokit/rest@^18.12.0":
+  version "18.12.0"
+  resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-18.12.0.tgz#f06bc4952fc87130308d810ca9d00e79f6988881"
+  integrity sha512-gDPiOHlyGavxr72y0guQEhLsemgVjwRePayJ+FcKc2SJqKUbxbkvf5kAZEWA/MKvsfYlQAMVzNJE3ezQcxMJ2Q==
   dependencies:
     "@octokit/core" "^3.5.1"
-    "@octokit/plugin-paginate-rest" "^2.16.4"
+    "@octokit/plugin-paginate-rest" "^2.16.8"
     "@octokit/plugin-request-log" "^1.0.4"
-    "@octokit/plugin-rest-endpoint-methods" "5.11.4"
+    "@octokit/plugin-rest-endpoint-methods" "^5.12.0"
 
 "@octokit/types@^2.0.0", "@octokit/types@^2.0.1":
   version "2.16.2"
@@ -2636,12 +2636,12 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@octokit/types@^6.0.3", "@octokit/types@^6.16.1", "@octokit/types@^6.31.2", "@octokit/types@^6.31.3":
-  version "6.31.3"
-  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.31.3.tgz#14c2961baea853b2bf148d892256357a936343f8"
-  integrity sha512-IUG3uMpsLHrtEL6sCVXbxCgnbKcgpkS4K7gVEytLDvYYalkK3XcuMCHK1YPD8xJglSJAOAbL4MgXp47rS9G49w==
+"@octokit/types@^6.0.3", "@octokit/types@^6.16.1", "@octokit/types@^6.33.0":
+  version "6.33.0"
+  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.33.0.tgz#7e5e664d65e88b74b6de76f328b80a344bef3f86"
+  integrity sha512-0zffZ048M0UhthyPXQHLz4038Ak46nMWZXkzlXvXB/M/L1jYPBceq4iZj4qjKVrvveaJrrgKdJ9+3yUuITfcCw==
   dependencies:
-    "@octokit/openapi-types" "^10.6.4"
+    "@octokit/openapi-types" "^11.1.0"
 
 "@polka/url@^1.0.0-next.9":
   version "1.0.0-next.11"
