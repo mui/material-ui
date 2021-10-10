@@ -51,7 +51,7 @@
     "@types/json2mq": "^0.2.0",
     "@types/markdown-to-jsx": "^7.0.1",
     "@types/react-dom": "^17.0.9",
-    "@types/react-router-dom": "^5.3.0",
+    "@types/react-router-dom": "^5.3.1",
     "@types/react-swipeable-views": "^0.13.1",
     "@types/react-swipeable-views-utils": "^0.13.3",
     "@types/react-virtualized": "^9.21.13",
