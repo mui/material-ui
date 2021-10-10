@@ -67,10 +67,12 @@ export default function createCssVarsProvider(ThemeContext, options) {
       return () => window.removeEventListener('storage', handleStorage);
     }, [setMode, storageKey]);
 
-    let mergedTheme = deepmerge(
-      { ...baseTheme, palette: baseTheme[mode] },
-      { ...themeProp, palette: themeProp[mode] },
-    );
+    let mergedTheme = themeProp
+      ? deepmerge(
+          { ...baseTheme, ...(baseTheme.palette && { palette: baseTheme.palette[mode] }) },
+          { ...themeProp, ...(themeProp.palette && { palette: themeProp.palette[mode] }) },
+        )
+      : { ...baseTheme, palette: baseTheme[mode] };
 
     const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme);
 
@@ -81,7 +83,8 @@ export default function createCssVarsProvider(ThemeContext, options) {
 
     const styleSheet = {};
 
-    const paletteModes = deepmerge(baseTheme.palette, themeProp.palette);
+    const paletteModes =
+      (themeProp ? deepmerge(baseTheme.palette, themeProp.palette) : baseTheme.palette) || {};
 
     Object.entries(paletteModes).forEach(([key, scheme]) => {
       const { css } = cssVarsParser(scheme);

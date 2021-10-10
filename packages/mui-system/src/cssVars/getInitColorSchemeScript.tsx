@@ -1,8 +1,8 @@
 import * as React from 'react';
 import getDataset from './getDataset';
 
-export const DEFAULT_STORAGE_KEY = 'mui-color-scheme';
-export const DEFAULT_DATA_ATTRIBUTE = 'color-scheme';
+export const DEFAULT_STORAGE_KEY = 'mui-mode';
+export const DEFAULT_DATA_ATTRIBUTE = 'mui-mode';
 
 export default function getInitColorSchemeScript(options?: {
   storageKey?: string;
@@ -15,9 +15,9 @@ export default function getInitColorSchemeScript(options?: {
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: `(function() { try {
-        var colorScheme = localStorage.getItem('${storageKey}');
-        if (colorScheme) {
-          document.body.dataset.${getDataset(dataAttribute)} = colorScheme;
+        var mode = localStorage.getItem('${storageKey}');
+        if (mode) {
+          document.body.dataset.${getDataset(dataAttribute)} = mode;
         }
       } catch (e) {} })();`,
       }}
