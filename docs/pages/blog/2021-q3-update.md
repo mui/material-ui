@@ -20,7 +20,7 @@ It also covers what we aim to achieve in the months ahead.
 
 ## Product
 
-Here are the most significant improvements since May 2021.
+Here are the most significant improvements since early July 2021.
 
 ### MUI Core
 
