@@ -1,3 +1,3 @@
 # @mui/joy
 
-Joy design system components (Work in progress...)
+[WIP] Joy design system — React components

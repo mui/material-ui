@@ -1,13 +1,14 @@
 {
   "name": "@mui/joy",
   "version": "0.1.0-alpha.0",
-  "private": false,
+  "private": true,
   "author": "MUI Team",
-  "description": "Joy design system components",
+  "description": "Joy design system — React components",
   "main": "./src/index.ts",
   "keywords": [
     "react",
-    "react-component"
+    "react-component",
+    "design-system"
   ],
   "repository": {
     "type": "git",
