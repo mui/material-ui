@@ -26,7 +26,7 @@ import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import Frame from 'docs/src/components/action/Frame';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
-const DEMOS = ['Data Grid', 'Date Picker', 'Tree View', 'Sparkline', 'Charts'];
+const DEMOS = ['Data Grid', 'Date Range Picker', 'Tree View', 'Sparkline', 'Charts'];
 
 const AspectRatioImage = styled('div', {
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',
@@ -92,7 +92,7 @@ export default function XComponents() {
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
             <SectionHeadline
-              overline="Component library"
+              overline="React component library"
               title={
                 <Typography variant="h2">
                   Powerful components for <GradientText>advanced</GradientText> use-cases
