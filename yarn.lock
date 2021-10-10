@@ -6580,10 +6580,10 @@ date-fns-jalali@^2.21.3-1:
   resolved "https://registry.yarnpkg.com/date-fns-jalali/-/date-fns-jalali-2.21.3-1.tgz#b87a01c1d7bb2fe827faed34b33478a5fe4aa027"
   integrity sha512-Sgw1IdgCgyWDKCpq6uwAu24vPMOtvmcXXXuETr1jQO/aVj4h23XAltcP7hLbo+osqoiJnPmiydbI/q1W7TYAjA==
 
-date-fns@^2.16.1, date-fns@^2.24.0:
-  version "2.24.0"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.24.0.tgz#7d86dc0d93c87b76b63d213b4413337cfd1c105d"
-  integrity sha512-6ujwvwgPID6zbI0o7UbURi2vlLDR9uP26+tW6Lg+Ji3w7dd0i3DOcjcClLjLPranT60SSEFBwdSyYwn/ZkPIuw==
+date-fns@^2.16.1, date-fns@^2.25.0:
+  version "2.25.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.25.0.tgz#8c5c8f1d958be3809a9a03f4b742eba894fc5680"
+  integrity sha512-ovYRFnTrbGPD4nqaEqescPEv1mNwvt+UTqI3Ay9SzNtey9NZnYu6E2qCcBBgJ6/2VF1zGGygpyTDITqpQQ5e+w==
 
 date-format@^2.1.0:
   version "2.1.0"
