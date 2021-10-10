@@ -48,8 +48,8 @@ Here are the most significant improvements since early July 2021.
 
   <a href="/components/masonry/"><img loading="lazy" src="/static/blog/2021-q3-update/masonry.png" style="width: 700px; margin-bottom: 16px;" /></a>
 
-- We have introduced a new [unstyled package](https://www.npmjs.com/package/@mui/core), seting the first stones for supporting multiple design systems with headless components.
-  While balancing time between the releae of v5 stable and pushing this effort forward was hard, we have still managed to introduce these first few components:
+- We have introduced a new [unstyled package](https://www.npmjs.com/package/@mui/core), setting the first stones for supporting multiple design systems with headless components.
+  While balancing time between the release of v5 stable and pushing this effort forward was hard, we have still managed to introduce these first few components:
 
   - [Autocomplete](/components/autocomplete/#useautocomplete)
 
@@ -176,7 +176,7 @@ We have welcomed one new member to the company this quarter 🏢:
 
 We have released our [new brand](/blog/material-ui-is-now-mui/)!
 We are excited about our new shorter name **MUI**.
-We were already using with the class names (`.MuiButton-root`), it embodies our next step beyond Material Design.
+We were already using it in the class names (`.MuiButton-root`), which embodies our next step beyond Material Design.
 
 This project has been 12 months in the making.
 We did a couple of early iterations with https://bb.agency/.
