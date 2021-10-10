@@ -17,6 +17,18 @@ type BuildPaletteModes<
         Record<ApplicationMode, PaletteModes>;
     };
 
+type DecideTheme<
+  Theme extends { palette: Record<DesignSystemMode | ApplicationMode, any> },
+  DesignSystemMode extends string,
+  ApplicationMode extends string,
+> = [ApplicationMode] extends [never]
+  ? { theme?: PartialDeep<Theme> }
+  : {
+      theme: PartialDeep<Omit<Theme, 'palette'>> & {
+        palette: PartialDeep<Record<DesignSystemMode, Theme['palette'][DesignSystemMode]>> &
+          Record<ApplicationMode, Theme['palette'][ApplicationMode]>;
+      };
+    };
 export interface ModeContextValue<DesignSystemMode extends string> {
   allModes: Array<DesignSystemMode>;
   mode: DesignSystemMode | undefined;
@@ -24,27 +36,27 @@ export interface ModeContextValue<DesignSystemMode extends string> {
 }
 
 export default function createCssVarsProvider<
-  Theme extends { palette: Record<string, any> },
+  Theme extends { palette: Record<DesignSystemMode | ApplicationMode, any> },
   DesignSystemMode extends string,
   ApplicationMode extends string = never,
 >(
   ThemeContext: React.Context<Theme | undefined>,
   options: {
     theme: Omit<Theme, 'palette'> & {
-      palette: Record<DesignSystemMode, Theme['palette']> &
-        Partial<Record<ApplicationMode, Theme['palette']>>;
+      palette: Record<DesignSystemMode, Theme['palette'][DesignSystemMode | ApplicationMode]> &
+        Partial<Record<ApplicationMode, Theme['palette'][DesignSystemMode | ApplicationMode]>>;
     };
     defaultMode: DesignSystemMode;
   },
 ): {
   CssVarsProvider: (
-    props: React.PropsWithChildren<{
-      defaultMode?: DesignSystemMode | ApplicationMode;
-      theme?: PartialDeep<Omit<Theme, 'palette'>> &
-        BuildPaletteModes<DesignSystemMode, ApplicationMode, Theme['palette']>;
-      storageKey?: string;
-      dataAttribute?: string;
-    }>,
+    props: React.PropsWithChildren<
+      {
+        defaultMode?: DesignSystemMode | ApplicationMode;
+        storageKey?: string;
+        dataAttribute?: string;
+      } & DecideTheme<Theme, DesignSystemMode, ApplicationMode>
+    >,
   ) => React.ReactElement;
   useMode: () => ModeContextValue<DesignSystemMode | ApplicationMode>;
   getInitModeScript: () => React.ReactElement;
