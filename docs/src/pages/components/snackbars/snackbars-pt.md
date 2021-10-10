@@ -80,7 +80,7 @@ Para situações de uso mais avançadas, você pode tirar proveito com:
 
 Este exemplo demonstra como usar com [notistack](https://github.com/iamhosseindhv/notistack). notistack tem uma **API imperativa** que facilita a exibição de snackbars, sem ter que lidar com seu estado de aberto/fechado. It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design guidelines).
 
-TODO: Add example once notistack is compatible with v5 or replace with [#1824](https://github.com/mui-org/material-ui/issues/1824).
+TODO: Add example once notistack is compatible with v5 or replace with [#1824](https://github.com/mui/mui/issues/1824).
 
 ## Acessibilidade
 

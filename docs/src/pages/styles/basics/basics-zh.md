@@ -10,14 +10,14 @@ Material-UI 旨在为构建动态的 UI 提供扎实的基础。 为了构造更
 
 Material-UI 的样式方案来自于许多其他 CSS-in-JS 库的启发，例如 [styled-components](https://www.styled-components.com/) 和 [emotion](https://emotion.sh/)。
 
-- 💅你可以期待和 styled-components [一样的优势](https://www.styled-components.com/docs/basics#motivation)。
+- 💅 你可以期待和 styled-components [一样的优势](https://www.styled-components.com/docs/basics#motivation)。
 
 <!-- #default-branch-switch -->
 
-- 🚀它的运行速度 [非常快](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles)。
-- 🧩你可以通过一个 [插件](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API 来扩展。
-- ⚡️它使用 [JSS](https://github.com/cssinjs/jss) 为其核心 —— 一个 [高性能的](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript 到 CSS 的编译器，它在运行时和服务器端编译。
-- 📦低于[15KB压缩](https://bundlephobia.com/result?p=@material-ui/styles)；若和 Material-UI 一起使用，将不会有捆绑的尺寸增加。
+- 🚀 它的运行速度 [非常快](https://github.com/mui/mui/blob/HEAD/benchmark/server#material-uistyles)。
+- 🧩 你可以通过一个 [插件](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API 来扩展。
+- ⚡️ 它使用 [JSS](https://github.com/cssinjs/jss) 为其核心 —— 一个 [高性能的](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript 到 CSS 的编译器，它在运行时和服务器端编译。
+- 📦 低于[15KB 压缩](https://bundlephobia.com/result?p=@material-ui/styles)；若和 Material-UI 一起使用，将不会有捆绑的尺寸增加。
 
 ## 安装
 
@@ -35,7 +35,7 @@ yarn add @material-ui/styles
 
 ## 快速开始
 
-有3种可能的 API 来生成并应用样式，但是它们都有着相同的底层逻辑。
+有 3 种可能的 API 来生成并应用样式，但是它们都有着相同的底层逻辑。
 
 ### Hook API
 
@@ -189,7 +189,7 @@ function MyComponent() {
 
 ### 压力测试
 
-在以下压力测试中，您可以实时更新*主题颜色*和 *background-color 属性*：
+在以下压力测试中，您可以实时更新*主题颜色*和 _background-color 属性_：
 
 ```js
 const useStyles = makeStyles((theme) => ({

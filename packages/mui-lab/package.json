@@ -14,12 +14,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git",
+    "url": "https://github.com/mui/mui.git",
     "directory": "packages/mui-lab"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/mui/mui/issues"
   },
   "homepage": "https://mui.com/components/about-the-lab/",
   "scripts": {

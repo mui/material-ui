@@ -31,7 +31,7 @@ const theme = createTheme({
 
 Para fontes auto-hospedadas, baixe os arquivos de fonte em formatos `ttf`, `woff`, e/ou `woff2` e importe-os em seu código.
 
-⚠️ Isso requer que você tenha um plugin ou loader em seu processo de compilação que possa manipular o carregamento de arquivos `ttf`, `woff` e `woff2`. Fontes *não* serão embutidas dentro do seu pacote. Elas serão carregadas de seu servidor da web em vez de uma CDN.
+⚠️ Isso requer que você tenha um plugin ou loader em seu processo de compilação que possa manipular o carregamento de arquivos `ttf`, `woff` e `woff2`. Fontes _não_ serão embutidas dentro do seu pacote. Elas serão carregadas de seu servidor da web em vez de uma CDN.
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -138,7 +138,7 @@ theme = responsiveFontSizes(theme);
 
 ### Tamanhos da fonte fluido
 
-Para ser feito: [#15251](https://github.com/mui-org/material-ui/issues/15251).
+Para ser feito: [#15251](https://github.com/mui/mui/issues/15251).
 
 ### Tamanho da fonte no HTML
 

@@ -50,7 +50,7 @@ const filledProps = {
   <TextFieldWithRouter {...filledProps} />; // desired
 }
 
-// https://github.com/mui-org/material-ui/issues/14586
+// https://github.com/mui/mui/issues/14586
 {
   const styles = createStyles({
     root: {

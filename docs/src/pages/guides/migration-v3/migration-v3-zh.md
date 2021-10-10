@@ -4,7 +4,7 @@
 
 您还在找 v3 版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
 
-> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui-org/material-ui/blob/next/docs/src/pages/guides/migration-v3/migration-v3.md)。
+> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui/mui/blob/next/docs/src/pages/guides/migration-v3/migration-v3.md)。
 
 ## 简介
 
@@ -136,13 +136,13 @@ yarn add @material-ui/styles
   }
   ```
 
-  提示：您可以提供多个参数：`theme.spacing(1, 2) // = '8px 16px'。 `
+  提示：您可以提供多个参数：`theme.spacing(1, 2) // = '8px 16px'。`
 
-  您可以在项目中使用 [迁移小帮手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) 来让您的迁移流程更加顺畅。
+  您可以在项目中使用 [迁移小帮手](https://github.com/mui/mui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) 来让您的迁移流程更加顺畅。
 
 ### 布局
 
-- [Grid] 本着支持任意间距值并且摈弃心理上一直需要在8的基础上计数的目的，我们改变了 spacing 的 API:
+- [Grid] 本着支持任意间距值并且摈弃心理上一直需要在 8 的基础上计数的目的，我们改变了 spacing 的 API:
 
   ```diff
     /**
@@ -216,8 +216,8 @@ function MySelect({ children }) {
 ### Card（卡片）
 
 - [CardActions] 将 `disableActionSpacing` 属性重命名为 `disableSpacing`。
-- [CardActions] 移除 CSS类中的 `disableActionSpacing`。
-- [CardActions] 将CSS类 `action` 重命名为 `spacing`。
+- [CardActions] 移除 CSS 类中的 `disableActionSpacing`。
+- [CardActions] 将 CSS 类 `action` 重命名为 `spacing`。
 
 ### ClickAwayListener
 
@@ -226,13 +226,13 @@ function MySelect({ children }) {
 ### Dialog
 
 - [DialogActions] 将 `disableActionSpacing` 属性重命名为 `disableSpacing`。
-- [DialogActions] 将CSS类 `action` 重命名为 `spacing`。
+- [DialogActions] 将 CSS 类 `action` 重命名为 `spacing`。
 - [DialogContentText] 不使用文字铸排变体 `subtitle1`，而使用 `body1`。
 - [Dialog] 子组件能够接受一个 ref。 我们在 [组合指南](/guides/composition/#caveat-with-refs) 中解释了迁移的策略。
 
 ### Divider
 
-- [Divider] 移除了弃用的 ` inset ` 属性：
+- [Divider] 移除了弃用的 `inset` 属性：
 
   ```diff
   -<Divider inset />
@@ -243,7 +243,7 @@ function MySelect({ children }) {
 
 - [ExpansionPanelActions] 将 CSS 类 `action` 重命名为 `spacing`。
 - [ExpansionPanel] 提高 `disabled` 和 `expanded` 样式规则的 CSS 优先级。
-- [ExpansionPanel] 将 `CollapseProps` 属性重命名为  `TransitionProps`。
+- [ExpansionPanel] 将 `CollapseProps` 属性重命名为 `TransitionProps`。
 
 ### Lists（列表）
 
@@ -266,8 +266,8 @@ function MySelect({ children }) {
 
   这也适用于 `Dialog` 和 `Popover` 。
 
-- [Modal] 删除Modal组件类的自定义API (独立使用时将减少-74％的打包大小)。
-- [Modal] 现在忽略了 event.defaultPrevented。 即使当向下离开事件调用了 `event.preventDefault()`，新的逻辑也会关闭模态框。 `event.preventDefault()` 旨在禁用一些默认的行为，如单击一个复选框来选中它；点击按钮来提交表单；以及点击左键来移除文本输入框的光标等等。 只有一些特殊的HTML元素才具有这些默认的行为。 若您不想触发模态框的 `onClose` 事件，您需要使用 `event.stopPropagation()`。
+- [Modal] 删除 Modal 组件类的自定义 API (独立使用时将减少-74％的打包大小)。
+- [Modal] 现在忽略了 event.defaultPrevented。 即使当向下离开事件调用了 `event.preventDefault()`，新的逻辑也会关闭模态框。 `event.preventDefault()` 旨在禁用一些默认的行为，如单击一个复选框来选中它；点击按钮来提交表单；以及点击左键来移除文本输入框的光标等等。 只有一些特殊的 HTML 元素才具有这些默认的行为。 若您不想触发模态框的 `onClose` 事件，您需要使用 `event.stopPropagation()`。
 
 ### Paper
 
@@ -317,7 +317,7 @@ function MySelect({ children }) {
 
 ### SvgIcon（Svg 图标）
 
-- [SvgIcon] 重命名nativeColor - > htmlColor。 React 在 `for` 这个 HTML 属性上也遇到了同样的问题，他们选择命名这个属性为`htmlFor`。 此变化的原因大同小异。
+- [SvgIcon] 重命名 nativeColor - > htmlColor。 React 在 `for` 这个 HTML 属性上也遇到了同样的问题，他们选择命名这个属性为`htmlFor`。 此变化的原因大同小异。
 
   ```diff
   -<AddIcon nativeColor="#fff" />
@@ -326,7 +326,7 @@ function MySelect({ children }) {
 
 ### Tabs 选项卡
 
-- [Tab] 为了简单起见，删除了` labelContainer `，`label` 和 `labelWrapped` 等类的 key。 这使得我们可以移走两个中间的 DOM 元素。 您应该可以将自定义的样式移到`根元素`的类的键上。
+- [Tab] 为了简单起见，删除了`labelContainer`，`label` 和 `labelWrapped` 等类的 key。 这使得我们可以移走两个中间的 DOM 元素。 您应该可以将自定义的样式移到`根元素`的类的键上。
 
   ![一个更简单的标签项的 DOM 结构](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
@@ -404,9 +404,9 @@ function MySelect({ children }) {
   +<Typography variantMapping={variantMapping}>
   ```
 
-- [Typography] 将默认的字体从 `body2` 换成 `body1`。 默认为16px的字体大小比默认为14px好。 Bootstrap，material.io，甚至本文档都使用的是 16px 作为默认字体大小。 像 Ant Design 一样使用14px是可以理解的，因为中国的用户使用了不同的字母表。 我们建议将 12px 作为日语的默认字体大小。
+- [Typography] 将默认的字体从 `body2` 换成 `body1`。 默认为 16px 的字体大小比默认为 14px 好。 Bootstrap，material.io，甚至本文档都使用的是 16px 作为默认字体大小。 像 Ant Design 一样使用 14px 是可以理解的，因为中国的用户使用了不同的字母表。 我们建议将 12px 作为日语的默认字体大小。
 - [Typography] 移除了铸排变体的默认颜色。 大多数情况下，字体颜色应该是继承而来的。 这是网站的默认行为。
-- [Typography] 按照 [该讨论](https://github.com/mui-org/material-ui/issues/13028) 的逻辑，我们将 `color="default"` 重命名为 `color="initial"`。 你不应该再使用 _default_，因为它缺少明确的语义。
+- [Typography] 按照 [该讨论](https://github.com/mui/mui/issues/13028) 的逻辑，我们将 `color="default"` 重命名为 `color="initial"`。 你不应该再使用 _default_，因为它缺少明确的语义。
 
 ### Node
 

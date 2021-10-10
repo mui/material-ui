@@ -616,7 +616,7 @@ function AboutContent() {
                 thoughts.
               </Typography>
               <Link
-                href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
+                href="https://github.com/mui/mui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
                 variant="body2"
               >
                 Leave your feedback{' '}
@@ -642,22 +642,22 @@ function AboutContent() {
               >
                 <li>
                   Add new features by{' '}
-                  <Link href="https://github.com/mui-org/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
+                  <Link href="https://github.com/mui/mui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
                     submitting a pull request
                   </Link>
                   .
                 </li>
                 <li>
                   Fix bugs or{' '}
-                  <Link href="https://github.com/mui-org/material-ui/tree/HEAD/docs">
+                  <Link href="https://github.com/mui/mui/tree/HEAD/docs">
                     improve our documentation
                   </Link>
                   .
                 </li>
                 <li>
                   Help others by reviewing and commenting on existing{' '}
-                  <Link href="https://github.com/mui-org/material-ui/pulls">PRs</Link> and{' '}
-                  <Link href="https://github.com/mui-org/material-ui/issues">issues</Link>.
+                  <Link href="https://github.com/mui/mui/pulls">PRs</Link> and{' '}
+                  <Link href="https://github.com/mui/mui/issues">issues</Link>.
                 </li>
                 <li>
                   Help <Link href="https://translate.mui.com/">translate</Link> the documentation.
@@ -670,7 +670,7 @@ function AboutContent() {
                   .
                 </li>
               </Box>
-              <Link href="https://github.com/mui-org/material-ui" variant="body2">
+              <Link href="https://github.com/mui/mui" variant="body2">
                 See the repository <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
               </Link>
             </Widget>

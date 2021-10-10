@@ -30,7 +30,7 @@ The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 - [Troubleshooting](#troubleshooting)
 
 > 💡 Aim to create small commits on any changes to help the migration go more smoothly.
-> If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with this title format: `[Migration] Summary of your issue`.
+> If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui/mui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with this title format: `[Migration] Summary of your issue`.
 
 ## Update React & TypeScript version
 
@@ -109,7 +109,7 @@ yarn add @mui/material @mui/styles
 ```
 
 The org & package names have been changed from `@material-ui` to [`@mui`](https://www.npmjs.com/org/mui) as part of the rebranding effort.
-For more details about it, check our [blog post](/blog/material-ui-is-now-mui/) or [#27803](https://github.com/mui-org/material-ui/discussions/27803).
+For more details about it, check our [blog post](/blog/material-ui-is-now-mui/) or [#27803](https://github.com/mui/mui/discussions/27803).
 
 </details>
 
@@ -147,7 +147,7 @@ This codemod contains most of the transformers that are useful for migration. (*
 npx @mui/codemod v5.0.0/preset-safe <path>
 ```
 
-> If you want to run the transformers one by one, check out the [preset-safe codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#-preset-safe) for more details.
+> If you want to run the transformers one by one, check out the [preset-safe codemod](https://github.com/mui/mui/blob/master/packages/mui-codemod/README.md#-preset-safe) for more details.
 
 ### variant-prop
 
@@ -173,7 +173,7 @@ However, if you want to keep `variant="standard"` to your components, run this c
 npx @mui/codemod v5.0.0/variant-prop <path>
 ```
 
-For more details, check out the [variant-prop codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#variant-prop).
+For more details, check out the [variant-prop codemod](https://github.com/mui/mui/blob/master/packages/mui-codemod/README.md#variant-prop).
 
 ### link-underline-hover
 
@@ -199,7 +199,7 @@ If, however, you want to keep `variant="hover"`, run this codemod or configure t
 npx @mui/codemod v5.0.0/link-underline-hover <path>
 ```
 
-For more details, checkout [link-underline-hover codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#link-underline-hover).
+For more details, checkout [link-underline-hover codemod](https://github.com/mui/mui/blob/master/packages/mui-codemod/README.md#link-underline-hover).
 
 Once you have completed the codemod step, try running your application again. At this point, it should be running without error. Otherwise check out the [Troubleshooting](#troubleshooting) section. Next step, handling breaking changes in each component.
 
@@ -219,7 +219,7 @@ The default bundle supports the following minimum versions:
 - Edge 91 (up from 14)
 - Firefox 78 (up from 52)
 - Safari 14 (macOS) and 12.5 (iOS) (up from 10)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/mui/blob/HEAD/.browserslistrc#L11))
 
 It no longer supports IE 11.
 If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
@@ -277,7 +277,7 @@ Here is an example:
  }
 ```
 
-> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
+> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui/mui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
 
 ### Theme structure
 
@@ -924,7 +924,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### BottomNavigationAction
 
-- Remove the `span` element that wraps the children. Remove the `wrapper` classKey too. More details about [this change](https://github.com/mui-org/material-ui/pull/26923).
+- Remove the `span` element that wraps the children. Remove the `wrapper` classKey too. More details about [this change](https://github.com/mui/mui/pull/26923).
 
   ```diff
    <button class="MuiBottomNavigationAction-root">
@@ -1021,7 +1021,7 @@ As the core components use emotion as their style engine, the props used by emot
 
   If you prefer to use the `default` color in v4, take a look at this [CodeSandbox](https://codesandbox.io/s/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx)
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui/mui/pull/26666).
 
   ```diff
    <button class="MuiButton-root">
@@ -1299,7 +1299,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Fab variant="circular">
   ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27112).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui/mui/pull/27112).
 
   ```diff
    <button class="MuiFab-root">
@@ -1454,7 +1454,7 @@ As the core components use emotion as their style engine, the props used by emot
   + <IconButton size="large">
   ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui/mui/pull/26666).
 
   ```diff
    <button class="MuiIconButton-root">
@@ -2059,7 +2059,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://material.io/components/tabs#specs)
 - Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://material.io/components/tabs#specs)
-- `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26926).
+- `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui/mui/pull/26926).
 
   ```diff
    <button class="MuiTab-root">
@@ -2180,7 +2180,7 @@ As the core components use emotion as their style engine, the props used by emot
   +import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
   ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27111).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui/mui/pull/27111).
 
   ```diff
    <button class="MuiToggleButton-root">
@@ -2274,7 +2274,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
   ```
 
-- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
+- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui/mui/issues/21902)
 
   ```diff
   {
@@ -2416,7 +2416,7 @@ We can use one of these two options, by order of preference:
 
 #### Codemod
 
-We provide [a codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
+We provide [a codemod](https://github.com/mui/mui/blob/master/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
 
 ```sh
 npx @mui/codemod v5.0.0/jss-to-styled <path>
@@ -2608,7 +2608,7 @@ module.exports = {
 };
 ```
 
-For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133) on GitHub.
+For more details, checkout [this issue](https://github.com/mui/mui/issues/24282#issuecomment-796755133) on GitHub.
 
 ### Cannot read property `scrollTop` of null
 
@@ -2656,7 +2656,7 @@ const CustomComponent = React.forwardRef(function CustomComponent(props, ref) {
 </Fade>
 ```
 
-For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/27154) on GitHub.
+For more details, checkout [this issue](https://github.com/mui/mui/issues/27154) on GitHub.
 
 ### [Types] Property "palette", "spacing" does not exist on type 'DefaultTheme'
 
@@ -2692,7 +2692,7 @@ declare module "@mui/private-theming" {
 ### [Jest] SyntaxError: Unexpected token 'export'
 
 `@mui/material/colors/red` is considered private since v1.0.0.
-You should replace the import, [more details about this error](https://github.com/mui-org/material-ui/issues/27296).
+You should replace the import, [more details about this error](https://github.com/mui/mui/issues/27296).
 
 You can use this codemod (**recommended**) to fix all the import in your project:
 
@@ -2775,4 +2775,4 @@ The root cause of this error comes from accessing empty theme. Make sure that yo
 
 - Make sure that no `useStyles` is called outside of `<ThemeProvider>`. If you have, consider fixing it like [this suggestion](#makestyles-typeerror-cannot-read-property-drawer-of-undefined)
 
-For more details, [checkout this issue](https://github.com/mui-org/material-ui/issues/28496)
+For more details, [checkout this issue](https://github.com/mui/mui/issues/28496)

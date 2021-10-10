@@ -44,7 +44,7 @@ export default class DemoErrorBoundary extends React.Component {
         body: `
 <!-- Please make sure you have fullfilled the following items before submitting -->
 <!-- Checked checkbox should look like this: [x] -->
-- [ ] I have [searched for similar issues](https://github.com/mui-org/material-ui/issues?q=${searchQuery}) in this repository and believe that this is not a duplicate.
+- [ ] I have [searched for similar issues](https://github.com/mui/mui/issues?q=${searchQuery}) in this repository and believe that this is not a duplicate.
 
 ## Steps to Reproduce
 1. Visit ${window.location.href}

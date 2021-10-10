@@ -184,14 +184,14 @@ Contras:
 
 - O desempenho em tempo de execução é impactado.
 
-  | Benchmark                             | Fragmento de código         | Tempo normalizado |
-  |:------------------------------------- |:--------------------------- | ----------------- |
+  | Benchmark                             | Fragmento de código   | Tempo normalizado |
+  | :------------------------------------ | :-------------------- | ----------------- |
   | a. Renderizar 1.000 Box               | `<div className="…">` | 100ms             |
   | b. Renderizar 1.000 componentes       | `<Div>`               | 120ms             |
   | c. Renderizar 1,000 styled components | `<StyledDiv>`         | 160ms             |
   | d. a. Renderizar 1.000 Box            | `<Box sx={…}>`        | 370ms             |
 
-  _Vá até a [pasta de benchmark](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) para uma reprodução dessas métricas._
+  _Vá até a [pasta de benchmark](https://github.com/mui/mui/tree/next/benchmark/browser) para uma reprodução dessas métricas._
 
   Nós acreditamos que para a maioria das situações é **rápido o suficiente**, mas há soluções alternativas simples onde a performance se torna crítica. Por exemplo, ao renderizar uma lista com muitos itens, você pode usar um seletor filho CSS para ter um único ponto de "injeção de estilo" (usando d. para o wrapper e a. para cada item).
 
@@ -335,7 +335,7 @@ export default function CustomBreakpoints() {
 Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
 
 ```ts
-declare module "@material-ui/core/styles/createBreakpoints" {
+declare module '@material-ui/core/styles/createBreakpoints' {
   interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;
@@ -379,4 +379,4 @@ const Div = styled('div')``;
 
 ### 4. Qualquer elemento com o plugin babel
 
-A fazer [#23220](https://github.com/mui-org/material-ui/issues/23220).
+A fazer [#23220](https://github.com/mui/mui/issues/23220).

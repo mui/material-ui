@@ -34,8 +34,8 @@
   },
   "sandboxes": [
     "material-ui-issue-dh2yh",
-    "github/mui-org/material-ui/tree/HEAD/examples/create-react-app",
-    "github/mui-org/material-ui/tree/HEAD/examples/create-react-app-with-typescript"
+    "github/mui/mui/tree/HEAD/examples/create-react-app",
+    "github/mui/mui/tree/HEAD/examples/create-react-app-with-typescript"
   ],
   "silent": true
 }

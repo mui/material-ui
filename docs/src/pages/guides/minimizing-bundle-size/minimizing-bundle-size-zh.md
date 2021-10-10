@@ -4,7 +4,7 @@
 
 ## 打包文件的大小是很重要的
 
-Material-UI 的打包文件大小至关重要。 每一次提交代码时，我们都会对每个包和这些包的关键部分进行大小快照（size snapshots)（[查看最新的快照](/size-snapshot)）。 结合 [dangerJS](https://danger.systems/js/) 一起，我们可以在每个 Pull Request 中都可以查看[详细的打包文件的大小变化](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) 。
+Material-UI 的打包文件大小至关重要。 每一次提交代码时，我们都会对每个包和这些包的关键部分进行大小快照（size snapshots)（[查看最新的快照](/size-snapshot)）。 结合 [dangerJS](https://danger.systems/js/) 一起，我们可以在每个 Pull Request 中都可以查看[详细的打包文件的大小变化](https://github.com/mui/mui/pull/14638#issuecomment-466658459) 。
 
 ## 何时以及如何使用 tree-shaking?
 
@@ -22,7 +22,7 @@ import { Button, TextField } from '@material-ui/core';
 
 如果您觉得这样不妥，您还有以下几个选择：
 
-### 选项1
+### 选项 1
 
 您可以使用路径导入，这样可以避免导入用不到的模块。 例如，使用：
 
@@ -38,7 +38,7 @@ import TextField from '@material-ui/core/TextField';
 import { Button, TextField } from '@material-ui/core';
 ```
 
-这是我们在所有演示中记录的选项，因为它不需要配置。 我们鼓励库的创建者来扩充已有组件。 请前往带来最佳 DX 和 UX 的方法： [选项2](#option-2)。
+这是我们在所有演示中记录的选项，因为它不需要配置。 我们鼓励库的创建者来扩充已有组件。 请前往带来最佳 DX 和 UX 的方法： [选项 2](#option-2)。
 
 虽然以这种方式直接进行导入不会使用 [`@material-ui/core` 主文件](https://unpkg.com/@material-ui/core) 中的导出模块（exports），但该文件可以方便地参考哪些模块是可供公共使用的。
 
@@ -75,12 +75,12 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 }
 ```
 
-### 选项2
+### 选项 2
 
 此选项提供了最佳的用户体验和开发者体验：
 
 - UX: 即使您的打包文件不支持，Babel 插件能够开启顶层的 tree-shaking 功能。
-- DX: 在开发模式下，使用Babel 插件时，启动时间能够和方案 1 一样快。
+- DX: 在开发模式下，使用 Babel 插件时，启动时间能够和方案 1 一样快。
 - DX: 这种语法减少了代码的重复，只需要一次导入就可以实现多个模块。 总的来说，代码会变得更容易阅读，在导入一个新模块时，您也更不容易出错。
 
 ```js
@@ -196,7 +196,7 @@ module.exports = override(useBabelRc());
 
 考虑到一些 [支持的平台](/getting-started/supported-platforms/)，在 npm 上发布的这个依赖包是和 [Babel](https://github.com/babel/babel) 一起被**编译**过的。
 
-⚠️为了尽量减少用户捆绑包中的重复代码，库作者 **非常不鼓励** 从任何其他捆绑包中导入。
+⚠️ 为了尽量减少用户捆绑包中的重复代码，库作者 **非常不鼓励** 从任何其他捆绑包中导入。
 
 ### 现代的捆绑包
 

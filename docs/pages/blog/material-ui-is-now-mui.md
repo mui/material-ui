@@ -11,8 +11,8 @@ card: true
 Starting today we are evolving our brand identity to clarifying the difference between our company and our products.
 
 - Material-UI: the organization is now called [**MUI**](https://github.com/mui-org/).
-- Material-UI: the set of foundational MIT React components is now called [**MUI Core**](https://github.com/mui-org/material-ui).
-- Material-UI X: the set of advanced React components is now called [**MUI X**](https://github.com/mui-org/material-ui-x).
+- Material-UI: the set of foundational MIT React components is now called [**MUI Core**](https://github.com/mui/mui).
+- Material-UI X: the set of advanced React components is now called [**MUI X**](https://github.com/mui/mui-x).
 
 Our previous name was no longer serving our areas of focus.
 We have grown our product offering.
@@ -85,7 +85,7 @@ To better identify, market, and promote each product, we're introducing logos fo
 ### New package names
 
 The package names have changed in v5, which is a **breaking change**.
-You can find more details in the [release](https://github.com/mui-org/material-ui/releases/tag/v5.0.0) [notes](https://github.com/mui-org/material-ui-x/releases/tag/v4.0.0).
+You can find more details in the [release](https://github.com/mui/mui/releases/tag/v5.0.0) [notes](https://github.com/mui/mui-x/releases/tag/v4.0.0).
 The npm organization name (scope) has moved from @material-ui to [@mui](https://www.npmjs.com/org/mui).
 
 ### A new website & documentation

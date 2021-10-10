@@ -4,7 +4,7 @@
 
 If you're looking for the v4 docs, you can [find them here](https://material-ui.com/versions/).
 
-> 此文档尚未完成。 If you have upgraded your site and run into something that's not covered here, please [add your changes on GitHub](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v4/migration-v4.md).
+> 此文档尚未完成。 If you have upgraded your site and run into something that's not covered here, please [add your changes on GitHub](https://github.com/mui/mui/blob/HEAD/docs/src/pages/guides/migration-v4/migration-v4.md).
 
 ## 简介
 
@@ -55,7 +55,7 @@ The default bundle supports the following minimum versions:
 - Edge 85（最低兼容到 14）
 - Firefox 78（最低兼容到 52）
 - Safari 13 (macOS) 和 12.2 (iOS)（最低兼容到 10）
-- 更多内容请（参阅 [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11)）
+- 更多内容请（参阅 [.browserslistrc (`stable` entry)](https://github.com/mui/mui/blob/HEAD/.browserslistrc#L11)）
 
 不再对 IE 11 进行兼容支持。 如果你需要对 IE 11 进行兼容性支持，请查看我们的 [旧版本包](/guides/minimizing-bundle-size/#legacy-bundle)。
 
@@ -109,7 +109,7 @@ export default function PlainCssPriority() {
 }
 ```
 
-> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@material-ui/styled-engine-sc` package.
+> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui/mui/blob/next/packages/material-ui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@material-ui/styled-engine-sc` package.
 
 ### 主题
 
@@ -124,7 +124,7 @@ export default function PlainCssPriority() {
   ```
 
 - The default background color is now `#fff` in light mode and `#121212` in dark mode. This matches the Material Design guidelines.
-- Breakpoints are now treated as values instead of [ranges](https://v4.material-ui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above. `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive). 当使用 `down()`断点工具集时，你需要向上一步更新断点键。 当使用  `between(start, end)` 时，结束断点也应向上一步更新。
+- Breakpoints are now treated as values instead of [ranges](https://v4.material-ui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above. `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive). 当使用 `down()`断点工具集时，你需要向上一步更新断点键。 当使用 `between(start, end)` 时，结束断点也应向上一步更新。
 
   Here are some examples of the changes required:
 
@@ -143,7 +143,7 @@ export default function PlainCssPriority() {
   +theme.breakpoints.up('sm') // '@media (min-width:600px)'
   ```
 
-  You can use the [`theme-breakpoints` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#theme-breakpoints) for automatic migration of `theme.breakpoints`.
+  You can use the [`theme-breakpoints` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#theme-breakpoints) for automatic migration of `theme.breakpoints`.
 
   The same should be done when using the `Hidden` component:
 
@@ -174,7 +174,7 @@ export default function PlainCssPriority() {
   }
   ```
 
-- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
+- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui/mui/issues/21902)
 
   ```diff
   {
@@ -252,7 +252,7 @@ The following changes are supported by the adapter:
   theme.spacing(2) => '16px'
   ```
 
-  You can use the [`theme-spacing` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#theme-spacing) to remove any 'px' suffix from `theme.spacing` calls in a template string.
+  You can use the [`theme-spacing` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#theme-spacing) to remove any 'px' suffix from `theme.spacing` calls in a template string.
 
 - The `theme.palette.type` key was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
@@ -331,7 +331,7 @@ const theme = createTheme({
   }));
   ```
 
-  You can use the [`fade-rename-alpha` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#fade-rename-alpha) for automatic migration.
+  You can use the [`fade-rename-alpha` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#fade-rename-alpha) for automatic migration.
 
 - The `createStyles` function from `@material-ui/core/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
 
@@ -394,7 +394,7 @@ As the core components use emotion as their style engine, the props used by emot
   +import AlertTitle from '@material-ui/core/AlertTitle';
   ```
 
-你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
+你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 ### Autocomplete 自动补全组件
 
@@ -407,7 +407,7 @@ As the core components use emotion as their style engine, the props used by emot
   +import useAutoComplete from '@material-ui/core/useAutocomplete';
   ```
 
-  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
+  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 - 移除 `debug` 属性。 有几个更简单的方式来使用它：`open={true}`，Chrome 开发者调试工具 [“Emulate focused”](https://twitter.com/sulco/status/1305841873945272321)，或者使用 React devtools prop setter。
 - `renderOption` 现在应该返回选项的完整 DOM 结构。 这样做可以让定制组件变得更加容易。 你可以通过下面方法进行回滚：
@@ -438,7 +438,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Autocomplete clearIcon={defaultClearIcon} />
   ```
 
-  You can use the [`autocomplete-rename-closeicon` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#autocomplete-rename-closeicon) for automatic migration.
+  You can use the [`autocomplete-rename-closeicon` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#autocomplete-rename-closeicon) for automatic migration.
 
 - The following values of the reason argument in `onChange` and `onClose` were renamed for consistency:
 
@@ -479,7 +479,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Avatar>
   ```
 
-  You can use the [`avatar-circle-circular` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#avatar-circle-circular) for automatic migration.
+  You can use the [`avatar-circle-circular` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#avatar-circle-circular) for automatic migration.
 
 - AvatarGroup 已从实验室包移动到核心包。
 
@@ -488,7 +488,7 @@ As the core components use emotion as their style engine, the props used by emot
   +import AvatarGroup from '@material-ui/core/AvatarGroup';
   ```
 
-  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
+  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 ### Badge
 
@@ -517,7 +517,7 @@ As the core components use emotion as their style engine, the props used by emot
   }}>
   ```
 
-  You can use the [`badge-overlap-value` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#badge-overlap-value) for automatic migration.
+  You can use the [`badge-overlap-value` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#badge-overlap-value) for automatic migration.
 
 ### BottomNavigation（底部导航）
 
@@ -542,7 +542,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Box borderRadius="16px">
   ```
 
-  You can use the [`box-borderradius-values` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-borderradius-values) for automatic migration.
+  You can use the [`box-borderradius-values` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#box-borderradius-values) for automatic migration.
 
 - The Box system props have an optional alternative API in v5, using the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the "why" behind this new API.
 
@@ -551,7 +551,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
   ```
 
-  If you prefer the new syntax, you can use the [`box-sx-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) for automatic migration.
+  If you prefer the new syntax, you can use the [`box-sx-prop` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#box-sx-prop) for automatic migration.
 
 - The following properties have been renamed because they are considered deprecated CSS properties by the CSS specification:
 
@@ -570,7 +570,7 @@ As the core components use emotion as their style engine, the props used by emot
 
   (Note that the system grid function wasn't documented in v4.)
 
-  You can use the [`box-rename-gap` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-rename-gap) for automatic migration.
+  You can use the [`box-rename-gap` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#box-rename-gap) for automatic migration.
 
 - The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a Material-UI component.
 
@@ -610,9 +610,9 @@ As the core components use emotion as their style engine, the props used by emot
   +<Button>
   ```
 
-  You can use the [`button-color-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#button-color-prop) for automatic migration.
+  You can use the [`button-color-prop` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#button-color-prop) for automatic migration.
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui/mui/pull/26666).
 
   ```diff
   <button class="MuiButton-root">
@@ -633,7 +633,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Chip>
   ```
 
-  You can use the [`chip-variant-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#chip-variant-prop) for automatic migration.
+  You can use the [`chip-variant-prop` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#chip-variant-prop) for automatic migration.
 
 ### Checkbox 选择框
 
@@ -656,7 +656,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
   ```
 
-You can use the [`circularprogress-variant` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#circularprogress-variant) for automatic migration.
+You can use the [`circularprogress-variant` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#circularprogress-variant) for automatic migration.
 
 > 注意：如果你之前已经定制了 determinate，那么你的定制可能不再有效。 所以请删除它们。
 
@@ -676,7 +676,7 @@ You can use the [`circularprogress-variant` codemod](https://github.com/mui-org/
   +<Collapse classes={{ root: 'collapse' }}>
   ```
 
-You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#collapse-rename-collapsedheight) for automatic migration of both the prop and the classes key.
+You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#collapse-rename-collapsedheight) for automatic migration of both the prop and the classes key.
 
 ### CssBaseline
 
@@ -740,7 +740,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   />
   ```
 
-  You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
+  You can use the [`use-transitionprops` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
 - Remove the `disableBackdropClick` prop because it is redundant. 当 `reason === 'backdropClick'` 时，将会忽略 `onClose` 的关闭事件。
 
@@ -876,7 +876,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<FormControl value="Outlined" />
   ```
 
-[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
+[This codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
 ### Grid
 
@@ -887,7 +887,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Grid justifyContent="center">
   ```
 
-  You can use the [`component-rename-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#component-rename-prop) for automatic migration.
+  You can use the [`component-rename-prop` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#component-rename-prop) for automatic migration.
 
 - The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options. For example
 
@@ -911,7 +911,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   });
   ```
 
-  You can use the [`grid-justify-justifycontent` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#grid-justify-justifycontent) for automatic migration.
+  You can use the [`grid-justify-justifycontent` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#grid-justify-justifycontent) for automatic migration.
 
 ### GridList
 
@@ -992,7 +992,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   + <IconButton size="large">
   ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui/mui/pull/26666).
 
   ```diff
   <button class="MuiIconButton-root">
@@ -1027,7 +1027,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   > Note: The `selectedMenu` variant will no longer vertically align the selected item with the anchor.
 
-  You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
+  You can use the [`use-transitionprops` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
 - Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it. 你可以用以下方法恢复到以前的行为：
 
@@ -1133,7 +1133,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +import usePagination from '@material-ui/core/usePagination';
   ```
 
-  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
+  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 - Rename `round` to `circular` for consistency:
 
@@ -1167,7 +1167,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   />
   ```
 
-  You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
+  You can use the [`use-transitionprops` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
 - The `getContentAnchorEl` prop was removed to simplify the positioning logic.
 
@@ -1228,7 +1228,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +import Rating from '@material-ui/core/Rating';
   ```
 
-  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
+  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 - 为提高无障碍的可访问性，我们更改了默认的空图标。 如果你有自定义了 `icon` 属性，但没有使用 `emptyIcon` 属性，你可以用以下方法还原到以前的行为：
 
@@ -1252,7 +1252,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### RootRef
 
-- 该组件已被移除。 你可以通过 `ref` 属性来获取对我们组件的底层 DOM 节点的引用。 该组件依赖 [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode)，在 [`React.StrictMode`  中已被弃用](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)。
+- 该组件已被移除。 你可以通过 `ref` 属性来获取对我们组件的底层 DOM 节点的引用。 该组件依赖 [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode)，在 [`React.StrictMode` 中已被弃用](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)。
 
   ```diff
   -<RootRef rootRef={ref}>
@@ -1272,7 +1272,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Select value="Outlined" />
   ```
 
-[This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
+[This codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
 - Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined. The TextField already handles it by default.
 
@@ -1297,7 +1297,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +import Skeleton from '@material-ui/core/Skeleton';
   ```
 
-  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
+  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency:
 
@@ -1366,7 +1366,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   />
   ```
 
-  You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
+  You can use the [`use-transitionprops` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
 ### SpeedDial 快速拨号
 
@@ -1381,7 +1381,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
   ```
 
-  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
+  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 ### Stepper 步骤条组件
 
@@ -1553,7 +1553,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<TextField value="Outlined" />
   ```
 
-  You can use the [`variant-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) for automatic migration.
+  You can use the [`variant-prop` codemod](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#variant-prop) for automatic migration.
 
 - 为保持与 HTML 属性的一致性，我们将 `rowsMax` 属性重命名为 `maxRows`。
 
@@ -1637,7 +1637,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
   ```
 
-  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
+  你可以使用 [`moved-lab-modules` 编码器（codemod）](https://github.com/mui/mui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules)来进行自动迁移。
 
 ### Tooltip
 

@@ -92,7 +92,7 @@ export default function Notifications() {
 
     // Soften the pressure on the main thread.
     const timeout = setTimeout(() => {
-      fetch('https://raw.githubusercontent.com/mui-org/material-ui/master/docs/notifications.json')
+      fetch('https://raw.githubusercontent.com/mui/mui/master/docs/notifications.json')
         .then((response) => {
           return response.json();
         })

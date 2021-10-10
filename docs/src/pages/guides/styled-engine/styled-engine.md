@@ -71,7 +71,7 @@ If you are using TypeScript, you will need to also update the TSConfig.
 ### Ready-to-use examples
 
 If you are using create-react-app, there is a ready-to-use template in the example projects.
-You can use the [create-react-app-with-styled-components example](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components), or its [TypeScript equivalent](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript).
+You can use the [create-react-app-with-styled-components example](https://github.com/mui/mui/tree/next/examples/create-react-app-with-styled-components), or its [TypeScript equivalent](https://github.com/mui/mui/tree/next/examples/create-react-app-with-styled-components-typescript).
 
 > **Note**: `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself. See the [Installation guide](/getting-started/installation/) for more info.
 

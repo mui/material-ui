@@ -13,14 +13,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git",
+    "url": "https://github.com/mui/mui.git",
     "directory": "packages/mui-utils"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/mui/mui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/mui-utils",
+  "homepage": "https://github.com/mui/mui/tree/master/packages/mui-utils",
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files && yarn build:types",
     "build:legacy": "node ../../scripts/build legacy",

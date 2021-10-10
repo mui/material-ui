@@ -216,7 +216,7 @@ const useStyles = makeStyles({
 
 > 了解浏览器如何计算 CSS 优先级是**非常重要的**，因为它是您在覆盖样式时需要了解的重点之一。 我们推荐您阅读 MDN 上的这段内容：[如何计算优先级？](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
-默认情况下，注入的style标签会被插入到页面`<head>`元素的最后。 它们的优先级高于您页面上的任何其他样式标签，如 CSS 模块、styled components。
+默认情况下，注入的 style 标签会被插入到页面`<head>`元素的最后。 它们的优先级高于您页面上的任何其他样式标签，如 CSS 模块、styled components。
 
 ### injectFirst
 
@@ -225,10 +225,8 @@ const useStyles = makeStyles({
 ```jsx
 import { StylesProvider } from '@material-ui/styles';
 
-<StylesProvider injectFirst>
-  {/* 你的组件树。
-      样式化组件可以覆盖 Material-UI 的样式。 */}
-</StylesProvider>;
+<StylesProvider injectFirst>{/* 你的组件树。
+      样式化组件可以覆盖 Material-UI 的样式。 */}</StylesProvider>;
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
@@ -287,7 +285,7 @@ import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
-  // 当将样式注入到 DOM 中时，定义了一个自定义插入点以供 JSS 查询。 
+  // 当将样式注入到 DOM 中时，定义了一个自定义插入点以供 JSS 查询。
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -313,7 +311,7 @@ import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
-  // 当将样式注入到 DOM 中时，定义了一个自定义插入点以供 JSS 查询。 
+  // 当将样式注入到 DOM 中时，定义了一个自定义插入点以供 JSS 查询。
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
@@ -380,13 +378,13 @@ function render() {
 
 <!-- #default-branch-switch -->
 
-请参考 [Gatsby 项目案例](https://github.com/mui-org/material-ui/blob/next/examples/gatsby) 以了解最新的使用方法。
+请参考 [Gatsby 项目案例](https://github.com/mui/mui/blob/next/examples/gatsby) 以了解最新的使用方法。
 
 ### Next.js
 
-您需要有一个自定义的 `pages/_document.js`，然后复制 [此逻辑](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) 以注入服务器侧渲染的样式到 `<head>` 元素中。
+您需要有一个自定义的 `pages/_document.js`，然后复制 [此逻辑](https://github.com/mui/mui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) 以注入服务器侧渲染的样式到 `<head>` 元素中。
 
-请参考 [示例项目](https://github.com/mui-org/material-ui/blob/next/examples/nextjs) 以获取最新的使用方法。
+请参考 [示例项目](https://github.com/mui/mui/blob/next/examples/nextjs) 以获取最新的使用方法。
 
 ## 类名（Class names）
 
@@ -531,4 +529,4 @@ const StyledTextField = styled(TextField)`
 
 ## CSS 前缀（prefixes）
 
-JSS 使用特征探测来应用正确的前缀。 如果您看不到最新版本 Chrome 中显示一个特定前缀，[请不要感到惊讶](https://github.com/mui-org/material-ui/issues/9293)。 您的浏览器可能不需要它。
+JSS 使用特征探测来应用正确的前缀。 如果您看不到最新版本 Chrome 中显示一个特定前缀，[请不要感到惊讶](https://github.com/mui/mui/issues/9293)。 您的浏览器可能不需要它。

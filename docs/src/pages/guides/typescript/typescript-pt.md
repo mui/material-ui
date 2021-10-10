@@ -4,7 +4,7 @@
 
 Material-UI requires a minimum version of TypeScript 3.5.
 
-Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript).
+Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui/mui/tree/master/examples/create-react-app-with-typescript).
 
 Para que os tipos funcionem, você tem que pelo menos ter as seguintes opções habilitadas no seu `tsconfig.json`:
 
@@ -34,7 +34,7 @@ const styles = {
   root: {
     display: 'flex',
     flexDirection: 'column',
-  }
+  },
 };
 
 withStyles(styles);
@@ -82,15 +82,16 @@ const styles = createStyles({
 });
 
 // Estilos com dependência do tema
-const styles = ({ palette, spacing }: Theme) => createStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: spacing.unit,
-    backgroundColor: palette.background.default,
-    color: palette.primary.main,
-  },
-});
+const styles = ({ palette, spacing }: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      padding: spacing.unit,
+      backgroundColor: palette.background.default,
+      color: palette.primary.main,
+    },
+  });
 ```
 
 `createStyles` é apenas a identidade da função; ela não "faz nada" em tempo de execução, apenas auxilia a inferência de tipos em tempo de compilação.
@@ -146,11 +147,18 @@ const ambiguousStyles = createStyles({
 Desde que um componente seja decorado com `withStyles(styles)`, ele recebe uma propriedade injetada `classes`, você pode querer definir estas propriedades de acordo com:
 
 ```ts
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
-  paper: { /* ... */ },
-  button: { /* ... */ },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
 
 interface Props {
   // propriedades comuns
@@ -266,7 +274,7 @@ Isso poderia ser usado da seguinte maneira:
 ```ts
 import createMyTheme from './styles/createMyTheme';
 
-const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
+const theme = createMyTheme({ appDrawer: { breakpoint: 'md' } });
 ```
 
 ## Uso da propriedade `component`
@@ -290,7 +298,7 @@ Agora o `CustomComponent` pode ser usado com uma propriedade `component` que dev
 É possível ter um componente genérico `CustomComponent` que aceitará qualquer componente React, customizado e elementos HTML.
 
 ```ts
-function GenericCustomComponent<C extends React. ElementType>(
+function GenericCustomComponent<C extends React.ElementType>(
   props: TypographyProps<C, { component?: C }>,
 ) {
   /* ... */
@@ -300,8 +308,8 @@ function GenericCustomComponent<C extends React. ElementType>(
 Agora se o `GenericCustomComponent` ser usado com uma propriedade `component`, ele também deve ter todas as propriedades exigidas pelo componente fornecido.
 
 ```ts
-function ThirdPartyComponent({ prop1 } : { prop1: string }) {
-  return <div />
+function ThirdPartyComponent({ prop1 }: { prop1: string }) {
+  return <div />;
 }
 // ...
 <GenericCustomComponent component={ThirdPartyComponent} prop1="algum valor" />;

@@ -2,10 +2,10 @@
 
 ## How to use
 
-Download the example [or clone the repo](https://github.com/mui-org/material-ui):
+Download the example [or clone the repo](https://github.com/mui/mui):
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/next | tar -xz --strip=2  material-ui-next/examples/cdn
+curl https://codeload.github.com/mui/mui/tar.gz/next | tar -xz --strip=2  material-ui-next/examples/cdn
 cd cdn
 ```
 
@@ -23,7 +23,7 @@ The client has to download the entire library, regardless of which components ar
 
 <!-- #default-branch-switch -->
 
-[The live preview.](https://combinatronics.com/mui-org/material-ui/master/examples/cdn/index.html)
+[The live preview.](https://combinatronics.com/mui/mui/master/examples/cdn/index.html)
 
 ## UMD releases
 

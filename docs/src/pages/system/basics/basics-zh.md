@@ -184,16 +184,16 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 
 - 运行时会造成性能影响：
 
-  | 基准测试                    | 代码片段                        | 花费时间  |
-  |:----------------------- |:--------------------------- | ----- |
-  | a. a. 渲染 1,000 个基元      | `<div className="…">` | 100ms |
-  | b. b. b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
-  | c. c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
-  | d. 渲染一千个分组（Box）         | `<Box sx={…}>`        | 370ms |
+  | 基准测试                       | 代码片段              | 花费时间 |
+  | :----------------------------- | :-------------------- | -------- |
+  | a. a. 渲染 1,000 个基元        | `<div className="…">` | 100ms    |
+  | b. b. b. 渲染 1,000 个组件     | `<Div>`               | 120ms    |
+  | c. c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms    |
+  | d. 渲染一千个分组（Box）       | `<Box sx={…}>`        | 370ms    |
 
-  _这里是可复现的 [性能测试文件夹](https://github.com/mui-org/material-ui/tree/next/benchmark/browser)。_
+  _这里是可复现的 [性能测试文件夹](https://github.com/mui/mui/tree/next/benchmark/browser)。_
 
-  我们相信，对于大多数用途来说，它已经足够快了****，但当性能变得至关重要时，也有一些简单的解决方法。 例如，当渲染一个有许多项目的列表时，你可以使用一个 CSS 子选择器来拥有一个单一的“样式注入”点（使用 d. 作为包装器，a. 应用到每个项目）。
+  我们相信，对于大多数用途来说，它已经足够快了\*\*\*\*，但当性能变得至关重要时，也有一些简单的解决方法。 例如，当渲染一个有许多项目的列表时，你可以使用一个 CSS 子选择器来拥有一个单一的“样式注入”点（使用 d. 作为包装器，a. 应用到每个项目）。
 
 ### API 权衡
 
@@ -292,7 +292,6 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 
 ```jsx
 <Box sx={{ width: [null, null, 300] }}>该分组的宽度是响应式的。</Box>
-
 ```
 
 ### 自定义断点
@@ -336,7 +335,7 @@ export default function CustomBreakpoints() {
 如果你使用的是 TypeScript，那么将需要使用 [模块扩展（module augmentation）](/guides/typescript/#customization-of-theme) 来让主题接收上述值。
 
 ```ts
-declare module "@material-ui/core/styles/createBreakpoints" {
+declare module '@material-ui/core/styles/createBreakpoints' {
   interface BreakpointOverrides {
     xs: false; // 移除 `xs` 断点
     sm: false;
@@ -380,4 +379,4 @@ const Div = styled('div')``;
 
 ### 4、 4、 4、 使用 babel 插件的任何元素
 
-等待开发 [#23220](https://github.com/mui-org/material-ui/issues/23220)。
+等待开发 [#23220](https://github.com/mui/mui/issues/23220)。

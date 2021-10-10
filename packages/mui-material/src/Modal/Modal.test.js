@@ -358,7 +358,7 @@ describe('<Modal />', () => {
       expect(modalNode).not.toBeAriaHidden();
     });
 
-    // Test case for https://github.com/mui-org/material-ui/issues/15180
+    // Test case for https://github.com/mui/mui/issues/15180
     // TODO: how does this relate to `keepMounted`
     // TODO: never finishes
     it('should remove the transition children in the DOM when closed whilst transition status is entering', () => {
@@ -549,7 +549,7 @@ describe('<Modal />', () => {
         expect(getByTestId('foreign-input')).toHaveFocus();
       });
 
-      // Test case for https://github.com/mui-org/material-ui/issues/12831
+      // Test case for https://github.com/mui/mui/issues/12831
       it('should unmount the children when starting open and closing immediately', () => {
         const timeout = 50;
         function TestCase() {

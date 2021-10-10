@@ -8,15 +8,15 @@
 
 ### StackOverflow <img src="/static/images/logos/stackoverflow.svg" width="24" height="24" alt="StackOverflow logo" loading="lazy" />
 
-而我们社区的 Material-UI 开发，会解决那些众包的技术问题。  以及一些 Material-UI 核心团队回答的常见问答。
+而我们社区的 Material-UI 开发，会解决那些众包的技术问题。 以及一些 Material-UI 核心团队回答的常见问答。
 
 [发布一个问题](https://stackoverflow.com/questions/tagged/material-ui)
 
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 
-我们用GitHub issues作为唯一的记录BUG或特性需求的跟踪方式。 如果你认为发现了一个 bug，或有一个新功能的想法，在您提交之前，请先确保它没有被 [报告过或解决过](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)。  您可以搜索已有的 Issues 或者 Pull Requests，这样可以知晓是否有人已报告过类似的问题。
+我们用 GitHub issues 作为唯一的记录 BUG 或特性需求的跟踪方式。 如果你认为发现了一个 bug，或有一个新功能的想法，在您提交之前，请先确保它没有被 [报告过或解决过](https://github.com/mui/mui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)。 您可以搜索已有的 Issues 或者 Pull Requests，这样可以知晓是否有人已报告过类似的问题。
 
-[开一个 issue](https://github.com/mui-org/material-ui/issues/new/choose)
+[开一个 issue](https://github.com/mui/mui/issues/new/choose)
 
 #### 新 Issue 指南
 
@@ -58,7 +58,7 @@ Material-UI CE（社区版本）最初的时候就是 100% 的开源项目（MIT
 - Material-UI v3（更改支持的浏览器）：❌ 不活跃状态.
 - ~Material-UI v2 （根本不存在）~。
 - Material-UI v1（重写）: ❌ 闲置。
-- Material-UI v0.x：❌闲置。
+- Material-UI v0.x：❌ 闲置。
 
 对于需要对旧版本提供额外支持的团队和组织，Material-UI 为您提供了 [可选方案](#enterprise)。
 
@@ -102,6 +102,6 @@ Tidelift 订阅能够为您管理您的依赖包：
 - 建议一些可能不需要 Material-UI 的替代方法
 - 由于时间或相关性而不会合作
 
-请注意，工作必须与 Material-UI 相关。 我们不接受一般的 React 开发工作。 我们的合同价格是 200美元/小时 或 1500美元/天。
+请注意，工作必须与 Material-UI 相关。 我们不接受一般的 React 开发工作。 我们的合同价格是 200 美元/小时 或 1500 美元/天。
 
 [给我们发送一封电子邮件](mailto:custom-work@material-ui.com)

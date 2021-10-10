@@ -48,12 +48,15 @@ yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-compon
 To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. 我们提供了安装字体的[一些说明](/components/icons/#font-icons)。 例如，通过 Google Web Fonts 引入：
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
 ```
 
 ## SVG 图标
 
-在 [icons 示例](/components/icons/)中， 您可以发现一些由我们提供的 SVG Material icons。若您想使用这个图标，您必须安装 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) 这个包：
+在 [icons 示例](/components/icons/)中， 您可以发现一些由我们提供的 SVG Material icons。若  您想使用这个图标，您必须安装 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) 这个包：
 
 ```sh
 // 通过 npm
@@ -72,11 +75,11 @@ yarn add @material-ui/icons
 - 您可以在开发环境调试：https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
 - 也可放心地在生产环境使用: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
 
-通过[此 CDN 示例](https://github.com/mui-org/material-ui/tree/master/examples/cdn)，您可以快速上手。
+通过[此 CDN 示例](https://github.com/mui/mui/tree/master/examples/cdn)，您可以快速上手。
 
 尽管我们**不赞成**在**生产环境**中使用这种方式 —— 无论实际使用哪些组件，客户端必须下载整个库，而这将会影响到整体性能和带宽利用率。
 
-⚠️带有 `latest` 标签的 UMD 会指向我们最新版本的库。 这个指向是**不稳定的**，它会随着我们发布的新版本而改变。 您应该考虑使用一个具体的版本，如 [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js)。
+⚠️ 带有 `latest` 标签的 UMD 会指向我们最新版本的库。 这个指向是**不稳定的**，它会随着我们发布的新版本而改变。 您应该考虑使用一个具体的版本，如 [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js)。
 
 ## 设计资源
 

@@ -30,7 +30,7 @@ function LatestVersions() {
               <Link
                 variant="body2"
                 color="secondary"
-                href="https://github.com/mui-org/material-ui/tree/master"
+                href="https://github.com/mui/mui/tree/master"
               >
                 Source code
               </Link>
@@ -54,7 +54,7 @@ function LatestVersions() {
               <Link
                 variant="body2"
                 color="secondary"
-                href="https://github.com/mui-org/material-ui/tree/next"
+                href="https://github.com/mui/mui/tree/next"
               >
                 Source code
               </Link>

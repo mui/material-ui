@@ -91,7 +91,7 @@ function Progress(props) {
 
 ## 延时的出现
 
-关于响应时间，有 [3个重要限制](https://www.nngroup.com/articles/response-times-3-important-limits/)。 `ButtonBase` 组件的波纹效果确保用户感受到系统是实时反馈的。 通常情况下，在多余0.1秒且小于1.0秒期间不需要特殊的反馈。 在1.0秒后，你可以显示一个加载器来保持用户的思考流程不被打断。
+关于响应时间，有 [3 个重要限制](https://www.nngroup.com/articles/response-times-3-important-limits/)。 `ButtonBase` 组件的波纹效果确保用户感受到系统是实时反馈的。 通常情况下，在多余 0.1 秒且小于 1.0 秒期间不需要特殊的反馈。 在 1.0 秒后，你可以显示一个加载器来保持用户的思考流程不被打断。
 
 {{"demo": "pages/components/progress/DelayingAppearance.js"}}
 
@@ -103,7 +103,7 @@ function Progress(props) {
 
 ![高负载](/static/images/progress/heavy-load.gif)
 
-当这个方法不可行的时候，您可以利用 `disableShrink` 属性来缓解这个问题。 请查看 [这个问题](https://github.com/mui-org/material-ui/issues/10327)。
+当这个方法不可行的时候，您可以利用 `disableShrink` 属性来缓解这个问题。 请查看 [这个问题](https://github.com/mui/mui/issues/10327)。
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}
 

@@ -4,9 +4,9 @@
 
 Nós trabalhamos para seguir as orientações sempre que possível (aplicando senso comum onde as diretrizes contradizem - uma ocorrência mais comum do que se poderia esperar), não esperamos suportar cada componente, ou cada característica de cada componente, mas sim fornecer elementos base que permitem que os desenvolvedores criem interfaces e experiências de usuário atraentes.
 
-Se você deseja adicionar suporte a um componente ou recurso não destacado aqui, pesquise se já não existe no [Issues do GitHub](https://github.com/mui-org/material-ui/issues) ou crie um novo para discutir a abordagem antes de enviar um pull request.
+Se você deseja adicionar suporte a um componente ou recurso não destacado aqui, pesquise se já não existe no [Issues do GitHub](https://github.com/mui/mui/issues) ou crie um novo para discutir a abordagem antes de enviar um pull request.
 
-- **[Painéis de Expansão](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*Legado Material v1*)
+- **[Painéis de Expansão](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (_Legado Material v1_)
 - Barra de Aplicativos
   - **[Superior](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Inferior](https://material.io/design/components/app-bars-bottom.html) ✓**
@@ -44,7 +44,7 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)********
+- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)**\*\*\*\***
 - **[Listas](https://material.io/design/components/lists.html) ✓**
   - [Tipos:](https://material.io/design/components/lists.html#types)
     - **Linha única ✓**
@@ -68,7 +68,7 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
 - **[Indicadores de progresso](https://material.io/design/components/progress-indicators.html) ✓**
   - **[Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓**
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
-  - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*Legado Material v1*)
+  - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (_Legado Material v1_)
 - **[Controles de seleção](https://material.io/design/components/selection-controls.html) ✓**
   - **[Caixa de seleção](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Botões de opção](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
@@ -76,12 +76,12 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
 - **[Sliders](https://material.io/design/components/sliders.html) ✓**
   - **[Contínuo](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ✓**
-- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legado Material v1*)
-- **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*)
+- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (_Legado Material v1_)
+- **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (_Legacy Material v1_)
   - **[Lista](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - **[Grade](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
-- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*)
+- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (_Legacy Material v1_)
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Etapas mobile](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) ✓**

@@ -35,9 +35,7 @@ The `error` prop toggles the error state. The `helperText` prop can then be used
 
 ## Multilinha
 
-A propriedade `multiline` transforma o `textfield` em um `<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea">TextArea</a>.
-Unless the`rows`prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/components/textarea-autosize/)).
-You can use the <code>minRows` and `maxRows` props to bound it.
+A propriedade `multiline` transforma o `textfield` em um `<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea">TextArea</a>. Unless the`rows`prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/components/textarea-autosize/)). You can use the <code>minRows` and `maxRows` props to bound it.
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
@@ -191,7 +189,7 @@ Para validação de número, uma alternativa viável é usar o padão de campo, 
 <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
 ```
 
-No futuro, pretendemos fornecer um [componente de campo número](https://github.com/mui-org/material-ui/issues/19154).
+No futuro, pretendemos fornecer um [componente de campo número](https://github.com/mui/mui/issues/19154).
 
 ### Texto auxiliar
 
@@ -207,7 +205,7 @@ Isso pode ser corrigido passando um caractere de espaço para a propriedade `hel
 
 Você pode usar bibliotecas de terceiros para formatar um campo. Você precisa fornecer uma implementação personalizada do elemento `<input>` com a propriedade `inputComponent`.
 
-A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.com/text-mask/text-mask) e [react-number-format](https://github.com/s-yadav/react-number-format). O mesmo conceito pode ser aplicado para, [p. ex. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
+A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.com/text-mask/text-mask) e [react-number-format](https://github.com/s-yadav/react-number-format). O mesmo conceito pode ser aplicado para, [p. ex. react-stripe-element](https://github.com/mui/mui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 

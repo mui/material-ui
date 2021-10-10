@@ -37,7 +37,10 @@ yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-compon
 O Material-UI foi desenvolvido com base na fonte [Roboto](https://fonts.google.com/specimen/Roboto). Portanto, certifique-se de seguir [estas instruções](/components/typography/#general) para carregá-la. Como alternativa, carregue através do Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+/>
 ```
 
 ## Ícones
@@ -45,7 +48,10 @@ O Material-UI foi desenvolvido com base na fonte [Roboto](https://fonts.google.c
 To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. Aqui estão [ algumas instruções ](/components/icons/#font-icons) sobre como fazer isso. Como alternativa, carregue através do Google Web Fonts:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
 ```
 
 ## Ícones SVG
@@ -67,9 +73,9 @@ Você pode começar a utilizar o Material-UI com o mínimo de infraestrutura de 
 Dois arquivos Universal Module Definition (**UMD**) são fornecidos:
 
 - um para desenvolvimento: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
-- um para  produção: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
+- um para produção: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
 
-Você pode seguir [esse exemplo de CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn) para dar um pontapé inicial.
+Você pode seguir [esse exemplo de CDN](https://github.com/mui/mui/tree/master/examples/cdn) para dar um pontapé inicial.
 
 ⚠️ Usar essa abordagem em **produção** não é **recomendada** devido que - o cliente tem que baixar toda a biblioteca, independentemente de quais os componentes que são realmente utilizados, o que afeta o desempenho e a utilização da largura de banda.
 

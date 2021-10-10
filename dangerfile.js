@@ -5,7 +5,7 @@ const { exec } = require('child_process');
 const { loadComparison } = require('./scripts/sizeSnapshot');
 
 const azureBuildId = process.env.AZURE_BUILD_ID;
-const azureBuildUrl = `https://dev.azure.com/mui-org/Material-UI/_build/results?buildId=${azureBuildId}`;
+const azureBuildUrl = `https://dev.azure.com/mui/mui/_build/results?buildId=${azureBuildId}`;
 const dangerCommand = process.env.DANGER_COMMAND;
 
 const parsedSizeChangeThreshold = 300;

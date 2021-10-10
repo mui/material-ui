@@ -4,22 +4,22 @@
 
 ## Exemplos oficiais
 
-Você pode encontrar alguns exemplos de projetos no repositório [GitHub](https://github.com/mui-org/material-ui) na pasta [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples):
+Você pode encontrar alguns exemplos de projetos no repositório [GitHub](https://github.com/mui/mui) na pasta [`/examples`](https://github.com/mui/mui/tree/master/examples):
 
 <!-- #default-branch-switch -->
 
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) ([Versão TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript))
-- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app) ([versão TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript))
-- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- [Tema Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-theme)
-- [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
-- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
-- [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
-- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript))
+- [Next.js](https://github.com/mui/mui/tree/next/examples/nextjs) ([Versão TypeScript](https://github.com/mui/mui/tree/next/examples/nextjs-with-typescript))
+- [Create React App](https://github.com/mui/mui/tree/next/examples/create-react-app) ([versão TypeScript](https://github.com/mui/mui/tree/next/examples/create-react-app-with-typescript))
+- [Gatsby](https://github.com/mui/mui/tree/next/examples/gatsby)
+- [Tema Gatsby](https://github.com/mui/mui/tree/next/examples/gatsby-theme)
+- [Preact](https://github.com/mui/mui/tree/next/examples/preact)
+- [CDN](https://github.com/mui/mui/tree/next/examples/cdn)
+- [Plain server-side](https://github.com/mui/mui/tree/next/examples/ssr)
+- [Use styled-components as style engine](https://github.com/mui/mui/tree/next/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui/mui/tree/next/examples/create-react-app-with-styled-components-typescript))
 
 Create React App é um projeto incrível para aprender React. Dê uma olhada nas [alternativas disponíveis](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) para ver qual projeto melhor atende às suas necessidades.
 
-O código-fonte deste site de documentação também está incluído no repositório. Este é um projeto um pouco mais complexo. Confira a pasta [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) para instruções de compilação.
+O código-fonte deste site de documentação também está incluído no repositório. Este é um projeto um pouco mais complexo. Confira a pasta [`/docs`](https://github.com/mui/mui/tree/master/docs) para instruções de compilação.
 
 ## Projetos de exemplo mais avançados
 

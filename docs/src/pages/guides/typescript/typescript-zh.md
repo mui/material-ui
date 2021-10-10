@@ -4,7 +4,7 @@
 
 Material-UI requires a minimum version of TypeScript 3.5.
 
-请查看 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) 的例子。
+请查看 [Create React App with TypeScript](https://github.com/mui/mui/tree/next/examples/create-react-app-with-typescript) 的例子。
 
 若想使用类型，你必须在 `tsconfig.json` 里启用以下的一些选项：
 
@@ -27,7 +27,7 @@ Material-UI requires a minimum version of TypeScript 3.5.
 
 ### 使用 `createStyles` 来杜绝类型扩展
 
-造成混淆的一个常见原因是 TypeScript的 [类型扩展（type widening）](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)，这会导致以下示例无法按预期工作：
+造成混淆的一个常见原因是 TypeScript 的 [类型扩展（type widening）](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)，这会导致以下示例无法按预期工作：
 
 ```ts
 const styles = {
@@ -113,7 +113,7 @@ const styles = createStyles({
 });
 ```
 
-然而，为了让这些样式能在TypeScript 中使用，所以在定义时必须明确 CSS 类的名称和实际的 CSS 属性名称。 由于类名称应与 CSS 属性相同，因此应避免使用。
+然而，为了让这些样式能在 TypeScript 中使用，所以在定义时必须明确 CSS 类的名称和实际的 CSS 属性名称。 由于类名称应与 CSS 属性相同，因此应避免使用。
 
 ```ts
 // 这样是错误的，因为 TypeScript 认为 `@media (min-width: 960px)` 是一个类名
@@ -297,7 +297,7 @@ function CustomComponent(props: TypographyProps<'a', { component: 'a' }>) {
 
 按照以上示例来设置，现在的 `CustomComponent` 就可以与 `component` 属性一起使用了，并且该属性应该设置为 `'a'`。 此外，`CustomComponent` 将拥有 `<a>` 这个 HTML 元素的所有属性。 `Typography` 组件的其他属性也会出现在 `CustomComponent` 的属性中。
 
-而通过一个通用的 `CustomComponent` 来接受任何React组件、自定义的和 HTML 元素也是有可能的。
+而通过一个通用的 `CustomComponent` 来接受任何 React 组件、自定义的和 HTML 元素也是有可能的。
 
 ```ts
 function GenericCustomComponent<C extends React.ElementType>(

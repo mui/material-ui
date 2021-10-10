@@ -83,7 +83,7 @@ Note that if you want to add additional `@font-face` declarations, you need to u
 
 Material-UI 使用 `rem` 单元来定义字体的大小。 浏览器 `<html>` 元素的默认字体大小为 `16px`，但是浏览器提供了一个改变这个值的选项，所以 `rem` 单元能够让我们适应用户的设置，从而提供更好的无障碍设计的支持。 其实用户改变字体大小设置的原因多种多样，有不太好的视力，或者选择适应设备的最佳设置，这样在大小和查看距离上会有很大的差异。
 
-若想更改  Material-UI 的字体大小，您可以提供一个 `fontSize ` 属性。 它的默认值为 `14px`。
+若想更改 Material-UI 的字体大小，您可以提供一个 `fontSize` 属性。 它的默认值为 `14px`。
 
 ```js
 const theme = createTheme({
@@ -121,7 +121,7 @@ theme.typography.h3 = {
 
 {{"demo": "pages/customization/typography/CustomResponsiveFontSizes.js"}}
 
-若你想实现此设置的自动化，则可以使用 [` responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) 的帮助程序将 Typography 的字体大小在主题设置为响应性。
+若你想实现此设置的自动化，则可以使用 [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) 的帮助程序将 Typography 的字体大小在主题设置为响应性。
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
@@ -138,15 +138,15 @@ theme = responsiveFontSizes(theme);
 
 ### 流式文字大小
 
-待完成：[#15251](https://github.com/mui-org/material-ui/issues/15251)。
+待完成：[#15251](https://github.com/mui/mui/issues/15251)。
 
 ### HTML 的字体大小
 
 您可能想要更改 `<html>` 元素的默认字体大小。 例如，当您使用 [10px 简化](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 时。
 
-> ⚠️  更改字体的大小会对无障碍设计造成影响 ♿️。 ⚠️  更改字体的大小会对无障碍设计造成影响 ♿️。 For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+> ⚠️ 更改字体的大小会对无障碍设计造成影响 ♿️。 ⚠️ 更改字体的大小会对无障碍设计造成影响 ♿️。 For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
-`theme.typography.htmlFontSize` 属性是为这个用例提供的，它将会告诉 Material-UI `<html>` 元素的字体大小是多少。 这可以用于调整  `rem`  值，如此一来计算后的 font-size 总是与规范相符合。
+`theme.typography.htmlFontSize` 属性是为这个用例提供的，它将会告诉 Material-UI `<html>` 元素的字体大小是多少。 这可以用于调整 `rem` 值，如此一来计算后的 font-size 总是与规范相符合。
 
 ```js
 const theme = createTheme({

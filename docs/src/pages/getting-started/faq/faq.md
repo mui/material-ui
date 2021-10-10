@@ -15,10 +15,10 @@ There are many ways to support MUI:
   [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**.
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
-  - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
-  - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
+  - Report bugs or missing features by [creating an issue](https://github.com/mui/mui/issues/new).
+  - Review and comment on existing [pull requests](https://github.com/mui/mui/pulls) and [issues](https://github.com/mui/mui/issues).
   - Help [translate](https://translate.mui.com) the documentation.
-  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/next/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
+  - [Improve our documentation](https://github.com/mui/mui/tree/next/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui/mui/pulls).
 - **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**.
   If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective.
   All funds donated are managed transparently, and Sponsors receive recognition in the README and on the MUI home page.
@@ -395,10 +395,9 @@ when the `Portal` should re-render:
 ```jsx
 function App() {
   const [container, setContainer] = React.useState(null);
-  const handleRef = React.useCallback(
-    (instance) => setContainer(instance),
-    [setContainer],
-  );
+  const handleRef = React.useCallback((instance) => setContainer(instance), [
+    setContainer,
+  ]);
 
   return (
     <div className="App">

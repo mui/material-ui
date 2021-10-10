@@ -2,12 +2,12 @@
 
 ## How to use
 
-Download the example [or clone the repo](https://github.com/mui-org/material-ui):
+Download the example [or clone the repo](https://github.com/mui/mui):
 
 <!-- #default-branch-switch -->
 
 ```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/nextjs-with-styled-components-typescript
+curl https://codeload.github.com/mui/mui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/nextjs-with-styled-components-typescript
 cd nextjs-with-styled-components-typescript
 ```
 
@@ -22,7 +22,7 @@ or:
 
 <!-- #default-branch-switch -->
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/nextjs-with-styled-components-typescript)
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/mui/tree/master/examples/nextjs-with-styled-components-typescript)
 
 ## The idea behind the example
 

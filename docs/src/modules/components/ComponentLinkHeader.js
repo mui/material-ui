@@ -46,9 +46,7 @@ export default function ComponentLinkHeader(props) {
             size="small"
             variant="outlined"
             rel="nofollow"
-            href={`https://github.com/mui-org/material-ui/labels/${encodeURIComponent(
-              headers.githubLabel,
-            )}`}
+            href={`https://github.com/mui/mui/labels/${encodeURIComponent(headers.githubLabel)}`}
             icon={<InfoOutlinedIcon />}
             data-ga-event-category="ComponentLinkHeader"
             data-ga-event-action="click"

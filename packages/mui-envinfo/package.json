@@ -13,12 +13,12 @@
   },
   "author": "MUI Team",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/mui/mui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/HEAD/packages/mui-envinfo",
+  "homepage": "https://github.com/mui/mui/tree/HEAD/packages/mui-envinfo",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui",
+    "url": "https://github.com/mui/mui",
     "directory": "packages/mui-envinfo"
   },
   "files": [],

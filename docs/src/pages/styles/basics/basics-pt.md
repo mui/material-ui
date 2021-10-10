@@ -6,7 +6,7 @@ Material-UI visa fornecer uma base sólida para a criação de interfaces de usu
 
 ## Por que usar a solução de estilo do Material-UI?
 
-Nas versões anteriores, o Material-UI usava o LESS, e em seguida, uma solução customizada no estilo em linha para escrever os estilos dos componentes, mas essas abordagens provaram ser limitadas. [Uma solução *CSS-em-JS*](https://github.com/oliviertassinari/a-journey-toward-better-style) supera muitas destas limitações, e **libera excelentes funcionalidades**(aninhamento de temas, estilos dinâmicos, auto-suporte etc.).
+Nas versões anteriores, o Material-UI usava o LESS, e em seguida, uma solução customizada no estilo em linha para escrever os estilos dos componentes, mas essas abordagens provaram ser limitadas. [Uma solução _CSS-em-JS_](https://github.com/oliviertassinari/a-journey-toward-better-style) supera muitas destas limitações, e **libera excelentes funcionalidades**(aninhamento de temas, estilos dinâmicos, auto-suporte etc.).
 
 A solução de estilo do Material-UI é inspirada em muitas outras bibliotecas de estilo, como [styled-components](https://www.styled-components.com/) e [emotion](https://emotion.sh/).
 
@@ -14,7 +14,7 @@ A solução de estilo do Material-UI é inspirada em muitas outras bibliotecas d
 
 <!-- #default-branch-switch -->
 
-- 🚀 Ela é [super rápida](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles).
+- 🚀 Ela é [super rápida](https://github.com/mui/mui/blob/HEAD/benchmark/server#material-uistyles).
 - 🧩 É extensível através de uma API de [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md).
 - ⚡️Ela usa [JSS](https://github.com/cssinjs/jss) em seu núcleo – um [alto desempenho](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript para o compilador CSS, que funciona em tempo de execução e no lado do servidor.
 - 📦 Menor que [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); e nenhum aumento no tamanho do pacote se usado juntamente com o Material-UI.
@@ -151,12 +151,12 @@ Você pode passar uma função para `makeStyles` ("interpolação") a fim de ada
 ```jsx
 const useStyles = makeStyles({
   // regra de estilo
-  foo: props => ({
+  foo: (props) => ({
     backgroundColor: props.backgroundColor,
   }),
   bar: {
     // propriedade CSS
-    color: props => props.color,
+    color: (props) => props.color,
   },
 });
 
@@ -166,7 +166,7 @@ function MyComponent() {
   // Passe as propriedades como primeiro argumento do useStyles()
   const classes = useStyles(props);
 
-  return <div className={`${classes.foo} ${classes.bar}`} />
+  return <div className={`${classes.foo} ${classes.bar}`} />;
 }
 ```
 
@@ -186,7 +186,7 @@ Este componente botão tem uma propriedade de cor que modifica sua cor:
 
 ### Teste de estresse
 
-No teste de estresse a seguir, você pode atualizar *a cor do tema* e a *propriedade background-color* de forma interativa:
+No teste de estresse a seguir, você pode atualizar _a cor do tema_ e a _propriedade background-color_ de forma interativa:
 
 ```js
 const useStyles = makeStyles((theme) => ({

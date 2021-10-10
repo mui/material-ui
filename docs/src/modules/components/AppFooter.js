@@ -109,7 +109,7 @@ export default function AppFooter() {
                     color="inherit"
                     variant="body2"
                     underline="hover"
-                    href="https://github.com/mui-org/material-ui"
+                    href="https://github.com/mui/mui"
                   >
                     GitHub
                   </Link>
@@ -224,7 +224,7 @@ export default function AppFooter() {
                 license: (
                   <Link
                     color="inherit"
-                    href={`https://github.com/mui-org/material-ui/blob/v${process.env.LIB_VERSION}/LICENSE`}
+                    href={`https://github.com/mui/mui/blob/v${process.env.LIB_VERSION}/LICENSE`}
                   >
                     {t('license')}
                   </Link>

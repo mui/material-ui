@@ -80,7 +80,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 以下例子演示了如何使用 [notistack](https://github.com/iamhosseindhv/notistack)。 notistack 有一个 **imperative API** 可以轻松地显示一串消息条，且无需处理其打开/关闭状态。 It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design guidelines).
 
-TODO: Add example once notistack is compatible with v5 or replace with [#1824](https://github.com/mui-org/material-ui/issues/1824).
+TODO: Add example once notistack is compatible with v5 or replace with [#1824](https://github.com/mui/mui/issues/1824).
 
 ## 无障碍设计
 

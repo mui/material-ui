@@ -237,10 +237,8 @@ The `StylesProvider` component has an `injectFirst` prop to inject the style tag
 ```jsx
 import { StylesProvider } from '@mui/styles';
 
-<StylesProvider injectFirst>
-  {/* Your component tree.
-      Styled components can override MUI's styles. */}
-</StylesProvider>;
+<StylesProvider injectFirst>{/* Your component tree.
+      Styled components can override MUI's styles. */}</StylesProvider>;
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
@@ -396,15 +394,15 @@ Refer to the plugin's page for setup and usage instructions.
 
 <!-- #default-branch-switch -->
 
-Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui/mui/blob/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
-You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) to inject the server-side rendered styles into the `<head>` element.
+You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui/mui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) to inject the server-side rendered styles into the `<head>` element.
 
 <!-- #default-branch-switch -->
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui/mui/blob/master/examples/nextjs) for an up-to-date usage example.
 
 ## Class names
 
@@ -470,7 +468,7 @@ You can also combine JSS generated class names with global ones.
 ## CSS prefixes
 
 JSS uses feature detection to apply the correct prefixes.
-[Don't be surprised](https://github.com/mui-org/material-ui/issues/9293) if you can't see a specific prefix in the latest version of Chrome. Your browser probably doesn't need it.
+[Don't be surprised](https://github.com/mui/mui/issues/9293) if you can't see a specific prefix in the latest version of Chrome. Your browser probably doesn't need it.
 
 ## TypeScript usage
 

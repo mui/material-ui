@@ -70,16 +70,16 @@ Os componentes de progresso aceitam um valor no intervalo de 0 a 100. Isso simpl
 // MIN = Valor mínimo esperado
 // MAX = Valor máximo esperado
 // Função para normalizar os valores (MIN / MAX pode ser integrado)
-const normalise = value => (value - MIN) * 100 / (MAX - MIN);
+const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
 // Exemplo de componente que utiliza a função `normalise` no ponto de renderização.
 function Progress(props) {
   return (
-    <React. Fragment>
+    <React.Fragment>
       <CircularProgress variant="determinate" value={normalise(props.value)} />
       <LinearProgress variant="determinate" value={normalise(props.value)} />
-    </React. Fragment>
-  )
+    </React.Fragment>
+  );
 }
 ```
 
@@ -103,13 +103,13 @@ Quando o processamento é particularmente lento, você pode perder a animação 
 
 ![carga pesada](/static/images/progress/heavy-load.gif)
 
-Quando não for possível, você pode utilizar a propriedade `disableShrink` para atenuar o problema. Veja [este problema](https://github.com/mui-org/material-ui/issues/10327).
+Quando não for possível, você pode utilizar a propriedade `disableShrink` para atenuar o problema. Veja [este problema](https://github.com/mui/mui/issues/10327).
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}
 
 ### Atualizações de alta frequência
 
-O `LinearProgress` usa uma transição na propriedade de transformação do CSS para fornecer uma atualização suave entre valores diferentes. A duração de transição padrão é de 200ms. Caso um componente pai atualize a propriedade  `value` muito rapidamente, você irá perceber ao menos um atraso de 200ms entre a renderização e a barra de progresso totalmente atualizada.
+O `LinearProgress` usa uma transição na propriedade de transformação do CSS para fornecer uma atualização suave entre valores diferentes. A duração de transição padrão é de 200ms. Caso um componente pai atualize a propriedade `value` muito rapidamente, você irá perceber ao menos um atraso de 200ms entre a renderização e a barra de progresso totalmente atualizada.
 
 Se você precisar executar 30 renderizações por segundo ou mais, recomendamos desabilitar a transição:
 

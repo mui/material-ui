@@ -4,22 +4,22 @@
 
 ## 官方示例
 
-您可以在 [GitHub 存储库](https://github.com/mui-org/material-ui)中的 [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) 文件夹下找到一些示例项目：
+您可以在 [GitHub 存储库](https://github.com/mui/mui)中的 [`/examples`](https://github.com/mui/mui/tree/master/examples) 文件夹下找到一些示例项目：
 
 <!-- #default-branch-switch -->
 
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) （[TypeScript 版本](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript)）
-- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app) （[TypeScript 版本](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript)）
-- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- [Gatsby 主题](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-theme)
-- [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
-- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
-- [朴素的服务端渲染](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
-- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript))
+- [Next.js](https://github.com/mui/mui/tree/next/examples/nextjs) （[TypeScript 版本](https://github.com/mui/mui/tree/next/examples/nextjs-with-typescript)）
+- [Create React App](https://github.com/mui/mui/tree/next/examples/create-react-app) （[TypeScript 版本](https://github.com/mui/mui/tree/next/examples/create-react-app-with-typescript)）
+- [Gatsby](https://github.com/mui/mui/tree/next/examples/gatsby)
+- [Gatsby 主题](https://github.com/mui/mui/tree/next/examples/gatsby-theme)
+- [Preact](https://github.com/mui/mui/tree/next/examples/preact)
+- [CDN](https://github.com/mui/mui/tree/next/examples/cdn)
+- [朴素的服务端渲染](https://github.com/mui/mui/tree/next/examples/ssr)
+- [Use styled-components as style engine](https://github.com/mui/mui/tree/next/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui/mui/tree/next/examples/create-react-app-with-styled-components-typescript))
 
 Create React App 是一个很棒的学习 React 的项目。 请看一下这些[可用的替代方案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) ，看看哪个项目最符合您的需求。
 
-此文档站点的源代码也包含在存储库中。 这是一个稍微复杂一点的项目。 请查看 [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) 文件夹以获取创建项目的说明。
+此文档站点的源代码也包含在存储库中。 这是一个稍微复杂一点的项目。 请查看 [`/docs`](https://github.com/mui/mui/tree/master/docs) 文件夹以获取创建项目的说明。
 
 ## 进阶示例项目
 
@@ -44,7 +44,7 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
   - 使用官方的 Firebase Web Auth UI 来构建 Firebase，并涵盖了身份验证
   - 使用 React Router 进行路由，包括错误处理（404）和延迟加载
   - 包含所有渐进式网页应用（PWA）的功能（SW 即 Service Worker， 通知，延迟安装的提示，以及更多）
-  - 优化和可扩展的性能（在 Lighthouse 总共有大约100分）
+  - 优化和可扩展的性能（在 Lighthouse 总共有大约 100 分）
 
 - [React SaaS 模板](https://github.com/dunky11/react-saas-template)：
 

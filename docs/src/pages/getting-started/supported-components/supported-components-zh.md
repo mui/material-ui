@@ -4,9 +4,9 @@
 
 虽然我们尽量遵循一些可行的指南（当指南有争议性的时候我们会更多地依赖于常识，而这种情况会比您想象中的发生更多），但是我们并不指望能够做到支持每一个组件或者每一个组件下的功能。我们更倾向于通过提供一些以及搭建好的模块，让开发者创造更实用的用户界面以及用户体验。
 
-如果您希望加对一个组件或一个未高亮显示的功能加以支持, 请搜索相关的 [GitHub 问题 ](https://github.com/mui-org/material-ui/issues)，或创建一个新的问题来讨论该方法，然后再提交 pull request。
+如果您希望加对一个组件或一个未高亮显示的功能加以支持, 请搜索相关的 [GitHub 问题 ](https://github.com/mui/mui/issues)，或创建一个新的问题来讨论该方法，然后再提交 pull request。
 
-- **[Expansion Panels](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (*旧 Material v1*)
+- **[Expansion Panels](https://material.io/archive/guidelines/components/expansion-panels.html) ✓** (_旧 Material v1_)
 - App bars（应用栏）
   - **[顶部（Top）](https://material.io/design/components/app-bars-top.html) ✓**
   - **[底部（Bottom）](https://material.io/design/components/app-bars-bottom.html) ✓**
@@ -36,7 +36,7 @@
   - **Pagination（分页） ✓**
 - **[Dialogs（对话框）](https://material.io/design/components/dialogs.html) ✓**
   - **[Alert dialog（警告对话框）](https://material.io/design/components/dialogs.html#alert-dialog) ✓**
-  - **[Simple dialogs](https://material.io/design/components/dialogs.html#simple-dialog) ✓** （可以用Dialog和List组成。）
+  - **[Simple dialogs](https://material.io/design/components/dialogs.html#simple-dialog) ✓** （可以用 Dialog 和 List 组成。）
   - **[Confirmation dialogs（确认对话框）](https://material.io/design/components/dialogs.html#confirmation-dialog) ✓**
   - **[Full screen dialogs（全屏对话框）](https://material.io/design/components/dialogs.html#full-screen-dialog) ✓**
 - **[Dividers（分隔线）](https://material.io/design/components/dividers.html) ✓**
@@ -44,7 +44,7 @@
   - **[Inset（内凹分隔线）](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle（中段分隔线）](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader（副标题分隔线）](https://material.io/design/components/dividers.html#types) ✓**
-- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (又名 Grid Lists)********
+- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (又名 Grid Lists)**\*\*\*\***
 - **[Lists（列表）](https://material.io/design/components/lists.html) ✓**
   - [类型:](https://material.io/design/components/lists.html#types)
     - **Single line （单行）✓**
@@ -68,7 +68,7 @@
 - **[Progress indicators（进度条指示）](https://material.io/design/components/progress-indicators.html) ✓**
   - **[Linear（线性进度条）](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓**
   - **[Circular（环状进度条）](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
-  - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*旧 Material v1*)
+  - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (_旧 Material v1_)
 - **[Selection controls（选择控件）](https://material.io/design/components/selection-controls.html) ✓**
   - **[Checkbox（单选按钮）](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button（单选按钮）](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
@@ -76,12 +76,12 @@
 - **[Sliders（滑块控件）](https://material.io/design/components/sliders.html) ✓**
   - **[Continuous（连续滑块）](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete（间续滑块）](https://material.io/design/components/sliders.html#discrete-slider) ✓**
-- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*旧 Material v1*)
-- **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*旧 Material v1*)
+- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (_旧 Material v1_)
+- **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (_旧 Material v1_)
   - **[Lists（列表副标题）](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - **[ Grid（网格副标题）](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
-- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*旧 Material v1*)
+- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (_旧 Material v1_)
   - **[Horizontal（横向的步骤条）](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical（垂直的步骤条）](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Mobile steps（移动设备上的步骤条）](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) ✓**

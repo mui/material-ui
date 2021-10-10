@@ -17,7 +17,7 @@ const ROUTES = {
   dataGridDocs: '/components/data-grid/getting-started/',
   blog: 'https://medium.com/material-ui',
   showcase: '/discover-more/showcase',
-  roadmap: 'https://github.com/mui-org/material-ui-x/projects/1',
+  roadmap: 'https://github.com/mui/mui-x/projects/1',
   languages: '/discover-more/languages',
   vision: '/discover-more/vision/',
   support: '/getting-started/support/#professional-support-premium',

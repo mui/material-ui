@@ -102,16 +102,16 @@ const useStyles = makeStyles({
 function Nested(props) {
   const classes = useStyles();
   return (
-    <button className={classes.root}> // 'jss1'
-      <span className={classes.label}> // 'jss2'
-        nested
-      </span>
+    <button className={classes.root}>
+      {' '}
+      // 'jss1'
+      <span className={classes.label}> // 'jss2' nested</span>
     </button>
   );
 }
 
 function Parent() {
-  return <Nested />
+  return <Nested />;
 }
 ```
 
@@ -127,14 +127,12 @@ const Nested = withStyles({
   label: {}, // uma regra de estilo aninhada
 })(({ classes }) => (
   <button className={classes.root}>
-    <span className={classes.label}> // 'jss2 my-label'
-      Aninhado
-    </span>
+    <span className={classes.label}> // 'jss2 my-label' Aninhado</span>
   </button>
 ));
 
 function Parent() {
-  return <Nested classes={{ label: 'my-label' }} />
+  return <Nested classes={{ label: 'my-label' }} />;
 }
 ```
 
@@ -152,15 +150,13 @@ function Nested(props) {
   const classes = useStyles(props);
   return (
     <button className={classes.root}>
-      <span className={classes.label}> // 'jss2 my-label'
-        nested
-      </span>
+      <span className={classes.label}> // 'jss2 my-label' nested</span>
     </button>
   );
 }
 
 function Parent() {
-  return <Nested classes={{ label: 'my-label' }} />
+  return <Nested classes={{ label: 'my-label' }} />;
 }
 ```
 
@@ -230,10 +226,8 @@ O componente `StylesProvider` tem uma propriedade `injectFirst` para injetar as 
 ```jsx
 import { StylesProvider } from '@material-ui/styles';
 
-<StylesProvider injectFirst>
-  {/* Sua árvore de componentes.
-      Componentes com estilo podem sobrescrever os estilos de Material-UI. */}
-</StylesProvider>;
+<StylesProvider injectFirst>{/* Sua árvore de componentes.
+      Componentes com estilo podem sobrescrever os estilos de Material-UI. */}</StylesProvider>;
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
@@ -385,13 +379,13 @@ Existe [um plugin oficial Gatsby](https://github.com/hupe1980/gatsby-plugin-mate
 
 <!-- #default-branch-switch -->
 
-Consulte [este exemplo de projeto Gatsby](https://github.com/mui-org/material-ui/blob/next/examples/gatsby) para um exemplo de uso atualizado.
+Consulte [este exemplo de projeto Gatsby](https://github.com/mui/mui/blob/next/examples/gatsby) para um exemplo de uso atualizado.
 
 ### Next.js
 
-Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
+Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui/mui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
 
-Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/next/examples/nextjs).
+Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui/mui/blob/next/examples/nextjs).
 
 ## Nomes de classes
 
@@ -528,4 +522,4 @@ Você também pode combinar nomes de classe gerados pelo JSS com nomes globais.
 
 ## Prefixos CSS
 
-O JSS usa recursos de detecção para aplicar os prefixos corretos. [Não fique surpreso](https://github.com/mui-org/material-ui/issues/9293) se você não ver um prefixo específico na versão mais recente do Chrome. Seu navegador provavelmente não precisa dele.
+O JSS usa recursos de detecção para aplicar os prefixos corretos. [Não fique surpreso](https://github.com/mui/mui/issues/9293) se você não ver um prefixo específico na versão mais recente do Chrome. Seu navegador provavelmente não precisa dele.

@@ -13,10 +13,10 @@ Existem muitas maneiras de apoiar o Material-UI:
 - **Ajude novos usuários**. Você pode responder a perguntas no [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Faça as alterações acontecerem**.
   - Edite a documentação. Cada página da versão em inglês tem um link "EDIT THIS PAGE" no canto superior direito.
-  - Reporte erros ou recursos faltantes [criando uma issue](https://github.com/mui-org/material-ui/issues/new).
-  - Revise e comente em [pull requests](https://github.com/mui-org/material-ui/pulls) e [issues](https://github.com/mui-org/material-ui/issues) existentes.
+  - Reporte erros ou recursos faltantes [criando uma issue](https://github.com/mui/mui/issues/new).
+  - Revise e comente em [pull requests](https://github.com/mui/mui/pulls) e [issues](https://github.com/mui/mui/issues) existentes.
   - Ajude a [traduzir](https://translate.material-ui.com) a documentação.
-  - [Aprimore nossa documentação](https://github.com/mui-org/material-ui/tree/master/docs), corrija bugs, ou adicione recursos [enviando um pull request](https://github.com/mui-org/material-ui/pulls).
+  - [Aprimore nossa documentação](https://github.com/mui/mui/tree/master/docs), corrija bugs, ou adicione recursos [enviando um pull request](https://github.com/mui/mui/pulls).
 - **Apoie-nos financeiramente no [OpenCollective](https://opencollective.com/material-ui)**. Se você usa Material-UI em um projeto comercial e gostaria de apoiar seu desenvolvimento contínuo tornando-se um Patrocinador, ou em um projeto freelancer ou hobby e gostaria de se tornar um Apoiador, você pode se tornar através do OpenCollective. Todos os fundos doados são geridos de forma transparente e os Patrocinadores recebem reconhecimento no README e na página inicial do Material-UI.
 
 ## Por que meus componentes não estão renderizando corretamente em compilações de produção?
@@ -37,7 +37,7 @@ No geral, é simples livrar-se desse problema encapsulando cada aplicação Mate
 
 ## Por que os elementos posicionados como fixos se movem quando um modal é aberto?
 
-A rolagem é bloqueada assim que um modal é aberto. Isto impede a interação com o segundo plano, pois o modal deve ser o único conteúdo interativo. No entanto, removendo a barra de rolagem pode fazer com que seus **elementos fixos posicionados** se movam. Nesta situação, você pode aplicar um nome de classe global `.mui-fixed ` para informar ao Material-UI para manipular esses elementos.
+A rolagem é bloqueada assim que um modal é aberto. Isto impede a interação com o segundo plano, pois o modal deve ser o único conteúdo interativo. No entanto, removendo a barra de rolagem pode fazer com que seus **elementos fixos posicionados** se movam. Nesta situação, você pode aplicar um nome de classe global `.mui-fixed` para informar ao Material-UI para manipular esses elementos.
 
 ## Como posso desativar o efeito cascata globalmente?
 
@@ -98,7 +98,9 @@ const theme = createTheme({
 Observe que o uso de `CssBaseline` é necessário para que a abordagem acima funcione. Se você optar por não usá-lo, você ainda pode desabilitar transições e animações incluindo estas regras CSS:
 
 ```css
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   transition: 'none !important';
   animation: 'none !important';
 }
@@ -238,7 +240,7 @@ O CSS é gerado apenas no primeiro carregamento da página. Em seguida, o CSS n�
 
 #### Ação a tomar
 
-A solução de estilo depende de um cache, o *sheets manager*, para injetar apenas o CSS uma vez por tipo de componente (se você usar dois botões, você só precisa do CSS do botão uma vez). Você precisa criar **uma nova instância de `sheets` para cada requisição**.
+A solução de estilo depende de um cache, o _sheets manager_, para injetar apenas o CSS uma vez por tipo de componente (se você usar dois botões, você só precisa do CSS do botão uma vez). Você precisa criar **uma nova instância de `sheets` para cada requisição**.
 
 exemplo de correção:
 
@@ -277,16 +279,20 @@ O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de
   - // Crie um novo gerador de nome de classe.
   -// Crie uma instância de sheets.
   -const generateClassName = createGenerateClassName();
+  ```
 
 function handleRender(req, res) {
 
-+ // Cria um novo gerador de nome de classe.
+- // Cria um novo gerador de nome de classe.
 
-    // Renderize o componente para uma string.
-    const html = ReactDOMServer.renderToString(
+  // Renderize o componente para uma string.
+  const html = ReactDOMServer.renderToString(
+
   ```
 
-- Você precisa verificar se seu cliente e servidor estão executando o **exatamente a mesma versão** do Material-UI. É possível que uma incompatibilidade de versões menores possa causar problemas de estilo. Para verificar números de versão, execute `npm list @material-ui/core` no ambiente em que você cria sua aplicação e também em seu ambiente de implementação.
+  ```
+
+* Você precisa verificar se seu cliente e servidor estão executando o **exatamente a mesma versão** do Material-UI. É possível que uma incompatibilidade de versões menores possa causar problemas de estilo. Para verificar números de versão, execute `npm list @material-ui/core` no ambiente em que você cria sua aplicação e também em seu ambiente de implementação.
 
   Você também pode garantir a mesma versão em diferentes ambientes, definindo uma versão específica do MUI nas dependências do seu package.json.
 
@@ -296,10 +302,13 @@ function handleRender(req, res) {
     "dependencies": {
     ...
   -   "@material-ui/core": "^4.0.0",
-+   "@material-ui/core": "4.0.0",
-    ...
-    },
   ```
+
+- "@material-ui/core": "4.0.0",
+  ...
+  },
+
+````
 
 - Você precisa ter certeza de que o servidor e o cliente compartilhem o mesmo valor de `process.env.NODE_ENV`.
 
@@ -313,18 +322,18 @@ Componentes como [Portal](/api/portal/#props) ou [Popper](/api/popper/#props) re
 
 ```jsx
 function App() {
-  const container = React.useRef(null);
+const container = React.useRef(null);
 
-  return (
-    <div className="App">
-      <Portal container={container}>
-        <span>Componente filho portado</span>
-      </Portal>
-      <div ref={container} />
-    </div>
-  );
+return (
+  <div className="App">
+    <Portal container={container}>
+      <span>Componente filho portado</span>
+    </Portal>
+    <div ref={container} />
+  </div>
+);
 }
-```
+````
 
 onde `Portal` só montaria os filhos no container quando `container.current` estiver disponível. Aqui está uma implementação simplória do Portal:
 
@@ -350,10 +359,9 @@ Com esta simples heurística `Portal` pode renderizar novamente depois de montad
 ```jsx
 function App() {
   const [container, setContainer] = React.useState(null);
-  const handleRef = React.useCallback(
-    (instance) => setContainer(instance),
-    [setContainer],
-  );
+  const handleRef = React.useCallback((instance) => setContainer(instance), [
+    setContainer,
+  ]);
 
   return (
     <div className="App">
