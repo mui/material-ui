@@ -4,50 +4,60 @@ type PartialDeep<T> = {
   [K in keyof T]?: PartialDeep<T[K]>;
 };
 
-type BuildColorSchemes<
-  ColorScheme extends string,
-  ColorSchemeOverrides extends string,
-  ColorSchemeTokens,
-> = [ColorSchemeOverrides] extends [never]
+type BuildPaletteModes<
+  DesignSystemMode extends string,
+  ApplicationMode extends string,
+  PaletteModes,
+> = [ApplicationMode] extends [never]
   ? {
-      colorSchemes?: PartialDeep<Record<ColorScheme, ColorSchemeTokens>>;
+      palette?: PartialDeep<Record<DesignSystemMode, PaletteModes>>;
     }
   : {
-      colorSchemes: PartialDeep<Record<ColorScheme, ColorSchemeTokens>> &
-        Record<ColorSchemeOverrides, ColorSchemeTokens>;
+      palette: PartialDeep<Record<DesignSystemMode, PaletteModes>> &
+        Record<ApplicationMode, PaletteModes>;
     };
 
-export interface ColorSchemeContextValue<ColorScheme extends string> {
-  allColorSchemes: Array<ColorScheme>;
-  colorScheme: ColorScheme | undefined;
-  setColorScheme: React.Dispatch<React.SetStateAction<ColorScheme | undefined>>;
+type DecideTheme<
+  Theme extends { palette: Record<DesignSystemMode | ApplicationMode, any> },
+  DesignSystemMode extends string,
+  ApplicationMode extends string,
+> = [ApplicationMode] extends [never]
+  ? { theme?: PartialDeep<Theme> }
+  : {
+      theme: PartialDeep<Omit<Theme, 'palette'>> & {
+        palette: PartialDeep<Record<DesignSystemMode, Theme['palette'][DesignSystemMode]>> &
+          Record<ApplicationMode, Theme['palette'][ApplicationMode]>;
+      };
+    };
+export interface ModeContextValue<DesignSystemMode extends string> {
+  allModes: Array<DesignSystemMode>;
+  mode: DesignSystemMode | undefined;
+  setMode: React.Dispatch<React.SetStateAction<DesignSystemMode | undefined>>;
 }
 
 export default function createCssVarsProvider<
-  BaseTokens extends Record<string, any>,
-  ColorSchemeTokens extends Record<string, any>,
-  ColorScheme extends string,
-  ColorSchemeOverrides extends string = never,
-  Theme extends Record<string, any> = BaseTokens & ColorSchemeTokens,
+  Theme extends { palette: Record<DesignSystemMode | ApplicationMode, any> },
+  DesignSystemMode extends string,
+  ApplicationMode extends string = never,
 >(
   ThemeContext: React.Context<Theme | undefined>,
   options: {
-    baseTheme: BaseTokens;
-    colorSchemes: Record<ColorScheme, ColorSchemeTokens> &
-      Partial<Record<ColorSchemeOverrides, ColorSchemeTokens>>;
-    defaultColorScheme: ColorScheme;
+    theme: Omit<Theme, 'palette'> & {
+      palette: Record<DesignSystemMode, Theme['palette'][DesignSystemMode | ApplicationMode]> &
+        Partial<Record<ApplicationMode, Theme['palette'][DesignSystemMode | ApplicationMode]>>;
+    };
+    defaultMode: DesignSystemMode;
   },
 ): {
   CssVarsProvider: (
     props: React.PropsWithChildren<
-      BuildColorSchemes<ColorScheme, ColorSchemeOverrides, ColorSchemeTokens> & {
-        defaultColorScheme?: ColorScheme;
-        baseTheme?: PartialDeep<BaseTokens>;
+      {
+        defaultMode?: DesignSystemMode | ApplicationMode;
         storageKey?: string;
         dataAttribute?: string;
-      }
+      } & DecideTheme<Theme, DesignSystemMode, ApplicationMode>
     >,
   ) => React.ReactElement;
-  useColorScheme: () => ColorSchemeContextValue<ColorScheme | ColorSchemeOverrides>;
-  getInitColorSchemeScript: () => React.ReactElement;
+  useMode: () => ModeContextValue<DesignSystemMode | ApplicationMode>;
+  getInitModeScript: () => React.ReactElement;
 };
