@@ -151,7 +151,7 @@ No updates.
 We have run our first company team retreat 🏝.
 For this first iteration, the team members that could travel and felt it was safe enough with COVID-19 have flown to Lisbon 🇵🇹.
 We ended up being less than half the company but it was fun!
-We have spent half the time doing a [Hackathon](https://twitter.com/olivtassinari/status/1441773885259583491) and the other half activities (Surf, Biking, Winery tour, sightseeing).
+We have spent half the time doing a [Hackathon](https://twitter.com/olivtassinari/status/1441773885259583491) and the other half activities (Surf, Biking, Winery tour, Sightseeing).
 
 <img loading="lazy" src="/static/blog/2021-q3-update/retreat.jpeg" alt="" style="width: 596px; margin-bottom: 8px" />
 
