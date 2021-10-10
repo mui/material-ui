@@ -118,7 +118,7 @@ The date picker is at the border between the core component and advanced compone
 
 - 🐛 We have fixed several non React idiomatic patterns. For instance, we were not handling controllable props by the book, and as we do on MUI Core.
 
-- 🚀 Introduce the [row editing](/components/data-grid/editing/#row-editing) feature.
+- 🚀 We have introduced the [row editing](/components/data-grid/editing/#row-editing) feature.
 
   <img src="/static/blog/2021-q3-update/row-edit.gif" width="851" />
 
