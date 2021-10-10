@@ -16,7 +16,7 @@ It also covers what we aim to achieve in the months ahead.
   - [MUI X](#mui-x)
   - [Design kits](#design-kits)
 - [Company](#company)
-- [Our roadmap intent for Q3 2021](#our-roadmap-intent-for-q3-2021)
+- [Our roadmap intent for Q4 2021](#our-roadmap-intent-for-q4-2021)
 
 ## Product
 
