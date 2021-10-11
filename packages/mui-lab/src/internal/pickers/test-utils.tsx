@@ -42,7 +42,7 @@ export const FakeTransitionComponent = React.forwardRef<HTMLDivElement, Transiti
 
 interface PickerRenderOptions {
   // object for date-fns, string for other adapters
-  locale?: string | object;
+  locale?: Locale;
 }
 
 export function wrapPickerMount(mount: (node: React.ReactNode) => import('enzyme').ReactWrapper) {

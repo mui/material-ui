@@ -22,7 +22,13 @@ if (process.env.NODE_ENV !== 'production') {
 export interface LocalizationProviderProps {
   children?: React.ReactNode;
   /** DateIO adapter class function */
-  dateAdapter: new (...args: any) => MuiPickersAdapter<unknown>;
+  dateAdapter: new ({
+    ...args
+  }: {
+    locale?: Locale;
+    formats?: Partial<DateIOFormats<string>>;
+    instance?: any;
+  }) => MuiPickersAdapter<unknown>;
   /** Formats that are used for any child pickers */
   dateFormats?: Partial<DateIOFormats>;
   /**
@@ -33,7 +39,7 @@ export interface LocalizationProviderProps {
    */
   dateLibInstance?: any;
   /** Locale for the date library you are using */
-  locale?: string | object;
+  locale?: Locale;
 }
 
 /**
@@ -119,7 +125,7 @@ LocalizationProvider.propTypes /* remove-proptypes */ = {
   /**
    * Locale for the date library you are using
    */
-  locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  locale: Locale,
 } as any;
 
 export default LocalizationProvider;
