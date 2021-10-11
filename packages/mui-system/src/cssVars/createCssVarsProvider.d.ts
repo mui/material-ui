@@ -4,10 +4,17 @@ type PartialDeep<T> = {
   [K in keyof T]?: PartialDeep<T[K]>;
 };
 
+/**
+ * DesignSystemMode: is what a design system provide by default. Mostly, `light` and `dark`
+ * ApplicationMode: is what developer can extend from a design system. Ex, `comfort` `trueDark` ...any name that they want
+ *
+ * This type enhance customization experience by checking if developer has extended the mode or not (usually via module augmentation)
+ * If yes, they must provide the palette of the extended mode. Otherwise `theme` is optional.
+ */
 type DecideTheme<
   Theme extends { palette: Record<DesignSystemMode | ApplicationMode, any> },
   DesignSystemMode extends string,
-  ApplicationMode extends string,
+  ApplicationMode extends string | never,
 > = [ApplicationMode] extends [never]
   ? { theme?: PartialDeep<Theme> }
   : {
