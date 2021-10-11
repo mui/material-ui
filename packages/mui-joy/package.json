@@ -38,8 +38,6 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.4.1",
-    "@emotion/styled": "^11.3.0",
     "@types/react": "^16.8.6 || ^17.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
@@ -47,29 +45,9 @@
   "peerDependenciesMeta": {
     "@types/react": {
       "optional": true
-    },
-    "@emotion/react": {
-      "optional": true
-    },
-    "@emotion/styled": {
-      "optional": true
     }
   },
-  "dependencies": {
-    "@babel/runtime": "^7.15.4",
-    "@mui/core": "5.0.0-alpha.50",
-    "@mui/system": "^5.0.3",
-    "@mui/types": "^7.0.0",
-    "@mui/utils": "^5.0.1",
-    "@popperjs/core": "^2.4.4",
-    "@types/react-transition-group": "^4.4.3",
-    "clsx": "^1.1.1",
-    "csstype": "^3.0.9",
-    "hoist-non-react-statics": "^3.3.2",
-    "prop-types": "^15.7.2",
-    "react-is": "^17.0.2",
-    "react-transition-group": "^4.4.2"
-  },
+  "dependencies": {},
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
