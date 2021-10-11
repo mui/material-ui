@@ -204,6 +204,7 @@ We'll do our best, no guarantee!
 #### Data Grid
 
 We will:
+
 - ✨ Release the print export feature.
 - ✨ Release the tree data feature.
 - ✨ Revamp the virtualization to yield better rendering performance, fix bugs, and unlock new features like column pinning and lazy loading.
