@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
-import createCssVarsProvider from './createCssVarsProvider';
+import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 
 // Test design system layer
 

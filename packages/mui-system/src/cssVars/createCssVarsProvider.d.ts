@@ -30,7 +30,7 @@ type DecideTheme<
       };
     };
 export interface ModeContextValue<DesignSystemMode extends string> {
-  allModes: Array<DesignSystemMode>;
+  allModes: DesignSystemMode[];
   mode: DesignSystemMode | undefined;
   setMode: React.Dispatch<React.SetStateAction<DesignSystemMode | undefined>>;
 }
@@ -61,3 +61,6 @@ export default function createCssVarsProvider<
   useMode: () => ModeContextValue<DesignSystemMode | ApplicationMode>;
   getInitModeScript: () => React.ReactElement;
 };
+
+// disable automatic export
+export {};
