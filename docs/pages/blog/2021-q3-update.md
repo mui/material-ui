@@ -159,7 +159,7 @@ We spent half the time doing a [Hackathon](https://twitter.com/olivtassinari/sta
 
 ### Growth between Q2 2021 and Q3 2021
 
-- 📦 From 9.1M to 9.9M downloads per month on npm. We have 22.36% of market share inside the React ecosystem
+- 📦 From 9.1M to 9.9M downloads per month on npm. We have a 22.4% market share of the React ecosystem as a proportion of `react-dom` downloads.
 - ⭐️ From 69.1k to 72.1k stars. [Leave us yours 🌟](https://github.com/mui-org/material-ui)!
 - 👨‍👩‍👧‍👦 From 2,223 to 2,316 contributors on GitHub. On average, we add one new contributor per day.
 - 💰 Grew financial support by 2.9X [year over year](/blog/2020-q3-update/).
