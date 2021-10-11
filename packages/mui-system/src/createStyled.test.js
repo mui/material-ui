@@ -117,7 +117,7 @@ describe('createStyled', () => {
 
         const styled = createStyled({});
         const Button = styled('button', {
-          shouldForwardProp: (prop) => prop !== 'color' && prop !== 'variant',
+          shouldForwardProp: (prop) => prop !== 'ownerState',
           name: 'MuiButton',
           slot: 'Root',
           skipVariantsResolver: true,
@@ -155,7 +155,7 @@ describe('createStyled', () => {
 
         const styled = createStyled({});
         const Button = styled('button', {
-          shouldForwardProp: (prop) => prop !== 'color' && prop !== 'variant',
+          shouldForwardProp: (prop) => prop !== 'ownerState',
           name: 'MuiButton',
           slot: 'Root',
           overridesResolver: (props, styles) => [styles.root, styles.containedSecondary],
