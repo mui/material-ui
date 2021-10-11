@@ -39,7 +39,7 @@ const themeInitialOptions = {
   paletteMode: 'light',
 };
 
-const highDensity = {
+export const highDensity = {
   components: {
     MuiButton: {
       defaultProps: {
@@ -64,14 +64,6 @@ const highDensity = {
     MuiIconButton: {
       defaultProps: {
         size: 'small',
-      },
-      styleOverrides: {
-        sizeSmall: {
-          // minimal touch target hit spacing
-          marginLeft: 4,
-          marginRight: 4,
-          padding: 12,
-        },
       },
     },
     MuiInputBase: {
