@@ -2644,6 +2644,7 @@ export const decorators = [withThemeProvider];
   "@mui/material": "5.0.2"
 }
 ```
+
 > Note: This setup is a workaround and might not work in all cases.
 
 For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133) on GitHub.
