@@ -3,6 +3,20 @@ import { assignNestedKeys, walkObjectDeep, createCssVarsParser } from './cssVars
 
 describe('cssVarsParser', () => {
   describe('assignNestedKeys', () => {
+    it('does not account for null, undefined, non-object', () => {
+      let result;
+      assignNestedKeys(result, ['a', 'b', 'c'], 'd');
+      expect(result).to.deep.equal(undefined);
+
+      result = null;
+      assignNestedKeys(result, ['a', 'b', 'c'], 'd');
+      expect(result).to.deep.equal(null);
+
+      result = '';
+      assignNestedKeys(result, ['a', 'b', 'c'], 'd');
+      expect(result).to.deep.equal('');
+    });
+
     it('build object with keys and value', () => {
       const result = {};
       assignNestedKeys(result, ['a', 'b', 'c'], 'd');
@@ -57,6 +71,19 @@ describe('cssVarsParser', () => {
         'lv1-lv2-lv3-no': false,
       });
     });
+
+    it('does not throw value is null', () => {
+      const result: Record<string, boolean> = {};
+      walkObjectDeep<boolean>(
+        {
+          lv1: null,
+        },
+        (keys, value) => {
+          result[keys.join('-')] = value;
+        },
+      );
+      expect(result).to.deep.equal({});
+    });
   });
 
   describe('createCssVarsParser', () => {
@@ -87,14 +114,14 @@ describe('cssVarsParser', () => {
 
       it('accept custom resolver', () => {
         const cssVarsParser = createCssVarsParser({
-          resolveValue: (keys, value) => {
+          getCssValue: (keys, value) => {
             let newValue = value;
             if (keys.includes('fontSize') && typeof value === 'number') {
               newValue = `${value}px`;
             }
             return newValue;
           },
-          resolveKey: (keys) => `--mui-${keys.join('-')}`,
+          getCssVar: (keys) => `--mui-${keys.join('-')}`,
         });
         const { css } = cssVarsParser({
           lineHeight: {
@@ -116,6 +143,16 @@ describe('cssVarsParser', () => {
           '--mui-fontSize-sm': '12px',
           '--mui-fontSize-md': '16px',
         });
+      });
+
+      it('does nothing if deep value is not string or number', () => {
+        const cssVarsParser = createCssVarsParser();
+        const { css } = cssVarsParser({
+          getContrastText: () => '',
+          foo: undefined,
+          bar: null,
+        });
+        expect(css).to.deep.equal({});
       });
     });
 

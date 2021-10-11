@@ -8,11 +8,12 @@ const ThemeContext = React.createContext();
 const DEFAULT_COLOR_SCHEME = 'light';
 const { CssVarsProvider, useMode } = createCssVarsProvider(ThemeContext, {
   theme: {
-    fontSize: { md: '1rem' },
+    fontSize: { md: '1rem', sm: null },
     palette: {
       light: { color: '#000000' },
       dark: { color: '#ffffff' },
     },
+    getContrastText: () => '#fff', // function should have no effect
   },
   defaultMode: DEFAULT_COLOR_SCHEME,
 });
@@ -38,7 +39,9 @@ const Swatch = () => {
   return (
     <div>
       <div data-testid="swatch-color">{theme.vars.palette.color}</div>
+      <div data-testid="swatch-color-value">{theme.palette.color}</div>
       <div data-testid="swatch-bgcolor">{theme.vars.palette.bgcolor}</div>
+      <div data-testid="swatch-bgcolor-value">{theme.palette.bgcolor}</div>
     </div>
   );
 };
@@ -171,30 +174,49 @@ describe('createCssVarsProvider', () => {
     });
   });
 
-  describe('theme.vars', () => {
-    describe('custom theme', () => {
-      it('merge design system theme with custom theme', () => {
-        render(
-          <CssVarsProvider theme={{ fontSize: { sm: '0.75rem' } }}>
-            <Text scale="md" />
-            <Text scale="sm" />
-          </CssVarsProvider>,
-        );
+  describe('custom theme', () => {
+    it('merge design system theme with custom theme', () => {
+      render(
+        <CssVarsProvider theme={{ fontSize: { sm: '0.75rem' } }}>
+          <Text scale="md" />
+          <Text scale="sm" />
+        </CssVarsProvider>,
+      );
 
-        expect(screen.getByTestId('text-md').textContent).to.equal('var(--fontSize-md)');
-        expect(screen.getByTestId('text-sm').textContent).to.equal('var(--fontSize-sm)');
-      });
+      expect(screen.getByTestId('text-md').textContent).to.equal('var(--fontSize-md)');
+      expect(screen.getByTestId('text-sm').textContent).to.equal('var(--fontSize-sm)');
+    });
 
-      it('merge design system & custom mode', () => {
-        render(
-          <CssVarsProvider theme={{ palette: { light: { bgcolor: '#ffffff' } } }}>
-            <Swatch />
-          </CssVarsProvider>,
-        );
+    it('merge design system & custom mode', () => {
+      render(
+        <CssVarsProvider theme={{ palette: { light: { bgcolor: '#ffffff' } } }}>
+          <Swatch />
+        </CssVarsProvider>,
+      );
 
-        expect(screen.getByTestId('swatch-color').textContent).to.equal('var(--palette-color)');
-        expect(screen.getByTestId('swatch-bgcolor').textContent).to.equal('var(--palette-bgcolor)');
-      });
+      expect(screen.getByTestId('swatch-color').textContent).to.equal('var(--palette-color)');
+      expect(screen.getByTestId('swatch-bgcolor').textContent).to.equal('var(--palette-bgcolor)');
+    });
+
+    it('extend palette modes', () => {
+      const comfortColor = '#007FFF';
+      render(
+        <CssVarsProvider
+          defaultMode="comfort"
+          theme={{
+            palette: {
+              comfort: {
+                color: comfortColor,
+              },
+            },
+          }}
+        >
+          <Swatch />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('swatch-color').textContent).to.equal('var(--palette-color)');
+      expect(screen.getByTestId('swatch-color-value').textContent).to.equal(comfortColor);
     });
   });
 });

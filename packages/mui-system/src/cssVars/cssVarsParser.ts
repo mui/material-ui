@@ -10,7 +10,7 @@ export const assignNestedKeys = <Object = NestedRecord, Value = any>(
   let temp: Record<string, any> = obj;
   keys.forEach((k, index) => {
     if (index === keys.length - 1) {
-      if (typeof temp === 'object') {
+      if (temp && typeof temp === 'object') {
         temp[k] = value;
       }
     } else if (temp && typeof temp === 'object') {
@@ -28,10 +28,12 @@ export const walkObjectDeep = <Value, T = Record<string, any>>(
 ) => {
   function recurse(object: any, parentKeys: Array<string> = []) {
     Object.entries(object).forEach(([key, value]: [string, any]) => {
-      if (typeof value === 'object' && Object.keys(value).length > 0) {
-        recurse(value, [...parentKeys, key]);
-      } else {
-        callback([...parentKeys, key], value);
+      if (value !== undefined && value !== null) {
+        if (typeof value === 'object' && Object.keys(value).length > 0) {
+          recurse(value, [...parentKeys, key]);
+        } else {
+          callback([...parentKeys, key], value);
+        }
       }
     });
   }
@@ -39,14 +41,14 @@ export const walkObjectDeep = <Value, T = Record<string, any>>(
 };
 
 interface CreateCssVarsParserOptions<Vars = NestedRecord<string>> {
-  resolveKey?: (keys: Array<string>, value: string | number) => string;
-  resolveValue?: (keys: Array<string>, value: string | number) => string | number;
+  getCssVar?: (keys: Array<string>, value: string | number) => string;
+  getCssValue?: (keys: Array<string>, value: string | number) => string | number;
   appendVars?: (vars: Vars, keys: Array<string>, cssVar: string) => void;
 }
 
 const defaultOptions: Required<CreateCssVarsParserOptions> = {
-  resolveKey: (keys) => `--${keys.join('-')}`,
-  resolveValue: (keys, value) => value,
+  getCssVar: (keys) => `--${keys.join('-')}`,
+  getCssValue: (_, value) => value,
   appendVars: (vars, keys, cssVar) => {
     assignNestedKeys(vars, keys, `var(${cssVar})`);
   },
@@ -56,8 +58,8 @@ export const createCssVarsParser = <Css = NestedRecord<string>, Vars = NestedRec
   options: CreateCssVarsParserOptions<Vars> = {},
 ) => {
   const {
-    resolveKey = defaultOptions.resolveKey,
-    resolveValue = defaultOptions.resolveValue,
+    getCssVar = defaultOptions.getCssVar,
+    getCssValue = defaultOptions.getCssValue,
     appendVars = defaultOptions.appendVars,
   } = options;
   return (obj: Record<string, any>) => {
@@ -66,8 +68,8 @@ export const createCssVarsParser = <Css = NestedRecord<string>, Vars = NestedRec
 
     walkObjectDeep(obj, (keys, value) => {
       if (typeof value === 'string' || typeof value === 'number') {
-        const cssVar = resolveKey(keys, value);
-        Object.assign(css, { [cssVar]: resolveValue(keys, value) });
+        const cssVar = getCssVar(keys, value);
+        Object.assign(css, { [cssVar]: getCssValue(keys, value) });
 
         (appendVars as Required<CreateCssVarsParserOptions<Vars>>['appendVars'])(
           vars,

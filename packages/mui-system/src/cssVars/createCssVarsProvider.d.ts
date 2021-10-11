@@ -4,19 +4,6 @@ type PartialDeep<T> = {
   [K in keyof T]?: PartialDeep<T[K]>;
 };
 
-type BuildPaletteModes<
-  DesignSystemMode extends string,
-  ApplicationMode extends string,
-  PaletteModes,
-> = [ApplicationMode] extends [never]
-  ? {
-      palette?: PartialDeep<Record<DesignSystemMode, PaletteModes>>;
-    }
-  : {
-      palette: PartialDeep<Record<DesignSystemMode, PaletteModes>> &
-        Record<ApplicationMode, PaletteModes>;
-    };
-
 type DecideTheme<
   Theme extends { palette: Record<DesignSystemMode | ApplicationMode, any> },
   DesignSystemMode extends string,
