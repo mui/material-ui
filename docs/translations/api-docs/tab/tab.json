@@ -53,6 +53,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>wrapped={true}</code>"
+    },
+    "iconWrapper": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the wrapper element of `icon`",
+      "conditions": "<code>icon</code> is provided"
     }
   }
 }
