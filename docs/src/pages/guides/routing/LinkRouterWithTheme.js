@@ -17,12 +17,11 @@ LinkBehavior.propTypes = {
     .isRequired,
 };
 
-const themeSetter = (outerTheme) =>
-  createTheme(outerTheme, {
+const theme =
+  createTheme({
     components: {
       MuiLink: {
         defaultProps: {
-          // @ts-ignore
           component: LinkBehavior,
         },
       },
@@ -37,7 +36,7 @@ const themeSetter = (outerTheme) =>
 export default function LinkRouterWithTheme() {
   return (
     <Stack sx={{ typography: 'body1' }} alignItems="center" spacing={1}>
-      <ThemeProvider theme={themeSetter}>
+      <ThemeProvider theme={theme}>
         <Router>
           <Link href="/">Link</Link>
           <Button href="/" variant="contained">
