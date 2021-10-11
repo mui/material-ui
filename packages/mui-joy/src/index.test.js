@@ -13,8 +13,6 @@ describe('@mui/joy', () => {
   });
 
   it('should not have undefined exports', () => {
-    Object.keys(joy).forEach((exportKey) =>
-      expect(Boolean(joy[exportKey])).to.equal(true),
-    );
+    Object.keys(joy).forEach((exportKey) => expect(Boolean(joy[exportKey])).to.equal(true));
   });
 });
