@@ -16,6 +16,7 @@ function layouts(t) {
       src: '/static/images/templates/dashboard.png',
       href: '/getting-started/templates/dashboard/',
       source:
+        // #default-branch-switch
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/dashboard',
     },
     {
@@ -24,6 +25,7 @@ function layouts(t) {
       src: '/static/images/templates/sign-in.png',
       href: '/getting-started/templates/sign-in/',
       source:
+        // #default-branch-switch
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in',
     },
     {
@@ -32,6 +34,7 @@ function layouts(t) {
       src: '/static/images/templates/sign-in-side.png',
       href: '/getting-started/templates/sign-in-side/',
       source:
+        // #default-branch-switch
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in-side',
     },
     {
@@ -40,6 +43,7 @@ function layouts(t) {
       src: '/static/images/templates/sign-up.png',
       href: '/getting-started/templates/sign-up/',
       source:
+        // #default-branch-switch
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-up',
     },
     {
@@ -48,6 +52,7 @@ function layouts(t) {
       src: '/static/images/templates/blog.png',
       href: '/getting-started/templates/blog/',
       source:
+        // #default-branch-switch
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/blog',
     },
     {
@@ -56,6 +61,7 @@ function layouts(t) {
       src: '/static/images/templates/checkout.png',
       href: '/getting-started/templates/checkout/',
       source:
+        // #default-branch-switch
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/checkout',
     },
     {
@@ -64,6 +70,7 @@ function layouts(t) {
       src: '/static/images/templates/album.png',
       href: '/getting-started/templates/album/',
       source:
+        // #default-branch-switch
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/album',
     },
     {
@@ -72,6 +79,7 @@ function layouts(t) {
       src: '/static/images/templates/pricing.png',
       href: '/getting-started/templates/pricing/',
       source:
+        // #default-branch-switch
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/pricing',
     },
     {
@@ -80,6 +88,7 @@ function layouts(t) {
       src: '/static/images/templates/sticky-footer.png',
       href: '/getting-started/templates/sticky-footer/',
       source:
+        // #default-branch-switch
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sticky-footer',
     },
   ];
