@@ -121,16 +121,15 @@ describe('<Tab />', () => {
       expect(getByTestId('icon')).not.to.equal(null);
     });
 
-    it('should create a wrapper', () => {
-      const { getByRole } = render(<Tab icon={<div data-testid="icon" />} />);
-      const wrapper = getByRole('tab').children[0];
-      expect(wrapper.tagName).to.equal('SPAN');
-    });
-
-    it('should create a wrapper with bottom margin when passed together with label', () => {
+    it('should add a classname when passed together with label', () => {
       const { getByRole } = render(<Tab icon={<div data-testid="icon" />} label="foo" />);
       const wrapper = getByRole('tab').children[0];
-      expect(wrapper.tagName).to.equal('SPAN');
+      expect(wrapper).to.have.class(classes.iconWrapper);
+    });
+
+    it('should have bottom margin when passed together with label', () => {
+      const { getByRole } = render(<Tab icon={<div data-testid="icon" />} label="foo" />);
+      const wrapper = getByRole('tab').children[0];
       expect(wrapper).toHaveComputedStyle({ marginBottom: '6px' });
     });
   });
