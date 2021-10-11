@@ -1,7 +1,14 @@
-import * as React from 'react';
-import { expect } from 'chai';
-import { createClientRender, createMount, describeConformance, screen } from 'test/utils';
 import SliderUnstyled, { sliderUnstyledClasses as classes } from '@mui/core/SliderUnstyled';
+import { expect } from 'chai';
+import * as React from 'react';
+import { spy, stub } from 'sinon';
+import {
+  createClientRender,
+  createMount,
+  describeConformance,
+  fireEvent,
+  screen,
+} from 'test/utils';
 
 describe('<SliderUnstyled />', () => {
   before(function beforeHook() {
@@ -61,6 +68,19 @@ describe('<SliderUnstyled />', () => {
     expect(element.getAttribute('theme')).to.equal(null);
   });
 
+  describe('prop: marks', () => {
+    it('does not cause unknown-prop error', () => {
+      const marks = [
+        {
+          value: 33,
+        },
+      ];
+      expect(() => {
+        render(<SliderUnstyled marks={marks} />);
+      }).not.to.throw();
+    });
+  });
+
   describe('prop: orientation', () => {
     it('sets the orientation via ARIA', () => {
       render(<SliderUnstyled orientation="vertical" />);
@@ -91,6 +111,38 @@ describe('<SliderUnstyled />', () => {
       render(<SliderUnstyled value={30} valueLabelDisplay="auto" />);
 
       expect(screen.getByRole('slider')).to.have.attribute('aria-valuenow', '30');
+    });
+  });
+
+  [
+    ['readonly range', Object.freeze([2, 1])],
+    ['range', [2, 1]],
+  ].forEach(([valueLabel, value]) => {
+    it(`calls onChange even if the ${valueLabel} did not change`, () => {
+      const handleChange = spy();
+      const { container } = render(
+        <SliderUnstyled min={0} max={5} onChange={handleChange} value={value} />,
+      );
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      // pixel:  0   20  40  60  80  100
+      // slider: |---|---|---|---|---|
+      // values: 0   1   2   3   4   5
+      // value:      ↑   ↑
+      // mouse:           ↑
+      fireEvent.mouseDown(container.firstChild, {
+        buttons: 1,
+        clientX: 41,
+      });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).not.to.equal(value);
+      expect(handleChange.args[0][1]).to.deep.equal(value.slice().sort((a, b) => a - b));
     });
   });
 });

@@ -1,5 +1,145 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.0.3
+
+<!-- generated comparing v5.0.2..master -->
+
+_Oct 7, 2021_
+
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+
+- 🧪 Created the first component in @mui/material-next - our v6 prototype package.
+- 🐛 Fixed many bugs and improved the documentation 📚.
+
+### `@mui/material@5.0.3`
+
+- &#8203;<!-- 10 -->[Stack] Add props & variants types in the theme (#28843) @mnajdova
+- &#8203;<!-- 12 -->[InputLabel] Fix condition for applying formControl overrides (#28707) @yevheniiminin
+- &#8203;<!-- 05 -->[Tooltip] Allow overriding internal components and their props (#28692) @michaldudak
+- &#8203;<!-- 04 -->[transitions] Fix `addEndListener` not being called with the DOM node (#28715) @eps1lon
+
+### `@mui/codemod@5.0.3`
+
+- &#8203;<!-- 37 -->[codemod] Fix `optimal-imports` to support v4 and v5-alpha, beta (#28812) @siriwatknp
+
+### `@mui/system@5.0.3`
+
+- &#8203;<!-- 09 -->[system] Add padding/margin-block/inline to spacing (#28813) @smmoosavi
+
+### `@mui/styled-engine-sc@5.0.3`
+
+- &#8203;<!-- 42 -->Don't allow styled-components APIs on mui styled function (#28807) @hbjORbj
+
+### `@mui/core@5.0.0-alpha.50`
+
+- &#8203;<!-- 38 -->[ButtonUnstyled] Don't set redundant role=button (#28488) @michaldudak
+- &#8203;<!-- 43 -->[SliderUnstyled] Prevent unknown-prop error when using marks prop (#28868) @hbjORbj
+
+### `@mui/lab@5.0.0-alpha.50`
+
+- &#8203;<!-- 11 -->[pickers] Change view even if `onViewChange` is set (#28765) @eps1lon
+
+### `@mui/material-next@6.0.0-alpha.4`
+
+- &#8203;<!-- 39 -->[Button-next] Create Button in material-next (#28313) @michaldudak
+
+### Docs
+
+- &#8203;<!-- 34 -->[docs] Add alike v4 default button color in migration (#28881) @siriwatknp
+- &#8203;<!-- 34 -->[docs] Use PNG instead of SVG for color preview (#28699) @eps1lon
+- &#8203;<!-- 33 -->[docs] Use client-side navigation when activating docsearch results (#28750) @eps1lon
+- &#8203;<!-- 32 -->[docs] Fluid icon size in icons search (#28747) @eps1lon
+- &#8203;<!-- 31 -->[docs] Fix the wrong import in docs grid page (#28863) @taghi-khavari
+- &#8203;<!-- 30 -->[docs] Fix typo in Pagination docs (#28864) @ZeeshanTamboli
+- &#8203;<!-- 29 -->[docs] Fix 404 links (#28710) @mnajdova
+- &#8203;<!-- 28 -->[docs] Fix typo in Mui CSS classname (#28725) @cacpgomes
+- &#8203;<!-- 27 -->[docs] Match example to codesandbox demo and update ID link (#28762) @AnilSeervi
+- &#8203;<!-- 26 -->[docs] Fix typo in system/box documentation (#28822) @iamsergo
+- &#8203;<!-- 25 -->[docs] Use HTML standards for autocomplete attributes (#28827) @epodol
+- &#8203;<!-- 24 -->[docs] Improve styled-components integration (#28713) @mnajdova
+- &#8203;<!-- 23 -->[docs] Correct Select's menu placement description (#28748) @michaldudak
+- &#8203;<!-- 22 -->[docs] AdapterDayJS -> AdapterDayjs (#28770) @veerreshr
+- &#8203;<!-- 21 -->[docs] Theme documentation, typo fix (#28805) @saeedseyfi
+- &#8203;<!-- 20 -->[docs] Add the last diamond sponsor (#28737) @hbjORbj
+- &#8203;<!-- 19 -->[docs] Fix various links in CONTRIBUTING (#28751) @AnilSeervi
+- &#8203;<!-- 18 -->[docs] Only add JSS to demos (#28698) @eps1lon
+- &#8203;<!-- 17 -->[docs] Update v5 status in release schedule (#28700) @owais635
+- &#8203;<!-- 16 -->[docs] Fix typo in /guides/styled-engine (#28720) @Sharry0
+- &#8203;<!-- 15 -->[docs] Fix typo in chip documentation (#28641) @avranju94
+- &#8203;<!-- 14 -->[docs] Fix versions page (#28682) @mnajdova
+- &#8203;<!-- 13 -->[docs] Remove legacy team page (#28646) @mnajdova
+- &#8203;<!-- 41 -->[website] add "React" to the hero description (#28830) @danilo-leal
+- &#8203;<!-- 03 -->[website] Fix constantly reloading when Russian language is set (#28869) @mnajdova
+- &#8203;<!-- 02 -->[website] Compress one avatar image on about us page (#28823) @hbjORbj
+- &#8203;<!-- 01 -->[website] Hide 'become a diamond sponsor' box on landing page (#28814) @hbjORbj
+- &#8203;<!-- 40 -->[website] Update Benny's profile on about us page (#28816) @hbjORbj
+
+### Core
+
+- &#8203;<!-- 36 -->[core] Remove `--exact` from `release:version` (#28840) @siriwatknp
+- &#8203;<!-- 35 -->[core] Neglect framer from release flow (#28680) @siriwatknp
+- &#8203;<!-- 08 -->[test] Add a test for not allowing styled-components' APIs on mui `styled` function (#28862) @hbjORbj
+- &#8203;<!-- 07 -->[test] Fix instances where type tests were only passing due to object being part of ReactNode (#28804) @eps1lon
+- &#8203;<!-- 06 -->[test] Move ByMuiTest to test/utils (#28509) @eps1lon
+
+All contributors of this release in alphabetical order: @AnilSeervi, @avranju94, @cacpgomes, @danilo-leal, @epodol, @eps1lon, @hbjORbj, @iamsergo, @michaldudak, @mnajdova, @owais635, @saeedseyfi, @Sharry0, @siriwatknp, @smmoosavi, @taghi-khavari, @veerreshr, @yevheniiminin, @ZeeshanTamboli
+
+## 5.0.2
+
+<!-- generated comparing v5.0.1..master -->
+
+_Sep 29, 2021_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔧 Improve `jss-to-styled` codemod to use new package names.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.0.2`
+
+- &#8203;<!-- 28 -->[Checkbox] Fix form submission with empty value (#28423) @garronej
+- &#8203;<!-- 08 -->[Slider] Don't error on minimal changes with readonly value (#28472) @eps1lon
+- &#8203;<!-- 07 -->[Switch] Fix style overrides on input (#28576) @praveenkumar-kalidass
+- &#8203;<!-- 03 -->[useMediaQuery] Add types for `matchMedia` option and deprecate exported interfaces (#28413) @eps1lon
+
+### `@mui/codemod@5.0.2`
+
+- &#8203;<!-- 27 -->[codemod] Add MenuItem v.1.0.0 transform for primaryText property (#28640) @dmitry-yudakov
+- &#8203;<!-- 26 -->[codemod] Update the imports in `jss-to-styled` to match the new package names (#28667) @mnajdova
+
+### `@mui/system@5.0.2`
+
+- &#8203;<!-- 06 -->[system] Fix types to support theme callbacks on pseudo and nested selectors (#28570) @mnajdova
+
+### Docs
+
+- &#8203;<!-- 23 -->[docs] Remove languages: fr, de, ja, es, ru (#28663) @mnajdova
+- &#8203;<!-- 22 -->[docs] Improve old doc versions discoverability (#28651) @danilo-leal
+- &#8203;<!-- 21 -->[docs] Make the Toggle Button size demo use default icon size (#28656) @danilo-leal
+- &#8203;<!-- 20 -->[docs] Uniformize the code's font family (#28582) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Removed duplicate line in date-ranger-picker.md file (#28635) @naveen-bharathi
+- &#8203;<!-- 18 -->[docs] Fix title MUI x2 (#28634) @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Polish email validation logic (#28255) @kiznick
+- &#8203;<!-- 16 -->[docs] Improve migration-v4.md phrasing (#28253) @adamthewebguy
+- &#8203;<!-- 15 -->[docs] Fix color in example (#28527) @alexeagleson
+- &#8203;<!-- 14 -->[docs] Fix typo in generated class names section (#28549) @fxlemire
+- &#8203;<!-- 13 -->[docs] Mention Premium pricing cap (#28581) @oliviertassinari
+- &#8203;<!-- 12 -->[docs] Update examples to use latest mui #28565 @siriwatknp
+- &#8203;<!-- 11 -->[docs] Push the fixes on Next.js's Link to the examples (#28178) @oliviertassinari
+- &#8203;<!-- 10 -->[docs] Fix wrong name for zIndex's property example in /system/ (#28541) @chetrit
+- &#8203;<!-- 08 -->[examples] Nextjs Link missing passHref #28588 (#28661) @Brlaney
+- &#8203;<!-- 02 -->[website] Iteration on the pricing page (#28406) @danilo-leal
+- &#8203;<!-- 01 -->[website] Batch fixes (#28564) @siriwatknp
+
+### Core
+
+- &#8203;<!-- 25 -->[core] Improve Renovate groups (#28642) @eps1lon
+- &#8203;<!-- 24 -->[core] Batch small changes (#28553) @oliviertassinari
+- &#8203;<!-- 05 -->[test] Document where the value for SwitchBase#value comes from (#28638) @eps1lon
+- &#8203;<!-- 04 -->[test] Make `seconds` `views` test pass in browsers (#28511) @eps1lon
+
+All contributors of this release in alphabetical order: @adamthewebguy, @alexeagleson, @Brlaney, @chetrit, @danilo-leal, @dmitry-yudakov, @eps1lon, @fxlemire, @garronej, @kiznick, @mnajdova, @naveen-bharathi, @oliviertassinari, @praveenkumar-kalidass, @siriwatknp
+
 ## 5.0.1
 
 <!-- generated comparing v5.0.0..master -->

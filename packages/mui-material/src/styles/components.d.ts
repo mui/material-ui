@@ -431,6 +431,10 @@ export interface Components {
     styleOverrides?: ComponentsOverrides['MuiSpeedDialIcon'];
     variants?: ComponentsVariants['MuiSpeedDialIcon'];
   };
+  MuiStack?: {
+    defaultProps?: ComponentsProps['MuiStack'];
+    variants?: ComponentsVariants['MuiStack'];
+  };
   MuiStep?: {
     defaultProps?: ComponentsProps['MuiStep'];
     styleOverrides?: ComponentsOverrides['MuiStep'];
