@@ -5,16 +5,16 @@
  */
 
 import { expect } from 'chai';
-import * as materialNext from './index';
+import * as joy from './index';
 
-describe('@mui/material-next', () => {
+describe('@mui/joy', () => {
   it('should have exports', () => {
-    expect(typeof materialNext).to.equal('object');
+    expect(typeof joy).to.equal('object');
   });
 
   it('should not have undefined exports', () => {
-    Object.keys(materialNext).forEach((exportKey) =>
-      expect(Boolean(materialNext[exportKey])).to.equal(true),
+    Object.keys(joy).forEach((exportKey) =>
+      expect(Boolean(joy[exportKey])).to.equal(true),
     );
   });
 });
