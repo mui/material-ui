@@ -1,4 +1,12 @@
-import { compose, spacing, style, breakpoints } from '@mui/system';
+import {
+  breakpoints,
+  display,
+  compose,
+  createTheme,
+  spacing,
+  style,
+  styled as muiStyled,
+} from '@mui/system';
 import * as React from 'react';
 import styled from 'styled-components';
 
@@ -56,4 +64,15 @@ function styleTransformTest() {
       },
     }),
   });
+}
+
+function styleTypeTest() {
+  const gap = style({
+    prop: 'gap',
+    themeKey: 'spacing',
+  });
+
+  // theme should be optional
+  const CustomComponentWithNoTheme = muiStyled('div')(compose(display, gap));
+  <CustomComponentWithNoTheme display="flex" gap={3} />;
 }
