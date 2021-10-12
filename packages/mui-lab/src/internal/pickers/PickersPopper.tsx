@@ -11,7 +11,7 @@ export interface ExportedPickerPaperProps {
   /**
    * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
    */
-  PaperProps?: Partial<Omit<MuiPaperProps, 'ref'>>;
+  PaperProps?: Partial<MuiPaperProps>;
 }
 
 export interface ExportedPickerPopperProps {
