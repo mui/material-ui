@@ -110,7 +110,8 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator)/,
+            include:
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -165,8 +166,8 @@ module.exports = {
     REACT_STRICT_MODE: reactStrictMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     // #default-branch-switch
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui/mui/blob/master',
-    SOURCE_CODE_REPO: 'https://github.com/mui/mui',
+    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/master',
+    SOURCE_CODE_REPO: 'https://github.com/mui-org/material-ui',
     STAGING: staging,
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
