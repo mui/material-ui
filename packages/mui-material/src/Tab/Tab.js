@@ -145,7 +145,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   const icon =
     iconProp && label && React.isValidElement(iconProp)
       ? React.cloneElement(iconProp, {
-          className: classes.iconWrapper,
+          className: clsx(classes.iconWrapper, iconProp.props.className),
         })
       : iconProp;
   const handleClick = (event) => {

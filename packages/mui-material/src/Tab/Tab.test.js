@@ -122,13 +122,14 @@ describe('<Tab />', () => {
     });
 
     it('should add a classname when passed together with label', () => {
-      const { getByRole } = render(<Tab icon={<div data-testid="icon" />} label="foo" />);
+      const { getByRole } = render(<Tab icon={<div className="test-icon" />} label="foo" />);
       const wrapper = getByRole('tab').children[0];
       expect(wrapper).to.have.class(classes.iconWrapper);
+      expect(wrapper).to.have.class('test-icon');
     });
 
     it('should have bottom margin when passed together with label', () => {
-      const { getByRole } = render(<Tab icon={<div data-testid="icon" />} label="foo" />);
+      const { getByRole } = render(<Tab icon={<div />} label="foo" />);
       const wrapper = getByRole('tab').children[0];
       expect(wrapper).toHaveComputedStyle({ marginBottom: '6px' });
     });
