@@ -4,16 +4,18 @@ import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/sy
 
 // Test design system layer
 
-type DesignSystemMode = 'light' | 'dark';
+type DesignSystemColorScheme = 'light' | 'dark';
 
-interface Palette {
-  primary: {
-    500: string;
+interface Colors {
+  palette: {
+    primary: {
+      500: string;
+    };
   };
 }
 
 interface DesignSystemTheme {
-  palette: Record<DesignSystemMode, Palette>;
+  colorSchemes: Record<DesignSystemColorScheme, Colors>;
   fontSize: {
     md: string;
   };
@@ -21,23 +23,25 @@ interface DesignSystemTheme {
 
 const ThemeContext = React.createContext<DesignSystemTheme | undefined>(undefined);
 
-createCssVarsProvider<DesignSystemTheme, DesignSystemMode>(ThemeContext, {
+createCssVarsProvider<DesignSystemTheme, DesignSystemColorScheme>(ThemeContext, {
   theme: {
     fontSize: {
       md: '1rem',
     },
     // @ts-expect-error 'dark' is missing
-    palette: {
+    colorSchemes: {
       light: {
-        primary: {
-          500: '#007FFF',
+        palette: {
+          primary: {
+            500: '#007FFF',
+          },
         },
       },
     },
   },
 });
 
-createCssVarsProvider<DesignSystemTheme, DesignSystemMode>(
+createCssVarsProvider<DesignSystemTheme, DesignSystemColorScheme>(
   ThemeContext,
   // @ts-expect-error 'defaultColorScheme' is missing
   {
@@ -45,15 +49,19 @@ createCssVarsProvider<DesignSystemTheme, DesignSystemMode>(
       fontSize: {
         md: '1rem',
       },
-      palette: {
+      colorSchemes: {
         light: {
-          primary: {
-            500: '#007FFF',
+          palette: {
+            primary: {
+              500: '#007FFF',
+            },
           },
         },
         dark: {
-          primary: {
-            500: '#007FFF',
+          palette: {
+            primary: {
+              500: '#007FFF',
+            },
           },
         },
       },
@@ -61,45 +69,53 @@ createCssVarsProvider<DesignSystemTheme, DesignSystemMode>(
   },
 );
 
-createCssVarsProvider<DesignSystemTheme, DesignSystemMode>(ThemeContext, {
+createCssVarsProvider<DesignSystemTheme, DesignSystemColorScheme>(ThemeContext, {
   theme: {
     fontSize: {
       md: '1rem',
     },
     // @ts-expect-error `lineHeight` is not in DesignSystemTheme
     lineHeight: {},
-    palette: {
+    colorSchemes: {
       light: {
-        primary: {
-          500: '#007FFF',
+        palette: {
+          primary: {
+            500: '#007FFF',
+          },
         },
       },
       dark: {
-        primary: {
-          500: '#007FFF',
+        palette: {
+          primary: {
+            500: '#007FFF',
+          },
         },
       },
     },
   },
-  // @ts-expect-error `yellow` is not in DesignSystemMode
+  // @ts-expect-error `yellow` is not in DesignSystemColorScheme
   defaultColorScheme: 'yellow',
 });
 
-createCssVarsProvider<DesignSystemTheme, DesignSystemMode>(ThemeContext, {
+createCssVarsProvider<DesignSystemTheme, DesignSystemColorScheme>(ThemeContext, {
   theme: {
     fontSize: {
       md: '1rem',
     },
-    palette: {
+    colorSchemes: {
       light: {
-        primary: {
-          500: '#007FFF',
+        palette: {
+          primary: {
+            500: '#007FFF',
+          },
         },
       },
       dark: {
-        primary: {
-          // @ts-expect-error `main` is not in Palette
-          main: '#007FFF',
+        palette: {
+          primary: {
+            // @ts-expect-error `main` is not in Palette
+            main: '#007FFF',
+          },
         },
       },
     },
@@ -110,45 +126,52 @@ createCssVarsProvider<DesignSystemTheme, DesignSystemMode>(ThemeContext, {
 // ==============================
 // Test application layer
 
-interface JoyModeOverrides {}
+interface JoyColorSchemeOverrides {}
 
-type JoyExtendedMode = OverridableStringUnion<never, JoyModeOverrides>;
+type JoyExtendedColorScheme = OverridableStringUnion<never, JoyColorSchemeOverrides>;
 
-type JoyMode = 'light' | 'dark';
+type JoyColorScheme = 'light' | 'dark';
 
-interface JoyPalette {
-  primary: {
-    main: string;
+interface JoyColors {
+  palette: {
+    primary: {
+      main: string;
+    };
   };
 }
 
 interface JoyTheme {
-  palette: Record<JoyMode | JoyExtendedMode, JoyPalette>;
+  colorSchemes: Record<JoyColorScheme | JoyExtendedColorScheme, JoyColors>;
   fontSize: string;
   fontFamily: string;
 }
 
 const ThemeContext2 = React.createContext<JoyTheme | undefined>(undefined);
 
-interface JoyModeOverrides {
+// Simulate color scheme extending, same as module augmentation in real application
+interface JoyColorSchemeOverrides {
   white: true;
 }
 
-const { CssVarsProvider } = createCssVarsProvider<JoyTheme, JoyMode, JoyExtendedMode>(
+const { CssVarsProvider } = createCssVarsProvider<JoyTheme, JoyColorScheme, JoyExtendedColorScheme>(
   ThemeContext2,
   {
     theme: {
       fontSize: '1rem',
       fontFamily: 'IBM Plex Sans',
-      palette: {
+      colorSchemes: {
         light: {
-          primary: {
-            main: '#007FFF',
+          palette: {
+            primary: {
+              main: '#007FFF',
+            },
           },
         },
         dark: {
-          primary: {
-            main: '#007FFF',
+          palette: {
+            primary: {
+              main: '#007FFF',
+            },
           },
         },
       },
@@ -162,7 +185,7 @@ function App() {
     <CssVarsProvider
       theme={{
         // @ts-expect-error `white` is missing
-        palette: {},
+        colorSchemes: {},
       }}
     />
   );
@@ -174,10 +197,12 @@ function App2() {
       theme={{
         // @ts-expect-error `lineHeight` is not in theme
         lineHeight: 1,
-        palette: {
+        colorSchemes: {
           white: {
-            primary: {
-              main: '#ff5252',
+            palette: {
+              primary: {
+                main: '#ff5252',
+              },
             },
           },
         },
@@ -190,48 +215,55 @@ function App2() {
 
 // =========================
 
-interface Joy2ModeOverrides {}
+interface Joy2ColorSchemeOverrides {}
 
-type Joy2ExtendedMode = OverridableStringUnion<never, Joy2ModeOverrides>;
+type Joy2ExtendedColorScheme = OverridableStringUnion<never, Joy2ColorSchemeOverrides>;
 
-type Joy2Mode = 'light' | 'dark';
+type Joy2ColorScheme = 'light' | 'dark';
 
-interface Joy2Palette {
-  primary: {
-    main: string;
+interface Joy2Colors {
+  palette: {
+    primary: {
+      main: string;
+    };
   };
 }
 
 interface Joy2Theme {
-  palette: Record<Joy2Mode | Joy2ExtendedMode, Joy2Palette>;
+  colorSchemes: Record<Joy2ColorScheme | Joy2ExtendedColorScheme, Joy2Colors>;
   fontSize: string;
   fontFamily: string;
 }
 
 const ThemeContext3 = React.createContext<Joy2Theme | undefined>(undefined);
 
-interface Joy2ModeOverrides {
+// Simulate color scheme extending, same as module augmentation in real application
+interface Joy2ColorSchemeOverrides {
   comfort: true;
   trueDark: true;
 }
 
 const { CssVarsProvider: CssVarsProvider2, useColorScheme } = createCssVarsProvider<
   Joy2Theme,
-  Joy2Mode,
-  Joy2ExtendedMode
+  Joy2ColorScheme,
+  Joy2ExtendedColorScheme
 >(ThemeContext3, {
   theme: {
     fontSize: '1rem',
     fontFamily: 'IBM Plex Sans',
-    palette: {
+    colorSchemes: {
       light: {
-        primary: {
-          main: '#007FFF',
+        palette: {
+          primary: {
+            main: '#007FFF',
+          },
         },
       },
       dark: {
-        primary: {
-          main: '#007FFF',
+        palette: {
+          primary: {
+            main: '#007FFF',
+          },
         },
       },
     },
@@ -242,7 +274,7 @@ const { CssVarsProvider: CssVarsProvider2, useColorScheme } = createCssVarsProvi
 function Content() {
   const { setColorScheme } = useColorScheme();
   React.useEffect(() => {
-    // @ts-expect-error 'yellow' is not typed in JoyExtendedMode
+    // @ts-expect-error 'yellow' is not typed in JoyExtendedColorScheme
     setColorScheme('yellow');
 
     setColorScheme('comfort');
@@ -255,7 +287,7 @@ function App3() {
     <CssVarsProvider2
       theme={{
         // @ts-expect-error `comfort` and `trueDark` are missing
-        palette: {},
+        colorSchemes: {},
       }}
     />
   );
@@ -265,10 +297,12 @@ function App4() {
   return (
     <CssVarsProvider2
       theme={{
-        palette: {
+        colorSchemes: {
           comfort: {
-            primary: {
-              main: '',
+            palette: {
+              primary: {
+                main: '',
+              },
             },
           },
           // @ts-expect-error Palette structure is not completed

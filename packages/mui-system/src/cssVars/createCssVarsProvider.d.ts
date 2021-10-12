@@ -42,7 +42,7 @@ export default function createCssVarsProvider<
     theme: Omit<Theme, 'colorSchemes'> & {
       colorSchemes: Record<
         DesignSystemColorScheme,
-        Theme['colorSchemes'][DesignSystemColorScheme | ApplicationColorScheme]
+        Theme['colorSchemes'][DesignSystemColorScheme]
       > &
         Partial<
           Record<
