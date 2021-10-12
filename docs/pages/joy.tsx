@@ -231,12 +231,12 @@ export default function Joy() {
               component={MarkdownElement}
               code={`<Switch
   sx={{
-    '--switch-track-width': ${toPixel(values.width)},
-    '--switch-track-height': ${toPixel(values.height)},
-    '--switch-track-radius': ${toPixel(values.radius)},
-    '--switch-thumb-size': ${toPixel(values.size)},${
+    '--switch-track-width': '${toPixel(values.width)}',
+    '--switch-track-height': '${toPixel(values.height)}',
+    '--switch-track-radius': '${toPixel(values.radius)}',
+    '--switch-thumb-size': '${toPixel(values.size)}',${
                 typeof values.offset === 'string'
-                  ? `\n    '--switch-thumb-offset': ${values.offset}`
+                  ? `\n    '--switch-thumb-offset': '${values.offset}'`
                   : ''
               }
   }}
