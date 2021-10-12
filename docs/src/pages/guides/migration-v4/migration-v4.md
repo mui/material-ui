@@ -2776,3 +2776,25 @@ The root cause of this error comes from accessing empty theme. Make sure that yo
 - Make sure that no `useStyles` is called outside of `<ThemeProvider>`. If you have, consider fixing it like [this suggestion](#makestyles-typeerror-cannot-read-property-drawer-of-undefined)
 
 For more details, [checkout this issue](https://github.com/mui-org/material-ui/issues/28496)
+
+### Styles broken after migrating to v5
+
+There are two reasons why the styles of the components may be broken after you finished with all the steps in the previous sections.
+
+First, check if you have configured the `StyledEngineProvider` correct as shown in the [Style library](#style-library) section.
+
+If the `StyledEngineProvider` is already used at the top of your application and the styles are still broken, it may be the case that you still have `@material-ui/core` in your application.
+It may be coming from some of the dependencies that you have, that still depend on `@material-ui/core` (v4).
+
+The easiest way to check this is to run `npm ls @material-ui/core` (or `yarn why @material-ui/core`) which will give you the necessary information.
+
+Here is one example:
+
+```sh
+$ npm ls @material-ui/core
+project@0.1.0 /path/to/project
+└─┬  @mui/x-data-grid@4.0.0
+  └── @material-ui/core@4.12.3
+```
+
+You can notice based on the output above that `@material-ui/core` is a dependency of `@mui/x-data-grid`. In this specific example, you need to bump the version of `@mui/x-data-grid` to [version 5](https://www.npmjs.com/package/@mui/x-data-grid) so that it depends on `@mui/material` instead.
