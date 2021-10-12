@@ -2797,4 +2797,4 @@ project@0.1.0 /path/to/project
   └── @material-ui/core@4.12.3
 ```
 
-You can notice based on the output above that `@material-ui/core` is a dependency of `@mui/x-data-grid`. In this specific example, you need to bump the version of `@mui/x-data-grid` so that it depends on `@mui/material` instead.
+You can notice based on the output above that `@material-ui/core` is a dependency of `@mui/x-data-grid`. In this specific example, you need to bump the version of `@mui/x-data-grid` to [version 5](https://www.npmjs.com/package/@mui/x-data-grid) so that it depends on `@mui/material` instead.
