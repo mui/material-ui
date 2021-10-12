@@ -25,7 +25,7 @@ export interface LocalizationProviderProps {
   dateAdapter: new ({
     ...args
   }: {
-    locale?: Locale;
+    locale?: object;
     formats?: Partial<DateIOFormats<string>>;
     instance?: any;
   }) => MuiPickersAdapter<unknown>;
@@ -39,7 +39,7 @@ export interface LocalizationProviderProps {
    */
   dateLibInstance?: any;
   /** Locale for the date library you are using */
-  locale?: Locale;
+  locale?: object;
 }
 
 /**
@@ -125,7 +125,7 @@ LocalizationProvider.propTypes /* remove-proptypes */ = {
   /**
    * Locale for the date library you are using
    */
-  locale: Locale,
+  locale: PropTypes.object,
 } as any;
 
 export default LocalizationProvider;
