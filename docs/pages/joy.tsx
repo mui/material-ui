@@ -33,9 +33,13 @@ const StyledInfo = styled(Info)(({ theme: { vars } }) => ({
   color: vars.background.contrast,
 }));
 
-const Toggle = () => {
+const Toggle = React.forwardRef((props, ref) => {
   const [mounted, setMounted] = React.useState(false);
   const { allColorSchemes, colorScheme, setColorScheme } = useColorScheme();
+
+  React.useImperativeHandle(ref, () => ({
+    setColorScheme,
+  }));
 
   React.useEffect(() => setMounted(true), []);
 
@@ -43,7 +47,7 @@ const Toggle = () => {
     return null;
   }
   return (
-    <Box sx={{ display: 'flex', gap: 2 }}>
+    <Box ref={ref} sx={{ display: 'flex', gap: 2 }}>
       {allColorSchemes.map((color) => (
         <Box
           component="button"
@@ -78,7 +82,7 @@ const Toggle = () => {
       ))}
     </Box>
   );
-};
+});
 
 const toPixel = (val: string | number) => (typeof val === 'number' ? `${val}px` : val);
 
@@ -134,6 +138,16 @@ export default function Joy() {
       }),
     }),
   });
+  const [isMounted, setIsMounted] = React.useState(false);
+  const toggleRef = React.useRef(null);
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  React.useEffect(() => {
+    if (isMounted && toggleRef.current) {
+      toggleRef.current.setColorScheme('custom');
+    }
+  }, [isMounted, values.app, values.brand, values.neutral, values.contrast]);
   return (
     <BrandingProvider>
       <Box
@@ -232,7 +246,7 @@ export default function Joy() {
             />
           </Box>
           <Typography sx={{ mb: 1, mt: 4 }}>Pick a color scheme</Typography>
-          <Toggle />
+          <Toggle ref={toggleRef} />
         </CssVarsProvider>
       </Box>
     </BrandingProvider>
