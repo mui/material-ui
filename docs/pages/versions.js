@@ -51,7 +51,7 @@ Page.getInitialProps = async () => {
   // Legacy documentation.
   versions.push({
     version: 'v0',
-    url: 'https://v0.material-ui.com',
+    url: 'https://v0.mui.com',
   });
   versions = versions.sort((a, b) =>
     formatVersion(b.version).localeCompare(formatVersion(a.version)),
@@ -63,7 +63,7 @@ Page.getInitialProps = async () => {
   ) {
     versions.unshift({
       version: `v${Number(versions[0].version[1]) + 1} pre-release`,
-      url: 'https://next.material-ui.com',
+      url: 'https://next.mui.com',
     });
   }
 
