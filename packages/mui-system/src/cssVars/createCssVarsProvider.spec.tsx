@@ -4,7 +4,7 @@ import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/sy
 
 // Test design system layer
 
-type DSMode = 'light' | 'dark';
+type DesignSystemMode = 'light' | 'dark';
 
 interface Palette {
   primary: {
@@ -12,16 +12,16 @@ interface Palette {
   };
 }
 
-interface DSTheme {
-  palette: Record<DSMode, Palette>;
+interface DesignSystemTheme {
+  palette: Record<DesignSystemMode, Palette>;
   fontSize: {
     md: string;
   };
 }
 
-const ThemeContext = React.createContext<DSTheme | undefined>(undefined);
+const ThemeContext = React.createContext<DesignSystemTheme | undefined>(undefined);
 
-createCssVarsProvider<DSTheme, DSMode>(ThemeContext, {
+createCssVarsProvider<DesignSystemTheme, DesignSystemMode>(ThemeContext, {
   theme: {
     fontSize: {
       md: '1rem',
@@ -37,9 +37,9 @@ createCssVarsProvider<DSTheme, DSMode>(ThemeContext, {
   },
 });
 
-createCssVarsProvider<DSTheme, DSMode>(
+createCssVarsProvider<DesignSystemTheme, DesignSystemMode>(
   ThemeContext,
-  // @ts-expect-error 'defaultMode' is missing
+  // @ts-expect-error 'defaultColorScheme' is missing
   {
     theme: {
       fontSize: {
@@ -61,12 +61,12 @@ createCssVarsProvider<DSTheme, DSMode>(
   },
 );
 
-createCssVarsProvider<DSTheme, DSMode>(ThemeContext, {
+createCssVarsProvider<DesignSystemTheme, DesignSystemMode>(ThemeContext, {
   theme: {
     fontSize: {
       md: '1rem',
     },
-    // @ts-expect-error `lineHeight` is not in DSTheme
+    // @ts-expect-error `lineHeight` is not in DesignSystemTheme
     lineHeight: {},
     palette: {
       light: {
@@ -81,11 +81,11 @@ createCssVarsProvider<DSTheme, DSMode>(ThemeContext, {
       },
     },
   },
-  // @ts-expect-error `yellow` is not in DSMode
-  defaultMode: 'yellow',
+  // @ts-expect-error `yellow` is not in DesignSystemMode
+  defaultColorScheme: 'yellow',
 });
 
-createCssVarsProvider<DSTheme, DSMode>(ThemeContext, {
+createCssVarsProvider<DesignSystemTheme, DesignSystemMode>(ThemeContext, {
   theme: {
     fontSize: {
       md: '1rem',
@@ -104,7 +104,7 @@ createCssVarsProvider<DSTheme, DSMode>(ThemeContext, {
       },
     },
   },
-  defaultMode: 'dark',
+  defaultColorScheme: 'dark',
 });
 
 // ==============================
@@ -153,7 +153,7 @@ const { CssVarsProvider } = createCssVarsProvider<JoyTheme, JoyMode, JoyExtended
         },
       },
     },
-    defaultMode: 'light',
+    defaultColorScheme: 'light',
   },
 );
 
@@ -183,7 +183,7 @@ function App2() {
         },
       }}
       // @ts-expect-error `yellow` is not in
-      defaultMode="yellow"
+      defaultColorScheme="yellow"
     />
   );
 }
@@ -215,7 +215,7 @@ interface Joy2ModeOverrides {
   trueDark: true;
 }
 
-const { CssVarsProvider: CssVarsProvider2, useMode } = createCssVarsProvider<
+const { CssVarsProvider: CssVarsProvider2, useColorScheme } = createCssVarsProvider<
   Joy2Theme,
   Joy2Mode,
   Joy2ExtendedMode
@@ -236,17 +236,17 @@ const { CssVarsProvider: CssVarsProvider2, useMode } = createCssVarsProvider<
       },
     },
   },
-  defaultMode: 'light',
+  defaultColorScheme: 'light',
 });
 
 function Content() {
-  const { setMode } = useMode();
+  const { setColorScheme } = useColorScheme();
   React.useEffect(() => {
     // @ts-expect-error 'yellow' is not typed in JoyExtendedMode
-    setMode('yellow');
+    setColorScheme('yellow');
 
-    setMode('comfort');
-  }, [setMode]);
+    setColorScheme('comfort');
+  }, [setColorScheme]);
   return null;
 }
 

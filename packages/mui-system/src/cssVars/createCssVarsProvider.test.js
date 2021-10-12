@@ -6,7 +6,7 @@ import createCssVarsProvider from './createCssVarsProvider';
 
 const ThemeContext = React.createContext();
 const DEFAULT_COLOR_SCHEME = 'light';
-const { CssVarsProvider, useMode } = createCssVarsProvider(ThemeContext, {
+const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
   theme: {
     fontSize: { md: '1rem', sm: null },
     palette: {
@@ -15,16 +15,16 @@ const { CssVarsProvider, useMode } = createCssVarsProvider(ThemeContext, {
     },
     getContrastText: () => '#fff', // function should have no effect
   },
-  defaultMode: DEFAULT_COLOR_SCHEME,
+  defaultColorScheme: DEFAULT_COLOR_SCHEME,
 });
 
 const Consumer = () => {
-  const { allModes, mode, setMode } = useMode();
+  const { allColorSchemes, colorScheme, setColorScheme } = useColorScheme();
   return (
     <div>
-      <div data-testid="all-modes">{allModes.join(',')}</div>
-      <div data-testid="current-mode">{mode}</div>
-      <button onClick={() => setMode('dark')}>change to dark</button>
+      <div data-testid="all-colorSchemes">{allColorSchemes.join(',')}</div>
+      <div data-testid="current-color-scheme">{colorScheme}</div>
+      <button onClick={() => setColorScheme('dark')}>change to dark</button>
     </div>
   );
 };
@@ -67,25 +67,25 @@ describe('createCssVarsProvider', () => {
     storage = {};
   });
 
-  describe('mode', () => {
-    it('has specified default mode', () => {
+  describe('colorScheme', () => {
+    it('has specified default colorScheme', () => {
       render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('current-mode').textContent).to.equal('light');
+      expect(screen.getByTestId('current-color-scheme').textContent).to.equal('light');
     });
 
-    it('can get allModes', () => {
+    it('can get allColorSchemes', () => {
       const { rerender } = render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('all-modes').textContent).to.equal('light,dark');
+      expect(screen.getByTestId('all-colorSchemes').textContent).to.equal('light,dark');
 
       rerender(
         <CssVarsProvider theme={{ palette: { comfort: { color: '#e5e5e5' } } }}>
@@ -93,7 +93,7 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('all-modes').textContent).to.equal('light,dark,comfort');
+      expect(screen.getByTestId('all-colorSchemes').textContent).to.equal('light,dark,comfort');
     });
 
     it('attach default dataset on body', () => {
@@ -103,10 +103,10 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(document.body.dataset.muiMode).to.equal('light');
+      expect(document.body.getAttribute('data-mui-color-scheme')).to.equal('light');
     });
 
-    it('can set new mode', () => {
+    it('can set new colorScheme', () => {
       render(
         <CssVarsProvider>
           <Consumer />
@@ -115,28 +115,28 @@ describe('createCssVarsProvider', () => {
 
       fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
-      expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
-      expect(document.body.dataset.muiMode).to.equal('dark');
+      expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
+      expect(document.body.getAttribute('data-mui-color-scheme')).to.equal('dark');
     });
   });
 
   describe('storage', () => {
-    it('should save mode to localStorage', () => {
+    it('should save colorScheme to localStorage', () => {
       render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
       );
 
-      expect(global.localStorage.setItem.lastCall.args).to.eql(['mui-mode', 'light']);
+      expect(global.localStorage.setItem.lastCall.args).to.eql(['mui-color-scheme', 'light']);
 
       fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
-      expect(global.localStorage.setItem.lastCall.args).to.eql(['mui-mode', 'dark']);
+      expect(global.localStorage.setItem.lastCall.args).to.eql(['mui-color-scheme', 'dark']);
     });
 
-    it('should use mode from localStorage if exists', () => {
-      storage['mui-mode'] = 'dark';
+    it('should use colorScheme from localStorage if exists', () => {
+      storage['mui-color-scheme'] = 'dark';
 
       render(
         <CssVarsProvider>
@@ -144,11 +144,11 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
+      expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
     });
 
     it('use custom storageKey', () => {
-      const customStorageKey = 'foo-mode';
+      const customStorageKey = 'foo-colorScheme';
       storage[customStorageKey] = 'dark';
 
       render(
@@ -157,20 +157,20 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
+      expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
       expect(global.localStorage.setItem.lastCall.args).to.eql([customStorageKey, 'dark']);
     });
 
     it('use custom dataAttribute', () => {
-      const customDataAttribute = 'foo-bar';
+      const customAttribute = 'data-foo-bar';
 
       render(
-        <CssVarsProvider dataAttribute={customDataAttribute}>
+        <CssVarsProvider attribute={customAttribute}>
           <Consumer />
         </CssVarsProvider>,
       );
 
-      expect(document.body.dataset.fooBar).to.equal('light');
+      expect(document.body.getAttribute('data-foo-bar')).to.equal('light');
     });
   });
 
@@ -187,7 +187,7 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('text-sm').textContent).to.equal('var(--fontSize-sm)');
     });
 
-    it('merge design system & custom mode', () => {
+    it('merge design system & custom colorScheme', () => {
       render(
         <CssVarsProvider theme={{ palette: { light: { bgcolor: '#ffffff' } } }}>
           <Swatch />
@@ -198,11 +198,11 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('swatch-bgcolor').textContent).to.equal('var(--palette-bgcolor)');
     });
 
-    it('extend palette modes', () => {
+    it('extend palette colorSchemes', () => {
       const comfortColor = '#007FFF';
       render(
         <CssVarsProvider
-          defaultMode="comfort"
+          defaultColorScheme="comfort"
           theme={{
             palette: {
               comfort: {

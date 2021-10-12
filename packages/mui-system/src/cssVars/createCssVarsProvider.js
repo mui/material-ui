@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { GlobalStyles } from '@mui/styled-engine';
 import { deepmerge } from '@mui/utils';
-import getDataset from './getDataset';
 import cssVarsParser from './cssVarsParser';
 import getInitColorSchemeScript, {
-  DEFAULT_DATA_ATTRIBUTE,
+  DEFAULT_ATTRIBUTE,
   DEFAULT_STORAGE_KEY,
 } from './getInitColorSchemeScript';
 
@@ -24,13 +23,13 @@ const resolveMode = (key, fallback) => {
 };
 
 export default function createCssVarsProvider(ThemeContext, options) {
-  const { theme: baseTheme, defaultMode: designSystemMode } = options;
-  const ModeContext = React.createContext(undefined);
+  const { theme: baseTheme, defaultColorScheme: designSystemColorScheme } = options;
+  const ColorSchemeContext = React.createContext(undefined);
 
-  const useMode = () => {
-    const value = React.useContext(ModeContext);
+  const useColorScheme = () => {
+    const value = React.useContext(ColorSchemeContext);
     if (!value) {
-      throw new MuiError('MUI: `useMode` must be called under <CssVarsProvider />');
+      throw new MuiError('MUI: `useColorScheme` must be called under <CssVarsProvider />');
     }
     return value;
   };
@@ -39,19 +38,19 @@ export default function createCssVarsProvider(ThemeContext, options) {
     children,
     theme: themeProp,
     storageKey = DEFAULT_STORAGE_KEY,
-    dataAttribute = DEFAULT_DATA_ATTRIBUTE,
-    defaultMode = designSystemMode,
+    attribute = DEFAULT_ATTRIBUTE,
+    defaultColorScheme = designSystemColorScheme,
   }) {
-    const dataAttributeCamel = getDataset(dataAttribute);
-
-    const [mode, setMode] = React.useState(resolveMode(storageKey, defaultMode));
+    const [colorScheme, setColorScheme] = React.useState(
+      resolveMode(storageKey, defaultColorScheme),
+    );
 
     React.useEffect(() => {
-      if (mode) {
-        document.body.dataset[dataAttributeCamel] = mode;
-        localStorage.setItem(storageKey, mode);
+      if (colorScheme) {
+        document.body.setAttribute(attribute, colorScheme);
+        localStorage.setItem(storageKey, colorScheme);
       }
-    }, [mode, dataAttributeCamel, storageKey]);
+    }, [colorScheme, attribute, storageKey]);
 
     // localStorage event handling
     React.useEffect(() => {
@@ -59,20 +58,20 @@ export default function createCssVarsProvider(ThemeContext, options) {
         if (event.key === storageKey) {
           const storageColorScheme = event.newValue;
           if (storageColorScheme) {
-            setMode(storageColorScheme);
+            setColorScheme(storageColorScheme);
           }
         }
       };
       window.addEventListener('storage', handleStorage);
       return () => window.removeEventListener('storage', handleStorage);
-    }, [setMode, storageKey]);
+    }, [setColorScheme, storageKey]);
 
     let mergedTheme = themeProp
       ? deepmerge(
-          { ...baseTheme, ...(baseTheme.palette && { palette: baseTheme.palette[mode] }) },
-          { ...themeProp, ...(themeProp.palette && { palette: themeProp.palette[mode] }) },
+          { ...baseTheme, ...(baseTheme.palette && { palette: baseTheme.palette[colorScheme] }) },
+          { ...themeProp, ...(themeProp.palette && { palette: themeProp.palette[colorScheme] }) },
         )
-      : { ...baseTheme, palette: baseTheme[mode] };
+      : { ...baseTheme, palette: baseTheme[colorScheme] };
 
     const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme);
 
@@ -88,37 +87,46 @@ export default function createCssVarsProvider(ThemeContext, options) {
 
     Object.entries(paletteModes).forEach(([key, scheme]) => {
       const { css } = cssVarsParser(scheme);
-      if (key === defaultMode) {
+      if (key === defaultColorScheme) {
         styleSheet[':root'] = deepmerge(rootCss, css);
       } else {
-        styleSheet[`[data-${dataAttribute}="${key}"]`] = css;
+        styleSheet[`[${attribute}="${key}"]`] = css;
       }
     });
 
     return (
-      <ModeContext.Provider
+      <ColorSchemeContext.Provider
         value={{
-          mode,
-          setMode,
-          allModes: Object.keys(paletteModes),
+          colorScheme,
+          setColorScheme,
+          allColorSchemes: Object.keys(paletteModes),
         }}
       >
         <GlobalStyles styles={styleSheet} />
         <ThemeContext.Provider value={mergedTheme}>{children}</ThemeContext.Provider>
-      </ModeContext.Provider>
+      </ColorSchemeContext.Provider>
     );
   }
 
   CssVarsProvider.propTypes = {
+    attribute: PropTypes.string,
     /**
-     * A theme object. You can provide a function to extend the outer theme.
+     * Your component tree.
      */
     children: PropTypes.node,
-    dataAttribute: PropTypes.string,
-    defaultMode: PropTypes.string,
+    /**
+     * The initial color scheme for first visit.
+     */
+    defaultColorScheme: PropTypes.string,
+    /**
+     * The key used to store current color scheme.
+     */
     storageKey: PropTypes.string,
+    /**
+     * The calculated theme object that will be passed through context.
+     */
     theme: PropTypes.object,
   };
 
-  return { CssVarsProvider, useMode, getInitColorSchemeScript };
+  return { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
 }
