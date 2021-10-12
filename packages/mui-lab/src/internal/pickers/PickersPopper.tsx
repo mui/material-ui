@@ -7,6 +7,13 @@ import { useForkRef, useEventCallback, ownerDocument } from '@mui/material/utils
 import { styled } from '@mui/material/styles';
 import { TransitionProps as MuiTransitionProps } from '@mui/material/transitions';
 
+export interface ExportedPickerPaperProps {
+  /**
+   * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
+   */
+  PaperProps?: Partial<Omit<MuiPaperProps, 'ref'>>;
+}
+
 export interface ExportedPickerPopperProps {
   /**
    * Popper props passed down to [Popper](https://mui.com/api/popper/) component.
@@ -18,12 +25,13 @@ export interface ExportedPickerPopperProps {
   TransitionComponent?: React.JSXElementConstructor<MuiTransitionProps>;
 }
 
-export interface PickerPopperProps extends ExportedPickerPopperProps, MuiPaperProps {
+export interface PickerPopperProps extends ExportedPickerPopperProps, ExportedPickerPaperProps {
   role: 'tooltip' | 'dialog';
   TrapFocusProps?: Partial<MuiTrapFocusProps>;
   anchorEl: MuiPopperProps['anchorEl'];
   open: MuiPopperProps['open'];
   containerRef?: React.Ref<HTMLDivElement>;
+  children?: React.ReactNode;
   onClose: () => void;
 }
 
@@ -196,7 +204,7 @@ const PickersPopper = (props: PickerPopperProps) => {
     role,
     TransitionComponent = Grow,
     TrapFocusProps,
-    ...paperProps
+    PaperProps = {},
   } = props;
 
   React.useEffect(() => {
@@ -240,7 +248,7 @@ const PickersPopper = (props: PickerPopperProps) => {
     onClick: onPaperClickProp,
     onTouchStart: onPaperTouchStartProp,
     ...otherPaperProps
-  } = paperProps;
+  } = PaperProps;
 
   return (
     <PickersPopperRoot

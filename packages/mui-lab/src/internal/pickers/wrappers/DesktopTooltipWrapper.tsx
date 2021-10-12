@@ -43,7 +43,7 @@ function DesktopTooltipWrapper(props: InternalDesktopWrapperProps) {
         anchorEl={inputContainerRef.current}
         TransitionComponent={TransitionComponent}
         PopperProps={PopperProps}
-        onBlur={handleBlur}
+        PaperProps={{ onBlur: handleBlur }}
         onClose={onDismiss}
       >
         {children}
