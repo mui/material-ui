@@ -304,12 +304,16 @@ describe('<DesktopDatePicker />', () => {
   });
 
   describe('prop: PaperProps', () => {
-    it('forwards data-testid prop', () => {
+    it('forwards onClick and onTouchStart', () => {
+      const handleClick = spy();
+      const handleTouchStart = spy();
       render(
         <DesktopDatePicker
           open
           onChange={() => {}}
           PaperProps={{
+            onClick: handleClick,
+            onTouchStart: handleTouchStart,
             // @ts-expect-error `data-*` attributes are not recognized in props objects
             'data-testid': 'paper',
           }}
@@ -317,7 +321,13 @@ describe('<DesktopDatePicker />', () => {
           value={null}
         />,
       );
-      expect(screen.queryByTestId('paper')).toBeVisible();
+      const paper = screen.getByTestId('paper');
+
+      fireEvent.click(paper);
+      fireEvent.touchStart(paper);
+
+      expect(handleClick.callCount).to.equal(1);
+      expect(handleTouchStart.callCount).to.equal(1);
     });
   });
 

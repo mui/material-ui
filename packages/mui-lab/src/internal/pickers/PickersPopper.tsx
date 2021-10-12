@@ -236,6 +236,11 @@ const PickersPopper = (props: PickerPopperProps) => {
   const handlePaperRef = useForkRef(handleRef, clickAwayRef as React.Ref<HTMLDivElement>);
 
   const ownerState = props;
+  const {
+    onClick: onPaperClickProp,
+    onTouchStart: onPaperTouchStartProp,
+    ...otherPaperProps
+  } = paperProps;
 
   return (
     <PickersPopperRoot
@@ -256,13 +261,23 @@ const PickersPopper = (props: PickerPopperProps) => {
         >
           <TransitionComponent {...TransitionProps}>
             <PickersPopperPaper
-              elevation={8}
-              {...paperProps}
               tabIndex={-1}
+              elevation={8}
               ref={handlePaperRef}
-              onClick={onPaperClick}
-              onTouchStart={onPaperTouchStart}
+              onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+                onPaperClick(event);
+                if (onPaperClickProp) {
+                  onPaperClickProp(event);
+                }
+              }}
+              onTouchStart={(event: React.TouchEvent<HTMLDivElement>) => {
+                onPaperTouchStart(event);
+                if (onPaperTouchStartProp) {
+                  onPaperTouchStartProp(event);
+                }
+              }}
               ownerState={{ ...ownerState, placement }}
+              {...otherPaperProps}
             >
               {children}
             </PickersPopperPaper>
