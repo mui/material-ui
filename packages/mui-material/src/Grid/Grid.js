@@ -270,10 +270,8 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const columnsContext = React.useContext(GridContext);
 
   // setting prop before context to accomodate nesting
-  const columnSet = columnsProp || columnsContext || 12;
-
   // colums set with default breakpoint unit of 12
-  const columns = columnSet || 12;
+  const columns = columnsProp || columnsContext || 12;
 
   const ownerState = {
     ...props,
