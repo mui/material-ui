@@ -2436,7 +2436,7 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
 -    backgroundColor: theme.palette.primary.main
 -  },
 -  cta: {
--    borderRadius: theme.shape.radius.
+-    borderRadius: theme.shape.radius
 -  },
 -  content: {
 -    color: theme.palette.common.white,
@@ -2457,7 +2457,7 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
 +    backgroundColor: theme.palette.primary.main
 +  },
 +  [`& .${classes.cta}`]: {
-+    borderRadius: theme.shape.radius.
++    borderRadius: theme.shape.radius
 +  },
 +  [`& .${classes.content}`]: {
 +    color: theme.palette.common.white,
