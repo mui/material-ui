@@ -10,7 +10,7 @@ const theme = createTheme({
       styleOverrides: {
         root: (props) => ({
           border: 'none',
-          ...(props?.color === 'primary' && {
+          ...(props.color === 'primary' && {
             border: `1px solid ${defaultTheme.palette.primary.dark}`,
           }),
         }),

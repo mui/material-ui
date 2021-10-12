@@ -137,7 +137,9 @@ export default function createStyled(input = {}) {
             }
 
             return overrides.map((override) =>
-              typeof override === 'function' ? override(props?.ownerState) : override,
+              typeof override === 'function'
+                ? override({ ...props?.ownerState, ...props })
+                : override,
             );
           }
 

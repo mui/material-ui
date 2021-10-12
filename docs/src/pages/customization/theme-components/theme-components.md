@@ -43,7 +43,7 @@ const theme = createTheme({
         root: (props) => ({
           // Some CSS
           border: 'none',
-          ...(props?.color === 'primary' && {
+          ...(props.color === 'primary' && {
             border: `1px solid ${blue[500]}`,
           }),
         }),

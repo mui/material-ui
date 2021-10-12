@@ -129,7 +129,7 @@ describe('createStyled', () => {
 
         const { container } = render(
           <ThemeProvider theme={theme}>
-            <Button ownerState={{ color: 'secondary' }}>Hello</Button>
+            <Button color="secondary">Hello</Button>
           </ThemeProvider>,
         );
 
@@ -166,7 +166,7 @@ describe('createStyled', () => {
 
         const { container } = render(
           <ThemeProvider theme={theme}>
-            <Button ownerState={{ color: 'primary' }}>Hello</Button>
+            <Button color="primary">Hello</Button>
           </ThemeProvider>,
         );
 

@@ -115,7 +115,10 @@ import { ComponentsProps, ComponentsPropsList } from './props';
 export type OverridesStyleRules<
   ClassKey extends string = string,
   Name extends keyof ComponentsPropsList = never,
-> = Record<ClassKey, CSSInterpolation | ((props: ComponentsProps[Name]) => CSSInterpolation)>;
+> = Record<
+  ClassKey,
+  CSSInterpolation | ((props: NonNullable<ComponentsProps[Name]>) => CSSInterpolation)
+>;
 
 export type ComponentsOverrides = {
   [Name in keyof ComponentNameToClassKey]?: Partial<
