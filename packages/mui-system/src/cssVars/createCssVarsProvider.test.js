@@ -9,10 +9,19 @@ const DEFAULT_COLOR_SCHEME = 'light';
 const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
   theme: {
     fontSize: { md: '1rem', sm: null },
-    palette: {
-      light: { color: '#000000' },
-      dark: { color: '#ffffff' },
+    colorSchemes: {
+      light: {
+        palette: {
+          color: '#000000',
+        },
+      },
+      dark: {
+        palette: {
+          color: '#ffffff',
+        },
+      },
     },
+    // TODO: create a separate test or remove the function
     getContrastText: () => '#fff', // function should have no effect
   },
   defaultColorScheme: DEFAULT_COLOR_SCHEME,
@@ -88,7 +97,7 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('all-colorSchemes').textContent).to.equal('light,dark');
 
       rerender(
-        <CssVarsProvider theme={{ palette: { comfort: { color: '#e5e5e5' } } }}>
+        <CssVarsProvider theme={{ colorSchemes: { comfort: { palette: { color: '#e5e5e5' } } } }}>
           <Consumer />
         </CssVarsProvider>,
       );
@@ -189,7 +198,7 @@ describe('createCssVarsProvider', () => {
 
     it('merge design system & custom colorScheme', () => {
       render(
-        <CssVarsProvider theme={{ palette: { light: { bgcolor: '#ffffff' } } }}>
+        <CssVarsProvider theme={{ colorSchemes: { light: { palette: { bgcolor: '#ffffff' } } } }}>
           <Swatch />
         </CssVarsProvider>,
       );
@@ -204,9 +213,11 @@ describe('createCssVarsProvider', () => {
         <CssVarsProvider
           defaultColorScheme="comfort"
           theme={{
-            palette: {
+            colorSchemes: {
               comfort: {
-                color: comfortColor,
+                palette: {
+                  color: comfortColor,
+                },
               },
             },
           }}

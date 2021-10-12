@@ -23,7 +23,7 @@ const resolveMode = (key, fallback) => {
 };
 
 export default function createCssVarsProvider(ThemeContext, options) {
-  const { theme: baseTheme, defaultColorScheme: designSystemColorScheme } = options;
+  const { theme: baseTheme = {}, defaultColorScheme: designSystemColorScheme } = options;
   const ColorSchemeContext = React.createContext(undefined);
 
   const useColorScheme = () => {
@@ -36,7 +36,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
 
   function CssVarsProvider({
     children,
-    theme: themeProp,
+    theme: themeProp = {},
     storageKey = DEFAULT_STORAGE_KEY,
     attribute = DEFAULT_ATTRIBUTE,
     defaultColorScheme = designSystemColorScheme,
@@ -66,27 +66,30 @@ export default function createCssVarsProvider(ThemeContext, options) {
       return () => window.removeEventListener('storage', handleStorage);
     }, [setColorScheme, storageKey]);
 
-    let mergedTheme = themeProp
-      ? deepmerge(
-          { ...baseTheme, ...(baseTheme.palette && { palette: baseTheme.palette[colorScheme] }) },
-          { ...themeProp, ...(themeProp.palette && { palette: themeProp.palette[colorScheme] }) },
-        )
-      : { ...baseTheme, palette: baseTheme[colorScheme] };
+    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = baseTheme;
+    const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
+
+    let mergedTheme = deepmerge(restBaseTheme, restThemeProp);
+    const colorSchemes = deepmerge(baseColorSchemes, colorSchemesProp);
 
     const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme);
 
     mergedTheme = {
       ...mergedTheme,
+      ...colorSchemes[colorScheme],
       vars: rootVars,
     };
 
     const styleSheet = {};
 
-    const paletteModes =
-      (themeProp ? deepmerge(baseTheme.palette, themeProp.palette) : baseTheme.palette) || {};
-
-    Object.entries(paletteModes).forEach(([key, scheme]) => {
-      const { css } = cssVarsParser(scheme);
+    Object.entries(colorSchemes).forEach(([key, scheme]) => {
+      const { css, vars } = cssVarsParser(scheme);
+      if (key === colorScheme) {
+        mergedTheme.vars = {
+          ...mergedTheme.vars,
+          ...vars,
+        };
+      }
       if (key === defaultColorScheme) {
         styleSheet[':root'] = deepmerge(rootCss, css);
       } else {
@@ -99,7 +102,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
         value={{
           colorScheme,
           setColorScheme,
-          allColorSchemes: Object.keys(paletteModes),
+          allColorSchemes: Object.keys(colorSchemes),
         }}
       >
         <GlobalStyles styles={styleSheet} />

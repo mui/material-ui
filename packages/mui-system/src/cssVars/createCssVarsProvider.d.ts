@@ -12,19 +12,20 @@ type PartialDeep<T> = {
  * If yes, they must provide the palette of the extended colorScheme. Otherwise `theme` is optional.
  */
 type DecideTheme<
-  Theme extends { palette: Record<DesignSystemColorScheme | ApplicationColorScheme, any> },
+  Theme extends { colorSchemes: Record<DesignSystemColorScheme | ApplicationColorScheme, any> },
   DesignSystemColorScheme extends string,
   ApplicationColorScheme extends string | never,
 > = [ApplicationColorScheme] extends [never]
   ? { theme?: PartialDeep<Theme> }
   : {
-      theme: PartialDeep<Omit<Theme, 'palette'>> & {
-        palette: PartialDeep<
-          Record<DesignSystemColorScheme, Theme['palette'][DesignSystemColorScheme]>
+      theme: PartialDeep<Omit<Theme, 'colorSchemes'>> & {
+        colorSchemes: PartialDeep<
+          Record<DesignSystemColorScheme, Theme['colorSchemes'][DesignSystemColorScheme]>
         > &
-          Record<ApplicationColorScheme, Theme['palette'][ApplicationColorScheme]>;
+          Record<ApplicationColorScheme, Theme['colorSchemes'][ApplicationColorScheme]>;
       };
     };
+
 export interface ColorSchemeContextValue<DesignSystemColorScheme extends string> {
   allColorSchemes: DesignSystemColorScheme[];
   colorScheme: DesignSystemColorScheme | undefined;
@@ -32,21 +33,21 @@ export interface ColorSchemeContextValue<DesignSystemColorScheme extends string>
 }
 
 export default function createCssVarsProvider<
-  Theme extends { palette: Record<DesignSystemColorScheme | ApplicationColorScheme, any> },
+  Theme extends { colorSchemes: Record<DesignSystemColorScheme | ApplicationColorScheme, any> },
   DesignSystemColorScheme extends string,
   ApplicationColorScheme extends string = never,
 >(
   ThemeContext: React.Context<Theme | undefined>,
   options: {
-    theme: Omit<Theme, 'palette'> & {
-      palette: Record<
+    theme: Omit<Theme, 'colorSchemes'> & {
+      colorSchemes: Record<
         DesignSystemColorScheme,
-        Theme['palette'][DesignSystemColorScheme | ApplicationColorScheme]
+        Theme['colorSchemes'][DesignSystemColorScheme | ApplicationColorScheme]
       > &
         Partial<
           Record<
             ApplicationColorScheme,
-            Theme['palette'][DesignSystemColorScheme | ApplicationColorScheme]
+            Theme['colorSchemes'][DesignSystemColorScheme | ApplicationColorScheme]
           >
         >;
     };
