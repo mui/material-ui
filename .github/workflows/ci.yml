@@ -6,7 +6,8 @@ on:
       # Renovate branches are always Pull Requests.
       # We don't need to run CI twice (push+pull_request)
       - "renovate/**"
-  pull_request: null
+  pull_request:
+
 jobs:
   # Tests dev-only scripts across all supported dev environments
   test-dev:
