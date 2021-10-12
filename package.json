@@ -37,7 +37,7 @@
     "stylelint": "stylelint --reportInvalidScopeDisables --reportNeedlessDisables 'docs/**/*.{js,ts,tsx}'",
     "prettier": "node ./scripts/prettier.js",
     "prettier:all": "node ./scripts/prettier.js write",
-    "size:snapshot": "node --max-old-space-size=2048 ./scripts/sizeSnapshot/create",
+    "size:snapshot": "node --max-old-space-size=4096 ./scripts/sizeSnapshot/create",
     "size:why": "yarn size:snapshot --analyze",
     "start": "yarn && yarn docs:dev",
     "t": "node test/cli.js",
