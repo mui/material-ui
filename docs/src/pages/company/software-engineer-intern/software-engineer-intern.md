@@ -9,11 +9,11 @@
 - Start date: Flexible.
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently; the rest of us won't know what you're doing day-to-day unless you tell us.
-- We expect the internship to be at least two months long. 
+- We expect the internship to be at least two months long.
 
 ## About Us
 
-See the [careers](/company/careers/) and [about us](https://next.material-ui.com/branding/about/) pages.
+See the [careers](/company/careers/) and [about us](https://mui.com/about/) pages.
 
 ### Why we're hiring
 
