@@ -143,7 +143,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
   const icon =
-    iconProp && label && typeof iconProp !== 'string'
+    iconProp && label && React.isValidElement(iconProp)
       ? React.cloneElement(iconProp, {
           className: classes.iconWrapper,
         })
