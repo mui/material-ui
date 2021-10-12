@@ -22,7 +22,7 @@ const useUtilityClasses = (ownerState) => {
       selected && 'selected',
       disabled && 'disabled',
     ],
-    icon: [icon && 'iconWrapper'],
+    iconWrapper: ['iconWrapper'],
   };
 
   return composeClasses(slots, getTabUtilityClass, classes);
@@ -55,11 +55,6 @@ const TabRoot = styled(ButtonBase, {
   textAlign: 'center',
   flexDirection: 'column',
   lineHeight: 1.25,
-  ...(ownerState.icon && {
-    [`& > .${tabClasses.iconWrapper}`]: {
-      display: 'inherit',
-    },
-  }),
   ...(ownerState.icon &&
     ownerState.label && {
       minHeight: 72,
@@ -67,7 +62,6 @@ const TabRoot = styled(ButtonBase, {
       paddingBottom: 9,
       [`& > .${tabClasses.iconWrapper}`]: {
         marginBottom: 6,
-        display: 'inherit',
       },
     }),
   ...(ownerState.textColor === 'inherit' && {
@@ -117,7 +111,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     disableFocusRipple = false,
     // eslint-disable-next-line react/prop-types
     fullWidth,
-    icon,
+    icon: iconProp,
     // eslint-disable-next-line react/prop-types
     indicator,
     label,
@@ -140,7 +134,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     disabled,
     disableFocusRipple,
     selected,
-    icon: !!icon,
+    icon: !!iconProp,
     label: !!label,
     fullWidth,
     textColor,
@@ -148,7 +142,12 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-
+  const icon =
+    iconProp && label && React.isValidElement(iconProp)
+      ? React.cloneElement(iconProp, {
+          className: clsx(classes.iconWrapper, iconProp.props.className),
+        })
+      : iconProp;
   const handleClick = (event) => {
     if (!selected && onChange) {
       onChange(event, value);
@@ -183,8 +182,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       tabIndex={selected ? 0 : -1}
       {...other}
     >
-      {icon && <span className={classes.icon}>{icon}</span>}
-
+      {icon}
       {label}
       {indicator}
     </TabRoot>
