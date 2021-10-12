@@ -542,7 +542,7 @@ import Typography from '@material-ui/core/Typography';
 -    backgroundColor: theme.palette.primary.main
 -  },
 -  cta: {
--    borderRadius: theme.shape.radius.
+-    borderRadius: theme.shape.radius
 -  },
 -  content: {
 -    color: theme.palette.common.white,
@@ -563,7 +563,7 @@ import Typography from '@material-ui/core/Typography';
 +    backgroundColor: theme.palette.primary.main
 +  },
 +  [`& .${classes.cta}`]: {
-+    borderRadius: theme.shape.radius.
++    borderRadius: theme.shape.radius
 +  },
 +  [`& .${classes.content}`]: {
 +    color: theme.palette.common.white,

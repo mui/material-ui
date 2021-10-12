@@ -4,10 +4,10 @@ import {
   LinkProps as RouterLinkProps,
   MemoryRouter as Router,
 } from 'react-router-dom';
-import { Theme, ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Link from '@mui/material/Link';
+import Link, { LinkProps } from '@mui/material/Link';
 
 const LinkBehavior = React.forwardRef<
   any,
@@ -18,27 +18,25 @@ const LinkBehavior = React.forwardRef<
   return <RouterLink data-testid="custom-link" ref={ref} to={href} {...other} />;
 });
 
-const themeSetter = (outerTheme: Theme) =>
-  createTheme(outerTheme, {
-    components: {
-      MuiLink: {
-        defaultProps: {
-          // @ts-ignore
-          component: LinkBehavior,
-        },
-      },
-      MuiButtonBase: {
-        defaultProps: {
-          LinkComponent: LinkBehavior,
-        },
+const theme = createTheme({
+  components: {
+    MuiLink: {
+      defaultProps: {
+        component: LinkBehavior,
+      } as LinkProps,
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        LinkComponent: LinkBehavior,
       },
     },
-  });
+  },
+});
 
 export default function LinkRouterWithTheme() {
   return (
     <Stack sx={{ typography: 'body1' }} alignItems="center" spacing={1}>
-      <ThemeProvider theme={themeSetter}>
+      <ThemeProvider theme={theme}>
         <Router>
           <Link href="/">Link</Link>
           <Button href="/" variant="contained">

@@ -18,6 +18,9 @@ export { default as generateUtilityClasses } from './generateUtilityClasses';
 export { default as FormControlUnstyled } from './FormControlUnstyled';
 export * from './FormControlUnstyled';
 
+export { default as InputUnstyled } from './InputUnstyled';
+export * from './InputUnstyled';
+
 export { default as ModalUnstyled } from './ModalUnstyled';
 export * from './ModalUnstyled';
 
