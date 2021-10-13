@@ -70,8 +70,9 @@ You define your project's breakpoints in the `theme.breakpoints` section of your
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 - [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values): Default to the [above values](#default-breakpoints). The keys are your screen names, and the values are the min-width where that breakpoint should start.
-- `theme.breakpoints.unit`: Default to `px`. The unit used for the breakpoint's values.
-- `theme.breakpoints.step`: Default to 5 (`0.05px`). The increment used to implement exclusive breakpoints.
+- `theme.breakpoints.unit`: Default to `'px'`. The unit used for the breakpoint's values.
+- `theme.breakpoints.step`: Default to `5`. The increment divided by 100 used to implement exclusive breakpoints.
+  For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
 
 If you change the default breakpoints's values, you need to provide them all:
 
