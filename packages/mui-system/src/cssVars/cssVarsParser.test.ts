@@ -72,7 +72,7 @@ describe('cssVarsParser', () => {
       });
     });
 
-    it('does not throw value is null', () => {
+    it('does not throw if the value is null', () => {
       const result: Record<string, boolean> = {};
       walkObjectDeep<boolean>(
         {
