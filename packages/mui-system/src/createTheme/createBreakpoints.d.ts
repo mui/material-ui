@@ -17,11 +17,9 @@ export interface Breakpoints {
   only: (key: Breakpoint) => string;
 }
 
-export type BreakpointsOptions = Partial<
-  {
-    unit: string;
-    step: number;
-  } & Breakpoints
->;
+export interface BreakpointsOptions extends Partial<Breakpoints> {
+  step?: string | undefined;
+  unit?: string | undefined;
+}
 
 export default function createBreakpoints(options: BreakpointsOptions): Breakpoints;
