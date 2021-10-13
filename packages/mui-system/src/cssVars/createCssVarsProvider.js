@@ -24,6 +24,10 @@ const resolveMode = (key, fallback) => {
 
 export default function createCssVarsProvider(ThemeContext, options) {
   const { theme: baseTheme = {}, defaultColorScheme: designSystemColorScheme } = options;
+
+  if (!baseTheme.colorSchemes || !baseTheme.colorSchemes[designSystemColorScheme]) {
+    console.error(`MUI: \`${designSystemColorScheme}\` does not exist in \`theme.colorSchemes\`.`);
+  }
   const ColorSchemeContext = React.createContext(undefined);
 
   const useColorScheme = () => {
@@ -97,12 +101,25 @@ export default function createCssVarsProvider(ThemeContext, options) {
       }
     });
 
+    const allColorSchemes = Object.keys(colorSchemes);
+
+    const wrappedSetColorScheme = React.useCallback(
+      (val) => {
+        if (typeof val === 'string' && !allColorSchemes.includes(val)) {
+          console.error(`\`${val}\` does not exist in \`theme.colorSchemes\`.`);
+        } else {
+          setColorScheme(val);
+        }
+      },
+      [setColorScheme, allColorSchemes],
+    );
+
     return (
       <ColorSchemeContext.Provider
         value={{
           colorScheme,
-          setColorScheme,
-          allColorSchemes: Object.keys(colorSchemes),
+          setColorScheme: wrappedSetColorScheme,
+          allColorSchemes,
         }}
       >
         <GlobalStyles styles={styleSheet} />

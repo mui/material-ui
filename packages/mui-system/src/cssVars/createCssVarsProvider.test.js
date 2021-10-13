@@ -3,57 +3,9 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createClientRender, screen, fireEvent } from 'test/utils';
 import createCssVarsProvider from './createCssVarsProvider';
+import { DEFAULT_ATTRIBUTE, DEFAULT_STORAGE_KEY } from './getInitColorSchemeScript';
 
 const ThemeContext = React.createContext();
-const DEFAULT_COLOR_SCHEME = 'light';
-const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
-  theme: {
-    fontSize: { md: '1rem', sm: null },
-    colorSchemes: {
-      light: {
-        palette: {
-          color: '#000000',
-        },
-      },
-      dark: {
-        palette: {
-          color: '#ffffff',
-        },
-      },
-    },
-    // TODO: create a separate test or remove the function
-    getContrastText: () => '#fff', // function should have no effect
-  },
-  defaultColorScheme: DEFAULT_COLOR_SCHEME,
-});
-
-const Consumer = () => {
-  const { allColorSchemes, colorScheme, setColorScheme } = useColorScheme();
-  return (
-    <div>
-      <div data-testid="all-colorSchemes">{allColorSchemes.join(',')}</div>
-      <div data-testid="current-color-scheme">{colorScheme}</div>
-      <button onClick={() => setColorScheme('dark')}>change to dark</button>
-    </div>
-  );
-};
-
-const Text = ({ scale = 'md' }) => {
-  const theme = React.useContext(ThemeContext);
-  return <div data-testid={`text-${scale}`}>{theme.vars.fontSize[scale]}</div>;
-};
-
-const Swatch = () => {
-  const theme = React.useContext(ThemeContext);
-  return (
-    <div>
-      <div data-testid="swatch-color">{theme.vars.palette.color}</div>
-      <div data-testid="swatch-color-value">{theme.palette.color}</div>
-      <div data-testid="swatch-bgcolor">{theme.vars.palette.bgcolor}</div>
-      <div data-testid="swatch-bgcolor-value">{theme.palette.bgcolor}</div>
-    </div>
-  );
-};
 
 describe('createCssVarsProvider', () => {
   const render = createClientRender();
@@ -76,8 +28,27 @@ describe('createCssVarsProvider', () => {
     storage = {};
   });
 
-  describe('colorScheme', () => {
+  describe('[Design System] CssVarsProvider', () => {
+    it('display error if `defaultColorScheme` does not exist in theme.colorSchemes', () => {
+      expect(() =>
+        createCssVarsProvider(ThemeContext, {
+          theme: {},
+          defaultColorScheme: 'light',
+        }),
+      ).toErrorDev('MUI: `light` does not exist in `theme.colorSchemes`.');
+    });
+
     it('has specified default colorScheme', () => {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
+        theme: {
+          colorSchemes: { light: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Consumer = () => {
+        const { colorScheme } = useColorScheme();
+        return <div data-testid="current-color-scheme">{colorScheme}</div>;
+      };
       render(
         <CssVarsProvider>
           <Consumer />
@@ -87,7 +58,20 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('current-color-scheme').textContent).to.equal('light');
     });
 
-    it('can get allColorSchemes', () => {
+    it('can access to allColorSchemes', () => {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
+        theme: {
+          colorSchemes: {
+            light: {},
+            dark: {},
+          },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Consumer = () => {
+        const { allColorSchemes } = useColorScheme();
+        return <div data-testid="all-colorSchemes">{allColorSchemes.join(',')}</div>;
+      };
       const { rerender } = render(
         <CssVarsProvider>
           <Consumer />
@@ -105,17 +89,22 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('all-colorSchemes').textContent).to.equal('light,dark,comfort');
     });
 
-    it('attach default dataset on body', () => {
-      render(
-        <CssVarsProvider>
-          <Consumer />
-        </CssVarsProvider>,
-      );
-
-      expect(document.body.getAttribute('data-mui-color-scheme')).to.equal('light');
-    });
-
     it('can set new colorScheme', () => {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
+        theme: {
+          colorSchemes: { light: {}, dark: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Consumer = () => {
+        const { colorScheme, setColorScheme } = useColorScheme();
+        return (
+          <div>
+            <div data-testid="current-color-scheme">{colorScheme}</div>
+            <button onClick={() => setColorScheme('dark')}>change to dark</button>
+          </div>
+        );
+      };
       render(
         <CssVarsProvider>
           <Consumer />
@@ -127,9 +116,75 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
       expect(document.body.getAttribute('data-mui-color-scheme')).to.equal('dark');
     });
+
+    it('display error if non-existed colorScheme is set', () => {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
+        theme: {
+          colorSchemes: { light: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Consumer = () => {
+        const { setColorScheme } = useColorScheme();
+        return <button onClick={() => setColorScheme('foo')}>change to dark</button>;
+      };
+
+      render(
+        <CssVarsProvider>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+
+      expect(() =>
+        fireEvent.click(screen.getByRole('button', { name: 'change to dark' })),
+      ).toErrorDev('`foo` does not exist in `theme.colorSchemes`.');
+    });
   });
 
-  describe('storage', () => {
+  describe('DOM', () => {
+    it('attach default dataset on body', () => {
+      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+        theme: {
+          colorSchemes: { light: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+      render(<CssVarsProvider />);
+
+      expect(document.body.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('light');
+    });
+
+    it('use custom attribute', () => {
+      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+        theme: {
+          colorSchemes: { light: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+      const customAttribute = 'data-foo-bar';
+
+      render(<CssVarsProvider attribute={customAttribute} />);
+
+      expect(document.body.getAttribute('data-foo-bar')).to.equal('light');
+    });
+  });
+
+  describe('Storage', () => {
+    const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
+      theme: {
+        colorSchemes: { light: {}, dark: {} },
+      },
+      defaultColorScheme: 'light',
+    });
+    const Consumer = () => {
+      const { colorScheme, setColorScheme } = useColorScheme();
+      return (
+        <div>
+          <div data-testid="current-color-scheme">{colorScheme}</div>
+          <button onClick={() => setColorScheme('dark')}>change to dark</button>
+        </div>
+      );
+    };
     it('should save colorScheme to localStorage', () => {
       render(
         <CssVarsProvider>
@@ -137,15 +192,15 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(global.localStorage.setItem.lastCall.args).to.eql(['mui-color-scheme', 'light']);
+      expect(global.localStorage.setItem.lastCall.args).to.eql([DEFAULT_STORAGE_KEY, 'light']);
 
       fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
-      expect(global.localStorage.setItem.lastCall.args).to.eql(['mui-color-scheme', 'dark']);
+      expect(global.localStorage.setItem.lastCall.args).to.eql([DEFAULT_STORAGE_KEY, 'dark']);
     });
 
     it('should use colorScheme from localStorage if exists', () => {
-      storage['mui-color-scheme'] = 'dark';
+      storage[DEFAULT_STORAGE_KEY] = 'dark';
 
       render(
         <CssVarsProvider>
@@ -169,22 +224,23 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
       expect(global.localStorage.setItem.lastCall.args).to.eql([customStorageKey, 'dark']);
     });
-
-    it('use custom dataAttribute', () => {
-      const customAttribute = 'data-foo-bar';
-
-      render(
-        <CssVarsProvider attribute={customAttribute}>
-          <Consumer />
-        </CssVarsProvider>,
-      );
-
-      expect(document.body.getAttribute('data-foo-bar')).to.equal('light');
-    });
   });
 
-  describe('custom theme', () => {
-    it('merge design system theme with custom theme', () => {
+  describe('[Application] Customization', () => {
+    it('merge custom theme', () => {
+      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+        theme: {
+          fontSize: { md: '1rem', sm: null },
+          colorSchemes: {
+            light: {},
+          },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Text = ({ scale = 'md' }) => {
+        const theme = React.useContext(ThemeContext);
+        return <div data-testid={`text-${scale}`}>{theme.vars.fontSize[scale]}</div>;
+      };
       render(
         <CssVarsProvider theme={{ fontSize: { sm: '0.75rem' } }}>
           <Text scale="md" />
@@ -196,18 +252,28 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('text-sm').textContent).to.equal('var(--fontSize-sm)');
     });
 
-    it('merge design system & custom colorScheme', () => {
-      render(
-        <CssVarsProvider theme={{ colorSchemes: { light: { palette: { bgcolor: '#ffffff' } } } }}>
-          <Swatch />
-        </CssVarsProvider>,
-      );
-
-      expect(screen.getByTestId('swatch-color').textContent).to.equal('var(--palette-color)');
-      expect(screen.getByTestId('swatch-bgcolor').textContent).to.equal('var(--palette-bgcolor)');
-    });
-
-    it('extend palette colorSchemes', () => {
+    it('merge custom colorSchemes', () => {
+      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+        theme: {
+          colorSchemes: {
+            light: {
+              palette: {
+                color: '#000000',
+              },
+            },
+          },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Swatch = () => {
+        const theme = React.useContext(ThemeContext);
+        return (
+          <div>
+            <div data-testid="swatch-color">{theme.vars.palette.color}</div>
+            <div data-testid="swatch-color-value">{theme.palette.color}</div>
+          </div>
+        );
+      };
       const comfortColor = '#007FFF';
       render(
         <CssVarsProvider
@@ -228,6 +294,38 @@ describe('createCssVarsProvider', () => {
 
       expect(screen.getByTestId('swatch-color').textContent).to.equal('var(--palette-color)');
       expect(screen.getByTestId('swatch-color-value').textContent).to.equal(comfortColor);
+    });
+
+    it('extend palette property in colorSchemes', () => {
+      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+        theme: {
+          colorSchemes: {
+            light: {
+              palette: {
+                color: '#000000',
+              },
+            },
+          },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Swatch = () => {
+        const theme = React.useContext(ThemeContext);
+        return (
+          <div>
+            <div data-testid="swatch-color">{theme.vars.palette.color}</div>
+            <div data-testid="swatch-bgcolor">{theme.vars.palette.bgcolor}</div>
+          </div>
+        );
+      };
+      render(
+        <CssVarsProvider theme={{ colorSchemes: { light: { palette: { bgcolor: '#ffffff' } } } }}>
+          <Swatch />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('swatch-color').textContent).to.equal('var(--palette-color)');
+      expect(screen.getByTestId('swatch-bgcolor').textContent).to.equal('var(--palette-bgcolor)');
     });
   });
 });
