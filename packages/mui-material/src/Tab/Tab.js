@@ -118,7 +118,6 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     disableFocusRipple = false,
     // eslint-disable-next-line react/prop-types
     fullWidth,
-   
     icon: iconProp,
     iconPosition = 'top',
     // eslint-disable-next-line react/prop-types
@@ -192,7 +191,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       tabIndex={selected ? 0 : -1}
       {...other}
     >
-      {iconPosition === 'top' || iconPosition === 'left' ? (
+      {iconPosition === 'top' || iconPosition === 'start' ? (
         <React.Fragment>
           {icon}
           {label}
@@ -250,10 +249,10 @@ Tab.propTypes /* remove-proptypes */ = {
    */
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   /**
-   * The position for the icon
+   * The position of the icon relative to the label.
    * @default 'top'
    */
-  iconPosition: PropTypes.string,
+  iconPosition: PropTypes.oneOf(['bottom', 'end', 'start', 'top']),
   /**
    * The label element.
    */
