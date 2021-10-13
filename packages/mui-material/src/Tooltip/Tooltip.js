@@ -629,11 +629,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const TooltipComponent = components.Tooltip ?? TooltipTooltip;
   const ArrowComponent = components.Arrow ?? TooltipArrow;
 
-  const { className: popperPropsClassName, ...otherPopperProps } = PopperProps;
-
   const popperProps = appendOwnerState(
     PopperComponent,
-    { ...otherPopperProps, ...componentsProps.popper },
+    { ...PopperProps, ...componentsProps.popper },
     ownerState,
   );
 
@@ -681,7 +679,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         transition
         {...interactiveWrapperListeners}
         {...popperProps}
-        className={clsx(classes.popper, popperPropsClassName || componentsProps.popper?.className)}
+        className={clsx(classes.popper, PopperProps?.className, componentsProps.popper?.className)}
         popperOptions={popperOptions}
       >
         {({ TransitionProps: TransitionPropsInner }) => (

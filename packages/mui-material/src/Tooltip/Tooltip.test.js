@@ -1294,7 +1294,7 @@ describe('<Tooltip />', () => {
       expect(getByTestId('popper')).to.have.class('my-class');
     });
 
-    it('should allow PopperProps className to take precedence over componentsProps.popper className if both are applied', () => {
+    it('should apply both the className from PopperProps and componentsProps.popper if both are passed', () => {
       const { getByTestId } = render(
         <Tooltip
           title="Hello World"
@@ -1307,7 +1307,7 @@ describe('<Tooltip />', () => {
       );
 
       expect(getByTestId('popper')).to.have.class('my-class-2');
-      expect(getByTestId('popper')).to.not.have.class('my-class');
+      expect(getByTestId('popper')).to.have.class('my-class');
     });
   });
 });
