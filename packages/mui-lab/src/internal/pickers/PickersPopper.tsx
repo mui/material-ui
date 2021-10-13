@@ -33,7 +33,7 @@ export interface PickerPopperProps extends ExportedPickerPopperProps, ExportedPi
   containerRef?: React.Ref<HTMLDivElement>;
   children?: React.ReactNode;
   onClose: () => void;
-  onBlur: () => void;
+  onBlur?: () => void;
 }
 
 const PickersPopperRoot = styled(Popper, { skipSx: true })<{ ownerState: PickerPopperProps }>(
