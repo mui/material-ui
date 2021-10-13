@@ -80,7 +80,7 @@ export const style = ({ ownerState, theme }) => {
       },
       ...(ownerState.maxColumnHeight &&
         ownerState.maxNumberOfRows && {
-          height: ownerState.maxColumnHeight + spacing * ownerState.maxNumberOfRows,
+          height: Math.ceil(ownerState.maxColumnHeight + spacing * ownerState.maxNumberOfRows),
         }),
     };
   };
