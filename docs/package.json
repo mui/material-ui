@@ -60,7 +60,7 @@
     "accept-language": "^3.0.18",
     "address": "^1.1.2",
     "ast-types": "^0.14.2",
-    "autoprefixer": "^10.3.6",
+    "autoprefixer": "^10.3.7",
     "autosuggest-highlight": "^3.1.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-optimize-clsx": "^2.6.2",
