@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
 import { useTheme } from '@mui/private-theming';
-import { ThemeContext } from '@mui/styled-engine';
+import { ThemeContext } from '@mui/styled-engine-sc';
 import ThemeProvider from './ThemeProvider';
 
 describe('ThemeProvider', () => {

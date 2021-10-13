@@ -1,4 +1,4 @@
-import styledEngineStyled from '@mui/styled-engine';
+import styledEngineStyled from '@mui/styled-engine-sc';
 import { getDisplayName } from '@mui/utils';
 import createTheme from './createTheme';
 import styleFunctionSx from './styleFunctionSx';

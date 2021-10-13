@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   CreateMUIStyled as CreateMUIStyledStyledEngine,
   CSSInterpolation,
-} from '@mui/styled-engine';
+} from '@mui/styled-engine-sc';
 import { SxProps } from './styleFunctionSx';
 import { Theme as DefaultTheme } from './createTheme';
 

@@ -1,4 +1,4 @@
-import { CSSObject } from '@mui/styled-engine';
+import { CSSObject } from '@mui/styled-engine-sc';
 import { StyleFunction } from './Box';
 
 export interface StyleOptions<PropKey> {
