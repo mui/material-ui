@@ -144,16 +144,6 @@ describe('cssVarsParser', () => {
           '--mui-fontSize-md': '16px',
         });
       });
-
-      it('does nothing if deep value is not string or number', () => {
-        const cssVarsParser = createCssVarsParser();
-        const { css } = cssVarsParser({
-          getContrastText: () => '',
-          foo: undefined,
-          bar: null,
-        });
-        expect(css).to.deep.equal({});
-      });
     });
 
     describe('vars', () => {
@@ -186,6 +176,17 @@ describe('cssVarsParser', () => {
           },
         });
       });
+    });
+
+    it('does nothing if deep value is not string or number', () => {
+      const cssVarsParser = createCssVarsParser();
+      const { css, vars } = cssVarsParser({
+        fooBar: () => '',
+        foo: undefined,
+        bar: null,
+      });
+      expect(css).to.deep.equal({});
+      expect(vars).to.deep.equal({});
     });
   });
 });
