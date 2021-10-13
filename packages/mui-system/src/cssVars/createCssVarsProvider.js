@@ -23,7 +23,11 @@ const resolveMode = (key, fallback) => {
 };
 
 export default function createCssVarsProvider(ThemeContext, options) {
-  const { theme: baseTheme = {}, defaultColorScheme: designSystemColorScheme } = options;
+  const {
+    theme: baseTheme = {},
+    defaultColorScheme: designSystemColorScheme,
+    parser = cssVarsParser,
+  } = options;
 
   if (!baseTheme.colorSchemes || !baseTheme.colorSchemes[designSystemColorScheme]) {
     console.error(`MUI: \`${designSystemColorScheme}\` does not exist in \`theme.colorSchemes\`.`);
@@ -76,7 +80,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
     let mergedTheme = deepmerge(restBaseTheme, restThemeProp);
     const colorSchemes = deepmerge(baseColorSchemes, colorSchemesProp);
 
-    const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme);
+    const { css: rootCss, vars: rootVars } = parser(mergedTheme);
 
     mergedTheme = {
       ...mergedTheme,
@@ -87,7 +91,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
     const styleSheet = {};
 
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
-      const { css, vars } = cssVarsParser(scheme);
+      const { css, vars } = parser(scheme);
       if (key === colorScheme) {
         mergedTheme.vars = {
           ...mergedTheme.vars,

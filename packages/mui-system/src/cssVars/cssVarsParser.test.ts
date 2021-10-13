@@ -186,26 +186,6 @@ describe('cssVarsParser', () => {
           },
         });
       });
-
-      it('able to use custom vars creator', () => {
-        const cssVarsParser = createCssVarsParser({
-          appendVars: (vars, keys, cssVar) => {
-            vars[keys.join('-')] = `var(${cssVar})`;
-          },
-        });
-        const { vars } = cssVarsParser({
-          palette: {
-            primary: {
-              100: '#ffffff',
-              500: '#ff5252',
-            },
-          },
-        });
-        expect(vars).to.deep.equal({
-          'palette-primary-100': 'var(--palette-primary-100)',
-          'palette-primary-500': 'var(--palette-primary-500)',
-        });
-      });
     });
   });
 });

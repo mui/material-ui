@@ -2,6 +2,23 @@ type NestedRecord<V = any> = {
   [k: string | number]: NestedRecord<V> | V;
 };
 
+/**
+ * This function create an object from keys, value and then assign to target
+ *
+ * @param {Object} obj : the target object to be assigned
+ * @param {string[]} keys
+ * @param {string | number} value
+ *
+ * @example
+ * const source = {}
+ * assignNestedKeys(source, ['palette', 'primary'], 'var(--palette-primary)')
+ * console.log(source) // { palette: { primary: 'var(--palette-primary)' } }
+ *
+ * @example
+ * const source = { palette: { primary: 'var(--palette-primary)' } }
+ * assignNestedKeys(source, ['palette', 'secondary'], 'var(--palette-secondary)')
+ * console.log(source) // { palette: { primary: 'var(--palette-primary)', secondary: 'var(--palette-secondary)' } }
+ */
 export const assignNestedKeys = <Object = NestedRecord, Value = any>(
   obj: Object,
   keys: Array<string>,
@@ -22,6 +39,17 @@ export const assignNestedKeys = <Object = NestedRecord, Value = any>(
   });
 };
 
+/**
+ *
+ * @param {Object} obj : source object
+ * @param {Function} callback : a function that will be called when
+ *                   - the deepest key in source object is reached
+ *                   - the value of the deepest key is NOT `undefined` | `null`
+ *
+ * @example
+ * walkObjectDeep({ palette: { primary: { main: '#000000' } } }, console.log)
+ * // ['palette', 'primary', 'main'] '#000000'
+ */
 export const walkObjectDeep = <Value, T = Record<string, any>>(
   obj: T,
   callback: (keys: Array<string>, value: Value) => void,
@@ -40,28 +68,42 @@ export const walkObjectDeep = <Value, T = Record<string, any>>(
   recurse(obj);
 };
 
-interface CreateCssVarsParserOptions<Vars = NestedRecord<string>> {
+interface CreateCssVarsParserOptions {
   getCssVar?: (keys: Array<string>, value: string | number) => string;
   getCssValue?: (keys: Array<string>, value: string | number) => string | number;
-  appendVars?: (vars: Vars, keys: Array<string>, cssVar: string) => void;
 }
 
 const defaultOptions: Required<CreateCssVarsParserOptions> = {
   getCssVar: (keys) => `--${keys.join('-')}`,
   getCssValue: (_, value) => value,
-  appendVars: (vars, keys, cssVar) => {
-    assignNestedKeys(vars, keys, `var(${cssVar})`);
-  },
 };
 
+/**
+ * a utility for creating a custom parser by providing options.
+ *
+ * @param {Object} options
+ * @returns {Function} parser
+ *
+ * @example
+ * const parser = createCssVarsParser({
+ *   getCssVar: keys => `--mui-${keys.join('-')}`,
+ *   getCssValue: (keys, value) => typeof value === 'number' ? `${value}px` : value,
+ * })
+ *
+ * const { css, vars } = parser({
+ *   fontSize: 12,
+ *   lineHeight: 1.2,
+ *   palette: { primary: { 500: '#000000' } }
+ * })
+ *
+ * console.log(css) // { '--fontSize': '12px', '--lineHeight': 1.2, '--palette-primary-500': '#000000' }
+ * console.log(vars) // { fontSize: '--fontSize', lineHeight: '--lineHeight', palette: { primary: { 500: 'var(--palette-primary-500)' } } }
+ */
 export const createCssVarsParser = <Css = NestedRecord<string>, Vars = NestedRecord<string>>(
-  options: CreateCssVarsParserOptions<Vars> = {},
+  options: CreateCssVarsParserOptions = {},
 ) => {
-  const {
-    getCssVar = defaultOptions.getCssVar,
-    getCssValue = defaultOptions.getCssValue,
-    appendVars = defaultOptions.appendVars,
-  } = options;
+  const { getCssVar = defaultOptions.getCssVar, getCssValue = defaultOptions.getCssValue } =
+    options;
   return (obj: Record<string, any>) => {
     const css = {} as Css;
     const vars = {} as Vars;
@@ -71,11 +113,7 @@ export const createCssVarsParser = <Css = NestedRecord<string>, Vars = NestedRec
         const cssVar = getCssVar(keys, value);
         Object.assign(css, { [cssVar]: getCssValue(keys, value) });
 
-        (appendVars as Required<CreateCssVarsParserOptions<Vars>>['appendVars'])(
-          vars,
-          keys,
-          cssVar,
-        );
+        assignNestedKeys(vars, keys, `var(${cssVar})`);
       }
     });
 
