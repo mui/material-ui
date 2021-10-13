@@ -12,6 +12,7 @@ import {
 } from 'test/utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
 
 describe('<Chip />', () => {
@@ -86,6 +87,28 @@ describe('<Chip />', () => {
 
       expect(container.firstChild).to.have.class('MuiButtonBase-root');
       expect(container.firstChild).to.have.tagName('a');
+      expect(container.firstChild.querySelector('.MuiTouchRipple-root')).not.to.equal(null);
+    });
+
+    it('should disable ripple when MuiButtonBase has disableRipple in theme', () => {
+      const theme = createTheme({
+        components: {
+          MuiButtonBase: {
+            defaultProps: {
+              disableRipple: true,
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Chip clickable label="My Chip" />
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).to.have.class('MuiButtonBase-root');
+      expect(container.firstChild.querySelector('.MuiTouchRipple-root')).to.equal(null);
     });
 
     it('should apply user value of tabIndex', () => {
@@ -151,6 +174,14 @@ describe('<Chip />', () => {
 
       expect(getByRole('button')).to.have.property('tabIndex', 0);
       expect(container.querySelector('#avatar')).not.to.equal(null);
+    });
+
+    it('should not create ripples', () => {
+      const { container } = render(
+        <Chip avatar={<Avatar id="avatar">MB</Avatar>} onDelete={() => {}} />,
+      );
+
+      expect(container.firstChild.querySelector('.MuiTouchRipple-root')).to.equal(null);
     });
 
     it('should apply user value of tabIndex', () => {
