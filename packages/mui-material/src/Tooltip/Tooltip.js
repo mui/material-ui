@@ -744,7 +744,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
     Transition: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Tooltip.
+   * The props used for each slot inside the Tooltip. For popper props, the `PopperProps` take precedence over the `componentsProps.popper`.
    * @default {}
    */
   componentsProps: PropTypes.object,
