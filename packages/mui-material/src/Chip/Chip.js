@@ -376,7 +376,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       ? {
           component: ComponentProp || 'div',
           focusVisibleClassName: classes.focusVisible,
-          ...onDelete && { disableRipple: true },
+          ...(onDelete && { disableRipple: true }),
         }
       : {};
 
