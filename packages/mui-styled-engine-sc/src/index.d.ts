@@ -80,7 +80,7 @@ type StyledComponentInterpolation =
 type AnyIfEmpty<T extends object> = keyof T extends never ? any : T;
 
 type ThemedStyledComponentFactories<T extends object> = {
-  [TTag in keyof JSX.IntrinsicElements]: ThemedStyledFunction<TTag, T>;
+  [TTag in keyof JSX.IntrinsicElements]: ThemedStyledFunctionBase<TTag, T>;
 };
 
 export interface ThemedStyledFunctionBase<
