@@ -68,28 +68,25 @@ export const walkObjectDeep = <Value, T = Record<string, any>>(
   recurse(obj);
 };
 
-interface CreateCssVarsParserOptions {
-  getCssVar?: (keys: Array<string>, value: string | number) => string;
-  getCssValue?: (keys: Array<string>, value: string | number) => string | number;
-}
-
-const defaultOptions: Required<CreateCssVarsParserOptions> = {
-  getCssVar: (keys) => `--${keys.join('-')}`,
-  getCssValue: (_, value) => value,
+const getCssValue = (keys: string[], value: string | number) => {
+  if (typeof value === 'number') {
+    if (['lineHeight', 'fontWeight', 'opacity', 'zIndex'].some((prop) => keys.includes(prop))) {
+      // css property that are unitless
+      return value;
+    }
+    return `${value}px`;
+  }
+  return value;
 };
 
 /**
- * a utility for creating a custom parser by providing options.
+ * a function that parse theme and return { css, vars }
  *
- * @param {Object} options
- * @returns {Function} parser
+ * @param {Object} theme
+ * @param {{ prefix?: string }} options
+ * @returns {{ css: Object, vars: Object }} `css` is the stylesheet, `vars` is an object to get css variable (same structure as theme)
  *
  * @example
- * const parser = createCssVarsParser({
- *   getCssVar: keys => `--mui-${keys.join('-')}`,
- *   getCssValue: (keys, value) => typeof value === 'number' ? `${value}px` : value,
- * })
- *
  * const { css, vars } = parser({
  *   fontSize: 12,
  *   lineHeight: 1.2,
@@ -99,26 +96,19 @@ const defaultOptions: Required<CreateCssVarsParserOptions> = {
  * console.log(css) // { '--fontSize': '12px', '--lineHeight': 1.2, '--palette-primary-500': '#000000' }
  * console.log(vars) // { fontSize: '--fontSize', lineHeight: '--lineHeight', palette: { primary: { 500: 'var(--palette-primary-500)' } } }
  */
-export const createCssVarsParser = <Css = NestedRecord<string>, Vars = NestedRecord<string>>(
-  options: CreateCssVarsParserOptions = {},
-) => {
-  const { getCssVar = defaultOptions.getCssVar, getCssValue = defaultOptions.getCssValue } =
-    options;
-  return (obj: Record<string, any>) => {
-    const css = {} as Css;
-    const vars = {} as Vars;
+export default function cssVarsParser(obj: Record<string, any>, options?: { prefix?: string }) {
+  const { prefix } = options || {};
+  const css = {} as NestedRecord<string>;
+  const vars = {} as NestedRecord<string>;
 
-    walkObjectDeep(obj, (keys, value) => {
-      if (typeof value === 'string' || typeof value === 'number') {
-        const cssVar = getCssVar(keys, value);
-        Object.assign(css, { [cssVar]: getCssValue(keys, value) });
+  walkObjectDeep(obj, (keys, value) => {
+    if (typeof value === 'string' || typeof value === 'number') {
+      const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
+      Object.assign(css, { [cssVar]: getCssValue(keys, value) });
 
-        assignNestedKeys(vars, keys, `var(${cssVar})`);
-      }
-    });
+      assignNestedKeys(vars, keys, `var(${cssVar})`);
+    }
+  });
 
-    return { css, vars };
-  };
-};
-
-export default createCssVarsParser();
+  return { css, vars };
+}

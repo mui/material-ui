@@ -58,6 +58,27 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('current-color-scheme').textContent).to.equal('light');
     });
 
+    it('has css variable prefix', () => {
+      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+        theme: {
+          colorSchemes: { light: { fontSize: 16 } },
+        },
+        defaultColorScheme: 'light',
+        prefix: 'mui',
+      });
+      const Text = () => {
+        const theme = React.useContext(ThemeContext);
+        return <div data-testid={`text`}>{theme.vars.fontSize}</div>;
+      };
+      render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('text').textContent).to.equal('var(--mui-fontSize)');
+    });
+
     it('can access to allColorSchemes', () => {
       const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
         theme: {
@@ -326,6 +347,27 @@ describe('createCssVarsProvider', () => {
 
       expect(screen.getByTestId('swatch-color').textContent).to.equal('var(--palette-color)');
       expect(screen.getByTestId('swatch-bgcolor').textContent).to.equal('var(--palette-bgcolor)');
+    });
+
+    it('able to override css variable prefix', () => {
+      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+        theme: {
+          colorSchemes: { light: { fontSize: 16 } },
+        },
+        defaultColorScheme: 'light',
+        prefix: 'mui',
+      });
+      const Text = () => {
+        const theme = React.useContext(ThemeContext);
+        return <div data-testid={`text`}>{theme.vars.fontSize}</div>;
+      };
+      render(
+        <CssVarsProvider prefix="foo-bar">
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('text').textContent).to.equal('var(--foo-bar-fontSize)');
     });
   });
 });

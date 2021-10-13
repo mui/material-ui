@@ -52,6 +52,7 @@ export default function createCssVarsProvider<
         >;
     };
     defaultColorScheme: DesignSystemColorScheme;
+    prefix?: string;
   },
 ): {
   CssVarsProvider: (
@@ -60,6 +61,7 @@ export default function createCssVarsProvider<
         defaultColorScheme?: DesignSystemColorScheme | ApplicationColorScheme;
         storageKey?: string;
         attribute?: string;
+        prefix?: string;
       } & DecideTheme<Theme, DesignSystemColorScheme, ApplicationColorScheme>
     >,
   ) => React.ReactElement;

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { assignNestedKeys, walkObjectDeep, createCssVarsParser } from './cssVarsParser';
+import cssVarsParser, { assignNestedKeys, walkObjectDeep } from './cssVarsParser';
 
 describe('cssVarsParser', () => {
   describe('assignNestedKeys', () => {
@@ -86,107 +86,147 @@ describe('cssVarsParser', () => {
     });
   });
 
-  describe('createCssVarsParser', () => {
-    describe('css', () => {
-      it('create css variables', () => {
-        const cssVarsParser = createCssVarsParser();
-        const { css } = cssVarsParser({
+  describe('css', () => {
+    it('create css variables', () => {
+      const { css } = cssVarsParser({
+        palette: {
+          primary: {
+            100: '#ffffff',
+            500: '#ff5252',
+          },
+        },
+      });
+      expect(css).to.deep.equal({
+        '--palette-primary-100': '#ffffff',
+        '--palette-primary-500': '#ff5252',
+      });
+    });
+
+    it('add prefix to variables', () => {
+      const { css } = cssVarsParser(
+        {
           palette: {
             primary: {
               100: '#ffffff',
               500: '#ff5252',
             },
           },
-          lineHeight: {
-            xs: 1,
-            sm: 1.2,
-            md: 1.43,
-          },
-        });
-        expect(css).to.deep.equal({
-          '--palette-primary-100': '#ffffff',
-          '--palette-primary-500': '#ff5252',
-          '--lineHeight-xs': 1,
-          '--lineHeight-sm': 1.2,
-          '--lineHeight-md': 1.43,
-        });
-      });
-
-      it('accept custom resolver', () => {
-        const cssVarsParser = createCssVarsParser({
-          getCssValue: (keys, value) => {
-            let newValue = value;
-            if (keys.includes('fontSize') && typeof value === 'number') {
-              newValue = `${value}px`;
-            }
-            return newValue;
-          },
-          getCssVar: (keys) => `--mui-${keys.join('-')}`,
-        });
-        const { css } = cssVarsParser({
-          lineHeight: {
-            xs: 1,
-            sm: 1.2,
-            md: 1.43,
-          },
-          fontSize: {
-            xs: 10,
-            sm: 12,
-            md: 16,
-          },
-        });
-        expect(css).to.deep.equal({
-          '--mui-lineHeight-xs': 1,
-          '--mui-lineHeight-sm': 1.2,
-          '--mui-lineHeight-md': 1.43,
-          '--mui-fontSize-xs': '10px',
-          '--mui-fontSize-sm': '12px',
-          '--mui-fontSize-md': '16px',
-        });
+        },
+        { prefix: 'mui' },
+      );
+      expect(css).to.deep.equal({
+        '--mui-palette-primary-100': '#ffffff',
+        '--mui-palette-primary-500': '#ff5252',
       });
     });
 
-    describe('vars', () => {
-      it('create same structure by default', () => {
-        const cssVarsParser = createCssVarsParser();
-        const { vars } = cssVarsParser({
+    it('attach px to number value', () => {
+      const { css } = cssVarsParser({
+        fontSize: {
+          xs: 10,
+          sm: 12,
+          md: 16,
+        },
+      });
+      expect(css).to.deep.equal({
+        '--fontSize-xs': '10px',
+        '--fontSize-sm': '12px',
+        '--fontSize-md': '16px',
+      });
+    });
+
+    it('does not add px to unitless properties', () => {
+      const { css } = cssVarsParser({
+        lineHeight: {
+          xs: 1,
+          sm: 1.2,
+          md: 1.43,
+        },
+        fontWeight: {
+          semiBold: 600,
+          bold: 700,
+        },
+        opacity: {
+          active: 0.5,
+          hover: 0.2,
+        },
+        zIndex: {
+          tooltip: 1200,
+        },
+      });
+      expect(css).to.deep.equal({
+        '--lineHeight-xs': 1,
+        '--lineHeight-sm': 1.2,
+        '--lineHeight-md': 1.43,
+        '--fontWeight-semiBold': 600,
+        '--fontWeight-bold': 700,
+        '--opacity-active': 0.5,
+        '--opacity-hover': 0.2,
+        '--zIndex-tooltip': 1200,
+      });
+    });
+  });
+
+  describe('vars', () => {
+    it('create same structure and attach variables', () => {
+      const { vars } = cssVarsParser({
+        palette: {
+          primary: {
+            100: '#ffffff',
+            500: '#ff5252',
+          },
+        },
+        lineHeight: {
+          xs: 1,
+          sm: 1.2,
+          md: 1.43,
+        },
+      });
+      expect(vars).to.deep.equal({
+        palette: {
+          primary: {
+            100: 'var(--palette-primary-100)',
+            500: 'var(--palette-primary-500)',
+          },
+        },
+        lineHeight: {
+          xs: 'var(--lineHeight-xs)',
+          sm: 'var(--lineHeight-sm)',
+          md: 'var(--lineHeight-md)',
+        },
+      });
+    });
+
+    it('apply prefix to variables', () => {
+      const { vars } = cssVarsParser(
+        {
           palette: {
             primary: {
               100: '#ffffff',
               500: '#ff5252',
             },
           },
-          lineHeight: {
-            xs: 1,
-            sm: 1.2,
-            md: 1.43,
+        },
+        { prefix: 'mui' },
+      );
+      expect(vars).to.deep.equal({
+        palette: {
+          primary: {
+            100: 'var(--mui-palette-primary-100)',
+            500: 'var(--mui-palette-primary-500)',
           },
-        });
-        expect(vars).to.deep.equal({
-          palette: {
-            primary: {
-              100: 'var(--palette-primary-100)',
-              500: 'var(--palette-primary-500)',
-            },
-          },
-          lineHeight: {
-            xs: 'var(--lineHeight-xs)',
-            sm: 'var(--lineHeight-sm)',
-            md: 'var(--lineHeight-md)',
-          },
-        });
+        },
       });
     });
+  });
 
-    it('does nothing if deep value is not string or number', () => {
-      const cssVarsParser = createCssVarsParser();
-      const { css, vars } = cssVarsParser({
-        fooBar: () => '',
-        foo: undefined,
-        bar: null,
-      });
-      expect(css).to.deep.equal({});
-      expect(vars).to.deep.equal({});
+  it('does nothing if deep value is not string or number', () => {
+    const { css, vars } = cssVarsParser({
+      fooBar: () => '',
+      foo: undefined,
+      bar: null,
     });
+    expect(css).to.deep.equal({});
+    expect(vars).to.deep.equal({});
   });
 });

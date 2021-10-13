@@ -26,7 +26,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
   const {
     theme: baseTheme = {},
     defaultColorScheme: designSystemColorScheme,
-    parser = cssVarsParser,
+    prefix: designSystemPrefix,
   } = options;
 
   if (!baseTheme.colorSchemes || !baseTheme.colorSchemes[designSystemColorScheme]) {
@@ -45,6 +45,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
   function CssVarsProvider({
     children,
     theme: themeProp = {},
+    prefix = designSystemPrefix,
     storageKey = DEFAULT_STORAGE_KEY,
     attribute = DEFAULT_ATTRIBUTE,
     defaultColorScheme = designSystemColorScheme,
@@ -80,7 +81,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
     let mergedTheme = deepmerge(restBaseTheme, restThemeProp);
     const colorSchemes = deepmerge(baseColorSchemes, colorSchemesProp);
 
-    const { css: rootCss, vars: rootVars } = parser(mergedTheme);
+    const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme, { prefix });
 
     mergedTheme = {
       ...mergedTheme,
@@ -91,7 +92,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
     const styleSheet = {};
 
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
-      const { css, vars } = parser(scheme);
+      const { css, vars } = cssVarsParser(scheme, { prefix });
       if (key === colorScheme) {
         mergedTheme.vars = {
           ...mergedTheme.vars,
@@ -142,6 +143,10 @@ export default function createCssVarsProvider(ThemeContext, options) {
      * The initial color scheme for first visit.
      */
     defaultColorScheme: PropTypes.string,
+    /**
+     * css variable prefix
+     */
+    prefix: PropTypes.string,
     /**
      * The key used to store current color scheme.
      */
