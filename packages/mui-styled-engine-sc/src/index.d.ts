@@ -25,7 +25,7 @@ export * from './GlobalStyles';
 
 // ---------------------
 
-// These are the same as the ones in @mui/styled-engine 
+// These are the same as the ones in @mui/styled-engine
 // CSS.PropertiesFallback are necessary so that we support spreading of the mixins. For example:
 // '@font-face'?: Fontface | Fontface[]
 
@@ -49,11 +49,20 @@ export interface CSSOthersObjectForCSSObject {
 export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
 
 export type FalseyValue = undefined | null | false;
-export type Interpolation<P> = InterpolationValue | InterpolationFunction<P> | FlattenInterpolation<P>;
+export type Interpolation<P> =
+  | InterpolationValue
+  | InterpolationFunction<P>
+  | FlattenInterpolation<P>;
 // cannot be made a self-referential interface, breaks WithPropNested
 // see https://github.com/microsoft/TypeScript/issues/34796
 export type FlattenInterpolation<P> = ReadonlyArray<Interpolation<P>>;
-export type InterpolationValue = string | number | FalseyValue | Keyframes | StyledComponentInterpolation | CSSObject;
+export type InterpolationValue =
+  | string
+  | number
+  | FalseyValue
+  | Keyframes
+  | StyledComponentInterpolation
+  | CSSObject;
 export type SimpleInterpolation = InterpolationValue | FlattenSimpleInterpolation;
 // adapter for compatibility with @mui/styled-engine
 export type CSSInterpolation = SimpleInterpolation;
@@ -63,8 +72,8 @@ export type InterpolationFunction<P> = (props: P) => Interpolation<P>;
 
 // remove the call signature from StyledComponent so Interpolation can still infer InterpolationFunction
 type StyledComponentInterpolation =
-    | Pick<StyledComponentBase<any, any, any, any>, keyof StyledComponentBase<any, any>>
-    | Pick<StyledComponentBase<any, any, any>, keyof StyledComponentBase<any, any>>;
+  | Pick<StyledComponentBase<any, any, any, any>, keyof StyledComponentBase<any, any>>
+  | Pick<StyledComponentBase<any, any, any>, keyof StyledComponentBase<any, any>>;
 
 // ---------------------
 
@@ -75,20 +84,32 @@ type ThemedStyledComponentFactories<T extends object> = {
 };
 
 export interface ThemedStyledFunctionBase<
-    C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
-    T extends object,
-    O extends object = {},
-    A extends keyof any = never
+  C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+  T extends object,
+  O extends object = {},
+  A extends keyof any = never,
 > {
-    (...args: TemplateStringsArray | Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O, T>>>): StyledComponent<C, T, O, A>;
-    <U extends object>(...args: TemplateStringsArray | Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O & U, T>>>): StyledComponent<C, T, O & U, A>;
+  (
+    ...args:
+      | TemplateStringsArray
+      | Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O, T>>>
+  ): StyledComponent<C, T, O, A>;
+  <U extends object>(
+    ...args:
+      | TemplateStringsArray
+      | Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O & U, T>>>
+  ): StyledComponent<C, T, O & U, A>;
 }
 
-export interface ThemedBaseStyledInterface<MUIStyledCommonProps extends object, MuiStyledOptions extends object, T extends object>
-  extends ThemedStyledComponentFactories<T> {
+export interface ThemedBaseStyledInterface<
+  MUIStyledCommonProps extends object,
+  MuiStyledOptions extends object,
+  T extends object,
+> extends ThemedStyledComponentFactories<T> {
   <C extends AnyStyledComponent>(
     component: C,
-    options?: StyledConfig<StyledComponentPropsWithRef<C> & MUIStyledCommonProps> & MuiStyledOptions,
+    options?: StyledConfig<StyledComponentPropsWithRef<C> & MUIStyledCommonProps> &
+      MuiStyledOptions,
   ): ThemedStyledFunctionBase<
     StyledComponentInnerComponent<C>,
     T,
@@ -99,7 +120,8 @@ export interface ThemedBaseStyledInterface<MUIStyledCommonProps extends object, 
     // unfortunately using a conditional type to validate that it can receive a `theme?: Theme`
     // causes tests to fail in TS 3.1
     component: C,
-    options?: StyledConfig<StyledComponentPropsWithRef<C> & MUIStyledCommonProps> & MuiStyledOptions,
+    options?: StyledConfig<StyledComponentPropsWithRef<C> & MUIStyledCommonProps> &
+      MuiStyledOptions,
   ): ThemedStyledFunctionBase<C, T, MUIStyledCommonProps>;
 }
 

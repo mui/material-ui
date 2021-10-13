@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { CreateMUIStyled as CreateMUIStyledStyledEngine, CSSInterpolation } from '@mui/styled-engine';
+import {
+  CreateMUIStyled as CreateMUIStyledStyledEngine,
+  CSSInterpolation,
+} from '@mui/styled-engine';
 import { SxProps } from './styleFunctionSx';
 import { Theme as DefaultTheme } from './createTheme';
 
@@ -21,7 +24,11 @@ export interface MuiStyledOptions {
   skipSx?: boolean;
 }
 
-export type CreateMUIStyled<T extends object = DefaultTheme> = CreateMUIStyledStyledEngine<MUIStyledCommonProps<T>, MuiStyledOptions, T>;
+export type CreateMUIStyled<T extends object = DefaultTheme> = CreateMUIStyledStyledEngine<
+  MUIStyledCommonProps<T>,
+  MuiStyledOptions,
+  T
+>;
 
 export default function createStyled<T extends object = DefaultTheme>(options?: {
   defaultTheme?: T;

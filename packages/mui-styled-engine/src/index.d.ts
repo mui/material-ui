@@ -97,17 +97,13 @@ export interface CreateStyledComponent<
    */
   <AdditionalProps extends {} = {}>(
     ...styles: Array<
-      Interpolation<
-        ComponentProps & SpecificComponentProps & AdditionalProps & { theme: T }
-      >
+      Interpolation<ComponentProps & SpecificComponentProps & AdditionalProps & { theme: T }>
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>;
 
   (
     template: TemplateStringsArray,
-    ...styles: Array<
-      Interpolation<ComponentProps & SpecificComponentProps & { theme: T }>
-    >
+    ...styles: Array<Interpolation<ComponentProps & SpecificComponentProps & { theme: T }>>
   ): StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>;
 
   /**
@@ -116,9 +112,7 @@ export interface CreateStyledComponent<
   <AdditionalProps extends {}>(
     template: TemplateStringsArray,
     ...styles: Array<
-      Interpolation<
-        ComponentProps & SpecificComponentProps & AdditionalProps & { theme: T }
-      >
+      Interpolation<ComponentProps & SpecificComponentProps & AdditionalProps & { theme: T }>
     >
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>;
 }
