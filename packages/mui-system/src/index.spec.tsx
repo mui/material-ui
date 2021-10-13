@@ -74,5 +74,6 @@ function styleTypeTest() {
 
   // theme should be optional
   const CustomComponentWithNoTheme = muiStyled('div')(compose(display, gap));
+  // @ts-expect-error TODO: @mui/styled-engine-sc fix me
   <CustomComponentWithNoTheme display="flex" gap={3} />;
 }
