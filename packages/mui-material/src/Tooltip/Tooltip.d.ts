@@ -167,7 +167,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children?: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<any, any> }
   >;
   /**
    * Props applied to the transition element.
