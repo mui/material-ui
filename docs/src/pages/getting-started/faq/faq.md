@@ -443,3 +443,8 @@ return (
   />
 );
 ```
+
+## I added a `ThemeProvider`. Why does the styling not change accordingly?
+
+Styling the components per [`ThemeProvider`](https://mui.com/customization/theming/#theme-provider) requires [`@emotion/styled`](https://www.npmjs.com/package/@emotion/styled).
+If the package is missing, all components render with the default theme.
