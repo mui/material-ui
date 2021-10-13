@@ -629,7 +629,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const TooltipComponent = components.Tooltip ?? TooltipTooltip;
   const ArrowComponent = components.Arrow ?? TooltipArrow;
 
-  const {className: popperPropsClassName, ...otherPopperProps} = PopperProps
+  const { className: popperPropsClassName, ...otherPopperProps } = PopperProps;
 
   const popperProps = appendOwnerState(
     PopperComponent,

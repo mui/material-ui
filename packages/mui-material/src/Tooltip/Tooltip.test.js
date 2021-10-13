@@ -1268,39 +1268,46 @@ describe('<Tooltip />', () => {
   describe('className', () => {
     it('should allow className from PopperProps', () => {
       const { getByTestId } = render(
-        <Tooltip title="Hello World" open PopperProps={{ 'data-testid': 'popper', className: 'my-class' }}>
-          <button type="submit">
-            Hello World
-          </button>
+        <Tooltip
+          title="Hello World"
+          open
+          PopperProps={{ 'data-testid': 'popper', className: 'my-class' }}
+        >
+          <button type="submit">Hello World</button>
         </Tooltip>,
       );
 
       expect(getByTestId('popper')).to.have.class('my-class');
-    })
+    });
 
     it('should allow className from componentsProps.popper', () => {
       const { getByTestId } = render(
-        <Tooltip title="Hello World" open componentsProps={{popper: { 'data-testid': 'popper', className: 'my-class' }}}>
-          <button type="submit">
-            Hello World
-          </button>
+        <Tooltip
+          title="Hello World"
+          open
+          componentsProps={{ popper: { 'data-testid': 'popper', className: 'my-class' } }}
+        >
+          <button type="submit">Hello World</button>
         </Tooltip>,
       );
 
       expect(getByTestId('popper')).to.have.class('my-class');
-    })
+    });
 
     it('should allow PopperProps className to take precedence over componentsProps.popper className if both are applied', () => {
       const { getByTestId } = render(
-        <Tooltip title="Hello World" open componentsProps={{popper: { 'data-testid': 'popper', className: 'my-class' }}} PopperProps={{ className: 'my-class-2' }}>
-          <button type="submit">
-            Hello World
-          </button>
+        <Tooltip
+          title="Hello World"
+          open
+          componentsProps={{ popper: { 'data-testid': 'popper', className: 'my-class' } }}
+          PopperProps={{ className: 'my-class-2' }}
+        >
+          <button type="submit">Hello World</button>
         </Tooltip>,
       );
 
       expect(getByTestId('popper')).to.have.class('my-class-2');
       expect(getByTestId('popper')).to.not.have.class('my-class');
-    })
-  })
+    });
+  });
 });
