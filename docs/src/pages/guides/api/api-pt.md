@@ -34,7 +34,7 @@ A propriedade `disableRipple` propagará desta maneira: [`MenuItem`](/api/menu-i
 
 ### Propriedades nativas
 
-Evitamos documentar propriedades nativas suportadas pelo DOM como [`className`](/customization/components/#overriding-styles-with-class-names).
+Evitamos documentar propriedades nativas suportadas pelo DOM como [`className`](/customization/how-to-customize/#overriding-styles-with-class-names).
 
 ### Classes CSS
 

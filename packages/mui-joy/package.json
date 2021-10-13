@@ -1,0 +1,58 @@
+{
+  "name": "@mui/joy",
+  "version": "0.1.0-alpha.0",
+  "private": true,
+  "author": "MUI Team",
+  "description": "Joy design system — React components",
+  "main": "./src/index.ts",
+  "keywords": [
+    "react",
+    "react-component",
+    "design-system"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "packages/mui-joy"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
+  "homepage": "https://mui.com/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/material-ui"
+  },
+  "scripts": {
+    "build": "yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
+    "build:modern": "node ../../scripts/build modern",
+    "build:node": "node ../../scripts/build node",
+    "build:stable": "node ../../scripts/build stable",
+    "build:copy-files": "node ../../scripts/copy-files.js",
+    "build:types": "node ../../scripts/buildTypes",
+    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
+    "release": "yarn build && npm publish build",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-joy/**/*.test.{js,ts,tsx}'",
+    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
+    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+  },
+  "peerDependencies": {
+    "@types/react": "^16.8.6 || ^17.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  },
+  "dependencies": {},
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

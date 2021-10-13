@@ -45,6 +45,10 @@ export interface BaseDateTimePickerProps<TDate>
    */
   maxDateTime?: TDate;
   /**
+   * Callback fired on view change.
+   */
+  onViewChange?: (view: DateTimePickerView) => void;
+  /**
    * First view to show.
    */
   openTo?: DateTimePickerView;
@@ -86,7 +90,7 @@ export function useDateTimePickerDefaultizedProps<Props extends BaseDateTimePick
     ...other
   }: Props,
   name: string,
-): DefaultizedProps<Props> {
+): DefaultizedProps<Props> & Required<Pick<BaseDateTimePickerProps<unknown>, 'openTo' | 'views'>> {
   const utils = useUtils();
   const defaultDates = useDefaultDates<unknown>();
   const minDate = minDateProp ?? defaultDates.minDate;

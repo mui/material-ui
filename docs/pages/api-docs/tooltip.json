@@ -4,6 +4,14 @@
     "title": { "type": { "name": "node" }, "required": true },
     "arrow": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ Arrow?: elementType, Popper?: elementType, Tooltip?: elementType, Transition?: elementType }"
+      },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "describeChild": { "type": { "name": "bool" } },
     "disableFocusListener": { "type": { "name": "bool" } },
     "disableHoverListener": { "type": { "name": "bool" } },
