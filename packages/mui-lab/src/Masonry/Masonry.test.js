@@ -51,7 +51,7 @@ describe('<Masonry />', () => {
         '& > *': {
           boxSizing: 'border-box',
           margin: parseToNumber(theme.spacing(spacing)) / 2,
-          width: `calc(${(100 / columns).toFixed(1)}% - ${theme.spacing(spacing)})`,
+          width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing)})`,
         },
         margin: -(parseToNumber(theme.spacing(spacing)) / 2),
         height: maxColumnHeight + parseToNumber(theme.spacing(spacing)) * maxNumberOfRows,
@@ -78,12 +78,12 @@ describe('<Masonry />', () => {
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
-          width: `calc(${(100 / columns).toFixed(1)}% - 0px)`,
+          width: `calc(${(100 / columns).toFixed(2)}% - 0px)`,
         },
         [`@media (min-width:${theme.breakpoints.values.xs}px)`]: {
           '& > *': {
             margin: parseToNumber(theme.spacing(spacing.xs)) / 2,
-            width: `calc(${(100 / columns).toFixed(1)}% - ${theme.spacing(spacing.xs)})`,
+            width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing.xs)})`,
           },
           margin: -(parseToNumber(theme.spacing(spacing.xs)) / 2),
           height: maxColumnHeight + parseToNumber(theme.spacing(spacing.xs)) * maxNumberOfRows,
@@ -91,7 +91,7 @@ describe('<Masonry />', () => {
         [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
           '& > *': {
             margin: parseToNumber(theme.spacing(spacing.sm)) / 2,
-            width: `calc(${(100 / columns).toFixed(1)}% - ${theme.spacing(spacing.sm)})`,
+            width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing.sm)})`,
           },
           margin: -(parseToNumber(theme.spacing(spacing.sm)) / 2),
           height: maxColumnHeight + parseToNumber(theme.spacing(spacing.sm)) * maxNumberOfRows,
@@ -99,7 +99,7 @@ describe('<Masonry />', () => {
         [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
           '& > *': {
             margin: parseToNumber(theme.spacing(spacing.md)) / 2,
-            width: `calc(${(100 / columns).toFixed(1)}% - ${theme.spacing(spacing.md)})`,
+            width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing.md)})`,
           },
           margin: -(parseToNumber(theme.spacing(spacing.md)) / 2),
           height: maxColumnHeight + parseToNumber(theme.spacing(spacing.md)) * maxNumberOfRows,
@@ -133,17 +133,17 @@ describe('<Masonry />', () => {
         height: maxColumnHeight + parseToNumber(theme.spacing(spacing)) * maxNumberOfRows,
         [`@media (min-width:${theme.breakpoints.values.xs}px)`]: {
           '& > *': {
-            width: `calc(${(100 / columns.xs).toFixed(1)}% - ${theme.spacing(spacing)})`,
+            width: `calc(${(100 / columns.xs).toFixed(2)}% - ${theme.spacing(spacing)})`,
           },
         },
         [`@media (min-width:${theme.breakpoints.values.sm}px)`]: {
           '& > *': {
-            width: `calc(${(100 / columns.sm).toFixed(1)}% - ${theme.spacing(spacing)})`,
+            width: `calc(${(100 / columns.sm).toFixed(2)}% - ${theme.spacing(spacing)})`,
           },
         },
         [`@media (min-width:${theme.breakpoints.values.md}px)`]: {
           '& > *': {
-            width: `calc(${(100 / columns.md).toFixed(1)}% - ${theme.spacing(spacing)})`,
+            width: `calc(${(100 / columns.md).toFixed(2)}% - ${theme.spacing(spacing)})`,
           },
         },
       });

@@ -98,7 +98,7 @@ export const style = ({ ownerState, theme }) => {
 
   const columnStyleFromPropValue = (propValue) => {
     propValue = Number(propValue);
-    const width = `${(100 / propValue).toFixed(1)}%`;
+    const width = `${(100 / propValue).toFixed(2)}%`;
     const spacing =
       typeof spacingValues !== 'object' ? getValue(transformer, Number(spacingValues)) : '0px';
     return {
@@ -121,7 +121,7 @@ export const style = ({ ownerState, theme }) => {
             typeof columnValues === 'object'
               ? columnValues[breakpoint] || columnValues[lastBreakpoint]
               : columnValues;
-          const width = `${(100 / column).toFixed(1)}%`;
+          const width = `${(100 / column).toFixed(2)}%`;
           return {
             '& > *': { width: `calc(${width} - ${spacing})` },
           };
@@ -158,52 +158,49 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
   React.useEffect(() => {
     const handleResize = () => {
-      let columnHeights;
-      let numberOfRows;
-      let currentNumberOfColumns;
-      let skip = false;
       const parentWidth = Number(
         window.getComputedStyle(masonryRef.current).width.replace('px', ''),
       );
 
+      const childComputedStyle = window.getComputedStyle(masonryRef.current.firstChild);
+      const childWidth = Number(childComputedStyle.width.replace('px', ''));
+      const childMargin = Number(childComputedStyle.margin.replace('px', ''));
+
+      if (parentWidth === 0 || childWidth === 0) {
+        return;
+      }
+
+      const currentNumberOfColumns = Math.round(parentWidth / (childWidth + childMargin * 2));
+      const columnHeights = new Array(currentNumberOfColumns).fill(0);
+      const numberOfRowsByColumn = new Array(currentNumberOfColumns).fill(0);
+      let skip = false;
       masonryRef.current.childNodes.forEach((child) => {
         if (child.nodeType !== Node.ELEMENT_NODE || child.dataset.class === 'line-break' || skip) {
           return;
         }
-        const computedStyle = window.getComputedStyle(child);
-        const width = Number(computedStyle.width.replace('px', ''));
-        const margin = Number(computedStyle.margin.replace('px', ''));
-        const height = Number(computedStyle.height.replace('px', ''));
-        // if any one of children is not rendered yet, container's height shouldn't be set;
-        // this is especially crucial for image masonry
-        if (parentWidth === 0 || width === 0 || height === 0) {
+        // if any one of children is not rendered yet, masonry's height shouldn't be computed yet
+        const childHeight = Number(window.getComputedStyle(child).height.replace('px', ''));
+        if (childHeight === 0) {
           skip = true;
           return;
         }
-        if (!currentNumberOfColumns) {
-          currentNumberOfColumns = Math.floor(parentWidth / (width + margin * 2));
-        }
-        if (!columnHeights) {
-          columnHeights = new Array(currentNumberOfColumns).fill(0);
-        }
-        if (!numberOfRows) {
-          numberOfRows = new Array(currentNumberOfColumns).fill(0);
-        }
 
         // find the current shortest column (where the current item will be placed)
-        const curMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-        columnHeights[curMinColumnIndex] += height;
-        numberOfRows[curMinColumnIndex] += 1;
-        const order = curMinColumnIndex + 1;
+        const currentMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+        columnHeights[currentMinColumnIndex] += childHeight;
+        numberOfRowsByColumn[currentMinColumnIndex] += 1;
+        const order = currentMinColumnIndex + 1;
         child.style.order = order;
       });
       if (!skip) {
         setMaxColumnHeight(Math.max(...columnHeights));
-        setMaxNumberOfRows(Math.max(...numberOfRows));
+        setMaxNumberOfRows(Math.max(...numberOfRowsByColumn));
         const numOfLineBreaks = currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0;
         setNumberOfLineBreaks(numOfLineBreaks);
       }
     };
+
+    // IE and old browsers are not supported
     if (typeof ResizeObserver === 'undefined') {
       return null;
     }
@@ -211,8 +208,11 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
     const container = masonryRef.current;
     resizeObserver.observe(container);
+    // Observing window in addition to masonry container is more stable
+    window.addEventListener('resize', handleResize);
     return () => {
       resizeObserver.disconnect();
+      window.removeEventListener('resize', handleResize);
     };
   }, [columns, spacing]);
 
