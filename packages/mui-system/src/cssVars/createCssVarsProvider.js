@@ -26,7 +26,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
   const {
     theme: baseTheme = {},
     defaultColorScheme: designSystemColorScheme,
-    prefix: designSystemPrefix,
+    prefix: designSystemPrefix = '',
   } = options;
 
   if (!baseTheme.colorSchemes || !baseTheme.colorSchemes[designSystemColorScheme]) {
@@ -50,8 +50,8 @@ export default function createCssVarsProvider(ThemeContext, options) {
     attribute = DEFAULT_ATTRIBUTE,
     defaultColorScheme = designSystemColorScheme,
   }) {
-    const [colorScheme, setColorScheme] = React.useState(
-      () => resolveMode(storageKey, defaultColorScheme),
+    const [colorScheme, setColorScheme] = React.useState(() =>
+      resolveMode(storageKey, defaultColorScheme),
     );
 
     React.useEffect(() => {
@@ -134,6 +134,9 @@ export default function createCssVarsProvider(ThemeContext, options) {
   }
 
   CssVarsProvider.propTypes = {
+    /**
+     * The body attribute name to attach colorScheme.
+     */
     attribute: PropTypes.string,
     /**
      * Your component tree.
