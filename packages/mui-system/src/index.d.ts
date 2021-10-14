@@ -155,4 +155,5 @@ export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 
-export { default as unstable_createCssVarsProvider } from './cssVars/createCssVarsProvider';
+export { default as unstable_createCssVarsProvider } from './cssVars';
+export * from './cssVars';

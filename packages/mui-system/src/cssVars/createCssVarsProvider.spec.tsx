@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
-import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
+import {
+  unstable_createCssVarsProvider as createCssVarsProvider,
+  BuildCssVarsTheme,
+} from '@mui/system';
 
 // Test design system layer
 
@@ -14,16 +17,18 @@ interface Colors {
   };
 }
 
-interface DesignSystemTheme {
+interface DesignSystemThemeInput {
   colorSchemes: Record<DesignSystemColorScheme, Colors>;
   fontSize: {
     md: string;
   };
 }
 
+type DesignSystemTheme = BuildCssVarsTheme<DesignSystemThemeInput>;
+
 const ThemeContext = React.createContext<DesignSystemTheme | undefined>(undefined);
 
-createCssVarsProvider<DesignSystemTheme, DesignSystemColorScheme>(ThemeContext, {
+createCssVarsProvider<DesignSystemThemeInput, DesignSystemColorScheme>(ThemeContext, {
   theme: {
     fontSize: {
       md: '1rem',
@@ -41,7 +46,7 @@ createCssVarsProvider<DesignSystemTheme, DesignSystemColorScheme>(ThemeContext, 
   },
 });
 
-createCssVarsProvider<DesignSystemTheme, DesignSystemColorScheme>(
+createCssVarsProvider<DesignSystemThemeInput, DesignSystemColorScheme>(
   ThemeContext,
   // @ts-expect-error 'defaultColorScheme' is missing
   {
@@ -69,7 +74,7 @@ createCssVarsProvider<DesignSystemTheme, DesignSystemColorScheme>(
   },
 );
 
-createCssVarsProvider<DesignSystemTheme, DesignSystemColorScheme>(ThemeContext, {
+createCssVarsProvider<DesignSystemThemeInput, DesignSystemColorScheme>(ThemeContext, {
   theme: {
     fontSize: {
       md: '1rem',
@@ -97,7 +102,7 @@ createCssVarsProvider<DesignSystemTheme, DesignSystemColorScheme>(ThemeContext, 
   defaultColorScheme: 'yellow',
 });
 
-createCssVarsProvider<DesignSystemTheme, DesignSystemColorScheme>(ThemeContext, {
+createCssVarsProvider<DesignSystemThemeInput, DesignSystemColorScheme>(ThemeContext, {
   theme: {
     fontSize: {
       md: '1rem',
@@ -140,11 +145,13 @@ interface JoyColors {
   };
 }
 
-interface JoyTheme {
+interface JoyThemeInput {
   colorSchemes: Record<JoyColorScheme | JoyExtendedColorScheme, JoyColors>;
   fontSize: string;
   fontFamily: string;
 }
+
+type JoyTheme = BuildCssVarsTheme<JoyThemeInput>;
 
 const ThemeContext2 = React.createContext<JoyTheme | undefined>(undefined);
 
@@ -153,32 +160,33 @@ interface JoyColorSchemeOverrides {
   white: true;
 }
 
-const { CssVarsProvider } = createCssVarsProvider<JoyTheme, JoyColorScheme, JoyExtendedColorScheme>(
-  ThemeContext2,
-  {
-    theme: {
-      fontSize: '1rem',
-      fontFamily: 'IBM Plex Sans',
-      colorSchemes: {
-        light: {
-          palette: {
-            primary: {
-              main: '#007FFF',
-            },
+const { CssVarsProvider } = createCssVarsProvider<
+  JoyThemeInput,
+  JoyColorScheme,
+  JoyExtendedColorScheme
+>(ThemeContext2, {
+  theme: {
+    fontSize: '1rem',
+    fontFamily: 'IBM Plex Sans',
+    colorSchemes: {
+      light: {
+        palette: {
+          primary: {
+            main: '#007FFF',
           },
         },
-        dark: {
-          palette: {
-            primary: {
-              main: '#007FFF',
-            },
+      },
+      dark: {
+        palette: {
+          primary: {
+            main: '#007FFF',
           },
         },
       },
     },
-    defaultColorScheme: 'light',
   },
-);
+  defaultColorScheme: 'light',
+});
 
 function App() {
   return (
@@ -229,11 +237,13 @@ interface Joy2Colors {
   };
 }
 
-interface Joy2Theme {
+interface Joy2ThemeInput {
   colorSchemes: Record<Joy2ColorScheme | Joy2ExtendedColorScheme, Joy2Colors>;
   fontSize: string;
   fontFamily: string;
 }
+
+type Joy2Theme = BuildCssVarsTheme<Joy2ThemeInput>;
 
 const ThemeContext3 = React.createContext<Joy2Theme | undefined>(undefined);
 
@@ -244,7 +254,7 @@ interface Joy2ColorSchemeOverrides {
 }
 
 const { CssVarsProvider: CssVarsProvider2, useColorScheme } = createCssVarsProvider<
-  Joy2Theme,
+  Joy2ThemeInput,
   Joy2ColorScheme,
   Joy2ExtendedColorScheme
 >(ThemeContext3, {

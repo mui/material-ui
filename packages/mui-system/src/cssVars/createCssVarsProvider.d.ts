@@ -4,6 +4,12 @@ type PartialDeep<T> = {
   [K in keyof T]?: PartialDeep<T[K]>;
 };
 
+export type BuildCssVarsTheme<ThemeInput> = ThemeInput extends {
+  colorSchemes: Record<string, infer Colors>;
+}
+  ? Omit<ThemeInput, 'colorSchemes'> & { vars: Omit<ThemeInput, 'colorSchemes'> & Colors }
+  : never;
+
 /**
  * DesignSystemColorScheme: is what a design system provide by default. Mostly, `light` and `dark`
  * ApplicationColorScheme: is what developer can extend from a design system. Ex, `comfort` `trueDark` ...any name that they want
@@ -33,21 +39,23 @@ export interface ColorSchemeContextValue<DesignSystemColorScheme extends string>
 }
 
 export default function createCssVarsProvider<
-  Theme extends { colorSchemes: Record<DesignSystemColorScheme | ApplicationColorScheme, any> },
+  ThemeInput extends {
+    colorSchemes: Record<DesignSystemColorScheme | ApplicationColorScheme, any>;
+  },
   DesignSystemColorScheme extends string,
   ApplicationColorScheme extends string = never,
 >(
-  ThemeContext: React.Context<Theme | undefined>,
+  ThemeContext: React.Context<BuildCssVarsTheme<ThemeInput> | undefined>,
   options: {
-    theme: Omit<Theme, 'colorSchemes'> & {
+    theme: Omit<ThemeInput, 'colorSchemes'> & {
       colorSchemes: Record<
         DesignSystemColorScheme,
-        Theme['colorSchemes'][DesignSystemColorScheme]
+        ThemeInput['colorSchemes'][DesignSystemColorScheme]
       > &
         Partial<
           Record<
             ApplicationColorScheme,
-            Theme['colorSchemes'][DesignSystemColorScheme | ApplicationColorScheme]
+            ThemeInput['colorSchemes'][DesignSystemColorScheme | ApplicationColorScheme]
           >
         >;
     };
@@ -62,7 +70,7 @@ export default function createCssVarsProvider<
         storageKey?: string;
         attribute?: string;
         prefix?: string;
-      } & DecideTheme<Theme, DesignSystemColorScheme, ApplicationColorScheme>
+      } & DecideTheme<ThemeInput, DesignSystemColorScheme, ApplicationColorScheme>
     >,
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<DesignSystemColorScheme | ApplicationColorScheme>;
