@@ -1,6 +1,6 @@
 {
   "name": "@mui/markdown",
-  "version": "5.0.0",
+  "version": "5.0.4",
   "private": true,
   "type": "commonjs",
   "main": "./index.js",
