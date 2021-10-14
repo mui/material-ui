@@ -8,6 +8,9 @@ _Oct 14, 2021_
 
 A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
+- 🧪 Added `UnstyledInput` and `useInput` hook in the  the first component in @mui/core package @michaldudak (#28053)
+- 🐛 Fixed many bugs and improved the documentation 📚.
+
 ### `@mui/material@5.0.4`
 
 - &#8203;<!-- 31 -->[Chip] disable ripple only if onDelete is present. (#29034) @mottox2
