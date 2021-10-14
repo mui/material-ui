@@ -12,26 +12,7 @@ export default function styled(tag, options) {
     stylesFactory = scStyled(tag);
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    return (...styles) => {
-      const component = typeof tag === 'string' ? `"${tag}"` : 'component';
-      if (styles.length === 0) {
-        console.error(
-          [
-            `MUI: Seems like you called \`styled(${component})()\` without a \`style\` argument.`,
-            'You must provide a `styles` argument: `styled("div")(styleYouForgotToPass)`.',
-          ].join('\n'),
-        );
-      } else if (styles.some((style) => style === undefined)) {
-        console.error(
-          `MUI: the styled(${component})(...args) API requires all its args to be defined.`,
-        );
-      }
-      return stylesFactory(...styles);
-    };
-  }
-
-  return (...styles) => stylesFactory(...styles);
+  return stylesFactory
 }
 
 export { ThemeContext, keyframes, css } from 'styled-components';
