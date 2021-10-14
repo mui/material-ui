@@ -51,7 +51,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
     defaultColorScheme = designSystemColorScheme,
   }) {
     const [colorScheme, setColorScheme] = React.useState(
-      resolveMode(storageKey, defaultColorScheme),
+      () => resolveMode(storageKey, defaultColorScheme),
     );
 
     React.useEffect(() => {
@@ -61,7 +61,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
       }
     }, [colorScheme, attribute, storageKey]);
 
-    // localStorage event handling
+    // local storage modified in the context of another document
     React.useEffect(() => {
       const handleStorage = (event) => {
         if (event.key === storageKey) {
@@ -140,7 +140,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
      */
     children: PropTypes.node,
     /**
-     * The initial color scheme for first visit.
+     * The initial color scheme used.
      */
     defaultColorScheme: PropTypes.string,
     /**
@@ -148,7 +148,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
      */
     prefix: PropTypes.string,
     /**
-     * The key used to store current color scheme.
+     * The key in the local storage used to store current color scheme.
      */
     storageKey: PropTypes.string,
     /**
