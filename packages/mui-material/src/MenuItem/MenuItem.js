@@ -69,7 +69,7 @@ const MenuItemRoot = styled(ButtonBase, {
   }),
   ...(ownerState.divider && {
     borderBottom: `1px solid ${theme.palette.divider}`,
-    backgroundClip: 'padding-box',
+    WebkitBackgroundClip: 'padding-box',
   }),
   '&:hover': {
     textDecoration: 'none',
