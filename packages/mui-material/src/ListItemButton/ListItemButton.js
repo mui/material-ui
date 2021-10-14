@@ -127,6 +127,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     divider = false,
     focusVisibleClassName,
     selected = false,
+    LinkComponent = 'a',
     ...other
   } = props;
 
@@ -168,7 +169,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
       <ListItemButtonRoot
         ref={handleRef}
         component={
-          component === 'div' && (other.href || other.to) ? other.LinkComponent || 'a' : component
+          component === 'div' && (other.href || other.to) ? LinkComponent : component
         }
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         ownerState={ownerState}
@@ -241,6 +242,15 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * @ignore
+   */
+  href: PropTypes.string,
+  /**
+   * The component used to render a link when the `href` prop is provided.
+   * @default 'a'
+   */
+  LinkComponent: PropTypes.elementType,
   /**
    * Use to apply selected styling.
    * @default false

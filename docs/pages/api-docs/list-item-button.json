@@ -13,6 +13,7 @@
     "disableGutters": { "type": { "name": "bool" } },
     "divider": { "type": { "name": "bool" } },
     "focusVisibleClassName": { "type": { "name": "string" } },
+    "LinkComponent": { "type": { "name": "elementType" }, "default": "'a'" },
     "selected": { "type": { "name": "bool" } },
     "sx": { "type": { "name": "object" } }
   },
