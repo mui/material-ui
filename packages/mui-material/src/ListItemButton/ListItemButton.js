@@ -127,7 +127,6 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     divider = false,
     focusVisibleClassName,
     selected = false,
-    LinkComponent = 'a',
     ...other
   } = props;
 
@@ -169,7 +168,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
       <ListItemButtonRoot
         ref={handleRef}
         component={
-          component === 'div' && (other.href || other.to) ? LinkComponent : component
+          component === 'div' && (other.href || other.to) ? other.LinkComponent || 'a' : component
         }
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         ownerState={ownerState}
