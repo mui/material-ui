@@ -389,6 +389,10 @@ DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
    */
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
   /**
+   * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
+   */
+  PaperProps: PropTypes.object,
+  /**
    * Popper props passed down to [Popper](https://mui.com/api/popper/) component.
    */
   PopperProps: PropTypes.object,
