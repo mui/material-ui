@@ -6,7 +6,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import SendIcon from '@mui/icons-material/Send';
 
 export default function FullWidthLoadingButtonsTransition() {
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   function handleClick() {
     setLoading(true);
   }
