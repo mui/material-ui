@@ -1,6 +1,6 @@
 # MUI packages
 
-<p class="description">This page will give you an overview about the responsibility of each package and the relationship between them.</p>
+<p class="description">An overview of MUI packages and the relationship between them.</p>
 
 So far, these are `@mui` public packages.
 
@@ -13,13 +13,15 @@ So far, these are `@mui` public packages.
 
 **Why does MUI have many packages? Why not just one?**
 
-To be able to serve different needs. For example, some people want to use components with built-in styles, but some people might want to have full control of the styling. By abstracting into smaller packages, it also allows MUI to grow out of Material design to provide more design option to the community.
+MUI started as a single package that provide React Material design components. However, as the library grow and more people start to use it, we have experienced that not everyone wants to use everything. Some people might want to use the components without styles and use their methods to do the styling. Some want to leverage MUI styling API and build their own design system, etc.
+
+Moreover, by abstracting into smaller packages, it also allows MUI to grow out of Material design to provide more design option to the community.
 
 The packages can be categorized in 3 layers as shown in the picture below.
 
 <img src="/static/images/packages/mui-packages.jpeg" style="width: 360px; max-width: 100%;" />
 
-The **bottom** is the internal layer (used by the upper layer). The **middle** layer is the building-blocks that serve specific purpose. The **top** layer combines building-blocks to create ready-to-use and customizable component library. Let's take a look at each layer from the bottom-up to see how it is used.
+The **bottom** is the internal layer (used by the upper layer). The **middle** layer is the building-blocks that are foundation for building UIs. The **top** layer combines building-blocks to create ready-to-use and customizable component library. Let's take a look at each layer from the bottom-up to see how it is used.
 
 ## Styled engine
 
@@ -41,23 +43,27 @@ There is only one package in this layer which is `@mui/system`. It uses styled-e
 - `styled` API supports `sx` prop by default.
 - Components created by `styled` are themable via slot & variants.
 
-> Note: you will have to use `emotion` or `styled-components` as styled-engine because the `system` depends on it.
+> **Note**: you will have to use `emotion` or `styled-components` as styled-engine because the `system` depends on it.
 
 ## Core
 
-`@mui/core` also known as unstyled components. This layer provides only component functionalities and accessibility features without styles (CSS). This package is useful if you want to take full control of the styling but you don't want to build a component from scratch. Since it does not rely on any styling solution, you can pick any method from pure CSS to any css-in-js libraries.
+`@mui/core` also known as unstyled components. This layer provides only component functionalities and accessibility features without styles (CSS). This package is useful if you want to take full control of the styling but you don't want to build a component from scratch. 
+
+Since it does not rely on any styling solution, you can pick any method from pure CSS to any css-in-js libraries.
+
+For more details, check out the [unstyled component page](/customization/unstyled-components/)
 
 ## Design system
 
 This is the most installed/used layer because it comes with everything from the ground up.
 
-- Themable components (has `@mui/system` as dependency)
-- Accessibility features (has `@mui/core` as dependency)
+- Theming capabilities (has `@mui/system` as dependency)
+- Accessible components and React hooks (has `@mui/core` as dependency)
 - Default styles based on the design principle or guideline
 
-Currently, MUI has one package in the design system layer which is `@mui/material`. This package provides components that follow Material design guideline and also re-export necessary APIs from its dependencies. Since it has `@mui/system` and `@mui/core` as dependencies, you should not install or import them separately. Instead, you can import everything from `@mui/material`.
+Currently, MUI has one package in the design system layer, `@mui/material`. This package provides components that follow Material design guideline and also re-export necessary APIs from its dependencies. Since it has `@mui/system` and `@mui/core` as dependencies, you **should not** install or import them separately. Instead, you should import from `@mui/material`.
 
-However, there might be a case where you want to import a component from `@mui/core`. For example, you mainly use `@mui/material` through out your application with your custom theme but the design of a switch you have is quite different from Material design guideline. So, instead of overriding the Switch from `@mui/material` package, you can use `styled` API to customize the Switch from `@mui/core` like this:
+However, there might be a case where you want to use a component from `@mui/core`. For example, you mainly use `@mui/material` through out your application with your custom theme but the design of a switch you have is quite different from Material design guideline. So, instead of overriding the Switch from `@mui/material` package, you can use `styled` API to customize `@mui/core` Switch from scratch like this:
 
 ```js
 import { styled } from '@mui/material/styles';
@@ -87,7 +93,7 @@ export default function CustomSwitch() {
 }
 ```
 
-> Note: you don't need to install `@mui/core` separately because it comes with the design system package already.
+> **Note**: you don't need to install `@mui/core` separately because it comes with the design system package already.
 
 ## Summary
 
