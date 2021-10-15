@@ -18,10 +18,13 @@ const animationDuration = 500;
 
 const PickersFadeTransitionGroupRoot = styled(TransitionGroup, {
   skipSx: true,
-})(() => ({
-  display: 'block',
-  position: 'relative',
-}));
+})(
+  () =>
+    ({
+      display: 'block',
+      position: 'relative',
+    } as const),
+);
 
 /**
  * @ignore - do not document.

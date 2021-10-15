@@ -8,7 +8,6 @@ import {
   StyledComponentInnerComponent,
   StyledComponentInnerOtherProps,
   StyledComponentInnerAttrs,
-  ThemedStyledFunction,
   ThemedStyledProps,
   StyledComponentBase,
   Keyframes,
@@ -83,24 +82,39 @@ type ThemedStyledComponentFactories<T extends object> = {
   [TTag in keyof JSX.IntrinsicElements]: ThemedStyledFunctionBase<TTag, T>;
 };
 
+// Same as in styled-components, but copied here so that it would use the Interpolation & CSS typings from above
 export interface ThemedStyledFunctionBase<
   C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
   T extends object,
   O extends object = {},
   A extends keyof any = never,
 > {
+  (first: TemplateStringsArray): StyledComponent<C, T, O, A>;
   (
-    ...args:
+    first:
       | TemplateStringsArray
-      | Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O, T>>>
+      | CSSObject
+      | InterpolationFunction<ThemedStyledProps<StyledComponentPropsWithRef<C> & O, T>>,
+    ...rest: Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O, T>>>
   ): StyledComponent<C, T, O, A>;
   <U extends object>(
-    ...args:
+    first:
       | TemplateStringsArray
-      | Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O & U, T>>>
+      | CSSObject
+      | InterpolationFunction<ThemedStyledProps<StyledComponentPropsWithRef<C> & O & U, T>>,
+    ...rest: Array<Interpolation<ThemedStyledProps<StyledComponentPropsWithRef<C> & O & U, T>>>
   ): StyledComponent<C, T, O & U, A>;
 }
 
+// same as ThemedStyledFunction in styled-components, but without attrs, and withConfig
+export interface ThemedStyledFunction<
+  C extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+  T extends object,
+  O extends object = {},
+  A extends keyof any = never,
+> extends ThemedStyledFunctionBase<C, T, O, A> {}
+
+// same as ThemedBaseStyledInterface in styled-components, but with added options & common props for MUI components
 export interface ThemedBaseStyledInterface<
   MUIStyledCommonProps extends object,
   MuiStyledOptions extends object,
@@ -108,9 +122,8 @@ export interface ThemedBaseStyledInterface<
 > extends ThemedStyledComponentFactories<T> {
   <C extends AnyStyledComponent>(
     component: C,
-    options?: StyledConfig<StyledComponentPropsWithRef<C> & MUIStyledCommonProps> &
-      MuiStyledOptions,
-  ): ThemedStyledFunctionBase<
+    options?: StyledConfig<any> & MuiStyledOptions,
+  ): ThemedStyledFunction<
     StyledComponentInnerComponent<C>,
     T,
     StyledComponentInnerOtherProps<C> & MUIStyledCommonProps,
@@ -120,9 +133,8 @@ export interface ThemedBaseStyledInterface<
     // unfortunately using a conditional type to validate that it can receive a `theme?: Theme`
     // causes tests to fail in TS 3.1
     component: C,
-    options?: StyledConfig<StyledComponentPropsWithRef<C> & MUIStyledCommonProps> &
-      MuiStyledOptions,
-  ): ThemedStyledFunctionBase<C, T, MUIStyledCommonProps>;
+    options?: StyledConfig<any> & MuiStyledOptions,
+  ): ThemedStyledFunction<C, T, MUIStyledCommonProps>;
 }
 
 export type CreateMUIStyled<
