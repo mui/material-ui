@@ -100,7 +100,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
   },
   ...(ownerState.divider && {
     borderBottom: `1px solid ${theme.palette.divider}`,
-    WebkitBackgroundClip: 'padding-box',
+    backgroundClip: 'padding-box',
   }),
   ...(ownerState.alignItems === 'flex-start' && {
     alignItems: 'flex-start',
