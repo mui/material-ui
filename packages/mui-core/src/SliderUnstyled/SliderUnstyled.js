@@ -681,8 +681,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               {...markProps}
               {...(!isHostComponent(Mark) && {
                 ownerState: { ...ownerState, ...markProps.ownerState },
+                markActive,
               })}
-              markActive={markActive}
               style={{ ...style, ...markProps.style }}
               className={clsx(classes.mark, markProps.className, {
                 [classes.markActive]: markActive,

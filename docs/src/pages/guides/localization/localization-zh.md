@@ -76,7 +76,7 @@ const theme = createTheme(
 
 <!-- #default-branch-switch -->
 
-您可以在GitHub库中找到[源文件](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/locale/index.ts)。
+您可以在GitHub库中找到[源文件](https://github.com/mui-org/material-ui/blob/HEAD/packages/mui-material/src/locale/index.ts)。
 
 要创建自己的翻译，或自定义英文文本，请将此文件复制到您的项目中，进行所需的任何更改并从那里导入语言环境。
 

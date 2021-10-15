@@ -34,7 +34,7 @@
 
 ### 原生属性
 
-我们避免记录 DOM 支持的那些原生属性，如[`className`](/customization/components/#overriding-styles-with-class-names)。
+我们避免记录 DOM 支持的那些原生属性，如[`className`](/customization/how-to-customize/#overriding-styles-with-class-names)。
 
 ### CSS classes
 

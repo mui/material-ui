@@ -31,7 +31,7 @@ npm install @material-ui/icons
 yarn add @material-ui/icons
 ```
 
-Esses componentes usam o componente `SvgIcon` do Material-UI para renderizar o caminho SVG de cada ícone, e por isso tem uma dependência com `@materialui/core`.
+Esses componentes usam o componente `SvgIcon` do Material-UI para renderizar o caminho SVG de cada ícone, e por isso tem uma dependência com `@mui/material`.
 
 Se você ainda não estiver usando Material-UI no seu projeto, você pode adicioná-lo com:
 
