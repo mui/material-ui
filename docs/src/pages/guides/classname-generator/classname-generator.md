@@ -2,9 +2,13 @@
 
 <p class="description">Configure classname generation at build time.</p>
 
-This API is introduced in `@mui/material` (v5.1) as a replacement of [`createGenerateClassName`](/styles/api/#creategenerateclassname-options-class-name-generator) which is deprecated.
+This API is introduced in `@mui/material` (v5.1) as a replacement of deprecated [`createGenerateClassName`](/styles/api/#creategenerateclassname-options-class-name-generator).
 
-By default, MUI generate global className for each component slot. For example:
+> ⚠️ **Note**: this API is in unstable stage which might be changed in the future.
+
+## Global classname prefix
+
+By default, MUI generate global classname for each component slot. For example:
 
 ```js
 import Button from '@mui/material/Button';
@@ -24,15 +28,13 @@ Gives the html result:
 </button>
 ```
 
-However, in some cases you want to add prefix to all generated class name. This is where `ClassNameGenerator` comes in:
-
-> ⚠️ Note: this API is in unstable stage which might be changed in the future.
+To add prefix to all MUI components, pass a callback to `ClassNameGenerator.configure(callback)`.
 
 ```js
-import { unstable_ClassNameGenerator } from '@mui/material/utils';
+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
 
 // call this function at the root of the application
-unstable_ClassNameGenerator.configure((componentName) => `foo-bar-${componentName}`);
+ClassNameGenerator.configure((componentName) => `foo-bar-${componentName}`);
 
 function App() {
   return <Button>Button</Button>;
@@ -49,25 +51,51 @@ Now, the html result is changed to:
 </button>
 ```
 
-If your application use this API to generate class name prefix, be aware that you can't use hard-coded `.Mui*` for theming or style overriding anymore. Instead, you should import `[component]Classes` and use it to get the generated class name.
+## Component renaming
 
-```diff
-+import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+Every MUI components has `${componentName}-${slot}` classname format. For example, the component name of [`Chip`](/components/chips/) is `MuiChip`, which is used as a global class name for every `<Chip />` elements. Here is how to remove/change the `Mui` prefix:
 
-const theme = createTheme({
-  components: {
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
--         '& .MuiOutlinedInput-notchedOutline': {
-+         [`& .${outlinedInputClasses.notchedOutline}`]: { // the result will contain the prefix.
-            borderWidth: 1,
+```js
+import { unstable_ClassNameGenerator } from '@mui/material/utils';
+
+// call this function at the root of the application
+unstable_ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
+
+function App() {
+  return <Button>Button</Button>;
+}
+```
+
+Now, the `Mui` class is gone.
+
+```html
+<div class="Chip-root Chip-filled Chip-sizeMedium Chip-colorDefault Chip-filledDefault css-mttbc0">Chip</div>
+```
+
+> **Note**: [state classes](/customization/how-to-customize/#state-classes) are **NOT** component name, so they cannot be changed/removed.
+
+## Caveat
+
+- you should always use `[component]Classes` for theming/customization to get the correct generated class name.
+
+  ```diff
+  +import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+
+  const theme = createTheme({
+    components: {
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: {
+  -         '& .MuiOutlinedInput-notchedOutline': {
+  +         [`& .${outlinedInputClasses.notchedOutline}`]: { // the result will contain the prefix.
+              borderWidth: 1,
+            }
           }
         }
       }
     }
-  }
-});
-```
+  });
+  ```
 
-> ⚠️ This API should only be used at build-time.
+- This API should only be used at build-time.
+- The configuration is applied to all of the components across the application. You cannot target specific part of the application.
