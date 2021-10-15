@@ -18,15 +18,12 @@ export { default } from 'styled-components';
 
 export { default as StyledEngineProvider } from './StyledEngineProvider';
 
-export { ThemeContext, keyframes, css } from 'styled-components';
-
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
 // These are the same as the ones in @mui/styled-engine
 // CSS.PropertiesFallback are necessary so that we support spreading of the mixins. For example:
 // '@font-face'?: Fontface | Fontface[]
-
 export type CSSProperties = CSS.PropertiesFallback<number | string>;
 export type CSSPropertiesWithMultiValues = {
   [K in keyof CSSProperties]: CSSProperties[K] | Array<Extract<CSSProperties[K], string>>;
@@ -73,8 +70,8 @@ type StyledComponentInterpolation =
   | Pick<StyledComponentBase<any, any, any, any>, keyof StyledComponentBase<any, any>>
   | Pick<StyledComponentBase<any, any, any>, keyof StyledComponentBase<any, any>>;
 
-// ---------------------
-
+// These are typings coming from styled-components
+// They are adjusted to accept the extended options coming from mui
 type AnyIfEmpty<T extends object> = keyof T extends never ? any : T;
 
 type ThemedStyledComponentFactories<T extends object> = {
