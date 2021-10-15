@@ -47,7 +47,7 @@ There is only one package in this layer which is `@mui/system`. It uses styled-e
 
 ## Core
 
-`@mui/core` also known as unstyled components. This layer provides only component functionalities and accessibility features without styles (CSS). This package is useful if you want to take full control of the styling but you don't want to build a component from scratch. 
+`@mui/core` also known as unstyled components. This layer provides only component functionalities and accessibility features without styles (CSS). This package is useful if you want to take full control of the styling but you don't want to build a component from scratch.
 
 Since it does not rely on any styling solution, you can pick any method from pure CSS to any css-in-js libraries.
 
@@ -82,14 +82,12 @@ const Root = styled('span')(`
   & .${switchUnstyledClasses.thumb} {
     // ...css
   }
-`)
+`);
 
 export default function CustomSwitch() {
   const label = { componentsProps: { input: { 'aria-label': 'Demo switch' } } };
 
-  return (
-    <SwitchUnstyled component={Root} {...label} />
-  );
+  return <SwitchUnstyled component={Root} {...label} />;
 }
 ```
 
@@ -97,7 +95,7 @@ export default function CustomSwitch() {
 
 ## Summary
 
-- use `@mui/material` if you want to get started with Material design components 
+- use `@mui/material` if you want to get started with Material design components
   > 💡 Always import styling APIs (eg. `ThemeProvider`, `styled`, etc.) from `@mui/material`
 - use `@mui/core` if you want to style the component from scratch.
   > 💡 This package can be imported along side with `@mui/material`.
