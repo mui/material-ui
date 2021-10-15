@@ -44,3 +44,4 @@ export { default as useTheme } from './useTheme';
 export { default as useThemeWithoutDefault } from './useThemeWithoutDefault';
 export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
+export { default as unstable_createCssVarsProvider } from './cssVars/createCssVarsProvider';
