@@ -101,9 +101,14 @@ const LoadingButtonLoadingIndicator = styled('div', {
   position: 'absolute',
   visibility: 'visible',
   display: 'flex',
-  ...(ownerState.loadingPosition === 'start' && {
-    left: 14,
-  }),
+  ...(ownerState.loadingPosition === 'start' &&
+    (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
+      left: 14,
+    }),
+  ...(ownerState.loadingPosition === 'start' &&
+    (ownerState.variant === 'text' || !ownerState.variant) && {
+      left: 6,
+    }),
   ...(ownerState.loadingPosition === 'center' && {
     left: '50%',
     transform: 'translate(-50%)',
