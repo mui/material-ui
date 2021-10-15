@@ -6,7 +6,7 @@ import { chainPropTypes } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import Avatar from '../Avatar';
+import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 
 const SPACINGS = {
@@ -33,7 +33,7 @@ const AvatarGroupRoot = styled('div', {
     ...styles.root,
   }),
 })(({ theme }) => ({
-  [`& .MuiAvatar-root`]: {
+  [`& .${avatarClasses.root}`]: {
     border: `2px solid ${theme.palette.background.default}`,
     boxSizing: 'content-box',
     marginLeft: -8,
