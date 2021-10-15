@@ -110,7 +110,7 @@ export {
   Interpolation,
   CSSInterpolation,
   CSSObject,
-} from '@mui/styled-engine-sc';
+} from '@mui/styled-engine';
 
 export * from './style';
 export * from './spacing';
