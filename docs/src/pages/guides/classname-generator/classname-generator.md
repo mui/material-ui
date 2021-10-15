@@ -59,7 +59,9 @@ Every MUI components has `${componentName}-${slot}` classname format. For exampl
 import { unstable_ClassNameGenerator } from '@mui/material/utils';
 
 // call this function at the root of the application
-unstable_ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
+unstable_ClassNameGenerator.configure((componentName) =>
+  componentName.replace('Mui', ''),
+);
 
 function App() {
   return <Button>Button</Button>;
@@ -69,7 +71,11 @@ function App() {
 Now, the `Mui` class is gone.
 
 ```html
-<div class="Chip-root Chip-filled Chip-sizeMedium Chip-colorDefault Chip-filledDefault css-mttbc0">Chip</div>
+<div
+  class="Chip-root Chip-filled Chip-sizeMedium Chip-colorDefault Chip-filledDefault css-mttbc0"
+>
+  Chip
+</div>
 ```
 
 > **Note**: [state classes](/customization/how-to-customize/#state-classes) are **NOT** component name, so they cannot be changed/removed.
