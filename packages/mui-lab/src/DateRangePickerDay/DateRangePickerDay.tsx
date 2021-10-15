@@ -41,7 +41,7 @@ export interface DateRangePickerDayClasses {
 
 export type DateRangePickerDayClassKey = keyof DateRangePickerDayClasses;
 
-export interface DateRangePickerDayProps<TDate> extends Omit<PickersDayProps<TDate>, 'classes'> {
+export interface DateRangePickerDayProps<TDate = unknown> extends Omit<PickersDayProps<TDate>, 'classes'> {
   /**
    * Set to `true` if the `day` is in a highlighted date range.
    */
