@@ -68,7 +68,7 @@ export function useTimePickerDefaultizedProps<Props extends BaseTimePickerProps<
       openTo,
       ampm: willUseAmPm,
       acceptRegex: willUseAmPm ? /[\dapAP]/gi : /\d/gi,
-      mask: mask ?? '__:__',
+      mask: mask ?? '__:__ _m',
       getOpenDialogAriaText: getTextFieldAriaText,
       components: {
         OpenPickerIcon: ClockIcon,
