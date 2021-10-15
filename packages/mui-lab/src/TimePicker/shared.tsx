@@ -52,6 +52,7 @@ export function useTimePickerDefaultizedProps<Props extends BaseTimePickerProps<
     ampm,
     components,
     inputFormat,
+    mask,
     openTo = 'hours',
     views = ['hours', 'minutes'],
     ...other
@@ -67,8 +68,7 @@ export function useTimePickerDefaultizedProps<Props extends BaseTimePickerProps<
       openTo,
       ampm: willUseAmPm,
       acceptRegex: willUseAmPm ? /[\dapAP]/gi : /\d/gi,
-      mask: '__:__',
-      disableMaskedInput: willUseAmPm,
+      mask: mask ?? '__:__',
       getOpenDialogAriaText: getTextFieldAriaText,
       components: {
         OpenPickerIcon: ClockIcon,
