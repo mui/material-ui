@@ -118,7 +118,7 @@ export const ListItemRoot = styled('div', {
   }),
   ...(ownerState.divider && {
     borderBottom: `1px solid ${theme.palette.divider}`,
-    WebkitBackgroundClip: 'padding-box',
+    backgroundClip: 'padding-box',
   }),
   ...(ownerState.button && {
     transition: theme.transitions.create('background-color', {
