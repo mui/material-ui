@@ -52,7 +52,7 @@ const validatePropValues = (base, prop) => {
   return prop;
 };
 
-export const style = ({ ownerState, theme }) => {
+export const getStyle = ({ ownerState, theme }) => {
   let styles = {
     display: 'flex',
     flexFlow: 'column wrap',
@@ -78,10 +78,9 @@ export const style = ({ ownerState, theme }) => {
       '& > *': {
         margin: spacing / 2,
       },
-      ...(ownerState.maxColumnHeight &&
-        ownerState.maxNumberOfRows && {
-          height: Math.ceil(ownerState.maxColumnHeight + spacing * ownerState.maxNumberOfRows),
-        }),
+      ...(ownerState.maxColumnHeight && {
+        height: Math.ceil(ownerState.maxColumnHeight + spacing),
+      }),
     };
   };
 
@@ -140,7 +139,7 @@ const MasonryRoot = styled('div', {
   overridesResolver: (props, styles) => {
     return [styles.root];
   },
-})(style);
+})(getStyle);
 
 const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   const props = useThemeProps({
@@ -150,21 +149,18 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
   const masonryRef = React.useRef();
   const [maxColumnHeight, setMaxColumnHeight] = React.useState();
-  const [maxNumberOfRows, setMaxNumberOfRows] = React.useState();
   const [numberOfLineBreaks, setNumberOfLineBreaks] = React.useState(0);
   const { children, className, component = 'div', columns = 4, spacing = 1, ...other } = props;
-  const ownerState = { ...props, spacing, columns, maxColumnHeight, maxNumberOfRows };
+  const ownerState = { ...props, spacing, columns, maxColumnHeight };
   const classes = useUtilityClasses(ownerState);
 
   React.useEffect(() => {
     const handleResize = () => {
-      const parentWidth = Number(
-        window.getComputedStyle(masonryRef.current).width.replace('px', ''),
+      const parentWidth = masonryRef.current.clientWidth;
+      const childWidth = masonryRef.current.firstChild.clientWidth;
+      const childMargin = Number(
+        window.getComputedStyle(masonryRef.current.firstChild).margin.replace('px', ''),
       );
-
-      const childComputedStyle = window.getComputedStyle(masonryRef.current.firstChild);
-      const childWidth = Number(childComputedStyle.width.replace('px', ''));
-      const childMargin = Number(childComputedStyle.margin.replace('px', ''));
 
       if (parentWidth === 0 || childWidth === 0) {
         return;
@@ -172,29 +168,34 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
       const currentNumberOfColumns = Math.round(parentWidth / (childWidth + childMargin * 2));
       const columnHeights = new Array(currentNumberOfColumns).fill(0);
-      const numberOfRowsByColumn = new Array(currentNumberOfColumns).fill(0);
       let skip = false;
       masonryRef.current.childNodes.forEach((child) => {
         if (child.nodeType !== Node.ELEMENT_NODE || child.dataset.class === 'line-break' || skip) {
           return;
         }
-        // if any one of children is not rendered yet, masonry's height shouldn't be computed yet
-        const childHeight = Number(window.getComputedStyle(child).height.replace('px', ''));
+        // if any one of children isn't rendered yet, masonry's height shouldn't be computed yet
+        const childHeight = child.clientHeight
+          ? Math.ceil(child.clientHeight) + childMargin * 2
+          : 0;
         if (childHeight === 0) {
           skip = true;
-          return;
         }
-
-        // find the current shortest column (where the current item will be placed)
-        const currentMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-        columnHeights[currentMinColumnIndex] += childHeight;
-        numberOfRowsByColumn[currentMinColumnIndex] += 1;
-        const order = currentMinColumnIndex + 1;
-        child.style.order = order;
+        // if there is a nested image that isn't rendered yet, masonry's height shouldn't be computed yet
+        child.childNodes.forEach((nestedChild) => {
+          if (nestedChild.tagName === 'IMG' && nestedChild.clientHeight === 0) {
+            skip = true;
+          }
+        });
+        if (!skip) {
+          // find the current shortest column (where the current item will be placed)
+          const currentMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+          columnHeights[currentMinColumnIndex] += childHeight;
+          const order = currentMinColumnIndex + 1;
+          child.style.order = order;
+        }
       });
       if (!skip) {
         setMaxColumnHeight(Math.max(...columnHeights));
-        setMaxNumberOfRows(Math.max(...numberOfRowsByColumn));
         const numOfLineBreaks = currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0;
         setNumberOfLineBreaks(numOfLineBreaks);
       }
