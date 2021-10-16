@@ -23,7 +23,7 @@ A simple example of a `Masonry`. `Masonry` is a container for one or more items.
 ## Image masonry
 
 This example demonstrates the use of `Masonry` for images. `Masonry` orders its children by row.
-If you would like to order images by column, you can use `<ImageList variant="masonry" />`. More details on this component can be found in [Masonry Image List](/components/image-list/#masonry-image-list).
+If you'd like to order images by column, check out [ImageList](/components/image-list/#masonry-image-list).
 
 {{"demo": "pages/components/masonry/ImageMasonry.js", "bg": true}}
 
