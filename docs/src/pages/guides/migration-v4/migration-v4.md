@@ -519,7 +519,7 @@ declare module '@mui/styles' {
   +import { createGenerateClassName } from '@mui/styles';
   ```
 
-  To generate custom class name **without** using `@mui/styles`, check out [ClassNameGenerator](/guides/classname-generator/) for more details.
+  To generate custom class names **without** using `@mui/styles`, check out [ClassNameGenerator](/guides/classname-generator/) for more details.
 
 #### createMuiTheme
 
