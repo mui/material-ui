@@ -80,7 +80,7 @@
     "@eps1lon/enzyme-adapter-react-17": "^0.1.0",
     "@octokit/rest": "^18.12.0",
     "@rollup/plugin-replace": "^3.0.0",
-    "@testing-library/dom": "^8.7.2",
+    "@testing-library/dom": "^8.9.1",
     "@testing-library/react": "^12.1.2",
     "@types/chai": "^4.2.22",
     "@types/chai-dom": "^0.0.11",
