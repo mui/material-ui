@@ -63,6 +63,32 @@ export const getStyle = ({ ownerState, theme }) => {
     },
   };
 
+  const stylesSSR = {};
+  if (ownerState.isSSR) {
+    const orderStyleSSR = {};
+    const defaultSpacing = Number(theme.spacing(ownerState.defaultSpacing).replace('px', ''));
+    for (let i = 1; i <= ownerState.defaultColumns; i += 1) {
+      orderStyleSSR[
+        `&:nth-of-type(${ownerState.defaultColumns}n+${i % ownerState.defaultColumns})`
+      ] = {
+        order: i,
+      };
+    }
+    stylesSSR.height = ownerState.defaultHeight;
+    stylesSSR.margin = -(defaultSpacing / 2);
+    stylesSSR['& > *'] = {
+      ...styles['& > *'],
+      ...orderStyleSSR,
+      margin: defaultSpacing / 2,
+      width: `calc(${(100 / ownerState.defaultColumns).toFixed(2)}% - ${defaultSpacing}px)`,
+    };
+
+    return {
+      ...styles,
+      ...stylesSSR,
+    };
+  }
+
   const spacingBreakpointsBase = computeBreakpointsBase(theme.breakpoints, ownerState.spacing);
   const spacingValues = resolveBreakpointValues({
     values: validatePropValues(spacingBreakpointsBase, ownerState.spacing),
@@ -147,11 +173,36 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     name: 'MuiMasonry',
   });
 
+  const {
+    children,
+    className,
+    component = 'div',
+    columns = 4,
+    spacing = 1,
+    defaultColumns,
+    defaultHeight,
+    defaultSpacing,
+    ...other
+  } = props;
+
   const masonryRef = React.useRef();
   const [maxColumnHeight, setMaxColumnHeight] = React.useState();
-  const [numberOfLineBreaks, setNumberOfLineBreaks] = React.useState(0);
-  const { children, className, component = 'div', columns = 4, spacing = 1, ...other } = props;
-  const ownerState = { ...props, spacing, columns, maxColumnHeight };
+  const isSSR = !maxColumnHeight && defaultColumns && defaultHeight && defaultSpacing;
+  const [numberOfLineBreaks, setNumberOfLineBreaks] = React.useState(
+    isSSR ? defaultColumns - 1 : 0,
+  );
+
+  const ownerState = {
+    ...props,
+    spacing,
+    columns,
+    maxColumnHeight,
+    defaultColumns,
+    defaultHeight,
+    defaultSpacing,
+    isSSR,
+  };
+
   const classes = useUtilityClasses(ownerState);
 
   React.useEffect(() => {
@@ -273,6 +324,18 @@ Masonry.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The default number of columns of the component. This is provided for server-side rendering.
+   */
+  defaultColumns: PropTypes.number,
+  /**
+   * The default height of the component in px. This is provided for server-side rendering.
+   */
+  defaultHeight: PropTypes.number,
+  /**
+   * The default spacing of the component. This is provided for server-side rendering.
+   */
+  defaultSpacing: PropTypes.number,
   /**
    * Defines the space between children. It is a factor of the theme's spacing.
    * @default 1

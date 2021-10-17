@@ -19,6 +19,18 @@ export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     columns?: ResponsiveStyleValue<number | string>;
     /**
+     * The default number of columns of the component. This is provided for server-side rendering.
+     */
+    defaultColumns?: number;
+    /**
+     * The default height of the component in px. This is provided for server-side rendering.
+     */
+    defaultHeight?: number;
+    /**
+     * The default spacing of the component. This is provided for server-side rendering.
+     */
+    defaultSpacing?: number;
+    /**
      * Defines the space between children. It is a factor of the theme's spacing.
      * @default 1
      */

@@ -47,3 +47,12 @@ It is important to note that the value provided to the `spacing` prop is multipl
 `spacing` accepts responsive values:
 
 {{"demo": "pages/components/masonry/ResponsiveSpacing.js", "bg": true}}
+
+## Server-side rendering
+
+This example demonstrates the use of the `defaultHeight`, `defaultColumns` and `defaultSpacing`, which are used to
+support server-side rendering.
+
+> **Note**: `defaultHeight` should be large enough to render all rows. Also, it is worth mentioning that items are not added to the shortest column in case of server-side rendering.
+
+{{"demo": "pages/components/masonry/SSRMasonry.js", "bg": true}}

@@ -144,5 +144,38 @@ describe('<Masonry />', () => {
         },
       });
     });
+
+    it('should support server-side rendering', () => {
+      const defaultHeight = 700;
+      const defaultColumns = 4;
+      const defaultSpacing = 1;
+      expect(
+        getStyle({
+          ownerState: {
+            defaultColumns,
+            defaultSpacing,
+            defaultHeight,
+            isSSR: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        display: 'flex',
+        flexFlow: 'column wrap',
+        alignContent: 'space-between',
+        boxSizing: 'border-box',
+        '& > *': {
+          boxSizing: 'border-box',
+          margin: parseToNumber(theme.spacing(defaultSpacing)) / 2,
+          width: `calc(${(100 / defaultColumns).toFixed(2)}% - ${theme.spacing(defaultSpacing)})`,
+          '&:nth-of-type(4n+1)': { order: 1 },
+          '&:nth-of-type(4n+2)': { order: 2 },
+          '&:nth-of-type(4n+3)': { order: 3 },
+          '&:nth-of-type(4n+0)': { order: 4 },
+        },
+        margin: -(parseToNumber(theme.spacing(defaultSpacing)) / 2),
+        height: defaultHeight,
+      });
+    });
   });
 });
