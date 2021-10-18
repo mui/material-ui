@@ -22,7 +22,7 @@ Moreover, abstracting into smaller packages allows MUI to grow out of Material D
 
 The packages can be categorized in 3 layers as shown in the picture below.
 
-<img src="/static/images/packages/mui-packages.jpeg" style="width: 360px; max-width: 100%;" />
+<img src="/static/images/packages/mui-packages.png" style="width: 700px; max-width: 100%;" />
 
 The **bottom** is the internal layer (used by the upper layers). The **middle** layer is composed of the building-blocks that are foundation for building UIs. The **top** layer combines these building-blocks to create a ready-to-use and customizable component library. Let's take a look at each layer starting from the bottom.
 
