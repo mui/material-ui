@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@types/draft-js": "^0.11.5",
+    "@types/draft-js": "^0.11.6",
     "@types/react": "^17.0.27",
     "case": "1.6.3",
     "deepmerge": "^4.2.2",
