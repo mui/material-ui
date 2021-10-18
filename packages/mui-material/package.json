@@ -74,6 +74,9 @@
     "react-transition-group": "^4.4.2",
     "use-sync-external-store": "0.0.0-experimental-6c3dcc7a4-20211027"
   },
+  "devDependencies": {
+    "@types/use-sync-external-store": "^0.0.0"
+  },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
