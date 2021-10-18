@@ -14,7 +14,8 @@ import FormGroup from '@mui/material/FormGroup';
 
 export default function EnableColorOnDarkAppBar() {
   const [themeMode, setThemeMode] = React.useState<'light' | 'dark'>('dark');
-  const [enableColorOnDarkMode, setEnableColorOnDarkMode] = React.useState(true);
+  const [enableColorOnDarkMode, setEnableColorOnDarkMode] =
+    React.useState<boolean>(true);
 
   const theme = createTheme({
     palette: {
