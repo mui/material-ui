@@ -48,7 +48,7 @@ commands:
     parameters:
       browsers:
         type: boolean
-        default: false
+        default: true
         description: 'Set to true if you intend to any browser (e.g. with playwright).'
 
     steps:
