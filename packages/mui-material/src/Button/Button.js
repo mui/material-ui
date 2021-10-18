@@ -158,7 +158,7 @@ const ButtonRoot = styled(ButtonBase, {
       }),
     },
     ...(ownerState.variant === 'text' && {
-      padding: '6px 8px',
+      padding: '5px 15px',
     }),
     ...(ownerState.variant === 'text' &&
       ownerState.color !== 'inherit' && {
