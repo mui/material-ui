@@ -30,7 +30,7 @@
     "disabledItemsFocusable": { "type": { "name": "bool" } },
     "disableListWrap": { "type": { "name": "bool" } },
     "disablePortal": { "type": { "name": "bool" } },
-    "filterOptions": { "type": { "name": "func" } },
+    "filterOptions": { "type": { "name": "func" }, "default": "fuzzy text match" },
     "filterSelectedOptions": { "type": { "name": "bool" } },
     "forcePopupIcon": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;bool" },
