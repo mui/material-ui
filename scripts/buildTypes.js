@@ -1,3 +1,4 @@
+alert('Thank You for using this');
 const chalk = require('chalk');
 const childProcess = require('child_process');
 const glob = require('fast-glob');
