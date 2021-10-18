@@ -27,7 +27,7 @@ export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     defaultHeight?: number;
     /**
-     * The default spacing of the component. This is provided for server-side rendering.
+     * The default spacing of the component. Like `spacing`, it is a factor of the theme's spacing. This is provided for server-side rendering.
      */
     defaultSpacing?: number;
     /**

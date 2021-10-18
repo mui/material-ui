@@ -22,12 +22,14 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getMasonryUtilityClass, classes);
 };
 
+// compute base for responsive values; e.g.,
+// [1,2,3] => {xs: true, sm: true, md: true}
+// {xs: 1, sm: 2, md: 3} => {xs: true, sm: true, md: true}
 const computeBreakpointsBase = (breakpoints, prop) => {
   const base = {};
   if (Array.isArray(prop)) {
-    const arrayLen = prop.length;
-    Object.keys(breakpoints.values).forEach((breakpoint, i) => {
-      if (i < arrayLen) {
+    Object.keys(breakpoints.values).forEach((breakpoint, i, arr) => {
+      if (i < arr.length) {
         base[breakpoint] = true;
       }
     });
@@ -41,11 +43,13 @@ const computeBreakpointsBase = (breakpoints, prop) => {
   return base;
 };
 
+// if prop is an array, convert to object; e.g.,
+// (base: {xs: true, sm: true, md: true}, prop: [1,2,3]) => {xs: 1, sm: 2, md: 3}
 const validatePropValues = (base, prop) => {
   const values = {};
   if (Array.isArray(prop)) {
     Object.keys(base).forEach((breakpoint, i) => {
-      values[breakpoint] = Number(prop[i]);
+      values[breakpoint] = prop[i];
     });
     return values;
   }
@@ -276,6 +280,14 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     padding: 0,
   };
 
+  //  columns are likely to have different heights and hence can start to merge;
+  //  a line break at the end of each column prevents columns from merging
+  const lineBreaks = new Array(numberOfLineBreaks)
+    .fill('')
+    .map((_, index) => (
+      <span key={index} data-class="line-break" style={{ ...lineBreakStyle, order: index + 1 }} />
+    ));
+
   return (
     <MasonryRoot
       as={component}
@@ -285,9 +297,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       {...other}
     >
       {children}
-      {new Array(numberOfLineBreaks).fill('').map((_, index) => (
-        <span key={index} data-class="line-break" style={{ ...lineBreakStyle, order: index + 1 }} />
-      ))}
+      {lineBreaks}
     </MasonryRoot>
   );
 });
@@ -333,7 +343,7 @@ Masonry.propTypes /* remove-proptypes */ = {
    */
   defaultHeight: PropTypes.number,
   /**
-   * The default spacing of the component. This is provided for server-side rendering.
+   * The default spacing of the component. Like `spacing`, it is a factor of the theme's spacing. This is provided for server-side rendering.
    */
   defaultSpacing: PropTypes.number,
   /**
