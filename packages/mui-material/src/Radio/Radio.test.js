@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createClientRender, prettyDOM } from 'test/utils';
+import { describeConformance, createClientRender } from 'test/utils';
 import Radio, { radioClasses as classes } from '@mui/material/Radio';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -25,13 +25,6 @@ describe('<Radio />', () => {
       expect(typeof classes.disabled).to.equal('string');
     });
   });
-
-  // describe('dom', () => {
-  //   it('should render radio', () => {
-  //     const { container } = render(<Radio />);
-  //     console.log(prettyDOM(container));
-  //   });
-  // });
 
   describe('prop: unchecked', () => {
     it('should render an unchecked icon', () => {
