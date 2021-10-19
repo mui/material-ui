@@ -12,27 +12,37 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 ```jsx
 <Box sx={{ display: 'flex' }}>…
+<Box sx={{ display: 'inline-flex' }}>…
 ```
 
 ### flex-direction
+
+For more information please see [flex-direction](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction) on MDN.
 
 {{"demo": "pages/system/flexbox/FlexDirection.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box sx={{ flexDirection: 'row' }}>…
 <Box sx={{ flexDirection: 'row-reverse' }}>…
+<Box sx={{ flexDirection: 'column' }}>…
+<Box sx={{ flexDirection: 'column-reverse' }}>…
 ```
 
 ### flex-wrap
+
+For more information please see [flex-wrap](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap) on MDN.
 
 {{"demo": "pages/system/flexbox/FlexWrap.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box sx={{ flexWrap: 'nowrap' }}>…
 <Box sx={{ flexWrap: 'wrap' }}>…
+<Box sx={{ flexWrap: 'wrap-reverse' }}>…
 ```
 
 ### justify-content
+
+For more information please see [justify-content](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content) on MDN.
 
 {{"demo": "pages/system/flexbox/JustifyContent.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -45,9 +55,9 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 <Box sx={{ justifyContent: 'space-evenly' }}>…
 ```
 
-To learn more about `justifyContent` please see [this](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content)
-
 ### align-items
+
+For more information please see [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items) on MDN.
 
 {{"demo": "pages/system/flexbox/AlignItems.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -55,20 +65,30 @@ To learn more about `justifyContent` please see [this](https://developer.mozilla
 <Box sx={{ alignItems: 'flex-start' }}>…
 <Box sx={{ alignItems: 'flex-end' }}>…
 <Box sx={{ alignItems: 'center' }}>…
+<Box sx={{ alignItems: 'stretch' }}>…
+<Box sx={{ alignItems: 'baseline' }}>…
 ```
 
 ### align-content
+
+For more information please see [align-content](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content) on MDN.
 
 {{"demo": "pages/system/flexbox/AlignContent.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box sx={{ alignContent: 'flex-start' }}>…
 <Box sx={{ alignContent: 'flex-end' }}>…
+<Box sx={{ alignContent: 'center' }}>…
+<Box sx={{ alignContent: 'space-between' }}>…
+<Box sx={{ alignContent: 'space-around' }}>…
+<Box sx={{ alignContent: 'stretch' }}>…
 ```
 
 ## Properties for the Children
 
 ### order
+
+For more information please see [order](https://developer.mozilla.org/en-US/docs/Web/CSS/order) on MDN.
 
 {{"demo": "pages/system/flexbox/Order.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -80,6 +100,8 @@ To learn more about `justifyContent` please see [this](https://developer.mozilla
 
 ### flex-grow
 
+For more information please see [flex-grow](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow) on MDN.
+
 {{"demo": "pages/system/flexbox/FlexGrow.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
@@ -90,6 +112,8 @@ To learn more about `justifyContent` please see [this](https://developer.mozilla
 
 ### flex-shrink
 
+For more information please see [flex-shrink](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink) on MDN.
+
 {{"demo": "pages/system/flexbox/FlexShrink.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
@@ -99,6 +123,8 @@ To learn more about `justifyContent` please see [this](https://developer.mozilla
 ```
 
 ### align-self
+
+For more information please see [align-self](https://developer.mozilla.org/en-US/docs/Web/CSS/align-self) on MDN.
 
 {{"demo": "pages/system/flexbox/AlignSelf.js", "defaultCodeOpen": false, "bg": true}}
 
