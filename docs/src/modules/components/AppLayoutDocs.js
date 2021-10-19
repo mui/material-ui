@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { exactProp } from '@mui/utils';
-import NoSsr from '@mui/material/NoSsr';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import EditPage from 'docs/src/modules/components/EditPage';
@@ -11,7 +10,10 @@ import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import Ad from 'docs/src/modules/components/Ad';
 import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
-import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
+
+const DeferredAppLayoutDocsFooter = React.lazy(() =>
+  import('docs/src/modules/components/AppLayoutDocsFooter'),
+);
 
 const TOC_WIDTH = 210;
 const NAV_WIDTH = 240;
@@ -97,11 +99,13 @@ function AppLayoutDocs(props) {
           <StyledAppContainer disableAd={disableAd} disableToc={disableToc}>
             <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
             {children}
-            <NoSsr>
-              <AppLayoutDocsFooter />
-            </NoSsr>
+            <React.Suspense fallback={null}>
+              <DeferredAppLayoutDocsFooter />
+            </React.Suspense>
           </StyledAppContainer>
-          {disableToc ? null : <AppTableOfContents toc={toc} />}
+          <React.Suspense fallback={null}>
+            {disableToc ? null : <AppTableOfContents toc={toc} />}
+          </React.Suspense>
         </Main>
       </AdManager>
     </AppFrame>
