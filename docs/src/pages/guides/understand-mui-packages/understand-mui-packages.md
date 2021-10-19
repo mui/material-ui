@@ -1,8 +1,8 @@
-# MUI packages
+# Understand MUI packages
 
 <p class="description">An overview of the MUI packages and the relationships between them.</p>
 
-So far, these are `@mui` public packages.
+The following is an up-to-date list of `@mui` public packages.
 
 - `@mui/material`
 - `@mui/system`
@@ -11,12 +11,14 @@ So far, these are `@mui` public packages.
 - `@mui/styled-engine-sc`
 - `@mui/styles`
 
+> Other packages, such as `@mui/utils` and `@mui/types`, are used internally in the list above.
+
 **Why does MUI have many packages? Why not just one?**
 
 MUI started as a single package that provides React Material Design components.
 However, as the library grew and more people started to use it, we saw an opportunity for breaking the main package down into smaller pieces as there was rising interest for specific use cases such as using a version of the components without styles so one can use its preferred styling method or using the MUI styling API to build their own design systems.
 
-Therefore, abstracting into smaller packages not only allows MUI to grow out of Material Design but also extends how the library can be used by the community, providing more flexibility and customizability. 
+Therefore, abstracting into smaller packages not only allows MUI to grow out of Material Design but also extends how the library can be used by the community, providing more flexibility and customizability.
 
 The packages can be categorized in 3 layers as shown in the picture below.
 
@@ -26,9 +28,9 @@ Let's take a look at each layer to understand how they work together, starting f
 
 ## Styled engine
 
-This layer is specifically related to stylesheets. 
-We decided to depend on well-established CSS-in-JS libraries so that we could focus on other important developments. 
-At this moment, we use `emotion` as the default styled-engine for creating stylesheets. 
+This layer is specifically related to stylesheets.
+We decided to depend on well-established CSS-in-JS libraries so that we could focus on other important developments.
+At this moment, we use `emotion` as the default styled-engine for creating stylesheets.
 In addition, we also provide an adapter for people who want to use `styled-components`.
 
 These are the packages in this layer
@@ -37,7 +39,7 @@ These are the packages in this layer
 - `@mui/styled-engine-sc` : a styled-component adapter
 - `@mui/styles` : JSS wrapper (`deprecated`)
 
-> These packages are already included in the design system packages, so you don't need to worry about importing them if you're using @mui/material, for example. 
+> These packages are already included in the design system packages, so you don't need to worry about importing them if you're using @mui/material, for example.
 
 ## System
 
@@ -53,9 +55,11 @@ Here are some benefits:
 
 ## Core
 
-`@mui/core` also known as unstyled components. This layer provides only component functionalities and accessibility features without styles (CSS). This package is useful if you want to take full control of the styling but you don't want to build a component from scratch.
+The core layer is also known as unstyled components - `@mui/core`.
 
-Since it does not rely on any styling solution, you can pick any method from pure CSS to any CSS-in-JS libraries.
+It provides only the component's functionalities and accessibility features without any styles (CSS). It is very useful if you want to take full control of the styling but don't want to spend time actually building the component from scratch.
+
+Since it does not rely on any styling solution, you can pick a method that fits you the most from pure CSS to a CSS-in-JS library.
 
 For more details, check out the [unstyled component page](/customization/unstyled-components/)
 
@@ -73,7 +77,7 @@ Since it has `@mui/system` and `@mui/core` as dependencies, you **should not** i
 Instead, you should import from `@mui/material` directly.
 
 Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that is very different from the one found in Material Design.
-In that case, instead of overriding the `Switch` from `@mui/material` we could use the `styled` API to customize the unstyled version of the Switch, available in the `@mui/core`, from scratch: 
+In that case, instead of overriding the `Switch` from `@mui/material` we could use the `styled` API to customize the unstyled version of the Switch, available in the `@mui/core`, from scratch:
 
 ```js
 import { styled } from '@mui/material/styles';
@@ -104,10 +108,11 @@ export default function CustomSwitch() {
 > **Note**: there is no need to install `@mui/core` additionally because it already comes with the design system package.
 
 ## Use-cases
+
 In summary, here's how you can use each package:
 
-- Use `@mui/material` if you want to use the components following the Material Design guidelines. 
+- Use `@mui/material` if you want to use the components following the Material Design guidelines.
   > 💡 Always import styling APIs (eg. `ThemeProvider`, `styled`, etc.) from `@mui/material`
-- Use `@mui/core` if you want to style the components from scratch using your preferred styling method. 
+- Use `@mui/core` if you want to style the components from scratch using your preferred styling method.
   > 💡 This package can be imported alongside `@mui/material`.
 - Use `@mui/system` if you want APIs that enable building your own design system.

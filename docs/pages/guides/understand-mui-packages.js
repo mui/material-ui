@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/src/pages/guides/mui-packages/mui-packages.md?@mui/markdown';
+} from 'docs/src/pages/guides/understand-mui-packages/understand-mui-packages.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;
