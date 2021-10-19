@@ -63,6 +63,28 @@ const LoadingButtonRoot = styled(Button, {
       color: 'transparent',
     },
   }),
+  ...(ownerState.loadingPosition === 'start' &&
+    ownerState.fullWidth && {
+      [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
+        {
+          transition: theme.transitions.create(['opacity'], {
+            duration: theme.transitions.duration.short,
+          }),
+          opacity: 0,
+          marginRight: -8,
+        },
+    }),
+  ...(ownerState.loadingPosition === 'end' &&
+    ownerState.fullWidth && {
+      [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
+        {
+          transition: theme.transitions.create(['opacity'], {
+            duration: theme.transitions.duration.short,
+          }),
+          opacity: 0,
+          marginLeft: -8,
+        },
+    }),
 }));
 
 const LoadingButtonLoadingIndicator = styled('div', {
@@ -90,6 +112,16 @@ const LoadingButtonLoadingIndicator = styled('div', {
   ...(ownerState.loadingPosition === 'end' && {
     right: 14,
   }),
+  ...(ownerState.loadingPosition === 'start' &&
+    ownerState.fullWidth && {
+      position: 'relative',
+      left: -10,
+    }),
+  ...(ownerState.loadingPosition === 'end' &&
+    ownerState.fullWidth && {
+      position: 'relative',
+      right: -10,
+    }),
 }));
 
 const LoadingIndicator = <CircularProgress color="inherit" size={16} />;
@@ -123,13 +155,32 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
       classes={classes}
       ownerState={ownerState}
     >
-      {loading && (
-        <LoadingButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
-          {loadingIndicator}
-        </LoadingButtonLoadingIndicator>
-      )}
+      {ownerState.loadingPosition === 'end' ? (
+        <React.Fragment>
+          {children}
+          {loading && (
+            <LoadingButtonLoadingIndicator
+              className={classes.loadingIndicator}
+              ownerState={ownerState}
+            >
+              {loadingIndicator}
+            </LoadingButtonLoadingIndicator>
+          )}
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          {loading && (
+            <LoadingButtonLoadingIndicator
+              className={classes.loadingIndicator}
+              ownerState={ownerState}
+            >
+              {loadingIndicator}
+            </LoadingButtonLoadingIndicator>
+          )}
 
-      {children}
+          {children}
+        </React.Fragment>
+      )}
     </LoadingButtonRoot>
   );
 });

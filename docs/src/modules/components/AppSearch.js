@@ -271,7 +271,13 @@ export default function AppSearch() {
             transformItems={(items) => {
               return items.map((item) => {
                 const parseUrl = document.createElement('a');
-                parseUrl.href = item.url;
+                if (['lvl2', 'lvl3'].includes(item.type)) {
+                  // remove '#heading-' from `href` url so that the link targets <span class="anchor-link"> inside <h2> or <h3>
+                  // this will make the title appear under the Header
+                  parseUrl.href = item.url.replace('#heading-', '#');
+                } else {
+                  parseUrl.href = item.url;
+                }
                 return {
                   ...item,
                   // `url` contains the domain.
@@ -478,16 +484,14 @@ export default function AppSearch() {
             },
             '& .DocSearch-Hit-content-wrapper': {
               paddingLeft: theme.spacing(2),
-              flexDirection: 'column-reverse',
             },
             '& .DocSearch-Hit-title': {
               fontSize: theme.typography.pxToRem(14),
-              color: `${theme.palette.text.secondary}`,
+              color: `${theme.palette.text.primary}`,
             },
             '& .DocSearch-Hit-path': {
-              fontSize: theme.typography.pxToRem(14),
-              fontWeight: 700,
-              color: `${theme.palette.text.primary}`,
+              fontSize: theme.typography.pxToRem(12),
+              color: `${theme.palette.text.secondary}`,
             },
             '& .DocSearch-Hit-Select-Icon': {
               height: '15px',

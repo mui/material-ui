@@ -34,6 +34,7 @@
     "OpenPickerButtonProps": "Props to pass to keyboard adornment button.",
     "openTo": "First view to show.",
     "orientation": "Force rendering in particular orientation.",
+    "PaperProps": "Paper props passed down to <a href=\"https://mui.com/api/paper/\">Paper</a> component.",
     "PopperProps": "Popper props passed down to <a href=\"https://mui.com/api/popper/\">Popper</a> component.",
     "readOnly": "Make picker read only.",
     "reduceAnimations": "Disable heavy animations.",

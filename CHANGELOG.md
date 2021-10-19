@@ -1,5 +1,67 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.0.4
+
+<!-- generated comparing v5.0.3..master -->
+
+_Oct 14, 2021_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- 🧪 Added `UnstyledInput` and `useInput` hook in the the first component in @mui/core package @michaldudak (#28053)
+- 🐛 Fixed many bugs and improved the documentation 📚.
+
+### `@mui/material@5.0.4`
+
+- &#8203;<!-- 31 -->[Chip] disable ripple only if onDelete is present. (#29034) @mottox2
+- &#8203;<!-- 06 -->[Pagination] Fix clicking on `...` triggering `onChange` with page value `null` (#28884) @ZeeshanTamboli
+- &#8203;<!-- 04 -->[Tabs] Alternative way to disable ":first-child is unsafe" error (#28982) @hbjORbj
+- &#8203;<!-- 03 -->[Tabs] Fix ":first-child is potentially unsafe" error (#28890) @hbjORbj
+- &#8203;<!-- 01 -->[transitions] Mark `children` as required where nullish `children` would crash at runtime (#29028) @eps1lon
+
+### `@mui/system@5.0.4`
+
+- &#8203;<!-- 05 -->[system] Update typing for `style` function (#28744) @hbjORbj
+
+### `@mui/core@5.0.0-alpha.51`
+
+- &#8203;<!-- 07 -->[InputUnstyled] Create unstyled input and useInput hook (#28053) @michaldudak
+
+### `@mui/lab@5.0.0-alpha.51`
+
+- &#8203;<!-- 25 -->[DesktopDatePicker] add Paper props to pass down to Paper component (#28865) @amen-souissi
+
+### Docs
+
+- &#8203;<!-- 24 -->[docs] Add JSDoc to `theme.breakpoints` (#29039) @eps1lon
+- &#8203;<!-- 23 -->[docs] Rename broken package names in docs pointing to `@mui/material` (#29006) @visualfanatic
+- &#8203;<!-- 22 -->[docs] Add troubleshooting guide for unexpected styles (#28907) @mnajdova
+- &#8203;<!-- 21 -->[docs] Fix issues reported by ahref (#28986) @mnajdova
+- &#8203;<!-- 20 -->[docs] Remove json translations for dropped locales (#28987) @mnajdova
+- &#8203;<!-- 19 -->[docs] Fix type signature of renderGroup in Autocomplete (#28876) @tanyabouman
+- &#8203;<!-- 18 -->[docs] Minor typo in v4-v5 migration docs (#28995) @kgregory
+- &#8203;<!-- 17 -->[docs] Add `mui-image` related project (#28621) @benmneb
+- &#8203;<!-- 16 -->[docs] Update Getting Started Templates' Source URIs (#28929) @epodol
+- &#8203;<!-- 15 -->[docs] Improve search experience (#28801) @siriwatknp
+- &#8203;<!-- 14 -->[docs] Fix demo of the responsive drawer (#28226) @goncalovf
+- &#8203;<!-- 13 -->[docs] Fix global theme link demo (#28974) @ZeeshanTamboli
+- &#8203;<!-- 12 -->[docs] Update box example to use 'backgroundColor' rather than 'bgColor' (#28958) @Jareechang
+- &#8203;<!-- 11 -->[docs] corrected `Box` import for `sx-prop` example (#28873) @phudekar
+- &#8203;<!-- 10 -->[docs] Fix footnote ID links in CONTRIBUTING.md (#28849) @officialpiyush
+- &#8203;<!-- 09 -->[docs] Fix color & density playground (#28803) @siriwatknp
+- &#8203;<!-- 08 -->[docs] Improve visibility of styled engine configuration section in installation guide (#28903) @Jareechang
+
+### Core
+
+- &#8203;<!-- 30 -->[core] Prevent yarn cache growing infinitely (#29040) @eps1lon
+- &#8203;<!-- 29 -->[core] Update browserslist (#29025) @eps1lon
+- &#8203;<!-- 28 -->[core] Update `peerDependencies` to require `latest` instead of `next` (#29007) @eps1lon
+- &#8203;<!-- 27 -->[core] Increase memory limit for size:snapshot (#29005) @eps1lon
+- &#8203;<!-- 26 -->[core] Init `private` Joy package (#28957) @siriwatknp
+- &#8203;<!-- 02 -->[test] Remove a11y snapshot tests (#28887) @eps1lon
+
+All contributors of this release in alphabetical order: @amen-souissi, @benmneb, @epodol, @eps1lon, @goncalovf, @hbjORbj, @Jareechang, @kgregory, @michaldudak, @mnajdova, @mottox2, @officialpiyush, @phudekar, @siriwatknp, @tanyabouman, @visualfanatic, @ZeeshanTamboli
+
 ## 5.0.3
 
 <!-- generated comparing v5.0.2..master -->
