@@ -28,6 +28,11 @@ export type IconImageProps = {
     | 'apple'
     | 'twitter'
     | 'salesforce'
+    | 'verizon'
+    | 'atandt'
+    | 'patreon'
+    | 'ebay'
+    | 'samsung'
     | 'volvo';
   sx?: SxProps<Theme>;
   title?: string;
@@ -72,6 +77,11 @@ export default function IconImage({ name, title, ...props }: IconImageProps) {
       'twitter',
       'salesforce',
       'volvo',
+      'verizon',
+      'atandt',
+      'patreon',
+      'ebay',
+      'samsung',
     ].indexOf(name) !== -1
   ) {
     category = 'companies/';

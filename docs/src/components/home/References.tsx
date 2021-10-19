@@ -8,16 +8,21 @@ import {
   CORE_CUSTOMERS,
   ADVANCED_CUSTOMERS,
   DESIGNKITS_CUSTOMERS,
+  TEMPLATES_CUSTOMERS,
 } from 'docs/src/components/home/CompaniesGrid';
 
-export { CORE_CUSTOMERS, ADVANCED_CUSTOMERS, DESIGNKITS_CUSTOMERS };
+export { CORE_CUSTOMERS, ADVANCED_CUSTOMERS, DESIGNKITS_CUSTOMERS, TEMPLATES_CUSTOMERS };
 
 const CompaniesGrid = dynamic(() => import('./CompaniesGrid'));
 
 const References = ({
   companies,
 }: {
-  companies: typeof CORE_CUSTOMERS | typeof ADVANCED_CUSTOMERS | typeof DESIGNKITS_CUSTOMERS;
+  companies:
+    | typeof CORE_CUSTOMERS
+    | typeof ADVANCED_CUSTOMERS
+    | typeof DESIGNKITS_CUSTOMERS
+    | typeof TEMPLATES_CUSTOMERS;
 }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
