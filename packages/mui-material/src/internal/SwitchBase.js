@@ -73,6 +73,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     value,
     ...other
   } = props;
+  const rootComponent = type === 'radio' ? 'label' : 'span';
   const [checked, setCheckedState] = useControlled({
     controlled: checkedProp,
     default: Boolean(defaultChecked),
@@ -140,7 +141,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
 
   return (
     <SwitchBaseRoot
-      component="span"
+      component={rootComponent}
       className={clsx(classes.root, className)}
       centerRipple
       focusRipple={!disableFocusRipple}
