@@ -1441,7 +1441,7 @@ describe('<Autocomplete />', () => {
 
       const combobox = getByRole('combobox');
       const textbox = getByRole('textbox');
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
       expect(combobox).not.to.have.attribute('aria-owns');
       expect(textbox).not.to.have.attribute('aria-controls');
       expect(document.querySelector(`.${classes.paper}`)).to.have.text('No options');
