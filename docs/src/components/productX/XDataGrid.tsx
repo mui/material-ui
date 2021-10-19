@@ -144,7 +144,7 @@ export default function XDataGrid() {
                 <Item icon={icons[name]} title={name} />
               </Highlighter>
             ))}
-            <More href={ROUTES.roadmap} />
+            <More href={ROUTES.dataGridFeatures} />
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>

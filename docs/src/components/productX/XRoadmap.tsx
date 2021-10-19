@@ -153,7 +153,7 @@ export default function XRoadmap() {
                       {bullet}
                       <b>Column pinning</b>
                       {bullet}
-                      <Link href={ROUTES.dataGridFeatures} sx={{ color: 'primary.300' }}>
+                      <Link href={ROUTES.dataGridFeaturesComparison} sx={{ color: 'primary.300' }}>
                         And more!
                       </Link>
                     </React.Fragment>,
