@@ -166,7 +166,7 @@ so we also need to take into account the rendering engine.
 
 #### Visual regression tests
 
-Checkout the [visual regression testing readme](./regressions/README.md) for more information.
+Check out the [visual regression testing readme](./regressions/README.md) for more information.
 
 #### end-to-end tests
 
