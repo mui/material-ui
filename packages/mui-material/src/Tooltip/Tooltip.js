@@ -225,7 +225,7 @@ function composeEventHandler(handler, eventHandler) {
   };
 }
 
-// TODO (v6) Remove PopperComponent, PopperProps, TransitionComponent and TransitionProps.
+// TODO v6: Remove PopperComponent, PopperProps, TransitionComponent and TransitionProps.
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
   const {
@@ -625,7 +625,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const PopperComponent = components.Popper ?? TooltipPopper;
-  const TransitionComponent = TransitionComponentProp ?? components.Transition ?? Grow;
+  const TransitionComponent = components.Transition ?? TransitionComponentProp ?? Grow;
   const TooltipComponent = components.Tooltip ?? TooltipTooltip;
   const ArrowComponent = components.Arrow ?? TooltipArrow;
 
