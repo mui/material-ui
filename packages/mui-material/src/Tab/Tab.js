@@ -62,12 +62,17 @@ const TabRoot = styled(ButtonBase, {
       paddingTop: 9,
       paddingBottom: 9,
       [`& > .${tabClasses.iconWrapper}`]: {
-        margin: '0 3px',
         ...(ownerState.iconPosition === 'top' && {
           marginBottom: 6,
         }),
         ...(ownerState.iconPosition === 'bottom' && {
           marginTop: 6,
+        }),
+        ...(ownerState.iconPosition === 'start' && {
+          marginRight: 8,
+        }),
+        ...(ownerState.iconPosition === 'end' && {
+          marginLeft: 8,
         }),
       },
     }),
@@ -252,7 +257,7 @@ Tab.propTypes /* remove-proptypes */ = {
    * The position of the icon relative to the label.
    * @default 'top'
    */
-  iconPosition: PropTypes.oneOf(['bottom', 'end', 'start', 'top']),
+  iconPosition: PropTypes.oneOf(['top', 'bottom', 'start', 'end']),
   /**
    * The label element.
    */
