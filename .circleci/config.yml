@@ -103,9 +103,6 @@ commands:
       - when:
           condition: << parameters.browsers >>
           steps:
-            - run:
-                name: Install browser dependencies
-                command: yarn playwright install-deps
             - save_cache:
                 name: Save playwright cache
                 key: v5-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
