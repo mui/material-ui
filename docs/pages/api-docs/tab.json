@@ -9,7 +9,7 @@
     "iconPosition": {
       "type": {
         "name": "enum",
-        "description": "'bottom'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;'top'"
+        "description": "'top'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;'end'"
       },
       "default": "'top'"
     },
