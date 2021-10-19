@@ -259,7 +259,7 @@ Tab.propTypes /* remove-proptypes */ = {
    * The position of the icon relative to the label.
    * @default 'top'
    */
-  iconPosition: PropTypes.oneOf(['top', 'bottom', 'start', 'end']),
+  iconPosition: PropTypes.oneOf(['bottom', 'end', 'start', 'top']),
   /**
    * The label element.
    */
