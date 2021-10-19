@@ -36,7 +36,7 @@
     "name": "MuiRadio"
   },
   "spread": true,
-  "forwardsRefTo": "HTMLSpanElement",
+  "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-material/src/Radio/Radio.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li></ul>",
