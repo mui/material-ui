@@ -7,7 +7,7 @@ type PartialDeep<T> = {
 export type BuildCssVarsTheme<ThemeInput> = ThemeInput extends {
   colorSchemes: Record<string, infer Colors>;
 }
-  ? Omit<ThemeInput, 'colorSchemes'> & { vars: Omit<ThemeInput, 'colorSchemes'> & Colors }
+  ? Omit<ThemeInput, 'colorSchemes'> & Colors & { vars: Omit<ThemeInput, 'colorSchemes'> & Colors }
   : never;
 
 /**
