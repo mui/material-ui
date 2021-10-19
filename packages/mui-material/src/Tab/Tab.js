@@ -53,8 +53,10 @@ const TabRoot = styled(ButtonBase, {
   overflow: 'hidden',
   whiteSpace: 'normal',
   textAlign: 'center',
-  flexDirection:
-    ownerState.iconPosition === 'top' || ownerState.iconPosition === 'bottom' ? 'column' : 'row',
+  ...(ownerState.label && {
+    flexDirection:
+      ownerState.iconPosition === 'top' || ownerState.iconPosition === 'bottom' ? 'column' : 'row',
+  }),
   lineHeight: 1.25,
   ...(ownerState.icon &&
     ownerState.label && {
