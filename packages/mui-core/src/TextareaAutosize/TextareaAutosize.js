@@ -1,6 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { debounce, useForkRef, useEnhancedEffect, ownerWindow } from '@mui/utils';
+import {
+  unstable_debounce as debounce,
+  unstable_useForkRef as useForkRef,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+  unstable_ownerWindow as ownerWindow,
+} from '@mui/utils';
 
 function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
