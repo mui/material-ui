@@ -7,6 +7,7 @@ Visual regression tests are split into two parts:
 
 ## Rendered UI
 
+The composition of all tests happens in `./index.js`.
 The rendered UI is either:
 
 1. located inside a separate file in `./fixtures` and written as a React component.
@@ -16,7 +17,8 @@ The rendered UI is either:
 2. a demo from `docs/src/pages`
 
    By default all demos are included.
-   We excluded demos if they are redundant or flaky etc.
+   We exclude demos if they are redundant or flaky etc.
+   The logic for this exclusion is handled (like the composition) in `./index.js`
 
 If you introduce new behavior, prefer adding a demo to the documentation to solve documentation and testing with one file.
 If you're adding a new test prefer a new component instead of editing existing files since that might unknowingly alter existing tests.
