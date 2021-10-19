@@ -17,7 +17,9 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 ### flex-direction
 
-For more information please see [flex-direction](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction) on MDN.
+For more information please see 
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction" target="_blank" rel="noopener noreferrer">flex-direction</a>
+on MDN.
 
 {{"demo": "pages/system/flexbox/FlexDirection.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -30,7 +32,9 @@ For more information please see [flex-direction](https://developer.mozilla.org/e
 
 ### flex-wrap
 
-For more information please see [flex-wrap](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap) on MDN.
+For more information please see 
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap" target="_blank" rel="noopener noreferrer">flex-wrap</a>
+on MDN.
 
 {{"demo": "pages/system/flexbox/FlexWrap.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -42,7 +46,9 @@ For more information please see [flex-wrap](https://developer.mozilla.org/en-US/
 
 ### justify-content
 
-For more information please see [justify-content](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content) on MDN.
+For more information please see 
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content" target="_blank" rel="noopener noreferrer">justify-content</a>
+on MDN.
 
 {{"demo": "pages/system/flexbox/JustifyContent.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -57,7 +63,9 @@ For more information please see [justify-content](https://developer.mozilla.org/
 
 ### align-items
 
-For more information please see [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items) on MDN.
+For more information please see 
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items" target="_blank" rel="noopener noreferrer">align-items</a>
+on MDN.
 
 {{"demo": "pages/system/flexbox/AlignItems.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -71,7 +79,9 @@ For more information please see [align-items](https://developer.mozilla.org/en-U
 
 ### align-content
 
-For more information please see [align-content](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content) on MDN.
+For more information please see 
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-content" target="_blank" rel="noopener noreferrer">align-content</a>
+on MDN.
 
 {{"demo": "pages/system/flexbox/AlignContent.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -88,7 +98,9 @@ For more information please see [align-content](https://developer.mozilla.org/en
 
 ### order
 
-For more information please see [order](https://developer.mozilla.org/en-US/docs/Web/CSS/order) on MDN.
+For more information please see 
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/order" target="_blank" rel="noopener noreferrer">order</a>
+on MDN.
 
 {{"demo": "pages/system/flexbox/Order.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -100,7 +112,9 @@ For more information please see [order](https://developer.mozilla.org/en-US/docs
 
 ### flex-grow
 
-For more information please see [flex-grow](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow) on MDN.
+For more information please see 
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow" target="_blank" rel="noopener noreferrer">flex-grow</a>
+on MDN.
 
 {{"demo": "pages/system/flexbox/FlexGrow.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -112,7 +126,9 @@ For more information please see [flex-grow](https://developer.mozilla.org/en-US/
 
 ### flex-shrink
 
-For more information please see [flex-shrink](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink) on MDN.
+For more information please see 
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink" target="_blank" rel="noopener noreferrer">flex-shrink</a>
+on MDN.
 
 {{"demo": "pages/system/flexbox/FlexShrink.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -124,7 +140,9 @@ For more information please see [flex-shrink](https://developer.mozilla.org/en-U
 
 ### align-self
 
-For more information please see [align-self](https://developer.mozilla.org/en-US/docs/Web/CSS/align-self) on MDN.
+For more information please see 
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-self" target="_blank" rel="noopener noreferrer">align-self</a>
+on MDN.
 
 {{"demo": "pages/system/flexbox/AlignSelf.js", "defaultCodeOpen": false, "bg": true}}
 
