@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useTheme, styled, Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
+import Tooltip from '@mui/material/Tooltip';
 
 export type IconImageProps = {
   name:
@@ -26,11 +27,12 @@ export type IconImageProps = {
     | 'deloitte'
     | 'volvo';
   sx?: SxProps<Theme>;
+  title?: string;
 } & JSX.IntrinsicElements['img'];
 
 const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 
-export default function IconImage({ name, ...props }: IconImageProps) {
+export default function IconImage({ name, title, ...props }: IconImageProps) {
   const theme = useTheme();
   let width = '';
   let height = '';
@@ -68,7 +70,7 @@ export default function IconImage({ name, ...props }: IconImageProps) {
   ) {
     category = 'companies/';
   }
-  return (
+  const element = (
     <Img
       src={`/static/branding/${category}${name}${mode}.svg`}
       alt=""
@@ -78,4 +80,8 @@ export default function IconImage({ name, ...props }: IconImageProps) {
       {...props}
     />
   );
+  if (!title) {
+    return element;
+  }
+  return <Tooltip title={title}>{element}</Tooltip>;
 }

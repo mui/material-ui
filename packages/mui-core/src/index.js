@@ -12,6 +12,7 @@ export * from './ButtonUnstyled';
 export { default as unstable_composeClasses } from './composeClasses';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
+export { default as unstable_ClassNameGenerator } from './generateUtilityClass/ClassNameGenerator';
 
 export { default as generateUtilityClasses } from './generateUtilityClasses';
 
@@ -25,6 +26,8 @@ export { default as ModalUnstyled } from './ModalUnstyled';
 export * from './ModalUnstyled';
 
 export { default as NoSsr } from './NoSsr';
+
+export { default as Popper } from './Popper';
 
 export { default as Portal } from './Portal';
 

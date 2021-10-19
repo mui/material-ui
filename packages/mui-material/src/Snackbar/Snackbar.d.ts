@@ -98,7 +98,7 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children?: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<any, any> }
   >;
   /**
    * The duration for the transition, in milliseconds.

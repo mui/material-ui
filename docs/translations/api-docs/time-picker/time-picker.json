@@ -36,6 +36,7 @@
     "OpenPickerButtonProps": "Props to pass to keyboard adornment button.",
     "openTo": "First view to show.",
     "orientation": "Force rendering in particular orientation.",
+    "PaperProps": "Paper props passed down to <a href=\"https://mui.com/api/paper/\">Paper</a> component.",
     "PopperProps": "Popper props passed down to <a href=\"https://mui.com/api/popper/\">Popper</a> component.",
     "readOnly": "Make picker read only.",
     "renderInput": "The <code>renderInput</code> prop allows you to customize the rendered input. The <code>props</code> argument of this render prop contains props of <a href=\"https://mui.com/api/text-field/#textfield-api\">TextField</a> that you need to forward. Pay specific attention to the <code>ref</code> and <code>inputProps</code> keys.",
