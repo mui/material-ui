@@ -519,6 +519,8 @@ declare module '@mui/styles' {
   +import { createGenerateClassName } from '@mui/styles';
   ```
 
+  To generate custom class names **without** using `@mui/styles`, check out [ClassNameGenerator](/guides/classname-generator/) for more details.
+
 #### createMuiTheme
 
 - The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
