@@ -990,7 +990,7 @@ export default function useAutocomplete(props) {
     getRootProps: (other = {}) => ({
       'aria-owns': listboxAvailable ? `${id}-listbox` : null,
       role: 'combobox',
-      'aria-expanded': listboxAvailable,
+      'aria-expanded': popupOpen,
       ...other,
       onKeyDown: handleKeyDown(other),
       onMouseDown: handleMouseDown,
