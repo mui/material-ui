@@ -22,6 +22,7 @@ const useUtilityClasses = (ownerState) => {
       selected && 'selected',
       disabled && 'disabled',
     ],
+    iconWrapper: ['iconWrapper'],
   };
 
   return composeClasses(slots, getTabUtilityClass, classes);
@@ -59,7 +60,7 @@ const TabRoot = styled(ButtonBase, {
       minHeight: 72,
       paddingTop: 9,
       paddingBottom: 9,
-      [`& > *:first-child`]: {
+      [`& > .${tabClasses.iconWrapper}`]: {
         marginBottom: 6,
       },
     }),
@@ -110,7 +111,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     disableFocusRipple = false,
     // eslint-disable-next-line react/prop-types
     fullWidth,
-    icon,
+    icon: iconProp,
     // eslint-disable-next-line react/prop-types
     indicator,
     label,
@@ -133,7 +134,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     disabled,
     disableFocusRipple,
     selected,
-    icon: !!icon,
+    icon: !!iconProp,
     label: !!label,
     fullWidth,
     textColor,
@@ -141,7 +142,12 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-
+  const icon =
+    iconProp && label && React.isValidElement(iconProp)
+      ? React.cloneElement(iconProp, {
+          className: clsx(classes.iconWrapper, iconProp.props.className),
+        })
+      : iconProp;
   const handleClick = (event) => {
     if (!selected && onChange) {
       onChange(event, value);

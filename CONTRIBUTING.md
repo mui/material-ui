@@ -9,7 +9,7 @@ Please read [the full text](/CODE_OF_CONDUCT.md) so that you can understand what
 
 ## A large spectrum of contributions
 
-There are [many ways](https://mui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project) to contribute to MUI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
+There are [many ways](https://mui.com/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) to contribute to MUI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
 
 ## Your first Pull Request
 
@@ -149,15 +149,15 @@ how to fix the issues.
 ##### ci/circleci: test_unit-1
 
 Runs the unit tests in a `jsdom` environment. If this fails then `yarn test:unit`
-should<sup>[1](test/README.md#accessiblity-tree-exclusion)</sup> fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
-If `yarn test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessiblity-tree-exclusion).
+should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
+If `yarn test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
 ##### ci/circleci: test_browser-1
 
 Runs the unit tests in multiple browsers (via BrowserStack). The log of the failed
 build should list which browsers failed. If Chrome failed then `yarn test:karma`
-should<sup>[1](test/README.md#accessiblity-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
-If `yarn test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessiblity-tree-exclusion).
+should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
+If `yarn test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
 ##### ci/circleci: test_regression-1
 
@@ -294,4 +294,4 @@ To get a sense of where MUI is heading, or for ideas on where you could contribu
 
 ## License
 
-By contributing your code to the mui-org/material-ui GitHub repository, you agree to license your contribution under the MIT license.
+By contributing your code to the [mui-org/material-ui](https://github.com/mui-org/material-ui) GitHub repository, you agree to license your contribution under the [MIT license](/LICENSE).

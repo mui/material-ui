@@ -288,6 +288,7 @@ const pages: readonly MuiPage[] = [
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
+      { pathname: '/guides/classname-generator', title: 'ClassName Generator' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
       { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
       { pathname: '/guides/styled-engine' },

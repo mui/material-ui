@@ -41,6 +41,7 @@
     "onClose": { "type": { "name": "func" } },
     "onError": { "type": { "name": "func" } },
     "onOpen": { "type": { "name": "func" } },
+    "onViewChange": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } },
     "OpenPickerButtonProps": { "type": { "name": "object" } },
     "openTo": {
@@ -52,6 +53,7 @@
     "orientation": {
       "type": { "name": "enum", "description": "'landscape'<br>&#124;&nbsp;'portrait'" }
     },
+    "PaperProps": { "type": { "name": "object" } },
     "PopperProps": { "type": { "name": "object" } },
     "readOnly": { "type": { "name": "bool" } },
     "rifmFormatter": { "type": { "name": "func" } },

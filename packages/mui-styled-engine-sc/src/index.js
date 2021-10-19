@@ -31,7 +31,7 @@ export default function styled(tag, options) {
     };
   }
 
-  return stylesFactory;
+  return (...styles) => stylesFactory(...styles);
 }
 
 export { ThemeContext, keyframes, css } from 'styled-components';
