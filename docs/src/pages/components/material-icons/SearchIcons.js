@@ -6,7 +6,6 @@ import copy from 'clipboard-copy';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import debounce from 'lodash/debounce';
 import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -125,7 +124,34 @@ const StyledSvgIcon = styled(SvgIcon)(({ theme }) => ({
 }));
 
 const Icons = React.memo(function Icons(props) {
-  const { icons, handleOpenClick } = props;
+  const { theme, value, handleOpenClick } = props;
+
+  const keys = React.useMemo(() => {
+    if (value === '') {
+      return null;
+    }
+    return searchIndex.search(value);
+  }, [value]);
+  React.useEffect(() => {
+    if (value.length >= 4 && keys !== null && keys.length === 0) {
+      window.ga('send', {
+        hitType: 'event',
+        eventCategory: 'material-icons',
+        eventAction: 'no-results',
+        eventLabel: value,
+      });
+    }
+  }, [keys, value]);
+
+  const searchedIcons = React.useMemo(() => {
+    if (keys === null) {
+      return allIcons;
+    }
+    return keys.map((key) => allIconsMap[key]);
+  }, [keys]);
+  const icons = React.useMemo(() => {
+    return searchedIcons.filter((icon) => theme === icon.theme);
+  }, [searchedIcons, theme]);
 
   const handleIconClick = (icon) => () => {
     if (Math.random() < 0.1) {
@@ -149,7 +175,8 @@ const Icons = React.memo(function Icons(props) {
   };
 
   return (
-    <div>
+    <React.Fragment>
+      <Typography sx={{ mb: 1 }}>{`${icons.length} matching results`}</Typography>
       {icons.map((icon) => {
         /* eslint-disable jsx-a11y/click-events-have-key-events */
         return (
@@ -169,13 +196,14 @@ const Icons = React.memo(function Icons(props) {
           </StyledIcon>
         );
       })}
-    </div>
+    </React.Fragment>
   );
 });
 
 Icons.propTypes = {
   handleOpenClick: PropTypes.func.isRequired,
-  icons: PropTypes.array.isRequired,
+  theme: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 const ImportLink = styled(Link)(({ theme }) => ({
@@ -446,7 +474,8 @@ const allIcons = Object.keys(mui)
 
 export default function SearchIcons() {
   const [theme, setTheme] = React.useState('Filled');
-  const [keys, setKeys] = React.useState(null);
+  const [value, setValue] = React.useState('');
+  const deferredValue = React.useDeferredValue(value);
   const [open, setOpen] = React.useState(false);
   const [selectedIcon, setSelectedIcon] = React.useState(null);
 
@@ -458,44 +487,6 @@ export default function SearchIcons() {
   const handleClose = React.useCallback(() => {
     setOpen(false);
   }, []);
-
-  const handleChange = React.useMemo(
-    () =>
-      debounce((value) => {
-        if (value === '') {
-          setKeys(null);
-        } else {
-          searchIndex.searchAsync(value).then((results) => {
-            setKeys(results);
-
-            // Keep track of the no results so we can add synonyms in the future.
-            if (value.length >= 4 && results.length === 0) {
-              window.ga('send', {
-                hitType: 'event',
-                eventCategory: 'material-icons',
-                eventAction: 'no-results',
-                eventLabel: value,
-              });
-            }
-          });
-        }
-      }, 220),
-    [],
-  );
-
-  React.useEffect(() => {
-    return () => {
-      handleChange.cancel();
-    };
-  }, [handleChange]);
-
-  const icons = React.useMemo(
-    () =>
-      (keys === null ? allIcons : keys.map((key) => allIconsMap[key])).filter(
-        (icon) => theme === icon.theme,
-      ),
-    [theme, keys],
-  );
 
   return (
     <Grid container sx={{ minHeight: 500 }}>
@@ -530,14 +521,18 @@ export default function SearchIcons() {
           <Input
             autoFocus
             onChange={(event) => {
-              handleChange(event.target.value);
+              setValue(event.target.value);
             }}
             placeholder="Search icons…"
             inputProps={{ 'aria-label': 'search icons' }}
+            value={value}
           />
         </Paper>
-        <Typography sx={{ mb: 1 }}>{`${icons.length} matching results`}</Typography>
-        <Icons icons={icons} handleOpenClick={handleOpenClick} />
+        <Icons
+          theme={theme}
+          value={deferredValue}
+          handleOpenClick={handleOpenClick}
+        />
       </Grid>
       <DialogDetails
         open={open}
