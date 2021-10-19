@@ -25,6 +25,9 @@ export type IconImageProps = {
     | 'boeing'
     | 'siemens'
     | 'deloitte'
+    | 'apple'
+    | 'twitter'
+    | 'salesforce'
     | 'volvo';
   sx?: SxProps<Theme>;
   title?: string;
@@ -65,6 +68,9 @@ export default function IconImage({ name, title, ...props }: IconImageProps) {
       'boeing',
       'siemens',
       'deloitte',
+      'apple',
+      'twitter',
+      'salesforce',
       'volvo',
     ].indexOf(name) !== -1
   ) {
