@@ -1,1 +1,2 @@
-export default {};
+export { default as colors } from './colors';
+export * from './styles';
