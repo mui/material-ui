@@ -24,7 +24,8 @@ export type IconImageProps = {
     | 'boeing'
     | 'siemens'
     | 'deloitte'
-    | 'volvo';
+    | 'volvo'
+    | 'apple';
   sx?: SxProps<Theme>;
 } & JSX.IntrinsicElements['img'];
 
@@ -64,6 +65,7 @@ export default function IconImage({ name, ...props }: IconImageProps) {
       'siemens',
       'deloitte',
       'volvo',
+      'apple',
     ].indexOf(name) !== -1
   ) {
     category = 'companies/';
