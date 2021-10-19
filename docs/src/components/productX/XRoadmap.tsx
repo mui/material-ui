@@ -134,7 +134,7 @@ export default function XRoadmap() {
               </Grid>
               <Grid item xs={12} sm={4} lg="auto">
                 <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
-                  <Box sx={{ fontWeight: 'bold' }}>Working in progress</Box>
+                  <Box sx={{ fontWeight: 'bold' }}>Work in progress</Box>
                   <Box sx={{ color: 'text.secondary' }}>Getting there.</Box>
                   {renderList(
                     <React.Fragment>
@@ -164,7 +164,7 @@ export default function XRoadmap() {
               <Grid item xs={12} sm={4} lg="auto">
                 <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
                   <Box sx={{ fontWeight: 'bold' }}>On the list</Box>
-                  <Box sx={{ color: 'text.secondary' }}>Sometime soon…</Box>
+                  <Box sx={{ color: 'text.secondary' }}>Starting some time soon…</Box>
                   {renderList(
                     <React.Fragment>
                       <ShowChartRounded fontSize="small" />
