@@ -17,10 +17,10 @@ describe('[Joy] ThemeProvider', () => {
     expect(container.firstChild?.textContent).to.equal(defaultTheme.fontSize.md);
   });
 
-  it('merge custom theme', () => {
+  it('merge custom theme and apply to vars', () => {
     const Text = () => {
       const theme = useTheme();
-      return <div>{theme.fontSize.md}</div>;
+      return <div>{theme.vars.fontSize.md}</div>;
     };
     const { container } = render(
       <ThemeProvider theme={{ fontSize: { md: '100rem' } }}>

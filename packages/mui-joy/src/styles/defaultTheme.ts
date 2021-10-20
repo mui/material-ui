@@ -60,7 +60,7 @@ export interface LineHeight {
 }
 
 export interface TypographySystems {
-  body: (theme: DefaultTheme) => Typography;
+  body: (theme: JoyTheme) => Typography;
 }
 
 export interface BaseStaticTheme {
@@ -115,11 +115,11 @@ const staticThemeWithoutVars: StaticTheme = {
   },
 };
 
-export interface DefaultTheme extends StaticTheme {
+export interface JoyTheme extends StaticTheme {
   vars: StaticTheme;
 }
 
-const defaultTheme: DefaultTheme = {
+const defaultTheme: JoyTheme = {
   ...staticThemeWithoutVars,
   vars: staticThemeWithoutVars,
 };
