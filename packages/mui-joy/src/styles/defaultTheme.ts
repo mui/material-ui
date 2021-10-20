@@ -61,7 +61,7 @@ export interface LineHeight {
 }
 
 export interface TypographySystems {
-  body: (theme: JoyTheme) => Typography;
+  body: (vars: JoyTheme['vars']) => Typography;
 }
 
 export interface BaseStaticTheme {
@@ -107,11 +107,11 @@ const staticThemeWithoutVars: StaticTheme = {
     xl: 2,
   },
   typography: {
-    body: (theme) => ({
-      fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.regular,
-      fontSize: theme.vars.fontSize.md,
-      lineHeight: theme.vars.lineHeight.md,
+    body: (vars) => ({
+      fontFamily: vars.fontFamily.sans,
+      fontWeight: vars.fontWeight.regular,
+      fontSize: vars.fontSize.md,
+      lineHeight: vars.lineHeight.md,
     }),
   },
 };
