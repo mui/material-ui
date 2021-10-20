@@ -103,7 +103,7 @@ describe('createStyled', () => {
   });
 
   describe('ThemeContext', () => {
-    it('useTheme is FIRST priority even though StyledEngineThemeContext exists', () => {
+    it('useTheme is the FIRST priority even though StyledEngineThemeContext exists', () => {
       const DesignSystemThemeContext = React.createContext({ width: '999px' });
       const useTheme = () => React.useContext(DesignSystemThemeContext);
       const styled = createStyled({ useTheme });
@@ -112,7 +112,7 @@ describe('createStyled', () => {
       }));
 
       const { container } = render(
-        <StyledEngineThemeContext.Provider theme={{ width: '1px' }}>
+        <StyledEngineThemeContext.Provider value={{ width: '1px' }}>
           <Button>Hello</Button>
         </StyledEngineThemeContext.Provider>,
       );
@@ -132,7 +132,7 @@ describe('createStyled', () => {
       }));
 
       const { container } = render(
-        <StyledEngineThemeContext.Provider theme={{ width: '1px' }}>
+        <StyledEngineThemeContext.Provider value={{ width: '1px' }}>
           <Button>Hello</Button>
         </StyledEngineThemeContext.Provider>,
       );
