@@ -1,5 +1,30 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+
+function Item(props) {
+  const { sx, ...other } = props;
+  return (
+    <Box
+      sx={{
+        bgcolor: 'primary.main',
+        color: 'white',
+        p: 1,
+        m: 1,
+        borderRadius: 1,
+        textAlign: 'center',
+        fontSize: '1rem',
+        fontWeight: '700',
+        ...sx,
+      }}
+      {...other}
+    />
+  );
+}
+
+Item.propTypes = {
+  sx: PropTypes.object,
+};
 
 export default function JustifyContent() {
   return (
@@ -13,9 +38,9 @@ export default function JustifyContent() {
           bgcolor: 'background.paper',
         }}
       >
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 1</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 1</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 1</Box>
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
       </Box>
       <Box
         sx={{
@@ -26,9 +51,9 @@ export default function JustifyContent() {
           bgcolor: 'background.paper',
         }}
       >
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 1</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 1</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 1</Box>
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
       </Box>
       <Box
         sx={{
@@ -39,9 +64,48 @@ export default function JustifyContent() {
           bgcolor: 'background.paper',
         }}
       >
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 1</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 1</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 1</Box>
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          p: 1,
+          m: 1,
+          bgcolor: 'background.paper',
+        }}
+      >
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-around',
+          p: 1,
+          m: 1,
+          bgcolor: 'background.paper',
+        }}
+      >
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-evenly',
+          p: 1,
+          m: 1,
+          bgcolor: 'background.paper',
+        }}
+      >
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
       </Box>
     </div>
   );

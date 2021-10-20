@@ -305,6 +305,7 @@
     "/customization/color": "Color",
     "/customization/unstyled-components": "Unstyled Components",
     "/guides": "How To Guides",
+    "/guides/classname-generator": "ClassName Generator",
     "/guides/typescript": "TypeScript",
     "/guides/interoperability": "Style Library Interoperability",
     "/guides/styled-engine": "Styled Engine",

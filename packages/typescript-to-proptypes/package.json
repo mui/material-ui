@@ -24,9 +24,9 @@
   },
   "devDependencies": {
     "@types/babel__core": "^7.1.16",
-    "@types/doctrine": "^0.0.4",
+    "@types/doctrine": "^0.0.5",
     "@types/lodash": "^4.14.175",
-    "@types/node": "^16.10.3",
+    "@types/node": "^16.11.1",
     "@types/prettier": "^2.4.1",
     "@types/react": "^17.0.27",
     "@types/uuid": "^8.3.1",
@@ -41,7 +41,7 @@
     "@babel/types": "^7.15.6",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
-    "typescript": "^4.4.3",
+    "typescript": "^4.4.4",
     "uuid": "^8.3.2"
   }
 }

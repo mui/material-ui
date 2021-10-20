@@ -123,6 +123,12 @@ Tab labels may be either all icons or all text.
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js"}}
 
+## Icon position
+
+By default, the icon is positioned at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`.
+
+{{"demo": "pages/components/tabs/IconPositionTabs.js"}}
+
 ## Third-party routing library
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.

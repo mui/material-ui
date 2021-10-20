@@ -271,21 +271,21 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
   const handleRef = useForkRef(ref, handleFocusRef);
 
-  const handleFocus = useEventCallback((event) => {
+  const handleFocus = (event) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
     handleFocusVisible(event);
     if (isFocusVisibleRef.current === true) {
       setFocusVisible(index);
     }
     setOpen(index);
-  });
-  const handleBlur = useEventCallback((event) => {
+  };
+  const handleBlur = (event) => {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
       setFocusVisible(-1);
     }
     setOpen(-1);
-  });
+  };
   const handleMouseOver = useEventCallback((event) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
     setOpen(index);
@@ -310,7 +310,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     setFocusVisible(-1);
   }
 
-  const handleHiddenInputChange = useEventCallback((event) => {
+  const handleHiddenInputChange = (event) => {
     const index = Number(event.currentTarget.getAttribute('data-index'));
     const value = values[index];
     const marksValues = marks.map((mark) => mark.value);
@@ -367,7 +367,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     if (onChangeCommitted) {
       onChangeCommitted(event, newValue);
     }
-  });
+  };
 
   const previousIndex = React.useRef();
   let axis = orientation;

@@ -1,12 +1,16 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { createPopper } from '@popperjs/core';
-import { chainPropTypes, refType, HTMLElementType } from '@mui/utils';
 import { useThemeWithoutDefault as useTheme } from '@mui/system';
+import {
+  chainPropTypes,
+  HTMLElementType,
+  refType,
+  unstable_ownerDocument as ownerDocument,
+  unstable_useEnhancedEffect as useEnhancedEffect,
+  unstable_useForkRef as useForkRef,
+} from '@mui/utils';
+import { createPopper } from '@popperjs/core';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 import Portal from '../Portal';
-import ownerDocument from '../utils/ownerDocument';
-import useForkRef from '../utils/useForkRef';
-import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 function flipPlacement(placement, theme) {
   const direction = (theme && theme.direction) || 'ltr';

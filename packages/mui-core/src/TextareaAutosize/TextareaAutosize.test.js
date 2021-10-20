@@ -8,7 +8,7 @@ import {
   fireEvent,
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
+import TextareaAutosize from '@mui/core/TextareaAutosize';
 
 describe('<TextareaAutosize />', () => {
   const render = createClientRender();
