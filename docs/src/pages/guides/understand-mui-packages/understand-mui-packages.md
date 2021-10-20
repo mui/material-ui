@@ -51,7 +51,7 @@ Here are some benefits:
 - `styled` API supports `sx` prop by default.
 - Components created by `styled` are themable via slot & variants.
 
-> **Note**: you will have to use `emotion` or `styled-components` as styled-engine because the `system` depends on it.
+> **Note**: you will have to install `emotion` or `styled-components` as styled-engine because the `system` depends on it.
 
 ## Core
 
