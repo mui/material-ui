@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import NProgress from 'nprogress';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import { styled } from '@mui/material/styles';
 import NoSsr from '@mui/core/NoSsr';
 import { exactProp } from '@mui/utils';
 
@@ -80,6 +81,8 @@ const styles = (theme) => {
   `;
 };
 
+const NProgressBarGlobalStyles = styled(GlobalStyles)({}, { name: 'MuiNProgressBar' });
+
 /**
  * Elegant and ready-to-use wrapper on top of https://github.com/rstacruz/nprogress/.
  * The implementation is highly inspired by the YouTube one.
@@ -88,7 +91,7 @@ function NProgressBar(props) {
   return (
     <NoSsr>
       {props.children}
-      <GlobalStyles styles={styles} />
+      <NProgressBarGlobalStyles styles={styles} />
     </NoSsr>
   );
 }
