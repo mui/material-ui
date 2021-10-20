@@ -76,7 +76,7 @@ This package provides components that follow the Material Design guidelines and 
 Since it has `@mui/system` and `@mui/core` as dependencies, you **should not** install or import them separately.
 Instead, you should import from `@mui/material` directly.
 
-Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that is very different from the one found in Material Design.
+However, there are some cases that you might want to use building blocks from `@mui/core`. Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that is very different from the one found in Material Design.
 In that case, instead of overriding the `Switch` from `@mui/material` we could use the `styled` API to customize the unstyled version of the Switch, available in the `@mui/core`, from scratch:
 
 ```js
