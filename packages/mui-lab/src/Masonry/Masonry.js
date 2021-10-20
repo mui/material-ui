@@ -58,6 +58,7 @@ const validatePropValues = (base, prop) => {
 
 export const getStyle = ({ ownerState, theme }) => {
   let styles = {
+    width: '100%',
     display: 'flex',
     flexFlow: 'column wrap',
     alignContent: 'space-between',

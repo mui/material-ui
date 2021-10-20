@@ -31,32 +31,28 @@ describe('<Masonry />', () => {
 
   describe('render', () => {
     it('should render with correct default styles', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (!/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
       const columns = 4;
       const spacing = 1;
       const { getByTestId } = render(
-        <Masonry data-testid="container" sx={{ width: 500 }}>
-          <div data-testid="child" style={{ height: 100 }} />
-          <div style={{ height: 50 }} />
-          <div style={{ height: 50 }} />
-          <div style={{ height: 50 }} />
+        <Masonry data-testid="container">
+          <div data-testid="child" />
         </Masonry>,
       );
-      const columnHeight = 100 + parseToNumber(theme.spacing(spacing));
       expect(getByTestId('container')).toHaveComputedStyle({
+        width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
         alignContent: 'space-between',
         boxSizing: 'border-box',
         margin: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
-        height: `${columnHeight + parseToNumber(theme.spacing(spacing))}px`,
       });
       expect(getByTestId('child')).toHaveComputedStyle({
         boxSizing: 'border-box',
         margin: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
-        width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing)}px)`,
+        width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing)})`,
       });
     });
   });
@@ -75,6 +71,7 @@ describe('<Masonry />', () => {
           theme,
         }),
       ).to.deep.equal({
+        width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
         alignContent: 'space-between',
@@ -102,6 +99,7 @@ describe('<Masonry />', () => {
           theme,
         }),
       ).to.deep.equal({
+        width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
         alignContent: 'space-between',
@@ -150,6 +148,7 @@ describe('<Masonry />', () => {
           theme,
         }),
       ).to.deep.equal({
+        width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
         alignContent: 'space-between',
@@ -195,6 +194,7 @@ describe('<Masonry />', () => {
           theme,
         }),
       ).to.deep.equal({
+        width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
         alignContent: 'space-between',
