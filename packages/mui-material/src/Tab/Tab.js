@@ -71,10 +71,10 @@ const TabRoot = styled(ButtonBase, {
           marginTop: 6,
         }),
         ...(ownerState.iconPosition === 'start' && {
-          marginRight: 8,
+          marginRight: theme.spacing(1),
         }),
         ...(ownerState.iconPosition === 'end' && {
-          marginLeft: 8,
+          marginLeft: theme.spacing(1),
         }),
       },
     }),
