@@ -28,8 +28,40 @@ describe('<Masonry />', () => {
   const parseToNumber = (val) => {
     return Number(val.replace('px', ''));
   };
+
+  describe('render', () => {
+    it('should render with correct default styles', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const columns = 4;
+      const spacing = 1;
+      const { getByTestId } = render(
+        <Masonry data-testid="container">
+          <div style={{ width: 100, height: maxColumnHeight }} />
+          <div style={{ width: 100, height: 50 }} />
+          <div style={{ width: 100, height: 70 }} />
+          <div style={{ width: 100, height: 80 }} />
+        </Masonry>,
+      );
+      expect(getByTestId('container')).toHaveComputedStyle({
+        display: 'flex',
+        flexFlow: 'column wrap',
+        alignContent: 'space-between',
+        boxSizing: 'border-box',
+        '& > *': {
+          boxSizing: 'border-box',
+          margin: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+          width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing)})`,
+        },
+        margin: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
+        height: `${maxColumnHeight + parseToNumber(theme.spacing(spacing))}px`,
+      });
+    });
+  });
+
   describe('style attribute:', () => {
-    it('should render with correct default styles', () => {
+    it('should apply correct default styles', () => {
       const columns = 4;
       const spacing = 1;
       expect(
@@ -56,7 +88,7 @@ describe('<Masonry />', () => {
       });
     });
 
-    it('should render with margin responsive to breakpoints', () => {
+    it('should apply responsive margin', () => {
       const columns = 4;
       const spacing = { xs: 1, sm: 2, md: 3 };
       expect(
@@ -104,7 +136,7 @@ describe('<Masonry />', () => {
       });
     });
 
-    it('should render with columns responsive to breakpoints', () => {
+    it('should apply responsive columns', () => {
       const columns = { xs: 3, sm: 5, md: 7 };
       const spacing = 1;
       expect(
@@ -144,7 +176,9 @@ describe('<Masonry />', () => {
         },
       });
     });
+  });
 
+  describe('server-side rendering', () => {
     it('should support server-side rendering', () => {
       const defaultHeight = 700;
       const defaultColumns = 4;
