@@ -98,14 +98,12 @@ function AppLayoutDocs(props) {
         <Main disableToc={disableToc}>
           <StyledAppContainer disableAd={disableAd} disableToc={disableToc}>
             <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
-            {children}
+            <React.Suspense fallback={null}>{children}</React.Suspense>
             <React.Suspense fallback={null}>
               <DeferredAppLayoutDocsFooter />
             </React.Suspense>
           </StyledAppContainer>
-          <React.Suspense fallback={null}>
-            {disableToc ? null : <AppTableOfContents toc={toc} />}
-          </React.Suspense>
+          {disableToc ? null : <AppTableOfContents toc={toc} />}
         </Main>
       </AdManager>
     </AppFrame>

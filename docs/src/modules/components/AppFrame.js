@@ -12,7 +12,6 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
-import NoSsr from '@mui/material/NoSsr';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
@@ -215,100 +214,106 @@ function AppFrame(props) {
         {t('appFrame.skipToContent')}
       </SkipLink>
       <MarkdownLinks />
-      <StyledAppBar disablePermanent={disablePermanent}>
-        <Toolbar>
-          <NavIconButton
-            edge="start"
-            color="inherit"
-            aria-label={t('appFrame.openDrawer')}
-            disablePermanent={disablePermanent}
-            onClick={handleNavDrawerOpen}
-          >
-            <MenuIcon />
-          </NavIconButton>
-          <GrowingDiv />
-          <Stack direction="row" spacing={2} sx={{ '& > button': { width: 42 } }}>
-            <DeferredAppSearch />
-            <Tooltip title={t('appFrame.github')} enterDelay={300}>
-              <IconButton
-                component="a"
-                color="inherit"
-                href={process.env.SOURCE_CODE_REPO}
-                data-ga-event-category="header"
-                data-ga-event-action="github"
-                sx={{ px: '10px' }}
-              >
-                <GitHubIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Notifications />
-            <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
-              <IconButton
-                {...languageButtonProps}
-                sx={{
-                  px: '10px',
-                }}
-              >
-                <LanguageIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
-                <SettingsIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <NoSsr defer>
-              <Menu
-                id="language-menu"
-                anchorEl={languageMenu}
-                open={Boolean(languageMenu)}
-                onClose={handleLanguageMenuClose}
-              >
-                {LANGUAGES_LABEL.map((language) => (
+      <React.Suspense>
+        <StyledAppBar disablePermanent={disablePermanent}>
+          <Toolbar>
+            <NavIconButton
+              edge="start"
+              color="inherit"
+              aria-label={t('appFrame.openDrawer')}
+              disablePermanent={disablePermanent}
+              onClick={handleNavDrawerOpen}
+            >
+              <MenuIcon />
+            </NavIconButton>
+            <GrowingDiv />
+            <Stack direction="row" spacing={2} sx={{ '& > button': { width: 42 } }}>
+              <DeferredAppSearch />
+              <Tooltip title={t('appFrame.github')} enterDelay={300}>
+                <IconButton
+                  component="a"
+                  color="inherit"
+                  href={process.env.SOURCE_CODE_REPO}
+                  data-ga-event-category="header"
+                  data-ga-event-action="github"
+                  sx={{ px: '10px' }}
+                >
+                  <GitHubIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Notifications />
+              <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
+                <IconButton
+                  {...languageButtonProps}
+                  sx={{
+                    px: '10px',
+                  }}
+                >
+                  <LanguageIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+                <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
+                  <SettingsIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <React.Suspense fallback={null}>
+                <Menu
+                  id="language-menu"
+                  anchorEl={languageMenu}
+                  open={Boolean(languageMenu)}
+                  onClose={handleLanguageMenuClose}
+                >
+                  {LANGUAGES_LABEL.map((language) => (
+                    <MenuItem
+                      component="a"
+                      data-no-markdown-link="true"
+                      href={
+                        language.code === 'en' ? canonicalAs : `/${language.code}${canonicalAs}`
+                      }
+                      key={language.code}
+                      selected={userLanguage === language.code}
+                      onClick={handleLanguageMenuClose}
+                      lang={language.code}
+                      hrefLang={language.code}
+                    >
+                      {language.text}
+                    </MenuItem>
+                  ))}
+                  <Box sx={{ my: 1 }}>
+                    <Divider />
+                  </Box>
                   <MenuItem
                     component="a"
-                    data-no-markdown-link="true"
-                    href={language.code === 'en' ? canonicalAs : `/${language.code}${canonicalAs}`}
-                    key={language.code}
-                    selected={userLanguage === language.code}
+                    href={
+                      userLanguage === 'en'
+                        ? `${CROWDIN_ROOT_URL}`
+                        : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
+                    }
+                    rel="noopener nofollow"
+                    target="_blank"
+                    key={userLanguage}
+                    lang={userLanguage}
+                    hrefLang="en"
                     onClick={handleLanguageMenuClose}
-                    lang={language.code}
-                    hrefLang={language.code}
                   >
-                    {language.text}
+                    {t('appFrame.helpToTranslate')}
                   </MenuItem>
-                ))}
-                <Box sx={{ my: 1 }}>
-                  <Divider />
-                </Box>
-                <MenuItem
-                  component="a"
-                  href={
-                    userLanguage === 'en'
-                      ? `${CROWDIN_ROOT_URL}`
-                      : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
-                  }
-                  rel="noopener nofollow"
-                  target="_blank"
-                  key={userLanguage}
-                  lang={userLanguage}
-                  hrefLang="en"
-                  onClick={handleLanguageMenuClose}
-                >
-                  {t('appFrame.helpToTranslate')}
-                </MenuItem>
-              </Menu>
-            </NoSsr>
-          </Stack>
-        </Toolbar>
-      </StyledAppBar>
-      <StyledAppNavDrawer
-        disablePermanent={disablePermanent}
-        onClose={handleNavDrawerClose}
-        onOpen={handleNavDrawerOpen}
-        mobileOpen={mobileOpen}
-      />
-      <React.Suspense fallback={null}>{children}</React.Suspense>
+                </Menu>
+              </React.Suspense>
+            </Stack>
+          </Toolbar>
+        </StyledAppBar>
+      </React.Suspense>
+      <React.Suspense>
+        <StyledAppNavDrawer
+          disablePermanent={disablePermanent}
+          onClose={handleNavDrawerClose}
+          onOpen={handleNavDrawerOpen}
+          mobileOpen={mobileOpen}
+        />
+      </React.Suspense>
+      {children}
       <AppSettingsDrawer onClose={handleSettingsDrawerClose} open={settingsOpen} />
     </RootDiv>
   );
