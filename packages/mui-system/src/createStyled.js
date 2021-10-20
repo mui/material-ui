@@ -189,7 +189,7 @@ export default function createStyled(input = {}) {
         return Component;
       }
       const WrappedComponent = (props) => {
-        const theme = useTheme();
+        const theme = useTheme() || defaultTheme;
         return <Component {...props} theme={theme} />;
       };
       if (process.env.NODE_ENV !== 'production') {

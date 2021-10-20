@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
 import { createClientRender } from 'test/utils';
 import createStyled from './createStyled';
 
@@ -97,6 +98,47 @@ describe('createStyled', () => {
       expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
         width: '300px',
         height: '200px',
+      });
+    });
+  });
+
+  describe('ThemeContext', () => {
+    it('useTheme is FIRST priority even though StyledEngineThemeContext exists', () => {
+      const DesignSystemThemeContext = React.createContext({ width: '999px' });
+      const useTheme = () => React.useContext(DesignSystemThemeContext);
+      const styled = createStyled({ useTheme });
+      const Button = styled('button')(({ theme }) => ({
+        width: theme.width,
+      }));
+
+      const { container } = render(
+        <StyledEngineThemeContext.Provider theme={{ width: '1px' }}>
+          <Button>Hello</Button>
+        </StyledEngineThemeContext.Provider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '999px',
+      });
+    });
+
+    it('use defaultTheme if useTheme return undefined', () => {
+      const DesignSystemThemeContext = React.createContext();
+      const defaultTheme = { width: '999px' };
+      const useTheme = () => React.useContext(DesignSystemThemeContext);
+      const styled = createStyled({ useTheme, defaultTheme });
+      const Button = styled('button')(({ theme }) => ({
+        width: theme.width,
+      }));
+
+      const { container } = render(
+        <StyledEngineThemeContext.Provider theme={{ width: '1px' }}>
+          <Button>Hello</Button>
+        </StyledEngineThemeContext.Provider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '999px',
       });
     });
   });
