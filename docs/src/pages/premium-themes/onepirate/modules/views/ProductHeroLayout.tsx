@@ -16,19 +16,16 @@ const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   },
 }));
 
-const Background = styled(Box)(
-  () =>
-    ({
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-      zIndex: -2,
-    } as const),
-);
+const Background = styled(Box)({
+  position: 'absolute',
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: 0,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  zIndex: -2,
+});
 
 interface ProductHeroLayoutProps {
   sxBackground: SxProps<Theme>;
