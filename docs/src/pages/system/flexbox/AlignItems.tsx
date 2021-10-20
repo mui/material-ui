@@ -92,14 +92,18 @@ export default function AlignItems() {
       >
         <Item
           sx={{
-            height: 64
+            height: 64,
           }}
-        >Item 1</Item>
+        >
+          Item 1
+        </Item>
         <Item
           sx={{
-            height: 84
+            height: 84,
           }}
-        >Item 2</Item>
+        >
+          Item 2
+        </Item>
         <Item>Item 3</Item>
       </Box>
     </div>

@@ -17,7 +17,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 ### flex-direction
 
-For more information please see 
+For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction" target="_blank" rel="noopener noreferrer">flex-direction</a>
 on MDN.
 
@@ -32,7 +32,7 @@ on MDN.
 
 ### flex-wrap
 
-For more information please see 
+For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap" target="_blank" rel="noopener noreferrer">flex-wrap</a>
 on MDN.
 
@@ -46,7 +46,7 @@ on MDN.
 
 ### justify-content
 
-For more information please see 
+For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content" target="_blank" rel="noopener noreferrer">justify-content</a>
 on MDN.
 
@@ -63,7 +63,7 @@ on MDN.
 
 ### align-items
 
-For more information please see 
+For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items" target="_blank" rel="noopener noreferrer">align-items</a>
 on MDN.
 
@@ -79,7 +79,7 @@ on MDN.
 
 ### align-content
 
-For more information please see 
+For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-content" target="_blank" rel="noopener noreferrer">align-content</a>
 on MDN.
 
@@ -98,7 +98,7 @@ on MDN.
 
 ### order
 
-For more information please see 
+For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/order" target="_blank" rel="noopener noreferrer">order</a>
 on MDN.
 
@@ -112,7 +112,7 @@ on MDN.
 
 ### flex-grow
 
-For more information please see 
+For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow" target="_blank" rel="noopener noreferrer">flex-grow</a>
 on MDN.
 
@@ -126,7 +126,7 @@ on MDN.
 
 ### flex-shrink
 
-For more information please see 
+For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink" target="_blank" rel="noopener noreferrer">flex-shrink</a>
 on MDN.
 
@@ -140,7 +140,7 @@ on MDN.
 
 ### align-self
 
-For more information please see 
+For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-self" target="_blank" rel="noopener noreferrer">align-self</a>
 on MDN.
 
