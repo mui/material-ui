@@ -1,31 +1,43 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import defaultTheme, { JoyColorSystems, BaseStaticTheme } from './defaultTheme';
+import defaultTheme, { ColorSystems, StaticTheme } from './defaultTheme';
 import { ThemeContext } from './ThemeProvider';
 
-export interface JoyColorSchemeOverrides {}
+type PartialDeep<T> = {
+  [K in keyof T]?: PartialDeep<T[K]>;
+};
 
-type JoyExtendedColorScheme = OverridableStringUnion<never, JoyColorSchemeOverrides>;
+export interface ColorSchemeOverrides {}
 
-type JoyColorScheme = 'light';
+type ExtendedColorScheme = OverridableStringUnion<never, ColorSchemeOverrides>;
 
-interface JoyThemeInput extends BaseStaticTheme {
-  colorSchemes: Record<JoyColorScheme | JoyExtendedColorScheme, JoyColorSystems>;
+type ColorScheme = 'light';
+
+interface JoyThemeInput extends StaticTheme {
+  colorSchemes: Record<ColorScheme | ExtendedColorScheme, ColorSystems>;
 }
+
+type ApplicationThemeInput = {
+  colorSchemes: Record<ColorScheme | ExtendedColorScheme, PartialDeep<ColorSystems>>;
+  typography?: Partial<StaticTheme['typography']>;
+} & PartialDeep<Omit<StaticTheme, 'typography'>>;
+
+const { palette, ...rest } = defaultTheme;
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   JoyThemeInput,
-  JoyColorScheme,
-  JoyExtendedColorScheme
+  ColorScheme,
+  ExtendedColorScheme,
+  ApplicationThemeInput
 >(ThemeContext, {
   theme: {
     colorSchemes: {
       light: {
-        palette: defaultTheme.palette,
+        palette,
       },
     },
-    ...defaultTheme,
-  },
+    ...rest,
+  } as unknown as JoyThemeInput, // prevent error from module augmentation in .spec.tsx
   defaultColorScheme: 'light',
   prefix: 'joy',
 });

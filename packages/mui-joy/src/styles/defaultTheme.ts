@@ -15,18 +15,20 @@ export interface PaletteRange {
 }
 
 export interface Typography {
-  fontFamily: React.CSSProperties['fontFamily'];
-  fontWeight: React.CSSProperties['fontWeight'];
-  fontSize: React.CSSProperties['fontSize'];
-  lineHeight: React.CSSProperties['lineHeight'];
+  fontFamily?: React.CSSProperties['fontFamily'];
+  fontWeight?: React.CSSProperties['fontWeight'];
+  fontSize?: React.CSSProperties['fontSize'];
+  lineHeight?: React.CSSProperties['lineHeight'];
   color?: React.CSSProperties['color'];
 }
 
-export interface JoyColorSystems {
-  palette: {
-    brand: PaletteRange;
-    highlight: PaletteRange;
-  };
+export interface Palette {
+  brand: PaletteRange;
+  highlight: PaletteRange;
+}
+
+export interface ColorSystems {
+  palette: Palette;
 }
 
 export interface BorderRadius {
@@ -64,7 +66,7 @@ export interface TypographySystems {
   body: (vars: JoyTheme['vars']) => Typography;
 }
 
-export interface BaseStaticTheme {
+export interface StaticTheme {
   borderRadius: BorderRadius;
   fontFamily: FontFamily;
   fontSize: FontSize;
@@ -73,9 +75,9 @@ export interface BaseStaticTheme {
   typography: TypographySystems;
 }
 
-export interface StaticTheme extends BaseStaticTheme, JoyColorSystems {}
+export interface ThemeWithoutVars extends StaticTheme, ColorSystems {}
 
-const staticThemeWithoutVars: StaticTheme = {
+const themeWithoutVars = {
   palette: {
     brand: colors.blue,
     highlight: colors.gray,
@@ -114,15 +116,15 @@ const staticThemeWithoutVars: StaticTheme = {
       lineHeight: vars.lineHeight.md,
     }),
   },
-};
+} as ThemeWithoutVars;
 
-export interface JoyTheme extends StaticTheme {
-  vars: StaticTheme;
+export interface JoyTheme extends ThemeWithoutVars {
+  vars: ThemeWithoutVars;
 }
 
-const defaultTheme: JoyTheme = {
-  ...staticThemeWithoutVars,
-  vars: staticThemeWithoutVars,
-};
+const defaultTheme = {
+  ...themeWithoutVars,
+  vars: themeWithoutVars,
+} as JoyTheme;
 
 export default defaultTheme;
