@@ -125,7 +125,7 @@ Tab labels may be either all icons or all text.
 
 ## Icon position
 
-By default, icon position is at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`.
+By default, the icon is positioned at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`.
 
 {{"demo": "pages/components/tabs/IconPositionTabs.js"}}
 
