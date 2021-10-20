@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styledEngineStyled from '@mui/styled-engine';
 import { getDisplayName } from '@mui/utils';
 import createTheme from './createTheme';
@@ -69,7 +68,6 @@ export default function createStyled(input = {}) {
     defaultTheme = systemDefaultTheme,
     rootShouldForwardProp = shouldForwardProp,
     slotShouldForwardProp = shouldForwardProp,
-    useTheme,
   } = input;
   return (tag, inputOptions = {}) => {
     const {
@@ -185,24 +183,7 @@ export default function createStyled(input = {}) {
         Component.displayName = displayName;
       }
 
-      if (!useTheme) {
-        return Component;
-      }
-      const WrappedComponent = (props) => {
-        const theme = useTheme();
-        return <Component {...props} theme={theme} />;
-      };
-      if (process.env.NODE_ENV !== 'production') {
-        let displayName;
-        if (componentName) {
-          displayName = `${componentName}${componentSlot || ''}`;
-        }
-        if (displayName === undefined) {
-          displayName = `Styled(${getDisplayName(tag)})`;
-        }
-        WrappedComponent.displayName = displayName;
-      }
-      return WrappedComponent;
+      return Component;
     };
     return muiStyledResolver;
   };
