@@ -277,10 +277,14 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     const resizeObserver = new ResizeObserver(handleResize);
 
     const container = masonryRef.current;
-    // only the masonry container and its first child are observed for resizing;
-    // this might cause unforeseen problems in some use cases;
-    resizeObserver.observe(container);
-    resizeObserver.observe(container?.firstChild);
+    if (container) {
+      // only the masonry container and its first child are observed for resizing;
+      // this might cause unforeseen problems in some use cases;
+      resizeObserver.observe(container);
+      if (container.firstChild) {
+        resizeObserver.observe(container.firstChild);
+      }
+    }
     return () => {
       resizeObserver.disconnect();
     };
