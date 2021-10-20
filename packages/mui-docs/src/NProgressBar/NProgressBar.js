@@ -24,6 +24,7 @@ const styles = (theme) => {
   }
 
   return `
+    /* @noflip */
     #nprogress {
       direction: ltr;
       pointer-events: none;
