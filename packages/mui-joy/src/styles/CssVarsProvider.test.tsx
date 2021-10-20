@@ -19,7 +19,7 @@ describe('[Joy] CssVarsProvider', () => {
       configurable: true,
     });
   });
-  describe('Accessible css vars', () => {
+  describe('All CSS vars', () => {
     it('palette', () => {
       const Vars = () => {
         const theme = useTheme();
