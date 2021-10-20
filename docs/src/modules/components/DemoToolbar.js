@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import LZString from 'lz-string';
 import { useTheme, styled } from '@mui/material/styles';
@@ -63,11 +62,7 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-const DemoTooltip = styled((props) => {
-  const { className, classes = {}, ...other } = props;
-
-  return <Tooltip {...other} classes={{ ...classes, popper: clsx(className, classes.popper) }} />;
-})(({ theme }) => ({
+const DemoTooltip = styled(Tooltip)(({ theme }) => ({
   zIndex: theme.zIndex.appBar - 1,
 }));
 
