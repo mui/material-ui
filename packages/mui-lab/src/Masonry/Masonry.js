@@ -101,8 +101,8 @@ export const getStyle = ({ ownerState, theme }) => {
 
   const transformer = createUnarySpacing(theme);
   const spacingStyleFromPropValue = (propValue) => {
-    propValue = Number(propValue);
-    const spacing = Number(getValue(transformer, propValue).replace('px', ''));
+    const themeSpacingValue = Number(propValue);
+    const spacing = Number(getValue(transformer, themeSpacingValue).replace('px', ''));
     return {
       margin: -(spacing / 2),
       '& > *': {
@@ -126,8 +126,8 @@ export const getStyle = ({ ownerState, theme }) => {
   });
 
   const columnStyleFromPropValue = (propValue) => {
-    propValue = Number(propValue);
-    const width = `${(100 / propValue).toFixed(2)}%`;
+    const columnValue = Number(propValue);
+    const width = `${(100 / columnValue).toFixed(2)}%`;
     const spacing =
       typeof spacingValues !== 'object' ? getValue(transformer, Number(spacingValues)) : '0px';
     return {
@@ -143,9 +143,9 @@ export const getStyle = ({ ownerState, theme }) => {
       styles,
       handleBreakpoints({ theme }, spacingValues, (propValue, breakpoint) => {
         if (breakpoint) {
-          propValue = Number(propValue);
+          const themeSpacingValue = Number(propValue);
           const lastBreakpoint = Object.keys(columnValues).pop();
-          const spacing = getValue(transformer, propValue);
+          const spacing = getValue(transformer, themeSpacingValue);
           const column =
             typeof columnValues === 'object'
               ? columnValues[breakpoint] || columnValues[lastBreakpoint]
@@ -191,7 +191,11 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
   const masonryRef = React.useRef();
   const [maxColumnHeight, setMaxColumnHeight] = React.useState();
-  const isSSR = !maxColumnHeight && defaultColumns && defaultHeight && defaultSpacing;
+  const isSSR =
+    !maxColumnHeight &&
+    defaultHeight &&
+    defaultColumns !== undefined &&
+    defaultSpacing !== undefined;
   const [numberOfLineBreaks, setNumberOfLineBreaks] = React.useState(
     isSSR ? defaultColumns - 1 : 0,
   );
@@ -234,13 +238,16 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
           : 0;
         if (childHeight === 0) {
           skip = true;
+          return;
         }
         // if there is a nested image that isn't rendered yet, masonry's height shouldn't be computed yet
-        child.childNodes.forEach((nestedChild) => {
+        // eslint-disable-next-line
+        for (const nestedChild of child.childNodes) {
           if (nestedChild.tagName === 'IMG' && nestedChild.clientHeight === 0) {
             skip = true;
+            break;
           }
-        });
+        }
         if (!skip) {
           // find the current shortest column (where the current item will be placed)
           const currentMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
