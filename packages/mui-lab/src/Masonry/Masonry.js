@@ -217,32 +217,38 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     const handleResize = () => {
       const parentWidth = masonryRef.current.clientWidth;
       const childWidth = masonryRef.current.firstChild.clientWidth;
-      const childMargin = Number(
-        window.getComputedStyle(masonryRef.current.firstChild).margin.replace('px', ''),
-      );
+      const firstChildComputedStyle = window.getComputedStyle(masonryRef.current.firstChild);
+      const firstChildMarginLeft = Number(firstChildComputedStyle.marginLeft.replace('px', ''));
+      const firstChildMarginRight = Number(firstChildComputedStyle.marginRight.replace('px', ''));
 
       if (parentWidth === 0 || childWidth === 0) {
         return;
       }
 
-      const currentNumberOfColumns = Math.round(parentWidth / (childWidth + childMargin * 2));
+      const currentNumberOfColumns = Math.round(
+        parentWidth / (childWidth + firstChildMarginLeft + firstChildMarginRight),
+      );
+
       const columnHeights = new Array(currentNumberOfColumns).fill(0);
       let skip = false;
       masonryRef.current.childNodes.forEach((child) => {
         if (child.nodeType !== Node.ELEMENT_NODE || child.dataset.class === 'line-break' || skip) {
           return;
         }
+        const childComputedStyle = window.getComputedStyle(child);
+        const childMarginTop = Number(childComputedStyle.marginTop.replace('px', ''));
+        const childMarginBottom = Number(childComputedStyle.marginBottom.replace('px', ''));
         // if any one of children isn't rendered yet, masonry's height shouldn't be computed yet
         const childHeight = child.clientHeight
-          ? Math.ceil(child.clientHeight) + childMargin * 2
+          ? Math.ceil(child.clientHeight) + childMarginTop + childMarginBottom
           : 0;
         if (childHeight === 0) {
           skip = true;
           return;
         }
         // if there is a nested image that isn't rendered yet, masonry's height shouldn't be computed yet
-        // eslint-disable-next-line
-        for (const nestedChild of child.childNodes) {
+        for (let i = 0; i < child.childNodes.length; i += 1) {
+          const nestedChild = child.childNodes[i];
           if (nestedChild.tagName === 'IMG' && nestedChild.clientHeight === 0) {
             skip = true;
             break;
@@ -271,7 +277,11 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
     const container = masonryRef.current;
     resizeObserver.observe(container);
-    // Observing window in addition to masonry container is more stable
+    // Observing window in addition to masonry container is more stable because
+    // masonry container's dimensions may not change even if user resizes the window;
+    // this causes a problem for responsive `columns`/`spacing`;
+    // e,g, CSS configures `width`/`margin` of each item to expect 5 columns
+    // whereas computation of `order` for each item and `height` for masonry is still for 4 columns
     window.addEventListener('resize', handleResize);
     return () => {
       resizeObserver.disconnect();
