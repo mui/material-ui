@@ -70,7 +70,7 @@ This is the most used layer (based on npm downloads) because it comes with every
 - Accessible components and React hooks (has `@mui/core` as dependency).
 - Default styles are based on the design language being followed.
 
-Currently, MUI has one package in the design system layer  – `@mui/material`, but we plan to add more in the future.
+Currently, MUI has one package in the design system layer – `@mui/material`, but we plan to add more in the future.
 This package provides components that follow the Material Design guidelines and also re-exports necessary APIs from its dependencies.
 Since it has `@mui/system` and `@mui/core` as dependencies, you don't need to install or import them separately.
 Instead, you should import any modules you need from `@mui/material` directly.
