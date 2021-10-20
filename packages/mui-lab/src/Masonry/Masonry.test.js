@@ -37,25 +37,26 @@ describe('<Masonry />', () => {
       const columns = 4;
       const spacing = 1;
       const { getByTestId } = render(
-        <Masonry data-testid="container">
-          <div style={{ width: 100, height: maxColumnHeight }} />
-          <div style={{ width: 100, height: 50 }} />
-          <div style={{ width: 100, height: 70 }} />
-          <div style={{ width: 100, height: 80 }} />
+        <Masonry data-testid="container" sx={{ width: 500 }}>
+          <div data-testid="child" style={{ height: 100 }} />
+          <div style={{ height: 50 }} />
+          <div style={{ height: 50 }} />
+          <div style={{ height: 50 }} />
         </Masonry>,
       );
+      const columnHeight = 100 + parseToNumber(theme.spacing(spacing));
       expect(getByTestId('container')).toHaveComputedStyle({
         display: 'flex',
         flexFlow: 'column wrap',
         alignContent: 'space-between',
         boxSizing: 'border-box',
-        '& > *': {
-          boxSizing: 'border-box',
-          margin: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
-          width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing)})`,
-        },
         margin: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
-        height: `${maxColumnHeight + parseToNumber(theme.spacing(spacing))}px`,
+        height: `${columnHeight + parseToNumber(theme.spacing(spacing))}px`,
+      });
+      expect(getByTestId('child')).toHaveComputedStyle({
+        boxSizing: 'border-box',
+        margin: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+        width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing)}px)`,
       });
     });
   });
