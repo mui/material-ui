@@ -277,16 +277,12 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     const resizeObserver = new ResizeObserver(handleResize);
 
     const container = masonryRef.current;
+    // only the masonry container and its first child are observed for resizing;
+    // this might cause unforeseen problems in some use cases;
     resizeObserver.observe(container);
-    // Observing window in addition to masonry container is more stable because
-    // masonry container's dimensions may not change even if user resizes the window;
-    // this causes a problem for responsive `columns`/`spacing`;
-    // e,g, CSS configures `width`/`margin` of each item to expect 5 columns
-    // whereas computation of `order` for each item and `height` for masonry is still for 4 columns
-    window.addEventListener('resize', handleResize);
+    resizeObserver.observe(container?.firstChild);
     return () => {
       resizeObserver.disconnect();
-      window.removeEventListener('resize', handleResize);
     };
   }, [columns, spacing]);
 
