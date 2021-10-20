@@ -1,3 +1,4 @@
+import * as React from 'react';
 import colors from '../colors';
 
 export interface PaletteRange {
@@ -14,11 +15,11 @@ export interface PaletteRange {
 }
 
 export interface Typography {
-  fontFamily: string;
-  fontWeight: string | number;
-  fontSize: string | number;
-  lineHeight: string | number;
-  color?: string;
+  fontFamily: React.CSSProperties['fontFamily'];
+  fontWeight: React.CSSProperties['fontWeight'];
+  fontSize: React.CSSProperties['fontSize'];
+  lineHeight: React.CSSProperties['lineHeight'];
+  color?: React.CSSProperties['color'];
 }
 
 export interface JoyColorSystems {
@@ -29,34 +30,34 @@ export interface JoyColorSystems {
 }
 
 export interface BorderRadius {
-  md: string | number;
+  md: React.CSSProperties['borderRadius'];
 }
 
 export interface FontSize {
-  xs: string;
-  sm: string;
-  md: string;
-  lg: string;
-  xl: string;
+  xs: React.CSSProperties['fontSize'];
+  sm: React.CSSProperties['fontSize'];
+  md: React.CSSProperties['fontSize'];
+  lg: React.CSSProperties['fontSize'];
+  xl: React.CSSProperties['fontSize'];
 }
 
 export interface FontFamily {
-  sans: string;
-  mono: string;
+  sans: React.CSSProperties['fontFamily'];
+  mono: React.CSSProperties['fontFamily'];
 }
 
 export interface FontWeight {
-  regular: string | number;
-  medium: string | number;
-  bold: string | number;
+  regular: React.CSSProperties['fontWeight'];
+  medium: React.CSSProperties['fontWeight'];
+  bold: React.CSSProperties['fontWeight'];
 }
 
 export interface LineHeight {
-  xs: string | number;
-  sm: string | number;
-  md: string | number;
-  lg: string | number;
-  xl: string | number;
+  xs: React.CSSProperties['lineHeight'];
+  sm: React.CSSProperties['lineHeight'];
+  md: React.CSSProperties['lineHeight'];
+  lg: React.CSSProperties['lineHeight'];
+  xl: React.CSSProperties['lineHeight'];
 }
 
 export interface TypographySystems {
@@ -94,8 +95,8 @@ const staticThemeWithoutVars: StaticTheme = {
     mono: 'Consolas',
   },
   fontWeight: {
-    regular: 500,
-    medium: 600,
+    regular: 400,
+    medium: 500,
     bold: 700,
   },
   lineHeight: {
@@ -108,7 +109,7 @@ const staticThemeWithoutVars: StaticTheme = {
   typography: {
     body: (theme) => ({
       fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.medium,
+      fontWeight: theme.vars.fontWeight.regular,
       fontSize: theme.vars.fontSize.md,
       lineHeight: theme.vars.lineHeight.md,
     }),

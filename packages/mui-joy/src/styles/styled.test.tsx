@@ -4,7 +4,7 @@ import { createClientRender } from 'test/utils';
 import { ThemeProvider, styled } from '@mui/joy/styles';
 import defaultTheme from './defaultTheme';
 
-const toPixel = (val: string | number) => (typeof val === 'number' ? `${val}px` : val);
+const toPixel = (val: string | number | undefined) => (typeof val === 'number' ? `${val}px` : val);
 
 describe('[Joy] styled', () => {
   const render = createClientRender();
