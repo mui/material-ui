@@ -50,6 +50,7 @@ const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
   const {
     onChange,
     PopperProps,
+    PaperProps,
     ToolbarComponent = DatePickerToolbar,
     TransitionComponent,
     value,
@@ -63,6 +64,7 @@ const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
       DateInputProps={AllDateInputProps}
       KeyboardDateInputComponent={KeyboardDateInput}
       PopperProps={PopperProps}
+      PaperProps={PaperProps}
       TransitionComponent={TransitionComponent}
     >
       <Picker
@@ -278,6 +280,10 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
    * Force rendering in particular orientation.
    */
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
+  /**
+   * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
+   */
+  PaperProps: PropTypes.object,
   /**
    * Popper props passed down to [Popper](https://mui.com/api/popper/) component.
    */
