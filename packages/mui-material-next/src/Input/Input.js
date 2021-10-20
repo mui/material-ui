@@ -10,7 +10,7 @@ import {
   appendOwnerState,
 } from '@mui/core';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
+import TextareaAutosize from '@mui/core/TextareaAutosize';
 import { getInputUtilityClass } from './inputClasses';
 
 const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !== 'classes';

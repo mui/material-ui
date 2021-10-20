@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType, elementTypeAcceptingRef } from '@mui/utils';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/core';
+import {
+  unstable_composeClasses as composeClasses,
+  isHostComponent,
+  TextareaAutosize,
+} from '@mui/core';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
@@ -13,7 +17,6 @@ import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import TextareaAutosize from '../TextareaAutosize';
 import GlobalStyles from '../GlobalStyles';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
