@@ -2,7 +2,7 @@
 
 <p class="description">Configure classname generation at build time.</p>
 
-This API is introduced in `@mui/material` (v5.1) as a replacement of deprecated [`createGenerateClassName`](/styles/api/#creategenerateclassname-options-class-name-generator).
+This API is introduced in `@mui/material` (v5.0.5) as a replacement of deprecated [`createGenerateClassName`](/styles/api/#creategenerateclassname-options-class-name-generator).
 
 > ⚠️ **Note**: this API is at an unstable stage which might change in the future.
 
