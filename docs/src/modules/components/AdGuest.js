@@ -1,32 +1,29 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import Portal from '@mui/material/Portal';
 import { AdContext } from 'docs/src/modules/components/AdManager';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 
 export default function AdGuest(props) {
-  const ad = React.useContext(AdContext);
+  const { element } = React.useContext(AdContext);
 
-  if (!ad.element) {
+  useEnhancedEffect(() => {
+    if (element != null) {
+      const description = document.querySelector('.description');
+
+      if (element === description) {
+        description.classList.add('ad');
+      } else {
+        description.classList.remove('ad');
+      }
+    }
+  }, [element]);
+
+  if (!element) {
     return null;
   }
 
-  return (
-    <Portal
-      container={() => {
-        const description = document.querySelector('.description');
-
-        if (ad.element === description) {
-          description.classList.add('ad');
-        } else {
-          description.classList.remove('ad');
-        }
-
-        return ad.element;
-      }}
-    >
-      {props.children}
-    </Portal>
-  );
+  return ReactDOM.createPortal(props.children, element);
 }
 
 AdGuest.propTypes = {

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 
 export const AdContext = React.createContext();
 
@@ -16,7 +15,7 @@ export const adShape = randomSession < 0.2 ? 'inline' : 'image';
 export default function AdManager(props) {
   const [portal, setPortal] = React.useState({});
 
-  useEnhancedEffect(() => {
+  React.useEffect(() => {
     const description = document.querySelector('.description');
     setPortal({ placement: 'body-top', element: description });
   }, []);
