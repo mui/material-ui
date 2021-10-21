@@ -32,10 +32,6 @@ import {
 } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
-import CONFIG from 'docs/src/config';
-
-// eslint-disable-next-line no-console
-console.log('CONFIG', CONFIG);
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
