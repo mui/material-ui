@@ -139,13 +139,29 @@ export default function Joy() {
     }),
   });
   const toggleRef = React.useRef(null);
+  const mounted = React.useRef(false);
+  const [checked, setChecked] = React.useState(false);
   React.useEffect(() => {
-    if (toggleRef.current?.isMounted) {
+    if (mounted.current && toggleRef.current) {
       toggleRef.current.setColorScheme('custom');
-    } else if (toggleRef.current) {
-      toggleRef.current.isMounted = true;
+    } else {
+      mounted.current = true;
     }
   }, [values.app, values.brand, values.neutral, values.contrast]);
+  React.useEffect(() => {
+    if (mounted.current && toggleRef.current) {
+      setChecked(true);
+    } else {
+      mounted.current = true;
+    }
+  }, [values.brand]);
+  React.useEffect(() => {
+    if (mounted.current && toggleRef.current) {
+      setChecked(false);
+    } else {
+      mounted.current = true;
+    }
+  }, [values.neutral]);
   return (
     <BrandingProvider>
       <Box
@@ -212,6 +228,8 @@ export default function Joy() {
             }}
           >
             <Switch
+              checked={checked}
+              onChange={(event) => setChecked(event.target.checked)}
               sx={{
                 '--switch-track-width': toPixel(values.width),
                 '--switch-track-height': toPixel(values.height),
