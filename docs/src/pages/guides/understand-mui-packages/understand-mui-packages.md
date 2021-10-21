@@ -26,7 +26,7 @@ The packages can be categorized into 3 layers, as shown in the picture below:
 
 Let's take a look at each layer to understand how they work together, starting from the bottom:
 
-## Styled engine
+## `styled-engine`
 
 This layer is specifically related to stylesheets.
 Currently we use `emotion` as the default style library for creating stylesheets.
@@ -38,27 +38,27 @@ These are the packages in this layer:
 - `@mui/styled-engine-sc` : a styled-components wrapper
 - `@mui/styles` : JSS wrapper (`deprecated`)
 
-> These packages are already included in the design system package, so you don't need to worry about importing them if you're using `@mui/material`.
+> These packages are already included in the design system package, so you don't need to worry about _importing_ them if you're using `@mui/material`, but you will need to [install](`@mui/styled-engine-sc`) if you wish to replace emotion as the default, as well as your chosen style library.
 
 ## System
 
 There is only one package in this layer - `@mui/system`.
-It uses a styled-engine package to provide APIs for building a design system from scratch, for example, `styled` is enhanced to provide more theming capabilities.
+It uses a styled-engine package and provides APIs for building a design system from scratch, for example, `styled` is enhanced to provide more theming capabilities.
 Here are some benefits:
 
 - You have full control of the `theme` object.
 - The `styled` API supports the `sx` prop by default.
 - Components created with `styled` are themeable via slots & variants.
 
-> **Note**: you will have to install either `emotion` or `styled-components`, because the `system` depends on it.
+> **Note**: you will have to install either `emotion` or `styled-components`, because the `system` package depends on it.
 
 ## Core
 
-The core layer is also known as unstyled components - `@mui/core`.
+The core layer, `@mui/core`, is also known as unstyled components.
 
-It provides only the component functionality and accessibility features without any styles. It's very useful if you want to take full control of the styling, but don't want to spend time building components from scratch.
+It provides only React component functionality and accessibility features without any styles. It's very useful if you want to take full control of the styling, but don't want to spend time building components from scratch.
 
-Since it doesn't rely on any specific styling solution, you can pick a method that bet fits your needs, from pure CSS to CSS-in-JS.
+Since it doesn't rely on any specific styling solution, you can pick a method that best fits your needs, from pure CSS to CSS-in-JS.
 
 For more details, check out the [unstyled components page](/customization/unstyled-components/)
 
@@ -67,7 +67,7 @@ For more details, check out the [unstyled components page](/customization/unstyl
 This is the most used layer (based on npm downloads) because it comes with everything you need to get started:
 
 - Theming capabilities (has `@mui/system` as dependency).
-- Accessible components and React hooks (has `@mui/core` as dependency).
+- Accessible components, and utility hooks (has `@mui/core` as dependency).
 - Default styles are based on the design language being followed.
 
 Currently, MUI has one package in the design system layer – `@mui/material`, but we plan to add more in the future.
@@ -75,7 +75,7 @@ This package provides components that follow the Material Design guidelines and 
 Since it has `@mui/system` and `@mui/core` as dependencies, you don't need to install or import them separately.
 Instead, you should import any modules you need from `@mui/material` directly.
 
-However, there are some cases where you might want to use building blocks from `@mui/core` instead. Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that is very different from the one found in Material Design.
+There are, however, some cases where you might want to use building blocks from `@mui/core` instead. Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that is very different from the one found in Material Design.
 In this case, instead of overriding the `Switch` from `@mui/material` we could use the `styled` API to customize the unstyled version of the Switch, available in `@mui/core`, from scratch:
 
 ```js
