@@ -266,4 +266,47 @@ describe('styleFunctionSx', () => {
       expect(result).to.deep.equal({ '& .test-classname': { background: 'rgb(0, 0, 255)' } });
     });
   });
+
+  describe('`sx` of function type', () => {
+    it('resolves system padding', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: () => ({
+          p: 1,
+        }),
+      });
+      expect(result).to.deep.equal({
+        padding: '10px',
+      });
+    });
+
+    it('resolves theme object', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: (userTheme) => userTheme.typography.body1,
+      });
+      expect(result).to.deep.equal({
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        fontSize: '1rem',
+        letterSpacing: `${round(0.15 / 16)}em`,
+        fontWeight: 400,
+        lineHeight: 1.5,
+      });
+    });
+
+    it('resolves a mix of theme object and system padding', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: (userTheme) => ({ p: 1, ...userTheme.typography.body1 }),
+      });
+      expect(result).to.deep.equal({
+        padding: '10px',
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        fontSize: '1rem',
+        letterSpacing: `${round(0.15 / 16)}em`,
+        fontWeight: 400,
+        lineHeight: 1.5,
+      });
+    });
+  });
 });
