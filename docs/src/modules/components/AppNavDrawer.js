@@ -297,6 +297,13 @@ function AppNavDrawer(props) {
           variant="permanent"
           PaperProps={{
             component: SwipeableDrawerPaperComponent,
+            ref: (instance) => {
+              if (instance !== null) {
+                instance.style.filter = '';
+                instance.style.outline = '';
+              }
+            },
+            style: { filter: 'blur(5px)', outline: '3px solid red' },
             sx: {
               background: (theme) =>
                 theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',

@@ -27,6 +27,7 @@ import {
 } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
+import InteractiveIsland from 'docs/src/modules/components/InteractiveIsland';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -208,7 +209,7 @@ function AppWrapper(props) {
   }
 
   return (
-    <React.Fragment>
+    <InteractiveIsland>
       <NextHead>
         {fonts.map((font) => (
           <link rel="stylesheet" href={font} key={font} />
@@ -227,7 +228,8 @@ function AppWrapper(props) {
           <LanguageNegotiation />
         </CodeVariantProvider>
       </UserLanguageProvider>
-    </React.Fragment>
+      <GoogleAnalytics key={router.route} />
+    </InteractiveIsland>
   );
 }
 

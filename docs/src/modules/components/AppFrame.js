@@ -21,6 +21,7 @@ import NProgressBar from '@mui/docs/NProgressBar';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
+import InteractiveIsland from 'docs/src/modules/components/InteractiveIsland';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -53,9 +54,9 @@ export function NextNProgressBar() {
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 export function DeferredAppSearch() {
   return (
-    <React.Suspense fallback={null}>
+    <InteractiveIsland>
       <AppSearch />
-    </React.Suspense>
+    </InteractiveIsland>
   );
 }
 
@@ -214,8 +215,17 @@ function AppFrame(props) {
         {t('appFrame.skipToContent')}
       </SkipLink>
       <MarkdownLinks />
-      <React.Suspense>
-        <StyledAppBar disablePermanent={disablePermanent}>
+      <React.Suspense fallback={null}>
+        <StyledAppBar
+          disablePermanent={disablePermanent}
+          ref={(instance) => {
+            if (instance !== null) {
+              instance.style.filter = '';
+              instance.style.outline = '';
+            }
+          }}
+          style={{ filter: 'blur(5px)', outline: '3px solid red' }}
+        >
           <Toolbar>
             <NavIconButton
               edge="start"
@@ -257,7 +267,7 @@ function AppFrame(props) {
                   <SettingsIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
-              <React.Suspense fallback={null}>
+              <InteractiveIsland>
                 <Menu
                   id="language-menu"
                   anchorEl={languageMenu}
@@ -300,19 +310,19 @@ function AppFrame(props) {
                     {t('appFrame.helpToTranslate')}
                   </MenuItem>
                 </Menu>
-              </React.Suspense>
+              </InteractiveIsland>
             </Stack>
           </Toolbar>
         </StyledAppBar>
       </React.Suspense>
-      <React.Suspense>
+      <InteractiveIsland>
         <StyledAppNavDrawer
           disablePermanent={disablePermanent}
           onClose={handleNavDrawerClose}
           onOpen={handleNavDrawerOpen}
           mobileOpen={mobileOpen}
         />
-      </React.Suspense>
+      </InteractiveIsland>
       {children}
       <AppSettingsDrawer onClose={handleSettingsDrawerClose} open={settingsOpen} />
     </RootDiv>

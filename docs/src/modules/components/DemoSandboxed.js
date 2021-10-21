@@ -11,6 +11,7 @@ import { jssPreset, StylesProvider } from '@mui/styles';
 import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
+import InteractiveIsland from 'docs/src/modules/components/InteractiveIsland';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { getDesignTokens } from 'docs/src/modules/brandingTheme';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
@@ -161,7 +162,7 @@ function DemoSandboxed(props) {
   const t = useTranslate();
 
   return (
-    <React.Suspense fallback={null}>
+    <InteractiveIsland>
       <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
         <StylesProvider jss={jss}>
           <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
@@ -172,7 +173,7 @@ function DemoSandboxed(props) {
           </ThemeProvider>
         </StylesProvider>
       </DemoErrorBoundary>
-    </React.Suspense>
+    </InteractiveIsland>
   );
 }
 
