@@ -33,7 +33,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
     Arrow?: React.ElementType;
   };
   /**
-   * The props used for each slot inside the Tooltip. For popper props, the `PopperProps` take precedence over the `componentsProps.popper`.
+   * The props used for each slot inside the Tooltip. Note that `componentProps.popper` prop values win over `PopperProps` and `componentProps.transition` prop values win over `TransitionProps` if both are applied.
    * @default {}
    */
   componentsProps?: {
