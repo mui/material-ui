@@ -1,9 +1,6 @@
 const getConfig = () => {
-  // https://docs.netlify.com/site-deploys/overview/#deploy-contexts
-  // the setting is in netlify.toml > [context.production.*]
-  const DEPLOY_CONTEXT = (process.env.NEXT_PUBLIC_DEPLOY_CONTEXT || 'production') as
-    | 'production'
-    | 'deploy-preview';
+  // process.env.PULL_REQUEST is from next.config.js
+  const DEPLOY_CONTEXT = process.env.PULL_REQUEST ? 'deploy-preview' : 'production';
   if (process.env.NODE_ENV !== 'production' || DEPLOY_CONTEXT === 'deploy-preview') {
     // for testing purposes in development and deploy-preview
     return {

@@ -14,9 +14,3 @@
 
 [[plugins]]
   package = "./packages/netlify-plugin-cache-docs"
-
-[context.production.environment]
-  NEXT_PUBLIC_DEPLOY_CONTEXT = "production"
-
-[context.deploy-preview.environment]
-  NEXT_PUBLIC_DEPLOY_CONTEXT = "deploy-preview"
