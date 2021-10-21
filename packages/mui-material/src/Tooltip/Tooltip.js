@@ -743,8 +743,8 @@ Tooltip.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The props used for each slot inside the Tooltip.
-   * Note that `componentProps.popper` prop values win over `PopperProps`
-   * and `componentProps.transition` prop values win over `TransitionProps` if both are applied.
+   * Note that `componentsProps.popper` prop values win over `PopperProps`
+   * and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
    * @default {}
    */
   componentsProps: PropTypes.object,
