@@ -138,16 +138,14 @@ export default function Joy() {
       }),
     }),
   });
-  const [isMounted, setIsMounted] = React.useState(false);
   const toggleRef = React.useRef(null);
   React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
-  React.useEffect(() => {
-    if (isMounted && toggleRef.current) {
+    if (toggleRef.current?.isMounted) {
       toggleRef.current.setColorScheme('custom');
+    } else if (toggleRef.current) {
+      toggleRef.current.isMounted = true;
     }
-  }, [isMounted, values.app, values.brand, values.neutral, values.contrast]);
+  }, [values.app, values.brand, values.neutral, values.contrast]);
   return (
     <BrandingProvider>
       <Box
