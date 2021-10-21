@@ -71,6 +71,11 @@ export interface InputBaseProps
    */
   disabled?: boolean;
   /**
+   * If `true`, GlobalStyles for auto-fill will not be injected / removed on mount / unmount.
+   * @default false
+   */
+  disableInjectingGlobalStyles?: boolean;
+  /**
    * End `InputAdornment` for this component.
    */
   endAdornment?: React.ReactNode;

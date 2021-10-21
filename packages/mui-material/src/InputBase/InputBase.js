@@ -241,6 +241,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     componentsProps = {},
     defaultValue,
     disabled,
+    disableInjectingGlobalStyles,
     endAdornment,
     error,
     fullWidth = false,
@@ -493,7 +494,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   return (
     <React.Fragment>
-      {inputGlobalStyles}
+      {!disableInjectingGlobalStyles && inputGlobalStyles}
       <Root
         {...rootProps}
         {...(!isHostComponent(Root) && {
@@ -607,6 +608,11 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, GlobalStyles for auto-fill will not be injected / removed on mount / unmount.
+   * @default false
+   */
+  disableInjectingGlobalStyles: PropTypes.bool,
   /**
    * End `InputAdornment` for this component.
    */

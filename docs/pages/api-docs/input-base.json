@@ -16,6 +16,7 @@
     "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
+    "disableInjectingGlobalStyles": { "type": { "name": "bool" } },
     "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "fullWidth": { "type": { "name": "bool" } },
