@@ -30,7 +30,7 @@ npm install @material-ui/core@next @material-ui/styled-engine-sc@next styled-com
 yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
 ```
 
-Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+> 💡 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
 
 ## Fonte Roboto
 
@@ -73,7 +73,7 @@ Você pode seguir [esse exemplo de CDN](https://github.com/mui-org/material-ui/t
 
 ⚠️ Usar essa abordagem em **produção** não é **recomendada** devido que - o cliente tem que baixar toda a biblioteca, independentemente de quais os componentes que são realmente utilizados, o que afeta o desempenho e a utilização da largura de banda.
 
-⚠️ Os links UMD estão usando a tag `latest` para apontar para a versão mais recente da biblioteca. ⚠️ Os links UMD estão usando a tag `latest` para apontar para a versão mais recente da biblioteca. Você deve considerar apontar para uma versão específica, como [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
+⚠️ Os links UMD estão usando a tag `latest` para apontar para a versão mais recente da biblioteca. ⚠️ Os links UMD estão usando a tag `latest` para apontar para a versão mais recente da biblioteca. Você deve considerar apontar para uma versão específica, como [v5.0.0](https://unpkg.com/@mui/material@5.0.0/umd/material-ui.development.js).
 
 ## Recursos de design
 

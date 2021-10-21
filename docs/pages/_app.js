@@ -45,7 +45,8 @@ function useFirstRender() {
   return firstRenderRef.current;
 }
 
-acceptLanguage.languages(['en', 'zh', 'pt', 'ru']);
+// Set the locales that the documentation automatically redirects to.
+acceptLanguage.languages(LANGUAGES);
 
 function LanguageNegotiation() {
   const setUserLanguage = useSetUserLanguage();

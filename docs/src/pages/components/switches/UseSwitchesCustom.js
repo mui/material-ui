@@ -3,15 +3,15 @@ import clsx from 'clsx';
 import { styled } from '@mui/system';
 import { useSwitch } from '@mui/core/SwitchUnstyled';
 
-const SwitchRoot = styled('span')(`
+const SwitchRoot = styled('span')`
   display: inline-block;
   position: relative;
   width: 62px;
   height: 34px;
   padding: 7px;
-`);
+`;
 
-const SwitchInput = styled('input')(`
+const SwitchInput = styled('input')`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -21,7 +21,7 @@ const SwitchInput = styled('input')(`
   z-index: 1;
   margin: 0;
   cursor: pointer;
-`);
+`;
 
 const SwitchThumb = styled('span')(
   ({ theme }) => `

@@ -17,6 +17,10 @@ export interface BaseTimePickerProps<TDate>
     ValidationProps<TimeValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
+   * Callback fired on view change.
+   */
+  onViewChange?: (view: TimePickerView) => void;
+  /**
    * First view to show.
    */
   openTo?: TimePickerView;
@@ -53,7 +57,7 @@ export function useTimePickerDefaultizedProps<Props extends BaseTimePickerProps<
     ...other
   }: Props,
   name: string,
-): DefaultizedProps<Props> {
+): DefaultizedProps<Props> & Required<Pick<BaseTimePickerProps<unknown>, 'openTo' | 'views'>> {
   const utils = useUtils();
   const willUseAmPm = ampm ?? utils.is12HourCycleInCurrentLocale();
 

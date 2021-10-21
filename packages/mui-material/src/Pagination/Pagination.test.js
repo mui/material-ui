@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { describeConformance, createClientRender } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Pagination, { paginationClasses as classes } from '@mui/material/Pagination';
+import { paginationItemClasses } from '@mui/material/PaginationItem';
 
 describe('<Pagination />', () => {
   const render = createClientRender();
@@ -45,6 +46,16 @@ describe('<Pagination />', () => {
     page2.click();
 
     expect(handleChange.callCount).to.equal(1);
+  });
+
+  it('should not fire onChange when an ellipsis div is clicked', () => {
+    const handleChange = spy();
+    const { container } = render(<Pagination count={10} onChange={handleChange} page={1} />);
+
+    const ellipsisDiv = container.querySelector(`.${paginationItemClasses.ellipsis}`);
+    ellipsisDiv.click();
+
+    expect(handleChange.callCount).to.equal(0);
   });
 
   it('renders controls with correct order in rtl theme', () => {
