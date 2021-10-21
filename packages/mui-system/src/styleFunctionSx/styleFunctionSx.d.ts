@@ -52,8 +52,8 @@ export type SystemStyleObject<Theme extends object = {}> =
   | null;
 
 /**
-+ * The `SxProps` can be either object or function
-+ */
+ * The `SxProps` can be either object or function
+ */
 export type SxProps<Theme extends object = {}> =
   | SystemStyleObject<Theme>
   | ((theme: Theme) => SystemStyleObject<Theme>);
