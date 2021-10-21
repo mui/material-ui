@@ -4,13 +4,15 @@ const getConfig = () => {
   const DEPLOY_CONTEXT = (process.env.NEXT_PUBLIC_DEPLOY_CONTEXT || 'production') as
     | 'production'
     | 'deploy-preview';
-  if (DEPLOY_CONTEXT === 'deploy-preview') {
+  if (process.env.NODE_ENV !== 'production' || DEPLOY_CONTEXT === 'deploy-preview') {
+    // for testing purposes in development and deploy-preview
     return {
       DEPLOY_CONTEXT,
       NEWSLETTER_SUBSCRIBE_URL:
         'https://f0433e60.sibforms.com/serve/MUIEAE9LexIU5u5hYkoDJ-Mc379-irLHNIlGEgCm5njkAwg6OYFfNQTd25n4SO6vJom9WvQ89GJ0sYBzFYswLRewcOvD_dRtoFycXIObP8SMm-kNO1CdXKaWEZutrfqMKygHb1Je1QBGrMUnJg8J5qVeCwa7rSPBN0A1_6Ug3SiGjgIlbiCcMVA4KbhaYTiBvKkaejlCjgZcLHBT',
     };
   }
+  // only for mui.com
   return {
     DEPLOY_CONTEXT,
     NEWSLETTER_SUBSCRIBE_URL:
