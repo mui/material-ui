@@ -16,7 +16,7 @@
       "default": "'end'"
     },
     "onChange": { "type": { "name": "func" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "value": { "type": { "name": "any" } }
   },
   "name": "FormControlLabel",

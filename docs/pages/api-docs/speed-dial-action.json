@@ -6,7 +6,7 @@
     "icon": { "type": { "name": "node" } },
     "id": { "type": { "name": "string" } },
     "open": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "TooltipClasses": { "type": { "name": "object" } },
     "tooltipOpen": { "type": { "name": "bool" } },
     "tooltipPlacement": {

@@ -22,7 +22,7 @@ function Item(props) {
 }
 
 Item.propTypes = {
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 export default function Gap() {

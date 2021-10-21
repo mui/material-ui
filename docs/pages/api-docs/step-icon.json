@@ -5,7 +5,7 @@
     "completed": { "type": { "name": "bool" } },
     "error": { "type": { "name": "bool" } },
     "icon": { "type": { "name": "node" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "StepIcon",
   "styles": {

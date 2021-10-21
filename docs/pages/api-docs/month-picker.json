@@ -8,7 +8,7 @@
     "className": { "type": { "name": "string" } },
     "disableFuture": { "type": { "name": "bool" } },
     "disablePast": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "MonthPicker",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiMonthPicker" },

@@ -6,7 +6,7 @@
     "dense": { "type": { "name": "bool" } },
     "disablePadding": { "type": { "name": "bool" } },
     "subheader": { "type": { "name": "node" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "List",
   "styles": {

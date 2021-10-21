@@ -15,7 +15,7 @@
       },
       "default": "'center'"
     },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "LoadingButton",
   "styles": {

@@ -19,7 +19,7 @@
     },
     "htmlColor": { "type": { "name": "string" } },
     "shapeRendering": { "type": { "name": "string" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "titleAccess": { "type": { "name": "string" } },
     "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'" }
   },

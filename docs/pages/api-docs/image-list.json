@@ -9,7 +9,7 @@
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
       "default": "'auto'"
     },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "variant": {
       "type": {
         "name": "enum",
