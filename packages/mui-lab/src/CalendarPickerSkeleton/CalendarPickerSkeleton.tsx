@@ -31,6 +31,7 @@ export interface CalendarPickerSkeletonProps extends HTMLDivProps {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 export type CalendarPickerSkeletonClassKey = keyof CalendarPickerSkeletonClasses;
@@ -120,7 +121,7 @@ const monthMap = [
 function CalendarPickerSkeleton(props: CalendarPickerSkeletonProps) {
   const { className, ...other } = useThemeProps<
     Theme,
-    JSX.IntrinsicElements['div'],
+    Omit<JSX.IntrinsicElements['div'], 'ref'> & { ref?: React.Ref<HTMLDivElement> },
     'MuiCalendarPickerSkeleton'
   >({
     props,
