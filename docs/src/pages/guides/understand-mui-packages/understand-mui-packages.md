@@ -2,6 +2,16 @@
 
 <p class="description">An overview of the MUI packages and the relationships between them.</p>
 
+## Tl;dr
+
+- Use `@mui/material` if you want to use the components following the Material Design guidelines.
+  > 💡 Always import styling APIs (eg. `ThemeProvider`, `styled`, etc.) from `@mui/material`
+- Use `@mui/core` if you want to style the components from scratch using your preferred styling method.
+  > 💡 This package can be imported alongside `@mui/material` without an installation.
+- Use `@mui/system` if you want APIs that enable building your own design system from scratch.
+
+---
+
 The following is an up-to-date list of `@mui` public packages.
 
 - `@mui/material`
@@ -26,7 +36,7 @@ The packages can be categorized into 3 layers, as shown in the picture below:
 
 Let's take a look at each layer to understand how they work together, starting from the bottom:
 
-## `styled-engine`
+## Styled engines
 
 This layer is specifically related to stylesheets.
 Currently we use `emotion` as the default style library for creating stylesheets.
@@ -105,13 +115,3 @@ export default function CustomSwitch() {
 ```
 
 > **Note**: there is no need to install `@mui/core` because it is a built in dependency the design system package, `@mui/material`.
-
-## Use-cases
-
-In summary, here's how you can use each package:
-
-- Use `@mui/material` if you want to use the components following the Material Design guidelines.
-  > 💡 Always import styling APIs (eg. `ThemeProvider`, `styled`, etc.) from `@mui/material`
-- Use `@mui/core` if you want to style the components from scratch using your preferred styling method.
-  > 💡 This package can be imported alongside `@mui/material`.
-- Use `@mui/system` if you want APIs that enable building your own design system from scratch.
