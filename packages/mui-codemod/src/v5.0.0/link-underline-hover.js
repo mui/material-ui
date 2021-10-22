@@ -11,7 +11,7 @@ export default function transformer(file, api, options) {
    */
   root
     .find(j.ImportDeclaration)
-    .filter(({ node }) => node.source.value === '@material-ui/core/Link')
+    .filter(({ node }) => node.source.value.match(/^(@material-ui\/core|@mui\/material)\/Link/))
     .forEach(({ node }) => {
       node.specifiers.forEach((s) => {
         if (s.type === 'ImportDefaultSpecifier') {
@@ -22,7 +22,7 @@ export default function transformer(file, api, options) {
 
   root
     .find(j.ImportDeclaration)
-    .filter(({ node }) => node.source.value.match(/^@material-ui\/core\/?$/))
+    .filter(({ node }) => node.source.value.match(/^(@material-ui\/core|@mui\/material)\/?$/))
     .forEach(({ node }) => {
       node.specifiers.forEach((s) => {
         if (s.imported.name === 'Link') {
