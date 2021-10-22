@@ -5,12 +5,14 @@
 ## Tl;dr
 
 - Use `@mui/material` if you want to use the components following the Material Design guidelines.
-  > 💡 Always import styling APIs (eg. `ThemeProvider`, `styled`, etc.) from `@mui/material`
+  > 💡 You can import styling APIs (eg. `ThemeProvider`, `styled`, etc.) directly from `@mui/material`.
 - Use `@mui/core` if you want to style the components from scratch using your preferred styling method.
   > 💡 This package can be imported alongside `@mui/material` without an installation.
 - Use `@mui/system` if you want APIs that enable building your own design system from scratch.
 
 ---
+
+## MUI packages
 
 The following is an up-to-date list of `@mui` public packages.
 
@@ -80,7 +82,7 @@ This is the most used layer (based on npm downloads) because it comes with every
 - Accessible components, and utility hooks (has `@mui/core` as dependency).
 - Default styles based on the design language being followed.
 
-Currently, MUI has one package in the design system layer – `@mui/material`, but we plan to add more in the future.
+Currently, MUI has one package in the design system layer, `@mui/material`, but we plan to add more in the future.
 This package provides components that follow the Material Design guidelines and also re-exports necessary APIs from its dependencies.
 Since it has `@mui/system` and `@mui/core` as dependencies, you don't need to install or import them separately.
 Instead, you should import any modules you need from `@mui/material` directly.
