@@ -143,6 +143,12 @@ describe('styled', () => {
             main: 'rgb(0, 0, 255)',
           },
         },
+        typography: {
+          body1: {
+            fontFamily: 'Roboto',
+            fontWeight: 400,
+          },
+        },
         components: {
           MuiTest: {
             variants: [
@@ -426,7 +432,7 @@ describe('styled', () => {
       });
     });
 
-    it('should resolve the sx prop', () => {
+    it('should resolve the sx prop of object type', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
           <Test sx={{ color: 'primary.main' }}>Test</Test>
@@ -438,7 +444,20 @@ describe('styled', () => {
       });
     });
 
-    it('should resolve the sx prop when styles are object', () => {
+    it('should resolve the sx prop of function type', () => {
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Test sx={(userTheme) => userTheme.typography.body1}>Test</Test>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        fontFamily: 'Roboto',
+        fontWeight: '400',
+      });
+    });
+
+    it('should resolve the sx prop of object type when styles are object', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
           <TestObj sx={{ color: 'primary.main' }}>Test</TestObj>
@@ -447,6 +466,19 @@ describe('styled', () => {
 
       expect(container.firstChild).toHaveComputedStyle({
         color: 'rgb(0, 0, 255)',
+      });
+    });
+
+    it('should resolve the sx prop of function type when styles are object', () => {
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestObj sx={(userTheme) => userTheme.typography.body1}>Test</TestObj>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        fontFamily: 'Roboto',
+        fontWeight: '400',
       });
     });
 
