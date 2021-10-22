@@ -164,6 +164,7 @@ https://v3-9-0.mui.com/* https://v3.mui.com/:splat 301!
 /components/slider-styled/ /components/slider/ 301
 /customization/styled/ /system/styled/ 301
 /api/data-grid/x-grid/ /api/data-grid/data-grid-pro/ 301
+/api-docs/data-grid/grid-export-csv-options/ /api-docs/data-grid/grid-csv-export-options 301
 https://next.material-ui.com/* https://mui.com/:splat 301!
 https://v0.material-ui.com/* https://v0.mui.com/:splat 301!
 https://v1.material-ui.com/* https://v1.mui.com/:splat 301!
