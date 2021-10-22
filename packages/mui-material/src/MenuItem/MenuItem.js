@@ -127,7 +127,9 @@ const MenuItemRoot = styled(ButtonBase, {
     },
   }),
   ...(ownerState.dense && {
-    minHeight: 36,
+    minHeight: 32, // https://material.io/components/menus#specs > Dense
+    paddingTop: 4,
+    paddingBottom: 4,
     ...theme.typography.body2,
     [`& .${listItemIconClasses.root} svg`]: {
       fontSize: '1.25rem',
