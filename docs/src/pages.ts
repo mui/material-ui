@@ -218,7 +218,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/api-docs/data-grid/grid-cell-params', title: 'GridCellParams' },
           { pathname: '/api-docs/data-grid/grid-row-params', title: 'GridRowParams' },
           {
-            pathname: '/api-docs/data-grid/grid-export-csv-options',
+            pathname: '/api-docs/data-grid/grid-csv-export-options',
             title: 'GridExportCSVOptions',
           },
         ].map((page) => {
