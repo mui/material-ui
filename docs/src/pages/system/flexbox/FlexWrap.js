@@ -1,5 +1,30 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+
+function Item(props) {
+  const { sx, ...other } = props;
+  return (
+    <Box
+      sx={{
+        bgcolor: 'primary.main',
+        color: 'white',
+        p: 1,
+        m: 1,
+        borderRadius: 1,
+        textAlign: 'center',
+        fontSize: '1rem',
+        fontWeight: '700',
+        ...sx,
+      }}
+      {...other}
+    />
+  );
+}
+
+Item.propTypes = {
+  sx: PropTypes.object,
+};
 
 export default function FlexWrap() {
   return (
@@ -14,12 +39,12 @@ export default function FlexWrap() {
           maxWidth: 300,
         }}
       >
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 1</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 2</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 3</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 4</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 5</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 6</Box>
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
+        <Item>Item 4</Item>
+        <Item>Item 5</Item>
+        <Item>Item 6</Item>
       </Box>
       <Box
         sx={{
@@ -31,12 +56,29 @@ export default function FlexWrap() {
           maxWidth: 300,
         }}
       >
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 1</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 2</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 3</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 4</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 5</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 6</Box>
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
+        <Item>Item 4</Item>
+        <Item>Item 5</Item>
+        <Item>Item 6</Item>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap-reverse',
+          p: 1,
+          m: 1,
+          bgcolor: 'background.paper',
+          maxWidth: 300,
+        }}
+      >
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
+        <Item>Item 4</Item>
+        <Item>Item 5</Item>
+        <Item>Item 6</Item>
       </Box>
     </div>
   );

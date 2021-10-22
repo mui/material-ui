@@ -246,7 +246,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const props = extendSxProp(themeProps);
   const {
     className,
-    columns: columnsProp = 12,
+    columns: columnsProp,
     columnSpacing: columnSpacingProp,
     component = 'div',
     container = false,
@@ -267,7 +267,11 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const rowSpacing = rowSpacingProp || spacing;
   const columnSpacing = columnSpacingProp || spacing;
 
-  const columns = React.useContext(GridContext) || columnsProp;
+  const columnsContext = React.useContext(GridContext);
+
+  // setting prop before context to accomodate nesting
+  // colums set with default breakpoint unit of 12
+  const columns = columnsProp || columnsContext || 12;
 
   const ownerState = {
     ...props,

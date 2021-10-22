@@ -1,5 +1,30 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+
+function Item(props) {
+  const { sx, ...other } = props;
+  return (
+    <Box
+      sx={{
+        bgcolor: 'primary.main',
+        color: 'white',
+        p: 1,
+        m: 1,
+        borderRadius: 1,
+        textAlign: 'center',
+        fontSize: '1rem',
+        fontWeight: '700',
+        ...sx,
+      }}
+      {...other}
+    />
+  );
+}
+
+Item.propTypes = {
+  sx: PropTypes.object,
+};
 
 export default function AlignSelf() {
   return (
@@ -11,12 +36,12 @@ export default function AlignSelf() {
           p: 1,
           m: 1,
           bgcolor: 'background.paper',
-          height: 100,
+          height: 124,
         }}
       >
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 1</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300', alignSelf: 'flex-end' }}>Item 2</Box>
-        <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 3</Box>
+        <Item>Item 1</Item>
+        <Item sx={{ alignSelf: 'flex-end' }}>Item 2</Item>
+        <Item>Item 3</Item>
       </Box>
     </div>
   );

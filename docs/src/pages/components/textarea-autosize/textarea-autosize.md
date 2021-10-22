@@ -25,3 +25,13 @@ The `TextareaAutosize` component automatically adjust the textarea height on key
 ## Maximum height
 
 {{"demo": "pages/components/textarea-autosize/MaxHeightTextarea.js"}}
+
+## Unstyled
+
+- 📦 [784 B gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
+
+As the component does not have any styles, it also comes with the unstyled package.
+
+```js
+import TextareaAutosize from '@mui/core/TextareaAutosize';
+```

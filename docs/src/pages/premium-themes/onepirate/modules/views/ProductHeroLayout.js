@@ -17,7 +17,7 @@ const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   },
 }));
 
-const Background = styled(Box)(() => ({
+const Background = styled(Box)({
   position: 'absolute',
   left: 0,
   right: 0,
@@ -26,7 +26,7 @@ const Background = styled(Box)(() => ({
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   zIndex: -2,
-}));
+});
 
 function ProductHeroLayout(props) {
   const { sxBackground, children } = props;

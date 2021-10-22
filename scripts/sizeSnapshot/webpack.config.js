@@ -17,8 +17,6 @@ async function getWebpackEntries() {
         entryName = '@material-ui/core/Paper.esm';
       } else if (componentName === 'TextareaAutosize') {
         entryName = '@material-ui/core/Textarea';
-      } else if (['Popper'].indexOf(componentName) !== -1) {
-        entryName = `@material-ui/core/${componentName}`;
       }
 
       return {
@@ -32,9 +30,14 @@ async function getWebpackEntries() {
   const coreComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
+      let entryName = componentName;
+
+      if (['Popper'].indexOf(componentName) !== -1) {
+        entryName = `@material-ui/core/${componentName}`;
+      }
 
       return {
-        id: componentName,
+        id: entryName,
         path: path.relative(workspaceRoot, path.dirname(componentPath)),
       };
     },

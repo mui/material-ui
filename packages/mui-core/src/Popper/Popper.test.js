@@ -3,9 +3,9 @@ import { expect } from 'chai';
 import { useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/system';
 import Grow from '@mui/material/Grow';
-import Popper from '@mui/material/Popper';
+import Popper from '@mui/core/Popper';
 
 describe('<Popper />', () => {
   let rtlTheme;
