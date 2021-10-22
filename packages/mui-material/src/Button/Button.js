@@ -294,16 +294,16 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const {
     children,
     className,
-    color =  colorContext || 'primary',
+    color = colorContext || 'primary',
     component = 'button',
     disabled = disabledContext || false,
-    disableElevation =  disableElevationContext || false,
+    disableElevation = disableElevationContext || false,
     disableFocusRipple = disableFocusRippleContext || false,
     disableRipple = disableRippleContext,
     endIcon: endIconProp,
     focusVisibleClassName,
     fullWidth = fullWidthContext || false,
-    size =  sizeContext || 'medium',
+    size = sizeContext || 'medium',
     startIcon: startIconProp,
     type,
     variant = variantContext || 'text',
@@ -320,7 +320,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     fullWidth,
     size,
     type,
-    variant
+    variant,
   };
 
   const classes = useUtilityClasses(ownerState);
