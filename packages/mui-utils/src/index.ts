@@ -20,6 +20,7 @@ export { default as unstable_requirePropFactory } from './requirePropFactory';
 export { default as unstable_setRef } from './setRef';
 export { default as unstable_useEnhancedEffect } from './useEnhancedEffect';
 export { default as unstable_useId } from './useId';
+export { default as unstable_useReactId } from './useReactId';
 export { default as unstable_unsupportedProp } from './unsupportedProp';
 export { default as unstable_useControlled } from './useControlled';
 export { default as unstable_useEventCallback } from './useEventCallback';

@@ -1,5 +1,10 @@
 import * as React from 'react';
 
+/**
+ * Prefer `useReactId` if the ID is only passed to React props
+ * @param idOverride
+ * @returns
+ */
 export default function useId(idOverride?: string): string | undefined {
   const [defaultId, setDefaultId] = React.useState(idOverride);
   const id = idOverride || defaultId;
