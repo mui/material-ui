@@ -144,6 +144,10 @@ describe('<Rating />', () => {
 
     [
       {
+        ratingProps: { defaultValue: 2 },
+        formData: [],
+      },
+      {
         ratingProps: { name: 'rating', defaultValue: 2 },
         formData: [['rating', '2']],
       },

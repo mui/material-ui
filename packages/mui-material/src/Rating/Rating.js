@@ -310,7 +310,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     icon = defaultIcon,
     IconContainerComponent = IconContainer,
     max = 5,
-    name: nameProp,
+    name,
     onChange,
     onChangeActive,
     onMouseLeave,
@@ -321,8 +321,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     value: valueProp,
     ...other
   } = props;
-
-  const name = useId(nameProp);
 
   const [valueDerived, setValueState] = useControlled({
     controlled: valueProp,
