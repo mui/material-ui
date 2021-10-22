@@ -8,6 +8,9 @@ import { styled } from '@mui/material/styles';
 const Label = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   color: theme.palette.text.secondary,
+  border: '1px solid black',
+  borderBottomLeftRadius: 0,
+  borderBottomRightRadius: 0,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -25,6 +28,7 @@ export default function ImageMasonry() {
               srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
               alt={item.title}
               loading="lazy"
+              style={{ borderBottomLeftRadius: 4, borderBottomRightRadius: 4 }}
             />
           </Stack>
         ))}
