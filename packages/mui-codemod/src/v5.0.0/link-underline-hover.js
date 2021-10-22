@@ -16,6 +16,7 @@ export default function transformer(file, api, options) {
       node.specifiers.forEach((s) => {
         if (s.type === 'ImportDefaultSpecifier') {
           jsxLinkNames.push(s.local.name);
+          node.source.value = node.source.value.replace('@material-ui/core', '@mui/material');
         }
       });
     });
@@ -27,6 +28,7 @@ export default function transformer(file, api, options) {
       node.specifiers.forEach((s) => {
         if (s.imported.name === 'Link') {
           jsxLinkNames.push(s.local.name);
+          node.source.value = node.source.value.replace('@material-ui/core', '@mui/material');
         }
       });
     });
