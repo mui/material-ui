@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { ButtonProps } from '../Button';
+import { ButtonGroupProps } from '.';
 
 interface IButtonGroupContext {
   className?: string;
-  color?: ButtonProps['color'];
+  color?: ButtonGroupProps['color'];
   disabled?: boolean;
   disabledElevation?: boolean;
   disableFocusRipple?: boolean;
   disableRipple?: boolean;
   fullWidth?: boolean;
-  size?: ButtonProps['size'];
-  variant?: ButtonProps['variant'];
+  size?: ButtonGroupProps['size'];
+  variant?: ButtonGroupProps['variant'];
 }
 
 /**
