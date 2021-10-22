@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
@@ -202,7 +201,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
 
   const context = React.useMemo(
     () => ({
-      className: clsx(classes.grouped),
+      className: classes.grouped,
       color,
       disabled,
       disableElevation,
@@ -234,24 +233,6 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      {React.Children.forEach(children, (child) => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-
-        if (process.env.NODE_ENV !== 'production') {
-          if (isFragment(child)) {
-            console.error(
-              [
-                "MUI: The ButtonGroup component doesn't accept a Fragment as a child.",
-                'Consider providing an array instead.',
-              ].join('\n'),
-            );
-          }
-        }
-
-        return null;
-      })}
       <ButtonGroupContext.Provider value={context}>{children}</ButtonGroupContext.Provider>
     </ButtonGroupRoot>
   );

@@ -294,33 +294,33 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const {
     children,
     className,
-    color,
+    color =  colorContext || 'primary',
     component = 'button',
-    disabled,
-    disableElevation,
-    disableFocusRipple,
-    disableRipple,
+    disabled = disabledContext || false,
+    disableElevation =  disableElevationContext || false,
+    disableFocusRipple = disableFocusRippleContext || false,
+    disableRipple = disableRippleContext,
     endIcon: endIconProp,
     focusVisibleClassName,
-    fullWidth,
-    size,
+    fullWidth = fullWidthContext || false,
+    size =  sizeContext || 'medium',
     startIcon: startIconProp,
     type,
-    variant,
+    variant = variantContext || 'text',
     ...other
   } = props;
 
   const ownerState = {
     ...props,
-    color: color || colorContext || 'primary',
+    color,
     component,
-    disabled: disabled || disabledContext || false,
-    disableElevation: disableElevation || disableElevationContext || false,
-    disableFocusRipple: disableFocusRipple || disableFocusRippleContext || false,
-    fullWidth: fullWidth || fullWidthContext || false,
-    size: size || sizeContext || 'medium',
+    disabled,
+    disableElevation,
+    disableFocusRipple,
+    fullWidth,
+    size,
     type,
-    variant: variant || variantContext || 'text',
+    variant
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -340,10 +340,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       ownerState={ownerState}
-      className={className || classNameContext}
+      className={clsx(className, classNameContext)}
       component={component}
-      disabled={disabled || disabledContext || false}
-      disableRipple={disableRipple || disableRippleContext}
+      disabled={disabled}
+      disableRipple={disableRipple}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
