@@ -127,7 +127,7 @@ const MenuItemRoot = styled(ButtonBase, {
     },
   }),
   ...(ownerState.dense && {
-    minHeight: 32,
+    minHeight: 32, // https://material.io/components/menus#specs > Dense
     paddingTop: 4,
     paddingBottom: 4,
     ...theme.typography.body2,
