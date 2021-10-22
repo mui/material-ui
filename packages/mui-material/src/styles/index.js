@@ -11,6 +11,8 @@ export {
   alpha,
   darken,
   lighten,
+  css,
+  keyframes,
 } from '@mui/system';
 export { default as createTheme, createMuiTheme } from './createTheme';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
