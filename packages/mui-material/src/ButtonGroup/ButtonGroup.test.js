@@ -153,7 +153,7 @@ describe('<ButtonGroup />', () => {
   it('should forward the context to children', () => {
     let context;
     render(
-      <ButtonGroup>
+      <ButtonGroup size="large" variant="contained">
         <ButtonGroupContext.Consumer>
           {(value) => {
             context = value;
@@ -161,8 +161,8 @@ describe('<ButtonGroup />', () => {
         </ButtonGroupContext.Consumer>
       </ButtonGroup>,
     );
-    expect(context.variant).to.equal('outlined');
-    expect(context.size).to.equal('medium');
+    expect(context.variant).to.equal('contained');
+    expect(context.size).to.equal('large');
     expect(context.fullWidth).to.equal(false);
     expect(context.disableRipple).to.equal(false);
     expect(context.disableFocusRipple).to.equal(false);
