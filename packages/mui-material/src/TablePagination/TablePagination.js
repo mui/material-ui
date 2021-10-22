@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, integerPropType } from '@mui/utils';
+import { chainPropTypes, integerPropType, unstable_useReactId as useReactId } from '@mui/utils';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -11,7 +11,6 @@ import Select from '../Select';
 import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
 import TablePaginationActions from './TablePaginationActions';
-import useId from '../utils/useId';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
 
 const TablePaginationRoot = styled(TableCell, {
@@ -169,8 +168,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     colSpan = colSpanProp || 1000; // col-span over everything
   }
 
-  const selectId = useId(SelectProps.id);
-  const labelId = useId(SelectProps.labelId);
+  const selectId = useReactId(SelectProps.id);
+  const labelId = useReactId(SelectProps.labelId);
 
   const getLabelDisplayedRowsTo = () => {
     if (count === -1) {

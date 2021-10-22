@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useId as useId } from '@mui/utils';
+import { unstable_useReactId as useReactId } from '@mui/utils';
 import { styled, Theme, useThemeProps } from '@mui/material/styles';
 import {
   unstable_composeClasses as composeClasses,
@@ -284,7 +284,7 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
     ],
   );
 
-  const selectedId = useId();
+  const selectedId = useReactId();
 
   const viewProps = React.useMemo(() => {
     switch (view) {

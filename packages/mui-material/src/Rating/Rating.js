@@ -9,7 +9,7 @@ import {
   useForkRef,
   useIsFocusVisible,
   useControlled,
-  unstable_useId as useId,
+  unstable_useReactId as useReactId,
 } from '../utils';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
@@ -210,7 +210,7 @@ function RatingItem(props) {
   const isFocused = itemValue <= focus;
   const isChecked = itemValue === ratingValueRounded;
 
-  const id = useId();
+  const id = useReactId();
   const container = (
     <RatingIcon
       as={IconContainerComponent}
