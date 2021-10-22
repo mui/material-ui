@@ -289,6 +289,7 @@ const pages: readonly MuiPage[] = [
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
       { pathname: '/guides/classname-generator', title: 'ClassName Generator' },
+      { pathname: '/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
       { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
       { pathname: '/guides/styled-engine' },
