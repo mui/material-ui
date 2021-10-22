@@ -73,6 +73,8 @@ function styleTypeTest() {
   });
 
   // theme should be optional
-  const CustomComponentWithNoTheme = muiStyled('div')(compose(display, gap));
+  const CustomComponentWithNoTheme = muiStyled('div')<
+    React.ComponentProps<typeof display> & React.ComponentProps<typeof gap>
+  >(compose(display, gap));
   <CustomComponentWithNoTheme display="flex" gap={3} />;
 }

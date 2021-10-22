@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, css } from '@mui/material/styles';
 
 const Box = styled('div')(({ theme }) => ({
   color: theme.palette.primary.main,
@@ -26,3 +26,14 @@ const StyledToolbar = styled('div')(({ theme }) => ({
 const StyledSpan = styled('span')(({ theme }) => ({
   ...theme.typography.body1,
 }));
+
+const Container = styled('div')<{ $heightLimit: boolean }>`
+  min-width: 0;
+
+  ${({ $heightLimit }) =>
+    $heightLimit &&
+    css`
+      background: red;
+      height: 10vh;
+    `}
+`;

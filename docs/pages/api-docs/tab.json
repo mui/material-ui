@@ -6,6 +6,13 @@
     "disableFocusRipple": { "type": { "name": "bool" } },
     "disableRipple": { "type": { "name": "bool" } },
     "icon": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;string" } },
+    "iconPosition": {
+      "type": {
+        "name": "enum",
+        "description": "'bottom'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;'top'"
+      },
+      "default": "'top'"
+    },
     "label": { "type": { "name": "node" } },
     "sx": { "type": { "name": "object" } },
     "value": { "type": { "name": "any" } },

@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';
-import MasonryItem from '@mui/lab/MasonryItem';
 
-const heights = [150, 30, 90, 70, 90, 100, 150, 30, 50, 80];
+const heights = [150, 30, 90, 70, 110, 150, 130, 80, 50, 90, 100, 150, 30, 50, 80];
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -17,12 +16,18 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function SSRMasonry() {
   return (
-    <Box sx={{ width: 500, minHeight: 253 }}>
-      <Masonry columns={4} spacing={1}>
+    <Box sx={{ width: 500, minHeight: 393 }}>
+      <Masonry
+        columns={4}
+        spacing={1}
+        defaultHeight={450}
+        defaultColumns={4}
+        defaultSpacing={1}
+      >
         {heights.map((height, index) => (
-          <MasonryItem key={index} defaultHeight={height}>
-            <Item>{index + 1}</Item>
-          </MasonryItem>
+          <Item key={index} sx={{ height }}>
+            {index + 1}
+          </Item>
         ))}
       </Masonry>
     </Box>

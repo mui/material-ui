@@ -12,6 +12,7 @@ export * from './ButtonUnstyled';
 export { default as unstable_composeClasses } from './composeClasses';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
+export { default as unstable_ClassNameGenerator } from './generateUtilityClass/ClassNameGenerator';
 
 export { default as generateUtilityClasses } from './generateUtilityClasses';
 
@@ -26,6 +27,8 @@ export * from './ModalUnstyled';
 
 export { default as NoSsr } from './NoSsr';
 
+export { default as Popper } from './Popper';
+
 export { default as Portal } from './Portal';
 
 export { default as SliderUnstyled } from './SliderUnstyled';
@@ -33,6 +36,8 @@ export * from './SliderUnstyled';
 
 export { default as SwitchUnstyled } from './SwitchUnstyled';
 export * from './SwitchUnstyled';
+
+export { default as TextareaAutosize } from './TextareaAutosize';
 
 export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
 

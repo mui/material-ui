@@ -1,12 +1,13 @@
 <Masonry columns={3} spacing={1}>
-  {itemData.map((item) => (
-    <MasonryItem key={item.img}>
+  {itemData.map((item, index) => (
+    <Stack key={index}>
+      <Label>{index + 1}</Label>
       <img
         src={`${item.img}?w=162&auto=format`}
         srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
         alt={item.title}
         loading="lazy"
       />
-    </MasonryItem>
+    </Stack>
   ))}
 </Masonry>

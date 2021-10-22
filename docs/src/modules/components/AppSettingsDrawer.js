@@ -42,9 +42,21 @@ function AppSettingsDrawer(props) {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
 
+  const updateBodyClass = (currentMode) => {
+    if (currentMode === 'dark') {
+      document.body.classList.remove('mode-light');
+      document.body.classList.add('mode-dark');
+    } else {
+      document.body.classList.remove('mode-dark');
+      document.body.classList.add('mode-light');
+    }
+  };
+
   React.useEffect(() => {
-    setMode(getCookie('paletteMode') || 'system');
-  }, [setMode]);
+    const initialMode = getCookie('paletteMode') || 'system';
+    setMode(initialMode);
+    updateBodyClass(initialMode === 'system' ? preferredMode : initialMode);
+  }, [setMode, preferredMode]);
 
   const handleChangeThemeMode = (event, paletteMode) => {
     if (paletteMode === null) {
@@ -56,9 +68,11 @@ function AppSettingsDrawer(props) {
     if (paletteMode === 'system') {
       document.cookie = `paletteMode=;path=/;max-age=31536000`;
       changeTheme({ paletteMode: preferredMode });
+      updateBodyClass(preferredMode);
     } else {
       document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
       changeTheme({ paletteMode });
+      updateBodyClass(paletteMode);
     }
   };
 

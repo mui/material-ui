@@ -95,7 +95,7 @@ const StoreTemplateLink = React.forwardRef<
 
 const StoreTemplateImage = React.forwardRef<
   HTMLImageElement,
-  { brand: TemplateBrand } & JSX.IntrinsicElements['img']
+  { brand: TemplateBrand } & Omit<JSX.IntrinsicElements['img'], 'ref'>
 >(function StoreTemplateImage({ brand, ...props }, ref) {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
