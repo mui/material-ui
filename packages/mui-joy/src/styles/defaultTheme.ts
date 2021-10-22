@@ -14,17 +14,8 @@ export interface PaletteRange {
   900: string;
 }
 
-export interface Typography {
-  fontFamily?: React.CSSProperties['fontFamily'];
-  fontWeight?: React.CSSProperties['fontWeight'];
-  fontSize?: React.CSSProperties['fontSize'];
-  lineHeight?: React.CSSProperties['lineHeight'];
-  color?: React.CSSProperties['color'];
-}
-
 export interface Palette {
   brand: PaletteRange;
-  highlight: PaletteRange;
 }
 
 export interface ColorSystems {
@@ -36,11 +27,7 @@ export interface BorderRadius {
 }
 
 export interface FontSize {
-  xs: React.CSSProperties['fontSize'];
-  sm: React.CSSProperties['fontSize'];
   md: React.CSSProperties['fontSize'];
-  lg: React.CSSProperties['fontSize'];
-  xl: React.CSSProperties['fontSize'];
 }
 
 export interface FontFamily {
@@ -50,47 +37,45 @@ export interface FontFamily {
 
 export interface FontWeight {
   regular: React.CSSProperties['fontWeight'];
-  medium: React.CSSProperties['fontWeight'];
-  bold: React.CSSProperties['fontWeight'];
 }
 
 export interface LineHeight {
-  xs: React.CSSProperties['lineHeight'];
-  sm: React.CSSProperties['lineHeight'];
-  md: React.CSSProperties['lineHeight'];
-  lg: React.CSSProperties['lineHeight'];
-  xl: React.CSSProperties['lineHeight'];
+  normal: React.CSSProperties['lineHeight'];
+}
+
+export interface Shadow {
+  ring: React.CSSProperties['boxShadow'];
+  md: React.CSSProperties['boxShadow'];
 }
 
 export interface TypographySystems {
-  body: (vars: JoyTheme['vars']) => Typography;
+  body: (vars: JoyTheme) => React.CSSProperties;
 }
 
 export interface StaticTheme {
   borderRadius: BorderRadius;
+  htmlFontSize: React.CSSProperties['fontSize'];
   fontFamily: FontFamily;
   fontSize: FontSize;
   fontWeight: FontWeight;
   lineHeight: LineHeight;
   typography: TypographySystems;
+  shadow: Shadow;
 }
 
 export interface ThemeWithoutVars extends StaticTheme, ColorSystems {}
 
+// @ts-ignore error from module augmentation in .spec.tsx
 const themeWithoutVars = {
   palette: {
     brand: colors.blue,
-    highlight: colors.gray,
   },
   borderRadius: {
-    md: 4,
+    md: '4px',
   },
+  htmlFontSize: '16px',
   fontSize: {
-    xs: '0.75rem',
-    sm: '0.875rem',
     md: '1rem',
-    lg: '1.25rem',
-    xl: '1.5rem',
   },
   fontFamily: {
     sans: 'IBM Plex Sans',
@@ -98,23 +83,21 @@ const themeWithoutVars = {
   },
   fontWeight: {
     regular: 400,
-    medium: 500,
-    bold: 700,
   },
   lineHeight: {
-    xs: 1,
-    sm: 1.43,
-    md: 1.5,
-    lg: 1.75,
-    xl: 2,
+    normal: 1.5,
   },
   typography: {
-    body: (vars) => ({
-      fontFamily: vars.fontFamily.sans,
-      fontWeight: vars.fontWeight.regular,
-      fontSize: vars.fontSize.md,
-      lineHeight: vars.lineHeight.md,
+    body: (theme) => ({
+      fontFamily: theme.vars.fontFamily.sans,
+      fontWeight: theme.vars.fontWeight.regular,
+      fontSize: theme.vars.fontSize.md,
+      lineHeight: theme.vars.lineHeight.normal,
     }),
+  },
+  shadow: {
+    ring: '0 0 0 0 rgba(0,0,0,0)',
+    md: 'var(--shadows-ring), 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
   },
 } as ThemeWithoutVars;
 

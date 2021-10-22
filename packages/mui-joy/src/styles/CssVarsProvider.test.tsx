@@ -50,18 +50,6 @@ describe('[Joy] CssVarsProvider', () => {
             800: 'var(--joy-palette-brand-800)',
             900: 'var(--joy-palette-brand-900)',
           },
-          highlight: {
-            50: 'var(--joy-palette-highlight-50)',
-            100: 'var(--joy-palette-highlight-100)',
-            200: 'var(--joy-palette-highlight-200)',
-            300: 'var(--joy-palette-highlight-300)',
-            400: 'var(--joy-palette-highlight-400)',
-            500: 'var(--joy-palette-highlight-500)',
-            600: 'var(--joy-palette-highlight-600)',
-            700: 'var(--joy-palette-highlight-700)',
-            800: 'var(--joy-palette-highlight-800)',
-            900: 'var(--joy-palette-highlight-900)',
-          },
         }),
       );
     });
@@ -87,11 +75,7 @@ describe('[Joy] CssVarsProvider', () => {
 
       expect(screen.getByTestId('font-size').textContent).to.equal(
         JSON.stringify({
-          xs: 'var(--joy-fontSize-xs)',
-          sm: 'var(--joy-fontSize-sm)',
           md: 'var(--joy-fontSize-md)',
-          lg: 'var(--joy-fontSize-lg)',
-          xl: 'var(--joy-fontSize-xl)',
         }),
       );
       expect(screen.getByTestId('font-family').textContent).to.equal(
@@ -103,17 +87,11 @@ describe('[Joy] CssVarsProvider', () => {
       expect(screen.getByTestId('font-weight').textContent).to.equal(
         JSON.stringify({
           regular: 'var(--joy-fontWeight-regular)',
-          medium: 'var(--joy-fontWeight-medium)',
-          bold: 'var(--joy-fontWeight-bold)',
         }),
       );
       expect(screen.getByTestId('line-height').textContent).to.equal(
         JSON.stringify({
-          xs: 'var(--joy-lineHeight-xs)',
-          sm: 'var(--joy-lineHeight-sm)',
-          md: 'var(--joy-lineHeight-md)',
-          lg: 'var(--joy-lineHeight-lg)',
-          xl: 'var(--joy-lineHeight-xl)',
+          normal: 'var(--joy-lineHeight-normal)',
         }),
       );
     });

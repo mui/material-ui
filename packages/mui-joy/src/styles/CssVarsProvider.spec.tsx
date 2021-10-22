@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider, JoyTheme, Typography } from '@mui/joy/styles';
+import { CssVarsProvider, JoyTheme } from '@mui/joy/styles';
 
 // override theme
 <CssVarsProvider
@@ -71,7 +71,7 @@ declare module '@mui/joy/styles' {
 // extends TypographySystems
 declare module '@mui/joy/styles' {
   interface TypographySystems {
-    ads: (vars: JoyTheme['vars']) => Typography;
+    ads: (vars: JoyTheme['vars']) => React.CSSProperties;
   }
 }
 
