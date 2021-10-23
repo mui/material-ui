@@ -311,7 +311,7 @@ describe('<Popper />', () => {
         </Popper>,
       );
 
-      expect(getByRole('tooltip').style.display).to.equal('none');
+      expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
 
       setProps({ open: true });
       act(() => {
@@ -322,7 +322,7 @@ describe('<Popper />', () => {
       act(() => {
         clock.tick(0);
       });
-      expect(getByRole('tooltip').style.display).to.equal('none');
+      expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
     });
   });
 });
