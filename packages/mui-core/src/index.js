@@ -37,6 +37,8 @@ export * from './SliderUnstyled';
 export { default as SwitchUnstyled } from './SwitchUnstyled';
 export * from './SwitchUnstyled';
 
+export { default as TextareaAutosize } from './TextareaAutosize';
+
 export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
 
 export * from './utils';

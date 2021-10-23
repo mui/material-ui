@@ -53,7 +53,10 @@ const TabRoot = styled(ButtonBase, {
   overflow: 'hidden',
   whiteSpace: 'normal',
   textAlign: 'center',
-  flexDirection: 'column',
+  ...(ownerState.label && {
+    flexDirection:
+      ownerState.iconPosition === 'top' || ownerState.iconPosition === 'bottom' ? 'column' : 'row',
+  }),
   lineHeight: 1.25,
   ...(ownerState.icon &&
     ownerState.label && {
@@ -61,7 +64,18 @@ const TabRoot = styled(ButtonBase, {
       paddingTop: 9,
       paddingBottom: 9,
       [`& > .${tabClasses.iconWrapper}`]: {
-        marginBottom: 6,
+        ...(ownerState.iconPosition === 'top' && {
+          marginBottom: 6,
+        }),
+        ...(ownerState.iconPosition === 'bottom' && {
+          marginTop: 6,
+        }),
+        ...(ownerState.iconPosition === 'start' && {
+          marginRight: theme.spacing(1),
+        }),
+        ...(ownerState.iconPosition === 'end' && {
+          marginLeft: theme.spacing(1),
+        }),
       },
     }),
   ...(ownerState.textColor === 'inherit' && {
@@ -112,6 +126,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     // eslint-disable-next-line react/prop-types
     fullWidth,
     icon: iconProp,
+    iconPosition = 'top',
     // eslint-disable-next-line react/prop-types
     indicator,
     label,
@@ -135,6 +150,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     disableFocusRipple,
     selected,
     icon: !!iconProp,
+    iconPosition,
     label: !!label,
     fullWidth,
     textColor,
@@ -182,8 +198,18 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       tabIndex={selected ? 0 : -1}
       {...other}
     >
-      {icon}
-      {label}
+      {iconPosition === 'top' || iconPosition === 'start' ? (
+        <React.Fragment>
+          {icon}
+          {label}
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          {label}
+          {icon}
+        </React.Fragment>
+      )}
+
       {indicator}
     </TabRoot>
   );
@@ -229,6 +255,11 @@ Tab.propTypes /* remove-proptypes */ = {
    * The icon to display.
    */
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  /**
+   * The position of the icon relative to the label.
+   * @default 'top'
+   */
+  iconPosition: PropTypes.oneOf(['bottom', 'end', 'start', 'top']),
   /**
    * The label element.
    */

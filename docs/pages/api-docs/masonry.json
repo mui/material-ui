@@ -10,6 +10,9 @@
       "default": "4"
     },
     "component": { "type": { "name": "elementType" } },
+    "defaultColumns": { "type": { "name": "number" } },
+    "defaultHeight": { "type": { "name": "number" } },
+    "defaultSpacing": { "type": { "name": "number" } },
     "spacing": {
       "type": {
         "name": "union",

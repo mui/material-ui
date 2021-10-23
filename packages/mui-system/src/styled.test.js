@@ -537,10 +537,11 @@ describe('styled', () => {
 
       const classList = Array.from(container.firstChild.classList);
       const regExp = new RegExp(`.*-MuiComponent-slot$`);
+      const regExpSC = new RegExp(`MuiComponent-slot.*`);
       let containsValidClass = false;
 
       classList.forEach((className) => {
-        if (regExp.test(className)) {
+        if (regExp.test(className) || regExpSC.test(className)) {
           containsValidClass = true;
         }
       });
@@ -561,10 +562,11 @@ describe('styled', () => {
 
       const classList = Array.from(container.firstChild.classList);
       const regExp = new RegExp(`.*-MuiComponent-root$`);
+      const regExpSC = new RegExp(`MuiComponent-root.*`);
       let containsValidClass = false;
 
       classList.forEach((className) => {
-        if (regExp.test(className)) {
+        if (regExp.test(className) || regExpSC.test(className)) {
           containsValidClass = true;
         }
       });

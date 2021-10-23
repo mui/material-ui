@@ -31,10 +31,15 @@ const iconsMap = {
   ReaderIcon: ChromeReaderModeOutlined,
 };
 
-const Item = styled(({ component: Component = 'div', ...props }) => <Component {...props} />, {
-  // disable `as` prop
-  shouldForwardProp: () => true,
-})(({ theme }) => ({
+const Item = styled(
+  function Item({ component: Component = 'div', ...props }) {
+    return <Component {...props} />;
+  },
+  {
+    // disable `as` prop
+    shouldForwardProp: () => true,
+  },
+)(({ theme }) => ({
   ...theme.typography.body2,
   display: 'flex',
   borderRadius: 5,
