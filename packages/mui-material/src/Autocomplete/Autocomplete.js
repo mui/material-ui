@@ -152,9 +152,6 @@ const AutocompleteRoot = styled('div', {
   [`& .${filledInputClasses.root}`]: {
     paddingTop: 19,
     paddingLeft: 8,
-    ...(ownerState.hiddenLabel && {
-      paddingTop: 8,
-    }),
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
       paddingRight: 26 + 4 + 9,
     },
@@ -173,6 +170,9 @@ const AutocompleteRoot = styled('div', {
     [`& .${filledInputClasses.input}`]: {
       padding: '2.5px 4px',
     },
+  },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}`]: {
+    paddingTop: 8,
   },
   [`& .${autocompleteClasses.input}`]: {
     flexGrow: 1,
