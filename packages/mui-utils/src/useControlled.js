@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
 import * as React from 'react';
 
+const setValueNoop = (newValue) => {};
+
 export default function useControlled({ controlled, default: defaultProp, name, state = 'value' }) {
   // isControlled is ignored in the hook dependency lists as it should never change.
   const { current: isControlled } = React.useRef(controlled !== undefined);
@@ -39,11 +41,7 @@ export default function useControlled({ controlled, default: defaultProp, name, 
     }, [JSON.stringify(defaultProp)]);
   }
 
-  const setValueIfUncontrolled = React.useCallback((newValue) => {
-    if (!isControlled) {
-      setValue(newValue);
-    }
-  }, []);
+  const setValueIfUncontrolled = isControlled ? setValueNoop : setValue;
 
   return [value, setValueIfUncontrolled];
 }
