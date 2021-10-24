@@ -15539,10 +15539,10 @@ stylelint@^13.13.1:
   dependencies:
     cssjanus "^1.3.0"
 
-stylis-plugin-rtl@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/stylis-plugin-rtl/-/stylis-plugin-rtl-2.1.0.tgz#e20ad640949b0e62fa214dabc839d2d7c83a2182"
-  integrity sha512-WGqhbQdlbXN3UelhOObu58+aG02jm8ACehr8iBDf7qLQ6lbUxD6YwM8t/5IcwLRjj7BVjIN8eA8YfwJuqwBVSg==
+stylis-plugin-rtl@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/stylis-plugin-rtl/-/stylis-plugin-rtl-2.1.1.tgz#16707809c878494835f77e5d4aadaae3db639b5e"
+  integrity sha512-q6xIkri6fBufIO/sV55md2CbgS5c6gg9EhSVATtHHCdOnbN/jcI0u3lYhNVeuI65c4lQPo67g8xmq5jrREvzlg==
   dependencies:
     cssjanus "^2.0.1"
 
