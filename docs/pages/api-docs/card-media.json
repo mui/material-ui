@@ -5,7 +5,7 @@
     "component": { "type": { "name": "elementType" } },
     "image": { "type": { "name": "string" } },
     "src": { "type": { "name": "string" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "CardMedia",
   "styles": { "classes": ["root", "media", "img"], "globalClasses": {}, "name": "MuiCardMedia" },

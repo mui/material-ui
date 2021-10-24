@@ -21,7 +21,7 @@
     "sortDirection": {
       "type": { "name": "enum", "description": "'asc'<br>&#124;&nbsp;'desc'<br>&#124;&nbsp;false" }
     },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "variant": {
       "type": {
         "name": "enum",

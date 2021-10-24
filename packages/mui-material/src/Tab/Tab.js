@@ -279,7 +279,7 @@ Tab.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */

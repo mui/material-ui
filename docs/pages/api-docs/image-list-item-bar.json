@@ -14,7 +14,7 @@
       "default": "'bottom'"
     },
     "subtitle": { "type": { "name": "node" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "title": { "type": { "name": "node" } }
   },
   "name": "ImageListItemBar",

@@ -4,7 +4,7 @@
     "classes": { "type": { "name": "object" } },
     "color": { "type": { "name": "any" }, "default": "'primary'" },
     "component": { "type": { "name": "custom", "description": "element type" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "TypographyClasses": { "type": { "name": "object" } },
     "underline": {
       "type": {

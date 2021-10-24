@@ -18,7 +18,7 @@
       },
       "default": "'medium'"
     },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "Icon",
   "styles": {

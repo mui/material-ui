@@ -77,7 +77,7 @@ function ProductHeroLayout(props) {
 
 ProductHeroLayout.propTypes = {
   children: PropTypes.node,
-  sxBackground: PropTypes.object,
+  sxBackground: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 export default ProductHeroLayout;
