@@ -75,7 +75,7 @@
     "@babel/preset-env": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
     "@babel/register": "^7.15.3",
-    "@emotion/react": "^11.4.1",
+    "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@eps1lon/enzyme-adapter-react-17": "^0.1.0",
     "@octokit/rest": "^18.12.0",
