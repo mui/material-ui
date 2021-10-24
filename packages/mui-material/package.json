@@ -64,7 +64,7 @@
     "@mui/system": "^5.0.4",
     "@mui/types": "^7.0.0",
     "@mui/utils": "^5.0.1",
-    "@types/react-transition-group": "^4.4.3",
+    "@types/react-transition-group": "^4.4.4",
     "clsx": "^1.1.1",
     "csstype": "^3.0.9",
     "hoist-non-react-statics": "^3.3.2",
