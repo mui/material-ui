@@ -96,8 +96,8 @@ export default styled;
 
 ## Difference with the `sx` prop
 
-The `styled` function is an extension of the `styled` utility provided by the underlying styled engine used, emotion or styled-components.
-It is guaranteed that it will produce the same output as the `styled` function coming from the styled engine for the same input.
+The `styled` function is an extension of the `styled` utility provided by the underlying style library used – either emotion or styled-components.
+It is guaranteed that it will produce the same output as the `styled` function coming from the style library for the same input.
 
 The [`sx`](/system/the-sx-prop/) prop, on the other hand, is a new way of styling your components, focused on fast customization. `styled` is a function, while `sx` is a prop of the MUI components.
 
@@ -120,7 +120,7 @@ const MyStyledButton = (props) => (
   </button>
 })
 ```
-### The style definition slightly varies
+### The style definition varies slightly
 With `styled`:
 ```js
 const MyStyledButton = styled("button")({
@@ -139,7 +139,7 @@ const MyStyledButton = (props) => (
 })
 ```
 
-### Patterns of how to use props are different
+### Patterns for how to use props differ
 
 With `styled`:
 ```js
@@ -158,7 +158,7 @@ const MyStyledButton = (props) => (
 })
 ```
 
-### Parameter of each field is different, when using function
+### Parameter when using function are different for each field
 
 With `styled` (not recommended):
 ```js
@@ -176,7 +176,7 @@ const MyStyledButton = (props) => (
      {props.children}
   </button>
 })
-// NOTE: for direct theme access without modification, you can also use a shortcut
+// Note: for direct theme access without modification, you can also use a shortcut by providing the key as a string
 const MyStyledButton = (props) => (
   <button sx={{backgroundColor: "primary.main"}}>
      {props.children}
