@@ -21,8 +21,13 @@ export default function extendSxProp(props) {
   const { sx: inSx, ...other } = props;
   const { systemProps, otherProps } = splitProps(other);
 
+  let inSxStyles = inSx;
+  if (inSx && typeof inSx === 'function') {
+    inSxStyles = inSx();
+  }
+
   return {
     ...otherProps,
-    sx: { ...systemProps, ...inSx },
+    sx: { ...systemProps, ...inSxStyles },
   };
 }
