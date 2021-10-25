@@ -26,7 +26,7 @@ Add three components to `@mui/core` by @rebeccahongsf and @hbjORbj.
 - &#8203;<!-- 16 -->[Masonry] Improve demo styles (#29218) @hbjORbj
 - &#8203;<!-- 15 -->[Masonry] Implement Masonry using Flexbox (#28059) @hbjORbj
 
-### `@mui/icons/@5.0.5`
+### `@mui/icons@5.0.5`
 
 - &#8203;<!-- 19 -->[icons] Add TipsAndUpdates icon (#29004) @hbjORbj
 
