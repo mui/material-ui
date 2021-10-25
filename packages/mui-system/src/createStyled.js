@@ -112,7 +112,8 @@ export default function createStyled(input = {}) {
     const muiStyledResolver = (styleArg, ...expressions) => {
       const expressionsWithDefaultTheme = expressions
         ? expressions.map((stylesArg) => {
-            return typeof stylesArg === 'function'
+            // eslint-disable-next-line no-underscore-dangle
+            return typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg
               ? ({ theme: themeInput, ...other }) => {
                   return stylesArg({
                     theme: isEmpty(themeInput) ? defaultTheme : themeInput,
