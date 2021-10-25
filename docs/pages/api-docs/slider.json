@@ -50,7 +50,7 @@
       "default": "'medium'"
     },
     "step": { "type": { "name": "number" }, "default": "1" },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "tabIndex": { "type": { "name": "number" } },
     "track": {
       "type": {

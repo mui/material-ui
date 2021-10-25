@@ -13,7 +13,7 @@
     "gutterBottom": { "type": { "name": "bool" } },
     "noWrap": { "type": { "name": "bool" } },
     "paragraph": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "variant": {
       "type": {
         "name": "union",

@@ -8,7 +8,7 @@
     "expanded": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },
     "square": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
     "TransitionProps": { "type": { "name": "object" } }
   },

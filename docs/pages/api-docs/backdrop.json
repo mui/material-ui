@@ -10,7 +10,7 @@
     },
     "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "invisible": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "transitionDuration": {
       "type": {
         "name": "union",

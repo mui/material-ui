@@ -36,7 +36,7 @@
     },
     "PopperComponent": { "type": { "name": "elementType" }, "default": "Popper" },
     "PopperProps": { "type": { "name": "object" }, "default": "{}" },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
     "TransitionProps": { "type": { "name": "object" } }
   },

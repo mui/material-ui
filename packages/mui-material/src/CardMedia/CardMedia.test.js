@@ -18,11 +18,11 @@ describe('<CardMedia />', () => {
     skip: ['componentsProp'],
   }));
 
-  it('has the image role if `image` is defined', () => {
+  it('has the img role if `image` is defined', () => {
     const { container } = render(<CardMedia image="/fake.png" />);
 
     const cardMedia = container.firstChild;
-    expect(cardMedia).to.have.attribute('role', 'image');
+    expect(cardMedia).to.have.attribute('role', 'img');
   });
 
   it('should have the backgroundImage specified', () => {

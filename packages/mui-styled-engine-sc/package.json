@@ -42,7 +42,7 @@
   },
   "peerDependencies": {
     "@types/styled-components": "^5.1.15",
-    "styled-components": "^5.3.1"
+    "styled-components": "^5.3.3"
   },
   "peerDependenciesMeta": {
     "@types/styled-components": {

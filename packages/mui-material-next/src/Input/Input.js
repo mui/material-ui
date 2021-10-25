@@ -10,7 +10,7 @@ import {
   appendOwnerState,
 } from '@mui/core';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
+import TextareaAutosize from '@mui/core/TextareaAutosize';
 import { getInputUtilityClass } from './inputClasses';
 
 const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !== 'classes';
@@ -495,7 +495,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
