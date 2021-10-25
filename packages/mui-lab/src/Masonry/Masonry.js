@@ -22,40 +22,6 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getMasonryUtilityClass, classes);
 };
 
-// compute base for responsive values; e.g.,
-// [1,2,3] => {xs: true, sm: true, md: true}
-// {xs: 1, sm: 2, md: 3} => {xs: true, sm: true, md: true}
-const computeBreakpointsBase = (breakpoints, prop) => {
-  const base = {};
-  if (Array.isArray(prop)) {
-    Object.keys(breakpoints.values).forEach((breakpoint, i, arr) => {
-      if (i < arr.length) {
-        base[breakpoint] = true;
-      }
-    });
-  } else {
-    Object.keys(breakpoints.values).forEach((breakpoint) => {
-      if (prop[breakpoint] != null) {
-        base[breakpoint] = true;
-      }
-    });
-  }
-  return base;
-};
-
-// if prop is an array, convert to object; e.g.,
-// (base: {xs: true, sm: true, md: true}, prop: [1,2,3]) => {xs: 1, sm: 2, md: 3}
-const validatePropValues = (base, prop) => {
-  const values = {};
-  if (Array.isArray(prop)) {
-    Object.keys(base).forEach((breakpoint, i) => {
-      values[breakpoint] = prop[i];
-    });
-    return values;
-  }
-  return prop;
-};
-
 export const getStyle = ({ ownerState, theme }) => {
   let styles = {
     width: '100%',
@@ -94,10 +60,9 @@ export const getStyle = ({ ownerState, theme }) => {
     };
   }
 
-  const spacingBreakpointsBase = computeBreakpointsBase(theme.breakpoints, ownerState.spacing);
   const spacingValues = resolveBreakpointValues({
-    values: validatePropValues(spacingBreakpointsBase, ownerState.spacing),
-    base: spacingBreakpointsBase,
+    values: ownerState.spacing,
+    breakpoints: theme.breakpoints.values,
   });
 
   const transformer = createUnarySpacing(theme);
@@ -120,10 +85,9 @@ export const getStyle = ({ ownerState, theme }) => {
     handleBreakpoints({ theme }, spacingValues, spacingStyleFromPropValue),
   );
 
-  const columnBreakpointsBase = computeBreakpointsBase(theme.breakpoints, ownerState.columns);
   const columnValues = resolveBreakpointValues({
-    values: validatePropValues(columnBreakpointsBase, ownerState.columns),
-    base: columnBreakpointsBase,
+    values: ownerState.columns,
+    breakpoints: theme.breakpoints.values,
   });
 
   const columnStyleFromPropValue = (propValue) => {
