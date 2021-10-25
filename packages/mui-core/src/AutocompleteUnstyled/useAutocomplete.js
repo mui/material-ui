@@ -152,9 +152,9 @@ export default function useAutocomplete(props) {
 
   const resetInputValue = React.useCallback(
     (event, newValue) => {
-      // retain current `inputValue` if option isn't selected and `clearOnBlur` is false
+      // retain current `inputValue` if new option isn't selected and `clearOnBlur` is false
       // When `multiple` is enabled, `newValue` is an array of all selected items including the newly selected item
-      const isOptionSelected = multiple ? value.length !== newValue.length : newValue !== null;
+      const isOptionSelected = multiple ? value.length < newValue.length : newValue !== null;
       if (!isOptionSelected && !clearOnBlur) {
         return;
       }
