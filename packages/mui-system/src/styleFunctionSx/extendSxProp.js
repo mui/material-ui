@@ -23,6 +23,6 @@ export default function extendSxProp(props) {
 
   return {
     ...otherProps,
-    sx: { ...systemProps, ...inSx },
+    sx: Array.isArray(inSx) ? [systemProps, ...inSx] : { ...systemProps, ...inSx },
   };
 }

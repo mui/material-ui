@@ -309,4 +309,36 @@ describe('styleFunctionSx', () => {
       });
     });
   });
+
+  describe('`sx` of array type', () => {
+    it('resolves system props', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: [
+          {
+            bgcolor: 'background.paper',
+            boxShadow: 1,
+            borderRadius: 1,
+            p: 2,
+            minWidth: 300,
+          },
+          {
+            bgcolor: 'primary.main',
+          },
+        ],
+      });
+      expect(result).to.deep.equal([
+        {
+          backgroundColor: 'background.paper',
+          borderRadius: 4,
+          boxShadow: 1,
+          minWidth: 300,
+          padding: '20px',
+        },
+        {
+          backgroundColor: 'rgb(0, 0, 255)',
+        },
+      ]);
+    });
+  });
 });

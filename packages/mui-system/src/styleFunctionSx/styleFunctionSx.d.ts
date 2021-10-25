@@ -56,6 +56,7 @@ export type SystemStyleObject<Theme extends object = {}> =
  */
 export type SxProps<Theme extends object = {}> =
   | SystemStyleObject<Theme>
+  | SystemStyleObject<Theme>[]
   | ((theme: Theme) => SystemStyleObject<Theme>);
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
