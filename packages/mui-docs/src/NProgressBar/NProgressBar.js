@@ -8,6 +8,8 @@ import { exactProp } from '@mui/utils';
 
 NProgress.configure({
   barSelector: '.nprogress-bar',
+  // `(first|last)-child` classes are used instead of `:(first|last)-child` selectors.
+  // `:(first|last)-child` are not safe for SSR since Emotion may insert <style> elements: https://github.com/emotion-js/emotion/issues/1059#issuecomment-444566635
   template: `
     <div class="nprogress-bar">
       <div class="nprogress-bar-first-child"></div>
