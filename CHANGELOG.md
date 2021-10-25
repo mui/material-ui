@@ -15,7 +15,7 @@ Add three components to `@mui/core` by @rebeccahongsf and @hbjORbj.
 
 - &#8203;<!-- 38 -->[codemod] Support new package name in `link-underline-hover` transformer (#29214) @siriwatknp
 
-### `@mui/core@5.0.5`
+### `@mui/core@5.0.0-alpha.52`
 
 - &#8203;<!-- 39 -->[ClickAwayListener] Move to the core package (#29186) @hbjORbj
 - &#8203;<!-- 13 -->[Popper] Move from mui-material to mui-core (#28923) @rebeccahongsf
