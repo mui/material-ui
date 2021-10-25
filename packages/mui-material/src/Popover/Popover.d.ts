@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps } from '..';
+import StandardProps from '../InternalStandardProps';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { Theme } from '../styles';

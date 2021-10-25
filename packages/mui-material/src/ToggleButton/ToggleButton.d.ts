@@ -1,6 +1,6 @@
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '..';
+import {Theme} from '../styles/createTheme';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { ToggleButtonClasses } from './toggleButtonClasses';

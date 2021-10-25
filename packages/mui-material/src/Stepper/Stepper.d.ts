@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
+import StandardProps from '../InternalStandardProps';
 import { PaperProps } from '../Paper';
 import { StepperClasses } from './stepperClasses';
 

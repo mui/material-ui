@@ -4,67 +4,6 @@ import { StyledComponentProps } from './styles';
 
 export { StyledComponentProps };
 
-/**
- * All standard components exposed by `material-ui` are `StyledComponents` with
- * certain `classes`, on which one can also set a top-level `className` and inline
- * `style`.
- * @deprecated will be removed in v5 for internal usage only
- */
-export type StandardProps<
-  C,
-  ClassKey extends string,
-  Removals extends keyof C = never,
-> = DistributiveOmit<C, 'classes' | Removals> &
-  StyledComponentProps<ClassKey> & {
-    className?: string;
-    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
-    style?: React.CSSProperties;
-  };
-
-/**
- * @internal
- * ONLY USE FROM WITHIN mui-org/material-ui
- *
- * Internal helper type for conform (describeConformance) components
- * However, we don't declare classes on this type.
- * It is recommended to declare them manually with an interface so that each class can have a separate JSDoc.
- */
-export type InternalStandardProps<C, Removals extends keyof C = never> = DistributiveOmit<
-  C,
-  'classes' | Removals
-> &
-  // each component declares it's classes in a separate interface for proper JSDoc
-  StyledComponentProps<never> & {
-    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
-    // TODO: Remove implicit props. Up to each component.
-    className?: string;
-    style?: React.CSSProperties;
-  };
-
-export type PaletteMode = 'light' | 'dark';
-export interface Color {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
-  A100: string;
-  A200: string;
-  A400: string;
-  A700: string;
-}
-
-export namespace PropTypes {
-  // keeping the type structure for backwards compat
-  // eslint-disable-next-line @typescript-eslint/no-shadow, @typescript-eslint/no-unused-vars
-  type Color = 'inherit' | 'primary' | 'secondary' | 'default';
-}
-
 // From index.js
 // eslint-disable-next-line import/first
 import * as colors from './colors';

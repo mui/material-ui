@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { SxProps } from '@mui/system';
 // eslint-disable-next-line no-restricted-imports -- importing types
-import { InternalStandardProps as StandardProps } from '@mui/material';
+import StandardProps from '@mui/material/InternalStandardProps';
 import { capitalize } from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
 import { styled, useThemeProps, Theme } from '@mui/material/styles';

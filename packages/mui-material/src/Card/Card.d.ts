@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { DistributiveOmit } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
-import { Theme } from '..';
+import {Theme} from '../styles/createTheme';
 import { PaperProps } from '../Paper';
 import { CardClasses } from './cardClasses';
 

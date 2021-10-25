@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { Theme } from '..';
+import {Theme} from '../styles/createTheme';
 import { AccordionSummaryClasses } from './accordionSummaryClasses';
 
 export type AccordionSummaryTypeMap<

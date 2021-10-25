@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import StandardProps from '../InternalStandardProps';
 
 export interface NotchedOutlineProps
   extends StandardProps<React.FieldsetHTMLAttributes<HTMLFieldSetElement>> {

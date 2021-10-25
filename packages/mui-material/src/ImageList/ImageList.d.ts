@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '..';
+import {Theme} from '../styles/createTheme';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ImageListClasses } from './imageListClasses';
 

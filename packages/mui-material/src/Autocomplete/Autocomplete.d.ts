@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import StandardProps from '@mui/material/InternalStandardProps';
+import { Theme } from '@mui/material/styles/createTheme';
+import { IconButtonProps } from '@mui/material';
 import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
 import { PopperProps } from '@mui/material/Popper';
 import { SxProps } from '@mui/system';

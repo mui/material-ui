@@ -2,7 +2,8 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { DistributiveOmit, OverridableStringUnion } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
-import { PropTypes, Theme } from '..';
+import PropTypes from '../PropTypes';
+import { Theme } from '../styles/createTheme';
 import { PaperProps } from '../Paper';
 import { AppBarClasses } from './appBarClasses';
 

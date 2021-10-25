@@ -1,4 +1,5 @@
-import { Color, colors } from '@mui/material';
+import Color from '@mui/material/Color';
+import { colors } from '@mui/material';
 
 type KeysEquivalent<T, U> = keyof T extends keyof U
   ? keyof U extends keyof T
