@@ -26,10 +26,10 @@ Here are the most significant improvements since early July 2021.
 
 - 🔥 In September we released a new major version: [v5.0.0](https://github.com/mui-org/material-ui/releases/tag/v5.0.0) (you might have noticed! 😄 ).
   We're excited about what it means for the future of the library, and we hope you are going to enjoy the simplified customization, the extra flexibility, new components, and more.
-  It took us over a year to pull it off, with an almost exclusive focus on v5 over v4.
+  It took us over a year to pull off, with an almost exclusive focus on v5 over v4.
   You can read more about it in the [release blog post](/blog/mui-core-v5/).
 - ✨ We also introduced a brand new [product page](/core/) this quarter to better present what the Core is about.
-- 🔎 We reworked the search experience in the docs:
+- 🔎 We've reworked the search experience in the docs:
 
   - The component pages now rank before the API pages.
   - Instead of only displaying up to 5 results, you can scroll for more results.
@@ -44,7 +44,7 @@ Here are the most significant improvements since early July 2021.
 
   <p class="blog-description">After</p>
 
-- [Masonry](/components/masonry/). We introduced a new component for use when using the `Grid` component leads to wasted space. It's frequently used in dashboards.
+- [Masonry](/components/masonry/). We introduced a new component for use when the `Grid` component leads to wasted space. It's frequently used in dashboards.
 
   <a href="/components/masonry/"><img loading="lazy" src="/static/blog/2021-q3-update/masonry.png" style="width: 700px; margin-bottom: 16px;" /></a>
 
@@ -111,7 +111,7 @@ The date picker sits at the border between the core component and advanced compo
   We also released the first v5-beta, to support MUI Core v5,
   and will be working almost exclusively on the v5 release line going forward.
 
-- 🔎 We also added a [quick filter demo](/components/data-grid/filtering/#quick-filter) to illustrate how it can be implemented,
+- 🔎 We also added a [quick-filter demo](/components/data-grid/filtering/#quick-filter) to illustrate how it can be implemented,
   and will add a [built-in](https://github.com/mui-org/material-ui-x/issues/202) solution later on.
 
   <a href="/components/data-grid/filtering/#quick-filter"><img loading="lazy" src="/static/blog/2021-q3-update/quick-filter.png" style="width: 700px; margin-bottom: 16px;" /></a>
@@ -149,7 +149,7 @@ No updates.
 ### Retreat
 
 We held our first company retreat 🏝 in Lisbon, Portugal 🇵🇹 ,
-for the members of the team that were not prevented by COVID-19 related travel restrictions, and who felt safe enough to travel.
+for members of the team that were not prevented by COVID-19 related travel restrictions, and who felt safe enough to travel.
 Less than half the company made it, but it was still fun!
 We spent half the time doing a [Hackathon](https://twitter.com/olivtassinari/status/1441773885259583491) and the other half on activities (surfing, biking, winery tour, and sightseeing).
 
@@ -159,14 +159,14 @@ We spent half the time doing a [Hackathon](https://twitter.com/olivtassinari/sta
 
 ### Growth between Q2 2021 and Q3 2021
 
-- 📦 From 9.1M to 9.9M downloads per month on npm. We have a 22.4% market share of the React ecosystem as a proportion of `react-dom` downloads.
+- 📦 From 9.1M to 9.9M downloads per month on npm. We have 22.4% market share of the React ecosystem as a proportion of `react-dom` downloads.
 - ⭐️ From 69.1k to 72.1k stars. [Leave us yours 🌟](https://github.com/mui-org/material-ui)!
-- 👨‍👩‍👧‍👦 From 2,223 to 2,316 contributors on GitHub. On average, we add one new contributor per day.
+- 👨‍👩‍👧‍👦 From 2,223 to 2,316 contributors on GitHub. On average, one new contributor joins every day.
 - 💰 Grew financial support by 2.9X [year over year](/blog/2020-q3-update/).
 
 ### New members
 
-We welcomed one new member to the company this quarter 🏢:.
+We welcomed one new member to the company this quarter 🏢:
 
 - Benny was our first intern, and is now the first junior developer on the MUI Core team.
 
