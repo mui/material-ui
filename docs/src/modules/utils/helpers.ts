@@ -165,6 +165,7 @@ export function getDependencies(
     '@mui/core': getMuiPackageVersion('core', muiCommitRef),
     '@mui/utils': getMuiPackageVersion('utils', muiCommitRef),
     '@mui/material-next': getMuiPackageVersion('material-next', muiCommitRef),
+    '@mui/joy': getMuiPackageVersion('joy', muiCommitRef),
   };
 
   // TODO: Where is this coming from and why does it need to be injected this way.

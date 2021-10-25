@@ -4,6 +4,14 @@
     "title": { "type": { "name": "node" }, "required": true },
     "arrow": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ Arrow?: elementType, Popper?: elementType, Tooltip?: elementType, Transition?: elementType }"
+      },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "describeChild": { "type": { "name": "bool" } },
     "disableFocusListener": { "type": { "name": "bool" } },
     "disableHoverListener": { "type": { "name": "bool" } },
@@ -28,7 +36,7 @@
     },
     "PopperComponent": { "type": { "name": "elementType" }, "default": "Popper" },
     "PopperProps": { "type": { "name": "object" }, "default": "{}" },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
     "TransitionProps": { "type": { "name": "object" } }
   },

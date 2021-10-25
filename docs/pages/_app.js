@@ -12,10 +12,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
-import { create } from 'jss';
-import jssRtl from 'jss-rtl';
 import { useRouter } from 'next/router';
-import { StylesProvider, jssPreset } from '@mui/styles';
 import pages from 'docs/src/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
@@ -39,12 +36,6 @@ import createEmotionCache from 'docs/src/createEmotionCache';
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-// Configure JSS
-const jss = create({
-  plugins: [...jssPreset().plugins, jssRtl()],
-  insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
-});
-
 function useFirstRender() {
   const firstRenderRef = React.useRef(true);
   React.useEffect(() => {
@@ -54,7 +45,8 @@ function useFirstRender() {
   return firstRenderRef.current;
 }
 
-acceptLanguage.languages(['en', 'zh', 'pt', 'ru']);
+// Set the locales that the documentation automatically redirects to.
+acceptLanguage.languages(LANGUAGES);
 
 function LanguageNegotiation() {
   const setUserLanguage = useSetUserLanguage();
@@ -339,13 +331,11 @@ function AppWrapper(props) {
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
         <CodeVariantProvider>
           <PageContext.Provider value={{ activePage, pages }}>
-            <StylesProvider jss={jss}>
-              <ThemeProvider>
-                <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                  {children}
-                </DocsStyledEngineProvider>
-              </ThemeProvider>
-            </StylesProvider>
+            <ThemeProvider>
+              <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                {children}
+              </DocsStyledEngineProvider>
+            </ThemeProvider>
           </PageContext.Provider>
           <LanguageNegotiation />
           <Analytics />

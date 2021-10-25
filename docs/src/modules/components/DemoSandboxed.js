@@ -12,6 +12,8 @@ import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styl
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { getDesignTokens } from 'docs/src/modules/brandingTheme';
+import { highDensity } from 'docs/src/modules/components/ThemeContext';
 
 function FramedDemo(props) {
   const { children, document } = props;
@@ -118,14 +120,33 @@ DemoFrame.propTypes = {
 };
 
 // Use the default MUI theme for the demos
-const theme = createTheme();
-const darkModeTheme = createTheme({ palette: { mode: 'dark' } });
-
 const getTheme = (outerTheme) => {
-  const resultTheme = outerTheme?.palette?.mode === 'dark' ? darkModeTheme : theme;
-  resultTheme.direction = outerTheme?.direction;
+  const resultTheme = createTheme(
+    { palette: { mode: outerTheme.palette.mode || 'light' } },
+    // To make DensityTool playground works
+    // check from MuiFormControl because brandingTheme does not customize this component
+    outerTheme.components?.MuiFormControl?.defaultProps?.margin === 'dense' ? highDensity : {},
+  );
+  if (outerTheme.direction) {
+    resultTheme.direction = outerTheme.direction;
+  }
+  if (outerTheme.spacing) {
+    resultTheme.spacing = outerTheme.spacing;
+  }
+  const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
+  // Apply color from the color playground
+  if (outerTheme.palette.primary.main !== brandingDesignTokens.palette.primary.main) {
+    resultTheme.palette.primary = outerTheme.palette.primary;
+    resultTheme.palette.secondary = outerTheme.palette.secondary;
+  }
   return resultTheme;
 };
+
+// TODO: Let demos decide whether they need JSS
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+  insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
+});
 
 /**
  * Isolates the demo component as best as possible. Additional props are spread
@@ -140,12 +161,14 @@ function DemoSandboxed(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
-        <Sandbox {...sandboxProps}>
-          {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
-          <Component />
-        </Sandbox>
-      </ThemeProvider>
+      <StylesProvider jss={jss}>
+        <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
+          <Sandbox {...sandboxProps}>
+            {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
+            <Component />
+          </Sandbox>
+        </ThemeProvider>
+      </StylesProvider>
     </DemoErrorBoundary>
   );
 }

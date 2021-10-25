@@ -22,11 +22,10 @@ function styleFunctionSx(props) {
     return null;
   }
 
+  let stylesObject = styles;
   if (typeof styles === 'function') {
-    return styles(theme);
-  }
-
-  if (typeof styles !== 'object') {
+    stylesObject = styles(theme);
+  } else if (typeof styles !== 'object') {
     // value
     return styles;
   }
@@ -36,9 +35,8 @@ function styleFunctionSx(props) {
 
   let css = emptyBreakpoints;
 
-  Object.keys(styles).forEach((styleKey) => {
-    const value = callIfFn(styles[styleKey], theme);
-
+  Object.keys(stylesObject).forEach((styleKey) => {
+    const value = callIfFn(stylesObject[styleKey], theme);
     if (typeof value === 'object') {
       if (propToStyleFunction[styleKey]) {
         css = merge(css, getThemeValue(styleKey, value, theme));

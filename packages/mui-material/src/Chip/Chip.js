@@ -376,7 +376,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       ? {
           component: ComponentProp || 'div',
           focusVisibleClassName: classes.focusVisible,
-          disableRipple: Boolean(onDelete),
+          ...(onDelete && { disableRipple: true }),
         }
       : {};
 
@@ -538,7 +538,7 @@ Chip.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The variant to use.
    * @default 'filled'

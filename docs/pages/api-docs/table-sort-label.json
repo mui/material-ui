@@ -9,7 +9,7 @@
     },
     "hideSortIcon": { "type": { "name": "bool" } },
     "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDownwardIcon" },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "TableSortLabel",
   "styles": {

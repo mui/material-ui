@@ -92,7 +92,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
 
     return [
       styles.switchBase,
-      styles.input,
+      { [`& .${switchClasses.input}`]: styles.input },
       ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
     ];
   },
@@ -308,7 +308,7 @@ Switch.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The value of the component. The DOM API casts this to a string.
    * The browser uses "on" as the default value.

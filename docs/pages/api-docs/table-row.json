@@ -5,7 +5,7 @@
     "component": { "type": { "name": "elementType" } },
     "hover": { "type": { "name": "bool" } },
     "selected": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "TableRow",
   "styles": {

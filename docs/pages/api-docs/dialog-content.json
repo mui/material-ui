@@ -3,7 +3,7 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "dividers": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "DialogContent",
   "styles": { "classes": ["root", "dividers"], "globalClasses": {}, "name": "MuiDialogContent" },

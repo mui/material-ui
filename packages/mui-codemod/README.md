@@ -542,7 +542,7 @@ import Typography from '@material-ui/core/Typography';
 -    backgroundColor: theme.palette.primary.main
 -  },
 -  cta: {
--    borderRadius: theme.shape.radius.
+-    borderRadius: theme.shape.radius
 -  },
 -  content: {
 -    color: theme.palette.common.white,
@@ -563,7 +563,7 @@ import Typography from '@material-ui/core/Typography';
 +    backgroundColor: theme.palette.primary.main
 +  },
 +  [`& .${classes.cta}`]: {
-+    borderRadius: theme.shape.radius.
++    borderRadius: theme.shape.radius
 +  },
 +  [`& .${classes.content}`]: {
 +    color: theme.palette.common.white,
@@ -1264,6 +1264,24 @@ The diff should look like this:
 
 ```sh
 npx @mui/codemod v1.0.0/svg-icon-imports <path>
+```
+
+#### `menu-item-primary-text`
+
+Updates `MenuItem` with `primaryText` property making its value tag's child.
+The diff should look like this:
+
+```diff
+-<MenuItem primaryText="Profile" />
+-<MenuItem primaryText={"Profile" + "!"} />
++<MenuItem>Profile</MenuItem>
++<MenuItem>{"Profile" + "!"}</MenuItem>
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @mui/codemod v1.0.0/menu-item-primary-text <path>
 ```
 
 ### v0.15.0

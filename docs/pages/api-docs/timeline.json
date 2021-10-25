@@ -10,7 +10,7 @@
       },
       "default": "'right'"
     },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "Timeline",
   "styles": {

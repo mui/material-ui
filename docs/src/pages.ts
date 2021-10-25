@@ -218,8 +218,12 @@ const pages: readonly MuiPage[] = [
           { pathname: '/api-docs/data-grid/grid-cell-params', title: 'GridCellParams' },
           { pathname: '/api-docs/data-grid/grid-row-params', title: 'GridRowParams' },
           {
-            pathname: '/api-docs/data-grid/grid-export-csv-options',
-            title: 'GridExportCSVOptions',
+            pathname: '/api-docs/data-grid/grid-csv-export-options',
+            title: 'GridCSVExportOptions',
+          },
+          {
+            pathname: '/api-docs/data-grid/grid-print-export-options',
+            title: 'GridPrintExportOptions',
           },
         ].map((page) => {
           return { ...page, linkProps: { as: page.pathname.replace(/^\/api-docs/, '/api') } };
@@ -288,6 +292,8 @@ const pages: readonly MuiPage[] = [
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
+      { pathname: '/guides/classname-generator', title: 'ClassName Generator' },
+      { pathname: '/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
       { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
       { pathname: '/guides/styled-engine' },
@@ -326,9 +332,9 @@ const pages: readonly MuiPage[] = [
       { pathname: '/discover-more/roadmap' },
       { pathname: '/discover-more/backers', title: 'Sponsors & Backers' },
       { pathname: '/discover-more/vision' },
-      { pathname: '/discover-more/team' },
       { pathname: '/discover-more/changelog' },
       { pathname: '/discover-more/languages' },
+      { pathname: '/about', title: 'About us' },
     ],
   },
   {

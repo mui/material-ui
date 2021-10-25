@@ -12,7 +12,7 @@
     "focusVisibleClassName": { "type": { "name": "string" } },
     "LinkComponent": { "type": { "name": "elementType" }, "default": "'a'" },
     "onFocusVisible": { "type": { "name": "func" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "TouchRippleProps": { "type": { "name": "object" } }
   },
   "name": "ButtonBase",

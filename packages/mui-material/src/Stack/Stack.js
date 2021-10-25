@@ -165,7 +165,7 @@ Stack.propTypes /* remove-proptypes */ = {
   /**
    * The system prop, which allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
