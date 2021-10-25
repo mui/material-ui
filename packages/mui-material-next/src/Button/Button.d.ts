@@ -7,7 +7,7 @@ import {
   OverrideProps,
 } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { Theme } from '@mui/material';
+import { Theme } from '@mui/material/styles/createTheme';
 import { TouchRippleProps } from './TouchRipple';
 import { ButtonClasses } from './buttonClasses';
 

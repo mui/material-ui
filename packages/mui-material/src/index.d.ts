@@ -1,8 +1,9 @@
-import * as React from 'react';
-import { DistributiveOmit } from '@mui/types';
-import { StyledComponentProps } from './styles';
+export { default as StyledComponentProps } from './styles';
+export { default as StandardProps } from './StandardProps';
+export { default as InternalStandardProps } from './InternalStandardProps';
+export { Color, PaletteMode } from './Color';
 
-export { StyledComponentProps };
+export { default as PropTypes } from './PropTypes';
 
 // From index.js
 // eslint-disable-next-line import/first
