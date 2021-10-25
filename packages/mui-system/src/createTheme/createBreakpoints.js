@@ -55,6 +55,10 @@ export default function createBreakpoints(breakpoints) {
     return up(key);
   }
 
+  function not(key) {
+    return only(key).replace('@media', '@media not all and');
+  }
+
   return {
     keys,
     values,
@@ -62,6 +66,7 @@ export default function createBreakpoints(breakpoints) {
     down,
     between,
     only,
+    not,
     unit,
     ...other,
   };

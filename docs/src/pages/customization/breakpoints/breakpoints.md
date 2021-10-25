@@ -26,11 +26,12 @@ These values can be [customized](#custom-breakpoints).
 ## CSS Media Queries
 
 CSS media queries are the idiomatic approach to make your UI responsive.
-The theme provides four styles helpers to do so:
+The theme provides five styles helpers to do so:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
 - [theme.breakpoints.only(key)](#theme-breakpoints-only-key-media-query)
+- [theme.breakpoints.not(key)](#theme-breakpoints-not-key-media-query)
 - [theme.breakpoints.between(start, end)](#theme-breakpoints-between-start-end-media-query)
 
 In the following demo, we change the background color (red, blue & green) based on the screen width.
@@ -203,6 +204,34 @@ const styles = (theme) => ({
     //       [md, lg)
     //       [900px, 1200px)
     [theme.breakpoints.only('md')]: {
+      backgroundColor: 'red',
+    },
+  },
+});
+```
+
+### `theme.breakpoints.not(key) => media query`
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
+#### Arguments
+
+1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
+
+#### Returns
+
+`media query`: A media query string ready to be used with most styling solutions, which matches all screen widths except the screen size given by the breakpoint key (inclusive) and stopping at the screen size given by the next breakpoint key (exclusive).
+
+#### Examples
+
+```js
+const styles = (theme) => ({
+  root: {
+    backgroundColor: 'blue',
+    // Match [xs, md) and [md + 1, ∞)
+    //       [xs, md) and [lg, ∞)
+    //       [0px, 900px) and [1200, ∞)
+    [theme.breakpoints.not('md')]: {
       backgroundColor: 'red',
     },
   },

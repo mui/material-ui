@@ -97,4 +97,15 @@ describe('createBreakpoints', () => {
       );
     });
   });
+
+  describe('not', () => {
+    it('should work', () => {
+      expect(breakpoints.not('md')).to.equal(
+        '@media not all and (min-width:900px) and (max-width:1199.95px)',
+      );
+    });
+    it('should invert up for xl', () => {
+      expect(breakpoints.not('xl')).to.equal('@media not all and (min-width:1536px)');
+    });
+  });
 });
