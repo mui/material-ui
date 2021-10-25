@@ -81,7 +81,7 @@ const styles = (theme) => {
   `;
 };
 
-const NProgressBarGlobalStyles = styled(GlobalStyles)({}, { name: 'MuiNProgressBar' });
+const NProgressBarGlobalStyles = styled(GlobalStyles, { name: 'MuiNProgressBar' })``;
 
 /**
  * Elegant and ready-to-use wrapper on top of https://github.com/rstacruz/nprogress/.
