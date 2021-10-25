@@ -10,8 +10,8 @@ NProgress.configure({
   barSelector: '.nprogress-bar',
   template: `
     <div class="nprogress-bar">
-      <div class="nprogress-bar-first"></div>
-      <div class="nprogress-bar-last"></div>
+      <div class="nprogress-bar-first-child"></div>
+      <div class="nprogress-bar-last-child"></div>
     </div>
   `,
 });
@@ -54,13 +54,13 @@ const styles = (theme) => {
         border-radius: 100%;
         animation: mui-nprogress-pulse 2s ease-out 0s infinite;
       }
-      & .nprogress-bar > .nprogress-bar-first {
+      & .nprogress-bar > .nprogress-bar-first-child {
         opacity: 0.6;
         width: 20px;
         right: 0;
         clip: rect(-6px,22px,14px,10px);
       }
-      & .nprogress-bar > nprogress-bar-last {
+      & .nprogress-bar > .nprogress-bar-last-child {
         opacity: 0.6;
         width: 180px;
         right: -80px;
