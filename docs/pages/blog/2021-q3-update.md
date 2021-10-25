@@ -1,7 +1,7 @@
 ---
 title: Q3 2021 Update
 description: An update on our mission for Q3 2021.
-date: 2021-10-13T00:00:00.000Z
+date: 2021-10-26T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
 ---
@@ -48,7 +48,7 @@ Here are the most significant improvements since early July 2021.
 
   <a href="/components/masonry/"><img loading="lazy" src="/static/blog/2021-q3-update/masonry.png" style="width: 700px; margin-bottom: 16px;" /></a>
 
-- We introduced a new [unstyled package](https://www.npmjs.com/package/@mui/core), laying the foundations for supporting multiple design systems with headless components.
+- We introduced a new [package of components without styles](https://www.npmjs.com/package/@mui/core), laying the foundations for supporting multiple design systems with headless components.
   While it was tough to balance the time between working on v5 stable and developing the unstyled components, we still managed to introduce the first few:
 
   - [Autocomplete](/components/autocomplete/#useautocomplete)
@@ -110,14 +110,12 @@ The date picker sits at the border between the core component and advanced compo
 - 🎉 We released the first stable version: [v4.0.0](https://github.com/mui-org/material-ui-x/releases/tag/v4.0.0)!
   We also released the first v5-beta, to support MUI Core v5,
   and will be working almost exclusively on the v5 release line going forward.
-
 - 🔎 We also added a [quick-filter demo](/components/data-grid/filtering/#quick-filter) to illustrate how it can be implemented,
   and will add a [built-in](https://github.com/mui-org/material-ui-x/issues/202) solution later on.
 
   <a href="/components/data-grid/filtering/#quick-filter"><img loading="lazy" src="/static/blog/2021-q3-update/quick-filter.png" style="width: 700px; margin-bottom: 16px;" /></a>
 
 - 🐛 We fixed several non-idiomatic React patterns, for instance we were not handling controllable props by the book, and as we do in MUI Core.
-
 - 🚀 We introduced the [row editing](/components/data-grid/editing/#row-editing) feature.
 
   <img src="/static/blog/2021-q3-update/row-edit.gif" width="851" />
@@ -162,15 +160,17 @@ We spent half the time doing a [Hackathon](https://twitter.com/olivtassinari/sta
 - 📦 From 9.1M to 9.9M downloads per month on npm. We have 22.4% market share of the React ecosystem as a proportion of `react-dom` downloads.
 - ⭐️ From 69.1k to 72.1k stars. [Leave us yours 🌟](https://github.com/mui-org/material-ui)!
 - 👨‍👩‍👧‍👦 From 2,223 to 2,316 contributors on GitHub. On average, one new contributor joins every day.
-- 💰 Grew financial support by 2.9X [year over year](/blog/2020-q3-update/).
+- 💰 Grew financial support by 2.99X [year over year](/blog/2020-q3-update/).
 
-### New members
+### New member
 
 We welcomed one new member to the company this quarter 🏢:
 
 - Benny was our first intern, and is now the first junior developer on the MUI Core team.
 
   <img loading="lazy" src="/static/blog/2021-q3-update/benny.jpg" alt="Benny" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+
+We are now 11 passionate builders empowering the next generation of UI creators.
 
 ### A new brand
 
@@ -192,10 +192,13 @@ We'll do our best, no guarantee!
   We have made bold changes in this version since v4, but until recently, only a small percentage of the community was using v5.
   In the last few weeks, we have seen a strong influx of feedback from the community.
   We need to make the most of this feedback to solve regressions, improve the documentation for the new APIs, adjust the tradeoffs we took in the light of more information, and more.
+  [15%](https://npm-stat.com/charts.html?package=%40material-ui%2Fcore&package=%40mui%2Fmaterial&from=2020-10-25&to=2021-10-15) of the community has migrated, so far.
 - 🦴 Migrate more components to `@mui/core`. [Michał](https://github.com/michaldudak) has recently added support for the [Button](https://mui.com/components/buttons/#unstyled).
   You can follow our progress in the [umbrella issue](https://github.com/mui-org/material-ui/issues/27170).
+- 🎨 We are [exploring](https://github.com/mui-org/material-ui/discussions/29024) the introduction of CSS variables.
+  Since v5, MUI is no longer actively supporting IE 11. Dropping this browser requirement unlocks new capabilities of the web platform.
 - 🌈 Resume work on the second design system.
-  Some users (and potential users) dislike Material Design. We'll try to make the second design system one that they love!
+  Some users (and potential users) dislike Material Design. We'll try to make the second design system one that they love! You can check our [first RFC](https://github.com/mui-org/material-ui/discussions/29024).
 - 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui-org/material-ui/projects/25).
 - ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
@@ -203,17 +206,21 @@ We'll do our best, no guarantee!
 
 #### Data Grid
 
-We will:
+We have planned to:
 
 - ✨ Release the print export feature.
 - ✨ Release the tree data feature.
-- ✨ Revamp the virtualization to yield better rendering performance, fix bugs, and unlock new features like column pinning and lazy loading.
+- ✨ Revamp the virtualization to yield better rendering performance and fix bugs.
+  It unlocks new features like column pinning and lazy loading.
 - 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui-org/material-ui-x/projects/1).
 - ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 #### Date Picker
 
 No plans. We probably won't progress its development this quarter.
+
+However, we are growing the team.
+We plan to resume work on it in Q1 2022, starting with the equivalent of one full-time developer.
 
 ### Design kits
 
@@ -225,5 +232,5 @@ While the visual difference between MUI Core v4 and v5 is not major, we still ne
 We have the following objectives:
 
 - 📊 Run a new edition of the Developer Survey. The last one was done [15 months ago](https://mui.com/blog/2020-developer-survey-results/). Now that v5 is released, it's time for the 2021 edition!
-- 💫 Create a great onboarding experience for the three Software Engineers scheduled to start this quarter.
-- Hire for two new roles: a [product manager](/company/product-manager/) to focus on low-code and our first [developer advocate](/company/developer-advocate/).
+- 👪 Hire for two new roles: a [product manager](/company/product-manager/) to focus on low-code and our first [developer advocate](/company/developer-advocate/).
+- 💫 Create a great onboarding experience for the 6-7 new hires of Q4.
