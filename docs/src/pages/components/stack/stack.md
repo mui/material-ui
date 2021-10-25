@@ -38,6 +38,12 @@ You can switch the `direction` or `spacing` values based on the active breakpoin
 
 {{"demo": "pages/components/stack/ResponsiveStack.js", "bg": true}}
 
+## Wrap
+
+By default, `Stack` does not wrap children automatically, but you can set `wrap` prop, so when stack items overflow the container they should wrap.
+
+{{"demo": "pages/components/stack/WrapStack.js", "bg": true}}
+
 ## Interactive
 
 Below is an interactive demo that lets you explore the visual results of the different settings:

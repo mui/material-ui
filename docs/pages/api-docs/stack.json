@@ -17,7 +17,14 @@
       },
       "default": "0"
     },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
+    "wrap": {
+      "type": {
+        "name": "enum",
+        "description": "'nowrap'<br>&#124;&nbsp;'wrap-reverse'<br>&#124;&nbsp;'wrap'"
+      },
+      "default": "'nowrap'"
+    }
   },
   "name": "Stack",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
