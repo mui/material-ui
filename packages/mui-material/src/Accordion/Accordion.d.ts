@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import StandardProps from '../InternalStandardProps'; import { Theme } from '../styles/createTheme';
+import StandardProps from '../InternalStandardProps';
+import { Theme } from '../styles/createTheme';
 import { TransitionProps } from '../transitions/transition';
 import { PaperProps } from '../Paper';
 import { AccordionClasses } from './accordionClasses';

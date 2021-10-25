@@ -1,4 +1,4 @@
-import Color, { PaletteMode } from '../Color';
+import { Color, PaletteMode } from '../Color';
 
 export {};
 // use standalone interface over typeof colors/commons
