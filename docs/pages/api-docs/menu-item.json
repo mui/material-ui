@@ -8,7 +8,7 @@
     "disableGutters": { "type": { "name": "bool" } },
     "divider": { "type": { "name": "bool" } },
     "focusVisibleClassName": { "type": { "name": "string" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "MenuItem",
   "styles": {

@@ -17,7 +17,7 @@
     "onOpen": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } },
     "openIcon": { "type": { "name": "node" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Zoom" },
     "transitionDuration": {
       "type": {

@@ -260,7 +260,7 @@ Menu.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The length of the transition in `ms`, or 'auto'
    * @default 'auto'

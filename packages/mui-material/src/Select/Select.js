@@ -236,7 +236,7 @@ Select.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The `input` value. Providing an empty string will select no options.
    * Set to an empty string `''` if you don't want any of the available options to be selected.
