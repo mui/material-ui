@@ -96,7 +96,7 @@ function generateGrid(globalStyles, theme, breakpoint, ownerState) {
   }
 }
 
-function generateDirection({ theme, ownerState }) {
+export function generateDirection({ theme, ownerState }) {
   const directionValues = resolveBreakpointValues({
     values: ownerState.direction,
     breakpoints: theme.breakpoints.values,
