@@ -8,8 +8,8 @@ _Oct 25, 2021_
 
 A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
-Implement `Masonry` using Flexbox by @hbjORbj.
-Add three components to `@mui/core` by @rebeccahongsf and @hbjORbj.
+- 🔧 Implement `Masonry` using Flexbox by @hbjORbj.
+- 🧪 Add three components to `@mui/core` by @rebeccahongsf and @hbjORbj.
 
 ### `@mui/codemod@5.0.5`
 
