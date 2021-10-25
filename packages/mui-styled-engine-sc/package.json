@@ -41,8 +41,8 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "@types/styled-components": "^5.1.15",
-    "styled-components": "^5.3.3"
+    "@types/styled-components": "^5.1.14",
+    "styled-components": "^5.3.1"
   },
   "peerDependenciesMeta": {
     "@types/styled-components": {
