@@ -3,7 +3,7 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "TableContainer",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableContainer" },

@@ -65,6 +65,7 @@ This is a collection of third-party projects that extend MUI.
 
 ### Image
 
+- [mui-image](https://mui-image.surge.sh): The only MUI image component to satisfy the Material guidelines for loading images.
 - [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Images are ugly until they're loaded. Materialize it with material image! It will fade in like the material image loading pattern suggests.
 
 ### Scheduler/Calendar

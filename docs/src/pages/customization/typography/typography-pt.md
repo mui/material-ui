@@ -229,7 +229,7 @@ const theme = createTheme({
 
 You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
 
-<!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
+<!-- Tested with packages/mui-material/test/typescript/augmentation/typographyVariants.spec.ts -->
 
 ```ts
 declare module '@material-ui/core/styles' {

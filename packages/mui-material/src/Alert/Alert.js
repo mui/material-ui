@@ -252,7 +252,7 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * The variant to use.
    * @default 'standard'

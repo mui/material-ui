@@ -36,7 +36,7 @@
     "required": { "type": { "name": "bool" } },
     "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "startAdornment": { "type": { "name": "node" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "type": { "type": { "name": "string" }, "default": "'text'" },
     "value": { "type": { "name": "any" } }
   },

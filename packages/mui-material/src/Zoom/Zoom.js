@@ -166,7 +166,7 @@ Zoom.propTypes /* remove-proptypes */ = {
   /**
    * A single child content element.
    */
-  children: elementAcceptingRef,
+  children: elementAcceptingRef.isRequired,
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.

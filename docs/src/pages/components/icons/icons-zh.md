@@ -31,7 +31,7 @@ npm install @material-ui/icons@next
 yarn add @material-ui/icons@next
 ```
 
-这些组件使用 Material-UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@materialui/core` 具有对等依赖性。
+这些组件使用 Material-UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@mui/material` 具有对等依赖性。
 
 如果你的项目中还没有使用 Material-UI，那么你可以用以下方法添加它：
 

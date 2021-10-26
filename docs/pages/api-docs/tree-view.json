@@ -25,7 +25,7 @@
     "selected": {
       "type": { "name": "union", "description": "Array&lt;string&gt;<br>&#124;&nbsp;string" }
     },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "TreeView",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTreeView" },

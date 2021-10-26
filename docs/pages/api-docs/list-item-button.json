@@ -14,7 +14,7 @@
     "divider": { "type": { "name": "bool" } },
     "focusVisibleClassName": { "type": { "name": "string" } },
     "selected": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "ListItemButton",
   "styles": {

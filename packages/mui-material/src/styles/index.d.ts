@@ -36,7 +36,11 @@ export {
   Breakpoints,
   BreakpointsOptions,
   CreateMUIStyled,
+  Interpolation,
+  CSSInterpolation,
   CSSObject,
+  css,
+  keyframes,
   // color manipulators
   hexToRgb,
   rgbToHex,

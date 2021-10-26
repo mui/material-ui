@@ -64,7 +64,7 @@ const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
     <CardMediaRoot
       className={clsx(classes.root, className)}
       as={component}
-      role={!isMediaComponent && image ? 'image' : undefined}
+      role={!isMediaComponent && image ? 'img' : undefined}
       ref={ref}
       style={composedStyle}
       ownerState={ownerState}
@@ -124,7 +124,7 @@ CardMedia.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 export default CardMedia;

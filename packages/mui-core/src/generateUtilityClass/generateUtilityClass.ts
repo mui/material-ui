@@ -1,3 +1,5 @@
+import ClassNameGenerator from './ClassNameGenerator';
+
 const globalStateClassesMapping: Record<string, string> = {
   active: 'Mui-active',
   checked: 'Mui-checked',
@@ -13,5 +15,5 @@ const globalStateClassesMapping: Record<string, string> = {
 
 export default function generateUtilityClass(componentName: string, slot: string): string {
   const globalStateClass = globalStateClassesMapping[slot];
-  return globalStateClass || `${componentName}-${slot}`;
+  return globalStateClass || `${ClassNameGenerator.generate(componentName)}-${slot}`;
 }

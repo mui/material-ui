@@ -5,7 +5,7 @@
     "icon": { "type": { "name": "node" } },
     "label": { "type": { "name": "node" } },
     "showLabel": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "value": { "type": { "name": "any" } }
   },
   "name": "BottomNavigationAction",

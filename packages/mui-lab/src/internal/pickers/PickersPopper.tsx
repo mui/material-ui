@@ -7,6 +7,13 @@ import { useForkRef, useEventCallback, ownerDocument } from '@mui/material/utils
 import { styled } from '@mui/material/styles';
 import { TransitionProps as MuiTransitionProps } from '@mui/material/transitions';
 
+export interface ExportedPickerPaperProps {
+  /**
+   * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
+   */
+  PaperProps?: Partial<MuiPaperProps>;
+}
+
 export interface ExportedPickerPopperProps {
   /**
    * Popper props passed down to [Popper](https://mui.com/api/popper/) component.
@@ -18,13 +25,15 @@ export interface ExportedPickerPopperProps {
   TransitionComponent?: React.JSXElementConstructor<MuiTransitionProps>;
 }
 
-export interface PickerPopperProps extends ExportedPickerPopperProps, MuiPaperProps {
+export interface PickerPopperProps extends ExportedPickerPopperProps, ExportedPickerPaperProps {
   role: 'tooltip' | 'dialog';
   TrapFocusProps?: Partial<MuiTrapFocusProps>;
   anchorEl: MuiPopperProps['anchorEl'];
   open: MuiPopperProps['open'];
   containerRef?: React.Ref<HTMLDivElement>;
+  children?: React.ReactNode;
   onClose: () => void;
+  onBlur?: () => void;
 }
 
 const PickersPopperRoot = styled(Popper, { skipSx: true })<{ ownerState: PickerPopperProps }>(
@@ -196,6 +205,7 @@ const PickersPopper = (props: PickerPopperProps) => {
     role,
     TransitionComponent = Grow,
     TrapFocusProps,
+    PaperProps = {},
   } = props;
 
   React.useEffect(() => {
@@ -235,6 +245,11 @@ const PickersPopper = (props: PickerPopperProps) => {
   const handlePaperRef = useForkRef(handleRef, clickAwayRef as React.Ref<HTMLDivElement>);
 
   const ownerState = props;
+  const {
+    onClick: onPaperClickProp,
+    onTouchStart: onPaperTouchStartProp,
+    ...otherPaperProps
+  } = PaperProps;
 
   return (
     <PickersPopperRoot
@@ -258,9 +273,20 @@ const PickersPopper = (props: PickerPopperProps) => {
               tabIndex={-1}
               elevation={8}
               ref={handlePaperRef}
-              onClick={onPaperClick}
-              onTouchStart={onPaperTouchStart}
+              onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+                onPaperClick(event);
+                if (onPaperClickProp) {
+                  onPaperClickProp(event);
+                }
+              }}
+              onTouchStart={(event: React.TouchEvent<HTMLDivElement>) => {
+                onPaperTouchStart(event);
+                if (onPaperTouchStartProp) {
+                  onPaperTouchStartProp(event);
+                }
+              }}
               ownerState={{ ...ownerState, placement }}
+              {...otherPaperProps}
             >
               {children}
             </PickersPopperPaper>

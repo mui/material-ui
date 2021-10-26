@@ -9,32 +9,40 @@ import { useIsLandscape } from '../hooks/useIsLandscape';
 import { WrapperVariant, WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 import { DateInputPropsLike } from '../wrappers/WrapperProps';
 import { PickerSelectionState } from '../hooks/usePickerState';
-import { BasePickerProps, CalendarAndClockProps } from '../typings/BasePicker';
+import {
+  BasePickerProps,
+  CalendarAndClockProps,
+  ToolbarComponentProps,
+} from '../typings/BasePicker';
 import { AllAvailableViews } from '../typings/Views';
 import PickerView from './PickerView';
 
-export interface ExportedPickerProps
+export interface ExportedPickerProps<View extends AllAvailableViews>
   extends Omit<BasePickerProps<unknown, unknown>, 'value' | 'onChange'>,
-    CalendarAndClockProps<unknown> {
+    Omit<CalendarAndClockProps<unknown>, 'onViewChange' | 'openTo' | 'view'> {
   dateRangeIcon?: React.ReactNode;
+  /**
+   * Callback fired on view change.
+   */
+  onViewChange?: (view: View) => void;
   /**
    * First view to show.
    */
-  openTo?: AllAvailableViews;
+  openTo: View;
   timeIcon?: React.ReactNode;
   /**
    * Array of views to show.
    */
-  views?: readonly AllAvailableViews[];
+  views: readonly View[];
 }
 
-export interface PickerProps<TDateValue = any> extends ExportedPickerProps {
+export interface PickerProps<View extends AllAvailableViews> extends ExportedPickerProps<View> {
   autoFocus?: boolean;
-  date: TDateValue;
+  date: any;
   DateInputProps: DateInputPropsLike;
   isMobileKeyboardViewOpen: boolean;
   onDateChange: (
-    date: TDateValue,
+    date: any,
     currentWrapperVariant: WrapperVariant,
     isFinish?: PickerSelectionState,
   ) => void;
@@ -63,7 +71,7 @@ const isDatePickerView = (view: AllAvailableViews): view is CalendarPickerView =
 const isTimePickerView = (view: AllAvailableViews): view is ClockPickerView =>
   view === 'hours' || view === 'minutes' || view === 'seconds';
 
-function Picker(props: PickerProps) {
+function Picker<View extends AllAvailableViews>(props: PickerProps<View>) {
   const {
     autoFocus,
     className,
@@ -71,7 +79,8 @@ function Picker(props: PickerProps) {
     DateInputProps,
     isMobileKeyboardViewOpen,
     onDateChange,
-    openTo = 'day',
+    onViewChange,
+    openTo,
     orientation,
     showToolbar,
     toggleMobileKeyboardView,
@@ -79,7 +88,7 @@ function Picker(props: PickerProps) {
     toolbarFormat,
     toolbarPlaceholder,
     toolbarTitle,
-    views = ['year', 'month', 'day', 'hours', 'minutes', 'seconds'],
+    views,
     ...other
   } = props;
   const isLandscape = useIsLandscape(views, orientation);
@@ -95,11 +104,17 @@ function Picker(props: PickerProps) {
     [onDateChange, wrapperVariant],
   );
 
-  const handleViewChange = React.useCallback(() => {
-    if (isMobileKeyboardViewOpen) {
-      toggleMobileKeyboardView();
-    }
-  }, [isMobileKeyboardViewOpen, toggleMobileKeyboardView]);
+  const handleViewChange = React.useCallback(
+    (newView: View) => {
+      if (isMobileKeyboardViewOpen) {
+        toggleMobileKeyboardView();
+      }
+      if (onViewChange) {
+        onViewChange(newView);
+      }
+    },
+    [isMobileKeyboardViewOpen, onViewChange, toggleMobileKeyboardView],
+  );
 
   const { openView, nextView, previousView, setOpenView, handleChangeAndOpenNext } = useViews({
     view: undefined,
@@ -118,7 +133,7 @@ function Picker(props: PickerProps) {
           isLandscape={isLandscape}
           date={date}
           onChange={handleDateChange}
-          setOpenView={setOpenView}
+          setOpenView={setOpenView as NonNullable<ToolbarComponentProps['setOpenView']>}
           openView={openView}
           toolbarTitle={toolbarTitle}
           toolbarFormat={toolbarFormat}
@@ -144,10 +159,11 @@ function Picker(props: PickerProps) {
               <CalendarPicker
                 autoFocus={autoFocus}
                 date={date}
-                onViewChange={setOpenView}
+                onViewChange={setOpenView as CalendarAndClockProps<unknown>['onViewChange']}
                 onChange={handleChangeAndOpenNext}
                 view={openView}
-                views={views.filter(isDatePickerView)}
+                // Unclear why the predicate `isDatePickerView` does not imply the casted type
+                views={views.filter(isDatePickerView) as CalendarPickerView[]}
                 {...other}
               />
             )}

@@ -15,7 +15,7 @@
     "margin": { "type": { "name": "enum", "description": "'dense'" } },
     "required": { "type": { "name": "bool" } },
     "shrink": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "variant": {
       "type": {
         "name": "enum",

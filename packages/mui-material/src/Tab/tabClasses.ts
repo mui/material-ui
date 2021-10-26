@@ -19,6 +19,8 @@ export interface TabClasses {
   fullWidth: string;
   /** Styles applied to the root element if `wrapped={true}`. */
   wrapped: string;
+  /** Styles applied to the wrapper element of `icon` if `icon` is provided. */
+  iconWrapper: string;
 }
 
 export type TabClassKey = keyof TabClasses;
@@ -37,6 +39,7 @@ const tabClasses: TabClasses = generateUtilityClasses('MuiTab', [
   'disabled',
   'fullWidth',
   'wrapped',
+  'iconWrapper',
 ]);
 
 export default tabClasses;

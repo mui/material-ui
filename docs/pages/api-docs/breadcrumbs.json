@@ -14,7 +14,7 @@
     },
     "maxItems": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
     "separator": { "type": { "name": "node" }, "default": "'/'" },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "Breadcrumbs",
   "styles": {
