@@ -6,7 +6,7 @@ import Switch from '@mui/joy/Switch';
 import { useControls, folder, Leva } from 'leva';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-
+// add comment
 declare module '@mui/joy/styles' {
   interface JoyColorSchemeOverrides {
     valentine: true;
