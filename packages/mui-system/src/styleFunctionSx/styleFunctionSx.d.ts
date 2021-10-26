@@ -51,13 +51,14 @@ export type SystemStyleObject<Theme extends object = {}> =
   | CSSSelectorObject<Theme>
   | null;
 
+type SxSchema<Theme extends object = {}> =
+  | SystemStyleObject<Theme>
+  | ((theme: Theme) => SystemStyleObject<Theme>);
+
 /**
  * The `SxProps` can be either object or function
  */
-export type SxProps<Theme extends object = {}> =
-  | SystemStyleObject<Theme>
-  | SystemStyleObject<Theme>[]
-  | ((theme: Theme) => SystemStyleObject<Theme>);
+export type SxProps<Theme extends object = {}> = SxSchema<Theme> | SxSchema<Theme>[];
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export default function unstable_styleFunctionSx(props: object): object;

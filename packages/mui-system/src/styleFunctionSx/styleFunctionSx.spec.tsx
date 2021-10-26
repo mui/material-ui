@@ -1,0 +1,15 @@
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+
+type Theme = { color: string };
+
+const Text = (props: { sx?: SxProps<Theme> }) => null;
+
+// object
+<Text sx={{ color: '#121212' }} />;
+
+// function
+<Text sx={(theme) => ({ color: theme.color })} />;
+
+// array
+<Text sx={[(theme) => ({ color: theme.color }), { m: 2 }]} />;

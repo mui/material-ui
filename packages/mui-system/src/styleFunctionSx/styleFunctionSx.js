@@ -17,26 +17,26 @@ function callIfFn(maybeFn, arg) {
 }
 
 function styleFunctionSx(props) {
-  const { sx: styles, theme = {} } = props || {};
-  if (!styles) {
-    return null;
+  const { sx, theme = {} } = props || {};
+  if (!sx) {
+    return null; // emotion & styled-components will neglect null
   }
 
-  function traverse(input) {
-    let stylesObject = input;
-    if (typeof input === 'function') {
-      stylesObject = styles(theme);
-    } else if (typeof input !== 'object') {
+  function traverse(sxInput) {
+    let sxObject = sxInput;
+    if (typeof sxInput === 'function') {
+      sxObject = sxInput(theme);
+    } else if (typeof sxInput !== 'object') {
       // value
-      return input;
+      return sxInput;
     }
     const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints);
     const breakpointsKeys = Object.keys(emptyBreakpoints);
 
     let css = emptyBreakpoints;
 
-    Object.keys(stylesObject).forEach((styleKey) => {
-      const value = callIfFn(stylesObject[styleKey], theme);
+    Object.keys(sxObject).forEach((styleKey) => {
+      const value = callIfFn(sxObject[styleKey], theme);
       if (typeof value === 'object') {
         if (propToStyleFunction[styleKey]) {
           css = merge(css, getThemeValue(styleKey, value, theme));
@@ -59,7 +59,7 @@ function styleFunctionSx(props) {
     return removeUnusedBreakpoints(breakpointsKeys, css);
   }
 
-  return Array.isArray(styles) ? styles.map(traverse) : traverse(styles);
+  return Array.isArray(sx) ? sx.map(traverse) : traverse(sx);
 }
 
 styleFunctionSx.filterProps = ['sx'];
