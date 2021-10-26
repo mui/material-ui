@@ -562,7 +562,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                                   ? `${(indexDecimal + 1) * precision * 100}%`
                                   : '0%',
                               overflow: 'hidden',
-                              zIndex: 1,
                               position: 'absolute',
                             },
                     }}
