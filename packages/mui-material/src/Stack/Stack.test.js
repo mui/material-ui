@@ -222,4 +222,39 @@ describe('<Stack />', () => {
       });
     });
   });
+
+  describe('prop: spacing', () => {
+    it('should generate correct responsive styles regardless of breakpoints order', () => {
+      expect(
+        style({
+          ownerState: {
+            direction: 'column',
+            spacing: { sm: 2, md: 3, xs: 1 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '8px',
+          },
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '16px',
+          },
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '24px',
+          },
+        },
+        display: 'flex',
+        flexDirection: 'column',
+      });
+    });
+  });
 });
