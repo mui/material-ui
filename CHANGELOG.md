@@ -1,5 +1,84 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.0.5
+
+<!-- generated comparing v5.0.4..master -->
+
+_Oct 26, 2021_
+
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔧 Implement `Masonry` using Flexbox by @hbjORbj.
+- 🧪 Add three components to `@mui/core` by @rebeccahongsf and @hbjORbj.
+
+### `@mui/codemod@5.0.5`
+
+- &#8203;<!-- 38 -->[codemod] Support new package name in `link-underline-hover` transformer (#29214) @siriwatknp
+
+### `@mui/core@5.0.0-alpha.52`
+
+- &#8203;<!-- 39 -->[ClickAwayListener] Move to the core package (#29186) @hbjORbj
+- &#8203;<!-- 13 -->[Popper] Move from mui-material to mui-core (#28923) @rebeccahongsf
+- &#8203;<!-- 04 -->[TextareaAutosize] Move to the core package (#29148) @hbjORbj
+
+### `@mui/lab@5.0.0-alpha.52`
+
+- &#8203;<!-- 16 -->[Masonry] Improve demo styles (#29218) @hbjORbj
+- &#8203;<!-- 15 -->[Masonry] Implement Masonry using Flexbox (#28059) @hbjORbj
+
+### `@mui/icons@5.0.5`
+
+- &#8203;<!-- 19 -->[icons] Add TipsAndUpdates icon (#29004) @hbjORbj
+
+### `@mui/material@5.0.5`
+
+- &#8203;<!-- 40 -->[CardMedia] Apply specified `img` role instead of custom `image` role (#29172) @eps1lon
+- &#8203;<!-- 32 -->[CSSBaseline] Remove incorrect @deprecated annotation (#29069) @adamfitzgibbon
+- &#8203;<!-- 20 -->[Grid] Support custom columns with nested grid (#28743) @Devesh21700Kumar
+- &#8203;<!-- 18 -->[InputBase] Remove wrong theme overriding with MUI's default theme (#29157) @hbjORbj
+- &#8203;<!-- 17 -->[LoadingButton] Fix `fullWidth` styling (#28652) @nikitabobers
+- &#8203;<!-- 16 -->[Popper] make Popper display:none whenever it's closed (#29233) @adamfitzgibbon
+- &#8203;<!-- 14 -->[Menu] Reduce min-height & padding in menu-item with dense property (#29180) @jatinsandilya
+- &#8203;<!-- 07 -->[Tab] `iconPosition` prop added in Tab (#28764) @deepanshu2506
+- &#8203;<!-- 03 -->[Tooltip] Correct inconsistent prop precedence (#29132) @michaldudak
+
+### `@mui/system@5.0.5`
+
+- &#8203;<!-- 11 -->[system] Allow function type for `sx` prop (#29198) @hbjORbj
+- &#8203;<!-- 10 -->[system] Fix various issues reported by using @mui/styled-engine-sc (#29035) @mnajdova
+- &#8203;<!-- 09 -->[system] Fix `colorScheme` conflict between application (#29139) @siriwatknp
+- &#8203;<!-- 08 -->[system] Add `unstable_createCssVarsProvider` api (#28965) @siriwatknp
+
+### Documentation
+
+- &#8203;<!-- 31 -->[docs] Fix path to `DataGrid` CSV export options page (#29220) @DanailH
+- &#8203;<!-- 30 -->[docs] Give anonymous components a name (#29189) @eps1lon
+- &#8203;<!-- 29 -->[docs] Add deploy context variables (#29195) @siriwatknp
+- &#8203;<!-- 28 -->[docs] Add MUI packages explanation (#29073) @siriwatknp
+- &#8203;<!-- 27 -->[docs] Fix typo in CSP policy (#29187) @JuliaNeumann
+- &#8203;<!-- 26 -->[docs] Dark mode conditional content rendering (#28665) @michal-perlakowski
+- &#8203;<!-- 25 -->[docs] Fix ClassNameGenerator introduced version #29177 @siriwatknp
+- &#8203;<!-- 24 -->[docs] Add missing `justifyContent` values and update box styling (#29117) @omarmosid
+- &#8203;<!-- 23 -->[docs] Make landing page hero section scrollable (#29141) @waxidiotic
+- &#8203;<!-- 22 -->[docs] Discourage importing different bundles directly (#29133) @eps1lon
+- &#8203;<!-- 21 -->[docs] Update module augmentation reference url (#29064) @gnowland
+- &#8203;<!-- 12 -->[pricing] Add tooltip to pricing icon (#28959) @siriwatknp
+- &#8203;<!-- 07 -->[Team] Add Alexandre in the about page (#29289)
+- &#8203;<!-- 02 -->[website] Fix status label overflow in AdvancedShowcase (#29143) @LorenzHenk
+- &#8203;<!-- 01 -->[website] Update legacy logos (#28908) @michaldudak
+
+### Core
+
+- &#8203;<!-- 37 -->[core] Order repro methods by preference (#29156) @eps1lon
+- &#8203;<!-- 36 -->[core] Remove unnecessary usages of `useEventCallback` (#28910) @NMinhNguyen
+- &#8203;<!-- 35 -->[core] add `unstable_ClassNameGenerator` API (#29051) @siriwatknp
+- &#8203;<!-- 34 -->[core] Fix issues when using styled-components (#29048) @mnajdova
+- &#8203;<!-- 33 -->[core] replace hard-coded classname with classes (#29070) @siriwatknp
+- &#8203;<!-- 06 -->[test] Add documentation for visual regression tests (#29154) @eps1lon
+- &#8203;<!-- 05 -->[test] Enable "missing act" warnings using new proposal (#29167) @eps1lon
+
+All contributors of this release in alphabetical order: @adamfitzgibbon, @DanailH, @deepanshu2506, @Devesh21700Kumar, @eps1lon, @gnowland, @hbjORbj, @jatinsandilya, @JuliaNeumann, @LorenzHenk, @michal-perlakowski, @michaldudak, @mnajdova, @nikitabobers, @NMinhNguyen, @omarmosid, @rebeccahongsf, @siriwatknp, @waxidiotic
+
 ## 5.0.4
 
 <!-- generated comparing v5.0.3..master -->
