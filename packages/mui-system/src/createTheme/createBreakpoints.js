@@ -55,6 +55,21 @@ export default function createBreakpoints(breakpoints) {
     return up(key);
   }
 
+  function not(key) {
+    const keyIndex = keys.indexOf(key);
+    if (keyIndex === 0) {
+      return up(keys[1]);
+    }
+    if (keyIndex === keys.length - 1) {
+      return down(keys[keyIndex]);
+    }
+
+    return (
+      `@media not all and (min-width:${values[key]}${unit}) and ` +
+      `(max-width:${values[keys[keyIndex + 1]] - step / 100}${unit})`
+    );
+  }
+
   return {
     keys,
     values,
@@ -62,6 +77,7 @@ export default function createBreakpoints(breakpoints) {
     down,
     between,
     only,
+    not,
     unit,
     ...other,
   };

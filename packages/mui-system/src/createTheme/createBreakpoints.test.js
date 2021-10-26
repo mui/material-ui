@@ -97,4 +97,26 @@ describe('createBreakpoints', () => {
       );
     });
   });
+
+  describe('not', () => {
+    it('should work', () => {
+      expect(breakpoints.not('md')).to.equal(
+        '@media not all and (min-width:900px) and (max-width:1199.95px)',
+      );
+    });
+
+    it('on xl should call down', () => {
+      expect(breakpoints.not('xl')).to.equal('@media (max-width:1535.95px)');
+    });
+
+    it('on xs should call up', () => {
+      expect(breakpoints.not('xs')).to.equal('@media (min-width:600px)');
+    });
+
+    it('should work for custom breakpoints', () => {
+      expect(customBreakpoints.not('tablet')).to.equal(
+        '@media not all and (min-width:640px) and (max-width:1023.95px)',
+      );
+    });
+  });
 });

@@ -209,6 +209,34 @@ const styles = (theme) => ({
 });
 ```
 
+### `theme.breakpoints.not(key) => media query`
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
+#### Arguments
+
+1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
+
+#### Returns
+
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths stopping at the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive).
+
+#### Examples
+
+```js
+const styles = (theme) => ({
+  root: {
+    backgroundColor: 'blue',
+    // Match md)[md + 1
+    //       md)[lg
+    //       900px)[1200px
+    [theme.breakpoints.not('md')]: {
+      backgroundColor: 'red',
+    },
+  },
+});
+```
+
 ### `theme.breakpoints.between(start, end) => media query`
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
