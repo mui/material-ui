@@ -46,7 +46,6 @@
     "openTo": "First view to show.",
     "orientation": "Force rendering in particular orientation.",
     "PopperProps": "Popper props passed down to <a href=\"https://mui.com/api/popper/\">Popper</a> component.",
-    "readonly": "Make picker read only.",
     "readOnly": "Make picker read only.",
     "reduceAnimations": "Disable heavy animations.",
     "renderDay": "Custom renderer for day. Check the <a href=\"https://mui.com/api/pickers-day/\">PickersDay</a> component.",

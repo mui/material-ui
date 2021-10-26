@@ -15,7 +15,7 @@
       },
       "default": "'day'"
     },
-    "readonly": { "type": { "name": "bool" } },
+    "readOnly": { "type": { "name": "bool" } },
     "reduceAnimations": {
       "type": { "name": "bool" },
       "default": "typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)"

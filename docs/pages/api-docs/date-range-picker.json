@@ -74,7 +74,6 @@
       "type": { "name": "enum", "description": "'landscape'<br>&#124;&nbsp;'portrait'" }
     },
     "PopperProps": { "type": { "name": "object" } },
-    "readonly": { "type": { "name": "bool" } },
     "readOnly": { "type": { "name": "bool" } },
     "reduceAnimations": {
       "type": { "name": "bool" },

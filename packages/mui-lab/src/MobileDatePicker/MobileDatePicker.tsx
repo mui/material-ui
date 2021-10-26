@@ -301,10 +301,6 @@ MobileDatePicker.propTypes /* remove-proptypes */ = {
    * Make picker read only.
    * @default false
    */
-  readonly: PropTypes.bool,
-  /**
-   * Make picker read only.
-   */
   readOnly: PropTypes.bool,
   /**
    * Disable heavy animations.

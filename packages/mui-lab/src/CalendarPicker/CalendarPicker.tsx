@@ -80,7 +80,7 @@ export interface CalendarPickerProps<TDate>
    * Make picker read only.
    * @default false
    */
-  readonly?: boolean;
+  readOnly?: boolean;
   /**
    * Disable heavy animations.
    * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
@@ -399,7 +399,7 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
    * Make picker read only.
    * @default false
    */
-  readonly: PropTypes.bool,
+  readOnly: PropTypes.bool,
   /**
    * Disable heavy animations.
    * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)

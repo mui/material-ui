@@ -40,7 +40,6 @@
     "open": "Control the popup or dialog open state.",
     "OpenPickerButtonProps": "Props to pass to keyboard adornment button.",
     "orientation": "Force rendering in particular orientation.",
-    "readonly": "Make picker read only.",
     "readOnly": "Make picker read only.",
     "reduceAnimations": "Disable heavy animations.",
     "renderDay": "Custom renderer for <code>&lt;DateRangePicker /&gt;</code> days. @DateIOType",

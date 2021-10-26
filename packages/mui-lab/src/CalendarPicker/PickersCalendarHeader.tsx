@@ -208,7 +208,7 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
             {utils.format(month, 'year')}
           </PickersCalendarHeaderLabelItem>
         </FadeTransitionGroup>
-        {views.length > 1 && !disabled && !readonly && (
+        {views.length > 1 && !disabled && (
           <PickersCalendarHeaderSwitchViewButton
             size="small"
             as={components.SwitchViewButton}

@@ -35,7 +35,6 @@
     "OpenPickerButtonProps": "Props to pass to keyboard adornment button.",
     "openTo": "First view to show.",
     "orientation": "Force rendering in particular orientation.",
-    "readonly": "Make picker read only.",
     "readOnly": "Make picker read only.",
     "reduceAnimations": "Disable heavy animations.",
     "renderDay": "Custom renderer for day. Check the <a href=\"https://mui.com/api/pickers-day/\">PickersDay</a> component.",

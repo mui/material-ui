@@ -50,7 +50,7 @@ export interface PickersCalendarProps<TDate> extends ExportedCalendarProps<TDate
   isMonthSwitchingAnimating: boolean;
   onFocusedDayChange: (newFocusedDay: TDate) => void;
   onMonthSwitchingAnimationEnd: () => void;
-  readonly?: boolean;
+  readOnly?: boolean;
   reduceAnimations: boolean;
   slideDirection: SlideDirection;
   TransitionProps?: Partial<SlideTransitionProps>;
@@ -113,7 +113,7 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
     loading,
     onChange,
     onMonthSwitchingAnimationEnd,
-    readonly,
+    readOnly,
     reduceAnimations,
     renderDay,
     renderLoading = () => <span data-mui-test="loading-progress">...</span>,
@@ -126,7 +126,7 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
   const utils = useUtils<TDate>();
   const handleDaySelect = React.useCallback(
     (day: TDate, isFinish: PickerSelectionState = 'finish') => {
-      if (readonly) {
+      if (readOnly) {
         return;
       }
       // TODO possibly buggy line figure out and add tests
@@ -134,7 +134,7 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
 
       onChange(finalDate, isFinish);
     },
-    [date, now, onChange, readonly, utils],
+    [date, now, onChange, readOnly, utils],
   );
 
   const currentMonthNumber = utils.getMonth(currentMonth);

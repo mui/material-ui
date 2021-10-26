@@ -10,7 +10,7 @@
     "onMonthChange": "Callback firing on month change. @DateIOType",
     "onViewChange": "Callback fired on view change.",
     "openTo": "Initially open view.",
-    "readonly": "Make picker read only.",
+    "readOnly": "Make picker read only.",
     "reduceAnimations": "Disable heavy animations.",
     "renderLoading": "Component displaying when passed <code>loading</code> true.",
     "shouldDisableDate": "Disable specific date. @DateIOType",
