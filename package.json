@@ -91,7 +91,7 @@
     "@types/lodash": "^4.14.176",
     "@types/mocha": "^9.0.0",
     "@types/prettier": "^2.4.1",
-    "@types/react": "^17.0.31",
+    "@types/react": "^17.0.33",
     "@types/sinon": "^10.0.5",
     "@types/webpack": "^5.28.0",
     "@types/yargs": "^17.0.4",
@@ -193,7 +193,7 @@
     "**/@babel/preset-react": "^7.14.5",
     "**/@babel/preset-typescript": "^7.15.0",
     "**/@babel/runtime": "^7.15.4",
-    "**/@types/react": "^17.0.31",
+    "**/@types/react": "^17.0.33",
     "**/@types/react-dom": "^17.0.10",
     "**/cross-fetch": "^3.1.4",
     "**/react-is": "^17.0.2"
