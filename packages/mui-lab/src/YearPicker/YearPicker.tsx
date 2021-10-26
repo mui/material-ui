@@ -65,7 +65,7 @@ export interface YearPickerProps<TDate> extends ExportedYearPickerProps<TDate> {
   maxDate: TDate;
   onChange: PickerOnChangeFn<TDate>;
   onFocusedDayChange?: (day: TDate) => void;
-  readonly?: boolean;
+  readOnly?: boolean;
 }
 
 const YearPicker = React.forwardRef(function YearPicker<TDate>(
@@ -86,7 +86,7 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
     onChange,
     onFocusedDayChange,
     onYearChange,
-    readonly,
+    readOnly,
     shouldDisableYear,
   } = props;
 
@@ -108,7 +108,7 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
     year: number,
     isFinish: PickerSelectionState = 'finish',
   ) => {
-    if (readonly) {
+    if (readOnly) {
       return;
     }
 
@@ -266,7 +266,7 @@ YearPicker.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  readonly: PropTypes.bool,
+  readOnly: PropTypes.bool,
   /**
    * Disable specific years dynamically.
    * Works like `shouldDisableDate` but for year selection view @DateIOType.

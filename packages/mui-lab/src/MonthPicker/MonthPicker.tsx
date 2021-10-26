@@ -41,7 +41,7 @@ export interface MonthPickerProps<TDate> {
   onChange: PickerOnChangeFn<TDate>;
   onMonthChange?: (date: TDate) => void | Promise<void>;
   /** If `true` picker is readonly */
-  readonly?: boolean;
+  readOnly?: boolean;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -98,7 +98,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
     minDate,
     onChange,
     onMonthChange,
-    readonly,
+    readOnly,
     ...other
   } = props;
   const ownerState = props;
@@ -124,7 +124,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   };
 
   const onMonthSelect = (month: number) => {
-    if (readonly) {
+    if (readOnly) {
       return;
     }
 
@@ -211,7 +211,7 @@ MonthPicker.propTypes /* remove-proptypes */ = {
   /**
    * If `true` picker is readonly
    */
-  readonly: PropTypes.bool,
+  readOnly: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

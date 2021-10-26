@@ -72,7 +72,7 @@ describe('<CalendarPicker />', () => {
     expect(screen.getByLabelText('year view is open, switch to calendar view')).toBeVisible();
   });
 
-  it('allows month changing, but not view change or selection when readonly prop is passed', () => {
+  it('allows month and view changing, but not selection when readOnly prop is passed', () => {
     const onChangeMock = spy();
     const onMonthChangeMock = spy();
     render(
@@ -86,7 +86,6 @@ describe('<CalendarPicker />', () => {
 
     fireEvent.click(screen.getByText('January'));
     expect(screen.queryByText('January')).toBeVisible();
-    expect(screen.queryByLabelText('year view is open, switch to calendar view')).to.equal(null);
 
     fireEvent.click(screen.getByTitle('Previous month'));
     expect(onMonthChangeMock.callCount).to.equal(1);

@@ -61,7 +61,7 @@ describe('<YearPicker />', () => {
     expect(onChangeMock.args[0][0]).toEqualDateTime(adapterToUse.date('2025-02-02T00:00:00.000'));
   });
 
-  it('does not allow to pick year if readonly prop is passed', () => {
+  it('does not allow to pick year if readOnly prop is passed', () => {
     const onChangeMock = spy();
     render(
       <YearPicker
@@ -70,7 +70,7 @@ describe('<YearPicker />', () => {
         isDateDisabled={() => false}
         date={adapterToUse.date('2019-02-02T00:00:00.000')}
         onChange={onChangeMock}
-        readonly
+        readOnly
       />,
     );
     const targetYear = screen.getByRole('button', { name: '2025' });

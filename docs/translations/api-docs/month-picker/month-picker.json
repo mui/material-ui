@@ -10,7 +10,7 @@
     "maxDate": "Maximal selectable date.",
     "minDate": "Minimal selectable date.",
     "onChange": "Callback fired on date change.",
-    "readonly": "If <code>true</code> picker is readonly",
+    "readOnly": "If <code>true</code> picker is readonly",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": { "root": { "description": "Styles applied to the root element." } }

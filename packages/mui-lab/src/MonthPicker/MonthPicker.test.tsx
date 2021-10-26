@@ -70,7 +70,7 @@ describe('<MonthPicker />', () => {
     expect(onChangeMock.callCount).to.equal(1);
   });
 
-  it('does not allow to pick months if readonly prop is passed', () => {
+  it('does not allow to pick months if readOnly prop is passed', () => {
     const onChangeMock = spy();
     render(
       <MonthPicker
@@ -78,7 +78,7 @@ describe('<MonthPicker />', () => {
         maxDate={adapterToUse.date('2029-01-01T00:00:00.000')}
         date={adapterToUse.date('2019-02-02T00:00:00.000')}
         onChange={onChangeMock}
-        readonly
+        readOnly
       />,
     );
 
