@@ -11,7 +11,7 @@
     "@types/react": "^17.0.31",
     "case": "1.6.3",
     "deepmerge": "^4.2.2",
-    "docs": "5.0.0",
+    "docs": "^5.0.0",
     "framer": "^1.2.5",
     "framer-motion": "^4.1.17",
     "mustache": "^4.2.0",
