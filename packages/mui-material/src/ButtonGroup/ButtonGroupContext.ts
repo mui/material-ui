@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ButtonGroupProps } from '@mui/material/ButtonGroup';
+import type { ButtonGroupProps } from './ButtonGroup';
 
 interface IButtonGroupContext {
   className?: string;
