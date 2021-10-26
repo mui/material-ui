@@ -26,7 +26,7 @@ Options:
   --help     Show help                                           [boolean]
   --dry      dry run (no changes are made to files)
                                                 [boolean] [default: false]
-  --parser   which parser for jscodeshift to use. 
+  --parser   which parser for jscodeshift to use.
                                                 [string] [default: 'tsx']
   --print    print transformed files to stdout, useful for development
                                                 [boolean] [default: false]
