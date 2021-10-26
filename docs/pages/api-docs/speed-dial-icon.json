@@ -3,7 +3,7 @@
     "classes": { "type": { "name": "object" } },
     "icon": { "type": { "name": "node" } },
     "openIcon": { "type": { "name": "node" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "SpeedDialIcon",
   "styles": {

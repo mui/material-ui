@@ -16,7 +16,7 @@
     "open": { "type": { "name": "bool" } },
     "PaperProps": { "type": { "name": "object" }, "default": "{}" },
     "SlideProps": { "type": { "name": "object" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "transitionDuration": {
       "type": {
         "name": "union",

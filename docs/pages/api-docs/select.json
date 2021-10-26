@@ -20,7 +20,7 @@
     "open": { "type": { "name": "bool" } },
     "renderValue": { "type": { "name": "func" } },
     "SelectDisplayProps": { "type": { "name": "object" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "value": { "type": { "name": "any" } },
     "variant": {
       "type": {

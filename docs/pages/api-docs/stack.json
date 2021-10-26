@@ -17,7 +17,7 @@
       },
       "default": "0"
     },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "Stack",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

@@ -3,7 +3,7 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "position": { "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "TimelineItem",
   "styles": {

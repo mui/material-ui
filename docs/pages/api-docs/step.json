@@ -8,7 +8,7 @@
     "expanded": { "type": { "name": "bool" } },
     "index": { "type": { "name": "custom", "description": "integer" } },
     "last": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
   },
   "name": "Step",
   "styles": {

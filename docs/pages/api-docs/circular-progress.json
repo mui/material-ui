@@ -13,7 +13,7 @@
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "default": "40"
     },
-    "sx": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
     "thickness": { "type": { "name": "number" }, "default": "3.6" },
     "value": { "type": { "name": "number" }, "default": "0" },
     "variant": {

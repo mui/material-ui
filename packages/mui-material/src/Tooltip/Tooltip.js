@@ -857,7 +857,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Tooltip title. Zero-length titles string are never displayed.
    */
