@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 
-type Theme = { color: string };
+interface Theme {
+  color: string;
+}
 
 const Text = (props: { sx?: SxProps<Theme> }) => null;
 
