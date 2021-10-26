@@ -4,7 +4,7 @@
 
 <!-- generated comparing v5.0.4..master -->
 
-_Oct 25, 2021_
+_Oct 26, 2021_
 
 A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
@@ -37,7 +37,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - &#8203;<!-- 20 -->[Grid] Support custom columns with nested grid (#28743) @Devesh21700Kumar
 - &#8203;<!-- 18 -->[InputBase] Remove wrong theme overriding with MUI's default theme (#29157) @hbjORbj
 - &#8203;<!-- 17 -->[LoadingButton] Fix `fullWidth` styling (#28652) @nikitabobers
-
+- &#8203;<!-- 16 -->[Popper] make Popper display:none whenever it's closed (#29233) @adamfitzgibbon
 - &#8203;<!-- 14 -->[Menu] Reduce min-height & padding in menu-item with dense property (#29180) @jatinsandilya
 - &#8203;<!-- 07 -->[Tab] `iconPosition` prop added in Tab (#28764) @deepanshu2506
 - &#8203;<!-- 03 -->[Tooltip] Correct inconsistent prop precedence (#29132) @michaldudak
@@ -63,6 +63,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - &#8203;<!-- 22 -->[docs] Discourage importing different bundles directly (#29133) @eps1lon
 - &#8203;<!-- 21 -->[docs] Update module augmentation reference url (#29064) @gnowland
 - &#8203;<!-- 12 -->[pricing] Add tooltip to pricing icon (#28959) @siriwatknp
+- &#8203;<!-- 07 -->[Team] Add Alexandre in the about page (#29289)
 - &#8203;<!-- 02 -->[website] Fix status label overflow in AdvancedShowcase (#29143) @LorenzHenk
 - &#8203;<!-- 01 -->[website] Update legacy logos (#28908) @michaldudak
 
