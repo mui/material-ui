@@ -678,7 +678,12 @@ describe('<InputBase />', () => {
         </ThemeProvider>,
       );
       const fieldset = getByRole('textbox').nextSibling;
-      expect(fieldset).toHaveComputedStyle({ borderColor: 'rgb(0, 191, 165)' });
+      expect(fieldset).toHaveComputedStyle({
+        borderTopColor: 'rgb(0, 191, 165)',
+        borderRightColor: 'rgb(0, 191, 165)',
+        borderBottomColor: 'rgb(0, 191, 165)',
+        borderLeftColor: 'rgb(0, 191, 165)',
+      });
     });
   });
 });
