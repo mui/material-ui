@@ -48,7 +48,7 @@ export const style = ({ ownerState, theme }) => {
       { theme },
       resolveBreakpointValues({
         values: ownerState.direction,
-        breakpoints: theme.breakpoints,
+        breakpoints: theme.breakpoints.values,
       }),
       (propValue) => ({
         flexDirection: propValue,
@@ -68,13 +68,11 @@ export const style = ({ ownerState, theme }) => {
 
     const directionValues = resolveBreakpointValues({
       values: ownerState.direction,
-      breakpoints: theme.breakpoints,
       base,
     });
 
     const spacingValues = resolveBreakpointValues({
       values: ownerState.spacing,
-      breakpoints: theme.breakpoints,
       base,
     });
 
