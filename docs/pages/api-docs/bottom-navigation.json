@@ -5,7 +5,12 @@
     "component": { "type": { "name": "elementType" } },
     "onChange": { "type": { "name": "func" } },
     "showLabels": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "value": { "type": { "name": "any" } }
   },
   "name": "BottomNavigation",

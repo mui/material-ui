@@ -14,7 +14,12 @@
     "filled": { "type": { "name": "bool" } },
     "focused": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "FormLabel",
   "styles": {

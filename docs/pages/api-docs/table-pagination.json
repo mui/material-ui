@@ -29,7 +29,12 @@
     "SelectProps": { "type": { "name": "object" }, "default": "{}" },
     "showFirstButton": { "type": { "name": "bool" } },
     "showLastButton": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "TablePagination",
   "styles": {

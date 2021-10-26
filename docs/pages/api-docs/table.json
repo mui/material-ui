@@ -18,7 +18,12 @@
       "default": "'medium'"
     },
     "stickyHeader": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "Table",
   "styles": { "classes": ["root", "stickyHeader"], "globalClasses": {}, "name": "MuiTable" },
