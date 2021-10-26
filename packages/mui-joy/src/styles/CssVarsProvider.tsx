@@ -37,7 +37,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
       },
     },
     ...rest,
-  } as unknown as JoyThemeInput, // prevent error from module augmentation in .spec.tsx
+  } as unknown as JoyThemeInput, // prevent error from module augmentation inside the repository
   defaultColorScheme: 'light',
   prefix: 'joy',
 });

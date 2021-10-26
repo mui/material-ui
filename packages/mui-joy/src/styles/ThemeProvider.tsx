@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
+import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
 import defaultTheme, { JoyTheme } from './defaultTheme';
 
 type PartialDeep<T> = {
@@ -16,5 +17,11 @@ export default function ThemeProvider({
 }: React.PropsWithChildren<{ theme?: PartialDeep<Omit<JoyTheme, 'vars'>> }>) {
   let mergedTheme = deepmerge(defaultTheme, theme);
   mergedTheme = { ...mergedTheme, vars: mergedTheme };
-  return <ThemeContext.Provider value={mergedTheme}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={mergedTheme}>
+      <StyledEngineThemeContext.Provider value={mergedTheme}>
+        {children}
+      </StyledEngineThemeContext.Provider>
+    </ThemeContext.Provider>
+  );
 }

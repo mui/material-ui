@@ -65,7 +65,7 @@ export interface StaticTheme {
 
 export interface ThemeWithoutVars extends StaticTheme, ColorSystems {}
 
-// @ts-ignore error from module augmentation in .spec.tsx
+// @ts-ignore error from module augmentation inside the repository
 const themeWithoutVars = {
   palette: {
     brand: colors.blue,
