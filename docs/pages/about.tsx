@@ -42,7 +42,7 @@ interface Profile {
   /**
    * Where are you from?
    */
-  country: string; // https://www.countryflags.io/
+  country: string; // https://flagpedia.net/download/api
   /**
    * Lives in
    */
@@ -100,22 +100,14 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
                 border: '2px solid #fff',
                 borderRadius: 40,
                 overflow: 'hidden',
-                '& > img': {
-                  width: 32,
-                  height: 32,
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  transform: 'translate(-6px, -6px)',
-                },
+                display: 'flex',
+                justifyContent: 'center',
               }}
             >
               <img
                 loading="lazy"
-                width="32"
-                height="32"
-                src={`https://www.countryflags.io/${props.country}/flat/32.png`}
-                srcSet={`https://www.countryflags.io/${props.country}/flat/64.png 2x`}
+                height="20"
+                src={`https://flagcdn.com/${props.country}.svg`}
                 alt=""
               />
             </Box>
