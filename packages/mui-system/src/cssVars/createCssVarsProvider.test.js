@@ -408,5 +408,26 @@ describe('createCssVarsProvider', () => {
 
       expect(screen.getByTestId('text').textContent).to.equal('var(--foo-bar-fontSize)');
     });
+
+    it('does not take `theme.components` into account', () => {
+      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+        theme: {
+          colorSchemes: { light: { fontSize: 16 } },
+          components: 'any',
+        },
+        defaultColorScheme: 'light',
+      });
+      const Text = () => {
+        const theme = React.useContext(ThemeContext);
+        return <div data-testid={`text`}>{theme.vars.components}</div>;
+      };
+      render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('text').textContent).not.to.equal('var(--components)');
+    });
   });
 });
