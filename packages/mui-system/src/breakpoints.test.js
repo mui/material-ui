@@ -115,25 +115,39 @@ describe('breakpoints', () => {
         expect(values).to.equal(3);
       });
 
-      it('resolve breakpoint values for prop of array type given custom base', () => {
+      it('given custom base, resolve breakpoint values for prop of array type', () => {
         const columns = [1, 2, 3];
         const customBase = { xs: true, sm: true, md: true, lg: true };
         const values = resolveBreakpointValues({ values: columns, base: customBase });
         expect(values).to.deep.equal({ xs: 1, sm: 2, md: 3, lg: 3 });
       });
 
-      it('resolve breakpoint values for prop of object type given custom base', () => {
+      it('given custom base, resolve breakpoint values for prop of object type', () => {
         const columns = { xs: 1, sm: 2, md: 3 };
         const customBase = { xs: true, sm: true, md: true, lg: true };
         const values = resolveBreakpointValues({ values: columns, base: customBase });
         expect(values).to.deep.equal({ xs: 1, sm: 2, md: 3, lg: 3 });
       });
 
-      it('resolve breakpoint values for unordered prop of object type given custom base', () => {
+      it('given custom base, resolve breakpoint values for unordered prop of object type', () => {
         const columns = { sm: 2, md: 3, xs: 1 };
         const customBase = { xs: true, sm: true, md: true, lg: true };
         const values = resolveBreakpointValues({ values: columns, base: customBase });
         expect(values).to.deep.equal({ xs: 1, sm: 2, md: 3, lg: 3 });
+      });
+
+      it('given custom base, resolve breakpoint values for prop of object type with missing breakpoints', () => {
+        const columns = { xs: 1, md: 2 };
+        const customBase = { xs: true, sm: true, md: true, lg: true };
+        const values = resolveBreakpointValues({ values: columns, base: customBase });
+        expect(values).to.deep.equal({ xs: 1, sm: 1, md: 2, lg: 2 });
+      });
+
+      it('given custom base, resolve breakpoint values for unordered prop of object type with missing breakpoints', () => {
+        const columns = { md: 2, xs: 1 };
+        const customBase = { xs: true, sm: true, md: true, lg: true };
+        const values = resolveBreakpointValues({ values: columns, base: customBase });
+        expect(values).to.deep.equal({ xs: 1, sm: 1, md: 2, lg: 2 });
       });
     });
 
@@ -174,21 +188,21 @@ describe('breakpoints', () => {
         expect(values).to.equal(3);
       });
 
-      it('resolve breakpoint values for prop of array type given custom base', () => {
+      it('given custom base, resolve breakpoint values for prop of array type', () => {
         const columns = [1, 2, 3];
         const customBase = { extraSmall: true, small: true, medium: true, large: true };
         const values = resolveBreakpointValues({ values: columns, base: customBase });
         expect(values).to.deep.equal({ extraSmall: 1, small: 2, medium: 3, large: 3 });
       });
 
-      it('resolve breakpoint values for prop of object type given custom base', () => {
+      it('given custom base, resolve breakpoint values for prop of object type', () => {
         const columns = { extraSmall: 1, small: 2, medium: 3 };
         const customBase = { extraSmall: true, small: true, medium: true, large: true };
         const values = resolveBreakpointValues({ values: columns, base: customBase });
         expect(values).to.deep.equal({ extraSmall: 1, small: 2, medium: 3, large: 3 });
       });
 
-      it('resolve breakpoint values for unordered prop of object type given custom base', () => {
+      it('given custom base, resolve breakpoint values for unordered prop of object type', () => {
         const columns = { small: 2, medium: 3, extraSmall: 1 };
         const customBase = { extraSmall: true, small: true, medium: true, large: true };
         const values = resolveBreakpointValues({ values: columns, base: customBase });
