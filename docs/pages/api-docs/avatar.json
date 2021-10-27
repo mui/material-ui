@@ -8,7 +8,12 @@
     "sizes": { "type": { "name": "string" } },
     "src": { "type": { "name": "string" } },
     "srcSet": { "type": { "name": "string" } },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "variant": {
       "type": {
         "name": "union",
