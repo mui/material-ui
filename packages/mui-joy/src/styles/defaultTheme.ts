@@ -19,7 +19,10 @@ export interface PaletteRange {
 
 export interface ColorPalettePropOverrides {}
 
-export type ColorPaletteProp = OverridableStringUnion<'brand', ColorPalettePropOverrides>;
+export type ColorPaletteProp = OverridableStringUnion<
+  'brand' | 'neutral',
+  ColorPalettePropOverrides
+>;
 
 export type ColorPalette = {
   [k in ColorPaletteProp]: PaletteRange;
@@ -78,6 +81,7 @@ export interface ThemeWithoutVars extends StaticTheme, ColorSystems {}
 const themeWithoutVars = {
   palette: {
     brand: colors.blue,
+    neutral: colors.grey,
   },
   borderRadius: {
     md: '4px',
