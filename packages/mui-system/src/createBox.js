@@ -41,7 +41,7 @@ export default function createBox(options = {}) {
     /**
      * @ignore
      */
-    sx: PropTypes.object,
+    sx: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   };
 
   return Box;

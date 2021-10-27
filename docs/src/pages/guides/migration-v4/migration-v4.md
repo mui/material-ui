@@ -159,9 +159,11 @@ Transform `<TextField/>, <FormControl/>, <Select/>` component by applying `varia
 // if you have theme setup like this, ❌ don't run this codemod.
 // these default props can be removed later because `outlined` is the default value in v5
 createMuiTheme({
-  props: {
+  components: {
     MuiTextField: {
-      variant: 'outlined',
+      defaultProps: {
+        variant: 'outlined',
+      },
     },
   },
 });
@@ -185,9 +187,11 @@ Transform `<Link/>` component by apply `underline="hover"` if no `underline` pro
 // if you have theme setup like this, ❌ don't run this codemod.
 // this default props can be removed later because `always` is the default value in v5
 createMuiTheme({
-  props: {
+  components: {
     MuiLink: {
-      underline: 'always',
+      defaultProps: {
+        underline: 'always',
+      },
     },
   },
 });
@@ -519,6 +523,8 @@ declare module '@mui/styles' {
   +import { createGenerateClassName } from '@mui/styles';
   ```
 
+  To generate custom class names **without** using `@mui/styles`, check out [ClassNameGenerator](/guides/classname-generator/) for more details.
+
 #### createMuiTheme
 
 - The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
@@ -595,7 +601,7 @@ declare module '@mui/styles' {
 
 #### styled
 
-- The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
+- The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use the one exported from `@mui/styles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
   ```diff
   -import { styled } from '@mui/material/styles';
@@ -717,6 +723,12 @@ declare module '@mui/styles' {
 - This HOC was removed. There's an alternative using the [`useMediaQuery` hook](/components/use-media-query/#migrating-from-withwidth).
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent the application from crashing.
+
+### @mui/icons-material
+
+#### GitHub
+
+The `GitHub` icon was reduced in size from 24px to 22px wide to match the other icons size.
 
 ### @material-ui/pickers
 
