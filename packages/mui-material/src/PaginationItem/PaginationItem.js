@@ -245,7 +245,11 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     color = 'standard',
     component,
     disabled = false,
+    firstPageIcon = FirstPageIcon,
+    lastPageIcon = LastPageIcon,
+    nextIcon = NavigateNextIcon,
     page,
+    previousIcon = NavigateBeforeIcon,
     selected = false,
     shape = 'circular',
     size = 'medium',
@@ -271,16 +275,16 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const normalizedIcons =
     theme.direction === 'rtl'
       ? {
-          previous: NavigateNextIcon,
-          next: NavigateBeforeIcon,
-          last: FirstPageIcon,
-          first: LastPageIcon,
+          previous: nextIcon,
+          next: previousIcon,
+          last: firstPageIcon,
+          first: lastPageIcon,
         }
       : {
-          previous: NavigateBeforeIcon,
-          next: NavigateNextIcon,
-          first: FirstPageIcon,
-          last: LastPageIcon,
+          previous: previousIcon,
+          next: nextIcon,
+          last: lastPageIcon,
+          first: firstPageIcon,
         };
 
   const Icon = normalizedIcons[type];
@@ -346,9 +350,29 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * First page button icon
+   * @default FirstPageIcon
+   */
+  firstPageIcon: PropTypes.elementType,
+  /**
+   * Last page button icon
+   * @default LastPageIcon
+   */
+  lastPageIcon: PropTypes.elementType,
+  /**
+   * Next page button icon
+   * @default NavigateNextIcon
+   */
+  nextIcon: PropTypes.elementType,
+  /**
    * The current page number.
    */
   page: PropTypes.node,
+  /**
+   * Previous page button icon
+   * @default NavigateBeforeIcon
+   */
+  previousIcon: PropTypes.elementType,
   /**
    * If `true` the pagination item is selected.
    * @default false

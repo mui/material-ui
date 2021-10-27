@@ -32,9 +32,29 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
      */
     disabled?: boolean;
     /**
+	 * First page button icon
+	 * @default FirstPageIcon
+	 */
+	firstPageIcon?: React.ElementType,
+	/**
+	 * Last page button icon
+	 * @default LastPageIcon
+	 */
+	lastPageIcon?: React.ElementType,
+	/**
+	 * Next page button icon
+	 * @default NavigateNextIcon
+	 */
+	nextIcon?: React.ElementType,
+    /**
      * The current page number.
      */
     page?: React.ReactNode;
+	/**
+	 * Previous page button icon
+	 * @default NavigateBeforeIcon
+	 */
+	previousIcon?: React.ElementType,
     /**
      * If `true` the pagination item is selected.
      * @default false

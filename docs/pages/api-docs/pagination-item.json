@@ -10,7 +10,11 @@
     },
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" } },
+    "firstPageIcon": { "type": { "name": "elementType" }, "default": "FirstPageIcon" },
+    "lastPageIcon": { "type": { "name": "elementType" }, "default": "LastPageIcon" },
+    "nextIcon": { "type": { "name": "elementType" }, "default": "NavigateNextIcon" },
     "page": { "type": { "name": "node" } },
+    "previousIcon": { "type": { "name": "elementType" }, "default": "NavigateBeforeIcon" },
     "selected": { "type": { "name": "bool" } },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },

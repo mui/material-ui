@@ -50,6 +50,26 @@ export interface PaginationProps
     selected: boolean,
   ) => string;
   /**
+   * First page button icon
+   * @default FirstPageIcon
+   */
+  firstPageIcon?: React.ElementType,
+  /**
+   * Last page button icon
+   * @default LastPageIcon
+   */
+  lastPageIcon?: React.ElementType,
+  /**
+   * Next page button icon
+   * @default NavigateNextIcon
+   */
+  nextIcon?: React.ElementType,
+  /**
+   * Previous page button icon
+   * @default NavigateBeforeIcon
+   */
+  previousIcon?: React.ElementType,
+  /**
    * Render the item.
    * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
