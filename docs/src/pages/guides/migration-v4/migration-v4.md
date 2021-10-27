@@ -187,9 +187,11 @@ Transform `<Link/>` component by apply `underline="hover"` if no `underline` pro
 // if you have theme setup like this, ❌ don't run this codemod.
 // this default props can be removed later because `always` is the default value in v5
 createMuiTheme({
-  props: {
+  components: {
     MuiLink: {
-      underline: 'always',
+      defaultProps: {
+        underline: 'always',
+      },
     },
   },
 });
