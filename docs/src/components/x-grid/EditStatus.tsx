@@ -66,7 +66,7 @@ export default function EditStatus(props: GridRenderEditCellParams) {
             <ListItemIcon>
               <IconComponent />
             </ListItemIcon>
-            <ListItemText primary={label} />
+            <ListItemText primary={label} sx={{ overflow: 'hidden' }} />
           </MenuItem>
         );
       })}
