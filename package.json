@@ -1,5 +1,5 @@
 {
-  "version": "5.0.4",
+  "version": "5.0.5",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -88,10 +88,10 @@
     "@types/format-util": "^1.0.1",
     "@types/fs-extra": "^9.0.13",
     "@types/jsdom": "^16.2.13",
-    "@types/lodash": "^4.14.175",
+    "@types/lodash": "^4.14.176",
     "@types/mocha": "^9.0.0",
     "@types/prettier": "^2.4.1",
-    "@types/react": "^17.0.31",
+    "@types/react": "^17.0.33",
     "@types/sinon": "^10.0.5",
     "@types/webpack": "^5.28.0",
     "@types/yargs": "^17.0.4",
@@ -136,7 +136,7 @@
     "html-webpack-plugin": "^5.4.0",
     "istanbul-instrumenter-loader": "^3.0.1",
     "jsdom": "^18.0.0",
-    "karma": "^6.3.4",
+    "karma": "^6.3.5",
     "karma-browserstack-launcher": "~1.4.0",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage-istanbul-reporter": "^3.0.3",
@@ -193,7 +193,7 @@
     "**/@babel/preset-react": "^7.14.5",
     "**/@babel/preset-typescript": "^7.15.0",
     "**/@babel/runtime": "^7.15.4",
-    "**/@types/react": "^17.0.31",
+    "**/@types/react": "^17.0.33",
     "**/@types/react-dom": "^17.0.10",
     "**/cross-fetch": "^3.1.4",
     "**/react-is": "^17.0.2"

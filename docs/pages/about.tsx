@@ -301,6 +301,16 @@ const teamMembers: Array<Profile> = [
     about: 'Love reading 📚 and working out 🏋️‍♂️',
     github: 'hbjORbj',
   },
+  {
+    src: '/static/branding/about/alexandre.jpg',
+    name: 'Alexandre Fauquette',
+    title: 'Advanced components team',
+    location: 'Nancy, France',
+    country: 'fr',
+    about: 'Love hacking and cycling 🚴‍♂️',
+    twitter: 'AleFauquette',
+    github: 'alexfauquette',
+  },
 ];
 
 const contributors = [
