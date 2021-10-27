@@ -83,7 +83,7 @@ describe('<RadioGroup />', () => {
     expect(radios[1].checked).to.equal(true);
   });
 
-  it('should have a default name', () => {
+  it('should not have a default name', () => {
     const { getAllByRole } = render(
       <RadioGroup>
         <Radio value="zero" />
@@ -93,8 +93,8 @@ describe('<RadioGroup />', () => {
 
     const radios = getAllByRole('radio');
 
-    expect(radios[0].name).to.match(/^mui-[0-9]+/);
-    expect(radios[1].name).to.match(/^mui-[0-9]+/);
+    expect(radios[0]).to.have.property('name', '');
+    expect(radios[1]).to.have.property('name', '');
   });
 
   it('should support number value', () => {
@@ -316,12 +316,9 @@ describe('<RadioGroup />', () => {
     describe('from props', () => {
       it('should have the name prop from the instance', () => {
         const radioGroupRef = React.createRef();
-        const { setProps } = render(<RadioGroupControlled name="group" ref={radioGroupRef} />);
+        render(<RadioGroupControlled name="group" ref={radioGroupRef} />);
 
         expect(radioGroupRef.current).to.have.property('name', 'group');
-
-        setProps({ name: 'anotherGroup' });
-        expect(radioGroupRef.current).to.have.property('name', 'anotherGroup');
       });
 
       it('should have the value prop from the instance', () => {
@@ -338,7 +335,7 @@ describe('<RadioGroup />', () => {
         const radioGroupRef = React.createRef();
         const { setProps } = render(<RadioGroupControlled ref={radioGroupRef} />);
 
-        expect(radioGroupRef.current.name).to.match(/^mui-[0-9]+/);
+        expect(radioGroupRef.current).to.have.property('name', undefined);
 
         setProps({ name: 'anotherGroup' });
         expect(radioGroupRef.current).to.have.property('name', 'anotherGroup');
