@@ -9,13 +9,16 @@ import getInitColorSchemeScript, {
   DEFAULT_STORAGE_KEY,
 } from './getInitColorSchemeScript';
 
-const resolveMode = (key, fallback) => {
+const resolveMode = (key, fallback, supportedColorSchemes) => {
   if (typeof window === 'undefined') {
     return undefined;
   }
   let value;
   try {
     value = localStorage.getItem(key) || undefined;
+    if (!supportedColorSchemes.includes(value)) {
+      value = undefined;
+    }
   } catch (e) {
     // Unsupported
   }
@@ -50,42 +53,25 @@ export default function createCssVarsProvider(ThemeContext, options) {
     attribute = DEFAULT_ATTRIBUTE,
     defaultColorScheme = designSystemColorScheme,
   }) {
-    const [colorScheme, setColorScheme] = React.useState(() =>
-      resolveMode(storageKey, defaultColorScheme),
-    );
-
-    React.useEffect(() => {
-      if (colorScheme) {
-        document.body.setAttribute(attribute, colorScheme);
-        localStorage.setItem(storageKey, colorScheme);
-      }
-    }, [colorScheme, attribute, storageKey]);
-
-    // local storage modified in the context of another document
-    React.useEffect(() => {
-      const handleStorage = (event) => {
-        if (event.key === storageKey) {
-          const storageColorScheme = event.newValue;
-          if (storageColorScheme) {
-            setColorScheme(storageColorScheme);
-          }
-        }
-      };
-      window.addEventListener('storage', handleStorage);
-      return () => window.removeEventListener('storage', handleStorage);
-    }, [setColorScheme, storageKey]);
-
     const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = baseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
 
     let mergedTheme = deepmerge(restBaseTheme, restThemeProp);
     const colorSchemes = deepmerge(baseColorSchemes, colorSchemesProp);
 
+    const allColorSchemes = Object.keys(colorSchemes);
+    const joinedColorSchemes = allColorSchemes.join(',');
+
+    const [colorScheme, setColorScheme] = React.useState(() =>
+      resolveMode(storageKey, defaultColorScheme, allColorSchemes),
+    );
+    const resolvedColorScheme = colorScheme || defaultColorScheme;
+
     const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme, { prefix });
 
     mergedTheme = {
       ...mergedTheme,
-      ...colorSchemes[colorScheme],
+      ...colorSchemes[resolvedColorScheme],
       vars: rootVars,
     };
 
@@ -93,7 +79,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
 
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
       const { css, vars } = cssVarsParser(scheme, { prefix });
-      if (key === colorScheme) {
+      if (key === resolvedColorScheme) {
         mergedTheme.vars = {
           ...mergedTheme.vars,
           ...vars,
@@ -106,7 +92,26 @@ export default function createCssVarsProvider(ThemeContext, options) {
       }
     });
 
-    const allColorSchemes = Object.keys(colorSchemes);
+    React.useEffect(() => {
+      if (colorScheme) {
+        document.body.setAttribute(attribute, colorScheme);
+        localStorage.setItem(storageKey, colorScheme);
+      }
+    }, [colorScheme, attribute, storageKey]);
+
+    // local storage modified in the context of another document
+    React.useEffect(() => {
+      const handleStorage = (event) => {
+        const storageColorScheme = event.newValue;
+        if (event.key === storageKey && joinedColorSchemes.match(storageColorScheme)) {
+          if (storageColorScheme) {
+            setColorScheme(storageColorScheme);
+          }
+        }
+      };
+      window.addEventListener('storage', handleStorage);
+      return () => window.removeEventListener('storage', handleStorage);
+    }, [setColorScheme, storageKey, joinedColorSchemes]);
 
     const wrappedSetColorScheme = React.useCallback(
       (val) => {

@@ -1,5 +1,5 @@
+import { CSSObject } from '@mui/styled-engine';
 import { StyleFunction } from './Box';
-import { CSSObject } from './createStyled';
 
 export interface StyleOptions<PropKey> {
   cssProperty?: PropKey | keyof React.CSSProperties | false;

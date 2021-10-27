@@ -32,7 +32,7 @@ In desktop viewport, padding is increased to give more space to the menu.
 
 ## Dense menu
 
-For the menu that has long list and long text, you can use the `dense` prop to reduce the padding (this property only affects desktop viewport).
+For the menu that has long list and long text, you can use the `dense` prop to reduce the padding and text size.
 
 {{"demo": "pages/components/menus/DenseMenu.js", "bg": true}}
 

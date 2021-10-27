@@ -107,7 +107,7 @@ const PickersSlideTransition = ({
   return (
     <PickersSlideTransitionRoot
       className={clsx(classes.root, className)}
-      childFactory={(element) =>
+      childFactory={(element: React.ReactElement) =>
         React.cloneElement(element, {
           classNames: transitionClasses,
         })

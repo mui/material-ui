@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
   unstable_useControlled as useControlled,
-  unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
@@ -96,18 +95,19 @@ export default function useSwitch(props: UseSwitchProps) {
     state: 'checked',
   });
 
-  const handleInputChange = useEventCallback(
-    (event: React.ChangeEvent<HTMLInputElement>, otherHandler?: React.FormEventHandler) => {
-      // Workaround for https://github.com/facebook/react/issues/9023
-      if (event.nativeEvent.defaultPrevented) {
-        return;
-      }
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    otherHandler?: React.FormEventHandler,
+  ) => {
+    // Workaround for https://github.com/facebook/react/issues/9023
+    if (event.nativeEvent.defaultPrevented) {
+      return;
+    }
 
-      setCheckedState(event.target.checked);
-      onChange?.(event);
-      otherHandler?.(event);
-    },
-  );
+    setCheckedState(event.target.checked);
+    onChange?.(event);
+    otherHandler?.(event);
+  };
 
   const {
     isFocusVisibleRef,
@@ -127,36 +127,32 @@ export default function useSwitch(props: UseSwitchProps) {
 
   const inputRef = React.useRef<any>(null);
 
-  const handleFocus = useEventCallback(
-    (event: React.FocusEvent, otherHandler?: React.FocusEventHandler) => {
-      // Fix for https://github.com/facebook/react/issues/7769
-      if (!inputRef.current) {
-        inputRef.current = event.currentTarget;
-      }
+  const handleFocus = (event: React.FocusEvent, otherHandler?: React.FocusEventHandler) => {
+    // Fix for https://github.com/facebook/react/issues/7769
+    if (!inputRef.current) {
+      inputRef.current = event.currentTarget;
+    }
 
-      handleFocusVisible(event);
-      if (isFocusVisibleRef.current === true) {
-        setFocusVisible(true);
-        onFocusVisible?.(event);
-      }
+    handleFocusVisible(event);
+    if (isFocusVisibleRef.current === true) {
+      setFocusVisible(true);
+      onFocusVisible?.(event);
+    }
 
-      onFocus?.(event);
-      otherHandler?.(event);
-    },
-  );
+    onFocus?.(event);
+    otherHandler?.(event);
+  };
 
-  const handleBlur = useEventCallback(
-    (event: React.FocusEvent, otherHandler?: React.FocusEventHandler) => {
-      handleBlurVisible(event);
+  const handleBlur = (event: React.FocusEvent, otherHandler?: React.FocusEventHandler) => {
+    handleBlurVisible(event);
 
-      if (isFocusVisibleRef.current === false) {
-        setFocusVisible(false);
-      }
+    if (isFocusVisibleRef.current === false) {
+      setFocusVisible(false);
+    }
 
-      onBlur?.(event);
-      otherHandler?.(event);
-    },
-  );
+    onBlur?.(event);
+    otherHandler?.(event);
+  };
 
   const handleRefChange = useForkRef(focusVisibleRef, inputRef);
 
