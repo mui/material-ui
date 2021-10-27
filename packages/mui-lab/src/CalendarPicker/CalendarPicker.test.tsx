@@ -77,4 +77,55 @@ describe('<CalendarPicker />', () => {
     expect(screen.queryByLabelText(/switch to year view/i)).to.equal(null);
     expect(screen.getByLabelText('year view is open, switch to calendar view')).toBeVisible();
   });
+
+  it('allows month and view changing, but not selection when readOnly prop is passed', () => {
+    const onChangeMock = spy();
+    const onMonthChangeMock = spy();
+    render(
+      <CalendarPicker
+        date={adapterToUse.date('2019-01-01T00:00:00.000')}
+        onChange={onChangeMock}
+        onMonthChange={onMonthChangeMock}
+        readOnly
+      />,
+    );
+
+    fireEvent.click(screen.getByTitle('Previous month'));
+    expect(onMonthChangeMock.callCount).to.equal(1);
+
+    fireEvent.click(screen.getByTitle('Next month'));
+    expect(onMonthChangeMock.callCount).to.equal(2);
+
+    fireEvent.click(screen.getByLabelText(/Jan 5, 2019/i));
+    expect(onChangeMock.callCount).to.equal(0);
+
+    fireEvent.click(screen.getByText('January'));
+    expect(screen.queryByLabelText('year view is open, switch to calendar view')).toBeVisible();
+  });
+
+  it('does not allow interaction when disabled prop is passed', () => {
+    const onChangeMock = spy();
+    const onMonthChangeMock = spy();
+    render(
+      <CalendarPicker
+        date={adapterToUse.date('2019-01-01T00:00:00.000')}
+        onChange={onChangeMock}
+        onMonthChange={onMonthChangeMock}
+        disabled
+      />,
+    );
+
+    fireEvent.click(screen.getByText('January'));
+    expect(screen.queryByText('January')).toBeVisible();
+    expect(screen.queryByLabelText('year view is open, switch to calendar view')).to.equal(null);
+
+    fireEvent.click(screen.getByTitle('Previous month'));
+    expect(onMonthChangeMock.callCount).to.equal(1);
+
+    fireEvent.click(screen.getByTitle('Next month'));
+    expect(onMonthChangeMock.callCount).to.equal(1);
+
+    fireEvent.click(screen.getByLabelText(/Jan 5, 2019/i));
+    expect(onChangeMock.callCount).to.equal(0);
+  });
 });
