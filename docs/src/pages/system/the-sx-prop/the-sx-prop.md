@@ -189,6 +189,61 @@ Each property in the `sx` prop can receive a function callback as a value. This 
 <Box sx={{ height: (theme) => theme.spacing(10) }} />
 ```
 
+`sx` can also receive a callback when you need to get theme values that are object:
+
+```jsx
+<Box
+  sx={(theme) => ({
+    ...theme.typography.body,
+    color: theme.palette.primary.main,
+  })}
+/>
+```
+
+## Array values
+
+Array type is useful when you want to partially override some styles in the former index:
+
+```jsx
+<Box
+  sx={[
+    {
+      '&:hover': {
+        color: 'red',
+        backgroundColor: 'white',
+      },
+    },
+    foo && {
+      '&:hover': { backgroundColor: 'grey' },
+    },
+    bar && {
+      '&:hover': { backgroundColor: 'yellow' },
+    },
+  ]}
+/>
+```
+
+When you hover on this element, `color: red; backgroundColor: white;` is applied.
+
+If `foo: true`, the `color: red; backgroundColor: grey;` is applied when hover.
+
+If `bar: true`, the `color: red; backgroundColor: yellow;` is applied when hover regardless of `foo` value, because the higher index of the array has higher specificity.
+
+> **Note**: Each index can be an `object` or `callback`
+
+```jsx
+<Box
+  sx={[
+    { mr: 2, color: 'red' },
+    (theme) => ({
+      '&:hover': {
+        color: theme.palette.primary.main,
+      },
+    }),
+  ]}
+/>
+```
+
 ## TypeScript usage
 
 A frequent source of confusion with the `sx` prop is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
@@ -227,6 +282,22 @@ export default function App() {
   return <Button sx={{ flexDirection: 'column' }}>Example</Button>;
 }
 ```
+
+### `fill` callback gives theme type as `any`
+
+Since `sx` can be an array type, there is a conflict in type of `Array.fill` and CSS's `fill` property when define value as a callback. As a workaround, you can explicitly define the theme like this:
+
+```tsx
+import { Theme } from '@mui/material/styles';
+
+<Box
+  sx={{
+    fill: (theme: Theme) => theme.palette.primary.main,
+  }}
+/>;
+```
+
+> Let us know or [submit a PR](https://github.com/mui-org/material-ui/pulls) if you have a proper way to fix this issue. 🙏
 
 ## Performance
 
