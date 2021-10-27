@@ -2,7 +2,7 @@ import * as React from 'react';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
-export default function ClickeableChips() {
+export default function ClickableChips() {
   const handleClick = () => {
     console.info('You clicked the Chip.');
   };
