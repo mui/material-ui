@@ -54,8 +54,6 @@ export type SystemStyleObject<Theme extends object = {}> =
 /**
  * The `SxProps` can be either object or function
  */
-// need to omit 'fill' because Array has `fill` method which conflict with css fill.
-// try removing Omit and check src/pages/components/transitions/SimpleCollapse.tsx
 export type SxProps<Theme extends object = {}> =
   | SystemStyleObject<Theme>
   | ((theme: Theme) => SystemStyleObject<Theme>)
