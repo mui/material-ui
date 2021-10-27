@@ -124,9 +124,9 @@ describe('<Rating />', () => {
   it('should ensure a `name`', () => {
     render(<Rating value={null} />);
 
-    const [arbirtraryRadio, ...radios] = document.querySelectorAll('input[type="radio"]');
+    const [arbitraryRadio, ...radios] = document.querySelectorAll('input[type="radio"]');
     // `name` **property** will always be a string even if the **attribute** is omitted
-    expect(arbirtraryRadio.name).not.to.equal('');
+    expect(arbitraryRadio.name).not.to.equal('');
     // all input[type="radio"] have the same name
     expect(new Set(radios.map((radio) => radio.name))).to.have.length(1);
   });
