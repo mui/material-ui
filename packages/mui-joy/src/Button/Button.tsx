@@ -3,29 +3,54 @@ import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useButton } from '@mui/core/ButtonUnstyled';
 import { styled } from '../styles';
-import { ExtendButton, ButtonTypeMap } from './ButtonProps';
+import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
 
 const ButtonRoot = styled('button', {
   name: 'JoyButton',
   slot: 'Root',
-})(({ theme }) => ({
-  '--joy-Button-minHeight': '40px',
-  padding: '4px 16px',
-  minHeight: 'var(--joy-Button-minHeight)',
-  border: 'none',
-  backgroundColor: 'transparent',
-  cursor: 'pointer',
-  fontSize: '1rem',
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  position: 'relative',
-}));
+})<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
+  const mainColor = theme.vars.palette[ownerState.color || 'brand'][500];
+  return [
+    {
+      '--joy-Button-minHeight': '40px',
+      padding: '4px 16px',
+      minHeight: 'var(--joy-Button-minHeight)',
+      border: 'none',
+      backgroundColor: 'transparent',
+      cursor: 'pointer',
+      fontSize: '1rem',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'relative',
+      ...theme.typography.body(theme),
+    },
+    ownerState.variant === 'text' && {
+      color: mainColor,
+    },
+    ownerState.variant === 'contained' && {
+      backgroundColor: mainColor,
+      color: '#fff',
+    },
+    ownerState.variant === 'outlined' && {
+      color: mainColor,
+      border: '1px solid',
+      borderColor: mainColor,
+    },
+  ];
+});
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = inProps;
 
-  const { children, action, component = 'button', ...other } = props;
+  const {
+    children,
+    action,
+    component = 'button',
+    color = 'brand',
+    variant = 'text',
+    ...other
+  } = props;
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
@@ -51,12 +76,14 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const ownerState = {
     ...props,
+    color,
     component,
     focusVisible,
+    variant,
   };
 
   return (
-    <ButtonRoot as={ComponentProp} {...other} {...getRootProps()}>
+    <ButtonRoot as={ComponentProp} ownerState={ownerState} {...other} {...getRootProps()}>
       {children}
     </ButtonRoot>
   );

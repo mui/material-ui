@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@mui/types';
 import colors from '../colors';
 
 export interface PaletteRange {
@@ -14,9 +15,17 @@ export interface PaletteRange {
   900: string;
 }
 
-export interface Palette {
-  brand: PaletteRange;
+export interface ColorPalettePropOverrides {
+  brand: true;
 }
+
+export type ColorPaletteProp = OverridableStringUnion<never, ColorPalettePropOverrides>;
+
+export type ColorPalette = {
+  [k in ColorPaletteProp]: PaletteRange;
+};
+
+export interface Palette extends ColorPalette {}
 
 export interface ColorSystems {
   palette: Palette;
@@ -49,7 +58,7 @@ export interface Shadow {
 }
 
 export interface TypographySystems {
-  body: (vars: JoyTheme) => React.CSSProperties;
+  body: (theme: JoyTheme) => React.CSSProperties;
 }
 
 export interface StaticTheme {

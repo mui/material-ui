@@ -1,10 +1,18 @@
 import {
   DistributiveOmit,
-  OverrideProps,
   OverridableComponent,
+  OverridableStringUnion,
   OverridableTypeMap,
+  OverrideProps,
 } from '@mui/types';
 import React from 'react';
+import { ColorPaletteProp } from '../styles';
+
+export interface ButtonPropsVariantOverrides {}
+
+export interface ButtonPropsColorOverrides {}
+
+export interface ButtonPropsSizeOverrides {}
 
 export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
   props: P & {
@@ -15,11 +23,61 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
       focusVisible(): void;
     }>;
     /**
+     * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'primary'
+     */
+    color?: OverridableStringUnion<ColorPaletteProp, ButtonPropsColorOverrides>;
+    /**
      * The component used for the Root slot.
      * Either a string to use a HTML element or a component.
      * This is equivalent to `components.Root`. If both are provided, the `component` is used.
      */
     component?: D;
+    /**
+     * If `true`, the component is disabled.
+     * @default false
+     */
+    disabled?: boolean;
+    /**
+     * Element placed after the children.
+     */
+    endIcon?: React.ReactNode;
+    /**
+     * This prop can help identify which element has keyboard focus.
+     * The class name will be applied when the element gains the focus through keyboard interaction.
+     * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+     * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+     * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+     * if needed.
+     */
+    focusVisibleClassName?: string;
+    /**
+     * If `true`, the button will take up the full width of its container.
+     * @default false
+     */
+    fullWidth?: boolean;
+    /**
+     * The size of the component.
+     * `small` is equivalent to the dense button styling.
+     * @default 'medium'
+     */
+    size?: OverridableStringUnion<'small' | 'medium' | 'large', ButtonPropsSizeOverrides>;
+    /**
+     * Element placed before the children.
+     */
+    startIcon?: React.ReactNode;
+    /**
+     * @default 0
+     */
+    tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
+    /**
+     * The variant to use.
+     * @default 'text'
+     */
+    variant?: OverridableStringUnion<
+      'text' | 'outlined' | 'contained',
+      ButtonPropsVariantOverrides
+    >;
   };
   defaultComponent: D;
 }
