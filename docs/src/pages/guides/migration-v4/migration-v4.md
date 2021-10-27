@@ -720,6 +720,12 @@ declare module '@mui/styles' {
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent the application from crashing.
 
+### @mui/icons-material
+
+#### GitHub
+
+The `GitHub` icon was reduced in size from 24px to 22px wide to match the other icons size.
+
 ### @material-ui/pickers
 
 We have a [dedicated page](/guides/pickers-migration/) for migrating `@material-ui/pickers` to v5
