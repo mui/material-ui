@@ -688,7 +688,7 @@ function AboutContent() {
           <Grid item xs={12} sm={6} md={4}>
             <Widget
               icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />}
-              title="Suport us financially"
+              title="Support us financially"
             >
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 If you use MUI in a commercial project and would like to support its continued
