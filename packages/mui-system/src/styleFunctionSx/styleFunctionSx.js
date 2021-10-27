@@ -22,6 +22,9 @@ function styleFunctionSx(props) {
     return null; // emotion & styled-components will neglect null
   }
 
+  /**
+  ** Receive `sxInput` as object or callback and then recursively check keys & values to create media query object styles (the result will be used in `styled`).
+  **/
   function traverse(sxInput) {
     let sxObject = sxInput;
     if (typeof sxInput === 'function') {
