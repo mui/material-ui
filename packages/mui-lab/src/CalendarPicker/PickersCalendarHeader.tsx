@@ -50,7 +50,6 @@ export interface PickersCalendarHeaderProps<TDate>
   };
   currentMonth: TDate;
   disabled?: boolean;
-  readonly?: boolean;
   views: readonly CalendarPickerView[];
   /**
    * Get aria-label text for switching between views button.
@@ -134,7 +133,6 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
     onMonthChange,
     onViewChange,
     openView: currentView,
-    readonly,
     reduceAnimations,
     rightArrowButtonText = 'Next month',
     views,
@@ -157,7 +155,7 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
   });
 
   const handleToggleView = () => {
-    if (views.length === 1 || !onViewChange || disabled || readonly) {
+    if (views.length === 1 || !onViewChange || disabled) {
       return;
     }
 

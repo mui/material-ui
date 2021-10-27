@@ -39,7 +39,7 @@ export interface CalendarPickerProps<TDate>
    */
   defaultCalendarMonth?: TDate;
   /**
-   * If `true`, the picker is disabled.
+   * If `true`, the picker and text field are disabled.
    * @default false
    */
   disabled?: boolean;
@@ -352,7 +352,7 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
    */
   defaultCalendarMonth: PropTypes.any,
   /**
-   * If `true`, the picker is disabled.
+   * If `true`, the picker and text field are disabled.
    * @default false
    */
   disabled: PropTypes.bool,

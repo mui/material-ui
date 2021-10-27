@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "defaultCalendarMonth": "Default calendar month displayed when <code>value={null}</code>.",
-    "disabled": "If <code>true</code>, the picker is disabled.",
+    "disabled": "If <code>true</code>, the picker and text field are disabled.",
     "loading": "If <code>true</code> renders <code>LoadingComponent</code> in calendar instead of calendar view. Can be used to preload information and show it in calendar.",
     "maxDate": "Max selectable date. @DateIOType",
     "minDate": "Min selectable date. @DateIOType",

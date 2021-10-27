@@ -16,7 +16,7 @@
     "desktopModeMediaQuery": "CSS media query when <code>Mobile</code> mode will be changed to <code>Desktop</code>.",
     "DialogProps": "Props applied to the <a href=\"/api/dialog/\"><code>Dialog</code></a> element.",
     "disableCloseOnSelect": "If <code>true</code> the popup or dialog will immediately close after submitting full date.",
-    "disabled": "If <code>true</code>, the picker is disabled.",
+    "disabled": "If <code>true</code>, the picker and text field are disabled.",
     "disableHighlightToday": "If <code>true</code>, todays date is rendering without highlighting with circle.",
     "disableIgnoringDatePartForTimeValidation": "Do not ignore date part when validating min/max time.",
     "disableMaskedInput": "Disable mask on the keyboard, this should be used rarely. Consider passing proper mask for your format.",

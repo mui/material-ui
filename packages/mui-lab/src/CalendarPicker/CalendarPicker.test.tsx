@@ -90,9 +90,6 @@ describe('<CalendarPicker />', () => {
       />,
     );
 
-    fireEvent.click(screen.getByText('January'));
-    expect(screen.queryByText('January')).toBeVisible();
-
     fireEvent.click(screen.getByTitle('Previous month'));
     expect(onMonthChangeMock.callCount).to.equal(1);
 
@@ -101,6 +98,9 @@ describe('<CalendarPicker />', () => {
 
     fireEvent.click(screen.getByLabelText(/Jan 5, 2019/i));
     expect(onChangeMock.callCount).to.equal(0);
+
+    fireEvent.click(screen.getByText('January'));
+    expect(screen.queryByLabelText('year view is open, switch to calendar view')).toBeVisible();
   });
 
   it('does not allow interaction when disabled prop is passed', () => {
