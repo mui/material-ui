@@ -322,7 +322,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     ...other
   } = props;
 
-  const name = useId(nameProp);
+  const name = useReactId(nameProp);
 
   const [valueDerived, setValueState] = useControlled({
     controlled: valueProp,
