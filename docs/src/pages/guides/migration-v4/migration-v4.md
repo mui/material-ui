@@ -159,9 +159,11 @@ Transform `<TextField/>, <FormControl/>, <Select/>` component by applying `varia
 // if you have theme setup like this, ❌ don't run this codemod.
 // these default props can be removed later because `outlined` is the default value in v5
 createMuiTheme({
-  props: {
+  components: {
     MuiTextField: {
-      variant: 'outlined',
+      defaultProps: {
+        variant: 'outlined',
+      },
     },
   },
 });
@@ -185,9 +187,11 @@ Transform `<Link/>` component by apply `underline="hover"` if no `underline` pro
 // if you have theme setup like this, ❌ don't run this codemod.
 // this default props can be removed later because `always` is the default value in v5
 createMuiTheme({
-  props: {
+  components: {
     MuiLink: {
-      underline: 'always',
+      defaultProps: {
+        underline: 'always',
+      },
     },
   },
 });
