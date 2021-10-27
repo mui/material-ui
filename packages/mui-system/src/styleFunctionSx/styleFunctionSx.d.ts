@@ -35,7 +35,7 @@ export interface AllSystemCSSProperties
     AliasesCSSProperties {}
 
 export type SystemCssProperties<Theme extends object = {}> = {
-  [K in keyof AllSystemCSSProperties]:
+  [K in keyof AllSystemCSSProperties as K extends string ? K : never]:
     | ResponsiveStyleValue<AllSystemCSSProperties[K]>
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>)
     | SystemStyleObject<Theme>;
@@ -59,7 +59,7 @@ export type SystemStyleObject<Theme extends object = {}> =
 export type SxProps<Theme extends object = {}> =
   | SystemStyleObject<Theme>
   | ((theme: Theme) => SystemStyleObject<Theme>)
-  | Omit<Array<SystemStyleObject<Theme> | ((theme: Theme) => SystemStyleObject<Theme>)>, 'fill'>;
+  | Array<SystemStyleObject<Theme> | ((theme: Theme) => SystemStyleObject<Theme>)>;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export default function unstable_styleFunctionSx(props: object): object;
