@@ -27,6 +27,8 @@ export interface MonthPickerProps<TDate> {
 
   /** Date value for the MonthPicker */
   date: TDate | null;
+  /** If `true` picker is disabled */
+  disabled?: boolean;
   /** If `true` past days are disabled. */
   disablePast?: boolean | null;
   /** If `true` future days are disabled. */
@@ -38,6 +40,8 @@ export interface MonthPickerProps<TDate> {
   /** Callback fired on date change. */
   onChange: PickerOnChangeFn<TDate>;
   onMonthChange?: (date: TDate) => void | Promise<void>;
+  /** If `true` picker is readonly */
+  readOnly?: boolean;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -87,12 +91,14 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   const {
     className,
     date,
+    disabled,
     disableFuture,
     disablePast,
     maxDate,
     minDate,
     onChange,
     onMonthChange,
+    readOnly,
     ...other
   } = props;
   const ownerState = props;
@@ -118,6 +124,10 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   };
 
   const onMonthSelect = (month: number) => {
+    if (readOnly) {
+      return;
+    }
+
     const newDate = utils.setMonth(date || now, month);
 
     onChange(newDate, 'finish');
@@ -143,7 +153,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
             value={monthNumber}
             selected={monthNumber === currentMonth}
             onSelect={onMonthSelect}
-            disabled={shouldDisableMonth(month)}
+            disabled={disabled || shouldDisableMonth(month)}
           >
             {monthText}
           </PickersMonth>
@@ -171,6 +181,10 @@ MonthPicker.propTypes /* remove-proptypes */ = {
    */
   date: PropTypes.any,
   /**
+   * If `true` picker is disabled
+   */
+  disabled: PropTypes.bool,
+  /**
    * If `true` future days are disabled.
    */
   disableFuture: PropTypes.bool,
@@ -194,6 +208,10 @@ MonthPicker.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onMonthChange: PropTypes.func,
+  /**
+   * If `true` picker is readonly
+   */
+  readOnly: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

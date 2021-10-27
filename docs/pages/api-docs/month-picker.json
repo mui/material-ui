@@ -6,8 +6,10 @@
     "onChange": { "type": { "name": "func" }, "required": true },
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" } },
+    "disabled": { "type": { "name": "bool" } },
     "disableFuture": { "type": { "name": "bool" } },
     "disablePast": { "type": { "name": "bool" } },
+    "readOnly": { "type": { "name": "bool" } },
     "sx": {
       "type": {
         "name": "union",
