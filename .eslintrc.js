@@ -353,7 +353,7 @@ module.exports = {
     },
     {
       files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
-      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx'],
+      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx', 'packages/mui-joy/**'],
       rules: {
         'no-restricted-imports': [
           'error',
