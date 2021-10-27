@@ -116,7 +116,7 @@ export function mergeBreakpointsInOrder(breakpointsInput, ...styles) {
 // compute base for responsive values; e.g.,
 // [1,2,3] => {xs: true, sm: true, md: true}
 // {xs: 1, sm: 2, md: 3} => {xs: true, sm: true, md: true}
-function computeBreakpointsBase(breakpointValues, themeBreakpoints) {
+export function computeBreakpointsBase(breakpointValues, themeBreakpoints) {
   // fixed value
   if (typeof breakpointValues !== 'object') {
     return {};
@@ -124,8 +124,8 @@ function computeBreakpointsBase(breakpointValues, themeBreakpoints) {
   const base = {};
   const breakpointsKeys = Object.keys(themeBreakpoints);
   if (Array.isArray(breakpointValues)) {
-    breakpointsKeys.forEach((breakpoint, i, arr) => {
-      if (i < arr.length) {
+    breakpointsKeys.forEach((breakpoint, i) => {
+      if (i < breakpointValues.length) {
         base[breakpoint] = true;
       }
     });
