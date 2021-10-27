@@ -31,6 +31,7 @@ The theme provides four styles helpers to do so:
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
 - [theme.breakpoints.only(key)](#theme-breakpoints-only-key-media-query)
+- [theme.breakpoints.not(key)](#theme-breakpoints-not-key-media-query)
 - [theme.breakpoints.between(start, end)](#theme-breakpoints-between-start-end-media-query)
 
 In the following demo, we change the background color (red, blue & green) based on the screen width.
@@ -227,9 +228,9 @@ const styles = (theme) => ({
 const styles = (theme) => ({
   root: {
     backgroundColor: 'blue',
-    // Match md)[md + 1
-    //       md)[lg
-    //       900px)[1200px
+    // Match [xs, md) and [md + 1, ∞)
+    //       [xs, md) and [lg, ∞)
+    //       [0px, 900px) and [1200px, ∞)
     [theme.breakpoints.not('md')]: {
       backgroundColor: 'red',
     },

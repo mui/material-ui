@@ -105,12 +105,14 @@ describe('createBreakpoints', () => {
       );
     });
 
-    it('on xl should call down', () => {
-      expect(breakpoints.not('xl')).to.equal('@media (max-width:1535.95px)');
+    it('should invert up for xl', () => {
+      expect(breakpoints.not('xl')).to.equal('@media not all and (min-width:1536px)');
     });
 
-    it('on xs should call up', () => {
-      expect(breakpoints.not('xs')).to.equal('@media (min-width:600px)');
+    it('should invert down for xs', () => {
+      expect(breakpoints.not('xs')).to.equal(
+        '@media not all and (min-width:0px) and (max-width:599.95px)',
+      );
     });
 
     it('should work for custom breakpoints', () => {
