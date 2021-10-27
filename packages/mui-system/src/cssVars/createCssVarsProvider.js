@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { GlobalStyles } from '@mui/styled-engine';
+import { GlobalStyles, ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
 import { deepmerge } from '@mui/utils';
 import cssVarsParser from './cssVarsParser';
 import getInitColorSchemeScript, {
@@ -133,7 +133,11 @@ export default function createCssVarsProvider(ThemeContext, options) {
         }}
       >
         <GlobalStyles styles={styleSheet} />
-        <ThemeContext.Provider value={mergedTheme}>{children}</ThemeContext.Provider>
+        <ThemeContext.Provider value={mergedTheme}>
+          <StyledEngineThemeContext.Provider value={mergedTheme}>
+            {children}
+          </StyledEngineThemeContext.Provider>
+        </ThemeContext.Provider>
       </ColorSchemeContext.Provider>
     );
   }
