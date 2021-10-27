@@ -17,6 +17,7 @@ A big thanks to the 4 contributors who made this release possible. Here are some
 
 ### `@mui/system@5.0.6`
 
+- &#8203;<!-- 5 -->[system] Fix various issues reported by using @mui/styled-engine-sc (#29035) @mnajdova
 - &#8203;<!-- 1 -->[system] Fix executing server-side Emotion component as function interpolation (#29290) @Andarist
 
 ### Docs
