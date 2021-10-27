@@ -4,7 +4,10 @@
  *
  * @param object An object to extract event handlers from.
  */
-export default function extractEventHandlers(object: Record<string, any> | undefined) {
+export default function extractEventHandlers(
+  object: Record<string, any> | undefined,
+  excludeKeys: string[] = [],
+): Record<string, any> {
   if (object === undefined) {
     return {};
   }
@@ -12,7 +15,10 @@ export default function extractEventHandlers(object: Record<string, any> | undef
   const result: Record<string, React.EventHandler<any>> = {};
 
   Object.keys(object)
-    .filter((prop) => prop.match(/^on[A-Z]/) && typeof object[prop] === 'function')
+    .filter(
+      (prop) =>
+        prop.match(/^on[A-Z]/) && typeof object[prop] === 'function' && !excludeKeys.includes(prop),
+    )
     .forEach((prop) => {
       result[prop] = object[prop];
     });

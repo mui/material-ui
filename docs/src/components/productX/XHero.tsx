@@ -55,8 +55,8 @@ export default function XHero() {
             <br /> components
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            Build complex and data-rich applications using a growing list of advanced components.
-            We&apos;re kicking it off with the most powerful Data Grid on the market.
+            Build complex and data-rich applications using a growing list of advanced React
+            components. We&apos;re kicking it off with the most powerful Data Grid on the market.
           </Typography>
           <GetStartedButtons
             installation="npm install @mui/x-data-grid"

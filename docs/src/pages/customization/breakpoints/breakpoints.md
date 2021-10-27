@@ -13,6 +13,8 @@ for controlling the layout of your application through the [Grid](/components/gr
 
 Each breakpoint (a key) matches with a _fixed_ screen width (a value):
 
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
 - **xs,** extra-small: 0px
 - **sm,** small: 600px
 - **md,** medium: 900px
@@ -65,9 +67,12 @@ You can learn more on the [useMediaQuery](/components/use-media-query/) page.
 
 You define your project's breakpoints in the `theme.breakpoints` section of your theme.
 
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
 - [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values): Default to the [above values](#default-breakpoints). The keys are your screen names, and the values are the min-width where that breakpoint should start.
-- `theme.breakpoints.unit`: Default to `px`. The unit used for the breakpoint's values.
-- `theme.breakpoints.step`: Default to 5 (`0.05px`). The increment used to implement exclusive breakpoints.
+- `theme.breakpoints.unit`: Default to `'px'`. The unit used for the breakpoint's values.
+- `theme.breakpoints.step`: Default to `5`. The increment divided by 100 used to implement exclusive breakpoints.
+  For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
 
 If you change the default breakpoints's values, you need to provide them all:
 
@@ -124,6 +129,8 @@ declare module '@mui/material/styles' {
 
 ### `theme.breakpoints.up(key) => media query`
 
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
 #### Arguments
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
@@ -148,6 +155,8 @@ const styles = (theme) => ({
 ```
 
 ### `theme.breakpoints.down(key) => media query`
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 #### Arguments
 
@@ -174,6 +183,8 @@ const styles = (theme) => ({
 
 ### `theme.breakpoints.only(key) => media query`
 
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
 #### Arguments
 
 1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
@@ -199,6 +210,8 @@ const styles = (theme) => ({
 ```
 
 ### `theme.breakpoints.between(start, end) => media query`
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 #### Arguments
 

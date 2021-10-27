@@ -49,78 +49,9 @@ https://mui.com/store/* https://material-ui.com/store/:splat 302!
 /x/license/ https://docs.google.com/document/d/1nkd5JP5wCefo6UwpVi6PnbTaw8DxhstkCZlfHV5ZgfI/edit?usp=sharing 301
 
 # Legacy redirection
-# Added in chronological order
-# To be removed at some point
-/v0.20.0 https://v0.mui.com/v0.20.0
-/v0.19.4 https://v0.mui.com/v0.19.4
-/v0.19.3 https://v0.mui.com/v0.19.3
-/v0.19.2 https://v0.mui.com/v0.19.2
-/v0.19.1 https://v0.mui.com/v0.19.1
-/v0.19.0 https://v0.mui.com/v0.19.0
-/v0.18.7 https://v0.mui.com/v0.18.7
-/v0.18.6 https://v0.mui.com/v0.18.6
-/v0.18.5 https://v0.mui.com/v0.18.5
-/v0.18.4 https://v0.mui.com/v0.18.4
-/v0.18.3 https://v0.mui.com/v0.18.3
-/v0.18.2 https://v0.mui.com/v0.18.2
-/v0.18.1 https://v0.mui.com/v0.18.1
-/v0.18.0 https://v0.mui.com/v0.18.0
-/v0.17.2 https://v0.mui.com/v0.17.2
-/v0.17.1 https://v0.mui.com/v0.17.1
-/v0.17.0 https://v0.mui.com/v0.17.0
-/v0.16.7 https://v0.mui.com/v0.16.7
-/v0.16.6 https://v0.mui.com/v0.16.6
-/v0.16.5 https://v0.mui.com/v0.16.5
-/v0.16.2 https://v0.mui.com/v0.16.2
-/v0.16.1 https://v0.mui.com/v0.16.1
-/v0.16.0 https://v0.mui.com/v0.16.0
-/v0.15.4 https://v0.mui.com/v0.15.4
-/v0.15.3 https://v0.mui.com/v0.15.3
-/v0.15.2 https://v0.mui.com/v0.15.2
-/v0.15.1 https://v0.mui.com/v0.15.1
-/v0.15.0 https://v0.mui.com/v0.15.0
-/v0.14.4 https://v0.mui.com/v0.14.4
-/v0.14.3 https://v0.mui.com/v0.14.3
-/v0.14.2 https://v0.mui.com/v0.14.2
-/v0.14.1 https://v0.mui.com/v0.14.1
-/v0.14.0 https://v0.mui.com/v0.14.0
-/v0.13.4 https://v0.mui.com/v0.13.4
-/v0.13.3 https://v0.mui.com/v0.13.3
-/v0.13.2 https://v0.mui.com/v0.13.2
-/v0.13.1 https://v0.mui.com/v0.13.1
-/v0.13.0 https://v0.mui.com/v0.13.0
-/v0.12.5 https://v0.mui.com/v0.12.5
-/v0.12.4 https://v0.mui.com/v0.12.4
-/v0.12.3 https://v0.mui.com/v0.12.3
-/v0.12.2 https://v0.mui.com/v0.12.2
-/v0.12.1 https://v0.mui.com/v0.12.1
-/v0.12.0 https://v0.mui.com/v0.12.0
-/v0.11.1 https://v0.mui.com/v0.11.1
-/v0.11.0 https://v0.mui.com/v0.11.0
-/v0.10.4 https://v0.mui.com/v0.10.4
-/v0.10.3 https://v0.mui.com/v0.10.3
-/v0.10.2 https://v0.mui.com/v0.10.2
-/v0.10.1 https://v0.mui.com/v0.10.1
-/v0.10.0 https://v0.mui.com/v0.10.0
-/v0.9.2 https://v0.mui.com/v0.9.2
-/v0.9.1 https://v0.mui.com/v0.9.1
-/v0.9.0 https://v0.mui.com/v0.9.0
-/v0.8.0 https://v0.mui.com/v0.8.0
-/v0.7.5 https://v0.mui.com/v0.7.5
-/v0.7.2 https://v0.mui.com/v0.7.2
-/v0.7.1 https://v0.mui.com/v0.7.1
-/v0.5.0 https://v0.mui.com/v0.5.0
-/v0.7.4 https://v0.mui.com/v0.7.4
-/v0.7.3 https://v0.mui.com/v0.7.3
-/v0.7.0 https://v0.mui.com/v0.7.0
-/v0.6.1 https://v0.mui.com/v0.6.1
-/v0.6.0 https://v0.mui.com/v0.6.0
-/v0.4.1 https://v0.mui.com/v0.4.1
-/v0.4.0 https://v0.mui.com/v0.4.0
-/v0.3.3 https://v0.mui.com/v0.3.3
-/v0.3.2 https://v0.mui.com/v0.3.2
-/v0.3.1 https://v0.mui.com/v0.3.1
-/v0.3.0 https://v0.mui.com/v0.3.0
+# Added in chronological order (the last line is the most recent one)
+# To be removed 3+ years after being introduced
+# 2019
 /css-in-js/* /styles/:splat 301
 /customization/css-in-js/ /styles/basics/ 301
 /customization/overrides/ /customization/components/ 301
@@ -150,17 +81,18 @@ https://mui.com/store/* https://material-ui.com/store/:splat 302!
 /api/expansion-panel-actions/ /api/accordion-actions/ 301
 /api/expansion-panel-details/ /api/accordion-details/ 301
 /api/expansion-panel-summary/ /api/accordion-summary/ 301
+# 2020
 /premium-themes* https://material-ui.com/store/ 301
 /customization/themes/ /customization/theming/ 301
 https://v1-5-0.mui.com/* https://v1.mui.com/:splat 301!
 https://v3-9-0.mui.com/* https://v3.mui.com/:splat 301!
-# v5: GridList -> ImageList
 /components/grid-list/ /components/image-list/ 301
 /api/grid-list/ /api/image-list/ 301
 /api/grid-list-tile/ /api/image-list-item/ 301
 /api/grid-list-tile-bar/ /api/image-list-item-bar/ 301
 /customization/components/ /customization/how-to-customize/ 301
 /customization/globals/ /customization/theme-components/ 301
+# 2021
 /components/slider-styled/ /components/slider/ 301
 /customization/styled/ /system/styled/ 301
 /api/data-grid/x-grid/ /api/data-grid/data-grid-pro/ 301
@@ -170,8 +102,8 @@ https://v1.material-ui.com/* https://v1.mui.com/:splat 301!
 https://v3.material-ui.com/* https://v3.mui.com/:splat 301!
 https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /company/careers/ /careers/ 301
-# Rebranding
 /discover-more/team/ /about/ 301
+/api/data-grid/grid-export-csv-options/ /api/data-grid/grid-csv-export-options/ 301
 
 ## Localization
 /fr/* /:splat 301

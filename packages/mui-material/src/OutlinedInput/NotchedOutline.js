@@ -40,6 +40,7 @@ const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ ownerState, t
       duration: 50,
       easing: theme.transitions.easing.easeOut,
     }),
+    whiteSpace: 'nowrap',
     '& > span': {
       paddingLeft: 5,
       paddingRight: 5,

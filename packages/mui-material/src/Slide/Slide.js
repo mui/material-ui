@@ -95,6 +95,7 @@ const defaultTimeout = {
  */
 const Slide = React.forwardRef(function Slide(props, ref) {
   const {
+    addEndListener,
     appear = true,
     children,
     container: containerProp,
@@ -193,6 +194,13 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     }
   });
 
+  const handleAddEndListener = (next) => {
+    if (addEndListener) {
+      // Old call signature before `react-transition-group` implemented `nodeRef`
+      addEndListener(childrenRef.current, next);
+    }
+  };
+
   const updatePosition = React.useCallback(() => {
     if (childrenRef.current) {
       setTranslateValue(direction, childrenRef.current, containerProp);
@@ -236,6 +244,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       onExit={handleExit}
       onExited={handleExited}
       onExiting={handleExiting}
+      addEndListener={handleAddEndListener}
       appear={appear}
       in={inProp}
       timeout={timeout}
@@ -262,6 +271,12 @@ Slide.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
+   * Add a custom transition end trigger. Called with the transitioning DOM
+   * node and a done callback. Allows for more fine grained transition end
+   * logic. Note: Timeouts are still used as a fallback if provided.
+   */
+  addEndListener: PropTypes.func,
+  /**
    * Perform the enter transition when it first mounts if `in` is also `true`.
    * Set this to `false` to disable this behavior.
    * @default true
@@ -270,7 +285,7 @@ Slide.propTypes /* remove-proptypes */ = {
   /**
    * A single child content element.
    */
-  children: elementAcceptingRef,
+  children: elementAcceptingRef.isRequired,
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the container the Slide is transitioning from.
