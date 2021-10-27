@@ -97,6 +97,7 @@ If you are using create-react-app, there is a ready-to-use template in the examp
 You can use these `styled-component` examples as a reference:
 
 <!-- #default-branch-switch -->
+
 - [create-react-app](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components)
 - [create-react-app with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
 - [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs-with-styled-components-typescript)
