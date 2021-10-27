@@ -3,7 +3,7 @@
   "private": true,
   "author": "MUI Team",
   "description": "MUI Framer components",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "license": "MIT",
   "homepage": "https://mui.com/",
   "repository": {
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@mui/icons-material": "^5.0.5",
-    "@mui/material": "^5.0.5",
+    "@mui/material": "^5.0.6",
     "@mui/utils": "^5.0.1",
     "lodash": "^4.17.21"
   },
