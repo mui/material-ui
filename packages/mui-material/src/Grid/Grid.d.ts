@@ -10,7 +10,7 @@ export type GridSpacing = number | string;
 
 export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
-export type GridSize = 'auto' | number;
+export type GridSize ='auto' | number;
 
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
