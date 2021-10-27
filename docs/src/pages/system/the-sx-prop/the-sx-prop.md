@@ -210,8 +210,8 @@ Array type is useful when you want to partially override some styles in the form
     {
       '&:hover': {
         color: 'red',
-        backgroundColor: 'white'
-      }
+        backgroundColor: 'white',
+      },
     },
     foo && {
       '&:hover': { backgroundColor: 'grey' },
@@ -238,7 +238,7 @@ If `bar: true`, the `color: red; backgroundColor: yellow;` is applied when hover
     (theme) => ({
       '&:hover': {
         color: theme.palette.primary.main,
-      }
+      },
     }),
   ]}
 />
@@ -294,7 +294,7 @@ import { Theme } from '@mui/material/styles';
   sx={{
     fill: (theme: Theme) => theme.palette.primary.main,
   }}
-/>
+/>;
 ```
 
 > Let us know or [submit a PR](https://github.com/mui-org/material-ui/pulls) if you have a proper way to fix this issue. 🙏
