@@ -7,6 +7,7 @@ import {
 } from '@mui/types';
 import React from 'react';
 import { ColorPaletteProp } from '../styles';
+import { ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -22,6 +23,10 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     action?: React.Ref<{
       focusVisible(): void;
     }>;
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: Partial<ButtonClasses>;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
@@ -42,6 +47,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      * Element placed after the children.
      */
     endIcon?: React.ReactNode;
+
     /**
      * This prop can help identify which element has keyboard focus.
      * The class name will be applied when the element gains the focus through keyboard interaction.

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import colors from '../colors';
+import { Components } from './components';
 
 export interface PaletteRange {
   50: string;
@@ -111,6 +112,7 @@ const themeWithoutVars = {
 
 export interface JoyTheme extends ThemeWithoutVars {
   vars: ThemeWithoutVars;
+  components?: Components;
 }
 
 const defaultTheme = {

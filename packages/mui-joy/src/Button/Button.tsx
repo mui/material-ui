@@ -1,13 +1,64 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import clsx from 'clsx';
+import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useButton } from '@mui/core/ButtonUnstyled';
+import composeClasses from '@mui/core/composeClasses';
 import { styled } from '../styles';
 import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
+import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+
+const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
+  const {
+    classes,
+    color,
+    disabled,
+    focusVisible,
+    focusVisibleClassName,
+    fullWidth,
+    size,
+    variant,
+  } = ownerState;
+
+  const slots = {
+    root: [
+      'root',
+      disabled && 'disabled',
+      focusVisible && 'focusVisible',
+      variant,
+      `${variant}${capitalize(color!)}`,
+      `size${capitalize(size!)}`,
+      `${variant}Size${capitalize(size!)}`,
+      fullWidth && 'fullWidth',
+    ],
+    startIcon: ['startIcon'],
+    endIcon: ['endIcon'],
+  };
+
+  const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
+
+  if (focusVisible && focusVisibleClassName) {
+    composedClasses.root += ` ${focusVisibleClassName}`;
+  }
+
+  return composedClasses;
+};
 
 const ButtonRoot = styled('button', {
   name: 'JoyButton',
   slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      styles[ownerState.variant],
+      styles[`${ownerState.variant}${capitalize(ownerState.color)}`],
+      styles[`size${capitalize(ownerState.size)}`],
+      styles[`${ownerState.variant}Size${capitalize(ownerState.size)}`],
+      ownerState.fullWidth && styles.fullWidth,
+    ];
+  },
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   const colorPalette = theme.vars.palette[ownerState.color || 'brand'];
   return [
@@ -23,11 +74,19 @@ const ButtonRoot = styled('button', {
       justifyContent: 'center',
       position: 'relative',
       ...theme.typography.body(theme),
+      [`&.${buttonClasses.focusVisible}`]: {
+        outline: '2px solid',
+        outlineColor: colorPalette[300],
+        outlineOffset: '2px',
+      },
     },
     ownerState.variant === 'text' && {
       color: colorPalette[500],
       '&:hover': {
         backgroundColor: `rgba(${colorPalette.channel500} / 0.12)`,
+      },
+      '&:active': {
+        backgroundColor: `rgba(${colorPalette.channel500} / 0.2)`,
       },
     },
     ownerState.variant === 'contained' && {
@@ -35,6 +94,9 @@ const ButtonRoot = styled('button', {
       color: '#fff',
       '&:hover': {
         backgroundColor: colorPalette[600],
+      },
+      '&:active': {
+        backgroundColor: colorPalette[700],
       },
     },
     ownerState.variant === 'outlined' && {
@@ -44,6 +106,9 @@ const ButtonRoot = styled('button', {
       '&:hover': {
         borderColor: colorPalette[500],
         backgroundColor: `rgba(${colorPalette.channel500} / 0.12)`,
+      },
+      '&:active': {
+        backgroundColor: `rgba(${colorPalette.channel500} / 0.2)`,
       },
     },
     ownerState.size === 'small' && {
@@ -64,10 +129,14 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const {
     children,
+    className,
     action,
     component = 'button',
     color = 'brand',
     variant = 'text',
+    size = 'medium',
+    startIcon,
+    endIcon,
     ...other
   } = props;
 
@@ -98,11 +167,25 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     color,
     component,
     focusVisible,
+    size,
     variant,
   };
 
+  const classes = useUtilityClasses(ownerState);
+
   return (
-    <ButtonRoot as={ComponentProp} ownerState={ownerState} {...other} {...getRootProps()}>
+    <ButtonRoot
+      as={ComponentProp}
+      className={clsx(
+        classes.root,
+        startIcon && classes.startIcon,
+        endIcon && classes.endIcon,
+        className,
+      )}
+      ownerState={ownerState}
+      {...other}
+      {...getRootProps()}
+    >
       {children}
     </ButtonRoot>
   );
