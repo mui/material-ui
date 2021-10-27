@@ -9,12 +9,11 @@ const ButtonRoot = styled('button', {
   name: 'JoyButton',
   slot: 'Root',
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
-  const mainColor = theme.vars.palette[ownerState.color || 'brand'][500];
+  const colorPalette = theme.vars.palette[ownerState.color || 'brand'];
   return [
     {
-      '--joy-Button-minHeight': '40px',
       padding: '4px 16px',
-      minHeight: 'var(--joy-Button-minHeight)',
+      minHeight: '40px',
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -26,16 +25,36 @@ const ButtonRoot = styled('button', {
       ...theme.typography.body(theme),
     },
     ownerState.variant === 'text' && {
-      color: mainColor,
+      color: colorPalette[500],
+      '&:hover': {
+        backgroundColor: `rgba(${colorPalette.channel500} / 0.12)`,
+      },
     },
     ownerState.variant === 'contained' && {
-      backgroundColor: mainColor,
+      backgroundColor: colorPalette[500],
       color: '#fff',
+      '&:hover': {
+        backgroundColor: colorPalette[600],
+      },
     },
     ownerState.variant === 'outlined' && {
-      color: mainColor,
+      color: colorPalette[500],
       border: '1px solid',
-      borderColor: mainColor,
+      borderColor: `rgba(${colorPalette.channel500} / 0.6)`,
+      '&:hover': {
+        borderColor: colorPalette[500],
+        backgroundColor: `rgba(${colorPalette.channel500} / 0.12)`,
+      },
+    },
+    ownerState.size === 'small' && {
+      fontSize: '0.875rem',
+      minHeight: '32px',
+      padding: '4px 12px',
+    },
+    ownerState.size === 'large' && {
+      minHeight: '48px',
+      fontSize: '1.125rem',
+      padding: '4px 20px',
     },
   ];
 });

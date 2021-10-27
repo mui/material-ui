@@ -13,13 +13,12 @@ export interface PaletteRange {
   700: string;
   800: string;
   900: string;
+  channel500: string;
 }
 
-export interface ColorPalettePropOverrides {
-  brand: true;
-}
+export interface ColorPalettePropOverrides {}
 
-export type ColorPaletteProp = OverridableStringUnion<never, ColorPalettePropOverrides>;
+export type ColorPaletteProp = OverridableStringUnion<'brand', ColorPalettePropOverrides>;
 
 export type ColorPalette = {
   [k in ColorPaletteProp]: PaletteRange;

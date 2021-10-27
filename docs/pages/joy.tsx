@@ -5,10 +5,32 @@ import Button from '@mui/joy/Button';
 export default function Joy() {
   return (
     <CssVarsProvider>
-      <div style={{ display: 'flex', gap: 16 }}>
-        <Button>Button</Button>
-        <Button variant="contained">Button</Button>
-        <Button variant="outlined">Button</Button>
+      <div style={{ display: 'grid', gap: 16 }}>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <Button size="small">Button</Button>
+          <Button size="small" variant="contained">
+            Button
+          </Button>
+          <Button size="small" variant="outlined">
+            Button
+          </Button>
+        </div>
+
+        <div style={{ display: 'flex', gap: 8 }}>
+          <Button>Button</Button>
+          <Button variant="contained">Button</Button>
+          <Button variant="outlined">Button</Button>
+        </div>
+
+        <div style={{ display: 'flex', gap: 8 }}>
+          <Button size="large">Button</Button>
+          <Button size="large" variant="contained">
+            Button
+          </Button>
+          <Button size="large" variant="outlined">
+            Button
+          </Button>
+        </div>
       </div>
     </CssVarsProvider>
   );
