@@ -77,7 +77,6 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   defaultValue: PropTypes.any,
   /**
    * The name used to reference the value of the control.
-   * If you don't provide this prop, it falls back to a randomly generated name.
    */
   name: PropTypes.string,
   /**

@@ -8,7 +8,6 @@ export interface RadioGroupProps extends Omit<FormGroupProps, 'onChange'> {
   defaultValue?: any;
   /**
    * The name used to reference the value of the control.
-   * If you don't provide this prop, it falls back to a randomly generated name.
    */
   name?: string;
   /**
