@@ -1,5 +1,31 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.0.6
+
+<!-- generated comparing v5.0.5..master -->
+
+_Oct 27, 2021_
+
+A big thanks to the 4 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔧 Fix reported TypeScript issues on the `@mui/system` package because some packages were not released
+
+### `@mui/material@5.0.6`
+
+- &#8203;<!-- 4 -->[Autocomplete] Fix `clearOnBlur` prop (#29208) @hbjORbj
+- &#8203;<!-- 2 -->[Rating] Remove z-index from decimal stars (#29295) @williamhaley
+
+### `@mui/system@5.0.6`
+
+- &#8203;<!-- 5 -->[system] Fix various issues reported by using @mui/styled-engine-sc (#29035) @mnajdova
+- &#8203;<!-- 1 -->[system] Fix executing server-side Emotion component as function interpolation (#29290) @Andarist
+
+### Docs
+
+- &#8203;<!-- 3 -->[blog] Q3 2021 Update (#28970) @oliviertassinari
+
+All contributors of this release in alphabetical order: @Andarist, @hbjORbj, @oliviertassinari, @williamhaley
+
 ## 5.0.5
 
 <!-- generated comparing v5.0.4..master -->
