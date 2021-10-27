@@ -25,11 +25,10 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       'root',
       disabled && 'disabled',
       focusVisible && 'focusVisible',
-      variant,
-      `${variant}${capitalize(color!)}`,
-      `size${capitalize(size!)}`,
-      `${variant}Size${capitalize(size!)}`,
       fullWidth && 'fullWidth',
+      `variant${capitalize(variant!)}`,
+      `color${capitalize(color!)}`,
+      `size${capitalize(size!)}`,
     ],
     startIcon: ['startIcon'],
     endIcon: ['endIcon'],
@@ -52,10 +51,9 @@ const ButtonRoot = styled('button', {
 
     return [
       styles.root,
-      styles[ownerState.variant],
-      styles[`${ownerState.variant}${capitalize(ownerState.color)}`],
+      styles[`variant${capitalize(ownerState.variant)}`],
+      styles[`color${capitalize(ownerState.color)}`],
       styles[`size${capitalize(ownerState.size)}`],
-      styles[`${ownerState.variant}Size${capitalize(ownerState.size)}`],
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
@@ -68,12 +66,15 @@ const ButtonRoot = styled('button', {
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
-      fontSize: '1rem',
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
       ...theme.typography.body(theme),
+      [`&.${buttonClasses.disabled}`]: {
+        pointerEvents: 'none',
+        cursor: 'default',
+      },
       [`&.${buttonClasses.focusVisible}`]: {
         outline: '2px solid',
         outlineColor: colorPalette[300],
@@ -88,6 +89,9 @@ const ButtonRoot = styled('button', {
       '&:active': {
         backgroundColor: `rgba(${colorPalette.channel500} / 0.2)`,
       },
+      [`&.${buttonClasses.disabled}`]: {
+        color: theme.vars.palette.neutral[400],
+      },
     },
     ownerState.variant === 'contained' && {
       backgroundColor: colorPalette[500],
@@ -97,6 +101,9 @@ const ButtonRoot = styled('button', {
       },
       '&:active': {
         backgroundColor: colorPalette[700],
+      },
+      [`&.${buttonClasses.disabled}`]: {
+        backgroundColor: theme.vars.palette.neutral[300],
       },
     },
     ownerState.variant === 'outlined' && {
@@ -109,6 +116,10 @@ const ButtonRoot = styled('button', {
       },
       '&:active': {
         backgroundColor: `rgba(${colorPalette.channel500} / 0.2)`,
+      },
+      [`&.${buttonClasses.disabled}`]: {
+        borderColor: theme.vars.palette.neutral[300],
+        color: theme.vars.palette.neutral[400],
       },
     },
     ownerState.size === 'small' && {

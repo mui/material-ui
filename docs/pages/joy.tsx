@@ -7,11 +7,13 @@ export default function Joy() {
     <CssVarsProvider>
       <div style={{ display: 'grid', gap: 16 }}>
         <div style={{ display: 'flex', gap: 8 }}>
-          <Button size="small">Button</Button>
-          <Button size="small" variant="contained">
+          <Button size="small" disabled>
             Button
           </Button>
-          <Button size="small" variant="outlined">
+          <Button size="small" variant="contained" disabled>
+            Button
+          </Button>
+          <Button size="small" variant="outlined" disabled>
             Button
           </Button>
         </div>
