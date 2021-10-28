@@ -561,6 +561,14 @@ describe('<InputBase />', () => {
       const { container } = render(<InputBase inputProps={{ ref: inputRef }} />);
       expect(inputRef.current).to.equal(container.querySelector('input'));
     });
+
+    it('should not repeat the same classname', () => {
+      const { container } = render(<InputBase inputProps={{ className: 'foo' }} />);
+      const input = container.querySelector('input');
+      const matches = input.className.match(/foo/g);
+      expect(input).to.have.class('foo');
+      expect(matches).to.have.length(1);
+    });
   });
 
   describe('prop: inputComponent with prop: inputProps', () => {
