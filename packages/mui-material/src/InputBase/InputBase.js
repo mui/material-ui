@@ -425,9 +425,8 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       onClick(event);
     }
   };
-  const { className: inputPropsPropClassName, ...inputPropsPropOthers } = inputPropsProp;
   let InputComponent = inputComponent;
-  let inputProps = inputPropsPropOthers;
+  let inputProps = inputPropsProp;
 
   if (multiline && InputComponent === 'input') {
     if (rows) {
@@ -531,7 +530,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
               ownerState: { ...ownerState, ...inputProps.ownerState },
             })}
             ref={handleInputRef}
-            className={clsx(classes.input, inputPropsPropClassName)}
+            className={clsx(classes.input, inputProps.className)}
             onBlur={handleBlur}
             onChange={handleChange}
             onFocus={handleFocus}
