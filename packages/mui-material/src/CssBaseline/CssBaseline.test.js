@@ -19,7 +19,11 @@ describe('<CssBaseline />', () => {
     expect(child).to.have.tagName('div');
   });
 
-  it('supports theme overrides as string', () => {
+  it('supports theme overrides as string', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
     const theme = createTheme({
       components: { MuiCssBaseline: { styleOverrides: `strong { font-weight: 500; }` } },
     });
@@ -37,7 +41,11 @@ describe('<CssBaseline />', () => {
     expect(child).toHaveComputedStyle({ fontWeight: '500' });
   });
 
-  it('supports theme overrides as object', () => {
+  it('supports theme overrides as object', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
     const theme = createTheme({
       components: { MuiCssBaseline: { styleOverrides: { strong: { fontWeight: '500' } } } },
     });

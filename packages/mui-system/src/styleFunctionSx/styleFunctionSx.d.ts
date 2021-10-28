@@ -51,7 +51,13 @@ export type SystemStyleObject<Theme extends object = {}> =
   | CSSSelectorObject<Theme>
   | null;
 
-export type SxProps<Theme extends object = {}> = SystemStyleObject<Theme>;
+/**
+ * The `SxProps` can be either object or function
+ */
+export type SxProps<Theme extends object = {}> =
+  | SystemStyleObject<Theme>
+  | ((theme: Theme) => SystemStyleObject<Theme>)
+  | Array<SystemStyleObject<Theme> | ((theme: Theme) => SystemStyleObject<Theme>)>;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export default function unstable_styleFunctionSx(props: object): object;

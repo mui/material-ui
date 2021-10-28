@@ -2,15 +2,15 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Fade from '@mui/material/Fade';
-import Slide from '@mui/material/Slide';
-import Grow from '@mui/material/Grow';
+import Slide, { SlideProps } from '@mui/material/Slide';
+import Grow, { GrowProps } from '@mui/material/Grow';
 import { TransitionProps } from '@mui/material/transitions';
 
-function SlideTransition(props: TransitionProps) {
+function SlideTransition(props: SlideProps) {
   return <Slide {...props} direction="up" />;
 }
 
-function GrowTransition(props: TransitionProps) {
+function GrowTransition(props: GrowProps) {
   return <Grow {...props} />;
 }
 
@@ -19,7 +19,7 @@ export default function TransitionsSnackbar() {
     open: boolean;
     Transition: React.ComponentType<
       TransitionProps & {
-        children?: React.ReactElement<any, any>;
+        children: React.ReactElement<any, any>;
       }
     >;
   }>({
@@ -31,7 +31,7 @@ export default function TransitionsSnackbar() {
     (
       Transition: React.ComponentType<
         TransitionProps & {
-          children?: React.ReactElement<any, any>;
+          children: React.ReactElement<any, any>;
         }
       >,
     ) =>

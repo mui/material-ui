@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ServerStyleSheets } from '@mui/styles';
+import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
@@ -7,6 +7,7 @@ import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
+import { GlobalStyles } from '@mui/styled-engine';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -113,6 +114,22 @@ export default class MyDocument extends Document {
               __html: `@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Regular.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Regular.woff) format('woff'),url(/static/fonts/IBMPlexSans-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Medium.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Medium.woff) format('woff'),url(/static/fonts/IBMPlexSans-Medium.ttf) format('truetype');font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:'IBM Plex Sans';src:url(/static/fonts/IBMPlexSans-Bold.woff2) format('woff2'),url(/static/fonts/IBMPlexSans-Bold.woff) format('woff'),url(/static/fonts/IBMPlexSans-Bold.ttf) format('truetype');font-weight:700;font-style:normal;font-display:swap}`,
             }}
           />
+          <GlobalStyles
+            styles={`
+              .only-light-mode {
+                display: none;
+              }
+              .mode-light .only-light-mode {
+                display: block;
+              }
+              .only-dark-mode {
+                display: none;
+              }
+              .mode-dark .only-dark-mode {
+                display: block;
+              }
+            `}
+          />
         </Head>
         <body>
           <Main />
@@ -158,7 +175,7 @@ MyDocument.getInitialProps = async (ctx) => {
   // 4. page.render
 
   // Render app and page and get the context of the page with collected side effects.
-  const materialSheets = new ServerStyleSheets();
+  const jssSheets = new JSSServerStyleSheets();
   const styledComponentsSheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
@@ -170,7 +187,7 @@ MyDocument.getInitialProps = async (ctx) => {
       originalRenderPage({
         enhanceApp: (App) => (props) =>
           styledComponentsSheet.collectStyles(
-            materialSheets.collect(<App emotionCache={cache} {...props} />),
+            jssSheets.collect(<App emotionCache={cache} {...props} />),
           ),
       });
 
@@ -185,7 +202,7 @@ MyDocument.getInitialProps = async (ctx) => {
       />
     ));
 
-    let css = materialSheets.toString();
+    let css = jssSheets.toString();
     // It might be undefined, e.g. after an error.
     if (css && process.env.NODE_ENV === 'production') {
       const result1 = await prefixer.process(css, { from: undefined });

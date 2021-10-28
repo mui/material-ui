@@ -152,6 +152,12 @@ export default function useAutocomplete(props) {
 
   const resetInputValue = React.useCallback(
     (event, newValue) => {
+      // retain current `inputValue` if new option isn't selected and `clearOnBlur` is false
+      // When `multiple` is enabled, `newValue` is an array of all selected items including the newly selected item
+      const isOptionSelected = multiple ? value.length < newValue.length : newValue !== null;
+      if (!isOptionSelected && !clearOnBlur) {
+        return;
+      }
       let newInputValue;
       if (multiple) {
         newInputValue = '';
@@ -172,7 +178,7 @@ export default function useAutocomplete(props) {
         onInputChange(event, newInputValue, 'reset');
       }
     },
-    [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState],
+    [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState, clearOnBlur, value],
   );
 
   const prevValue = React.useRef();

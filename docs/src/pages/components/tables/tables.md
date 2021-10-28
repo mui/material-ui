@@ -122,7 +122,7 @@ Virtualization helps with performance issues.
 
 ## Accessibility
 
-(WAI tutorial: https://www.w3.org/WAI/tutorials/tables/)
+(WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
 
 ### Caption
 

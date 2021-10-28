@@ -60,4 +60,44 @@ describe('<YearPicker />', () => {
     expect(onChangeMock.callCount).to.equal(1);
     expect(onChangeMock.args[0][0]).toEqualDateTime(adapterToUse.date('2025-02-02T00:00:00.000'));
   });
+
+  it('does not allow to pick year if readOnly prop is passed', () => {
+    const onChangeMock = spy();
+    render(
+      <YearPicker
+        minDate={adapterToUse.date('2019-01-01T00:00:00.000')}
+        maxDate={adapterToUse.date('2029-01-01T00:00:00.000')}
+        isDateDisabled={() => false}
+        date={adapterToUse.date('2019-02-02T00:00:00.000')}
+        onChange={onChangeMock}
+        readOnly
+      />,
+    );
+    const targetYear = screen.getByRole('button', { name: '2025' });
+    expect(targetYear.tagName).to.equal('BUTTON');
+
+    fireEvent.click(targetYear);
+
+    expect(onChangeMock.callCount).to.equal(0);
+  });
+
+  it('does not allow to pick year if disabled prop is passed', () => {
+    const onChangeMock = spy();
+    render(
+      <YearPicker
+        minDate={adapterToUse.date('2019-01-01T00:00:00.000')}
+        maxDate={adapterToUse.date('2029-01-01T00:00:00.000')}
+        isDateDisabled={() => false}
+        date={adapterToUse.date('2019-02-02T00:00:00.000')}
+        onChange={onChangeMock}
+        disabled
+      />,
+    );
+    const targetYear = screen.getByRole('button', { name: '2025' });
+    expect(targetYear.tagName).to.equal('BUTTON');
+
+    fireEvent.click(targetYear);
+
+    expect(onChangeMock.callCount).to.equal(0);
+  });
 });

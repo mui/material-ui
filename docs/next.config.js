@@ -135,6 +135,7 @@ module.exports = {
                         '@mui/utils': '../packages/mui-utils/src',
                         '@mui/core': '../packages/mui-core/src',
                         '@mui/material-next': '../packages/mui-material-next/src',
+                        '@mui/joy': '../packages/mui-joy/src',
                       },
                       transformFunctions: ['require'],
                     },

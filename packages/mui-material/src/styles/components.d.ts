@@ -128,9 +128,6 @@ export interface Components {
     styleOverrides?: ComponentsOverrides['MuiContainer'];
     variants?: ComponentsVariants['MuiContainer'];
   };
-  /**
-   * @deprecated See CssBaseline.d.ts
-   */
   MuiCssBaseline?: {
     defaultProps?: ComponentsProps['MuiCssBaseline'];
     styleOverrides?: ComponentsOverrides['MuiCssBaseline'];
@@ -430,6 +427,10 @@ export interface Components {
     defaultProps?: ComponentsProps['MuiSpeedDialIcon'];
     styleOverrides?: ComponentsOverrides['MuiSpeedDialIcon'];
     variants?: ComponentsVariants['MuiSpeedDialIcon'];
+  };
+  MuiStack?: {
+    defaultProps?: ComponentsProps['MuiStack'];
+    variants?: ComponentsVariants['MuiStack'];
   };
   MuiStep?: {
     defaultProps?: ComponentsProps['MuiStep'];

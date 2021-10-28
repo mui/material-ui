@@ -266,4 +266,118 @@ describe('styleFunctionSx', () => {
       expect(result).to.deep.equal({ '& .test-classname': { background: 'rgb(0, 0, 255)' } });
     });
   });
+
+  describe('`sx` of function type', () => {
+    it('resolves system padding', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: () => ({
+          p: 1,
+        }),
+      });
+      expect(result).to.deep.equal({
+        padding: '10px',
+      });
+    });
+
+    it('resolves theme object', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: (userTheme) => userTheme.typography.body1,
+      });
+      expect(result).to.deep.equal({
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        fontSize: '1rem',
+        letterSpacing: `${round(0.15 / 16)}em`,
+        fontWeight: 400,
+        lineHeight: 1.5,
+      });
+    });
+
+    it('resolves a mix of theme object and system padding', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: (userTheme) => ({ p: 1, ...userTheme.typography.body1 }),
+      });
+      expect(result).to.deep.equal({
+        padding: '10px',
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        fontSize: '1rem',
+        letterSpacing: `${round(0.15 / 16)}em`,
+        fontWeight: 400,
+        lineHeight: 1.5,
+      });
+    });
+  });
+
+  describe('`sx` of array type', () => {
+    it('resolves system props', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: [
+          {
+            bgcolor: 'background.paper',
+            boxShadow: 1,
+            borderRadius: 1,
+            p: 2,
+            minWidth: 300,
+          },
+          {
+            bgcolor: 'primary.main',
+          },
+        ],
+      });
+      expect(result).to.deep.equal([
+        {
+          backgroundColor: 'background.paper',
+          borderRadius: 4,
+          boxShadow: 1,
+          minWidth: 300,
+          padding: '20px',
+        },
+        {
+          backgroundColor: 'rgb(0, 0, 255)',
+        },
+      ]);
+    });
+
+    it('works with function inside array', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: [
+          { bgcolor: 'primary.main' },
+          (t) => ({
+            borderRadius: t.spacing(1),
+          }),
+        ],
+      });
+
+      expect(result).to.deep.equal([
+        { backgroundColor: 'rgb(0, 0, 255)' },
+        { borderRadius: '10px' },
+      ]);
+    });
+
+    it('works with media query syntax', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: [{ border: [1, 2, 3, 4, 5] }, { m: [1, 2, 3], p: [5, 6, 7] }],
+      });
+
+      expect(result).to.deep.equal([
+        {
+          '@media (min-width:0px)': { border: '1px solid' },
+          '@media (min-width:600px)': { border: '2px solid' },
+          '@media (min-width:960px)': { border: '3px solid' },
+          '@media (min-width:1280px)': { border: '4px solid' },
+          '@media (min-width:1920px)': { border: '5px solid' },
+        },
+        {
+          '@media (min-width:0px)': { padding: '50px', margin: '10px' },
+          '@media (min-width:600px)': { padding: '60px', margin: '20px' },
+          '@media (min-width:960px)': { padding: '70px', margin: '30px' },
+        },
+      ]);
+    });
+  });
 });

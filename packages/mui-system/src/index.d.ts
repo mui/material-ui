@@ -107,6 +107,9 @@ export {
   GlobalStyles,
   GlobalStylesProps,
   StyledEngineProvider,
+  Interpolation,
+  CSSInterpolation,
+  CSSObject,
 } from '@mui/styled-engine';
 
 export * from './style';
@@ -154,3 +157,6 @@ export * from './colorManipulator';
 
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
+
+export { default as unstable_createCssVarsProvider } from './cssVars';
+export * from './cssVars';

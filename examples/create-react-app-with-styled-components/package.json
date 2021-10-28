@@ -15,10 +15,10 @@
     "styled-components": "latest"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
@@ -33,7 +33,6 @@
     ]
   },
   "devDependencies": {
-    "customize-cra": "latest",
-    "react-app-rewired": "latest"
+    "@craco/craco": "latest"
   }
 }

@@ -294,12 +294,22 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Benny Joo',
-    src: 'https://avatars.githubusercontent.com/u/32841130',
-    title: 'Intern',
+    src: '/static/branding/about/benny.jpg',
+    title: 'Core components team',
     location: 'London, UK',
     country: 'kr',
-    about: 'I do keto diet and love reading 📚',
+    about: 'Love reading 📚 and working out 🏋️‍♂️',
     github: 'hbjORbj',
+  },
+  {
+    src: '/static/branding/about/alexandre.jpg',
+    name: 'Alexandre Fauquette',
+    title: 'Advanced components team',
+    location: 'Nancy, France',
+    country: 'fr',
+    about: 'Love hacking and cycling 🚴‍♂️',
+    twitter: 'AleFauquette',
+    github: 'alexfauquette',
   },
 ];
 
@@ -678,7 +688,7 @@ function AboutContent() {
           <Grid item xs={12} sm={6} md={4}>
             <Widget
               icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />}
-              title="Suport us financially"
+              title="Support us financially"
             >
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 If you use MUI in a commercial project and would like to support its continued
