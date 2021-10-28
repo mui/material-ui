@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { CssVarsProvider } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
+import Switch from '@mui/joy/Switch';
 
 export default function Joy() {
   return (
@@ -32,6 +33,12 @@ export default function Joy() {
           <Button size="large" variant="outlined">
             Button
           </Button>
+        </div>
+      </div>
+      <br />
+      <div style={{ display: 'grid', gap: 16 }}>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <Switch />
         </div>
       </div>
     </CssVarsProvider>
