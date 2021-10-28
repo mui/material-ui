@@ -679,7 +679,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         transition
         {...interactiveWrapperListeners}
         {...popperProps}
-        className={clsx(classes.popper, componentsProps.popper?.className)}
+        className={clsx(classes.popper, PopperProps?.className, componentsProps.popper?.className)}
         popperOptions={popperOptions}
       >
         {({ TransitionProps: TransitionPropsInner }) => (
@@ -743,6 +743,8 @@ Tooltip.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The props used for each slot inside the Tooltip.
+   * Note that `componentsProps.popper` prop values win over `PopperProps`
+   * and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
    * @default {}
    */
   componentsProps: PropTypes.object,
