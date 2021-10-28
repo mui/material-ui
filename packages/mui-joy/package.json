@@ -1,7 +1,7 @@
 {
   "name": "@mui/joy",
-  "version": "0.1.0-alpha.1",
-  "private": true,
+  "version": "0.1.0-alpha.0",
+  "private": false,
   "author": "MUI Team",
   "description": "Joy design system — React components",
   "main": "./src/index.ts",
