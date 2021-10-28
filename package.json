@@ -77,11 +77,11 @@
     "@babel/register": "^7.15.3",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@eps1lon/enzyme-adapter-react-17": "npm:@eps1lon/enzyme-adapter-react-next",
+    "@eps1lon/enzyme-adapter-react-17": "^0.1.0",
     "@octokit/rest": "^18.12.0",
     "@rollup/plugin-replace": "^3.0.0",
     "@testing-library/dom": "^8.10.1",
-    "@testing-library/react": "alpha",
+    "@testing-library/react": "^12.1.2",
     "@types/chai": "^4.2.22",
     "@types/chai-dom": "^0.0.11",
     "@types/enzyme": "^3.10.10",
@@ -196,12 +196,7 @@
     "**/@types/react": "^17.0.33",
     "**/@types/react-dom": "^17.0.10",
     "**/cross-fetch": "^3.1.4",
-    "**/react-is": "^17.0.2",
-    "scheduler": "0.21.0-alpha-6c3dcc7a4-20211027",
-    "react-is": "18.0.0-alpha-6c3dcc7a4-20211027",
-    "react-test-renderer": "18.0.0-alpha-6c3dcc7a4-20211027",
-    "react-dom": "18.0.0-alpha-6c3dcc7a4-20211027",
-    "react": "18.0.0-alpha-6c3dcc7a4-20211027"
+    "**/react-is": "^17.0.2"
   },
   "nyc": {
     "include": [
