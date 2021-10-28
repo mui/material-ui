@@ -113,6 +113,11 @@ Mask is no longer required. Also, if your provided mask is not valid, pickers wi
 />
 ```
 
+## Clearable
+
+The `clearable` prop, which was previously supported on desktop and mobile date-pickers, is now only
+supported on the MobileDatePicker view.
+
 ## And many more
 
 - ```diff
