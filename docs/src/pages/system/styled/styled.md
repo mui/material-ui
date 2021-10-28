@@ -195,3 +195,68 @@ const MyStyledButton = (props) => (
   </button>
 })
 ```
+
+## How to use components selector API
+
+If you've been using the `styled()` API prior to it being adopted in MUI you may have used the components as selectors API available in both [`emotion`](https://emotion.sh/docs/styled#targeting-another-emotion-component) and [`styled-components`](https://styled-components.com/docs/advanced#referring-to-other-components). For example:
+
+```jsx
+import styled from '@emotion/styled';
+
+const Child = styled.div`
+  color: red;
+`;
+
+const Parent = styled.div`
+  ${Child} {
+    color: green;
+  }
+`;
+
+render(
+  <div>
+    <Parent>
+      <Child>Green because I am inside a Parent</Child>
+    </Parent>
+    <Child>Red because I am not inside a Parent</Child>
+  </div>,
+);
+```
+
+While this still works when using `@mui/styled-engine-sc` (`styled-components`), in emotion, the API is available by using the [`@emotion/babel-plugin`](https://emotion.sh/docs/@emotion/babel-plugin). So, the first thing to do is to install the plugin:
+
+```sh
+npm install @emotion/babel-plugin
+```
+
+In order fo this API to be available for the `styled()` utility exported from `@mui/system` or `@mui/material/styles` you need to configure the plugin to consider these imports too, via the `importMap` option.
+
+**babel.config.js**
+
+```js
+module.exports = {
+  ...
+  plugins: [
+    [
+      "@emotion",
+      {
+        importMap: {
+          "@mui/system": {
+            styled: {
+              canonicalImport: ["@emotion/styled", "default"],
+              styledBaseImport: ["@mui/system", "styled"]
+            }
+          },
+          "@mui/material/styles": {
+            styled: {
+              canonicalImport: ["@emotion/styled", "default"],
+              styledBaseImport: ["@mui/material/styles", "styled"]
+            }
+          }
+        }
+      }
+    ]
+  ]
+};
+
+```
