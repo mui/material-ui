@@ -93,3 +93,105 @@ const styled = createStyled({ defaultTheme });
 
 export default styled;
 ```
+
+## Difference with the `sx` prop
+
+The `styled` function is an extension of the `styled` utility provided by the underlying style library used – either emotion or styled-components.
+It is guaranteed that it will produce the same output as the `styled` function coming from the style library for the same input.
+
+The [`sx`](/system/the-sx-prop/) prop, on the other hand, is a new way of styling your components, focused on fast customization. `styled` is a function, while `sx` is a prop of the MUI components.
+
+Therefore, you will notice the following differences:
+
+### `sx` provides more shortcuts than `styled`
+
+With `styled`:
+
+```js
+const MyStyledButton = styled('button')({
+  mx: 1, // ❌ don't use this! This shortcut is only provided by the `sx` prop
+});
+```
+
+With `sx`:
+
+```js
+const MyStyledButton = (props) => (
+  <button sx={{
+    mx: 1, // ✔️ this shortcut is specific to the `sx` prop,
+  }}>
+     {props.children}
+  </button>
+})
+```
+
+### The style definition varies slightly
+
+With `styled`:
+
+```js
+const MyStyledButton = styled('button')({
+  padding: 1, // means "1px", NOT "theme.spacing(1)"
+});
+```
+
+With `sx`:
+
+```js
+const MyStyledButton = (props) => (
+  <button sx={{
+    padding: 1 // means "theme.spacing(1)", NOT "1px"
+  }}>
+     {props.children}
+  </button>
+})
+```
+
+### Patterns for how to use props differ
+
+With `styled`:
+
+```js
+const MyStyledButton = styled('button')((props) => ({
+  backgroundColor: props.myBackgroundColor,
+}));
+```
+
+With `sx`:
+
+```js
+const MyStyledButton = (props) => (
+  <button sx={{backgroundColor: props.myCustomColor}}>
+     {props.children}
+  </button>
+})
+```
+
+### Parameter when using function are different for each field
+
+With `styled` (not recommended):
+
+```js
+// You may find this syntax in the wild, but for code readability
+// we recommend using only one top-level function
+const MyStyledButtonPropsPerField = styled('button')({
+  backgroundColor: (props) => props.myBackgroundColor,
+});
+```
+
+With `sx`:
+
+```js
+import { lighten } from "polished"
+const MyStyledButton = (props) => (
+  <button sx={{backgroundColor: theme => lighten(0.2,theme.palette.primary.main)}}>
+     {props.children}
+  </button>
+})
+// Note: for direct theme access without modification, you can also use a shortcut by providing the key as a string
+const MyStyledButton = (props) => (
+  <button sx={{backgroundColor: "primary.main"}}>
+     {props.children}
+  </button>
+})
+```
