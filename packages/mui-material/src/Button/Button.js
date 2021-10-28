@@ -294,21 +294,29 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const {
     children,
     className,
-    color = colorContext || 'primary',
+    color: colorProp = 'primary',
     component = 'button',
-    disabled = disabledContext || false,
-    disableElevation = disableElevationContext || false,
-    disableFocusRipple = disableFocusRippleContext || false,
+    disabled: disabledProp = false,
+    disableElevation: disableElevationProp = false,
+    disableFocusRipple: disableFocusRippleProp = false,
     disableRipple = disableRippleContext,
     endIcon: endIconProp,
     focusVisibleClassName,
-    fullWidth = fullWidthContext || false,
-    size = sizeContext || 'medium',
+    fullWidth: fullWidthProp = false,
+    size: sizeProp = 'medium',
     startIcon: startIconProp,
     type,
-    variant = variantContext || 'text',
+    variant: variantProp = 'text',
     ...other
   } = props;
+
+  const color = colorContext || colorProp;
+  const disabled = disabledContext || disabledProp;
+  const disableElevation = disableElevationContext || disableElevationProp;
+  const disableFocusRipple = disableFocusRippleContext || disableFocusRippleProp;
+  const fullWidth = fullWidthContext || fullWidthProp;
+  const size = sizeContext || sizeProp;
+  const variant = variantContext || variantProp;
 
   const ownerState = {
     ...props,
