@@ -18,6 +18,8 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
     fullWidth,
     size,
     variant,
+    startIcon,
+    endIcon,
   } = ownerState;
 
   const slots = {
@@ -29,9 +31,9 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       `variant${capitalize(variant!)}`,
       `color${capitalize(color!)}`,
       `size${capitalize(size!)}`,
+      !!startIcon && 'startIcon',
+      !!endIcon && 'endIcon',
     ],
-    startIcon: ['startIcon'],
-    endIcon: ['endIcon'],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
@@ -175,11 +177,11 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const ownerState = {
     ...props,
-    color,
     component,
-    focusVisible,
-    size,
+    color,
     variant,
+    size,
+    focusVisible,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -187,12 +189,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       as={ComponentProp}
-      className={clsx(
-        classes.root,
-        startIcon && classes.startIcon,
-        endIcon && classes.endIcon,
-        className,
-      )}
+      className={clsx(classes.root, className)}
       ownerState={ownerState}
       {...other}
       {...getRootProps()}
