@@ -101,6 +101,18 @@ describe('<Select> integration', () => {
   });
 
   describe('with label', () => {
+    /**
+     * @type {ReturnType<typeof useFakeTimers>}
+     */
+    let clock;
+    beforeEach(() => {
+      clock = useFakeTimers();
+    });
+
+    afterEach(() => {
+      clock.restore();
+    });
+
     it('requires `id` and `labelId` for a proper accessible name', () => {
       const { getByRole } = render(
         <FormControl>
@@ -125,7 +137,12 @@ describe('<Select> integration', () => {
           <InputLabel classes={{ focused: 'focused-label' }} data-testid="label">
             Age
           </InputLabel>
-          <Select value="">
+          <Select
+            MenuProps={{
+              transitionDuration: 0,
+            }}
+            value=""
+          >
             <MenuItem value="">none</MenuItem>
             <MenuItem value={10}>Ten</MenuItem>
           </Select>
@@ -137,6 +154,9 @@ describe('<Select> integration', () => {
         trigger.focus();
       });
       fireEvent.keyDown(trigger, { key: 'Enter' });
+      act(() => {
+        clock.tick(0);
+      });
 
       expect(getByTestId('label')).to.have.class('focused-label');
     });
