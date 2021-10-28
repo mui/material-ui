@@ -365,12 +365,15 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     const rootNode = rootRef.current;
     const { right, left } = rootNode.getBoundingClientRect();
     const { width } = rootNode.firstChild.getBoundingClientRect();
+    const marginLeft = parseInt(window.getComputedStyle(rootNode.firstChild).marginLeft, 10);
+    const marginRight = parseInt(window.getComputedStyle(rootNode.firstChild).marginRight, 10);
+    const margin = marginLeft + marginRight;
     let percent;
 
     if (theme.direction === 'rtl') {
-      percent = (right - event.clientX) / (width * max);
+      percent = (right - event.clientX) / ((width + margin) * max);
     } else {
-      percent = (event.clientX - left) / (width * max);
+      percent = (event.clientX - left) / ((width + margin) * max);
     }
 
     let newHover = roundValueToPrecision(max * percent + precision / 2, precision);
