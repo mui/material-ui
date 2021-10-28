@@ -744,8 +744,12 @@ describe('<Popover />', () => {
 
       expect(typeof popoverActions.updatePosition === 'function').to.equal(true);
 
-      popoverActions.updatePosition();
-      clock.tick(166);
+      act(() => {
+        popoverActions.updatePosition();
+      });
+      act(() => {
+        clock.tick(166);
+      });
 
       const afterStyle = {
         top: element.style.top,

@@ -727,7 +727,9 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(getByRole('tooltip'));
-      clock.tick(111 + 10);
+      act(() => {
+        clock.tick(111 + 10);
+      });
 
       expect(getByRole('tooltip')).toBeVisible();
     });
