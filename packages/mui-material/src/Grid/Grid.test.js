@@ -4,7 +4,7 @@ import { describeConformance, createClientRender, screen } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
-import { generateRowGap, generateColumnGap } from './Grid';
+import { generateRowGap, generateColumnGap, generateDirection } from './Grid';
 
 describe('<Grid />', () => {
   const render = createClientRender();
@@ -94,6 +94,59 @@ describe('<Grid />', () => {
     });
   });
 
+  describe('prop: direction', () => {
+    it('should have a direction', () => {
+      const { container } = render(<Grid container direction="column" />);
+      expect(container.firstChild).toHaveComputedStyle({ flexDirection: 'column' });
+    });
+
+    it('should support responsive values', () => {
+      const theme = createTheme();
+      expect(
+        generateDirection({
+          ownerState: {
+            container: true,
+            direction: { xs: 'row', sm: 'column' },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          flexDirection: 'row',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          flexDirection: 'column',
+          '& > .MuiGrid-item': {
+            maxWidth: 'none',
+          },
+        },
+      });
+    });
+
+    it('should generate correct responsive styles regardless of breakpoints order', () => {
+      const theme = createTheme();
+      expect(
+        generateDirection({
+          ownerState: {
+            container: true,
+            direction: { sm: 'column', xs: 'row' },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          flexDirection: 'row',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          flexDirection: 'column',
+          '& > .MuiGrid-item': {
+            maxWidth: 'none',
+          },
+        },
+      });
+    });
+  });
+
   describe('prop: spacing', () => {
     it('should have a spacing', () => {
       const { container } = render(<Grid container spacing={1} />);
@@ -112,56 +165,107 @@ describe('<Grid />', () => {
         paddingLeft: '12px',
       });
     });
-  });
 
-  it('should generate responsive styles', () => {
-    const theme = createTheme();
-    expect(
-      generateRowGap({
-        ownerState: {
-          container: true,
-          rowSpacing: { xs: 1, sm: 2 },
+    it('should generate correct responsive styles', () => {
+      const theme = createTheme();
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: { xs: 1, sm: 2 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '8px',
+          },
+          marginTop: '-8px',
         },
-        theme,
-      }),
-    ).to.deep.equal({
-      '@media (min-width:0px)': {
-        '& > .MuiGrid-item': {
-          paddingTop: '8px',
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          '& > .MuiGrid-item': {
+            paddingTop: '16px',
+          },
+          marginTop: '-16px',
         },
-        marginTop: '-8px',
-      },
-      [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
-        '& > .MuiGrid-item': {
-          paddingTop: '16px',
+      });
+
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: { xs: 1, sm: 2 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '8px',
+          },
+          marginLeft: '-8px',
+          width: 'calc(100% + 8px)',
         },
-        marginTop: '-16px',
-      },
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          '& > .MuiGrid-item': {
+            paddingLeft: '16px',
+          },
+          marginLeft: '-16px',
+          width: 'calc(100% + 16px)',
+        },
+      });
     });
 
-    expect(
-      generateColumnGap({
-        ownerState: {
-          container: true,
-          columnSpacing: { xs: 1, sm: 2 },
+    it('should generate correct responsive styles regardless of breakpoints order ', () => {
+      const theme = createTheme();
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: { sm: 2, xs: 1 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '8px',
+          },
+          marginTop: '-8px',
         },
-        theme,
-      }),
-    ).to.deep.equal({
-      '@media (min-width:0px)': {
-        '& > .MuiGrid-item': {
-          paddingLeft: '8px',
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          '& > .MuiGrid-item': {
+            paddingTop: '16px',
+          },
+          marginTop: '-16px',
         },
-        marginLeft: '-8px',
-        width: 'calc(100% + 8px)',
-      },
-      [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
-        '& > .MuiGrid-item': {
-          paddingLeft: '16px',
+      });
+
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: { sm: 2, xs: 1 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '8px',
+          },
+          marginLeft: '-8px',
+          width: 'calc(100% + 8px)',
         },
-        marginLeft: '-16px',
-        width: 'calc(100% + 16px)',
-      },
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          '& > .MuiGrid-item': {
+            paddingLeft: '16px',
+          },
+          marginLeft: '-16px',
+          width: 'calc(100% + 16px)',
+        },
+      });
     });
   });
 

@@ -56,11 +56,15 @@ function generateGrid(globalStyles, theme, breakpoint, ownerState) {
   } else {
     const columnsBreakpointValues = resolveBreakpointValues({
       values: ownerState.columns,
-      base: theme.breakpoints.values,
+      breakpoints: theme.breakpoints.values,
     });
 
+    const columnValue =
+      typeof columnsBreakpointValues === 'object'
+        ? columnsBreakpointValues[breakpoint]
+        : columnsBreakpointValues;
     // Keep 7 significant numbers.
-    const width = `${Math.round((size / columnsBreakpointValues[breakpoint]) * 10e7) / 10e5}%`;
+    const width = `${Math.round((size / columnValue) * 10e7) / 10e5}%`;
     let more = {};
 
     if (ownerState.container && ownerState.item && ownerState.columnSpacing !== 0) {
@@ -92,8 +96,13 @@ function generateGrid(globalStyles, theme, breakpoint, ownerState) {
   }
 }
 
-function generateDirection({ theme, ownerState }) {
-  return handleBreakpoints({ theme }, ownerState.direction, (propValue) => {
+export function generateDirection({ theme, ownerState }) {
+  const directionValues = resolveBreakpointValues({
+    values: ownerState.direction,
+    breakpoints: theme.breakpoints.values,
+  });
+
+  return handleBreakpoints({ theme }, directionValues, (propValue) => {
     const output = {
       flexDirection: propValue,
     };
@@ -113,7 +122,12 @@ export function generateRowGap({ theme, ownerState }) {
   let styles = {};
 
   if (container && rowSpacing !== 0) {
-    styles = handleBreakpoints({ theme }, rowSpacing, (propValue) => {
+    const rowSpacingValues = resolveBreakpointValues({
+      values: rowSpacing,
+      breakpoints: theme.breakpoints.values,
+    });
+
+    styles = handleBreakpoints({ theme }, rowSpacingValues, (propValue) => {
       const themeSpacing = theme.spacing(propValue);
 
       if (themeSpacing !== '0px') {
@@ -137,9 +151,13 @@ export function generateColumnGap({ theme, ownerState }) {
   let styles = {};
 
   if (container && columnSpacing !== 0) {
-    styles = handleBreakpoints({ theme }, columnSpacing, (propValue) => {
-      const themeSpacing = theme.spacing(propValue);
+    const columnSpacingValues = resolveBreakpointValues({
+      values: columnSpacing,
+      breakpoints: theme.breakpoints.values,
+    });
 
+    styles = handleBreakpoints({ theme }, columnSpacingValues, (propValue) => {
+      const themeSpacing = theme.spacing(propValue);
       if (themeSpacing !== '0px') {
         return {
           width: `calc(100% + ${getOffset(themeSpacing)})`,
