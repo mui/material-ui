@@ -35,6 +35,7 @@
     "open": "Control the popup or dialog open state.",
     "OpenPickerButtonProps": "Props to pass to keyboard adornment button.",
     "orientation": "Force rendering in particular orientation.",
+    "PaperProps": "Paper props passed down to <a href=\"https://mui.com/api/paper/\">Paper</a> component.",
     "PopperProps": "Popper props passed down to <a href=\"https://mui.com/api/popper/\">Popper</a> component.",
     "readOnly": "Make picker read only.",
     "reduceAnimations": "Disable heavy animations.",

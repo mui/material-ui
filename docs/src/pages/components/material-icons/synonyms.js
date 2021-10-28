@@ -757,6 +757,7 @@ const synonyms = {
   Timeline: 'analytics chart graph history line movement points trending zigzap',
   Timer: 'clock stopwatch wait',
   TimerOff: 'clock stopwatch',
+  TipsAndUpdates: 'bulb lamp light',
   Toc: 'content format lines list reorder stacked table text titles',
   Today: 'agenda calendar date event mark month range remember reminder week',
   Toll: 'booth car circles payment ticket',

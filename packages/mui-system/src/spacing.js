@@ -59,6 +59,12 @@ const marginKeys = [
   'marginLeft',
   'marginX',
   'marginY',
+  'marginInline',
+  'marginInlineStart',
+  'marginInlineEnd',
+  'marginBlock',
+  'marginBlockStart',
+  'marginBlockEnd',
 ];
 
 const paddingKeys = [
@@ -76,6 +82,12 @@ const paddingKeys = [
   'paddingLeft',
   'paddingX',
   'paddingY',
+  'paddingInline',
+  'paddingInlineStart',
+  'paddingInlineEnd',
+  'paddingBlock',
+  'paddingBlockStart',
+  'paddingBlockEnd',
 ];
 
 const spacingKeys = [...marginKeys, ...paddingKeys];

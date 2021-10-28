@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { MUIStyledCommonProps, SxProps } from '@mui/system';
+import { PopperProps } from '@mui/core/Popper';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
-import { PopperProps } from '../Popper/Popper';
 import { TooltipClasses } from './tooltipClasses';
 
 export interface TooltipComponentsPropsOverrides {}
@@ -167,7 +167,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children?: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<any, any> }
   >;
   /**
    * Props applied to the transition element.
