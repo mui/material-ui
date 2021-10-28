@@ -147,6 +147,7 @@ const commonjsOptions = {
       'Memo',
       'isValidElementType',
     ],
+    '../../node_modules/use-sync-external-store/index.js': ['useSyncExternalStore'],
   },
 };
 const nodeOptions = {
