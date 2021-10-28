@@ -14,11 +14,27 @@ import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import IconButton from '@mui/material/IconButton';
 
-const SearchButton = styled(IconButton)(({ theme }) => {
+const SearchButton = styled('button')(({ theme }) => {
   return {
+    minHeight: 33,
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: theme.spacing(1),
+    [theme.breakpoints.only('xs')]: {
+      backgroundColor: 'transparent',
+      padding: 0,
+      minWidth: 33,
+      justifyContent: 'center',
+      '& > *:not(:first-child)': {
+        display: 'none',
+      },
+    },
+    [theme.breakpoints.up('sm')]: {
+      minWidth: 210,
+    },
     fontFamily: theme.typography.fontFamily,
+    position: 'relative',
     backgroundColor:
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.grey[50],
     '&:hover': {
@@ -31,6 +47,7 @@ const SearchButton = styled(IconButton)(({ theme }) => {
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200]
     }`,
     borderRadius: 10,
+    cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
   };
@@ -38,11 +55,8 @@ const SearchButton = styled(IconButton)(({ theme }) => {
 
 const SearchLabel = styled('span')(({ theme }) => {
   return {
-    display: 'none',
-    marginLeft: theme.spacing(0.5),
-    [theme.breakpoints.up('sm')]: {
-      display: 'inline-flex',
-    },
+    marginLeft: theme.spacing(1),
+    marginRight: 'auto',
   };
 });
 
@@ -220,16 +234,13 @@ export default function AppSearch() {
           sx={{
             color: (theme) =>
               theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.primary[500],
-            marginleft: 0.5,
           }}
         />
-        <SearchLabel>
-          {search}
-          <Shortcut>
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-            {macOS ? '⌘' : 'Ctrl+'}K
-          </Shortcut>
-        </SearchLabel>
+        <SearchLabel>{search}</SearchLabel>
+        <Shortcut>
+          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+          {macOS ? '⌘' : 'Ctrl+'}K
+        </Shortcut>
       </SearchButton>
       {isOpen &&
         createPortal(
@@ -353,7 +364,8 @@ export default function AppSearch() {
                 border: '1px solid',
                 borderColor: theme.palette.primaryDark[700],
               }),
-              borderRadius: theme.shape.borderRadius,
+              // docsearch.css: <= 750px will be full screen modal
+              borderRadius: `clamp(0px, (100vw - 750px) * 9999, ${theme.shape.borderRadius}px)`,
             },
             '& .DocSearch-SearchBar': {
               borderBottom: '1px solid',
