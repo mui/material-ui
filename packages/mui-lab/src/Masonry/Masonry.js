@@ -240,7 +240,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
     // IE and old browsers are not supported
     if (typeof ResizeObserver === 'undefined') {
-      return null;
+      return undefined;
     }
     const resizeObserver = new ResizeObserver(handleResize);
 
