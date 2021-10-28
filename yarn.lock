@@ -2884,9 +2884,9 @@
     pretty-format "^27.0.2"
 
 "@testing-library/react@alpha":
-  version "13.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-13.0.0-alpha.1.tgz#e6e1515ee55dd2b8efd35a532368ec40a7af45df"
-  integrity sha512-v9iYmsQAp2dXY4OU23Xmk9qTvUy9rWYpEgQASDQ5Tp6BHc057SVEz/FSuesNbQSsRx8Z74bD11V/jgps24nLRQ==
+  version "13.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-13.0.0-alpha.3.tgz#46bb30793489e5bf22e90fc128407e305bb66c82"
+  integrity sha512-QSZ5K7D4Q4Xa0n2Xtf/mXfeVsjANkOPspereGIzh26Ro4bsUGPFtHdYjzbQhD+w3K7zEoAnh6gIIPhyB04BPog==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^8.5.0"
