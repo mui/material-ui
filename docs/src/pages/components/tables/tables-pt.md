@@ -2,7 +2,7 @@
 title: Componente React Tabela
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: Table'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
+waiAria: https://www.w3.org/TR/wai-aria-practices/#table
 materialDesign: https://material.io/components/data-tables
 ---
 
@@ -113,7 +113,7 @@ No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://git
 
 ## Acessibilidade
 
-(WAI tutorial: https://www.w3.org/WAI/tutorials/tables/)
+(WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
 
 ### Caption
 

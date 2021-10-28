@@ -10,7 +10,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLTextAreaElement",
-  "filename": "/packages/mui-material/src/TextareaAutosize/TextareaAutosize.js",
+  "filename": "/packages/mui-core/src/TextareaAutosize/TextareaAutosize.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/textarea-autosize/\">Textarea Autosize</a></li></ul>",
   "cssComponent": false

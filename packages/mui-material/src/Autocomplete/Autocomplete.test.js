@@ -850,6 +850,61 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: clearOnBlur', () => {
+    it('should clear on blur', () => {
+      render(
+        <Autocomplete
+          clearOnBlur
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+      fireEvent.change(textbox, { target: { value: 'test' } });
+      expect(document.activeElement.value).to.equal('test');
+      act(() => {
+        textbox.blur();
+      });
+      expect(textbox.value).to.equal('');
+    });
+
+    it('should not clear on blur', () => {
+      render(
+        <Autocomplete
+          clearOnBlur={false}
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+      fireEvent.change(textbox, { target: { value: 'test' } });
+      expect(document.activeElement.value).to.equal('test');
+      act(() => {
+        textbox.blur();
+      });
+      expect(textbox.value).to.equal('test');
+    });
+
+    it('should not clear on blur with `multiple` enabled', () => {
+      render(
+        <Autocomplete
+          multiple
+          clearOnBlur={false}
+          options={['one', 'two']}
+          defaultValue={['one']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+      fireEvent.change(textbox, { target: { value: 'test' } });
+      expect(document.activeElement.value).to.equal('test');
+      act(() => {
+        textbox.blur();
+      });
+      expect(textbox.value).to.equal('test');
+    });
+  });
+
   describe('when popup open', () => {
     it('closes the popup if Escape is pressed ', () => {
       const handleClose = spy();
