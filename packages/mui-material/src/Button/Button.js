@@ -294,30 +294,30 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const {
     children,
     className,
-    color: colorProp = 'primary',
+    color: colorProp,
     component = 'button',
-    disabled: disabledProp = false,
-    disableElevation: disableElevationProp = false,
-    disableFocusRipple: disableFocusRippleProp = false,
-    disableRipple: disableRippleProp = false,
+    disabled: disabledProp,
+    disableElevation: disableElevationProp,
+    disableFocusRipple: disableFocusRippleProp,
+    disableRipple: disableRippleProp,
     endIcon: endIconProp,
     focusVisibleClassName,
-    fullWidth: fullWidthProp = false,
-    size: sizeProp = 'medium',
+    fullWidth: fullWidthProp,
+    size: sizeProp,
     startIcon: startIconProp,
     type,
-    variant: variantProp = 'text',
+    variant: variantProp,
     ...other
   } = props;
 
-  const color = colorContext || colorProp;
-  const disabled = disabledContext || disabledProp;
-  const disableElevation = disableElevationContext || disableElevationProp;
-  const disableFocusRipple = disableFocusRippleContext || disableFocusRippleProp;
-  const fullWidth = fullWidthContext || fullWidthProp;
-  const size = sizeContext || sizeProp;
-  const variant = variantContext || variantProp;
-  const disableRipple = disableRippleContext || disableRippleProp;
+  const color = colorProp || colorContext || 'primary';
+  const disabled = disabledProp || disabledContext || false;
+  const disableElevation = disableElevationProp || disableElevationContext || false;
+  const disableFocusRipple = disableFocusRippleProp || disableFocusRippleContext || false;
+  const fullWidth = fullWidthProp || fullWidthContext || false;
+  const size = sizeProp || sizeContext || 'medium';
+  const variant = variantProp || variantContext || 'text';
+  const disableRipple = disableRippleProp || disableRippleContext || false;
 
   const ownerState = {
     ...props,
