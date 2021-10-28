@@ -3,7 +3,7 @@ import { createClientRender, describeConformance } from 'test/utils';
 import Masonry, { masonryClasses as classes } from '@mui/lab/Masonry';
 import { expect } from 'chai';
 import { createTheme } from '@mui/material/styles';
-import { getStyle } from './Masonry';
+import { getStyle, parseToNumber } from './Masonry';
 
 describe('<Masonry />', () => {
   const render = createClientRender();
@@ -25,9 +25,6 @@ describe('<Masonry />', () => {
 
   const theme = createTheme({ spacing: 8 });
   const maxColumnHeight = 100;
-  const parseToNumber = (val) => {
-    return Number(val.replace('px', ''));
-  };
 
   describe('render', () => {
     it('should render with correct default styles', function test() {

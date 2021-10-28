@@ -12,6 +12,10 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { getMasonryUtilityClass } from './masonryClasses';
 
+export const parseToNumber = (val) => {
+  return Number(val.replace('px', ''));
+};
+
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
@@ -183,8 +187,8 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       const parentWidth = masonryRef.current.clientWidth;
       const childWidth = masonryRef.current.firstChild.clientWidth;
       const firstChildComputedStyle = window.getComputedStyle(masonryRef.current.firstChild);
-      const firstChildMarginLeft = Number(firstChildComputedStyle.marginLeft.replace('px', ''));
-      const firstChildMarginRight = Number(firstChildComputedStyle.marginRight.replace('px', ''));
+      const firstChildMarginLeft = parseToNumber(firstChildComputedStyle.marginLeft);
+      const firstChildMarginRight = parseToNumber(firstChildComputedStyle.marginRight);
 
       if (parentWidth === 0 || childWidth === 0) {
         return;
@@ -201,11 +205,11 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
           return;
         }
         const childComputedStyle = window.getComputedStyle(child);
-        const childMarginTop = Number(childComputedStyle.marginTop.replace('px', ''));
-        const childMarginBottom = Number(childComputedStyle.marginBottom.replace('px', ''));
+        const childMarginTop = parseToNumber(childComputedStyle.marginTop);
+        const childMarginBottom = parseToNumber(childComputedStyle.marginBottom);
         // if any one of children isn't rendered yet, masonry's height shouldn't be computed yet
-        const childHeight = child.clientHeight
-          ? Math.ceil(child.clientHeight) + childMarginTop + childMarginBottom
+        const childHeight = parseToNumber(childComputedStyle.height)
+          ? Math.ceil(parseToNumber(childComputedStyle.height)) + childMarginTop + childMarginBottom
           : 0;
         if (childHeight === 0) {
           skip = true;
@@ -252,7 +256,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     return () => {
       resizeObserver.disconnect();
     };
-  }, [columns, spacing]);
+  }, [columns, spacing, children]);
 
   const handleRef = useForkRef(ref, masonryRef);
   const lineBreakStyle = {
