@@ -35,7 +35,7 @@
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
     "src:download": "cd ../../ && babel-node --config-file ./babel.config.js packages/mui-icons-material/scripts/download.js",
-    "src:icons": "cd ../../ && UV_THREADPOOL_SIZE=64 babel-node --config-file ./babel.config.js packages/mui-icons-material/builder.js --output-dir packages/mui-icons-material/src --svg-dir packages/mui-icons-material/material-icons --renameFilter ./renameFilters/material-design-icons.js && cd packages/mui-icons-material && yarn build:lib:clean",
+    "src:icons": "cd ../../ && cross-env UV_THREADPOOL_SIZE=64 babel-node --config-file ./babel.config.js packages/mui-icons-material/builder.js --output-dir packages/mui-icons-material/src --svg-dir packages/mui-icons-material/material-icons --renameFilter ./renameFilters/material-design-icons.js && cd packages/mui-icons-material && yarn build:lib:clean",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-icons-material/**/*.test.{js,ts,tsx}'",
     "test:built-typings": "tslint -p test/generated-types/tsconfig.json \"test/generated-types/*.{ts,tsx}\"",
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
