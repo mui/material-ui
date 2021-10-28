@@ -247,6 +247,45 @@ describe('createCssVarsProvider', () => {
     });
   });
 
+  /**
+   * This can occur if two application use default storage key
+   * App I: supported color scheme ['light', 'dark', 'purple']
+   * App II: supported color scheme ['light', 'dark', 'orange']
+   *
+   * If you are one App I with color scheme 'purple', when open App II it should fallback
+   * to default color scheme of App II because App II does not support 'purple'
+   */
+  describe('Unsupported color scheme', () => {
+    const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+      theme: {
+        colorSchemes: {
+          light: {
+            color: 'light',
+          },
+          dark: {
+            color: 'dark',
+          },
+        },
+      },
+      defaultColorScheme: 'light',
+    });
+    const Color = () => {
+      const theme = React.useContext(ThemeContext);
+      return <div data-testid="color">{theme.vars.color}</div>;
+    };
+    it('use default color scheme if the storage value does not exist', () => {
+      storage[DEFAULT_STORAGE_KEY] = 'unknown';
+
+      render(
+        <CssVarsProvider>
+          <Color />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('color').textContent).to.equal('var(--color)');
+    });
+  });
+
   describe('[Application] Customization', () => {
     it('merge custom theme', () => {
       const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {

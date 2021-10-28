@@ -27,8 +27,9 @@ export type IconImageProps = {
     | 'deloitte'
     | 'volvo';
   sx?: SxProps<Theme>;
+  ref?: React.Ref<HTMLImageElement>;
   title?: string;
-} & JSX.IntrinsicElements['img'];
+} & Omit<JSX.IntrinsicElements['img'], 'ref'>;
 
 const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 

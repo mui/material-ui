@@ -36,3 +36,13 @@ However, you can configure it to respond to the leading events (mouse down + tou
 {{"demo": "pages/components/click-away-listener/LeadingClickAway.js"}}
 
 > ⚠️ In this mode, only interactions on the scrollbar of the document is ignored.
+
+## Unstyled
+
+- 📦 [784 B gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
+
+As the component does not have any styles, it also comes with the unstyled package.
+
+```js
+import ClickAwayListener from '@mui/core/ClickAwayListener';
+```

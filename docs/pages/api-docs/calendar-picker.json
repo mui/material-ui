@@ -2,6 +2,7 @@
   "props": {
     "onChange": { "type": { "name": "func" }, "required": true },
     "defaultCalendarMonth": { "type": { "name": "any" } },
+    "disabled": { "type": { "name": "bool" } },
     "loading": { "type": { "name": "bool" } },
     "maxDate": { "type": { "name": "any" } },
     "minDate": { "type": { "name": "any" } },
@@ -14,6 +15,7 @@
       },
       "default": "'day'"
     },
+    "readOnly": { "type": { "name": "bool" } },
     "reduceAnimations": {
       "type": { "name": "bool" },
       "default": "typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)"

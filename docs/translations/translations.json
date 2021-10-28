@@ -306,6 +306,7 @@
     "/customization/unstyled-components": "Unstyled Components",
     "/guides": "How To Guides",
     "/guides/classname-generator": "ClassName Generator",
+    "/guides/understand-mui-packages": "Understand MUI packages",
     "/guides/typescript": "TypeScript",
     "/guides/interoperability": "Style Library Interoperability",
     "/guides/styled-engine": "Styled Engine",
