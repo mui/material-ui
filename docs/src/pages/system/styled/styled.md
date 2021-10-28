@@ -104,13 +104,17 @@ The [`sx`](/system/the-sx-prop/) prop, on the other hand, is a new way of stylin
 Therefore, you will notice the following differences:
 
 ### `sx` provides more shortcuts than `styled`
+
 With `styled`:
+
 ```js
-const MyStyledButton = styled("button")({
+const MyStyledButton = styled('button')({
   mx: 1, // ❌ don't use this! This shortcut is only provided by the `sx` prop
-})
+});
 ```
+
 With `sx`:
+
 ```js
 const MyStyledButton = (props) => (
   <button sx={{
@@ -120,15 +124,19 @@ const MyStyledButton = (props) => (
   </button>
 })
 ```
+
 ### The style definition varies slightly
+
 With `styled`:
+
 ```js
-const MyStyledButton = styled("button")({
+const MyStyledButton = styled('button')({
   padding: 1, // means "1px", NOT "theme.spacing(1)"
-})
+});
 ```
 
 With `sx`:
+
 ```js
 const MyStyledButton = (props) => (
   <button sx={{
@@ -142,14 +150,15 @@ const MyStyledButton = (props) => (
 ### Patterns for how to use props differ
 
 With `styled`:
-```js
-const MyStyledButton = styled("button")((props) => ({
-  backgroundColor: props.myBackgroundColor
-}))
 
+```js
+const MyStyledButton = styled('button')((props) => ({
+  backgroundColor: props.myBackgroundColor,
+}));
 ```
 
 With `sx`:
+
 ```js
 const MyStyledButton = (props) => (
   <button sx={{backgroundColor: props.myCustomColor}}>
@@ -161,14 +170,17 @@ const MyStyledButton = (props) => (
 ### Parameter when using function are different for each field
 
 With `styled` (not recommended):
+
 ```js
-// You may find this syntax in the wild, but for code readability 
+// You may find this syntax in the wild, but for code readability
 // we recommend using only one top-level function
-const MyStyledButtonPropsPerField = styled("button")({
-  backgroundColor: props => props.myBackgroundColor
-})
+const MyStyledButtonPropsPerField = styled('button')({
+  backgroundColor: (props) => props.myBackgroundColor,
+});
 ```
+
 With `sx`:
+
 ```js
 import { lighten } from "polished"
 const MyStyledButton = (props) => (
@@ -183,4 +195,3 @@ const MyStyledButton = (props) => (
   </button>
 })
 ```
-
