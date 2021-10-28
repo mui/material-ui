@@ -299,7 +299,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     disabled: disabledProp = false,
     disableElevation: disableElevationProp = false,
     disableFocusRipple: disableFocusRippleProp = false,
-    disableRipple = disableRippleContext,
+    disableRipple: disableRippleProp = false,
     endIcon: endIconProp,
     focusVisibleClassName,
     fullWidth: fullWidthProp = false,
@@ -317,6 +317,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const fullWidth = fullWidthContext || fullWidthProp;
   const size = sizeContext || sizeProp;
   const variant = variantContext || variantProp;
+  const disableRipple = disableRippleContext || disableRippleProp;
 
   const ownerState = {
     ...props,
