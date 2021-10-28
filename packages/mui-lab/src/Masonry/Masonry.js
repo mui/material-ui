@@ -256,7 +256,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     return () => {
       resizeObserver.disconnect();
     };
-  }, [columns, spacing]);
+  }, [columns, spacing, children]);
 
   const handleRef = useForkRef(ref, masonryRef);
   const lineBreakStyle = {
