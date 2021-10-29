@@ -2626,17 +2626,17 @@ and update `.storybook/preview.js` (otherwise, the "Docs" tab in storybook will 
 // .storybook/preview.js
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
+import { ThemeProvider as Emotion10ThemeProvider } from 'emotion-theming';
 
 const defaultTheme = createTheme(); // or your custom theme
 
 const withThemeProvider = (Story, context) => {
   return (
-    <EmotionThemeProvider theme={defaultTheme}>
+    <Emotion10ThemeProvider theme={defaultTheme}>
       <ThemeProvider theme={defaultTheme}>
         <Story {...context} />
       </ThemeProvider>
-    </EmotionThemeProvider>
+    </Emotion10ThemeProvider>
   );
 };
 
@@ -2659,7 +2659,10 @@ export const decorators = [withThemeProvider];
 
 > Note: This setup is a workaround and might not work in all cases.
 
-For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133) on GitHub.
+For more details, checkout these issues on GitHub.
+
+- https://github.com/storybookjs/storybook/issues/16099
+- https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133
 
 ### Cannot read property `scrollTop` of null
 
