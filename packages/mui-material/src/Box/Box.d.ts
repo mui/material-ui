@@ -19,7 +19,7 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
  * - [Box](https://mui.com/components/box/)
  *
  * API:
- * 
+ *
  * - [Box API](https://mui.com/components/box/#api)
  * NOTE - As a CSS utility component, Box also supports all system props.
  * You can use them as props directly on the component.
@@ -44,7 +44,7 @@ export type BoxProps<
  * - [Box](https://mui.com/components/box/)
  *
  * API:
- * 
+ *
  * - [Box API](https://mui.com/components/box/#api)
  * NOTE - As a CSS utility component, Box also supports all system props.
  * You can use them as props directly on the component.
