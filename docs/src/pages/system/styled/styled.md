@@ -198,7 +198,7 @@ const MyStyledButton = (props) => (
 
 ## How to use components selector API
 
-If you've been using the `styled()` API prior to it being adopted in MUI you may have used the components as selectors API available in both [`emotion`](https://emotion.sh/docs/styled#targeting-another-emotion-component) and [`styled-components`](https://styled-components.com/docs/advanced#referring-to-other-components). For example:
+If you've ever used the `styled()` API of either [`emotion`](https://emotion.sh/docs/styled#targeting-another-emotion-component) or [`styled-components`](https://styled-components.com/docs/advanced#referring-to-other-components), you should have been able to use components as selectors.
 
 ```jsx
 import styled from '@emotion/styled';
