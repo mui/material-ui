@@ -26,6 +26,8 @@ Options:
   --help     Show help                                           [boolean]
   --dry      dry run (no changes are made to files)
                                                 [boolean] [default: false]
+  --parser   which parser for jscodeshift to use.
+                                                [string] [default: 'tsx']
   --print    print transformed files to stdout, useful for development
                                                 [boolean] [default: false]
   --jscodeshift                                  [string] [default: false]
@@ -34,6 +36,7 @@ Examples:
   npx @mui/codemod v4.0.0/theme-spacing-api src
   npx @mui/codemod v5.0.0/component-rename-prop src --
   --component=Grid --from=prop --to=newProp
+  npx @mui/codemod v5.0.0/preset-safe src --parser=flow
 ```
 
 #### jscodeshift options
