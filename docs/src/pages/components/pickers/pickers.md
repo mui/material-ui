@@ -31,20 +31,7 @@ We currently support 4 different date-libraries:
 - [Luxon](https://moment.github.io/luxon/#/)
 - [Moment.js](https://momentjs.com/)
 
-First you have to install the adapter package for the date-library you want to use:
-
-```sh
-// date-fns
-npm install @date-io/date-fns
-// or for Day.js
-npm install -s @date-io/dayjs
-// or for Luxon
-npm install -s @date-io/luxon
-// or for Moment.js
-npm install @date-io/moment
-```
-
-Then you have to set the `dateAdapter` prop of the `LocalizationProvider` accordingly:
+Assuming you have `@mui/lab` installed, set the `dateAdapter` prop of the `LocalizationProvider` accordingly:
 
 ```js
 // date-fns
