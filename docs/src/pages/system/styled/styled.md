@@ -223,7 +223,7 @@ render(
 );
 ```
 
-While this still works when using `@mui/styled-engine-sc` (`styled-components`), in emotion, the API is available by using the [`@emotion/babel-plugin`](https://emotion.sh/docs/@emotion/babel-plugin). So, the first thing to do is to install the plugin:
+With MUI's `styled()` utility, you can use components as selectors, too. When using `@mui/styled-engine-sc` (`styled-components`), nothing needs to be done. When using `@mui/styled-engine` (`emotion`), the default engine, you should do some configuration. First, you should install [`@emotion/babel-plugin`](https://emotion.sh/docs/@emotion/babel-plugin).
 
 ```sh
 npm install @emotion/babel-plugin
