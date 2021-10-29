@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
+import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
@@ -12,16 +13,26 @@ import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
+import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
-    display: 'none',
     minHeight: 33,
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: theme.spacing(1),
+    [theme.breakpoints.only('xs')]: {
+      backgroundColor: 'transparent',
+      padding: 0,
+      minWidth: 33,
+      justifyContent: 'center',
+      '& > *:not(:first-child)': {
+        display: 'none',
+      },
+    },
     [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-      alignItems: 'center',
       minWidth: 210,
     },
     fontFamily: theme.typography.fontFamily,
@@ -44,30 +55,25 @@ const SearchButton = styled('button')(({ theme }) => {
   };
 });
 
+const SearchLabel = styled('span')(({ theme }) => {
+  return {
+    marginLeft: theme.spacing(1),
+    marginRight: 'auto',
+  };
+});
+
 const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(13),
     fontWeight: 700,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[700],
     lineHeight: '21px',
+    marginLeft: theme.spacing(0.5),
     border: `1px solid ${
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.grey[200]
     }`,
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
     padding: theme.spacing(0, 0.7),
-    right: theme.spacing(1),
-    height: 23,
-    top: 'calc(50% - 11px)',
     borderRadius: 5,
-    transition: theme.transitions.create('opacity', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    // So that clicks target the input.
-    // Makes the text non selectable but neither is the placeholder or adornment.
-    pointerEvents: 'none',
-    '&.Mui-focused': {
-      opacity: 0,
-    },
   };
 });
 
@@ -138,6 +144,22 @@ const NewStartScreen = () => {
       ))}
     </div>
   );
+};
+
+function DocSearcHit(props) {
+  const { children, hit } = props;
+
+  const parseUrl = document.createElement('a');
+  parseUrl.href = hit.url;
+
+  // `url` contains the domain.
+  // But we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
+  return <Link href={`${parseUrl.pathname}${parseUrl.hash}`}>{children}</Link>;
+}
+
+DocSearcHit.propTypes = {
+  children: PropTypes.node,
+  hit: PropTypes.object.isRequired,
 };
 
 export default function AppSearch() {
@@ -224,18 +246,16 @@ export default function AppSearch() {
 
   return (
     <React.Fragment>
-      <SearchButton ref={searchButtonRef} onClick={onOpen}>
+      <SearchButton disableFocusRipple ref={searchButtonRef} onClick={onOpen}>
         <SearchIcon
           fontSize="small"
           sx={{
             color: (theme) =>
               theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.primary[500],
-            ml: 0.5,
-            mr: 1,
           }}
         />
-        {search}
-        <Shortcut sx={{ ml: 'auto' }}>
+        <SearchLabel>{search}</SearchLabel>
+        <Shortcut>
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {macOS ? '⌘' : 'Ctrl+'}K
         </Shortcut>
@@ -253,13 +273,22 @@ export default function AppSearch() {
             transformItems={(items) => {
               return items.map((item) => {
                 const parseUrl = document.createElement('a');
-                parseUrl.href = item.url;
+                if (['lvl2', 'lvl3'].includes(item.type)) {
+                  // remove '#heading-' from `href` url so that the link targets <span class="anchor-link"> inside <h2> or <h3>
+                  // this will make the title appear under the Header
+                  parseUrl.href = item.url.replace('#heading-', '#');
+                } else {
+                  parseUrl.href = item.url;
+                }
                 return {
                   ...item,
+                  // `url` contains the domain.
+                  // But we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
                   url: `${parseUrl.pathname}${parseUrl.hash}`,
                 };
               });
             }}
+            hitComponent={DocSearcHit}
             initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
             onClose={onClose}
           />,
@@ -362,7 +391,8 @@ export default function AppSearch() {
                 border: '1px solid',
                 borderColor: theme.palette.primaryDark[700],
               }),
-              borderRadius: theme.shape.borderRadius,
+              // docsearch.css: <= 750px will be full screen modal
+              borderRadius: `clamp(0px, (100vw - 750px) * 9999, ${theme.shape.borderRadius}px)`,
             },
             '& .DocSearch-SearchBar': {
               borderBottom: '1px solid',
@@ -457,16 +487,14 @@ export default function AppSearch() {
             },
             '& .DocSearch-Hit-content-wrapper': {
               paddingLeft: theme.spacing(2),
-              flexDirection: 'column-reverse',
             },
             '& .DocSearch-Hit-title': {
               fontSize: theme.typography.pxToRem(14),
-              color: `${theme.palette.text.secondary}`,
+              color: `${theme.palette.text.primary}`,
             },
             '& .DocSearch-Hit-path': {
-              fontSize: theme.typography.pxToRem(14),
-              fontWeight: 700,
-              color: `${theme.palette.text.primary}`,
+              fontSize: theme.typography.pxToRem(12),
+              color: `${theme.palette.text.secondary}`,
             },
             '& .DocSearch-Hit-Select-Icon': {
               height: '15px',

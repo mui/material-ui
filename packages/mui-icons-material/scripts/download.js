@@ -39,7 +39,6 @@ const ignoredIconNames = new Set([
   'real_estate_agent',
   'recycling',
   'space_dashboard',
-  'tips_and_updates',
   'water_drop',
   'waving_hand',
 ]);

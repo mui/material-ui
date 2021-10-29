@@ -29,4 +29,15 @@ describe('extractEventHandlers', () => {
     const result = extractEventHandlers(undefined);
     expect(result).to.deep.equal({});
   });
+
+  it('excludes the provided handlers from the result', () => {
+    const input = {
+      onClick: () => {},
+      onChange: () => {},
+      onFocus: () => {},
+    };
+
+    const result = extractEventHandlers(input, ['onClick', 'onFocus']);
+    expect(result).to.deep.equal({ onChange: input.onChange });
+  });
 });

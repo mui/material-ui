@@ -5,10 +5,10 @@
     p: 1,
     m: 1,
     bgcolor: 'background.paper',
-    height: 100,
+    height: 124,
   }}
 >
-  <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 1</Box>
-  <Box sx={{ p: 1, bgcolor: 'grey.300', alignSelf: 'flex-end' }}>Item 2</Box>
-  <Box sx={{ p: 1, bgcolor: 'grey.300' }}>Item 3</Box>
+  <Item>Item 1</Item>
+  <Item sx={{ alignSelf: 'flex-end' }}>Item 2</Item>
+  <Item>Item 3</Item>
 </Box>

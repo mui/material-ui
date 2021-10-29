@@ -43,9 +43,9 @@ export interface FormControlLabelProps
    */
   inputRef?: React.Ref<any>;
   /**
-   * The text to be used in an enclosing label element.
+   * A text or an element to be used in an enclosing label element.
    */
-  label: React.ReactNode;
+  label: string | number | React.ReactElement;
   /**
    * The position of the label.
    * @default 'end'

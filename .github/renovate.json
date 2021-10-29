@@ -10,6 +10,10 @@
   "labels": ["dependencies"],
   "packageRules": [
     {
+      "matchDepTypes": ["peerDependencies"],
+      "rangeStrategy": "widen"
+    },
+    {
       "groupName": "babel",
       "matchPackagePatterns": "@babel/*"
     },

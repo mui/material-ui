@@ -260,6 +260,10 @@ TimePicker.propTypes /* remove-proptypes */ = {
    */
   onOpen: PropTypes.func,
   /**
+   * Callback fired on view change.
+   */
+  onViewChange: PropTypes.func,
+  /**
    * Control the popup or dialog open state.
    */
   open: PropTypes.bool,
@@ -275,6 +279,10 @@ TimePicker.propTypes /* remove-proptypes */ = {
    * Force rendering in particular orientation.
    */
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
+  /**
+   * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
+   */
+  PaperProps: PropTypes.object,
   /**
    * Popper props passed down to [Popper](https://mui.com/api/popper/) component.
    */

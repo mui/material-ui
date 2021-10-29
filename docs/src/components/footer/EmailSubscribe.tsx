@@ -9,6 +9,7 @@ import FormLabel from '@mui/material/FormLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputBase from '@mui/material/InputBase';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import CONFIG from 'docs/src/config';
 
 const Form = styled('form')({});
 
@@ -31,21 +32,18 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     event.preventDefault();
     setForm((current) => ({ ...current, status: 'loading' }));
     try {
-      await fetch(
-        'https://f0433e60.sibforms.com/serve/MUIEAHEhgYhMvLAw0tycwk1BQaIB-q0akob3JdtDBmHLhSR-jLheJ2T44LFCz27alz9wq_Nkdz9EK7Y8hzM1vQND9kTFyKkkhTIbEzXaH5d-_S9Fw4PXS1zAK8efPY6nhCdoAop1SKTeZ_GAPW5S0xBFQRLUGYbvvRgE4Q2Ki_f1KjbiCqaRuzmj_I3SD1r0CoR4INmK3CLtF4kF',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          mode: 'no-cors',
-          body: searchParams({
-            EMAIL: form.email,
-            email_address_check: '',
-            locale: 'en',
-          }),
+      await fetch(CONFIG.NEWSLETTER_SUBSCRIBE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-      );
+        mode: 'no-cors',
+        body: searchParams({
+          EMAIL: form.email,
+          email_address_check: '',
+          locale: 'en',
+        }),
+      });
       setForm((current) => ({ ...current, status: 'sent' }));
     } catch (error) {
       setForm((current) => ({ ...current, status: 'failure' }));

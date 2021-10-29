@@ -61,7 +61,7 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="fname"
+                  autoComplete="given-name"
                   name="firstName"
                   required
                   fullWidth
@@ -77,7 +77,7 @@ export default function SignUp() {
                   id="lastName"
                   label="Last Name"
                   name="lastName"
-                  autoComplete="lname"
+                  autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>

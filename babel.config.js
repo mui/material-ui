@@ -21,6 +21,7 @@ const defaultAlias = {
   '@mui/core': resolveAliasPath('./packages/mui-core/src'),
   '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
   '@mui/material-next': resolveAliasPath('./packages/mui-material-next/src'),
+  '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
 };
 
 const productionPlugins = [

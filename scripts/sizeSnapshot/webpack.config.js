@@ -17,8 +17,6 @@ async function getWebpackEntries() {
         entryName = '@material-ui/core/Paper.esm';
       } else if (componentName === 'TextareaAutosize') {
         entryName = '@material-ui/core/Textarea';
-      } else if (['Popper'].indexOf(componentName) !== -1) {
-        entryName = `@material-ui/core/${componentName}`;
       }
 
       return {
@@ -32,9 +30,14 @@ async function getWebpackEntries() {
   const coreComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
+      let entryName = componentName;
+
+      if (['Popper'].indexOf(componentName) !== -1) {
+        entryName = `@material-ui/core/${componentName}`;
+      }
 
       return {
-        id: componentName,
+        id: entryName,
         path: path.relative(workspaceRoot, path.dirname(componentPath)),
       };
     },
@@ -63,6 +66,18 @@ async function getWebpackEntries() {
       path: path.relative(workspaceRoot, path.dirname(componentPath)),
     };
   });
+
+  const joyPackagePath = path.join(workspaceRoot, 'packages/mui-joy/build');
+  const joyComponents = (await glob(path.join(joyPackagePath, '([A-Z])*/index.js'))).map(
+    (componentPath) => {
+      const componentName = path.basename(path.dirname(componentPath));
+
+      return {
+        name: componentName,
+        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+      };
+    },
+  );
 
   return [
     {
@@ -142,6 +157,11 @@ async function getWebpackEntries() {
       path: path.join(path.relative(workspaceRoot, materialNextPackagePath), 'index.js'),
     },
     ...materialNextComponents,
+    {
+      name: '@mui/joy',
+      path: path.join(path.relative(workspaceRoot, joyPackagePath), 'index.js'),
+    },
+    ...joyComponents,
   ];
 }
 
@@ -200,6 +220,8 @@ module.exports = async function webpackConfig(webpack, environment) {
           '@mui/private-theming': path.join(workspaceRoot, 'packages/mui-private-theming/build'),
           '@mui/utils': path.join(workspaceRoot, 'packages/mui-utils/build'),
           '@mui/core': path.join(workspaceRoot, 'packages/mui-core/build'),
+          '@mui/material-next': path.join(workspaceRoot, 'packages/mui-material-next/build'),
+          '@mui/joy': path.join(workspaceRoot, 'packages/mui-joy/build'),
         },
       },
       entry: { [entry.id]: path.join(workspaceRoot, entry.path) },

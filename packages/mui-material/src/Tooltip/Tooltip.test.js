@@ -727,7 +727,9 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(getByRole('tooltip'));
-      clock.tick(111 + 10);
+      act(() => {
+        clock.tick(111 + 10);
+      });
 
       expect(getByRole('tooltip')).toBeVisible();
     });
@@ -1092,6 +1094,96 @@ describe('<Tooltip />', () => {
     });
   });
 
+  describe('prop: components', () => {
+    it('can render a different Popper component', () => {
+      const CustomPopper = () => <div data-testid="CustomPopper" />;
+      const { getByTestId } = render(
+        <Tooltip title="Hello World" open components={{ Popper: CustomPopper }}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(getByTestId('CustomPopper')).toBeVisible();
+    });
+
+    it('can render a different Tooltip component', () => {
+      const CustomTooltip = React.forwardRef((props, ref) => (
+        <div data-testid="CustomTooltip" ref={ref} />
+      ));
+      const { getByTestId } = render(
+        <Tooltip title="Hello World" open components={{ Tooltip: CustomTooltip }}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(getByTestId('CustomTooltip')).toBeVisible();
+    });
+
+    it('can render a different Arrow component', () => {
+      const CustomArrow = React.forwardRef((props, ref) => (
+        <div data-testid="CustomArrow" ref={ref} />
+      ));
+      const { getByTestId } = render(
+        <Tooltip title="Hello World" open arrow components={{ Arrow: CustomArrow }}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(getByTestId('CustomArrow')).toBeVisible();
+    });
+  });
+
+  describe('prop: componentsProps', () => {
+    it('can provide custom props for the inner Popper component', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          componentsProps={{ popper: { 'data-testid': 'CustomPopper' } }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(getByTestId('CustomPopper')).toBeVisible();
+    });
+
+    it('can provide custom props for the inner Tooltip component', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          componentsProps={{ tooltip: { 'data-testid': 'CustomTooltip' } }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(getByTestId('CustomTooltip')).toBeVisible();
+    });
+
+    it('can provide custom props for the inner Arrow component', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          arrow
+          componentsProps={{ arrow: { 'data-testid': 'CustomArrow' } }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(getByTestId('CustomArrow')).toBeVisible();
+    });
+  });
+
   describe('user-select state', () => {
     let prevWebkitUserSelect;
     beforeEach(() => {
@@ -1172,6 +1264,52 @@ describe('<Tooltip />', () => {
       unmount();
 
       expect(document.body.style.WebkitUserSelect).to.equal('text');
+    });
+  });
+
+  describe('className', () => {
+    it('should allow className from PopperProps', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          PopperProps={{ 'data-testid': 'popper', className: 'my-class' }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      expect(getByTestId('popper')).to.have.class('my-class');
+    });
+
+    it('should allow className from componentsProps.popper', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          componentsProps={{ popper: { 'data-testid': 'popper', className: 'my-class' } }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      expect(getByTestId('popper')).to.have.class('my-class');
+    });
+
+    it('should apply both the className from PopperProps and componentsProps.popper if both are passed', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          componentsProps={{ popper: { 'data-testid': 'popper', className: 'my-class' } }}
+          PopperProps={{ className: 'my-class-2' }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      expect(getByTestId('popper')).to.have.class('my-class-2');
+      expect(getByTestId('popper')).to.have.class('my-class');
     });
   });
 });

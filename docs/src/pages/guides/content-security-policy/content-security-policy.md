@@ -36,7 +36,7 @@ You then apply this nonce to the CSP header. A CSP header might look like this w
 
 ```js
 header('Content-Security-Policy').set(
-  `default-src 'self'; style-src: 'self' 'nonce-${nonce}';`,
+  `default-src 'self'; style-src 'self' 'nonce-${nonce}';`,
 );
 ```
 

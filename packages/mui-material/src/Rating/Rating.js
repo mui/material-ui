@@ -562,7 +562,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                                   ? `${(indexDecimal + 1) * precision * 100}%`
                                   : '0%',
                               overflow: 'hidden',
-                              zIndex: 1,
                               position: 'absolute',
                             },
                     }}
@@ -730,7 +729,11 @@ Rating.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The rating value.
    */

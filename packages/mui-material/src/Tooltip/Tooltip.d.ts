@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { SxProps } from '@mui/system';
+import { MUIStyledCommonProps, SxProps } from '@mui/system';
+import { PopperProps } from '@mui/core/Popper';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
-import { PopperProps } from '../Popper/Popper';
 import { TooltipClasses } from './tooltipClasses';
+
+export interface TooltipComponentsPropsOverrides {}
 
 export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /**
@@ -19,6 +21,33 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<TooltipClasses>;
+  /**
+   * The components used for each slot inside the Tooltip.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: {
+    Popper?: React.ElementType;
+    Transition?: React.ElementType;
+    Tooltip?: React.ElementType;
+    Arrow?: React.ElementType;
+  };
+  /**
+   * The props used for each slot inside the Tooltip.
+   * Note that `componentsProps.popper` prop values win over `PopperProps`
+   * and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
+   * @default {}
+   */
+  componentsProps?: {
+    popper?: PopperProps & TooltipComponentsPropsOverrides;
+    transition?: TransitionProps & TooltipComponentsPropsOverrides;
+    tooltip?: React.HTMLProps<HTMLDivElement> &
+      MUIStyledCommonProps &
+      TooltipComponentsPropsOverrides;
+    arrow?: React.HTMLProps<HTMLSpanElement> &
+      MUIStyledCommonProps &
+      TooltipComponentsPropsOverrides;
+  };
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.
@@ -140,7 +169,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children?: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<any, any> }
   >;
   /**
    * Props applied to the transition element.

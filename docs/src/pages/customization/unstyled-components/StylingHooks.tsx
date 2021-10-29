@@ -3,13 +3,13 @@ import clsx from 'clsx';
 import { useSwitch, UseSwitchProps } from '@mui/core/SwitchUnstyled';
 import { styled } from '@mui/system';
 
-const BasicSwitchRoot = styled('span')(`
+const BasicSwitchRoot = styled('span')`
   font-size: 0;
   position: relative;
   display: inline-block;
   width: 32px;
   height: 20px;
-  background: #B3C3D3;
+  background: #b3c3d3;
   border-radius: 10px;
   margin: 10px;
   cursor: pointer;
@@ -20,11 +20,11 @@ const BasicSwitchRoot = styled('span')(`
   }
 
   &.Switch-checked {
-    background: #007FFF;
+    background: #007fff;
   }
-`);
+`;
 
-const BasicSwitchInput = styled('input')(`
+const BasicSwitchInput = styled('input')`
   cursor: inherit;
   position: absolute;
   width: 100%;
@@ -34,30 +34,30 @@ const BasicSwitchInput = styled('input')(`
   opacity: 0;
   z-index: 1;
   margin: 0;
-`);
+`;
 
-const BasicSwitchThumb = styled('span')(`
+const BasicSwitchThumb = styled('span')`
   display: block;
   width: 14px;
   height: 14px;
   top: 3px;
   left: 3px;
   border-radius: 16px;
-  background-color: #FFF;
+  background-color: #fff;
   position: relative;
   transition: all 200ms ease;
 
   &.Switch-focusVisible {
-    background-color: rgba(255,255,255,1);
-    box-shadow: 0 0 1px 8px rgba(0,0,0,0.25);
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
   }
 
   &.Switch-checked {
     left: 14px;
     top: 3px;
-    background-color: #FFF;
+    background-color: #fff;
   }
-`);
+`;
 
 function BasicSwitch(props: UseSwitchProps) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);

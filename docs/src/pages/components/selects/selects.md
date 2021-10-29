@@ -12,7 +12,7 @@ githubLabel: 'component: Select'
 
 ## Basic select
 
-Menus are positioned over their emitting elements such that the currently selected menu item appears on top of the emitting element.
+Menus are positioned under their emitting elements, unless they are close to the bottom of the viewport.
 
 {{"demo": "pages/components/selects/BasicSelect.js"}}
 

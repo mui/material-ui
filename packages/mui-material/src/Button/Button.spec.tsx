@@ -80,8 +80,8 @@ const ButtonTest = () => (
         TestOverride
       </Button>
     }
-    <Button startIcon={FakeIcon}>Start Icon</Button>
-    <Button endIcon={FakeIcon}>endIcon</Button>
+    <Button startIcon={<FakeIcon />}>Start Icon</Button>
+    <Button endIcon={<FakeIcon />}>endIcon</Button>
   </div>
 );
 
