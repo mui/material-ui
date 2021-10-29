@@ -184,6 +184,9 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
   React.useEffect(() => {
     const handleResize = () => {
+      if (!masonryRef.current.firstChild) {
+        return;
+      }
       const parentWidth = masonryRef.current.clientWidth;
       const childWidth = masonryRef.current.firstChild.clientWidth;
       const firstChildComputedStyle = window.getComputedStyle(masonryRef.current.firstChild);
