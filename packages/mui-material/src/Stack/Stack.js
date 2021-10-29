@@ -44,9 +44,16 @@ const getSideFromDirection = (direction) => {
 export const style = ({ ownerState, theme }) => {
   let styles = {
     display: 'flex',
-    ...handleBreakpoints({ theme }, ownerState.direction, (propValue) => ({
-      flexDirection: propValue,
-    })),
+    ...handleBreakpoints(
+      { theme },
+      resolveBreakpointValues({
+        values: ownerState.direction,
+        breakpoints: theme.breakpoints.values,
+      }),
+      (propValue) => ({
+        flexDirection: propValue,
+      }),
+    ),
   };
 
   if (ownerState.spacing) {
@@ -59,8 +66,15 @@ export const style = ({ ownerState, theme }) => {
       return acc;
     }, {});
 
-    const directionValues = resolveBreakpointValues({ values: ownerState.direction, base });
-    const spacingValues = resolveBreakpointValues({ values: ownerState.spacing, base });
+    const directionValues = resolveBreakpointValues({
+      values: ownerState.direction,
+      base,
+    });
+
+    const spacingValues = resolveBreakpointValues({
+      values: ownerState.spacing,
+      base,
+    });
 
     const styleFromPropValue = (propValue, breakpoint) => {
       return {

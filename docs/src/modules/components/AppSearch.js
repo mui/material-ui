@@ -19,11 +19,20 @@ import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
-    display: 'none',
     minHeight: 33,
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: theme.spacing(1),
+    [theme.breakpoints.only('xs')]: {
+      backgroundColor: 'transparent',
+      padding: 0,
+      minWidth: 33,
+      justifyContent: 'center',
+      '& > *:not(:first-child)': {
+        display: 'none',
+      },
+    },
     [theme.breakpoints.up('sm')]: {
-      display: 'flex',
-      alignItems: 'center',
       minWidth: 210,
     },
     fontFamily: theme.typography.fontFamily,
@@ -46,30 +55,25 @@ const SearchButton = styled('button')(({ theme }) => {
   };
 });
 
+const SearchLabel = styled('span')(({ theme }) => {
+  return {
+    marginLeft: theme.spacing(1),
+    marginRight: 'auto',
+  };
+});
+
 const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(13),
     fontWeight: 700,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[700],
     lineHeight: '21px',
+    marginLeft: theme.spacing(0.5),
     border: `1px solid ${
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.grey[200]
     }`,
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
     padding: theme.spacing(0, 0.7),
-    right: theme.spacing(1),
-    height: 23,
-    top: 'calc(50% - 11px)',
     borderRadius: 5,
-    transition: theme.transitions.create('opacity', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    // So that clicks target the input.
-    // Makes the text non selectable but neither is the placeholder or adornment.
-    pointerEvents: 'none',
-    '&.Mui-focused': {
-      opacity: 0,
-    },
   };
 });
 
@@ -242,18 +246,16 @@ export default function AppSearch() {
 
   return (
     <React.Fragment>
-      <SearchButton ref={searchButtonRef} onClick={onOpen}>
+      <SearchButton disableFocusRipple ref={searchButtonRef} onClick={onOpen}>
         <SearchIcon
           fontSize="small"
           sx={{
             color: (theme) =>
               theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.primary[500],
-            ml: 0.5,
-            mr: 1,
           }}
         />
-        {search}
-        <Shortcut sx={{ ml: 'auto' }}>
+        <SearchLabel>{search}</SearchLabel>
+        <Shortcut>
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {macOS ? '⌘' : 'Ctrl+'}K
         </Shortcut>
@@ -389,7 +391,8 @@ export default function AppSearch() {
                 border: '1px solid',
                 borderColor: theme.palette.primaryDark[700],
               }),
-              borderRadius: theme.shape.borderRadius,
+              // docsearch.css: <= 750px will be full screen modal
+              borderRadius: `clamp(0px, (100vw - 750px) * 9999, ${theme.shape.borderRadius}px)`,
             },
             '& .DocSearch-SearchBar': {
               borderBottom: '1px solid',
