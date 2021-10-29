@@ -136,11 +136,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       InputMore.notched = InputLabelProps.shrink;
     }
     if (label) {
-      InputMore.label = (
-        <React.Fragment>
-          {label}
-        </React.Fragment>
-      );
+      InputMore.label = <React.Fragment>{label}</React.Fragment>;
     }
   }
   if (select) {
