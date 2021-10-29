@@ -2595,7 +2595,7 @@ yarn remove @mui/styles
 
 ### Storybook emotion with v5
 
-If your project use Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of emotion.
+If your project uses Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of emotion.
 
 ```js
 // .storybook/main.js
@@ -2620,7 +2620,49 @@ module.exports = {
 };
 ```
 
-For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133) on GitHub.
+and update `.storybook/preview.js` (otherwise, the "Docs" tab in storybook will display empty page)
+
+```js
+// .storybook/preview.js
+
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider as Emotion10ThemeProvider } from 'emotion-theming';
+
+const defaultTheme = createTheme(); // or your custom theme
+
+const withThemeProvider = (Story, context) => {
+  return (
+    <Emotion10ThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={defaultTheme}>
+        <Story {...context} />
+      </ThemeProvider>
+    </Emotion10ThemeProvider>
+  );
+};
+
+export const decorators = [withThemeProvider];
+
+// ...other storybook exports
+```
+
+**Tested versions**
+
+```json
+{
+  "@storybook/react": "6.3.8",
+  "@storybook/addon-docs": "6.3.8",
+  "@emotion/react": "11.4.1",
+  "@emotion/styled": "11.3.0",
+  "@mui/material": "5.0.2"
+}
+```
+
+> Note: This setup is a workaround and might not work in all cases.
+
+For more details, checkout these issues on GitHub.
+
+- https://github.com/storybookjs/storybook/issues/16099
+- https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133
 
 ### Cannot read property `scrollTop` of null
 
