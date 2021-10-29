@@ -1,9 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { GlobalStyles, ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
+import { GlobalStyles } from '@mui/styled-engine';
 import { deepmerge } from '@mui/utils';
 import cssVarsParser from './cssVarsParser';
+import ThemeProvider from '../ThemeProvider';
 import getInitColorSchemeScript, {
   DEFAULT_ATTRIBUTE,
   DEFAULT_STORAGE_KEY,
@@ -25,7 +26,7 @@ const resolveMode = (key, fallback, supportedColorSchemes) => {
   return value || fallback;
 };
 
-export default function createCssVarsProvider(ThemeContext, options) {
+export default function createCssVarsProvider(options) {
   const {
     theme: baseTheme = {},
     defaultColorScheme: designSystemColorScheme,
@@ -133,11 +134,7 @@ export default function createCssVarsProvider(ThemeContext, options) {
         }}
       >
         <GlobalStyles styles={styleSheet} />
-        <ThemeContext.Provider value={mergedTheme}>
-          <StyledEngineThemeContext.Provider value={mergedTheme}>
-            {children}
-          </StyledEngineThemeContext.Provider>
-        </ThemeContext.Provider>
+        <ThemeProvider theme={mergedTheme}>{children}</ThemeProvider>
       </ColorSchemeContext.Provider>
     );
   }

@@ -4,8 +4,7 @@ import { spy } from 'sinon';
 import { createClientRender, screen, fireEvent } from 'test/utils';
 import createCssVarsProvider from './createCssVarsProvider';
 import { DEFAULT_ATTRIBUTE, DEFAULT_STORAGE_KEY } from './getInitColorSchemeScript';
-
-const ThemeContext = React.createContext();
+import useTheme from '../useTheme';
 
 describe('createCssVarsProvider', () => {
   const render = createClientRender();
@@ -31,7 +30,7 @@ describe('createCssVarsProvider', () => {
   describe('[Design System] CssVarsProvider', () => {
     it('display error if `defaultColorScheme` does not exist in theme.colorSchemes', () => {
       expect(() =>
-        createCssVarsProvider(ThemeContext, {
+        createCssVarsProvider({
           theme: {},
           defaultColorScheme: 'light',
         }),
@@ -39,7 +38,7 @@ describe('createCssVarsProvider', () => {
     });
 
     it('has specified default colorScheme', () => {
-      const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: {} },
         },
@@ -59,7 +58,7 @@ describe('createCssVarsProvider', () => {
     });
 
     it('has css variable prefix', () => {
-      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+      const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: { fontSize: 16 } },
         },
@@ -67,7 +66,7 @@ describe('createCssVarsProvider', () => {
         prefix: 'mui',
       });
       const Text = () => {
-        const theme = React.useContext(ThemeContext);
+        const theme = useTheme();
         return <div data-testid={`text`}>{theme.vars.fontSize}</div>;
       };
       render(
@@ -80,7 +79,7 @@ describe('createCssVarsProvider', () => {
     });
 
     it('can access to allColorSchemes', () => {
-      const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         theme: {
           colorSchemes: {
             light: {},
@@ -111,7 +110,7 @@ describe('createCssVarsProvider', () => {
     });
 
     it('can set new colorScheme', () => {
-      const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: {}, dark: {} },
         },
@@ -139,7 +138,7 @@ describe('createCssVarsProvider', () => {
     });
 
     it('display error if non-existed colorScheme is set', () => {
-      const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: {} },
         },
@@ -164,7 +163,7 @@ describe('createCssVarsProvider', () => {
 
   describe('DOM', () => {
     it('attach default dataset on body', () => {
-      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+      const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: {} },
         },
@@ -176,7 +175,7 @@ describe('createCssVarsProvider', () => {
     });
 
     it('use custom attribute', () => {
-      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+      const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: {} },
         },
@@ -191,7 +190,7 @@ describe('createCssVarsProvider', () => {
   });
 
   describe('Storage', () => {
-    const { CssVarsProvider, useColorScheme } = createCssVarsProvider(ThemeContext, {
+    const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
       theme: {
         colorSchemes: { light: {}, dark: {} },
       },
@@ -256,7 +255,7 @@ describe('createCssVarsProvider', () => {
    * to default color scheme of App II because App II does not support 'purple'
    */
   describe('Unsupported color scheme', () => {
-    const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+    const { CssVarsProvider } = createCssVarsProvider({
       theme: {
         colorSchemes: {
           light: {
@@ -270,7 +269,7 @@ describe('createCssVarsProvider', () => {
       defaultColorScheme: 'light',
     });
     const Color = () => {
-      const theme = React.useContext(ThemeContext);
+      const theme = useTheme();
       return <div data-testid="color">{theme.vars.color}</div>;
     };
     it('use default color scheme if the storage value does not exist', () => {
@@ -288,7 +287,7 @@ describe('createCssVarsProvider', () => {
 
   describe('[Application] Customization', () => {
     it('merge custom theme', () => {
-      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+      const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           fontSize: { md: '1rem', sm: null },
           colorSchemes: {
@@ -298,7 +297,7 @@ describe('createCssVarsProvider', () => {
         defaultColorScheme: 'light',
       });
       const Text = ({ scale = 'md' }) => {
-        const theme = React.useContext(ThemeContext);
+        const theme = useTheme();
         return <div data-testid={`text-${scale}`}>{theme.vars.fontSize[scale]}</div>;
       };
       render(
@@ -313,7 +312,7 @@ describe('createCssVarsProvider', () => {
     });
 
     it('merge custom colorSchemes', () => {
-      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+      const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: {
             light: {
@@ -326,7 +325,7 @@ describe('createCssVarsProvider', () => {
         defaultColorScheme: 'light',
       });
       const Swatch = () => {
-        const theme = React.useContext(ThemeContext);
+        const theme = useTheme();
         return (
           <div>
             <div data-testid="swatch-color">{theme.vars.palette.color}</div>
@@ -357,7 +356,7 @@ describe('createCssVarsProvider', () => {
     });
 
     it('extend palette property in colorSchemes', () => {
-      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+      const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: {
             light: {
@@ -370,7 +369,7 @@ describe('createCssVarsProvider', () => {
         defaultColorScheme: 'light',
       });
       const Swatch = () => {
-        const theme = React.useContext(ThemeContext);
+        const theme = useTheme();
         return (
           <div>
             <div data-testid="swatch-color">{theme.vars.palette.color}</div>
@@ -389,7 +388,7 @@ describe('createCssVarsProvider', () => {
     });
 
     it('able to override css variable prefix', () => {
-      const { CssVarsProvider } = createCssVarsProvider(ThemeContext, {
+      const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: { fontSize: 16 } },
         },
@@ -397,7 +396,7 @@ describe('createCssVarsProvider', () => {
         prefix: 'mui',
       });
       const Text = () => {
-        const theme = React.useContext(ThemeContext);
+        const theme = useTheme();
         return <div data-testid={`text`}>{theme.vars.fontSize}</div>;
       };
       render(

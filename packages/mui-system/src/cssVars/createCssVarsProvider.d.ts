@@ -50,25 +50,22 @@ export default function createCssVarsProvider<
   ApplicationThemeInput extends {
     colorSchemes: Record<DesignSystemColorScheme | ApplicationColorScheme, any>;
   } = DesignSystemThemeInput,
->(
-  ThemeContext: React.Context<BuildCssVarsTheme<DesignSystemThemeInput> | undefined>,
-  options: {
-    theme: Omit<DesignSystemThemeInput, 'colorSchemes'> & {
-      colorSchemes: Record<
-        DesignSystemColorScheme,
-        DesignSystemThemeInput['colorSchemes'][DesignSystemColorScheme]
-      > &
-        Partial<
-          Record<
-            ApplicationColorScheme,
-            DesignSystemThemeInput['colorSchemes'][DesignSystemColorScheme | ApplicationColorScheme]
-          >
-        >;
-    };
-    defaultColorScheme: DesignSystemColorScheme;
-    prefix?: string;
-  },
-): {
+>(options: {
+  theme: Omit<DesignSystemThemeInput, 'colorSchemes'> & {
+    colorSchemes: Record<
+      DesignSystemColorScheme,
+      DesignSystemThemeInput['colorSchemes'][DesignSystemColorScheme]
+    > &
+      Partial<
+        Record<
+          ApplicationColorScheme,
+          DesignSystemThemeInput['colorSchemes'][DesignSystemColorScheme | ApplicationColorScheme]
+        >
+      >;
+  };
+  defaultColorScheme: DesignSystemColorScheme;
+  prefix?: string;
+}): {
   CssVarsProvider: (
     props: React.PropsWithChildren<
       {
