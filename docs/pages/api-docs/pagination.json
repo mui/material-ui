@@ -9,18 +9,21 @@
       },
       "default": "'standard'"
     },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
+      },
+      "default": "{\n  first: FirstPageIcon,\n  last: LastPageIcon,\n  next: NavigateNextIcon,\n  previous: NavigateBeforeIcon,\n}"
+    },
     "count": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "defaultPage": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "disabled": { "type": { "name": "bool" } },
-    "firstPageIcon": { "type": { "name": "elementType" }, "default": "FirstPageIcon" },
     "getItemAriaLabel": { "type": { "name": "func" } },
     "hideNextButton": { "type": { "name": "bool" } },
     "hidePrevButton": { "type": { "name": "bool" } },
-    "lastPageIcon": { "type": { "name": "elementType" }, "default": "LastPageIcon" },
-    "nextIcon": { "type": { "name": "elementType" }, "default": "NavigateNextIcon" },
     "onChange": { "type": { "name": "func" } },
     "page": { "type": { "name": "custom", "description": "integer" } },
-    "previousIcon": { "type": { "name": "elementType" }, "default": "NavigateBeforeIcon" },
     "renderItem": {
       "type": { "name": "func" },
       "default": "(item) => <PaginationItem {...item} />"

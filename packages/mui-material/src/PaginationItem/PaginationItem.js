@@ -244,12 +244,14 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     className,
     color = 'standard',
     component,
+    components = {
+      first: FirstPageIcon,
+      last: LastPageIcon,
+      next: NavigateNextIcon,
+      previous: NavigateBeforeIcon,
+    },
     disabled = false,
-    firstPageIcon = FirstPageIcon,
-    lastPageIcon = LastPageIcon,
-    nextIcon = NavigateNextIcon,
     page,
-    previousIcon = NavigateBeforeIcon,
     selected = false,
     shape = 'circular',
     size = 'medium',
@@ -275,16 +277,16 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const normalizedIcons =
     theme.direction === 'rtl'
       ? {
-          previous: nextIcon,
-          next: previousIcon,
-          last: firstPageIcon,
-          first: lastPageIcon,
+          previous: components.next || NavigateNextIcon,
+          next: components.previous || NavigateBeforeIcon,
+          last: components.first || FirstPageIcon,
+          first: components.last || LastPageIcon,
         }
       : {
-          previous: previousIcon,
-          next: nextIcon,
-          last: lastPageIcon,
-          first: firstPageIcon,
+          previous: components.previous || NavigateBeforeIcon,
+          next: components.next || NavigateNextIcon,
+          first: components.first || FirstPageIcon,
+          last: components.last || LastPageIcon,
         };
 
   const Icon = normalizedIcons[type];
@@ -345,34 +347,29 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The components used for first, last, next & previous item type
+   * @default {
+   *   first: FirstPageIcon,
+   *   last: LastPageIcon,
+   *   next: NavigateNextIcon,
+   *   previous: NavigateBeforeIcon,
+   * }
+   */
+  components: PropTypes.shape({
+    first: PropTypes.elementType,
+    last: PropTypes.elementType,
+    next: PropTypes.elementType,
+    previous: PropTypes.elementType,
+  }),
+  /**
    * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
   /**
-   * First page button icon
-   * @default FirstPageIcon
-   */
-  firstPageIcon: PropTypes.elementType,
-  /**
-   * Last page button icon
-   * @default LastPageIcon
-   */
-  lastPageIcon: PropTypes.elementType,
-  /**
-   * Next page button icon
-   * @default NavigateNextIcon
-   */
-  nextIcon: PropTypes.elementType,
-  /**
    * The current page number.
    */
   page: PropTypes.node,
-  /**
-   * Previous page button icon
-   * @default NavigateBeforeIcon
-   */
-  previousIcon: PropTypes.elementType,
   /**
    * If `true` the pagination item is selected.
    * @default false

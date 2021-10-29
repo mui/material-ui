@@ -9,12 +9,15 @@
       "default": "'standard'"
     },
     "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
+      },
+      "default": "{\n  first: FirstPageIcon,\n  last: LastPageIcon,\n  next: NavigateNextIcon,\n  previous: NavigateBeforeIcon,\n}"
+    },
     "disabled": { "type": { "name": "bool" } },
-    "firstPageIcon": { "type": { "name": "elementType" }, "default": "FirstPageIcon" },
-    "lastPageIcon": { "type": { "name": "elementType" }, "default": "LastPageIcon" },
-    "nextIcon": { "type": { "name": "elementType" }, "default": "NavigateNextIcon" },
     "page": { "type": { "name": "node" } },
-    "previousIcon": { "type": { "name": "elementType" }, "default": "NavigateBeforeIcon" },
     "selected": { "type": { "name": "bool" } },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },

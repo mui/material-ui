@@ -35,6 +35,21 @@ export interface PaginationProps
     PaginationPropsColorOverrides
   >;
   /**
+   * The components used for first, last, next & previous item type
+   * @default {
+   *   first: FirstPageIcon,
+   *   last: LastPageIcon,
+   *   next: NavigateNextIcon,
+   *   previous: NavigateBeforeIcon,
+   * }
+   */
+  components?: {
+    first?: React.ElementType;
+    last?: React.ElementType;
+    next?: React.ElementType;
+    previous?: React.ElementType;
+  };
+  /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
@@ -49,26 +64,6 @@ export interface PaginationProps
     page: number,
     selected: boolean,
   ) => string;
-  /**
-   * First page button icon
-   * @default FirstPageIcon
-   */
-  firstPageIcon?: React.ElementType,
-  /**
-   * Last page button icon
-   * @default LastPageIcon
-   */
-  lastPageIcon?: React.ElementType,
-  /**
-   * Next page button icon
-   * @default NavigateNextIcon
-   */
-  nextIcon?: React.ElementType,
-  /**
-   * Previous page button icon
-   * @default NavigateBeforeIcon
-   */
-  previousIcon?: React.ElementType,
   /**
    * Render the item.
    * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.

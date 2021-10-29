@@ -60,18 +60,20 @@ const Pagination = React.forwardRef(function Pagination(inProps, ref) {
     boundaryCount = 1,
     className,
     color = 'standard',
+    components = {
+      first: FirstPageIcon,
+      last: LastPageIcon,
+      next: NavigateNextIcon,
+      previous: NavigateBeforeIcon,
+    },
     count = 1,
     defaultPage = 1,
     disabled = false,
-    firstPageIcon = FirstPageIcon,
     getItemAriaLabel = defaultGetAriaLabel,
     hideNextButton = false,
     hidePrevButton = false,
-    lastPageIcon = LastPageIcon,
-    nextIcon = NavigateNextIcon,
     onChange,
     page,
-    previousIcon = NavigateBeforeIcon,
     renderItem = (item) => <PaginationItem {...item} />,
     shape = 'circular',
     showFirstButton = false,
@@ -119,11 +121,8 @@ const Pagination = React.forwardRef(function Pagination(inProps, ref) {
             {renderItem({
               ...item,
               color,
+              components,
               'aria-label': getItemAriaLabel(item.type, item.page, item.selected),
-              firstPageIcon,
-              lastPageIcon,
-              nextIcon,
-              previousIcon,
               shape,
               size,
               variant,
@@ -164,6 +163,21 @@ Pagination.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The components used for first, last, next & previous item type
+   * @default {
+   *   first: FirstPageIcon,
+   *   last: LastPageIcon,
+   *   next: NavigateNextIcon,
+   *   previous: NavigateBeforeIcon,
+   * }
+   */
+  components: PropTypes.shape({
+    first: PropTypes.elementType,
+    last: PropTypes.elementType,
+    next: PropTypes.elementType,
+    previous: PropTypes.elementType,
+  }),
+  /**
    * The total number of pages.
    * @default 1
    */
@@ -178,11 +192,6 @@ Pagination.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
-  /**
-   * First page button icon
-   * @default FirstPageIcon
-   */
-  firstPageIcon: PropTypes.elementType,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
@@ -205,16 +214,6 @@ Pagination.propTypes /* remove-proptypes */ = {
    */
   hidePrevButton: PropTypes.bool,
   /**
-   * Last page button icon
-   * @default LastPageIcon
-   */
-  lastPageIcon: PropTypes.elementType,
-  /**
-   * Next page button icon
-   * @default NavigateNextIcon
-   */
-  nextIcon: PropTypes.elementType,
-  /**
    * Callback fired when the page is changed.
    *
    * @param {React.ChangeEvent<unknown>} event The event source of the callback.
@@ -225,11 +224,6 @@ Pagination.propTypes /* remove-proptypes */ = {
    * The current page.
    */
   page: integerPropType,
-  /**
-   * Previous page button icon
-   * @default NavigateBeforeIcon
-   */
-  previousIcon: PropTypes.elementType,
   /**
    * Render the item.
    * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
