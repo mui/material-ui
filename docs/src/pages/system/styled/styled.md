@@ -229,7 +229,7 @@ With MUI's `styled()` utility, you can use components as selectors, too. When us
 npm install @emotion/babel-plugin
 ```
 
-In order fo this API to be available for the `styled()` utility exported from `@mui/system` or `@mui/material/styles` you need to configure the plugin to consider these imports too, via the `importMap` option.
+In order for MUI's `styled()` utility exported from `@mui/system` or `@mui/material/styles` to extend emotion's `styled()` API, you need to configure the plugin to consider these imports via the `importMap` option.
 
 **babel.config.js**
 
