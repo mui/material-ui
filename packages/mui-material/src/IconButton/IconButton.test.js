@@ -41,8 +41,8 @@ describe('<IconButton />', () => {
       </IconButton>,
     );
     expect(container.querySelector('.touch-ripple')).to.equal(null);
-    expect(getComputedStyle(getByRole('button'), ':hover').backgroundColor).to.not.equal(
-      'rgba(156, 39, 176, 0.04)',
+    expect(getComputedStyle(getByRole('button'), ':hover').backgroundColor).to.equal(
+      getComputedStyle(getByRole('button')).backgroundColor,
     );
   });
 

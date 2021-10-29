@@ -71,7 +71,8 @@ const IconButtonRoot = styled(ButtonBase, {
     ...(ownerState.color === 'inherit' && {
       color: 'inherit',
     }),
-    ...(ownerState.color !== 'inherit' &&
+    ...(!ownerState.disableRipple &&
+      ownerState.color !== 'inherit' &&
       ownerState.color !== 'default' && {
         color: theme.palette[ownerState.color].main,
         '&:hover': {
