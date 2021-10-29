@@ -136,11 +136,9 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       InputMore.notched = InputLabelProps.shrink;
     }
     if (label) {
-      const displayRequired = InputLabelProps?.required ?? required;
       InputMore.label = (
         <React.Fragment>
           {label}
-          {displayRequired && '\u00a0*'}
         </React.Fragment>
       );
     }
