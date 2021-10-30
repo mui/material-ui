@@ -6,7 +6,7 @@ import {
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
 } from './getInitColorSchemeScript';
-import useCurrentColorScheme from './useCurrentColorScheme';
+import useCurrentColorScheme, { getColorScheme } from './useCurrentColorScheme';
 
 describe('useCurrentColorScheme', () => {
   const render = createClientRender();
@@ -38,6 +38,45 @@ describe('useCurrentColorScheme', () => {
     window.matchMedia = createMatchMedia(false);
   });
 
+  describe('getColorScheme', () => {
+    it('use dayColorScheme given mode=day', () => {
+      expect(getColorScheme({ mode: 'day', dayColorScheme: 'light' })).to.equal('light');
+    });
+
+    it('use nightColorScheme given mode=night', () => {
+      expect(getColorScheme({ mode: 'night', nightColorScheme: 'dark' })).to.equal('dark');
+    });
+
+    it('use dayColorScheme given mode=system, systemMode=day', () => {
+      expect(
+        getColorScheme({ mode: 'system', systemMode: 'day', dayColorScheme: 'light' }),
+      ).to.equal('light');
+    });
+
+    it('use dayColorScheme given mode=system, systemMode=night', () => {
+      expect(
+        getColorScheme({ mode: 'system', systemMode: 'night', nightColorScheme: 'dark' }),
+      ).to.equal('dark');
+    });
+
+    it('return undefined if no conditions are matched', () => {
+      expect(
+        getColorScheme({ mode: undefined, dayColorScheme: 'light', nightColorScheme: 'dark' }),
+      ).to.equal(undefined);
+      expect(
+        getColorScheme({ mode: 'unknown', dayColorScheme: 'light', nightColorScheme: 'dark' }),
+      ).to.equal(undefined);
+      expect(
+        getColorScheme({
+          mode: 'system',
+          systemMode: undefined,
+          dayColorScheme: 'light',
+          nightColorScheme: 'dark',
+        }),
+      ).to.equal(undefined);
+    });
+  });
+
   describe('Client', () => {
     it('has default mode=`day`', () => {
       const Data = () => {
@@ -52,7 +91,6 @@ describe('useCurrentColorScheme', () => {
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
         mode: 'day',
-        systemMode: 'day',
         dayColorScheme: 'light',
         nightColorScheme: 'dark',
         colorScheme: 'light',
@@ -73,17 +111,16 @@ describe('useCurrentColorScheme', () => {
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
         mode: 'night',
-        systemMode: 'night',
         dayColorScheme: 'light',
         nightColorScheme: 'dark',
         colorScheme: 'dark',
       });
     });
 
-    it('defaultMode=`auto`', () => {
+    it('defaultMode=`system`', () => {
       const Data = () => {
         const data = useCurrentColorScheme({
-          defaultMode: 'auto',
+          defaultMode: 'system',
           defaultDayColorScheme: 'light',
           defaultNightColorScheme: 'dark',
           supportedColorSchemes: ['light', 'dark'],
@@ -93,7 +130,7 @@ describe('useCurrentColorScheme', () => {
       const { container } = render(<Data />);
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
-        mode: 'auto',
+        mode: 'system',
         systemMode: 'day',
         dayColorScheme: 'light',
         nightColorScheme: 'dark',
@@ -105,7 +142,7 @@ describe('useCurrentColorScheme', () => {
       });
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
-        mode: 'auto',
+        mode: 'system',
         systemMode: 'night',
         dayColorScheme: 'light',
         nightColorScheme: 'dark',
@@ -128,14 +165,13 @@ describe('useCurrentColorScheme', () => {
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
         mode: 'night',
-        systemMode: 'night',
         dayColorScheme: 'light',
         nightColorScheme: 'dark',
         colorScheme: 'dark',
       });
     });
 
-    it('change to `auto` mode', () => {
+    it('change to `system` mode', () => {
       window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
       const Data = () => {
         const { setMode, ...data } = useCurrentColorScheme({
@@ -143,14 +179,14 @@ describe('useCurrentColorScheme', () => {
           defaultNightColorScheme: 'dark',
           supportedColorSchemes: ['light', 'dark'],
         });
-        return <button onClick={() => setMode('auto')}>{JSON.stringify(data)}</button>;
+        return <button onClick={() => setMode('system')}>{JSON.stringify(data)}</button>;
       };
       const { container } = render(<Data />);
 
       fireEvent.click(container.firstChild);
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
-        mode: 'auto',
+        mode: 'system',
         systemMode: 'night',
         dayColorScheme: 'light',
         nightColorScheme: 'dark',
@@ -173,18 +209,17 @@ describe('useCurrentColorScheme', () => {
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
         mode: 'day',
-        systemMode: 'day',
         dayColorScheme: 'paper',
         nightColorScheme: 'dark',
         colorScheme: 'paper',
       });
     });
 
-    it('change colorScheme when mode is `auto` should look at systemMode', () => {
+    it('change colorScheme when mode is `system` should look at systemMode', () => {
       window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
       const Data = () => {
         const { setColorScheme, ...data } = useCurrentColorScheme({
-          defaultMode: 'auto',
+          defaultMode: 'system',
           defaultDayColorScheme: 'light',
           defaultNightColorScheme: 'dark',
           supportedColorSchemes: ['light', 'paper', 'dark', 'dim'],
@@ -196,7 +231,7 @@ describe('useCurrentColorScheme', () => {
       fireEvent.click(container.firstChild);
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
-        mode: 'auto',
+        mode: 'system',
         systemMode: 'night',
         dayColorScheme: 'light',
         nightColorScheme: 'dim',
@@ -207,7 +242,7 @@ describe('useCurrentColorScheme', () => {
     it('change both day & night color scheme at the same time', () => {
       const Data = () => {
         const { setColorScheme, ...data } = useCurrentColorScheme({
-          defaultMode: 'auto',
+          defaultMode: 'system',
           defaultDayColorScheme: 'light',
           defaultNightColorScheme: 'dark',
           supportedColorSchemes: ['light', 'paper', 'dark', 'dim'],
@@ -225,7 +260,7 @@ describe('useCurrentColorScheme', () => {
       fireEvent.click(container.firstChild);
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
-        mode: 'auto',
+        mode: 'system',
         systemMode: 'day',
         dayColorScheme: 'paper',
         nightColorScheme: 'dim',
@@ -237,7 +272,7 @@ describe('useCurrentColorScheme', () => {
       });
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
-        mode: 'auto',
+        mode: 'system',
         systemMode: 'night',
         dayColorScheme: 'paper',
         nightColorScheme: 'dim',
@@ -247,10 +282,29 @@ describe('useCurrentColorScheme', () => {
   });
 
   describe('Storage', () => {
-    it('saves mode, dayColorScheme and nightColorScheme', () => {
+    it('save mode & systemMode', () => {
+      const Data = () => {
+        useCurrentColorScheme({
+          defaultMode: 'system',
+          defaultDayColorScheme: 'light',
+          defaultNightColorScheme: 'dark',
+          supportedColorSchemes: ['light', 'dark'],
+        });
+        return null;
+      };
+      render(<Data />);
+      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'system')).to.equal(
+        true,
+      );
+      expect(
+        global.localStorage.setItem.calledWith(`${DEFAULT_MODE_STORAGE_KEY}-system`, 'day'),
+      ).to.equal(true);
+    });
+
+    it('save mode, systemMode, dayColorScheme and nightColorScheme', () => {
       const Data = () => {
         const { setMode, setColorScheme, ...data } = useCurrentColorScheme({
-          defaultMode: 'auto',
+          defaultMode: 'system',
           defaultDayColorScheme: 'light',
           defaultNightColorScheme: 'dark',
           supportedColorSchemes: ['light', 'dark', 'dim'],
@@ -290,7 +344,6 @@ describe('useCurrentColorScheme', () => {
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
         mode: 'night',
-        systemMode: 'night',
         dayColorScheme: 'light',
         nightColorScheme: 'dark',
         colorScheme: 'dark',
@@ -312,11 +365,12 @@ describe('useCurrentColorScheme', () => {
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
         mode: 'night',
-        systemMode: 'night',
         dayColorScheme: 'light',
         nightColorScheme: 'dim',
         colorScheme: 'dim',
       });
     });
+
+    it.skip('storage mode change', () => {});
   });
 });
