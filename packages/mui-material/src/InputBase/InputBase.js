@@ -168,6 +168,10 @@ export const InputBaseComponent = styled('input', {
     '&::-moz-placeholder': placeholder, // Firefox 19+
     '&:-ms-input-placeholder': placeholder, // IE11
     '&::-ms-input-placeholder': placeholder, // Edge
+    // Remove Edge password reveal button
+    '&::-ms-reveal': {
+      display: 'none',
+    },
     '&:focus': {
       outline: 0,
     },
