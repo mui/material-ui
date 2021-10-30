@@ -71,20 +71,21 @@ const IconButtonRoot = styled(ButtonBase, {
     ...(ownerState.color === 'inherit' && {
       color: 'inherit',
     }),
-    ...(!ownerState.disableRipple &&
-      ownerState.color !== 'inherit' &&
+    ...(ownerState.color !== 'inherit' &&
       ownerState.color !== 'default' && {
         color: theme.palette[ownerState.color].main,
-        '&:hover': {
-          backgroundColor: alpha(
-            theme.palette[ownerState.color].main,
-            theme.palette.action.hoverOpacity,
-          ),
-          // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
+        ...(!ownerState.disableRipple && {
+          '&:hover': {
+            backgroundColor: alpha(
+              theme.palette[ownerState.color].main,
+              theme.palette.action.hoverOpacity,
+            ),
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
           },
-        },
+        }),
       }),
     ...(ownerState.size === 'small' && {
       padding: 5,
