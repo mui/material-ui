@@ -19,6 +19,7 @@ import Grow from '../Grow';
 import Modal from '../Modal';
 import Paper from '../Paper';
 import { getPopoverUtilityClass } from './popoverClasses';
+import useTheme from '../styles/useTheme';
 
 export function getOffsetTop(rect, vertical) {
   let offset = 0;
@@ -123,6 +124,9 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const paperRef = React.useRef();
   const handlePaperRef = useForkRef(paperRef, PaperProps.ref);
 
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
+
   const ownerState = {
     ...props,
     anchorOrigin,
@@ -185,6 +189,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     return {
       top: anchorRect.top + getOffsetTop(anchorRect, anchorOrigin.vertical),
       left: anchorRect.left + getOffsetLeft(anchorRect, anchorOrigin.horizontal),
+      width: anchorRect.width,
     };
   }, [anchorEl, anchorOrigin.horizontal, anchorOrigin.vertical, anchorPosition, anchorReference]);
 
@@ -233,6 +238,17 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const heightThreshold = containerWindow.innerHeight - marginThreshold;
       const widthThreshold = containerWindow.innerWidth - marginThreshold;
 
+      // if direction was RTL
+      const rightInRtlDirection =
+        containerWindow.innerWidth -
+        elemTransformOrigin.horizontal -
+        (left + anchorOffset.width) +
+        (anchorOrigin.horizontal === 'right'
+          ? anchorOffset.width * 2
+          : anchorOrigin.horizontal === 'center'
+          ? anchorOffset.width
+          : 0);
+
       // Check if the vertical axis needs shifting
       if (top < marginThreshold) {
         const diff = top - marginThreshold;
@@ -271,11 +287,20 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
 
       return {
         top: `${Math.round(top)}px`,
-        left: `${Math.round(left)}px`,
+        left: isRtl ? 'unset' : `${Math.round(left)}px`,
+        right: isRtl ? `${Math.round(rightInRtlDirection)}px` : 'unset',
         transformOrigin: getTransformOriginValue(elemTransformOrigin),
       };
     },
-    [anchorEl, anchorReference, getAnchorOffset, getTransformOrigin, marginThreshold],
+    [
+      anchorEl,
+      anchorReference,
+      getAnchorOffset,
+      getTransformOrigin,
+      marginThreshold,
+      isRtl,
+      anchorOrigin.horizontal,
+    ],
   );
 
   const setPositioningStyles = React.useCallback(() => {
@@ -292,6 +317,9 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     }
     if (positioning.left !== null) {
       element.style.left = positioning.left;
+    }
+    if (positioning.right !== null) {
+      element.style.right = positioning.right;
     }
     element.style.transformOrigin = positioning.transformOrigin;
   }, [getPositioningStyle]);
