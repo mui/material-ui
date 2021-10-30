@@ -24,6 +24,7 @@ const SelectSelect = styled('div', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
     return [
+      styles.root,
       // Win specificity over the input base
       { [`&.${selectClasses.select}`]: styles.select },
       { [`&.${selectClasses.select}`]: styles[ownerState.variant] },
