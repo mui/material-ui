@@ -76,6 +76,28 @@ const NavItem = styled(Link, {
   };
 });
 
+// TODO: these nodes are mutable sources. Use createMutableSource once it's stable
+function getItemsClient(headings) {
+  const itemsWithNode = [];
+
+  headings.forEach((item) => {
+    itemsWithNode.push({
+      ...item,
+      node: document.getElementById(item.hash),
+    });
+
+    if (item.children.length > 0) {
+      item.children.forEach((subitem) => {
+        itemsWithNode.push({
+          ...subitem,
+          node: document.getElementById(subitem.hash),
+        });
+      });
+    }
+  });
+  return itemsWithNode;
+}
+
 const noop = () => {};
 
 function useThrottledOnScroll(callback, delay) {
@@ -101,6 +123,11 @@ export default function AppTableOfContents(props) {
   const { items } = props;
   const t = useTranslate();
 
+  const itemsWithNodeRef = React.useRef([]);
+  React.useEffect(() => {
+    itemsWithNodeRef.current = getItemsClient(items);
+  }, [items]);
+
   const { activePage } = React.useContext(PageContext);
   const [activeState, setActiveState] = React.useState(null);
   const clickedRef = React.useRef(false);
@@ -112,25 +139,24 @@ export default function AppTableOfContents(props) {
     }
 
     let active;
-    for (let i = items.length - 1; i >= 0; i -= 1) {
+    for (let i = itemsWithNodeRef.current.length - 1; i >= 0; i -= 1) {
       // No hash if we're near the top of the page
       if (document.documentElement.scrollTop < 200) {
         active = { hash: null };
         break;
       }
 
-      const item = items[i];
-      const node = document.getElementById(item.hash);
+      const item = itemsWithNodeRef.current[i];
 
       if (process.env.NODE_ENV !== 'production') {
-        if (!node) {
+        if (!item.node) {
           console.error(`Missing node on the item ${JSON.stringify(item, null, 2)}`);
         }
       }
 
       if (
-        node &&
-        node.offsetTop <
+        item.node &&
+        item.node.offsetTop <
           document.documentElement.scrollTop + document.documentElement.clientHeight / 8
       ) {
         active = item;
@@ -141,7 +167,7 @@ export default function AppTableOfContents(props) {
     if (active && activeState !== active.hash) {
       setActiveState(active.hash);
     }
-  }, [activeState, items]);
+  }, [activeState]);
 
   // Corresponds to 10 frames at 60 Hz
   useThrottledOnScroll(items.length > 0 ? findActiveIndex : null, 166);
