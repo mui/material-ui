@@ -3,12 +3,17 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createClientRender, screen, fireEvent } from 'test/utils';
 import createCssVarsProvider from './createCssVarsProvider';
-import { DEFAULT_ATTRIBUTE, DEFAULT_STORAGE_KEY } from './getInitColorSchemeScript';
+import { DEFAULT_ATTRIBUTE, DEFAULT_MODE_STORAGE_KEY } from './getInitColorSchemeScript';
 import useTheme from '../useTheme';
 
 describe('createCssVarsProvider', () => {
   const render = createClientRender();
   let storage = {};
+  const createMatchMedia = (matches) => () => ({
+    matches,
+    addListener: () => {},
+    removeListener: () => {},
+  });
   before(() => {
     // Create mocks of localStorage getItem and setItem functions
     Object.defineProperty(global, 'localStorage', {
@@ -25,6 +30,7 @@ describe('createCssVarsProvider', () => {
   beforeEach(() => {
     // clear the localstorage
     storage = {};
+    window.matchMedia = createMatchMedia(false);
   });
 
   describe('[Design System] CssVarsProvider', () => {
@@ -197,30 +203,34 @@ describe('createCssVarsProvider', () => {
       defaultColorScheme: 'light',
     });
     const Consumer = () => {
-      const { colorScheme, setColorScheme } = useColorScheme();
+      const { mode, setMode } = useColorScheme();
       return (
         <div>
-          <div data-testid="current-color-scheme">{colorScheme}</div>
-          <button onClick={() => setColorScheme('dark')}>change to dark</button>
+          <div data-testid="current-mode">{mode}</div>
+          <button onClick={() => setMode('night')}>change to night</button>
         </div>
       );
     };
-    it('should save colorScheme to localStorage', () => {
+    it('should save mode to localStorage', () => {
       render(
         <CssVarsProvider>
           <Consumer />
         </CssVarsProvider>,
       );
 
-      expect(global.localStorage.setItem.lastCall.args).to.eql([DEFAULT_STORAGE_KEY, 'light']);
+      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'day')).to.equal(
+        true,
+      );
 
-      fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
+      fireEvent.click(screen.getByRole('button', { name: 'change to night' }));
 
-      expect(global.localStorage.setItem.lastCall.args).to.eql([DEFAULT_STORAGE_KEY, 'dark']);
+      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'night')).to.equal(
+        true,
+      );
     });
 
-    it('should use colorScheme from localStorage if exists', () => {
-      storage[DEFAULT_STORAGE_KEY] = 'dark';
+    it('should use mode from localStorage if exists', () => {
+      storage[DEFAULT_MODE_STORAGE_KEY] = 'night';
 
       render(
         <CssVarsProvider>
@@ -228,21 +238,23 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
+      expect(screen.getByTestId('current-mode').textContent).to.equal('night');
     });
 
-    it('use custom storageKey', () => {
-      const customStorageKey = 'foo-colorScheme';
-      storage[customStorageKey] = 'dark';
+    it('use custom modeStorageKey', () => {
+      const customModeStorageKey = 'foo-mode';
+      storage[customModeStorageKey] = 'night';
 
       render(
-        <CssVarsProvider storageKey={customStorageKey}>
+        <CssVarsProvider modeStorageKey={customModeStorageKey}>
           <Consumer />
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
-      expect(global.localStorage.setItem.lastCall.args).to.eql([customStorageKey, 'dark']);
+      expect(screen.getByTestId('current-mode').textContent).to.equal('night');
+      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'night')).to.equal(
+        true,
+      );
     });
   });
 
@@ -273,7 +285,7 @@ describe('createCssVarsProvider', () => {
       return <div data-testid="color">{theme.vars.color}</div>;
     };
     it('use default color scheme if the storage value does not exist', () => {
-      storage[DEFAULT_STORAGE_KEY] = 'unknown';
+      storage[DEFAULT_MODE_STORAGE_KEY] = 'unknown';
 
       render(
         <CssVarsProvider>

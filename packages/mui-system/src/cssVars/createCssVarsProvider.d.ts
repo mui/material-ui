@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Result, Mode } from './useCurrentColorScheme';
 
 type RequiredDeep<T> = {
   [K in keyof T]-?: RequiredDeep<T[K]>;
@@ -35,10 +36,9 @@ type DecideTheme<
       };
     };
 
-export interface ColorSchemeContextValue<DesignSystemColorScheme extends string> {
-  allColorSchemes: DesignSystemColorScheme[];
-  colorScheme: DesignSystemColorScheme | undefined;
-  setColorScheme: React.Dispatch<React.SetStateAction<DesignSystemColorScheme | undefined>>;
+export interface ColorSchemeContextValue<SupportedColorScheme extends string>
+  extends Result<SupportedColorScheme> {
+  allColorSchemes: SupportedColorScheme[];
 }
 
 export default function createCssVarsProvider<
@@ -63,15 +63,50 @@ export default function createCssVarsProvider<
         >
       >;
   };
-  defaultColorScheme: DesignSystemColorScheme;
+  defaultColorScheme:
+    | DesignSystemColorScheme
+    | { day: DesignSystemColorScheme; night: DesignSystemColorScheme };
+  /**
+   * Design system default mode
+   * @default 'day'
+   */
+  defaultMode?: Mode;
+  /**
+   * CSS variable prefix
+   * @default ''
+   */
   prefix?: string;
 }): {
   CssVarsProvider: (
     props: React.PropsWithChildren<
       {
-        defaultColorScheme?: DesignSystemColorScheme | ApplicationColorScheme;
-        storageKey?: string;
+        /**
+         * Application default mode (overrides design system `defaultMode` if specified)
+         */
+        defaultMode?: Mode;
+        /**
+         * Application default colorScheme (overrides design system `defaultColorScheme` if specified)
+         */
+        defaultColorScheme?:
+          | DesignSystemColorScheme
+          | ApplicationColorScheme
+          | {
+              day: DesignSystemColorScheme | ApplicationColorScheme;
+              night: DesignSystemColorScheme | ApplicationColorScheme;
+            };
+        /**
+         * localStorage key used to store application `mode`
+         * @default 'mui-mode'
+         */
+        modeStorageKey?: string;
+        /**
+         * DOM attribute for applying color scheme
+         * @default 'data-mui-color-scheme'
+         */
         attribute?: string;
+        /**
+         * CSS variable prefix (overrides design system `prefix` if specified)
+         */
         prefix?: string;
       } & DecideTheme<ApplicationThemeInput, DesignSystemColorScheme, ApplicationColorScheme>
     >,
