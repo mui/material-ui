@@ -425,7 +425,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       onClick(event);
     }
   };
-
   let InputComponent = inputComponent;
   let inputProps = inputPropsProp;
 
@@ -531,7 +530,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
               ownerState: { ...ownerState, ...inputProps.ownerState },
             })}
             ref={handleInputRef}
-            className={clsx(classes.input, inputProps.className, inputPropsProp.className)}
+            className={clsx(classes.input, inputProps.className)}
             onBlur={handleBlur}
             onChange={handleChange}
             onFocus={handleFocus}

@@ -186,4 +186,75 @@ describe('<Stack />', () => {
       display: 'flex',
     });
   });
+
+  describe('prop: direction', () => {
+    it('should generate correct responsive styles regardless of breakpoints order', () => {
+      expect(
+        style({
+          ownerState: {
+            direction: { sm: 'row', xs: 'column' },
+            spacing: { xs: 1, sm: 2, md: 3 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '8px',
+          },
+          flexDirection: 'column',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginLeft: '16px',
+          },
+          flexDirection: 'row',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginLeft: '24px',
+          },
+        },
+        display: 'flex',
+      });
+    });
+  });
+
+  describe('prop: spacing', () => {
+    it('should generate correct responsive styles regardless of breakpoints order', () => {
+      expect(
+        style({
+          ownerState: {
+            direction: 'column',
+            spacing: { sm: 2, md: 3, xs: 1 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '8px',
+          },
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '16px',
+          },
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '24px',
+          },
+        },
+        display: 'flex',
+        flexDirection: 'column',
+      });
+    });
+  });
 });

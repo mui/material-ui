@@ -6,7 +6,7 @@ import styleFunctionSx, { extendSxProp } from './styleFunctionSx';
 import useTheme from './useTheme';
 
 export default function createBox(options = {}) {
-  const { defaultTheme } = options;
+  const { defaultTheme, defaultClassName = 'MuiBox-root', generateClassName } = options;
   const BoxRoot = styled('div')(styleFunctionSx);
 
   const Box = React.forwardRef(function Box(inProps, ref) {
@@ -17,7 +17,10 @@ export default function createBox(options = {}) {
       <BoxRoot
         as={component}
         ref={ref}
-        className={clsx(className, 'MuiBox-root')}
+        className={clsx(
+          className,
+          generateClassName ? generateClassName(defaultClassName) : defaultClassName,
+        )}
         theme={theme}
         {...other}
       />

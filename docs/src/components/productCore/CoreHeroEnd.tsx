@@ -27,7 +27,7 @@ export default function CoreHeroEnd() {
                 <Button
                   aria-label="Goto documentation"
                   component={Link}
-                  href={ROUTES.documentation}
+                  href={ROUTES.communityHelp}
                   noLinkStyle
                   size="large"
                   variant="contained"
