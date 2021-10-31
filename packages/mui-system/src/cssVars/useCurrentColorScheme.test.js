@@ -22,16 +22,6 @@ describe('useCurrentColorScheme', () => {
     removeListener: () => {},
   });
   before(() => {
-    // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
-      value: {
-        getItem: spy((key) => storage[key]),
-        setItem: spy((key, value) => {
-          storage[key] = value;
-        }),
-      },
-      configurable: true,
-    });
     window.addEventListener = (key, handler) => {
       storageHandler[key] = handler;
     };
@@ -43,6 +33,17 @@ describe('useCurrentColorScheme', () => {
   beforeEach(() => {
     // clear the localstorage
     storage = {};
+    // Create mocks of localStorage getItem and setItem functions
+    Object.defineProperty(global, 'localStorage', {
+      value: {
+        getItem: spy((key) => storage[key]),
+        setItem: spy((key, value) => {
+          storage[key] = value;
+        }),
+      },
+      configurable: true,
+    });
+
     storageHandler = {};
     window.matchMedia = createMatchMedia(false);
   });
@@ -386,7 +387,33 @@ describe('useCurrentColorScheme', () => {
   });
 
   describe('Storage', () => {
-    it('save mode', () => {
+    it('save dark mode', () => {
+      const Data = () => {
+        const { setMode, ...data } = useCurrentColorScheme({
+          defaultDayColorScheme: 'light',
+          defaultNightColorScheme: 'dark',
+          supportedColorSchemes: ['light', 'dark'],
+        });
+        return (
+          <button
+            onClick={() => {
+              setMode('night');
+            }}
+          >
+            {JSON.stringify(data)}
+          </button>
+        );
+      };
+      const { container } = render(<Data />);
+
+      fireEvent.click(container.firstChild);
+
+      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'night')).to.equal(
+        true,
+      );
+    });
+
+    it('save system mode', () => {
       const Data = () => {
         useCurrentColorScheme({
           defaultMode: 'system',
@@ -421,7 +448,9 @@ describe('useCurrentColorScheme', () => {
           </button>
         );
       };
-      render(<Data />);
+      const { container } = render(<Data />);
+
+      fireEvent.click(container.firstChild);
 
       expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'night')).to.equal(
         true,

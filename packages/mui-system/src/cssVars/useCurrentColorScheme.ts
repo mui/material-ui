@@ -241,7 +241,12 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
       localStorage.setItem(modeStorageKey, state.mode);
     }
     processState(state, (mode) => {
-      localStorage.setItem(`${colorSchemeStorageKey}-${mode}`, state.dayColorScheme);
+      if (mode === 'day') {
+        localStorage.setItem(`${colorSchemeStorageKey}-day`, state.dayColorScheme);
+      }
+      if (mode === 'night') {
+        localStorage.setItem(`${colorSchemeStorageKey}-night`, state.nightColorScheme);
+      }
     });
   }, [state, colorSchemeStorageKey, modeStorageKey]);
 
