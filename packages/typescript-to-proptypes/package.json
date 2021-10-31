@@ -4,7 +4,7 @@
   "private": true,
   "description": "Generate proptypes from TypeScript declarations",
   "engines": {
-    "node": ">=10.3.0"
+    "node": ">=v16.13.0"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "@types/babel__core": "^7.1.16",
     "@types/doctrine": "^0.0.5",
     "@types/lodash": "^4.14.176",
-    "@types/node": "^16.11.4",
+    "@types/node": "^16.11.6",
     "@types/prettier": "^2.4.1",
     "@types/react": "^17.0.33",
     "@types/uuid": "^8.3.1",

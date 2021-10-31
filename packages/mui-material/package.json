@@ -77,6 +77,6 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=v16.13.0"
   }
 }
