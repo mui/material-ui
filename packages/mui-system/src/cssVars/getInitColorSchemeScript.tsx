@@ -5,7 +5,7 @@ export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'mui-color-scheme';
 export const DEFAULT_ATTRIBUTE = 'data-mui-color-scheme';
 
 export default function getInitColorSchemeScript(options?: {
-  defaultMode?: 'day' | 'night' | 'auto';
+  defaultMode?: 'day' | 'night' | 'system';
   defaultDayColorScheme?: string;
   defaultNightColorScheme?: string;
   modeStorageKey?: string;
@@ -26,24 +26,23 @@ export default function getInitColorSchemeScript(options?: {
       dangerouslySetInnerHTML={{
         __html: `(function() { try {
         var mode = localStorage.getItem('${modeStorageKey}');
-        if (mode === 'auto' || (!mode && ${defaultMode} === 'auto')) {
+        var colorScheme = '';
+        if (mode === 'system' || (!mode && ${defaultMode} === 'system')) {
           // handle system mode
           var mql = window.matchMedia('(prefers-color-scheme: dark)');
-          var colorScheme = '';
           if (mql.matches) {
             colorScheme = localStorage.getItem('${colorSchemeStorageKey}-night') || ${defaultDayColorScheme};
           } else {
             colorScheme = localStorage.getItem('${colorSchemeStorageKey}-day') || ${defaultNightColorScheme};
           }
-
-          document.body.setAttribute('${attribute}', colorScheme);
         }
         if (mode === 'day') {
-          var colorScheme = localStorage.getItem('${colorSchemeStorageKey}-day') || ${defaultDayColorScheme};
-          document.body.setAttribute('${attribute}', colorScheme);
+          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-day') || ${defaultDayColorScheme};
         }
         if (mode === 'night') {
-          var colorScheme = localStorage.getItem('${colorSchemeStorageKey}-night') || ${defaultNightColorScheme};
+          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-night') || ${defaultNightColorScheme};
+        }
+        if (colorScheme) {
           document.body.setAttribute('${attribute}', colorScheme);
         }
       } catch (e) {} })();`,
