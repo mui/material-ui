@@ -167,7 +167,7 @@
     "serve": "^12.0.1",
     "sinon": "^11.1.2",
     "stylelint": "^13.13.1",
-    "stylelint-config-standard": "^22.0.0",
+    "stylelint-config-standard": "^23.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^5.2.4",
     "tslint": "5.14.0",
