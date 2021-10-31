@@ -7,7 +7,7 @@ import defaultTheme from './defaultTheme';
 describe('[Joy] CssVarsProvider', () => {
   const render = createClientRender();
   const storage: Record<string, string> = {};
-  before(() => {
+  beforeEach(() => {
     // Create mocks of localStorage getItem and setItem functions
     Object.defineProperty(global, 'localStorage', {
       value: {
@@ -18,6 +18,11 @@ describe('[Joy] CssVarsProvider', () => {
       },
       configurable: true,
     });
+    window.matchMedia = () =>
+      ({
+        addListener: () => {},
+        removeListener: () => {},
+      } as unknown as MediaQueryList);
   });
   describe('All CSS vars', () => {
     it('palette', () => {
