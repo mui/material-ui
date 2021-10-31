@@ -134,8 +134,8 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
 
   const colorScheme = getColorScheme(state);
 
-  const setMode = React.useCallback(
-    (mode: Mode) => {
+  const setMode: Result<SupportedColorScheme>['setMode'] = React.useCallback(
+    (mode) => {
       setState((currentState) => {
         const newMode = !mode ? defaultMode : mode;
         if (typeof localStorage !== 'undefined') {
