@@ -25,7 +25,7 @@ export default function CoreHeroEnd() {
                   description="The core components were crafted by many hands, all over the world. Join the community to help us expand it even further!"
                 />
                 <Button
-                  aria-label="Goto documentation"
+                  aria-label="Go to documentation"
                   component={Link}
                   href={ROUTES.communityHelp}
                   noLinkStyle
