@@ -99,8 +99,17 @@ export default function createCssVarsProvider(options) {
           ...vars,
         };
       }
-      if (key === defaultColorScheme) {
-        styleSheet[':root'] = deepmerge(rootCss, css);
+      const resolvedDefaultColorScheme = (() => {
+        if (typeof defaultColorScheme === 'string') {
+          return defaultColorScheme;
+        }
+        if (defaultMode === 'night') {
+          return defaultColorScheme.night;
+        }
+        return defaultColorScheme.day;
+      })();
+      if (key === resolvedDefaultColorScheme) {
+        styleSheet[':root'] = css;
       } else {
         styleSheet[`[${attribute}="${key}"]`] = css;
       }
@@ -124,6 +133,7 @@ export default function createCssVarsProvider(options) {
           allColorSchemes,
         }}
       >
+        <GlobalStyles styles={{ ':root': rootCss }} />
         <GlobalStyles styles={styleSheet} />
         <ThemeProvider theme={mergedTheme}>{children}</ThemeProvider>
       </ColorSchemeContext.Provider>
