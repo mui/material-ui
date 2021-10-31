@@ -55,7 +55,7 @@
       ]
     },
     {
-      "groupName": "MUI-X",
+      "groupName": "MUI X",
       "matchPackagePatterns": ["@mui/x-*"]
     },
     {
