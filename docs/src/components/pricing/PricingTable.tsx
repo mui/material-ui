@@ -889,9 +889,9 @@ export default function PricingTable({
               variant="outlined"
               disabled
               fullWidth
-              sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.secondary' } }}
+              sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.disabled' } }}
             >
-              Available later this year!
+              Work in progress
             </Button>
           </Box>
         </Box>
