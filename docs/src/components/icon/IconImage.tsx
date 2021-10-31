@@ -25,6 +25,14 @@ export type IconImageProps = {
     | 'boeing'
     | 'siemens'
     | 'deloitte'
+    | 'apple'
+    | 'twitter'
+    | 'salesforce'
+    | 'verizon'
+    | 'atandt'
+    | 'patreon'
+    | 'ebay'
+    | 'samsung'
     | 'volvo';
   sx?: SxProps<Theme>;
   ref?: React.Ref<HTMLImageElement>;
@@ -66,7 +74,15 @@ export default function IconImage({ name, title, ...props }: IconImageProps) {
       'boeing',
       'siemens',
       'deloitte',
+      'apple',
+      'twitter',
+      'salesforce',
       'volvo',
+      'verizon',
+      'atandt',
+      'patreon',
+      'ebay',
+      'samsung',
     ].indexOf(name) !== -1
   ) {
     category = 'companies/';
