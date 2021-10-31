@@ -9,6 +9,7 @@
     "react",
     "react-component",
     "material-ui",
+    "mui",
     "emotion"
   ],
   "repository": {
