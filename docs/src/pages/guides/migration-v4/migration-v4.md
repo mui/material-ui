@@ -30,7 +30,7 @@ The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 - [Troubleshooting](#troubleshooting)
 
 > 💡 Aim to create small commits on any changes to help the migration go more smoothly.
-> If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with this title format: `[Migration] Summary of your issue`.
+> If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: `[Migration] Summary of your issue`.
 
 ## Update React & TypeScript version
 
