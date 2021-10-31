@@ -97,9 +97,26 @@ function useThrottledOnScroll(callback, delay) {
   }, [throttledCallback]);
 }
 
+function flatten(headings) {
+  const itemsWithNode = [];
+
+  headings.forEach((item) => {
+    itemsWithNode.push(item);
+
+    if (item.children.length > 0) {
+      item.children.forEach((subitem) => {
+        itemsWithNode.push(subitem);
+      });
+    }
+  });
+  return itemsWithNode;
+}
+
 export default function AppTableOfContents(props) {
-  const { items } = props;
+  const { toc } = props;
   const t = useTranslate();
+
+  const items = React.useMemo(() => flatten(toc), [toc]);
 
   const { activePage } = React.useContext(PageContext);
   const [activeState, setActiveState] = React.useState(null);
@@ -192,11 +209,11 @@ export default function AppTableOfContents(props) {
 
   return (
     <Nav aria-label={t('pageTOC')}>
-      {items.length > 0 ? (
+      {toc.length > 0 ? (
         <React.Fragment>
           <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>
           <NavList component="ul">
-            {items.map((item) => (
+            {toc.map((item) => (
               <li key={item.text}>
                 {itemLink(item)}
                 {item.children.length > 0 ? (
@@ -216,5 +233,5 @@ export default function AppTableOfContents(props) {
 }
 
 AppTableOfContents.propTypes = {
-  items: PropTypes.array.isRequired,
+  toc: PropTypes.array.isRequired,
 };
