@@ -133,7 +133,7 @@
     "format-util": "^1.0.5",
     "fs-extra": "^10.0.0",
     "globby": "^11.0.4",
-    "html-webpack-plugin": "^5.4.0",
+    "html-webpack-plugin": "^5.5.0",
     "istanbul-instrumenter-loader": "^3.0.1",
     "jsdom": "^18.0.0",
     "karma": "^6.3.5",
