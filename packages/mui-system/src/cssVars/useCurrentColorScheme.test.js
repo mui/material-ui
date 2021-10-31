@@ -10,6 +10,8 @@ import useCurrentColorScheme, { getColorScheme } from './useCurrentColorScheme';
 
 describe('useCurrentColorScheme', () => {
   const render = createClientRender();
+  let originalMatchmedia;
+  let originalAddEventListener;
   let storage = {};
   let storageHandler = {};
   let trigger;
@@ -22,15 +24,17 @@ describe('useCurrentColorScheme', () => {
     removeListener: () => {},
   });
   before(() => {
+    originalAddEventListener = window.addEventListener;
     window.addEventListener = (key, handler) => {
       storageHandler[key] = handler;
     };
-    window.removeEventListener = (key) => {
-      delete storageHandler[key];
-    };
+  });
+  after(() => {
+    window.addEventListener = originalAddEventListener;
   });
 
   beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
     // clear the localstorage
     storage = {};
     // Create mocks of localStorage getItem and setItem functions
@@ -46,6 +50,9 @@ describe('useCurrentColorScheme', () => {
 
     storageHandler = {};
     window.matchMedia = createMatchMedia(false);
+  });
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
   });
 
   describe('getColorScheme', () => {

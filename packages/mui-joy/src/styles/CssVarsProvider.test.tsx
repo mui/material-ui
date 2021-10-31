@@ -5,9 +5,11 @@ import { styled, CssVarsProvider, useTheme } from '@mui/joy/styles';
 import defaultTheme from './defaultTheme';
 
 describe('[Joy] CssVarsProvider', () => {
+  let originalMatchmedia: typeof window.matchMedia;
   const render = createClientRender();
   const storage: Record<string, string> = {};
   beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
     Object.defineProperty(global, 'localStorage', {
       value: {
@@ -23,6 +25,9 @@ describe('[Joy] CssVarsProvider', () => {
         addListener: () => {},
         removeListener: () => {},
       } as unknown as MediaQueryList);
+  });
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
   });
   describe('All CSS vars', () => {
     it('palette', () => {

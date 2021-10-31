@@ -152,10 +152,7 @@ export default function createCssVarsProvider(options) {
     /**
      * The initial color scheme used.
      */
-    defaultColorScheme: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.objectOf({ day: PropTypes.string, night: PropTypes.string }),
-    ]),
+    defaultColorScheme: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     /**
      * The initial mode used.
      */

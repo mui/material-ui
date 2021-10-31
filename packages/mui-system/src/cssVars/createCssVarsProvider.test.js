@@ -8,13 +8,17 @@ import useTheme from '../useTheme';
 
 describe('createCssVarsProvider', () => {
   const render = createClientRender();
+  let originalMatchmedia;
   let storage = {};
   const createMatchMedia = (matches) => () => ({
     matches,
     addListener: () => {},
     removeListener: () => {},
   });
-  before(() => {
+
+  beforeEach(() => {
+    originalMatchmedia = window.matchMedia;
+
     // Create mocks of localStorage getItem and setItem functions
     Object.defineProperty(global, 'localStorage', {
       value: {
@@ -25,12 +29,13 @@ describe('createCssVarsProvider', () => {
       },
       configurable: true,
     });
-  });
 
-  beforeEach(() => {
     // clear the localstorage
     storage = {};
     window.matchMedia = createMatchMedia(false);
+  });
+  afterEach(() => {
+    window.matchMedia = originalMatchmedia;
   });
 
   describe('[Design System] CssVarsProvider', () => {
@@ -252,9 +257,7 @@ describe('createCssVarsProvider', () => {
       );
 
       expect(screen.getByTestId('current-mode').textContent).to.equal('night');
-      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'night')).to.equal(
-        true,
-      );
+      expect(global.localStorage.setItem.calledWith(customModeStorageKey, 'night')).to.equal(true);
     });
   });
 
@@ -418,6 +421,66 @@ describe('createCssVarsProvider', () => {
       );
 
       expect(screen.getByTestId('text').textContent).to.equal('var(--foo-bar-fontSize)');
+    });
+
+    it('`defaultMode` is specified', () => {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: {}, dark: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Text = () => {
+        const { mode } = useColorScheme();
+        return <div>{mode}</div>;
+      };
+      const { container } = render(
+        <CssVarsProvider defaultMode="night">
+          <Text />
+        </CssVarsProvider>,
+      );
+      expect(container.firstChild.textContent).to.equal('night');
+    });
+
+    it('`defaultColorScheme` is specified as string', () => {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Text = () => {
+        const { colorScheme } = useColorScheme();
+        return <div>{colorScheme}</div>;
+      };
+      const { container } = render(
+        <CssVarsProvider theme={{ colorSchemes: { paper: {} } }} defaultColorScheme="paper">
+          <Text />
+        </CssVarsProvider>,
+      );
+      expect(container.firstChild.textContent).to.equal('paper');
+    });
+
+    it('`defaultColorScheme` is specified as object', () => {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Text = () => {
+        const { colorScheme } = useColorScheme();
+        return <div>{colorScheme}</div>;
+      };
+      const { container } = render(
+        <CssVarsProvider
+          theme={{ colorSchemes: { paper: {} } }}
+          defaultColorScheme={{ day: 'paper' }}
+        >
+          <Text />
+        </CssVarsProvider>,
+      );
+      expect(container.firstChild.textContent).to.equal('paper');
     });
   });
 });
