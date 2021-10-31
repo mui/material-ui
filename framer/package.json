@@ -13,7 +13,7 @@
     "deepmerge": "^4.2.2",
     "docs": "^5.0.0",
     "framer": "^1.2.5",
-    "framer-motion": "^4.1.17",
+    "framer-motion": "^5.0.0",
     "mustache": "^4.2.0",
     "react-docgen": "^5.4.0"
   },
