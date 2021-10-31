@@ -171,7 +171,7 @@ const AutocompleteRoot = styled('div', {
       padding: '2.5px 4px',
     },
   },
-  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}`]: {
+  [`& .${inputBaseClasses.hiddenLabel}`]: {
     paddingTop: 8,
   },
   [`& .${autocompleteClasses.input}`]: {
