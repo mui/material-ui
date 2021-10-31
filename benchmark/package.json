@@ -23,7 +23,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
-    "react-jss": "^10.8.1",
+    "react-jss": "^10.8.2",
     "react-redux": "^7.2.5",
     "redux": "^4.1.2",
     "serve-handler": "^6.1.3",
