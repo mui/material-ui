@@ -50,7 +50,7 @@ export function getSliderUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSlider', slot);
 }
 
-const sliderUnstyledClasses: SliderUnstyledClasses = generateUtilityClasses('MuiSlider', [
+export const getSliderUnstyledClasses = (): SliderUnstyledClasses => generateUtilityClasses('MuiSlider', [
   'root',
   'active',
   'focusVisible',
@@ -72,5 +72,7 @@ const sliderUnstyledClasses: SliderUnstyledClasses = generateUtilityClasses('Mui
   'valueLabelCircle',
   'valueLabelLabel',
 ]);
+
+const sliderUnstyledClasses = getSliderUnstyledClasses();
 
 export default sliderUnstyledClasses;

@@ -14,11 +14,13 @@ export function getButtonUnstyledUtilityClass(slot: string): string {
   return generateUtilityClass('ButtonUnstyled', slot);
 }
 
-const buttonUnstyledClasses: ButtonUnstyledClasses = generateUtilityClasses('ButtonUnstyled', [
+export const getButtonUnstyledClasses = (): ButtonUnstyledClasses => generateUtilityClasses('ButtonUnstyled', [
   'root',
   'active',
   'disabled',
   'focusVisible',
 ]);
+
+const buttonUnstyledClasses = getButtonUnstyledClasses();
 
 export default buttonUnstyledClasses;

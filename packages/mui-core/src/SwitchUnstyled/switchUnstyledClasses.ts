@@ -26,7 +26,7 @@ export function getSwitchUnstyledUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSwitch', slot);
 }
 
-const switchUnstyledClasses: SwitchUnstyledClasses = generateUtilityClasses('MuiSwitch', [
+export const getSwitchUnstyledClasses = (): SwitchUnstyledClasses => generateUtilityClasses('MuiSwitch', [
   'root',
   'input',
   'track',
@@ -36,5 +36,7 @@ const switchUnstyledClasses: SwitchUnstyledClasses = generateUtilityClasses('Mui
   'focusVisible',
   'readOnly',
 ]);
+
+const switchUnstyledClasses = getSwitchUnstyledClasses();
 
 export default switchUnstyledClasses;
