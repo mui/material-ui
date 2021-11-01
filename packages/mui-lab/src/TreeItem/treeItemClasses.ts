@@ -27,7 +27,7 @@ export function getTreeItemUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTreeItem', slot);
 }
 
-const treeItemClasses: TreeItemClasses = generateUtilityClasses('MuiTreeItem', [
+export const getTreeItemClasses = (): TreeItemClasses => generateUtilityClasses('MuiTreeItem', [
   'root',
   'group',
   'content',
@@ -38,5 +38,7 @@ const treeItemClasses: TreeItemClasses = generateUtilityClasses('MuiTreeItem', [
   'iconContainer',
   'label',
 ]);
+
+const treeItemClasses = getTreeItemClasses();
 
 export default treeItemClasses;

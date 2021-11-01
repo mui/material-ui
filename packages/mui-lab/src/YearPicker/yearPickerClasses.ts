@@ -4,6 +4,8 @@ export function getYearPickerUtilityClass(slot: string) {
   return generateUtilityClass('MuiYearPicker', slot);
 }
 
-const yearPickerClasses = generateUtilityClasses('MuiYearPicker', ['root']);
+export const getYearPickerClasses = () => generateUtilityClasses('MuiYearPicker', ['root']);
+
+const yearPickerClasses = getYearPickerClasses();
 
 export default yearPickerClasses;

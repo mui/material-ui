@@ -11,6 +11,8 @@ export function getTreeViewUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTreeView', slot);
 }
 
-const treeViewClasses: TreeViewClasses = generateUtilityClasses('MuiTreeView', ['root']);
+export const getTreeViewClasses = (): TreeViewClasses => generateUtilityClasses('MuiTreeView', ['root']);
+
+const treeViewClasses = getTreeViewClasses();
 
 export default treeViewClasses;

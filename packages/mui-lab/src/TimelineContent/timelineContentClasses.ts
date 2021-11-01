@@ -17,9 +17,11 @@ export function getTimelineContentUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTimelineContent', slot);
 }
 
-const timelineContentClasses: TimelineContentClasses = generateUtilityClasses(
+export const getTimelineContentClasses = (): TimelineContentClasses => generateUtilityClasses(
   'MuiTimelineContent',
   ['root', 'positionLeft', 'positionRight', 'positionAlternate'],
 );
+
+const timelineContentClasses = getTimelineContentClasses();
 
 export default timelineContentClasses;

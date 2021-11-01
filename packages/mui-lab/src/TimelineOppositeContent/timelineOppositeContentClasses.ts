@@ -17,9 +17,11 @@ export function getTimelineOppositeContentUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTimelineOppositeContent', slot);
 }
 
-const timelineOppositeContentClasses: TimelineOppositeContentClasses = generateUtilityClasses(
+export const getTimelineOppositeContentClasses = (): TimelineOppositeContentClasses => generateUtilityClasses(
   'MuiTimelineOppositeContent',
   ['root', 'positionLeft', 'positionRight', 'positionAlternate'],
 );
+
+const timelineOppositeContentClasses = getTimelineOppositeContentClasses();
 
 export default timelineOppositeContentClasses;
