@@ -30,4 +30,28 @@ describe('createBox', () => {
     );
     expect(container.firstChild).toHaveComputedStyle({ color: 'rgb(0, 255, 0)' });
   });
+
+  it('able to customize default className', () => {
+    const Box = createBox({ defaultClassName: 'FooBarBox' });
+
+    const { container } = render(<Box />);
+    expect(container.firstChild).to.have.class('FooBarBox');
+  });
+
+  it('use generateClassName if provided', () => {
+    const Box = createBox({ generateClassName: () => 'CustomBox-root' });
+
+    const { container } = render(<Box />);
+    expect(container.firstChild).to.have.class('CustomBox-root');
+  });
+
+  it('generateClassName should receive defaultClassName if provided', () => {
+    const Box = createBox({
+      defaultClassName: 'FooBarBox',
+      generateClassName: (name) => name.replace('FooBar', ''),
+    });
+
+    const { container } = render(<Box />);
+    expect(container.firstChild).to.have.class('Box');
+  });
 });
