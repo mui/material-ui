@@ -294,9 +294,7 @@ describe('useCurrentColorScheme', () => {
           supportedColorSchemes: ['light', 'paper', 'dark', 'dim'],
         });
         return (
-          <button
-            onClick={() => setColorScheme({ dayColorScheme: 'paper', nightColorScheme: 'dim' })}
-          >
+          <button onClick={() => setColorScheme({ day: 'paper', night: 'dim' })}>
             {JSON.stringify(data)}
           </button>
         );
@@ -367,13 +365,11 @@ describe('useCurrentColorScheme', () => {
             <div data-testid="data">{JSON.stringify(data)}</div>
             <button
               data-testid="dark"
-              onClick={() =>
-                setColorScheme({ dayColorScheme: 'light-dim', nightColorScheme: 'dark-dim' })
-              }
+              onClick={() => setColorScheme({ day: 'light-dim', night: 'dark-dim' })}
             />
             <button
               data-testid="reset"
-              onClick={() => setColorScheme({ dayColorScheme: null, nightColorScheme: null })}
+              onClick={() => setColorScheme({ day: null, night: null })}
             />
           </div>
         );

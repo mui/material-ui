@@ -45,8 +45,8 @@ export type Result<SupportedColorScheme extends string> = State<SupportedColorSc
     colorScheme:
       | SupportedColorScheme
       | Partial<{
-          dayColorScheme: SupportedColorScheme | null;
-          nightColorScheme: SupportedColorScheme | null;
+          day: SupportedColorScheme | null;
+          night: SupportedColorScheme | null;
         }>
       | null,
   ) => void;
@@ -178,28 +178,27 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
           });
         }
       } else if (
-        (value.dayColorScheme && !supportedColorSchemes.includes(value.dayColorScheme)) ||
-        (value.nightColorScheme && !supportedColorSchemes.includes(value.nightColorScheme))
+        (value.day && !supportedColorSchemes.includes(value.day)) ||
+        (value.night && !supportedColorSchemes.includes(value.night))
       ) {
         console.error(`\`${value}\` does not exist in \`theme.colorSchemes\`.`);
       } else {
         setState((currentState) => {
           const newState = { ...currentState };
-          if (value.dayColorScheme || value.dayColorScheme === null) {
-            newState.dayColorScheme =
-              value.dayColorScheme === null ? defaultDayColorScheme : value.dayColorScheme;
+          if (value.day || value.day === null) {
+            newState.dayColorScheme = value.day === null ? defaultDayColorScheme : value.day;
           }
-          if (value.nightColorScheme || value.nightColorScheme === null) {
+          if (value.night || value.night === null) {
             newState.nightColorScheme =
-              value.nightColorScheme === null ? defaultNightColorScheme : value.nightColorScheme;
+              value.night === null ? defaultNightColorScheme : value.night;
           }
           return newState;
         });
-        if (value.dayColorScheme) {
-          localStorage.setItem(`${colorSchemeStorageKey}-day`, value.dayColorScheme);
+        if (value.day) {
+          localStorage.setItem(`${colorSchemeStorageKey}-day`, value.day);
         }
-        if (value.nightColorScheme) {
-          localStorage.setItem(`${colorSchemeStorageKey}-night`, value.nightColorScheme);
+        if (value.night) {
+          localStorage.setItem(`${colorSchemeStorageKey}-night`, value.night);
         }
       }
     },
@@ -261,10 +260,10 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
       ) {
         // If the key is deleted, value will be null then reset color scheme to the default one.
         if (event.key.endsWith('day')) {
-          setColorScheme({ dayColorScheme: value as SupportedColorScheme | null });
+          setColorScheme({ day: value as SupportedColorScheme | null });
         }
         if (event.key.endsWith('night')) {
-          setColorScheme({ nightColorScheme: value as SupportedColorScheme | null });
+          setColorScheme({ night: value as SupportedColorScheme | null });
         }
       }
       if (event.key === modeStorageKey && (!value || ['day', 'night', 'system'].includes(value))) {
