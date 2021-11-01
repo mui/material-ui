@@ -262,3 +262,5 @@ module.exports = {
 };
 
 ```
+
+Now you should be able to use components as your selectors!
