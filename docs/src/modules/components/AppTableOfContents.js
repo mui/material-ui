@@ -31,7 +31,7 @@ const NavLabel = styled(Typography)(({ theme }) => {
     marginTop: theme.spacing(2),
     paddingLeft: theme.spacing(1.5),
     fontSize: theme.typography.pxToRem(12),
-    fontWeight: 700,
+    fontWeight: theme.typography.fontWeightBold,
     color:
       theme.palette.mode === 'dark' ? alpha(theme.palette.grey[500], 0.5) : theme.palette.grey[500],
   };
@@ -50,7 +50,6 @@ const NavItem = styled(Link, {
     borderLeftColor:
       theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[600],
     color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
-    fontWeight: 700,
   };
 
   return {
