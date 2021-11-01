@@ -104,9 +104,6 @@ export * from './Container';
 export { default as CssBaseline } from './CssBaseline';
 export * from './CssBaseline';
 
-export { default as darkScrollbar } from './darkScrollbar';
-export * from './darkScrollbar';
-
 export { default as Dialog } from './Dialog';
 export * from './Dialog';
 

@@ -8,7 +8,6 @@ import {
 import { deepmerge } from '@mui/utils';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@mui/material/locale';
-import darkScrollbar from '@mui/material/darkScrollbar';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
@@ -229,15 +228,6 @@ export function ThemeProvider(props) {
         spacing,
       },
       dense ? highDensity : null,
-      {
-        components: {
-          MuiCssBaseline: {
-            styleOverrides: {
-              body: paletteMode === 'dark' ? darkScrollbar() : null,
-            },
-          },
-        },
-      },
       languageMap[userLanguage],
     );
 

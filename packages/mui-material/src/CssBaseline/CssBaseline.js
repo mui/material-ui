@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import useThemeProps from '../styles/useThemeProps';
 import GlobalStyles from '../GlobalStyles';
 
-export const html = {
+export const html = (theme) => ({
   WebkitFontSmoothing: 'antialiased', // Antialiasing.
   MozOsxFontSmoothing: 'grayscale', // Antialiasing.
   // Change from `box-sizing: content-box` so that `width`
@@ -11,7 +11,8 @@ export const html = {
   boxSizing: 'border-box',
   // Fix font resize problem in iOS
   WebkitTextSizeAdjust: '100%',
-};
+  colorScheme: theme.palette.mode,
+});
 
 export const body = (theme) => ({
   color: theme.palette.text.primary,
@@ -25,7 +26,7 @@ export const body = (theme) => ({
 
 export const styles = (theme) => {
   let defaultStyles = {
-    html,
+    html: html(theme),
     '*, *::before, *::after': {
       boxSizing: 'inherit',
     },
