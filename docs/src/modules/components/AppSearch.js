@@ -246,7 +246,7 @@ export default function AppSearch() {
 
   return (
     <React.Fragment>
-      <SearchButton disableFocusRipple ref={searchButtonRef} onClick={onOpen}>
+      <SearchButton  ref={searchButtonRef} onClick={onOpen}>
         <SearchIcon
           fontSize="small"
           sx={{
