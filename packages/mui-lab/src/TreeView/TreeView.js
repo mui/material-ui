@@ -7,7 +7,7 @@ import {
   useControlled,
   useForkRef,
   ownerDocument,
-  unstable_useReactId as useReactId,
+  unstable_useId as useId,
 } from '@mui/material/utils';
 import TreeViewContext from './TreeViewContext';
 import { DescendantProvider } from './descendants';
@@ -94,7 +94,7 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const treeId = useReactId(idProp);
+  const treeId = useId(idProp);
 
   const treeRef = React.useRef(null);
   const handleRef = useForkRef(treeRef, ref);

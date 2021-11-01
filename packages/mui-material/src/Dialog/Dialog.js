@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { unstable_useReactId as useReactId } from '@mui/utils';
+import { unstable_useId as useId } from '@mui/utils';
 import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
 import Fade from '../Fade';
@@ -220,7 +220,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     }
   };
 
-  const ariaLabelledby = useReactId(ariaLabelledbyProp);
+  const ariaLabelledby = useId(ariaLabelledbyProp);
   const dialogContextValue = React.useMemo(() => {
     return { titleId: ariaLabelledby };
   }, [ariaLabelledby]);

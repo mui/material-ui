@@ -9,7 +9,7 @@ import {
   useForkRef,
   useIsFocusVisible,
   useControlled,
-  unstable_useReactId as useReactId,
+  unstable_useId as useId,
 } from '../utils';
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
@@ -210,7 +210,7 @@ function RatingItem(props) {
   const isFocused = itemValue <= focus;
   const isChecked = itemValue === ratingValueRounded;
 
-  const id = useReactId();
+  const id = useId();
   const container = (
     <RatingIcon
       as={IconContainerComponent}
@@ -322,7 +322,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     ...other
   } = props;
 
-  const name = useReactId(nameProp);
+  const name = useId(nameProp);
 
   const [valueDerived, setValueState] = useControlled({
     controlled: valueProp,

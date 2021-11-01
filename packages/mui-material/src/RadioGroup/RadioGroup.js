@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useReactId as useReactId } from '@mui/utils';
 import FormGroup from '../FormGroup';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import RadioGroupContext from './RadioGroupContext';
+import useId from '../utils/useId';
 
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   const {
@@ -54,7 +54,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
     }
   };
 
-  const name = useReactId(nameProp);
+  const name = useId(nameProp);
 
   return (
     <RadioGroupContext.Provider value={{ name, onChange: handleChange, value }}>

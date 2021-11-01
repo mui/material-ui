@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementAcceptingRef, unstable_useReactId as useReactId } from '@mui/utils';
+import { elementAcceptingRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';
@@ -12,6 +12,7 @@ import Grow from '../Grow';
 import Popper from '../Popper';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
+import useId from '../utils/useId';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';
 import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
@@ -306,7 +307,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }, [title, childNode, isControlled]);
   }
 
-  const id = useReactId(idProp);
+  const id = useId(idProp);
 
   const prevUserSelect = React.useRef();
   const stopTouchInteraction = React.useCallback(() => {
