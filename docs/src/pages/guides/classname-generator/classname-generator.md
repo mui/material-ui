@@ -82,10 +82,10 @@ Now, the `Mui` class is gone.
 
 ## Caveat
 
-- you should always use `[component]Classes` for theming/customization to get the correct generated class name.
+- you should always use `get[component]Classes` for theming/customization to get the correct generated class name.
 
   ```diff
-  +import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+  +import { getOutlinedInputClasses } from '@mui/material/OutlinedInput';
 
   const theme = createTheme({
     components: {
@@ -93,7 +93,7 @@ Now, the `Mui` class is gone.
         styleOverrides: {
           root: {
   -         '& .MuiOutlinedInput-notchedOutline': {
-  +         [`& .${outlinedInputClasses.notchedOutline}`]: { // the result will contain the prefix.
+  +         [`& .${getOutlinedInputClasses().notchedOutline}`]: { // the result will contain the prefix.
               borderWidth: 1,
             }
           }
