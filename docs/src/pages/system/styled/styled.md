@@ -231,7 +231,7 @@ First, you should install [`@emotion/babel-plugin`](https://emotion.sh/docs/@emo
 npm install @emotion/babel-plugin
 ```
 
-In order for MUI's `styled()` utility exported from `@mui/system` or `@mui/material/styles` to extend emotion's `styled()` API, you need to configure the plugin to consider these imports via the `importMap` option.
+Then, configure the plugin to know about the MUI version of the `styled()` utility:
 
 **babel.config.js**
 
