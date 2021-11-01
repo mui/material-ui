@@ -28,14 +28,14 @@
     "lg": {
       "type": {
         "name": "union",
-        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
       },
       "default": "false"
     },
     "md": {
       "type": {
         "name": "union",
-        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
       },
       "default": "false"
     },
@@ -48,7 +48,7 @@
     "sm": {
       "type": {
         "name": "union",
-        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
       },
       "default": "false"
     },
@@ -75,14 +75,14 @@
     "xl": {
       "type": {
         "name": "union",
-        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
       },
       "default": "false"
     },
     "xs": {
       "type": {
         "name": "union",
-        "description": "'auto'<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12<br>&#124;&nbsp;bool"
+        "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool"
       },
       "default": "false"
     },
