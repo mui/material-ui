@@ -23,7 +23,7 @@ export function getTouchRippleUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTouchRipple', slot);
 }
 
-const touchRippleClasses: TouchRippleClasses = generateUtilityClasses('MuiTouchRipple', [
+export const getTouchRippleClasses = (): TouchRippleClasses => generateUtilityClasses('MuiTouchRipple', [
   'root',
   'ripple',
   'rippleVisible',
@@ -32,5 +32,7 @@ const touchRippleClasses: TouchRippleClasses = generateUtilityClasses('MuiTouchR
   'childLeaving',
   'childPulsate',
 ]);
+
+const touchRippleClasses = getTouchRippleClasses();
 
 export default touchRippleClasses;

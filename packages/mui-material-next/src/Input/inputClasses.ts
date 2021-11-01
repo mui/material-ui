@@ -37,7 +37,7 @@ export function getInputUtilityClass(slot: string): string {
   return generateUtilityClass('MuiInput', slot);
 }
 
-const inputClasses: InputClasses = generateUtilityClasses('MuiInput', [
+export const getInputClasses = (): InputClasses => generateUtilityClasses('MuiInput', [
   'root',
   'formControl',
   'focused',
@@ -53,5 +53,7 @@ const inputClasses: InputClasses = generateUtilityClasses('MuiInput', [
   'inputMultiline',
   'inputTypeSearch',
 ]);
+
+const inputClasses = getInputClasses();
 
 export default inputClasses;
