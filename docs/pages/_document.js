@@ -123,7 +123,7 @@ export default class MyDocument extends Document {
               '.only-dark-mode': {
                 display: 'none',
               },
-              // Post SSR Hyration
+              // Post SSR Hydration
               '.mode-dark .only-light-mode': {
                 display: 'none',
               },
