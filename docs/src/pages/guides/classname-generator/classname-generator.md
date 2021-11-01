@@ -123,7 +123,7 @@ use ClassNameGenerator in `/src/index.js`.
 ```diff
 +import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
 
-+ClassNameGenerator.configure((componentName) => `foo-bar-${componentName}`);
++ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
 
 import * as React from 'react';
 import ReactDOM from 'react-dom';
@@ -141,7 +141,7 @@ use ClassNameGenerator in `/pages/_app.js`.
 ```diff
 +import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
 
-+ClassNameGenerator.configure((componentName) => `foo-bar-${componentName}`);
++ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -163,9 +163,7 @@ use ClassNameGenerator in `gatsby-ssr.js` at the root folder.
 ```diff
 +import { unstable_ClassNameGenerator as ClassNameGenerator } from "@mui/material/utils";
 
-+ClassNameGenerator.configure((componentName) =>
-+  componentName.replace("Mui", "")
-+);
++ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
 
 export const wrapPageElement = ({ element }) => {
   return element;
