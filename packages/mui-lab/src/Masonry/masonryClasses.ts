@@ -11,7 +11,8 @@ export function getMasonryUtilityClass(slot: string): string {
   return generateUtilityClass('MuiMasonry', slot);
 }
 
-export const getMasonryClasses = (): MasonryClasses => generateUtilityClasses('MuiMasonry', ['root']);
+export const getMasonryClasses = (): MasonryClasses =>
+  generateUtilityClasses('MuiMasonry', ['root']);
 
 const masonryClasses = getMasonryClasses();
 

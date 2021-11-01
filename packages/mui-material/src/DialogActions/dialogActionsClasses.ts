@@ -13,10 +13,8 @@ export function getDialogActionsUtilityClass(slot: string): string {
   return generateUtilityClass('MuiDialogActions', slot);
 }
 
-export const getDialogActionsClasses = (): DialogActionsClasses => generateUtilityClasses('MuiDialogActions', [
-  'root',
-  'spacing',
-]);
+export const getDialogActionsClasses = (): DialogActionsClasses =>
+  generateUtilityClasses('MuiDialogActions', ['root', 'spacing']);
 
 const dialogActionsClasses = getDialogActionsClasses();
 

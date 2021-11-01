@@ -27,17 +27,18 @@ export function getTreeItemUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTreeItem', slot);
 }
 
-export const getTreeItemClasses = (): TreeItemClasses => generateUtilityClasses('MuiTreeItem', [
-  'root',
-  'group',
-  'content',
-  'expanded',
-  'selected',
-  'focused',
-  'disabled',
-  'iconContainer',
-  'label',
-]);
+export const getTreeItemClasses = (): TreeItemClasses =>
+  generateUtilityClasses('MuiTreeItem', [
+    'root',
+    'group',
+    'content',
+    'expanded',
+    'selected',
+    'focused',
+    'disabled',
+    'iconContainer',
+    'label',
+  ]);
 
 const treeItemClasses = getTreeItemClasses();
 

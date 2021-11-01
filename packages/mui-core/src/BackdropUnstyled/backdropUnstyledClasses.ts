@@ -14,10 +14,8 @@ export function getBackdropUtilityClass(slot: string): string {
   return generateUtilityClass('MuiBackdrop', slot);
 }
 
-export const getBackdropUnstyledClasses = (): BackdropUnstyledClasses => generateUtilityClasses('MuiBackdrop', [
-  'root',
-  'invisible',
-]);
+export const getBackdropUnstyledClasses = (): BackdropUnstyledClasses =>
+  generateUtilityClasses('MuiBackdrop', ['root', 'invisible']);
 
 const backdropUnstyledClasses = getBackdropUnstyledClasses();
 

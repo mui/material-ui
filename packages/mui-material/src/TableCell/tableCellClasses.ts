@@ -35,21 +35,22 @@ export function getTableCellUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTableCell', slot);
 }
 
-export const getTableCellClasses = (): TableCellClasses => generateUtilityClasses('MuiTableCell', [
-  'root',
-  'head',
-  'body',
-  'footer',
-  'sizeSmall',
-  'sizeMedium',
-  'paddingCheckbox',
-  'paddingNone',
-  'alignLeft',
-  'alignCenter',
-  'alignRight',
-  'alignJustify',
-  'stickyHeader',
-]);
+export const getTableCellClasses = (): TableCellClasses =>
+  generateUtilityClasses('MuiTableCell', [
+    'root',
+    'head',
+    'body',
+    'footer',
+    'sizeSmall',
+    'sizeMedium',
+    'paddingCheckbox',
+    'paddingNone',
+    'alignLeft',
+    'alignCenter',
+    'alignRight',
+    'alignJustify',
+    'stickyHeader',
+  ]);
 
 const tableCellClasses = getTableCellClasses();
 

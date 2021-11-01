@@ -39,23 +39,24 @@ export function getDialogUtilityClass(slot: string): string {
   return generateUtilityClass('MuiDialog', slot);
 }
 
-export const getDialogClasses = (): DialogClasses => generateUtilityClasses('MuiDialog', [
-  'root',
-  'scrollPaper',
-  'scrollBody',
-  'container',
-  'paper',
-  'paperScrollPaper',
-  'paperScrollBody',
-  'paperWidthFalse',
-  'paperWidthXs',
-  'paperWidthSm',
-  'paperWidthMd',
-  'paperWidthLg',
-  'paperWidthXl',
-  'paperFullWidth',
-  'paperFullScreen',
-]);
+export const getDialogClasses = (): DialogClasses =>
+  generateUtilityClasses('MuiDialog', [
+    'root',
+    'scrollPaper',
+    'scrollBody',
+    'container',
+    'paper',
+    'paperScrollPaper',
+    'paperScrollBody',
+    'paperWidthFalse',
+    'paperWidthXs',
+    'paperWidthSm',
+    'paperWidthMd',
+    'paperWidthLg',
+    'paperWidthXl',
+    'paperFullWidth',
+    'paperFullScreen',
+  ]);
 
 const dialogClasses = getDialogClasses();
 

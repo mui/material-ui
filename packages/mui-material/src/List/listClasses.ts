@@ -17,12 +17,8 @@ export function getListUtilityClass(slot: string): string {
   return generateUtilityClass('MuiList', slot);
 }
 
-export const getListClasses = (): ListClasses => generateUtilityClasses('MuiList', [
-  'root',
-  'padding',
-  'dense',
-  'subheader',
-]);
+export const getListClasses = (): ListClasses =>
+  generateUtilityClasses('MuiList', ['root', 'padding', 'dense', 'subheader']);
 
 const listClasses = getListClasses();
 

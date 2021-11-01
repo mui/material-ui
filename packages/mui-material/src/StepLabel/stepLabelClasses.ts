@@ -31,19 +31,20 @@ export function getStepLabelUtilityClass(slot: string): string {
   return generateUtilityClass('MuiStepLabel', slot);
 }
 
-export const getStepLabelClasses = (): StepLabelClasses => generateUtilityClasses('MuiStepLabel', [
-  'root',
-  'horizontal',
-  'vertical',
-  'label',
-  'active',
-  'completed',
-  'error',
-  'disabled',
-  'iconContainer',
-  'alternativeLabel',
-  'labelContainer',
-]);
+export const getStepLabelClasses = (): StepLabelClasses =>
+  generateUtilityClasses('MuiStepLabel', [
+    'root',
+    'horizontal',
+    'vertical',
+    'label',
+    'active',
+    'completed',
+    'error',
+    'disabled',
+    'iconContainer',
+    'alternativeLabel',
+    'labelContainer',
+  ]);
 
 const stepLabelClasses = getStepLabelClasses();
 

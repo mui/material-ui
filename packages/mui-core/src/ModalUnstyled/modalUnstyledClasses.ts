@@ -14,10 +14,8 @@ export function getModalUtilityClass(slot: string): string {
   return generateUtilityClass('MuiModal', slot);
 }
 
-export const getModalUnstyledClasses = (): ModalUnstyledClasses => generateUtilityClasses('MuiModal', [
-  'root',
-  'hidden',
-]);
+export const getModalUnstyledClasses = (): ModalUnstyledClasses =>
+  generateUtilityClasses('MuiModal', ['root', 'hidden']);
 
 const modalUnstyledClasses = getModalUnstyledClasses();
 

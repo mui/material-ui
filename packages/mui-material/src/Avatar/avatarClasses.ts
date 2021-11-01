@@ -23,15 +23,16 @@ export function getAvatarUtilityClass(slot: string): string {
   return generateUtilityClass('MuiAvatar', slot);
 }
 
-export const getAvatarClasses = (): AvatarClasses => generateUtilityClasses('MuiAvatar', [
-  'root',
-  'colorDefault',
-  'circular',
-  'rounded',
-  'square',
-  'img',
-  'fallback',
-]);
+export const getAvatarClasses = (): AvatarClasses =>
+  generateUtilityClasses('MuiAvatar', [
+    'root',
+    'colorDefault',
+    'circular',
+    'rounded',
+    'square',
+    'img',
+    'fallback',
+  ]);
 
 const avatarClasses = getAvatarClasses();
 

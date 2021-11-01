@@ -47,27 +47,28 @@ export function getInputBaseUtilityClass(slot: string): string {
   return generateUtilityClass('MuiInputBase', slot);
 }
 
-export const getInputBaseClasses = (): InputBaseClasses => generateUtilityClasses('MuiInputBase', [
-  'root',
-  'formControl',
-  'focused',
-  'disabled',
-  'adornedStart',
-  'adornedEnd',
-  'error',
-  'sizeSmall',
-  'multiline',
-  'colorSecondary',
-  'fullWidth',
-  'hiddenLabel',
-  'input',
-  'inputSizeSmall',
-  'inputMultiline',
-  'inputTypeSearch',
-  'inputAdornedStart',
-  'inputAdornedEnd',
-  'inputHiddenLabel',
-]);
+export const getInputBaseClasses = (): InputBaseClasses =>
+  generateUtilityClasses('MuiInputBase', [
+    'root',
+    'formControl',
+    'focused',
+    'disabled',
+    'adornedStart',
+    'adornedEnd',
+    'error',
+    'sizeSmall',
+    'multiline',
+    'colorSecondary',
+    'fullWidth',
+    'hiddenLabel',
+    'input',
+    'inputSizeSmall',
+    'inputMultiline',
+    'inputTypeSearch',
+    'inputAdornedStart',
+    'inputAdornedEnd',
+    'inputHiddenLabel',
+  ]);
 
 const inputBaseClasses = getInputBaseClasses();
 

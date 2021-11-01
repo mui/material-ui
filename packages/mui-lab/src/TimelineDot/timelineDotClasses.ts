@@ -27,17 +27,18 @@ export function getTimelineDotUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTimelineDot', slot);
 }
 
-export const getTimelineDotClasses = (): TimelineDotClasses => generateUtilityClasses('MuiTimelineDot', [
-  'root',
-  'filled',
-  'outlined',
-  'filledGrey',
-  'outlinedGrey',
-  'filledPrimary',
-  'outlinedPrimary',
-  'filledSecondary',
-  'outlinedSecondary',
-]);
+export const getTimelineDotClasses = (): TimelineDotClasses =>
+  generateUtilityClasses('MuiTimelineDot', [
+    'root',
+    'filled',
+    'outlined',
+    'filledGrey',
+    'outlinedGrey',
+    'filledPrimary',
+    'outlinedPrimary',
+    'filledSecondary',
+    'outlinedSecondary',
+  ]);
 
 const timelineDotClasses = getTimelineDotClasses();
 

@@ -33,21 +33,22 @@ export function getSelectUtilityClasses(slot: string): string {
   return generateUtilityClass('MuiSelect', slot);
 }
 
-export const getSelectClasses = (): SelectClasses => generateUtilityClasses('MuiSelect', [
-  'root',
-  'select',
-  'filled',
-  'outlined',
-  'standard',
-  'disabled',
-  'focused',
-  'icon',
-  'iconOpen',
-  'iconFilled',
-  'iconOutlined',
-  'iconStandard',
-  'nativeInput',
-]);
+export const getSelectClasses = (): SelectClasses =>
+  generateUtilityClasses('MuiSelect', [
+    'root',
+    'select',
+    'filled',
+    'outlined',
+    'standard',
+    'disabled',
+    'focused',
+    'icon',
+    'iconOpen',
+    'iconFilled',
+    'iconOutlined',
+    'iconStandard',
+    'nativeInput',
+  ]);
 
 const selectClasses = getSelectClasses();
 

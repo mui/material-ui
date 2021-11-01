@@ -57,33 +57,34 @@ export function getAutocompleteUtilityClass(slot: string): string {
   return generateUtilityClass('MuiAutocomplete', slot);
 }
 
-export const getAutocompleteClasses = (): AutocompleteClasses => generateUtilityClasses('MuiAutocomplete', [
-  'root',
-  'fullWidth',
-  'focused',
-  'focusVisible',
-  'tag',
-  'tagSizeSmall',
-  'tagSizeMedium',
-  'hasPopupIcon',
-  'hasClearIcon',
-  'inputRoot',
-  'input',
-  'inputFocused',
-  'endAdornment',
-  'clearIndicator',
-  'popupIndicator',
-  'popupIndicatorOpen',
-  'popper',
-  'popperDisablePortal',
-  'paper',
-  'listbox',
-  'loading',
-  'noOptions',
-  'option',
-  'groupLabel',
-  'groupUl',
-]);
+export const getAutocompleteClasses = (): AutocompleteClasses =>
+  generateUtilityClasses('MuiAutocomplete', [
+    'root',
+    'fullWidth',
+    'focused',
+    'focusVisible',
+    'tag',
+    'tagSizeSmall',
+    'tagSizeMedium',
+    'hasPopupIcon',
+    'hasClearIcon',
+    'inputRoot',
+    'input',
+    'inputFocused',
+    'endAdornment',
+    'clearIndicator',
+    'popupIndicator',
+    'popupIndicatorOpen',
+    'popper',
+    'popperDisablePortal',
+    'paper',
+    'listbox',
+    'loading',
+    'noOptions',
+    'option',
+    'groupLabel',
+    'groupUl',
+  ]);
 
 const autocompleteClasses = getAutocompleteClasses();
 

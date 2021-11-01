@@ -11,10 +11,8 @@ export function getTimelineSeparatorUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTimelineSeparator', slot);
 }
 
-export const getTimelineSeparatorClasses = (): TimelineSeparatorClasses => generateUtilityClasses(
-  'MuiTimelineSeparator',
-  ['root'],
-);
+export const getTimelineSeparatorClasses = (): TimelineSeparatorClasses =>
+  generateUtilityClasses('MuiTimelineSeparator', ['root']);
 
 const timelineSeparatorClasses = getTimelineSeparatorClasses();
 

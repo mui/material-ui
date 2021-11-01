@@ -27,17 +27,18 @@ export function getInputAdornmentUtilityClass(slot: string): string {
   return generateUtilityClass('MuiInputAdornment', slot);
 }
 
-export const getInputAdornmentClasses = (): InputAdornmentClasses => generateUtilityClasses('MuiInputAdornment', [
-  'root',
-  'filled',
-  'standard',
-  'outlined',
-  'positionStart',
-  'positionEnd',
-  'disablePointerEvents',
-  'hiddenLabel',
-  'sizeSmall',
-]);
+export const getInputAdornmentClasses = (): InputAdornmentClasses =>
+  generateUtilityClasses('MuiInputAdornment', [
+    'root',
+    'filled',
+    'standard',
+    'outlined',
+    'positionStart',
+    'positionEnd',
+    'disablePointerEvents',
+    'hiddenLabel',
+    'sizeSmall',
+  ]);
 
 const inputAdornmentClasses = getInputAdornmentClasses();
 

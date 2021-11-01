@@ -43,26 +43,27 @@ export function getRatingUtilityClass(slot: string): string {
   return generateUtilityClass('MuiRating', slot);
 }
 
-export const getRatingClasses = (): RatingClasses => generateUtilityClasses('MuiRating', [
-  'root',
-  'sizeSmall',
-  'sizeMedium',
-  'sizeLarge',
-  'readOnly',
-  'disabled',
-  'focusVisible',
-  'visuallyHidden',
-  'pristine',
-  'label',
-  'labelEmptyValueActive',
-  'icon',
-  'iconEmpty',
-  'iconFilled',
-  'iconHover',
-  'iconFocus',
-  'iconActive',
-  'decimal',
-]);
+export const getRatingClasses = (): RatingClasses =>
+  generateUtilityClasses('MuiRating', [
+    'root',
+    'sizeSmall',
+    'sizeMedium',
+    'sizeLarge',
+    'readOnly',
+    'disabled',
+    'focusVisible',
+    'visuallyHidden',
+    'pristine',
+    'label',
+    'labelEmptyValueActive',
+    'icon',
+    'iconEmpty',
+    'iconFilled',
+    'iconHover',
+    'iconFocus',
+    'iconActive',
+    'decimal',
+  ]);
 
 const ratingClasses = getRatingClasses();
 

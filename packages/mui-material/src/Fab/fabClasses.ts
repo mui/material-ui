@@ -29,19 +29,20 @@ export function getFabUtilityClass(slot: string): string {
   return generateUtilityClass('MuiFab', slot);
 }
 
-export const getFabClasses = (): FabClasses => generateUtilityClasses('MuiFab', [
-  'root',
-  'primary',
-  'secondary',
-  'extended',
-  'circular',
-  'focusVisible',
-  'disabled',
-  'colorInherit',
-  'sizeSmall',
-  'sizeMedium',
-  'sizeLarge',
-]);
+export const getFabClasses = (): FabClasses =>
+  generateUtilityClasses('MuiFab', [
+    'root',
+    'primary',
+    'secondary',
+    'extended',
+    'circular',
+    'focusVisible',
+    'disabled',
+    'colorInherit',
+    'sizeSmall',
+    'sizeMedium',
+    'sizeLarge',
+  ]);
 
 const fabClasses = getFabClasses();
 

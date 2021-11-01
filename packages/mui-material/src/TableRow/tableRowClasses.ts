@@ -19,13 +19,8 @@ export function getTableRowUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTableRow', slot);
 }
 
-export const getTableRowClasses = (): TableRowClasses => generateUtilityClasses('MuiTableRow', [
-  'root',
-  'selected',
-  'hover',
-  'head',
-  'footer',
-]);
+export const getTableRowClasses = (): TableRowClasses =>
+  generateUtilityClasses('MuiTableRow', ['root', 'selected', 'hover', 'head', 'footer']);
 
 const tableRowClasses = getTableRowClasses();
 

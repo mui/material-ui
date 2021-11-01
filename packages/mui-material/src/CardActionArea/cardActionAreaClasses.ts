@@ -15,11 +15,8 @@ export function getCardActionAreaUtilityClass(slot: string): string {
   return generateUtilityClass('MuiCardActionArea', slot);
 }
 
-export const getCardActionAreaClasses = (): CardActionAreaClasses => generateUtilityClasses('MuiCardActionArea', [
-  'root',
-  'focusVisible',
-  'focusHighlight',
-]);
+export const getCardActionAreaClasses = (): CardActionAreaClasses =>
+  generateUtilityClasses('MuiCardActionArea', ['root', 'focusVisible', 'focusHighlight']);
 
 const cardActionAreaClasses = getCardActionAreaClasses();
 

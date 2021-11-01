@@ -13,10 +13,8 @@ export function getAccordionActionsUtilityClass(slot: string): string {
   return generateUtilityClass('MuiAccordionActions', slot);
 }
 
-export const getAccordionActionsClasses = (): AccordionActionsClasses => generateUtilityClasses(
-  'MuiAccordionActions',
-  ['root', 'spacing'],
-);
+export const getAccordionActionsClasses = (): AccordionActionsClasses =>
+  generateUtilityClasses('MuiAccordionActions', ['root', 'spacing']);
 
 const accordionActionsClasses = getAccordionActionsClasses();
 

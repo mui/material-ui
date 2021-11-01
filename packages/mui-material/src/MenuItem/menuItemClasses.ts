@@ -23,15 +23,16 @@ export function getMenuItemUtilityClass(slot: string): string {
   return generateUtilityClass('MuiMenuItem', slot);
 }
 
-export const getMenuItemClasses = (): MenuItemClasses => generateUtilityClasses('MuiMenuItem', [
-  'root',
-  'focusVisible',
-  'dense',
-  'disabled',
-  'divider',
-  'gutters',
-  'selected',
-]);
+export const getMenuItemClasses = (): MenuItemClasses =>
+  generateUtilityClasses('MuiMenuItem', [
+    'root',
+    'focusVisible',
+    'dense',
+    'disabled',
+    'divider',
+    'gutters',
+    'selected',
+  ]);
 
 const menuItemClasses = getMenuItemClasses();
 

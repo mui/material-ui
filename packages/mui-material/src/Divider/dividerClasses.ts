@@ -37,22 +37,23 @@ export function getDividerUtilityClass(slot: string): string {
   return generateUtilityClass('MuiDivider', slot);
 }
 
-export const getDividerClasses = (): DividerClasses => generateUtilityClasses('MuiDivider', [
-  'root',
-  'absolute',
-  'fullWidth',
-  'inset',
-  'middle',
-  'flexItem',
-  'light',
-  'vertical',
-  'withChildren',
-  'withChildrenVertical',
-  'textAlignRight',
-  'textAlignLeft',
-  'wrapper',
-  'wrapperVertical',
-]);
+export const getDividerClasses = (): DividerClasses =>
+  generateUtilityClasses('MuiDivider', [
+    'root',
+    'absolute',
+    'fullWidth',
+    'inset',
+    'middle',
+    'flexItem',
+    'light',
+    'vertical',
+    'withChildren',
+    'withChildrenVertical',
+    'textAlignRight',
+    'textAlignLeft',
+    'wrapper',
+    'wrapperVertical',
+  ]);
 
 const dividerClasses = getDividerClasses();
 

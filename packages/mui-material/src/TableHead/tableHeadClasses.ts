@@ -11,7 +11,8 @@ export function getTableHeadUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTableHead', slot);
 }
 
-export const getTableHeadClasses = (): TableHeadClasses => generateUtilityClasses('MuiTableHead', ['root']);
+export const getTableHeadClasses = (): TableHeadClasses =>
+  generateUtilityClasses('MuiTableHead', ['root']);
 
 const tableHeadClasses = getTableHeadClasses();
 

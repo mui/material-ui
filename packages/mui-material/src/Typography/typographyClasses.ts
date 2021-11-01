@@ -53,30 +53,31 @@ export function getTypographyUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTypography', slot);
 }
 
-export const getTypographyClasses = (): TypographyClasses => generateUtilityClasses('MuiTypography', [
-  'root',
-  'h1',
-  'h2',
-  'h3',
-  'h4',
-  'h5',
-  'h6',
-  'subtitle1',
-  'subtitle2',
-  'body1',
-  'body2',
-  'inherit',
-  'button',
-  'caption',
-  'overline',
-  'alignLeft',
-  'alignRight',
-  'alignCenter',
-  'alignJustify',
-  'noWrap',
-  'gutterBottom',
-  'paragraph',
-]);
+export const getTypographyClasses = (): TypographyClasses =>
+  generateUtilityClasses('MuiTypography', [
+    'root',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'subtitle1',
+    'subtitle2',
+    'body1',
+    'body2',
+    'inherit',
+    'button',
+    'caption',
+    'overline',
+    'alignLeft',
+    'alignRight',
+    'alignCenter',
+    'alignJustify',
+    'noWrap',
+    'gutterBottom',
+    'paragraph',
+  ]);
 
 const typographyClasses = getTypographyClasses();
 

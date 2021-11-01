@@ -29,18 +29,19 @@ export function getStepConnectorUtilityClass(slot: string): string {
   return generateUtilityClass('MuiStepConnector', slot);
 }
 
-export const getStepConnectorClasses = (): StepConnectorClasses => generateUtilityClasses('MuiStepConnector', [
-  'root',
-  'horizontal',
-  'vertical',
-  'alternativeLabel',
-  'active',
-  'completed',
-  'disabled',
-  'line',
-  'lineHorizontal',
-  'lineVertical',
-]);
+export const getStepConnectorClasses = (): StepConnectorClasses =>
+  generateUtilityClasses('MuiStepConnector', [
+    'root',
+    'horizontal',
+    'vertical',
+    'alternativeLabel',
+    'active',
+    'completed',
+    'disabled',
+    'line',
+    'lineHorizontal',
+    'lineVertical',
+  ]);
 
 const stepConnectorClasses = getStepConnectorClasses();
 

@@ -33,20 +33,21 @@ export function getDrawerUtilityClass(slot: string): string {
   return generateUtilityClass('MuiDrawer', slot);
 }
 
-export const getDrawerClasses = (): DrawerClasses => generateUtilityClasses('MuiDrawer', [
-  'root',
-  'docked',
-  'paper',
-  'paperAnchorLeft',
-  'paperAnchorRight',
-  'paperAnchorTop',
-  'paperAnchorBottom',
-  'paperAnchorDockedLeft',
-  'paperAnchorDockedRight',
-  'paperAnchorDockedTop',
-  'paperAnchorDockedBottom',
-  'modal',
-]);
+export const getDrawerClasses = (): DrawerClasses =>
+  generateUtilityClasses('MuiDrawer', [
+    'root',
+    'docked',
+    'paper',
+    'paperAnchorLeft',
+    'paperAnchorRight',
+    'paperAnchorTop',
+    'paperAnchorBottom',
+    'paperAnchorDockedLeft',
+    'paperAnchorDockedRight',
+    'paperAnchorDockedTop',
+    'paperAnchorDockedBottom',
+    'modal',
+  ]);
 
 const drawerClasses = getDrawerClasses();
 

@@ -15,10 +15,8 @@ export function getSnackbarContentUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSnackbarContent', slot);
 }
 
-export const getSnackbarContentClasses = (): SnackbarContentClasses => generateUtilityClasses(
-  'MuiSnackbarContent',
-  ['root', 'message', 'action'],
-);
+export const getSnackbarContentClasses = (): SnackbarContentClasses =>
+  generateUtilityClasses('MuiSnackbarContent', ['root', 'message', 'action']);
 
 const snackbarContentClasses = getSnackbarContentClasses();
 

@@ -17,10 +17,13 @@ export function getTimelineOppositeContentUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTimelineOppositeContent', slot);
 }
 
-export const getTimelineOppositeContentClasses = (): TimelineOppositeContentClasses => generateUtilityClasses(
-  'MuiTimelineOppositeContent',
-  ['root', 'positionLeft', 'positionRight', 'positionAlternate'],
-);
+export const getTimelineOppositeContentClasses = (): TimelineOppositeContentClasses =>
+  generateUtilityClasses('MuiTimelineOppositeContent', [
+    'root',
+    'positionLeft',
+    'positionRight',
+    'positionAlternate',
+  ]);
 
 const timelineOppositeContentClasses = getTimelineOppositeContentClasses();
 

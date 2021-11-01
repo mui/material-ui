@@ -45,26 +45,27 @@ export function getPaginationItemUtilityClass(slot: string): string {
   return generateUtilityClass('MuiPaginationItem', slot);
 }
 
-export const getPaginationItemClasses = (): PaginationItemClasses => generateUtilityClasses('MuiPaginationItem', [
-  'root',
-  'page',
-  'sizeSmall',
-  'sizeLarge',
-  'text',
-  'textPrimary',
-  'textSecondary',
-  'outlined',
-  'outlinedPrimary',
-  'outlinedSecondary',
-  'rounded',
-  'ellipsis',
-  'firstLast',
-  'previousNext',
-  'focusVisible',
-  'disabled',
-  'selected',
-  'icon',
-]);
+export const getPaginationItemClasses = (): PaginationItemClasses =>
+  generateUtilityClasses('MuiPaginationItem', [
+    'root',
+    'page',
+    'sizeSmall',
+    'sizeLarge',
+    'text',
+    'textPrimary',
+    'textSecondary',
+    'outlined',
+    'outlinedPrimary',
+    'outlinedSecondary',
+    'rounded',
+    'ellipsis',
+    'firstLast',
+    'previousNext',
+    'focusVisible',
+    'disabled',
+    'selected',
+    'icon',
+  ]);
 
 const paginationItemClasses = getPaginationItemClasses();
 

@@ -25,16 +25,17 @@ export function getFormLabelUtilityClasses(slot: string): string {
   return generateUtilityClass('MuiFormLabel', slot);
 }
 
-export const getFormLabelClasses = (): FormLabelClasses => generateUtilityClasses('MuiFormLabel', [
-  'root',
-  'colorSecondary',
-  'focused',
-  'disabled',
-  'error',
-  'filled',
-  'required',
-  'asterisk',
-]);
+export const getFormLabelClasses = (): FormLabelClasses =>
+  generateUtilityClasses('MuiFormLabel', [
+    'root',
+    'colorSecondary',
+    'focused',
+    'disabled',
+    'error',
+    'filled',
+    'required',
+    'asterisk',
+  ]);
 
 const formLabelClasses = getFormLabelClasses();
 

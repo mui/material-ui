@@ -50,28 +50,29 @@ export function getSliderUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSlider', slot);
 }
 
-export const getSliderUnstyledClasses = (): SliderUnstyledClasses => generateUtilityClasses('MuiSlider', [
-  'root',
-  'active',
-  'focusVisible',
-  'disabled',
-  'dragging',
-  'marked',
-  'vertical',
-  'trackInverted',
-  'trackFalse',
-  'rail',
-  'track',
-  'mark',
-  'markActive',
-  'markLabel',
-  'markLabelActive',
-  'thumb',
-  'valueLabel',
-  'valueLabelOpen',
-  'valueLabelCircle',
-  'valueLabelLabel',
-]);
+export const getSliderUnstyledClasses = (): SliderUnstyledClasses =>
+  generateUtilityClasses('MuiSlider', [
+    'root',
+    'active',
+    'focusVisible',
+    'disabled',
+    'dragging',
+    'marked',
+    'vertical',
+    'trackInverted',
+    'trackFalse',
+    'rail',
+    'track',
+    'mark',
+    'markActive',
+    'markLabel',
+    'markLabelActive',
+    'thumb',
+    'valueLabel',
+    'valueLabelOpen',
+    'valueLabelCircle',
+    'valueLabelLabel',
+  ]);
 
 const sliderUnstyledClasses = getSliderUnstyledClasses();
 

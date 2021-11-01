@@ -23,15 +23,16 @@ export function getSnackbarUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSnackbar', slot);
 }
 
-export const getSnackbarClasses = (): SnackbarClasses => generateUtilityClasses('MuiSnackbar', [
-  'root',
-  'anchorOriginTopCenter',
-  'anchorOriginBottomCenter',
-  'anchorOriginTopRight',
-  'anchorOriginBottomRight',
-  'anchorOriginTopLeft',
-  'anchorOriginBottomLeft',
-]);
+export const getSnackbarClasses = (): SnackbarClasses =>
+  generateUtilityClasses('MuiSnackbar', [
+    'root',
+    'anchorOriginTopCenter',
+    'anchorOriginBottomCenter',
+    'anchorOriginTopRight',
+    'anchorOriginBottomRight',
+    'anchorOriginTopLeft',
+    'anchorOriginBottomLeft',
+  ]);
 
 const snackbarClasses = getSnackbarClasses();
 

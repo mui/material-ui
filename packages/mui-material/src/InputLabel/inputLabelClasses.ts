@@ -35,21 +35,22 @@ export function getInputLabelUtilityClasses(slot: string): string {
   return generateUtilityClass('MuiInputLabel', slot);
 }
 
-export const getInputLabelClasses = (): InputLabelClasses => generateUtilityClasses('MuiInputLabel', [
-  'root',
-  'focused',
-  'disabled',
-  'error',
-  'required',
-  'asterisk',
-  'formControl',
-  'sizeSmall',
-  'shrink',
-  'animated',
-  'standard',
-  'filled',
-  'outlined',
-]);
+export const getInputLabelClasses = (): InputLabelClasses =>
+  generateUtilityClasses('MuiInputLabel', [
+    'root',
+    'focused',
+    'disabled',
+    'error',
+    'required',
+    'asterisk',
+    'formControl',
+    'sizeSmall',
+    'shrink',
+    'animated',
+    'standard',
+    'filled',
+    'outlined',
+  ]);
 
 const inputLabelClasses = getInputLabelClasses();
 

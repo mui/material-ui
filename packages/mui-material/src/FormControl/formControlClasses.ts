@@ -17,14 +17,15 @@ export function getFormControlUtilityClasses(slot: string): string {
   return generateUtilityClass('MuiFormControl', slot);
 }
 
-export const getFormControlClasses = (): FormControlClasses => generateUtilityClasses('MuiFormControl', [
-  'root',
-  'marginNone',
-  'marginNormal',
-  'marginDense',
-  'fullWidth',
-  'disabled',
-]);
+export const getFormControlClasses = (): FormControlClasses =>
+  generateUtilityClasses('MuiFormControl', [
+    'root',
+    'marginNone',
+    'marginNormal',
+    'marginDense',
+    'fullWidth',
+    'disabled',
+  ]);
 
 const formControlClasses = getFormControlClasses();
 

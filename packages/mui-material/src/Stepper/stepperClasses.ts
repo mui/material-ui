@@ -17,12 +17,8 @@ export function getStepperUtilityClass(slot: string): string {
   return generateUtilityClass('MuiStepper', slot);
 }
 
-export const getStepperClasses = (): StepperClasses => generateUtilityClasses('MuiStepper', [
-  'root',
-  'horizontal',
-  'vertical',
-  'alternativeLabel',
-]);
+export const getStepperClasses = (): StepperClasses =>
+  generateUtilityClasses('MuiStepper', ['root', 'horizontal', 'vertical', 'alternativeLabel']);
 
 const stepperClasses = getStepperClasses();
 

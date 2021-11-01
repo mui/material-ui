@@ -13,10 +13,8 @@ export function getListItemAvatarUtilityClass(slot: string): string {
   return generateUtilityClass('MuiListItemAvatar', slot);
 }
 
-export const getListItemAvatarClasses = (): ListItemAvatarClasses => generateUtilityClasses('MuiListItemAvatar', [
-  'root',
-  'alignItemsFlexStart',
-]);
+export const getListItemAvatarClasses = (): ListItemAvatarClasses =>
+  generateUtilityClasses('MuiListItemAvatar', ['root', 'alignItemsFlexStart']);
 
 const listItemAvatarClasses = getListItemAvatarClasses();
 

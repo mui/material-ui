@@ -14,10 +14,8 @@ export function getFormControlUnstyledUtilityClasses(slot: string): string {
   return generateUtilityClass('MuiFormControl', slot);
 }
 
-export const getFormControlUnstyledClasses = (): FormControlUnstyledClasses => generateUtilityClasses(
-  'MuiFormControl',
-  ['root', 'disabled'],
-);
+export const getFormControlUnstyledClasses = (): FormControlUnstyledClasses =>
+  generateUtilityClasses('MuiFormControl', ['root', 'disabled']);
 
 const formControlUnstyledClasses = getFormControlUnstyledClasses();
 

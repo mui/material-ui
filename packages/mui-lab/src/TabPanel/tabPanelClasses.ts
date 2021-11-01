@@ -11,7 +11,8 @@ export function getTabPanelUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTabPanel', slot);
 }
 
-export const getTabPanelClasses = (): TabPanelClasses => generateUtilityClasses('MuiTabPanel', ['root']);
+export const getTabPanelClasses = (): TabPanelClasses =>
+  generateUtilityClasses('MuiTabPanel', ['root']);
 
 const tabPanelClasses = getTabPanelClasses();
 

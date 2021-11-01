@@ -27,17 +27,18 @@ export function getSkeletonUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSkeleton', slot);
 }
 
-export const getSkeletonClasses = (): SkeletonClasses => generateUtilityClasses('MuiSkeleton', [
-  'root',
-  'text',
-  'rectangular',
-  'circular',
-  'pulse',
-  'wave',
-  'withChildren',
-  'fitContent',
-  'heightAuto',
-]);
+export const getSkeletonClasses = (): SkeletonClasses =>
+  generateUtilityClasses('MuiSkeleton', [
+    'root',
+    'text',
+    'rectangular',
+    'circular',
+    'pulse',
+    'wave',
+    'withChildren',
+    'fitContent',
+    'heightAuto',
+  ]);
 
 const skeletonClasses = getSkeletonClasses();
 

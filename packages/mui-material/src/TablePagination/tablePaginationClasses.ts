@@ -31,9 +31,8 @@ export function getTablePaginationUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTablePagination', slot);
 }
 
-export const getTablePaginationClasses = (): TablePaginationClasses => generateUtilityClasses(
-  'MuiTablePagination',
-  [
+export const getTablePaginationClasses = (): TablePaginationClasses =>
+  generateUtilityClasses('MuiTablePagination', [
     'root',
     'toolbar',
     'spacer',
@@ -45,8 +44,7 @@ export const getTablePaginationClasses = (): TablePaginationClasses => generateU
     'menuItem',
     'displayedRows',
     'actions',
-  ],
-);
+  ]);
 
 const tablePaginationClasses = getTablePaginationClasses();
 

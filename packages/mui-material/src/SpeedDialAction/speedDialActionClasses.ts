@@ -23,9 +23,8 @@ export function getSpeedDialActionUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSpeedDialAction', slot);
 }
 
-export const getSpeedDialActionClasses = (): SpeedDialActionClasses => generateUtilityClasses(
-  'MuiSpeedDialAction',
-  [
+export const getSpeedDialActionClasses = (): SpeedDialActionClasses =>
+  generateUtilityClasses('MuiSpeedDialAction', [
     'fab',
     'fabClosed',
     'staticTooltip',
@@ -33,8 +32,7 @@ export const getSpeedDialActionClasses = (): SpeedDialActionClasses => generateU
     'staticTooltipLabel',
     'tooltipPlacementLeft',
     'tooltipPlacementRight',
-  ],
-);
+  ]);
 
 const speedDialActionClasses = getSpeedDialActionClasses();
 

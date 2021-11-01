@@ -15,11 +15,8 @@ export function getStepContentUtilityClass(slot: string): string {
   return generateUtilityClass('MuiStepContent', slot);
 }
 
-export const getStepContentClasses = (): StepContentClasses => generateUtilityClasses('MuiStepContent', [
-  'root',
-  'last',
-  'transition',
-]);
+export const getStepContentClasses = (): StepContentClasses =>
+  generateUtilityClasses('MuiStepContent', ['root', 'last', 'transition']);
 
 const stepContentClasses = getStepContentClasses();
 

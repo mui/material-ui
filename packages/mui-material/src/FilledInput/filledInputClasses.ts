@@ -43,25 +43,26 @@ export function getFilledInputUtilityClass(slot: string): string {
   return generateUtilityClass('MuiFilledInput', slot);
 }
 
-export const getFilledInputClasses = (): FilledInputClasses => generateUtilityClasses('MuiFilledInput', [
-  'root',
-  'colorSecondary',
-  'underline',
-  'focused',
-  'disabled',
-  'adornedStart',
-  'adornedEnd',
-  'error',
-  'sizeSmall',
-  'multiline',
-  'hiddenLabel',
-  'input',
-  'inputSizeSmall',
-  'inputHiddenLabel',
-  'inputMultiline',
-  'inputAdornedStart',
-  'inputAdornedEnd',
-]);
+export const getFilledInputClasses = (): FilledInputClasses =>
+  generateUtilityClasses('MuiFilledInput', [
+    'root',
+    'colorSecondary',
+    'underline',
+    'focused',
+    'disabled',
+    'adornedStart',
+    'adornedEnd',
+    'error',
+    'sizeSmall',
+    'multiline',
+    'hiddenLabel',
+    'input',
+    'inputSizeSmall',
+    'inputHiddenLabel',
+    'inputMultiline',
+    'inputAdornedStart',
+    'inputAdornedEnd',
+  ]);
 
 const filledInputClasses = getFilledInputClasses();
 

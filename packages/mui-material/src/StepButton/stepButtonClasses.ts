@@ -17,12 +17,8 @@ export function getStepButtonUtilityClass(slot: string): string {
   return generateUtilityClass('MuiStepButton', slot);
 }
 
-export const getStepButtonClasses = (): StepButtonClasses => generateUtilityClasses('MuiStepButton', [
-  'root',
-  'horizontal',
-  'vertical',
-  'touchRipple',
-]);
+export const getStepButtonClasses = (): StepButtonClasses =>
+  generateUtilityClasses('MuiStepButton', ['root', 'horizontal', 'vertical', 'touchRipple']);
 
 const stepButtonClasses = getStepButtonClasses();
 

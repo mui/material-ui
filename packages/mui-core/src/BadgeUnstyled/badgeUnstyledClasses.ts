@@ -36,21 +36,22 @@ export function getBadgeUtilityClass(slot: string): string {
   return generateUtilityClass('MuiBadge', slot);
 }
 
-export const getBadgeUnstyledClasses = (): BadgeUnstyledClasses => generateUtilityClasses('MuiBadge', [
-  'root',
-  'badge',
-  'dot',
-  'standard',
-  'anchorOriginTopLeftCircular',
-  'anchorOriginTopLeftRectangular',
-  'anchorOriginTopRightCircular',
-  'anchorOriginTopRightRectangular',
-  'anchorOriginBottomLeftCircular',
-  'anchorOriginBottomLeftRectangular',
-  'anchorOriginBottomRightCircular',
-  'anchorOriginBottomRightRectangular',
-  'invisible',
-]);
+export const getBadgeUnstyledClasses = (): BadgeUnstyledClasses =>
+  generateUtilityClasses('MuiBadge', [
+    'root',
+    'badge',
+    'dot',
+    'standard',
+    'anchorOriginTopLeftCircular',
+    'anchorOriginTopLeftRectangular',
+    'anchorOriginTopRightCircular',
+    'anchorOriginTopRightRectangular',
+    'anchorOriginBottomLeftCircular',
+    'anchorOriginBottomLeftRectangular',
+    'anchorOriginBottomRightCircular',
+    'anchorOriginBottomRightRectangular',
+    'invisible',
+  ]);
 
 const badgeUnstyledClasses = getBadgeUnstyledClasses();
 

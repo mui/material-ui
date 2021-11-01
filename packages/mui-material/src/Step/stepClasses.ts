@@ -19,13 +19,14 @@ export function getStepUtilityClass(slot: string): string {
   return generateUtilityClass('MuiStep', slot);
 }
 
-export const getStepClasses = (): StepClasses => generateUtilityClasses('MuiStep', [
-  'root',
-  'horizontal',
-  'vertical',
-  'alternativeLabel',
-  'completed',
-]);
+export const getStepClasses = (): StepClasses =>
+  generateUtilityClasses('MuiStep', [
+    'root',
+    'horizontal',
+    'vertical',
+    'alternativeLabel',
+    'completed',
+  ]);
 
 const stepClasses = getStepClasses();
 

@@ -25,16 +25,17 @@ export function getMobileStepperUtilityClass(slot: string): string {
   return generateUtilityClass('MuiMobileStepper', slot);
 }
 
-export const getMobileStepperClasses = (): MobileStepperClasses => generateUtilityClasses('MuiMobileStepper', [
-  'root',
-  'positionBottom',
-  'positionTop',
-  'positionStatic',
-  'dots',
-  'dot',
-  'dotActive',
-  'progress',
-]);
+export const getMobileStepperClasses = (): MobileStepperClasses =>
+  generateUtilityClasses('MuiMobileStepper', [
+    'root',
+    'positionBottom',
+    'positionTop',
+    'positionStatic',
+    'dots',
+    'dot',
+    'dotActive',
+    'progress',
+  ]);
 
 const mobileStepperClasses = getMobileStepperClasses();
 

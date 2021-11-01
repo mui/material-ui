@@ -15,14 +15,15 @@ export function getSwitchBaseUtilityClass(slot: string): string {
   return generateUtilityClass('PrivateSwitchBase', slot);
 }
 
-export const getSwitchBaseClasses = (): SwitchBaseClasses => generateUtilityClasses('PrivateSwitchBase', [
-  'root',
-  'checked',
-  'disabled',
-  'input',
-  'edgeStart',
-  'edgeEnd',
-]);
+export const getSwitchBaseClasses = (): SwitchBaseClasses =>
+  generateUtilityClasses('PrivateSwitchBase', [
+    'root',
+    'checked',
+    'disabled',
+    'input',
+    'edgeStart',
+    'edgeEnd',
+  ]);
 
 const switchBaseClasses = getSwitchBaseClasses();
 

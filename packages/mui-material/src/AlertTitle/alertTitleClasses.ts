@@ -11,7 +11,8 @@ export function getAlertTitleUtilityClass(slot: string): string {
   return generateUtilityClass('MuiAlertTitle', slot);
 }
 
-export const getAlertTitleClasses = (): AlertTitleClasses => generateUtilityClasses('MuiAlertTitle', ['root']);
+export const getAlertTitleClasses = (): AlertTitleClasses =>
+  generateUtilityClasses('MuiAlertTitle', ['root']);
 
 const alertTitleClasses = getAlertTitleClasses();
 

@@ -13,10 +13,8 @@ export function getCardActionsUtilityClass(slot: string): string {
   return generateUtilityClass('MuiCardActions', slot);
 }
 
-export const getCardActionsClasses = (): CardActionsClasses => generateUtilityClasses('MuiCardActions', [
-  'root',
-  'spacing',
-]);
+export const getCardActionsClasses = (): CardActionsClasses =>
+  generateUtilityClasses('MuiCardActions', ['root', 'spacing']);
 
 const cardActionsClasses = getCardActionsClasses();
 

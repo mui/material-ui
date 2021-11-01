@@ -14,12 +14,8 @@ export function getButtonUnstyledUtilityClass(slot: string): string {
   return generateUtilityClass('ButtonUnstyled', slot);
 }
 
-export const getButtonUnstyledClasses = (): ButtonUnstyledClasses => generateUtilityClasses('ButtonUnstyled', [
-  'root',
-  'active',
-  'disabled',
-  'focusVisible',
-]);
+export const getButtonUnstyledClasses = (): ButtonUnstyledClasses =>
+  generateUtilityClasses('ButtonUnstyled', ['root', 'active', 'disabled', 'focusVisible']);
 
 const buttonUnstyledClasses = getButtonUnstyledClasses();
 

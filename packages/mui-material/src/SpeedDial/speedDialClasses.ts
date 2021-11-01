@@ -25,16 +25,17 @@ export function getSpeedDialUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSpeedDial', slot);
 }
 
-export const getSpeedDialClasses = (): SpeedDialClasses => generateUtilityClasses('MuiSpeedDial', [
-  'root',
-  'fab',
-  'directionUp',
-  'directionDown',
-  'directionLeft',
-  'directionRight',
-  'actions',
-  'actionsClosed',
-]);
+export const getSpeedDialClasses = (): SpeedDialClasses =>
+  generateUtilityClasses('MuiSpeedDial', [
+    'root',
+    'fab',
+    'directionUp',
+    'directionDown',
+    'directionLeft',
+    'directionRight',
+    'actions',
+    'actionsClosed',
+  ]);
 
 const speedDialClasses = getSpeedDialClasses();
 

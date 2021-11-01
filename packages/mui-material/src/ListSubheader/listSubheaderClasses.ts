@@ -21,14 +21,15 @@ export function getListSubheaderUtilityClass(slot: string): string {
   return generateUtilityClass('MuiListSubheader', slot);
 }
 
-export const getListSubheaderClasses = (): ListSubheaderClasses => generateUtilityClasses('MuiListSubheader', [
-  'root',
-  'colorPrimary',
-  'colorInherit',
-  'gutters',
-  'inset',
-  'sticky',
-]);
+export const getListSubheaderClasses = (): ListSubheaderClasses =>
+  generateUtilityClasses('MuiListSubheader', [
+    'root',
+    'colorPrimary',
+    'colorInherit',
+    'gutters',
+    'inset',
+    'sticky',
+  ]);
 
 const listSubheaderClasses = getListSubheaderClasses();
 

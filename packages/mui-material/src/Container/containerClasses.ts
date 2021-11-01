@@ -25,16 +25,17 @@ export function getContainerUtilityClass(slot: string): string {
   return generateUtilityClass('MuiContainer', slot);
 }
 
-export const getContainerClasses = (): ContainerClasses => generateUtilityClasses('MuiContainer', [
-  'root',
-  'disableGutters',
-  'fixed',
-  'maxWidthXs',
-  'maxWidthSm',
-  'maxWidthMd',
-  'maxWidthLg',
-  'maxWidthXl',
-]);
+export const getContainerClasses = (): ContainerClasses =>
+  generateUtilityClasses('MuiContainer', [
+    'root',
+    'disableGutters',
+    'fixed',
+    'maxWidthXs',
+    'maxWidthSm',
+    'maxWidthMd',
+    'maxWidthLg',
+    'maxWidthXl',
+  ]);
 
 const containerClasses = getContainerClasses();
 

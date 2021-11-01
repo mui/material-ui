@@ -25,17 +25,18 @@ export function getFormHelperTextUtilityClasses(slot: string): string {
   return generateUtilityClass('MuiFormHelperText', slot);
 }
 
-export const getFormHelperTextClasses = (): FormHelperTextClasses => generateUtilityClasses('MuiFormHelperText', [
-  'root',
-  'error',
-  'disabled',
-  'sizeSmall',
-  'sizeMedium',
-  'contained',
-  'focused',
-  'filled',
-  'required',
-]);
+export const getFormHelperTextClasses = (): FormHelperTextClasses =>
+  generateUtilityClasses('MuiFormHelperText', [
+    'root',
+    'error',
+    'disabled',
+    'sizeSmall',
+    'sizeMedium',
+    'contained',
+    'focused',
+    'filled',
+    'required',
+  ]);
 
 const formHelperTextClasses = getFormHelperTextClasses();
 

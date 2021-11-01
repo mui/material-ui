@@ -17,12 +17,8 @@ export function getBreadcrumbsUtilityClass(slot: string): string {
   return generateUtilityClass('MuiBreadcrumbs', slot);
 }
 
-export const getBreadcrumbsClasses = (): BreadcrumbsClasses => generateUtilityClasses('MuiBreadcrumbs', [
-  'root',
-  'ol',
-  'li',
-  'separator',
-]);
+export const getBreadcrumbsClasses = (): BreadcrumbsClasses =>
+  generateUtilityClasses('MuiBreadcrumbs', ['root', 'ol', 'li', 'separator']);
 
 const breadcrumbsClasses = getBreadcrumbsClasses();
 

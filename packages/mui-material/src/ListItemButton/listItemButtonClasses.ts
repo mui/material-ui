@@ -25,16 +25,17 @@ export function getListItemButtonUtilityClass(slot: string): string {
   return generateUtilityClass('MuiListItemButton', slot);
 }
 
-export const getListItemButtonClasses = (): ListItemButtonClasses => generateUtilityClasses('MuiListItemButton', [
-  'root',
-  'focusVisible',
-  'dense',
-  'alignItemsFlexStart',
-  'disabled',
-  'divider',
-  'gutters',
-  'selected',
-]);
+export const getListItemButtonClasses = (): ListItemButtonClasses =>
+  generateUtilityClasses('MuiListItemButton', [
+    'root',
+    'focusVisible',
+    'dense',
+    'alignItemsFlexStart',
+    'disabled',
+    'divider',
+    'gutters',
+    'selected',
+  ]);
 
 const listItemButtonClasses = getListItemButtonClasses();
 

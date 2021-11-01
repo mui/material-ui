@@ -61,34 +61,35 @@ export function getButtonGroupUtilityClass(slot: string): string {
   return generateUtilityClass('MuiButtonGroup', slot);
 }
 
-export const getButtonGroupClasses = (): ButtonGroupClasses => generateUtilityClasses('MuiButtonGroup', [
-  'root',
-  'contained',
-  'outlined',
-  'text',
-  'disableElevation',
-  'disabled',
-  'fullWidth',
-  'vertical',
-  'grouped',
-  'groupedHorizontal',
-  'groupedVertical',
-  'groupedText',
-  'groupedTextHorizontal',
-  'groupedTextVertical',
-  'groupedTextPrimary',
-  'groupedTextSecondary',
-  'groupedOutlined',
-  'groupedOutlinedHorizontal',
-  'groupedOutlinedVertical',
-  'groupedOutlinedPrimary',
-  'groupedOutlinedSecondary',
-  'groupedContained',
-  'groupedContainedHorizontal',
-  'groupedContainedVertical',
-  'groupedContainedPrimary',
-  'groupedContainedSecondary',
-]);
+export const getButtonGroupClasses = (): ButtonGroupClasses =>
+  generateUtilityClasses('MuiButtonGroup', [
+    'root',
+    'contained',
+    'outlined',
+    'text',
+    'disableElevation',
+    'disabled',
+    'fullWidth',
+    'vertical',
+    'grouped',
+    'groupedHorizontal',
+    'groupedVertical',
+    'groupedText',
+    'groupedTextHorizontal',
+    'groupedTextVertical',
+    'groupedTextPrimary',
+    'groupedTextSecondary',
+    'groupedOutlined',
+    'groupedOutlinedHorizontal',
+    'groupedOutlinedVertical',
+    'groupedOutlinedPrimary',
+    'groupedOutlinedSecondary',
+    'groupedContained',
+    'groupedContainedHorizontal',
+    'groupedContainedVertical',
+    'groupedContainedPrimary',
+    'groupedContainedSecondary',
+  ]);
 
 const buttonGroupClasses = getButtonGroupClasses();
 

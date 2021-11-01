@@ -25,9 +25,8 @@ export function getAccordionSummaryUtilityClass(slot: string): string {
   return generateUtilityClass('MuiAccordionSummary', slot);
 }
 
-export const getAccordionSummaryClasses = (): AccordionSummaryClasses => generateUtilityClasses(
-  'MuiAccordionSummary',
-  [
+export const getAccordionSummaryClasses = (): AccordionSummaryClasses =>
+  generateUtilityClasses('MuiAccordionSummary', [
     'root',
     'expanded',
     'focusVisible',
@@ -36,8 +35,7 @@ export const getAccordionSummaryClasses = (): AccordionSummaryClasses => generat
     'contentGutters',
     'content',
     'expandIconWrapper',
-  ],
-);
+  ]);
 
 const accordionSummaryClasses = getAccordionSummaryClasses();
 

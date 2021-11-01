@@ -21,15 +21,16 @@ export function getCollapseUtilityClass(slot: string): string {
   return generateUtilityClass('MuiCollapse', slot);
 }
 
-export const getCollapseClasses = (): CollapseClasses => generateUtilityClasses('MuiCollapse', [
-  'root',
-  'horizontal',
-  'vertical',
-  'entered',
-  'hidden',
-  'wrapper',
-  'wrapperInner',
-]);
+export const getCollapseClasses = (): CollapseClasses =>
+  generateUtilityClasses('MuiCollapse', [
+    'root',
+    'horizontal',
+    'vertical',
+    'entered',
+    'hidden',
+    'wrapper',
+    'wrapperInner',
+  ]);
 
 const collapseClasses = getCollapseClasses();
 

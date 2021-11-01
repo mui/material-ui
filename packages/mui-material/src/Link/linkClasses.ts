@@ -21,14 +21,15 @@ export function getLinkUtilityClass(slot: string): string {
   return generateUtilityClass('MuiLink', slot);
 }
 
-export const getLinkClasses = (): LinkClasses => generateUtilityClasses('MuiLink', [
-  'root',
-  'underlineNone',
-  'underlineHover',
-  'underlineAlways',
-  'button',
-  'focusVisible',
-]);
+export const getLinkClasses = (): LinkClasses =>
+  generateUtilityClasses('MuiLink', [
+    'root',
+    'underlineNone',
+    'underlineHover',
+    'underlineAlways',
+    'button',
+    'focusVisible',
+  ]);
 
 const linkClasses = getLinkClasses();
 

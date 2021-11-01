@@ -15,7 +15,8 @@ export function getMenuUtilityClass(slot: string): string {
   return generateUtilityClass('MuiMenu', slot);
 }
 
-export const getMenuClasses = (): MenuClasses => generateUtilityClasses('MuiMenu', ['root', 'paper', 'list']);
+export const getMenuClasses = (): MenuClasses =>
+  generateUtilityClasses('MuiMenu', ['root', 'paper', 'list']);
 
 const menuClasses = getMenuClasses();
 

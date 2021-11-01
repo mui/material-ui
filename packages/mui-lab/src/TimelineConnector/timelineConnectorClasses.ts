@@ -11,10 +11,8 @@ export function getTimelineConnectorUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTimelineConnector', slot);
 }
 
-export const getTimelineConnectorClasses = (): TimelineConnectorClasses => generateUtilityClasses(
-  'MuiTimelineConnector',
-  ['root'],
-);
+export const getTimelineConnectorClasses = (): TimelineConnectorClasses =>
+  generateUtilityClasses('MuiTimelineConnector', ['root']);
 
 const timelineConnectorClasses = getTimelineConnectorClasses();
 

@@ -27,18 +27,19 @@ export function getSvgIconUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSvgIcon', slot);
 }
 
-export const getSvgIconClasses = (): SvgIconClasses => generateUtilityClasses('MuiSvgIcon', [
-  'root',
-  'colorPrimary',
-  'colorSecondary',
-  'colorAction',
-  'colorError',
-  'colorDisabled',
-  'fontSizeInherit',
-  'fontSizeSmall',
-  'fontSizeMedium',
-  'fontSizeLarge',
-]);
+export const getSvgIconClasses = (): SvgIconClasses =>
+  generateUtilityClasses('MuiSvgIcon', [
+    'root',
+    'colorPrimary',
+    'colorSecondary',
+    'colorAction',
+    'colorError',
+    'colorDisabled',
+    'fontSizeInherit',
+    'fontSizeSmall',
+    'fontSizeMedium',
+    'fontSizeLarge',
+  ]);
 
 const svgIconClasses = getSvgIconClasses();
 

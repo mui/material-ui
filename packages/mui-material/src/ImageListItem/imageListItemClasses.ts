@@ -21,14 +21,15 @@ export function getImageListItemUtilityClass(slot: string): string {
   return generateUtilityClass('MuiImageListItem', slot);
 }
 
-export const getImageListItemClasses = (): ImageListItemClasses => generateUtilityClasses('MuiImageListItem', [
-  'root',
-  'img',
-  'standard',
-  'woven',
-  'masonry',
-  'quilted',
-]);
+export const getImageListItemClasses = (): ImageListItemClasses =>
+  generateUtilityClasses('MuiImageListItem', [
+    'root',
+    'img',
+    'standard',
+    'woven',
+    'masonry',
+    'quilted',
+  ]);
 
 const imageListItemClasses = getImageListItemClasses();
 

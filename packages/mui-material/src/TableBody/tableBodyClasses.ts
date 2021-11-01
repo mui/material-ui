@@ -11,7 +11,8 @@ export function getTableBodyUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTableBody', slot);
 }
 
-export const getTableBodyClasses = (): TableBodyClasses => generateUtilityClasses('MuiTableBody', ['root']);
+export const getTableBodyClasses = (): TableBodyClasses =>
+  generateUtilityClasses('MuiTableBody', ['root']);
 
 const tableBodyClasses = getTableBodyClasses();
 

@@ -27,18 +27,19 @@ export function getIconUtilityClass(slot: string): string {
   return generateUtilityClass('MuiIcon', slot);
 }
 
-export const getIconClasses = (): IconClasses => generateUtilityClasses('MuiIcon', [
-  'root',
-  'colorPrimary',
-  'colorSecondary',
-  'colorAction',
-  'colorError',
-  'colorDisabled',
-  'fontSizeInherit',
-  'fontSizeSmall',
-  'fontSizeMedium',
-  'fontSizeLarge',
-]);
+export const getIconClasses = (): IconClasses =>
+  generateUtilityClasses('MuiIcon', [
+    'root',
+    'colorPrimary',
+    'colorSecondary',
+    'colorAction',
+    'colorError',
+    'colorDisabled',
+    'fontSizeInherit',
+    'fontSizeSmall',
+    'fontSizeMedium',
+    'fontSizeLarge',
+  ]);
 
 const iconClasses = getIconClasses();
 

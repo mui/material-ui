@@ -25,16 +25,17 @@ export function getLoadingButtonUtilityClass(slot: string): string {
   return generateUtilityClass('MuiLoadingButton', slot);
 }
 
-export const getLoadingButtonClasses = (): LoadingButtonClasses => generateUtilityClasses('MuiLoadingButton', [
-  'root',
-  'loading',
-  'loadingIndicator',
-  'loadingIndicatorCenter',
-  'loadingIndicatorStart',
-  'loadingIndicatorEnd',
-  'endIconLoadingEnd',
-  'startIconLoadingStart',
-]);
+export const getLoadingButtonClasses = (): LoadingButtonClasses =>
+  generateUtilityClasses('MuiLoadingButton', [
+    'root',
+    'loading',
+    'loadingIndicator',
+    'loadingIndicatorCenter',
+    'loadingIndicatorStart',
+    'loadingIndicatorEnd',
+    'endIconLoadingEnd',
+    'startIconLoadingStart',
+  ]);
 
 const loadingButtonClasses = getLoadingButtonClasses();
 

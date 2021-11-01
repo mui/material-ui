@@ -21,14 +21,15 @@ export function getCardHeaderUtilityClass(slot: string): string {
   return generateUtilityClass('MuiCardHeader', slot);
 }
 
-export const getCardHeaderClasses = (): CardHeaderClasses => generateUtilityClasses('MuiCardHeader', [
-  'root',
-  'avatar',
-  'action',
-  'content',
-  'title',
-  'subheader',
-]);
+export const getCardHeaderClasses = (): CardHeaderClasses =>
+  generateUtilityClasses('MuiCardHeader', [
+    'root',
+    'avatar',
+    'action',
+    'content',
+    'title',
+    'subheader',
+  ]);
 
 const cardHeaderClasses = getCardHeaderClasses();
 

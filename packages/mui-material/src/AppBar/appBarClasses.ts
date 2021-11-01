@@ -31,19 +31,20 @@ export function getAppBarUtilityClass(slot: string): string {
   return generateUtilityClass('MuiAppBar', slot);
 }
 
-export const getAppBarClasses = (): AppBarClasses => generateUtilityClasses('MuiAppBar', [
-  'root',
-  'positionFixed',
-  'positionAbsolute',
-  'positionSticky',
-  'positionStatic',
-  'positionRelative',
-  'colorDefault',
-  'colorPrimary',
-  'colorSecondary',
-  'colorInherit',
-  'colorTransparent',
-]);
+export const getAppBarClasses = (): AppBarClasses =>
+  generateUtilityClasses('MuiAppBar', [
+    'root',
+    'positionFixed',
+    'positionAbsolute',
+    'positionSticky',
+    'positionStatic',
+    'positionRelative',
+    'colorDefault',
+    'colorPrimary',
+    'colorSecondary',
+    'colorInherit',
+    'colorTransparent',
+  ]);
 
 const appBarClasses = getAppBarClasses();
 

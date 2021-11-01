@@ -17,12 +17,8 @@ export function getToolbarUtilityClass(slot: string): string {
   return generateUtilityClass('MuiToolbar', slot);
 }
 
-export const getToolbarClasses = (): ToolbarClasses => generateUtilityClasses('MuiToolbar', [
-  'root',
-  'gutters',
-  'regular',
-  'dense',
-]);
+export const getToolbarClasses = (): ToolbarClasses =>
+  generateUtilityClasses('MuiToolbar', ['root', 'gutters', 'regular', 'dense']);
 
 const toolbarClasses = getToolbarClasses();
 

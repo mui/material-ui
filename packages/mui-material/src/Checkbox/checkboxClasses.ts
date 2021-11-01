@@ -21,14 +21,15 @@ export function getCheckboxUtilityClass(slot: string): string {
   return generateUtilityClass('MuiCheckbox', slot);
 }
 
-export const getCheckboxClasses = (): CheckboxClasses => generateUtilityClasses('MuiCheckbox', [
-  'root',
-  'checked',
-  'disabled',
-  'indeterminate',
-  'colorPrimary',
-  'colorSecondary',
-]);
+export const getCheckboxClasses = (): CheckboxClasses =>
+  generateUtilityClasses('MuiCheckbox', [
+    'root',
+    'checked',
+    'disabled',
+    'indeterminate',
+    'colorPrimary',
+    'colorSecondary',
+  ]);
 
 const checkboxClasses = getCheckboxClasses();
 

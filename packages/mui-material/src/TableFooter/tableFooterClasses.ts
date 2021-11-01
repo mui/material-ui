@@ -11,7 +11,8 @@ export function getTableFooterUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTableFooter', slot);
 }
 
-export const getTableFooterClasses = (): TableFooterClasses => generateUtilityClasses('MuiTableFooter', ['root']);
+export const getTableFooterClasses = (): TableFooterClasses =>
+  generateUtilityClasses('MuiTableFooter', ['root']);
 
 const tableFooterClasses = getTableFooterClasses();
 

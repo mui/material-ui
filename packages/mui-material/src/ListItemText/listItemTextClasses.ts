@@ -21,14 +21,15 @@ export function getListItemTextUtilityClass(slot: string): string {
   return generateUtilityClass('MuiListItemText', slot);
 }
 
-export const getListItemTextClasses = (): ListItemTextClasses => generateUtilityClasses('MuiListItemText', [
-  'root',
-  'multiline',
-  'dense',
-  'inset',
-  'primary',
-  'secondary',
-]);
+export const getListItemTextClasses = (): ListItemTextClasses =>
+  generateUtilityClasses('MuiListItemText', [
+    'root',
+    'multiline',
+    'dense',
+    'inset',
+    'primary',
+    'secondary',
+  ]);
 
 const listItemTextClasses = getListItemTextClasses();
 

@@ -35,21 +35,22 @@ export function getTabsUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTabs', slot);
 }
 
-export const getTabsClasses = (): TabsClasses => generateUtilityClasses('MuiTabs', [
-  'root',
-  'vertical',
-  'flexContainer',
-  'flexContainerVertical',
-  'centered',
-  'scroller',
-  'fixed',
-  'scrollableX',
-  'scrollableY',
-  'hideScrollbar',
-  'scrollButtons',
-  'scrollButtonsHideMobile',
-  'indicator',
-]);
+export const getTabsClasses = (): TabsClasses =>
+  generateUtilityClasses('MuiTabs', [
+    'root',
+    'vertical',
+    'flexContainer',
+    'flexContainerVertical',
+    'centered',
+    'scroller',
+    'fixed',
+    'scrollableX',
+    'scrollableY',
+    'hideScrollbar',
+    'scrollButtons',
+    'scrollButtonsHideMobile',
+    'indicator',
+  ]);
 
 const tabsClasses = getTabsClasses();
 

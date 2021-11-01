@@ -13,7 +13,8 @@ export function getFormGroupUtilityClass(slot: string): string {
   return generateUtilityClass('MuiFormGroup', slot);
 }
 
-export const getFormGroupClasses = (): FormGroupClasses => generateUtilityClasses('MuiFormGroup', ['root', 'row']);
+export const getFormGroupClasses = (): FormGroupClasses =>
+  generateUtilityClasses('MuiFormGroup', ['root', 'row']);
 
 const formGroupClasses = getFormGroupClasses();
 

@@ -33,20 +33,21 @@ export function getTooltipUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTooltip', slot);
 }
 
-export const getTooltipClasses = (): TooltipClasses => generateUtilityClasses('MuiTooltip', [
-  'popper',
-  'popperInteractive',
-  'popperArrow',
-  'popperClose',
-  'tooltip',
-  'tooltipArrow',
-  'touch',
-  'tooltipPlacementLeft',
-  'tooltipPlacementRight',
-  'tooltipPlacementTop',
-  'tooltipPlacementBottom',
-  'arrow',
-]);
+export const getTooltipClasses = (): TooltipClasses =>
+  generateUtilityClasses('MuiTooltip', [
+    'popper',
+    'popperInteractive',
+    'popperArrow',
+    'popperClose',
+    'tooltip',
+    'tooltipArrow',
+    'touch',
+    'tooltipPlacementLeft',
+    'tooltipPlacementRight',
+    'tooltipPlacementTop',
+    'tooltipPlacementBottom',
+    'arrow',
+  ]);
 
 const tooltipClasses = getTooltipClasses();
 
