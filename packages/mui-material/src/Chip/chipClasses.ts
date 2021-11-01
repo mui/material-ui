@@ -83,7 +83,7 @@ export function getChipUtilityClass(slot: string): string {
   return generateUtilityClass('MuiChip', slot);
 }
 
-const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
+export const getChipClasses = (): ChipClasses => generateUtilityClasses('MuiChip', [
   'root',
   'sizeSmall',
   'sizeMedium',
@@ -122,5 +122,7 @@ const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'deleteIconOutlinedColorSecondary',
   'focusVisible',
 ]);
+
+const chipClasses = getChipClasses();
 
 export default chipClasses;

@@ -25,7 +25,7 @@ export function getContainerUtilityClass(slot: string): string {
   return generateUtilityClass('MuiContainer', slot);
 }
 
-const containerClasses: ContainerClasses = generateUtilityClasses('MuiContainer', [
+export const getContainerClasses = (): ContainerClasses => generateUtilityClasses('MuiContainer', [
   'root',
   'disableGutters',
   'fixed',
@@ -35,5 +35,7 @@ const containerClasses: ContainerClasses = generateUtilityClasses('MuiContainer'
   'maxWidthLg',
   'maxWidthXl',
 ]);
+
+const containerClasses = getContainerClasses();
 
 export default containerClasses;

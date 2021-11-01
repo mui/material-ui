@@ -21,7 +21,7 @@ export function getAccordionUtilityClass(slot: string): string {
   return generateUtilityClass('MuiAccordion', slot);
 }
 
-const accordionClasses: AccordionClasses = generateUtilityClasses('MuiAccordion', [
+export const getAccordionClasses = (): AccordionClasses => generateUtilityClasses('MuiAccordion', [
   'root',
   'rounded',
   'expanded',
@@ -29,5 +29,7 @@ const accordionClasses: AccordionClasses = generateUtilityClasses('MuiAccordion'
   'gutters',
   'region',
 ]);
+
+const accordionClasses = getAccordionClasses();
 
 export default accordionClasses;

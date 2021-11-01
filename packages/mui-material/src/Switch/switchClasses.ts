@@ -35,7 +35,7 @@ export function getSwitchUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSwitch', slot);
 }
 
-const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
+export const getSwitchClasses = (): SwitchClasses => generateUtilityClasses('MuiSwitch', [
   'root',
   'edgeStart',
   'edgeEnd',
@@ -50,5 +50,7 @@ const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
   'thumb',
   'track',
 ]);
+
+const switchClasses = getSwitchClasses();
 
 export default switchClasses;

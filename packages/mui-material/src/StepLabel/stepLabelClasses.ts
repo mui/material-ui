@@ -31,7 +31,7 @@ export function getStepLabelUtilityClass(slot: string): string {
   return generateUtilityClass('MuiStepLabel', slot);
 }
 
-const stepLabelClasses: StepLabelClasses = generateUtilityClasses('MuiStepLabel', [
+export const getStepLabelClasses = (): StepLabelClasses => generateUtilityClasses('MuiStepLabel', [
   'root',
   'horizontal',
   'vertical',
@@ -44,5 +44,7 @@ const stepLabelClasses: StepLabelClasses = generateUtilityClasses('MuiStepLabel'
   'alternativeLabel',
   'labelContainer',
 ]);
+
+const stepLabelClasses = getStepLabelClasses();
 
 export default stepLabelClasses;

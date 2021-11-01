@@ -15,10 +15,12 @@ export function getButtonBaseUtilityClass(slot: string): string {
   return generateUtilityClass('MuiButtonBase', slot);
 }
 
-const buttonBaseClasses: ButtonBaseClasses = generateUtilityClasses('MuiButtonBase', [
+export const getButtonBaseClasses = (): ButtonBaseClasses => generateUtilityClasses('MuiButtonBase', [
   'root',
   'disabled',
   'focusVisible',
 ]);
+
+const buttonBaseClasses = getButtonBaseClasses();
 
 export default buttonBaseClasses;

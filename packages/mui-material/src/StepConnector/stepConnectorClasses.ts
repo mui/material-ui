@@ -29,7 +29,7 @@ export function getStepConnectorUtilityClass(slot: string): string {
   return generateUtilityClass('MuiStepConnector', slot);
 }
 
-const stepConnectorClasses: StepConnectorClasses = generateUtilityClasses('MuiStepConnector', [
+export const getStepConnectorClasses = (): StepConnectorClasses => generateUtilityClasses('MuiStepConnector', [
   'root',
   'horizontal',
   'vertical',
@@ -41,5 +41,7 @@ const stepConnectorClasses: StepConnectorClasses = generateUtilityClasses('MuiSt
   'lineHorizontal',
   'lineVertical',
 ]);
+
+const stepConnectorClasses = getStepConnectorClasses();
 
 export default stepConnectorClasses;

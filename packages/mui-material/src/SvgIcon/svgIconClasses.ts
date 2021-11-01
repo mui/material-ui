@@ -27,7 +27,7 @@ export function getSvgIconUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSvgIcon', slot);
 }
 
-const svgIconClasses: SvgIconClasses = generateUtilityClasses('MuiSvgIcon', [
+export const getSvgIconClasses = (): SvgIconClasses => generateUtilityClasses('MuiSvgIcon', [
   'root',
   'colorPrimary',
   'colorSecondary',
@@ -39,5 +39,7 @@ const svgIconClasses: SvgIconClasses = generateUtilityClasses('MuiSvgIcon', [
   'fontSizeMedium',
   'fontSizeLarge',
 ]);
+
+const svgIconClasses = getSvgIconClasses();
 
 export default svgIconClasses;

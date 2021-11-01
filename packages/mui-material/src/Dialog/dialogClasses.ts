@@ -39,7 +39,7 @@ export function getDialogUtilityClass(slot: string): string {
   return generateUtilityClass('MuiDialog', slot);
 }
 
-const dialogClasses: DialogClasses = generateUtilityClasses('MuiDialog', [
+export const getDialogClasses = (): DialogClasses => generateUtilityClasses('MuiDialog', [
   'root',
   'scrollPaper',
   'scrollBody',
@@ -56,5 +56,7 @@ const dialogClasses: DialogClasses = generateUtilityClasses('MuiDialog', [
   'paperFullWidth',
   'paperFullScreen',
 ]);
+
+const dialogClasses = getDialogClasses();
 
 export default dialogClasses;

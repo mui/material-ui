@@ -23,7 +23,7 @@ export function getSnackbarUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSnackbar', slot);
 }
 
-const snackbarClasses: SnackbarClasses = generateUtilityClasses('MuiSnackbar', [
+export const getSnackbarClasses = (): SnackbarClasses => generateUtilityClasses('MuiSnackbar', [
   'root',
   'anchorOriginTopCenter',
   'anchorOriginBottomCenter',
@@ -32,5 +32,7 @@ const snackbarClasses: SnackbarClasses = generateUtilityClasses('MuiSnackbar', [
   'anchorOriginTopLeft',
   'anchorOriginBottomLeft',
 ]);
+
+const snackbarClasses = getSnackbarClasses();
 
 export default snackbarClasses;

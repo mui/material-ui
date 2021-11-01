@@ -25,7 +25,7 @@ export function getSpeedDialUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSpeedDial', slot);
 }
 
-const speedDialClasses: SpeedDialClasses = generateUtilityClasses('MuiSpeedDial', [
+export const getSpeedDialClasses = (): SpeedDialClasses => generateUtilityClasses('MuiSpeedDial', [
   'root',
   'fab',
   'directionUp',
@@ -35,5 +35,7 @@ const speedDialClasses: SpeedDialClasses = generateUtilityClasses('MuiSpeedDial'
   'actions',
   'actionsClosed',
 ]);
+
+const speedDialClasses = getSpeedDialClasses();
 
 export default speedDialClasses;

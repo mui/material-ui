@@ -21,9 +21,11 @@ export function getToggleButtonGroupUtilityClass(slot: string): string {
   return generateUtilityClass('MuiToggleButtonGroup', slot);
 }
 
-const toggleButtonGroupClasses: ToggleButtonGroupClasses = generateUtilityClasses(
+export const getToggleButtonGroupClasses = (): ToggleButtonGroupClasses => generateUtilityClasses(
   'MuiToggleButtonGroup',
   ['root', 'selected', 'vertical', 'disabled', 'grouped', 'groupedHorizontal', 'groupedVertical'],
 );
+
+const toggleButtonGroupClasses = getToggleButtonGroupClasses();
 
 export default toggleButtonGroupClasses;

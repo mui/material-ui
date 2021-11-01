@@ -11,6 +11,8 @@ export function getDialogTitleUtilityClass(slot: string): string {
   return generateUtilityClass('MuiDialogTitle', slot);
 }
 
-const dialogTitleClasses: DialogTitleClasses = generateUtilityClasses('MuiDialogTitle', ['root']);
+export const getDialogTitleClasses = (): DialogTitleClasses => generateUtilityClasses('MuiDialogTitle', ['root']);
+
+const dialogTitleClasses = getDialogTitleClasses();
 
 export default dialogTitleClasses;

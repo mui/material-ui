@@ -33,7 +33,7 @@ export function getTooltipUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTooltip', slot);
 }
 
-const tooltipClasses: TooltipClasses = generateUtilityClasses('MuiTooltip', [
+export const getTooltipClasses = (): TooltipClasses => generateUtilityClasses('MuiTooltip', [
   'popper',
   'popperInteractive',
   'popperArrow',
@@ -47,5 +47,7 @@ const tooltipClasses: TooltipClasses = generateUtilityClasses('MuiTooltip', [
   'tooltipPlacementBottom',
   'arrow',
 ]);
+
+const tooltipClasses = getTooltipClasses();
 
 export default tooltipClasses;

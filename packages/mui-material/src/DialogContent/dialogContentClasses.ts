@@ -13,9 +13,11 @@ export function getDialogContentUtilityClass(slot: string): string {
   return generateUtilityClass('MuiDialogContent', slot);
 }
 
-const dialogContentClasses: DialogContentClasses = generateUtilityClasses('MuiDialogContent', [
+export const getDialogContentClasses = (): DialogContentClasses => generateUtilityClasses('MuiDialogContent', [
   'root',
   'dividers',
 ]);
+
+const dialogContentClasses = getDialogContentClasses();
 
 export default dialogContentClasses;

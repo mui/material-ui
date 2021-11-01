@@ -11,6 +11,8 @@ export function getCardContentUtilityClass(slot: string): string {
   return generateUtilityClass('MuiCardContent', slot);
 }
 
-const cardContentClasses: CardContentClasses = generateUtilityClasses('MuiCardContent', ['root']);
+export const getCardContentClasses = (): CardContentClasses => generateUtilityClasses('MuiCardContent', ['root']);
+
+const cardContentClasses = getCardContentClasses();
 
 export default cardContentClasses;

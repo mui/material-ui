@@ -35,7 +35,7 @@ export function getTableCellUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTableCell', slot);
 }
 
-const tableCellClasses: TableCellClasses = generateUtilityClasses('MuiTableCell', [
+export const getTableCellClasses = (): TableCellClasses => generateUtilityClasses('MuiTableCell', [
   'root',
   'head',
   'body',
@@ -50,5 +50,7 @@ const tableCellClasses: TableCellClasses = generateUtilityClasses('MuiTableCell'
   'alignJustify',
   'stickyHeader',
 ]);
+
+const tableCellClasses = getTableCellClasses();
 
 export default tableCellClasses;

@@ -21,7 +21,7 @@ export function getSpeedDialIconUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSpeedDialIcon', slot);
 }
 
-const speedDialIconClasses: SpeedDialIconClasses = generateUtilityClasses('MuiSpeedDialIcon', [
+export const getSpeedDialIconClasses = (): SpeedDialIconClasses => generateUtilityClasses('MuiSpeedDialIcon', [
   'root',
   'icon',
   'iconOpen',
@@ -29,5 +29,7 @@ const speedDialIconClasses: SpeedDialIconClasses = generateUtilityClasses('MuiSp
   'openIcon',
   'openIconOpen',
 ]);
+
+const speedDialIconClasses = getSpeedDialIconClasses();
 
 export default speedDialIconClasses;

@@ -13,6 +13,8 @@ export function getPopoverUtilityClass(slot: string): string {
   return generateUtilityClass('MuiPopover', slot);
 }
 
-const popoverClasses: PopoverClasses = generateUtilityClasses('MuiPopover', ['root', 'paper']);
+export const getPopoverClasses = (): PopoverClasses => generateUtilityClasses('MuiPopover', ['root', 'paper']);
+
+const popoverClasses = getPopoverClasses();
 
 export default popoverClasses;

@@ -61,7 +61,7 @@ export function getButtonGroupUtilityClass(slot: string): string {
   return generateUtilityClass('MuiButtonGroup', slot);
 }
 
-const buttonGroupClasses: ButtonGroupClasses = generateUtilityClasses('MuiButtonGroup', [
+export const getButtonGroupClasses = (): ButtonGroupClasses => generateUtilityClasses('MuiButtonGroup', [
   'root',
   'contained',
   'outlined',
@@ -89,5 +89,7 @@ const buttonGroupClasses: ButtonGroupClasses = generateUtilityClasses('MuiButton
   'groupedContainedPrimary',
   'groupedContainedSecondary',
 ]);
+
+const buttonGroupClasses = getButtonGroupClasses();
 
 export default buttonGroupClasses;

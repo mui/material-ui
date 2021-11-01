@@ -27,7 +27,7 @@ export function getIconUtilityClass(slot: string): string {
   return generateUtilityClass('MuiIcon', slot);
 }
 
-const iconClasses: IconClasses = generateUtilityClasses('MuiIcon', [
+export const getIconClasses = (): IconClasses => generateUtilityClasses('MuiIcon', [
   'root',
   'colorPrimary',
   'colorSecondary',
@@ -39,5 +39,7 @@ const iconClasses: IconClasses = generateUtilityClasses('MuiIcon', [
   'fontSizeMedium',
   'fontSizeLarge',
 ]);
+
+const iconClasses = getIconClasses();
 
 export default iconClasses;

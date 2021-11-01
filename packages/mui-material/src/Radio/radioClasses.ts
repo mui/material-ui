@@ -19,12 +19,14 @@ export function getRadioUtilityClass(slot: string): string {
   return generateUtilityClass('MuiRadio', slot);
 }
 
-const radioClasses: RadioClasses = generateUtilityClasses('MuiRadio', [
+export const getRadioClasses = (): RadioClasses => generateUtilityClasses('MuiRadio', [
   'root',
   'checked',
   'disabled',
   'colorPrimary',
   'colorSecondary',
 ]);
+
+const radioClasses = getRadioClasses();
 
 export default radioClasses;

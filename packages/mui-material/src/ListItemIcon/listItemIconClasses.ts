@@ -13,9 +13,11 @@ export function getListItemIconUtilityClass(slot: string): string {
   return generateUtilityClass('MuiListItemIcon', slot);
 }
 
-const listItemIconClasses: ListItemIconClasses = generateUtilityClasses('MuiListItemIcon', [
+export const getListItemIconClasses = (): ListItemIconClasses => generateUtilityClasses('MuiListItemIcon', [
   'root',
   'alignItemsFlexStart',
 ]);
+
+const listItemIconClasses = getListItemIconClasses();
 
 export default listItemIconClasses;

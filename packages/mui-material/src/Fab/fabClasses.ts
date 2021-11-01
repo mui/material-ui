@@ -29,7 +29,7 @@ export function getFabUtilityClass(slot: string): string {
   return generateUtilityClass('MuiFab', slot);
 }
 
-const fabClasses: FabClasses = generateUtilityClasses('MuiFab', [
+export const getFabClasses = (): FabClasses => generateUtilityClasses('MuiFab', [
   'root',
   'primary',
   'secondary',
@@ -42,5 +42,7 @@ const fabClasses: FabClasses = generateUtilityClasses('MuiFab', [
   'sizeMedium',
   'sizeLarge',
 ]);
+
+const fabClasses = getFabClasses();
 
 export default fabClasses;

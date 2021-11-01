@@ -17,11 +17,13 @@ export function getStepButtonUtilityClass(slot: string): string {
   return generateUtilityClass('MuiStepButton', slot);
 }
 
-const stepButtonClasses: StepButtonClasses = generateUtilityClasses('MuiStepButton', [
+export const getStepButtonClasses = (): StepButtonClasses => generateUtilityClasses('MuiStepButton', [
   'root',
   'horizontal',
   'vertical',
   'touchRipple',
 ]);
+
+const stepButtonClasses = getStepButtonClasses();
 
 export default stepButtonClasses;

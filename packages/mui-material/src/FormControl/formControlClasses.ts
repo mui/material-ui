@@ -17,7 +17,7 @@ export function getFormControlUtilityClasses(slot: string): string {
   return generateUtilityClass('MuiFormControl', slot);
 }
 
-const formControlClasses: FormControlClasses = generateUtilityClasses('MuiFormControl', [
+export const getFormControlClasses = (): FormControlClasses => generateUtilityClasses('MuiFormControl', [
   'root',
   'marginNone',
   'marginNormal',
@@ -25,5 +25,7 @@ const formControlClasses: FormControlClasses = generateUtilityClasses('MuiFormCo
   'fullWidth',
   'disabled',
 ]);
+
+const formControlClasses = getFormControlClasses();
 
 export default formControlClasses;

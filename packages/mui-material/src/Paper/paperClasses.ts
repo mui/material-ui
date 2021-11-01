@@ -42,7 +42,7 @@ export function getPaperUtilityClass(slot: string): string {
   return generateUtilityClass('MuiPaper', slot);
 }
 
-const paperClasses: PaperClasses = generateUtilityClasses('MuiPaper', [
+export const getPaperClasses = (): PaperClasses => generateUtilityClasses('MuiPaper', [
   'root',
   'rounded',
   'outlined',
@@ -73,5 +73,7 @@ const paperClasses: PaperClasses = generateUtilityClasses('MuiPaper', [
   'elevation23',
   'elevation24',
 ]);
+
+const paperClasses = getPaperClasses();
 
 export default paperClasses;

@@ -29,7 +29,7 @@ export function getTabUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTab', slot);
 }
 
-const tabClasses: TabClasses = generateUtilityClasses('MuiTab', [
+export const getTabClasses = (): TabClasses => generateUtilityClasses('MuiTab', [
   'root',
   'labelIcon',
   'textColorInherit',
@@ -41,5 +41,7 @@ const tabClasses: TabClasses = generateUtilityClasses('MuiTab', [
   'wrapped',
   'iconWrapper',
 ]);
+
+const tabClasses = getTabClasses();
 
 export default tabClasses;

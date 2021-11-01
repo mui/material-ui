@@ -17,9 +17,11 @@ export function getBottomNavigationActionUtilityClass(slot: string): string {
   return generateUtilityClass('MuiBottomNavigationAction', slot);
 }
 
-const bottomNavigationActionClasses: BottomNavigationActionClasses = generateUtilityClasses(
+export const getBottomNavigationActionClasses = (): BottomNavigationActionClasses => generateUtilityClasses(
   'MuiBottomNavigationAction',
   ['root', 'iconOnly', 'selected', 'label'],
 );
+
+const bottomNavigationActionClasses = getBottomNavigationActionClasses();
 
 export default bottomNavigationActionClasses;

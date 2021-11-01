@@ -43,7 +43,7 @@ export function getRatingUtilityClass(slot: string): string {
   return generateUtilityClass('MuiRating', slot);
 }
 
-const ratingClasses: RatingClasses = generateUtilityClasses('MuiRating', [
+export const getRatingClasses = (): RatingClasses => generateUtilityClasses('MuiRating', [
   'root',
   'sizeSmall',
   'sizeMedium',
@@ -63,5 +63,7 @@ const ratingClasses: RatingClasses = generateUtilityClasses('MuiRating', [
   'iconActive',
   'decimal',
 ]);
+
+const ratingClasses = getRatingClasses();
 
 export default ratingClasses;

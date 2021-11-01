@@ -33,7 +33,7 @@ export function getDrawerUtilityClass(slot: string): string {
   return generateUtilityClass('MuiDrawer', slot);
 }
 
-const drawerClasses: DrawerClasses = generateUtilityClasses('MuiDrawer', [
+export const getDrawerClasses = (): DrawerClasses => generateUtilityClasses('MuiDrawer', [
   'root',
   'docked',
   'paper',
@@ -47,5 +47,7 @@ const drawerClasses: DrawerClasses = generateUtilityClasses('MuiDrawer', [
   'paperAnchorDockedBottom',
   'modal',
 ]);
+
+const drawerClasses = getDrawerClasses();
 
 export default drawerClasses;

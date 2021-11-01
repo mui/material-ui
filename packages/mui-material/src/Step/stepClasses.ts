@@ -19,12 +19,14 @@ export function getStepUtilityClass(slot: string): string {
   return generateUtilityClass('MuiStep', slot);
 }
 
-const stepClasses: StepClasses = generateUtilityClasses('MuiStep', [
+export const getStepClasses = (): StepClasses => generateUtilityClasses('MuiStep', [
   'root',
   'horizontal',
   'vertical',
   'alternativeLabel',
   'completed',
 ]);
+
+const stepClasses = getStepClasses();
 
 export default stepClasses;

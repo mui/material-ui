@@ -13,6 +13,8 @@ export function getTableUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTable', slot);
 }
 
-const tableClasses: TableClasses = generateUtilityClasses('MuiTable', ['root', 'stickyHeader']);
+export const getTableClasses = (): TableClasses => generateUtilityClasses('MuiTable', ['root', 'stickyHeader']);
+
+const tableClasses = getTableClasses();
 
 export default tableClasses;

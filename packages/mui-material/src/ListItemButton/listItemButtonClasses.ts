@@ -25,7 +25,7 @@ export function getListItemButtonUtilityClass(slot: string): string {
   return generateUtilityClass('MuiListItemButton', slot);
 }
 
-const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('MuiListItemButton', [
+export const getListItemButtonClasses = (): ListItemButtonClasses => generateUtilityClasses('MuiListItemButton', [
   'root',
   'focusVisible',
   'dense',
@@ -35,5 +35,7 @@ const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('Mui
   'gutters',
   'selected',
 ]);
+
+const listItemButtonClasses = getListItemButtonClasses();
 
 export default listItemButtonClasses;

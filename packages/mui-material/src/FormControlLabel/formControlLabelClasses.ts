@@ -21,9 +21,11 @@ export function getFormControlLabelUtilityClasses(slot: string): string {
   return generateUtilityClass('MuiFormControlLabel', slot);
 }
 
-const formControlLabelClasses: FormControlLabelClasses = generateUtilityClasses(
+export const getFormControlLabelClasses = (): FormControlLabelClasses => generateUtilityClasses(
   'MuiFormControlLabel',
   ['root', 'labelPlacementStart', 'labelPlacementTop', 'labelPlacementBottom', 'disabled', 'label'],
 );
+
+const formControlLabelClasses = getFormControlLabelClasses();
 
 export default formControlLabelClasses;

@@ -37,7 +37,7 @@ export function getDividerUtilityClass(slot: string): string {
   return generateUtilityClass('MuiDivider', slot);
 }
 
-const dividerClasses: DividerClasses = generateUtilityClasses('MuiDivider', [
+export const getDividerClasses = (): DividerClasses => generateUtilityClasses('MuiDivider', [
   'root',
   'absolute',
   'fullWidth',
@@ -53,5 +53,7 @@ const dividerClasses: DividerClasses = generateUtilityClasses('MuiDivider', [
   'wrapper',
   'wrapperVertical',
 ]);
+
+const dividerClasses = getDividerClasses();
 
 export default dividerClasses;

@@ -15,9 +15,11 @@ export function getTabScrollButtonUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTabScrollButton', slot);
 }
 
-const tabScrollButtonClasses: TabScrollButtonClasses = generateUtilityClasses(
+export const getTabScrollButtonClasses = (): TabScrollButtonClasses => generateUtilityClasses(
   'MuiTabScrollButton',
   ['root', 'vertical', 'horizontal', 'disabled'],
 );
+
+const tabScrollButtonClasses = getTabScrollButtonClasses();
 
 export default tabScrollButtonClasses;

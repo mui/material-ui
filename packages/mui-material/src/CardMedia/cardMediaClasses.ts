@@ -15,10 +15,12 @@ export function getCardMediaUtilityClass(slot: string): string {
   return generateUtilityClass('MuiCardMedia', slot);
 }
 
-const cardMediaClasses: CardMediaClasses = generateUtilityClasses('MuiCardMedia', [
+export const getCardMediaClasses = (): CardMediaClasses => generateUtilityClasses('MuiCardMedia', [
   'root',
   'media',
   'img',
 ]);
+
+const cardMediaClasses = getCardMediaClasses();
 
 export default cardMediaClasses;

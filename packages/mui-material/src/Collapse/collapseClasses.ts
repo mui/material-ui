@@ -21,7 +21,7 @@ export function getCollapseUtilityClass(slot: string): string {
   return generateUtilityClass('MuiCollapse', slot);
 }
 
-const collapseClasses: CollapseClasses = generateUtilityClasses('MuiCollapse', [
+export const getCollapseClasses = (): CollapseClasses => generateUtilityClasses('MuiCollapse', [
   'root',
   'horizontal',
   'vertical',
@@ -30,5 +30,7 @@ const collapseClasses: CollapseClasses = generateUtilityClasses('MuiCollapse', [
   'wrapper',
   'wrapperInner',
 ]);
+
+const collapseClasses = getCollapseClasses();
 
 export default collapseClasses;

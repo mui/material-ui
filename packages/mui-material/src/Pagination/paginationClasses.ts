@@ -17,11 +17,13 @@ export function getPaginationUtilityClass(slot: string): string {
   return generateUtilityClass('MuiPagination', slot);
 }
 
-const paginationClasses: PaginationClasses = generateUtilityClasses('MuiPagination', [
+export const getPaginationClasses = (): PaginationClasses => generateUtilityClasses('MuiPagination', [
   'root',
   'ul',
   'outlined',
   'text',
 ]);
+
+const paginationClasses = getPaginationClasses();
 
 export default paginationClasses;

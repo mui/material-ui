@@ -47,7 +47,7 @@ export function getInputBaseUtilityClass(slot: string): string {
   return generateUtilityClass('MuiInputBase', slot);
 }
 
-const inputBaseClasses: InputBaseClasses = generateUtilityClasses('MuiInputBase', [
+export const getInputBaseClasses = (): InputBaseClasses => generateUtilityClasses('MuiInputBase', [
   'root',
   'formControl',
   'focused',
@@ -68,5 +68,7 @@ const inputBaseClasses: InputBaseClasses = generateUtilityClasses('MuiInputBase'
   'inputAdornedEnd',
   'inputHiddenLabel',
 ]);
+
+const inputBaseClasses = getInputBaseClasses();
 
 export default inputBaseClasses;

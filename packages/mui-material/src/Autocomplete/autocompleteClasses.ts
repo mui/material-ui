@@ -57,7 +57,7 @@ export function getAutocompleteUtilityClass(slot: string): string {
   return generateUtilityClass('MuiAutocomplete', slot);
 }
 
-const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('MuiAutocomplete', [
+export const getAutocompleteClasses = (): AutocompleteClasses => generateUtilityClasses('MuiAutocomplete', [
   'root',
   'fullWidth',
   'focused',
@@ -84,5 +84,7 @@ const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('MuiAuto
   'groupLabel',
   'groupUl',
 ]);
+
+const autocompleteClasses = getAutocompleteClasses();
 
 export default autocompleteClasses;

@@ -25,7 +25,7 @@ export function getMobileStepperUtilityClass(slot: string): string {
   return generateUtilityClass('MuiMobileStepper', slot);
 }
 
-const mobileStepperClasses: MobileStepperClasses = generateUtilityClasses('MuiMobileStepper', [
+export const getMobileStepperClasses = (): MobileStepperClasses => generateUtilityClasses('MuiMobileStepper', [
   'root',
   'positionBottom',
   'positionTop',
@@ -35,5 +35,7 @@ const mobileStepperClasses: MobileStepperClasses = generateUtilityClasses('MuiMo
   'dotActive',
   'progress',
 ]);
+
+const mobileStepperClasses = getMobileStepperClasses();
 
 export default mobileStepperClasses;

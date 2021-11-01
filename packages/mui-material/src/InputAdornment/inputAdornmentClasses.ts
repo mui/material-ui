@@ -27,7 +27,7 @@ export function getInputAdornmentUtilityClass(slot: string): string {
   return generateUtilityClass('MuiInputAdornment', slot);
 }
 
-const inputAdornmentClasses: InputAdornmentClasses = generateUtilityClasses('MuiInputAdornment', [
+export const getInputAdornmentClasses = (): InputAdornmentClasses => generateUtilityClasses('MuiInputAdornment', [
   'root',
   'filled',
   'standard',
@@ -38,5 +38,7 @@ const inputAdornmentClasses: InputAdornmentClasses = generateUtilityClasses('Mui
   'hiddenLabel',
   'sizeSmall',
 ]);
+
+const inputAdornmentClasses = getInputAdornmentClasses();
 
 export default inputAdornmentClasses;

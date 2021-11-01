@@ -11,6 +11,8 @@ export function getTextFieldUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTextField', slot);
 }
 
-const textFieldClasses: TextFieldClasses = generateUtilityClasses('MuiTextField', ['root']);
+export const getTextFieldClasses = (): TextFieldClasses => generateUtilityClasses('MuiTextField', ['root']);
+
+const textFieldClasses = getTextFieldClasses();
 
 export default textFieldClasses;

@@ -19,12 +19,14 @@ export function getTableSortLabelUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTableSortLabel', slot);
 }
 
-const tableSortLabelClasses: TableSortLabelClasses = generateUtilityClasses('MuiTableSortLabel', [
+export const getTableSortLabelClasses = (): TableSortLabelClasses => generateUtilityClasses('MuiTableSortLabel', [
   'root',
   'active',
   'icon',
   'iconDirectionDesc',
   'iconDirectionAsc',
 ]);
+
+const tableSortLabelClasses = getTableSortLabelClasses();
 
 export default tableSortLabelClasses;

@@ -17,11 +17,13 @@ export function getListUtilityClass(slot: string): string {
   return generateUtilityClass('MuiList', slot);
 }
 
-const listClasses: ListClasses = generateUtilityClasses('MuiList', [
+export const getListClasses = (): ListClasses => generateUtilityClasses('MuiList', [
   'root',
   'padding',
   'dense',
   'subheader',
 ]);
+
+const listClasses = getListClasses();
 
 export default listClasses;

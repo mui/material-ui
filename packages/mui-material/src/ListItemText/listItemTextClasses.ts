@@ -21,7 +21,7 @@ export function getListItemTextUtilityClass(slot: string): string {
   return generateUtilityClass('MuiListItemText', slot);
 }
 
-const listItemTextClasses: ListItemTextClasses = generateUtilityClasses('MuiListItemText', [
+export const getListItemTextClasses = (): ListItemTextClasses => generateUtilityClasses('MuiListItemText', [
   'root',
   'multiline',
   'dense',
@@ -29,5 +29,7 @@ const listItemTextClasses: ListItemTextClasses = generateUtilityClasses('MuiList
   'primary',
   'secondary',
 ]);
+
+const listItemTextClasses = getListItemTextClasses();
 
 export default listItemTextClasses;

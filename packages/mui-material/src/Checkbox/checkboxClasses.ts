@@ -21,7 +21,7 @@ export function getCheckboxUtilityClass(slot: string): string {
   return generateUtilityClass('MuiCheckbox', slot);
 }
 
-const checkboxClasses: CheckboxClasses = generateUtilityClasses('MuiCheckbox', [
+export const getCheckboxClasses = (): CheckboxClasses => generateUtilityClasses('MuiCheckbox', [
   'root',
   'checked',
   'disabled',
@@ -29,5 +29,7 @@ const checkboxClasses: CheckboxClasses = generateUtilityClasses('MuiCheckbox', [
   'colorPrimary',
   'colorSecondary',
 ]);
+
+const checkboxClasses = getCheckboxClasses();
 
 export default checkboxClasses;

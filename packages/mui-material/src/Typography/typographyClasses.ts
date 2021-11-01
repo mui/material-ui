@@ -53,7 +53,7 @@ export function getTypographyUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTypography', slot);
 }
 
-const typographyClasses: TypographyClasses = generateUtilityClasses('MuiTypography', [
+export const getTypographyClasses = (): TypographyClasses => generateUtilityClasses('MuiTypography', [
   'root',
   'h1',
   'h2',
@@ -77,5 +77,7 @@ const typographyClasses: TypographyClasses = generateUtilityClasses('MuiTypograp
   'gutterBottom',
   'paragraph',
 ]);
+
+const typographyClasses = getTypographyClasses();
 
 export default typographyClasses;

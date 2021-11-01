@@ -29,7 +29,7 @@ export function getCircularProgressUtilityClass(slot: string): string {
   return generateUtilityClass('MuiCircularProgress', slot);
 }
 
-const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(
+export const getCircularProgressClasses = (): CircularProgressClasses => generateUtilityClasses(
   'MuiCircularProgress',
   [
     'root',
@@ -44,5 +44,7 @@ const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(
     'circleDisableShrink',
   ],
 );
+
+const circularProgressClasses = getCircularProgressClasses();
 
 export default circularProgressClasses;

@@ -23,7 +23,7 @@ export function getAvatarUtilityClass(slot: string): string {
   return generateUtilityClass('MuiAvatar', slot);
 }
 
-const avatarClasses: AvatarClasses = generateUtilityClasses('MuiAvatar', [
+export const getAvatarClasses = (): AvatarClasses => generateUtilityClasses('MuiAvatar', [
   'root',
   'colorDefault',
   'circular',
@@ -32,5 +32,7 @@ const avatarClasses: AvatarClasses = generateUtilityClasses('MuiAvatar', [
   'img',
   'fallback',
 ]);
+
+const avatarClasses = getAvatarClasses();
 
 export default avatarClasses;

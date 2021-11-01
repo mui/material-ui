@@ -13,9 +13,11 @@ export function getListItemSecondaryActionClassesUtilityClass(slot: string): str
   return generateUtilityClass('MuiListItemSecondaryAction', slot);
 }
 
-const listItemSecondaryActionClasses: ListItemSecondaryActionClasses = generateUtilityClasses(
+export const getListItemSecondaryActionClasses = (): ListItemSecondaryActionClasses => generateUtilityClasses(
   'MuiListItemSecondaryAction',
   ['root', 'disableGutters'],
 );
+
+const listItemSecondaryActionClasses = getListItemSecondaryActionClasses();
 
 export default listItemSecondaryActionClasses;

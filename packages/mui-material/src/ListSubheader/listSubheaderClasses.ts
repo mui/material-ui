@@ -21,7 +21,7 @@ export function getListSubheaderUtilityClass(slot: string): string {
   return generateUtilityClass('MuiListSubheader', slot);
 }
 
-const listSubheaderClasses: ListSubheaderClasses = generateUtilityClasses('MuiListSubheader', [
+export const getListSubheaderClasses = (): ListSubheaderClasses => generateUtilityClasses('MuiListSubheader', [
   'root',
   'colorPrimary',
   'colorInherit',
@@ -29,5 +29,7 @@ const listSubheaderClasses: ListSubheaderClasses = generateUtilityClasses('MuiLi
   'inset',
   'sticky',
 ]);
+
+const listSubheaderClasses = getListSubheaderClasses();
 
 export default listSubheaderClasses;

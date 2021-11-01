@@ -21,7 +21,7 @@ export function getImageListItemUtilityClass(slot: string): string {
   return generateUtilityClass('MuiImageListItem', slot);
 }
 
-const imageListItemClasses: ImageListItemClasses = generateUtilityClasses('MuiImageListItem', [
+export const getImageListItemClasses = (): ImageListItemClasses => generateUtilityClasses('MuiImageListItem', [
   'root',
   'img',
   'standard',
@@ -29,5 +29,7 @@ const imageListItemClasses: ImageListItemClasses = generateUtilityClasses('MuiIm
   'masonry',
   'quilted',
 ]);
+
+const imageListItemClasses = getImageListItemClasses();
 
 export default imageListItemClasses;

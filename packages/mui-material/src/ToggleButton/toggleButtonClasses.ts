@@ -27,7 +27,7 @@ export function getToggleButtonUtilityClass(slot: string): string {
   return generateUtilityClass('MuiToggleButton', slot);
 }
 
-const toggleButtonClasses: ToggleButtonClasses = generateUtilityClasses('MuiToggleButton', [
+export const getToggleButtonClasses = (): ToggleButtonClasses => generateUtilityClasses('MuiToggleButton', [
   'root',
   'disabled',
   'selected',
@@ -38,5 +38,7 @@ const toggleButtonClasses: ToggleButtonClasses = generateUtilityClasses('MuiTogg
   'sizeMedium',
   'sizeLarge',
 ]);
+
+const toggleButtonClasses = getToggleButtonClasses();
 
 export default toggleButtonClasses;

@@ -11,9 +11,11 @@ export function getAccordionDetailsUtilityClass(slot: string): string {
   return generateUtilityClass('MuiAccordionDetails', slot);
 }
 
-const accordionDetailsClasses: AccordionDetailsClasses = generateUtilityClasses(
+export const getAccordionDetailsClasses = (): AccordionDetailsClasses => generateUtilityClasses(
   'MuiAccordionDetails',
   ['root'],
 );
+
+const accordionDetailsClasses = getAccordionDetailsClasses();
 
 export default accordionDetailsClasses;

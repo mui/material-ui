@@ -35,7 +35,7 @@ export function getTabsUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTabs', slot);
 }
 
-const tabsClasses: TabsClasses = generateUtilityClasses('MuiTabs', [
+export const getTabsClasses = (): TabsClasses => generateUtilityClasses('MuiTabs', [
   'root',
   'vertical',
   'flexContainer',
@@ -50,5 +50,7 @@ const tabsClasses: TabsClasses = generateUtilityClasses('MuiTabs', [
   'scrollButtonsHideMobile',
   'indicator',
 ]);
+
+const tabsClasses = getTabsClasses();
 
 export default tabsClasses;

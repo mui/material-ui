@@ -33,7 +33,7 @@ export function getImageListItemBarUtilityClass(slot: string): string {
   return generateUtilityClass('MuiImageListItemBar', slot);
 }
 
-const imageListItemBarClasses: ImageListItemBarClasses = generateUtilityClasses(
+export const getImageListItemBarClasses = (): ImageListItemBarClasses => generateUtilityClasses(
   'MuiImageListItemBar',
   [
     'root',
@@ -53,5 +53,7 @@ const imageListItemBarClasses: ImageListItemBarClasses = generateUtilityClasses(
     'actionIconActionPosRight',
   ],
 );
+
+const imageListItemBarClasses = getImageListItemBarClasses();
 
 export default imageListItemBarClasses;

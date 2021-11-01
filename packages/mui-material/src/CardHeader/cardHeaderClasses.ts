@@ -21,7 +21,7 @@ export function getCardHeaderUtilityClass(slot: string): string {
   return generateUtilityClass('MuiCardHeader', slot);
 }
 
-const cardHeaderClasses: CardHeaderClasses = generateUtilityClasses('MuiCardHeader', [
+export const getCardHeaderClasses = (): CardHeaderClasses => generateUtilityClasses('MuiCardHeader', [
   'root',
   'avatar',
   'action',
@@ -29,5 +29,7 @@ const cardHeaderClasses: CardHeaderClasses = generateUtilityClasses('MuiCardHead
   'title',
   'subheader',
 ]);
+
+const cardHeaderClasses = getCardHeaderClasses();
 
 export default cardHeaderClasses;

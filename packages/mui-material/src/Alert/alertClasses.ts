@@ -47,7 +47,7 @@ export function getAlertUtilityClass(slot: string): string {
   return generateUtilityClass('MuiAlert', slot);
 }
 
-const alertClasses: AlertClasses = generateUtilityClasses('MuiAlert', [
+export const getAlertClasses = (): AlertClasses => generateUtilityClasses('MuiAlert', [
   'root',
   'action',
   'icon',
@@ -68,5 +68,7 @@ const alertClasses: AlertClasses = generateUtilityClasses('MuiAlert', [
   'standardWarning',
   'standardError',
 ]);
+
+const alertClasses = getAlertClasses();
 
 export default alertClasses;

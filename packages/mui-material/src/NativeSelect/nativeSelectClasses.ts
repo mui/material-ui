@@ -33,7 +33,7 @@ export function getNativeSelectUtilityClasses(slot: string): string {
   return generateUtilityClass('MuiNativeSelect', slot);
 }
 
-const nativeSelectClasses: NativeSelectClasses = generateUtilityClasses('MuiNativeSelect', [
+export const getNativeSelectClasses = (): NativeSelectClasses => generateUtilityClasses('MuiNativeSelect', [
   'root',
   'select',
   'filled',
@@ -47,5 +47,7 @@ const nativeSelectClasses: NativeSelectClasses = generateUtilityClasses('MuiNati
   'iconStandard',
   'nativeInput',
 ]);
+
+const nativeSelectClasses = getNativeSelectClasses();
 
 export default nativeSelectClasses;

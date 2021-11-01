@@ -29,7 +29,7 @@ export function getIconButtonUtilityClass(slot: string): string {
   return generateUtilityClass('MuiIconButton', slot);
 }
 
-const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButton', [
+export const getIconButtonClasses = (): IconButtonClasses => generateUtilityClasses('MuiIconButton', [
   'root',
   'disabled',
   'colorInherit',
@@ -41,5 +41,7 @@ const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButt
   'sizeMedium',
   'sizeLarge',
 ]);
+
+const iconButtonClasses = getIconButtonClasses();
 
 export default iconButtonClasses;

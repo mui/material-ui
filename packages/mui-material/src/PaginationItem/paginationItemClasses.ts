@@ -45,7 +45,7 @@ export function getPaginationItemUtilityClass(slot: string): string {
   return generateUtilityClass('MuiPaginationItem', slot);
 }
 
-const paginationItemClasses: PaginationItemClasses = generateUtilityClasses('MuiPaginationItem', [
+export const getPaginationItemClasses = (): PaginationItemClasses => generateUtilityClasses('MuiPaginationItem', [
   'root',
   'page',
   'sizeSmall',
@@ -65,5 +65,7 @@ const paginationItemClasses: PaginationItemClasses = generateUtilityClasses('Mui
   'selected',
   'icon',
 ]);
+
+const paginationItemClasses = getPaginationItemClasses();
 
 export default paginationItemClasses;

@@ -19,12 +19,14 @@ export function getStepIconUtilityClass(slot: string): string {
   return generateUtilityClass('MuiStepIcon', slot);
 }
 
-const stepIconClasses: StepIconClasses = generateUtilityClasses('MuiStepIcon', [
+export const getStepIconClasses = (): StepIconClasses => generateUtilityClasses('MuiStepIcon', [
   'root',
   'active',
   'completed',
   'error',
   'text',
 ]);
+
+const stepIconClasses = getStepIconClasses();
 
 export default stepIconClasses;

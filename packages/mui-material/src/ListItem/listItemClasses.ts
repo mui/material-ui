@@ -33,7 +33,7 @@ export function getListItemUtilityClass(slot: string): string {
   return generateUtilityClass('MuiListItem', slot);
 }
 
-const listItemClasses: ListItemClasses = generateUtilityClasses('MuiListItem', [
+export const getListItemClasses = (): ListItemClasses => generateUtilityClasses('MuiListItem', [
   'root',
   'container',
   'focusVisible',
@@ -47,5 +47,7 @@ const listItemClasses: ListItemClasses = generateUtilityClasses('MuiListItem', [
   'secondaryAction',
   'selected',
 ]);
+
+const listItemClasses = getListItemClasses();
 
 export default listItemClasses;

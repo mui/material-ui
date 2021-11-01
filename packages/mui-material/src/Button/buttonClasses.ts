@@ -79,7 +79,7 @@ export function getButtonUtilityClass(slot: string): string {
   return generateUtilityClass('MuiButton', slot);
 }
 
-const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
+export const getButtonClasses = (): ButtonClasses => generateUtilityClasses('MuiButton', [
   'root',
   'text',
   'textInherit',
@@ -116,5 +116,7 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'iconSizeMedium',
   'iconSizeLarge',
 ]);
+
+const buttonClasses = getButtonClasses();
 
 export default buttonClasses;

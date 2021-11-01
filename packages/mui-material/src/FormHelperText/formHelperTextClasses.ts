@@ -25,7 +25,7 @@ export function getFormHelperTextUtilityClasses(slot: string): string {
   return generateUtilityClass('MuiFormHelperText', slot);
 }
 
-const formHelperTextClasses: FormHelperTextClasses = generateUtilityClasses('MuiFormHelperText', [
+export const getFormHelperTextClasses = (): FormHelperTextClasses => generateUtilityClasses('MuiFormHelperText', [
   'root',
   'error',
   'disabled',
@@ -36,5 +36,7 @@ const formHelperTextClasses: FormHelperTextClasses = generateUtilityClasses('Mui
   'filled',
   'required',
 ]);
+
+const formHelperTextClasses = getFormHelperTextClasses();
 
 export default formHelperTextClasses;

@@ -13,9 +13,11 @@ export function getAvatarGroupUtilityClass(slot: string): string {
   return generateUtilityClass('MuiAvatarGroup', slot);
 }
 
-const avatarGroupClasses: AvatarGroupClasses = generateUtilityClasses('MuiAvatarGroup', [
+export const getAvatarGroupClasses = (): AvatarGroupClasses => generateUtilityClasses('MuiAvatarGroup', [
   'root',
   'avatar',
 ]);
+
+const avatarGroupClasses = getAvatarGroupClasses();
 
 export default avatarGroupClasses;

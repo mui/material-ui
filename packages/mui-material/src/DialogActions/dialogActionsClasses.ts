@@ -13,9 +13,11 @@ export function getDialogActionsUtilityClass(slot: string): string {
   return generateUtilityClass('MuiDialogActions', slot);
 }
 
-const dialogActionsClasses: DialogActionsClasses = generateUtilityClasses('MuiDialogActions', [
+export const getDialogActionsClasses = (): DialogActionsClasses => generateUtilityClasses('MuiDialogActions', [
   'root',
   'spacing',
 ]);
+
+const dialogActionsClasses = getDialogActionsClasses();
 
 export default dialogActionsClasses;

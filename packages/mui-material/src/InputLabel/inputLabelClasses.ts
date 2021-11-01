@@ -35,7 +35,7 @@ export function getInputLabelUtilityClasses(slot: string): string {
   return generateUtilityClass('MuiInputLabel', slot);
 }
 
-const inputLabelClasses: InputLabelClasses = generateUtilityClasses('MuiInputLabel', [
+export const getInputLabelClasses = (): InputLabelClasses => generateUtilityClasses('MuiInputLabel', [
   'root',
   'focused',
   'disabled',
@@ -50,5 +50,7 @@ const inputLabelClasses: InputLabelClasses = generateUtilityClasses('MuiInputLab
   'filled',
   'outlined',
 ]);
+
+const inputLabelClasses = getInputLabelClasses();
 
 export default inputLabelClasses;

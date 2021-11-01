@@ -11,8 +11,10 @@ export function getTableContainerUtilityClass(slot: string): string {
   return generateUtilityClass('MuiTableContainer', slot);
 }
 
-const tableContainerClasses: TableContainerClasses = generateUtilityClasses('MuiTableContainer', [
+export const getTableContainerClasses = (): TableContainerClasses => generateUtilityClasses('MuiTableContainer', [
   'root',
 ]);
+
+const tableContainerClasses = getTableContainerClasses();
 
 export default tableContainerClasses;

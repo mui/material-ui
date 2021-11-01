@@ -45,7 +45,7 @@ export function getLinearProgressUtilityClass(slot: string): string {
   return generateUtilityClass('MuiLinearProgress', slot);
 }
 
-const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('MuiLinearProgress', [
+export const getLinearProgressClasses = (): LinearProgressClasses => generateUtilityClasses('MuiLinearProgress', [
   'root',
   'colorPrimary',
   'colorSecondary',
@@ -65,5 +65,7 @@ const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('Mui
   'bar2Indeterminate',
   'bar2Buffer',
 ]);
+
+const linearProgressClasses = getLinearProgressClasses();
 
 export default linearProgressClasses;
