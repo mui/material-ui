@@ -223,7 +223,7 @@ render(
 );
 ```
 
-With MUI's `styled()` utility, you can use components as selectors, too. When using `@mui/styled-engine-sc` (`styled-components`), nothing needs to be done. When using `@mui/styled-engine` (`emotion`), the default engine, there are a few steps you should perform: 
+With MUI's `styled()` utility, you can use components as selectors, too. When using `@mui/styled-engine-sc` (`styled-components`), nothing needs to be done. When using `@mui/styled-engine` (`emotion`), the default engine, there are a few steps you should perform:
 
 First, you should install [`@emotion/babel-plugin`](https://emotion.sh/docs/@emotion/babel-plugin).
 
