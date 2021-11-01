@@ -10,7 +10,7 @@ import { duration } from '../styles/createTransitions';
 import Paper from '../Paper';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
+import { getDialogUtilityClass, getDialogClasses } from './dialogClasses';
 import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
 
@@ -100,62 +100,65 @@ const DialogPaper = styled(Paper, {
       ownerState.fullScreen && styles.paperFullScreen,
     ];
   },
-})(({ theme, ownerState }) => ({
-  margin: 32,
-  position: 'relative',
-  overflowY: 'auto', // Fix IE11 issue, to remove at some point.
-  '@media print': {
-    overflowY: 'visible',
-    boxShadow: 'none',
-  },
-  ...(ownerState.scroll === 'paper' && {
-    display: 'flex',
-    flexDirection: 'column',
-    maxHeight: 'calc(100% - 64px)',
-  }),
-  ...(ownerState.scroll === 'body' && {
-    display: 'inline-block',
-    verticalAlign: 'middle',
-    textAlign: 'left', // 'initial' doesn't work on IE11
-  }),
-  ...(!ownerState.maxWidth && {
-    maxWidth: 'calc(100% - 64px)',
-  }),
-  ...(ownerState.maxWidth === 'xs' && {
-    maxWidth:
-      theme.breakpoints.unit === 'px'
-        ? Math.max(theme.breakpoints.values.xs, 444)
-        : `${theme.breakpoints.values.xs}${theme.breakpoints.unit}`,
-    [`&.${dialogClasses.paperScrollBody}`]: {
-      [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
-        maxWidth: 'calc(100% - 64px)',
-      },
+})(({ theme, ownerState }) => {
+  const dialogClasses = getDialogClasses();
+  return {
+    margin: 32,
+    position: 'relative',
+    overflowY: 'auto',
+    '@media print': {
+      overflowY: 'visible',
+      boxShadow: 'none',
     },
-  }),
-  ...(ownerState.maxWidth !== 'xs' && {
-    maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
-    [`&.${dialogClasses.paperScrollBody}`]: {
-      [theme.breakpoints.down(theme.breakpoints.values[ownerState.maxWidth] + 32 * 2)]: {
-        maxWidth: 'calc(100% - 64px)',
+    ...(ownerState.scroll === 'paper' && {
+      display: 'flex',
+      flexDirection: 'column',
+      maxHeight: 'calc(100% - 64px)',
+    }),
+    ...(ownerState.scroll === 'body' && {
+      display: 'inline-block',
+      verticalAlign: 'middle',
+      textAlign: 'left', // 'initial' doesn't work on IE11
+    }),
+    ...(!ownerState.maxWidth && {
+      maxWidth: 'calc(100% - 64px)',
+    }),
+    ...(ownerState.maxWidth === 'xs' && {
+      maxWidth:
+        theme.breakpoints.unit === 'px'
+          ? Math.max(theme.breakpoints.values.xs, 444)
+          : `${theme.breakpoints.values.xs}${theme.breakpoints.unit}`,
+      [`&.${dialogClasses.paperScrollBody}`]: {
+        [theme.breakpoints.down(Math.max(theme.breakpoints.values.xs, 444) + 32 * 2)]: {
+          maxWidth: 'calc(100% - 64px)',
+        },
       },
-    },
-  }),
-  ...(ownerState.fullWidth && {
-    width: 'calc(100% - 64px)',
-  }),
-  ...(ownerState.fullScreen && {
-    margin: 0,
-    width: '100%',
-    maxWidth: '100%',
-    height: '100%',
-    maxHeight: 'none',
-    borderRadius: 0,
-    [`&.${dialogClasses.paperScrollBody}`]: {
+    }),
+    ...(ownerState.maxWidth !== 'xs' && {
+      maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
+      [`&.${dialogClasses.paperScrollBody}`]: {
+        [theme.breakpoints.down(theme.breakpoints.values[ownerState.maxWidth] + 32 * 2)]: {
+          maxWidth: 'calc(100% - 64px)',
+        },
+      },
+    }),
+    ...(ownerState.fullWidth && {
+      width: 'calc(100% - 64px)',
+    }),
+    ...(ownerState.fullScreen && {
       margin: 0,
+      width: '100%',
       maxWidth: '100%',
-    },
-  }),
-}));
+      height: '100%',
+      maxHeight: 'none',
+      borderRadius: 0,
+      [`&.${dialogClasses.paperScrollBody}`]: {
+        margin: 0,
+        maxWidth: '100%',
+      },
+    }),
+  };
+});
 
 const defaultTransitionDuration = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 /**

@@ -18,7 +18,7 @@ import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import GlobalStyles from '../GlobalStyles';
 import { isFilled } from './utils';
-import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
+import { getInputBaseUtilityClass, getInputBaseClasses } from './inputBaseClasses';
 
 export const rootOverridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -110,7 +110,7 @@ export const InputBaseRoot = styled('div', {
   cursor: 'text',
   display: 'inline-flex',
   alignItems: 'center',
-  [`&.${inputBaseClasses.disabled}`]: {
+  [`&.${getInputBaseClasses().disabled}`]: {
     color: theme.palette.text.disabled,
     cursor: 'default',
   },
@@ -180,7 +180,7 @@ export const InputBaseComponent = styled('input', {
       WebkitAppearance: 'none',
     },
     // Show and hide the placeholder logic
-    [`label[data-shrink=false] + .${inputBaseClasses.formControl} &`]: {
+    [`label[data-shrink=false] + .${getInputBaseClasses().formControl} &`]: {
       '&::-webkit-input-placeholder': placeholderHidden,
       '&::-moz-placeholder': placeholderHidden, // Firefox 19+
       '&:-ms-input-placeholder': placeholderHidden, // IE11
@@ -190,7 +190,7 @@ export const InputBaseComponent = styled('input', {
       '&:focus:-ms-input-placeholder': placeholderVisible, // IE11
       '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
     },
-    [`&.${inputBaseClasses.disabled}`]: {
+    [`&.${getInputBaseClasses().disabled}`]: {
       opacity: 1, // Reset iOS opacity
       WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
     },

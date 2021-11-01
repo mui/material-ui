@@ -15,7 +15,7 @@ import useForkRef from '../utils/useForkRef';
 import useId from '../utils/useId';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';
-import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
+import { getTooltipUtilityClass, getTooltipClasses } from './tooltipClasses';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -51,58 +51,61 @@ const TooltipPopper = styled(Popper, {
       !ownerState.open && styles.popperClose,
     ];
   },
-})(({ theme, ownerState, open }) => ({
-  zIndex: theme.zIndex.tooltip,
-  pointerEvents: 'none', // disable jss-rtl plugin
-  ...(!ownerState.disableInteractive && {
-    pointerEvents: 'auto',
-  }),
-  ...(!open && {
+})(({ theme, ownerState, open }) => {
+  const tooltipClasses = getTooltipClasses();
+  return {
+    zIndex: theme.zIndex.tooltip,
     pointerEvents: 'none',
-  }),
-  ...(ownerState.arrow && {
-    [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
-      top: 0,
-      marginTop: '-0.71em',
-      '&::before': {
-        transformOrigin: '0 100%',
+    ...(!ownerState.disableInteractive && {
+      pointerEvents: 'auto',
+    }),
+    ...(!open && {
+      pointerEvents: 'none',
+    }),
+    ...(ownerState.arrow && {
+      [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
+        top: 0,
+        marginTop: '-0.71em',
+        '&::before': {
+          transformOrigin: '0 100%',
+        },
       },
-    },
-    [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
-      bottom: 0,
-      marginBottom: '-0.71em',
-      '&::before': {
-        transformOrigin: '100% 0',
+      [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
+        bottom: 0,
+        marginBottom: '-0.71em',
+        '&::before': {
+          transformOrigin: '100% 0',
+        },
       },
-    },
-    [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-      ...(!ownerState.isRtl
-        ? {
-            left: 0,
-            marginLeft: '-0.71em',
-          }
-        : {
-            right: 0,
-            marginRight: '-0.71em',
-          }),
-      height: '1em',
-      width: '0.71em',
-      '&::before': {
-        transformOrigin: '100% 100%',
+      [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
+        ...(!ownerState.isRtl
+          ? {
+              left: 0,
+              marginLeft: '-0.71em',
+            }
+          : {
+              right: 0,
+              marginRight: '-0.71em',
+            }),
+        height: '1em',
+        width: '0.71em',
+        '&::before': {
+          transformOrigin: '100% 100%',
+        },
       },
-    },
-    [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-      ...(!ownerState.isRtl
-        ? { right: 0, marginRight: '-0.71em' }
-        : { left: 0, marginLeft: '-0.71em' }),
-      height: '1em',
-      width: '0.71em',
-      '&::before': {
-        transformOrigin: '0 0',
+      [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
+        ...(!ownerState.isRtl
+          ? { right: 0, marginRight: '-0.71em' }
+          : { left: 0, marginLeft: '-0.71em' }),
+        height: '1em',
+        width: '0.71em',
+        '&::before': {
+          transformOrigin: '0 0',
+        },
       },
-    },
-  }),
-}));
+    }),
+  };
+});
 
 const TooltipTooltip = styled('div', {
   name: 'MuiTooltip',
@@ -117,74 +120,77 @@ const TooltipTooltip = styled('div', {
       styles[`tooltipPlacement${capitalize(ownerState.placement.split('-')[0])}`],
     ];
   },
-})(({ theme, ownerState }) => ({
-  backgroundColor: alpha(theme.palette.grey[700], 0.92),
-  borderRadius: theme.shape.borderRadius,
-  color: theme.palette.common.white,
-  fontFamily: theme.typography.fontFamily,
-  padding: '4px 8px',
-  fontSize: theme.typography.pxToRem(11),
-  maxWidth: 300,
-  margin: 2,
-  wordWrap: 'break-word',
-  fontWeight: theme.typography.fontWeightMedium,
-  ...(ownerState.arrow && {
-    position: 'relative',
-    margin: 0,
-  }),
-  ...(ownerState.touch && {
-    padding: '8px 16px',
-    fontSize: theme.typography.pxToRem(14),
-    lineHeight: `${round(16 / 14)}em`,
-    fontWeight: theme.typography.fontWeightRegular,
-  }),
-  [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-    transformOrigin: 'right center',
-    ...(!ownerState.isRtl
-      ? {
-          marginRight: '14px',
-          ...(ownerState.touch && {
-            marginRight: '24px',
-          }),
-        }
-      : {
-          marginLeft: '14px',
-          ...(ownerState.touch && {
-            marginLeft: '24px',
-          }),
-        }),
-  },
-  [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-    transformOrigin: 'left center',
-    ...(!ownerState.isRtl
-      ? {
-          marginLeft: '14px',
-          ...(ownerState.touch && {
-            marginLeft: '24px',
-          }),
-        }
-      : {
-          marginRight: '14px',
-          ...(ownerState.touch && {
-            marginRight: '24px',
-          }),
-        }),
-  },
-  [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
-    transformOrigin: 'center bottom',
-    marginBottom: '14px',
-    ...(ownerState.touch && {
-      marginBottom: '24px',
+})(({ theme, ownerState }) => {
+  const tooltipClasses = getTooltipClasses();
+  return {
+    backgroundColor: alpha(theme.palette.grey[700], 0.92),
+    borderRadius: theme.shape.borderRadius,
+    color: theme.palette.common.white,
+    fontFamily: theme.typography.fontFamily,
+    padding: '4px 8px',
+    fontSize: theme.typography.pxToRem(11),
+    maxWidth: 300,
+    margin: 2,
+    wordWrap: 'break-word',
+    fontWeight: theme.typography.fontWeightMedium,
+    ...(ownerState.arrow && {
+      position: 'relative',
+      margin: 0,
     }),
-  },
-  [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
-    transformOrigin: 'center top',
-    marginTop: '14px',
     ...(ownerState.touch && {
-      marginTop: '24px',
+      padding: '8px 16px',
+      fontSize: theme.typography.pxToRem(14),
+      lineHeight: `${round(16 / 14)}em`,
+      fontWeight: theme.typography.fontWeightRegular,
     }),
-  },
-}));
+    [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
+      transformOrigin: 'right center',
+      ...(!ownerState.isRtl
+        ? {
+            marginRight: '14px',
+            ...(ownerState.touch && {
+              marginRight: '24px',
+            }),
+          }
+        : {
+            marginLeft: '14px',
+            ...(ownerState.touch && {
+              marginLeft: '24px',
+            }),
+          }),
+    },
+    [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
+      transformOrigin: 'left center',
+      ...(!ownerState.isRtl
+        ? {
+            marginLeft: '14px',
+            ...(ownerState.touch && {
+              marginLeft: '24px',
+            }),
+          }
+        : {
+            marginRight: '14px',
+            ...(ownerState.touch && {
+              marginRight: '24px',
+            }),
+          }),
+    },
+    [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
+      transformOrigin: 'center bottom',
+      marginBottom: '14px',
+      ...(ownerState.touch && {
+        marginBottom: '24px',
+      }),
+    },
+    [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
+      transformOrigin: 'center top',
+      marginTop: '14px',
+      ...(ownerState.touch && {
+        marginTop: '24px',
+      }),
+    },
+  };
+});
 
 const TooltipArrow = styled('span', {
   name: 'MuiTooltip',

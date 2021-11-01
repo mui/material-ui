@@ -15,7 +15,7 @@ import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
-import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
+import { getRatingUtilityClass, getRatingClasses } from './ratingClasses';
 
 function clamp(value, min, max) {
   if (value < min) {
@@ -74,39 +74,42 @@ const RatingRoot = styled('span', {
     const { ownerState } = props;
 
     return [
-      { [`& .${ratingClasses.visuallyHidden}`]: styles.visuallyHidden },
+      { [`& .${getRatingClasses().visuallyHidden}`]: styles.visuallyHidden },
       styles.root,
       styles[`size${capitalize(ownerState.size)}`],
       ownerState.readOnly && styles.readOnly,
     ];
   },
-})(({ theme, ownerState }) => ({
-  display: 'inline-flex',
-  // Required to position the pristine input absolutely
-  position: 'relative',
-  fontSize: theme.typography.pxToRem(24),
-  color: '#faaf00',
-  cursor: 'pointer',
-  textAlign: 'left',
-  WebkitTapHighlightColor: 'transparent',
-  [`&.${ratingClasses.disabled}`]: {
-    opacity: theme.palette.action.disabledOpacity,
-    pointerEvents: 'none',
-  },
-  [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
-    outline: '1px solid #999',
-  },
-  [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
-  ...(ownerState.size === 'small' && {
-    fontSize: theme.typography.pxToRem(18),
-  }),
-  ...(ownerState.size === 'large' && {
-    fontSize: theme.typography.pxToRem(30),
-  }),
-  ...(ownerState.readOnly && {
-    pointerEvents: 'none',
-  }),
-}));
+})(({ theme, ownerState }) => {
+  const ratingClasses = getRatingClasses();
+  return {
+    display: 'inline-flex',
+    // Required to position the pristine input absolutely
+    position: 'relative',
+    fontSize: theme.typography.pxToRem(24),
+    color: '#faaf00',
+    cursor: 'pointer',
+    textAlign: 'left',
+    WebkitTapHighlightColor: 'transparent',
+    [`&.${ratingClasses.disabled}`]: {
+      opacity: theme.palette.action.disabledOpacity,
+      pointerEvents: 'none',
+    },
+    [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
+      outline: '1px solid #999',
+    },
+    [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
+    ...(ownerState.size === 'small' && {
+      fontSize: theme.typography.pxToRem(18),
+    }),
+    ...(ownerState.size === 'large' && {
+      fontSize: theme.typography.pxToRem(30),
+    }),
+    ...(ownerState.readOnly && {
+      pointerEvents: 'none',
+    }),
+  };
+});
 
 const RatingLabel = styled('label', {
   name: 'MuiRating',

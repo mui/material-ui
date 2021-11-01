@@ -10,7 +10,10 @@ import Collapse from '../Collapse';
 import Paper from '../Paper';
 import AccordionContext from './AccordionContext';
 import useControlled from '../utils/useControlled';
-import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
+import accordionClasses, {
+  getAccordionUtilityClass,
+  getAccordionClasses,
+} from './accordionClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, square, expanded, disabled, disableGutters } = ownerState;
@@ -36,7 +39,7 @@ const AccordionRoot = styled(Paper, {
     const { ownerState } = props;
 
     return [
-      { [`& .${accordionClasses.region}`]: styles.region },
+      { [`& .${getAccordionClasses().region}`]: styles.region },
       styles.root,
       !ownerState.square && styles.rounded,
       !ownerState.disableGutters && styles.gutters,

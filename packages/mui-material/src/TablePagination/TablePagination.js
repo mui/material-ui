@@ -12,7 +12,10 @@ import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
 import TablePaginationActions from './TablePaginationActions';
 import useId from '../utils/useId';
-import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
+import {
+  getTablePaginationUtilityClass,
+  getTablePaginationClasses,
+} from './tablePaginationClasses';
 
 const TablePaginationRoot = styled(TableCell, {
   name: 'MuiTablePagination',
@@ -32,7 +35,7 @@ const TablePaginationToolbar = styled(Toolbar, {
   name: 'MuiTablePagination',
   slot: 'Toolbar',
   overridesResolver: (props, styles) => ({
-    [`& .${tablePaginationClasses.actions}`]: styles.actions,
+    [`& .${getTablePaginationClasses().actions}`]: styles.actions,
     ...styles.toolbar,
   }),
 })(({ theme }) => ({
@@ -45,7 +48,7 @@ const TablePaginationToolbar = styled(Toolbar, {
     minHeight: 52,
     paddingRight: 2,
   },
-  [`& .${tablePaginationClasses.actions}`]: {
+  [`& .${getTablePaginationClasses().actions}`]: {
     flexShrink: 0,
     marginLeft: 20,
   },
@@ -72,8 +75,8 @@ const TablePaginationSelect = styled(Select, {
   name: 'MuiTablePagination',
   slot: 'Select',
   overridesResolver: (props, styles) => ({
-    [`& .${tablePaginationClasses.selectIcon}`]: styles.selectIcon,
-    [`& .${tablePaginationClasses.select}`]: styles.select,
+    [`& .${getTablePaginationClasses().selectIcon}`]: styles.selectIcon,
+    [`& .${getTablePaginationClasses().select}`]: styles.select,
     ...styles.input,
     ...styles.selectRoot,
   }),
@@ -83,7 +86,7 @@ const TablePaginationSelect = styled(Select, {
   flexShrink: 0,
   marginRight: 32,
   marginLeft: 8,
-  [`& .${tablePaginationClasses.select}`]: {
+  [`& .${getTablePaginationClasses().select}`]: {
     paddingLeft: 8,
     paddingRight: 24,
     textAlign: 'right',

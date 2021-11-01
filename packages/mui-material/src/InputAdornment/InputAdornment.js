@@ -7,7 +7,7 @@ import Typography from '../Typography';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
 import styled from '../styles/styled';
-import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
+import { getInputAdornmentUtilityClass, getInputAdornmentClasses } from './inputAdornmentClasses';
 import useThemeProps from '../styles/useThemeProps';
 
 const overridesResolver = (props, styles) => {
@@ -50,7 +50,9 @@ const InputAdornmentRoot = styled('div', {
   color: theme.palette.action.active,
   ...(ownerState.variant === 'filled' && {
     // Styles applied to the root element if `variant="filled"`.
-    [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
+    [`&.${getInputAdornmentClasses().positionStart}&:not(.${
+      getInputAdornmentClasses().hiddenLabel
+    })`]: {
       marginTop: 16,
     },
   }),

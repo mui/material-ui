@@ -22,7 +22,7 @@ import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import GridContext from './GridContext';
-import gridClasses, { getGridUtilityClass } from './gridClasses';
+import { getGridUtilityClass, getGridClasses } from './gridClasses';
 
 function getOffset(val) {
   const parse = parseFloat(val);
@@ -108,7 +108,7 @@ export function generateDirection({ theme, ownerState }) {
     };
 
     if (propValue.indexOf('column') === 0) {
-      output[`& > .${gridClasses.item}`] = {
+      output[`& > .${getGridClasses().item}`] = {
         maxWidth: 'none',
       };
     }
@@ -133,7 +133,7 @@ export function generateRowGap({ theme, ownerState }) {
       if (themeSpacing !== '0px') {
         return {
           marginTop: `-${getOffset(themeSpacing)}`,
-          [`& > .${gridClasses.item}`]: {
+          [`& > .${getGridClasses().item}`]: {
             paddingTop: getOffset(themeSpacing),
           },
         };
@@ -162,7 +162,7 @@ export function generateColumnGap({ theme, ownerState }) {
         return {
           width: `calc(100% + ${getOffset(themeSpacing)})`,
           marginLeft: `-${getOffset(themeSpacing)}`,
-          [`& > .${gridClasses.item}`]: {
+          [`& > .${getGridClasses().item}`]: {
             paddingLeft: getOffset(themeSpacing),
           },
         };

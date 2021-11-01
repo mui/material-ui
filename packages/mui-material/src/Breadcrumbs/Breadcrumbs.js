@@ -8,7 +8,7 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
-import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
+import { getBreadcrumbsUtilityClass, getBreadcrumbClasses } from './breadcrumbsClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -27,6 +27,7 @@ const BreadcrumbsRoot = styled(Typography, {
   name: 'MuiBreadcrumbs',
   slot: 'Root',
   overridesResolver: (props, styles) => {
+    const breadcrumbsClasses = getBreadcrumbClasses();
     return [{ [`& .${breadcrumbsClasses.li}`]: styles.li }, styles.root];
   },
 })({});

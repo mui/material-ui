@@ -9,7 +9,7 @@ import StepLabel from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
-import stepButtonClasses, { getStepButtonUtilityClass } from './stepButtonClasses';
+import { getStepButtonUtilityClass, getStepButtonClasses } from './stepButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation } = ownerState;
@@ -29,7 +29,7 @@ const StepButtonRoot = styled(ButtonBase, {
     const { ownerState } = props;
 
     return [
-      { [`& .${stepButtonClasses.touchRipple}`]: styles.touchRipple },
+      { [`& .${getStepButtonClasses().touchRipple}`]: styles.touchRipple },
       styles.root,
       styles[ownerState.orientation],
     ];
@@ -44,7 +44,7 @@ const StepButtonRoot = styled(ButtonBase, {
     padding: '8px',
     margin: '-8px',
   }),
-  [`& .${stepButtonClasses.touchRipple}`]: {
+  [`& .${getStepButtonClasses().touchRipple}`]: {
     color: 'rgba(0, 0, 0, 0.3)',
   },
 }));

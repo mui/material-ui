@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActionAreaClasses';
+import { getCardActionAreaUtilityClass, getCardActionAreaClasses } from './cardActionAreaClasses';
 import ButtonBase from '../ButtonBase';
 
 const useUtilityClasses = (ownerState) => {
@@ -22,20 +22,23 @@ const CardActionAreaRoot = styled(ButtonBase, {
   name: 'MuiCardActionArea',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => ({
-  display: 'block',
-  textAlign: 'inherit',
-  width: '100%',
-  [`&:hover .${cardActionAreaClasses.focusHighlight}`]: {
-    opacity: theme.palette.action.hoverOpacity,
-    '@media (hover: none)': {
-      opacity: 0,
+})(({ theme }) => {
+  const cardActionAreaClasses = getCardActionAreaClasses();
+  return {
+    display: 'block',
+    textAlign: 'inherit',
+    width: '100%',
+    [`&:hover .${cardActionAreaClasses.focusHighlight}`]: {
+      opacity: theme.palette.action.hoverOpacity,
+      '@media (hover: none)': {
+        opacity: 0,
+      },
     },
-  },
-  [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
-    opacity: theme.palette.action.focusOpacity,
-  },
-}));
+    [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
+      opacity: theme.palette.action.focusOpacity,
+    },
+  };
+});
 
 const CardActionAreaFocusHighlight = styled('span', {
   name: 'MuiCardActionArea',

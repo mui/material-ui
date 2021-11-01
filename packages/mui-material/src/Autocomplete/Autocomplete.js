@@ -21,7 +21,7 @@ import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
+import { getAutocompleteUtilityClass, getAutocompleteClasses } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
 
 const useUtilityClasses = (ownerState) => {
@@ -70,6 +70,7 @@ const AutocompleteRoot = styled('div', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
     const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, size } = ownerState;
+    const autocompleteClasses = getAutocompleteClasses();
 
     return [
       { [`& .${autocompleteClasses.tag}`]: styles.tag },
@@ -83,103 +84,106 @@ const AutocompleteRoot = styled('div', {
       hasClearIcon && styles.hasClearIcon,
     ];
   },
-})(({ ownerState }) => ({
-  [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
-    visibility: 'visible',
-  },
-  /* Avoid double tap issue on iOS */
-  '@media (pointer: fine)': {
-    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
+})(({ ownerState }) => {
+  const autocompleteClasses = getAutocompleteClasses();
+  return {
+    [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
       visibility: 'visible',
     },
-  },
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
-  [`& .${autocompleteClasses.tag}`]: {
-    margin: 3,
-    maxWidth: 'calc(100% - 6px)',
-    ...(ownerState.size === 'small' && {
-      margin: 2,
-      maxWidth: 'calc(100% - 4px)',
+    /* Avoid double tap issue on iOS */
+    '@media (pointer: fine)': {
+      [`&:hover .${autocompleteClasses.clearIndicator}`]: {
+        visibility: 'visible',
+      },
+    },
+    ...(ownerState.fullWidth && {
+      width: '100%',
     }),
-  },
-  [`& .${autocompleteClasses.inputRoot}`]: {
-    flexWrap: 'wrap',
-    [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 26 + 4,
+    [`& .${autocompleteClasses.tag}`]: {
+      margin: 3,
+      maxWidth: 'calc(100% - 6px)',
+      ...(ownerState.size === 'small' && {
+        margin: 2,
+        maxWidth: 'calc(100% - 4px)',
+      }),
     },
-    [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 52 + 4,
+    [`& .${autocompleteClasses.inputRoot}`]: {
+      flexWrap: 'wrap',
+      [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
+        paddingRight: 26 + 4,
+      },
+      [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
+        paddingRight: 52 + 4,
+      },
+      [`& .${autocompleteClasses.input}`]: {
+        width: 0,
+        minWidth: 30,
+      },
+    },
+    [`& .${inputClasses.root}`]: {
+      paddingBottom: 1,
+      '& .MuiInput-input': {
+        padding: '4px 4px 4px 0px',
+      },
+    },
+    [`& .${inputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
+      [`& .${inputClasses.input}`]: {
+        padding: '2px 4px 3px 0',
+      },
+    },
+    [`& .${outlinedInputClasses.root}`]: {
+      padding: 9,
+      [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
+        paddingRight: 26 + 4 + 9,
+      },
+      [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
+        paddingRight: 52 + 4 + 9,
+      },
+      [`& .${autocompleteClasses.input}`]: {
+        padding: '7.5px 4px 7.5px 6px',
+      },
+      [`& .${autocompleteClasses.endAdornment}`]: {
+        right: 9,
+      },
+    },
+    [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
+      padding: 6,
+      [`& .${autocompleteClasses.input}`]: {
+        padding: '2.5px 4px 2.5px 6px',
+      },
+    },
+    [`& .${filledInputClasses.root}`]: {
+      paddingTop: 19,
+      paddingLeft: 8,
+      [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
+        paddingRight: 26 + 4 + 9,
+      },
+      [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
+        paddingRight: 52 + 4 + 9,
+      },
+      [`& .${filledInputClasses.input}`]: {
+        padding: '7px 4px',
+      },
+      [`& .${autocompleteClasses.endAdornment}`]: {
+        right: 9,
+      },
+    },
+    [`& .${filledInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
+      paddingBottom: 1,
+      [`& .${filledInputClasses.input}`]: {
+        padding: '2.5px 4px',
+      },
     },
     [`& .${autocompleteClasses.input}`]: {
-      width: 0,
-      minWidth: 30,
+      flexGrow: 1,
+      textOverflow: 'ellipsis',
+      opacity: 0,
+      ...(ownerState.inputFocused && {
+        opacity: 1,
+      }),
     },
-  },
-  [`& .${inputClasses.root}`]: {
-    paddingBottom: 1,
-    '& .MuiInput-input': {
-      padding: '4px 4px 4px 0px',
-    },
-  },
-  [`& .${inputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-    [`& .${inputClasses.input}`]: {
-      padding: '2px 4px 3px 0',
-    },
-  },
-  [`& .${outlinedInputClasses.root}`]: {
-    padding: 9,
-    [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 26 + 4 + 9,
-    },
-    [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 52 + 4 + 9,
-    },
-    [`& .${autocompleteClasses.input}`]: {
-      padding: '7.5px 4px 7.5px 6px',
-    },
-    [`& .${autocompleteClasses.endAdornment}`]: {
-      right: 9,
-    },
-  },
-  [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-    padding: 6,
-    [`& .${autocompleteClasses.input}`]: {
-      padding: '2.5px 4px 2.5px 6px',
-    },
-  },
-  [`& .${filledInputClasses.root}`]: {
-    paddingTop: 19,
-    paddingLeft: 8,
-    [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 26 + 4 + 9,
-    },
-    [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 52 + 4 + 9,
-    },
-    [`& .${filledInputClasses.input}`]: {
-      padding: '7px 4px',
-    },
-    [`& .${autocompleteClasses.endAdornment}`]: {
-      right: 9,
-    },
-  },
-  [`& .${filledInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-    paddingBottom: 1,
-    [`& .${filledInputClasses.input}`]: {
-      padding: '2.5px 4px',
-    },
-  },
-  [`& .${autocompleteClasses.input}`]: {
-    flexGrow: 1,
-    textOverflow: 'ellipsis',
-    opacity: 0,
-    ...(ownerState.inputFocused && {
-      opacity: 1,
-    }),
-  },
-}));
+  };
+});
 
 const AutocompleteEndAdornment = styled('div', {
   name: 'MuiAutocomplete',
@@ -222,6 +226,7 @@ const AutocompletePopper = styled(Popper, {
   slot: 'Popper',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
+    const autocompleteClasses = getAutocompleteClasses();
 
     return [
       { [`& .${autocompleteClasses.option}`]: styles.option },
@@ -267,64 +272,67 @@ const AutocompleteListbox = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})(({ theme }) => ({
-  listStyle: 'none',
-  margin: 0,
-  padding: '8px 0',
-  maxHeight: '40vh',
-  overflow: 'auto',
-  [`& .${autocompleteClasses.option}`]: {
-    minHeight: 48,
-    display: 'flex',
-    overflow: 'hidden',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    cursor: 'pointer',
-    paddingTop: 6,
-    boxSizing: 'border-box',
-    outline: '0',
-    WebkitTapHighlightColor: 'transparent',
-    paddingBottom: 6,
-    paddingLeft: 16,
-    paddingRight: 16,
-    [theme.breakpoints.up('sm')]: {
-      minHeight: 'auto',
-    },
-    [`&.${autocompleteClasses.focused}`]: {
-      backgroundColor: theme.palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+})(({ theme }) => {
+  const autocompleteClasses = getAutocompleteClasses();
+  return {
+    listStyle: 'none',
+    margin: 0,
+    padding: '8px 0',
+    maxHeight: '40vh',
+    overflow: 'auto',
+    [`& .${autocompleteClasses.option}`]: {
+      minHeight: 48,
+      display: 'flex',
+      overflow: 'hidden',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      cursor: 'pointer',
+      paddingTop: 6,
+      boxSizing: 'border-box',
+      outline: '0',
+      WebkitTapHighlightColor: 'transparent',
+      paddingBottom: 6,
+      paddingLeft: 16,
+      paddingRight: 16,
+      [theme.breakpoints.up('sm')]: {
+        minHeight: 'auto',
       },
-    },
-    '&[aria-disabled="true"]': {
-      opacity: theme.palette.action.disabledOpacity,
-      pointerEvents: 'none',
-    },
-    [`&.${autocompleteClasses.focusVisible}`]: {
-      backgroundColor: theme.palette.action.focus,
-    },
-    '&[aria-selected="true"]': {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       [`&.${autocompleteClasses.focused}`]: {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
+        backgroundColor: theme.palette.action.hover,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: theme.palette.action.selected,
+          backgroundColor: 'transparent',
         },
       },
+      '&[aria-disabled="true"]': {
+        opacity: theme.palette.action.disabledOpacity,
+        pointerEvents: 'none',
+      },
       [`&.${autocompleteClasses.focusVisible}`]: {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-        ),
+        backgroundColor: theme.palette.action.focus,
+      },
+      '&[aria-selected="true"]': {
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        [`&.${autocompleteClasses.focused}`]: {
+          backgroundColor: alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+          ),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: theme.palette.action.selected,
+          },
+        },
+        [`&.${autocompleteClasses.focusVisible}`]: {
+          backgroundColor: alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+          ),
+        },
       },
     },
-  },
-}));
+  };
+});
 
 const AutocompleteGroupLabel = styled(ListSubheader, {
   name: 'MuiAutocomplete',
@@ -341,7 +349,7 @@ const AutocompleteGroupUl = styled('ul', {
   overridesResolver: (props, styles) => styles.groupUl,
 })({
   padding: 0,
-  [`& .${autocompleteClasses.option}`]: {
+  [`& .${getAutocompleteClasses().option}`]: {
     paddingLeft: 24,
   },
 });

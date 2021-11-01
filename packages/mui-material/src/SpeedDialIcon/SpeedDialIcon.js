@@ -5,7 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/core';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import AddIcon from '../internal/svg-icons/Add';
-import speedDialIconClasses, { getSpeedDialIconUtilityClass } from './speedDialIconClasses';
+import { getSpeedDialIconUtilityClass, getSpeedDialIconClasses } from './speedDialIconClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, open, openIcon } = ownerState;
@@ -24,6 +24,7 @@ const SpeedDialIconRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
+    const speedDialIconClasses = getSpeedDialIconClasses();
 
     return [
       { [`& .${speedDialIconClasses.icon}`]: styles.icon },
@@ -39,7 +40,7 @@ const SpeedDialIconRoot = styled('span', {
   },
 })(({ theme, ownerState }) => ({
   height: 24,
-  [`& .${speedDialIconClasses.icon}`]: {
+  [`& .${getSpeedDialIconClasses().icon}`]: {
     transition: theme.transitions.create(['transform', 'opacity'], {
       duration: theme.transitions.duration.short,
     }),
@@ -50,7 +51,7 @@ const SpeedDialIconRoot = styled('span', {
       }),
     }),
   },
-  [`& .${speedDialIconClasses.openIcon}`]: {
+  [`& .${getSpeedDialIconClasses().openIcon}`]: {
     position: 'absolute',
     transition: theme.transitions.create(['transform', 'opacity'], {
       duration: theme.transitions.duration.short,

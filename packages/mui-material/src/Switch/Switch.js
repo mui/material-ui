@@ -9,7 +9,7 @@ import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import switchClasses, { getSwitchUtilityClass } from './switchClasses';
+import { getSwitchUtilityClass, getSwitchClasses } from './switchClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, edge, size, color, checked, disabled } = ownerState;
@@ -47,48 +47,52 @@ const SwitchRoot = styled('span', {
       styles[`size${capitalize(ownerState.size)}`],
     ];
   },
-})(({ ownerState }) => ({
-  display: 'inline-flex',
-  width: 34 + 12 * 2,
-  height: 14 + 12 * 2,
-  overflow: 'hidden',
-  padding: 12,
-  boxSizing: 'border-box',
-  position: 'relative',
-  flexShrink: 0,
-  zIndex: 0, // Reset the stacking context.
-  verticalAlign: 'middle', // For correct alignment with the text.
-  '@media print': {
-    colorAdjust: 'exact',
-  },
-  ...(ownerState.edge === 'start' && {
-    marginLeft: -8,
-  }),
-  ...(ownerState.edge === 'end' && {
-    marginRight: -8,
-  }),
-  ...(ownerState.size === 'small' && {
-    width: 40,
-    height: 24,
-    padding: 7,
-    [`& .${switchClasses.thumb}`]: {
-      width: 16,
-      height: 16,
+})(({ ownerState }) => {
+  const switchClasses = getSwitchClasses();
+  return {
+    display: 'inline-flex',
+    width: 34 + 12 * 2,
+    height: 14 + 12 * 2,
+    overflow: 'hidden',
+    padding: 12,
+    boxSizing: 'border-box',
+    position: 'relative',
+    flexShrink: 0,
+    zIndex: 0,
+    verticalAlign: 'middle',
+    '@media print': {
+      colorAdjust: 'exact',
     },
-    [`& .${switchClasses.switchBase}`]: {
-      padding: 4,
-      [`&.${switchClasses.checked}`]: {
-        transform: 'translateX(16px)',
+    ...(ownerState.edge === 'start' && {
+      marginLeft: -8,
+    }),
+    ...(ownerState.edge === 'end' && {
+      marginRight: -8,
+    }),
+    ...(ownerState.size === 'small' && {
+      width: 40,
+      height: 24,
+      padding: 7,
+      [`& .${switchClasses.thumb}`]: {
+        width: 16,
+        height: 16,
       },
-    },
-  }),
-}));
+      [`& .${switchClasses.switchBase}`]: {
+        padding: 4,
+        [`&.${switchClasses.checked}`]: {
+          transform: 'translateX(16px)',
+        },
+      },
+    }),
+  };
+});
 
 const SwitchSwitchBase = styled(SwitchBase, {
   name: 'MuiSwitch',
   slot: 'SwitchBase',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
+    const switchClasses = getSwitchClasses();
 
     return [
       styles.switchBase,
@@ -97,64 +101,70 @@ const SwitchSwitchBase = styled(SwitchBase, {
     ];
   },
 })(
-  ({ theme }) => ({
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    zIndex: 1, // Render above the focus ripple.
-    color: theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.grey[300],
-    transition: theme.transitions.create(['left', 'transform'], {
-      duration: theme.transitions.duration.shortest,
-    }),
-    [`&.${switchClasses.checked}`]: {
-      transform: 'translateX(20px)',
-    },
-    [`&.${switchClasses.disabled}`]: {
-      color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600],
-    },
-    [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
-      opacity: 0.5,
-    },
-    [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
-      opacity: theme.palette.mode === 'light' ? 0.12 : 0.2,
-    },
-    [`& .${switchClasses.input}`]: {
-      left: '-100%',
-      width: '300%',
-    },
-  }),
-  ({ theme, ownerState }) => ({
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-    ...(ownerState.color !== 'default' && {
+  ({ theme }) => {
+    const switchClasses = getSwitchClasses();
+    return {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      zIndex: 1,
+      color: theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.grey[300],
+      transition: theme.transitions.create(['left', 'transform'], {
+        duration: theme.transitions.duration.shortest,
+      }),
       [`&.${switchClasses.checked}`]: {
-        color: theme.palette[ownerState.color].main,
-        '&:hover': {
-          backgroundColor: alpha(
-            theme.palette[ownerState.color].main,
-            theme.palette.action.hoverOpacity,
-          ),
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
-          },
-        },
-        [`&.${switchClasses.disabled}`]: {
-          color:
-            theme.palette.mode === 'light'
-              ? lighten(theme.palette[ownerState.color].main, 0.62)
-              : darken(theme.palette[ownerState.color].main, 0.55),
-        },
+        transform: 'translateX(20px)',
+      },
+      [`&.${switchClasses.disabled}`]: {
+        color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600],
       },
       [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
-        backgroundColor: theme.palette[ownerState.color].main,
+        opacity: 0.5,
       },
-    }),
-  }),
+      [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
+        opacity: theme.palette.mode === 'light' ? 0.12 : 0.2,
+      },
+      [`& .${switchClasses.input}`]: {
+        left: '-100%',
+        width: '300%',
+      },
+    };
+  },
+  ({ theme, ownerState }) => {
+    const switchClasses = getSwitchClasses();
+    return {
+      '&:hover': {
+        backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+      ...(ownerState.color !== 'default' && {
+        [`&.${switchClasses.checked}`]: {
+          color: theme.palette[ownerState.color].main,
+          '&:hover': {
+            backgroundColor: alpha(
+              theme.palette[ownerState.color].main,
+              theme.palette.action.hoverOpacity,
+            ),
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+          [`&.${switchClasses.disabled}`]: {
+            color:
+              theme.palette.mode === 'light'
+                ? lighten(theme.palette[ownerState.color].main, 0.62)
+                : darken(theme.palette[ownerState.color].main, 0.55),
+          },
+        },
+        [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
+          backgroundColor: theme.palette[ownerState.color].main,
+        },
+      }),
+    };
+  },
 );
 
 const SwitchTrack = styled('span', {

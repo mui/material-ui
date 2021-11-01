@@ -5,8 +5,8 @@ import { chainPropTypes } from '@mui/utils';
 import { generateUtilityClasses, isHostComponent } from '@mui/core';
 import SliderUnstyled, {
   SliderValueLabelUnstyled,
-  sliderUnstyledClasses,
   getSliderUtilityClass,
+  getSliderUnstyledClasses,
 } from '@mui/core/SliderUnstyled';
 import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
@@ -14,8 +14,8 @@ import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
 
-export const sliderClasses = {
-  ...sliderUnstyledClasses,
+export const getSliderClasses = () => ({
+  ...getSliderUnstyledClasses(),
   ...generateUtilityClasses('MuiSlider', [
     'colorPrimary',
     'colorSecondary',
@@ -24,7 +24,9 @@ export const sliderClasses = {
     'sizeSmall',
     'thumbSizeSmall',
   ]),
-};
+});
+
+export const sliderClasses = getSliderClasses();
 
 export const SliderRoot = styled('span', {
   name: 'MuiSlider',
@@ -97,13 +99,13 @@ export const SliderRoot = styled('span', {
   '@media print': {
     colorAdjust: 'exact',
   },
-  [`&.${sliderClasses.disabled}`]: {
+  [`&.${getSliderClasses().disabled}`]: {
     pointerEvents: 'none',
     cursor: 'default',
     color: theme.palette.grey[400],
   },
-  [`&.${sliderClasses.dragging}`]: {
-    [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
+  [`&.${getSliderClasses().dragging}`]: {
+    [`& .${getSliderClasses().thumb}, & .${getSliderClasses().track}`]: {
       transition: 'none',
     },
   },
@@ -236,16 +238,16 @@ export const SliderThumb = styled('span', {
     left: '50%',
     transform: 'translate(-50%, -50%)',
   },
-  [`&:hover, &.${sliderClasses.focusVisible}`]: {
+  [`&:hover, &.${getSliderClasses().focusVisible}`]: {
     boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[ownerState.color].main, 0.16)}`,
     '@media (hover: none)': {
       boxShadow: 'none',
     },
   },
-  [`&.${sliderClasses.active}`]: {
+  [`&.${getSliderClasses().active}`]: {
     boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[ownerState.color].main, 0.16)}`,
   },
-  [`&.${sliderClasses.disabled}`]: {
+  [`&.${getSliderClasses().disabled}`]: {
     '&:hover': {
       boxShadow: 'none',
     },
@@ -257,7 +259,7 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
 })(({ theme, ownerState }) => ({
-  [`&.${sliderClasses.valueLabelOpen}`]: {
+  [`&.${getSliderClasses().valueLabelOpen}`]: {
     transform: 'translateY(-100%) scale(1)',
   },
   zIndex: 1,

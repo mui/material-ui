@@ -7,7 +7,7 @@ import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
-import tableSortLabelClasses, { getTableSortLabelUtilityClass } from './tableSortLabelClasses';
+import { getTableSortLabelUtilityClass, getTableSortLabelClasses } from './tableSortLabelClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, direction, active } = ownerState;
@@ -28,29 +28,32 @@ const TableSortLabelRoot = styled(ButtonBase, {
 
     return [styles.root, ownerState.active && styles.active];
   },
-})(({ theme }) => ({
-  cursor: 'pointer',
-  display: 'inline-flex',
-  justifyContent: 'flex-start',
-  flexDirection: 'inherit',
-  alignItems: 'center',
-  '&:focus': {
-    color: theme.palette.text.secondary,
-  },
-  '&:hover': {
-    color: theme.palette.text.secondary,
-    [`& .${tableSortLabelClasses.icon}`]: {
-      opacity: 0.5,
-    },
-  },
-  [`&.${tableSortLabelClasses.active}`]: {
-    color: theme.palette.text.primary,
-    [`& .${tableSortLabelClasses.icon}`]: {
-      opacity: 1,
+})(({ theme }) => {
+  const tableSortLabelClasses = getTableSortLabelClasses();
+  return {
+    cursor: 'pointer',
+    display: 'inline-flex',
+    justifyContent: 'flex-start',
+    flexDirection: 'inherit',
+    alignItems: 'center',
+    '&:focus': {
       color: theme.palette.text.secondary,
     },
-  },
-}));
+    '&:hover': {
+      color: theme.palette.text.secondary,
+      [`& .${tableSortLabelClasses.icon}`]: {
+        opacity: 0.5,
+      },
+    },
+    [`&.${tableSortLabelClasses.active}`]: {
+      color: theme.palette.text.primary,
+      [`& .${tableSortLabelClasses.icon}`]: {
+        opacity: 1,
+        color: theme.palette.text.secondary,
+      },
+    },
+  };
+});
 
 const TableSortLabelIcon = styled('span', {
   name: 'MuiTableSortLabel',

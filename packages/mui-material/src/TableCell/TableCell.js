@@ -8,7 +8,7 @@ import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
+import { getTableCellUtilityClass, getTableCellClasses } from './tableCellClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, align, padding, size, stickyHeader } = ownerState;
@@ -71,7 +71,7 @@ const TableCellRoot = styled('td', {
   }),
   ...(ownerState.size === 'small' && {
     padding: '6px 16px',
-    [`&.${tableCellClasses.paddingCheckbox}`]: {
+    [`&.${getTableCellClasses().paddingCheckbox}`]: {
       width: 24, // prevent the checkbox column from growing
       padding: '0 12px 0 16px',
       '& > *': {

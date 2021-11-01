@@ -6,7 +6,7 @@ import Typography from '../Typography';
 import ListContext from '../List/ListContext';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
+import { getListItemTextUtilityClass, getListItemTextClasses } from './listItemTextClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, inset, primary, secondary, dense } = ownerState;
@@ -25,6 +25,7 @@ const ListItemTextRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
+    const listItemTextClasses = getListItemTextClasses();
 
     return [
       { [`& .${listItemTextClasses.primary}`]: styles.primary },

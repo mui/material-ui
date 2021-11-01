@@ -7,8 +7,9 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import isValueSelected from './isValueSelected';
-import toggleButtonGroupClasses, {
+import {
   getToggleButtonGroupUtilityClass,
+  getToggleButtonGroupClasses,
 } from './toggleButtonGroupClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -27,6 +28,7 @@ const ToggleButtonGroupRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
+    const toggleButtonGroupClasses = getToggleButtonGroupClasses();
 
     return [
       { [`& .${toggleButtonGroupClasses.grouped}`]: styles.grouped },
@@ -39,53 +41,56 @@ const ToggleButtonGroupRoot = styled('div', {
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
-})(({ ownerState, theme }) => ({
-  display: 'inline-flex',
-  borderRadius: theme.shape.borderRadius,
-  ...(ownerState.orientation === 'vertical' && {
-    flexDirection: 'column',
-  }),
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
-  [`& .${toggleButtonGroupClasses.grouped}`]: {
-    ...(ownerState.orientation === 'horizontal'
-      ? {
-          '&:not(:first-of-type)': {
-            marginLeft: -1,
-            borderLeft: '1px solid transparent',
-            borderTopLeftRadius: 0,
-            borderBottomLeftRadius: 0,
-          },
-          '&:not(:last-of-type)': {
-            borderTopRightRadius: 0,
-            borderBottomRightRadius: 0,
-          },
-          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
-            {
-              borderLeft: 0,
-              marginLeft: 0,
+})(({ ownerState, theme }) => {
+  const toggleButtonGroupClasses = getToggleButtonGroupClasses();
+  return {
+    display: 'inline-flex',
+    borderRadius: theme.shape.borderRadius,
+    ...(ownerState.orientation === 'vertical' && {
+      flexDirection: 'column',
+    }),
+    ...(ownerState.fullWidth && {
+      width: '100%',
+    }),
+    [`& .${toggleButtonGroupClasses.grouped}`]: {
+      ...(ownerState.orientation === 'horizontal'
+        ? {
+            '&:not(:first-of-type)': {
+              marginLeft: -1,
+              borderLeft: '1px solid transparent',
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
             },
-        }
-      : {
-          '&:not(:first-of-type)': {
-            marginTop: -1,
-            borderTop: '1px solid transparent',
-            borderTopLeftRadius: 0,
-            borderTopRightRadius: 0,
-          },
-          '&:not(:last-of-type)': {
-            borderBottomLeftRadius: 0,
-            borderBottomRightRadius: 0,
-          },
-          [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
-            {
-              borderTop: 0,
-              marginTop: 0,
+            '&:not(:last-of-type)': {
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
             },
-        }),
-  },
-}));
+            [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
+              {
+                borderLeft: 0,
+                marginLeft: 0,
+              },
+          }
+        : {
+            '&:not(:first-of-type)': {
+              marginTop: -1,
+              borderTop: '1px solid transparent',
+              borderTopLeftRadius: 0,
+              borderTopRightRadius: 0,
+            },
+            '&:not(:last-of-type)': {
+              borderBottomLeftRadius: 0,
+              borderBottomRightRadius: 0,
+            },
+            [`&.${toggleButtonGroupClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonGroupClasses.selected}`]:
+              {
+                borderTop: 0,
+                marginTop: 0,
+              },
+          }),
+    },
+  };
+});
 
 const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiToggleButtonGroup' });

@@ -8,7 +8,7 @@ import ImageListContext from '../ImageList/ImageListContext';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import isMuiElement from '../utils/isMuiElement';
-import imageListItemClasses, { getImageListItemUtilityClass } from './imageListItemClasses';
+import { getImageListItemUtilityClass, getImageListItemClasses } from './imageListItemClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant } = ownerState;
@@ -28,7 +28,7 @@ const ImageListItemRoot = styled('li', {
     const { ownerState } = props;
 
     return [
-      { [`& .${imageListItemClasses.img}`]: styles.img },
+      { [`& .${getImageListItemClasses().img}`]: styles.img },
       styles.root,
       styles[ownerState.variant],
     ];
@@ -49,7 +49,7 @@ const ImageListItemRoot = styled('li', {
       height: '70%',
     },
   }),
-  [`& .${imageListItemClasses.img}`]: {
+  [`& .${getImageListItemClasses().img}`]: {
     objectFit: 'cover',
     width: '100%',
     height: '100%',

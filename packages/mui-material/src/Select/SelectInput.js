@@ -16,13 +16,14 @@ import { isFilled } from '../InputBase/utils';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
-import selectClasses, { getSelectUtilityClasses } from './selectClasses';
+import { getSelectUtilityClasses, getSelectClasses } from './selectClasses';
 
 const SelectSelect = styled('div', {
   name: 'MuiSelect',
   slot: 'Select',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
+    const selectClasses = getSelectClasses();
     return [
       // Win specificity over the input base
       { [`&.${selectClasses.select}`]: styles.select },
@@ -31,7 +32,7 @@ const SelectSelect = styled('div', {
   },
 })(nativeSelectSelectStyles, {
   // Win specificity over the input base
-  [`&.${selectClasses.select}`]: {
+  [`&.${getSelectClasses().select}`]: {
     height: 'auto', // Resets for multiple select with chips
     minHeight: '1.4375em', // Required for select\text-field height consistency
     textOverflow: 'ellipsis',

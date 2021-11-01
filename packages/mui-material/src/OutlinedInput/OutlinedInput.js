@@ -4,7 +4,7 @@ import { refType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
 import NotchedOutline from './NotchedOutline';
 import styled, { rootShouldForwardProp } from '../styles/styled';
-import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
+import { getOutlinedInputUtilityClass, getOutlinedInputClasses } from './outlinedInputClasses';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -38,6 +38,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
 })(({ theme, ownerState }) => {
   const borderColor =
     theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
+  const outlinedInputClasses = getOutlinedInputClasses();
   return {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,

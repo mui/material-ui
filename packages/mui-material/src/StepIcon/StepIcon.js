@@ -7,7 +7,7 @@ import useThemeProps from '../styles/useThemeProps';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
 import SvgIcon from '../SvgIcon';
-import stepIconClasses, { getStepIconUtilityClass } from './stepIconClasses';
+import { getStepIconUtilityClass, getStepIconClasses } from './stepIconClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, active, completed, error } = ownerState;
@@ -24,22 +24,25 @@ const StepIconRoot = styled(SvgIcon, {
   name: 'MuiStepIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => ({
-  display: 'block',
-  transition: theme.transitions.create('color', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  color: theme.palette.text.disabled,
-  [`&.${stepIconClasses.completed}`]: {
-    color: theme.palette.primary.main,
-  },
-  [`&.${stepIconClasses.active}`]: {
-    color: theme.palette.primary.main,
-  },
-  [`&.${stepIconClasses.error}`]: {
-    color: theme.palette.error.main,
-  },
-}));
+})(({ theme }) => {
+  const stepIconClasses = getStepIconClasses();
+  return {
+    display: 'block',
+    transition: theme.transitions.create('color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    color: theme.palette.text.disabled,
+    [`&.${stepIconClasses.completed}`]: {
+      color: theme.palette.primary.main,
+    },
+    [`&.${stepIconClasses.active}`]: {
+      color: theme.palette.primary.main,
+    },
+    [`&.${stepIconClasses.error}`]: {
+      color: theme.palette.error.main,
+    },
+  };
+});
 
 const StepIconText = styled('text', {
   name: 'MuiStepIcon',

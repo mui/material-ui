@@ -10,7 +10,7 @@ import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckB
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { rootShouldForwardProp } from '../styles/styled';
-import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
+import { getCheckboxUtilityClass, getCheckboxClasses } from './checkboxClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, indeterminate, color } = ownerState;
@@ -40,31 +40,34 @@ const CheckboxRoot = styled(SwitchBase, {
       ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme, ownerState }) => ({
-  color: theme.palette.text.secondary,
-  ...(!ownerState.disableRipple && {
-    '&:hover': {
-      backgroundColor: alpha(
-        ownerState.color === 'default'
-          ? theme.palette.action.active
-          : theme.palette[ownerState.color].main,
-        theme.palette.action.hoverOpacity,
-      ),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+})(({ theme, ownerState }) => {
+  const checkboxClasses = getCheckboxClasses();
+  return {
+    color: theme.palette.text.secondary,
+    ...(!ownerState.disableRipple && {
+      '&:hover': {
+        backgroundColor: alpha(
+          ownerState.color === 'default'
+            ? theme.palette.action.active
+            : theme.palette[ownerState.color].main,
+          theme.palette.action.hoverOpacity,
+        ),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
       },
-    },
-  }),
-  ...(ownerState.color !== 'default' && {
-    [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
-      color: theme.palette[ownerState.color].main,
-    },
-    [`&.${checkboxClasses.disabled}`]: {
-      color: theme.palette.action.disabled,
-    },
-  }),
-}));
+    }),
+    ...(ownerState.color !== 'default' && {
+      [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
+        color: theme.palette[ownerState.color].main,
+      },
+      [`&.${checkboxClasses.disabled}`]: {
+        color: theme.palette.action.disabled,
+      },
+    }),
+  };
+});
 
 const defaultCheckedIcon = <CheckBoxIcon />;
 const defaultIcon = <CheckBoxOutlineBlankIcon />;

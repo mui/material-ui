@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { usePreviousProps } from '@mui/utils';
 import { generateUtilityClasses, isHostComponent } from '@mui/core';
-import BadgeUnstyled, { badgeUnstyledClasses, getBadgeUtilityClass } from '@mui/core/BadgeUnstyled';
+import BadgeUnstyled, {
+  getBadgeUtilityClass,
+  getBadgeUnstyledClasses,
+} from '@mui/core/BadgeUnstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 
-export const badgeClasses = {
-  ...badgeUnstyledClasses,
+export const getBadgeClasses = () => ({
+  ...getBadgeUnstyledClasses(),
   ...generateUtilityClasses('MuiBadge', [
     'colorError',
     'colorInfo',
@@ -18,7 +21,9 @@ export const badgeClasses = {
     'colorSuccess',
     'colorWarning',
   ]),
-};
+});
+
+export const badgeClasses = getBadgeClasses();
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;

@@ -5,7 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/core';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDialogContentUtilityClass } from './dialogContentClasses';
-import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
+import { getDialogTitleClasses } from '../DialogTitle/dialogTitleClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, dividers } = ownerState;
@@ -38,7 +38,7 @@ const DialogContentRoot = styled('div', {
         borderBottom: `1px solid ${theme.palette.divider}`,
       }
     : {
-        [`.${dialogTitleClasses.root} + &`]: {
+        [`.${getDialogTitleClasses().root} + &`]: {
           paddingTop: 0,
         },
       }),

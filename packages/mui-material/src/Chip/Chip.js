@@ -10,7 +10,7 @@ import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import chipClasses, { getChipUtilityClass } from './chipClasses';
+import { getChipUtilityClass, getChipClasses } from './chipClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, size, color, onDelete, clickable, variant } = ownerState;
@@ -48,6 +48,7 @@ const ChipRoot = styled('div', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
     const { color, clickable, onDelete, size, variant } = ownerState;
+    const chipClasses = getChipClasses();
 
     return [
       { [`& .${chipClasses.avatar}`]: styles.avatar },
@@ -74,7 +75,7 @@ const ChipRoot = styled('div', {
 })(
   ({ theme, ownerState }) => {
     const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
-
+    const chipClasses = getChipClasses();
     return {
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.typography.pxToRem(13),
@@ -180,89 +181,95 @@ const ChipRoot = styled('div', {
         }),
     };
   },
-  ({ theme, ownerState }) => ({
-    ...(ownerState.clickable && {
-      userSelect: 'none',
-      WebkitTapHighlightColor: 'transparent',
-      cursor: 'pointer',
-      '&:hover': {
-        backgroundColor: alpha(
-          theme.palette.action.selected,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
-      },
-      [`&.${chipClasses.focusVisible}`]: {
-        backgroundColor: alpha(
-          theme.palette.action.selected,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-        ),
-      },
-      '&:active': {
-        boxShadow: theme.shadows[1],
-      },
-    }),
-    ...(ownerState.clickable &&
-      ownerState.color !== 'default' && {
-        [`&:hover, &.${chipClasses.focusVisible}`]: {
-          backgroundColor: theme.palette[ownerState.color].dark,
-        },
-      }),
-  }),
-  ({ theme, ownerState }) => ({
-    ...(ownerState.variant === 'outlined' && {
-      backgroundColor: 'transparent',
-      border: `1px solid ${
-        theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[700]
-      }`,
-      [`&.${chipClasses.clickable}:hover`]: {
-        backgroundColor: theme.palette.action.hover,
-      },
-      [`&.${chipClasses.focusVisible}`]: {
-        backgroundColor: theme.palette.action.focus,
-      },
-      [`& .${chipClasses.avatar}`]: {
-        marginLeft: 4,
-      },
-      [`& .${chipClasses.avatarSmall}`]: {
-        marginLeft: 2,
-      },
-      [`& .${chipClasses.icon}`]: {
-        marginLeft: 4,
-      },
-      [`& .${chipClasses.iconSmall}`]: {
-        marginLeft: 2,
-      },
-      [`& .${chipClasses.deleteIcon}`]: {
-        marginRight: 5,
-      },
-      [`& .${chipClasses.deleteIconSmall}`]: {
-        marginRight: 3,
-      },
-    }),
-    ...(ownerState.variant === 'outlined' &&
-      ownerState.color !== 'default' && {
-        color: theme.palette[ownerState.color].main,
-        border: `1px solid ${alpha(theme.palette[ownerState.color].main, 0.7)}`,
-        [`&.${chipClasses.clickable}:hover`]: {
+  ({ theme, ownerState }) => {
+    const chipClasses = getChipClasses();
+    return {
+      ...(ownerState.clickable && {
+        userSelect: 'none',
+        WebkitTapHighlightColor: 'transparent',
+        cursor: 'pointer',
+        '&:hover': {
           backgroundColor: alpha(
-            theme.palette[ownerState.color].main,
-            theme.palette.action.hoverOpacity,
+            theme.palette.action.selected,
+            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
           ),
         },
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: alpha(
-            theme.palette[ownerState.color].main,
-            theme.palette.action.focusOpacity,
+            theme.palette.action.selected,
+            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
           ),
         },
-        [`& .${chipClasses.deleteIcon}`]: {
-          color: alpha(theme.palette[ownerState.color].main, 0.7),
-          '&:hover, &:active': {
-            color: theme.palette[ownerState.color].main,
-          },
+        '&:active': {
+          boxShadow: theme.shadows[1],
         },
       }),
-  }),
+      ...(ownerState.clickable &&
+        ownerState.color !== 'default' && {
+          [`&:hover, &.${chipClasses.focusVisible}`]: {
+            backgroundColor: theme.palette[ownerState.color].dark,
+          },
+        }),
+    };
+  },
+  ({ theme, ownerState }) => {
+    const chipClasses = getChipClasses();
+    return {
+      ...(ownerState.variant === 'outlined' && {
+        backgroundColor: 'transparent',
+        border: `1px solid ${
+          theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[700]
+        }`,
+        [`&.${chipClasses.clickable}:hover`]: {
+          backgroundColor: theme.palette.action.hover,
+        },
+        [`&.${chipClasses.focusVisible}`]: {
+          backgroundColor: theme.palette.action.focus,
+        },
+        [`& .${chipClasses.avatar}`]: {
+          marginLeft: 4,
+        },
+        [`& .${chipClasses.avatarSmall}`]: {
+          marginLeft: 2,
+        },
+        [`& .${chipClasses.icon}`]: {
+          marginLeft: 4,
+        },
+        [`& .${chipClasses.iconSmall}`]: {
+          marginLeft: 2,
+        },
+        [`& .${chipClasses.deleteIcon}`]: {
+          marginRight: 5,
+        },
+        [`& .${chipClasses.deleteIconSmall}`]: {
+          marginRight: 3,
+        },
+      }),
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.color !== 'default' && {
+          color: theme.palette[ownerState.color].main,
+          border: `1px solid ${alpha(theme.palette[ownerState.color].main, 0.7)}`,
+          [`&.${chipClasses.clickable}:hover`]: {
+            backgroundColor: alpha(
+              theme.palette[ownerState.color].main,
+              theme.palette.action.hoverOpacity,
+            ),
+          },
+          [`&.${chipClasses.focusVisible}`]: {
+            backgroundColor: alpha(
+              theme.palette[ownerState.color].main,
+              theme.palette.action.focusOpacity,
+            ),
+          },
+          [`& .${chipClasses.deleteIcon}`]: {
+            color: alpha(theme.palette[ownerState.color].main, 0.7),
+            '&:hover, &:active': {
+              color: theme.palette[ownerState.color].main,
+            },
+          },
+        }),
+    };
+  },
 );
 
 const ChipLabel = styled('span', {

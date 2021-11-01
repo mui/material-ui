@@ -5,7 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/core';
 import Typography from '../Typography';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
+import { getCardHeaderUtilityClass, getCardHeaderClasses } from './cardHeaderClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -25,11 +25,14 @@ const useUtilityClasses = (ownerState) => {
 const CardHeaderRoot = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Root',
-  overridesResolver: (props, styles) => ({
-    [`& .${cardHeaderClasses.title}`]: styles.title,
-    [`& .${cardHeaderClasses.subheader}`]: styles.subheader,
-    ...styles.root,
-  }),
+  overridesResolver: (props, styles) => {
+    const cardHeaderClasses = getCardHeaderClasses();
+    return {
+      [`& .${cardHeaderClasses.title}`]: styles.title,
+      [`& .${cardHeaderClasses.subheader}`]: styles.subheader,
+      ...styles.root,
+    };
+  },
 })({
   display: 'flex',
   alignItems: 'center',

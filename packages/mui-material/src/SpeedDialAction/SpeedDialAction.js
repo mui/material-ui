@@ -10,7 +10,10 @@ import useThemeProps from '../styles/useThemeProps';
 import Fab from '../Fab';
 import Tooltip from '../Tooltip';
 import capitalize from '../utils/capitalize';
-import speedDialActionClasses, { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
+import {
+  getSpeedDialActionUtilityClass,
+  getSpeedDialActionClasses,
+} from './speedDialActionClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { open, tooltipPlacement, classes } = ownerState;
@@ -70,7 +73,7 @@ const SpeedDialActionStaticTooltip = styled('span', {
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
-  [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
+  [`& .${getSpeedDialActionClasses().staticTooltipLabel}`]: {
     transition: theme.transitions.create(['transform', 'opacity'], {
       duration: theme.transitions.duration.shorter,
     }),

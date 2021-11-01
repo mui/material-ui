@@ -6,7 +6,7 @@ import { alpha } from '@mui/system';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
+import { getTableRowUtilityClass, getTableRowClasses } from './tableRowClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, selected, hover, head, footer } = ownerState;
@@ -32,10 +32,10 @@ const TableRowRoot = styled('tr', {
   verticalAlign: 'middle',
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
-  [`&.${tableRowClasses.hover}:hover`]: {
+  [`&.${getTableRowClasses().hover}:hover`]: {
     backgroundColor: theme.palette.action.hover,
   },
-  [`&.${tableRowClasses.selected}`]: {
+  [`&.${getTableRowClasses().selected}`]: {
     backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     '&:hover': {
       backgroundColor: alpha(

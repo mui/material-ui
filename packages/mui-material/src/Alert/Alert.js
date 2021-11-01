@@ -7,7 +7,7 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
-import alertClasses, { getAlertUtilityClass } from './alertClasses';
+import { getAlertUtilityClass, getAlertClasses } from './alertClasses';
 import IconButton from '../IconButton';
 import SuccessOutlinedIcon from '../internal/svg-icons/SuccessOutlined';
 import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlined';
@@ -55,7 +55,7 @@ const AlertRoot = styled(Paper, {
       ownerState.variant === 'standard' && {
         color: getColor(theme.palette[color].light, 0.6),
         backgroundColor: getBackgroundColor(theme.palette[color].light, 0.9),
-        [`& .${alertClasses.icon}`]: {
+        [`& .${getAlertClasses().icon}`]: {
           color:
             theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light,
         },
@@ -64,7 +64,7 @@ const AlertRoot = styled(Paper, {
       ownerState.variant === 'outlined' && {
         color: getColor(theme.palette[color].light, 0.6),
         border: `1px solid ${theme.palette[color].light}`,
-        [`& .${alertClasses.icon}`]: {
+        [`& .${getAlertClasses().icon}`]: {
           color:
             theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light,
         },

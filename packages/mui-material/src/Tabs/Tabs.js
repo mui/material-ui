@@ -13,7 +13,7 @@ import animate from '../internal/animate';
 import ScrollbarSize from './ScrollbarSize';
 import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
-import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
+import { getTabsUtilityClass, getTabsClasses } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 
@@ -100,6 +100,7 @@ const TabsRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
+    const tabsClasses = getTabsClasses();
 
     return [
       { [`& .${tabsClasses.scrollButtons}`]: styles.scrollButtons },
@@ -121,7 +122,7 @@ const TabsRoot = styled('div', {
     flexDirection: 'column',
   }),
   ...(ownerState.scrollButtonsHideMobile && {
-    [`& .${tabsClasses.scrollButtons}`]: {
+    [`& .${getTabsClasses().scrollButtons}`]: {
       [theme.breakpoints.down('sm')]: {
         display: 'none',
       },

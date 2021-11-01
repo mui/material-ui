@@ -12,7 +12,7 @@ import capitalize from '../utils/capitalize';
 import isMuiElement from '../utils/isMuiElement';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
-import speedDialClasses, { getSpeedDialUtilityClass } from './speedDialClasses';
+import { getSpeedDialUtilityClass, getSpeedDialClasses } from './speedDialClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, open, direction } = ownerState;
@@ -57,44 +57,47 @@ const SpeedDialRoot = styled('div', {
 
     return [styles.root, styles[`direction${capitalize(ownerState.direction)}`]];
   },
-})(({ theme, ownerState }) => ({
-  zIndex: theme.zIndex.speedDial,
-  display: 'flex',
-  alignItems: 'center',
-  pointerEvents: 'none',
-  ...(ownerState.direction === 'up' && {
-    flexDirection: 'column-reverse',
-    [`& .${speedDialClasses.actions}`]: {
+})(({ theme, ownerState }) => {
+  const speedDialClasses = getSpeedDialClasses();
+  return {
+    zIndex: theme.zIndex.speedDial,
+    display: 'flex',
+    alignItems: 'center',
+    pointerEvents: 'none',
+    ...(ownerState.direction === 'up' && {
       flexDirection: 'column-reverse',
-      marginBottom: -dialRadius,
-      paddingBottom: spacingActions + dialRadius,
-    },
-  }),
-  ...(ownerState.direction === 'down' && {
-    flexDirection: 'column',
-    [`& .${speedDialClasses.actions}`]: {
+      [`& .${speedDialClasses.actions}`]: {
+        flexDirection: 'column-reverse',
+        marginBottom: -dialRadius,
+        paddingBottom: spacingActions + dialRadius,
+      },
+    }),
+    ...(ownerState.direction === 'down' && {
       flexDirection: 'column',
-      marginTop: -dialRadius,
-      paddingTop: spacingActions + dialRadius,
-    },
-  }),
-  ...(ownerState.direction === 'left' && {
-    flexDirection: 'row-reverse',
-    [`& .${speedDialClasses.actions}`]: {
+      [`& .${speedDialClasses.actions}`]: {
+        flexDirection: 'column',
+        marginTop: -dialRadius,
+        paddingTop: spacingActions + dialRadius,
+      },
+    }),
+    ...(ownerState.direction === 'left' && {
       flexDirection: 'row-reverse',
-      marginRight: -dialRadius,
-      paddingRight: spacingActions + dialRadius,
-    },
-  }),
-  ...(ownerState.direction === 'right' && {
-    flexDirection: 'row',
-    [`& .${speedDialClasses.actions}`]: {
+      [`& .${speedDialClasses.actions}`]: {
+        flexDirection: 'row-reverse',
+        marginRight: -dialRadius,
+        paddingRight: spacingActions + dialRadius,
+      },
+    }),
+    ...(ownerState.direction === 'right' && {
       flexDirection: 'row',
-      marginLeft: -dialRadius,
-      paddingLeft: spacingActions + dialRadius,
-    },
-  }),
-}));
+      [`& .${speedDialClasses.actions}`]: {
+        flexDirection: 'row',
+        marginLeft: -dialRadius,
+        paddingLeft: spacingActions + dialRadius,
+      },
+    }),
+  };
+});
 
 const SpeedDialFab = styled(Fab, {
   name: 'MuiSpeedDial',

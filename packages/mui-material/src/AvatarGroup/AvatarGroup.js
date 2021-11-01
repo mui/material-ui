@@ -7,7 +7,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/core';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Avatar, { avatarClasses } from '../Avatar';
-import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
+import { getAvatarGroupUtilityClass, getAvatarGroupClasses } from './avatarGroupClasses';
 
 const SPACINGS = {
   small: -16,
@@ -29,7 +29,7 @@ const AvatarGroupRoot = styled('div', {
   name: 'MuiAvatarGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => ({
-    [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
+    [`& .${getAvatarGroupClasses().avatar}`]: styles.avatar,
     ...styles.root,
   }),
 })(({ theme }) => ({

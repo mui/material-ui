@@ -6,7 +6,7 @@ import { keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Ripple from './Ripple';
-import touchRippleClasses from './touchRippleClasses';
+import { getTouchRippleClasses } from './touchRippleClasses';
 
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;
@@ -72,7 +72,7 @@ export const TouchRippleRipple = styled(Ripple, {
   opacity: 0;
   position: absolute;
 
-  &.${touchRippleClasses.rippleVisible} {
+  &.${getTouchRippleClasses().rippleVisible} {
     opacity: 0.3;
     transform: scale(1);
     animation-name: ${enterKeyframe};
@@ -80,11 +80,11 @@ export const TouchRippleRipple = styled(Ripple, {
     animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
   }
 
-  &.${touchRippleClasses.ripplePulsate} {
+  &.${getTouchRippleClasses().ripplePulsate} {
     animation-duration: ${({ theme }) => theme.transitions.duration.shorter}ms;
   }
 
-  & .${touchRippleClasses.child} {
+  & .${getTouchRippleClasses().child} {
     opacity: 1;
     display: block;
     width: 100%;
@@ -93,14 +93,14 @@ export const TouchRippleRipple = styled(Ripple, {
     background-color: currentColor;
   }
 
-  & .${touchRippleClasses.childLeaving} {
+  & .${getTouchRippleClasses().childLeaving} {
     opacity: 0;
     animation-name: ${exitKeyframe};
     animation-duration: ${DURATION}ms;
     animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
   }
 
-  & .${touchRippleClasses.childPulsate} {
+  & .${getTouchRippleClasses().childPulsate} {
     position: absolute;
     /* @noflip */
     left: 0px;
@@ -152,6 +152,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   const startCommit = React.useCallback(
     (params) => {
       const { pulsate, rippleX, rippleY, rippleSize, cb } = params;
+      const touchRippleClasses = getTouchRippleClasses();
 
       setRipples((oldRipples) => [
         ...oldRipples,
@@ -304,7 +305,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
 
   return (
     <TouchRippleRoot
-      className={clsx(classes.root, touchRippleClasses.root, className)}
+      className={clsx(classes.root, getTouchRippleClasses().root, className)}
       ref={container}
       {...other}
     >

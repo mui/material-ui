@@ -8,8 +8,9 @@ import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import formControlLabelClasses, {
+import {
   getFormControlLabelUtilityClasses,
+  getFormControlLabelClasses,
 } from './formControlLabelClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -29,42 +30,45 @@ export const FormControlLabelRoot = styled('label', {
     const { ownerState } = props;
 
     return [
-      { [`& .${formControlLabelClasses.label}`]: styles.label },
+      { [`& .${getFormControlLabelClasses().label}`]: styles.label },
       styles.root,
       styles[`labelPlacement${capitalize(ownerState.labelPlacement)}`],
     ];
   },
-})(({ theme, ownerState }) => ({
-  display: 'inline-flex',
-  alignItems: 'center',
-  cursor: 'pointer',
-  // For correct alignment with the text.
-  verticalAlign: 'middle',
-  WebkitTapHighlightColor: 'transparent',
-  marginLeft: -11,
-  marginRight: 16, // used for row presentation of radio/checkbox
-  [`&.${formControlLabelClasses.disabled}`]: {
-    cursor: 'default',
-  },
-  ...(ownerState.labelPlacement === 'start' && {
-    flexDirection: 'row-reverse',
-    marginLeft: 16, // used for row presentation of radio/checkbox
-    marginRight: -11,
-  }),
-  ...(ownerState.labelPlacement === 'top' && {
-    flexDirection: 'column-reverse',
-    marginLeft: 16,
-  }),
-  ...(ownerState.labelPlacement === 'bottom' && {
-    flexDirection: 'column',
-    marginLeft: 16,
-  }),
-  [`& .${formControlLabelClasses.label}`]: {
+})(({ theme, ownerState }) => {
+  const formControlLabelClasses = getFormControlLabelClasses();
+  return {
+    display: 'inline-flex',
+    alignItems: 'center',
+    cursor: 'pointer',
+    // For correct alignment with the text.
+    verticalAlign: 'middle',
+    WebkitTapHighlightColor: 'transparent',
+    marginLeft: -11,
+    marginRight: 16,
     [`&.${formControlLabelClasses.disabled}`]: {
-      color: theme.palette.text.disabled,
+      cursor: 'default',
     },
-  },
-}));
+    ...(ownerState.labelPlacement === 'start' && {
+      flexDirection: 'row-reverse',
+      marginLeft: 16,
+      marginRight: -11,
+    }),
+    ...(ownerState.labelPlacement === 'top' && {
+      flexDirection: 'column-reverse',
+      marginLeft: 16,
+    }),
+    ...(ownerState.labelPlacement === 'bottom' && {
+      flexDirection: 'column',
+      marginLeft: 16,
+    }),
+    [`& .${formControlLabelClasses.label}`]: {
+      [`&.${formControlLabelClasses.disabled}`]: {
+        color: theme.palette.text.disabled,
+      },
+    },
+  };
+});
 
 /**
  * Drop-in replacement of the `Radio`, `Switch` and `Checkbox` component.

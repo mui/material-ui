@@ -7,7 +7,7 @@ import useThemeProps from '../styles/useThemeProps';
 import StepIcon from '../StepIcon';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
-import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
+import { getStepLabelUtilityClass, getStepLabelClasses } from './stepLabelClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, active, completed, error, disabled, alternativeLabel } = ownerState;
@@ -43,60 +43,69 @@ const StepLabelRoot = styled('span', {
 
     return [styles.root, styles[ownerState.orientation]];
   },
-})(({ ownerState }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  [`&.${stepLabelClasses.alternativeLabel}`]: {
-    flexDirection: 'column',
-  },
-  [`&.${stepLabelClasses.disabled}`]: {
-    cursor: 'default',
-  },
-  ...(ownerState.orientation === 'vertical' && {
-    textAlign: 'left',
-    padding: '8px 0',
-  }),
-}));
+})(({ ownerState }) => {
+  const stepLabelClasses = getStepLabelClasses();
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    [`&.${stepLabelClasses.alternativeLabel}`]: {
+      flexDirection: 'column',
+    },
+    [`&.${stepLabelClasses.disabled}`]: {
+      cursor: 'default',
+    },
+    ...(ownerState.orientation === 'vertical' && {
+      textAlign: 'left',
+      padding: '8px 0',
+    }),
+  };
+});
 
 const StepLabelLabel = styled('span', {
   name: 'MuiStepLabel',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})(({ theme }) => ({
-  ...theme.typography.body2,
-  display: 'block',
-  transition: theme.transitions.create('color', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  [`&.${stepLabelClasses.active}`]: {
-    color: theme.palette.text.primary,
-    fontWeight: 500,
-  },
-  [`&.${stepLabelClasses.completed}`]: {
-    color: theme.palette.text.primary,
-    fontWeight: 500,
-  },
-  [`&.${stepLabelClasses.alternativeLabel}`]: {
-    textAlign: 'center',
-    marginTop: 16,
-  },
-  [`&.${stepLabelClasses.error}`]: {
-    color: theme.palette.error.main,
-  },
-}));
+})(({ theme }) => {
+  const stepLabelClasses = getStepLabelClasses();
+  return {
+    ...theme.typography.body2,
+    display: 'block',
+    transition: theme.transitions.create('color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    [`&.${stepLabelClasses.active}`]: {
+      color: theme.palette.text.primary,
+      fontWeight: 500,
+    },
+    [`&.${stepLabelClasses.completed}`]: {
+      color: theme.palette.text.primary,
+      fontWeight: 500,
+    },
+    [`&.${stepLabelClasses.alternativeLabel}`]: {
+      textAlign: 'center',
+      marginTop: 16,
+    },
+    [`&.${stepLabelClasses.error}`]: {
+      color: theme.palette.error.main,
+    },
+  };
+});
 
 const StepLabelIconContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'IconContainer',
   overridesResolver: (props, styles) => styles.iconContainer,
-})(() => ({
-  flexShrink: 0, // Fix IE11 issue
-  display: 'flex',
-  paddingRight: 8,
-  [`&.${stepLabelClasses.alternativeLabel}`]: {
-    paddingRight: 0,
-  },
-}));
+})(() => {
+  const stepLabelClasses = getStepLabelClasses();
+  return {
+    flexShrink: 0,
+    display: 'flex',
+    paddingRight: 8,
+    [`&.${stepLabelClasses.alternativeLabel}`]: {
+      paddingRight: 0,
+    },
+  };
+});
 
 const StepLabelLabelContainer = styled('span', {
   name: 'MuiStepLabel',
