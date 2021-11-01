@@ -198,12 +198,12 @@
     "**/@types/react-dom": "^17.0.11",
     "**/cross-fetch": "^3.1.4",
     "**/react-is": "^17.0.2",
-    "react": "0.0.0-experimental-6c3dcc7a4-20211027",
-    "react-test-renderer": "0.0.0-experimental-6c3dcc7a4-20211027",
-    "react-is": "0.0.0-experimental-6c3dcc7a4-20211027",
-    "react-dom": "0.0.0-experimental-6c3dcc7a4-20211027",
-    "scheduler": "0.0.0-experimental-6c3dcc7a4-20211027",
-    "use-sync-external-store": "0.0.0-experimental-6c3dcc7a4-20211027"
+    "react": "18.0.0-alpha-a0d991fe6-20211031",
+    "react-test-renderer": "18.0.0-alpha-a0d991fe6-20211031",
+    "react-is": "18.0.0-alpha-a0d991fe6-20211031",
+    "react-dom": "18.0.0-alpha-a0d991fe6-20211031",
+    "scheduler": "0.21.0-alpha-a0d991fe6-20211031",
+    "use-sync-external-store": "1.0.0-alpha-a0d991fe6-20211031"
   },
   "nyc": {
     "include": [

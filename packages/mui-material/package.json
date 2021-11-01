@@ -72,7 +72,7 @@
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2",
     "react-transition-group": "^4.4.2",
-    "use-sync-external-store": "0.0.0-experimental-6c3dcc7a4-20211027"
+    "use-sync-external-store": "1.0.0-alpha-a0d991fe6-20211031"
   },
   "devDependencies": {
     "@types/use-sync-external-store": "^0.0.0"

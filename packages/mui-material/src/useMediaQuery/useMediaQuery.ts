@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { getThemeProps, useThemeWithoutDefault as useTheme } from '@mui/system';
-import { useSyncExternalStore } from 'use-sync-external-store';
+import { useSyncExternalStore } from 'use-sync-external-store/shim';
 
 /**
  * @deprecated Not used internally. Use `MediaQueryListEvent` from lib.dom.d.ts instead.
