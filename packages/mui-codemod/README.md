@@ -759,10 +759,10 @@ You can find more details about this breaking change in [the migration guide](ht
 #### `skeleton-variant`
 
 ```diff
--<Skeleton vairiant="circle" />
--<Skeleton vairiant="rect" />
-+<Skeleton vairiant="circular" />
-+<Skeleton vairiant="rectangular" />
+-<Skeleton variant="circle" />
+-<Skeleton variant="rect" />
++<Skeleton variant="circular" />
++<Skeleton variant="rectangular" />
 ```
 
 ```sh

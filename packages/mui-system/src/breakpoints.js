@@ -6,10 +6,10 @@ import merge from './merge';
 // For instance with the first breakpoint xs: [xs, sm[.
 export const values = {
   xs: 0, // phone
-  sm: 600, // tablets
+  sm: 600, // tablet
   md: 900, // small laptop
   lg: 1200, // desktop
-  xl: 1536, // large screens
+  xl: 1536, // large screen
 };
 
 const defaultBreakpoints = {
