@@ -54,7 +54,7 @@ export default function TemplateHero() {
         </Box>
       }
       right={
-        <Box sx={{ position: 'relative', height: '100%', perspective: '1000px' }}>
+        <Box sx={{ position: 'relative', height: '100%', perspective: '1000px', overflow: "hidden" }}>
           <Box
             sx={{
               left: '40%',
