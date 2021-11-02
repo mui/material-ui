@@ -12,22 +12,23 @@ type ExtendedColorScheme = OverridableStringUnion<never, ColorSchemeOverrides>;
 
 type ColorScheme = 'light';
 
-interface JoyThemeInput extends StaticTheme {
-  colorSchemes: Record<ColorScheme | ExtendedColorScheme, ColorSystems>;
-}
-
-type ApplicationThemeInput = {
-  colorSchemes: Record<ColorScheme | ExtendedColorScheme, PartialDeep<ColorSystems>>;
+type JoyThemeInput = PartialDeep<Omit<StaticTheme, 'typography'>> & {
+  colorSchemes: Record<ColorScheme, PartialDeep<ColorSystems>>;
   typography?: Partial<StaticTheme['typography']>;
-} & PartialDeep<Omit<StaticTheme, 'typography'>>;
+};
+
+type ApplicationThemeInput = PartialDeep<Omit<StaticTheme, 'typography'>> & {
+  colorSchemes: Record<ExtendedColorScheme, ColorSystems>;
+  typography?: Partial<StaticTheme['typography']>;
+};
 
 const { palette, ...rest } = defaultTheme;
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   JoyThemeInput,
   ColorScheme,
-  ExtendedColorScheme,
-  ApplicationThemeInput
+  ApplicationThemeInput,
+  ExtendedColorScheme
 >({
   theme: {
     colorSchemes: {
@@ -36,7 +37,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
       },
     },
     ...rest,
-  } as unknown as JoyThemeInput, // prevent error from module augmentation inside the repository
+  },
   defaultColorScheme: 'light',
   prefix: 'joy',
 });

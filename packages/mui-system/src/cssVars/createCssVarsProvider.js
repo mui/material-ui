@@ -7,33 +7,27 @@ import cssVarsParser from './cssVarsParser';
 import ThemeProvider from '../ThemeProvider';
 import getInitColorSchemeScript, {
   DEFAULT_ATTRIBUTE,
-  DEFAULT_STORAGE_KEY,
+  DEFAULT_MODE_STORAGE_KEY,
 } from './getInitColorSchemeScript';
-
-const resolveMode = (key, fallback, supportedColorSchemes) => {
-  if (typeof window === 'undefined') {
-    return undefined;
-  }
-  let value;
-  try {
-    value = localStorage.getItem(key) || undefined;
-    if (!supportedColorSchemes.includes(value)) {
-      value = undefined;
-    }
-  } catch (e) {
-    // Unsupported
-  }
-  return value || fallback;
-};
+import useCurrentColorScheme from './useCurrentColorScheme';
 
 export default function createCssVarsProvider(options) {
   const {
     theme: baseTheme = {},
+    defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
     prefix: designSystemPrefix = '',
   } = options;
 
-  if (!baseTheme.colorSchemes || !baseTheme.colorSchemes[designSystemColorScheme]) {
+  if (
+    !baseTheme.colorSchemes ||
+    (typeof designSystemColorScheme === 'string' &&
+      !baseTheme.colorSchemes[designSystemColorScheme]) ||
+    (typeof designSystemColorScheme === 'object' &&
+      !baseTheme.colorSchemes[designSystemColorScheme?.light]) ||
+    (typeof designSystemColorScheme === 'object' &&
+      !baseTheme.colorSchemes[designSystemColorScheme?.dark])
+  ) {
     console.error(`MUI: \`${designSystemColorScheme}\` does not exist in \`theme.colorSchemes\`.`);
   }
   const ColorSchemeContext = React.createContext(undefined);
@@ -50,23 +44,42 @@ export default function createCssVarsProvider(options) {
     children,
     theme: themeProp = {},
     prefix = designSystemPrefix,
-    storageKey = DEFAULT_STORAGE_KEY,
+    modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     attribute = DEFAULT_ATTRIBUTE,
+    defaultMode = desisgnSystemMode,
     defaultColorScheme = designSystemColorScheme,
   }) {
     const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = baseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
 
     let mergedTheme = deepmerge(restBaseTheme, restThemeProp);
+
     const colorSchemes = deepmerge(baseColorSchemes, colorSchemesProp);
-
     const allColorSchemes = Object.keys(colorSchemes);
-    const joinedColorSchemes = allColorSchemes.join(',');
 
-    const [colorScheme, setColorScheme] = React.useState(() =>
-      resolveMode(storageKey, defaultColorScheme, allColorSchemes),
-    );
-    const resolvedColorScheme = colorScheme || defaultColorScheme;
+    const defaultLightColorScheme =
+      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
+    const defaultDarkColorScheme =
+      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
+    const { mode, setMode, lightColorScheme, darkColorScheme, colorScheme, setColorScheme } =
+      useCurrentColorScheme({
+        supportedColorSchemes: allColorSchemes,
+        defaultLightColorScheme,
+        defaultDarkColorScheme,
+        modeStorageKey,
+        defaultMode,
+      });
+    const resolvedColorScheme = (() => {
+      if (!colorScheme) {
+        // This scope occurs on the server
+        if (defaultMode === 'dark') {
+          return defaultDarkColorScheme;
+        }
+        // use light color scheme, if default mode is 'light' | 'auto'
+        return defaultLightColorScheme;
+      }
+      return colorScheme;
+    })();
 
     const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme, { prefix });
 
@@ -86,8 +99,17 @@ export default function createCssVarsProvider(options) {
           ...vars,
         };
       }
-      if (key === defaultColorScheme) {
-        styleSheet[':root'] = deepmerge(rootCss, css);
+      const resolvedDefaultColorScheme = (() => {
+        if (typeof defaultColorScheme === 'string') {
+          return defaultColorScheme;
+        }
+        if (defaultMode === 'dark') {
+          return defaultColorScheme.dark;
+        }
+        return defaultColorScheme.light;
+      })();
+      if (key === resolvedDefaultColorScheme) {
+        styleSheet[':root'] = css;
       } else {
         styleSheet[`[${attribute}="${key}"]`] = css;
       }
@@ -96,43 +118,22 @@ export default function createCssVarsProvider(options) {
     React.useEffect(() => {
       if (colorScheme) {
         document.body.setAttribute(attribute, colorScheme);
-        localStorage.setItem(storageKey, colorScheme);
       }
-    }, [colorScheme, attribute, storageKey]);
-
-    // local storage modified in the context of another document
-    React.useEffect(() => {
-      const handleStorage = (event) => {
-        const storageColorScheme = event.newValue;
-        if (event.key === storageKey && joinedColorSchemes.match(storageColorScheme)) {
-          if (storageColorScheme) {
-            setColorScheme(storageColorScheme);
-          }
-        }
-      };
-      window.addEventListener('storage', handleStorage);
-      return () => window.removeEventListener('storage', handleStorage);
-    }, [setColorScheme, storageKey, joinedColorSchemes]);
-
-    const wrappedSetColorScheme = React.useCallback(
-      (val) => {
-        if (typeof val === 'string' && !allColorSchemes.includes(val)) {
-          console.error(`\`${val}\` does not exist in \`theme.colorSchemes\`.`);
-        } else {
-          setColorScheme(val);
-        }
-      },
-      [setColorScheme, allColorSchemes],
-    );
+    }, [colorScheme, attribute]);
 
     return (
       <ColorSchemeContext.Provider
         value={{
+          mode,
+          setMode,
+          lightColorScheme,
+          darkColorScheme,
           colorScheme,
-          setColorScheme: wrappedSetColorScheme,
+          setColorScheme,
           allColorSchemes,
         }}
       >
+        <GlobalStyles styles={{ ':root': rootCss }} />
         <GlobalStyles styles={styleSheet} />
         <ThemeProvider theme={mergedTheme}>{children}</ThemeProvider>
       </ColorSchemeContext.Provider>
@@ -151,15 +152,19 @@ export default function createCssVarsProvider(options) {
     /**
      * The initial color scheme used.
      */
-    defaultColorScheme: PropTypes.string,
+    defaultColorScheme: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    /**
+     * The initial mode used.
+     */
+    defaultMode: PropTypes.string,
+    /**
+     * The key in the local storage used to store current color scheme.
+     */
+    modeStorageKey: PropTypes.string,
     /**
      * css variable prefix
      */
     prefix: PropTypes.string,
-    /**
-     * The key in the local storage used to store current color scheme.
-     */
-    storageKey: PropTypes.string,
     /**
      * The calculated theme object that will be passed through context.
      */
