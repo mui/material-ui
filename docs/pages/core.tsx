@@ -19,7 +19,7 @@ export default function Home() {
         description="Get a growing list of components, ready-to-use, free forever and with accessibility always in mind. We've built the foundational UI blocks for your design system so you don't have to."
         card="/static/social-previews/core-preview.jpg"
       />
-      <CssBaseline />
+      <CssBaseline enableColorScheme />
       <AppHeader />
       <main>
         <CoreHero />

@@ -17,7 +17,7 @@ export default function BrandingProvider({ children }: { children: React.ReactNo
   return (
     <ThemeProvider theme={theme}>
       <NextNProgressBar />
-      <CssBaseline />
+      <CssBaseline enableColorScheme />
       {children}
     </ThemeProvider>
   );

@@ -6,6 +6,7 @@ export interface CssBaselineProps extends StyledComponentProps<never> {
    * You can wrap a node.
    */
   children?: React.ReactNode;
+  enableColorScheme?: boolean;
 }
 
 /**
