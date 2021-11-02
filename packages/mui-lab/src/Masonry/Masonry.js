@@ -255,7 +255,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
   React.useEffect(() => {
     // IE and old browsers are not supported
-    if (typeof ResizeObserver === 'undefined') {
+    if (!observer) {
       return undefined;
     }
 
