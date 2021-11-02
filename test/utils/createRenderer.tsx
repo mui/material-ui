@@ -212,7 +212,7 @@ interface RenderConfiguration {
   /**
    * https://testing-library.com/docs/react-testing-library/api#container
    */
-  container: HTMLElement;
+  container?: HTMLElement;
   /**
    * if true does not cleanup before mount
    */
@@ -239,7 +239,9 @@ interface ClientRenderConfiguration extends RenderConfiguration {
   hydrate: boolean;
 }
 
-interface ServerRenderConfiguration extends RenderConfiguration {}
+interface ServerRenderConfiguration extends RenderConfiguration {
+  container: HTMLElement;
+}
 
 export type RenderOptions = Partial<RenderConfiguration>;
 
@@ -355,7 +357,10 @@ export default function createRenderer(globalOptions: RenderOptions = {}): Rende
   });
 
   let emotionCache: import('@emotion/cache').EmotionCache = null!;
-  let globalContainer: HTMLElement;
+  /**
+   * target container for SSR
+   */
+  let serverContainer: HTMLElement;
   /**
    * Flag whether all setup for `configuredClientRender` was completed.
    * For legacy reasons `configuredClientRender` might accidentally be called in a before(Each) hook.
@@ -381,8 +386,8 @@ export default function createRenderer(globalOptions: RenderOptions = {}): Rende
 
     emotionCache = createEmotionCache({ key: 'emotion-client-render' });
 
-    globalContainer = document.createElement('div');
-    document.body.appendChild(globalContainer);
+    serverContainer = document.createElement('div');
+    document.body.appendChild(serverContainer);
 
     prepared = true;
   });
@@ -409,8 +414,8 @@ export default function createRenderer(globalOptions: RenderOptions = {}): Rende
     });
     emotionCache = null!;
 
-    globalContainer.remove();
-    globalContainer = null!;
+    serverContainer.remove();
+    serverContainer = null!;
   });
 
   function createWrapper(options: Partial<RenderConfiguration>) {
@@ -445,14 +450,9 @@ export default function createRenderer(globalOptions: RenderOptions = {}): Rende
         );
       }
 
-      const {
-        container = globalContainer,
-        legacyRoot = globalLegacyRoot,
-        ...localOptions
-      } = options;
+      const { legacyRoot = globalLegacyRoot, ...localOptions } = options;
       return render(element, {
         ...localOptions,
-        container,
         hydrate: false,
         legacyRoot,
         wrapper: createWrapper(options),
@@ -468,7 +468,7 @@ export default function createRenderer(globalOptions: RenderOptions = {}): Rende
       }
 
       const {
-        container = globalContainer,
+        container = serverContainer,
         legacyRoot = globalLegacyRoot,
         ...localOptions
       } = options;
