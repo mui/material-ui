@@ -29,7 +29,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   ColorScheme,
   ExtendedColorScheme,
   ApplicationThemeInput
->(ThemeContext, {
+>({
   theme: {
     colorSchemes: {
       light: {

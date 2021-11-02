@@ -27,7 +27,12 @@
       "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
       "default": "'paper'"
     },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
     "transitionDuration": {
       "type": {

@@ -42,10 +42,11 @@ async function runTransform(transform, files, flags, codemodFlags) {
     '--extensions',
     'js,ts,jsx,tsx',
     '--parser',
-    'tsx',
+    flags.parser || 'tsx',
     '--ignore-pattern',
     '**/node_modules/**',
   ];
+
   if (flags.dry) {
     args.push('--dry');
   }
@@ -97,6 +98,11 @@ yargs
           description: 'dry run (no changes are made to files)',
           default: false,
           type: 'boolean',
+        })
+        .option('parser', {
+          description: 'which parser for jscodeshift to use',
+          default: 'tsx',
+          type: 'string',
         })
         .option('print', {
           description: 'print transformed files to stdout, useful for development',

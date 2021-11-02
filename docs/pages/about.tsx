@@ -42,7 +42,7 @@ interface Profile {
   /**
    * Where are you from?
    */
-  country: string; // https://www.countryflags.io/
+  country: string; // https://flagpedia.net/download/api
   /**
    * Lives in
    */
@@ -100,22 +100,14 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
                 border: '2px solid #fff',
                 borderRadius: 40,
                 overflow: 'hidden',
-                '& > img': {
-                  width: 32,
-                  height: 32,
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  transform: 'translate(-6px, -6px)',
-                },
+                display: 'flex',
+                justifyContent: 'center',
               }}
             >
               <img
                 loading="lazy"
-                width="32"
-                height="32"
-                src={`https://www.countryflags.io/${props.country}/flat/32.png`}
-                srcSet={`https://www.countryflags.io/${props.country}/flat/64.png 2x`}
+                height="20"
+                src={`https://flagcdn.com/${props.country}.svg`}
                 alt=""
               />
             </Box>
@@ -300,6 +292,16 @@ const teamMembers: Array<Profile> = [
     country: 'kr',
     about: 'Love reading 📚 and working out 🏋️‍♂️',
     github: 'hbjORbj',
+  },
+  {
+    src: '/static/branding/about/alexandre.jpg',
+    name: 'Alexandre Fauquette',
+    title: 'Advanced components team',
+    location: 'Nancy, France',
+    country: 'fr',
+    about: 'Love hacking and cycling 🚴‍♂️',
+    twitter: 'AleFauquette',
+    github: 'alexfauquette',
   },
 ];
 
@@ -678,7 +680,7 @@ function AboutContent() {
           <Grid item xs={12} sm={6} md={4}>
             <Widget
               icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />}
-              title="Suport us financially"
+              title="Support us financially"
             >
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 If you use MUI in a commercial project and would like to support its continued

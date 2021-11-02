@@ -3,6 +3,11 @@ import { OverridableStringUnion } from '@mui/types';
 import colors from '../colors';
 import { Components } from './components';
 
+/**
+ * ====================================================
+ * Developer facing types, they can augment these types.
+ * ====================================================
+ */
 export interface PaletteRange {
   50: string;
   100: string;
@@ -77,8 +82,27 @@ export interface StaticTheme {
 
 export interface ThemeWithoutVars extends StaticTheme, ColorSystems {}
 
-// @ts-ignore error from module augmentation inside the repository
-const themeWithoutVars = {
+/**
+ * ==============================================
+ * Internal type for definfing default Joy theme.
+ * ==============================================
+ */
+type BasePaletteRange = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+type BaseJoyTokens = {
+  palette: {
+    brand: Pick<PaletteRange, BasePaletteRange>;
+  };
+  borderRadius: Pick<BorderRadius, 'md'>;
+  htmlFontSize: React.CSSProperties['fontSize'];
+  fontSize: Pick<FontSize, 'md'>;
+  fontFamily: Pick<FontFamily, 'sans' | 'mono'>;
+  fontWeight: Pick<FontWeight, 'regular'>;
+  lineHeight: Pick<LineHeight, 'normal'>;
+  typography: Pick<TypographySystems, 'body'>;
+  shadow: Pick<Shadow, 'ring' | 'md'>;
+};
+
+const themeWithoutVars: BaseJoyTokens = {
   palette: {
     brand: colors.blue,
     neutral: colors.grey,
@@ -112,7 +136,9 @@ const themeWithoutVars = {
     ring: '0 0 0 0 rgba(0,0,0,0)',
     md: 'var(--shadows-ring), 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
   },
-} as ThemeWithoutVars;
+};
+
+// ---------------------------------------------------------------
 
 export interface JoyTheme extends ThemeWithoutVars {
   vars: ThemeWithoutVars;

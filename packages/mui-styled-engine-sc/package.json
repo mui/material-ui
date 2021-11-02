@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "5.0.3",
+  "version": "5.0.4",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
@@ -8,7 +8,7 @@
   "keywords": [
     "react",
     "react-component",
-    "material-ui",
+    "mui",
     "styled-components"
   ],
   "repository": {
@@ -41,8 +41,8 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "@types/styled-components": "^5.1.15",
-    "styled-components": "^5.3.3"
+    "@types/styled-components": "^5.1.14",
+    "styled-components": "^5.3.1"
   },
   "peerDependenciesMeta": {
     "@types/styled-components": {

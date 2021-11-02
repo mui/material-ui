@@ -5,7 +5,12 @@
     "cols": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "component": { "type": { "name": "elementType" } },
     "rows": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "ImageListItem",
   "styles": {

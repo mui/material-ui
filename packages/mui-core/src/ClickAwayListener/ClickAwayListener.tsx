@@ -1,9 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { elementAcceptingRef, exactProp } from '@mui/utils';
-import ownerDocument from '../utils/ownerDocument';
-import useForkRef from '../utils/useForkRef';
-import useEventCallback from '../utils/useEventCallback';
+import {
+  elementAcceptingRef,
+  exactProp,
+  unstable_ownerDocument as ownerDocument,
+  unstable_useForkRef as useForkRef,
+  unstable_useEventCallback as useEventCallback,
+} from '@mui/utils';
 
 // TODO: return `EventHandlerName extends `on${infer EventName}` ? Lowercase<EventName> : never` once generatePropTypes runs with TS 4.1
 function mapEventPropToEvent(
