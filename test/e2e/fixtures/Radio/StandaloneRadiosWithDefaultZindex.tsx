@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Radio from '@mui/material/Radio';
 
 const RadioWithDefaultZindex = styled(Radio)`
-  & input.css-1m9pwf3 {
+  & input {
     z-index: initial;
   }
 `;
