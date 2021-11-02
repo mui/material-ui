@@ -16,7 +16,7 @@ export default function ThemeProvider({
   theme,
 }: React.PropsWithChildren<{
   theme?: PartialDeep<Omit<JoyTheme, 'vars' | 'components'>> & {
-    components: JoyTheme['components'];
+    components?: JoyTheme['components'];
   };
 }>) {
   const { components, ...filteredTheme } = theme || {};
