@@ -8,10 +8,6 @@ import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
 import styled from '../styles/styled';
-import FirstPageIcon from '../internal/svg-icons/FirstPage';
-import LastPageIcon from '../internal/svg-icons/LastPage';
-import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
-import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant } = ownerState;
@@ -60,12 +56,6 @@ const Pagination = React.forwardRef(function Pagination(inProps, ref) {
     boundaryCount = 1,
     className,
     color = 'standard',
-    components = {
-      first: FirstPageIcon,
-      last: LastPageIcon,
-      next: NavigateNextIcon,
-      previous: NavigateBeforeIcon,
-    },
     count = 1,
     defaultPage = 1,
     disabled = false,
@@ -121,7 +111,6 @@ const Pagination = React.forwardRef(function Pagination(inProps, ref) {
             {renderItem({
               ...item,
               color,
-              components,
               'aria-label': getItemAriaLabel(item.type, item.page, item.selected),
               shape,
               size,
@@ -162,21 +151,6 @@ Pagination.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary', 'standard']),
     PropTypes.string,
   ]),
-  /**
-   * The components used for first, last, next & previous item type
-   * @default {
-   *   first: FirstPageIcon,
-   *   last: LastPageIcon,
-   *   next: NavigateNextIcon,
-   *   previous: NavigateBeforeIcon,
-   * }
-   */
-  components: PropTypes.shape({
-    first: PropTypes.elementType,
-    last: PropTypes.elementType,
-    next: PropTypes.elementType,
-    previous: PropTypes.elementType,
-  }),
   /**
    * The total number of pages.
    * @default 1

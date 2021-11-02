@@ -4,7 +4,6 @@
     "boundaryCount": "Number of always visible pages at the beginning and end.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The active color.",
-    "components": "The components used for first, last, next &amp; previous item type",
     "count": "The total number of pages.",
     "defaultPage": "The page selected by default when the component is uncontrolled.",
     "disabled": "If <code>true</code>, the component is disabled.",

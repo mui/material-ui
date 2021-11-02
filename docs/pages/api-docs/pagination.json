@@ -9,13 +9,6 @@
       },
       "default": "'standard'"
     },
-    "components": {
-      "type": {
-        "name": "shape",
-        "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
-      },
-      "default": "{\n  first: FirstPageIcon,\n  last: LastPageIcon,\n  next: NavigateNextIcon,\n  previous: NavigateBeforeIcon,\n}"
-    },
     "count": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "defaultPage": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "disabled": { "type": { "name": "bool" } },
