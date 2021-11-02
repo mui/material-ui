@@ -5,13 +5,16 @@
   "dependencies": {
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
+    "@mui/icons-material": "5.0.5",
     "@mui/material": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "formik": "2.2.9",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "yup": "0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
