@@ -21,8 +21,8 @@ const ScopedCssBaselineRoot = styled('div', {
   name: 'MuiScopedCssBaseline',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => ({
-  ...html(theme),
+})(({ theme, enableColorScheme }) => ({
+  html: html(theme, enableColorScheme),
   ...body(theme),
   '& *, & *::before, & *::after': {
     boxSizing: 'inherit',
@@ -76,6 +76,10 @@ ScopedCssBaseline.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * @ignore
+   */
+  enableColorScheme: PropTypes.bool,
 };
 
 export default ScopedCssBaseline;

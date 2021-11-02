@@ -12,6 +12,10 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
      * Override or extend the styles applied to the component.
      */
     classes?: Partial<ScopedCssBaselineClasses>;
+    /*
+     * Enable to use color-scheme property to set dark mode
+     */
+    enableColorScheme?: boolean;
   };
   defaultComponent: D;
 }
