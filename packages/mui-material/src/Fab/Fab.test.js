@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import {
   describeConformance,
-  createClientRender,
+  createRenderer,
   createServerRender,
   act,
   fireEvent,
@@ -12,7 +12,7 @@ import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import Icon from '@mui/material/Icon';
 
 describe('<Fab />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Fab>Conformance?</Fab>, () => ({
     classes,

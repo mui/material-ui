@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import * as React from 'react';
 import { stub } from 'sinon';
 import { createMochaHooks } from './mochaHooks';
-import { createClientRender, act } from './createClientRender';
+import { createRenderer, act } from './createRenderer';
 
 describe('mochaHooks', () => {
   // one block per hook.
@@ -48,7 +48,7 @@ describe('mochaHooks', () => {
     describe('dedupes missing act() warnings by component', () => {
       const mochaHooks = createMochaHooks(Mocha);
       // missing act warnings only happen in StrictMode
-      const render = createClientRender({ strict: true });
+      const { render } = createRenderer({ strict: true });
 
       beforeEach(function beforeEachHook() {
         mochaHooks.beforeAll.forEach((beforeAllMochaHook) => {

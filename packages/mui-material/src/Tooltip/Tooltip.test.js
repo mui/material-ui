@@ -4,7 +4,7 @@ import { spy, useFakeTimers } from 'sinon';
 import {
   describeConformance,
   act,
-  createClientRender,
+  createRenderer,
   fireEvent,
   screen,
   simulatePointerDevice,
@@ -44,7 +44,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <Tooltip title="Hello World" open>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  createClientRender,
+  createRenderer,
   act,
   fireEvent,
   fireDiscreteEvent,
@@ -25,7 +25,7 @@ describe('<SpeedDial />', () => {
     clock.restore();
   });
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   const icon = <Icon>font_icon</Icon>;
   const FakeAction = () => <div />;

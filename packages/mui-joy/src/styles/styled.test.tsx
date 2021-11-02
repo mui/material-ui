@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import { ThemeProvider, styled } from '@mui/joy/styles';
 import defaultTheme from './defaultTheme';
 
 const toPixel = (val: string | number | undefined) => (typeof val === 'number' ? `${val}px` : val);
 
 describe('[Joy] styled', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
   it('use defaultTheme given no ThemeProvider', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();

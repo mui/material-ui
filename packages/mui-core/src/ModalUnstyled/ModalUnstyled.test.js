@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import ModalUnstyled, { modalUnstyledClasses as classes } from '@mui/core/ModalUnstyled';
 
 describe('<ModalUnstyled />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
   let savedBodyStyle;
 
   before(() => {

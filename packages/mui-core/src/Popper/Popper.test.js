@@ -2,14 +2,14 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/system';
 import Grow from '@mui/material/Grow';
 import Popper from '@mui/core/Popper';
 
 describe('<Popper />', () => {
   let rtlTheme;
-  const render = createClientRender();
+  const { render } = createRenderer();
   const defaultProps = {
     anchorEl: () => document.createElement('svg'),
     children: <span>Hello World</span>,

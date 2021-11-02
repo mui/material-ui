@@ -3,10 +3,10 @@ import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy } from 'sinon';
-import { act, createClientRender, describeConformance, fireEvent } from 'test/utils';
+import { act, createRenderer, describeConformance, fireEvent } from 'test/utils';
 
 describe('<Tab />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Tab textColor="inherit" />, () => ({
     classes,

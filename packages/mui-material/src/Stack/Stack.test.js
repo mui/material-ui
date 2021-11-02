@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Stack from '@mui/material/Stack';
 import { createTheme } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import { style } from './Stack';
 
 describe('<Stack />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Stack />, () => ({
     render,

@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import {
   describeConformance,
   act,
-  createClientRender,
+  createRenderer,
   fireEvent,
   createServerRender,
 } from 'test/utils';
@@ -11,7 +11,7 @@ import Button, { buttonClasses as classes } from '@mui/material/Button';
 import ButtonBase from '@mui/material/ButtonBase';
 
 describe('<Button />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Button startIcon="icon">Conformance?</Button>, () => ({
     classes,

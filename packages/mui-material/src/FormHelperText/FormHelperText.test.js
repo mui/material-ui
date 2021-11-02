@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import FormHelperText, { formHelperTextClasses as classes } from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 
 describe('<FormHelperText />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<FormHelperText />, () => ({
     classes,

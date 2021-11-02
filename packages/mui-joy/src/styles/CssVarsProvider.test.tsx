@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, screen } from 'test/utils';
+import { createRenderer, screen } from 'test/utils';
 import { styled, CssVarsProvider, useTheme } from '@mui/joy/styles';
 import defaultTheme from './defaultTheme';
 
 describe('[Joy] CssVarsProvider', () => {
   let originalMatchmedia: typeof window.matchMedia;
-  const render = createClientRender();
+  const { render } = createRenderer();
   const storage: Record<string, string> = {};
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;

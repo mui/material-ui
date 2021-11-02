@@ -4,7 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   act,
-  createClientRender,
+  createRenderer,
   createServerRender,
   screen,
   RenderCounter,
@@ -40,7 +40,7 @@ function createMatchMedia(width, ref) {
 }
 
 describe('useMediaQuery', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describe('without window.matchMedia', () => {
     let originalMatchmedia;

@@ -2,13 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import FormGroup from '@mui/material/FormGroup';
 import Radio from '@mui/material/Radio';
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 
 describe('<RadioGroup />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<RadioGroup value="" />, () => ({
     classes: {},

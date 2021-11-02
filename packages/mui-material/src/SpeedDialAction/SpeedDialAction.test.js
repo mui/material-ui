@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
 import { useFakeTimers } from 'sinon';
 import Icon from '@mui/material/Icon';
 import Tooltip from '@mui/material/Tooltip';
@@ -17,7 +17,7 @@ describe('<SpeedDialAction />', () => {
     clock.restore();
   });
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,

@@ -4,11 +4,15 @@ import * as ReactDOMServer from 'react-dom/server';
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
 import {
+  act as rtlAct,
   buildQueries,
   cleanup,
+  fireEvent as rtlFireEvent,
   queries,
   queryHelpers,
   render as testingLibraryRender,
+  prettyDOM,
+  within,
   RenderResult,
 } from '@testing-library/react/pure';
 
@@ -317,7 +321,7 @@ interface Renderer {
   renderToString(element: React.ReactElement, options?: RenderOptions): MuiRenderToStringResult;
 }
 
-export default function createRenderer(globalOptions: RenderOptions = {}): Renderer {
+export function createRenderer(globalOptions: RenderOptions = {}): Renderer {
   const {
     legacyRoot: globalLegacyRoot,
     strict: globalStrict,
@@ -327,8 +331,8 @@ export default function createRenderer(globalOptions: RenderOptions = {}): Rende
   const { stack: createClientRenderStack } = new Error();
 
   /**
-   * Flag whether `createClientRender` was called in a suite i.e. describe() block.
-   * For legacy reasons `createClientRender` might accidentally be called in a before(Each) hook.
+   * Flag whether `createRenderer` was called in a suite i.e. describe() block.
+   * For legacy reasons `createRenderer` might accidentally be called in a before(Each) hook.
    */
   let wasCalledInSuite = false;
   before(function beforeHook() {
@@ -340,9 +344,9 @@ export default function createRenderer(globalOptions: RenderOptions = {}): Rende
         .stack!.split(/\r?\n/)
         .map((line) => {
           const fileMatch =
-            // chrome: "    at Context.beforeHook (webpack-internal:///./test/utils/createClientRender.tsx:257:24)""
+            // chrome: "    at Context.beforeHook (webpack-internal:///./test/utils/createRenderer.tsx:257:24)""
             line.match(/\(([^)]+):\d+:\d+\)/) ??
-            // firefox: "beforeHook@webpack-internal:///./test/utils/createClientRender.tsx:257:24"
+            // firefox: "beforeHook@webpack-internal:///./test/utils/createRenderer.tsx:257:24"
             line.match(/@(.*?):\d+:\d+$/);
           if (fileMatch === null) {
             return null;
@@ -350,9 +354,9 @@ export default function createRenderer(globalOptions: RenderOptions = {}): Rende
           return fileMatch[1];
         })
         .find((file) => {
-          return file?.endsWith('createClientRender.tsx');
+          return file?.endsWith('createRenderer.tsx');
         });
-      workspaceRoot = filename!.replace('test/utils/createClientRender.tsx', '');
+      workspaceRoot = filename!.replace('test/utils/createRenderer.tsx', '');
     }
   });
 
@@ -370,7 +374,7 @@ export default function createRenderer(globalOptions: RenderOptions = {}): Rende
   beforeEach(function beforeEachHook() {
     if (!wasCalledInSuite) {
       const error = new Error(
-        'Unable to run `before` hook for `createClientRender`. This usually indicates that `createClientRender` was called in a `before` hook instead of in a `describe()` block.',
+        'Unable to run `before` hook for `createRenderer`. This usually indicates that `createRenderer` was called in a `before` hook instead of in a `describe()` block.',
       );
       error.stack = createClientRenderStack;
       throw error;
@@ -398,7 +402,7 @@ export default function createRenderer(globalOptions: RenderOptions = {}): Rende
         "Can't cleanup before fake timers are restored.\n" +
           'Be sure to:\n' +
           '  1. Restore the clock in `afterEach` instead of `after`.\n' +
-          '  2. Move the test hook to restore the clock before the call to `createClientRender()`.',
+          '  2. Move the test hook to restore the clock before the call to `createRenderer()`.',
       );
       // Use saved stack otherwise the stack trace will not include the test location.
       error.stack = createClientRenderStack;
@@ -481,3 +485,123 @@ export default function createRenderer(globalOptions: RenderOptions = {}): Rende
     },
   };
 }
+
+const fireEvent = ((target, event, ...args) => {
+  return traceSync(`firEvent.${event.type}`, () => rtlFireEvent(target, event, ...args));
+}) as typeof rtlFireEvent;
+
+Object.keys(rtlFireEvent).forEach(
+  // @ts-expect-error
+  (eventType: keyof typeof rtlFireEvent) => {
+    fireEvent[eventType] = (...args) =>
+      traceSync(`firEvent.${eventType}`, () => rtlFireEvent[eventType](...args));
+  },
+);
+
+const originalFireEventKeyDown = rtlFireEvent.keyDown;
+fireEvent.keyDown = (desiredTarget, options = {}) => {
+  const element = desiredTarget as Element | Document;
+  // `element` shouldn't be `document` but we catch this later anyway
+  const document = element.ownerDocument || element;
+  const target = document.activeElement || document.body || document.documentElement;
+  if (target !== element) {
+    // see https://www.w3.org/TR/uievents/#keydown
+    const error = new Error(
+      `\`keydown\` events can only be targeted at the active element which is ${prettyDOM(
+        target,
+        undefined,
+        { maxDepth: 1 },
+      )}`,
+    );
+    // We're only interested in the callsite of fireEvent.keyDown
+    error.stack = error
+      .stack!.split('\n')
+      .filter((line) => !/at Function.key/.test(line))
+      .join('\n');
+    throw error;
+  }
+
+  return traceSync('fireEvent.keyDown', () => originalFireEventKeyDown(element, options));
+};
+
+const originalFireEventKeyUp = rtlFireEvent.keyUp;
+fireEvent.keyUp = (desiredTarget, options = {}) => {
+  const element = desiredTarget as Element | Document;
+  // `element` shouldn't be `document` but we catch this later anyway
+  const document = element.ownerDocument || element;
+  const target = document.activeElement || document.body || document.documentElement;
+  if (target !== element) {
+    // see https://www.w3.org/TR/uievents/#keyup
+    const error = new Error(
+      `\`keyup\` events can only be targeted at the active element which is ${prettyDOM(
+        target,
+        undefined,
+        { maxDepth: 1 },
+      )}`,
+    );
+    // We're only interested in the callsite of fireEvent.keyUp
+    error.stack = error
+      .stack!.split('\n')
+      .filter((line) => !/at Function.key/.test(line))
+      .join('\n');
+    throw error;
+  }
+
+  return traceSync('fireEvent.keyUp', () => originalFireEventKeyUp(element, options));
+};
+
+export function fireTouchChangedEvent(
+  target: Element,
+  type: 'touchmove' | 'touchend',
+  options: { changedTouches: Array<Pick<TouchInit, 'clientX' | 'clientY'>> },
+): void {
+  const { changedTouches } = options;
+  const originalGetBoundingClientRect = target.getBoundingClientRect;
+  target.getBoundingClientRect = () => ({
+    x: 0,
+    y: 0,
+    bottom: 0,
+    height: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    width: 0,
+    toJSON() {
+      return {
+        x: 0,
+        y: 0,
+        bottom: 0,
+        height: 0,
+        left: 0,
+        right: 0,
+        top: 0,
+        width: 0,
+      };
+    },
+  });
+
+  const event = new window.TouchEvent(type, {
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+    changedTouches: changedTouches.map(
+      (opts) =>
+        new window.Touch({
+          target,
+          identifier: 0,
+          ...opts,
+        }),
+    ),
+  });
+
+  fireEvent(target, event);
+  target.getBoundingClientRect = originalGetBoundingClientRect;
+}
+
+export function act(callback: () => void) {
+  return traceSync('act', () => rtlAct(callback));
+}
+
+export * from '@testing-library/react/pure';
+export { cleanup, fireEvent };
+export const screen = within(document.body, { ...queries, ...customQueries });

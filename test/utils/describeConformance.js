@@ -199,7 +199,7 @@ export function testReactTestRenderer(element) {
  * @property {object} classes - `classes` of the component provided by `@mui/styled-engine`
  * @property {import('react').ElementType} [inheritComponent] - The element type that receives spread props or `undefined` if props are not spread.
  * @property {string} muiName
- * @property {(node: React.ReactElement) => import('./createClientRender').MuiRenderResult} [render] - Should be a return value from createClientRender
+ * @property {(node: React.ReactElement) => import('./createRenderer').MuiRenderResult} [render] - Should be a return value from createRenderer
  * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
  * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
  * @property {Array<keyof typeof fullSuite>} [skip] - Skip the specified tests
