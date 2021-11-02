@@ -7,6 +7,15 @@ import Accordion, { accordionClasses as classes } from '@mui/material/Accordion'
 import Paper from '@mui/material/Paper';
 import AccordionSummary from '@mui/material/AccordionSummary';
 
+function NoTransition(props) {
+  const { children, in: inProp } = props;
+
+  if (!inProp) {
+    return null;
+  }
+  return children;
+}
+
 describe('<Accordion />', () => {
   const render = createClientRender();
 
@@ -44,7 +53,11 @@ describe('<Accordion />', () => {
   });
 
   it('should be controlled', () => {
-    const { container, setProps } = render(<Accordion expanded>{minimalChildren}</Accordion>);
+    const { container, setProps } = render(
+      <Accordion expanded TransitionComponent={NoTransition}>
+        {minimalChildren}
+      </Accordion>,
+    );
     const panel = container.firstChild;
     expect(panel).to.have.class(classes.expanded);
     setProps({ expanded: false });
@@ -53,7 +66,11 @@ describe('<Accordion />', () => {
 
   it('should call onChange when clicking the summary element', () => {
     const handleChange = spy();
-    const { getByText } = render(<Accordion onChange={handleChange}>{minimalChildren}</Accordion>);
+    const { getByText } = render(
+      <Accordion onChange={handleChange} TransitionComponent={NoTransition}>
+        {minimalChildren}
+      </Accordion>,
+    );
     fireEvent.click(getByText('Header'));
     expect(handleChange.callCount).to.equal(1);
   });
@@ -152,7 +169,11 @@ describe('<Accordion />', () => {
   });
 
   it('should warn when switching from controlled to uncontrolled', () => {
-    const wrapper = render(<Accordion expanded>{minimalChildren}</Accordion>);
+    const wrapper = render(
+      <Accordion expanded TransitionComponent={NoTransition}>
+        {minimalChildren}
+      </Accordion>,
+    );
 
     expect(() => wrapper.setProps({ expanded: undefined })).to.toErrorDev(
       'MUI: A component is changing the controlled expanded state of Accordion to be uncontrolled.',
@@ -160,7 +181,9 @@ describe('<Accordion />', () => {
   });
 
   it('should warn when switching between uncontrolled to controlled', () => {
-    const { setProps } = render(<Accordion>{minimalChildren}</Accordion>);
+    const { setProps } = render(
+      <Accordion TransitionComponent={NoTransition}>{minimalChildren}</Accordion>,
+    );
 
     expect(() => setProps({ expanded: true })).toErrorDev(
       'MUI: A component is changing the uncontrolled expanded state of Accordion to be controlled.',
