@@ -192,8 +192,8 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
             return;
           }
 
-          const parentWidth = masonryRef.current.clientWidth;
-          const childWidth = masonryRef.current.firstChild.clientWidth;
+          const parentWidth = masonry.contentRect.width;
+          const childWidth = masonryFirstChild.contentRect.width;
           const firstChildComputedStyle = window.getComputedStyle(masonryRef.current.firstChild);
           const firstChildMarginLeft = parseToNumber(firstChildComputedStyle.marginLeft);
           const firstChildMarginRight = parseToNumber(firstChildComputedStyle.marginRight);
@@ -208,7 +208,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
           const columnHeights = new Array(currentNumberOfColumns).fill(0);
           let skip = false;
-          masonryRef.current.childNodes.forEach((child) => {
+          masonry.target.childNodes.forEach((child) => {
             if (
               child.nodeType !== Node.ELEMENT_NODE ||
               child.dataset.class === 'line-break' ||
