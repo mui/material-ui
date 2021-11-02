@@ -6,29 +6,24 @@ import traverse from '@babel/traverse';
 import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
 import * as prettier from 'prettier';
-import * as recast from 'recast';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import * as yargs from 'yargs';
-import * as doctrine from 'doctrine';
-import {
-  defaultHandlers,
-  parse as docgenParse,
-  PropDescriptor,
-  PropTypeDescriptor,
-  ReactDocgenApi,
-} from 'react-docgen';
+import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import { LANGUAGES } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
 import generatePropTypeDescription, {
-  escapeCell,
-  isElementTypeAcceptingRefProp,
-  isElementAcceptingRefProp,
+  getChained,
 } from 'docs/src/modules/utils/generatePropTypeDescription';
 import { findPages, findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
 import { getHeaders, renderInline as renderMarkdownInline } from '@mui/markdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import createDescribeableProp, {
+  DescribeablePropDescriptor,
+} from 'docs/src/modules/utils/createDescribeableProp';
+import generatePropDescription from 'docs/src/modules/utils/generatePropDescription';
+import parseStyles, { Styles } from 'docs/src/modules/utils/parseStyles';
 import createGenerateClassName from '@mui/styles/createGenerateClassName';
 import * as ttp from 'typescript-to-proptypes';
 import { getLineFeed, getUnstyledFilename } from './helpers';
@@ -62,249 +57,12 @@ interface ReactApi extends ReactDocgenApi {
   name: string;
   spread: boolean | undefined;
   src: string;
-  styles: {
-    classes: string[];
-    globalClasses: Record<string, string>;
-    name: string | null;
-    descriptions: Record<string, string>;
-  };
-}
-interface DescribeablePropDescriptor {
-  annotation: doctrine.Annotation;
-  defaultValue: string | null;
-  required: boolean;
-  type: PropTypeDescriptor;
+  styles: Styles;
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography'];
 
 const generateClassName = createGenerateClassName();
-
-function getDeprecatedInfo(type: PropTypeDescriptor) {
-  const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
-  const match = type.raw.match(marker);
-  const startIndex = type.raw.search(marker);
-  if (match) {
-    const offset = match[0].length;
-
-    return {
-      propTypes: type.raw.substring(startIndex + offset, type.raw.indexOf(',')),
-      explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
-    };
-  }
-
-  return false;
-}
-
-function getChained(type: PropTypeDescriptor): false | PropDescriptor {
-  if (type.raw) {
-    const marker = 'chainPropTypes';
-    const indexStart = type.raw.indexOf(marker);
-
-    if (indexStart !== -1) {
-      const parsed: ReactApi = docgenParse(
-        `
-        import PropTypes from 'prop-types';
-        const Foo = () => <div />
-        Foo.propTypes = {
-          bar: ${recast.print(recast.parse(type.raw).program.body[0].expression.arguments[0]).code}
-        }
-        export default Foo
-      `,
-        null,
-        null,
-        // helps react-docgen pickup babel.config.js
-        { filename: './' },
-      );
-      return {
-        type: parsed.props.bar.type,
-        required: parsed.props.bar.required,
-      };
-    }
-  }
-
-  return false;
-}
-
-/**
- * Returns `null` if the prop should be ignored.
- * Throws if it is invalid.
- * @param prop
- * @param propName
- */
-function createDescribeableProp(
-  prop: PropDescriptor,
-  propName: string,
-): DescribeablePropDescriptor | null {
-  const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
-
-  const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
-  const renderDefaultValue = Boolean(
-    renderedDefaultValue &&
-      // Ignore "large" default values that would break the table layout.
-      renderedDefaultValue.length <= 150,
-  );
-
-  if (description === undefined) {
-    throw new Error(`The "${propName}" prop is missing a description.`);
-  }
-
-  const annotation = doctrine.parse(description, {
-    sloppy: true,
-  });
-
-  if (
-    annotation.description.trim() === '' ||
-    annotation.tags.some((tag) => tag.title === 'ignore')
-  ) {
-    return null;
-  }
-
-  if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
-    // Assume that this prop:
-    // 1. Is typed by another component
-    // 2. Is forwarded to that component
-    // Then validation is handled by the other component.
-    // Though this does break down if the prop is used in other capacity in the implementation.
-    // So let's hope we don't make this mistake too often.
-  } else if (jsdocDefaultValue === undefined && defaultValue !== undefined && renderDefaultValue) {
-    const shouldHaveDefaultAnnotation =
-      // Discriminator for polymorphism which is not documented at the component level.
-      // The documentation of `component` does not know in which component it is used.
-      propName !== 'component';
-
-    if (shouldHaveDefaultAnnotation) {
-      throw new Error(
-        `JSDoc @default annotation not found. Add \`@default ${defaultValue.value}\` to the JSDoc of this prop.`,
-      );
-    }
-  } else if (jsdocDefaultValue !== undefined) {
-    // `defaultValue` can't be undefined or we would've thrown earlier.
-    if (jsdocDefaultValue.value !== defaultValue!.value) {
-      throw new Error(
-        `Expected JSDoc @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
-      );
-    }
-  }
-
-  return {
-    annotation,
-    defaultValue: renderDefaultValue ? renderedDefaultValue! : null,
-    required: Boolean(required),
-    type,
-  };
-}
-
-function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
-  if (type.type === 'AllLiteral') {
-    return 'any';
-  }
-
-  if (type.type === 'VoidLiteral') {
-    return 'void';
-  }
-
-  if (type.type === 'NullLiteral') {
-    return 'null';
-  }
-
-  if (type.type === 'TypeApplication') {
-    return `${resolveType(type.expression)}<${type.applications
-      .map((typeApplication) => {
-        return resolveType(typeApplication);
-      })
-      .join(', ')}>`;
-  }
-
-  if (type.type === 'UnionType') {
-    return type.elements.map((t) => resolveType(t)).join(' | ');
-  }
-
-  if ('name' in type) {
-    return type.name;
-  }
-  throw new TypeError(`resolveType for '${type.type}' not implemented`);
-}
-
-function generatePropDescription(prop: DescribeablePropDescriptor, propName: string): string {
-  const { annotation } = prop;
-  const type = prop.type;
-  let deprecated = '';
-
-  if (type.name === 'custom') {
-    const deprecatedInfo = getDeprecatedInfo(type);
-    if (deprecatedInfo) {
-      deprecated = `*Deprecated*. ${deprecatedInfo.explanation}<br><br>`;
-    }
-  }
-
-  // Two new lines result in a newline in the table.
-  // All other new lines must be eliminated to prevent markdown mayhem.
-  const jsDocText = escapeCell(annotation.description)
-    .replace(/(\r?\n){2}/g, '<br>')
-    .replace(/\r?\n/g, ' ');
-
-  let signature = '';
-
-  // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
-  // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
-  const parsedArgs: readonly doctrine.Tag[] = annotation.tags.filter(
-    (tag) => tag.title === 'param',
-  );
-  let parsedReturns: { description?: string | null; type?: doctrine.Type | null } | undefined =
-    annotation.tags.find((tag) => tag.title === 'returns');
-  if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
-    parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
-
-    // Remove new lines from tag descriptions to avoid markdown errors.
-    annotation.tags.forEach((tag) => {
-      if (tag.description) {
-        tag.description = tag.description.replace(/\r*\n/g, ' ');
-      }
-    });
-
-    signature += '<br><br>**Signature:**<br>`function(';
-    signature += parsedArgs
-      .map((tag, index) => {
-        if (tag.type != null && tag.type.type === 'OptionalType') {
-          return `${tag.name}?: ${(tag.type.expression as any).name}`;
-        }
-
-        if (tag.type === undefined) {
-          throw new TypeError(
-            `In function signature for prop '${propName}' Argument #${index} has no type.`,
-          );
-        }
-        return `${tag.name}: ${resolveType(tag.type!)}`;
-      })
-      .join(', ');
-
-    const returnType = parsedReturns.type;
-    if (returnType == null) {
-      throw new TypeError(
-        `Function signature for prop '${propName}' has no return type. Try \`@returns void\`. Otherwise it might be a bug with doctrine.`,
-      );
-    }
-
-    const returnTypeName = resolveType(returnType);
-
-    signature += `) => ${returnTypeName}\`<br>`;
-    signature += parsedArgs
-      .filter((tag) => tag.description)
-      .map((tag) => `*${tag.name}:* ${tag.description}`)
-      .join('<br>');
-    if (parsedReturns.description) {
-      signature += `<br> *returns* (${returnTypeName}): ${parsedReturns.description}`;
-    }
-  }
-
-  let notes = '';
-  if (isElementAcceptingRefProp(type) || isElementTypeAcceptingRefProp(type)) {
-    notes += '<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs).';
-  }
-
-  return `${deprecated}${jsDocText}${signature}${notes}`;
-}
 
 function writePrettifiedFile(
   filename: string,
@@ -527,90 +285,6 @@ function generateMuiName(name: string) {
   return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
 }
 
-async function parseStyles(api: ReactApi, program: ttp.ts.Program): Promise<ReactApi['styles']> {
-  // component has no classes
-  // or they're inherited from an external component and we don't want them documented on this component.
-  if (api.props.classes === undefined) {
-    return {
-      classes: [],
-      descriptions: {},
-      globalClasses: {},
-      name: null,
-    };
-  }
-
-  const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
-  const proptypes = ttp.parseFromProgram(typesFilename, program, {
-    shouldResolveObject: ({ name }) => {
-      return name === 'classes';
-    },
-    checkDeclarations: true,
-  });
-
-  const component = proptypes.body.find((internalComponent) => {
-    return internalComponent.name === api.name;
-  });
-  if (component === undefined) {
-    return {
-      classes: [],
-      descriptions: {},
-      globalClasses: {},
-      name: null,
-    };
-    // TODO: should we throw?
-    // throw new TypeError(
-    //   `Unable to find declaration of ${api.name} in one of the ${
-    //     proptypes.body.length
-    //   } components: ${proptypes.body.map(({ name }) => name)}`,
-    // );
-  }
-
-  const classes = component.types.find((propType) => {
-    const isClassesProp = propType.name === 'classes';
-
-    return isClassesProp;
-  });
-
-  let classesPropType: ttp.InterfaceType | undefined;
-  if (classes?.propType.type === 'InterfaceNode') {
-    // classes: {}
-    classesPropType = classes.propType;
-  } else if (classes?.propType.type === 'UnionNode') {
-    // classes?: {}
-    classesPropType = classes.propType.types.find((propType): propType is ttp.InterfaceType => {
-      return propType.type === 'InterfaceNode';
-    });
-  }
-  if (classesPropType === undefined) {
-    return {
-      classes: [],
-      descriptions: {},
-      globalClasses: {},
-      name: null,
-    };
-  }
-
-  return {
-    classes: classesPropType.types.map((unionMember) => {
-      const [className] = unionMember;
-      return className;
-    }),
-    descriptions: Object.fromEntries(
-      classesPropType.types
-        .map((unionMember) => {
-          const [className, { jsDoc }] = unionMember;
-
-          return [className, jsDoc];
-        })
-        .filter((descriptionEntry) => {
-          return descriptionEntry[1] !== undefined;
-        }),
-    ),
-    globalClasses: {},
-    name: null,
-  };
-}
-
 /**
  * Substitute CSS class description conditions with placeholder
  */
@@ -774,6 +448,7 @@ async function buildDocs(options: {
     Object.keys(unstyledReactAPI.props).forEach((prop) => {
       if (
         unstyledReactAPI.props[prop].defaultValue &&
+        reactApi.props &&
         (!reactApi.props[prop] || !reactApi.props[prop].defaultValue)
       ) {
         if (reactApi.props[prop]) {
@@ -833,7 +508,7 @@ async function buildDocs(options: {
     deprecated: true | undefined;
     deprecationInfo: string | undefined;
   }>(
-    Object.entries(reactApi.props).map(([propName, propDescriptor]) => {
+    Object.entries(reactApi.props!).map(([propName, propDescriptor]) => {
       let prop: DescribeablePropDescriptor | null;
       try {
         prop = createDescribeableProp(propDescriptor, propName);
