@@ -236,6 +236,11 @@ Button.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
+   * If `true`, the button will take up the full width of its container.
+   * @default false
+   */
+  fullWidth: PropTypes.bool,
+  /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
