@@ -28,7 +28,7 @@ const SearchButton = styled('button')(({ theme }) => {
       padding: 0,
       minWidth: 33,
       justifyContent: 'center',
-      '& > *:not(:first-child)': {
+      '& > *:not(.MuiSvgIcon-root)': {
         display: 'none',
       },
     },
@@ -246,7 +246,7 @@ export default function AppSearch() {
 
   return (
     <React.Fragment>
-      <SearchButton disableFocusRipple ref={searchButtonRef} onClick={onOpen}>
+      <SearchButton ref={searchButtonRef} onClick={onOpen}>
         <SearchIcon
           fontSize="small"
           sx={{
