@@ -71,9 +71,11 @@ Here are a few initiatives you might work on:
 - You are passionate about helping other developers solve problems and have an educational mindset.
 - You have some formal or informal experience in teaching: training, tutoring, mentoring, etc.
 - Hands-on developer who is comfortable with full-stack development.
+- You are passionate UI development.
 
 ### What would be nice if you had, but isn't required
 
+- Experience in building community across some of the following channels: Twitter, YouTube, Twitch, Discord, blogs, meetups, public speaking & events
 - Experience working with open-source and/or with the open-source community.
 - Experience working with/editing video.
 - Experience using MUI.
