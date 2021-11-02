@@ -40,8 +40,8 @@ We are looking for a dedicated educator and experienced developer to join us as 
 
 ### What you'll do on a day-to-day basis
 
-- You will monitor success metrics, consider how effective initiatives are at achieving goals and adjust effort accordingly
-- You will create and implement plans to build, enable and nurture our community, using tactics such as events, meetups, livestreams, videos, blogs, courses, social media and partnerships
+- You will monitor success metrics, consider how effective initiatives are at achieving goals and adjust effort accordingly.
+- You will create and implement plans to build, enable and nurture our community, using tactics such as events, meetups, livestreams, videos, blogs, courses, social media and partnerships.
 - You will compose interesting blog posts. You will be writing tutorials and other technical content.
 - You will participate in and speak at events, and online live streams.
 - You will build inspiring apps, examples, and improve the documentation where needed.
