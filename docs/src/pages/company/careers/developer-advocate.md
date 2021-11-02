@@ -24,9 +24,9 @@ We have underinvested in this area for too long.
 Your mission will be to be the voice of the developers of the community inside the company.
 We are looking for someone that can generate the following outcomes:
 
+- Amplify the need of the community so the product direction aims at what people need the most.
 - Improve the overall developer experience, resulting in better NPS & CSAT scores.
 - Create momentum in the community and drive adoption of the library.
-- Amplify the need of the community so the product direction aims at what people need the most.
 
 ### Why this is interesting
 
