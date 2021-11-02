@@ -116,24 +116,6 @@ In some cases, you might need to add `/* eslint-disable import/first */` at the 
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
 ```
 
-### Create react app
-
-Use ClassNameGenerator in `/src/index.js`.
-
-```diff
-+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
-
-+ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
-
-import * as React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-
-ReactDOM.render(
-  <App />,
-);
-```
-
 ### Next.js
 
 Use ClassNameGenerator in `/pages/_app.js`.
@@ -154,6 +136,24 @@ export default function MyApp(props) {
     <Component {...pageProps} />
   );
 }
+```
+
+### Create react app
+
+Use ClassNameGenerator in `/src/index.js`.
+
+```diff
++import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
+
++ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
+
+import * as React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(
+  <App />,
+);
 ```
 
 ### Gatsby
