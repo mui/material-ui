@@ -4,7 +4,8 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useButton } from '@mui/core/ButtonUnstyled';
 import composeClasses from '@mui/core/composeClasses';
-import { styled } from '../styles';
+import { styled, useThemeProps } from '../styles';
+import { rootShouldForwardProp } from '../styles/styled';
 import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
@@ -59,6 +60,7 @@ const ButtonRoot = styled('button', {
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
+  shouldForwardProp: rootShouldForwardProp,
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   const colorPalette = theme.vars.palette[ownerState.color || 'brand'];
   return [
@@ -138,7 +140,7 @@ const ButtonRoot = styled('button', {
 });
 
 const Button = React.forwardRef(function Button(inProps, ref) {
-  const props = inProps;
+  const props = useThemeProps({ props: inProps, name: 'JoyButton' });
 
   const {
     children,
