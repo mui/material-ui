@@ -12,6 +12,10 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { getMasonryUtilityClass } from './masonryClasses';
 
+export const parseToNumber = (val) => {
+  return Number(val.replace('px', ''));
+};
+
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
@@ -20,40 +24,6 @@ const useUtilityClasses = (ownerState) => {
   };
 
   return composeClasses(slots, getMasonryUtilityClass, classes);
-};
-
-// compute base for responsive values; e.g.,
-// [1,2,3] => {xs: true, sm: true, md: true}
-// {xs: 1, sm: 2, md: 3} => {xs: true, sm: true, md: true}
-const computeBreakpointsBase = (breakpoints, prop) => {
-  const base = {};
-  if (Array.isArray(prop)) {
-    Object.keys(breakpoints.values).forEach((breakpoint, i, arr) => {
-      if (i < arr.length) {
-        base[breakpoint] = true;
-      }
-    });
-  } else {
-    Object.keys(breakpoints.values).forEach((breakpoint) => {
-      if (prop[breakpoint] != null) {
-        base[breakpoint] = true;
-      }
-    });
-  }
-  return base;
-};
-
-// if prop is an array, convert to object; e.g.,
-// (base: {xs: true, sm: true, md: true}, prop: [1,2,3]) => {xs: 1, sm: 2, md: 3}
-const validatePropValues = (base, prop) => {
-  const values = {};
-  if (Array.isArray(prop)) {
-    Object.keys(base).forEach((breakpoint, i) => {
-      values[breakpoint] = prop[i];
-    });
-    return values;
-  }
-  return prop;
 };
 
 export const getStyle = ({ ownerState, theme }) => {
@@ -94,10 +64,9 @@ export const getStyle = ({ ownerState, theme }) => {
     };
   }
 
-  const spacingBreakpointsBase = computeBreakpointsBase(theme.breakpoints, ownerState.spacing);
   const spacingValues = resolveBreakpointValues({
-    values: validatePropValues(spacingBreakpointsBase, ownerState.spacing),
-    base: spacingBreakpointsBase,
+    values: ownerState.spacing,
+    breakpoints: theme.breakpoints.values,
   });
 
   const transformer = createUnarySpacing(theme);
@@ -120,10 +89,9 @@ export const getStyle = ({ ownerState, theme }) => {
     handleBreakpoints({ theme }, spacingValues, spacingStyleFromPropValue),
   );
 
-  const columnBreakpointsBase = computeBreakpointsBase(theme.breakpoints, ownerState.columns);
   const columnValues = resolveBreakpointValues({
-    values: validatePropValues(columnBreakpointsBase, ownerState.columns),
-    base: columnBreakpointsBase,
+    values: ownerState.columns,
+    breakpoints: theme.breakpoints.values,
   });
 
   const columnStyleFromPropValue = (propValue) => {
@@ -219,8 +187,8 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       const parentWidth = masonryRef.current.clientWidth;
       const childWidth = masonryRef.current.firstChild.clientWidth;
       const firstChildComputedStyle = window.getComputedStyle(masonryRef.current.firstChild);
-      const firstChildMarginLeft = Number(firstChildComputedStyle.marginLeft.replace('px', ''));
-      const firstChildMarginRight = Number(firstChildComputedStyle.marginRight.replace('px', ''));
+      const firstChildMarginLeft = parseToNumber(firstChildComputedStyle.marginLeft);
+      const firstChildMarginRight = parseToNumber(firstChildComputedStyle.marginRight);
 
       if (parentWidth === 0 || childWidth === 0) {
         return;
@@ -237,11 +205,11 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
           return;
         }
         const childComputedStyle = window.getComputedStyle(child);
-        const childMarginTop = Number(childComputedStyle.marginTop.replace('px', ''));
-        const childMarginBottom = Number(childComputedStyle.marginBottom.replace('px', ''));
+        const childMarginTop = parseToNumber(childComputedStyle.marginTop);
+        const childMarginBottom = parseToNumber(childComputedStyle.marginBottom);
         // if any one of children isn't rendered yet, masonry's height shouldn't be computed yet
-        const childHeight = child.clientHeight
-          ? Math.ceil(child.clientHeight) + childMarginTop + childMarginBottom
+        const childHeight = parseToNumber(childComputedStyle.height)
+          ? Math.ceil(parseToNumber(childComputedStyle.height)) + childMarginTop + childMarginBottom
           : 0;
         if (childHeight === 0) {
           skip = true;
@@ -272,7 +240,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
     // IE and old browsers are not supported
     if (typeof ResizeObserver === 'undefined') {
-      return null;
+      return undefined;
     }
     const resizeObserver = new ResizeObserver(handleResize);
 
@@ -288,7 +256,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     return () => {
       resizeObserver.disconnect();
     };
-  }, [columns, spacing]);
+  }, [columns, spacing, children]);
 
   const handleRef = useForkRef(ref, masonryRef);
   const lineBreakStyle = {
@@ -377,7 +345,11 @@ Masonry.propTypes /* remove-proptypes */ = {
   /**
    * Allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 };
 
 export default Masonry;

@@ -184,7 +184,7 @@ export function ThemeProvider(props) {
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
   React.useEffect(() => {
-    if (process.browser) {
+    if (typeof window !== 'undefined') {
       const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
       const nextPaletteMode = getCookie('paletteMode') || preferredMode;
 
@@ -248,7 +248,7 @@ export function ThemeProvider(props) {
 
   React.useEffect(() => {
     // Expose the theme as a global variable so people can play with it.
-    if (process.browser) {
+    if (typeof window !== 'undefined') {
       window.theme = theme;
       window.createTheme = createTheme;
     }

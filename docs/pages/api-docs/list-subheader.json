@@ -13,7 +13,12 @@
     "disableGutters": { "type": { "name": "bool" } },
     "disableSticky": { "type": { "name": "bool" } },
     "inset": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "ListSubheader",
   "styles": {

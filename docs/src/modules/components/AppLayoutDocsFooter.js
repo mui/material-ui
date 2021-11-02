@@ -150,7 +150,7 @@ async function submitFeedback(page, rating, comment, language) {
 
 function getCurrentRating(pathname) {
   let userFeedback;
-  if (process.browser) {
+  if (typeof window !== 'undefined') {
     userFeedback = getCookie('feedback');
     userFeedback = userFeedback && JSON.parse(userFeedback);
   }

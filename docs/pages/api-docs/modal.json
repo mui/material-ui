@@ -26,7 +26,12 @@
     "keepMounted": { "type": { "name": "bool" } },
     "onBackdropClick": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "Modal",
   "styles": { "classes": ["root", "hidden"], "globalClasses": {}, "name": "MuiModal" },
