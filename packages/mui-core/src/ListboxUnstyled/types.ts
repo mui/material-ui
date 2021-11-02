@@ -11,8 +11,8 @@ export type UseListboxStrictProps<TOption> = Omit<
 > &
   Required<Pick<UseListboxProps<TOption>, UseListboxStrictPropsRequiredKeys>>;
 
-interface ItemClickAction<TOption> {
-  type: 'itemClick';
+interface OptionClickAction<TOption> {
+  type: 'optionClick';
   optionIndex: number;
   option: TOption;
   event: React.MouseEvent;
@@ -43,7 +43,7 @@ interface SetControlledValueAction<TOption> {
 }
 
 export type ListboxAction<TOption> =
-  | ItemClickAction<TOption>
+  | OptionClickAction<TOption>
   | FocusAction<TOption>
   | BlurAction<TOption>
   | KeyDownAction<TOption>

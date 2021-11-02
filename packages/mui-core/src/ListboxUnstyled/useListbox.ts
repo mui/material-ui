@@ -123,7 +123,7 @@ export default function useListbox<TOption>(
       event.preventDefault();
 
       dispatch({
-        type: 'itemClick',
+        type: 'optionClick',
         option,
         optionIndex,
         event,

@@ -288,7 +288,7 @@ function handleBlur<TOption>(state: ListboxState<TOption>): ListboxState<TOption
   };
 }
 
-export default function defaultStateReducer<TOption>(
+export default function defaultReducer<TOption>(
   state: Readonly<ListboxState<TOption>>,
   action: ListboxAction<TOption>,
 ): Readonly<ListboxState<TOption>> {
@@ -297,7 +297,7 @@ export default function defaultStateReducer<TOption>(
   switch (type) {
     case 'keyDown':
       return handleKeyDown(action.event, state, action.props);
-    case 'itemClick':
+    case 'optionClick':
       return handleOptionClick(action.option, action.optionIndex, state, action.props);
     case 'blur':
       return handleBlur(state);
