@@ -107,7 +107,7 @@ Now, the `Mui` class is gone.
 - This API should only be used at build-time.
 - The configuration is applied to all of the components across the application. You cannot target a specific part of the application.
 
-## Framework Example
+## Framework example
 
 In some cases, you might need to add `/* eslint-disable import/first */` at the top of `ClassNameGenerator` import.
 
@@ -118,7 +118,7 @@ import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material
 
 ### Create react app
 
-use ClassNameGenerator in `/src/index.js`.
+Use ClassNameGenerator in `/src/index.js`.
 
 ```diff
 +import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
@@ -134,9 +134,9 @@ ReactDOM.render(
 );
 ```
 
-### NextJS
+### Next.js
 
-use ClassNameGenerator in `/pages/_app.js`.
+Use ClassNameGenerator in `/pages/_app.js`.
 
 ```diff
 +import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
@@ -158,7 +158,7 @@ export default function MyApp(props) {
 
 ### Gatsby
 
-use ClassNameGenerator in `gatsby-ssr.js` at the root folder.
+Use ClassNameGenerator in `gatsby-ssr.js` at the root folder.
 
 ```diff
 +import { unstable_ClassNameGenerator as ClassNameGenerator } from "@mui/material/utils";
