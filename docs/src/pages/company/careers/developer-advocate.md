@@ -21,7 +21,7 @@ We need talented people to keep that going!
 
 In our [last developer survey](/blog/2020-developer-survey-results/#5-how-can-we-improve-material-ui-for-you), we learned that have a long way to go in helping developers to be successful with our technology.
 Your mission will be to be the voice of the developers of the community inside the company.
-We are looking for someone that can:
+We are looking for someone that can generate the following outcomes:
 
 - Improve the overall developer experience, resulting in better NPS & CSAT scores.
 - Create momentum and drive adoption of the library.
