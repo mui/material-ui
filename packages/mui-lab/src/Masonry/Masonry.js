@@ -255,21 +255,21 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
   React.useEffect(() => {
     // IE and old browsers are not supported
-    if (!observer) {
+    if (observer.current === undefined) {
       return undefined;
     }
 
     const container = masonryRef.current;
-    if (container) {
+    const resizeObserver = observer.current;
+    if (container && resizeObserver) {
       // only the masonry container and its first child are observed for resizing;
       // this might cause unforeseen problems in some use cases;
-      observer.current.observe(container);
+      resizeObserver.observe(container);
       if (container.firstChild) {
-        observer.current.observe(container.firstChild);
+        resizeObserver.observe(container.firstChild);
       }
     }
-    if (observer) {
-      const resizeObserver = observer.current;
+    if (resizeObserver) {
       return () => {
         resizeObserver.disconnect();
       };
