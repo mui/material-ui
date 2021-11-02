@@ -65,10 +65,10 @@ export default function createCssVarsProvider<
   };
   defaultColorScheme:
     | DesignSystemColorScheme
-    | { day: DesignSystemColorScheme; night: DesignSystemColorScheme };
+    | { light: DesignSystemColorScheme; dark: DesignSystemColorScheme };
   /**
    * Design system default mode
-   * @default 'day'
+   * @default 'light'
    */
   defaultMode?: Mode;
   /**
@@ -91,8 +91,8 @@ export default function createCssVarsProvider<
           | DesignSystemColorScheme
           | ApplicationColorScheme
           | {
-              day: DesignSystemColorScheme | ApplicationColorScheme;
-              night: DesignSystemColorScheme | ApplicationColorScheme;
+              light: DesignSystemColorScheme | ApplicationColorScheme;
+              dark: DesignSystemColorScheme | ApplicationColorScheme;
             };
         /**
          * localStorage key used to store application `mode`

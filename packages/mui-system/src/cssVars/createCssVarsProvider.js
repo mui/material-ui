@@ -14,7 +14,7 @@ import useCurrentColorScheme from './useCurrentColorScheme';
 export default function createCssVarsProvider(options) {
   const {
     theme: baseTheme = {},
-    defaultMode: desisgnSystemMode = 'day',
+    defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
     prefix: designSystemPrefix = '',
   } = options;
@@ -24,9 +24,9 @@ export default function createCssVarsProvider(options) {
     (typeof designSystemColorScheme === 'string' &&
       !baseTheme.colorSchemes[designSystemColorScheme]) ||
     (typeof designSystemColorScheme === 'object' &&
-      !baseTheme.colorSchemes[designSystemColorScheme?.day]) ||
+      !baseTheme.colorSchemes[designSystemColorScheme?.light]) ||
     (typeof designSystemColorScheme === 'object' &&
-      !baseTheme.colorSchemes[designSystemColorScheme?.night])
+      !baseTheme.colorSchemes[designSystemColorScheme?.dark])
   ) {
     console.error(`MUI: \`${designSystemColorScheme}\` does not exist in \`theme.colorSchemes\`.`);
   }
@@ -57,26 +57,26 @@ export default function createCssVarsProvider(options) {
     const colorSchemes = deepmerge(baseColorSchemes, colorSchemesProp);
     const allColorSchemes = Object.keys(colorSchemes);
 
-    const defaultDayColorScheme =
-      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.day;
-    const defaultNightColorScheme =
-      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.night;
-    const { mode, setMode, dayColorScheme, nightColorScheme, colorScheme, setColorScheme } =
+    const defaultLightColorScheme =
+      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
+    const defaultDarkColorScheme =
+      typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
+    const { mode, setMode, lightColorScheme, darkColorScheme, colorScheme, setColorScheme } =
       useCurrentColorScheme({
         supportedColorSchemes: allColorSchemes,
-        defaultDayColorScheme,
-        defaultNightColorScheme,
+        defaultLightColorScheme,
+        defaultDarkColorScheme,
         modeStorageKey,
         defaultMode,
       });
     const resolvedColorScheme = (() => {
       if (!colorScheme) {
         // This scope occurs on the server
-        if (defaultMode === 'night') {
-          return defaultNightColorScheme;
+        if (defaultMode === 'dark') {
+          return defaultDarkColorScheme;
         }
-        // use day color scheme, if default mode is 'day' | 'auto'
-        return defaultDayColorScheme;
+        // use light color scheme, if default mode is 'light' | 'auto'
+        return defaultLightColorScheme;
       }
       return colorScheme;
     })();
@@ -103,10 +103,10 @@ export default function createCssVarsProvider(options) {
         if (typeof defaultColorScheme === 'string') {
           return defaultColorScheme;
         }
-        if (defaultMode === 'night') {
-          return defaultColorScheme.night;
+        if (defaultMode === 'dark') {
+          return defaultColorScheme.dark;
         }
-        return defaultColorScheme.day;
+        return defaultColorScheme.light;
       })();
       if (key === resolvedDefaultColorScheme) {
         styleSheet[':root'] = css;
@@ -126,8 +126,8 @@ export default function createCssVarsProvider(options) {
         value={{
           mode,
           setMode,
-          dayColorScheme,
-          nightColorScheme,
+          lightColorScheme,
+          darkColorScheme,
           colorScheme,
           setColorScheme,
           allColorSchemes,

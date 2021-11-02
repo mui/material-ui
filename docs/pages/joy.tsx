@@ -70,17 +70,17 @@ const Toggle = () => {
             System
           </Button2>
           <Button2
-            active={mode === 'day'}
+            active={mode === 'light'}
             onClick={() => {
-              setMode('day');
+              setMode('light');
             }}
           >
             Day
           </Button2>
           <Button2
-            active={mode === 'night'}
+            active={mode === 'dark'}
             onClick={() => {
-              setMode('night');
+              setMode('dark');
             }}
           >
             Night
@@ -97,8 +97,8 @@ const Toggle = () => {
             active={colorScheme === 'light' || colorScheme === 'dark'}
             onClick={() => {
               setColorScheme({
-                day: 'light',
-                night: 'dark',
+                light: 'light',
+                dark: 'dark',
               });
             }}
           >
@@ -108,8 +108,8 @@ const Toggle = () => {
             active={colorScheme === 'lightGreen' || colorScheme === 'darkGreen'}
             onClick={() => {
               setColorScheme({
-                day: 'lightGreen',
-                night: 'darkGreen',
+                light: 'lightGreen',
+                dark: 'darkGreen',
               });
             }}
           >
@@ -126,8 +126,8 @@ export default function Joy() {
     <CssVarsProvider
       defaultMode="system"
       defaultColorScheme={{
-        day: 'lightGreen',
-        night: 'darkGreen',
+        light: 'lightGreen',
+        dark: 'darkGreen',
       }}
       theme={{
         colorSchemes: {

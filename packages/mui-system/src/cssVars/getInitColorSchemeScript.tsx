@@ -5,17 +5,17 @@ export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'mui-color-scheme';
 export const DEFAULT_ATTRIBUTE = 'data-mui-color-scheme';
 
 export default function getInitColorSchemeScript(options?: {
-  defaultMode?: 'day' | 'night' | 'system';
-  defaultDayColorScheme?: string;
-  defaultNightColorScheme?: string;
+  defaultMode?: 'light' | 'dark' | 'system';
+  defaultLightColorScheme?: string;
+  defaultDarkColorScheme?: string;
   modeStorageKey?: string;
   colorSchemeStorageKey?: string;
   attribute?: string;
 }) {
   const {
-    defaultMode = 'day',
-    defaultDayColorScheme = 'light',
-    defaultNightColorScheme = 'dark',
+    defaultMode = 'light',
+    defaultLightColorScheme = 'light',
+    defaultDarkColorScheme = 'dark',
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     attribute = DEFAULT_ATTRIBUTE,
@@ -31,16 +31,16 @@ export default function getInitColorSchemeScript(options?: {
           // handle system mode
           var mql = window.matchMedia('(prefers-color-scheme: dark)');
           if (mql.matches) {
-            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-night') || ${defaultDayColorScheme};
+            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || ${defaultLightColorScheme};
           } else {
-            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-day') || ${defaultNightColorScheme};
+            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || ${defaultDarkColorScheme};
           }
         }
-        if (mode === 'day') {
-          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-day') || ${defaultDayColorScheme};
+        if (mode === 'light') {
+          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || ${defaultLightColorScheme};
         }
-        if (mode === 'night') {
-          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-night') || ${defaultNightColorScheme};
+        if (mode === 'dark') {
+          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || ${defaultDarkColorScheme};
         }
         if (colorScheme) {
           document.body.setAttribute('${attribute}', colorScheme);

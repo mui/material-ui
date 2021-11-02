@@ -4,7 +4,7 @@ import {
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
 } from './getInitColorSchemeScript';
 
-export type Mode = 'day' | 'night' | 'system';
+export type Mode = 'light' | 'dark' | 'system';
 export type SystemMode = Exclude<Mode, 'system'>;
 
 export interface State<SupportedColorScheme extends string> {
@@ -14,17 +14,17 @@ export interface State<SupportedColorScheme extends string> {
    */
   mode: Mode | undefined;
   /**
-   * Only valid if `mode: 'system'`, either 'day' | 'night'.
+   * Only valid if `mode: 'system'`, either 'light' | 'dark'.
    */
   systemMode: SystemMode | undefined;
   /**
-   * The color scheme for the day mode.
+   * The color scheme for the light mode.
    */
-  dayColorScheme: SupportedColorScheme;
+  lightColorScheme: SupportedColorScheme;
   /**
-   * The color scheme for the night mode.
+   * The color scheme for the dark mode.
    */
-  nightColorScheme: SupportedColorScheme;
+  darkColorScheme: SupportedColorScheme;
 }
 
 export type Result<SupportedColorScheme extends string> = State<SupportedColorScheme> & {
@@ -39,14 +39,14 @@ export type Result<SupportedColorScheme extends string> = State<SupportedColorSc
   setMode: (mode: Mode | null) => void;
   /**
    * `colorScheme` is saved to internal state and localStorage
-   * If `colorScheme` is null, it will be reset to the defaultColorScheme (day | night)
+   * If `colorScheme` is null, it will be reset to the defaultColorScheme (light | dark)
    */
   setColorScheme: (
     colorScheme:
       | SupportedColorScheme
       | Partial<{
-          day: SupportedColorScheme | null;
-          night: SupportedColorScheme | null;
+          light: SupportedColorScheme | null;
+          dark: SupportedColorScheme | null;
         }>
       | null,
   ) => void;
@@ -56,9 +56,9 @@ export function getSystemMode(mode: undefined | string): SystemMode | undefined 
   if (typeof window !== 'undefined' && mode === 'system') {
     const mql = window.matchMedia('(prefers-color-scheme: dark)');
     if (mql.matches) {
-      return 'night';
+      return 'dark';
     }
-    return 'day';
+    return 'light';
   }
   return undefined;
 }
@@ -67,11 +67,11 @@ function processState<T>(
   state: { mode: Mode | undefined; systemMode: SystemMode | undefined },
   callback: (mode: SystemMode) => T,
 ) {
-  if (state.mode === 'day' || (state.mode === 'system' && state.systemMode === 'day')) {
-    return callback('day');
+  if (state.mode === 'light' || (state.mode === 'system' && state.systemMode === 'light')) {
+    return callback('light');
   }
-  if (state.mode === 'night' || (state.mode === 'system' && state.systemMode === 'night')) {
-    return callback('night');
+  if (state.mode === 'dark' || (state.mode === 'system' && state.systemMode === 'dark')) {
+    return callback('dark');
   }
   return undefined;
 }
@@ -80,11 +80,11 @@ export function getColorScheme<SupportedColorScheme extends string>(
   state: State<SupportedColorScheme>,
 ) {
   return processState(state, (mode) => {
-    if (mode === 'day') {
-      return state.dayColorScheme;
+    if (mode === 'light') {
+      return state.lightColorScheme;
     }
-    if (mode === 'night') {
-      return state.nightColorScheme;
+    if (mode === 'dark') {
+      return state.darkColorScheme;
     }
     return undefined;
   });
@@ -104,17 +104,17 @@ function resolveValue(key: string, defaultValue?: string) {
 }
 
 export default function useCurrentColorScheme<SupportedColorScheme extends string>(options: {
-  defaultDayColorScheme: SupportedColorScheme;
-  defaultNightColorScheme: SupportedColorScheme;
+  defaultLightColorScheme: SupportedColorScheme;
+  defaultDarkColorScheme: SupportedColorScheme;
   supportedColorSchemes: Array<SupportedColorScheme>;
   defaultMode?: Mode;
   modeStorageKey?: string;
   colorSchemeStorageKey?: string;
 }): Result<SupportedColorScheme> {
   const {
-    defaultMode = 'day',
-    defaultDayColorScheme,
-    defaultNightColorScheme,
+    defaultMode = 'light',
+    defaultLightColorScheme,
+    defaultDarkColorScheme,
     supportedColorSchemes = [],
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
@@ -127,8 +127,8 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     return {
       mode: initialMode,
       systemMode: getSystemMode(initialMode),
-      dayColorScheme: resolveValue(`${colorSchemeStorageKey}-day`) || defaultDayColorScheme,
-      nightColorScheme: resolveValue(`${colorSchemeStorageKey}-night`) || defaultNightColorScheme,
+      lightColorScheme: resolveValue(`${colorSchemeStorageKey}-light`) || defaultLightColorScheme,
+      darkColorScheme: resolveValue(`${colorSchemeStorageKey}-dark`) || defaultDarkColorScheme,
     } as State<SupportedColorScheme>;
   });
 
@@ -161,48 +161,48 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
             const newState = { ...currentState };
             if (!value) {
               // reset to default color scheme
-              newState.dayColorScheme = defaultDayColorScheme;
-              newState.nightColorScheme = defaultNightColorScheme;
+              newState.lightColorScheme = defaultLightColorScheme;
+              newState.darkColorScheme = defaultDarkColorScheme;
               return newState;
             }
             processState(currentState, (mode) => {
               localStorage.setItem(`${colorSchemeStorageKey}-${mode}`, value);
-              if (mode === 'day') {
-                newState.dayColorScheme = value;
+              if (mode === 'light') {
+                newState.lightColorScheme = value;
               }
-              if (mode === 'night') {
-                newState.nightColorScheme = value;
+              if (mode === 'dark') {
+                newState.darkColorScheme = value;
               }
             });
             return newState;
           });
         }
       } else if (
-        (value.day && !supportedColorSchemes.includes(value.day)) ||
-        (value.night && !supportedColorSchemes.includes(value.night))
+        (value.light && !supportedColorSchemes.includes(value.light)) ||
+        (value.dark && !supportedColorSchemes.includes(value.dark))
       ) {
         console.error(`\`${value}\` does not exist in \`theme.colorSchemes\`.`);
       } else {
         setState((currentState) => {
           const newState = { ...currentState };
-          if (value.day || value.day === null) {
-            newState.dayColorScheme = value.day === null ? defaultDayColorScheme : value.day;
+          if (value.light || value.light === null) {
+            newState.lightColorScheme =
+              value.light === null ? defaultLightColorScheme : value.light;
           }
-          if (value.night || value.night === null) {
-            newState.nightColorScheme =
-              value.night === null ? defaultNightColorScheme : value.night;
+          if (value.dark || value.dark === null) {
+            newState.darkColorScheme = value.dark === null ? defaultDarkColorScheme : value.dark;
           }
           return newState;
         });
-        if (value.day) {
-          localStorage.setItem(`${colorSchemeStorageKey}-day`, value.day);
+        if (value.light) {
+          localStorage.setItem(`${colorSchemeStorageKey}-light`, value.light);
         }
-        if (value.night) {
-          localStorage.setItem(`${colorSchemeStorageKey}-night`, value.night);
+        if (value.dark) {
+          localStorage.setItem(`${colorSchemeStorageKey}-dark`, value.dark);
         }
       }
     },
-    [colorSchemeStorageKey, supportedColorSchemes, defaultDayColorScheme, defaultNightColorScheme],
+    [colorSchemeStorageKey, supportedColorSchemes, defaultLightColorScheme, defaultDarkColorScheme],
   );
 
   const handleMediaQuery = React.useCallback(
@@ -210,7 +210,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
       if (state.mode === 'system') {
         setState((currentState) => ({
           ...currentState,
-          systemMode: e.matches ? 'night' : 'day',
+          systemMode: e.matches ? 'dark' : 'light',
         }));
       }
     },
@@ -234,17 +234,17 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     return () => media.removeListener(handler);
   }, []);
 
-  // Save mode, dayColorScheme & nightColorScheme to localStorage
+  // Save mode, lightColorScheme & darkColorScheme to localStorage
   React.useEffect(() => {
     if (state.mode) {
       localStorage.setItem(modeStorageKey, state.mode);
     }
     processState(state, (mode) => {
-      if (mode === 'day') {
-        localStorage.setItem(`${colorSchemeStorageKey}-day`, state.dayColorScheme);
+      if (mode === 'light') {
+        localStorage.setItem(`${colorSchemeStorageKey}-light`, state.lightColorScheme);
       }
-      if (mode === 'night') {
-        localStorage.setItem(`${colorSchemeStorageKey}-night`, state.nightColorScheme);
+      if (mode === 'dark') {
+        localStorage.setItem(`${colorSchemeStorageKey}-dark`, state.darkColorScheme);
       }
     });
   }, [state, colorSchemeStorageKey, modeStorageKey]);
@@ -259,14 +259,14 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
         (!value || joinedColorSchemes.match(value))
       ) {
         // If the key is deleted, value will be null then reset color scheme to the default one.
-        if (event.key.endsWith('day')) {
-          setColorScheme({ day: value as SupportedColorScheme | null });
+        if (event.key.endsWith('light')) {
+          setColorScheme({ light: value as SupportedColorScheme | null });
         }
-        if (event.key.endsWith('night')) {
-          setColorScheme({ night: value as SupportedColorScheme | null });
+        if (event.key.endsWith('dark')) {
+          setColorScheme({ dark: value as SupportedColorScheme | null });
         }
       }
-      if (event.key === modeStorageKey && (!value || ['day', 'night', 'system'].includes(value))) {
+      if (event.key === modeStorageKey && (!value || ['light', 'dark', 'system'].includes(value))) {
         setMode((value as Mode) || defaultMode);
       }
     };

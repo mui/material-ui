@@ -212,7 +212,7 @@ describe('createCssVarsProvider', () => {
       return (
         <div>
           <div data-testid="current-mode">{mode}</div>
-          <button onClick={() => setMode('night')}>change to night</button>
+          <button onClick={() => setMode('dark')}>change to dark</button>
         </div>
       );
     };
@@ -223,19 +223,19 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'day')).to.equal(
+      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'light')).to.equal(
         true,
       );
 
-      fireEvent.click(screen.getByRole('button', { name: 'change to night' }));
+      fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
-      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'night')).to.equal(
+      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'dark')).to.equal(
         true,
       );
     });
 
     it('should use mode from localStorage if exists', () => {
-      storage[DEFAULT_MODE_STORAGE_KEY] = 'night';
+      storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
 
       render(
         <CssVarsProvider>
@@ -243,12 +243,12 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('current-mode').textContent).to.equal('night');
+      expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
     });
 
     it('use custom modeStorageKey', () => {
       const customModeStorageKey = 'foo-mode';
-      storage[customModeStorageKey] = 'night';
+      storage[customModeStorageKey] = 'dark';
 
       render(
         <CssVarsProvider modeStorageKey={customModeStorageKey}>
@@ -256,8 +256,8 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('current-mode').textContent).to.equal('night');
-      expect(global.localStorage.setItem.calledWith(customModeStorageKey, 'night')).to.equal(true);
+      expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
+      expect(global.localStorage.setItem.calledWith(customModeStorageKey, 'dark')).to.equal(true);
     });
   });
 
@@ -435,11 +435,11 @@ describe('createCssVarsProvider', () => {
         return <div>{mode}</div>;
       };
       const { container } = render(
-        <CssVarsProvider defaultMode="night">
+        <CssVarsProvider defaultMode="dark">
           <Text />
         </CssVarsProvider>,
       );
-      expect(container.firstChild.textContent).to.equal('night');
+      expect(container.firstChild.textContent).to.equal('dark');
     });
 
     it('`defaultColorScheme` is specified as string', () => {
@@ -475,7 +475,7 @@ describe('createCssVarsProvider', () => {
       const { container } = render(
         <CssVarsProvider
           theme={{ colorSchemes: { paper: {} } }}
-          defaultColorScheme={{ day: 'paper' }}
+          defaultColorScheme={{ light: 'paper' }}
         >
           <Text />
         </CssVarsProvider>,
