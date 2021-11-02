@@ -311,6 +311,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   } = props;
 
   const color = colorProp || colorContext || 'primary';
+  // TODO v6: Use nullish coalescing (??) instead of OR operator for these boolean props so that these boolean props for Button with ButtonGroup context take priority. See conversation from https://github.com/mui-org/material-ui/pull/28645#discussion_r738380902. 
   const disabled = disabledProp || disabledContext || false;
   const disableElevation = disableElevationProp || disableElevationContext || false;
   const disableFocusRipple = disableFocusRippleProp || disableFocusRippleContext || false;
