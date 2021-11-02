@@ -22,7 +22,7 @@ const ScopedCssBaselineRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme, enableColorScheme }) => ({
-  html: html(theme, enableColorScheme),
+  ...html(theme, enableColorScheme),
   ...body(theme),
   '& *, & *::before, & *::after': {
     boxSizing: 'inherit',
