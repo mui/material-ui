@@ -182,83 +182,99 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  React.useEffect(() => {
-    const handleResize = () => {
-      if (!masonryRef.current || !masonryRef.current.firstChild) {
-        return;
-      }
-      const parentWidth = masonryRef.current.clientWidth;
-      const childWidth = masonryRef.current.firstChild.clientWidth;
-      const firstChildComputedStyle = window.getComputedStyle(masonryRef.current.firstChild);
-      const firstChildMarginLeft = parseToNumber(firstChildComputedStyle.marginLeft);
-      const firstChildMarginRight = parseToNumber(firstChildComputedStyle.marginRight);
-
-      if (parentWidth === 0 || childWidth === 0) {
-        return;
-      }
-
-      const currentNumberOfColumns = Math.round(
-        parentWidth / (childWidth + firstChildMarginLeft + firstChildMarginRight),
-      );
-
-      const columnHeights = new Array(currentNumberOfColumns).fill(0);
-      let skip = false;
-      masonryRef.current.childNodes.forEach((child) => {
-        if (child.nodeType !== Node.ELEMENT_NODE || child.dataset.class === 'line-break' || skip) {
-          return;
-        }
-        const childComputedStyle = window.getComputedStyle(child);
-        const childMarginTop = parseToNumber(childComputedStyle.marginTop);
-        const childMarginBottom = parseToNumber(childComputedStyle.marginBottom);
-        // if any one of children isn't rendered yet, masonry's height shouldn't be computed yet
-        const childHeight = parseToNumber(childComputedStyle.height)
-          ? Math.ceil(parseToNumber(childComputedStyle.height)) + childMarginTop + childMarginBottom
-          : 0;
-        if (childHeight === 0) {
-          skip = true;
-          return;
-        }
-        // if there is a nested image that isn't rendered yet, masonry's height shouldn't be computed yet
-        for (let i = 0; i < child.childNodes.length; i += 1) {
-          const nestedChild = child.childNodes[i];
-          if (nestedChild.tagName === 'IMG' && nestedChild.clientHeight === 0) {
-            skip = true;
-            break;
+  const observer = React.useRef(
+    typeof ResizeObserver === 'undefined'
+      ? undefined
+      : new ResizeObserver((elements) => {
+          const masonry = elements[0];
+          const masonryFirstChild = elements[1];
+          if (!masonryFirstChild) {
+            return;
           }
-        }
-        if (!skip) {
-          // find the current shortest column (where the current item will be placed)
-          const currentMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-          columnHeights[currentMinColumnIndex] += childHeight;
-          const order = currentMinColumnIndex + 1;
-          child.style.order = order;
-        }
-      });
-      if (!skip) {
-        setMaxColumnHeight(Math.max(...columnHeights));
-        const numOfLineBreaks = currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0;
-        setNumberOfLineBreaks(numOfLineBreaks);
-      }
-    };
 
+          const parentWidth = masonryRef.current.clientWidth;
+          const childWidth = masonryRef.current.firstChild.clientWidth;
+          const firstChildComputedStyle = window.getComputedStyle(masonryRef.current.firstChild);
+          const firstChildMarginLeft = parseToNumber(firstChildComputedStyle.marginLeft);
+          const firstChildMarginRight = parseToNumber(firstChildComputedStyle.marginRight);
+
+          if (parentWidth === 0 || childWidth === 0) {
+            return;
+          }
+
+          const currentNumberOfColumns = Math.round(
+            parentWidth / (childWidth + firstChildMarginLeft + firstChildMarginRight),
+          );
+
+          const columnHeights = new Array(currentNumberOfColumns).fill(0);
+          let skip = false;
+          masonryRef.current.childNodes.forEach((child) => {
+            if (
+              child.nodeType !== Node.ELEMENT_NODE ||
+              child.dataset.class === 'line-break' ||
+              skip
+            ) {
+              return;
+            }
+            const childComputedStyle = window.getComputedStyle(child);
+            const childMarginTop = parseToNumber(childComputedStyle.marginTop);
+            const childMarginBottom = parseToNumber(childComputedStyle.marginBottom);
+            // if any one of children isn't rendered yet, masonry's height shouldn't be computed yet
+            const childHeight = parseToNumber(childComputedStyle.height)
+              ? Math.ceil(parseToNumber(childComputedStyle.height)) +
+                childMarginTop +
+                childMarginBottom
+              : 0;
+            if (childHeight === 0) {
+              skip = true;
+              return;
+            }
+            // if there is a nested image that isn't rendered yet, masonry's height shouldn't be computed yet
+            for (let i = 0; i < child.childNodes.length; i += 1) {
+              const nestedChild = child.childNodes[i];
+              if (nestedChild.tagName === 'IMG' && nestedChild.clientHeight === 0) {
+                skip = true;
+                break;
+              }
+            }
+            if (!skip) {
+              // find the current shortest column (where the current item will be placed)
+              const currentMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+              columnHeights[currentMinColumnIndex] += childHeight;
+              const order = currentMinColumnIndex + 1;
+              child.style.order = order;
+            }
+          });
+          if (!skip) {
+            setMaxColumnHeight(Math.max(...columnHeights));
+            const numOfLineBreaks = currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0;
+            setNumberOfLineBreaks(numOfLineBreaks);
+          }
+        }),
+  );
+
+  React.useEffect(() => {
     // IE and old browsers are not supported
     if (typeof ResizeObserver === 'undefined') {
       return undefined;
     }
-    const resizeObserver = new ResizeObserver(handleResize);
 
     const container = masonryRef.current;
     if (container) {
       // only the masonry container and its first child are observed for resizing;
       // this might cause unforeseen problems in some use cases;
-      resizeObserver.observe(container);
+      observer.current.observe(container);
       if (container.firstChild) {
-        resizeObserver.observe(container.firstChild);
+        observer.current.observe(container.firstChild);
       }
     }
-    return () => {
-      resizeObserver.disconnect();
-    };
+    if (observer) {
+      const resizeObserver = observer.current;
+      return () => {
+        resizeObserver.disconnect();
+      };
+    }
+    return () => {};
   }, [columns, spacing, children]);
 
   const handleRef = useForkRef(ref, masonryRef);
