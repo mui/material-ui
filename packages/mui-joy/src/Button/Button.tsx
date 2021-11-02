@@ -80,6 +80,9 @@ const ButtonRoot = styled('button', {
         outlineColor: colorPalette[300],
         outlineOffset: '2px',
       },
+      ...(ownerState.fullWidth && {
+        width: '100%',
+      }),
     },
     ownerState.variant === 'text' && {
       color: colorPalette[500],
@@ -146,6 +149,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     color = 'brand',
     variant = 'text',
     size = 'medium',
+    fullWidth = false,
     ...other
   } = props;
 
@@ -175,6 +179,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ...props,
     component,
     color,
+    fullWidth,
     variant,
     size,
     focusVisible,

@@ -54,4 +54,11 @@ describe('Joy <Button />', () => {
 
     expect(button).to.have.class(classes.sizeLarge);
   });
+
+  it('should render a fullWidth button', () => {
+    const { getByRole } = render(<Button fullWidth>Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.fullWidth);
+  });
 });
