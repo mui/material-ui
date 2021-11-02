@@ -20,18 +20,22 @@ export type BuildCssVarsTheme<ThemeInput> = ThemeInput extends {
  * If yes, they must provide the palette of the extended colorScheme. Otherwise `theme` is optional.
  */
 type DecideTheme<
-  Theme extends { colorSchemes: Record<DesignSystemColorScheme | ApplicationColorScheme, any> },
+  DesignSystemTheme extends { colorSchemes: Record<DesignSystemColorScheme, any> },
   DesignSystemColorScheme extends string,
+  ApplicationTheme extends { colorSchemes: Record<ApplicationColorScheme, any> },
   ApplicationColorScheme extends string | never,
 > = [ApplicationColorScheme] extends [never]
-  ? { theme?: Theme }
+  ? { theme?: DesignSystemTheme }
   : {
-      theme: Omit<Theme, 'colorSchemes'> & {
+      theme: Omit<ApplicationTheme, 'colorSchemes'> & {
         colorSchemes: Partial<
-          Record<DesignSystemColorScheme, Theme['colorSchemes'][DesignSystemColorScheme]>
+          Record<
+            DesignSystemColorScheme,
+            DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
+          >
         > &
           RequiredDeep<
-            Record<ApplicationColorScheme, Theme['colorSchemes'][ApplicationColorScheme]>
+            Record<ApplicationColorScheme, ApplicationTheme['colorSchemes'][ApplicationColorScheme]>
           >;
       };
     };
@@ -43,26 +47,15 @@ export interface ColorSchemeContextValue<SupportedColorScheme extends string>
 
 export default function createCssVarsProvider<
   DesignSystemThemeInput extends {
-    colorSchemes: Record<DesignSystemColorScheme | ApplicationColorScheme, any>;
+    colorSchemes: Record<DesignSystemColorScheme, any>;
   },
   DesignSystemColorScheme extends string,
-  ApplicationColorScheme extends string = never,
   ApplicationThemeInput extends {
-    colorSchemes: Record<DesignSystemColorScheme | ApplicationColorScheme, any>;
-  } = DesignSystemThemeInput,
+    colorSchemes: Record<ApplicationColorScheme, any>;
+  } = never,
+  ApplicationColorScheme extends string = never,
 >(options: {
-  theme: Omit<DesignSystemThemeInput, 'colorSchemes'> & {
-    colorSchemes: Record<
-      DesignSystemColorScheme,
-      DesignSystemThemeInput['colorSchemes'][DesignSystemColorScheme]
-    > &
-      Partial<
-        Record<
-          ApplicationColorScheme,
-          DesignSystemThemeInput['colorSchemes'][DesignSystemColorScheme | ApplicationColorScheme]
-        >
-      >;
-  };
+  theme: DesignSystemThemeInput;
   defaultColorScheme:
     | DesignSystemColorScheme
     | { light: DesignSystemColorScheme; dark: DesignSystemColorScheme };
@@ -108,7 +101,12 @@ export default function createCssVarsProvider<
          * CSS variable prefix (overrides design system `prefix` if specified)
          */
         prefix?: string;
-      } & DecideTheme<ApplicationThemeInput, DesignSystemColorScheme, ApplicationColorScheme>
+      } & DecideTheme<
+        DesignSystemThemeInput,
+        DesignSystemColorScheme,
+        ApplicationThemeInput,
+        ApplicationColorScheme
+      >
     >,
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<DesignSystemColorScheme | ApplicationColorScheme>;

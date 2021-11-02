@@ -138,7 +138,13 @@ interface JoyColors {
 }
 
 interface JoyThemeInput {
-  colorSchemes: Record<JoyColorScheme | JoyExtendedColorScheme, JoyColors>;
+  colorSchemes: Record<JoyColorScheme, JoyColors>;
+  fontSize: string;
+  fontFamily: string;
+}
+
+interface ApplicationThemeInput {
+  colorSchemes: Record<JoyExtendedColorScheme, JoyColors>;
   fontSize: string;
   fontFamily: string;
 }
@@ -151,6 +157,7 @@ interface JoyColorSchemeOverrides {
 const { CssVarsProvider } = createCssVarsProvider<
   JoyThemeInput,
   JoyColorScheme,
+  ApplicationThemeInput,
   JoyExtendedColorScheme
 >({
   theme: {
@@ -226,7 +233,13 @@ interface Joy2Colors {
 }
 
 interface Joy2ThemeInput {
-  colorSchemes: Record<Joy2ColorScheme | Joy2ExtendedColorScheme, Joy2Colors>;
+  colorSchemes: Record<Joy2ColorScheme, Joy2Colors>;
+  fontSize: string;
+  fontFamily: string;
+}
+
+interface Application2ThemeInput {
+  colorSchemes: Record<Joy2ExtendedColorScheme, Joy2Colors>;
   fontSize: string;
   fontFamily: string;
 }
@@ -240,6 +253,7 @@ interface Joy2ColorSchemeOverrides {
 const { CssVarsProvider: CssVarsProvider2, useColorScheme } = createCssVarsProvider<
   Joy2ThemeInput,
   Joy2ColorScheme,
+  Application2ThemeInput,
   Joy2ExtendedColorScheme
 >({
   theme: {
