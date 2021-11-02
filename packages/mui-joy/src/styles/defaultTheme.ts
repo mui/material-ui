@@ -1,43 +1,7 @@
 import * as React from 'react';
-import { OverridableStringUnion } from '@mui/types';
 import colors from '../colors';
+import { ColorSystems, PaletteRange } from './ColorSystem';
 import { Components } from './components';
-
-/**
- * ====================================================
- * Developer facing types, they can augment these types.
- * ====================================================
- */
-export interface PaletteRange {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
-  channel500: string;
-}
-
-export interface ColorPalettePropOverrides {}
-
-export type ColorPaletteProp = OverridableStringUnion<
-  'brand' | 'neutral',
-  ColorPalettePropOverrides
->;
-
-export type ColorPalette = {
-  [k in ColorPaletteProp]: PaletteRange;
-};
-
-export interface Palette extends ColorPalette {}
-
-export interface ColorSystems {
-  palette: Palette;
-}
 
 export interface BorderRadius {
   md: React.CSSProperties['borderRadius'];
@@ -91,6 +55,7 @@ type BasePaletteRange = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
 type BaseJoyTokens = {
   palette: {
     brand: Pick<PaletteRange, BasePaletteRange>;
+    neutral: Pick<PaletteRange, BasePaletteRange>;
   };
   borderRadius: Pick<BorderRadius, 'md'>;
   htmlFontSize: React.CSSProperties['fontSize'];

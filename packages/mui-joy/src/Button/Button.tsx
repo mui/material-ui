@@ -205,9 +205,54 @@ Button.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * A ref for imperative actions. It currently only supports `focusVisible()` action.
+   */
+  action: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.shape({
+        focusVisible: PropTypes.func.isRequired,
+      }),
+    }),
+  ]),
+  /**
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'primary'
+   */
+  color: PropTypes.oneOf(['brand', 'neutral']),
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  /**
+   * Element placed after the children.
+   */
+  endIcon: PropTypes.node,
+  /**
+   * The size of the component.
+   * `small` is equivalent to the dense button styling.
+   * @default 'medium'
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   * Element placed before the children.
+   */
+  startIcon: PropTypes.node,
+  /**
+   * The variant to use.
+   * @default 'text'
+   */
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
 } as any;
 
 export default Button;

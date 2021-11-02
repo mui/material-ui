@@ -6,7 +6,7 @@ import {
   OverrideProps,
 } from '@mui/types';
 import React from 'react';
-import { ColorPaletteProp } from '../styles';
+import { ColorPaletteProp } from '../styles/ColorSystem';
 import { ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
