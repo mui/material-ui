@@ -19,8 +19,6 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
     fullWidth,
     size,
     variant,
-    startIcon,
-    endIcon,
   } = ownerState;
 
   const slots = {
@@ -32,8 +30,6 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       `variant${capitalize(variant!)}`,
       `color${capitalize(color!)}`,
       `size${capitalize(size!)}`,
-      !!startIcon && 'startIcon',
-      !!endIcon && 'endIcon',
     ],
   };
 
@@ -150,8 +146,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     color = 'brand',
     variant = 'text',
     size = 'medium',
-    startIcon,
-    endIcon,
     ...other
   } = props;
 
@@ -237,19 +231,11 @@ Button.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
-   * Element placed after the children.
-   */
-  endIcon: PropTypes.node,
-  /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * Element placed before the children.
-   */
-  startIcon: PropTypes.node,
   /**
    * The variant to use.
    * @default 'text'
