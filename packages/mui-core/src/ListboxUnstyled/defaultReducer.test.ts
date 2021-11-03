@@ -117,4 +117,193 @@ describe('useListbox defaultReducer', () => {
       expect(result.selectedValue).to.deep.equal(['one']);
     });
   });
+
+  describe('action: keyDown', () => {
+    describe('Home key is pressed', () => {
+      it('highlights the first non-disabled option if the first is disabled', () => {
+        const state: ListboxState<string> = {
+          highlightedIndex: 3,
+          selectedValue: null,
+        };
+
+        const action: ListboxAction<string> = {
+          type: 'keyDown',
+          event: {
+            key: 'Home',
+          } as any,
+          props: {
+            options: ['one', 'two', 'three', 'four', 'five'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            isOptionDisabled: (_, index) => index === 0,
+            isOptionEqualToValue: (o, v) => o === v,
+            selectMultiple: false,
+          },
+        };
+
+        const result = defaultReducer(state, action);
+        expect(result.highlightedIndex).to.equal(1);
+      });
+    });
+
+    describe('End key is pressed', () => {
+      it('highlights the last non-disabled option if the last is disabled', () => {
+        const state: ListboxState<string> = {
+          highlightedIndex: 0,
+          selectedValue: null,
+        };
+
+        const action: ListboxAction<string> = {
+          type: 'keyDown',
+          event: {
+            key: 'End',
+          } as any,
+          props: {
+            options: ['one', 'two', 'three', 'four', 'five'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            isOptionDisabled: (_, index) => index === 4,
+            isOptionEqualToValue: (o, v) => o === v,
+            selectMultiple: false,
+          },
+        };
+
+        const result = defaultReducer(state, action);
+        expect(result.highlightedIndex).to.equal(3);
+      });
+    });
+
+    describe('ArrowUp key is pressed', () => {
+      it('wraps the highlight around omitting disabled items', () => {
+        const state: ListboxState<string> = {
+          highlightedIndex: 1,
+          selectedValue: null,
+        };
+
+        const action: ListboxAction<string> = {
+          type: 'keyDown',
+          event: {
+            key: 'ArrowUp',
+          } as any,
+          props: {
+            options: ['one', 'two', 'three', 'four', 'five'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            isOptionDisabled: (_, index) => index === 0 || index === 4,
+            isOptionEqualToValue: (o, v) => o === v,
+            selectMultiple: false,
+          },
+        };
+
+        const result = defaultReducer(state, action);
+        expect(result.highlightedIndex).to.equal(3);
+      });
+    });
+
+    describe('ArrowDown key is pressed', () => {
+      it('wraps the highlight around omitting disabled items', () => {
+        const state: ListboxState<string> = {
+          highlightedIndex: 3,
+          selectedValue: null,
+        };
+
+        const action: ListboxAction<string> = {
+          type: 'keyDown',
+          event: {
+            key: 'ArrowDown',
+          } as any,
+          props: {
+            options: ['one', 'two', 'three', 'four', 'five'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            isOptionDisabled: (_, index) => index === 0 || index === 4,
+            isOptionEqualToValue: (o, v) => o === v,
+            selectMultiple: false,
+          },
+        };
+
+        const result = defaultReducer(state, action);
+        expect(result.highlightedIndex).to.equal(1);
+      });
+
+      it('does not highlight any option if all are disabled', () => {
+        const state: ListboxState<string> = {
+          highlightedIndex: -1,
+          selectedValue: null,
+        };
+
+        const action: ListboxAction<string> = {
+          type: 'keyDown',
+          event: {
+            key: 'ArrowDown',
+          } as any,
+          props: {
+            options: ['one', 'two', 'three', 'four', 'five'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            isOptionDisabled: () => true,
+            isOptionEqualToValue: (o, v) => o === v,
+            selectMultiple: false,
+          },
+        };
+
+        const result = defaultReducer(state, action);
+        expect(result.highlightedIndex).to.equal(-1);
+      });
+    });
+
+    describe('Enter key is pressed', () => {
+      it('selects the highlighted option', () => {
+        const state: ListboxState<string> = {
+          highlightedIndex: 1,
+          selectedValue: null,
+        };
+
+        const action: ListboxAction<string> = {
+          type: 'keyDown',
+          event: {
+            key: 'Enter',
+          } as any,
+          props: {
+            options: ['one', 'two', 'three'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            isOptionDisabled: () => false,
+            isOptionEqualToValue: (o, v) => o === v,
+            selectMultiple: false,
+          },
+        };
+
+        const result = defaultReducer(state, action);
+        expect(result.selectedValue).to.equal('two');
+      });
+
+      it('add the highlighted value to the selection if selectMultiple is set', () => {
+        const state: ListboxState<string> = {
+          highlightedIndex: 1,
+          selectedValue: ['one'],
+        };
+
+        const action: ListboxAction<string> = {
+          type: 'optionClick',
+          event: {
+            key: 'Enter',
+          } as any,
+          props: {
+            options: ['one', 'two', 'three'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            isOptionDisabled: () => false,
+            isOptionEqualToValue: (o, v) => o === v,
+            selectMultiple: true,
+          },
+          option: 'two',
+          optionIndex: 1,
+        };
+
+        const result = defaultReducer(state, action);
+        expect(result.selectedValue).to.deep.equal(['one', 'two']);
+      });
+    });
+  });
 });

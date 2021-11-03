@@ -7,7 +7,7 @@ const pageSize = 5;
 
 function findValidOptionToHighlight<TOption>(
   index: number,
-  direction: 'next' | 'previous',
+  lookupDirection: 'next' | 'previous',
   options: TOption[],
   focusDisabled: boolean,
   isOptionDisabled: OptionPredicate<TOption>,
@@ -20,10 +20,10 @@ function findValidOptionToHighlight<TOption>(
   let nextFocus = index;
 
   for (;;) {
-    // Out of range
+    // No valid options found
     if (
-      (!wrapAround && direction === 'next' && nextFocus === options.length) ||
-      (direction === 'previous' && nextFocus === -1)
+      (!wrapAround && lookupDirection === 'next' && nextFocus === options.length) ||
+      (!wrapAround && lookupDirection === 'previous' && nextFocus === -1)
     ) {
       return -1;
     }
@@ -32,9 +32,9 @@ function findValidOptionToHighlight<TOption>(
       ? false
       : isOptionDisabled(options[nextFocus], nextFocus);
     if (nextFocusDisabled) {
-      nextFocus += direction === 'next' ? 1 : -1;
+      nextFocus += lookupDirection === 'next' ? 1 : -1;
       if (wrapAround) {
-        nextFocus %= options.length;
+        nextFocus = (nextFocus + options.length) % options.length;
       }
     } else {
       return nextFocus;
@@ -46,60 +46,54 @@ function getNewHighlightedIndex<TOption>(
   options: TOption[],
   previouslyHighlightedIndex: number,
   diff: number | 'reset' | 'start' | 'end',
-  direction: 'previous' | 'next',
+  lookupDirection: 'previous' | 'next',
   highlightDisabled: boolean,
   isOptionDisabled: OptionPredicate<TOption>,
   wrapAround: boolean,
 ) {
-  const getNextIndex = () => {
-    const maxIndex = options.length - 1;
-    const defaultHighlightedIndex = -1;
+  const maxIndex = options.length - 1;
+  const defaultHighlightedIndex = -1;
+  let nextIndexCandidate: number;
 
-    if (diff === 'reset') {
-      return defaultHighlightedIndex;
-    }
+  if (diff === 'reset') {
+    return defaultHighlightedIndex;
+  }
 
-    if (diff === 'start') {
-      return 0;
-    }
-
-    if (diff === 'end') {
-      return maxIndex;
-    }
-
+  if (diff === 'start') {
+    nextIndexCandidate = 0;
+  } else if (diff === 'end') {
+    nextIndexCandidate = maxIndex;
+  } else {
     const newIndex = previouslyHighlightedIndex + diff;
 
     if (newIndex < 0) {
       if ((!wrapAround && previouslyHighlightedIndex !== -1) || Math.abs(diff) > 1) {
-        return 0;
+        nextIndexCandidate = 0;
       }
 
-      return maxIndex;
+      nextIndexCandidate = maxIndex;
     }
 
     if (newIndex > maxIndex) {
-      if (newIndex === maxIndex + 1) {
-        return -1;
-      }
-
       if (!wrapAround || Math.abs(diff) > 1) {
-        return maxIndex;
+        nextIndexCandidate = maxIndex;
       }
 
-      return 0;
+      nextIndexCandidate = 0;
     }
 
-    return newIndex;
-  };
+    nextIndexCandidate = newIndex;
+  }
 
   const nextIndex = findValidOptionToHighlight(
-    getNextIndex(),
-    direction,
+    nextIndexCandidate,
+    lookupDirection,
     options,
     highlightDisabled,
     isOptionDisabled,
     wrapAround,
   );
+
   return nextIndex;
 }
 
