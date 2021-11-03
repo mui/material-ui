@@ -41,6 +41,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   },
   defaultColorScheme: 'light',
   prefix: 'joy',
+  shouldSkipVar: (keys) => keys[0] === 'typography',
 });
 
 export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };

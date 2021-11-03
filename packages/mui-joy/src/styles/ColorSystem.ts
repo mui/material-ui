@@ -18,6 +18,19 @@ export interface PaletteRange {
   channel500: string;
 }
 
+export interface PaletteText {
+  heading: React.CSSProperties['color'];
+  headingIntro: React.CSSProperties['color'];
+  content: React.CSSProperties['color'];
+  detail: React.CSSProperties['color'];
+  overline: React.CSSProperties['color'];
+}
+
+export interface PaletteBgNeutral {
+  transparency: React.CSSProperties['backgroundColor'];
+  plain: React.CSSProperties['backgroundColor'];
+}
+
 export interface ColorPalettePropOverrides {}
 
 export type ColorPaletteProp = OverridableStringUnion<
@@ -29,7 +42,10 @@ export type ColorPalette = {
   [k in ColorPaletteProp]: PaletteRange;
 };
 
-export interface Palette extends ColorPalette {}
+export interface Palette extends ColorPalette {
+  text: PaletteText;
+  bgNeutral: PaletteBgNeutral;
+}
 
 export interface ColorSystems {
   palette: Palette;
