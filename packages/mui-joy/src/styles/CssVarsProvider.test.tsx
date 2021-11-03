@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { createClientRender, screen } from 'test/utils';
 import { styled, CssVarsProvider, useTheme } from '@mui/joy/styles';
 import defaultTheme from './defaultTheme';
+import { shouldSkipVar } from './CssVarsProvider';
 
 describe('[Joy] CssVarsProvider', () => {
   let originalMatchmedia: typeof window.matchMedia;
@@ -29,6 +30,22 @@ describe('[Joy] CssVarsProvider', () => {
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
   });
+
+  it('should skip these keys when creating CSS variables', () => {
+    expect(shouldSkipVar(['typography', 'h1'])).to.equal(true);
+    expect(shouldSkipVar(['typography', 'h2'])).to.equal(true);
+    expect(shouldSkipVar(['typography', 'h3'])).to.equal(true);
+    expect(shouldSkipVar(['typography', 'h4'])).to.equal(true);
+    expect(shouldSkipVar(['typography', 'h5'])).to.equal(true);
+    expect(shouldSkipVar(['typography', 'headingSubtitle'])).to.equal(true);
+    expect(shouldSkipVar(['typography', 'body'])).to.equal(true);
+    expect(shouldSkipVar(['typography', 'caption'])).to.equal(true);
+    expect(shouldSkipVar(['typography', 'detail'])).to.equal(true);
+    expect(shouldSkipVar(['typography', 'headingIntro'])).to.equal(true);
+    expect(shouldSkipVar(['typography', 'overline'])).to.equal(true);
+    expect(shouldSkipVar(['typography', 'button'])).to.equal(true);
+  });
+
   describe('All CSS vars', () => {
     it('palette', () => {
       const Vars = () => {

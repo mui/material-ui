@@ -24,6 +24,23 @@ type ApplicationThemeInput = PartialDeep<Omit<StaticTheme, 'typography'>> & {
 
 const { palette, ...rest } = defaultTheme;
 
+export const shouldSkipVar = (keys: Array<string>) =>
+  keys[0] === 'typography' &&
+  [
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'headingSubtitle',
+    'body',
+    'caption',
+    'detail',
+    'headingIntro',
+    'overline',
+    'button',
+  ].indexOf(keys[1]) !== -1;
+
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   JoyThemeInput,
   ColorScheme,
@@ -40,6 +57,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   },
   defaultColorScheme: 'light',
   prefix: 'joy',
+  shouldSkipVar,
 });
 
 export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
