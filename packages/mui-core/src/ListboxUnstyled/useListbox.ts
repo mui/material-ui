@@ -6,15 +6,11 @@ import {
   ListboxAction,
   UseListboxStrictProps,
   CustomListboxReducer,
+  ListboxReducer,
 } from './types';
 import defaultReducer from './defaultReducer';
 
 const defaultOptionComparer = <TOption>(option: TOption, value: TOption) => option === value;
-
-type ListboxReducer<TOption> = (
-  prevState: ListboxState<TOption>,
-  action: ListboxAction<TOption>,
-) => ListboxState<TOption>;
 
 function combineReducers<TOption>(
   internal: ListboxReducer<TOption>,
@@ -140,11 +136,18 @@ export default function useListbox<TOption>(
         return;
       }
 
-      if (
-        [' ', 'Enter', 'ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'].includes(
-          event.key,
-        )
-      ) {
+      const keysToPreventDefault = [
+        ' ',
+        'Enter',
+        'ArrowUp',
+        'ArrowDown',
+        'Home',
+        'End',
+        'PageUp',
+        'PageDown',
+      ];
+
+      if (keysToPreventDefault.includes(event.key)) {
         event.preventDefault();
       }
 

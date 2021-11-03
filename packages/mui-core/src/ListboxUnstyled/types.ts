@@ -54,7 +54,7 @@ export interface ListboxState<TOption> {
   selectedValue: TOption | TOption[] | null;
 }
 
-type ListboxReducer<TOption> = (
+export type ListboxReducer<TOption> = (
   state: ListboxState<TOption>,
   action: ListboxAction<TOption>,
 ) => ListboxState<TOption>;
