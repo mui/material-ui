@@ -169,6 +169,10 @@ type BaseJoyTokens = {
   shadow: Pick<Shadow, 'ring' | 'md'>;
 };
 
+/**
+ * Base Joy Theme
+ * Any value with `var(--joy-*)` can be used. 'joy-' will be replaced by the application prefix if provided.
+ */
 const themeWithoutVars: BaseJoyTokens = {
   palette: {
     brand: colors.purple,
