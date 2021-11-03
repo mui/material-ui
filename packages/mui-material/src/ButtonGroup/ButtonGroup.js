@@ -227,6 +227,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       classes.grouped,
     ],
   );
+
   return (
     <ButtonGroupRoot
       as={component}
