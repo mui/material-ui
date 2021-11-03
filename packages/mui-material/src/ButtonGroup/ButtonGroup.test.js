@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
+import ButtonGroupContext from './ButtonGroupContext';
 
 describe('<ButtonGroup />', () => {
   const render = createClientRender();
@@ -147,5 +148,26 @@ describe('<ButtonGroup />', () => {
     const button = getByRole('button');
     expect(buttonGroup).to.have.class(classes.fullWidth);
     expect(button).to.have.class('MuiButton-fullWidth');
+  });
+
+  it('should forward the context to children', () => {
+    let context;
+    render(
+      <ButtonGroup size="large" variant="contained">
+        <ButtonGroupContext.Consumer>
+          {(value) => {
+            context = value;
+          }}
+        </ButtonGroupContext.Consumer>
+      </ButtonGroup>,
+    );
+    expect(context.variant).to.equal('contained');
+    expect(context.size).to.equal('large');
+    expect(context.fullWidth).to.equal(false);
+    expect(context.disableRipple).to.equal(false);
+    expect(context.disableFocusRipple).to.equal(false);
+    expect(context.disableElevation).to.equal(false);
+    expect(context.disabled).to.equal(false);
+    expect(context.color).to.equal('primary');
   });
 });

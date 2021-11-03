@@ -10,9 +10,9 @@ import BrandingProvider from 'docs/src/BrandingProvider';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
 
-const StyledDiv = styled('div')(() => ({
+const StyledDiv = styled('div')({
   flex: '1 0 100%',
-}));
+});
 
 const StyledAppContainer = styled(AppContainer)(({ theme }) => ({
   '& .markdownElement': {

@@ -8,6 +8,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import InputBase, { inputBaseClasses as classes } from '@mui/material/InputBase';
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@emotion/react';
 
 describe('<InputBase />', () => {
   const render = createClientRender();
@@ -559,6 +561,14 @@ describe('<InputBase />', () => {
       const { container } = render(<InputBase inputProps={{ ref: inputRef }} />);
       expect(inputRef.current).to.equal(container.querySelector('input'));
     });
+
+    it('should not repeat the same classname', () => {
+      const { container } = render(<InputBase inputProps={{ className: 'foo' }} />);
+      const input = container.querySelector('input');
+      const matches = input.className.match(/foo/g);
+      expect(input).to.have.class('foo');
+      expect(matches).to.have.length(1);
+    });
   });
 
   describe('prop: inputComponent with prop: inputProps', () => {
@@ -655,6 +665,33 @@ describe('<InputBase />', () => {
       const inputRef = React.createRef();
       const { container } = render(<InputBase multiline inputRef={inputRef} />);
       expect(inputRef.current).to.equal(container.querySelector('textarea'));
+    });
+  });
+
+  describe('prop: focused', () => {
+    it('should render correct border color with `ThemeProvider` imported from `@emotion/react`', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const theme = createTheme({
+        palette: {
+          primary: {
+            main: 'rgb(0, 191, 165)',
+          },
+        },
+      });
+      const { getByRole } = render(
+        <ThemeProvider theme={theme}>
+          <TextField focused label="Your email" />
+        </ThemeProvider>,
+      );
+      const fieldset = getByRole('textbox').nextSibling;
+      expect(fieldset).toHaveComputedStyle({
+        borderTopColor: 'rgb(0, 191, 165)',
+        borderRightColor: 'rgb(0, 191, 165)',
+        borderBottomColor: 'rgb(0, 191, 165)',
+        borderLeftColor: 'rgb(0, 191, 165)',
+      });
     });
   });
 });

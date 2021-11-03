@@ -1,6 +1,6 @@
 {
   "name": "@mui/core",
-  "version": "5.0.0-alpha.51",
+  "version": "5.0.0-alpha.53",
   "private": false,
   "author": "MUI Team",
   "description": "Unstyled React components with which to implement custom design systems.",
@@ -8,7 +8,7 @@
   "keywords": [
     "react",
     "react-component",
-    "material-ui",
+    "mui",
     "unstyled",
     "a11y"
   ],
@@ -47,7 +47,7 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.15.4",
+    "@babel/runtime": "^7.16.0",
     "@emotion/is-prop-valid": "^1.1.0",
     "@mui/utils": "^5.0.1",
     "@popperjs/core": "^2.4.4",

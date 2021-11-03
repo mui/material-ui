@@ -123,7 +123,9 @@ describe('<TreeView />', () => {
       );
 
       expect(() => {
-        screen.getByRole('button').click();
+        act(() => {
+          screen.getByRole('button').click();
+        });
       }).not.toErrorDev();
     });
   });

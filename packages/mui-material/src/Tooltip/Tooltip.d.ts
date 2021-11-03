@@ -34,10 +34,12 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   };
   /**
    * The props used for each slot inside the Tooltip.
+   * Note that `componentsProps.popper` prop values win over `PopperProps`
+   * and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
    * @default {}
    */
   componentsProps?: {
-    popper?: PopperProps & TooltipComponentsPropsOverrides;
+    popper?: Partial<PopperProps> & TooltipComponentsPropsOverrides;
     transition?: TransitionProps & TooltipComponentsPropsOverrides;
     tooltip?: React.HTMLProps<HTMLDivElement> &
       MUIStyledCommonProps &

@@ -257,3 +257,8 @@ export function pathnameToLanguage(pathname: string): { userLanguage: string; ca
     canonical: pathname,
   };
 }
+
+export function escapeCell(value: string): string {
+  // As the pipe is use for the table structure
+  return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
+}

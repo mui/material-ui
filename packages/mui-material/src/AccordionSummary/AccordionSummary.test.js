@@ -85,7 +85,7 @@ describe('<AccordionSummary />', () => {
   it('fires onChange of the Accordion if clicked', () => {
     const handleChange = spy();
     const { getByRole } = render(
-      <Accordion onChange={handleChange}>
+      <Accordion onChange={handleChange} expanded={false}>
         <AccordionSummary />
       </Accordion>,
     );

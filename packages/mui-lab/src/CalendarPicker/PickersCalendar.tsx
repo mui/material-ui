@@ -44,11 +44,13 @@ export interface PickersCalendarProps<TDate> extends ExportedCalendarProps<TDate
   className?: string;
   currentMonth: TDate;
   date: TDate | [TDate | null, TDate | null] | null;
+  disabled?: boolean;
   focusedDay: TDate | null;
   isDateDisabled: (day: TDate) => boolean;
   isMonthSwitchingAnimating: boolean;
   onFocusedDayChange: (newFocusedDay: TDate) => void;
   onMonthSwitchingAnimationEnd: () => void;
+  readOnly?: boolean;
   reduceAnimations: boolean;
   slideDirection: SlideDirection;
   TransitionProps?: Partial<SlideTransitionProps>;
@@ -103,6 +105,7 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
     className,
     currentMonth,
     date,
+    disabled,
     disableHighlightToday,
     focusedDay,
     isDateDisabled,
@@ -110,6 +113,7 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
     loading,
     onChange,
     onMonthSwitchingAnimationEnd,
+    readOnly,
     reduceAnimations,
     renderDay,
     renderLoading = () => <span data-mui-test="loading-progress">...</span>,
@@ -122,12 +126,15 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
   const utils = useUtils<TDate>();
   const handleDaySelect = React.useCallback(
     (day: TDate, isFinish: PickerSelectionState = 'finish') => {
+      if (readOnly) {
+        return;
+      }
       // TODO possibly buggy line figure out and add tests
       const finalDate = Array.isArray(date) ? day : utils.mergeDateAndTime(day, date || now);
 
       onChange(finalDate, isFinish);
     },
-    [date, now, onChange, utils],
+    [date, now, onChange, readOnly, utils],
   );
 
   const currentMonthNumber = utils.getMonth(currentMonth);
@@ -174,7 +181,7 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
                     key: (day as any)?.toString(),
                     day,
                     isAnimating: isMonthSwitchingAnimating,
-                    disabled: isDateDisabled(day),
+                    disabled: disabled || isDateDisabled(day),
                     allowSameDateSelection,
                     autoFocus: autoFocus && focusedDay !== null && utils.isSameDay(day, focusedDay),
                     today: utils.isSameDay(day, now),

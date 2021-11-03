@@ -214,10 +214,6 @@ const customQueries = {
 
 interface RenderConfiguration {
   /**
-   * https://testing-library.com/docs/react-testing-library/api#baseelement-1
-   */
-  baseElement?: HTMLElement;
-  /**
    * https://testing-library.com/docs/react-testing-library/api#container
    */
   container?: HTMLElement;
@@ -264,7 +260,6 @@ function clientRender(
   configuration: RenderConfiguration,
 ): MuiRenderResult {
   const {
-    baseElement,
     container,
     emotionCache,
     hydrate,
@@ -292,7 +287,6 @@ function clientRender(
 
   const testingLibraryRenderResult = traceSync('render', () =>
     testingLibraryRender(element, {
-      baseElement,
       container,
       hydrate,
       // @ts-ignore Available in the `@testing-library/react` fork used when running with React 18

@@ -26,6 +26,8 @@ Options:
   --help     Show help                                           [boolean]
   --dry      dry run (no changes are made to files)
                                                 [boolean] [default: false]
+  --parser   which parser for jscodeshift to use.
+                                                [string] [default: 'tsx']
   --print    print transformed files to stdout, useful for development
                                                 [boolean] [default: false]
   --jscodeshift                                  [string] [default: false]
@@ -34,6 +36,7 @@ Examples:
   npx @mui/codemod v4.0.0/theme-spacing-api src
   npx @mui/codemod v5.0.0/component-rename-prop src --
   --component=Grid --from=prop --to=newProp
+  npx @mui/codemod v5.0.0/preset-safe src --parser=flow
 ```
 
 #### jscodeshift options
@@ -756,10 +759,10 @@ You can find more details about this breaking change in [the migration guide](ht
 #### `skeleton-variant`
 
 ```diff
--<Skeleton vairiant="circle" />
--<Skeleton vairiant="rect" />
-+<Skeleton vairiant="circular" />
-+<Skeleton vairiant="rectangular" />
+-<Skeleton variant="circle" />
+-<Skeleton variant="rect" />
++<Skeleton variant="circular" />
++<Skeleton variant="rectangular" />
 ```
 
 ```sh
