@@ -21,20 +21,22 @@ const ScopedCssBaselineRoot = styled('div', {
   name: 'MuiScopedCssBaseline',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme, enableColorScheme }) => ({
-  ...html(theme, enableColorScheme),
-  ...body(theme),
-  '& *, & *::before, & *::after': {
-    boxSizing: 'inherit',
-  },
-  '& strong, & b': {
-    fontWeight: theme.typography.fontWeightBold,
-  },
-}));
+})(({ theme, ownerState }) => {
+  return {
+    ...html(theme, ownerState.enableColorScheme),
+    ...body(theme),
+    '& *, & *::before, & *::after': {
+      boxSizing: 'inherit',
+    },
+    '& strong, & b': {
+      fontWeight: theme.typography.fontWeightBold,
+    },
+  };
+});
 
 const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiScopedCssBaseline' });
-  const { className, component = 'div', ...other } = props;
+  const { className, component = 'div', enableColorScheme, ...other } = props;
 
   const ownerState = {
     ...props,
