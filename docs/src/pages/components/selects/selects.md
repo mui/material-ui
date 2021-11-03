@@ -10,10 +10,6 @@ githubLabel: 'component: Select'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Listbox
-
-{{"demo": "pages/components/selects/Listboxes.js"}}
-
 ## Basic select
 
 Menus are positioned under their emitting elements, unless they are close to the bottom of the viewport.
