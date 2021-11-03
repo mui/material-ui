@@ -64,7 +64,7 @@ const ButtonRoot = styled('button', {
     {
       padding: '0.25rem 2rem',
       minHeight: '48px',
-      borderRadius: '40px',
+      borderRadius: '28px',
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -72,7 +72,7 @@ const ButtonRoot = styled('button', {
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
-      ...theme.typography.button(theme),
+      ...theme.typography.button,
       [`&.${buttonClasses.disabled}`]: {
         pointerEvents: 'none',
         cursor: 'default',
@@ -116,7 +116,7 @@ const ButtonRoot = styled('button', {
         backgroundColor: colorPalette[500],
       },
       [`&.${buttonClasses.disabled}`]: {
-        backgroundColor: neutral[300],
+        backgroundColor: colorPalette[300],
       },
     },
     ownerState.variant === 'outlined' && {
