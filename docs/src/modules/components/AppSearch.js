@@ -280,11 +280,15 @@ export default function AppSearch() {
                 } else {
                   parseUrl.href = item.url;
                 }
+                const pathName = userLanguage
+                  ? parseUrl.pathname.replace(`/${userLanguage}`, '')
+                  : parseUrl.pathname;
+
                 return {
                   ...item,
                   // `url` contains the domain.
                   // But we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
-                  url: `${parseUrl.pathname}${parseUrl.hash}`,
+                  url: `${pathName}${parseUrl.hash}`,
                 };
               });
             }}
