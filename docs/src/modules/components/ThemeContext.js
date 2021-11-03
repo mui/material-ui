@@ -228,6 +228,15 @@ export function ThemeProvider(props) {
         spacing,
       },
       dense ? highDensity : null,
+      {
+        components: {
+          MuiCssBaseline: {
+            defaultProps: {
+              enableColorScheme: true,
+            },
+          },
+        },
+      },
       languageMap[userLanguage],
     );
 

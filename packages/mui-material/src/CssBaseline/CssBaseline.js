@@ -55,9 +55,9 @@ export const styles = (theme, enableColorScheme = false) => {
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
-function CssBaseline({ enableColorScheme = false, ...inProps }) {
+function CssBaseline(inProps) {
   const props = useThemeProps({ props: inProps, name: 'MuiCssBaseline' });
-  const { children } = props;
+  const { children, enableColorScheme = false } = props;
   return (
     <React.Fragment>
       <GlobalStyles styles={(theme) => styles(theme, enableColorScheme)} />
@@ -76,7 +76,10 @@ CssBaseline.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * Enable `color-scheme` css property to use `theme.palette.mode`.
+   * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+   * For browser support, check out https://caniuse.com/?search=color-scheme
+   * @default false
    */
   enableColorScheme: PropTypes.bool,
 };
