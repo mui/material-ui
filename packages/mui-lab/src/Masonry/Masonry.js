@@ -194,7 +194,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
           const parentWidth = masonry.contentRect.width;
           const childWidth = masonryFirstChild.contentRect.width;
-          const firstChildComputedStyle = window.getComputedStyle(masonryRef.current.firstChild);
+          const firstChildComputedStyle = window.getComputedStyle(masonryFirstChild.target);
           const firstChildMarginLeft = parseToNumber(firstChildComputedStyle.marginLeft);
           const firstChildMarginRight = parseToNumber(firstChildComputedStyle.marginRight);
 
@@ -233,6 +233,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
             for (let i = 0; i < child.childNodes.length; i += 1) {
               const nestedChild = child.childNodes[i];
               if (nestedChild.tagName === 'IMG' && nestedChild.clientHeight === 0) {
+                observer.current.observe(nestedChild);
                 skip = true;
                 break;
               }
@@ -254,13 +255,13 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   );
 
   React.useEffect(() => {
+    const resizeObserver = observer.current;
     // IE and old browsers are not supported
-    if (observer.current === undefined) {
+    if (resizeObserver === undefined) {
       return undefined;
     }
 
     const container = masonryRef.current;
-    const resizeObserver = observer.current;
     if (container && resizeObserver) {
       // only the masonry container and its first child are observed for resizing;
       // this might cause unforeseen problems in some use cases;
@@ -269,12 +270,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
         resizeObserver.observe(container.firstChild);
       }
     }
-    if (resizeObserver) {
-      return () => {
-        resizeObserver.disconnect();
-      };
-    }
-    return () => {};
+    return () => (resizeObserver ? resizeObserver.disconnect() : {});
   }, [columns, spacing, children]);
 
   const handleRef = useForkRef(ref, masonryRef);
