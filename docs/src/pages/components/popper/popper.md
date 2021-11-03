@@ -1,6 +1,6 @@
 ---
 title: React Popper component
-components: Popper
+components: Popper, PopperUnstyled
 githubLabel: 'component: Popper'
 ---
 

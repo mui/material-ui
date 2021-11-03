@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/system';
 import Grow from '@mui/material/Grow';
-import Popper from '@mui/core/Popper';
+import Popper from '@mui/material/Popper';
+import { PopperUnstyled } from '..';
 
 describe('<Popper />', () => {
   let rtlTheme;
@@ -24,7 +25,7 @@ describe('<Popper />', () => {
 
   describeConformance(<Popper {...defaultProps} />, () => ({
     classes: {},
-    inheritComponent: 'div',
+    inheritComponent: PopperUnstyled,
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',
@@ -72,7 +73,7 @@ describe('<Popper />', () => {
         out: 'top',
       },
     ].forEach((test) => {
-      it(`should ${test.in === test.out ? 'not' : ''} flip ${
+      it(`should ${test.in === test.out ? 'not ' : ''}flip ${
         test.in
       } when direction=rtl is used`, () => {
         function Test() {
