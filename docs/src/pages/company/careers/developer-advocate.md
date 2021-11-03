@@ -52,6 +52,7 @@ We are looking for a dedicated educator and experienced developer to join us as 
 - You will help other team members grow at engaging with the community. For instance by encouraging and providing critical feedback on new blog posts.
 - You will rework the pages of the documentation that are confusing, base on feedback.
 - You will follow GitHub issues to understand where developers face frustration, and develop strategies to overcome these. This could be suggesting or implementing documentation updates, or proposing or contributing code changes that solve the core issue.
+
 ### Here are a few initiatives you might work on
 
 - Create a learning section in the documentation for hybrid written and video tutorials.
