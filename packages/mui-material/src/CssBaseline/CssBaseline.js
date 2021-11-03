@@ -24,7 +24,7 @@ export const body = (theme) => ({
   },
 });
 
-export const styles = (enableColorScheme) => (theme) => {
+export const styles = (theme, enableColorScheme = false) => {
   let defaultStyles = {
     html: html(theme, enableColorScheme),
     '*, *::before, *::after': {
@@ -60,7 +60,7 @@ function CssBaseline({ enableColorScheme = false, ...inProps }) {
   const { children } = props;
   return (
     <React.Fragment>
-      <GlobalStyles styles={styles(enableColorScheme)} />
+      <GlobalStyles styles={(theme) => styles(theme, enableColorScheme)} />
       {children}
     </React.Fragment>
   );
