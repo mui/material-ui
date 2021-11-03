@@ -186,21 +186,33 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     typeof ResizeObserver === 'undefined'
       ? undefined
       : new ResizeObserver((elements) => {
-          const masonry = elements[0];
-          const masonryFirstChild = elements[1];
-          if (!masonryFirstChild) {
+          if (!elements) {
+            return;
+          }
+          let masonry;
+          let masonryFirstChild;
+          let parentWidth;
+          let childWidth;
+          if (elements[0].target.className.includes(classes.root)) {
+            masonry = elements[0].target;
+            parentWidth = elements[0].contentRect.width;
+            masonryFirstChild = elements[1]?.target || masonryRef.current.firstChild;
+            childWidth =
+              masonryFirstChild?.contentRect?.width || masonryFirstChild?.clientWidth || 0;
+          } else {
+            masonryFirstChild = elements[0].target;
+            childWidth = elements[0].contentRect.width;
+            masonry = elements[1]?.target || masonryRef.current;
+            parentWidth = masonry.contentRect?.width || masonry.clientWidth;
+          }
+
+          if (parentWidth === 0 || childWidth === 0 || !masonry || !masonryFirstChild) {
             return;
           }
 
-          const parentWidth = masonry.contentRect.width;
-          const childWidth = masonryFirstChild.contentRect.width;
-          const firstChildComputedStyle = window.getComputedStyle(masonryFirstChild.target);
+          const firstChildComputedStyle = window.getComputedStyle(masonryFirstChild);
           const firstChildMarginLeft = parseToNumber(firstChildComputedStyle.marginLeft);
           const firstChildMarginRight = parseToNumber(firstChildComputedStyle.marginRight);
-
-          if (parentWidth === 0 || childWidth === 0) {
-            return;
-          }
 
           const currentNumberOfColumns = Math.round(
             parentWidth / (childWidth + firstChildMarginLeft + firstChildMarginRight),
@@ -208,7 +220,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
           const columnHeights = new Array(currentNumberOfColumns).fill(0);
           let skip = false;
-          masonry.target.childNodes.forEach((child) => {
+          masonry.childNodes.forEach((child) => {
             if (
               child.nodeType !== Node.ELEMENT_NODE ||
               child.dataset.class === 'line-break' ||
@@ -233,7 +245,6 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
             for (let i = 0; i < child.childNodes.length; i += 1) {
               const nestedChild = child.childNodes[i];
               if (nestedChild.tagName === 'IMG' && nestedChild.clientHeight === 0) {
-                observer.current.observe(nestedChild);
                 skip = true;
                 break;
               }
