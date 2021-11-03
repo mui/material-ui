@@ -66,11 +66,34 @@ export type CustomListboxReducer<TOption> = (
 ) => ListboxState<TOption>;
 
 interface UseListboxCommonProps<TOption> {
+  /**
+   * Array of options to be rendered in the list.
+   */
   options: TOption[];
+  /**
+   * A function that determines if a particular option is disabled.
+   * @default () => false
+   */
   isOptionDisabled?: (option: TOption, index: number) => boolean;
+  /**
+   * A function that tests equality between two options.
+   * @default (a, b) => a === b
+   */
   isOptionEqualToValue?: (option: TOption, value: TOption) => boolean;
+  /**
+   * If `true`, the highlight will not wrap around the list if arrow keys are used.
+   * @default false
+   */
   disableListWrap?: boolean;
+  /**
+   * If `true`, it will be possible to highlight disabled options.
+   * @default false
+   */
   disabledItemsFocusable?: boolean;
+  /**
+   * Custom state reducer function. It calculates the new state (highlighted and selected options)
+   * based on the previous one and the performed action.
+   */
   stateReducer?: CustomListboxReducer<TOption>;
   /**
    * Callback fired when the highlighted option changes.
@@ -79,8 +102,18 @@ interface UseListboxCommonProps<TOption> {
 }
 
 interface UseSingleSelectListboxProps<TOption> extends UseListboxCommonProps<TOption> {
+  /**
+   * The default selected value. Use when the component is not controlled.
+   */
   defaultValue?: TOption | null;
+  /**
+   * If `true`, the component will allow to select multiple options.
+   * @default false
+   */
   selectMultiple?: false;
+  /**
+   * The selected value. Use when the component is controlled.
+   */
   value?: TOption | null;
   /**
    * Callback fired when the value changes.
@@ -89,8 +122,18 @@ interface UseSingleSelectListboxProps<TOption> extends UseListboxCommonProps<TOp
 }
 
 interface UseMultiSelectListboxProps<TOption> extends UseListboxCommonProps<TOption> {
+  /**
+   * The default selected value. Use when the component is not controlled.
+   */
   defaultValue?: TOption[];
+  /**
+   * If `true`, the component will allow to select multiple options.
+   * @default false
+   */
   selectMultiple: true;
+  /**
+   * The selected value. Use when the component is controlled.
+   */
   value?: TOption[];
   /**
    * Callback fired when the value changes.

@@ -60,7 +60,7 @@ function useControlledReducer<TOption>(
   React.useEffect(() => {
     setValueState(state.selectedValue);
     if (state.selectedValue != null) {
-      // @ts-ignore We know that selectedValue has the correct type dependiing on `selectMultiple` prop.
+      // @ts-ignore We know that selectedValue has the correct type depending on `selectMultiple` prop.
       onValueChange?.(state.selectedValue);
     }
 
