@@ -149,16 +149,18 @@ const ButtonGroupRoot = styled('div', {
         ownerState.color !== 'inherit' && {
           borderColor: theme.palette[ownerState.color].dark,
         }),
+      '&:hover': {
+        ...(ownerState.variant === 'outlined' &&
+          ownerState.orientation === 'horizontal' && {
+            borderRightColor: 'currentColor',
+          }),
+        ...(ownerState.variant === 'outlined' &&
+          ownerState.orientation === 'vertical' && {
+            borderBottomColor: 'currentColor',
+          }),
+      },
     },
     '&:hover': {
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.orientation === 'horizontal' && {
-          borderRightColor: 'currentColor',
-        }),
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.orientation === 'vertical' && {
-          borderBottomColor: 'currentColor',
-        }),
       ...(ownerState.variant === 'contained' && {
         boxShadow: 'none',
       }),
