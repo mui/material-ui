@@ -80,7 +80,7 @@ export default function createCssVarsProvider<
    * `keys` is an array that represents the nested object path.
    *  Ex, { foo: { bar: 'var(--test)' } } => `keys`: ['foo', 'bar'], value: 'var(--test)'
    */
-  shouldSkipVar?: (keys: Array<string>, value: string | number) => boolean;
+  shouldSkipVar?: (keys: string[], value: string | number) => boolean;
 }): {
   CssVarsProvider: (
     props: React.PropsWithChildren<
