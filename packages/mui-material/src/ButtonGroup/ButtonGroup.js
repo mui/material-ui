@@ -152,8 +152,12 @@ const ButtonGroupRoot = styled('div', {
     },
     '&:hover': {
       ...(ownerState.variant === 'outlined' &&
-        ownerState.color !== 'inherit' && {
-          borderColor: theme.palette[ownerState.color].main,
+        ownerState.orientation === 'horizontal' && {
+          borderRightColor: 'currentColor',
+        }),
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.orientation === 'vertical' && {
+          borderBottomColor: 'currentColor',
         }),
       ...(ownerState.variant === 'contained' && {
         boxShadow: 'none',
@@ -223,7 +227,6 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       classes.grouped,
     ],
   );
-
   return (
     <ButtonGroupRoot
       as={component}
