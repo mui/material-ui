@@ -58,7 +58,7 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 - The margin in all browsers is removed.
 - The default Material Design background color is applied.
   It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
-- Native components colors are set globally by applying [`color-scheme`](https://web.dev/color-scheme/) on `<html>`.
+- If `enableColorScheme` is provided to `CssBaseline`, native components color will be set by applying [`color-scheme`](https://web.dev/color-scheme/) on `<html>`.
   The value used is provided by the theme property `theme.palette.mode`.
 
 ### Layout
@@ -66,6 +66,39 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 - `box-sizing` is set globally on the `<html>` element to `border-box`.
   Every element—including `*::before` and `*::after` are declared to inherit this property,
   which ensures that the declared width of the element is never exceeded due to padding or border.
+
+### Scrollbars
+
+The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
+
+```jsx
+import darkScrollbar from '@mui/material/darkScrollbar';
+const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: theme.palette.mode === 'dark' ? darkScrollbar() : null,
+      },
+    },
+  },
+});
+```
+
+Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
+
+This is a deprecated functionality.
+To switch between, "light" and "dark" mode of native components such as scrollbar, use the `color-scheme` property.
+To enable it, you can set `enableColorScheme=true` as follow:
+
+```jsx
+<CssBaseline enableColorScheme />
+
+// or
+
+<ScopedCssBaseline enableColorScheme >
+  {/* The rest of your application using color-scheme*/}
+</ScopedCssBaseline>
+```
 
 ### Typography
 
