@@ -32,6 +32,12 @@ You can optionally enable first-page and last-page buttons, or disable the previ
 
 {{"demo": "pages/components/pagination/PaginationButtons.js"}}
 
+## Custom icons
+
+It's possible to customize the control icons.
+
+{{"demo": "pages/components/pagination/CustomIcons.js"}}
+
 ## Pagination ranges
 
 You can specify how many digits to display either side of current page with the `siblingRange` prop, and adjacent to the start and end page number with the `boundaryRange` prop.
