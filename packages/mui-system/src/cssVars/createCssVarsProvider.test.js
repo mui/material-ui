@@ -191,7 +191,7 @@ describe('createCssVarsProvider', () => {
       });
       const Consumer = () => {
         const theme = useTheme();
-        return <div data-testid="h1">{theme.vars.typography.h1}</div>;
+        return <div data-testid="h1">{theme.vars.typography.h1 || ''}</div>;
       };
       expect(() =>
         render(
