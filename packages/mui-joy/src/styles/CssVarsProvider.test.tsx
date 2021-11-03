@@ -202,7 +202,7 @@ describe('[Joy] CssVarsProvider', () => {
         this.skip();
       }
       const Text = styled('p')(({ theme }) => ({
-        ...theme.typography.body(theme),
+        ...theme.typography.body,
       }));
 
       const { container } = render(

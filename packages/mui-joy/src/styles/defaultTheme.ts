@@ -66,13 +66,14 @@ export interface FontFamily {
 }
 
 export interface FontWeight {
-  light: React.CSSProperties['fontWeight'];
-  regular: React.CSSProperties['fontWeight'];
-  medium: React.CSSProperties['fontWeight'];
-  semiBold: React.CSSProperties['fontWeight'];
-  bold: React.CSSProperties['fontWeight'];
-  extraBold: React.CSSProperties['fontWeight'];
-  black: React.CSSProperties['fontWeight'];
+  // add string to support css variable value.
+  light: React.CSSProperties['fontWeight'] | string;
+  regular: React.CSSProperties['fontWeight'] | string;
+  medium: React.CSSProperties['fontWeight'] | string;
+  semiBold: React.CSSProperties['fontWeight'] | string;
+  bold: React.CSSProperties['fontWeight'] | string;
+  extraBold: React.CSSProperties['fontWeight'] | string;
+  black: React.CSSProperties['fontWeight'] | string;
 }
 
 export interface LineHeight {
@@ -94,18 +95,18 @@ export interface Shadow {
 }
 
 export interface TypographySystems {
-  h1: (vars: JoyTheme) => React.CSSProperties;
-  h2: (vars: JoyTheme) => React.CSSProperties;
-  h3: (vars: JoyTheme) => React.CSSProperties;
-  h4: (vars: JoyTheme) => React.CSSProperties;
-  h5: (vars: JoyTheme) => React.CSSProperties;
-  headingSubtitle: (vars: JoyTheme) => React.CSSProperties;
-  body: (vars: JoyTheme) => React.CSSProperties;
-  caption: (vars: JoyTheme) => React.CSSProperties;
-  detail: (vars: JoyTheme) => React.CSSProperties;
-  headingIntro: (vars: JoyTheme) => React.CSSProperties;
-  overline: (vars: JoyTheme) => React.CSSProperties;
-  button: (vars: JoyTheme) => React.CSSProperties;
+  h1: React.CSSProperties;
+  h2: React.CSSProperties;
+  h3: React.CSSProperties;
+  h4: React.CSSProperties;
+  h5: React.CSSProperties;
+  headingSubtitle: React.CSSProperties;
+  body: React.CSSProperties;
+  caption: React.CSSProperties;
+  detail: React.CSSProperties;
+  headingIntro: React.CSSProperties;
+  overline: React.CSSProperties;
+  button: React.CSSProperties;
 }
 
 // ---------------------------------------------------------------
@@ -225,113 +226,113 @@ const themeWithoutVars: BaseJoyTokens = {
     lg: '0.1em',
   },
   typography: {
-    h1: (theme) => ({
-      fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.bold,
-      fontSize: theme.vars.fontSize.xl4,
-      lineHeight: theme.vars.lineHeight.sm,
-      letterSpacing: theme.vars.letterSpacing.xs,
+    h1: {
+      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontWeight: 'var(--joy-fontWeight-bold)' as React.CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-xl4)',
+      lineHeight: 'var(--joy-lineHeight-sm)',
+      letterSpacing: 'var(--joy-letterSpacing-xs)',
       textTransform: 'capitalize',
-      color: theme.vars.palette.text.heading,
-    }),
-    h2: (theme) => ({
-      fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.semiBold,
-      fontSize: theme.vars.fontSize.xl3,
-      lineHeight: theme.vars.lineHeight.sm,
-      letterSpacing: theme.vars.letterSpacing.normal,
+      color: 'var(--joy-palette-text-heading)',
+    },
+    h2: {
+      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontWeight: 'var(--joy-fontWeight-semiBold)' as React.CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-xl3)',
+      lineHeight: 'var(--joy-lineHeight-sm)',
+      letterSpacing: 'var(--joy-letterSpacing-normal)',
       textTransform: 'capitalize',
-      color: theme.vars.palette.text.heading,
-    }),
-    h3: (theme) => ({
-      fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.regular,
-      fontSize: theme.vars.fontSize.xl2,
-      lineHeight: theme.vars.lineHeight.sm,
-      letterSpacing: theme.vars.letterSpacing.normal,
+      color: 'var(--joy-palette-text-heading)',
+    },
+    h3: {
+      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-xl2)',
+      lineHeight: 'var(--joy-lineHeight-sm)',
+      letterSpacing: 'var(--joy-letterSpacing-normal)',
       textTransform: 'capitalize',
-      color: theme.vars.palette.text.heading,
-    }),
-    h4: (theme) => ({
-      fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.medium,
-      fontSize: theme.vars.fontSize.xl,
-      lineHeight: theme.vars.lineHeight.normal,
-      letterSpacing: theme.vars.letterSpacing.normal,
+      color: 'var(--joy-palette-text-heading)',
+    },
+    h4: {
+      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontWeight: 'var(--joy-fontWeight-medium)' as React.CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-xl)',
+      lineHeight: 'var(--joy-lineHeight-normal)',
+      letterSpacing: 'var(--joy-letterSpacing-normal)',
       textTransform: 'capitalize',
-      color: theme.vars.palette.text.heading,
-    }),
-    h5: (theme) => ({
-      fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.regular,
-      fontSize: theme.vars.fontSize.lg,
-      lineHeight: theme.vars.lineHeight.normal,
-      letterSpacing: theme.vars.letterSpacing.normal,
+      color: 'var(--joy-palette-text-heading)',
+    },
+    h5: {
+      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-lg)',
+      lineHeight: 'var(--joy-lineHeight-normal)',
+      letterSpacing: 'var(--joy-letterSpacing-normal)',
       textTransform: 'capitalize',
-      color: theme.vars.palette.text.heading,
-    }),
-    headingSubtitle: (theme) => ({
-      fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.regular,
-      fontSize: theme.vars.fontSize.lg,
-      lineHeight: theme.vars.lineHeight.normal,
-      letterSpacing: theme.vars.letterSpacing.normal,
+      color: 'var(--joy-palette-text-heading)',
+    },
+    headingSubtitle: {
+      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-lg)',
+      lineHeight: 'var(--joy-lineHeight-normal)',
+      letterSpacing: 'var(--joy-letterSpacing-normal)',
       textTransform: 'capitalize',
-      color: theme.vars.palette.text.content,
-    }),
-    body: (theme) => ({
-      fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.regular,
-      fontSize: theme.vars.fontSize.md,
-      lineHeight: theme.vars.lineHeight.normal,
-      letterSpacing: theme.vars.letterSpacing.normal,
+      color: 'var(--joy-palette-text-content)',
+    },
+    body: {
+      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-md)',
+      lineHeight: 'var(--joy-lineHeight-normal)',
+      letterSpacing: 'var(--joy-letterSpacing-normal)',
       textTransform: 'capitalize',
-      color: theme.vars.palette.text.content,
-    }),
-    caption: (theme) => ({
-      fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.regular,
-      fontSize: theme.vars.fontSize.sm,
-      lineHeight: theme.vars.lineHeight.normal,
-      letterSpacing: theme.vars.letterSpacing.normal,
+      color: 'var(--joy-palette-text-content)',
+    },
+    caption: {
+      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-sm)',
+      lineHeight: 'var(--joy-lineHeight-normal)',
+      letterSpacing: 'var(--joy-letterSpacing-normal)',
       textTransform: 'capitalize',
-      color: theme.vars.palette.text.content,
-    }),
-    detail: (theme) => ({
-      fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.regular,
-      fontSize: theme.vars.fontSize.xs,
-      lineHeight: theme.vars.lineHeight.normal,
-      letterSpacing: theme.vars.letterSpacing.normal,
+      color: 'var(--joy-palette-text-content)',
+    },
+    detail: {
+      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-xs)',
+      lineHeight: 'var(--joy-lineHeight-normal)',
+      letterSpacing: 'var(--joy-letterSpacing-normal)',
       textTransform: 'capitalize',
-      color: theme.vars.palette.text.detail,
-    }),
-    headingIntro: (theme) => ({
-      fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.extraBold,
-      fontSize: theme.vars.fontSize.md,
-      lineHeight: theme.vars.lineHeight.normal,
-      letterSpacing: theme.vars.letterSpacing.lg,
+      color: 'var(--joy-palette-text-detail)',
+    },
+    headingIntro: {
+      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontWeight: 'var(--joy-fontWeight-extraBold)' as React.CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-md)',
+      lineHeight: 'var(--joy-lineHeight-normal)',
+      letterSpacing: 'var(--joy-letterSpacing-lg)',
       textTransform: 'uppercase',
-      color: theme.vars.palette.text.headingIntro,
-    }),
-    overline: (theme) => ({
-      fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.extraBold,
-      fontSize: theme.vars.fontSize.xs,
-      lineHeight: theme.vars.lineHeight.normal,
-      letterSpacing: theme.vars.letterSpacing.lg,
+      color: 'var(--joy-palette-text-headingIntro)',
+    },
+    overline: {
+      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontWeight: 'var(--joy-fontWeight-extraBold)' as React.CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-xs)',
+      lineHeight: 'var(--joy-lineHeight-normal)',
+      letterSpacing: 'var(--joy-letterSpacing-lg)',
       textTransform: 'uppercase',
-      color: theme.vars.palette.text.overline,
-    }),
-    button: (theme) => ({
-      fontFamily: theme.vars.fontFamily.sans,
-      fontWeight: theme.vars.fontWeight.bold,
-      fontSize: theme.vars.fontSize.md,
-      lineHeight: theme.vars.lineHeight.normal,
-      letterSpacing: theme.vars.letterSpacing.normal,
+      color: 'var(--joy-palette-text-overline)',
+    },
+    button: {
+      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontWeight: 'var(--joy-fontWeight-bold)' as React.CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-md)',
+      lineHeight: 'var(--joy-lineHeight-normal)',
+      letterSpacing: 'var(--joy-letterSpacing-normal)',
       textTransform: 'capitalize',
-    }),
+    },
   },
   shadow: {
     ring: '0 0 0 0 rgba(0,0,0,0)',
