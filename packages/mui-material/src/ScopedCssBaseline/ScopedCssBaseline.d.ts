@@ -13,7 +13,9 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
      */
     classes?: Partial<ScopedCssBaselineClasses>;
     /*
-     * Enable to use color-scheme property to set dark mode
+     * Enable `color-scheme` css property to use `theme.palette.mode`.
+     * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+     * For browser support, check out https://caniuse.com/?search=color-scheme
      */
     enableColorScheme?: boolean;
   };
