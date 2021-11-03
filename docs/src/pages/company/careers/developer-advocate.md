@@ -1,6 +1,6 @@
 # Developer Advocate
 
-<p class="description">You will educate users on the latest features, craft high-quality examples, and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components.</p>
+<p class="description">You will educate users on the latest features, craft high-quality examples and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote the advanced components.</p>
 
 ## Details of the Role
 
@@ -31,9 +31,9 @@ We are looking for someone that can generate the following outcomes:
 ### Why this is interesting
 
 You will be the first person focusing full-time on developer relations at MUI.
-You will set the first stone of a team that could grow over time.
+You will lay the foundations for a team that could grow over time.
 
-Our solution is empowering React developers to build awesome applications. It should be easy, it shouldn't require any advanced technical skills. Hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications. It should be easy, it shouldn't require any advanced technical skills. Hundreds of thousands of developers use MUI every month.
 
 ## About the role
 
@@ -51,7 +51,7 @@ We are looking for a dedicated educator and experienced developer to join us as 
 - You will make sure contributions to the documentation are of high quality, sharing best practices with the developers.
 - You will help other team members grow at engaging with the community. For instance by encouraging and providing critical feedback on new blog posts.
 - You will rework the pages of the documentation that are confusing, base on feedback.
-
+- You will follow GitHub issues to understand where developers face frustration, and develop strategies to overcome these. This could be suggesting or implementing documentation updates, or proposing or contributing code changes that solve the core issue.
 ### Here are a few initiatives you might work on
 
 - Create a learning section in the documentation for hybrid written and video tutorials.
