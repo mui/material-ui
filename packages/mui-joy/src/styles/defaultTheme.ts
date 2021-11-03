@@ -18,6 +18,7 @@ export interface FontFamily {
 
 export interface FontWeight {
   regular: React.CSSProperties['fontWeight'];
+  bold: React.CSSProperties['fontWeight'];
 }
 
 export interface LineHeight {
@@ -31,6 +32,7 @@ export interface Shadow {
 
 export interface TypographySystems {
   body: (theme: JoyTheme) => React.CSSProperties;
+  button: (theme: JoyTheme) => React.CSSProperties;
 }
 
 export interface StaticTheme {
@@ -61,9 +63,9 @@ type BaseJoyTokens = {
   htmlFontSize: React.CSSProperties['fontSize'];
   fontSize: Pick<FontSize, 'md'>;
   fontFamily: Pick<FontFamily, 'sans' | 'mono'>;
-  fontWeight: Pick<FontWeight, 'regular'>;
+  fontWeight: Pick<FontWeight, 'regular' | 'bold'>;
   lineHeight: Pick<LineHeight, 'normal'>;
-  typography: Pick<TypographySystems, 'body'>;
+  typography: Pick<TypographySystems, 'body' | 'button'>;
   shadow: Pick<Shadow, 'ring' | 'md'>;
 };
 
@@ -80,11 +82,12 @@ const themeWithoutVars: BaseJoyTokens = {
     md: '1rem',
   },
   fontFamily: {
-    sans: 'IBM Plex Sans',
+    sans: 'Public Sans, Roboto',
     mono: 'Consolas',
   },
   fontWeight: {
     regular: 400,
+    bold: 700,
   },
   lineHeight: {
     normal: 1.5,
@@ -93,6 +96,12 @@ const themeWithoutVars: BaseJoyTokens = {
     body: (theme) => ({
       fontFamily: theme.vars.fontFamily.sans,
       fontWeight: theme.vars.fontWeight.regular,
+      fontSize: theme.vars.fontSize.md,
+      lineHeight: theme.vars.lineHeight.normal,
+    }),
+    button: (theme) => ({
+      fontFamily: theme.vars.fontFamily.sans,
+      fontWeight: theme.vars.fontWeight.bold,
       fontSize: theme.vars.fontSize.md,
       lineHeight: theme.vars.lineHeight.normal,
     }),

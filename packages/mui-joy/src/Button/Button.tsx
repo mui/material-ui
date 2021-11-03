@@ -59,10 +59,12 @@ const ButtonRoot = styled('button', {
   shouldForwardProp: rootShouldForwardProp,
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   const colorPalette = theme.vars.palette[ownerState.color || 'brand'];
+  const neutral = theme.vars.palette.neutral;
   return [
     {
-      padding: '4px 16px',
-      minHeight: '40px',
+      padding: '0.25rem 2rem',
+      minHeight: '48px',
+      borderRadius: '40px',
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -70,70 +72,70 @@ const ButtonRoot = styled('button', {
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
-      ...theme.typography.body(theme),
+      ...theme.typography.button(theme),
       [`&.${buttonClasses.disabled}`]: {
         pointerEvents: 'none',
         cursor: 'default',
       },
       [`&.${buttonClasses.focusVisible}`]: {
-        outline: '2px solid',
+        outline: '4px solid',
         outlineColor: colorPalette[300],
-        outlineOffset: '2px',
       },
       ...(ownerState.fullWidth && {
         width: '100%',
       }),
     },
+    ownerState.size === 'small' && {
+      minHeight: '40px',
+    },
+    ownerState.size === 'large' && {
+      minHeight: '56px',
+    },
     ownerState.variant === 'text' && {
-      color: colorPalette[500],
+      color: colorPalette[600],
+      [`&.${buttonClasses.focusVisible}`]: {
+        outlineColor: neutral[200],
+      },
       '&:hover': {
-        backgroundColor: `rgba(${colorPalette.channel500} / 0.12)`,
+        backgroundColor: neutral[100],
       },
       '&:active': {
-        backgroundColor: `rgba(${colorPalette.channel500} / 0.2)`,
+        backgroundColor: neutral[200],
       },
       [`&.${buttonClasses.disabled}`]: {
-        color: theme.vars.palette.neutral[400],
+        color: neutral[300],
       },
     },
     ownerState.variant === 'contained' && {
-      backgroundColor: colorPalette[500],
+      backgroundColor: colorPalette[600],
       color: '#fff',
       '&:hover': {
-        backgroundColor: colorPalette[600],
-      },
-      '&:active': {
         backgroundColor: colorPalette[700],
       },
+      '&:active': {
+        backgroundColor: colorPalette[500],
+      },
       [`&.${buttonClasses.disabled}`]: {
-        backgroundColor: theme.vars.palette.neutral[300],
+        backgroundColor: neutral[300],
       },
     },
     ownerState.variant === 'outlined' && {
-      color: colorPalette[500],
+      color: colorPalette[600],
       border: '1px solid',
-      borderColor: `rgba(${colorPalette.channel500} / 0.6)`,
+      borderColor: neutral[300],
+      [`&.${buttonClasses.focusVisible}`]: {
+        outlineColor: neutral[200],
+      },
       '&:hover': {
-        borderColor: colorPalette[500],
-        backgroundColor: `rgba(${colorPalette.channel500} / 0.12)`,
+        backgroundColor: neutral[100],
       },
       '&:active': {
-        backgroundColor: `rgba(${colorPalette.channel500} / 0.2)`,
+        backgroundColor: neutral[200],
       },
       [`&.${buttonClasses.disabled}`]: {
-        borderColor: theme.vars.palette.neutral[300],
-        color: theme.vars.palette.neutral[400],
+        borderColor: neutral[300],
+        color: neutral[300],
       },
-    },
-    ownerState.size === 'small' && {
-      fontSize: '0.875rem',
-      minHeight: '32px',
-      padding: '4px 12px',
-    },
-    ownerState.size === 'large' && {
-      minHeight: '48px',
-      fontSize: '1.125rem',
-      padding: '4px 20px',
     },
   ];
 });
