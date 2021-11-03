@@ -96,12 +96,16 @@ const getCssValue = (keys: string[], value: string | number) => {
  * console.log(css) // { '--fontSize': '12px', '--lineHeight': 1.2, '--palette-primary-500': '#000000' }
  * console.log(vars) // { fontSize: '--fontSize', lineHeight: '--lineHeight', palette: { primary: { 500: 'var(--palette-primary-500)' } } }
  */
-export default function cssVarsParser(obj: Record<string, any>, options?: { prefix?: string }) {
+export default function cssVarsParser(theme: Record<string, any>, options?: { prefix?: string }) {
+  const clonedTheme = { ...theme };
+
+  delete clonedTheme.vars; // remove 'vars' from the structure
+
   const { prefix } = options || {};
   const css = {} as NestedRecord<string>;
   const vars = {} as NestedRecord<string>;
 
-  walkObjectDeep(obj, (keys, value) => {
+  walkObjectDeep(clonedTheme, (keys, value) => {
     if (typeof value === 'string' || typeof value === 'number') {
       const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
       Object.assign(css, { [cssVar]: getCssValue(keys, value) });

@@ -136,14 +136,13 @@ describe('<Select />', () => {
   });
 
   it('options should have a data-value attribute', () => {
-    const { getAllByRole } = render(
+    render(
       <Select open value={10}>
         <MenuItem value={10}>Ten</MenuItem>
         <MenuItem value={20}>Twenty</MenuItem>
       </Select>,
-      { baseElement: document.body },
     );
-    const options = getAllByRole('option');
+    const options = screen.getAllByRole('option');
 
     expect(options[0]).to.have.attribute('data-value', '10');
     expect(options[1]).to.have.attribute('data-value', '20');
@@ -306,15 +305,14 @@ describe('<Select />', () => {
 
   describe('prop: value', () => {
     it('should select the option based on the number value', () => {
-      const { getAllByRole } = render(
+      render(
         <Select open value={20}>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>,
-        { baseElement: document.body },
       );
-      const options = getAllByRole('option');
+      const options = screen.getAllByRole('option');
 
       expect(options[0]).not.to.have.attribute('aria-selected', 'true');
       expect(options[1]).to.have.attribute('aria-selected', 'true');
@@ -322,15 +320,14 @@ describe('<Select />', () => {
     });
 
     it('should select the option based on the string value', () => {
-      const { getAllByRole } = render(
+      render(
         <Select open value="20">
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>,
-        { baseElement: document.body },
       );
-      const options = getAllByRole('option');
+      const options = screen.getAllByRole('option');
 
       expect(options[0]).not.to.have.attribute('aria-selected', 'true');
       expect(options[1]).to.have.attribute('aria-selected', 'true');
@@ -340,14 +337,13 @@ describe('<Select />', () => {
     it('should select only the option that matches the object', () => {
       const obj1 = { id: 1 };
       const obj2 = { id: 2 };
-      const { getAllByRole } = render(
+      render(
         <Select open value={obj1}>
           <MenuItem value={obj1}>1</MenuItem>
           <MenuItem value={obj2}>2</MenuItem>
         </Select>,
-        { baseElement: document.body },
       );
-      const options = getAllByRole('option');
+      const options = screen.getAllByRole('option');
 
       expect(options[0]).to.have.attribute('aria-selected', 'true');
       expect(options[1]).not.to.have.attribute('aria-selected', 'true');
@@ -582,7 +578,6 @@ describe('<Select />', () => {
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
         </Select>,
-        { baseElement: document.body },
       );
       const trigger = screen.getByRole('button');
       act(() => {
