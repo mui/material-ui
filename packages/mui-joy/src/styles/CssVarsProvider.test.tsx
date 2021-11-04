@@ -136,7 +136,7 @@ describe('[Joy] CssVarsProvider', () => {
         this.skip();
       }
       const fontFamiliesAreNotQuoted = /Firefox/.test(window.navigator.userAgent);
-      const fontWeight400IsNormal = /safari/.test(window.navigator.userAgent);
+      const fontWeight400IsNormal = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
       const Text = styled('p')(({ theme }) => ({
         ...theme.typography.body(theme),
