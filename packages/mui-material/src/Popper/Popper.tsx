@@ -24,11 +24,7 @@ const Popper = React.forwardRef(function Popper(
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const theme = useTheme<{ direction?: Direction }>();
-  const themeDirection = {
-    direction: theme?.direction,
-  };
-
-  return <PopperUnstyled {...themeDirection} {...props} ref={ref} />;
+  return <PopperUnstyled direction={theme.direction} {...props} ref={ref} />;
 });
 
 function resolveAnchorEl(anchorEl: any) {
