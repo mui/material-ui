@@ -5,7 +5,7 @@ import { createServerRender, createRenderer } from 'test/utils';
 import Portal from './Portal';
 
 describe('<Portal />', () => {
-  const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
+  const serverRender = createServerRender();
   const { render } = createRenderer();
 
   describe('server-side', () => {

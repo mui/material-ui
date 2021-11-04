@@ -149,7 +149,7 @@ describe('<Fab />', () => {
   });
 
   describe('server-side', () => {
-    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
+    const serverRender = createServerRender();
 
     before(function beforeHook() {
       // Only run the test on node.

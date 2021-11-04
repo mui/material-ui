@@ -847,7 +847,7 @@ describe('<Tabs />', () => {
   });
 
   describe('server-side render', () => {
-    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
+    const serverRender = createServerRender();
 
     it('should let the selected <Tab /> render the indicator server-side', () => {
       const container = serverRender(
