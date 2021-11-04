@@ -133,7 +133,7 @@ const ButtonRoot = styled('button', {
         backgroundColor: neutral[200],
       },
       [`&.${buttonClasses.disabled}`]: {
-        borderColor: neutral[300],
+        borderColor: neutral[200],
         color: neutral[300],
       },
     },
