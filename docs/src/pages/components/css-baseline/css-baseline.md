@@ -58,6 +58,8 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 - The margin in all browsers is removed.
 - The default Material Design background color is applied.
   It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
+- If `enableColorScheme` is provided to `CssBaseline`, native components color will be set by applying [`color-scheme`](https://web.dev/color-scheme/) on `<html>`.
+  The value used is provided by the theme property `theme.palette.mode`.
 
 ### Layout
 
@@ -67,11 +69,12 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 ### Scrollbars
 
+> This API is deprecated, consider using [color-scheme](#color-scheme) instead.
+
 The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
 
 ```jsx
 import darkScrollbar from '@mui/material/darkScrollbar';
-
 const theme = createTheme({
   components: {
     MuiCssBaseline: {
@@ -83,8 +86,22 @@ const theme = createTheme({
 });
 ```
 
-This website uses `darkScrollbar` when dark mode is enabled.
 Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
+
+### Color scheme
+
+This API is introduced in @mui/material (v5.0.7) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` css property.
+To enable it, you can set `enableColorScheme=true` as follow:
+
+```jsx
+<CssBaseline enableColorScheme />
+
+// or
+
+<ScopedCssBaseline enableColorScheme >
+  {/* The rest of your application using color-scheme*/}
+</ScopedCssBaseline>
+```
 
 ### Typography
 
