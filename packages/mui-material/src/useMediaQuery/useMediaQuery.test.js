@@ -5,7 +5,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   act,
   createRenderer,
-  createServerRender,
   screen,
   RenderCounter,
   strictModeDoubleLoggingSupressed,
@@ -40,7 +39,7 @@ function createMatchMedia(width, ref) {
 }
 
 describe('useMediaQuery', () => {
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
 
   describe('without window.matchMedia', () => {
     let originalMatchmedia;
@@ -261,8 +260,6 @@ describe('useMediaQuery', () => {
   });
 
   describe('server-side', () => {
-    const serverRender = createServerRender();
-
     it('should use the ssr match media ponyfill', () => {
       function MyComponent() {
         const matches = useMediaQuery('(min-width:2000px)');
@@ -286,7 +283,7 @@ describe('useMediaQuery', () => {
         );
       };
 
-      const container = serverRender(<Test />);
+      const { container } = renderToString(<Test />);
 
       expect(container.firstChild).to.have.text('true');
     });

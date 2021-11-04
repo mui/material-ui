@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance, createServerRender } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import ToggleButton, { toggleButtonClasses as classes } from '@mui/material/ToggleButton';
 import ButtonBase from '@mui/material/ButtonBase';
 
 describe('<ToggleButton />', () => {
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
 
   describeConformance(<ToggleButton value="X">Hello, World!</ToggleButton>, () => ({
     classes,
@@ -132,10 +132,8 @@ describe('<ToggleButton />', () => {
       }
     });
 
-    const serverRender = createServerRender();
-
     it('should server-side render', () => {
-      const container = serverRender(<ToggleButton value="hello">Hello World</ToggleButton>);
+      const { container } = renderToString(<ToggleButton value="hello">Hello World</ToggleButton>);
       expect(container.firstChild).to.have.text('Hello World');
     });
   });
