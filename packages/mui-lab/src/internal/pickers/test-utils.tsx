@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { parseISO } from 'date-fns';
-import { createClientRender, fireEvent, screen } from 'test/utils';
+import { createRenderer, fireEvent, screen } from 'test/utils';
 import { TransitionProps } from '@mui/material/transitions';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -54,7 +54,7 @@ export function createPickerRender({
   locale,
   ...renderOptions
 }: PickerRenderOptions & import('test/utils').RenderOptions = {}) {
-  const clientRender = createClientRender(renderOptions);
+  const { render: clientRender } = createRenderer(renderOptions);
 
   function Wrapper({ children }: { children?: React.ReactNode }) {
     return (

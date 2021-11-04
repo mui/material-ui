@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { describeConformance, act, createClientRender } from 'test/utils';
+import { describeConformance, act, createRenderer } from 'test/utils';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 
 const cb = () => {};
 
 describe('<TouchRipple />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   /**
    * @param {object} other props to spread to TouchRipple

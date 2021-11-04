@@ -4,7 +4,7 @@ import { spy, useFakeTimers } from 'sinon';
 import {
   describeConformance,
   act,
-  createClientRender,
+  createRenderer,
   fireEvent,
   screen,
   createServerRender,
@@ -43,7 +43,7 @@ describe('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
   const isJSDOM = navigator.userAgent === 'node.js';
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   before(function beforeHook() {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);

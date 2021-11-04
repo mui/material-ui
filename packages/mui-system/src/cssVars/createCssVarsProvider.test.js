@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createClientRender, screen, fireEvent } from 'test/utils';
+import { createRenderer, screen, fireEvent } from 'test/utils';
 import createCssVarsProvider from './createCssVarsProvider';
 import { DEFAULT_ATTRIBUTE, DEFAULT_MODE_STORAGE_KEY } from './getInitColorSchemeScript';
 import useTheme from '../useTheme';
 
 describe('createCssVarsProvider', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
   let originalMatchmedia;
   let storage = {};
   const createMatchMedia = (matches) => () => ({

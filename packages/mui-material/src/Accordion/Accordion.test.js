@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, createRenderer, fireEvent } from 'test/utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -17,7 +17,7 @@ function NoTransition(props) {
 }
 
 describe('<Accordion />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   const minimalChildren = [<AccordionSummary key="header">Header</AccordionSummary>];
 

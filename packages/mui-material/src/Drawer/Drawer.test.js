@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
-import { act, createClientRender, describeConformance, screen } from 'test/utils';
+import { act, createRenderer, describeConformance, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
 import { getAnchor, isHorizontal } from './Drawer';
@@ -18,7 +18,7 @@ describe('<Drawer />', () => {
     clock.restore();
   });
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <Drawer open disablePortal>

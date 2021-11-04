@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createServerRender, createClientRender } from 'test/utils';
+import { createServerRender, createRenderer } from 'test/utils';
 import Portal from './Portal';
 
 describe('<Portal />', () => {
   const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describe('server-side', () => {
     before(function beforeHook() {

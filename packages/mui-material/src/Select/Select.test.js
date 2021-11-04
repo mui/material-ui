@@ -5,7 +5,7 @@ import {
   describeConformance,
   ErrorBoundary,
   act,
-  createClientRender,
+  createRenderer,
   fireEvent,
   screen,
 } from 'test/utils';
@@ -30,7 +30,7 @@ describe('<Select />', () => {
     clock.restore();
   });
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Select value="" />, () => ({
     classes,

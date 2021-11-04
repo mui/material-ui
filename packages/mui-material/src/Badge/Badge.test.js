@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { BadgeUnstyled } from '@mui/core';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Badge, { badgeClasses as classes } from '@mui/material/Badge';
 
 function findBadge(container) {
@@ -9,7 +9,7 @@ function findBadge(container) {
 }
 
 describe('<Badge />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   const defaultProps = {
     children: (

@@ -1,13 +1,13 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createClientRender, screen, strictModeDoubleLoggingSupressed } from 'test/utils';
+import { createRenderer, screen, strictModeDoubleLoggingSupressed } from 'test/utils';
 import { createTheme } from '@mui/material/styles';
 import ThemeProvider from '../ThemeProvider';
 import useThemeVariants from './useThemeVariants';
 import withStyles from '../withStyles';
 
 describe('useThemeVariants', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   const ComponentInternal = (props) => {
     const { className, ...other } = props;

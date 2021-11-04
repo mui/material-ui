@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, createRenderer, fireEvent } from 'test/utils';
 import BottomNavigation, {
   bottomNavigationClasses as classes,
 } from '@mui/material/BottomNavigation';
@@ -11,7 +11,7 @@ import BottomNavigationAction, {
 import Icon from '@mui/material/Icon';
 
 describe('<BottomNavigation />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   const icon = <Icon>restore</Icon>;
   const getBottomNavigation = (container) => container.firstChild;

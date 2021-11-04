@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, screen, ErrorBoundary, act, fireEvent } from 'test/utils';
+import { createRenderer, screen, ErrorBoundary, act, fireEvent } from 'test/utils';
 import { useAutocomplete, createFilterOptions } from '@mui/core/AutocompleteUnstyled';
 
 describe('useAutocomplete', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should preserve DOM nodes of options when re-ordering', () => {
     const Test = (props) => {

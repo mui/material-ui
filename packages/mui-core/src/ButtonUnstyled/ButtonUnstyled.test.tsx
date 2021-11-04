@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { createMount, createClientRender, describeConformanceUnstyled } from 'test/utils';
+import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/core/ButtonUnstyled';
 import { expect } from 'chai';
 
 describe('<ButtonUnstyled />', () => {
   const mount = createMount();
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformanceUnstyled(<ButtonUnstyled />, () => ({
     inheritComponent: 'button',

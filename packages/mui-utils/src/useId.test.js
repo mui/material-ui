@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import useId from './useId';
 
 const TestComponent = ({ id: idProp }) => {
@@ -14,7 +14,7 @@ TestComponent.propTypes = {
 };
 
 describe('useId', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('returns the provided ID', () => {
     const { getByText, setProps } = render(<TestComponent id="some-id" />);

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Typography from '@mui/material/Typography';
 import DialogContentText, {
   dialogContentTextClasses as classes,
 } from '@mui/material/DialogContentText';
 
 describe('<DialogContentText />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<DialogContentText>foo</DialogContentText>, () => ({
     classes,

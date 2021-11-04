@@ -2,7 +2,7 @@ import * as React from 'react';
 import { spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import {
-  createClientRender,
+  createRenderer,
   describeConformance,
   screen,
   fireEvent,
@@ -23,7 +23,7 @@ describe('<Menu />', () => {
     clock.restore();
   });
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Menu anchorEl={() => document.createElement('div')} open />, () => ({
     classes,

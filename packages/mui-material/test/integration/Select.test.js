@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { useFakeTimers } from 'sinon';
-import { act, createClientRender, fireEvent } from 'test/utils';
+import { act, createRenderer, fireEvent } from 'test/utils';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Dialog from '@mui/material/Dialog';
@@ -9,7 +9,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 
 describe('<Select> integration', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describe('with Dialog', () => {
     function SelectAndDialog() {
