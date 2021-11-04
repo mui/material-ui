@@ -23,29 +23,6 @@ const Popper = React.forwardRef(function Popper(
   props: PopperProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  // destructuring only to force the propTypes generation to include all props
-  if (process.env.NODE_ENV !== 'production') {
-    const {
-      anchorEl,
-      children,
-      container,
-      direction,
-      disablePortal,
-      keepMounted,
-      modifiers,
-      open,
-      placement,
-      popperOptions,
-      popperRef,
-      style,
-      transition,
-      /* eslint-disable @typescript-eslint/no-unused-vars */
-      /* @ts-ignore */
-      ...other
-      /* eslint-enable @typescript-eslint/no-unused-vars */
-    } = props;
-  }
-
   const theme = useTheme<{ direction?: Direction }>();
   const themeDirection = {
     direction: theme?.direction,
@@ -234,10 +211,6 @@ Popper.propTypes /* remove-proptypes */ = {
    * A ref that points to the used popper instance.
    */
   popperRef: refType,
-  /**
-   * @ignore
-   */
-  style: PropTypes.object,
   /**
    * Help supporting a react-transition-group/Transition component.
    * @default false
