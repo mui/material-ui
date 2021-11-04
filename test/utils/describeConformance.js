@@ -172,8 +172,20 @@ export function testRootClass(element, getOptions) {
 
     // Test that classes prop works
     expect(container.firstChild).to.have.class(classesRootClassname);
+  });
 
-    // Test that `classes` does not spread to DOM
+  it('`classes` prop does not spread to DOM', () => {
+    const { classes, render } = getOptions();
+    if (classes.root == null) {
+      return;
+    }
+
+    render(
+      React.cloneElement(element, {
+        classes: { ...classes, root: `${classes.root} foo-bar` },
+      }),
+    );
+
     expect(document.querySelectorAll('[classes]').length).to.equal(0);
   });
 }

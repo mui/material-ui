@@ -2,8 +2,7 @@ import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { UseSwitchProps } from '@mui/core/SwitchUnstyled';
 import { SwitchClasses } from './switchClasses';
-
-export interface SwitchPropsSizeOverrides {}
+import { ColorPaletteProp } from '../styles/ColorSystem';
 
 export interface SwitchPropsColorOverrides {}
 
@@ -26,14 +25,5 @@ export interface SwitchProps extends UseSwitchProps {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color?: OverridableStringUnion<
-    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'default',
-    SwitchPropsColorOverrides
-  >;
-  /**
-   * The size of the component.
-   * `small` is equivalent to the dense switch styling.
-   * @default 'medium'
-   */
-  size?: OverridableStringUnion<'small' | 'medium' | 'large', SwitchPropsSizeOverrides>;
+  color?: OverridableStringUnion<ColorPaletteProp, SwitchPropsColorOverrides>;
 }
