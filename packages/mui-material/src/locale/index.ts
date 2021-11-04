@@ -3006,3 +3006,76 @@ export const zhTW: Localization = {
     },
   },
 };
+
+export const nbNO: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: "Vis sti",
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === "first") {
+            return "Gå til første side";
+          }
+          if (type === "last") {
+            return "Gå til siste side";
+          }
+          if (type === "next") {
+            return "Gå til neste side";
+          }
+          // if (type === 'previous') {
+          return "Gå til forrige side";
+        },
+        labelRowsPerPage: "Rader per side:",
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}-${to} av ${count !== -1 ? count : `flere enn ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) =>
+          `${value} ${value !== 1 ? "Stjerner" : "Stjerne"}`,
+        emptyLabelText: "Tom",
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: "Rense",
+        closeText: "Lukk",
+        loadingText: "Laster…",
+        noOptionsText: "Ingen valgmuligheter",
+        openText: "Åpne",
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: "Lukk",
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        "aria-label": "Sidenavigering",
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === "page") {
+            return `${selected ? "" : "Gå til "}side ${page}`;
+          }
+          if (type === "first") {
+            return "Gå til første side";
+          }
+          if (type === "last") {
+            return "Gå til siste side";
+          }
+          if (type === "next") {
+            return "Gå til neste side";
+          }
+          // if (type === 'previous') {
+          return "Gå til forrige side";
+        },
+      },
+    },
+  },
+};
+
