@@ -69,6 +69,8 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 ### Scrollbars
 
+> This API is deprecated, consider using [color-scheme](#color-scheme) instead.
+
 The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
 
 ```jsx
@@ -86,8 +88,9 @@ const theme = createTheme({
 
 Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
 
-This is a deprecated functionality.
-To switch between, "light" and "dark" mode of native components such as scrollbar, use the `color-scheme` property.
+### Color scheme
+
+This API is introduced in @mui/material (v5.0.7) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` css property.
 To enable it, you can set `enableColorScheme=true` as follow:
 
 ```jsx
