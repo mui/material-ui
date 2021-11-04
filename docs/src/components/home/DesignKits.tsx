@@ -53,7 +53,7 @@ const DesignToolLink = React.forwardRef<
   return (
     <Anchor
       ref={ref}
-      aria-label="Goto MUI store"
+      aria-label="Go to MUI Store"
       href={{ figma: ROUTES.storeFigma, sketch: ROUTES.storeSketch, xd: ROUTES.storeXD }[brand]}
       target="_blank"
       {...props}

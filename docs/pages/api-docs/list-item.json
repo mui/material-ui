@@ -43,7 +43,12 @@
       "deprecated": true,
       "deprecationInfo": "checkout <a href=\"/api/list-item-button/\">ListItemButton</a> instead"
     },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "ListItem",
   "styles": {

@@ -23,10 +23,6 @@ export interface ButtonClasses {
   sizeLarge: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
-  /** Styles applied to the startIcon element if supplied. */
-  startIcon: string;
-  /** Styles applied to the endIcon element if supplied. */
-  endIcon: string;
 }
 
 export type ButtonClassKey = keyof ButtonClasses;
@@ -47,8 +43,6 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('JoyButton', [
   'sizeSmall',
   'sizeLarge',
   'fullWidth',
-  'startIcon',
-  'endIcon',
 ]);
 
 export default buttonClasses;

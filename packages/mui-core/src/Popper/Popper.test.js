@@ -291,4 +291,38 @@ describe('<Popper />', () => {
       }).toErrorDev('It should be an HTML element instance');
     });
   });
+  describe('display', () => {
+    let clock;
+    beforeEach(() => {
+      clock = useFakeTimers();
+    });
+
+    afterEach(() => {
+      clock.restore();
+    });
+    it('should keep display:none when not toggled and transition/keepMounted/disablePortal props are set', () => {
+      const { getByRole, setProps } = render(
+        <Popper {...defaultProps} open={false} keepMounted transition disablePortal>
+          {({ TransitionProps }) => (
+            <Grow {...TransitionProps}>
+              <span>Hello World</span>
+            </Grow>
+          )}
+        </Popper>,
+      );
+
+      expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
+
+      setProps({ open: true });
+      act(() => {
+        clock.tick(0);
+      });
+
+      setProps({ open: false });
+      act(() => {
+        clock.tick(0);
+      });
+      expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
+    });
+  });
 });

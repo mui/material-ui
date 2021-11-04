@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Result, Mode } from './useCurrentColorScheme';
 
 type RequiredDeep<T> = {
   [K in keyof T]-?: RequiredDeep<T[K]>;
@@ -19,64 +20,105 @@ export type BuildCssVarsTheme<ThemeInput> = ThemeInput extends {
  * If yes, they must provide the palette of the extended colorScheme. Otherwise `theme` is optional.
  */
 type DecideTheme<
-  Theme extends { colorSchemes: Record<DesignSystemColorScheme | ApplicationColorScheme, any> },
+  DesignSystemTheme extends { colorSchemes: Record<DesignSystemColorScheme, any> },
   DesignSystemColorScheme extends string,
+  ApplicationTheme extends { colorSchemes: Record<ApplicationColorScheme, any> },
   ApplicationColorScheme extends string | never,
 > = [ApplicationColorScheme] extends [never]
-  ? { theme?: Theme }
+  ? { theme?: DesignSystemTheme }
   : {
-      theme: Omit<Theme, 'colorSchemes'> & {
+      theme: Omit<ApplicationTheme, 'colorSchemes'> & {
         colorSchemes: Partial<
-          Record<DesignSystemColorScheme, Theme['colorSchemes'][DesignSystemColorScheme]>
+          Record<
+            DesignSystemColorScheme,
+            DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
+          >
         > &
           RequiredDeep<
-            Record<ApplicationColorScheme, Theme['colorSchemes'][ApplicationColorScheme]>
+            Record<ApplicationColorScheme, ApplicationTheme['colorSchemes'][ApplicationColorScheme]>
           >;
       };
     };
 
-export interface ColorSchemeContextValue<DesignSystemColorScheme extends string> {
-  allColorSchemes: DesignSystemColorScheme[];
-  colorScheme: DesignSystemColorScheme | undefined;
-  setColorScheme: React.Dispatch<React.SetStateAction<DesignSystemColorScheme | undefined>>;
+export interface ColorSchemeContextValue<SupportedColorScheme extends string>
+  extends Result<SupportedColorScheme> {
+  allColorSchemes: SupportedColorScheme[];
 }
 
 export default function createCssVarsProvider<
   DesignSystemThemeInput extends {
-    colorSchemes: Record<DesignSystemColorScheme | ApplicationColorScheme, any>;
+    colorSchemes: Record<DesignSystemColorScheme, any>;
   },
   DesignSystemColorScheme extends string,
-  ApplicationColorScheme extends string = never,
   ApplicationThemeInput extends {
-    colorSchemes: Record<DesignSystemColorScheme | ApplicationColorScheme, any>;
-  } = DesignSystemThemeInput,
->(
-  ThemeContext: React.Context<BuildCssVarsTheme<DesignSystemThemeInput> | undefined>,
-  options: {
-    theme: Omit<DesignSystemThemeInput, 'colorSchemes'> & {
-      colorSchemes: Record<
-        DesignSystemColorScheme,
-        DesignSystemThemeInput['colorSchemes'][DesignSystemColorScheme]
-      > &
-        Partial<
-          Record<
-            ApplicationColorScheme,
-            DesignSystemThemeInput['colorSchemes'][DesignSystemColorScheme | ApplicationColorScheme]
-          >
-        >;
-    };
-    defaultColorScheme: DesignSystemColorScheme;
-    prefix?: string;
-  },
-): {
+    colorSchemes: Record<ApplicationColorScheme, any>;
+  } = never,
+  ApplicationColorScheme extends string = never,
+>(options: {
+  /**
+   * Design system default theme
+   */
+  theme: DesignSystemThemeInput;
+  /**
+   * Design system default color scheme
+   */
+  defaultColorScheme:
+    | DesignSystemColorScheme
+    | { light: DesignSystemColorScheme; dark: DesignSystemColorScheme };
+  /**
+   * Design system default mode
+   * @default 'light'
+   */
+  defaultMode?: Mode;
+  /**
+   * CSS variable prefix
+   * @default ''
+   */
+  prefix?: string;
+  /**
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the nested object path.
+   *  Ex, { foo: { bar: 'var(--test)' } } => `keys`: ['foo', 'bar'], value: 'var(--test)'
+   */
+  shouldSkipVar?: (keys: string[], value: string | number) => boolean;
+}): {
   CssVarsProvider: (
     props: React.PropsWithChildren<
       {
-        defaultColorScheme?: DesignSystemColorScheme | ApplicationColorScheme;
-        storageKey?: string;
+        /**
+         * Application default mode (overrides design system `defaultMode` if specified)
+         */
+        defaultMode?: Mode;
+        /**
+         * Application default colorScheme (overrides design system `defaultColorScheme` if specified)
+         */
+        defaultColorScheme?:
+          | DesignSystemColorScheme
+          | ApplicationColorScheme
+          | {
+              light: DesignSystemColorScheme | ApplicationColorScheme;
+              dark: DesignSystemColorScheme | ApplicationColorScheme;
+            };
+        /**
+         * localStorage key used to store application `mode`
+         * @default 'mui-mode'
+         */
+        modeStorageKey?: string;
+        /**
+         * DOM attribute for applying color scheme
+         * @default 'data-mui-color-scheme'
+         */
         attribute?: string;
+        /**
+         * CSS variable prefix (overrides design system `prefix` if specified)
+         */
         prefix?: string;
-      } & DecideTheme<ApplicationThemeInput, DesignSystemColorScheme, ApplicationColorScheme>
+      } & DecideTheme<
+        DesignSystemThemeInput,
+        DesignSystemColorScheme,
+        ApplicationThemeInput,
+        ApplicationColorScheme
+      >
     >,
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<DesignSystemColorScheme | ApplicationColorScheme>;

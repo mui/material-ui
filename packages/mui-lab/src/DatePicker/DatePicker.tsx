@@ -156,6 +156,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   disableCloseOnSelect: PropTypes.bool,
   /**
    * If `true`, the picker and text field are disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -315,6 +316,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   PopperProps: PropTypes.object,
   /**
    * Make picker read only.
+   * @default false
    */
   readOnly: PropTypes.bool,
   /**

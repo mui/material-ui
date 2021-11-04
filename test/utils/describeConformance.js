@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import * as React from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider as MDThemeProvider, createTheme } from '@mui/material/styles';
 import ReactTestRenderer from 'react-test-renderer';
 import createMount from './createMount';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
@@ -172,6 +172,8 @@ export function testRootClass(element, getOptions) {
 
     // Test that classes prop works
     expect(container.firstChild).to.have.class(classesRootClassname);
+
+    // Test that `classes` does not spread to DOM
     expect(document.querySelectorAll('[classes]').length).to.equal(0);
   });
 }
@@ -245,7 +247,7 @@ function testThemeDefaultProps(element, getOptions) {
   describe('theme default components:', () => {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
-      const { muiName, render } = getOptions();
+      const { muiName, render, ThemeProvider = MDThemeProvider } = getOptions();
 
       if (!muiName) {
         throwMissingPropError('muiName');
@@ -284,7 +286,7 @@ function testThemeStyleOverrides(element, getOptions) {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const { muiName, testStateOverrides, render } = getOptions();
+      const { muiName, testStateOverrides, render, ThemeProvider = MDThemeProvider } = getOptions();
 
       if (!testStateOverrides) {
         return;
@@ -333,6 +335,7 @@ function testThemeStyleOverrides(element, getOptions) {
         testDeepOverrides,
         testRootOverrides = { slotName: 'root' },
         render,
+        ThemeProvider = MDThemeProvider,
       } = getOptions();
 
       const testStyle = {
@@ -427,7 +430,13 @@ function testThemeStyleOverrides(element, getOptions) {
         this.skip();
       }
 
-      const { muiName, classes, testStateOverrides, render } = getOptions();
+      const {
+        muiName,
+        classes,
+        testStateOverrides,
+        render,
+        ThemeProvider = MDThemeProvider,
+      } = getOptions();
 
       const classKeys = Object.keys(classes);
 
@@ -494,7 +503,7 @@ function testThemeVariants(element, getOptions) {
         this.skip();
       }
 
-      const { muiName, testVariantProps, render } = getOptions();
+      const { muiName, testVariantProps, render, ThemeProvider = MDThemeProvider } = getOptions();
 
       if (!testVariantProps) {
         throw new Error('missing testVariantProps');

@@ -4,7 +4,8 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useButton } from '@mui/core/ButtonUnstyled';
 import composeClasses from '@mui/core/composeClasses';
-import { styled } from '../styles';
+import { styled, useThemeProps } from '../styles';
+import { rootShouldForwardProp } from '../styles/styled';
 import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
@@ -18,8 +19,6 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
     fullWidth,
     size,
     variant,
-    startIcon,
-    endIcon,
   } = ownerState;
 
   const slots = {
@@ -31,8 +30,6 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       `variant${capitalize(variant!)}`,
       `color${capitalize(color!)}`,
       `size${capitalize(size!)}`,
-      !!startIcon && 'startIcon',
-      !!endIcon && 'endIcon',
     ],
   };
 
@@ -59,12 +56,15 @@ const ButtonRoot = styled('button', {
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
+  shouldForwardProp: rootShouldForwardProp,
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   const colorPalette = theme.vars.palette[ownerState.color || 'brand'];
+  const neutral = theme.vars.palette.neutral;
   return [
     {
-      padding: '4px 16px',
-      minHeight: '40px',
+      padding: '0.25rem 2rem',
+      minHeight: '48px',
+      borderRadius: '28px',
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -72,73 +72,76 @@ const ButtonRoot = styled('button', {
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
-      ...theme.typography.body(theme),
+      ...theme.typography.button,
       [`&.${buttonClasses.disabled}`]: {
         pointerEvents: 'none',
         cursor: 'default',
       },
       [`&.${buttonClasses.focusVisible}`]: {
-        outline: '2px solid',
+        outline: '4px solid',
         outlineColor: colorPalette[300],
-        outlineOffset: '2px',
       },
+      ...(ownerState.fullWidth && {
+        width: '100%',
+      }),
+    },
+    ownerState.size === 'small' && {
+      minHeight: '40px',
+    },
+    ownerState.size === 'large' && {
+      minHeight: '56px',
     },
     ownerState.variant === 'text' && {
-      color: colorPalette[500],
+      color: colorPalette[600],
+      [`&.${buttonClasses.focusVisible}`]: {
+        outlineColor: neutral[200],
+      },
       '&:hover': {
-        backgroundColor: `rgba(${colorPalette.channel500} / 0.12)`,
+        backgroundColor: neutral[100],
       },
       '&:active': {
-        backgroundColor: `rgba(${colorPalette.channel500} / 0.2)`,
+        backgroundColor: neutral[200],
       },
       [`&.${buttonClasses.disabled}`]: {
-        color: theme.vars.palette.neutral[400],
+        color: neutral[300],
       },
     },
     ownerState.variant === 'contained' && {
-      backgroundColor: colorPalette[500],
+      backgroundColor: colorPalette[600],
       color: '#fff',
       '&:hover': {
-        backgroundColor: colorPalette[600],
-      },
-      '&:active': {
         backgroundColor: colorPalette[700],
       },
+      '&:active': {
+        backgroundColor: colorPalette[500],
+      },
       [`&.${buttonClasses.disabled}`]: {
-        backgroundColor: theme.vars.palette.neutral[300],
+        backgroundColor: colorPalette[300],
       },
     },
     ownerState.variant === 'outlined' && {
-      color: colorPalette[500],
+      color: colorPalette[600],
       border: '1px solid',
-      borderColor: `rgba(${colorPalette.channel500} / 0.6)`,
+      borderColor: neutral[300],
+      [`&.${buttonClasses.focusVisible}`]: {
+        outlineColor: neutral[200],
+      },
       '&:hover': {
-        borderColor: colorPalette[500],
-        backgroundColor: `rgba(${colorPalette.channel500} / 0.12)`,
+        backgroundColor: neutral[100],
       },
       '&:active': {
-        backgroundColor: `rgba(${colorPalette.channel500} / 0.2)`,
+        backgroundColor: neutral[200],
       },
       [`&.${buttonClasses.disabled}`]: {
-        borderColor: theme.vars.palette.neutral[300],
-        color: theme.vars.palette.neutral[400],
+        borderColor: neutral[200],
+        color: neutral[300],
       },
-    },
-    ownerState.size === 'small' && {
-      fontSize: '0.875rem',
-      minHeight: '32px',
-      padding: '4px 12px',
-    },
-    ownerState.size === 'large' && {
-      minHeight: '48px',
-      fontSize: '1.125rem',
-      padding: '4px 20px',
     },
   ];
 });
 
 const Button = React.forwardRef(function Button(inProps, ref) {
-  const props = inProps;
+  const props = useThemeProps({ props: inProps, name: 'JoyButton' });
 
   const {
     children,
@@ -148,8 +151,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     color = 'brand',
     variant = 'text',
     size = 'medium',
-    startIcon,
-    endIcon,
+    fullWidth = false,
     ...other
   } = props;
 
@@ -179,6 +181,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ...props,
     component,
     color,
+    fullWidth,
     variant,
     size,
     focusVisible,
@@ -205,9 +208,51 @@ Button.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * A ref for imperative actions. It currently only supports `focusVisible()` action.
+   */
+  action: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.shape({
+        focusVisible: PropTypes.func.isRequired,
+      }),
+    }),
+  ]),
+  /**
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'primary'
+   */
+  color: PropTypes.oneOf(['brand', 'neutral']),
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  /**
+   * If `true`, the button will take up the full width of its container.
+   * @default false
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * The size of the component.
+   * `small` is equivalent to the dense button styling.
+   * @default 'medium'
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   * The variant to use.
+   * @default 'text'
+   */
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
 } as any;
 
 export default Button;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider, JoyTheme } from '@mui/joy/styles';
+import { CssVarsProvider } from '@mui/joy/styles';
 
 // override theme
 <CssVarsProvider
@@ -71,7 +71,7 @@ declare module '@mui/joy/styles' {
 // extends TypographySystems
 declare module '@mui/joy/styles' {
   interface TypographySystems {
-    ads: (vars: JoyTheme['vars']) => React.CSSProperties;
+    ads: React.CSSProperties;
   }
 }
 
@@ -106,11 +106,11 @@ declare module '@mui/joy/styles' {
       xxxs: '',
     },
     typography: {
-      ads: (vars) => ({
-        fontFamily: vars.fontFamily.secondary,
-        fontSie: '',
+      ads: {
+        fontFamily: 'var(--joy-fontFamily-secondary)',
+        fontSize: '1rem',
         lineHeight: 1,
-      }),
+      },
     },
   }}
 />;

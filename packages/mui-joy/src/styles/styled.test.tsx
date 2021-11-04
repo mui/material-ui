@@ -8,7 +8,7 @@ const toPixel = (val: string | number | undefined) => (typeof val === 'number' ?
 
 describe('[Joy] styled', () => {
   const render = createClientRender();
-  it('use defaultTheme if no ThemeProvider', function test() {
+  it('use defaultTheme given no ThemeProvider', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }

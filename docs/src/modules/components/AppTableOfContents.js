@@ -31,7 +31,7 @@ const NavLabel = styled(Typography)(({ theme }) => {
     marginTop: theme.spacing(2),
     paddingLeft: theme.spacing(1.5),
     fontSize: theme.typography.pxToRem(12),
-    fontWeight: 700,
+    fontWeight: theme.typography.fontWeightBold,
     color:
       theme.palette.mode === 'dark' ? alpha(theme.palette.grey[500], 0.5) : theme.palette.grey[500],
   };
@@ -50,7 +50,6 @@ const NavItem = styled(Link, {
     borderLeftColor:
       theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[600],
     color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
-    fontWeight: 700,
   };
 
   return {
@@ -76,28 +75,6 @@ const NavItem = styled(Link, {
   };
 });
 
-// TODO: these nodes are mutable sources. Use createMutableSource once it's stable
-function getItemsClient(headings) {
-  const itemsWithNode = [];
-
-  headings.forEach((item) => {
-    itemsWithNode.push({
-      ...item,
-      node: document.getElementById(item.hash),
-    });
-
-    if (item.children.length > 0) {
-      item.children.forEach((subitem) => {
-        itemsWithNode.push({
-          ...subitem,
-          node: document.getElementById(subitem.hash),
-        });
-      });
-    }
-  });
-  return itemsWithNode;
-}
-
 const noop = () => {};
 
 function useThrottledOnScroll(callback, delay) {
@@ -119,14 +96,26 @@ function useThrottledOnScroll(callback, delay) {
   }, [throttledCallback]);
 }
 
+function flatten(headings) {
+  const itemsWithNode = [];
+
+  headings.forEach((item) => {
+    itemsWithNode.push(item);
+
+    if (item.children.length > 0) {
+      item.children.forEach((subitem) => {
+        itemsWithNode.push(subitem);
+      });
+    }
+  });
+  return itemsWithNode;
+}
+
 export default function AppTableOfContents(props) {
-  const { items } = props;
+  const { toc } = props;
   const t = useTranslate();
 
-  const itemsWithNodeRef = React.useRef([]);
-  React.useEffect(() => {
-    itemsWithNodeRef.current = getItemsClient(items);
-  }, [items]);
+  const items = React.useMemo(() => flatten(toc), [toc]);
 
   const { activePage } = React.useContext(PageContext);
   const [activeState, setActiveState] = React.useState(null);
@@ -139,24 +128,25 @@ export default function AppTableOfContents(props) {
     }
 
     let active;
-    for (let i = itemsWithNodeRef.current.length - 1; i >= 0; i -= 1) {
+    for (let i = items.length - 1; i >= 0; i -= 1) {
       // No hash if we're near the top of the page
       if (document.documentElement.scrollTop < 200) {
         active = { hash: null };
         break;
       }
 
-      const item = itemsWithNodeRef.current[i];
+      const item = items[i];
+      const node = document.getElementById(item.hash);
 
       if (process.env.NODE_ENV !== 'production') {
-        if (!item.node) {
+        if (!node) {
           console.error(`Missing node on the item ${JSON.stringify(item, null, 2)}`);
         }
       }
 
       if (
-        item.node &&
-        item.node.offsetTop <
+        node &&
+        node.offsetTop <
           document.documentElement.scrollTop + document.documentElement.clientHeight / 8
       ) {
         active = item;
@@ -167,7 +157,7 @@ export default function AppTableOfContents(props) {
     if (active && activeState !== active.hash) {
       setActiveState(active.hash);
     }
-  }, [activeState]);
+  }, [activeState, items]);
 
   // Corresponds to 10 frames at 60 Hz
   useThrottledOnScroll(items.length > 0 ? findActiveIndex : null, 166);
@@ -218,11 +208,11 @@ export default function AppTableOfContents(props) {
 
   return (
     <Nav aria-label={t('pageTOC')}>
-      {items.length > 0 ? (
+      {toc.length > 0 ? (
         <React.Fragment>
           <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>
           <NavList component="ul">
-            {items.map((item) => (
+            {toc.map((item) => (
               <li key={item.text}>
                 {itemLink(item)}
                 {item.children.length > 0 ? (
@@ -242,5 +232,5 @@ export default function AppTableOfContents(props) {
 }
 
 AppTableOfContents.propTypes = {
-  items: PropTypes.array.isRequired,
+  toc: PropTypes.array.isRequired,
 };

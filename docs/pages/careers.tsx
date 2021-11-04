@@ -145,12 +145,6 @@ const openRolesData = [
     title: 'Product',
     roles: [
       {
-        title: 'Product Manager - Low code',
-        description:
-          'You will initiate the exploration of a bold new product vertical. We are looking for an experienced and ambitious product manager who is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
-        url: '/company/product-manager/',
-      },
-      {
         title: 'Technical Product Manager - MUI X',
         description:
           'You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features. Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning.',
@@ -320,7 +314,7 @@ function CareersContent() {
               {[
                 ['Remote work:', 'Our entire company is distributed.'],
                 [
-                  'Gatherings:',
+                  'Retreats:',
                   'We meet up once or twice a year for a short week of meetings, events, and fun!',
                 ],
                 [
@@ -397,8 +391,8 @@ function CareersContent() {
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
             The company is bootstrapped (so far). It was incorporated in mid-2019 and yet growing
-            fast (x2-3 YoY). We doubled the team in 2020 and are on track to do the same in 2021.
-            We&apos;re looking for help keep growing in the following areas:
+            fast (x2-3 YoY). We doubled the team in 2020 (6), are on track to tripled it in 2021
+            (18). We&apos;re looking for help keep growing in the following areas:
           </Typography>
         </div>
         <Divider
