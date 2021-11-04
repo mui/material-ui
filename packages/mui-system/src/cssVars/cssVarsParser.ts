@@ -117,12 +117,8 @@ export default function cssVarsParser(
   walkObjectDeep(clonedTheme, (keys, value, scope) => {
     if (typeof value === 'string' || typeof value === 'number') {
       if (typeof value === 'string' && value.startsWith('var')) {
-        if (prefix) {
-          value = value.replace(basePrefix, prefix);
-        } else {
           // remove `${basePrefix}-` from var()
-          value = value.replace(`${basePrefix}-`, '');
-        }
+          value = prefix ? value.replace(basePrefix, prefix) : value.replace(`${basePrefix}-`, '');
         scope[keys.slice(-1)[0]] = value as string;
       }
 
