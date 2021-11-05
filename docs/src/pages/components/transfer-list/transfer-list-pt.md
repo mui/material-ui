@@ -1,20 +1,30 @@
 ---
 title: Componente React para Transferência de Lista
 components: List, ListItem, Checkbox, Switch
+githubLabel: 'component: TransferList'
 ---
 
 # Transferência de Lista
 
 <p class="description">Um transferência de lista (ou "shuttle") permite ao usuário mover um ou mais itens da lista entre as listas.</p>
 
-## Transferência de lista simples
+[A paleta](/system/palette/) com funções de estilo.
 
-Para completar, este exemplo inclui botões para "mover tudo", mas nem todas as transferências de lista precisam disso.
+## Basic transfer list
+
+For completeness, this example includes buttons for "move all", but not every transfer list needs these.
 
 {{"demo": "pages/components/transfer-list/TransferList.js", "bg": true}}
 
-## Transferência de lista aprimorada
+## Enhanced transfer list
 
-Este exemplo troca os botões "mover todos" por uma caixa de seleção para "selecionar todos / selecionar nenhum" e adiciona um contador.
+This example exchanges the "move all" buttons for a "select all / select none" checkbox, and adds a counter.
 
 {{"demo": "pages/components/transfer-list/SelectAllTransferList.js", "bg": true}}
+
+## Limitações
+
+The component comes with a couple of limitations:
+
+- It only works on desktop. If you have a limited amount of options to select, prefer the [Autocomplete](/components/autocomplete/#multiple-values) component. If mobile support is important for you, have a look at [#27579](https://github.com/mui-org/material-ui/issues/27579).
+- There are no high-level components exported from npm. The demos are based on composition. If this is important for you, have a look at [#27579](https://github.com/mui-org/material-ui/issues/27579).
