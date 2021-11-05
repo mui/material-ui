@@ -1,10 +1,10 @@
-# Composition 封装
+# 封装
 
 <p class="description">Material-UI 试着让封装尽可能的简单。</p>
 
 ## 封装组件
 
-我们需要一种了解组件接收的子元素的本质的方式，这样可以尽可能提供最大的灵活性和最好的性能。 我们会用 `muiName` 静态属性来标记一些我们的组件，这样能够解决这个问题。
+我们需要一种了解组件接收的子元素的本质的方式，这样可以尽可能提供最大的灵活性和最好的性能。 To solve this problem, we tag some of the components with a `muiName` static property when needed.
 
 但是，您仍可能需要封装一个组件以增强它的功能，而这可能与 `muiName` 的解决方案相冲突。 若你要封装一个组件，那么得验证该组件是否具有此静态属性的集合。
 
@@ -56,7 +56,7 @@ import { Link } from 'react-router-dom';
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
-  const CustomLink = props => <Link to={to} {...props} />;
+  const CustomLink = (props) => <Link to={to} {...props} />;
 
   return (
     <li>
@@ -73,17 +73,20 @@ function ListItemLink(props) {
 
 解决方案很简单： **避免内联函数，取而代之的是将一个静态组件传递给 `component` 属性**。 我们可以改变 `ListItemLink` 组件，这样一来 `CustomLink` 总是引用相同的组件：
 
-```jsx
-import { Link } from 'react-router-dom';
+```tsx
+import { Link, LinkProps } from 'react-router-dom';
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const CustomLink = React.useMemo(
     () =>
-      React.forwardRef((linkProps, ref) => (
-        <Link ref={ref} to={to} {...linkProps} />
-      )),
+      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(function Link(
+        linkProps,
+        ref,
+      ) {
+        return <Link ref={ref} to={to} {...linkProps} />;
+      }),
     [to],
   );
 
@@ -112,27 +115,55 @@ import { Link } from 'react-router-dom';
 
 ### 使用 TypeScript
 
-您可以在 [TypeScript 指南](/guides/typescript/#usage-of-component-prop) 中找到详细信息 。
+Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. 例如，一个按钮（Button）的根节点可以被替换成一个 React Router 的链接（Link），并且，任何传入按钮（Button）的额外的属性，例如 `to` ，都会被传递到链接（Link）组件中。 关于按钮和 react-router-dom 的代码示例查看[这些示例](/guides/routing/#component-prop)。
 
-## 路由库
+To be able to use props of such a MUI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the MUI component.
 
-通过 `component` 属性实现了与第三方路由库的整合。 该行为与上面的属性描述完全相同。 以下是一些 [react-router-dom](https://github.com/ReactTraining/react-router) 的示例： 它覆盖按钮（Button）、链接（Link）和列表（List）组件，对所有的组件，你应该能应用相同的策略。
+下面的示例使用了 `TypographyProps`，这也同样适用于那些带有 `OverrideProps` 定义的属性的组件。
 
-### Button 按钮
+以下 `CustomComponent` 组件与 `Typography` 组件具有相同的属性。
 
-{{"demo": "pages/guides/composition/ButtonRouter.js"}}
+```ts
+-const MyButton = () => <div role="button" />;
++const MyButton = React.forwardRef((props, ref) =>
++  <div role="button" {...props} ref={ref} />);
 
-### Link 链接
+<Button component={MyButton} />;
+```
 
-{{"demo": "pages/guides/composition/LinkRouter.js"}}
+按照以上示例来设置，现在的 `CustomComponent` 就可以与 `component` 属性一起使用了，并且该属性应该设置为 `'a'`。 此外，`CustomComponent` 将拥有 `<a>` 这个 HTML 元素的所有属性。 `Typography` 组件的其他属性也会出现在 `CustomComponent` 的属性中。
 
-### List 列表
+Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
-{{"demo": "pages/guides/composition/ListRouter.js"}}
+```ts
+class Component extends React.Component {
+  render() {
+-   const { props } = this;
++   const { forwardedRef, ...props } = this.props;
+    return <div {...props} ref={forwardedRef} />;
+  }
+}
+
+-export default Component;
++export default React.forwardRef((props, ref) => <Component {...props} forwardedRef={ref} />);
+```
+
+If the `GenericCustomComponent` will be used with a `component` prop provided, it should also have all props required by the provided component.
+
+```ts
+-const SomeContent = props => <div {...props}>Hello, World!</div>;
++const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>你好，世界！
+</div>);
+<Tooltip title="Hello, again."><SomeContent /></Tooltip>;
+```
+
+当所需的 `ThirdPartyComponent` 是明确要求时，`prop1` 也成为 `GenericCustomComponent` 的必需属性。
+
+但是，并不是每个组件都完全支持您传入的任何组件类型。 If you encounter a component that rejects its `component` props in TypeScript, please open an issue. 我们也一直在努力实现组件属性的通用化。
 
 ## 使用 refs 时的一些注意事项
 
-本节介绍了将一个自定义组件用作`子组件`或 作为 `component` 的属性时的一些注意事项。
+本节介绍将自定义组件用作`子组件`或`component`属性的值时的注意事项。
 
 某些组件需要访问 DOM 节点。 之前提到，通过使用 `ReactDOM.findDOMNode` 就能实现。 该方法已被废弃，代替的是使用 `ref` 和 ref 转递。 然而，只有给予下列组件类型一个 `ref`：
 
@@ -143,44 +174,42 @@ import { Link } from 'react-router-dom';
 - [React.lazy 组件](https://reactjs.org/docs/react-api.html#reactlazy)
 - [React.memo 组件](https://reactjs.org/docs/react-api.html#reactmemo)
 
-如果在将组件与 Material-UI 结合使用时未使用上述类型之一，那么您可能会在控制台中看到来自 React 的警告，类似于：
+If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from React in your console similar to:
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-请注意，在使用 `lazy` 和 `memo` 组件时，如果被封装的组件无法承载一个 ref，您仍然有可能收到这个警告。
-
-在某些情况下，我们发出了一个额外警告来帮助调试，类似于：
+请注意，如果 `lazy` 和 `memo` 组件的包装组件包装组件不能容纳 ref，那么仍然会收到此警告。 在某些情况下，我们发出了一个额外警告来帮助调试，类似于：
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 这只包含了两个最常见的用例。 欲了解更多信息，请查阅[在 React 官方文档中的此章节](https://reactjs.org/docs/forwarding-refs.html)。
 
 ```diff
--const MyButton = props => <div role="button" {...props} />;
-+const MyButton = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
-<Button component={MyButton} />;
+Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 ```
 
 ```diff
 -const SomeContent = props => <div {...props}>Hello, World!</div>;
-+const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>你好，世界！</div>);
-<Tooltip title="Hello, again."><SomeContent /></Tooltip>;
++const SomeContent = React.forwardRef((props, ref) =>
++  <div {...props} ref={ref}>Hello, World!</div>);
+
+ <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
-若想知道您使用的 Material-UI 组件是否具有此需求，请查阅该组件的 API 文档中的属性部分。 如果您需要转递 refs，描述会关联到此章节。
+要确定您使用的Material-UI组件是否具有此需求，请查阅该组件的props API文档。 如果您需要转递 refs，描述会关联到此章节。
 
 ### 使用 StrictMode 的注意事项
 
-如果对上述情况，您使用类组件，那么您会看到 `React.StrictMode` 中的一些警告。 在内部使用 `ReactDOMfindDOMNode` 来达到向后的兼容性。 您可以使用 ` React.forwardRef ` 和类组件中的一个指定的属性来把 `ref` 传递到一个 DOM 组件中。 这样做不再会触发与 ` ReactDOM.findDOMNode ` 相关的弃用警告 。
+如果对上述情况，您使用类组件，那么您会看到 `React.StrictMode` 中的一些警告。 在内部使用 `ReactDOMfindDOMNode` 来达到向后的兼容性。 您可以使用 `React.forwardRef` 和类组件中的一个指定的属性来把 `ref` 传递到一个 DOM 组件中。 这样做不再会触发与 `ReactDOM.findDOMNode` 相关的弃用警告 。
 
 ```diff
-class Component extends React.Component {
-  render() {
--   const { props } = this;
-+   const { forwardedRef, ...props } = this.props;
-    return <div {...props} ref={forwardedRef} />;
-  }
-}
+ class Component extends React.Component {
+   render() {
+-    const { props } = this;
++    const { forwardedRef, ...props } = this.props;
+     return <div {...props} ref={forwardedRef} />;
+   }
+ }
 
 -export default Component;
 +export default React.forwardRef((props, ref) => <Component {...props} forwardedRef={ref} />);
