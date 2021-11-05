@@ -9,7 +9,7 @@ materialDesign: 'https://material.io/components/buttons#toggle-button'
 
 <p class="description">Os botões de alternância podem ser usados para agrupar opções relacionadas.</p>
 
-Para enfatizar grupos de [botões de alternância](https://material.io/components/buttons#toggle-button) relacionados, o grupo deve ter um contêiner em comum. O `ToggleButtonGroup` controla o estado selecionado de seus botões filhos através de sua propriedade `value`.
+Para enfatizar grupos de [botões de alternância](https://material.io/components/buttons#toggle-button) relacionados, o grupo deve ter um container em comum. O `ToggleButtonGroup` controla o estado selecionado de seus botões filhos através de sua propriedade `value`.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -48,15 +48,15 @@ Os botões podem ser empilhados verticalmente com a propriedade `orientation` de
 Se você deseja forçar que pelo menos um botão esteja ativo, você pode adaptar sua função handleChange.
 
 ```jsx
-const handleFormat = (event, newFormats) => {
-  if (newFormats.length) {
-    setFormats(newFormats);
-  }
-};
-
 const handleAlignment = (event, newAlignment) => {
   if (newAlignment !== null) {
     setAlignment(newAlignment);
+  }
+};
+
+const handleDevices = (event, newDevices) => {
+  if (newDevices.length) {
+    setDevices(newDevices);
   }
 };
 ```
@@ -67,7 +67,7 @@ const handleAlignment = (event, newAlignment) => {
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
-## Botão de alternância customizado
+## Customização
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
