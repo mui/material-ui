@@ -24,6 +24,18 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 {{"demo": "pages/components/menus/BasicMenu.js"}}
 
+## Icon menu
+
+In desktop viewport, padding is increased to give more space to the menu.
+
+{{"demo": "pages/components/menus/IconMenu.js", "bg": true}}
+
+## Dense menu
+
+For the menu that has long list and long text, you can use the `dense` prop to reduce the padding and text size.
+
+{{"demo": "pages/components/menus/DenseMenu.js", "bg": true}}
+
 ## 选择菜单
 
 If used for item selection, when opened, simple menus places the initial focus on the selected menu item. 通过 `selected` 属性（在[ListItem](/api/list-item/)中），您能够设置当前被选中的选项。 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
@@ -32,7 +44,7 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 ## 菜单定位
 
-因为 `Menu` 组件是基于 `Popover` 组件来进行定位的，所以你也可以使用与之相同的 [定位属性](/components/popover/#anchor-playground) 来对它的位置进行改变。 例如，你可以在描点的下方显示菜单：
+因为 `Menu` 组件是基于 `Popover` 组件来进行定位的，所以你也可以使用与之相同的 [定位属性](/components/popover/#anchor-playground) 来对它的位置进行改变。 For instance, you can display the menu on top of the anchor:
 
 {{"demo": "pages/components/menus/PositionedMenu.js"}}
 
@@ -44,7 +56,13 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## 自定义菜单
+## Account menu
+
+`Menu` content can be mixed with other components like `Avatar`.
+
+{{"demo": "pages/components/menus/AccountMenu.js"}}
+
+## Customization 个性化
 
 以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
