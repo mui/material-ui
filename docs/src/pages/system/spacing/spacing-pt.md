@@ -6,12 +6,12 @@
 
 O utilitário de espaço converte margens e propriedades de preenchimento para margem e preenchimento de declarações CSS. As propriedades são nomeadas usando o formato `{property}{sides}`.
 
-Onde a *propriedade* é uma das seguintes:
+Onde a *propriedade* é um dos seguintes:
 
 - `m` - para classes que definem *margin*
 - `p` - para classes que definem *padding*
 
-Onde os *sides* é um dos seguintes:
+Onde o *sides* é um dos seguintes:
 
 - `t` - para classes que configuram *margin-top* ou *padding-top*
 - `b` - para classes que configuram *margin-bottom* ou *padding-bottom*
@@ -38,7 +38,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 16px;
 ```
 
-- entrada: `number` & tema: `array`: a propriedade é o valor do índice no array.
+- entrada: `number` & tema: `array`: a propriedade é o valor usado como o índice no array.
 
 ```jsx
 const theme = {
@@ -143,7 +143,7 @@ The CSS flex and grid display properties are often used to align elements at the
 ## API
 
 ```js
-import { spacing } from '@material-ui/system';
+import { spacing } from '@mui/system';
 ```
 
 | Nome da importação | Propriedade | Propriedade CSS                 | Chave do tema                                                    |
