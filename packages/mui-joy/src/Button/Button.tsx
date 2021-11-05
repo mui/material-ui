@@ -91,7 +91,7 @@ const ButtonRoot = styled('button', {
     ownerState.size === 'large' && {
       minHeight: '56px',
     },
-    ownerState.variant === 'text' && {
+    (ownerState.variant === 'text' || ownerState.variant === 'outlined') && {
       color: colorPalette[600],
       [`&.${buttonClasses.focusVisible}`]: {
         outlineColor: neutral[200],
@@ -104,6 +104,13 @@ const ButtonRoot = styled('button', {
       },
       [`&.${buttonClasses.disabled}`]: {
         color: neutral[300],
+      },
+    },
+    ownerState.variant === 'outlined' && {
+      border: '1px solid',
+      borderColor: neutral[300],
+      [`&.${buttonClasses.disabled}`]: {
+        borderColor: neutral[200],
       },
     },
     ownerState.variant === 'contained' && {
@@ -117,24 +124,6 @@ const ButtonRoot = styled('button', {
       },
       [`&.${buttonClasses.disabled}`]: {
         backgroundColor: colorPalette[300],
-      },
-    },
-    ownerState.variant === 'outlined' && {
-      color: colorPalette[600],
-      border: '1px solid',
-      borderColor: neutral[300],
-      [`&.${buttonClasses.focusVisible}`]: {
-        outlineColor: neutral[200],
-      },
-      '&:hover': {
-        backgroundColor: neutral[100],
-      },
-      '&:active': {
-        backgroundColor: neutral[200],
-      },
-      [`&.${buttonClasses.disabled}`]: {
-        borderColor: neutral[200],
-        color: neutral[300],
       },
     },
   ];
