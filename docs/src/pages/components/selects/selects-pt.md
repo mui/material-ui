@@ -12,7 +12,7 @@ githubLabel: 'component: Select'
 
 ## Seleção Simples
 
-Os menus são posicionados sobre seus elementos emissores, de modo que o item de menu atualmente selecionado apareça na parte superior do elemento emissor.
+Menus are positioned under their emitting elements, unless they are close to the bottom of the viewport.
 
 O componente `Select` é pensado para ser intercambiável com um elemento nativo `<select>`.
 
@@ -52,7 +52,7 @@ Como a experiência do usuário pode ser melhorada em dispositivos móveis usand
 
 O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. Você pode encontrar um exemplo de seleção [nesta seção](/components/text-fields/#select).
 
-## Seleções customizadas
+## Customização
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
