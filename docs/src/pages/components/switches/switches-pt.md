@@ -1,51 +1,95 @@
 ---
 title: Componente React Interruptor
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
+githubLabel: 'component: Switch'
+materialDesign: 'https://material.io/components/selection-controls#switches'
 ---
 
 # Interruptor
 
 <p class="description">Interruptores alternam o estado de uma única configuração ligado ou desligado.</p>
 
-[Interruptores](https://material.io/design/components/selection-controls.html#switches) são a forma preferida de ajustes de configuração em mobile. A opção que o interruptor controla, juntamente com o estado atual, deve ser claramente explícita no rótulo em linha correspondente.
+[Interruptores](https://material.io/design/components/selection-controls.html#switches) são a forma preferida de ajustes de configuração em mobile. The option that the switch controls, as well as the state it's in, should be made clear from the corresponding inline label.
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Interruptores básicos
 
-{{"demo": "pages/components/switches/Switches.js"}}
+{{"demo": "pages/components/switches/BasicSwitches.js"}}
 
-## Interruptores com FormControlLabel
+## Caixas de seleção com FormGroup
 
-O componente `Switch` pode ser fornecido com uma descrição graças ao componente `FormControlLabel`.
+Você pode fornecer um rótulo para o `Switch` graças ao componente `FormControlLabel`.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
 
+## Tamanho
+
+Use a propriedade `size` para alterar o tamanho do interruptor.
+
+{{"demo": "pages/components/switches/SwitchesSize.js"}}
+
+## Cor
+
+{{"demo": "pages/components/switches/ColorSwitches.js"}}
+
+## Controlled
+
+Você pode controlar o interruptor com as propriedades `checked` e `onChange`:
+
+{{"demo": "pages/components/switches/CustomizedSwitches.js"}}
+
 ## Interruptores com FormGroup
 
-O componente `FormGroup` é um encapsulador usado para agrupar componentes de seleção para fornecer uma API facilitada. No entanto, é recomendado usar [caixas de seleção](/components/checkboxes/), se vários controles relacionados forem necessários. (Veja: [Quando usar](#when-to-use)).
+`FormGroup` é usado para agrupar componentes de seleção para facilitar o uso da API. `FormGroup` é usado para agrupar componentes de seleção para facilitar o uso da API. (Veja: [Quando usar](#when-to-use)).
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
 ## Interruptores customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
 🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/switch).
 
-## Tamanhos
-
-Gosta de interruptores menores? Use a propriedade `size`.
-
-{{"demo": "pages/components/switches/SwitchesSize.js"}}
-
 ## Posicionamento do rótulo
+
+The switch also comes with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+
+```jsx
+import SwitchUnstyled from '@mui/core/SwitchUnstyled';
+```
+
+The `SwitchUnstyled` component provides default components and assigns CSS classes you can style entirely on your own. You are free to choose any styling solution - plain CSS classes, a CSS framework, Emotion, etc. It is also possible to replace these default components by other HTML elements or custom components.
+
+There are three components you can override by the `components` prop: `Root`, `Thumb` and `Input`. Each one's props can be set using the `componentsProps` object.
+
+{{"demo": "pages/components/switches/UnstyledSwitches.js"}}
+
+### useSwitch hook
+
+For the ultimate customizability, a `useSwitch` hook is available. It accepts almost the same options as the SwitchUnstyled component minus the `component`, `components`, and `componentsProps` props.
+
+```jsx
+import { useSwitch } from '@mui/core/SwitchUnstyled';
+```
+
+#### Basic example
+
+{{"demo": "pages/components/switches/UseSwitchesBasic.js"}}
+
+#### Customized look and feel
+
+{{"demo": "pages/components/switches/UseSwitchesCustom.js"}}
+
+## Quando usar
 
 Você pode alterar o posicionamento do rótulo:
 
-{{"demo": "pages/components/switches/FormControlLabelPosition.js"}}
+{{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
-## Quando usar
+## Acessibilidade
 
 - [Caixas de seleção vs. interruptores](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
@@ -56,5 +100,7 @@ Você pode alterar o posicionamento do rótulo:
 - Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (por exemplo, `aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
 
 ```jsx
-<Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} />
+<code><Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} /></code>
 ```
+
+</code>
