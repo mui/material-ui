@@ -1,6 +1,6 @@
-# Componentes Suportados
+# Supported components
 
-<p class="description">A seguir, uma lista de componentes e recursos do Material Design. Aqueles atualmente suportados pelo Material-UI são destacados com ✓.</p>
+<p class="description">A seguir, uma lista de componentes e recursos do Material Design. Those currently supported by MUI are highlighted ✓.</p>
 
 Nós trabalhamos para seguir as orientações sempre que possível (aplicando senso comum onde as diretrizes contradizem - uma ocorrência mais comum do que se poderia esperar), não esperamos suportar cada componente, ou cada característica de cada componente, mas sim fornecer elementos base que permitem que os desenvolvedores criem interfaces e experiências de usuário atraentes.
 
@@ -44,7 +44,7 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)********
+- ****[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)**
 - **[Listas](https://material.io/design/components/lists.html) ✓**
   - [Tipos:](https://material.io/design/components/lists.html#types)
     - **Linha única ✓**
