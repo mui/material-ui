@@ -8,24 +8,24 @@
 
 其中_属性_是其中之一：
 
-- `m` - 能够设置 *margin* 的类名
-- `p` - 能够设置 *padding* 的类名
+- `m` - 能够设置 _margin_ 的类名
+- `p` - 能够设置 _padding_ 的类名
 
-而 *sides* 是以下其中之一：
+而 _sides_ 是以下其中之一：
 
-- `t` - 对于设置* margin-top*或*padding-top*的类
-- `b` - 对于设置*margin-bottom的类*或*padding-bottom*的类
-- `l` - 对于设置*margin-left*或*padding-left*的类
-- `r` - 对于设置*margin-right*或*padding-right*的类
-- `x` - 对于设置** -left*和** -right*的类
-- `y` - 对于设置** -top*和** -bottom*的类
+- `t` - 能够设置 _margin-top_ 或 _padding-top_ 的类名
+- `b` - 能够设置 _margin-bottom_ 或 _padding-bottom_ 的类名
+- `l` - 能够设置 _margin-left_ 或 _padding-left_ 的类名
+- `r` - 能够设置 _margin-right_ 或 _padding-right_ 的类名
+- `x` - for classes that set both _\*-left_ and _\*-right_
+- `y` - for classes that set both _\*-top_ and _\*-bottom_
 - blank - 能够设置元素的所有 4 个边的 margin 或者 padding 的类名
 
 ## 转换
 
 根据输入和主题配置，您可以应用以下的转换：
 
-- input: `number` & theme: `number`: 该属性乘以 theme 的值。
+- input: `number` & theme: `number`: the prop value is multiplied by the theme value.
 
 ```jsx
 const theme = {
@@ -38,7 +38,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 16px;
 ```
 
-- input: `number` & theme: `array` ：属性值用作数组索引。
+- input: `number` & theme: `array`: the prop value is used as the array index.
 
 ```jsx
 const theme = {
@@ -50,7 +50,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 3px;
 ```
 
-- input: `number` & theme: `function`：使用属性值调用该函数。
+- input: `number` & theme: `function`: the function is called with the prop value.
 
 ```jsx
 const theme = {
@@ -61,7 +61,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 4px;
 ```
 
-- input: `string`: 该属性作为原始的 CSS 值传递。
+- input: `string`: the prop value is passed as raw CSS value.
 
 ```jsx
 <Box sx={{ m: "2rem" }} /> // margin: 2rem;
@@ -99,7 +99,7 @@ The CSS flex and grid display properties are often used to align elements at the
 ## API
 
 ```js
-import { spacing } from '@material-ui/system';
+import { spacing } from '@mui/system';
 ```
 
 | 导入名称      | 属性   | CSS 属性                          | Theme key                                                        |
