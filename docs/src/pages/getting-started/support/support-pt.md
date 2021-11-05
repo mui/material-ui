@@ -8,77 +8,86 @@ A comunidade é sua primeira parada para perguntas e conselhos sobre o framework
 
 ### StackOverflow <img src="/static/images/logos/stackoverflow.svg" width="24" height="24" alt="StackOverflow logo" loading="lazy" />
 
-Para questões técnicas colaborativas, conte com o apoio de desenvolvedores de Material-UI especializados em nossa comunidade. Também frequentado pela equipe principal do Material-UI.
+For crowdsourced answers from expert MUI developers in our community. StackOverflow is also frequented, from time to time, by the maintainers of MUI.
 
 [Poste uma pergunta](https://stackoverflow.com/questions/tagged/material-ui)
 
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 
-Usamos issues do GitHub exclusivamente para rastrear bugs e solicitações de recursos. Se você acha que encontrou um bug ou tem uma nova idéia de recurso, comece certificando-se de que ele ainda não foi [relatado ou corrigido](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). Você pode pesquisar nas issues existentes e pull requests para ver se alguém relatou algo semelhante ao seu.
+MUI uses GitHub issues as a bug and feature request tracker. Se você acha que encontrou um bug ou tem uma nova idéia de recurso, comece certificando-se de que ele ainda não foi [relatado ou corrigido](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). Você pode pesquisar nas issues existentes e pull requests para ver se alguém relatou algo semelhante ao seu.
 
-[Abra uma issue](https://github.com/mui-org/material-ui/issues/new/choose)
+- [Open an issue on MUI Core](https://github.com/mui-org/material-ui/issues/new/choose)
+- [Open an issue on MUI X](https://github.com/mui-org/material-ui-x/issues/new/choose)
 
 #### Novas diretrizes para issues
 
-- Por favor, siga o modelo de issue.
-- Comece o título com '[ComponentName]', quando apropriado, e use uma descrição sucinta que ajude outras pessoas a encontrar issues semelhantes. Use o idioma padrão do projeto que é o inglês.
+- Please follow the issue template.
+- Please begin the title with '[ComponentName]' where appropriate, and use a succinct description that helps others find similar issues.
   - "doesn't work" ❌
   - "[Button] Add support for <some feature>" ✅
-- Não agrupe vários tópicos em uma issue - cada um deve ter sua própria issue.
-- Por favor, não comente "+1" em uma issue. Isso engana os mantenedores e não ajuda a avançar com a issue. Use as reações do GitHub (👍).
+- Please don't group multiple topics in one issue – each should have its own issue instead.
+- Please don't comment "+1" on an issue. It spams the maintainers and doesn't help move the issue forward. Use GitHub reactions instead (👍).
 
 ### Blog 📝
 
-Mantenha-se atualizado com o desenvolvimento da biblioteca seguindo o blog.
+Stay up to date with the development of the library by following the blog.
 
-[Leia as últimas postagens](https://medium.com/material-ui/)
+[Read the latest posts](https://medium.com/material-ui/)
 
 ### Recursos 📖
 
-Novo no Material-UI? É fácil de aprender, se você souber por onde começar!
+New to MUI? É fácil de aprender, se você souber por onde começar!
 
-[Aprenda Material-UI](/getting-started/learn/)
+[Learn MUI](/getting-started/learn/)
 
 ### Twitter <img src="/static/images/logos/twitter.svg" width="24" height="24" alt="Twitter logo" loading="lazy" />
 
-Receba as últimas notícias sobre Material-UI.
+Receive the latest news on MUI.
 
-[Siga-nos](https://twitter.com/MaterialUI)
+[Follow us](https://twitter.com/MaterialUI)
 
 ### Versões suportadas
 
-O Material-UI CE (Community Edition) é 100% de código aberto (MIT) desde o início, e sempre será. O Material-UI CE (Community Edition) é 100% de código aberto (MIT) desde o início, e sempre será. A equipe do Material-UI disponibiliza regularmente novos lançamentos, correções de bugs e é muito receptiva às solicitações da comunidade.
+MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
-Dada a realidade das restrições de tempo e recursos, bem como o desejo de continuar inovando, com o tempo, torna-se necessário mudar o foco para as versões mais recentes do framework ([nosso cronograma de lançamento](https://material-ui.com/versions/#release-frequency)), enquanto essa transição ocorre para as versões mais recentes, sempre que possível, inclusões de publicação de guias de migração são feitas, como [esta para a v4](/guides/migration-v3/). A comunidade de código aberto é sempre bem-vinda para enviar novos recursos e correções de erros também.
+Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://mui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/guides/migration-v4/). The open-source community is always welcome to submit new features and bug fixes as well.
 
-O status atual de cada versão do Material-UI é o seguinte:
+The current status of each MUI version is as follows:
 
-- Material-UI v4 (hooks): ✅ Em desenvolvimento ativo.
-- Material-UI v3 (alteração de navegadores suportados): ⚠️ Somente correções de segurança.
-- ~Material-UI v2 (nunca existiu)~.
-- ~Material-UI v2 (nunca existiu)~.
-- Material-UI v1 (reescrita): ❌ Inativa.
-- Material-UI v0.x: ❌ Inativa.
+- MUI Core v5 (emotion): ✅ In active development.
+- MUI Core v4 (hooks): ⚠️ Only handle security fixes.
+- MUI Core v3 (change supported browsers): ❌ Inactive.
+- ~MUI Core v2 (never existed)~.
+- MUI Core v1 (rewrite): ❌ Inactive.
+- MUI Core v0.x: ❌ Inactive.
 
-Para equipes e organizações que exigem suporte adicional para versões mais antigas, o Material-UI possui [opções disponíveis](#enterprise).
+For teams and organizations that require additional support for older versions, MUI has [options available](#professional-support-premium).
 
 ## Suporte profissional (premium)
 
+### Pro/Premium plans
+
+MUI comes in [three plans](/pricing/). The support available on the Community plan is mostly made possible thanks to people like you: the community. It's described in more detail in the above section. The maintainers of MUI focuses on solving the root issues, not direct support.
+
+The Pro plan allows developers to license extra features that are challenging to find in the OSS space. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided.
+
+The Premium plan goes one step further by providing SLAs on the quality of the support.
+
 ### Tidelift subscription <img src="/static/images/logos/tidelift.svg" width="24" height="24" alt="Tidelift logo" loading="lazy" />
 
-Material-UI e os mantenedores de milhares de outros pacotes estão trabalhando com Tidelift para fornecer uma assinatura corporativa que abranja todo o código aberto que você usa.
+MUI and the maintainers of thousands of other packages are working with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
 
-Se você quiser a flexibilidade do código aberto e a confiança do software em nível comercial, vale a pena conferir.
+If you want the flexibility of open-source and the confidence of commercial-grade software, this is worth looking at.
 
-A Tidelift Subscription fornece esses recursos para você:
+The Tidelift Subscription manages your dependencies for you:
 
-- Obtenha as ferramentas que você precisa continuamente catalogar e entenda o software de código aberto do qual seu aplicativo depende.
-- Sua assinatura ajuda a pagar os mantenedores da comunidade de código aberto dos pacotes que você usa, para garantir que eles cumpram os padrões que você precisa.
-- Resolve proativamente problemas, com ferramentas que buscam novos problemas de segurança, licenciamento e manutenção, e alerta os mantenedores de código aberto participantes para que possam resolvê-los em seu nome.
-- Tidelift ajuda a medir e melhorar a saúde das suas dependências de código aberto - o que aprimora a saúde do seu aplicativo - e fornece uma lista de etapas de alto impacto que sua equipe pode dar para aprimorar ainda mais.
-- Receba garantias comerciais que não vem de graça com pacotes de código aberto, como indenização de propriedade intelectual e suporte sob um contrato de nível de serviço. Você espera essas garantias de um software proprietário, e pode obtê-las ao usar o código aberto também.
+- Get the tools you need to continuously catalog and understand the open-source software that your application depends on.
+- Your subscription helps pay the open-source community maintainers of the packages you use, to ensure they meet the standards you require.
+- Address issues proactively, with tools that scan for new security, licensing, and maintenance issues, and alert participating open-source maintainers so they can resolve them on your behalf.
+- Tidelift helps measure and improve your open-source dependencies' health – which improves your app's health – and gives a shortlist of high-impact steps your team can take to improve them even more.
+- Get commercial assurances that don't come for free with open-source packages, such as intellectual property indemnification and support under a service level agreement. You expect these guarantees from proprietary software, and you can get them when using open-source as well.
 
-O resultado final? Todas as capacidades que você espera de um software de nível comercial, com toda a amplitude de código aberto que você usa. Isso significa menos tempo lutando com trivia esotérica de código aberto, e mais tempo criando seus próprios aplicativos – e seus negócios.
+The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open-source you use. That means less time grappling with esoteric open-source trivia, and more time building your own applications – and your business.
 
 <a
   data-ga-event-category="support"
@@ -94,14 +103,14 @@ Obter mais detalhes
 Solicite uma demonstração
 </a>
 
-### Trabalho customizado 🛠
+### Custom work 🛠
 
-Ajuste Material-UI para atender requisitos específicos. Nos dê um resumo das suas necessidades e ajudaremos você se pudermos. Nós poderíamos:
+Tweak MUI to meet specific requirements. Give us a summary of your needs and we'll help you if we can. We might:
 
-- Dar a você uma estimativa de tempo e preço se o trabalho for simples
-- Sugerir alternativas que podem não exigir Material-UI
-- Recusar o trabalho devido a tempo ou relevância
+- Give you an estimate of time and price if the work is straightforward
+- Suggest alternatives that might not require MUI
+- Decline the work due to timing or relevancy
 
-Note que o trabalho deve estar relacionado ao Material-UI. Não aceitamos trabalhos genéricos de desenvolvimento React. Nosso preço de contratação é de $200/hora ou $1.500/dia.
+Note that work must be MUI related. We don't accept general React development work. Our contracting price is $200/hour or $1,500/day.
 
-[Envie-nos um e-mail](mailto:custom-work@material-ui.com)
+[Send us an email](mailto:custom-work@mui.com)
