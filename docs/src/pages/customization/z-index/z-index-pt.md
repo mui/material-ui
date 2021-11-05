@@ -2,7 +2,7 @@
 
 <p class="description">z-index é a propriedade CSS que ajuda a controlar o leiaute, fornecendo um terceiro eixo para organizar o conteúdo.</p>
 
-Vários componentes do Material-UI utiliza `z-index`, empregando uma escala z-index padrão em Material-UI, que foi projetada para adequar camadas de drawers, modais, snackbars, dicas, e muito mais.
+Several MUI components utilize `z-index`, employing a default z-index scale in MUI that has been designed to properly layer drawers, modals, snackbars, tooltips, and more.
 
 Os valores de `z-index` começam em um número arbitrário, alto e especifico o suficiente para idealmente evitar conflitos:
 
