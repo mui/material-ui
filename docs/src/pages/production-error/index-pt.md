@@ -1,6 +1,6 @@
-# Erro em produção
+# Production error
 
-<p class="description">Na compilação de produção, mensagens de erro do Material-UI são minificadas para reduzir o tamanho de sua aplicação.</p>
+<p class="description">In the production build of MUI error messages are minified to reduce the size of your application.</p>
 
 Recomendamos usar a compilação de desenvolvimento ao depurar este erro. A compilação incluirá avisos adicionais sobre problemas potenciais. If you encounter an exception while using the production build, this page will reassemble the orrigianl text of the error.
 
