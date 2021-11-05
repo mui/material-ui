@@ -1,27 +1,31 @@
 ---
 title: Componente React Botão de ação flutuante
 components: Fab
+githubLabel: 'component: Fab'
+materialDesign: https://material.io/components/buttons-floating-action-button
 ---
 
 # Botão de ação flutuante
 
 <p class="description">Um botão de ação flutuante (BAF) realiza a principal, ou mais comum, ação na tela.</p>
 
-## Botão de ação flutuante
+Um botão de ação flutuante aparece na frente de todo o conteúdo da tela, tipicamente em uma forma circular com um ícone em seu centro. BAFs podem ser de dois tipos: regular e estendido.
 
-Um [botão de ação flutuante](https://material.io/design/components/buttons-floating-action-button.html) aparece na frente de todo conteúdo da tela, tipicamente em uma forma circular com um ícone em seu centro. BAFs podem ser de dois tipos: regular e estendido.
+Only use a FAB if it is the most suitable way to present a screen's primary action. Use um BAF apenas se for a maneira mais adequada para apresentar a ação principal de uma tela.
 
-Use um BAF apenas se for a maneira mais adequada para apresentar a ação principal de uma tela.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-É recomendado utilizar apenas um botão de ação flutuante por tela, esse botão deve representar a ação mais comum.
+## BAF básico
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtons.js"}}
 
 ## Tamanho
 
-Use a propriedade `size` para aumentar ou diminuir botões de ação flutuante.
+Por padrão, o tamanho é `grande`. Use the `size` prop for smaller floating action buttons.
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtonSize.js"}}
+
+{{"demo": "pages/components/floating-action-button/FloatingActionButtonExtendedSize.js"}}
 
 ## Animação
 
