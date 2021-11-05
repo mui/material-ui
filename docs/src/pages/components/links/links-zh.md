@@ -1,5 +1,5 @@
 ---
-components: Link
+components: React Link（链接）组件
 githubLabel: 'component: Link'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 ---
@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 简单的链接
+## Basic links
 
 链接（Links）组件是基于 [文字铸排（Typography）](/api/typography/) 组件构建的，这意味着你也可以使用文字铸排组件的属性。
 
@@ -23,7 +23,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 ## 下划线
 
-`underline` 属性可以用来设置下划线行为。 该属性的默认值是 `hover`。
+`underline` 属性可以用来设置下划线行为。 The default is `always`.
 
 {{"demo": "pages/components/links/UnderlineLink.js"}}
 
