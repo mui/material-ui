@@ -48,15 +48,15 @@ For larger or smaller buttons, use the `size` prop.
 如果你想要至少一个按钮必须是强制选中状态的，那么你可以调整你的 handleChange 函数。
 
 ```jsx
-const handleFormat = (event, newFormats) => {
-  if (newFormats.length) {
-    setFormats(newFormats);
-  }
-};
-
 const handleAlignment = (event, newAlignment) => {
   if (newAlignment !== null) {
     setAlignment(newAlignment);
+  }
+};
+
+const handleDevices = (event, newDevices) => {
+  if (newDevices.length) {
+    setDevices(newDevices);
   }
 };
 ```
@@ -67,7 +67,7 @@ const handleAlignment = (event, newAlignment) => {
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
-## 自定义切换按钮
+## Customization 个性化
 
 以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
