@@ -1,6 +1,7 @@
 ---
 title: Componente React Popover
 components: Grow, Popover
+githubLabel: 'component: Popover'
 ---
 
 # Popover
@@ -12,9 +13,11 @@ Coisas para saber ao usar o componente `Popover`:
 - O componente é construído sobre o componente [`Modal`](/components/modal/).
 - A rolagem e o clique fora não é permitido, ao contrário do componente [`Popper`](/components/popper/).
 
-## Popover Simples
+[A paleta](/system/palette/) com funções de estilo.
 
-{{"demo": "pages/components/popover/SimplePopover.js" }}
+## Basic Popover
+
+{{"demo": "pages/components/popover/BasicPopover.js" }}
 
 ## Âncora - Exemplo interativo
 
@@ -24,13 +27,13 @@ Use os botões de opção para ajustar as posições `anchorOrigin` e `transform
 
 ## Interação mouse em cima
 
-Este exemplo demonstra como usar o componente `Popover` para implementar um comportamento popover baseado no evento mouse over.
+This demo demonstrates how to use the `Popover` component and the mouseover event to achieve popover behavior.
 
 {{"demo": "pages/components/popover/MouseOverPopover.js"}}
 
 ## Projetos Complementares
 
-Para situações de uso mais avançadas, você pode tirar proveito com:
+For more advanced use cases, you might be able to take advantage of:
 
 ### PopupState helper
 
