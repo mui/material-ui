@@ -2,15 +2,16 @@
 title: React Date Range Picker（日期范围选择器）组件
 components: DateRangePicker, DateRangePickerDay, DesktopDateRangePicker, MobileDateRangePicker, StaticDateRangePicker
 githubLabel: 'component: DateRangePicker'
-packageName: '@material-ui/lab'
+packageName: '@mui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
 # Date Range Picker [<span role="img" title="Enterprise">⚡️</span>](https://material-ui.com/store/items/material-ui-pro/) 日期范围选择器
 
-<p class="description">日期选择器让用户选择一系列的日期。</p>
+<p class="description">日期选择器让用户选择一系列的日期。
+</p>
 
-> ⚠️ Pro component <br /><br /> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). <br /><br /> 该付费扩展将包括更高级的组件（大数据栅格，时间范围选择器，可拖动的树形视图 & 拖放组件等等）。 你现在可以以实惠的价格 [提前使用](https://material-ui.com/store/items/material-ui-pro/)。
+> ⚠️ Pro component <br /><br /> The date range picker is intended for MUI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). <br /><br /> 该付费扩展将包括更高级的组件（大数据栅格，时间范围选择器，可拖动的树形视图 & 拖放组件等等）。 你现在可以以实惠的价格 [提前使用](https://material-ui.com/store/items/material-ui-pro/)。
 
 日期范围选择器让用户选择一个日期范围。
 
@@ -23,9 +24,9 @@ materialDesign: https://material.io/components/date-pickers
 请安装这些库中的任何一个，并使用 `LocalizationProvider` 来包裹到你的 root（或者包裹到该选择器你想要应用的最高位置）来设置正确的日期引擎。
 
 ```jsx
-// 或者使用 @material-ui/lab/Adapter{dayjs,luxon,moment} 或者使用任何可适用的 date-io 适配器
-import DateFnsAdapter from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+// or @mui/lab/dateAdapter/{dayjs,luxon,moment} or any valid date-io adapter
+import DateFnsAdapter from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 function App() {
   return (
@@ -53,7 +54,7 @@ function App() {
 - The `MobileDateRangePicker` component works best for touch devices and small screens.
 - The `DesktopDateRangePicker` component works best for mouse devices and large screens.
 
-By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
+By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
 
 {{"demo": "pages/components/date-range-picker/ResponsiveDateRangePicker.js"}}
 
