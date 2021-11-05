@@ -11,7 +11,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 Uma [grade](https://material.io/design/layout/responsive-layout-grid.html) cria consistência visual entre leiautes, enquanto permite flexibilidade em uma ampla variedade de projetos. A UI responsiva do Material Design é baseada em uma grade de 12 colunas.
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+[A paleta](/system/palette/) com funções de estilo.
 
 > O componente `Grid` não deve ser confundido com um data grid; ele está mais próximo de um layout grid. Para um cabeçalho do data grid para [o componente `DataGrid`](/components/data-grid/).
 
@@ -58,13 +58,21 @@ Para controlar o espaço entre os filhos, use a prop ` spacing ` O valor do espa
 
 
 
+### Row & column spacing
+
+The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently. It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+
+{{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
+
+
+
 ## Valores responsivos
 
-Podemos ativar as props de acordo com ponto de ruptura ativo Por exemplo, podemos  implementar o leiaute responsivo do Material Design ["recommended"](https://material.io/design/layout/responsive-layout-grid.html)
+You can switch the props' value based on the active breakpoint. For instance, we can implement the ["recommended"](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
 
 {{"demo": "pages/components/grid/ResponsiveGrid.js", "bg": true}}
 
-Valores responsivos são suportados por:
+Responsive values is supported by:
 
 - `colunas`
 - `espaçoDeColuna`
@@ -85,14 +93,6 @@ Valores responsivos são suportados por:
 
 
 
-### Row & column spacing
-
-As props ` rowSpacing` e `columnSpacing` nos permite especificar os espaços entre linhas e entre colunas de forma independente. É similar  as propriedades `row-gap` e  `column-gap` da [Malha CSS](/system/grid/#row-gap-amp-column-gap).
-
-{{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
-
-
-
 ## Interativo
 
 Abaixo está uma demonstração interativa que permite explorar os resultados visuais das diferentes configurações:
@@ -109,9 +109,17 @@ O leiaute automático faz com que o espaço disponível seja compartilhado de fo
 
 
 
+### Variable width content
+
+Set one of the size breakpoint props to `"auto"` instead of `true` / a `number` to size a column based on the natural width of its content.
+
+{{"demo": "pages/components/grid/VariableWidthGrid.js", "bg": true}}
+
+
+
 ## Grade Complexa
 
-A demo a seguir não segue as normas do Material Design mas ilustra bem como a malha pode ser usada para criar layouts complexos
+The following demo doesn't follow the Material Design guidelines, but illustrates how the grid can be used to build complex layouts.
 
 {{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 
@@ -119,7 +127,7 @@ A demo a seguir não segue as normas do Material Design mas ilustra bem como a m
 
 ## Grade Aninhada
 
-As props `container` e `item`  são buleanas independentes; Podemo ser combinados para permitir que um componente Grid seja tanto um contêiner flex como um filho (item do contêiner)
+The `container` and `item` props are two independent booleans; they can be combined to allow a Grid component to be both a flex container and child.
 
 
 
@@ -154,7 +162,7 @@ You can change the default number of columns (12) with the `columns` prop.
 
 
 
-### Margem negativa
+### Negative margin
 
 The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
@@ -162,7 +170,7 @@ The spacing between items is implemented with a negative margin. This might lead
 
 ### white-space: nowrap;
 
-A configuração inicial em itens flexíveis é `min-width: auto`. Isto causa um conflito de posicionamento quando os elementos filhos estão usando `white-space: nowrap`. Você pode enfrentar o problema com:
+The initial setting on flex items is `min-width: auto`. It's causing a positioning conflict when the children is using `white-space: nowrap;`. You can experience the issue with:
 
 
 
@@ -172,7 +180,7 @@ A configuração inicial em itens flexíveis é `min-width: auto`. Isto causa um
 ```
 
 
-Para que o item permaneça dentro do contêiner, você precisa definir `min-width: 0`. In practice, you can set the `zeroMinWidth` prop:
+In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` prop:
 
 
 
@@ -202,9 +210,9 @@ The `Grid` component is using CSS flexbox internally. But as seen below, you can
 
 
 
-## System props
+## Propriedades do sistema
 
-As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding:
+As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. Você pode usá-los como "props" diretamente no componente. For instance, a padding:
 
 
 
