@@ -23,7 +23,7 @@ O componente renderiza o conteúdo de seu `children` sobre um componente backdro
 
 Se você está criando um diálogo modal, você provavelmente quer usar o componente [Dialog](/components/dialogs/) em vez de diretamente um Modal. Modal é uma estrutura de baixo-nível que é aproveitada pelos seguintes componentes:
 
-- [Dialog](/components/dialogs/)
+- [Diálogo](/components/dialogs/)
 - [Drawer](/components/drawers/)
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
@@ -36,12 +36,12 @@ Você pode desativar o contorno (muitas vezes azul ou ouro) com a propriedade CS
 
 ## Unstyled
 
-- 📦 [4.7 kB gzipped](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
+- 📦 [4.7 kB gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
 
-The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+The modal also comes with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
 
 ```js
-import ModalUnstyled from '@material-ui/unstyled/ModalUnstyled';
+import ModalUnstyled from '@mui/core/ModalUnstyled';
 ```
 
 {{"demo": "pages/components/modal/ModalUnstyled.js"}}
