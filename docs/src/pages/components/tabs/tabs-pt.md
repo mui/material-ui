@@ -16,13 +16,13 @@ As [abas](https://material.io/design/components/tabs.html) organizam e permitem 
 
 ## Abas simples
 
-A basic example with tab panels.
+Um exemplo básico com painéis de guias.
 
 {{"demo": "pages/components/tabs/BasicTabs.js"}}
 
 ## API experimental
 
-O `@material-ui/lab` oferece componentes auxiliares que injetam propriedades para implementar abas acessíveis seguindo as [práticas de autoria da WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
+`@mui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
 
 {{"demo": "pages/components/tabs/LabTabs.js"}}
 
@@ -32,7 +32,7 @@ Os rótulos longos serão quebrados automaticamente nas abas. If the label is to
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
-## Colored tab
+## Abas coloridas
 
 {{"demo": "pages/components/tabs/ColorTabs.js"}}
 
@@ -88,7 +88,7 @@ Botões de rolagem da esquerda e direita nunca serão apresentados com `scrollBu
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
-## Abas customizadas
+## Customização
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -104,19 +104,25 @@ O rótulo das abas podem ser compostos apenas por ícones ou apenas por texto.
 
 Note que você pode restaurar a barra de rolagem com `visibleScrollbar`.
 
-## Nav tabs
+## Guias de navegação
 
-By default, tabs use a `button` element, but you can provide your custom tag or component. Veja um exemplo de implementação da navegação por abas:
+Por padrão, as guias usam um elemento `botão`, mas você pode fornecer sua tag ou componente personalizado. Veja um exemplo de implementação da navegação por abas:
 
 {{"demo": "pages/components/tabs/NavTabs.js"}}
 
-## Icon tabs
+## Abas com ícones
 
 O rótulo das abas podem ser compostos apenas por ícones ou apenas por texto.
 
 {{"demo": "pages/components/tabs/IconTabs.js"}}
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js"}}
+
+## Icon position
+
+By default, the icon is positioned at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`.
+
+{{"demo": "pages/components/tabs/IconPositionTabs.js"}}
 
 ## Biblioteca de roteamento de terceiros
 
@@ -126,23 +132,23 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
 
-As etapas a seguir são necessárias para fornecer a informação coerente para as tecnologias assistivas:
+The following steps are needed in order to provide necessary information for assistive technologies:
 
 1. Rotule o componente `Tabs` com `aria-label` ou `aria-labelledby`.
 2. Para os componentes `Tab`, precisam estar conectados com seu correspondente `[role="tabpanel"]` definindo o correto `id`, `aria-controls` e `aria-labelledby`.
 
-Um exemplo para a implementação atual pode ser encontrado nas demonstrações desta página. Nós também publicamos [uma API experimental](#experimental-api) no pacote `@material-ui/lab` que não requer nenhum trabalho extra.
+An example for the current implementation can be found in the demos on this page. We've also published [an experimental API](#experimental-api) in `@mui/lab` that does not require extra work.
 
 ### Navegação por teclado
 
-Os componentes implementam a navegação do teclado usando o comportamento de "ativação manual". Se você quiser mudar para o comportamento "seleção segue automaticamente o foco" você deve definir `selectionFollowsFocus` no componente `Tabs`. As práticas de autoria da WAI-ARIA têm um guia detalhado sobre [como decidir quando fazer a seleção seguir automaticamente o foco](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus).
+The components implement keyboard navigation using the "manual activation" behavior. If you want to switch to the "selection automatically follows focus" behavior you have pass `selectionFollowsFocus` to the `Tabs` component. The WAI-ARIA authoring practices have a detailed guide on [how to decide when to make selection automatically follow focus](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus).
 
 #### Demonstração
 
-As duas demonstrações seguintes diferem apenas no seu comportamento de navegação por teclado. Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
+The following two demos only differ in their keyboard navigation behavior. Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
 
 ```jsx
-/* Abas onde a seleção segue o foco */
+/* Tabs where selection follows focus */
 <Tabs selectionFollowsFocus />
 ```
 
