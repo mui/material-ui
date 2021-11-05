@@ -15,7 +15,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 简单的应用栏
+## Basic App Bar
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
@@ -72,9 +72,8 @@ function App() {
 3. 也可以用 `theme.mixins.toolbar` 的 CSS：
 
 ```jsx
-const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
-
 function App() {
+
   return (
     <React.Fragment>
       <AppBar position="fixed">
@@ -125,38 +124,20 @@ function App() {
 #### 例子
 
 ```jsx
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 function HideOnScroll(props) {
   const trigger = useScrollTrigger();
   return (
     <Slide in={!trigger}>
-      <div>你好</div>
+      <div>Hello</div>
     </Slide>
   );
 }
 ```
 
-## Enable Color on Dark
+## Enable color on dark
 
-Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the AppBar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
+Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode. 您可以通过设置 ` enableColorOnDark ` 属性为`true` 来覆盖此行为。
 
-```jsx
-// Specific element via prop
-<AppBar enableColorOnDark />
-
-// Affect all AppBars via theme
-<ThemeProvider
-  theme={createTheme({
-    components: {
-      MuiAppBar: {
-        defaultProps: {
-          enableColorOnDark: true,
-        },
-      },
-    },
-  })}
->
-  <AppBar />
-</ThemeProvider>
-```
+{{"demo": "pages/components/app-bar/EnableColorOnDarkAppBar.js", "bg": true}}
