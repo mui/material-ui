@@ -26,7 +26,7 @@ Um snackbar básico que tem como objetivo reproduzir o comportamento do Google K
 
 {{"demo": "pages/components/snackbars/SimpleSnackbar.js"}}
 
-## Snackbars customizados
+## Customização
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -58,7 +58,7 @@ Snackbars devem aparecer acima de BAFs (no mobile).
 
 {{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
-### Modificando a transição
+### Trocar transição
 
 [Grow](/components/transitions/#grow) é a transição padrão, mas você pode usar uma diferente.
 
@@ -67,6 +67,22 @@ Snackbars devem aparecer acima de BAFs (no mobile).
 ### Controlando a direção do Slide
 
 Você pode alterar a direção da transição do [Slide](/components/transitions/#slide).
+
+Example of making the slide transition to the left:
+
+```jsx
+import Slide from '@material-ui/core/Slide';
+
+function TransitionLeft(props) {
+  return <Slide {...props} direction="left" />;
+}
+
+export default function MyComponent() {
+  return <Snackbar TransitionComponent={TransitionLeft} />;
+}
+```
+
+Other examples:
 
 {{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
 
@@ -78,9 +94,9 @@ Para situações de uso mais avançadas, você pode tirar proveito com:
 
 ![estrelas](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
-Este exemplo demonstra como usar com [notistack](https://github.com/iamhosseindhv/notistack). notistack tem uma **API imperativa** que facilita a exibição de snackbars, sem ter que lidar com seu estado de aberto/fechado. It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design guidelines).
+This example demonstrates how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack has an **imperative API** that makes it easy to display snackbars, without having to handle their open/close state. It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design guidelines).
 
-TODO: Add example once notistack is compatible with v5 or replace with [#1824](https://github.com/mui-org/material-ui/issues/1824).
+{{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
 
 ## Acessibilidade
 
