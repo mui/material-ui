@@ -11,7 +11,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 简单的面包屑导航
+## 基本的面包屑导航
 
 {{"demo": "pages/components/breadcrumbs/BasicBreadcrumbs.js"}}
 
@@ -35,7 +35,7 @@ In the following examples, we are using two string separators and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## 自定义的面包屑导航
+## Customization 个性化
 
 以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
