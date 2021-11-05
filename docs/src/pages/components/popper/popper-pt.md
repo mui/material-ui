@@ -65,3 +65,11 @@ Para situações de uso mais avançadas, você pode tirar proveito com:
 Existe um pacote de terceiros [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) que cuida do estado popover para você na maioria das situações.
 
 {{"demo": "pages/components/popper/PopperPopupState.js"}}
+
+## Unstyled
+
+As the component does not have any styles, it also comes with the unstyled package.
+
+```js
+import Popper from '@mui/core/Popper';
+```
