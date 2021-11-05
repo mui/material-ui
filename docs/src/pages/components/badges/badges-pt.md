@@ -1,11 +1,14 @@
 ---
 title: Componente React para emblemas
-components: Badge
+components: Badge, BadgeUnstyled
+githubLabel: 'component: Badge'
 ---
 
 # Emblema
 
 <p class="description">O componente <code>Badge</code> gera um pequeno emblema no canto superior direito de seu(s) filho(s).</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Emblemas básicos
 
@@ -15,7 +18,13 @@ Exemplos de emblemas contendo texto, usando cores primárias e secundárias. O e
 
 ## Emblemas customizados
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Você pode usar a propriedade `overlap` para colocar o emblema em relação ao canto do elemento envolvido.
+
+{{"demo": "pages/components/badges/ColorBadge.js"}}
+
+## Visibilidade do emblema
+
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -52,3 +61,19 @@ Você pode usar a propriedade `overlap` para colocar o emblema em relação ao c
 Você pode usar a propriedade `anchorOrigin` para mover o emblema para qualquer canto do elemento envolvido.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## Unstyled
+
+O badge também vem com uma versão sem estilo. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+
+```js
+import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
+```
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}
+
+## Acessibilidade
+
+Você não pode confiar que o conteúdo do badge seja anunciado corretamente. Você deve fornecer uma descrição completa, por exemplo, com `aria-label`:
+
+{{"demo": "pages/components/badges/AccessibleBadges.js"}}
