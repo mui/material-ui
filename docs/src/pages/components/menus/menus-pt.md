@@ -24,15 +24,27 @@ Escolhendo uma opção deve confirmar imediatamente a opção e fechar o menu.
 
 {{"demo": "pages/components/menus/BasicMenu.js"}}
 
+## Icon menu
+
+No viewport do desktop, o preenchimento é aumentado para dar mais espaço ao menu.
+
+{{"demo": "pages/components/menus/IconMenu.js", "bg": true}}
+
+## Dense menu
+
+For the menu that has long list and long text, you can use the `dense` prop to reduce the padding and text size.
+
+{{"demo": "pages/components/menus/DenseMenu.js", "bg": true}}
+
 ## Menu selecionado
 
-If used for item selection, when opened, simple menus places the initial focus on the selected menu item. O item de menu atualmente selecionado é definido usando a propriedade`selected`(de [ListItem](/api/list-item/)). To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
+Se usado para seleção de itens, quando abertos, menus simples colocam o foco inicial no item do menu selecionado. O item de menu atualmente selecionado é definido usando a propriedade`selected`(de [ListItem](/api/list-item/)). Para usar um item do menu selecionado sem impactar o foco inicial, defina a propriedade `variante` para "menu".
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
 ## Menu posicionado
 
-Devido ao componente `Menu` usar o componente `Popover` para se posicionar, você pode usar as mesmas [propriedades de posicionamento](/components/popover/#anchor-playground) para posicioná-lo. Por exemplo, você pode exibir o menu abaixo da âncora:
+Devido ao componente `Menu` usar o componente `Popover` para se posicionar, você pode usar as mesmas [propriedades de posicionamento](/components/popover/#anchor-playground) para posicioná-lo. For instance, you can display the menu on top of the anchor:
 
 {{"demo": "pages/components/menus/PositionedMenu.js"}}
 
@@ -44,7 +56,13 @@ A principal responsabilidade do componente `MenuList` é manipular o foco.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Menu customizado
+## Account menu
+
+`Menu` content can be mixed with other components like `Avatar`.
+
+{{"demo": "pages/components/menus/AccountMenu.js"}}
+
+## Customização
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
