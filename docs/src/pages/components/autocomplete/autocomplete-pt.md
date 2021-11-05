@@ -1,6 +1,8 @@
 ---
 title: Componente React para Autocompletar
 components: TextField, Popper, Autocomplete
+githubLabel: 'component: Autocomplete'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
 ---
 
 # Autocompletar
@@ -14,11 +16,38 @@ Essa ferramenta é útil para configurar os valores de um campo de texto quando 
 
 A ideia dessa ferramenta é ser uma versão melhorada das bibliotecas "react-select" e "downshift".
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Caixa de combinação
 
 O valor deve ser escolhido a partir de um conjunto predefinido de valores permitidos.
 
 {{"demo": "pages/components/autocomplete/ComboBox.js"}}
+
+### Estrutura de opções
+
+Por padrão, o componente aceita as seguintes estruturas de opções:
+
+```ts
+interface AutocompleteOption {
+  label: string;
+}
+// ou
+type AutocompleteOption = string;
+```
+
+por exemplo:
+
+```js
+const options = [
+  { label: 'The Godfather', id: 1 },
+  { label: 'Pulp Fiction', id: 2 },
+];
+// or
+const options = ['The Godfather', 'Pulp Fiction'];
+```
+
+No entanto, você pode usar estruturas diferentes fornecendo a propriedade `getOptionLabel`.
 
 ### Área de exemplos
 
@@ -32,14 +61,14 @@ Escolha um dos 248 países.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
-### Estados controláveis
+### Estados controlados
 
 O componente tem dois estados que podem ser controlados:
 
-1. o estado "value" com a combinação das propriedades `value`/`onChange`. Esse estado representa o valor selecionado pelo usuário, por exemplo, quando é pressionado a tecla <kbd>Enter</kbd>.
+1. o estado "value" com a combinação das propriedades `value`/`onChange`. Esse estado representa o valor selecionado pelo usuário, por exemplo, quando pressionando <kbd class="key">Enter</kbd>.
 2. o estado "input value" com a combinação das propriedades `inputValue`/`onInputChange`. Esse estado representa o valor exibido na caixa de texto.
 
-> ⚠️ Esses dois estados estão isolados, eles podem ser controlados de forma independente.
+> ⚠️Esses dois estados são isolados e devem ser controlados de forma independente.
 
 {{"demo": "pages/components/autocomplete/ControllableStates.js"}}
 
@@ -49,7 +78,7 @@ Coloque `freeSolo` como true para que o campo de texto contenha qualquer valor a
 
 ### Campo search
 
-A propriedade foi desenvolvida para suprir a situação de uso mais comum de um **campo do tipo search** com sugestões, por exemplo, pesquisa do Google ou react-autowhatever.
+A propriedade é projetada para cobrir o principal caso de uso de uma **caixa de pesquisa** com sugestões, por exemplo, pesquisa do Google ou react-autowhatever.
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
@@ -59,7 +88,7 @@ Se você pretende usar este modo para uma [caixa de combinação](#combo-box), p
 
 - `selectOnFocus` para ajudar o usuário a limpar o valor selecionado.
 - `clearOnBlur` para ajudar o usuário a digitar um novo valor.
-- `handleHomeEndKeys` para mover o foco dentro do popup com as teclas <kbd>Home</kbd> e <kbd>End</kbd>.
+- `handleHomeEndKeys` para mover o foco dentro do popup com as teclas <kbd class="key">Home</kbd> e <kbd class="key">End</kbd>.
 - Adicione uma última opção para indicar a possibilidade de adição, por exemplo `Adicionar "SUA PESQUISA"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
@@ -70,6 +99,8 @@ Você pode também exibir um diálogo quando o usuário quiser adicionar um novo
 
 ## Agrupamento
 
+Você pode agrupar as opções com a propriedade `groupBy`. Se você fizer isso, certifique-se de que as opções também estejam classificadas com a mesma dimensão que serão agrupadas, caso contrário, você notará cabeçalhos duplicados.
+
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
 ## Opções desabilitadas
@@ -78,10 +109,16 @@ Você pode também exibir um diálogo quando o usuário quiser adicionar um novo
 
 ## `useAutocomplete`
 
-Para casos de customização avançada, nós expomos o hook `useAutocomplete()`. Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. O componente autocompletar usa esse hook internamente.
+Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. O componente de auto completar é baseado neste hook.
 
-```jsx
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
+```tsx
+import useAutocomplete from '@material-ui/core/useAutocomplete';
+```
+
+The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
+
+```tsx
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 - 📦 [4.5 kB gzipado](/size-snapshot).
@@ -92,11 +129,30 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-Indo para a seção de [Autocompletar customizado](#customized-autocomplete) vemos um exemplo de customização com o componente `Autocomplete` ao invés do hook.
+O componente suporta duas situações de uso assíncronas diferentes:
 
 ## Requisições assíncronas
 
+Exibe um estado de progresso enquanto a solicitação de rede estiver pendente.
+
+- [Carregar ao abrir](#load-on-open): espera uma interação com o componente para carregar as opções.
+- [Pesquisar enquanto digita](#search-as-you-type): um novo pedido é feito para cada tecla pressionada.
+
+### Carregar ao abrir
+
+Exibe um estado de progresso enquanto a solicitação de rede estiver pendente.
+
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
+
+### Pesquisar enquanto digita
+
+Além disso, você precisará desabilitar a filtragem integrada do componente `Autocomplete` sobrescrevendo o prop `filterOptions`:
+
+Uma customização de UI para o autocompletar de lugares do Google Maps.
+
+```jsx
+<Autocomplete filterOptions={(x) => x} />
+```
 
 ### Lugares com a API do Google Maps
 
@@ -104,7 +160,7 @@ Uma customização de UI para o autocompletar de lugares do Google Maps.
 
 {{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
 
-Para esse exemplo, nós precisamos carregar a API de Javascript do [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial).
+Também conhecidos como tags, o usuário pode inserir mais de um valor.
 
 > ⚠️ Antes de você começar a usar a API JavaScript do Google Maps você precisará estar cadastrado e ter uma conta.
 
@@ -136,7 +192,7 @@ Gosta mais de campos de texto menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## Customizações
+## Customização
 
 ### Input customizado
 
@@ -150,11 +206,11 @@ Esta demonstração reproduz o rótulo de seleção do GitHub's:
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
-Va para a seção [Hook customizado](#customized-hook) para um exemplo com o uso do hook customizado `useAutocomplete` ao invés do componente.
+A demonstração a seguir dependem do [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), um utilitário pequeno (1 kB) para realçar textos nos componentes autosuggest e autocomplete.
 
 ## Realce
 
-A demonstração a seguir dependem do [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), um utilitário pequeno (1 kB) para realçar textos nos componentes autosuggest e autocomplete.
+A demonstração a seguir depende do [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), um utilitário pequeno (1 kB) para realçar textos nos componentes autosuggest e autocomplete.
 
 {{"demo": "pages/components/autocomplete/Highlights.js"}}
 
@@ -163,34 +219,39 @@ A demonstração a seguir dependem do [autosuggest-highlight](https://github.com
 O componente expõe uma fábrica para criar um método de filtro que pode ser fornecido para a propriedade `filterOptions`. Você pode usar ela para modificar o comportamento padrão do filtro.
 
 ```js
-import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import matchSorter from 'match-sorter';
+
+const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
+
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 ### `createFilterOptions(config) => filterOptions`
 
 #### Argumentos
 
-1. `config` (*Object* [opcional]): 
-  - `config.ignoreAccents` (*Boolean* [opcional]): Padrão `true`. Remover sinais diacríticos.
-  - `config.ignoreCase` (*Boolean* [opcional]): Padrão `true`. Minúsculas em tudo.
-  - `config.limit` (*Number* [opcional]): Padrão null. Limitar o número de opções sugeridas a serem exibidas. Por exemplo, se `config.limit` é `100`, somente as primeiras `100` opções correspondentes são exibidas. Isto pode ser útil se um monte corresponderem e a virtualização não estiver configurada.
-  - `config.matchFrom` (*'any' | 'start'* [opcional]): Padrão `'any'`.
-  - `config.stringify` (*Func* [opcional]): Controla a forma como a opção é convertida em texto, dessa forma pode ser comparada com qualquer fragmento de texto.
-  - `config.trim` (*Boolean* [opcional]): Padrão `false`. Remover espaços ao fim.
+1. `config` (_object_ [opcional]):
+
+- `config.ignoreAccents` (_bool_ [optional]): Padrão como `verdadeiro`. Remover sinais diacríticos.
+- `config.ignoreCase` (*boolean* [optional]): Padrão como `verdadeiro`. Minúsculas em tudo.
+- `config.limit` (*number* [opcional]): Padrão null. Limitar o número de opções sugeridas a serem exibidas. Por exemplo, se `config.limit` é `100`, somente as primeiras `100` opções correspondentes são exibidas. Isto pode ser útil se um monte corresponderem e a virtualização não estiver configurada.
+- `config.matchFrom` (_'any' | 'start'_ [opcional]): Padrão `'any'`.
+- `config.stringify` (*func* [opcional]): Controla a forma como a opção é convertida em texto, dessa forma pode ser comparada com qualquer fragmento de texto.
+- `config.trim` (_bool_ [opcional]): Padrão `false`. Remover espaços ao fim.
 
 #### Retornos
 
-`filterOptions`: o método de filtro retornado pode ser fornecido diretamente para a propriedade `filterOptions` do componente `Autocomplete` ou para o parâmetro de mesmo nome no hook.
-
 Na demonstração a seguir, as opções necessárias para o filtro ser aplicado no inicio das opções:
 
-```js
+Na demonstração a seguir, as opções necessarias para o filtro ser aplicado no inicio das opções:
+
+```jsx
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
-  stringify: option => option.title,
+  stringify: (option) => option.title,
 });
 
-<Autocomplete filterOptions={filterOptions} />
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 {{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
@@ -200,12 +261,11 @@ const filterOptions = createFilterOptions({
 Para mecanismos de filtragem mais ricos, como correspondência difusa, recomenda-se explorar o [match-sorter](https://github.com/kentcdodds/match-sorter). Por exemplo:
 
 ```jsx
-import matchSorter from 'match-sorter';
+import { matchSorter } from 'match-sorter';
 
-const filterOptions = (options, { inputValue }) =>
-  matchSorter(options, inputValue);
+const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 
-<Autocomplete filterOptions={filterOptions} />
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 ## Virtualização
@@ -214,26 +274,46 @@ Pesquise dentro de 10.000 opções geradas aleatoriamente. A lista é virtualiza
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
+## Eventos
+
+Se você deseja evitar o comportamento padrão do teclado, você pode definir a propriedade do evento `defaultMuiPrevented` para `true`:
+
+```jsx
+<Autocomplete
+  onKeyDown={(event) => {
+    if (event.key === 'Enter') {
+      // Previne o comportamento padrão do 'Enter'.
+      event.defaultMuiPrevented = true;
+      // your handler code
+    }
+  }}
+/>
+```
+
 ## Limitações
 
 ### autocomplete/autofill
 
 Os navegadores têm heurística para ajudar os usuários a preencherem os campos do formulário. No entanto, isso pode prejudicar a experiência do usuário com o componente.
 
-Por padrão, o componente desabilita o recurso de **autocomplete** (recurso que memoriza informações que o usuário forneceu em sessões anteriores) com o atributo `autoComplete="off"`.
+Por padrão, o componente desabilita a entrada**autocomplete**(lembra o que o usuário digitou para um determinado campo em uma sessão anterior) com o atributo `autoComplete="off"` Atualmente, o Google Chrome não suporta essa configuração de atributo ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). Uma solução alternativa possível é remover o `id` para que o componente gere um aleatório.
 
 No entanto, além de relembrar valores fornecidos anteriormente, o navegador também pode propor sugestões de **autofill** (preenchimento automático para informações de login, endereço ou detalhes de pagamento). No caso de você querer evitar o recurso de preenchimento automático, tente o seguinte:
 
 - Nomeie o campo sem fornecer informações para o navegador do que ele representa. `id="field1"` ao invés de `id="country"`. Se você deixar o id do vazio, o componente utiliza um id aleatório.
-- Defina `autoComplete="new-password"`: 
-        jsx
-        <TextField
-        {...params}
-        inputProps={{
-          ...params.inputProps,
-          autoComplete: 'new-password',
-        }}
-        />
+- Defina `autoComplete="new-password"` (alguns navegadores irão sugerir uma senha forte para entradas com esta configuração de atributo):
+
+  ```jsx
+  <TextField
+    {...params}
+    inputProps={{
+      ...params.inputProps,
+      autoComplete: 'new-password',
+    }}
+  />
+  ```
+
+Leia [este guia na MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) para mais detalhes.
 
 ### iOS VoiceOver
 
