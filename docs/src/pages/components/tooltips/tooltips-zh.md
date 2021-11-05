@@ -14,7 +14,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 简单的工具提示
+## Basic tooltip
 
 {{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
@@ -24,7 +24,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## 自定义文字提示
+## Customization 个性化
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
@@ -38,7 +38,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 ## 自定义子元素
 
-文字提示组件需要将 DOM 事件监听器应用到其子元素当中。 如果子元素是自定义的 React 组件，你需要确保它能够将其属性传播到底部的 DOM 元素。
+文字提示组件需要将 DOM 事件监听器应用到其子元素当中。 If the child is a custom React element, you need to make sure that it spreads its props to the underlying DOM element.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -61,9 +61,9 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## 可控的工具提示
+## 受控的文字提示
 
-使用 `open`， `onOpen` 和 `onClose` 这些属性，您可以控制工具提示的行为。
+You can use the `open`, `onOpen` and `onClose` props to control the behavior of the tooltip.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
@@ -87,7 +87,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-> 如果你没有包装从 `ButtonBase` 继承的 Material-UI 组件，譬如一个原生的 `<button>` 元素，当禁用元素的时候，你应该将 _pointer-events: none;_ 这个CSS 属性添加到您的元素中：
+> If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
 
 ```jsx
 <Tooltip title="您没有足够的操作权限">
