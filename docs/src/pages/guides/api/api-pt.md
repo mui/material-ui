@@ -22,7 +22,7 @@ Além do trade-off da composição acima, aplicamos as seguintes regras:
 
 ### Propagação
 
-Propriedades fornecidas para um componente que não estão explicitamente documentadas, são propagadas para o elemento raiz; por exemplo, a propriedade `className` é aplicada no elemento raiz.
+Propriedades fornecidas para um componente que não estão explicitamente documentadas são propagadas para o elemento raiz; por exemplo, a propriedade `className` é aplicada no elemento raiz.
 
 Agora, digamos que você queira desabilitar o efeito cascata do `MenuItem`. Você pode aproveitar o comportamento da propagação:
 
@@ -38,7 +38,7 @@ Evitamos documentar propriedades nativas suportadas pelo DOM como [`className`](
 
 ### Classes CSS
 
-Todos os componentes aceitam uma propriedade [`classes`](/customization/components/#overriding-styles-with-classes) para customizar os estilos. O design de classes responde a duas restrições: para tornar a estrutura das classes o mais simples possível, enquanto que faz a implementação da especificação do Material Design.
+Todos os componentes aceitam uma propriedade [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) para customizar os estilos. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
 
 - A classe aplicada ao elemento raiz é sempre chamada de `root`.
 - Todos os estilos padrão são agrupados em uma única classe.
@@ -71,48 +71,53 @@ Os componentes aninhados dentro de um componente possuem:
 
 ### Nomeando propriedades
 
-O nome de uma propriedade booleana deve ser escolhido com base no **valor padrão**. Por exemplo, o atributo `disabled` em um elemento de entrada, se fornecido, é padronizado para `true`. Essa escolha permite a notação abreviada:
+O nome de uma propriedade booleana deve ser escolhido com base no **valor padrão**. Essa escolha permite a notação abreviada:
 
-```diff
--<Input enabled={false} />
-+<Input disabled />
-```
+- the shorthand notation. Por exemplo, o atributo `disabled` em um elemento de entrada, se fornecido, é padronizado para `true`.
 
-### Componentes controlados
-
-A maior parte de componentes controlados, é controlado pelas propriedades `value` e `onChange`, no entanto, o `open` / `onClose` / `onOpen` é uma combinação usada para o estado relacionado à exibição.
-
-### booleano vs enumerador
-
-Existem duas opções para projetar a API para as variações de um componente: com um *booleano*; ou com um *enumerador*. Por exemplo, vamos pegar um botão que tenha tipos diferentes. Cada opção tem seus prós e contras:
-
-- Opção 1 *booleano*:
-    
-    ```tsx
-    type Props = {
+  ```jsx
+  type Props = {
     contained: boolean;
     fab: boolean;
     };
-    ```
-    
-    Esta API ativou a notação abreviada: `<Button>`, `<Button contained />`, `<Button fab />`.
+  ```
 
-- Opção 2 *enumerador*:
-    
-    ```tsx
-    type Props = {
+- developers to know what the default value is from the name of the boolean prop. It's always the opposite.
+
+### Componentes controlados
+
+A maior parte de componentes controlados, é controlado pelas propriedades `value` e `onChange`, no entanto, o `open` / `onClose` / `onOpen` é uma combinação usada para o estado relacionado à exibição. Nos casos em que há mais eventos, colocamos o substantivo em primeiro lugar e depois o verbo, por exemplo: `onPageChange`, `onRowsChange`.
+
+### boolean vs. enum
+
+Existem duas opções para projetar a API para as variações de um componente: com um *booleano*; ou com um *enumerador*. Por exemplo, vamos pegar um botão que tenha tipos diferentes. Cada opção tem seus prós e contras:
+
+- Opção 1 *boleano*:
+
+  ```tsx
+  type Props = {
       variant: 'text' | 'contained' | 'fab';
     }
-    ```
-    
-    Esta API é mais verbosa: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
-    
-    No entanto, isso impede que uma combinação inválida seja usada, limita o número de propriedades expostas, e pode facilmente suportar novos valores no futuro.
+  ```
+
+  Esta API ativou a notação abreviada: `<Button>`, `<Button contained />`, `<Button fab />`.
+
+- Opção 2 *enumerador*:
+
+  ```tsx
+  type Props = {
+      variant: 'text' | 'contained' | 'fab';
+    }
+  ```
+
+  Esta API é mais verbosa: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
+
+  However, it prevents an invalid combination from being used, bounds the number of props exposed, and can easily support new values in the future.
 
 Os componentes do Material-UI usam uma combinação das duas abordagens de acordo com as seguintes regras:
 
 - Um *booleano* é usado quando **2** valores possíveis são necessários.
-- Um *enumerador* é usado quando **>2** valores possíveis são necessários, ou se houver a possibilidade de que valores adicionais possam ser necessários no futuro.
+- **elemento hospedeiro**: um nó DOM no contexto de `react-dom`, por exemplo, uma instância de `window.HTMLDivElement`.
 
 Voltando ao exemplo do botão anterior; ele requer 3 valores possíveis, usamos um *enumerador*.
 
@@ -123,7 +128,7 @@ O `ref` é encaminhado para o elemento raiz. Isso significa que, sem alterar o e
 ## Glossário
 
 - **componente hospedeiro**: um tipo de nó DOM no contexto de `react-dom`, por exemplo, um `'div'`. Veja também as [notas de implementação do React](https://pt-br.reactjs.org/docs/implementation-notes.html#mounting-host-elements).
-- **elemento hospedeiro**: um nó DOM no contexto de `react-dom`, por exemplo, uma instância de `window.HTMLDivElement`.
+- **elemento raiz**: o elemento mais externo que renderiza um componente hospedeiro.
 - **mais externo**: O primeiro componente ao ler a árvore de componentes de cima para baixo, ou seja, busca em largura (breadth-first search).
 - **componente raiz**: o componente mais externo que renderiza um componente do hospedeiro.
 - **elemento raiz**: o elemento mais externo que renderiza um componente hospedeiro.
