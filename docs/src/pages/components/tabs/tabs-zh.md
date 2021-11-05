@@ -22,7 +22,7 @@ A basic example with tab panels.
 
 ## 实验性的 API
 
-遵循 [WAI-ARIA 项目实践](https://www.w3.org/TR/wai-aria-practices/#tabpanel)，`@material-ui/lab` 提供了工具集组件，该组件通过注入属性的方式来实现无障碍设计的选项卡。
+`@mui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
 
 {{"demo": "pages/components/tabs/LabTabs.js"}}
 
@@ -54,7 +54,7 @@ Fixed tabs should be used with a limited number of tabs, and when a consistent p
 
 ### 居中对齐
 
-而对于较大的视图，则应使用 `centered` 属性。
+而对于较大的视图，则应使用 `centered` 此属性。
 
 {{"demo": "pages/components/tabs/CenteredTabs.js", "bg": true}}
 
@@ -88,7 +88,7 @@ Fixed tabs should be used with a limited number of tabs, and when a consistent p
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
-## 自定义的选项卡
+## Customization 个性化
 
 以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
@@ -118,6 +118,12 @@ By default, tabs use a `button` element, but you can provide your custom tag or 
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js"}}
 
+## Icon position
+
+By default, the icon is positioned at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`.
+
+{{"demo": "pages/components/tabs/IconPositionTabs.js"}}
+
 ## Third-party routing library（第三方路由库）
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
@@ -126,23 +132,23 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
 
-您需要采取以下步骤，来为无障碍技术提供一些必要的信息：
+The following steps are needed in order to provide necessary information for assistive technologies:
 
 1. 在 `Tabs` 上应用 `aria-label` 或 `aria-labelledby` 标签。
 2. 通过设置 `id`、`aria-controls` 和 `aria-labelledby` ，`Tab` 需要连接到其对应的 `[role="tabpanel"]`。
 
-实现这样的设计例子可以在本页面的演示中找到。 我们还在 `@material-ui/lab` 中发布了不需要额外工作就能使用的 [一个实验性的 API](#experimental-api)。
+An example for the current implementation can be found in the demos on this page. We've also published [an experimental API](#experimental-api) in `@mui/lab` that does not require extra work.
 
 ### 键盘导航
 
-该组件使用“手动激活”的行为来实现键盘导航。 如果你想切换到“选择自动跟随焦点”（selection automatically follows focus）的行为，你必须将 `selectionFollowsFocus` 传递给 `Tabs` 组件。 WAI-ARIA 项目实践中有一个详细的指南关于  [how to decide when to make selection automatically follow focus](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus)。
+The components implement keyboard navigation using the "manual activation" behavior. If you want to switch to the "selection automatically follows focus" behavior you have pass `selectionFollowsFocus` to the `Tabs` component. The WAI-ARIA authoring practices have a detailed guide on [how to decide when to make selection automatically follow focus](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus).
 
 #### 演示
 
-下面的两个演示只是在键盘导航行为上有所区别。 Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
+The following two demos only differ in their keyboard navigation behavior. Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
 
 ```jsx
-/* 那个跟随焦点的选项卡 */
+/* Tabs where selection follows focus */
 <Tabs selectionFollowsFocus />
 ```
 
