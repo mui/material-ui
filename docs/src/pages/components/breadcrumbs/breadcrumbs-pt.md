@@ -35,7 +35,7 @@ In the following examples, we are using two string separators and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Navegação estrutural customizada
+## Customização
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
