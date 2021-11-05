@@ -5,10 +5,11 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
-    "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>focusVisibleClassName</code>.",
-    "icon": "The icon element.",
+    "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>.Mui-focusVisible</code> class.",
+    "icon": "The icon to display.",
+    "iconPosition": "The position of the icon relative to the label.",
     "label": "The label element.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "You can provide your own value. Otherwise, we fallback to the child position index.",
     "wrapped": "Tab labels appear in a single row. They can use a second line if needed."
   },
@@ -37,12 +38,12 @@
       "conditions": "the parent [<code>Tabs</code>](/api/tabs/) has <code>textColor=\"secondary\"</code>"
     },
     "selected": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>selected={true}</code> (controlled by the Tabs component)"
     },
     "disabled": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code> (controlled by the Tabs component)"
     },
@@ -56,9 +57,10 @@
       "nodeName": "the root element",
       "conditions": "<code>wrapped={true}</code>"
     },
-    "wrapper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the `icon` and `label`'s wrapper element"
+    "iconWrapper": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the wrapper element of `icon`",
+      "conditions": "<code>icon</code> is provided"
     }
   }
 }
