@@ -135,6 +135,9 @@ describe('[Joy] CssVarsProvider', () => {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
+      const fontFamiliesAreNotQuoted = /Firefox/.test(window.navigator.userAgent);
+      const fontWeight400IsNormal = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
       const Text = styled('p')(({ theme }) => ({
         ...theme.typography.body(theme),
       }));
@@ -147,8 +150,10 @@ describe('[Joy] CssVarsProvider', () => {
 
       expect(container.firstChild).toHaveComputedStyle({
         fontSize: '16px',
-        fontFamily: `"${defaultTheme.fontFamily.sans}"`,
-        fontWeight: '400',
+        fontFamily: fontFamiliesAreNotQuoted
+          ? defaultTheme.fontFamily.sans
+          : `"${defaultTheme.fontFamily.sans}"`,
+        fontWeight: fontWeight400IsNormal ? 'normal' : '400',
         lineHeight: '24px',
       });
     });
