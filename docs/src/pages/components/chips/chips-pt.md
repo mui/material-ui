@@ -15,36 +15,36 @@ Embora incluído aqui como um componente independente, o uso mais comum será em
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic chip
+## Chip básico
 
-The `Chip` component supports outlined and filled styling.
+O componente `Chip` oferece suporte a estilos contornados e preenchidos.
 
 {{"demo": "pages/components/chips/BasicChips.js"}}
 
-## Chip actions
+## Ações do Chip
 
-You can use the following actions.
+Você pode usar as seguintes ações.
 
-- Chips with the `onClick` prop defined change appearance on focus, hover, and click.
-- Chips with the `onDelete` prop defined will display a delete icon which changes appearance on hover.
+- Chips com a propriedade `onClick` definida, mudará a aparência com foco, ao passar por cima e com clique.
+- Chips com a propriedade `onDelete` definida irá exibir um ícone de remoção, no qual modificará a aparência ao passar por cima.
 
-### Clickeable
+### Clickable
 
-{{"demo": "pages/components/chips/ClickeableChips.js"}}
+{{"demo": "pages/components/chips/ClickableChips.js"}}
 
-### Deleteable
+### Deletable
 
-{{"demo": "pages/components/chips/DeleteableChips.js"}}
+{{"demo": "pages/components/chips/DeletableChips.js"}}
 
-### Clickeable and deleteable
+### Clickable and deletable
 
-{{"demo": "pages/components/chips/ClickeableAndDeleteableChips.js"}}
+{{"demo": "pages/components/chips/ClickableAndDeletableChips.js"}}
 
-### Clickeable link
+### Clickable link
 
-{{"demo": "pages/components/chips/ClickeableLinkChips.js"}}
+{{"demo": "pages/components/chips/ClickableLinkChips.js"}}
 
-### Custom delete icon
+### Ícone de exclusão personalizado
 
 {{"demo": "pages/components/chips/CustomDeleteIconChips.js"}}
 
@@ -64,7 +64,7 @@ Use the `avatar` prop to added a avatar or use the `icon` prop to added a icon.
 
 ## Color chip
 
-You can use the `color` prop to define a primary or secondary color.
+You can use the `color` prop to define a color from theme palette.
 
 {{"demo": "pages/components/chips/ColorChips.js"}}
 
