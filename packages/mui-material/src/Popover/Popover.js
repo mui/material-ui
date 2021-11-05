@@ -243,7 +243,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         containerWindow.innerWidth - elemTransformOrigin.horizontal - (left + anchorOffset.width);
 
       if (anchorOrigin.horizontal === 'right') {
-        rightInRtlDirection += anchorOffset.width * 2;
+        rightInRtlDirection += anchorOffset.width;
       } else if (anchorOrigin.horizontal === 'center') {
         rightInRtlDirection += anchorOffset.width;
       } else {
