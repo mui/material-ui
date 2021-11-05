@@ -1,6 +1,6 @@
 ---
 title: Componente React para Campo de Texto
-components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
+components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
 githubLabel: 'component: TextField'
 materialDesign: https://material.io/components/text-fields
 ---
@@ -19,7 +19,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
-Os atributos são suportados pelo `TextField`, como por exemplo `required`, `disabled`, `type`, etc. assim como o `helperText` que é utilizada para dar contexto sobre um campo de entrada, tais como, a entrada que será usada.
+**Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/) ([here's why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)), but MUI will continue to support it.
 
 ## Propriedades de formulário
 
@@ -105,7 +105,7 @@ A propriedade `color` altera a cor do destaque do campo de texto quando focado.
 
 {{"demo": "pages/components/text-fields/ColorTextFields.js"}}
 
-## Campos customizados
+## Customização
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -124,7 +124,7 @@ For advanced customization use cases, a `useFormControl()` hook is exposed. This
 **API**
 
 ```jsx
-import { useFormControl } from '@material-ui/core/FormControl';
+import { useFormControl } from '@mui/material/FormControl';
 ```
 
 **Retornos**
@@ -207,7 +207,7 @@ Isso pode ser corrigido passando um caractere de espaço para a propriedade `hel
 
 Você pode usar bibliotecas de terceiros para formatar um campo. Você precisa fornecer uma implementação personalizada do elemento `<input>` com a propriedade `inputComponent`.
 
-A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.com/text-mask/text-mask) e [react-number-format](https://github.com/s-yadav/react-number-format). O mesmo conceito pode ser aplicado para, [p. ex. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
+The following demo uses the [react-imask](https://github.com/uNmAnNeR/imaskjs) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. O mesmo conceito pode ser aplicado para, [p. ex. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
@@ -249,7 +249,7 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 
 ## Acessibilidade
 
-Para que o campo de texto seja acessível, **o campo deve estar vinculado ao rótulo e ao texto auxiliar**. Os nós DOM subjacentes devem ter essa estrutura:
+Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao rótulo e ao texto auxiliar**. Os nós DOM subjacentes devem ter essa estrutura:
 
 ```jsx
 <div class="form-control">
@@ -275,6 +275,24 @@ Para que o campo de texto seja acessível, **o campo deve estar vinculado ao ró
 For more advanced use cases, you might be able to take advantage of:
 
 - [react-hook-form](https://react-hook-form.com/): React hook para validação de formulários.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings para usar Material-UI com [formik](https://jaredpalmer.com/formik).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using MUI with [formik](https://jaredpalmer.com/formik).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
+
+## Unstyled
+
+For advanced customization scenarios, you can use the unstyled primitives.
+
+The basic building blocks are the `InputUnstyled` component and the `useInput` hook.
+
+### Unstyled component
+
+The `InputUnstyled` component wraps the native `input` or `textarea` element. You can, optionally, provide a custom component to be rendered instead.
+
+{{"demo": "pages/components/text-fields/UnstyledInput.js"}}
+
+### Hook
+
+The `useInput` hook is the headless version of the `InputUnstyled` component. Use it for even greater control over the rendered output.
+
+{{"demo": "pages/components/text-fields/UseInput.js"}}
