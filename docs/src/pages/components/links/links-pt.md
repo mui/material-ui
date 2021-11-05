@@ -23,7 +23,7 @@ Quando você usa `target="_blank"` com Links, é [recomendado](https://developer
 
 ## Sublinhado
 
-A propriedade `underline` pode ser usada para definir o comportamento sublinhado. O padrão é `hover`.
+A propriedade `underline` pode ser usada para definir o comportamento sublinhado. The default is `always`.
 
 {{"demo": "pages/components/links/UnderlineLink.js"}}
 
