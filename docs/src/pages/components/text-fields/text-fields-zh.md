@@ -1,6 +1,6 @@
 ---
 title: React Text Field（文本框）组件
-components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
+components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
 githubLabel: 'component: TextField'
 materialDesign: https://material.io/components/text-fields
 ---
@@ -19,7 +19,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
-**友情提示：** [Material 设计指南](https://material.io/)不再记录 `TextField` 的 standard 布局，（[原因见此](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)），但是 Material-UI 会继续支持此布局。
+**Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/) ([here's why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)), but MUI will continue to support it.
 
 ## Form props 表单的属性
 
@@ -103,7 +103,7 @@ The `margin` prop can be used to alter the vertical spacing of the text field. U
 
 {{"demo": "pages/components/text-fields/ColorTextFields.js"}}
 
-## 自定义输入
+## Customization 个性化
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
@@ -122,7 +122,7 @@ For advanced customization use cases, a `useFormControl()` hook is exposed. This
 **API**
 
 ```jsx
-import { useFormControl } from '@material-ui/core/FormControl';
+import { useFormControl } from '@mui/material/FormControl';
 ```
 
 **返回结果**
@@ -205,7 +205,7 @@ type="number" 的输入存在潜在的可用性问题。
 
 您可以使用第三方库来格式化您的输入框。 只要确保在整合的时候，您提供了一个带有 `inputComponent` 属性的自定义 `<input>` 元素。
 
-下面的演示使用 [react-text-mask](https://github.com/text-mask/text-mask) 和 [react-number-format](https://github.com/s-yadav/react-number-format) 这两个基本库。 同样的概念可以适用于 [这个例子：react-stripe-element](https://github.com/mui-org/material-ui/issues/16037)。
+The following demo uses the [react-imask](https://github.com/uNmAnNeR/imaskjs) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. 同样的概念可以适用于 [这个例子：react-stripe-element](https://github.com/mui-org/material-ui/issues/16037)。
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
@@ -272,7 +272,25 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 
 For more advanced use cases, you might be able to take advantage of:
 
-- [react-hook-form](https://react-hook-form.com/)：用于表单验证的 React 钩子。
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui)：用于 [formik](https://jaredpalmer.com/formik) 和 Material-UI 捆绑使用。
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui)：用于 [Redux Form](https://redux-form.com/) 和 Material-UI 捆绑使用。
-- [mui-rff](https://github.com/lookfirst/mui-rff)：用于 [React Final Form](https://final-form.org/react) 和 Material-UI 捆绑使用。
+- [react-hook-form](https://react-hook-form.com/): React hook for form validation.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using MUI with [formik](https://jaredpalmer.com/formik).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
+
+## Unstyled
+
+For advanced customization scenarios, you can use the unstyled primitives.
+
+The basic building blocks are the `InputUnstyled` component and the `useInput` hook.
+
+### Unstyled component
+
+The `InputUnstyled` component wraps the native `input` or `textarea` element. You can, optionally, provide a custom component to be rendered instead.
+
+{{"demo": "pages/components/text-fields/UnstyledInput.js"}}
+
+### Hook
+
+The `useInput` hook is the headless version of the `InputUnstyled` component. Use it for even greater control over the rendered output.
+
+{{"demo": "pages/components/text-fields/UseInput.js"}}
