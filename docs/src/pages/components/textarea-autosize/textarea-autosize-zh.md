@@ -1,15 +1,18 @@
 ---
 title: React Textarea Autosize（自适应文本框）组件
 components: TextareaAutosize
+githubLabel: 'component: TextareaAutosize'
 ---
 
 # Textarea Autosize 自适应文本框
 
 <p class="description">一个自适应内容大小的 React 文本框组件。</p>
 
-- 📦 [2.1kB 的压缩包](/size-snapshot)
+- 📦  [2.1kB 的压缩包](/size-snapshot)
 
 当触发键盘和窗口大小事件的时候，`TextareaAutosize` 组件将自动调整的文本框的高度。
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 空白的文本框
 
@@ -22,3 +25,13 @@ components: TextareaAutosize
 ## 最大高度
 
 {{"demo": "pages/components/textarea-autosize/MaxHeightTextarea.js"}}
+
+## Unstyled
+
+- 📦 [784 B gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
+
+As the component does not have any styles, it also comes with the unstyled package.
+
+```js
+import TextareaAutosize from '@mui/core/TextareaAutosize';
+```
