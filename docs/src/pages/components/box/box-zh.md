@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">对于大多数 CSS 实用程序来说，Box 组件能够作为一个包装组件来使用。</p>
 
-在`@material-ui/system`中，您可以找到所述 Box 组件包的 [所有的样式功能](/system/basics/#all-inclusive)。
+The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -17,28 +17,28 @@ githubLabel: 'component: Box'
 
 ## `sx` 属性
 
-All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop). In addition, the `sx` prop allows you to specify any other CSS rules you may need. 下面是一个如何使用的示例：
+所有系统属性都可以通过 [`sx` 属性获得](/system/basics/#the-sx-prop)。 此外，`sx` 属性允许您指定您可能需要的任何其他 CSS 样式。 下面是一个如何使用的示例：
 
 {{"demo": "pages/components/box/BoxSx.js", "defaultCodeOpen": true }}
 
-## 覆盖 Material-UI 组件
+## Overriding MUI components
 
-Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默认情况下为 `<div>`，并可以通过 `组件` 的属性进行更改。 假设反之你想使用一个 `<span>`：
+Box 组件能够封装您的组件。 It creates a new DOM element, a `<div>` that by default can be changed with the `component` prop. 假设反之你想使用一个 `<span>`：
 
 {{"demo": "pages/components/box/BoxComponent.js", "defaultCodeOpen": true }}
 
 当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
 
-但是，有时您必须针对到底层的 DOM 元素。 As an example, you may want to change the border of the Button. 但是按钮组件已经定义自己的样式。 所以使用 CSS 继承是于事无补的。 To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a Material-UI component.
+但是，有时您必须针对到底层的 DOM 元素。 As an example, you may want to change the border of the Button. 但是按钮组件已经定义自己的样式。 所以使用 CSS 继承是于事无补的。 To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a MUI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
--  <Button>Save</Button>
+-  <Button>保存</Button>
 -</Box>
-+<Button sx={{ border: '1px dashed grey' }}>Save</Button>
++<Button sx={{ border: '1px dashed grey' }}>保存</Button>
 ```
 
-For non-Material-UI components, use the `component` prop.
+For non-MUI components, use the `component` prop.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -50,7 +50,7 @@ For non-Material-UI components, use the `component` prop.
 ## API
 
 ```jsx
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 ```
 
 | 名称                                       | 类型                                                                                                                            | 默认值                                     | 描述                                         |
