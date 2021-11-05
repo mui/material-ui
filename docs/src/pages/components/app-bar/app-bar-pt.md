@@ -112,9 +112,9 @@ Um botão de ação flutuante aparece na rolagem para facilitar o retorno ao top
 
 #### Argumentos
 
-1. `options` (_object_ [optional]):
+1. `options` (_object_ [opcional]):
 
-   - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. Desabilita a histerese. Ignora a direção de rolagem ao determinar o valor de `trigger`.
+   - `options.disableHysteresis` (_bool_ [opcional]): Padrão `false`. Desabilita a histerese. Ignora a direção de rolagem ao determinar o valor de `trigger`.
    - `options.target` (_Node_ [opcional]): Padrão `window`.
    - `options.threshold` (_number_ [opcional]): Padrão `100`. Modifica o valor limite que aciona a `trigger` quando a barra de rolagem vertical cruzar ou chegar a este limite.
 
@@ -125,7 +125,7 @@ Um botão de ação flutuante aparece na rolagem para facilitar o retorno ao top
 #### Exemplos
 
 ```jsx
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 function HideOnScroll(props) {
   const trigger = useScrollTrigger();
@@ -137,26 +137,8 @@ function HideOnScroll(props) {
 }
 ```
 
-## Enable Color on Dark
+## Enable color on dark
 
-Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the AppBar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
+Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode. Você pode sobrescrever esse comportamento definindo a propriedade ` enableColorOnDark` para `true`.
 
-```jsx
-// Specific element via prop
-<AppBar enableColorOnDark />
-
-// Affect all AppBars via theme
-<ThemeProvider
-  theme={createTheme({
-    components: {
-      MuiAppBar: {
-        defaultProps: {
-          enableColorOnDark: true,
-        },
-      },
-    },
-  })}
->
-  <AppBar />
-</ThemeProvider>
-```
+{{"demo": "pages/components/app-bar/EnableColorOnDarkAppBar.js", "bg": true}}
