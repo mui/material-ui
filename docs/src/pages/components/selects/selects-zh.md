@@ -12,7 +12,7 @@ githubLabel: 'component: Select'
 
 ## 基础的选择器
 
-我们通常将菜单（Menus）放置在其所点击的元素上，这样的话能够确保当前选定的菜单项显示在点击的元素之上。
+Menus are positioned under their emitting elements, unless they are close to the bottom of the viewport.
 
 {{"demo": "pages/components/selects/BasicSelect.js"}}
 
@@ -52,7 +52,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 `TextField` wrapper 组件是一个完整的表单控件，它包括了标签，输入和帮助文本。 您可以在 [在此章节中](/components/text-fields/#select) 查看使用 select 模式的示例。
 
-## 自定义选择器
+## Customization 个性化
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
@@ -64,7 +64,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 ## 多重选择
 
-`Select` 组件也支持多项选择。 `Select` 组件也支持多项选择。
+`Select` 组件也支持多项选择。 你可以通过使用 `multiple` 属性来启用它。
 
 与单项选择一样，您可以通过访问 `onChange` 的回调函数中的 `event.target.value ` 来提取新的值。 它总是以一个数组的形式出现。
 
