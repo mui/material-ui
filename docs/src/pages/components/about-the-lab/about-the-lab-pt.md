@@ -2,14 +2,14 @@
 
 <p class="description">Este pacote hospeda os componentes da incubadora que ainda não estão prontos para mover para o core.</p>
 
-A principal diferença entre o lab e o core (núcleo) é como os componentes são versionados. Tendo um pacote separado para o lab, podemos liberar alterações críticas quando necessário, enquanto o pacote do core segue uma [política de liberação mais lenta](https://material-ui.com/versions/#release-frequency).
+A principal diferença entre o lab e o core (núcleo) é como os componentes são versionados. Having a separate lab package allows us to release breaking changes when necessary while the core package follows a [slower-moving policy](https://mui.com/versions/#release-frequency).
 
 À medida que os desenvolvedores usam, testam os componentes e relatam problemas, os mantenedores aprendem mais sobre as deficiências dos componentes: recursos ausentes, problemas de acessibilidade, bugs, design de API, etc. Quanto mais antigo e mais usado for um componente, menor é a probabilidade de novos problemas serem encontrados e, consequentemente, necessidades de alterações críticas serem feitas.
 
 Para que um componente esteja pronto para ir para o core, são considerados os seguintes critérios:
 
-- Ele precisa ser **utilizado**. The Material-UI team uses Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it.
-- Ele precisa atender critérios de **qualidade de código**, semelhante aos componentes do core. It doesn't have to be perfect to be part of the core, but the component should be reliable enough that developers can depend on it.
+- Ele precisa ser **utilizado**. A equipe do MUI utiliza o Google Analytics na documentação (dentre outras métricas) para avaliar o uso de cada componente. Um componente do lab com baixo uso significa que ainda não está totalmente funcional, ou que há uma baixa demanda por ele.
+- Ele precisa atender critérios de **qualidade de código**, semelhante aos componentes do core. O componente não precisa ser perfeito para fazer parte do core, mas ele deve ser confiável o suficiente para que os desenvolvedores possam depender dele.
   - Cada componente precisa de **definições de tipo**. Atualmente, não é necessário que um componente do lab seja tipado, mas ele precisará ser tipado para passar para o core.
   - Requer boa **cobertura de teste**. Atualmente, alguns dos componentes do lab não têm testes abrangentes.
 - O componente pode ser usado como **alavancagem** para incentivar os usuários a atualizar para a versão mais recente? Quanto menos fragmentada a comunidade, melhor.
@@ -27,14 +27,14 @@ npm install @material-ui/lab
 yarn add @material-ui/lab
 ```
 
-O lab tem dependências com os componentes do core. Se você ainda não está utilizando o Material-UI em seu projeto, poderá instalá-lo com:
+O lab tem dependências com os componentes do core. If you are not already using MUI in your project, you can install it with:
 
 ```sh
-// utilizando o npm
-npm install @material-ui/core
+// with npm
+npm install @mui/material
 
-// utilizando o yarn
-yarn add @material-ui/core
+// with yarn
+yarn add @mui/material
 ```
 
 ## TypeScript
@@ -42,7 +42,10 @@ yarn add @material-ui/core
 Para se beneficiar de [CSS overrides](/customization/theme-components/#global-style-overrides) e [customização de propriedades padrão](/customization/theme-components/#default-props) com o tema, usuários de TypeScript precisam importar os seguintes tipos. Internamente, ele usa [ampliação de módulos](/guides/typescript/#customization-of-theme) para estender a estrutura padrão do tema com os componentes de extensão disponíveis no lab.
 
 ```tsx
-import '@material-ui/lab/themeAugmentation';
+// When using TypeScript 4.x and above
+import type {} from '@mui/lab/themeAugmentation';
+// When using TypeScript 3.x and below
+import '@mui/lab/themeAugmentation';
 
 const theme = createTheme({
   components: {
