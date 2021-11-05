@@ -23,7 +23,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 当你创建一个模态对话框时，使用[对话框（Dialog）](/components/dialogs/)组件比直接使用模态框更佳。 以下的组件将将模态框作为一个低级别的组件运用：
 
-- [Dialog](/components/dialogs/)
+- [Dialog 对话框](/components/dialogs/)
 - [Drawer（抽屉）](/components/drawers/)
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
@@ -36,12 +36,12 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## Unstyled
 
-- 📦 [4.7kB 已压缩的包](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
+- 📦 [4.7 kB gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
 
-The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+The modal also comes with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
 
 ```js
-import ModalUnstyled from '@material-ui/unstyled/ModalUnstyled';
+import ModalUnstyled from '@mui/core/ModalUnstyled';
 ```
 
 {{"demo": "pages/components/modal/ModalUnstyled.js"}}
