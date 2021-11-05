@@ -1,6 +1,6 @@
 ---
 title: Componente React de Tipografia
-components: Typography
+components: Tipografia
 githubLabel: 'component: Typography'
 materialDesign: https://material.io/design/typography/the-type-system.html
 ---
@@ -15,7 +15,7 @@ O uso de diferentes tamanhos e estilos de uma só vez pode estragar qualquer lei
 
 ## Geral
 
-A fonte *Roboto* **não** será carregada automaticamente pelo Material-UI. Você é responsável por carregar quaisquer fontes usadas em sua aplicação. A fonte Roboto possui algumas maneiras fáceis de ser carregada. Para uma abordagem mais avançada, dê uma olhada na [seção de customização de temas](/customization/typography/).
+The _Roboto_ font will **not** be automatically loaded by MUI. Você é responsável por carregar quaisquer fontes usadas em sua aplicação. A fonte Roboto possui algumas maneiras fáceis de ser carregada. Para uma abordagem mais avançada, dê uma olhada na [seção de customização de temas](/customization/typography/).
 
 ## Fonte Roboto via CDN
 
@@ -42,7 +42,7 @@ import '@fontsource/roboto/700.css';
 
 Para maiores informações, confira em [Fontsource](https://github.com/fontsource/fontsource).
 
-Fontsource pode ser configurado para carregar subconjuntos, pesos e estilos específicos. A configuração de tipografia padrão do Material-UI depende apenas dos pesos de fonte de 300, 400, 500 e 700.
+Fontsource pode ser configurado para carregar subconjuntos, pesos e estilos específicos. MUI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Componente
 
@@ -60,14 +60,13 @@ Em algumas situações, talvez você não consiga usar o componente `Typography`
 
 O componente de Tipografia (Typography) usa a propriedade `variantMapping` para associar a variação da UI com um elemento semântico. It's important to realize that the style of a typography component is independent from the semantic underlying element.
 
-- Você pode alterar o elemento subjacente para uma ocasião em específico com a propriedade `component`:
+- Você pode alterar o elemento subjacente para uma ocasião única com a propriedade `component`:
 
 ```jsx
 {/ * Já existe um h1 na página, não vamos duplicá-lo. */}
 <Typography variant="h1" component="h2">
-  h1. */}
-<Typography variant="h1" component="h2">
-  h1.
+  h1. Título
+</Typography>
 ```
 
 - Você pode alterar o mapeamento [globalmente usando o tema](/customization/theme-components/#default-props):
@@ -99,9 +98,9 @@ const theme = createTheme({
 
 In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
 
-## System props
+## Propriedades do sistema
 
-As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
+As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. Você pode usá-los como propriedades diretamente no componente. Por exemplo, uma margem do topo:
 
 ```jsx
 <Typography mt={2}>
