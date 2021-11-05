@@ -7,7 +7,7 @@ materialDesign: https://material.io/components/navigation-drawer
 
 # Drawer（抽屉）
 
-<p class="description">导航抽屉提供了一个访问您应用中的目标地址的途径。 侧边栏被固定在屏幕的左侧或右侧，而它包含了一些补充内容。</p>
+<p class="description">Navigation drawers provide access to destinations in your app. Side sheets are surfaces containing supplementary content that are anchored to the left or right edge of the screen.</p>
 
 用户能够通过 Navigation drawers（或者 “sidebars”）来访问目标地址和一些应用功能，例如切换帐户。 它们既可以永久在屏幕上，也可以由一个导航菜单图标控制。
 
@@ -43,15 +43,15 @@ const iOS =
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
 
-### 保持挂载（mounted）
+### Swipeable edge
 
-你可以使用 `ModalProps` 属性来确保临时抽屉不会被卸载，就像这样：
+You can configure the `SwipeableDrawer` to have a visible edge when closed.
 
 如果你使用的是桌面设备，那么可以点击 "OPEN" 按钮来切换抽屉的显示。 如果你使用的设备是手机，那么可以在 CodeSandbox（“编辑”图标）中打开该演示，并尝试滑动抽屉。
 
 {{"demo": "pages/components/drawers/SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
 
-### 全高导航栏
+### 保持挂载（mounted）
 
 你可以使用 `ModalProps` 属性来确保临时抽屉不会被卸载，就像这样：
 
