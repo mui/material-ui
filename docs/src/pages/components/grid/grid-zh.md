@@ -11,7 +11,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 [Grid 栅格组件](https://material.io/design/layout/responsive-layout-grid.html) 能确保不同布局间的视觉层面的舒适感，同时在众多不同设计中保持灵活性。 Material Design 基于 12 列的网格布局来做到 UI 的响应式。
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 > ⚠️ `栅格` 组件不要与承载大量数据的表格（data grid）进行混淆；这个组件更倾向于在布局中使用。 如果需使用承载大量数据的表格，请看这里的 [ `数据表格` 组件](/components/data-grid/)。
 
@@ -30,29 +30,35 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 ## Fluid grids 流式网格
 
-流式网格可以通过列（column）来缩放和调整内容的大小。 A fluid grid's layout can use breakpoints to determine if the layout needs to change dramatically.
+流式网格可以通过列（column）来缩放和调整内容的大小。 在使用流式网格布局时，可以通过断点来决定该布局是否需要大幅改变。
 
 ### 基本栅格
 
-Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
+每一列的宽度是 1 到 12 之间的整数值；这些宽度应用于任何断点，且表明了组件占用多少列。
 
-A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
+你可以给定一个断点值来应用于比它更宽的所有其他断点（除非被覆盖，你可以在本页的后半部分了解被覆盖后的行为）。 例如，无论组件的大小如何，`xs={12}` 都会占据整个视口的宽度。
 
 {{"demo": "pages/components/grid/BasicGrid.js", "bg": true}}
 
-### 有断点的栅格
+### Grid with multiple breakpoints
 
-Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints.
+组件可能会定义多种宽度，用来根据事先定义的断点（breakpoint）来改变其宽度。 你可以给较大的断点指定宽度值。那么它会覆盖给较小断点指定的宽度值。
 
-For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
+例如，`xs={12} sm={6}` 表示当视口宽度为 [600 或更多像素](/customization/breakpoints/#default-breakpoints) 时，将组件的大小调整为占据视口宽度的一半（6列）。 对于较小的视口，该组件将填充所有 12 个可用的列。
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
 ## Spacing 间距
 
-To control space between children, use the `spacing` prop. The spacing value can be any positive number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
+要控制子组件之间的空间，请使用 `spacing` 属性。 间距值可以是任何数字（包括浮点数）和字符串。 该属性借助 [`theme.spaming()`](/customization/spacing/) 被转换为 CSS 属性。
 
 {{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
+
+### 行、列间距
+
+The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently. It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+
+{{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
 
 ## 响应式的值
 
@@ -67,21 +73,15 @@ Responsive values is supported by:
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all the [other props](#system-props) of the system
+- 系统中的所有[其它属性](#system-props)
 
-> ⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint. For instance, this is not working. The grid item misses the value for `md`:
+> ⚠️ 当使用响应 `column` 属性时，每个网格项目需要其对应的断点。 例如，这种做法行不通。 网格项目丢失了 `md` 的值：
 > 
 > ```jsx
 > <Grid container columns={{ xs: 4, md: 12 }}>
 >    <Grid item xs={2} />
 > > </Grid>
 > ```
-
-### Row & column spacing
-
-The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently. It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
-
-{{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
 
 ## 交互式
 
@@ -94,6 +94,12 @@ The `rowSpacing` and `columnSpacing` props allow for specifying the row and colu
 The Auto-layout makes the _items_ equitably share the available space. That also means you can set the width of one _item_ and the others will automatically resize around it.
 
 {{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
+
+### Variable width content
+
+Set one of the size breakpoint props to `"auto"` instead of `true` / a `number` to size a column based on the natural width of its content.
+
+{{"demo": "pages/components/grid/VariableWidthGrid.js", "bg": true}}
 
 ## 复杂的栅格
 
@@ -127,20 +133,20 @@ You can change the default number of columns (12) with the `columns` prop.
 
 ## 设计局限
 
-### 负边距
+### Negative margin
 
 The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
 ### white-space: nowrap;
 
-我们规定了 flex 元素的默认属性值为 `min-width：auto`。 当子元素使用 `white-space: nowrap;`时，则会出现位置的冲突。 以下的案例直观的反应了这个问题：
+The initial setting on flex items is `min-width: auto`. It's causing a positioning conflict when the children is using `white-space: nowrap;`. You can experience the issue with:
 
 ```jsx
 <Grid item xs>
   <Typography noWrap>
 ```
 
-若想让子项继续在容器内展示，您需要设置 `min-width: 0`。 In practice, you can set the `zeroMinWidth` prop:
+In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` prop:
 
 ```jsx
 <Grid item xs zeroMinWidth>
