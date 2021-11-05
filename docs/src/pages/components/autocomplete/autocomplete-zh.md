@@ -1,6 +1,8 @@
 ---
 title: React Autocomplete（自动补全）组件
 components: TextField, Popper, Autocomplete
+githubLabel: 'component: Autocomplete'
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#combobox'
 ---
 
 # Autocomplete 自动补全组件
@@ -14,15 +16,42 @@ components: TextField, Popper, Autocomplete
 
 此组件旨在改进 “react-select” 和 “downshift” 这两个包。
 
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
 ## Combo box 组合框
 
 必须取值于一个预设的可选数据源。
 
 {{"demo": "pages/components/autocomplete/ComboBox.js"}}
 
+### 选项结构
+
+默认情况下，该组件接受和以下结构相同的选项：
+
+```ts
+interface AutocompleteOption {
+  label: string;
+}
+// 或者
+type AutocompleteOption = string;
+```
+
+例如：
+
+```js
+const options = [
+  { label: 'The Godfather', id: 1 },
+  { label: 'Pulp Fiction', id: 2 },
+];
+// or
+const options = ['The Godfather', 'Pulp Fiction'];
+```
+
+然而，你也可以通过提供 `getOptionLabel` 属性来使用不同的结构。
+
 ### 练习
 
-以下每个示例演示了自动补全组件的单项功能。
+下面的每个示例都是自动完成组件的一个功能点的演示。
 
 {{"demo": "pages/components/autocomplete/Playground.js"}}
 
@@ -36,7 +65,7 @@ components: TextField, Popper, Autocomplete
 
 此组件有两种可控的状态：
 
-1. “value” 状态（state）包含了 `value`/`onChange` 两种属性的组合。 这个状态表示用户选择的值，如当按下 <kbd>Enter</kbd> 键时。
+1. “value” 状态（state）包含了 `value`/`onChange` 两种属性的组合。 这个状态表示用户选择的值，如当按下 <kbd class="key">Enter</kbd> 键时。
 2. “input value” 状态（state) 则包含了 `inputValue`/`onInputChange` 两种属性的组合。 这个状态展示了在文本框中显示的值。
 
 > ⚠️ 以上两种状态互不干涉，它们应该被单独控制着。
@@ -59,7 +88,7 @@ components: TextField, Popper, Autocomplete
 
 - `selectOnFocus` 帮助用户清除所选值。
 - `clearOnBlur` 帮助用户输入一个新的值。
-- `handleHomeEndKeys` 使用<kbd>Home</kbd> 和 <kbd>End</kbd> 键在弹出窗口内移动焦点。
+- `handleHomeEndKeys` 使用<kbd class="key">Home</kbd> 和 <kbd class="key">End</kbd> 键在弹出窗口内移动焦点。
 - 最后一个选项，例如 `加上 "你的搜索结果"`。
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
@@ -70,6 +99,8 @@ components: TextField, Popper, Autocomplete
 
 ## 分组
 
+你可以使用 `groupBy` 属性对选项进行分组。 如果你要这样做，请先确保选项也按照它们分组的相同维度进行排序， 否则你将会注意到重复的标题。
+
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
 ## 失效的选项
@@ -78,13 +109,19 @@ components: TextField, Popper, Autocomplete
 
 ## `useAutocomplete`
 
-对于高级定制用例，我们暴露了一个无头（headless）的 `useAutocomplete()` hook。 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 Autocomplete 组件内部也是使用的此 hook。
+For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 自动完成组件是建立在这个钩子上。
 
-```jsx
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
+```tsx
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 
-- 📦 [4.5kB 的压缩包](/size-snapshot)。
+The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
+
+```tsx
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
+```
+
+- 📦  [4.5kB 的压缩包](/size-snapshot)。
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -92,25 +129,44 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-请转到 [自定义自动完成组件](#customized-autocomplete) 的部分，来查看使用 `Autocomplete` 组件（而不是 hook）的例子。
+该组件对异步使用有两种不同的案例：
 
 ## 异步请求
 
+只要网络请求正在等待，它就会显示进度状态。
+
+- [打开时加载](#load-on-open)：它将等待用户与组件进行交互以加载选项。
+- [当你键入内容时进行搜索](#search-as-you-type)：每一次键入都会提交一个新的请求。
+
+### 打开时加载
+
+只要网络请求正在等待，它就会显示进度状态。
+
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
-### Google Maps Places
+### 当你键入内容时进行搜索
+
+此外，你需要通过覆盖 `filterOptions` 属性来禁用 `Autocomplete` 组件的内置过滤功能。
 
 一个为 Google Maps Places 自动补全功能设计的 UI。
 
+```jsx
+<Autocomplete filterOptions={(x) => x} />
+```
+
+### Google Maps Places
+
+一个为谷歌地图位置自动补全功能设计的 UI。
+
 {{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
 
-在这个演示中，我们需要加载 [谷歌地图 JavaScript](https://developers. google. com/maps/documentation/javascript/tutorial) 的 API。
+这也称为标签（tags)，用户可以输入多个的值。
 
 > ⚠️在你开始使用 Google Maps JavaScript API 之前，你必须注册并且创建一个可支付的账户。
 
 ## 多个值
 
-这也称为标签（tags)，用户可以输入多个的值。
+这也称为标签，允许用户输入多个值。
 
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 
@@ -136,7 +192,7 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## 个性化
+## Customization 个性化
 
 ### 自定义输入
 
@@ -150,7 +206,7 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
-你也可以转到[自定义 hook](#customized-hook) 章节，查看一下使用 `useAutocomplete` hook 的自定义例子，而不是使用组件。
+以下的例子通过 [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight) 这个小型（1 kB）的插件来实现自动推荐和自动补全组件中的高亮文字。
 
 ## 高亮显示
 
@@ -163,34 +219,39 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 此组件提供了一个 factory 来构建一个筛选的方法，供给 `filterOptions` 属性使来用。 用此你可以更改默认的筛选行为。
 
 ```js
-import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import matchSorter from 'match-sorter';
+
+const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
+
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 ### `createFilterOptions(config) => filterOptions`
 
 #### 参数
 
-1. `config` (*Object* [optional]): 
-  - `config.ignoreAccents` (*Boolean* [optional])：默认值为 `true`。 移除字母的变音符号。
-  - `config.ignoreCase` (*Boolean* [optional]): 默认值为` true `。 所有字母都小写。
-  - `config.limit` (*Number* [optional])：默认值为 null。 显示限定数量的建议选项。 例如，如果 `config.limit` 是 `100`,，那么只显示前 `100 个` 匹配的选项。 如果存在很多选项匹配，并且虚拟化设置还没建立成时，这样的限制是非常有效的。
-  - `config.matchFrom` (*'any' | 'start'* [optional])：默认值为 `'any'`。
-  - `config.stringify` (*Func* [optional])：控制如何将一个选项转换成一个字符串，这样，选项就能够和输入文本的片段相匹配。
-  - `config.trim` (*Boolean* [optional])：默认值为 `false`。 删除尾随空格。
+1. `config` (_object_ [optional]):
+
+- `config.ignoreAccents` (_bool_ [optional]): Defaults to `true`. 所有字母都小写。 移除字母的变音符号。
+- `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. 所有字母都小写。 所有字母都小写。
+- `config.limit` (*number* [optional]): 默认值为 null。 显示限定数量的建议选项。 例如，如果 `config.limit` 是 `100`,，那么只显示前 `100 个` 匹配的选项。 如果存在很多选项匹配，并且虚拟化设置还没建立成时，这样的限制是非常有效的。
+- `config.matchFrom` (_'any' | 'start'_ [optional]): 默认值为 `'any'`。
+- `config.stringify` (*func* [optional]): 控制如何将一个选项转换成一个字符串，这样，选项就能够和输入文本的片段相匹配。
+- `config.trim` (_bool_ [optional]): Defaults to `false`. 删除尾随空格。 删除尾随空格。
 
 #### 返回结果
 
-`过滤选项`：返回的过滤器方法可以直接提供给 ` Autocomplete` 组件的 `filterOptions` 属性， 或者可以传给 hook 的同名参数。
-
 在以下的例子中，选项必须有一个查询的前缀：
 
-```js
+以下的例子中，选项必须有一个查询的前缀：
+
+```jsx
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
-  stringify: option => option.title,
+  stringify: (option) => option.title,
 });
 
-<Autocomplete filterOptions={filterOptions} />
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 {{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
@@ -200,12 +261,11 @@ const filterOptions = createFilterOptions({
 对于更复杂的过滤机制，譬如模糊匹配（fuzzy matching），我们推荐您看一下 [match-sorter](https://github.com/kentcdodds/match-sorter)。 就像这样：
 
 ```jsx
-import matchSorter from 'match-sorter';
+import { matchSorter } from 'match-sorter';
 
-const filterOptions = (options, { inputValue }) =>
-  matchSorter(options, inputValue);
+const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 
-<Autocomplete filterOptions={filterOptions} />
+<Autocomplete filterOptions={filterOptions} />;
 ```
 
 ## 可视化
@@ -214,26 +274,46 @@ const filterOptions = (options, { inputValue }) =>
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
+## 事件
+
+Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component.
+
+```jsx
+<Autocomplete
+  onKeyDown={(event) => {
+    if (event.key === 'Enter') {
+      // 阻止默认的“Enter”行为。
+      event.defaultMuiPrevented = true;
+      // 你的处理器代码
+    }
+  }}
+/>
+```
+
 ## 设计局限
 
 ### autocomplete/autofill
 
-浏览器会有启发性的帮助用户填写表格。 然而，这样的功能会削弱的组件用户体验。
+Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component. 然而，这样的功能会削弱用户的组件体验。
 
-默认情况下，组件通过 `autoComplete="off"` 这个属性，禁用了 **autocomplete** 功能（请注意用户可能在之前已经在给定域输入内容）。
+By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 要解决这个问题，可以采用的变通方法是删除 `id`，让组件自行随机生成。
 
-然而，除了记住过去已经输入的值，浏览器可能也会给出 **自动填充（autofill）** 的建议（譬如有保存的登录信息，地址，或者支付方式等）。 若您不需要自动填充，您可以尝试以下的方式：
+除了记住过去输入的值，浏览器还可能发出 **自动填写（autofill）**建议（保存的登录名、地址或支付详情）。 若您不需要自动填充，您可以尝试以下的方式：
 
 - 给输入框一个不同的名字，这样不会给浏览器泄露任何可以滥用的信息。 例如：`id="field1"` 而不是 `id="country"`。 若你不填写 id 的话，该组件则会使用一个随机的 id。
-- 设置为 `autoComplete="new-password"`： 
-        jsx
-        <TextField
-        {...params}
-        inputProps={{
-          ...params.inputProps,
-          autoComplete: 'new-password',
-        }}
-        />
+- 设置 `autoComplete="new-password"`（当设置此属性时，有些浏览器会建议输入高复杂度的密码）。
+
+  ```jsx
+  <TextField
+    {...params}
+    inputProps={{
+      ...params.inputProps,
+      autoComplete: 'new-password',
+    }}
+  />
+  ```
+
+请阅读 [这篇 MDN 指南](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) 来寻求更多解决方案。
 
 ### iOS VoiceOver 辅助功能
 
