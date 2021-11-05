@@ -24,7 +24,7 @@ O `Tooltip` tem 12 **posicionamentos** para ser escolhido. They don't have direc
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## Dicas customizadas
+## Customização
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -38,7 +38,7 @@ Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a 
 
 ## Elemento filho customizado
 
-A dica precisa aplicar eventos DOM ao seu elemento filho. A dica precisa aplicar eventos DOM ao seu elemento filho.
+A dica precisa aplicar eventos DOM ao seu elemento filho. Se o filho for um elemento React personalizado, você precisará garantir que ele repasse suas propriedades para o elemento DOM subjacente.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -87,14 +87,16 @@ Por padrão os elementos desabilitados como `<button>` não disparam interaçõe
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS *pointer-events: none;* ao seu elemento quando desabilitado:
+> If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
 
 ```jsx
 <Tooltip title="Você não tem permissão para esta tarefa">
   <span>
-    <button disabled={disabled} style={disabled ? <Tooltip title="Você não tem permissão para esta tarefa">
-  <span>
-    <button disabled={disabled} style={disabled ?
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
+      Um botão desabilitado
+    </button>
+  </span>
+</Tooltip>
 ```
 
 ## Transições
