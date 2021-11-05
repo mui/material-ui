@@ -6,7 +6,6 @@ import { describeConformance, act, createRenderer, fireEvent, screen } from 'tes
 import { ThemeProvider, createTheme } from '@mui/system';
 import Grow from '@mui/material/Grow';
 import Popper from '@mui/material/Popper';
-import { PopperUnstyled } from '..';
 
 describe('<Popper />', () => {
   let rtlTheme;
@@ -25,7 +24,7 @@ describe('<Popper />', () => {
 
   describeConformance(<Popper {...defaultProps} />, () => ({
     classes: {},
-    inheritComponent: PopperUnstyled,
+    inheritComponent: 'div',
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',

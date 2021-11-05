@@ -4,7 +4,7 @@ import PopperUnstyled, { PopperUnstyledProps } from '@mui/core/PopperUnstyled';
 import { chainPropTypes, HTMLElementType, refType } from '@mui/utils';
 import { Direction, useThemeWithoutDefault as useTheme } from '@mui/system';
 
-export type PopperProps = PopperUnstyledProps;
+export type PopperProps = Omit<PopperUnstyledProps, 'direction'>;
 
 /**
  *
@@ -17,7 +17,6 @@ export type PopperProps = PopperUnstyledProps;
  * API:
  *
  * - [Popper API](https://mui.com/api/popper/)
- * - inherits [PopperUnstyled API](https://mui.com/api/popper-unstyled/)
  */
 const Popper = React.forwardRef(function Popper(
   props: PopperProps,
@@ -103,11 +102,6 @@ Popper.propTypes /* remove-proptypes */ = {
     HTMLElementType,
     PropTypes.func,
   ]),
-  /**
-   * Direction of the text.
-   * @default 'ltr'
-   */
-  direction: PropTypes.oneOf(['ltr', 'rtl']),
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
