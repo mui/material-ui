@@ -32,48 +32,54 @@ Você pode habilitar opcionalmente  os botões de primeira página e de última 
 
 {{"demo": "pages/components/pagination/PaginationButtons.js"}}
 
-## Intervalos de paginação
+## Custom icons
 
-Você pode especificar quantos dígitos exibir a qualquer lado da página atual com a propriedade `siblingRange`, e adjacente ao número da página inicial e final com a propriedade `boundaryRange`.
+It's possible to customize the control icons.
+
+{{"demo": "pages/components/pagination/CustomIcons.js"}}
+
+## Pagination ranges
+
+You can specify how many digits to display either side of current page with the `siblingRange` prop, and adjacent to the start and end page number with the `boundaryRange` prop.
 
 {{"demo": "pages/components/pagination/PaginationRanges.js"}}
 
-## Paginação controlada
+## Controlled pagination
 
 {{"demo": "pages/components/pagination/PaginationControlled.js"}}
 
-## Integração com router
+## Router integration
 
 {{"demo": "pages/components/pagination/PaginationLink.js"}}
 
 ## `usePagination`
 
-For advanced customization use cases, a headless `usePagination()` hook is exposed. Ele aceita quase as mesmas opções que o componente de paginação, menos todas as propriedades relacionadas à renderização de JSX. The Pagination component is built on this hook.
+For advanced customization use cases, a headless `usePagination()` hook is exposed. It accepts almost the same options as the Pagination component minus all the props related to the rendering of JSX. The Pagination component is built on this hook.
 
 ```jsx
-import { usePagination } from '@material-ui/core/Pagination';
+import { usePagination } from '@mui/material/Pagination';
 ```
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}
 
-## Paginação em tabelas
+## Table pagination
 
-O componente `Pagination` foi projetado para paginar uma lista de itens arbitrários quando a carga infinita não é usada. É preferível em contextos onde o SEO é importante, por exemplo, um blog.
+The `Pagination` component was designed to paginate a list of arbitrary items when infinite loading isn't used. It's preferred in contexts where SEO is important, for instance, a blog.
 
-Para a paginação de um conjunto grande de dados tabulares, você deve usar o componente `TablePagination`.
+For the pagination of a large set of tabular data, you should use the `TablePagination` component.
 
 {{"demo": "pages/components/pagination/TablePagination.js"}}
 
-> ⚠️ Observe que a propriedade `Pagination` da página começa em 1 para corresponder ao requisito de incluir o valor na URL, enquanto a propriedade `TablePagination` da página começa em 0 para corresponder ao requisito de zero-based array do JavaScript arrays, que tem com renderização muitos dados tabulares.
+> ⚠️ Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data.
 
-Você pode aprender mais sobre este caso de uso na [seção de tabela](/components/tables/#custom-pagination-options) da documentação.
+You can learn more about this use case in the [table section](/components/tables/#custom-pagination-options) of the documentation.
 
 ## Acessibilidade
 
 ### ARIA
 
-O nó raiz tem uma role de "navigation" e o rótulo aria-label "pagination navigation" por padrão. Os itens da página têm um rótulo aria-label que identifica a finalidade do item ("go to first page", "go to previous page", "go to page 1" etc.). Você pode substituir estes padrões usando a propriedade `getItemAriaLabel`.
+The root node has a role of "navigation" and aria-label "pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.). You can override these using the `getItemAriaLabel` prop.
 
 ### Teclado
 
-Os itens de paginação estão em ordem de tabulação, com um índice de tabulação iniciando em "0".
+The pagination items are in tab order, with a tabindex of "0".
