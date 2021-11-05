@@ -72,7 +72,7 @@
 <Box sx={{ letterSpacing: 10 }}>…
 ```
 
-## 行高（Line Height）
+## 行高
 
 {{"demo": "pages/system/typography/LineHeight.js", "defaultCodeOpen": false}}
 
@@ -84,7 +84,7 @@
 ## API
 
 ```js
-import { typography } from '@material-ui/system';
+import { typography } from '@mui/system';
 ```
 
 | 导入名称            | 属性              | CSS 属性                                                                                       | Theme key                                                              |
