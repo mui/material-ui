@@ -54,8 +54,8 @@ const theme = createTheme({
           font-style: normal;
           font-display: swap;
           font-weight: 400;
-          src: "local('Raleway'), local('Raleway-Regular'), url(${RalewayWoff2}) format('woff2')";
-          unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+          src: local('Raleway'), local('Raleway-Regular'), url(${RalewayWoff2}) format('woff2');
+          unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
         }
       `,
     },
@@ -81,15 +81,15 @@ Note that if you want to add additional `@font-face` declarations, you need to u
 
 ## 字体大小（Font size）
 
-Material-UI 使用 `rem` 单元来定义字体的大小。 浏览器 `<html>` 元素的默认字体大小为 `16px`，但是浏览器提供了一个改变这个值的选项，所以 `rem` 单元能够让我们适应用户的设置，从而提供更好的无障碍设计的支持。 其实用户改变字体大小设置的原因多种多样，有不太好的视力，或者选择适应设备的最佳设置，这样在大小和查看距离上会有很大的差异。
+MUI uses `rem` units for the font size. 浏览器 `<html>` 元素的默认字体大小为 `16px`，但是浏览器提供了一个改变这个值的选项，所以 `rem` 单元能够让我们适应用户的设置，从而提供更好的无障碍设计的支持。 其实用户改变字体大小设置的原因多种多样，有不太好的视力，或者选择适应设备的最佳设置，这样在大小和查看距离上会有很大的差异。
 
-若想更改  Material-UI 的字体大小，您可以提供一个 `fontSize ` 属性。 它的默认值为 `14px`。
+To change the font-size of MUI you can provide a `fontSize` property. 它的默认值为 `14px`。
 
 ```js
 const theme = createTheme({
   typography: {
-    // 中文字符和日文字符通常比较大，
-    // 所以选用一个略小的 fontsize 会比较合适。
+    // In Chinese and Japanese the characters are usually larger,
+    // so a smaller fontsize may be appropriate.
     fontSize: 12,
   },
 });
@@ -97,9 +97,14 @@ const theme = createTheme({
 
 浏览器计算出来的字体大小遵循了以下数学方程式：
 
-<img src="/static/images/font-size.png" alt="计算字体大小" style="width: 458px;" />
+<div class="only-light-mode">
+  <img src="/static/images/font-size.svg" alt="font size calculation" style="width: 458px;" />
+</div>
+<div class="only-dark-mode">
+  <img src="/static/images/font-size-dark.svg" alt="font size calculation" style="width: 458px;" />
+</div>
 
-<!-- https://latex.codecogs.com/png.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
+<!-- https://latex.codecogs.com/svg.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
 
 ### 响应的字体大小
 
@@ -128,7 +133,7 @@ theme.typography.h3 = {
 您可以在下面的示例中看到这个操作。 请尝试调整浏览器的窗口大小，您可以注意到当切换到不同的 [breakpoints](/customization/breakpoints/) 设置的宽度，字体的大小也随之改变。
 
 ```js
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -144,14 +149,14 @@ theme = responsiveFontSizes(theme);
 
 您可能想要更改 `<html>` 元素的默认字体大小。 例如，当您使用 [10px 简化](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 时。
 
-> ⚠️  更改字体的大小会对无障碍设计造成影响 ♿️。 ⚠️  更改字体的大小会对无障碍设计造成影响 ♿️。 For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+> ⚠️  更改字体的大小会对无障碍设计造成影响 ♿️。 大多数浏览器的默认字体大小为 16px，但是用户可以自行更改它。 For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
-`theme.typography.htmlFontSize` 属性是为这个用例提供的，它将会告诉 Material-UI `<html>` 元素的字体大小是多少。 这可以用于调整  `rem`  值，如此一来计算后的 font-size 总是与规范相符合。
+The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. 这可以用于调整  `rem`  值，如此一来计算后的 font-size 总是与规范相符合。
 
 ```js
 const theme = createTheme({
   typography: {
-    // Tell Material-UI what's the font-size on the html element is.
+    // Tell MUI what's the font-size on the html element is.
     htmlFontSize: 10,
   },
 });
@@ -232,7 +237,7 @@ You need to make sure that the typings for the theme's `typography` variants and
 <!-- Tested with packages/mui-material/test/typescript/augmentation/typographyVariants.spec.ts -->
 
 ```ts
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface TypographyVariants {
     poster: React.CSSProperties;
   }
@@ -244,7 +249,7 @@ declare module '@material-ui/core/styles' {
 }
 
 // Update the Typography's variant prop options
-declare module '@material-ui/core/Typography' {
+declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     poster: true;
     h3: false;
