@@ -1,6 +1,8 @@
 ---
 title: Componente React para Cartão
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
+githubLabel: 'component: Card'
+materialDesign: https://material.io/components/cards
 ---
 
 # Cartão
@@ -11,11 +13,13 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 Eles devem ser relevantes, de fácil verificação e apresentar informações úteis. Elementos, como texto e imagens, deve ser colocado sobre eles de uma forma que indica claramente a hierarquia.
 
-## Cartão Simples
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Basic card
 
 Apesar dos componentes cartões poderem suportar múltiplas ações tais como: controles de UI, e overflow de menu, use-os com moderação e lembre-se que cartões são pontos de entrada de informações mais complexas e detalhadas.
 
-{{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
+{{"demo": "pages/components/cards/BasicCard.js", "bg": true}}
 
 ### Cartão Delineado
 
@@ -25,7 +29,7 @@ Defina `variant="outlined"` para renderizar um cartão delineado.
 
 ## Interação Complexa
 
-O conteúdo do cartão pode ser expandido.
+O conteúdo do cartão pode ser expandido. (Clique no gerador abaixo para ver detalhes.)
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
@@ -39,7 +43,17 @@ Por padrão, nós usamos a combinação de um elemento `<div>` e uma *imagem de 
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
-> ⚠️ Quando `component="img"`, CardMedia depende de `object-fit` para centralizar a imagem. Não é suportado pelo IE 11.
+> ⚠️ Quando `component="img"`, CardMedia depende de `object-fit` para centralizar a imagem. Não é suportado pelo IE11.
+
+## Ação primária
+
+Muitas vezes um cartão permite que os usuários interajam com toda sua superfície para acionar sua ação principal, seja uma expansão, um link para outra tela ou algum outro comportamento. A área de ação do cartão pode ser especificada envolvendo seu conteúdo em um componente `CardActionArea`.
+
+{{"demo": "pages/components/cards/ActionAreaCard.js", "bg": true}}
+
+Um cartão também pode oferecer ações suplementares que devem ser desvinculadas da área de ação principal, a fim de evitar sobreposições de eventos.
+
+{{"demo": "pages/components/cards/MultiActionAreaCard.js", "bg": true}}
 
 ## Controles da interface do usuário
 
@@ -48,7 +62,5 @@ Ações suplementares dentro do cartão são explicitamente chamadas usando íco
 Aqui está um exemplo de um controle de mídia com cartão.
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
-
-## Customização
 
 🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/components/card).
