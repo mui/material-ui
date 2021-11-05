@@ -1,11 +1,14 @@
 ---
 title: Componente React Paginação
 components: Pagination, PaginationItem
+githubLabel: 'component: Pagination'
 ---
 
 # Paginação
 
 <p class="description">O componente de paginação permite ao usuário selecionar uma página específica a partir de um intervalo de páginas.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Paginação básica
 
@@ -33,9 +36,15 @@ Você pode habilitar opcionalmente  os botões de primeira página e de última 
 
 Você pode especificar quantos dígitos exibir a qualquer lado da página atual com a propriedade `siblingRange`, e adjacente ao número da página inicial e final com a propriedade `boundaryRange`.
 
-{{"demo": "pages/components/pagination/PaginationRanges.js"}}
+{{"demo": "pages/components/pagination/CustomIcons.js"}}
 
 ## Paginação controlada
+
+Você pode especificar quantos dígitos exibir a qualquer lado da página atual com a propriedade `siblingRange`, e adjacente ao número da página inicial e final com a propriedade `boundaryRange`.
+
+{{"demo": "pages/components/pagination/PaginationRanges.js"}}
+
+## Integração com router
 
 {{"demo": "pages/components/pagination/PaginationControlled.js"}}
 
@@ -45,23 +54,25 @@ Você pode especificar quantos dígitos exibir a qualquer lado da página atual 
 
 ## `usePagination`
 
-Para casos avançados de uso de customização, nós expomos um hook sem dependência, `usePagination()`. Ele aceita quase as mesmas opções que o componente de paginação, menos todas as propriedades relacionadas à renderização de JSX. O componente de paginação usa este hook internamente.
+For advanced customization use cases, a headless `usePagination()` hook is exposed. Ele aceita quase as mesmas opções que o componente de paginação, menos todas as propriedades relacionadas à renderização de JSX. Ele aceita quase as mesmas opções que o componente de paginação, menos todas as propriedades relacionadas à renderização de JSX.
 
 ```jsx
-import { usePagination } from '@material-ui/lab/Pagination';
+import { usePagination } from '@material-ui/core/Pagination';
 ```
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}
 
-## Paginação em tabelas
+## Acessibilidade
 
 O componente `Pagination` foi projetado para paginar uma lista de itens arbitrários quando a carga infinita não é usada. É preferível em contextos onde o SEO é importante, por exemplo, um blog.
 
-Para a paginação de um conjunto grande de dados tabulares, você deve usar o componente `TablePagination`.
+Você pode aprender mais sobre este caso de uso na [seção de tabela](/components/tables/#custom-pagination-options) da documentação.
 
 {{"demo": "pages/components/pagination/TablePagination.js"}}
 
-Você pode aprender mais sobre este caso de uso na [seção de tabela](/components/tables/#custom-pagination-options) da documentação.
+> ⚠️ Observe que a propriedade `Pagination` da página começa em 1 para corresponder ao requisito de incluir o valor na URL, enquanto a propriedade `TablePagination` da página começa em 0 para corresponder ao requisito de zero-based array do JavaScript arrays, que tem com renderização muitos dados tabulares.
+
+Os itens de paginação estão em ordem de tabulação, com um índice de tabulação iniciando em "0".
 
 ## Acessibilidade
 
