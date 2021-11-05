@@ -6,20 +6,26 @@ Como o escopo dos problemas que o Material-UI resolve é limitado, tentamos inte
 
 ## Recursos de design
 
-<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="Sketch" /></a>
-<a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="Figma" /></a>
+<a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="Figma" /></a>
+<a href="https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-adobe-xd.svg" alt="Adobe XD" /></a>
+<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="Sketch" /></a>
 
 Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
-- <strong x-id="1">Figma</strong>: [Figma para Material-UI](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Um kit de interface de usuário grande com mais de 600 componentes de Material-UI trabalhados à mão 🎨.
-- <strong x-id="1">Sketch</strong>: [Sketch para Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Um kit de interface de usuário grande com mais de 600 símbolos de Material-UI trabalhados à mão 💎.
-- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-adobe-xd): Um grande conjunto UI com mais de 600 símbolos Material-UI feitos à mão.
-- <strong x-id="1">Framer</strong>: [Framer para Material-UI](https://packages.framer.com/package/material-ui/material-ui) — Um pequeno kit MIT de interface de usuário em preview, de componentes de Material-UI trabalhado a mão.
+- **Figma**: [Figma para Material-UI](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Um kit de interface de usuário grande com mais de 600 componentes de Material-UI trabalhados à mão 🎨.
+- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-adobe-xd): A large UI kit with over 600 handcrafted Material-UI components.
+- **Sketch**: [Sketch para Material-UI](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch) — Um kit de interface de usuário grande com mais de 600 símbolos de Material-UI trabalhados à mão 💎.
+- **Framer**: [Framer para Material-UI](https://packages.framer.com/package/material-ui/material-ui) — Um pequeno kit MIT de interface de usuário em preview, de componentes de Material-UI trabalhado a mão.
 
 ## Imagens e ilustrações
 
 - [Unsplash](https://unsplash.com): 📷 Um ótimo recurso para encontrar fotos grátis de alta resolução e bonitas que você pode usar em seus projetos.
 - [unDraw](https://undraw.co/): 📐 Como Unsplash, mas para incríveis ilustrações vetoriais.
+- [Simple Icons](https://simpleicons.org/): Mais de 1000 ícones SVG gratuitos de marcas populares.
+
+## Frameworks de aplicação
+
+- [react-admin](https://github.com/marmelab/react-admin): Uma estrutura frontend para a construção de aplicativos B2B executando no navegador com base em APIs REST/GraphQL.
 
 ## Ferramentas de IDE
 
@@ -45,10 +51,11 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
 ### Formulário
 
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings para usar Material-UI com [formik](https://jaredpalmer.com/formik).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff) Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).
-- [data-driven-forms MUI mapper](https://github.com/data-driven-forms/react-forms/tree/master/packages/mui-component-mapper): Bindings para usar Material-UI com [Data Driven Forms](https://data-driven-forms.org/).
+- [react-hook-form](https://react-hook-form.com/): React hook para validação de formulários.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings para usar Material-UI com [formik](https://jaredpalmer.com/formik).
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).
+- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): Uma grade de dados para Material-UI com paginação, ordenação, filtragem, agrupamento e funções de edição.([Com licenciamento de uso pago](https://js.devexpress.com/licensing/)).
 
 ### Carrossel
 
@@ -56,11 +63,8 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
 ### Imagem
 
+- [mui-image](https://mui-image.surge.sh): The only MUI image component to satisfy the Material guidelines for loading images.
 - [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Imagens são feias até serem carregadas. Materialize elas com material image! Irá desvanecer, como sugere o padrão de carregamento de imagem material.
-
-### Paginação
-
-- [material-ui-flat-pagination](https://github.com/szmslab/material-ui-flat-pagination): Um componente de paginação de design plano para Material-UI.
 
 ### Agenda/Calendário
 
@@ -70,7 +74,7 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
 - [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/): Gráficos Material-UI para visualizar dados usando uma variedade de tipos de série, incluindo barra, linha, área, dispersão, pizza e muito mais ([licença paga](https://js.devexpress.com/licensing/)).
 
-### Dialog
+### Diálogo
 
 - [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm): Fornece diálogos de confirmação fáceis de usar para simplificar as ações de confirmação do usuário sem escrever código boilerplate.
 
@@ -78,12 +82,15 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
 - [material-ui-color](https://github.com/mikbry/material-ui-color): Coleções de componentes de cor para material-ui. Sem dependências, pequeno, altamente customizável e com suporte ao tema!
 
+### Sparkline
+
+- [mui-plus](https://mui-plus.vercel.app/components/Sparkline): A sparkline is a tiny chart that can be used to indicate the trend of a value.
+
 ## Blocos
 
-- [components-extra](https://github.com/alexandre-lelain/components-extra): Fornece um conjunto de componentes "molecule" construídos com base no Material-UI, com componentes de Footer, CookiesBanner, botão BackToTop e outros elementos complexos altamente customizados para ajudar os desenvolvedores a construir partes macro de sua interface muito rapidamente. Esses componentes são frequentemente duplicados em sites - esta biblioteca resolve exatamente este problema.
+- [components-extra](https://github.com/alexandre-lelain/components-extra): Fornece um conjunto de componentes "molecule" construídos com base no Material-UI, com componentes de Footer, CookiesBanner, botão BackToTop e outros elementos complexos altamente customizados para ajudar os desenvolvedores a construir partes macro de sua interface muito rapidamente. Esses componentes são frequentemente duplicados em sites - esta biblioteca resolve exatamente este problema. This library solves this exact problem.
 
 ## Temas
 
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Uma ferramenta online para criar temas de Material-UI por meio da ferramenta de cor do Material Design.
 - [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo.
 - [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.
