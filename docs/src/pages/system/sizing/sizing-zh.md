@@ -4,15 +4,22 @@
 
 ## 支持的值
 
-Sizing 样式函数支持不同的属性输入类型：
+The sizing properties: `width`, `height`, `minHeight`, `maxHeight`, `minWidth`, and `maxWidth` are using the following custom transform function for the value:
+
+```js
+function transform(value) {
+  return value <= 1 ? `${value * 100}%` : value;
+}
+```
+
+If the value is between [0, 1], it's converted to percent. Otherwise, it is directly set on the CSS property.
 
 {{"demo": "pages/system/sizing/Values.js", "defaultCodeOpen": false}}
 
 ```jsx
-// 在 [0,1] 中的数字乘以 100 并转换为 % 值。
-<Box sx={{ width: 1/4 }}>
-<Box sx={{ width: 300 }}> // 讲数字转换为像素值。
-<Box sx={{ width: '75%' }}> // 字符串的值作为原始的 CSS 使用。
+<Box sx={{ width: 1/4 }}> // Equivalent to width: '25%'
+<Box sx={{ width: 300 }}> // Numbers are converted to pixel values.
+<Box sx={{ width: '75%' }}> // String values are used as raw CSS.
 <Box sx={{ width: 1 }}> // 100%
 ```
 
@@ -26,6 +33,14 @@ Sizing 样式函数支持不同的属性输入类型：
 <Box sx={{ width: '75%' }}>…
 <Box sx={{ width: '100%' }}>…
 <Box sx={{ width: 'auto' }}>…
+```
+
+### Max-width
+
+The max-width property allows setting a constraint on your breakpoints. In this example, the value resolves to [`theme.breakpoints.values.md`](/customization/default-theme/?expand-path=$.breakpoints.values).
+
+```jsx
+<Box sx={{ maxWidth: 'md' }}>…
 ```
 
 ## 高度
@@ -42,15 +57,15 @@ Sizing 样式函数支持不同的属性输入类型：
 ## API
 
 ```js
-import { sizing } from '@material-ui/system';
+import { sizing } from '@mui/system';
 ```
 
-| 导入名称        | 属性          | CSS 属性       | Theme key |
-|:----------- |:----------- |:------------ |:--------- |
-| `width`     | `width`     | `width`      | none      |
-| `maxWidth`  | `maxWidth`  | `max-width`  | none      |
-| `minWidth`  | `minWidth`  | `min-width`  | none      |
-| `height`    | `height`    | `height`     | none      |
-| `maxHeight` | `maxHeight` | `max-height` | none      |
-| `minHeight` | `minHeight` | `min-height` | none      |
-| `boxSizing` | `boxSizing` | `box-sizing` | none      |
+| 导入名称        | 属性          | CSS 属性       | Theme key                                                                                    |
+|:----------- |:----------- |:------------ |:-------------------------------------------------------------------------------------------- |
+| `width`     | `width`     | `width`      | none                                                                                         |
+| `maxWidth`  | `maxWidth`  | `max-width`  | [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) |
+| `minWidth`  | `minWidth`  | `min-width`  | none                                                                                         |
+| `height`    | `height`    | `height`     | none                                                                                         |
+| `maxHeight` | `maxHeight` | `max-height` | none                                                                                         |
+| `minHeight` | `minHeight` | `min-height` | none                                                                                         |
+| `boxSizing` | `boxSizing` | `box-sizing` | none                                                                                         |
