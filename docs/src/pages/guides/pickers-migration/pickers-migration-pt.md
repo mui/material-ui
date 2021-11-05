@@ -1,6 +1,6 @@
 # Migração do @material-ui-pickers
 
-<p class="description">@material-ui/pickers foi movido para o @material-ui/lab.</p>
+<p class="description">@material-ui/pickers was moved to the @mui/lab.</p>
 
 > **⚠️ Os componentes seletores de data foram reescritos**. Na maioria dos lugares, a lógica foi reescrita do zero, então não é possível especificar aqui toda a lista de mudanças. Aqui está uma visão geral dos conceitos mais importantes que foram alterados. Se você vai atualizar, o caminho mais fácil pode ser identificar o uso de cada seletor em sua base de código, e reescreva-os um de cada vez. Não se esqueça de executar seus testes depois de cada um!
 
@@ -8,7 +8,7 @@ Este guia é uma visão geral dos conceitos principais que foram alterados de se
 
 ## Instalação
 
-You need to install the `@material-ui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@material-ui/lab": ^5.0.0-alpha.30"` or above.
+You need to install the `@mui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above.
 
 ## Importações
 
@@ -16,7 +16,7 @@ A versão `keyboard` dos seletores não está mais publicada. Todas as versões 
 
 ```diff
 -import { KeyboardDatePicker } from '@material-ui/pickers';
-+import DatePicker from '@material-ui/lab/DatePicker';
++import DatePicker from '@mui/lab/DatePicker';
 
 -<KeyboardDatePicker />
 +<DatePicker />
@@ -31,7 +31,7 @@ Além disso, em vez de fornecer uma propriedade `variant`, eles foram movidos pa
 
 ```diff
 -import { DatePicker } from '@material-ui/pickers';
-+import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
++import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 
 -<DatePicker variant="inline" />
 +<DesktopDatePicker />
@@ -53,8 +53,8 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 ✅ Depois:
 
 ```jsx
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 
 function App() {
@@ -68,7 +68,7 @@ function App() {
 
 ## Renderizando input
 
-Introduzimos uma nova propriedade **requerida**, `renderInput`. Isso simplifica o uso de componentes de entrada de texto sem Material-UI.
+Introduzimos uma nova propriedade **requerida**, `renderInput`. This simplifies using non-MUI text field input components.
 
 ```jsx
 <DatePicker renderInput={(props) => <TextField {...props} />} />
@@ -78,11 +78,11 @@ Introduzimos uma nova propriedade **requerida**, `renderInput`. Isso simplifica 
 Anteriormente, propriedades eram espalhadas no componentes `<TextField />`. De agora em diante você precisará usar a nova propriedade `renderInput` para fornecer as propriedades:
 
 ```diff
-<DatePicker
-- label="Date"
-- helperText="Something"
-+ renderInput={props => <TextField label="Date" helperText="Something" /> }
-/>
+ <DatePicker
+-  label="Date"
+-  helperText="Something"
++  renderInput={props => <TextField label="Date" helperText="Something" /> }
+ />
 ```
 
 ## Gerenciamento do estado
@@ -115,8 +115,8 @@ Máscara já não é necessária. Além disso, se a máscara fornecida não for 
 ## E muito mais
 
 - ```diff <DatePicker
-  - format="DD-MMM-YYYY"
-  + inputFormat="DD-MMM-YYYY" ```
+  -  format="DD-MMM-YYYY"
+  +  inputFormat="DD-MMM-YYYY" ```
 
 Há muitas mudanças, tenha cuidado, certifique-se de que seus testes e build passe. No evento em que você tem um uso avançado do seletor de data, provavelmente será mais simples reescrevê-lo.
 
