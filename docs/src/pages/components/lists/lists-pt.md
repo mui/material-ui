@@ -1,6 +1,8 @@
 ---
 title: Componente React Lista
-components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+components: Collapse, Divider, List, ListItem, ListItemButton, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
+githubLabel: 'component: List'
+materialDesign: https://material.io/components/lists
 ---
 
 # Listas
@@ -9,25 +11,21 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 [Listas](https://material.io/design/components/lists.html) são um grupo contínuo de texto ou imagens. Elas são compostas por itens contendo ações primárias e complementares, que são representados por ícones e texto.
 
-## Lista Simples
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-{{"demo": "pages/components/lists/SimpleList.js", "bg": true}}
+## Basic List
+
+{{"demo": "pages/components/lists/BasicList.js", "bg": true}}
 
 O último item da demonstração anterior mostra como você pode renderizar um link:
 
 ```jsx
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
-//...
-
-<ListItemLink href="#simple-list">
+<ListItemButton component="a" href="#simple-list">
   <ListItemText primary="Spam" />
-</ListItemLink>
+</ListItemButton>
 ```
 
-Você pode encontrar uma [demonstração com React Router seguindo esta seção](/guides/composition/#react-router) da documentação.
+Você pode encontrar uma [demonstração com React Router seguindo esta seção](/guides/routing/#list) da documentação.
 
 ## Lista Aninhada
 
@@ -49,7 +47,7 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 ## Alinhar itens da lista
 
-Você deve alterar o alinhamento do item da lista ao exibir 3 linhas ou mais, alterando a propriedade `alignItems="flex-start"`.
+When displaying three lines or more, the avatar is not aligned at the top. You should set the `alignItems="flex-start"` prop to align the avatar at the top, following the Material Design guidelines:
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 
@@ -73,17 +71,23 @@ O interruptor é uma ação secundária, sem interferir com o estado do item da 
 
 {{"demo": "pages/components/lists/SwitchListSecondary.js", "bg": true}}
 
-## Lista com subtítulo fixado
+## Sticky subheader
 
-Após a rolagem, os subtítulos permanecem fixos na parte superior da tela até serem empurrados para fora da área de visualização pelo próximo subtítulo.
-
-Esse recurso depende do posicionamento fixo do CSS. Infelizmente, [não é implementado](https://caniuse.com/#search=sticky) por todos os navegadores. O padrão é `disableSticky` quando não é suportado.
+Após a rolagem, os subtítulos permanecem fixos na parte superior da tela até serem empurrados para fora da área de visualização pelo próximo subtítulo. Esse recurso depende do posicionamento fixo do CSS. (⚠️ no IE 11 support)
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
-## Lista de inclusão
+## Item de lista encaixado
+
+A propriedade `inset` habilita um item de lista, que não tenha um ícone principal ou um avatar, para alinhar corretamente os itens que possuem.
 
 {{"demo": "pages/components/lists/InsetList.js", "bg": true}}
+
+## Lista sem espaçamentos
+
+Ao renderizar uma lista dentro de um componente que define seus próprios espaços, o espaçamento do `ListItem` pode ser desabilitado com `disableGutters`.
+
+{{"demo": "pages/components/lists/GutterlessList.js", "bg": true}}
 
 ## Lista virtualizada
 
@@ -93,6 +97,10 @@ No exemplo a seguir, nós demonstramos como usar a biblioteca [react-window](htt
 
 O uso da biblioteca [react-window](https://github.com/bvaughn/react-window), quando possível, é recomendado. Se no seu caso esta biblioteca não resolver, você deve considerar o uso de [react-virtualized](https://github.com/bvaughn/react-virtualized), e em seguida, como alternativa [react-virtuoso](https://github.com/petyosi/react-virtuoso).
 
-## Customização
+## Customized List
+
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+
+{{"demo": "pages/components/lists/CustomizedList.js"}}
 
 🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/list-item).
