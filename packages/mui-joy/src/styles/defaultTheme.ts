@@ -1,7 +1,7 @@
 import * as React from 'react';
 import colors from '../colors';
 import { Components } from './components';
-import { ColorSystems, PaletteRange, PaletteText, PaletteBgNeutral } from './ColorSystem';
+import { ColorSystems, PaletteRange, PaletteText, PaletteBgNeutral, Opacity } from './ColorSystem';
 
 /**
  * ====================================================
@@ -93,7 +93,35 @@ export interface ThemeWithoutVars extends StaticTheme, ColorSystems {}
  * Internal type for definfing default Joy theme.
  * ==============================================
  */
-type BasePaletteRange = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+type BasePaletteRange =
+  | 50
+  | 100
+  | 200
+  | 300
+  | 400
+  | 500
+  | 600
+  | 700
+  | 800
+  | 900
+  | 'btnTextColor'
+  | 'btnTextHoverBg'
+  | 'btnTextActiveBg'
+  | 'btnTextFocusOutline'
+  | 'btnTextDisabledColor'
+  | 'btnOutlinedBorder'
+  | 'btnOutlinedDisabledBorder'
+  | 'btnContainedColor'
+  | 'btnContainedBg'
+  | 'btnContainedHoverBg'
+  | 'btnContainedActiveBg'
+  | 'btnContainedDisabledBg'
+  | 'btnChannelTextColor'
+  | 'btnChannelTextBg'
+  | 'btnChannelTextOutline'
+  | 'btnChannelOutlinedBorder'
+  | 'btnChannelContainedColor'
+  | 'btnChannelContainedBg';
 type BaseJoyTokens = {
   palette: {
     brand: Pick<PaletteRange, BasePaletteRange>;
@@ -101,6 +129,7 @@ type BaseJoyTokens = {
     text: Pick<PaletteText, 'heading' | 'headingIntro' | 'content' | 'detail' | 'overline'>;
     bgNeutral: Pick<PaletteBgNeutral, 'plain' | 'transparency'>;
   };
+  opacity: Pick<Opacity, 'hover' | 'active' | 'focus' | 'disabled'>;
   borderRadius: Pick<BorderRadius, 'md'>;
   htmlFontSize: React.CSSProperties['fontSize'];
   fontSize: Pick<
@@ -132,13 +161,30 @@ type BaseJoyTokens = {
   shadow: Pick<Shadow, 'ring' | 'md'>;
 };
 
-/**
- * Base Joy Theme
- * Any value with `var(--joy-*)` can be used. 'joy-' will be replaced by the application prefix if provided.
- */
-const themeWithoutVars: BaseJoyTokens = {
+export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'opacity'> = {
   palette: {
-    brand: colors.purple,
+    brand: {
+      ...colors.purple,
+      btnTextColor: 'var(--joy-palette-brand-200)',
+      btnTextHoverBg: 'var(--joy-palette-neutral-800)',
+      btnTextActiveBg: 'var(--joy-palette-neutral-700)',
+      btnTextFocusOutline: 'var(--joy-palette-brand-300)',
+      btnTextDisabledColor: 'var(--joy-palette-neutral-500)',
+      btnOutlinedBorder: 'var(--joy-palette-neutral-700)',
+      btnOutlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
+      btnContainedColor: '#fff',
+      btnContainedBg: 'var(--joy-palette-brand-600)',
+      btnContainedHoverBg: 'var(--joy-palette-brand-700)',
+      btnContainedActiveBg: 'var(--joy-palette-brand-500)',
+      btnContainedDisabledBg: 'var(--joy-palette-brand-300)',
+      // ----------------
+      // use with opacity
+      btnChannelTextColor: '53 54 189',
+      btnChannelTextBg: '31 31 31',
+      btnChannelTextOutline: '221 209 250',
+      btnChannelOutlinedBorder: '187 187 187',
+      btnChannelContainedBg: '53 54 189',
+    },
     neutral: colors.grey,
     text: {
       heading: 'var(--joy-palette-neutral-900)',
@@ -148,9 +194,65 @@ const themeWithoutVars: BaseJoyTokens = {
       overline: 'var(--joy-palette-neutral-500)',
     },
     bgNeutral: {
-      transparency: 'var(--joy-palette-neutral-100)',
-      plain: 'var(--joy-palette-neutral-100)',
+      transparency: 'var(--joy-palette-neutral-900)',
+      plain: 'var(--joy-palette-neutral-900)',
     },
+    // buttonSuccess, buttonDanger
+  },
+  opacity: {
+    hover: 0.8,
+    active: 0.6,
+    focus: 1,
+    disabled: 0.5,
+  },
+};
+
+/**
+ * Base Joy Theme
+ * Any value with `var(--joy-*)` can be used. 'joy-' will be replaced by the application prefix if provided.
+ */
+const themeWithoutVars: BaseJoyTokens = {
+  palette: {
+    brand: {
+      ...colors.purple,
+      btnTextColor: 'var(--joy-palette-brand-600)',
+      btnTextHoverBg: 'var(--joy-palette-neutral-100)',
+      btnTextActiveBg: 'var(--joy-palette-neutral-200)',
+      btnTextFocusOutline: 'var(--joy-palette-brand-300)',
+      btnTextDisabledColor: 'var(--joy-palette-neutral-300)',
+      btnOutlinedBorder: 'var(--joy-palette-neutral-300)',
+      btnOutlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
+      btnContainedColor: '#fff',
+      btnContainedBg: 'var(--joy-palette-brand-600)',
+      btnContainedHoverBg: 'var(--joy-palette-brand-700)',
+      btnContainedActiveBg: 'var(--joy-palette-brand-500)',
+      btnContainedDisabledBg: 'var(--joy-palette-brand-300)',
+      // ----------------
+      // use with opacity
+      btnChannelTextColor: '53 54 189',
+      btnChannelTextBg: '106 106 106',
+      btnChannelTextOutline: '221 209 250',
+      btnChannelOutlinedBorder: '187 187 187',
+      btnChannelContainedBg: '53 54 189',
+    },
+    neutral: colors.grey,
+    text: {
+      heading: 'var(--joy-palette-neutral-900)',
+      headingIntro: 'var(--joy-palette-brand-300)',
+      content: 'var(--joy-palette-neutral-600)',
+      detail: 'var(--joy-palette-neutral-500)',
+      overline: 'var(--joy-palette-neutral-500)',
+    },
+    bgNeutral: {
+      transparency: 'var(--joy-palette-neutral-50)',
+      plain: 'var(--joy-palette-neutral-50)',
+    },
+  },
+  opacity: {
+    hover: 0.12,
+    active: 0.2,
+    focus: 1,
+    disabled: 0.5,
   },
   borderRadius: {
     md: '4px',

@@ -15,7 +15,25 @@ export interface PaletteRange {
   700: string;
   800: string;
   900: string;
-  channel500: string;
+  btnTextColor?: string;
+  btnTextHoverBg?: string;
+  btnTextActiveBg?: string;
+  btnTextFocusOutline?: string;
+  btnTextDisabledColor?: string;
+  btnOutlinedBorder?: string;
+  btnOutlinedDisabledBorder?: string;
+  btnContainedColor?: string;
+  btnContainedBg?: string;
+  btnContainedHoverBg?: string;
+  btnContainedActiveBg?: string;
+  btnContainedDisabledBg?: string;
+  //
+  btnChannelTextColor?: string;
+  btnChannelTextBg?: string;
+  btnChannelTextOutline?: string;
+  btnChannelOutlinedBorder?: string;
+  btnChannelContainedColor?: string;
+  btnChannelContainedBg?: string;
 }
 
 export interface PaletteText {
@@ -47,6 +65,14 @@ export interface Palette extends ColorPalette {
   bgNeutral: PaletteBgNeutral;
 }
 
+export interface Opacity {
+  hover: number;
+  active: number;
+  focus: number;
+  disabled: number;
+}
+
 export interface ColorSystems {
   palette: Palette;
+  opacity: Opacity;
 }

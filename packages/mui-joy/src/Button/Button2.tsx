@@ -59,7 +59,6 @@ const ButtonRoot = styled('button', {
   shouldForwardProp: rootShouldForwardProp,
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   const colorPalette = theme.vars.palette[ownerState.color || 'brand'];
-  const neutral = theme.vars.palette.neutral;
   return [
     {
       padding: '0.25rem 2rem',
@@ -76,10 +75,11 @@ const ButtonRoot = styled('button', {
       [`&.${buttonClasses.disabled}`]: {
         pointerEvents: 'none',
         cursor: 'default',
+        opacity: theme.vars.opacity.disabled,
       },
       [`&.${buttonClasses.focusVisible}`]: {
         outline: '4px solid',
-        outlineColor: colorPalette.btnTextFocusOutline,
+        outlineColor: `rgba(${colorPalette.btnChannelTextOutline} / ${theme.vars.opacity.focus})`,
       },
       ...(ownerState.fullWidth && {
         width: '100%',
@@ -94,33 +94,24 @@ const ButtonRoot = styled('button', {
     (ownerState.variant === 'text' || ownerState.variant === 'outlined') && {
       color: colorPalette.btnTextColor,
       '&:hover': {
-        backgroundColor: colorPalette.btnTextHoverBg,
+        backgroundColor: `rgba(${colorPalette.btnChannelTextBg} / ${theme.vars.opacity.hover})`,
       },
       '&:active': {
-        backgroundColor: colorPalette.btnTextActiveBg,
-      },
-      [`&.${buttonClasses.disabled}`]: {
-        color: colorPalette.btnTextDisabledColor,
+        backgroundColor: `rgba(${colorPalette.btnChannelTextBg} / ${theme.vars.opacity.active})`,
       },
     },
     ownerState.variant === 'outlined' && {
       border: '1px solid',
       borderColor: colorPalette.btnOutlinedBorder,
-      [`&.${buttonClasses.disabled}`]: {
-        borderColor: colorPalette.btnOutlinedDisabledBorder,
-      },
     },
     ownerState.variant === 'contained' && {
       color: colorPalette.btnContainedColor,
-      backgroundColor: colorPalette.btnContainedBg,
+      backgroundColor: `rgba(${colorPalette.btnChannelContainedBg} / 1)`,
       '&:hover': {
-        backgroundColor: colorPalette.btnContainedHoverBg,
+        backgroundColor: `rgba(${colorPalette.btnChannelContainedBg} / ${theme.vars.opacity.hover})`,
       },
       '&:active': {
-        backgroundColor: colorPalette.btnContainedActiveBg,
-      },
-      [`&.${buttonClasses.disabled}`]: {
-        backgroundColor: colorPalette.btnContainedDisabledBg,
+        backgroundColor: `rgba(${colorPalette.btnChannelContainedBg} / ${theme.vars.opacity.active})`,
       },
     },
   ];
