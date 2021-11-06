@@ -346,12 +346,20 @@ const themeWithoutVars: BaseJoyTokens = {
 
 // ---------------------------------------------------------------
 
-export interface JoyTheme extends ThemeWithoutVars {
+export type ColorScheme = 'light';
+
+export interface JoyTheme<ExtendedColorScheme extends string = never> extends ThemeWithoutVars {
+  colorSchemes: Record<ColorScheme | ExtendedColorScheme, ColorSystems>;
   vars: ThemeWithoutVars;
 }
 
 const defaultTheme = {
   ...themeWithoutVars,
+  colorSchemes: {
+    light: {
+      palette: themeWithoutVars.palette,
+    },
+  },
   vars: themeWithoutVars,
 } as JoyTheme;
 

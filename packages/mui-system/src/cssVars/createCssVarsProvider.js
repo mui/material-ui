@@ -91,6 +91,7 @@ export default function createCssVarsProvider(options) {
     mergedTheme = {
       ...mergedTheme,
       ...colorSchemes[resolvedColorScheme],
+      colorSchemes,
       vars: rootVars,
     };
 
