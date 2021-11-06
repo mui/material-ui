@@ -433,6 +433,29 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('swatch-bgcolor').textContent).to.equal('var(--palette-bgcolor)');
     });
 
+    it('All `colorSchemes` is available in theme', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: {
+            light: {},
+            dark: {},
+          },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Consumer = () => {
+        const theme = useTheme();
+        return <div>{Object.keys(theme.colorSchemes).join(', ')}</div>;
+      };
+      const { container } = render(
+        <CssVarsProvider theme={{ colorSchemes: { dim: {} } }}>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild.textContent).to.equal('light, dark, dim');
+    });
+
     it('able to override css variable prefix', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: {
