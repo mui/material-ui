@@ -171,7 +171,7 @@ describe('createCssVarsProvider', () => {
       ).toErrorDev('`foo` does not exist in `theme.colorSchemes`.');
     });
 
-    it('does not create css var if shouldSkipVar return true', () => {
+    it('does not create css var if shouldSkipGeneratingVar return true', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: {
@@ -187,7 +187,7 @@ describe('createCssVarsProvider', () => {
           },
         },
         defaultColorScheme: 'light',
-        shouldSkipVar: (keys) => keys[0] === 'typography' && keys[1] === 'h1',
+        shouldSkipGeneratingVar: (keys) => keys[0] === 'typography' && keys[1] === 'h1',
       });
       const Consumer = () => {
         const theme = useTheme();

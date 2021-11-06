@@ -86,7 +86,7 @@ const getCssValue = (keys: string[], value: string | number) => {
  * @param {{
  *  prefix?: string,
  *  basePrefix?: string,
- *  shouldSkipVar?: (objectPathKeys: Array<string>, value: string | number) => boolean
+ *  shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean
  * }} options.
  *  `basePrefix`: defined by design system.
  *  `prefix`: defined by application
@@ -110,14 +110,14 @@ export default function cssVarsParser(
   options?: {
     prefix?: string;
     basePrefix?: string;
-    shouldSkipVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
+    shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
   },
 ) {
   const clonedTheme = { ...theme };
 
   delete clonedTheme.vars; // remove 'vars' from the structure
 
-  const { prefix, basePrefix = '', shouldSkipVar } = options || {};
+  const { prefix, basePrefix = '', shouldSkipGeneratingVar } = options || {};
   const css = {} as NestedRecord<string>;
   const vars = {} as NestedRecord<string>;
 
@@ -132,8 +132,11 @@ export default function cssVarsParser(
         scope[keys.slice(-1)[0]] = value;
       }
 
-      if (!shouldSkipVar || (shouldSkipVar && !shouldSkipVar(keys, value))) {
-        // only create css & var if `shouldSkipVar` return false
+      if (
+        !shouldSkipGeneratingVar ||
+        (shouldSkipGeneratingVar && !shouldSkipGeneratingVar(keys, value))
+      ) {
+        // only create css & var if `shouldSkipGeneratingVar` return false
         const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
         Object.assign(css, { [cssVar]: getCssValue(keys, value) });
 
