@@ -85,7 +85,7 @@ export default function createCssVarsProvider(options) {
     const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme, {
       prefix,
       basePrefix: designSystemPrefix,
-      shouldSkipGeneratingVar: shouldSkipGeneratingVar,
+      shouldSkipGeneratingVar,
     });
 
     mergedTheme = {
@@ -100,7 +100,7 @@ export default function createCssVarsProvider(options) {
       const { css, vars } = cssVarsParser(scheme, {
         prefix,
         basePrefix: designSystemPrefix,
-        shouldSkipGeneratingVar: shouldSkipGeneratingVar,
+        shouldSkipGeneratingVar,
       });
       if (key === resolvedColorScheme) {
         mergedTheme.vars = {
