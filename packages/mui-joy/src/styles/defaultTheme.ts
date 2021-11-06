@@ -94,22 +94,19 @@ export interface Shadow {
   md: React.CSSProperties['boxShadow'];
 }
 
-// fontWeight from React.CSSProperties cannot be string
-type CSSVarCompat = Omit<React.CSSProperties, 'fontWeight'> & { fontWeight?: string };
-
 export interface TypographySystems {
-  h1: CSSVarCompat;
-  h2: CSSVarCompat;
-  h3: CSSVarCompat;
-  h4: CSSVarCompat;
-  h5: CSSVarCompat;
-  headingSubtitle: CSSVarCompat;
-  body: CSSVarCompat;
-  caption: CSSVarCompat;
-  detail: CSSVarCompat;
-  headingIntro: CSSVarCompat;
-  overline: CSSVarCompat;
-  button: CSSVarCompat;
+  h1: React.CSSProperties;
+  h2: React.CSSProperties;
+  h3: React.CSSProperties;
+  h4: React.CSSProperties;
+  h5: React.CSSProperties;
+  headingSubtitle: React.CSSProperties;
+  body: React.CSSProperties;
+  caption: React.CSSProperties;
+  detail: React.CSSProperties;
+  headingIntro: React.CSSProperties;
+  overline: React.CSSProperties;
+  button: React.CSSProperties;
 }
 
 // ---------------------------------------------------------------
@@ -235,7 +232,7 @@ const themeWithoutVars: BaseJoyTokens = {
   typography: {
     h1: {
       fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-bold)',
+      fontWeight: 'var(--joy-fontWeight-bold)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl4)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-xs)',
@@ -244,7 +241,7 @@ const themeWithoutVars: BaseJoyTokens = {
     },
     h2: {
       fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-semiBold)',
+      fontWeight: 'var(--joy-fontWeight-semiBold)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl3)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
@@ -253,7 +250,7 @@ const themeWithoutVars: BaseJoyTokens = {
     },
     h3: {
       fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-regular)',
+      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl2)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
@@ -262,7 +259,7 @@ const themeWithoutVars: BaseJoyTokens = {
     },
     h4: {
       fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-medium)',
+      fontWeight: 'var(--joy-fontWeight-medium)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
@@ -271,7 +268,7 @@ const themeWithoutVars: BaseJoyTokens = {
     },
     h5: {
       fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-regular)',
+      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-lg)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
@@ -280,7 +277,7 @@ const themeWithoutVars: BaseJoyTokens = {
     },
     headingSubtitle: {
       fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-regular)',
+      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-lg)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
@@ -289,7 +286,7 @@ const themeWithoutVars: BaseJoyTokens = {
     },
     body: {
       fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-regular)',
+      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
@@ -298,7 +295,7 @@ const themeWithoutVars: BaseJoyTokens = {
     },
     caption: {
       fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-regular)',
+      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-sm)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
@@ -307,7 +304,7 @@ const themeWithoutVars: BaseJoyTokens = {
     },
     detail: {
       fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-regular)',
+      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
@@ -316,7 +313,7 @@ const themeWithoutVars: BaseJoyTokens = {
     },
     headingIntro: {
       fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-extraBold)',
+      fontWeight: 'var(--joy-fontWeight-extraBold)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-lg)',
@@ -325,7 +322,7 @@ const themeWithoutVars: BaseJoyTokens = {
     },
     overline: {
       fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-extraBold)',
+      fontWeight: 'var(--joy-fontWeight-extraBold)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-lg)',
@@ -334,7 +331,7 @@ const themeWithoutVars: BaseJoyTokens = {
     },
     button: {
       fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-bold)',
+      fontWeight: 'var(--joy-fontWeight-bold)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
