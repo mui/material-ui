@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "marked": "^3.0.8",
+    "marked": "^4.0.0",
     "prismjs": "^1.25.0"
   }
 }
