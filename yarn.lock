@@ -6476,10 +6476,10 @@ damerau-levenshtein@^1.0.6:
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.6.tgz#143c1641cb3d85c60c32329e26899adea8701791"
   integrity sha512-JVrozIeElnj3QzfUIt8tB8YMluBJom4Vw9qTPpjGYQ9fYlB3D/rb6OordUxf3xeFB35LKWs0xqcO5U6ySvBtug==
 
-danger@^10.7.0:
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-10.7.0.tgz#1b9de3e0b8cb2b48395a422f7e124b04fdfa0cbc"
-  integrity sha512-N5Q8+yslaaxmYHhgj+MZustYnCbw63Mqrib2SmjpQf0X0BiT4u2j4LqWKU4ByAQmMfsD+gqOFBzW0mmci7CvrQ==
+danger@^10.7.1:
+  version "10.7.1"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-10.7.1.tgz#71243f02a0d35abf6c71891c177b23e4e8afcead"
+  integrity sha512-lKyWrWxNxtSfLSsOqse+O9MOrxa++a0kHEBxrgCBvjF36EjNuInuvY06omUTDGdIy6VEbDQRoGeQFIBauj8sMA==
   dependencies:
     "@babel/polyfill" "^7.2.5"
     "@octokit/rest" "^16.43.1"
@@ -6503,7 +6503,7 @@ danger@^10.7.0:
     lodash.mapvalues "^4.6.0"
     lodash.memoize "^4.1.2"
     memfs-or-file-map-to-github-branch "^1.1.0"
-    micromatch "^3.1.10"
+    micromatch "^4.0.4"
     node-cleanup "^2.1.2"
     node-fetch "2.6.1"
     override-require "^1.1.1"
