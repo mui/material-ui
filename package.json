@@ -156,7 +156,7 @@
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.3.0",
     "react-test-renderer": "^17.0.2",
-    "remark": "^13.0.0",
+    "remark": "^14.0.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.58.3",
     "rollup-plugin-babel": "^4.4.0",
