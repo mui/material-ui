@@ -12,3 +12,6 @@ export * from './Switch';
 
 export { default as SvgIcon } from './SvgIcon';
 export * from './SvgIcon';
+
+export { default as Input } from './Input';
+export * from './Input';
