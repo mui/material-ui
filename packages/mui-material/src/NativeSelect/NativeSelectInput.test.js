@@ -2,7 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, createRenderer, fireEvent } from 'test/utils';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { merge } from 'lodash/object';
 import NativeSelectInput from './NativeSelectInput';
+import nativeSelectClasses from './nativeSelectClasses';
 
 describe('<NativeSelectInput />', () => {
   const { render } = createRenderer();
@@ -42,20 +45,74 @@ describe('<NativeSelectInput />', () => {
   });
 
   it('should apply outlined class', () => {
-    const outlined = 'outlined';
     const { container } = render(
-      <NativeSelectInput IconComponent="div" variant="outlined" classes={{ outlined }} />,
+      <NativeSelectInput
+        IconComponent="div"
+        variant="outlined"
+        classes={{ outlined: 'outlined' }}
+      />,
     );
 
-    expect(container.firstChild).to.have.class(outlined);
+    expect(container.firstChild).to.have.class(nativeSelectClasses.outlined);
   });
 
   it('should apply filled class', () => {
-    const filled = 'filled';
     const { container } = render(
-      <NativeSelectInput IconComponent="div" variant="filled" classes={{ filled }} />,
+      <NativeSelectInput IconComponent="div" variant="filled" classes={{ filled: 'filled' }} />,
     );
 
-    expect(container.firstChild).to.have.class(filled);
+    expect(container.firstChild).to.have.class(nativeSelectClasses.filled);
+  });
+
+  it('should apply multiple class', () => {
+    const { container } = render(<NativeSelectInput IconComponent="div" multiple />);
+
+    expect(container.firstChild).to.have.class(nativeSelectClasses.multiple);
+  });
+
+  describe('prop: multiple', () => {
+    it('slots overrides should work', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const selectStyle = {
+        marginLeft: '10px',
+        marginTop: '10px',
+      };
+
+      const multipleStyle = {
+        marginTop: '14px',
+      };
+
+      const theme = createTheme({
+        components: {
+          MuiNativeSelect: {
+            styleOverrides: {
+              select: selectStyle,
+              multiple: multipleStyle,
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <NativeSelectInput IconComponent="div" multiple>
+            <option value={'first'}>First</option>
+            <option value={'second'}>Second</option>
+          </NativeSelectInput>
+        </ThemeProvider>,
+      );
+
+      const combinedStyle = merge(selectStyle, multipleStyle);
+
+      expect(
+        container.getElementsByClassName(nativeSelectClasses.select)[0],
+      ).to.toHaveComputedStyle(combinedStyle);
+      expect(
+        container.getElementsByClassName(nativeSelectClasses.multiple)[0],
+      ).to.toHaveComputedStyle(combinedStyle);
+    });
   });
 });

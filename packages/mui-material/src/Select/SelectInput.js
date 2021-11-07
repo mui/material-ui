@@ -27,6 +27,7 @@ const SelectSelect = styled('div', {
       // Win specificity over the input base
       { [`&.${selectClasses.select}`]: styles.select },
       { [`&.${selectClasses.select}`]: styles[ownerState.variant] },
+      { [`&.${selectClasses.multiple}`]: styles.multiple },
     ];
   },
 })(nativeSelectSelectStyles, {
@@ -82,10 +83,10 @@ function isEmpty(display) {
 }
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, disabled, open } = ownerState;
+  const { classes, variant, disabled, multiple, open } = ownerState;
 
   const slots = {
-    select: ['select', variant, disabled && 'disabled'],
+    select: ['select', variant, disabled && 'disabled', multiple && 'multiple'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
   };

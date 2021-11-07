@@ -16,6 +16,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
+import { merge } from 'lodash/object';
 import classes from './selectClasses';
 
 describe('<Select />', () => {
@@ -938,6 +939,62 @@ describe('<Select />', () => {
         expect(onChange.secondCall.returnValue).to.deep.equal({ name: 'age', value: [30, 10] });
       });
     });
+
+    it('should apply multiple class', () => {
+      const { container } = render(
+        <Select multiple open value={[10, 30]}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      expect(container.querySelector(`.${classes.select}`)).to.have.class(classes.multiple);
+    });
+
+    it('slots overrides should work', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const selectStyle = {
+        marginLeft: '10px',
+        marginTop: '10px',
+      };
+
+      const multipleStyle = {
+        marginTop: '14px',
+      };
+
+      const theme = createTheme({
+        components: {
+          MuiSelect: {
+            styleOverrides: {
+              select: selectStyle,
+              multiple: multipleStyle,
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Select open value={['first']} multiple>
+            <MenuItem value="first" />
+            <MenuItem value="second" />
+          </Select>
+        </ThemeProvider>,
+      );
+
+      const combinedStyle = merge(selectStyle, multipleStyle);
+
+      expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(
+        combinedStyle,
+      );
+      expect(container.getElementsByClassName(classes.multiple)[0]).to.toHaveComputedStyle(
+        combinedStyle,
+      );
+    });
   });
 
   describe('prop: autoFocus', () => {
@@ -1164,12 +1221,23 @@ describe('<Select />', () => {
       marginTop: '10px',
     };
 
+    const selectStyle = {
+      marginLeft: '10px',
+      marginTop: '12px',
+    };
+
+    const multipleStyle = {
+      marginTop: '14px',
+    };
+
     const theme = createTheme({
       components: {
         MuiSelect: {
           styleOverrides: {
+            select: selectStyle,
             icon: iconStyle,
             nativeInput: nativeInputStyle,
+            multiple: multipleStyle,
           },
         },
       },
@@ -1188,6 +1256,7 @@ describe('<Select />', () => {
     expect(container.getElementsByClassName(classes.nativeInput)[0]).to.toHaveComputedStyle(
       nativeInputStyle,
     );
+    expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(selectStyle);
   });
 
   describe('prop: input', () => {
