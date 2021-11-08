@@ -107,7 +107,7 @@ const TablePaginationDisplayedRows = styled('p', {
 }));
 
 function defaultLabelDisplayedRows({ from, to, count }) {
-  return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
+  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
 }
 
 function defaultGetAriaLabel(type) {
