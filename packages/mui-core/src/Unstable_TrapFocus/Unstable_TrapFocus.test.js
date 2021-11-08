@@ -3,8 +3,8 @@ import * as ReactDOM from 'react-dom';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import { act, createRenderer, screen } from 'test/utils';
-import TrapFocus from '@mui/core/Unstable_TrapFocus';
-import Portal from '@mui/core/Portal';
+import TrapFocus from '@mui/base/Unstable_TrapFocus';
+import Portal from '@mui/base/Portal';
 
 describe('<TrapFocus />', () => {
   const { render } = createRenderer();

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
-import SwitchUnstyled, { SwitchState, switchUnstyledClasses } from '@mui/core/SwitchUnstyled';
+import SwitchUnstyled, { SwitchState, switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
 import { expect } from 'chai';
 
 describe('<SwitchUnstyled />', () => {

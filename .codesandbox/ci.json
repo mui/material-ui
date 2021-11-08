@@ -30,7 +30,7 @@
     "@mui/private-theming": "packages/mui-private-theming/build",
     "@mui/types": "packages/mui-types/build",
     "@mui/utils": "packages/mui-utils/build",
-    "@mui/core": "packages/mui-core/build",
+    "@mui/base": "packages/mui-core/build",
     "@mui/material-next": "packages/mui-material-next/build",
     "@mui/joy": "packages/mui-joy/build"
   },

@@ -3,8 +3,8 @@ import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { act, createRenderer, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
-import Portal from '@mui/core/Portal';
-import ClickAwayListener from '@mui/core/ClickAwayListener';
+import Portal from '@mui/base/Portal';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 describe('<ClickAwayListener />', () => {
   /**

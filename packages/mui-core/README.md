@@ -1,4 +1,4 @@
-# @mui/core
+# @mui/base
 
 This package hosts unstyled React components that can be used for creating custom design systems.
 
@@ -8,10 +8,10 @@ Install the package in your project directory with:
 
 ```sh
 // with npm
-npm install @mui/core
+npm install @mui/base
 
 // with yarn
-yarn add @mui/core
+yarn add @mui/base
 ```
 
 ## Documentation

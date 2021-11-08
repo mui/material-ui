@@ -5,7 +5,7 @@ import { createMount, createRenderer, describeConformanceUnstyled, fireEvent } f
 import FormControlUnstyled, {
   formControlUnstyledClasses,
   useFormControlUnstyled,
-} from '@mui/core/FormControlUnstyled';
+} from '@mui/base/FormControlUnstyled';
 
 describe('<FormControlUnstyled />', () => {
   const mount = createMount();

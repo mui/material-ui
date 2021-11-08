@@ -7,8 +7,8 @@ import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import { useButton } from '@mui/core/ButtonUnstyled';
-import composeClasses from '@mui/core/composeClasses';
+import { useButton } from '@mui/base/ButtonUnstyled';
+import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
 import styled, { rootShouldForwardProp } from '@mui/material/styles/styled';
 import useTouchRipple from '@mui/material/useTouchRipple';

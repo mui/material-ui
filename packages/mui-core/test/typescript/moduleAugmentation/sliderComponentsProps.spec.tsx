@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { SliderUnstyled } from '@mui/core';
+import { SliderUnstyled } from '@mui/base';
 
-declare module '@mui/core' {
+declare module '@mui/base' {
   interface SliderUnstyledComponentsPropsOverrides {
     variant?: 'one' | 'two';
   }

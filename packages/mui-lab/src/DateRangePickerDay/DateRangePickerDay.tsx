@@ -7,7 +7,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@mui/core';
+} from '@mui/base';
 import { DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import PickersDay, { PickersDayProps, areDayPropsEqual } from '../PickersDay/PickersDay';

@@ -1,2 +1,2 @@
-export { default } from '@mui/core/ClickAwayListener';
-export * from '@mui/core/ClickAwayListener';
+export { default } from '@mui/base/ClickAwayListener';
+export * from '@mui/base/ClickAwayListener';

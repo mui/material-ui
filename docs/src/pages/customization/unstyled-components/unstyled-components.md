@@ -18,7 +18,7 @@ If you:
 - need precise control over the rendered HTML of the components,
 - or need to implement custom components but don't want to deal with accessibility features on your own,
 
-then you will find `@mui/core` useful.
+then you will find `@mui/base` useful.
 
 If, however, you:
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
-import InputUnstyled, { inputUnstyledClasses } from '@mui/core/InputUnstyled';
+import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
 
 describe('<InputUnstyled />', () => {
   const mount = createMount();

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
-import ModalUnstyled, { modalUnstyledClasses as classes } from '@mui/core/ModalUnstyled';
+import ModalUnstyled, { modalUnstyledClasses as classes } from '@mui/base/ModalUnstyled';
 
 describe('<ModalUnstyled />', () => {
   const { render } = createRenderer();

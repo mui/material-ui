@@ -95,7 +95,7 @@ yarn add @mui/material @mui/styles
 ```text
 @material-ui/core -> @mui/material
 @material-ui/system -> @mui/system
-@material-ui/unstyled -> @mui/core
+@material-ui/unstyled -> @mui/base
 @material-ui/styles -> @mui/styles
 @material-ui/icons -> @mui/icons-material
 @material-ui/lab -> @mui/lab

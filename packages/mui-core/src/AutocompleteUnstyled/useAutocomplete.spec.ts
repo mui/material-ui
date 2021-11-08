@@ -1,4 +1,4 @@
-import { useAutocomplete, FilterOptionsState } from '@mui/core/AutocompleteUnstyled';
+import { useAutocomplete, FilterOptionsState } from '@mui/base/AutocompleteUnstyled';
 import { expectType } from '@mui/types';
 
 interface Person {

@@ -1,4 +1,4 @@
-import SliderUnstyled, { sliderUnstyledClasses as classes } from '@mui/core/SliderUnstyled';
+import SliderUnstyled, { sliderUnstyledClasses as classes } from '@mui/base/SliderUnstyled';
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy, stub } from 'sinon';

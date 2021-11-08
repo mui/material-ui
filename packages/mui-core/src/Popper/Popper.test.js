@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/system';
 import Grow from '@mui/material/Grow';
-import Popper from '@mui/core/Popper';
+import Popper from '@mui/base/Popper';
 
 describe('<Popper />', () => {
   let rtlTheme;
