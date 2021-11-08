@@ -18,7 +18,7 @@ A big thanks to the 31 contributors who made this release possible. Here are som
 - &#8203;<!-- 67 -->[Box] Support generateClassName and defaultClassName (#29347) @siriwatknp
 - &#8203;<!-- 66 -->[ButtonGroup] Fix variant outlined always has primary color borders on hover (#29487) @ZeeshanTamboli
 - &#8203;<!-- 65 -->[ButtonGroup] Support different elements under ButtonGroup (#28645) @ZeeshanTamboli
-- &#8203;<!-- 62 -->[CSSBaseline] Add `enableColorScheme` prop so enable using `color-scheme` property to deal with dark mode (#29454) @alexfauquette
+- &#8203;<!-- 62 -->[CssBaseline] Add `enableColorScheme` prop so enable using `color-scheme` property to deal with dark mode (#29454) @alexfauquette
 - &#8203;<!-- 29 -->[FormControlLabel] Narrow the label type (#29324) @michaldudak
 - &#8203;<!-- 28 -->[Grid] Fix usage when columns > 12 (#29196) @tanay123456789
 - &#8203;<!-- 27 -->[InputBase] Do not repeat the same classname (#29353) @hbjORbj
