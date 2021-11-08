@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { ListboxAction, ListboxState } from '.';
-import defaultReducer from './defaultReducer';
+import { ActionTypes, ListboxAction, ListboxState } from './types';
+import defaultReducer from './defaultListboxReducer';
 
 describe('useListbox defaultReducer', () => {
   describe('action: setControlledValue', () => {
@@ -10,7 +10,7 @@ describe('useListbox defaultReducer', () => {
         selectedValue: null,
       };
 
-      const action: ListboxAction<string> = { type: 'setControlledValue', value: 'foo' };
+      const action: ListboxAction<string> = { type: ActionTypes.setControlledValue, value: 'foo' };
       const result = defaultReducer(state, action);
       expect(result.selectedValue).to.equal('foo');
     });
@@ -24,7 +24,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListboxAction<string> = {
-        type: 'blur',
+        type: ActionTypes.blur,
         event: {} as any, // not relevant
         props: {
           options: [],
@@ -49,7 +49,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListboxAction<string> = {
-        type: 'optionClick',
+        type: ActionTypes.optionClick,
         event: {} as any, // not relevant
         props: {
           options: ['one', 'two', 'three'],
@@ -74,7 +74,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListboxAction<string> = {
-        type: 'optionClick',
+        type: ActionTypes.optionClick,
         event: {} as any, // not relevant
         props: {
           options: ['one', 'two', 'three'],
@@ -99,7 +99,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListboxAction<string> = {
-        type: 'optionClick',
+        type: ActionTypes.optionClick,
         event: {} as any, // not relevant
         props: {
           options: ['one', 'two', 'three'],
@@ -127,7 +127,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListboxAction<string> = {
-          type: 'keyDown',
+          type: ActionTypes.keyDown,
           event: {
             key: 'Home',
           } as any,
@@ -154,7 +154,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListboxAction<string> = {
-          type: 'keyDown',
+          type: ActionTypes.keyDown,
           event: {
             key: 'End',
           } as any,
@@ -181,7 +181,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListboxAction<string> = {
-          type: 'keyDown',
+          type: ActionTypes.keyDown,
           event: {
             key: 'ArrowUp',
           } as any,
@@ -208,7 +208,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListboxAction<string> = {
-          type: 'keyDown',
+          type: ActionTypes.keyDown,
           event: {
             key: 'ArrowDown',
           } as any,
@@ -233,7 +233,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListboxAction<string> = {
-          type: 'keyDown',
+          type: ActionTypes.keyDown,
           event: {
             key: 'ArrowDown',
           } as any,
@@ -260,7 +260,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListboxAction<string> = {
-          type: 'keyDown',
+          type: ActionTypes.keyDown,
           event: {
             key: 'Enter',
           } as any,
@@ -285,7 +285,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListboxAction<string> = {
-          type: 'optionClick',
+          type: ActionTypes.optionClick,
           event: {
             key: 'Enter',
           } as any,

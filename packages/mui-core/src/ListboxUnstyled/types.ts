@@ -11,8 +11,16 @@ export type UseListboxStrictProps<TOption> = Omit<
 > &
   Required<Pick<UseListboxProps<TOption>, UseListboxStrictPropsRequiredKeys>>;
 
+export enum ActionTypes {
+  blur = 'blur',
+  focus = 'focus',
+  keyDown = 'keyDown',
+  optionClick = 'optionClick',
+  setControlledValue = 'setControlledValue',
+}
+
 interface OptionClickAction<TOption> {
-  type: 'optionClick';
+  type: ActionTypes.optionClick;
   optionIndex: number;
   option: TOption;
   event: React.MouseEvent;
@@ -20,25 +28,25 @@ interface OptionClickAction<TOption> {
 }
 
 interface FocusAction<TOption> {
-  type: 'focus';
+  type: ActionTypes.focus;
   event: React.FocusEvent;
   props: UseListboxStrictProps<TOption>;
 }
 
 interface BlurAction<TOption> {
-  type: 'blur';
+  type: ActionTypes.blur;
   event: React.FocusEvent;
   props: UseListboxStrictProps<TOption>;
 }
 
 interface KeyDownAction<TOption> {
-  type: 'keyDown';
+  type: ActionTypes.keyDown;
   event: React.KeyboardEvent;
   props: UseListboxStrictProps<TOption>;
 }
 
 interface SetControlledValueAction<TOption> {
-  type: 'setControlledValue';
+  type: ActionTypes.setControlledValue;
   value: TOption | TOption[] | null;
 }
 
@@ -57,12 +65,6 @@ export interface ListboxState<TOption> {
 export type ListboxReducer<TOption> = (
   state: ListboxState<TOption>,
   action: ListboxAction<TOption>,
-) => ListboxState<TOption>;
-
-export type CustomListboxReducer<TOption> = (
-  state: ListboxState<TOption>,
-  action: ListboxAction<TOption>,
-  defaultReducer: ListboxReducer<TOption>,
 ) => ListboxState<TOption>;
 
 interface UseListboxCommonProps<TOption> {
@@ -94,7 +96,7 @@ interface UseListboxCommonProps<TOption> {
    * Custom state reducer function. It calculates the new state (highlighted and selected options)
    * based on the previous one and the performed action.
    */
-  stateReducer?: CustomListboxReducer<TOption>;
+  stateReducer?: ListboxReducer<TOption>;
   /**
    * Callback fired when the highlighted option changes.
    */

@@ -5,28 +5,16 @@ import {
   ListboxState,
   ListboxAction,
   UseListboxStrictProps,
-  CustomListboxReducer,
   ListboxReducer,
+  ActionTypes,
 } from './types';
-import defaultReducer from './defaultReducer';
+import defaultReducer from './defaultListboxReducer';
 
 const defaultOptionComparer = <TOption>(option: TOption, value: TOption) => option === value;
 
-function combineReducers<TOption>(
-  internal: ListboxReducer<TOption>,
-  external: CustomListboxReducer<TOption> | undefined,
-) {
-  if (external === undefined) {
-    return internal;
-  }
-
-  return (state: ListboxState<TOption>, action: ListboxAction<TOption>) =>
-    external(state, action, internal);
-}
-
 function useControlledReducer<TOption>(
   internalReducer: ListboxReducer<TOption>,
-  externalReducer: CustomListboxReducer<TOption> | undefined,
+  externalReducer: ListboxReducer<TOption> | undefined,
   controlledValue: UseListboxProps<TOption>['value'],
   defaultValue: UseListboxProps<TOption>['defaultValue'],
   onValueChange: UseListboxProps<TOption>['onChange'],
@@ -40,7 +28,7 @@ function useControlledReducer<TOption>(
   });
 
   const [state, dispatch] = React.useReducer<ListboxReducer<TOption>>(
-    combineReducers(internalReducer, externalReducer),
+    externalReducer ?? internalReducer,
     {
       highlightedIndex: -1,
       selectedValue: value,
@@ -49,7 +37,7 @@ function useControlledReducer<TOption>(
 
   React.useEffect(() => {
     if (controlledValue !== undefined) {
-      dispatch({ type: 'setControlledValue', value: controlledValue });
+      dispatch({ type: ActionTypes.setControlledValue, value: controlledValue });
     }
   }, [controlledValue]);
 
@@ -119,7 +107,7 @@ export default function useListbox<TOption>(
       event.preventDefault();
 
       dispatch({
-        type: 'optionClick',
+        type: ActionTypes.optionClick,
         option,
         optionIndex,
         event,
@@ -152,7 +140,7 @@ export default function useListbox<TOption>(
       }
 
       dispatch({
-        type: 'keyDown',
+        type: ActionTypes.keyDown,
         event,
         props: propsWithDefaults,
       });
@@ -167,7 +155,7 @@ export default function useListbox<TOption>(
 
       other.onBlur?.(event);
       dispatch({
-        type: 'blur',
+        type: ActionTypes.blur,
         event,
         props: propsWithDefaults,
       });

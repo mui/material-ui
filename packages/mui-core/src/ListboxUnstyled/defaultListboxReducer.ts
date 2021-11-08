@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListboxState, UseListboxStrictProps, ListboxAction } from './types';
+import { ListboxState, UseListboxStrictProps, ListboxAction, ActionTypes } from './types';
 
 type OptionPredicate<TOption> = (option: TOption, index: number) => boolean;
 
@@ -282,20 +282,20 @@ function handleBlur<TOption>(state: ListboxState<TOption>): ListboxState<TOption
   };
 }
 
-export default function defaultReducer<TOption>(
+export default function defaultListboxReducer<TOption>(
   state: Readonly<ListboxState<TOption>>,
   action: ListboxAction<TOption>,
 ): Readonly<ListboxState<TOption>> {
   const { type } = action;
 
   switch (type) {
-    case 'keyDown':
+    case ActionTypes.keyDown:
       return handleKeyDown(action.event, state, action.props);
-    case 'optionClick':
+    case ActionTypes.optionClick:
       return handleOptionClick(action.option, action.optionIndex, state, action.props);
-    case 'blur':
+    case ActionTypes.blur:
       return handleBlur(state);
-    case 'setControlledValue':
+    case ActionTypes.setControlledValue:
       return {
         ...state,
         selectedValue: action.value,
