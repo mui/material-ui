@@ -171,3 +171,28 @@ Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd cla
 ```
 
 {{"demo": "pages/components/tabs/AccessibleTabs2.js", "defaultCodeOpen": false}}
+
+## Unstyled
+
+The button also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+### Unstyled component
+
+```js
+import TabsUnstyled from '@mui/core/TabsUnstyled';
+import TabUnstyled from '@mui/core/TabUnstyled';
+import TabPanelUnstyled from '@mui/core/TabPanelUnstyled';
+```
+
+{{"demo": "pages/components/tabs/UnstyledTabsBasic.js"}}
+
+#### Customizing the root element
+
+By default, the `TabUnstyled` renders a native `button` element.
+You are free to override this by setting the `component` or `components.Root` prop.
+If a non-interactive element (such as a span) is provided this way, the `TabUnstyled` will take care of adding accessibility attributes.
+
+The `TabPanelUnstyled` on the other hand renders a native `div` element by default.
+You are free to override this as well by setting the `component` or `components.Root` prop on the `TabPanelUnstyled`.
+
+{{"demo": "pages/components/tabs/UnstyledTabCustomized.js"}}
