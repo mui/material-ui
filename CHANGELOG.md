@@ -45,7 +45,7 @@ A big thanks to the 31 contributors who made this release possible. Here are som
 - &#8203;<!-- 24 -->[Masonry] Fix crash on unmount when using React 18 (#29358) @eps1lon
 - &#8203;<!-- 23 -->[Masonry] Improve height computation and detect changes in `children` (#29351) @hbjORbj
 
-### `@mui/joy@0.1.0-alpha.1`
+### `@mui/joy@5.0.0-alpha.0`
 
 - &#8203;<!-- 26 -->[Joy] Export CssVarsProvider with default theme (#29150) @siriwatknp
 - &#8203;<!-- 25 -->[Joy] Remove `private` to leverage CodeSandbox (#29280) @siriwatknp
