@@ -6,7 +6,7 @@
 
 _Nov 8, 2021_
 
-A big thanks to the 31 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 33 contributors who made this release possible. Here are some highlights ✨:
 
 - 🎉 Support custom elements under `ButtonGroup` (#28645) @ZeeshanTamboli
 - 🛠 Add support for arrays in the `sx` prop (#29297) @siriwatknp
@@ -22,6 +22,8 @@ A big thanks to the 31 contributors who made this release possible. Here are som
 - &#8203;<!-- 29 -->[FormControlLabel] Narrow the label type (#29324) @michaldudak
 - &#8203;<!-- 28 -->[Grid] Fix usage when columns > 12 (#29196) @tanay123456789
 - &#8203;<!-- 27 -->[InputBase] Do not repeat the same classname (#29353) @hbjORbj
+- &#8203;<!-- 30 -->[InputBase] Remove WebkitAppearance from search type (#29383) @nicbarajas
+- &#8203;<!-- 25 -->[ListItem] Add missing exports (#29571) @robcaldecott
 - &#8203;<!-- 22 -->[Pagination] Allow customization of icons (#29336) @mbeltramin
 - &#8203;<!-- 11 -->[TextField] Fix bootstrap, normalize.css, sanitize.css conflicts (#28674) @ChrisClaude
 - &#8203;<!-- 10 -->[TextField] Fix invisible wrap within notched inputs (#29088) @DASPRiD
@@ -47,6 +49,7 @@ A big thanks to the 31 contributors who made this release possible. Here are som
 
 ### `@mui/joy@5.0.0-alpha.0`
 
+- &#8203;<!-- 28 -->[Joy] Update default theme (#29478) @siriwatknp
 - &#8203;<!-- 26 -->[Joy] Export CssVarsProvider with default theme (#29150) @siriwatknp
 - &#8203;<!-- 25 -->[Joy] Remove `private` to leverage CodeSandbox (#29280) @siriwatknp
 
@@ -102,7 +105,7 @@ A big thanks to the 31 contributors who made this release possible. Here are som
 - &#8203;<!-- 13 -->[test] Add internal test for uniqe `name` in `Rating` (#29329) @eps1lon
 - &#8203;<!-- 12 -->[test] Fix browser tests (#29305) @eps1lon
 
-All contributors of this release in alphabetical order: @adamfitzgibbon, @ainatenhi, @alexfauquette, @busches, @ChrisClaude, @dan-mba, @DanailH, @danilo-leal, @DASPRiD, @ElonVolo, @eps1lon, @eric-burel, @flaviendelangle, @gssakash, @hbjORbj, @IPJT, @jacklaurencegaray, @Jareechang, @jatinsandilya, @m4theushw, @mbeltramin, @mbrookes, @michaldudak, @mnajdova, @oliviertassinari, @Pablion, @siriwatknp, @tanay123456789, @tm1000, @Wimukti, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @adamfitzgibbon, @ainatenhi, @alexfauquette, @busches, @ChrisClaude, @dan-mba, @DanailH, @danilo-leal, @DASPRiD, @ElonVolo, @eps1lon, @eric-burel, @flaviendelangle, @gssakash, @hbjORbj, @IPJT, @jacklaurencegaray, @Jareechang, @jatinsandilya, @m4theushw, @mbeltramin, @mbrookes, @michaldudak, @mnajdova, @nicbarajas, @oliviertassinari, @Pablion, @robcaldecott, @siriwatknp, @tanay123456789, @tm1000, @Wimukti, @ZeeshanTamboli
 
 ## 5.0.6
 
