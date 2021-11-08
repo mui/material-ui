@@ -3,7 +3,11 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import { fireEvent, screen, describeConformance } from 'test/utils';
 import YearPicker, { yearPickerClasses as classes } from '@mui/lab/YearPicker';
-import { adapterToUse, wrapPickerMount, createPickerRenderer } from '../internal/pickers/test-utils';
+import {
+  adapterToUse,
+  wrapPickerMount,
+  createPickerRenderer,
+} from '../internal/pickers/test-utils';
 
 describe('<YearPicker />', () => {
   const { render } = createPickerRenderer();

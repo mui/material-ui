@@ -4,7 +4,11 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import { describeConformance, fireEvent, fireTouchChangedEvent, screen } from 'test/utils';
 import MobileTimePicker from '@mui/lab/MobileTimePicker';
-import { wrapPickerMount, createPickerRenderer, adapterToUse } from '../internal/pickers/test-utils';
+import {
+  wrapPickerMount,
+  createPickerRenderer,
+  adapterToUse,
+} from '../internal/pickers/test-utils';
 
 function createMouseEventWithOffsets(
   type: 'mousedown' | 'mousemove' | 'mouseup',

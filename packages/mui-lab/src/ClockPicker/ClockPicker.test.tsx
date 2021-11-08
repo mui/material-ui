@@ -3,7 +3,11 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, fireEvent, fireTouchChangedEvent, screen, within } from 'test/utils';
 import ClockPicker, { clockPickerClasses as classes } from '@mui/lab/ClockPicker';
-import { adapterToUse, wrapPickerMount, createPickerRenderer } from '../internal/pickers/test-utils';
+import {
+  adapterToUse,
+  wrapPickerMount,
+  createPickerRenderer,
+} from '../internal/pickers/test-utils';
 
 describe('<ClockPicker />', () => {
   const { render } = createPickerRenderer();
