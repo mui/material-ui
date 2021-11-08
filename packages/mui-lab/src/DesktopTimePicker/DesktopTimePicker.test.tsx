@@ -302,4 +302,67 @@ describe('<DesktopTimePicker />', () => {
       expect(handleTouchStart.callCount).to.equal(1);
     });
   });
+
+  describe('prop: mask', () => {
+    it('uses the mask prop if passed', () => {
+      const inputMask = '__:__ _M';
+      render(
+        <DesktopTimePicker
+          mask={inputMask}
+          value={null}
+          onChange={() => {}}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const input = screen.getByRole('textbox');
+      fireEvent.change(input, {
+        target: {
+          value: '12:00pmp',
+        },
+      });
+
+      expect(screen.getByRole('textbox')).to.have.value('12:00 pm');
+    });
+
+    it('defaults to an ampm mask if no mask prop is passed and ampm is passed as true', () => {
+      render(
+        <DesktopTimePicker
+          ampm
+          value={null}
+          onChange={() => {}}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const input = screen.getByRole('textbox');
+      fireEvent.change(input, {
+        target: {
+          value: '12:00pmp',
+        },
+      });
+
+      expect(screen.getByRole('textbox')).to.have.value('12:00 pm');
+    });
+
+    it('defaults to a 24 hour mask if no mask prop is passed and ampm is passed as false', () => {
+      render(
+        <DesktopTimePicker
+          ampm={false}
+          value={null}
+          onChange={() => {}}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const input = screen.getByRole('textbox');
+      fireEvent.change(input, {
+        target: {
+          value: '12:00pmp',
+        },
+      });
+
+      expect(screen.getByRole('textbox')).to.have.value('12:00');
+    });
+  });
 });
