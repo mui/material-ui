@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0-alpha.53",
+  "version": "5.0.0-alpha.54",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -69,9 +69,9 @@
     "@date-io/dayjs": "^2.11.0",
     "@date-io/luxon": "^2.11.1",
     "@date-io/moment": "^2.11.0",
-    "@mui/core": "5.0.0-alpha.53",
-    "@mui/system": "^5.0.6",
-    "@mui/utils": "^5.0.1",
+    "@mui/core": "5.0.0-alpha.54",
+    "@mui/system": "^5.1.0",
+    "@mui/utils": "^5.1.0",
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2",
@@ -79,7 +79,7 @@
     "rifm": "^0.12.0"
   },
   "devDependencies": {
-    "@mui/types": "^7.0.0",
+    "@mui/types": "^7.1.0",
     "@types/luxon": "^1.27.1",
     "date-fns": "^2.25.0",
     "dayjs": "^1.10.7",
