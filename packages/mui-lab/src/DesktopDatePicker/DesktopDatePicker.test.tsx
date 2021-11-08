@@ -7,7 +7,7 @@ import { fireEvent, screen, userEvent } from 'test/utils';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import {
-  createPickerRender,
+  createPickerRenderer,
   FakeTransitionComponent,
   adapterToUse,
 } from '../internal/pickers/test-utils';
@@ -48,7 +48,7 @@ describe('<DesktopDatePicker />', () => {
   afterEach(() => {
     clock.restore();
   });
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   it('prop: components.OpenPickerIcon', () => {
     function HomeIcon(props: SvgIconProps) {

@@ -5,7 +5,7 @@ import enLocale from 'date-fns/locale/en-US';
 import TextField from '@mui/material/TextField';
 import DesktopDatePicker, { DesktopDatePickerProps } from '@mui/lab/DesktopDatePicker';
 import { fireEvent, screen } from 'test/utils';
-import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
+import { adapterToUse, createPickerRenderer } from '../internal/pickers/test-utils';
 
 describe('<DesktopDatePicker /> localization', () => {
   describe('input validation', () => {
@@ -44,7 +44,7 @@ describe('<DesktopDatePicker /> localization', () => {
     ];
 
     tests.forEach(({ valid, invalid, locale, dateFnsLocale }) => {
-      const localizedRender = createPickerRender({ locale: dateFnsLocale });
+      const localizedRender = createPickerRenderer({ locale: dateFnsLocale });
 
       it(`${locale}: should set invalid`, () => {
         localizedRender(

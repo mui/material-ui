@@ -50,7 +50,7 @@ export function wrapPickerMount(mount: (node: React.ReactNode) => import('enzyme
     mount(<LocalizationProvider dateAdapter={AdapterClassToUse}>{node}</LocalizationProvider>);
 }
 
-export function createPickerRender({
+export function createPickerRenderer({
   locale,
   ...renderOptions
 }: PickerRenderOptions & import('test/utils').RenderOptions = {}) {
@@ -64,10 +64,14 @@ export function createPickerRender({
     );
   }
 
-  return (
-    node: React.ReactElement,
-    options?: Omit<import('test/utils').RenderOptions, 'wrapper'>,
-  ) => clientRender(node, { ...options, wrapper: Wrapper });
+  return {
+    render(
+      node: React.ReactElement,
+      options?: Omit<import('test/utils').RenderOptions, 'wrapper'>,
+    ) {
+      return clientRender(node, { ...options, wrapper: Wrapper });
+    },
+  };
 }
 
 export function openMobilePicker() {
