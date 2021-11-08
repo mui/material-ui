@@ -40,7 +40,9 @@ export const FakeTransitionComponent = React.forwardRef<HTMLDivElement, Transiti
   },
 );
 
-interface PickerRenderOptions {
+type CreateRenderOptions = import('test/utils').CreateRenderOptions;
+
+interface CreatePickerRendererOptions extends CreateRenderOptions {
   // object for date-fns, string for other adapters
   locale?: string | object;
 }
@@ -52,8 +54,10 @@ export function wrapPickerMount(mount: (node: React.ReactNode) => import('enzyme
 
 export function createPickerRenderer({
   locale,
-  ...renderOptions
-}: PickerRenderOptions & import('test/utils').RenderOptions = {}) {
+  ...createRendererOptions
+}: CreatePickerRendererOptions = {}) {
+  const { render: clientRender } = createRenderer(createRendererOptions);
+
   function Wrapper({ children }: { children?: React.ReactNode }) {
     return (
       <LocalizationProvider locale={locale} dateAdapter={AdapterClassToUse}>
@@ -62,7 +66,14 @@ export function createPickerRenderer({
     );
   }
 
-  return createRenderer({ ...renderOptions, wrapper: Wrapper });
+  return {
+    render(
+      node: React.ReactElement,
+      options?: Omit<import('test/utils').RenderOptions, 'wrapper'>,
+    ) {
+      return clientRender(node, { ...options, wrapper: Wrapper });
+    },
+  };
 }
 
 export function openMobilePicker() {
