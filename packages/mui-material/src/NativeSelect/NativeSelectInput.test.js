@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, createRenderer, fireEvent } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { merge } from 'lodash/object';
 import NativeSelectInput from './NativeSelectInput';
 import nativeSelectClasses from './nativeSelectClasses';
 
@@ -105,7 +104,7 @@ describe('<NativeSelectInput />', () => {
         </ThemeProvider>,
       );
 
-      const combinedStyle = merge(selectStyle, multipleStyle);
+      const combinedStyle = { ...selectStyle, ...multipleStyle };
 
       expect(
         container.getElementsByClassName(nativeSelectClasses.select)[0],

@@ -16,7 +16,6 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
-import { merge } from 'lodash/object';
 import classes from './selectClasses';
 
 describe('<Select />', () => {
@@ -986,7 +985,7 @@ describe('<Select />', () => {
         </ThemeProvider>,
       );
 
-      const combinedStyle = merge(selectStyle, multipleStyle);
+      const combinedStyle = { ...selectStyle, ...multipleStyle };
 
       expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(
         combinedStyle,
