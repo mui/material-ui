@@ -13,8 +13,14 @@ const LinkBehavior = React.forwardRef((props, ref) => {
 });
 
 LinkBehavior.propTypes = {
-  href: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.string])
-    .isRequired,
+  href: PropTypes.oneOfType([
+    PropTypes.shape({
+      hash: PropTypes.string,
+      pathname: PropTypes.string,
+      search: PropTypes.string,
+    }),
+    PropTypes.string,
+  ]).isRequired,
 };
 
 const theme = createTheme({
