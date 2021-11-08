@@ -54,8 +54,6 @@ export function createPickerRenderer({
   locale,
   ...renderOptions
 }: PickerRenderOptions & import('test/utils').RenderOptions = {}) {
-  const { render: clientRender } = createRenderer(renderOptions);
-
   function Wrapper({ children }: { children?: React.ReactNode }) {
     return (
       <LocalizationProvider locale={locale} dateAdapter={AdapterClassToUse}>
@@ -64,14 +62,7 @@ export function createPickerRenderer({
     );
   }
 
-  return {
-    render(
-      node: React.ReactElement,
-      options?: Omit<import('test/utils').RenderOptions, 'wrapper'>,
-    ) {
-      return clientRender(node, { ...options, wrapper: Wrapper });
-    },
-  };
+  return createRenderer({ ...renderOptions, wrapper: Wrapper });
 }
 
 export function openMobilePicker() {
