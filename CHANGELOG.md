@@ -8,8 +8,8 @@ _Nov 8, 2021_
 
 A big thanks to the 31 contributors who made this release possible. Here are some highlights ✨:
 
-- 🎉 Support custom elements under `ButtonGroup`
-- 🛠 Add support for arrays in the `sx` prop
+- 🎉 Support custom elements under `ButtonGroup` (#28645) @ZeeshanTamboli
+- 🛠 Add support for arrays in the `sx` prop (#29297) @siriwatknp
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@mui/material@5.1.0`
