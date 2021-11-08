@@ -1,4 +1,3 @@
-/* eslint-disable material-ui/mui-name-matches-component-name */
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { describeConformance } from 'test/utils';
