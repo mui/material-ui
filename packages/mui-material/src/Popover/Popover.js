@@ -239,16 +239,11 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const widthThreshold = containerWindow.innerWidth - marginThreshold;
 
       // if direction was RTL
-      let rightInRtlDirection =
-        containerWindow.innerWidth - elemTransformOrigin.horizontal - (left + anchorOffset.width);
-
-      if (anchorOrigin.horizontal === 'right') {
-        rightInRtlDirection += anchorOffset.width;
-      } else if (anchorOrigin.horizontal === 'center') {
-        rightInRtlDirection += anchorOffset.width;
-      } else {
-        rightInRtlDirection += anchorOffset.width;
-      }
+      const rightInRtlDirection =
+        containerWindow.innerWidth -
+        elemTransformOrigin.horizontal -
+        (left + anchorOffset.width) +
+        anchorOffset.width;
 
       // Check if the vertical axis needs shifting
       if (top < marginThreshold) {
@@ -293,15 +288,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         transformOrigin: getTransformOriginValue(elemTransformOrigin),
       };
     },
-    [
-      anchorEl,
-      anchorReference,
-      getAnchorOffset,
-      getTransformOrigin,
-      marginThreshold,
-      isRtl,
-      anchorOrigin.horizontal,
-    ],
+    [anchorEl, anchorReference, getAnchorOffset, getTransformOrigin, marginThreshold, isRtl],
   );
 
   const setPositioningStyles = React.useCallback(() => {
