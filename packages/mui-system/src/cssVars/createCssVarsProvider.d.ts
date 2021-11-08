@@ -55,7 +55,13 @@ export default function createCssVarsProvider<
   } = never,
   ApplicationColorScheme extends string = never,
 >(options: {
+  /**
+   * Design system default theme
+   */
   theme: DesignSystemThemeInput;
+  /**
+   * Design system default color scheme
+   */
   defaultColorScheme:
     | DesignSystemColorScheme
     | { light: DesignSystemColorScheme; dark: DesignSystemColorScheme };
@@ -69,6 +75,14 @@ export default function createCssVarsProvider<
    * @default ''
    */
   prefix?: string;
+  /**
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
+   */
+  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
 }): {
   CssVarsProvider: (
     props: React.PropsWithChildren<
