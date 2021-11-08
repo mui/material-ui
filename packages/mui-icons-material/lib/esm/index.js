@@ -8090,6 +8090,11 @@ export { default as TimesOneMobiledataOutlined } from './TimesOneMobiledataOutli
 export { default as TimesOneMobiledataRounded } from './TimesOneMobiledataRounded';
 export { default as TimesOneMobiledataSharp } from './TimesOneMobiledataSharp';
 export { default as TimesOneMobiledataTwoTone } from './TimesOneMobiledataTwoTone';
+export { default as TipsAndUpdates } from './TipsAndUpdates';
+export { default as TipsAndUpdatesOutlined } from './TipsAndUpdatesOutlined';
+export { default as TipsAndUpdatesRounded } from './TipsAndUpdatesRounded';
+export { default as TipsAndUpdatesSharp } from './TipsAndUpdatesSharp';
+export { default as TipsAndUpdatesTwoTone } from './TipsAndUpdatesTwoTone';
 export { default as Title } from './Title';
 export { default as TitleOutlined } from './TitleOutlined';
 export { default as TitleRounded } from './TitleRounded';
