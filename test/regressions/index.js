@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
@@ -282,7 +282,7 @@ function App(props) {
 
   return (
     <Router>
-      <Switch>
+      <Routes>
         {fixtures.map((fixture) => {
           const path = computePath(fixture);
           const FixtureComponent = fixture.Component;
@@ -292,16 +292,21 @@ function App(props) {
           }
 
           return (
-            <Route key={path} exact path={path}>
-              {fixturePrepared && (
-                <TestViewer>
-                  <FixtureComponent />
-                </TestViewer>
-              )}
-            </Route>
+            <Route
+              key={path}
+              exact
+              path={path}
+              element={
+                fixturePrepared ? (
+                  <TestViewer>
+                    <FixtureComponent />
+                  </TestViewer>
+                ) : null
+              }
+            />
           );
         })}
-      </Switch>
+      </Routes>
       <div hidden={!isDev}>
         <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
         <p>

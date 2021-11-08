@@ -1,12 +1,6 @@
-<MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+<Router>
   <Box sx={{ width: '100%' }}>
-    <Route>
-      {({ location }) => (
-        <Typography variant="body2" sx={{ pb: 2 }} color="text.secondary">
-          Current route: {location.pathname}
-        </Typography>
-      )}
-    </Route>
+    <Route element={<CurrentRoute />} />
     <MyTabs />
   </Box>
-</MemoryRouter>
+</Router>
