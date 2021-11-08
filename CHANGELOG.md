@@ -44,7 +44,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 ### `@mui/base@5.0.0-alpha.52`
 
 - &#8203;<!-- 39 -->[ClickAwayListener] Move to the core package (#29186) @hbjORbj
-- &#8203;<!-- 13 -->[Popper] Move from mui-material to mui-core (#28923) @rebeccahongsf
+- &#8203;<!-- 13 -->[Popper] Move from mui-material to mui-base (#28923) @rebeccahongsf
 - &#8203;<!-- 04 -->[TextareaAutosize] Move to the core package (#29148) @hbjORbj
 
 ### `@mui/lab@5.0.0-alpha.52`

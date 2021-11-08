@@ -95,7 +95,7 @@ function resolveNestedImport(packageFolder, importee) {
 const nestedFolder = {
   resolveId: (importee) => {
     if (importee.indexOf('@mui/base/') === 0) {
-      return resolveNestedImport('mui-core', importee);
+      return resolveNestedImport('mui-base', importee);
     }
 
     if (importee.indexOf('@mui/private-theming/') === 0) {
