@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
+import { spy, stub } from 'sinon';
 import { act, createRenderer, describeConformance } from 'test/utils';
 import { createTheme } from '@mui/material/styles';
 import { Transition } from 'react-transition-group';
@@ -9,7 +9,7 @@ import { setTranslateValue } from './Slide';
 import { useForkRef } from '../utils';
 
 describe('<Slide />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   const defaultProps = {
     in: true,
@@ -56,15 +56,7 @@ describe('<Slide />', () => {
   });
 
   describe('transition lifecycle', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('tests', () => {
       const handleAddEndListener = spy();
@@ -512,15 +504,7 @@ describe('<Slide />', () => {
     });
 
     describe('resize', () => {
-      let clock;
-
-      beforeEach(() => {
-        clock = useFakeTimers();
-      });
-
-      afterEach(() => {
-        clock.restore();
-      });
+      clock.withFakeTimers();
 
       it('should recompute the correct position', () => {
         const { container } = render(

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
+import { spy, stub } from 'sinon';
 import {
   describeConformance,
   ErrorBoundary,
@@ -19,18 +19,7 @@ import Divider from '@mui/material/Divider';
 import classes from './selectClasses';
 
 describe('<Select />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   describeConformance(<Select value="" />, () => ({
     classes,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import {
   createRenderer,
   act,
@@ -15,17 +15,7 @@ import SpeedDialAction from '@mui/material/SpeedDialAction';
 import { tooltipClasses } from '@mui/material/Tooltip';
 
 describe('<SpeedDial />', () => {
-  let clock;
-
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   const icon = <Icon>font_icon</Icon>;
   const FakeAction = () => <div />;

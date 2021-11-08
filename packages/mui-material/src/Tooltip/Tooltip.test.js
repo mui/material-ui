@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import {
   describeConformance,
   act,
@@ -16,22 +16,10 @@ import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
 
 describe('<Tooltip />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
+  const { clock, render } = createRenderer({ clock: 'fake' });
   beforeEach(() => {
     testReset();
-    clock = useFakeTimers();
   });
-
-  afterEach(() => {
-    act(() => {
-      clock.restore();
-    });
-  });
-
-  const { render } = createRenderer();
 
   describeConformance(
     <Tooltip title="Hello World" open>

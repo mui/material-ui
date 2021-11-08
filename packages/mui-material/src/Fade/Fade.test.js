@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { act, createRenderer, describeConformance } from 'test/utils';
 import { Transition } from 'react-transition-group';
 import Fade from '@mui/material/Fade';
 
 describe('<Fade />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   const defaultProps = {
     in: true,
@@ -30,15 +30,7 @@ describe('<Fade />', () => {
   }));
 
   describe('transition lifecycle', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('calls the appropriate callbacks for each transition', () => {
       const handleEnter = spy();

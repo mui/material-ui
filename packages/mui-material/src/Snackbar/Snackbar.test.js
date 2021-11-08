@@ -1,23 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
 
 describe('<Snackbar />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render: clientRender } = createRenderer();
+  const { clock, render: clientRender } = createRenderer({ clock: 'fake' });
   /**
    * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
    *
@@ -30,7 +18,7 @@ describe('<Snackbar />', () => {
    */
   function render(...args) {
     const result = clientRender(...args);
-    clock.next();
+    clock.tick(0);
     return result;
   }
 

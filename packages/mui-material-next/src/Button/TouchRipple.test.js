@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import { describeConformance, act, createRenderer } from 'test/utils';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
@@ -7,7 +6,7 @@ import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 const cb = () => {};
 
 describe('<TouchRipple />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   /**
    * @param {object} other props to spread to TouchRipple
@@ -176,18 +175,7 @@ describe('<TouchRipple />', () => {
   });
 
   describe('mobile', () => {
-    /**
-     * @type {ReturnType<typeof useFakeTimers>}
-     */
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('should delay the display of the ripples', () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();

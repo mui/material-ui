@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { act, createRenderer, describeConformance } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Transition } from 'react-transition-group';
@@ -8,7 +8,7 @@ import Grow from '@mui/material/Grow';
 import useForkRef from '../utils/useForkRef';
 
 describe('<Grow />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   const defaultProps = {
     in: true,
@@ -36,15 +36,7 @@ describe('<Grow />', () => {
   );
 
   describe('calls the appropriate callbacks for each transition', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('calls the appropriate callbacks for each transition', () => {
       const handleAddEndListener = spy();
@@ -122,15 +114,7 @@ describe('<Grow />', () => {
   describe('prop: timeout', () => {
     const enterDuration = 556;
     const leaveDuration = 446;
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     describe('onEnter', () => {
       it('should create proper easeOut animation', () => {

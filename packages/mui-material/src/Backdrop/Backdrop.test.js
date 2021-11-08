@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { createRenderer, describeConformance, act } from 'test/utils';
 import Backdrop, { backdropClasses as classes } from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
 
 describe('<Backdrop />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   describeConformance(<Backdrop open />, () => ({
     classes,
@@ -33,16 +33,7 @@ describe('<Backdrop />', () => {
   });
 
   describe('prop: transitionDuration', () => {
-    /**
-     * @type {ReturnType<typeof useFakeTimers>}
-     */
-    let clock;
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('delays appearance of its children', () => {
       const handleEntered = spy();

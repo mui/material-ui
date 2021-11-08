@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
+import { spy, stub } from 'sinon';
 import { act, createMount, createRenderer, describeConformance, screen } from 'test/utils';
 import PropTypes from 'prop-types';
 import Grow from '@mui/material/Grow';
@@ -34,19 +34,8 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
 });
 
 describe('<Popover />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-
+  const { clock, render } = createRenderer({ clock: 'fake' });
   const mount = createMount();
-  const { render } = createRenderer();
 
   describeConformance(<Popover anchorEl={() => document.createElement('div')} open />, () => ({
     classes,

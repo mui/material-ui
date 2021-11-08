@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
+import { spy, stub } from 'sinon';
 import { act, createRenderer, describeConformance } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Transition } from 'react-transition-group';
 import Collapse, { collapseClasses as classes } from '@mui/material/Collapse';
 
 describe('<Collapse />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   const defaultProps = {
     in: true,
@@ -46,10 +46,10 @@ describe('<Collapse />', () => {
   });
 
   describe('transition lifecycle', () => {
+    clock.withFakeTimers();
     let setProps;
     let collapse;
     let container;
-    let clock;
     let nodeEnterHeightStyle;
     let nodeEnteringHeightStyle;
     let nodeExitHeightStyle;
@@ -77,7 +77,6 @@ describe('<Collapse />', () => {
     const handleAddEndListener = spy();
 
     beforeEach(() => {
-      clock = useFakeTimers();
       const renderProps = render(
         <Collapse
           addEndListener={handleAddEndListener}
@@ -96,10 +95,6 @@ describe('<Collapse />', () => {
       setProps = renderProps.setProps;
       collapse = container.firstChild;
       stub(collapse.firstChild, 'clientHeight').get(() => 666);
-    });
-
-    afterEach(() => {
-      clock.restore();
     });
 
     it('should run in', () => {
@@ -146,15 +141,7 @@ describe('<Collapse />', () => {
   });
 
   describe('prop: timeout', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('should delay based on height when timeout is auto', () => {
       const theme = createTheme({

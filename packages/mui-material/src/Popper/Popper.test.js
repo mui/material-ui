@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/system';
@@ -9,7 +8,7 @@ import Popper from '@mui/material/Popper';
 
 describe('<Popper />', () => {
   let rtlTheme;
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer({ clock: 'fake' });
   const defaultProps = {
     anchorEl: () => document.createElement('svg'),
     children: <span>Hello World</span>,
@@ -204,14 +203,7 @@ describe('<Popper />', () => {
   });
 
   describe('prop: transition', () => {
-    let clock;
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('should work', () => {
       const { queryByRole, getByRole, setProps } = render(
@@ -227,9 +219,7 @@ describe('<Popper />', () => {
       expect(getByRole('tooltip')).to.have.text('Hello World');
 
       setProps({ anchorEl: null, open: false });
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
 
       expect(queryByRole('tooltip')).to.equal(null);
     });
@@ -292,14 +282,8 @@ describe('<Popper />', () => {
     });
   });
   describe('display', () => {
-    let clock;
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
+    clock.withFakeTimers();
 
-    afterEach(() => {
-      clock.restore();
-    });
     it('should keep display:none when not toggled and transition/keepMounted/disablePortal props are set', () => {
       const { getByRole, setProps } = render(
         <Popper {...defaultProps} open={false} keepMounted transition disablePortal>
@@ -314,14 +298,10 @@ describe('<Popper />', () => {
       expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
 
       setProps({ open: true });
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
 
       setProps({ open: false });
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
       expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
     });
   });
