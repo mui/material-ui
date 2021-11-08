@@ -41,24 +41,24 @@ const Tab = styled(TabUnstyled)`
     cursor: not-allowed;
     box-shadow: 0 0 0 0 rgba(0, 127, 255, 0);
   }
-`
+`;
 
 const TabPanel = styled(TabPanelUnstyled)`
   border: 2px solid grey;
   border-radius: 10px;
   float: left;
   clear: both;
-`
+`;
 
 export default function Example() {
   return (
     <Tabs>
       <div>
-      <TabsList>
-        <Tab>One</Tab>
-        <Tab>Two</Tab>
-        <Tab>Three</Tab>
-      </TabsList>
+        <TabsList>
+          <Tab>One</Tab>
+          <Tab>Two</Tab>
+          <Tab>Three</Tab>
+        </TabsList>
       </div>
       <TabPanel value={0}>First content</TabPanel>
       <TabPanel value={1}>Second content</TabPanel>

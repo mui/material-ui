@@ -1,0 +1,20 @@
+{
+  "props": {
+    "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "default": "{}"
+    },
+    "disabled": { "type": { "name": "bool" } },
+    "onChange": { "type": { "name": "func" } },
+    "selectionFollowsFocus": { "type": { "name": "bool" } },
+    "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
+  },
+  "name": "TabUnstyled",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "filename": "/packages/mui-core/src/TabUnstyled/TabUnstyled.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
+  "cssComponent": false
+}

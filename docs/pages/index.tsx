@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 import Tooltip from '@mui/material/Tooltip';
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 export default function VariantButtonGroup() {
   return (

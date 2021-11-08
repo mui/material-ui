@@ -1,14 +1,25 @@
 import * as React from 'react';
 
-interface TabsContextValue {
+export interface TabsContextValue {
+  /**
+   * Id used as a prefix for the current Tabs.
+   */
   idPrefix: string | null;
-  value: number;
-  onSelected: (value: number) => void;
+  /**
+   * The currently selected tab's value.
+   */
+  value: number | string | false;
+  /**
+   * Callback for setting new value.
+   */
+  onSelected: (value: number | string | false) => void;
 }
+
 /**
- * @type {React.Context<{ idPrefix: string; value: string } | null>}
+ * @ignore - internal component.
  */
 const Context = React.createContext<TabsContextValue | null>(null);
+
 if (process.env.NODE_ENV !== 'production') {
   Context.displayName = 'TabsContext';
 }
@@ -20,7 +31,7 @@ export function useTabContext() {
   return React.useContext(Context);
 }
 
-export function getPanelId(context: TabsContextValue, value: number) {
+export function getPanelId(context: TabsContextValue, value: number | string | false) {
   const { idPrefix } = context;
   if (idPrefix === null) {
     return null;
@@ -28,7 +39,7 @@ export function getPanelId(context: TabsContextValue, value: number) {
   return `${context.idPrefix}-P-${value}`;
 }
 
-export function getTabId(context: TabsContextValue, value: number) {
+export function getTabId(context: TabsContextValue, value: number | string | false) {
   const { idPrefix } = context;
   if (idPrefix === null) {
     return null;

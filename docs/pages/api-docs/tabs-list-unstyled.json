@@ -1,0 +1,10 @@
+{
+  "props": { "children": { "type": { "name": "node" } } },
+  "name": "TabsListUnstyled",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "filename": "/packages/mui-core/src/TabsListUnstyled/TabsListUnstyled.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
+  "cssComponent": false
+}

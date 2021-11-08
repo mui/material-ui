@@ -1,5 +1,7 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { useControlled } from '@mui/material/utils';
+import TabsUnstyledProps from './TabsUnstyledProps';
 import Context from './TabsContext';
 
 function useUniquePrefix() {
@@ -9,14 +11,17 @@ function useUniquePrefix() {
   }, []);
   return id;
 }
-
-interface TabsContextProps {
-  children?: React.ReactNode;
-  value?: number;
-  defaultValue?: number;
-}
-
-export default function TabsUnstyled(props: TabsContextProps) {
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/components/tabs/)
+ *
+ * API:
+ *
+ * - [TabsUnstyled API](https://mui.com/api/tabs-unstyled/)
+ */
+function TabsUnstyled(props: TabsUnstyledProps) {
   const { children, value: valueProp, defaultValue } = props;
   const [value, setValue] = useControlled({
     controlled: valueProp,
@@ -24,6 +29,7 @@ export default function TabsUnstyled(props: TabsContextProps) {
     name: 'TabsUnstyled',
     state: 'value',
   });
+
   const idPrefix = useUniquePrefix();
 
   const context = React.useMemo(() => {
@@ -32,3 +38,25 @@ export default function TabsUnstyled(props: TabsContextProps) {
 
   return <Context.Provider value={context}>{children}</Context.Provider>;
 }
+
+TabsUnstyled.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  /**
+   * The value of the currently selected `Tab`.
+   * If you don't want any selected `Tab`, you can set this prop to `false`.
+   */
+  value: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+} as any;
+
+export default TabsUnstyled;

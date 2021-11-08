@@ -1,0 +1,24 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "defaultValue": {
+      "type": {
+        "name": "union",
+        "description": "false<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
+      }
+    },
+    "value": {
+      "type": {
+        "name": "union",
+        "description": "false<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
+      }
+    }
+  },
+  "name": "TabsUnstyled",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "filename": "/packages/mui-core/src/TabsUnstyled/TabsUnstyled.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
+  "cssComponent": false
+}

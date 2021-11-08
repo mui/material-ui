@@ -1,10 +1,13 @@
 import * as React from 'react';
-import ButtonUnstyled, { ButtonUnstyledProps } from '../ButtonUnstyled';
+import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
+import ButtonUnstyled from '../ButtonUnstyled';
 import clsx from 'clsx';
 import composeClasses from '../composeClasses';
 import { useTabContext, getTabId, getPanelId } from '../TabsUnstyled';
 import appendOwnerState from '../utils/appendOwnerState';
 import { getTabUnstyledUtilityClass } from './tabUnstyledClasses';
+import TabUnstyledProps, { TabUnstyledTypeMap } from './TabUnstyledProps';
 
 const useUtilityClasses = (ownerState: { selected: boolean; disabled: boolean }) => {
   const { selected, disabled } = ownerState;
@@ -15,13 +18,16 @@ const useUtilityClasses = (ownerState: { selected: boolean; disabled: boolean })
 
   return composeClasses(slots, getTabUnstyledUtilityClass, {});
 };
-
-interface TabUnstyledProps extends Omit<ButtonUnstyledProps, 'onChange'> {
-  value?: number;
-  onChange?: (event: React.SyntheticEvent, value: number) => void;
-  selectionFollowsFocus?: boolean;
-}
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/components/tabs/)
+ *
+ * API:
+ *
+ * - [TabUnstyled API](https://mui.com/api/tab-unstyled/)
+ */
 const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnstyled(props, ref) {
   const {
     children,
@@ -102,6 +108,64 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
       {children}
     </TabRoot>
   );
-});
+}) as OverridableComponent<TabUnstyledTypeMap>;
+
+TabUnstyled.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
+   * The components used for each slot inside the Button.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * @ignore
+   */
+  componentsProps: PropTypes.object,
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Callback invoked when new value is being set.
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * If `true` the selected tab changes on focus. Otherwise it only
+   * changes on activation.
+   */
+  selectionFollowsFocus: PropTypes.bool,
+  /**
+   * You can provide your own value. Otherwise, we fallback to the child position index.
+   */
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+} as any;
 
 export default TabUnstyled;

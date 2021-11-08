@@ -1,0 +1,12 @@
+<Tabs>
+  <div>
+    <TabsList>
+      <Tab>One</Tab>
+      <Tab>Two</Tab>
+      <Tab>Three</Tab>
+    </TabsList>
+  </div>
+  <TabPanel value={0}>First content</TabPanel>
+  <TabPanel value={1}>Second content</TabPanel>
+  <TabPanel value={2}>Third content</TabPanel>
+</Tabs>
