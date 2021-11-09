@@ -102,6 +102,13 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
       return;
     }
 
+    if (message.indexOf('Warning: useLayoutEffect does nothing on the server') !== -1) {
+      // Controversial warning that is commonly ignored by switching to `useEffect` on the server.
+      // https://github.com/facebook/react/issues/14927
+      // However, this switch doesn't work since it relies on environment sniffing and we test SSR in a browser environment.
+      return;
+    }
+
     unexpectedCalls.push([
       // first line includes the (empty) error message
       // i.e. Remove the `Error:` line

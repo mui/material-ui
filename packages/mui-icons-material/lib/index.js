@@ -48557,6 +48557,36 @@ Object.defineProperty(exports, "TimesOneMobiledataTwoTone", {
     return _TimesOneMobiledataTwoTone.default;
   }
 });
+Object.defineProperty(exports, "TipsAndUpdates", {
+  enumerable: true,
+  get: function () {
+    return _TipsAndUpdates.default;
+  }
+});
+Object.defineProperty(exports, "TipsAndUpdatesOutlined", {
+  enumerable: true,
+  get: function () {
+    return _TipsAndUpdatesOutlined.default;
+  }
+});
+Object.defineProperty(exports, "TipsAndUpdatesRounded", {
+  enumerable: true,
+  get: function () {
+    return _TipsAndUpdatesRounded.default;
+  }
+});
+Object.defineProperty(exports, "TipsAndUpdatesSharp", {
+  enumerable: true,
+  get: function () {
+    return _TipsAndUpdatesSharp.default;
+  }
+});
+Object.defineProperty(exports, "TipsAndUpdatesTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _TipsAndUpdatesTwoTone.default;
+  }
+});
 Object.defineProperty(exports, "Title", {
   enumerable: true,
   get: function () {
@@ -69439,6 +69469,16 @@ var _TimesOneMobiledataRounded = _interopRequireDefault(require("./TimesOneMobil
 var _TimesOneMobiledataSharp = _interopRequireDefault(require("./TimesOneMobiledataSharp"));
 
 var _TimesOneMobiledataTwoTone = _interopRequireDefault(require("./TimesOneMobiledataTwoTone"));
+
+var _TipsAndUpdates = _interopRequireDefault(require("./TipsAndUpdates"));
+
+var _TipsAndUpdatesOutlined = _interopRequireDefault(require("./TipsAndUpdatesOutlined"));
+
+var _TipsAndUpdatesRounded = _interopRequireDefault(require("./TipsAndUpdatesRounded"));
+
+var _TipsAndUpdatesSharp = _interopRequireDefault(require("./TipsAndUpdatesSharp"));
+
+var _TipsAndUpdatesTwoTone = _interopRequireDefault(require("./TipsAndUpdatesTwoTone"));
 
 var _Title = _interopRequireDefault(require("./Title"));
 

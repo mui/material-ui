@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import Fade from '@mui/material/Fade';
 import { styled } from '@mui/material/styles';
-import { generateUtilityClasses } from '@mui/core';
+import { generateUtilityClasses } from '@mui/base';
 import { TransitionGroup } from 'react-transition-group';
 
 interface FadeTransitionProps {
