@@ -321,7 +321,10 @@ interface Renderer {
   renderToString(element: React.ReactElement, options?: RenderOptions): MuiRenderToStringResult;
 }
 
-export function createRenderer(globalOptions: RenderOptions = {}): Renderer {
+export interface CreateRenderOptions
+  extends Pick<RenderOptions, 'legacyRoot' | 'strict' | 'strictEffects'> {}
+
+export function createRenderer(globalOptions: CreateRenderOptions = {}): Renderer {
   const {
     legacyRoot: globalLegacyRoot,
     strict: globalStrict,

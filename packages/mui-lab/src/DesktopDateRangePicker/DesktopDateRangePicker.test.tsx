@@ -8,7 +8,7 @@ import { DateRange } from '@mui/lab/DateRangePicker';
 import DesktopDateRangePicker from '@mui/lab/DesktopDateRangePicker';
 import {
   wrapPickerMount,
-  createPickerRender,
+  createPickerRenderer,
   FakeTransitionComponent,
   adapterToUse,
 } from '../internal/pickers/test-utils';
@@ -28,7 +28,7 @@ describe('<DesktopDateRangePicker />', () => {
   afterEach(() => {
     clock.restore();
   });
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   describeConformance(
     <DesktopDateRangePicker
