@@ -897,7 +897,7 @@ export default function PricingTable({
         </Box>
       )}
       <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>
-        MUI Core
+        MUI Core (open-source)
       </RowHead>
       {renderRow('@mui/base')}
       {divider}
@@ -906,7 +906,7 @@ export default function PricingTable({
       {renderRow('@mui/system')}
 
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
-        MUI X
+        MUI X (open-core)
       </RowHead>
       <Box sx={{ position: 'relative', minHeight: 58, '& svg': { transition: '0.3s' }, ...gridSx }}>
         <Cell />
