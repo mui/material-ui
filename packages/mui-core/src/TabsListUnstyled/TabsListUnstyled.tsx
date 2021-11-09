@@ -1,12 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { isFragment } from 'react-is';
+import clsx from 'clsx';
 import {
   unstable_ownerDocument as ownerDocument,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
+import composeClasses from '../composeClasses';
 import { appendOwnerState } from '../utils';
+import { getTabsListUnstyledUtilityClass } from './tabsListUnstyledClasses';
 import TabsListUnstyledProps, { TabsListUnstyledTypeMap } from './TabListUnstyledProps';
 import { useTabContext } from '../TabsUnstyled';
 
@@ -65,6 +68,16 @@ const moveFocus = (
   }
 };
 
+const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
+  const { orientation } = ownerState;
+
+  const slots = {
+    root: ['root', orientation ],
+  };
+
+  return composeClasses(slots, getTabsListUnstyledUtilityClass, {});
+};
+
 /**
  *
  * Demos:
@@ -79,6 +92,7 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
+    className,
     children,
     component,
     components = {},
@@ -91,25 +105,25 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
   if (context === null) {
     throw new TypeError('No TabContext provided');
   }
-
+  
   const {
     value,
     orientation = 'horizontal',
     direction = 'ltr',
   } = context;
-
+  
   const tabListRef = React.useRef<Element | null>(null);
   const handleRef = useForkRef(tabListRef, ref);
-
+  
   const isRtl = direction === 'rtl';
-
+  
   const ownerState = {
     ...props,
     isRtl,
     orientation,
   };
-
-  // TODO: Add the classes
+  
+  const classes = useUtilityClasses(ownerState);
 
   const TabsListRoot: React.ElementType = component ?? components.Root ?? 'div';
   const tabsListRootProps = appendOwnerState(
@@ -184,29 +198,9 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
 
     return React.cloneElement(child, {
       value: childValue,
-      ...(childIndex === 1 && value === false && !child.props.tabIndex ? { tabIndex: 0 } : {})
+      ...(childIndex === 1 && value === false && !child.props.tabIndex ? { tabIndex: 0 } : value === childValue ? { tabIndex: 0 } : { tabIndex: -1 })
     });
   })
-
-  React.useEffect(() => {
-    const childrenArray = Array.from(tabListRef.current!.children);
-    if (process.env.NODE_ENV !== 'production') {
-      if (childrenArray && !childrenArray[valueToIndex.get(value)] && value) {
-        console.error(
-          [
-            `MUI: The \`value\` provided to the Tabs component is invalid.`,
-            `None of the Tabs' children match with "${value}".`,
-            valueToIndex.keys
-              ? `You can provide one of the following values: ${Array.from(
-                  valueToIndex.keys(),
-                ).join(', ')}.`
-              : null,
-          ].join('\n'),
-        );
-      }
-    }
-  }, [children, value])
-  
   
   return (
     <TabsListRoot
@@ -217,7 +211,7 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
       role="tablist"
       {...tabsListRootProps}
       onKeyDown={handleKeyDown}
-      // className={classes.flexContainer}
+      className={clsx(className, classes.root)}
     >
       {processedChildren}
     </TabsListRoot>

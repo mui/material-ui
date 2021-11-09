@@ -37,7 +37,6 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
     onChange,
     onClick,
     onFocus,
-    selectionFollowsFocus,
     component,
     components = {},
     componentsProps = {},
@@ -50,6 +49,7 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
 
   const value = valueProp ?? 0;
   const selected = context.value === value;
+  const selectionFollowsFocus = context.selectionFollowsFocus;
 
   const a11yAttributes = {
     role: 'tab',
@@ -57,7 +57,6 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
     id: getTabId(context, value),
     'aria-selected': selected,
     disabled,
-    tabIndex: selected ? 0 : -1,
   };
 
   const handleFocus = (event: React.FocusEvent<HTMLButtonElement, Element>) => {

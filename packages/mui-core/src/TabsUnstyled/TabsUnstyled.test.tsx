@@ -115,72 +115,8 @@ describe('<TabsUnstyled />', () => {
       expect(tabElements[0]).to.have.attribute('aria-selected', 'false');
       expect(tabElements[1]).to.have.attribute('aria-selected', 'true');
     });
-
-    describe('warnings', () => {
-      // TODO: Fix the warnings
-      it.skip('warns when the value is not present in any tab', () => {
-        expect(() => {
-          render(
-            <Tabs value={2}>
-              <TabsList>
-                <Tab value={1} />
-                <Tab value={3} />
-              </TabsList>
-            </Tabs>,
-          );
-        }).toErrorDev([
-          'You can provide one of the following values: 1, 3',
-          // React 18 Strict Effects run mount effects twice
-          // @ts-ignore
-          React.version.startsWith('18') && 'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-          // React 18 Strict Effects run mount effects twice
-          // @ts-ignore
-          React.version.startsWith('18') && 'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-        ]);
-      });
-
-      describe('hidden tab', () => {
-        let nodeEnv: any;
-
-        before(function test() {
-          if (!/jsdom/.test(window.navigator.userAgent)) {
-            this.skip();
-            return;
-          }
-
-          nodeEnv = process.env.NODE_ENV;
-          // We can't use a regular assignment, because it causes a syntax error in Karma
-          Object.defineProperty(process.env, 'NODE_ENV', { value: 'development' });
-        });
-
-        after(() => {
-          Object.defineProperty(process.env, 'NODE_ENV', { value: nodeEnv });
-        });
-
-        it.skip('should warn if a Tab has display: none', () => {
-          expect(() => {
-            render(
-              <Tabs value="hidden-tab">
-                <TabsList>
-                  <Tab value="hidden-tab" style={{ display: 'none' }} />
-                </TabsList>
-              </Tabs>,
-            );
-          }).toErrorDev([
-            [
-              'MUI: The `value` provided to the Tabs component is invalid.',
-              'The Tab with this `value` ("hidden-tab") is not part of the document layout.',
-              "Make sure the tab item is present in the document or that it's not `display: none`.",
-            ].join('\n'),
-          ]);
-        });
-      });
-    });
   });
-
+  
   describe('prop: onChange', () => {
     it('should call onChange when clicking', () => {
       const handleChange = spy();
@@ -213,8 +149,7 @@ describe('<TabsUnstyled />', () => {
       expect(handleChange.callCount).to.equal(0);
     });
 
-    // TODO: Not implemented yet
-    it.skip('when `selectionFollowsFocus` should call if an unselected tab gets focused', () => {
+    it('when `selectionFollowsFocus` should call if an unselected tab gets focused', () => {
       const handleChange = spy();
       const { getAllByRole } = render(
         <Tabs value={0} onChange={handleChange} selectionFollowsFocus>
@@ -285,25 +220,6 @@ describe('<TabsUnstyled />', () => {
       render(<Tabs value={0} orientation="vertical"><TabsList><Tabs /></TabsList></Tabs>);
 
       expect(screen.getByRole('tablist')).to.have.attribute('aria-orientation', 'vertical');
-    });
-  });
-
-  describe('server-side render', () => {
-    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
-
-    // TODO: Test with some other mechanism
-    it.skip('should let the selected <Tab /> render the indicator server-side', () => {
-      const container = serverRender(
-        <Tabs value={1}>
-          <TabsList>
-            <Tab />
-            <Tab />
-          </TabsList>
-        </Tabs>,
-      );
-      // @ts-ignore
-      const indicator = container?.firstChild?.querySelectorAll(`button > .${classes.indicator}`);
-      expect(indicator).to.have.lengthOf(1);
     });
   });
 

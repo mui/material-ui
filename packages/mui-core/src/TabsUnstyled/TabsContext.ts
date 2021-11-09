@@ -21,6 +21,11 @@ export interface TabsContextValue {
    * The direction of the text.
    */
   direction?: 'ltr' | 'rtl';
+  /**
+   * If `true` the selected tab changes on focus. Otherwise it only
+   * changes on activation.
+   */
+   selectionFollowsFocus?: boolean;  
 }
 
 /**

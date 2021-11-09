@@ -10,11 +10,6 @@ export interface TabUnstyledOwnProps extends Omit<ButtonUnstyledOwnerState, 'onC
    * Callback invoked when new value is being set.
    */
   onChange?: (event: React.SyntheticEvent, value: number | string) => void;
-  /**
-   * If `true` the selected tab changes on focus. Otherwise it only
-   * changes on activation.
-   */
-  selectionFollowsFocus?: boolean;
 }
 
 type TabUnstyledProps<

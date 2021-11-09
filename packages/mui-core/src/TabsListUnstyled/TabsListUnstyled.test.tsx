@@ -1,10 +1,26 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
-import TabsListUnstyled from '@mui/core/TabsListUnstyled';
+import { TabsContext } from '@mui/core/TabsUnstyled';
+import TabsList, { tabsListUnstyledClasses as classes } from '@mui/core/TabsListUnstyled';
 
 describe('<TabsListUnstyled />', () => {
-  const mount = createMount();
   const { render } = createRenderer();
+  const mount = createMount();
 
-  // TODO: add tests
+  // TODO: Support wrapper for adding TabContext
+  // describeConformanceUnstyled(<TabsList />, () => ({
+  //   classes,
+  //   mount,
+  //   inheritComponent: 'div',
+  //   render: (node) => render(<TabsContext.Provider value={{ value: "0" }}>{node}</TabsContext.Provider>),
+  //   wrapMount: (mount) => (node) => mount(<TabsContext.Provider value={{ value: "0" }}>{node}</TabsContext.Provider>),
+  //   muiName: 'MuiTabs',
+  //   refInstanceof: window.HTMLDivElement,
+  //   testComponentPropWith: 'header',
+  //   slots: {
+  //     root: {
+  //       expectedClassName: classes.root,
+  //     },
+  //   },
+  // }));
 });

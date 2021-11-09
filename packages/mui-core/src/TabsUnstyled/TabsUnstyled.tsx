@@ -48,6 +48,7 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
     components = {},
     componentsProps = {},
     onChange,
+    selectionFollowsFocus,
     ...other
   } = props;
   const [value, setValue] = useControlled({
@@ -65,8 +66,8 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
   }, [onChange])
 
   const context = React.useMemo(() => {
-    return { idPrefix, value, onSelected, orientation, direction };
-  }, [idPrefix, value, orientation, direction]);
+    return { idPrefix, value, onSelected, orientation, direction, selectionFollowsFocus };
+  }, [idPrefix, value, orientation, direction, selectionFollowsFocus]);
 
   const ownerState = {
     ...props,
