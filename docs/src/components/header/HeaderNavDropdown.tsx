@@ -60,7 +60,7 @@ const PRODUCTS = [
     href: ROUTES.productTemplates,
   },
   {
-    name: 'Design Kits',
+    name: 'Design kits',
     description: 'Our components available in your favorite design tool.',
     href: ROUTES.productDesignKits,
   },
