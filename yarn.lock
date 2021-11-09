@@ -2307,12 +2307,25 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@mui/core@^5.0.0-alpha.51":
+  version "5.0.0-alpha.54"
+  resolved "https://registry.yarnpkg.com/@mui/core/-/core-5.0.0-alpha.54.tgz#2c04163552ac536e2026778cc7f7435ce004ba1b"
+  integrity sha512-8TxdHqDdSb6wjhsnpE5n7qtkFKDG3PUSlVY0gR3VcdsHXscUY13l3VbMQW1brI4D/R9zx5VYmxIHWaHFgw4RtA==
+  dependencies:
+    "@babel/runtime" "^7.16.0"
+    "@emotion/is-prop-valid" "^1.1.0"
+    "@mui/utils" "^5.1.0"
+    "@popperjs/core" "^2.4.4"
+    clsx "^1.1.1"
+    prop-types "^15.7.2"
+    react-is "^17.0.2"
+
 "@mui/x-data-grid-generator@^5.0.0-beta.6":
   version "5.0.0-beta.6"
   resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-5.0.0-beta.6.tgz#713767d4493a1066c3431a4728798ba921564aae"
   integrity sha512-fYAfvNi0WbJZidPGPBU4r3uQ3V4ZpTDG1MmRoR8iFXgPcrnzvh8f8IF8wDIOIH6CAzJ2ZO0MrnlQ92tbUiSemQ==
   dependencies:
-    "@mui/base" "^5.0.0-alpha.51"
+    "@mui/core" "^5.0.0-alpha.51"
     "@types/chance" "^1.1.3"
     chance "^1.1.7"
     clsx "^1.1.1"
