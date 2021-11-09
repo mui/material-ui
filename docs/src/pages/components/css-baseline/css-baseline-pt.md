@@ -85,7 +85,7 @@ Be aware, however, that using this utility (and customizing `-webkit-scrollbar`)
 
 ### Color scheme
 
-This API is introduced in @mui/material (v5.0.7) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` css property. To enable it, you can set `enableColorScheme=true` as follow:
+Esta API foi introduzida no @mui/material (v5.1.0) para alternar entre os modos `"claro"` e `"escuro"` dos componentes nativos como a barra de rolagem, usando a propriedade CSS `color-scheme`. To enable it, you can set `enableColorScheme=true` as follow:
 
 ```jsx
 <CssBaseline enableColorScheme />
