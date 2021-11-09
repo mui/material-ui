@@ -86,7 +86,7 @@ export function PlanPrice(props: PlanPriceProps) {
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
-          – free forever
+          – free forever.
         </Typography>
       </Box>
     );
