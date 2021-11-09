@@ -40,7 +40,7 @@ const Plan = React.forwardRef<
           fullWidth
           sx={{ py: 1, '&.Mui-disabled': { color: 'text.disabled' } }}
         >
-          Work in progress
+          In progress (Q2 2022)
         </Button>
       ) : (
         <Button

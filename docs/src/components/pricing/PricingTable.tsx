@@ -19,7 +19,7 @@ const planInfo = {
     color: 'green',
     title: 'Community',
     description:
-      'Get started with the industry-standard UI library for building React user interfaces.',
+      'Get started with the industry-standard UI library for building React user interfaces (open-source, MIT licensed).',
   },
   pro: {
     color: 'blue',
@@ -29,7 +29,7 @@ const planInfo = {
   premium: {
     color: 'gold',
     title: 'Premium',
-    description: 'Unlock all the most advanced features including premium support.',
+    description: 'Unlock all the most advanced features including professional support.',
   },
 } as const;
 
@@ -86,7 +86,7 @@ export function PlanPrice(props: PlanPriceProps) {
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
-          – free forever.
+          – free forever
         </Typography>
       </Box>
     );
@@ -891,7 +891,7 @@ export default function PricingTable({
               fullWidth
               sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.disabled' } }}
             >
-              Work in progress
+              In progress (Q 2022)
             </Button>
           </Box>
         </Box>
