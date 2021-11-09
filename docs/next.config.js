@@ -181,7 +181,7 @@ module.exports = {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
-        if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/playgrounds')) {
+        if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
           return;
         }
         if (!page.children) {

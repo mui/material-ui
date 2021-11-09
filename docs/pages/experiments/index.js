@@ -11,10 +11,10 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import Link from 'docs/src/modules/components/Link';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
-export default function Playgrounds({ playgrounds }) {
+export default function Experiments({ experiments }) {
   const categories = {};
 
-  playgrounds.forEach((name) => {
+  experiments.forEach((name) => {
     const paths = name.split('/');
     const categoryName = paths.length === 1 ? 'Uncategorized' : capitalize(paths[0] || '');
 
@@ -23,7 +23,7 @@ export default function Playgrounds({ playgrounds }) {
     }
     categories[categoryName].push({
       name: capitalize(paths[1] || paths[0]),
-      pathname: `/playgrounds/${name}`,
+      pathname: `/experiments/${name}`,
     });
   });
 
@@ -47,16 +47,16 @@ export default function Playgrounds({ playgrounds }) {
             Welcome to
           </Typography>
           <Typography component="h1" variant="h2" sx={{ my: 1 }}>
-            MUI <GradientText>Playgrounds</GradientText>
+            MUI <GradientText>Experiments</GradientText>
           </Typography>
 
           <Box sx={{ textAlign: 'left' }}>
             <ul>
               <Typography component="li">
-                All the files under <code>/playgrounds</code> are committed to git.
+                All the files under <code>/experiments</code> are committed to git.
               </Typography>
               <Typography component="li">
-                URLs start with <code>/playgrounds/*</code> are deployed only on the pull request.
+                URLs start with <code>/experiments/*</code> are deployed only on the pull request.
               </Typography>
             </ul>
           </Box>
@@ -73,9 +73,9 @@ export default function Playgrounds({ playgrounds }) {
             textAlign="center"
             sx={{ mb: 2 }}
           >
-            All Playgrounds ({playgrounds.length})
+            All Experiments ({experiments.length})
           </Typography>
-          {playgrounds.length > 0 && (
+          {experiments.length > 0 && (
             <Box
               sx={{
                 display: 'grid',
@@ -136,15 +136,15 @@ export default function Playgrounds({ playgrounds }) {
   );
 }
 
-Playgrounds.getInitialProps = () => {
-  const playgrounds = [];
+Experiments.getInitialProps = () => {
+  const experiments = [];
   const req = require.context('./', true, /^\.\/.*(?<!index)\.(js|tsx)$/);
 
   req.keys().forEach((k) => {
-    playgrounds.push(k.replace(/^\.\/(.*)\.(js|tsx)$/, '$1'));
+    experiments.push(k.replace(/^\.\/(.*)\.(js|tsx)$/, '$1'));
   });
 
   return {
-    playgrounds,
+    experiments,
   };
 };
