@@ -44,7 +44,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
     transition: all 800ms ease;
     pointer-events: none;
   }
-
+  
   & .bg {
     stroke: var(--main-color);
     stroke-width: 0.5;
@@ -76,7 +76,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
     outline: none;
   }
 
-  &.${buttonUnstyledClasses.active} {
+  &.${buttonUnstyledClasses.active} { 
     & .bg {
       fill: var(--active-color);
       transition: fill 300ms ease-out;
