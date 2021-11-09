@@ -149,9 +149,9 @@ import lab from '@mui/lab';
 
   it('can use codesandbox deploys if a commit is given', () => {
     const source = `
-import * as Core from '@mui/material';
-import * as Unstyled from '@mui/base';
-import * as Icons from '@mui/icons-material';
+import * as Material from '@mui/material';
+import * as Base from '@mui/base';
+import * as IconsMaterial from '@mui/icons-material';
 import * as Lab from '@mui/lab';
 import * as Styles from '@mui/styles';
 import * as System from '@mui/system';
