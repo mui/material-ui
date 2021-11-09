@@ -169,7 +169,7 @@ const themeWithoutVars: BaseJoyTokens = {
     xl6: '4.5rem',
   },
   fontFamily: {
-    sans: 'Public Sans, Roboto',
+    sans: '"Public Sans", Roboto',
     mono: 'Consolas',
   },
   fontWeight: {
