@@ -1,7 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useControlled } from '@mui/material/utils';
-import TabsUnstyledProps from './TabsUnstyledProps';
+import { OverridableComponent } from '@mui/types';
+import { appendOwnerState } from '../utils';
+import TabsUnstyledProps, { TabsUnstyledTypeMap } from './TabsUnstyledProps';
 import Context from './TabsContext';
 
 function useUniquePrefix() {
@@ -21,8 +23,18 @@ function useUniquePrefix() {
  *
  * - [TabsUnstyled API](https://mui.com/api/tabs-unstyled/)
  */
-function TabsUnstyled(props: TabsUnstyledProps) {
-  const { children, value: valueProp, defaultValue } = props;
+const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) => {
+  const {
+    children,
+    value: valueProp,
+    defaultValue,
+    orientation = 'horizontal',
+    direction = 'ltr',
+    component,
+    components = {},
+    componentsProps = {},
+    ...other
+  } = props;
   const [value, setValue] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -33,11 +45,30 @@ function TabsUnstyled(props: TabsUnstyledProps) {
   const idPrefix = useUniquePrefix();
 
   const context = React.useMemo(() => {
-    return { idPrefix, value, onSelected: setValue };
-  }, [idPrefix, value, setValue]);
+    return { idPrefix, value, onSelected: setValue, orientation, direction };
+  }, [idPrefix, value, setValue, orientation, direction]);
 
-  return <Context.Provider value={context}>{children}</Context.Provider>;
-}
+  const ownerState = {
+    ...props,
+    orientation,
+    direction,
+  };
+
+  // const classes = useUtilityClasses(ownerState);
+
+  const TabsRoot: React.ElementType = component ?? components.Root ?? 'div';
+  const tabsRootProps = appendOwnerState(
+    TabsRoot,
+    { ...other, ...componentsProps.root },
+    ownerState,
+  );
+
+  return (
+    <TabsRoot {...tabsRootProps}>
+      <Context.Provider value={context}>{children}</Context.Provider>
+    </TabsRoot>
+  );
+}) as OverridableComponent<TabsUnstyledTypeMap>;
 
 TabsUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -49,9 +80,37 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
+   * The components used for each slot inside the Tabs.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Tabs.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
+  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  /**
+   * The direction of the text.
+   * @default 'ltr'
+   */
+  direction: PropTypes.oneOf(['ltr', 'rtl']),
+  /**
+   * The component orientation (layout flow direction).
+   * @default 'horizontal'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The value of the currently selected `Tab`.
    * If you don't want any selected `Tab`, you can set this prop to `false`.

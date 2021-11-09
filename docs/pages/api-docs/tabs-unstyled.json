@@ -1,11 +1,25 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "defaultValue": {
       "type": {
         "name": "union",
         "description": "false<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
       }
+    },
+    "direction": {
+      "type": { "name": "enum", "description": "'ltr'<br>&#124;&nbsp;'rtl'" },
+      "default": "'ltr'"
+    },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
     },
     "value": {
       "type": {

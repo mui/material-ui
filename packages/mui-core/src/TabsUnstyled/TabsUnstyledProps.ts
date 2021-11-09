@@ -1,6 +1,12 @@
 import React from 'react';
+import { OverrideProps } from '@mui/types';
 
-export interface TabsUnstyledProps {
+export interface TabsOwnerState
+  extends Omit<TabsUnstyledProps, 'component' | 'components' | 'componentsProps'> {
+  hidden: boolean;
+}
+
+export interface TabsUnstyledOwnProps {
   /**
    * The content of the component.
    */
@@ -14,6 +20,49 @@ export interface TabsUnstyledProps {
    * The default value. Use when the component is not controlled.
    */
   defaultValue?: string | number | false;
+  /**
+   * The component orientation (layout flow direction).
+   * @default 'horizontal'
+   */
+  orientation?: 'horizontal' | 'vertical';
+  /**
+   * The direction of the text.
+   * @default 'ltr'
+   */
+  direction?: 'ltr' | 'rtl';
+  className?: string;
+  /**
+   * The components used for each slot inside the Tabs.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: {
+    Root?: React.ElementType;
+  };
+  /**
+   * The props used for each slot inside the Tabs.
+   * @default {}
+   */
+  componentsProps?: {
+    root?: React.ComponentPropsWithRef<'div'> & { ownerState: TabsOwnerState };
+  };
 }
+
+export interface TabsUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & TabsUnstyledOwnProps;
+  defaultComponent: D;
+}
+
+type TabsUnstyledProps<
+  D extends React.ElementType = TabsUnstyledTypeMap['defaultComponent'],
+  P = {},
+> = OverrideProps<TabsUnstyledTypeMap<P, D>, D> & {
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
+  component?: D;
+};
 
 export default TabsUnstyledProps;

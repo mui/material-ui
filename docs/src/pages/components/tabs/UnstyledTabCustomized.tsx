@@ -7,24 +7,19 @@ import { buttonUnstyledClasses } from '@mui/core/ButtonUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/core/TabUnstyled';
 
 const Tab = styled(TabUnstyled)`
-  background-color: #007fff;
   padding: 15px 20px;
-  border-radius: 10px;
-  color: #fff;
+  color: #004386;
+  background: #fff;
   font-weight: 600;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
-  transition: all 200ms ease;
+  transition: border 100ms ease;
   cursor: pointer;
-  box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 0 rgba(0, 127, 255, 0);
   border: none;
+  margin: 3px;
 
   &:hover {
-    background-color: #0059b2;
-  }
-
-  &.${buttonUnstyledClasses.active} {
-    background-color: #004386;
+    border-bottom: 2px solid #006ad4;
   }
 
   &.${buttonUnstyledClasses.focusVisible} {
@@ -33,7 +28,7 @@ const Tab = styled(TabUnstyled)`
   }
 
   &.${tabUnstyledClasses.selected} {
-    background-color: #004386;
+    border-bottom: 2px solid #004386;
   }
 
   &.${buttonUnstyledClasses.disabled} {
@@ -44,15 +39,12 @@ const Tab = styled(TabUnstyled)`
 `;
 
 const TabPanel = styled(TabPanelUnstyled)`
-  border: 2px solid grey;
-  border-radius: 10px;
-  float: left;
-  clear: both;
+  width: 100%;
 `;
 
 export default function Example() {
   return (
-    <Tabs>
+    <Tabs defaultValue={0}>
       <div>
         <TabsList>
           <Tab>One</Tab>

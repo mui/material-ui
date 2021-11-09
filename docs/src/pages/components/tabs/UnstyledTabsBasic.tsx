@@ -6,7 +6,7 @@ import Tab from '@mui/core/TabUnstyled';
 
 export default function Example() {
   return (
-    <Tabs>
+    <Tabs defaultValue={0}>
       <TabsList>
         <Tab>One</Tab>
         <Tab>Two</Tab>

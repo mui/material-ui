@@ -1,5 +1,15 @@
 {
-  "props": { "children": { "type": { "name": "node" } } },
+  "props": {
+    "aria-label": { "type": { "name": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" }
+  },
   "name": "TabsListUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
