@@ -3,7 +3,7 @@
   "version": "6.0.0-alpha.8",
   "private": false,
   "author": "MUI Team",
-  "description": "Material Design components built using @mui/core.",
+  "description": "Material Design components built using @mui/base.",
   "main": "./src/index.ts",
   "keywords": [
     "react",
@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.0",
-    "@mui/core": "5.0.0-alpha.54",
+    "@mui/base": "5.0.0-alpha.54",
     "@mui/system": "^5.1.0",
     "@mui/types": "^7.1.0",
     "@mui/utils": "^5.1.0",

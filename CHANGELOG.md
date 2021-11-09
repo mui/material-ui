@@ -142,16 +142,16 @@ _Oct 26, 2021_
 A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
 - 🔧 Implement `Masonry` using Flexbox by @hbjORbj.
-- 🧪 Add three components to `@mui/core` by @rebeccahongsf and @hbjORbj.
+- 🧪 Add three components to `@mui/base` by @rebeccahongsf and @hbjORbj.
 
 ### `@mui/codemod@5.0.5`
 
 - &#8203;<!-- 38 -->[codemod] Support new package name in `link-underline-hover` transformer (#29214) @siriwatknp
 
-### `@mui/core@5.0.0-alpha.52`
+### `@mui/base@5.0.0-alpha.52`
 
 - &#8203;<!-- 39 -->[ClickAwayListener] Move to the core package (#29186) @hbjORbj
-- &#8203;<!-- 13 -->[Popper] Move from mui-material to mui-core (#28923) @rebeccahongsf
+- &#8203;<!-- 13 -->[Popper] Move from mui-material to mui-base (#28923) @rebeccahongsf
 - &#8203;<!-- 04 -->[TextareaAutosize] Move to the core package (#29148) @hbjORbj
 
 ### `@mui/lab@5.0.0-alpha.52`
@@ -220,7 +220,7 @@ _Oct 14, 2021_
 
 A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
-- 🧪 Added `UnstyledInput` and `useInput` hook in the the first component in @mui/core package @michaldudak (#28053)
+- 🧪 Added `UnstyledInput` and `useInput` hook in the the first component in @mui/base package @michaldudak (#28053)
 - 🐛 Fixed many bugs and improved the documentation 📚.
 
 ### `@mui/material@5.0.4`
@@ -235,7 +235,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 05 -->[system] Update typing for `style` function (#28744) @hbjORbj
 
-### `@mui/core@5.0.0-alpha.51`
+### `@mui/base@5.0.0-alpha.51`
 
 - &#8203;<!-- 07 -->[InputUnstyled] Create unstyled input and useInput hook (#28053) @michaldudak
 
@@ -304,7 +304,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 42 -->Don't allow styled-components APIs on mui styled function (#28807) @hbjORbj
 
-### `@mui/core@5.0.0-alpha.50`
+### `@mui/base@5.0.0-alpha.50`
 
 - &#8203;<!-- 38 -->[ButtonUnstyled] Don't set redundant role=button (#28488) @michaldudak
 - &#8203;<!-- 43 -->[SliderUnstyled] Prevent unknown-prop error when using marks prop (#28868) @hbjORbj
@@ -683,10 +683,10 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   ```
   @material-ui/core => @mui/material        // represents Material Design components.
   @material-ui/icons => @mui/icons-material // represents Material Design icons.
-  @material-ui/unstyled => @mui/core        // fully functional components with minimum styles.
+  @material-ui/unstyled => @mui/base        // fully functional components with minimum styles.
   ```
 
-  > **Note**: `@mui/core` (previously `@material-ui/unstyled`) is not the same as `@material-ui/core`.
+  > **Note**: `@mui/base` (previously `@material-ui/unstyled`) is not the same as `@material-ui/core`.
 
   We encourage you to use the [codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) for smooth migration.
 
@@ -701,7 +701,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - &#8203;<!-- 05 -->[ToggleButtonGroup] Add "disabled" prop (#27998) @chetas411
 - &#8203;<!-- 34 -->[core] Export types for module augmentation (#28078) @m4theushw
 
-### `@mui/core@5.0.0-alpha.45`
+### `@mui/base@5.0.0-alpha.45`
 
 - &#8203;<!-- 38 -->[Button] Create ButtonUnstyled and useButton (#27600) @michaldudak
 

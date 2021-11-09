@@ -69,7 +69,7 @@
     "@date-io/dayjs": "^2.11.0",
     "@date-io/luxon": "^2.11.1",
     "@date-io/moment": "^2.11.0",
-    "@mui/core": "5.0.0-alpha.54",
+    "@mui/base": "5.0.0-alpha.54",
     "@mui/system": "^5.1.0",
     "@mui/utils": "^5.1.0",
     "clsx": "^1.1.1",

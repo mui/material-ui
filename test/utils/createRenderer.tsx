@@ -321,11 +321,14 @@ interface Renderer {
   renderToString(element: React.ReactElement, options?: RenderOptions): MuiRenderToStringResult;
 }
 
-export function createRenderer(globalOptions: RenderOptions = {}): Renderer {
+export interface CreateRenderOptions
+  extends Pick<RenderOptions, 'legacyRoot' | 'strict' | 'strictEffects'> {}
+
+export function createRenderer(globalOptions: CreateRenderOptions = {}): Renderer {
   const {
     legacyRoot: globalLegacyRoot,
-    strict: globalStrict,
-    strictEffects: globalStrictEffects,
+    strict: globalStrict = true,
+    strictEffects: globalStrictEffects = globalStrict,
   } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();

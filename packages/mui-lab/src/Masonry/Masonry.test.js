@@ -52,6 +52,25 @@ describe('<Masonry />', () => {
         width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing)})`,
       });
     });
+
+    it('should throw console error when children are empty', function test() {
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(
+        'Warning: Failed prop type: The prop `children` is marked as required in `ForwardRef(Masonry)`, but its value is `undefined`.',
+      );
+    });
+
+    it('should not throw type error when children are empty', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(
+        'Warning: Failed prop type: The prop `children` is marked as required in `ForwardRef(Masonry)`, but its value is `undefined`.',
+      );
+      expect(() => render(<Masonry columns={3} spacing={1} />)).not.to.throw(new TypeError());
+    });
   });
 
   describe('style attribute:', () => {

@@ -6,7 +6,7 @@
 
 - Use `@mui/material` if you want to use the components following the Material Design guidelines.
   > 💡 You can import styling APIs (eg. `ThemeProvider`, `styled`, etc.) directly from `@mui/material`.
-- Use `@mui/core` if you want to style the components from scratch using your preferred styling method.
+- Use `@mui/base` if you want to style the components from scratch using your preferred styling method.
   > 💡 This package can be imported alongside `@mui/material` without an installation.
 - Use `@mui/system` if you want APIs that enable building your own design system from scratch.
 
@@ -18,7 +18,7 @@ The following is an up-to-date list of `@mui` public packages.
 
 - `@mui/material`
 - `@mui/system`
-- `@mui/core`
+- `@mui/base`
 - `@mui/styled-engine`
 - `@mui/styled-engine-sc`
 - `@mui/styles`
@@ -64,9 +64,9 @@ Here are some benefits:
 
 > **Note**: you will have to install either `emotion` or `styled-components`, because the `system` package depends on it.
 
-## Core
+## Base
 
-The core layer, `@mui/core`, is also known as unstyled components.
+The base layer, `@mui/base`, is also known as unstyled components.
 
 It provides only React component functionality and accessibility features without any styles. It's very useful if you want to take full control of the styling, but don't want to spend time building components from scratch.
 
@@ -79,20 +79,20 @@ For more details, check out the [unstyled components page](/customization/unstyl
 This is the most used layer (based on npm downloads) because it comes with everything you need to get started:
 
 - Theming capabilities (has `@mui/system` as dependency).
-- Accessible components, and utility hooks (has `@mui/core` as dependency).
+- Accessible components, and utility hooks (has `@mui/base` as dependency).
 - Default styles based on the design language being followed.
 
 Currently, MUI has one package in the design system layer, `@mui/material`, but we plan to add more in the future.
 This package provides components that follow the Material Design guidelines and also re-exports necessary APIs from its dependencies.
-Since it has `@mui/system` and `@mui/core` as dependencies, you don't need to install or import them separately.
+Since it has `@mui/system` and `@mui/base` as dependencies, you don't need to install or import them separately.
 Instead, you should import any modules you need from `@mui/material` directly.
 
-There are, however, some cases where you might want to use building blocks from `@mui/core` instead. Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that is very different from the one found in Material Design.
-In this case, instead of overriding the `Switch` from `@mui/material` we could use the `styled` API to customize the unstyled version of the Switch, available in `@mui/core`, from scratch:
+There are, however, some cases where you might want to use building blocks from `@mui/base` instead. Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that is very different from the one found in Material Design.
+In this case, instead of overriding the `Switch` from `@mui/material` we could use the `styled` API to customize the unstyled version of the Switch, available in `@mui/base`, from scratch:
 
 ```js
 import { styled } from '@mui/material/styles';
-import SwitchUnstyled, { switchUnstyledClasses } from '@mui/core/SwitchUnstyled';
+import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
 
 const Root = styled('span')(`
   position: relative;
@@ -116,4 +116,4 @@ export default function CustomSwitch() {
 }
 ```
 
-> **Note**: there is no need to install `@mui/core` because it is a built in dependency the design system package, `@mui/material`.
+> **Note**: there is no need to install `@mui/base` because it is a built in dependency the design system package, `@mui/material`.
