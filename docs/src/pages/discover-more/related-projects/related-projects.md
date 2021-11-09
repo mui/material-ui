@@ -17,7 +17,7 @@ A set of reusable components for design tools is available, designed to match th
 - [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-figma): A large UI kit with over 600 handcrafted MUI components.
 - [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-adobe-xd): A large UI kit with over 600 handcrafted MUI components.
 - [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch): A large UI kit with over 600 handcrafted MUI symbols.
-- [UXPin](https://github.com/uxpin-merge/material-ui-5-merge): UXPin lets you import (and keep in sync) coded React.js components (MUI) to a design editor.
+- [UXPin](https://github.com/uxpin-merge/material-ui-5-merge): A large UI kit of MUI components. The components are rendered directly from the React implementation, they are not handcrafted.
 
 ## Images and illustrations
 
