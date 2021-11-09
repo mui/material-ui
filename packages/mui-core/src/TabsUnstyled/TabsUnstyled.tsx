@@ -47,6 +47,7 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
     component,
     components = {},
     componentsProps = {},
+    onChange,
     ...other
   } = props;
   const [value, setValue] = useControlled({
@@ -58,9 +59,14 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
 
   const idPrefix = useUniquePrefix();
 
+  const onSelected = React.useCallback((e, value) => {
+    setValue(value);
+    onChange && onChange(e, value);
+  }, [onChange])
+
   const context = React.useMemo(() => {
-    return { idPrefix, value, onSelected: setValue, orientation, direction };
-  }, [idPrefix, value, setValue, orientation, direction]);
+    return { idPrefix, value, onSelected, orientation, direction };
+  }, [idPrefix, value, orientation, direction]);
 
   const ownerState = {
     ...props,

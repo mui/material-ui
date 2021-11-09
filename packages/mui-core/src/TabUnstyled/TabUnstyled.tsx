@@ -63,7 +63,7 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
   const handleFocus = (event: React.FocusEvent<HTMLButtonElement, Element>) => {
     if (selectionFollowsFocus && !selected) {
       if (onChange) onChange(event, value);
-      context.onSelected(value);
+      context.onSelected(event, value);
     }
 
     if (onFocus) {
@@ -74,7 +74,7 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
   const handleClick = (event: React.MouseEvent<Element, MouseEvent>) => {
     if (!selected) {
       if (onChange) onChange(event, value);
-      context.onSelected(value);
+      context.onSelected(event, value);
     }
 
     if (onClick) {

@@ -8,6 +8,7 @@ import {
 import { OverridableComponent } from '@mui/types';
 import { appendOwnerState } from '../utils';
 import TabsListUnstyledProps, { TabsListUnstyledTypeMap } from './TabListUnstyledProps';
+import { useTabContext } from '../TabsUnstyled';
 
 const nextItem = (list: Element | null, item: Element | null): Element | null => {
   if (!list) return null;
@@ -78,10 +79,6 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
-    // @ts-ignore TODO: Get this prop via context
-    orientation = 'horizontal',
-    // @ts-ignore TODO: Get this prop via context
-    direction = 'ltr',
     children,
     component,
     components = {},
@@ -90,7 +87,18 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
   } = props;
   let childIndex = 0;
 
-  const tabListRef = React.useRef(null);
+  const context = useTabContext();
+  if (context === null) {
+    throw new TypeError('No TabContext provided');
+  }
+
+  const {
+    value,
+    orientation = 'horizontal',
+    direction = 'ltr',
+  } = context;
+
+  const tabListRef = React.useRef<Element | null>(null);
   const handleRef = useForkRef(tabListRef, ref);
 
   const isRtl = direction === 'rtl';
@@ -151,6 +159,54 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
     }
   };
 
+  const valueToIndex = new Map();
+
+  const processedChildren = React.Children.map(children, (child) => {
+    if (!React.isValidElement(child)) {
+      return null;
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      if (isFragment(child)) {
+        console.error(
+          [
+            "MUI: The Tabs component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
+      }
+    }
+
+    const childValue = child.props.value === undefined ? childIndex : child.props.value;
+    valueToIndex.set(childValue, childIndex)
+
+    childIndex++;
+
+    return React.cloneElement(child, {
+      value: childValue,
+    });
+  })
+
+  React.useEffect(() => {
+    const childrenArray = Array.from(tabListRef.current!.children);
+    if (process.env.NODE_ENV !== 'production') {
+      if (childrenArray && !childrenArray[valueToIndex.get(value)] && value) {
+        console.error(
+          [
+            `MUI: The \`value\` provided to the Tabs component is invalid.`,
+            `None of the Tabs' children match with "${value}".`,
+            valueToIndex.keys
+              ? `You can provide one of the following values: ${Array.from(
+                  valueToIndex.keys(),
+                ).join(', ')}.`
+              : null,
+          ].join('\n'),
+        );
+      }
+    }
+  }, [children, value])
+  
+  
   return (
     <TabsListRoot
       aria-label={ariaLabel}
@@ -162,30 +218,7 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
       onKeyDown={handleKeyDown}
       // className={classes.flexContainer}
     >
-      {React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-
-        if (process.env.NODE_ENV !== 'production') {
-          if (isFragment(child)) {
-            console.error(
-              [
-                "MUI: The Tabs component doesn't accept a Fragment as a child.",
-                'Consider providing an array instead.',
-              ].join('\n'),
-            );
-          }
-        }
-
-        const childValue = child.props.value === undefined ? childIndex : child.props.value;
-
-        childIndex++;
-
-        return React.cloneElement(child, {
-          value: childValue,
-        });
-      })}
+      {processedChildren}
     </TabsListRoot>
   );
 }) as OverridableComponent<TabsListUnstyledTypeMap>;

@@ -46,6 +46,10 @@ export interface TabsUnstyledOwnProps {
   componentsProps?: {
     root?: React.ComponentPropsWithRef<'div'> & { ownerState: TabsOwnerState };
   };
+  /**
+   * Callback invoked when new value is being set.
+   */
+  onChange?: (event: React.SyntheticEvent, value: number | string) => void;
 }
 
 export interface TabsUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {

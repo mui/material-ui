@@ -12,7 +12,15 @@ export interface TabsContextValue {
   /**
    * Callback for setting new value.
    */
-  onSelected: (value: number | string | false) => void;
+  onSelected: (event: React.SyntheticEvent, value: number | string | false) => void;
+  /**
+   * The component orientation (layout flow direction).
+   */
+  orientation?: 'horizontal' | 'vertical';
+  /**
+   * The direction of the text.
+   */
+  direction?: 'ltr' | 'rtl';
 }
 
 /**
