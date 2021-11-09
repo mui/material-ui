@@ -6,7 +6,7 @@ import {
   unstable_composeClasses as composeClasses,
   useAutocomplete,
   createFilterOptions,
-} from '@mui/core';
+} from '@mui/base';
 import { alpha } from '@mui/system';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';

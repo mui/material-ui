@@ -1,1 +1,1 @@
-export { default } from '@mui/core/Popper';
+export { default } from '@mui/base/Popper';

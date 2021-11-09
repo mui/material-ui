@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@mui/utils';
-import composeClasses from '@mui/core/composeClasses';
+import composeClasses from '@mui/base/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';

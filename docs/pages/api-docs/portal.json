@@ -7,7 +7,7 @@
   "name": "Portal",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
-  "filename": "/packages/mui-core/src/Portal/Portal.js",
+  "filename": "/packages/mui-base/src/Portal/Portal.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/portal/\">Portal</a></li></ul>",
   "cssComponent": false

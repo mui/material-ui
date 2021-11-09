@@ -1,2 +1,2 @@
-export { useAutocomplete as default } from '@mui/core/AutocompleteUnstyled';
-export * from '@mui/core/AutocompleteUnstyled';
+export { useAutocomplete as default } from '@mui/base/AutocompleteUnstyled';
+export * from '@mui/base/AutocompleteUnstyled';

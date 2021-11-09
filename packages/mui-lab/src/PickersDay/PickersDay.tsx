@@ -8,7 +8,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@mui/core';
+} from '@mui/base';
 import { useTheme, alpha, styled, useThemeProps, Theme } from '@mui/material/styles';
 import { useForkRef } from '@mui/material/utils';
 import { ExtendMui } from '../internal/pickers/typings/helpers';
