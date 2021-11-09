@@ -64,9 +64,9 @@ Here are some benefits:
 
 > **Note**: you will have to install either `emotion` or `styled-components`, because the `system` package depends on it.
 
-## Core
+## Base
 
-The core layer, `@mui/base`, is also known as unstyled components.
+The base layer, `@mui/base`, is also known as unstyled components.
 
 It provides only React component functionality and accessibility features without any styles. It's very useful if you want to take full control of the styling, but don't want to spend time building components from scratch.
 
