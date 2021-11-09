@@ -31,9 +31,9 @@ export default function getInitColorSchemeScript(options?: {
           // handle system mode
           var mql = window.matchMedia('(prefers-color-scheme: dark)');
           if (mql.matches) {
-            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || ${defaultLightColorScheme};
+            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || ${defaultDarkColorScheme};
           } else {
-            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || ${defaultDarkColorScheme};
+            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || ${defaultLightColorScheme};
           }
         }
         if (mode === 'light') {
