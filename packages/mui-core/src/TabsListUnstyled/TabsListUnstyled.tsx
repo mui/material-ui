@@ -184,6 +184,7 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
 
     return React.cloneElement(child, {
       value: childValue,
+      ...(childIndex === 1 && value === false && !child.props.tabIndex ? { tabIndex: 0 } : {})
     });
   })
 
