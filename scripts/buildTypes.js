@@ -29,6 +29,16 @@ function rewriteImportPath(importPath) {
     return importPath.replace(systemSrcPath, '@mui/system');
   }
 
+  const muiCoreSrcPath = path.posix.join('..', 'mui-core', 'src');
+  if (importPath.startsWith(muiCoreSrcPath)) {
+    return importPath.replace(muiCoreSrcPath, '@mui/core');
+  }
+
+  const joySrcPath = path.posix.join('..', 'mui-joy', 'src');
+  if (importPath.startsWith(joySrcPath)) {
+    return importPath.replace(joySrcPath, '@mui/joy');
+  }
+
   throw new Error(`Don't know where to rewrite '${importPath}' to`);
 }
 
