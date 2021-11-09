@@ -181,7 +181,7 @@ const ColorSchemePicker = () => {
         bgcolor: 'var(--joy-palette-inverse)',
       }}
     >
-      <Box sx={{ display: 'flex', gap: '8px', p: '6px' }}>
+      <Box sx={{ display: 'flex', gap: '8px', p: '5px' }}>
         {Object.entries(theme.colorSchemes)
           .filter(([name]) => name.startsWith('light'))
           .map(([name, colorSystem]) => (
@@ -433,6 +433,7 @@ export default function Joy() {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
+            minHeight: 48,
             mt: '60px',
             mb: '120px',
           }}
