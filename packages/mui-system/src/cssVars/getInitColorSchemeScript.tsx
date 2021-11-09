@@ -30,6 +30,7 @@ export default function getInitColorSchemeScript(options?: {
         if (mode === 'system' || (!mode && ${defaultMode} === 'system')) {
           // handle system mode
           var mql = window.matchMedia('(prefers-color-scheme: dark)');
+          console.log('matches', mql.matches)
           if (mql.matches) {
             colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || ${defaultDarkColorScheme};
           } else {
@@ -42,6 +43,7 @@ export default function getInitColorSchemeScript(options?: {
         if (mode === 'dark') {
           colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || ${defaultDarkColorScheme};
         }
+        console.log('colorScheme', colorScheme)
         if (colorScheme) {
           document.body.setAttribute('${attribute}', colorScheme);
         }
