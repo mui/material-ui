@@ -7,7 +7,7 @@ import {
   unstable_composeClasses as composeClasses,
   isHostComponent,
   TextareaAutosize,
-} from '@mui/core';
+} from '@mui/base';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
@@ -210,7 +210,6 @@ export const InputBaseComponent = styled('input', {
     ...(ownerState.type === 'search' && {
       // Improve type search style.
       MozAppearance: 'textfield',
-      WebkitAppearance: 'textfield',
     }),
   };
 });

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import InputUnstyled, { InputUnstyledProps } from '@mui/core/InputUnstyled';
+import InputUnstyled, { InputUnstyledProps } from '@mui/base/InputUnstyled';
 import { styled } from '@mui/system';
 
 const StyledInputElement = styled('input')`

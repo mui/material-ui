@@ -165,6 +165,67 @@ describe('cssVarsParser', () => {
         '--zIndex-tooltip': 1200,
       });
     });
+
+    it('css is not created if shouldSkipGeneratingVar return true', () => {
+      const { css } = cssVarsParser(
+        {
+          palette: {
+            primary: {
+              100: '#ffffff',
+              500: '#ff5252',
+            },
+          },
+        },
+        {
+          shouldSkipGeneratingVar: (keys) => keys.slice(-1)[0] === '500',
+        },
+      );
+      expect(css).to.deep.equal({
+        '--palette-primary-100': '#ffffff',
+      });
+    });
+
+    describe('value starts with `var`', () => {
+      it('replace value starts with `var` if basePrefix, prefix are different', () => {
+        const theme = {
+          text: {
+            heading: 'var(--joy-palette-primary-500)',
+          },
+        };
+        const { css } = cssVarsParser(theme, {
+          basePrefix: 'joy',
+          prefix: 'custom',
+        });
+        expect(theme).to.deep.equal({
+          text: {
+            heading: 'var(--custom-palette-primary-500)',
+          },
+        });
+        expect(css).to.deep.equal({
+          '--custom-text-heading': 'var(--custom-palette-primary-500)',
+        });
+      });
+
+      it('basePrefix in the value is removed if prefix is ""', () => {
+        const theme = {
+          text: {
+            heading: 'var(--joy-palette-primary-500)',
+          },
+        };
+        const { css } = cssVarsParser(theme, {
+          basePrefix: 'joy',
+          prefix: '',
+        });
+        expect(theme).to.deep.equal({
+          text: {
+            heading: 'var(--palette-primary-500)',
+          },
+        });
+        expect(css).to.deep.equal({
+          '--text-heading': 'var(--palette-primary-500)',
+        });
+      });
+    });
   });
 
   describe('vars', () => {
@@ -214,6 +275,29 @@ describe('cssVarsParser', () => {
           primary: {
             100: 'var(--mui-palette-primary-100)',
             500: 'var(--mui-palette-primary-500)',
+          },
+        },
+      });
+    });
+
+    it('var is not created if shouldSkipGeneratingVar return true', () => {
+      const { vars } = cssVarsParser(
+        {
+          palette: {
+            primary: {
+              100: '#ffffff',
+              500: '#ff5252',
+            },
+          },
+        },
+        {
+          shouldSkipGeneratingVar: (keys) => keys.slice(-1)[0] === '500',
+        },
+      );
+      expect(vars).to.deep.equal({
+        palette: {
+          primary: {
+            100: 'var(--palette-primary-100)',
           },
         },
       });

@@ -1,5 +1,11 @@
 import * as React from 'react';
+import loadScript from 'docs/src/modules/utils/loadScript';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
+import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { useRouter } from 'next/router';
 
 // So we can write code like:
 //
@@ -36,9 +42,25 @@ function handleClick(event) {
   }
 }
 
-let bound = false;
+let boundDataGaListener = false;
 
-export default function GoogleAnalytics() {
+/**
+ * basically just a `useAnalytics` hook.
+ * However, it needs the redux store which is created
+ * in the same component this "hook" is used.
+ */
+function GoogleAnalytics() {
+  React.useEffect(() => {
+    loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
+
+    if (!boundDataGaListener) {
+      boundDataGaListener = true;
+      document.addEventListener('click', handleClick);
+    }
+  }, []);
+
+  const router = useRouter();
+
   React.useEffect(() => {
     // Wait for the title to be updated.
     setTimeout(() => {
@@ -46,13 +68,52 @@ export default function GoogleAnalytics() {
       window.ga('set', { page: canonical });
       window.ga('send', { hitType: 'pageview' });
     });
+  }, [router.route]);
 
-    if (bound) {
-      return;
+  const codeVariant = useNoSsrCodeVariant();
+  React.useEffect(() => {
+    window.ga('set', 'dimension1', codeVariant);
+  }, [codeVariant]);
+
+  const userLanguage = useUserLanguage();
+  React.useEffect(() => {
+    window.ga('set', 'dimension2', userLanguage);
+  }, [userLanguage]);
+
+  React.useEffect(() => {
+    /**
+     * Based on https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio#Monitoring_screen_resolution_or_zoom_level_changes
+     * Adjusted to track 3 or more different ratios
+     */
+    function trackDevicePixelRation() {
+      const devicePixelRatio = Math.round(window.devicePixelRatio * 10) / 10;
+      window.ga('set', 'dimension3', devicePixelRatio);
     }
-    bound = true;
-    document.addEventListener('click', handleClick);
+
+    trackDevicePixelRation();
+
+    /**
+     * @type {MediaQueryList}
+     */
+    const matchMedia = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+    matchMedia.addEventListener('change', trackDevicePixelRation);
+    return () => {
+      matchMedia.removeEventListener('change', trackDevicePixelRation);
+    };
   }, []);
+
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', { noSsr: true });
+  const colorSchemeOS = prefersDarkMode ? 'dark' : 'light';
+
+  const theme = useTheme();
+  const colorScheme = theme.palette.mode;
+
+  React.useEffect(() => {
+    window.ga('set', 'dimension4', colorSchemeOS);
+    window.ga('set', 'dimension5', colorScheme);
+  }, [colorSchemeOS, colorScheme]);
 
   return null;
 }
+
+export default React.memo(GoogleAnalytics);

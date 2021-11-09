@@ -170,6 +170,37 @@ describe('createCssVarsProvider', () => {
         fireEvent.click(screen.getByRole('button', { name: 'change to dark' })),
       ).toErrorDev('`foo` does not exist in `theme.colorSchemes`.');
     });
+
+    it('does not create css var if shouldSkipGeneratingVar return true', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: {
+            light: {
+              typography: {
+                htmlFontSize: '16px',
+                h1: {
+                  fontSize: '1rem',
+                  fontWeight: 500,
+                },
+              },
+            },
+          },
+        },
+        defaultColorScheme: 'light',
+        shouldSkipGeneratingVar: (keys) => keys[0] === 'typography' && keys[1] === 'h1',
+      });
+      const Consumer = () => {
+        const theme = useTheme();
+        return <div data-testid="h1">{theme.vars.typography.h1 || ''}</div>;
+      };
+      expect(() =>
+        render(
+          <CssVarsProvider>
+            <Consumer />
+          </CssVarsProvider>,
+        ),
+      ).not.toErrorDev(); // if `h1` is skipped, there will be no error.
+    });
   });
 
   describe('DOM', () => {

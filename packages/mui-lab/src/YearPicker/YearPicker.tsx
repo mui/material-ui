@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme, styled, useThemeProps as useThemProps } from '@mui/material/styles';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import clsx from 'clsx';
 import PickersYear from './PickersYear';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
