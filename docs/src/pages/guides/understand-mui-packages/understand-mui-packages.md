@@ -34,35 +34,42 @@ For this reason, abstracting into smaller packages not only allows MUI to grow o
 
 The packages can be categorized into 3 layers, as shown in the picture below:
 
-<img src="/static/images/packages/mui-packages.png" style="width: 700px; max-width: 100%;" />
+<img src="/static/images/packages/mui-packages.png" style="display: block; width: 448px; max-width: 100%; margin: auto;" />
 
 Let's take a look at each layer to understand how they work together, starting from the bottom:
 
 ## Styled engines
 
-This layer is specifically related to stylesheets.
-Currently we use `emotion` as the default style library for creating stylesheets.
-In addition, we also provide an adapter for developers who prefer to use styled-components.
+This layer is specifically related to stylesheet generation (CSS-in-js). We have introduced new styled-engines in v5 to unlock more possibilities and enable customization enhancement. Usually, developers does not need to interact with this layer on a daily basis because it is used internally in `@mui/system`.
 
-These are the packages in this layer:
+They come in two packages:
 
-- `@mui/styled-engine` : an emotion wrapper
-- `@mui/styled-engine-sc` : a styled-components wrapper
-- `@mui/styles` : JSS wrapper (`deprecated`)
+- `@mui/styled-engine` : an [emotion](https://emotion.sh/docs/styled) wrapper
+- `@mui/styled-engine-sc` : a [styled-components](https://styled-components.com/docs/basics#getting-started) wrapper
 
-> These packages are already included in the design system package, so you don't need to worry about _importing_ them if you're using `@mui/material`, but you will need to [install](`@mui/styled-engine-sc`) if you wish to replace emotion as the default, as well as your chosen style library.
+The reason that we create these adapters is to unify the APIs to support both `emotion` and `styled-components`, so that developers can choose what suit them the most.
+
+The old styled-engine `@mui/styles` (JSS wrapper) is deprecated and will be removed in the future.
+
+> The details about changing styling solution is in [this RFC](https://github.com/mui-org/material-ui/issues/22342)
 
 ## System
 
 There is only one package in this layer - `@mui/system`.
-It uses a styled-engine package and provides APIs for building a design system from scratch, for example, `styled` is enhanced to provide more theming capabilities.
+
+It uses emotion adapter (`@mui/styled-engine`) as a default styled-engine to create APIs for building a design system from scratch. For example, [`styled`](/system/styled/#main-content) from the styled-engine is enhanced to provide more theming capabilities.
+
+If you want to switch the styled-engine to use styled-components, [follow this guide](/guides/styled-engine/#how-to-switch-to-styled-components).
+
+<img src="/static/images/packages/mui-system.png" style="display: block; width: 720px; max-width: 100%; margin: 40px auto;" />
+
 Here are some benefits:
 
 - You have full control of the `theme` object.
 - The `styled` API supports the `sx` prop by default.
 - Components created with `styled` are themeable via slots & variants.
 
-> **Note**: you will have to install either `emotion` or `styled-components`, because the `system` package depends on it.
+> **Note**: you will have to install either `emotion` or `styled-components`, because the styled-engine package depends on it.
 
 ## Core
 
