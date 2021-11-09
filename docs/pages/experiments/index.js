@@ -58,6 +58,9 @@ export default function Experiments({ experiments }) {
               <Typography component="li">
                 URLs start with <code>/experiments/*</code> are deployed only on the pull request.
               </Typography>
+              <Typography component="li">
+                <code>/experiments/*</code> are not included in docsearch indexing.
+              </Typography>
             </ul>
           </Box>
         </Box>
