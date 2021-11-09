@@ -939,7 +939,7 @@ describe('<Select />', () => {
       });
     });
 
-    it('should apply multiple class', () => {
+    it('should apply multiple class to `select` slot', () => {
       const { container } = render(
         <Select multiple open value={[10, 30]}>
           <MenuItem value={10}>Ten</MenuItem>
@@ -951,7 +951,7 @@ describe('<Select />', () => {
       expect(container.querySelector(`.${classes.select}`)).to.have.class(classes.multiple);
     });
 
-    it('slots overrides should work', function test() {
+    it('should be able to override `multiple` rule name in `select` slot', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
