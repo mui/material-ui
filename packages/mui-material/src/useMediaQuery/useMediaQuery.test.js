@@ -261,7 +261,7 @@ describe('useMediaQuery', () => {
   });
 
   describe('server-side', () => {
-    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
+    const serverRender = createServerRender();
 
     it('should use the ssr match media ponyfill', () => {
       function MyComponent() {

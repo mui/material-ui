@@ -132,7 +132,7 @@ describe('<ToggleButton />', () => {
       }
     });
 
-    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
+    const serverRender = createServerRender();
 
     it('should server-side render', () => {
       const container = serverRender(<ToggleButton value="hello">Hello World</ToggleButton>);

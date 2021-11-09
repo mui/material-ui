@@ -5,7 +5,7 @@ import NoSsr from '@mui/base/NoSsr';
 
 describe('<NoSsr />', () => {
   const { render } = createRenderer();
-  const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
+  const serverRender = createServerRender();
 
   describe('server-side rendering', () => {
     it('should not render the children as the width is unknown', () => {
