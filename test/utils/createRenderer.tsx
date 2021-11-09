@@ -327,8 +327,8 @@ export interface CreateRenderOptions
 export function createRenderer(globalOptions: CreateRenderOptions = {}): Renderer {
   const {
     legacyRoot: globalLegacyRoot,
-    strict: globalStrict,
-    strictEffects: globalStrictEffects,
+    strict: globalStrict = true,
+    strictEffects: globalStrictEffects = globalStrict,
   } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
