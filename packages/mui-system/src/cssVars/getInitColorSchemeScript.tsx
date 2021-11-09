@@ -25,23 +25,25 @@ export default function getInitColorSchemeScript(options?: {
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: `(function() { try {
+        console.log('start')
         var mode = localStorage.getItem('${modeStorageKey}');
+        console.log('mode', mode)
         var colorScheme = '';
-        if (mode === 'system' || (!mode && ${defaultMode} === 'system')) {
+        if (mode === 'system' || (!mode && ${defaultMode === 'system'})) {
           // handle system mode
           var mql = window.matchMedia('(prefers-color-scheme: dark)');
           console.log('matches', mql.matches)
           if (mql.matches) {
-            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || ${defaultDarkColorScheme};
+            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
           } else {
-            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || ${defaultLightColorScheme};
+            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
           }
         }
         if (mode === 'light') {
-          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || ${defaultLightColorScheme};
+          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
         }
         if (mode === 'dark') {
-          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || ${defaultDarkColorScheme};
+          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
         }
         console.log('colorScheme', colorScheme)
         if (colorScheme) {
