@@ -38,6 +38,12 @@ The packages can be categorized into 3 layers, as shown in the picture below:
 
 Let's take a look at each layer to understand how they work together, starting from the bottom:
 
+> 💡 Glossary
+>
+> **install** refers to the action when you run `yarn add $module` or `npm install $module`.
+>
+> **import** means you want to use some APIs from the module by writing `import ... from '$module'`.
+
 ## Styled engines
 
 This layer is specifically related to stylesheet generation (CSS-in-js). We have introduced new styled-engines in v5 to unlock more possibilities and enable customization enhancement. Usually, developers does not need to interact with this layer on a daily basis because it is used internally in `@mui/system`.
