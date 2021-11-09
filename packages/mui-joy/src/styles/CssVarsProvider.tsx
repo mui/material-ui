@@ -1,6 +1,12 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import defaultTheme, { ColorSystems, StaticTheme, ColorScheme } from './defaultTheme';
+import defaultTheme, {
+  ColorSystems,
+  StaticTheme,
+  ColorScheme,
+  lightColorSystem,
+  darkColorSystem,
+} from './defaultTheme';
 
 type PartialDeep<T> = {
   [K in keyof T]?: PartialDeep<T[K]>;
@@ -9,6 +15,8 @@ type PartialDeep<T> = {
 export interface ColorSchemeOverrides {}
 
 export type ExtendedColorScheme = OverridableStringUnion<never, ColorSchemeOverrides>;
+
+export type SupportedColorScheme = ColorScheme | ExtendedColorScheme;
 
 type JoyThemeInput = PartialDeep<Omit<StaticTheme, 'typography'>> & {
   colorSchemes: Record<ColorScheme, PartialDeep<ColorSystems>>;
@@ -31,12 +39,14 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   theme: {
     ...rest,
     colorSchemes: {
-      light: {
-        palette,
-      },
+      light: lightColorSystem,
+      dark: darkColorSystem,
     },
   },
-  defaultColorScheme: 'light',
+  defaultColorScheme: {
+    light: 'light',
+    dark: 'dark',
+  },
   prefix: 'joy',
   shouldSkipGeneratingVar: (keys) => keys[0] === 'typography',
 });

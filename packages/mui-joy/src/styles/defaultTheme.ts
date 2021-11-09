@@ -169,11 +169,7 @@ type BaseJoyTokens = {
   shadow: Pick<Shadow, 'ring' | 'md'>;
 };
 
-/**
- * Base Joy Theme
- * Any value with `var(--joy-*)` can be used. 'joy-' will be replaced by the application prefix if provided.
- */
-const themeWithoutVars: BaseJoyTokens = {
+export const lightColorSystem: Pick<BaseJoyTokens, 'palette'> = {
   palette: {
     brand: colors.purple,
     neutral: colors.grey,
@@ -189,6 +185,32 @@ const themeWithoutVars: BaseJoyTokens = {
       plain: 'var(--joy-palette-neutral-100)',
     },
   },
+};
+
+export const darkColorSystem: Pick<BaseJoyTokens, 'palette'> = {
+  palette: {
+    brand: colors.purple,
+    neutral: colors.grey,
+    text: {
+      heading: '#fff',
+      headingIntro: 'var(--joy-palette-brand-300)',
+      content: 'var(--joy-palette-neutral-200)',
+      detail: 'var(--joy-palette-neutral-300)',
+      overline: 'var(--joy-palette-neutral-500)',
+    },
+    bgNeutral: {
+      transparency: 'var(--joy-palette-neutral-900)',
+      plain: 'var(--joy-palette-neutral-900)',
+    },
+  },
+};
+
+/**
+ * Base Joy Theme
+ * Any value with `var(--joy-*)` can be used. 'joy-' will be replaced by the application prefix if provided.
+ */
+const themeWithoutVars: BaseJoyTokens = {
+  ...lightColorSystem,
   borderRadius: {
     md: '4px',
   },
@@ -206,7 +228,7 @@ const themeWithoutVars: BaseJoyTokens = {
     xl6: '4.5rem',
   },
   fontFamily: {
-    sans: 'IBM Plex Sans',
+    sans: 'Public Sans',
     mono: 'Consolas',
   },
   fontWeight: {
@@ -346,7 +368,7 @@ const themeWithoutVars: BaseJoyTokens = {
 
 // ---------------------------------------------------------------
 
-export type ColorScheme = 'light';
+export type ColorScheme = 'light' | 'dark';
 
 export interface JoyTheme<ExtendedColorScheme extends string = never> extends ThemeWithoutVars {
   colorSchemes: Record<ColorScheme | ExtendedColorScheme, ColorSystems>;

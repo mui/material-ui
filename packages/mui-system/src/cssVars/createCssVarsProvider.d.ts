@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Result, Mode } from './useCurrentColorScheme';
+import getInitColorSchemeScript from './getInitColorSchemeScript';
 
 type RequiredDeep<T> = {
   [K in keyof T]-?: RequiredDeep<T[K]>;
@@ -124,7 +125,7 @@ export default function createCssVarsProvider<
     >,
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<DesignSystemColorScheme | ApplicationColorScheme>;
-  getInitColorSchemeScript: () => React.ReactElement;
+  getInitColorSchemeScript: typeof getInitColorSchemeScript;
 };
 
 // disable automatic export

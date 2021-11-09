@@ -103,12 +103,7 @@ export default function createCssVarsProvider(options) {
         basePrefix: designSystemPrefix,
         shouldSkipGeneratingVar,
       });
-      if (key === resolvedColorScheme) {
-        mergedTheme.vars = {
-          ...mergedTheme.vars,
-          ...vars,
-        };
-      }
+      mergedTheme.vars = deepmerge(mergedTheme.vars, vars);
       const resolvedDefaultColorScheme = (() => {
         if (typeof defaultColorScheme === 'string') {
           return defaultColorScheme;
