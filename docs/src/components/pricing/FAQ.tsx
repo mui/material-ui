@@ -14,10 +14,10 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 
 const faqData = [
   {
-    summary: 'How do I know if I need an license?',
+    summary: 'How do I know if I need to buy license?',
     detail: (
       <React.Fragment>
-        If you have a doubt, always default to checking the license file of the npm package you are
+        If you are in doubt, check the license file of the npm package you're
         installing.
         <br />
         <br />

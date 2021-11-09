@@ -29,7 +29,7 @@ const planInfo = {
   premium: {
     color: 'gold',
     title: 'Premium',
-    description: 'Unlock all the most advanced features including professional support.',
+    description: 'Unlock all the most advanced features and professional support.',
   },
 } as const;
 
@@ -891,7 +891,7 @@ export default function PricingTable({
               fullWidth
               sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.disabled' } }}
             >
-              In progress (Q 2022)
+              In progress!
             </Button>
           </Box>
         </Box>
