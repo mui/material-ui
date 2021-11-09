@@ -38,7 +38,6 @@
   "name": "Select",
   "styles": {
     "classes": [
-      "root",
       "select",
       "filled",
       "outlined",
