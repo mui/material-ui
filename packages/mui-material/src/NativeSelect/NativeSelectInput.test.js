@@ -63,14 +63,14 @@ describe('<NativeSelectInput />', () => {
     expect(container.firstChild).to.have.class(nativeSelectClasses.filled);
   });
 
-  it('should apply multiple class', () => {
+  it('should apply multiple class to `select` slot', () => {
     const { container } = render(<NativeSelectInput IconComponent="div" multiple />);
 
     expect(container.firstChild).to.have.class(nativeSelectClasses.multiple);
   });
 
   describe('prop: multiple', () => {
-    it('slots overrides should work', function test() {
+    it('should be able to override `multiple` rule name in `select` slot', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
@@ -108,9 +108,6 @@ describe('<NativeSelectInput />', () => {
 
       expect(
         container.getElementsByClassName(nativeSelectClasses.select)[0],
-      ).to.toHaveComputedStyle(combinedStyle);
-      expect(
-        container.getElementsByClassName(nativeSelectClasses.multiple)[0],
       ).to.toHaveComputedStyle(combinedStyle);
     });
   });
