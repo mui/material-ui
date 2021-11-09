@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createServerRender, createRenderer } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import Portal from './Portal';
 
 describe('<Portal />', () => {
-  const serverRender = createServerRender();
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
 
   describe('server-side', () => {
     before(function beforeHook() {
@@ -17,7 +16,7 @@ describe('<Portal />', () => {
     });
 
     it('render nothing on the server', () => {
-      const container = serverRender(
+      const { container } = renderToString(
         <Portal>
           <div>Bar</div>
         </Portal>,

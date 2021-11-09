@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, createServerRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import NoSsr from '@mui/base/NoSsr';
 
 describe('<NoSsr />', () => {
-  const { render } = createRenderer();
-  const serverRender = createServerRender();
+  const { render, renderToString } = createRenderer();
 
   describe('server-side rendering', () => {
     it('should not render the children as the width is unknown', () => {
-      const container = serverRender(
+      const { container } = renderToString(
         <NoSsr>
           <span>Hello</span>
         </NoSsr>,
@@ -32,7 +31,7 @@ describe('<NoSsr />', () => {
 
   describe('prop: fallback', () => {
     it('should render the fallback', () => {
-      const container = serverRender(
+      const { container } = renderToString(
         <div>
           <NoSsr fallback="fallback">
             <span>Hello</span>

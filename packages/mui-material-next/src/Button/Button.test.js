@@ -1,17 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  describeConformance,
-  act,
-  createRenderer,
-  fireEvent,
-  createServerRender,
-} from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
 import ButtonBase from '@mui/material/ButtonBase';
 
 describe('<Button />', () => {
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
 
   describeConformance(<Button startIcon="icon">Conformance?</Button>, () => ({
     classes,
@@ -349,8 +343,6 @@ describe('<Button />', () => {
   });
 
   describe('server-side', () => {
-    const serverRender = createServerRender();
-
     before(function beforeHook() {
       // Only run the test on node.
       if (!/jsdom/.test(window.navigator.userAgent)) {
@@ -359,7 +351,7 @@ describe('<Button />', () => {
     });
 
     it('should server-side render', () => {
-      const container = serverRender(<Button>Hello World</Button>);
+      const { container } = renderToString(<Button>Hello World</Button>);
       expect(container.firstChild).to.have.text('Hello World');
     });
   });

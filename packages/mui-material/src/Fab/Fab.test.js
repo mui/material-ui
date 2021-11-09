@@ -1,18 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  describeConformance,
-  createRenderer,
-  createServerRender,
-  act,
-  fireEvent,
-} from 'test/utils';
+import { describeConformance, createRenderer, act, fireEvent } from 'test/utils';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import Icon from '@mui/material/Icon';
 
 describe('<Fab />', () => {
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
 
   describeConformance(<Fab>Conformance?</Fab>, () => ({
     classes,
@@ -149,8 +143,6 @@ describe('<Fab />', () => {
   });
 
   describe('server-side', () => {
-    const serverRender = createServerRender();
-
     before(function beforeHook() {
       // Only run the test on node.
       if (!/jsdom/.test(window.navigator.userAgent)) {
@@ -159,7 +151,7 @@ describe('<Fab />', () => {
     });
 
     it('should server-side render', () => {
-      const container = serverRender(<Fab>Fab</Fab>);
+      const { container } = renderToString(<Fab>Fab</Fab>);
       expect(container.firstChild).to.have.text('Fab');
     });
   });
