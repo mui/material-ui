@@ -990,9 +990,6 @@ describe('<Select />', () => {
       expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(
         combinedStyle,
       );
-      expect(container.getElementsByClassName(classes.multiple)[0]).to.toHaveComputedStyle(
-        combinedStyle,
-      );
     });
   });
 
