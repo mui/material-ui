@@ -9,7 +9,7 @@ permissions:
   issues: write
 
 jobs:
-  mark-duplicate:
+  mark-support:
     runs-on: ubuntu-latest
     steps:
       - uses: dessant/support-requests@v2
