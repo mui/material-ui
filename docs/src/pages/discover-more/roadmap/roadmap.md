@@ -35,7 +35,8 @@ Our GitHub project's roadmap is where you can learn about what features we're wo
   This repository focuses on providing advanced React components.
   Some of the features are MIT licensed, others are available under a commercial license.
 - [MUI Design kits](https://github.com/mui-org/mui-design-kits/projects/1)
-  This repository focuses on gathering feedback and requests for the components available on Figma, Sketch, and Adobe XD.
+  This repository focuses on providing the components for designers on Figma and other design tools.
+  It's a great place to leave feedback, feature requests, and ask questions.
 
 ## New components
 
