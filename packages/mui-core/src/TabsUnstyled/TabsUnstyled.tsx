@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { unstable_useControlled as useControlled } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { appendOwnerState } from '../utils';
@@ -38,6 +39,7 @@ function useUniquePrefix() {
 const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) => {
   const {
     children,
+    className,
     value: valueProp,
     defaultValue,
     orientation = 'horizontal',
@@ -76,7 +78,7 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
   );
 
   return (
-    <TabsRoot {...tabsRootProps}>
+    <TabsRoot {...tabsRootProps} ref={ref} className={clsx(classes.root, componentsProps.root?.className, className)}>
       <Context.Provider value={context}>{children}</Context.Provider>
     </TabsRoot>
   );

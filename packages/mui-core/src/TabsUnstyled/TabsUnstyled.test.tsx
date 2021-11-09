@@ -49,7 +49,8 @@ describe('<TabsUnstyled />', () => {
   }));
 
   it('can be named via `aria-label`', () => {
-    render(<Tabs aria-label="string label" />);
+    // TODO: Move to TabsList
+    render(<Tabs><TabsList aria-label="string label"><Tab /></TabsList></Tabs>);
 
     expect(screen.getByRole('tablist')).toHaveAccessibleName('string label');
   });
@@ -58,28 +59,11 @@ describe('<TabsUnstyled />', () => {
     render(
       <React.Fragment>
         <h3 id="label-id">complex name</h3>
-        <Tabs aria-labelledby="label-id" />
+        <Tabs><TabsList aria-labelledby="label-id"><Tab /></TabsList></Tabs>
       </React.Fragment>,
     );
 
     expect(screen.getByRole('tablist')).toHaveAccessibleName('complex name');
-  });
-
-  describe('warnings', () => {
-    it('should warn if the input is invalid', () => {
-      expect(() => {
-        render(<Tabs value={0} centered variant="scrollable" />);
-      }).toErrorDev([
-        'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
-        // @ts-ignore
-        !strictModeDoubleLoggingSupressed &&
-          'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
-        'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
-        // @ts-ignore
-        !strictModeDoubleLoggingSupressed &&
-          'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
-      ]);
-    });
   });
 
   describe('prop: children', () => {
@@ -100,8 +84,10 @@ describe('<TabsUnstyled />', () => {
     it('puts the selected child in tab order', () => {
       const { getAllByRole, setProps } = render(
         <Tabs value={1}>
-          <Tab />
-          <Tab />
+          <TabsList>
+            <Tab />
+            <Tab />
+          </TabsList>
         </Tabs>,
       );
 
