@@ -42,7 +42,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-core/src/PopperUnstyled/PopperUnstyled.js",
+  "filename": "/packages/mui-base/src/PopperUnstyled/PopperUnstyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/popper/\">Popper</a></li></ul>",
   "cssComponent": false

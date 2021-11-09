@@ -65,7 +65,7 @@ export default function AppFooter() {
               <Link href={ROUTES.productCore}>MUI Core</Link>
               <Link href={ROUTES.productAdvanced}>MUI X</Link>
               <Link href={ROUTES.productTemplates}>Templates</Link>
-              <Link href={ROUTES.productDesignKits}>Design Kits</Link>
+              <Link href={ROUTES.productDesignKits}>Design kits</Link>
             </Box>
           ) : (
             <Box sx={{ display: { xs: 'none', md: 'block' } }} />

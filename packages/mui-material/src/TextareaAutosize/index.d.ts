@@ -1,2 +1,2 @@
-export { default } from '@mui/core/TextareaAutosize';
-export * from '@mui/core/TextareaAutosize';
+export { default } from '@mui/base/TextareaAutosize';
+export * from '@mui/base/TextareaAutosize';

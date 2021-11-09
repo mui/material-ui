@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import PopperUnstyled, { PopperUnstyledProps } from '@mui/core/PopperUnstyled';
+import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
 import { chainPropTypes, HTMLElementType, refType } from '@mui/utils';
 import { Direction, useThemeWithoutDefault as useTheme } from '@mui/system';
 

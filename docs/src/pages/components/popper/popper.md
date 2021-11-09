@@ -75,11 +75,11 @@ state for you in most cases.
 
 ## Unstyled
 
-The @mui/core package contain an unstyled version of Popper - PopperUnstyled.
+The @mui/base package contain an unstyled version of Popper - PopperUnstyled.
 It does not have a dependency on @mui/material.
 The only difference between Popper and PopperUnstyled is the support for theming.
 Popper can read the `direction` field from the current theme, while PopperUnstyled accepts the `direction` prop instead.
 
 ```js
-import Popper from '@mui/core/PopperUnstyled';
+import Popper from '@mui/base/PopperUnstyled';
 ```

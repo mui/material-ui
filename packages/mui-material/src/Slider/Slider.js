@@ -2,12 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { generateUtilityClasses, isHostComponent } from '@mui/core';
+import { generateUtilityClasses, isHostComponent } from '@mui/base';
 import SliderUnstyled, {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
   getSliderUtilityClass,
-} from '@mui/core/SliderUnstyled';
+} from '@mui/base/SliderUnstyled';
 import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
