@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createClientRender, describeConformance, act } from 'test/utils';
+import { createRenderer, describeConformance, act } from 'test/utils';
 import Backdrop, { backdropClasses as classes } from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
 
 describe('<Backdrop />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Backdrop open />, () => ({
     classes,

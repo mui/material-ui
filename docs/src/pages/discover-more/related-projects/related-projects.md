@@ -94,6 +94,5 @@ This is a collection of third-party projects that extend MUI.
 
 ## Theming
 
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): An online tool for creating MUI themes via Material Design Color Tool.
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your MUI applications by just selecting the colors and having a live preview.
 - [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.

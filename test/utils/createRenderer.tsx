@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as ReactDOMServer from 'react-dom/server';
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
 import {
@@ -222,18 +222,9 @@ interface RenderConfiguration {
    */
   disableUnmount?: boolean;
   /**
-   * Value for the CacheProvider of emotion
-   */
-  emotionCache: import('@emotion/cache').EmotionCache;
-  /**
-   * https://testing-library.com/docs/react-testing-library/api#hydrate
-   */
-  hydrate?: boolean;
-  /**
    * Set to true if the test fails in React 18.
    */
   legacyRoot?: boolean;
-  profiler: Profiler;
   /**
    * wrap in React.StrictMode?
    */
@@ -242,10 +233,21 @@ interface RenderConfiguration {
    * Set to `true` if the test fails due to [Strict Effects](https://github.com/reactwg/react-18/discussions/19).
    */
   strictEffects?: boolean;
-  wrapper?: React.JSXElementConstructor<{}>;
+  wrapper: React.JSXElementConstructor<{ children?: React.ReactNode }>;
 }
 
-export type RenderOptions = Omit<RenderConfiguration, 'emotionCache' | 'profiler'>;
+interface ClientRenderConfiguration extends RenderConfiguration {
+  /**
+   * https://testing-library.com/docs/react-testing-library/api#hydrate
+   */
+  hydrate: boolean;
+}
+
+interface ServerRenderConfiguration extends RenderConfiguration {
+  container: HTMLElement;
+}
+
+export type RenderOptions = Partial<RenderConfiguration>;
 
 export interface MuiRenderResult extends RenderResult<typeof queries & typeof customQueries> {
   forceUpdate(): void;
@@ -255,35 +257,15 @@ export interface MuiRenderResult extends RenderResult<typeof queries & typeof cu
   setProps(props: object): void;
 }
 
-function clientRender(
-  element: React.ReactElement,
-  configuration: RenderConfiguration,
-): MuiRenderResult {
-  const {
-    container,
-    emotionCache,
-    hydrate,
-    legacyRoot,
-    strict = true,
-    strictEffects = strict,
-    profiler,
-    wrapper: InnerWrapper = React.Fragment,
-  } = configuration;
+export interface MuiRenderToStringResult {
+  hydrate(): MuiRenderResult;
+}
 
-  const usesLegacyRoot = !React.version.startsWith('18');
-  const Mode = strict && (strictEffects || usesLegacyRoot) ? React.StrictMode : React.Fragment;
-  function Wrapper({ children }: { children?: React.ReactNode }) {
-    return (
-      <Mode>
-        <EmotionCacheProvider value={emotionCache}>
-          <React.Profiler id={profiler.id} onRender={profiler.onRender}>
-            <InnerWrapper>{children}</InnerWrapper>
-          </React.Profiler>
-        </EmotionCacheProvider>
-      </Mode>
-    );
-  }
-  Wrapper.propTypes = { children: PropTypes.node };
+function render(
+  element: React.ReactElement,
+  configuration: ClientRenderConfiguration,
+): MuiRenderResult {
+  const { container, hydrate, legacyRoot, wrapper } = configuration;
 
   const testingLibraryRenderResult = traceSync('render', () =>
     testingLibraryRender(element, {
@@ -292,7 +274,7 @@ function clientRender(
       // @ts-ignore Available in the `@testing-library/react` fork used when running with React 18
       legacyRoot,
       queries: { ...queries, ...customQueries },
-      wrapper: Wrapper,
+      wrapper,
     }),
   );
   const result: MuiRenderResult = {
@@ -316,9 +298,30 @@ function clientRender(
   return result;
 }
 
-export function createClientRender(
-  globalOptions: RenderOptions = {},
-): (element: React.ReactElement, options?: RenderOptions) => MuiRenderResult {
+function renderToString(
+  element: React.ReactElement,
+  configuration: ServerRenderConfiguration,
+): { container: HTMLElement; hydrate(): MuiRenderResult } {
+  const { container, wrapper: Wrapper } = configuration;
+
+  traceSync('renderToString', () => {
+    container.innerHTML = ReactDOMServer.renderToString(<Wrapper>{element}</Wrapper>);
+  });
+
+  return {
+    container,
+    hydrate() {
+      return render(element, { ...configuration, hydrate: true });
+    },
+  };
+}
+
+interface Renderer {
+  render(element: React.ReactElement, options?: RenderOptions): MuiRenderResult;
+  renderToString(element: React.ReactElement, options?: RenderOptions): MuiRenderToStringResult;
+}
+
+export function createRenderer(globalOptions: RenderOptions = {}): Renderer {
   const {
     legacyRoot: globalLegacyRoot,
     strict: globalStrict,
@@ -328,8 +331,8 @@ export function createClientRender(
   const { stack: createClientRenderStack } = new Error();
 
   /**
-   * Flag whether `createClientRender` was called in a suite i.e. describe() block.
-   * For legacy reasons `createClientRender` might accidentally be called in a before(Each) hook.
+   * Flag whether `createRenderer` was called in a suite i.e. describe() block.
+   * For legacy reasons `createRenderer` might accidentally be called in a before(Each) hook.
    */
   let wasCalledInSuite = false;
   before(function beforeHook() {
@@ -341,9 +344,9 @@ export function createClientRender(
         .stack!.split(/\r?\n/)
         .map((line) => {
           const fileMatch =
-            // chrome: "    at Context.beforeHook (webpack-internal:///./test/utils/createClientRender.tsx:257:24)""
+            // chrome: "    at Context.beforeHook (webpack-internal:///./test/utils/createRenderer.tsx:257:24)""
             line.match(/\(([^)]+):\d+:\d+\)/) ??
-            // firefox: "beforeHook@webpack-internal:///./test/utils/createClientRender.tsx:257:24"
+            // firefox: "beforeHook@webpack-internal:///./test/utils/createRenderer.tsx:257:24"
             line.match(/@(.*?):\d+:\d+$/);
           if (fileMatch === null) {
             return null;
@@ -351,13 +354,17 @@ export function createClientRender(
           return fileMatch[1];
         })
         .find((file) => {
-          return file?.endsWith('createClientRender.tsx');
+          return file?.endsWith('createRenderer.tsx');
         });
-      workspaceRoot = filename!.replace('test/utils/createClientRender.tsx', '');
+      workspaceRoot = filename!.replace('test/utils/createRenderer.tsx', '');
     }
   });
 
   let emotionCache: import('@emotion/cache').EmotionCache = null!;
+  /**
+   * target container for SSR
+   */
+  let serverContainer: HTMLElement;
   /**
    * Flag whether all setup for `configuredClientRender` was completed.
    * For legacy reasons `configuredClientRender` might accidentally be called in a before(Each) hook.
@@ -367,7 +374,7 @@ export function createClientRender(
   beforeEach(function beforeEachHook() {
     if (!wasCalledInSuite) {
       const error = new Error(
-        'Unable to run `before` hook for `createClientRender`. This usually indicates that `createClientRender` was called in a `before` hook instead of in a `describe()` block.',
+        'Unable to run `before` hook for `createRenderer`. This usually indicates that `createRenderer` was called in a `before` hook instead of in a `describe()` block.',
       );
       error.stack = createClientRenderStack;
       throw error;
@@ -383,6 +390,9 @@ export function createClientRender(
 
     emotionCache = createEmotionCache({ key: 'emotion-client-render' });
 
+    serverContainer = document.createElement('div');
+    document.body.appendChild(serverContainer);
+
     prepared = true;
   });
 
@@ -392,7 +402,7 @@ export function createClientRender(
         "Can't cleanup before fake timers are restored.\n" +
           'Be sure to:\n' +
           '  1. Restore the clock in `afterEach` instead of `after`.\n' +
-          '  2. Move the test hook to restore the clock before the call to `createClientRender()`.',
+          '  2. Move the test hook to restore the clock before the call to `createRenderer()`.',
       );
       // Use saved stack otherwise the stack trace will not include the test location.
       error.stack = createClientRenderStack;
@@ -407,31 +417,72 @@ export function createClientRender(
       styleTag.remove();
     });
     emotionCache = null!;
+
+    serverContainer.remove();
+    serverContainer = null!;
   });
 
-  return function configuredClientRender(element, options = {}) {
-    if (!prepared) {
-      throw new Error(
-        'Unable to finish setup before `render()` was called. ' +
-          'This usually indicates that `render()` was called in a `before()` or `beforeEach` hook. ' +
-          'Move the call into each `it()`. Otherwise you cannot run a specific test and we cannot isolate each test.',
-      );
-    }
-
+  function createWrapper(options: Partial<RenderConfiguration>) {
     const {
-      legacyRoot = globalLegacyRoot,
       strict = globalStrict,
       strictEffects = globalStrictEffects,
-      ...localOptions
+      wrapper: InnerWrapper = React.Fragment,
     } = options;
-    return clientRender(element, {
-      ...localOptions,
-      legacyRoot,
-      strict,
-      strictEffects,
-      profiler,
-      emotionCache,
-    });
+
+    const usesLegacyRoot = !React.version.startsWith('18');
+    const Mode = strict && (strictEffects || usesLegacyRoot) ? React.StrictMode : React.Fragment;
+    return function Wrapper({ children }: { children?: React.ReactNode }) {
+      return (
+        <Mode>
+          <EmotionCacheProvider value={emotionCache}>
+            <React.Profiler id={profiler.id} onRender={profiler.onRender}>
+              <InnerWrapper>{children}</InnerWrapper>
+            </React.Profiler>
+          </EmotionCacheProvider>
+        </Mode>
+      );
+    };
+  }
+
+  return {
+    render(element: React.ReactElement, options: RenderOptions = {}) {
+      if (!prepared) {
+        throw new Error(
+          'Unable to finish setup before `render()` was called. ' +
+            'This usually indicates that `render()` was called in a `before()` or `beforeEach` hook. ' +
+            'Move the call into each `it()`. Otherwise you cannot run a specific test and we cannot isolate each test.',
+        );
+      }
+
+      const { legacyRoot = globalLegacyRoot, ...localOptions } = options;
+      return render(element, {
+        ...localOptions,
+        hydrate: false,
+        legacyRoot,
+        wrapper: createWrapper(options),
+      });
+    },
+    renderToString(element: React.ReactElement, options: RenderOptions = {}) {
+      if (!prepared) {
+        throw new Error(
+          'Unable to finish setup before `render()` was called. ' +
+            'This usually indicates that `render()` was called in a `before()` or `beforeEach` hook. ' +
+            'Move the call into each `it()`. Otherwise you cannot run a specific test and we cannot isolate each test.',
+        );
+      }
+
+      const {
+        container = serverContainer,
+        legacyRoot = globalLegacyRoot,
+        ...localOptions
+      } = options;
+      return renderToString(element, {
+        ...localOptions,
+        container,
+        legacyRoot,
+        wrapper: createWrapper(options),
+      });
+    },
   };
 }
 
@@ -554,9 +605,3 @@ export function act(callback: () => void) {
 export * from '@testing-library/react/pure';
 export { cleanup, fireEvent };
 export const screen = within(document.body, { ...queries, ...customQueries });
-
-export function render() {
-  throw new Error(
-    "Don't use `render` directly. Instead use the return value from `createClientRender`",
-  );
-}

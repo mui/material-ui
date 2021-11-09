@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, createRenderer, fireEvent } from 'test/utils';
 import NativeSelectInput from './NativeSelectInput';
 
 describe('<NativeSelectInput />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<NativeSelectInput IconComponent="div" />, () => ({
     only: ['refForwarding'],

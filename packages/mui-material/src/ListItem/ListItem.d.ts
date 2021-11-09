@@ -7,7 +7,7 @@ import { ListItemClasses } from './listItemClasses';
 
 export interface ListItemComponentsPropsOverrides {}
 
-interface ListItemBaseProps {
+export interface ListItemBaseProps {
   /**
    * Defines the `align-items` style property.
    * @default 'center'

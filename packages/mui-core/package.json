@@ -1,6 +1,6 @@
 {
   "name": "@mui/core",
-  "version": "5.0.0-alpha.53",
+  "version": "5.0.0-alpha.54",
   "private": false,
   "author": "MUI Team",
   "description": "Unstyled React components with which to implement custom design systems.",
@@ -49,14 +49,14 @@
   "dependencies": {
     "@babel/runtime": "^7.16.0",
     "@emotion/is-prop-valid": "^1.1.0",
-    "@mui/utils": "^5.0.1",
+    "@mui/utils": "^5.1.0",
     "@popperjs/core": "^2.4.4",
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2"
   },
   "devDependencies": {
-    "@mui/types": "^7.0.0"
+    "@mui/types": "^7.1.0"
   },
   "sideEffects": false,
   "publishConfig": {

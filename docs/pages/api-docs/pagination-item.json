@@ -9,6 +9,13 @@
       "default": "'standard'"
     },
     "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
+      },
+      "default": "{\n  first: FirstPageIcon,\n  last: LastPageIcon,\n  next: NavigateNextIcon,\n  previous: NavigateBeforeIcon,\n}"
+    },
     "disabled": { "type": { "name": "bool" } },
     "page": { "type": { "name": "node" } },
     "selected": { "type": { "name": "bool" } },

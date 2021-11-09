@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { act, createClientRender, describeConformance } from 'test/utils';
+import { act, createRenderer, describeConformance } from 'test/utils';
 import { createTheme } from '@mui/material/styles';
 import { Transition } from 'react-transition-group';
 import Slide from '@mui/material/Slide';
@@ -9,7 +9,7 @@ import { setTranslateValue } from './Slide';
 import { useForkRef } from '../utils';
 
 describe('<Slide />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   const defaultProps = {
     in: true,

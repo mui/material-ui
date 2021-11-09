@@ -17,7 +17,7 @@ export default function createCssVarsProvider(options) {
     defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
     prefix: designSystemPrefix = '',
-    shouldSkipVar,
+    shouldSkipGeneratingVar,
   } = options;
 
   if (
@@ -86,7 +86,7 @@ export default function createCssVarsProvider(options) {
     const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme, {
       prefix,
       basePrefix: designSystemPrefix,
-      shouldSkipVar,
+      shouldSkipGeneratingVar,
     });
 
     mergedTheme = {
@@ -102,7 +102,7 @@ export default function createCssVarsProvider(options) {
       const { css, vars } = cssVarsParser(scheme, {
         prefix,
         basePrefix: designSystemPrefix,
-        shouldSkipVar,
+        shouldSkipGeneratingVar,
       });
       if (key === resolvedColorScheme) {
         mergedTheme.vars = {

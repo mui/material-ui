@@ -5,7 +5,7 @@ import { useFakeTimers } from 'sinon';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { act, createClientRender, fireEvent, screen } from 'test/utils';
+import { act, createRenderer, fireEvent, screen } from 'test/utils';
 
 const options = [
   'Show some love to MUI',
@@ -82,7 +82,7 @@ describe('<Menu /> integration', () => {
     clock.restore();
   });
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('is part of the DOM by default but hidden', () => {
     const { getByRole } = render(<ButtonMenu />);

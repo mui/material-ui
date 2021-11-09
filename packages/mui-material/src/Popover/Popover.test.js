@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { act, createMount, createClientRender, describeConformance, screen } from 'test/utils';
+import { act, createMount, createRenderer, describeConformance, screen } from 'test/utils';
 import PropTypes from 'prop-types';
 import Grow from '@mui/material/Grow';
 import Modal from '@mui/material/Modal';
@@ -46,7 +46,7 @@ describe('<Popover />', () => {
   });
 
   const mount = createMount();
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Popover anchorEl={() => document.createElement('div')} open />, () => ({
     classes,

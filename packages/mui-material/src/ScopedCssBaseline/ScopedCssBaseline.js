@@ -21,20 +21,22 @@ const ScopedCssBaselineRoot = styled('div', {
   name: 'MuiScopedCssBaseline',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => ({
-  ...html,
-  ...body(theme),
-  '& *, & *::before, & *::after': {
-    boxSizing: 'inherit',
-  },
-  '& strong, & b': {
-    fontWeight: theme.typography.fontWeightBold,
-  },
-}));
+})(({ theme, ownerState }) => {
+  return {
+    ...html(theme, ownerState.enableColorScheme),
+    ...body(theme),
+    '& *, & *::before, & *::after': {
+      boxSizing: 'inherit',
+    },
+    '& strong, & b': {
+      fontWeight: theme.typography.fontWeightBold,
+    },
+  };
+});
 
 const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiScopedCssBaseline' });
-  const { className, component = 'div', ...other } = props;
+  const { className, component = 'div', enableColorScheme, ...other } = props;
 
   const ownerState = {
     ...props,
@@ -76,6 +78,12 @@ ScopedCssBaseline.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * Enable `color-scheme` css property to use `theme.palette.mode`.
+   * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+   * For browser support, check out https://caniuse.com/?search=color-scheme
+   */
+  enableColorScheme: PropTypes.bool,
 };
 
 export default ScopedCssBaseline;

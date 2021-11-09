@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useButton } from '@mui/core/ButtonUnstyled';
-import { createClientRender, fireEvent } from 'test/utils';
+import { createRenderer, fireEvent } from 'test/utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 
 describe('useButton', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describe('state: active', () => {
     describe('when using a button element', () => {

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
 import Switch, { switchClasses as classes } from '@mui/joy/Switch';
 import { ThemeProvider } from '@mui/joy/styles';
 
 describe('<Switch />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Switch />, () => ({
     classes,

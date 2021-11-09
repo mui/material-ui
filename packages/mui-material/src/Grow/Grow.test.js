@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { act, createClientRender, describeConformance } from 'test/utils';
+import { act, createRenderer, describeConformance } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Transition } from 'react-transition-group';
 import Grow from '@mui/material/Grow';
 import useForkRef from '../utils/useForkRef';
 
 describe('<Grow />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   const defaultProps = {
     in: true,

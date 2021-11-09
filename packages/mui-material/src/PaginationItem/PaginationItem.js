@@ -244,6 +244,12 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     className,
     color = 'standard',
     component,
+    components = {
+      first: FirstPageIcon,
+      last: LastPageIcon,
+      next: NavigateNextIcon,
+      previous: NavigateBeforeIcon,
+    },
     disabled = false,
     page,
     selected = false,
@@ -271,16 +277,16 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const normalizedIcons =
     theme.direction === 'rtl'
       ? {
-          previous: NavigateNextIcon,
-          next: NavigateBeforeIcon,
-          last: FirstPageIcon,
-          first: LastPageIcon,
+          previous: components.next || NavigateNextIcon,
+          next: components.previous || NavigateBeforeIcon,
+          last: components.first || FirstPageIcon,
+          first: components.last || LastPageIcon,
         }
       : {
-          previous: NavigateBeforeIcon,
-          next: NavigateNextIcon,
-          first: FirstPageIcon,
-          last: LastPageIcon,
+          previous: components.previous || NavigateBeforeIcon,
+          next: components.next || NavigateNextIcon,
+          first: components.first || FirstPageIcon,
+          last: components.last || LastPageIcon,
         };
 
   const Icon = normalizedIcons[type];
@@ -340,6 +346,21 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The components used for first, last, next & previous item type
+   * @default {
+   *   first: FirstPageIcon,
+   *   last: LastPageIcon,
+   *   next: NavigateNextIcon,
+   *   previous: NavigateBeforeIcon,
+   * }
+   */
+  components: PropTypes.shape({
+    first: PropTypes.elementType,
+    last: PropTypes.elementType,
+    next: PropTypes.elementType,
+    previous: PropTypes.elementType,
+  }),
   /**
    * If `true`, the component is disabled.
    * @default false

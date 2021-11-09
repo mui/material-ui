@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, screen } from 'test/utils';
+import { createRenderer, screen } from 'test/utils';
 import createTheme from './createTheme';
 import styled from './styled';
 import ThemeProvider from './ThemeProvider';
 
 describe('styled', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should work', () => {
     const Div = styled('div')`

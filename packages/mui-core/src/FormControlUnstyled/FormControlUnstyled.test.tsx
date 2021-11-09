@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  createMount,
-  createClientRender,
-  describeConformanceUnstyled,
-  fireEvent,
-} from 'test/utils';
+import { createMount, createRenderer, describeConformanceUnstyled, fireEvent } from 'test/utils';
 import FormControlUnstyled, {
   formControlUnstyledClasses,
   useFormControlUnstyled,
@@ -14,7 +9,7 @@ import FormControlUnstyled, {
 
 describe('<FormControlUnstyled />', () => {
   const mount = createMount();
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformanceUnstyled(<FormControlUnstyled />, () => ({
     inheritComponent: 'div',

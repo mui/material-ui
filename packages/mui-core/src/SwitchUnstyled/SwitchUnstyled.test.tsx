@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { createMount, createClientRender, describeConformanceUnstyled } from 'test/utils';
+import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import SwitchUnstyled, { SwitchState, switchUnstyledClasses } from '@mui/core/SwitchUnstyled';
 import { expect } from 'chai';
 
 describe('<SwitchUnstyled />', () => {
   const mount = createMount();
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformanceUnstyled(<SwitchUnstyled />, () => ({
     inheritComponent: 'span',

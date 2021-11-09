@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import BadgeUnstyled, { badgeUnstyledClasses as classes } from '@mui/core/BadgeUnstyled';
 
 describe('<BadgeUnstyled />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <BadgeUnstyled>
