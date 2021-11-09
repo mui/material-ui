@@ -7,7 +7,7 @@ import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
-import { GlobalStyles } from '@mui/styled-engine';
+import GlobalStyles from '@mui/material/GlobalStyles';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -115,20 +115,22 @@ export default class MyDocument extends Document {
             }}
           />
           <GlobalStyles
-            styles={`
-              .only-light-mode {
-                display: none;
-              }
-              .mode-light .only-light-mode {
-                display: block;
-              }
-              .only-dark-mode {
-                display: none;
-              }
-              .mode-dark .only-dark-mode {
-                display: block;
-              }
-            `}
+            styles={{
+              // First SSR paint
+              '.only-light-mode': {
+                display: 'block',
+              },
+              '.only-dark-mode': {
+                display: 'none',
+              },
+              // Post SSR Hydration
+              '.mode-dark .only-light-mode': {
+                display: 'none',
+              },
+              '.mode-dark .only-dark-mode': {
+                display: 'block',
+              },
+            }}
           />
         </Head>
         <body>

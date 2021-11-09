@@ -3,7 +3,11 @@ import { expect } from 'chai';
 import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
 import { fireEvent, screen, describeConformance } from 'test/utils';
 import CalendarPicker, { calendarPickerClasses as classes } from '@mui/lab/CalendarPicker';
-import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
+import {
+  adapterToUse,
+  wrapPickerMount,
+  createPickerRenderer,
+} from '../internal/pickers/test-utils';
 
 describe('<CalendarPicker />', () => {
   let clock: SinonFakeTimers;
@@ -14,7 +18,7 @@ describe('<CalendarPicker />', () => {
     clock.restore();
   });
 
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   describeConformance(<CalendarPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
     classes,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
@@ -149,12 +149,18 @@ const ButtonGroupRoot = styled('div', {
         ownerState.color !== 'inherit' && {
           borderColor: theme.palette[ownerState.color].dark,
         }),
+      '&:hover': {
+        ...(ownerState.variant === 'outlined' &&
+          ownerState.orientation === 'horizontal' && {
+            borderRightColor: 'currentColor',
+          }),
+        ...(ownerState.variant === 'outlined' &&
+          ownerState.orientation === 'vertical' && {
+            borderBottomColor: 'currentColor',
+          }),
+      },
     },
     '&:hover': {
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.color !== 'inherit' && {
-          borderColor: theme.palette[ownerState.color].main,
-        }),
       ...(ownerState.variant === 'contained' && {
         boxShadow: 'none',
       }),

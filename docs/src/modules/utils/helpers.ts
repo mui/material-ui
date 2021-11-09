@@ -162,7 +162,7 @@ export function getDependencies(
     '@mui/styles': getMuiPackageVersion('styles', muiCommitRef),
     '@mui/system': getMuiPackageVersion('system', muiCommitRef),
     '@mui/private-theming': getMuiPackageVersion('theming', muiCommitRef),
-    '@mui/core': getMuiPackageVersion('core', muiCommitRef),
+    '@mui/base': getMuiPackageVersion('base', muiCommitRef),
     '@mui/utils': getMuiPackageVersion('utils', muiCommitRef),
     '@mui/material-next': getMuiPackageVersion('material-next', muiCommitRef),
     '@mui/joy': getMuiPackageVersion('joy', muiCommitRef),

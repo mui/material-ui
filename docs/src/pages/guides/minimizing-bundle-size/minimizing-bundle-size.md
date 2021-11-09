@@ -209,7 +209,7 @@ Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.ali
 {
   resolve: {
     alias: {
-      '@mui/core$': '@mui/core/legacy',
+      '@mui/base$': '@mui/base/legacy',
       '@mui/material$': '@mui/material/legacy',
       '@mui/styled-engine$': '@mui/styled-engine/legacy',
       '@mui/system$': '@mui/system/legacy',

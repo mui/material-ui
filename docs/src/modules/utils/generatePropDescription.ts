@@ -33,6 +33,18 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
     return type.elements.map((t) => resolveType(t)).join(' | ');
   }
 
+  if (type.type === 'RecordType') {
+    if (type.fields.length === 0) {
+      return '{}';
+    }
+
+    return `{ ${type.fields.map((field) => resolveType(field)).join(', ')} }`;
+  }
+
+  if (type.type === 'FieldType') {
+    return `${type.key}: ${type.value ? resolveType(type.value) : 'any'}`;
+  }
+
   if ('name' in type) {
     return type.name;
   }

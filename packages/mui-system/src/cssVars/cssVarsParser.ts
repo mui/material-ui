@@ -52,7 +52,7 @@ export const assignNestedKeys = <Object = NestedRecord, Value = any>(
  */
 export const walkObjectDeep = <Value, T = Record<string, any>>(
   obj: T,
-  callback: (keys: Array<string>, value: Value) => void,
+  callback: (keys: Array<string>, value: Value, scope: Record<string, string | number>) => void,
 ) => {
   function recurse(object: any, parentKeys: Array<string> = []) {
     Object.entries(object).forEach(([key, value]: [string, any]) => {
@@ -60,7 +60,7 @@ export const walkObjectDeep = <Value, T = Record<string, any>>(
         if (typeof value === 'object' && Object.keys(value).length > 0) {
           recurse(value, [...parentKeys, key]);
         } else {
-          callback([...parentKeys, key], value);
+          callback([...parentKeys, key], value, object);
         }
       }
     });
@@ -83,7 +83,16 @@ const getCssValue = (keys: string[], value: string | number) => {
  * a function that parse theme and return { css, vars }
  *
  * @param {Object} theme
- * @param {{ prefix?: string }} options
+ * @param {{
+ *  prefix?: string,
+ *  basePrefix?: string,
+ *  shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean
+ * }} options.
+ *  `basePrefix`: defined by design system.
+ *  `prefix`: defined by application
+ *
+ *   This function also mutate the string value of theme input by replacing `basePrefix` (if existed) with `prefix`
+ *
  * @returns {{ css: Object, vars: Object }} `css` is the stylesheet, `vars` is an object to get css variable (same structure as theme)
  *
  * @example
@@ -96,21 +105,43 @@ const getCssValue = (keys: string[], value: string | number) => {
  * console.log(css) // { '--fontSize': '12px', '--lineHeight': 1.2, '--palette-primary-500': '#000000' }
  * console.log(vars) // { fontSize: '--fontSize', lineHeight: '--lineHeight', palette: { primary: { 500: 'var(--palette-primary-500)' } } }
  */
-export default function cssVarsParser(theme: Record<string, any>, options?: { prefix?: string }) {
+export default function cssVarsParser(
+  theme: Record<string, any>,
+  options?: {
+    prefix?: string;
+    basePrefix?: string;
+    shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
+  },
+) {
   const clonedTheme = { ...theme };
 
   delete clonedTheme.vars; // remove 'vars' from the structure
 
-  const { prefix } = options || {};
+  const { prefix, basePrefix = '', shouldSkipGeneratingVar } = options || {};
   const css = {} as NestedRecord<string>;
   const vars = {} as NestedRecord<string>;
 
-  walkObjectDeep(clonedTheme, (keys, value) => {
-    if (typeof value === 'string' || typeof value === 'number') {
-      const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
-      Object.assign(css, { [cssVar]: getCssValue(keys, value) });
+  walkObjectDeep(clonedTheme, (keys, val, scope) => {
+    if (typeof val === 'string' || typeof val === 'number') {
+      let value = val;
+      if (typeof value === 'string' && value.startsWith('var')) {
+        // replace the value of the `scope` object with the prefix or remove basePrefix from the value
+        value = prefix ? value.replace(basePrefix, prefix) : value.replace(`${basePrefix}-`, '');
 
-      assignNestedKeys(vars, keys, `var(${cssVar})`);
+        // scope is the deepest object in the tree, keys is the theme path keys
+        scope[keys.slice(-1)[0]] = value;
+      }
+
+      if (
+        !shouldSkipGeneratingVar ||
+        (shouldSkipGeneratingVar && !shouldSkipGeneratingVar(keys, value))
+      ) {
+        // only create css & var if `shouldSkipGeneratingVar` return false
+        const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
+        Object.assign(css, { [cssVar]: getCssValue(keys, value) });
+
+        assignNestedKeys(vars, keys, `var(${cssVar})`);
+      }
     }
   });
 

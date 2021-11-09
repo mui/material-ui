@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled, { InterpolationFunction, ThemeProvider } from 'styled-components';
 import { unstable_styleFunctionSx, SxProps } from '@mui/system';
-import NoSsr from '@mui/core/NoSsr';
+import NoSsr from '@mui/base/NoSsr';
 import { createTheme } from '@mui/material/styles';
 
 interface DivProps {

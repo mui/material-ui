@@ -5,7 +5,7 @@ import { useFakeTimers, SinonFakeTimers, spy } from 'sinon';
 import { act, fireEvent, screen, userEvent } from 'test/utils';
 import 'dayjs/locale/ru';
 import DesktopDateTimePicker from '@mui/lab/DesktopDateTimePicker';
-import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
+import { adapterToUse, createPickerRenderer } from '../internal/pickers/test-utils';
 
 describe('<DesktopDateTimePicker />', () => {
   let clock: SinonFakeTimers;
@@ -18,7 +18,7 @@ describe('<DesktopDateTimePicker />', () => {
     clock.restore();
   });
 
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   it('opens when "Choose date" is clicked', () => {
     render(
