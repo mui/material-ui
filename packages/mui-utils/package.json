@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "private": false,
   "author": "MUI Team",
   "description": "Utility functions for React components.",
