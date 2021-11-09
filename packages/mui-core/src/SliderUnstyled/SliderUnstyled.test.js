@@ -2,13 +2,7 @@ import SliderUnstyled, { sliderUnstyledClasses as classes } from '@mui/core/Slid
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy, stub } from 'sinon';
-import {
-  createClientRender,
-  createMount,
-  describeConformance,
-  fireEvent,
-  screen,
-} from 'test/utils';
+import { createRenderer, createMount, describeConformance, fireEvent, screen } from 'test/utils';
 
 describe('<SliderUnstyled />', () => {
   before(function beforeHook() {
@@ -18,7 +12,7 @@ describe('<SliderUnstyled />', () => {
   });
 
   const mount = createMount();
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<SliderUnstyled value={0} />, () => ({
     classes,

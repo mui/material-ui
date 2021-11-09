@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { createMount, createClientRender, describeConformanceUnstyled } from 'test/utils';
+import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import InputUnstyled, { inputUnstyledClasses } from '@mui/core/InputUnstyled';
 
 describe('<InputUnstyled />', () => {
   const mount = createMount();
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformanceUnstyled(<InputUnstyled />, () => ({
     inheritComponent: 'div',

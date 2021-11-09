@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createClientRender } from 'test/utils';
+import { describeConformance, createRenderer } from 'test/utils';
 import Button, { buttonClasses as classes } from '@mui/joy/Button';
 import { ThemeProvider } from '@mui/joy/styles';
 
 describe('Joy <Button />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Button>Conformance?</Button>, () => ({
     render,

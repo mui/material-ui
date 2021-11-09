@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "5.0.6",
+  "version": "5.1.0",
   "private": false,
   "author": "MUI Team",
   "description": "Quickly build beautiful React apps. MUI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with Material Design.",
@@ -61,10 +61,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.0",
-    "@mui/core": "5.0.0-alpha.53",
-    "@mui/system": "^5.0.6",
-    "@mui/types": "^7.0.0",
-    "@mui/utils": "^5.0.1",
+    "@mui/core": "5.0.0-alpha.54",
+    "@mui/system": "^5.1.0",
+    "@mui/types": "^7.1.0",
+    "@mui/utils": "^5.1.0",
     "@types/react-transition-group": "^4.4.4",
     "clsx": "^1.1.1",
     "csstype": "^3.0.9",

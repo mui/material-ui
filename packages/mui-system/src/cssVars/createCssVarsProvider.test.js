@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createClientRender, screen, fireEvent } from 'test/utils';
+import { createRenderer, screen, fireEvent } from 'test/utils';
 import createCssVarsProvider from './createCssVarsProvider';
 import { DEFAULT_ATTRIBUTE, DEFAULT_MODE_STORAGE_KEY } from './getInitColorSchemeScript';
 import useTheme from '../useTheme';
 
 describe('createCssVarsProvider', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
   let originalMatchmedia;
   let storage = {};
   const createMatchMedia = (matches) => () => ({
@@ -171,7 +171,7 @@ describe('createCssVarsProvider', () => {
       ).toErrorDev('`foo` does not exist in `theme.colorSchemes`.');
     });
 
-    it('does not create css var if shouldSkipVar return true', () => {
+    it('does not create css var if shouldSkipGeneratingVar return true', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: {
@@ -187,7 +187,7 @@ describe('createCssVarsProvider', () => {
           },
         },
         defaultColorScheme: 'light',
-        shouldSkipVar: (keys) => keys[0] === 'typography' && keys[1] === 'h1',
+        shouldSkipGeneratingVar: (keys) => keys[0] === 'typography' && keys[1] === 'h1',
       });
       const Consumer = () => {
         const theme = useTheme();

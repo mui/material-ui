@@ -3,7 +3,7 @@ import React from 'react';
 import { spy } from 'sinon';
 import {
   act,
-  createClientRender,
+  createRenderer,
   focusVisible,
   programmaticFocusTriggersFocusVisible,
   screen,
@@ -12,7 +12,7 @@ import {
 import { useSwitch, UseSwitchProps, UseSwitchResult } from '@mui/core/SwitchUnstyled';
 
 describe('useSwitch', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
   const invokeUseSwitch = (props: UseSwitchProps): UseSwitchResult => {
     const ref = React.createRef<UseSwitchResult>();
     function TestComponent() {

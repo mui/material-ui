@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import Ripple from './Ripple';
 import classes from './touchRippleClasses';
 
 describe('<Ripple />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should have the ripple className', () => {
     const { container } = render(

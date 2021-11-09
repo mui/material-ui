@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createClientRender, screen } from 'test/utils';
+import { describeConformance, createRenderer, screen } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
 import { generateRowGap, generateColumnGap, generateDirection } from './Grid';
 
 describe('<Grid />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Grid />, () => ({
     classes,

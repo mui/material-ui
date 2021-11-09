@@ -172,6 +172,9 @@ export * from './Container';
 export { default as CssBaseline } from './CssBaseline';
 export * from './CssBaseline';
 
+/**
+ * @deprecated use color-scheme in CssBaseline or ScopedCssBaseline to modify scrollbar color
+ */
 export { default as darkScrollbar } from './darkScrollbar';
 export * from './darkScrollbar';
 

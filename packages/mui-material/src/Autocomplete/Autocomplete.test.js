@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import {
   describeConformance,
   act,
-  createClientRender,
+  createRenderer,
   fireEvent,
   screen,
   strictModeDoubleLoggingSupressed,
@@ -34,7 +34,7 @@ function checkHighlightIs(listbox, expected) {
 }
 
 describe('<Autocomplete />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,

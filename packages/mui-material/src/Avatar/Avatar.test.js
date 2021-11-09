@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, fireEvent, describeConformance } from 'test/utils';
+import { createRenderer, fireEvent, describeConformance } from 'test/utils';
 import { spy } from 'sinon';
 import Avatar, { avatarClasses as classes } from '@mui/material/Avatar';
 import CancelIcon from '../internal/svg-icons/Cancel';
 
 describe('<Avatar />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Avatar />, () => ({
     classes,

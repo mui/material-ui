@@ -77,10 +77,12 @@ export default function createCssVarsProvider<
   prefix?: string;
   /**
    * A function to determine if the key, value should be attached as CSS Variable
-   * `keys` is an array that represents the nested object path.
-   *  Ex, { foo: { bar: 'var(--test)' } } => `keys`: ['foo', 'bar'], value: 'var(--test)'
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
    */
-  shouldSkipVar?: (keys: string[], value: string | number) => boolean;
+  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
 }): {
   CssVarsProvider: (
     props: React.PropsWithChildren<

@@ -2,12 +2,12 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { act, createClientRender, screen } from 'test/utils';
+import { act, createRenderer, screen } from 'test/utils';
 import TrapFocus from '@mui/core/Unstable_TrapFocus';
 import Portal from '@mui/core/Portal';
 
 describe('<TrapFocus />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   let initialFocus = null;
 

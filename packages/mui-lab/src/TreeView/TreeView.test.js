@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   act,
-  createClientRender,
+  createRenderer,
   ErrorBoundary,
   fireEvent,
   screen,
@@ -14,7 +14,7 @@ import TreeView, { treeViewClasses as classes } from '@mui/lab/TreeView';
 import TreeItem from '@mui/lab/TreeItem';
 
 describe('<TreeView />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<TreeView />, () => ({
     classes,

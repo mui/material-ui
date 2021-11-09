@@ -4,14 +4,14 @@ import sinon, { spy, stub, useFakeTimers } from 'sinon';
 import {
   describeConformance,
   act,
-  createClientRender,
+  createRenderer,
   fireEvent,
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
 import TextareaAutosize from '@mui/core/TextareaAutosize';
 
 describe('<TextareaAutosize />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<TextareaAutosize />, () => ({
     inheritComponent: 'textarea',

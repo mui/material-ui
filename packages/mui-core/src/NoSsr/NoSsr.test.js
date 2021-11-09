@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, createServerRender } from 'test/utils';
+import { createRenderer, createServerRender } from 'test/utils';
 import NoSsr from '@mui/core/NoSsr';
 
 describe('<NoSsr />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
   const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
 
   describe('server-side rendering', () => {

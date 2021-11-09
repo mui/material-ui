@@ -46,7 +46,7 @@ async function main() {
       `Expected no console messages but got ${consoleMessage.type()}: '${consoleMessage.text()}' `,
     );
   });
-  await attemptGoto(page, 'http://localhost:5000/');
+  await attemptGoto(page, 'http://localhost:3000/');
 
   await browser.close();
 }

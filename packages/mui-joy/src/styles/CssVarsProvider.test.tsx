@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, screen } from 'test/utils';
+import { createRenderer, screen } from 'test/utils';
 import { styled, CssVarsProvider, useTheme } from '@mui/joy/styles';
 import defaultTheme from './defaultTheme';
 
 describe('[Joy] CssVarsProvider', () => {
   let originalMatchmedia: typeof window.matchMedia;
-  const render = createClientRender();
+  const { render } = createRenderer();
   const storage: Record<string, string> = {};
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
@@ -60,20 +60,6 @@ describe('[Joy] CssVarsProvider', () => {
             700: 'var(--joy-palette-brand-700)',
             800: 'var(--joy-palette-brand-800)',
             900: 'var(--joy-palette-brand-900)',
-            channel500: 'var(--joy-palette-brand-channel500)',
-          },
-          neutral: {
-            50: 'var(--joy-palette-neutral-50)',
-            100: 'var(--joy-palette-neutral-100)',
-            200: 'var(--joy-palette-neutral-200)',
-            300: 'var(--joy-palette-neutral-300)',
-            400: 'var(--joy-palette-neutral-400)',
-            500: 'var(--joy-palette-neutral-500)',
-            600: 'var(--joy-palette-neutral-600)',
-            700: 'var(--joy-palette-neutral-700)',
-            800: 'var(--joy-palette-neutral-800)',
-            900: 'var(--joy-palette-neutral-900)',
-            channel500: 'var(--joy-palette-neutral-channel500)',
           },
           neutral: {
             50: 'var(--joy-palette-neutral-50)',
@@ -199,6 +185,9 @@ describe('[Joy] CssVarsProvider', () => {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
+      const fontFamiliesAreNotQuoted = /Firefox/.test(window.navigator.userAgent);
+      const fontWeight400IsNormal = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
       const Text = styled('p')(({ theme }) => ({
         ...theme.typography.body,
       }));
@@ -211,8 +200,10 @@ describe('[Joy] CssVarsProvider', () => {
 
       expect(container.firstChild).toHaveComputedStyle({
         fontSize: '16px',
-        fontFamily: `"${defaultTheme.fontFamily.sans}"`,
-        fontWeight: '400',
+        fontFamily: fontFamiliesAreNotQuoted
+          ? defaultTheme.fontFamily.sans
+          : `"${defaultTheme.fontFamily.sans}"`,
+        fontWeight: fontWeight400IsNormal ? 'normal' : '400',
         lineHeight: '24px',
       });
     });

@@ -166,7 +166,7 @@ describe('cssVarsParser', () => {
       });
     });
 
-    it('css is not created if shouldSkipVar return true', () => {
+    it('css is not created if shouldSkipGeneratingVar return true', () => {
       const { css } = cssVarsParser(
         {
           palette: {
@@ -177,7 +177,7 @@ describe('cssVarsParser', () => {
           },
         },
         {
-          shouldSkipVar: (keys) => keys.slice(-1)[0] === '500',
+          shouldSkipGeneratingVar: (keys) => keys.slice(-1)[0] === '500',
         },
       );
       expect(css).to.deep.equal({
@@ -280,7 +280,7 @@ describe('cssVarsParser', () => {
       });
     });
 
-    it('var is not created if shouldSkipVar return true', () => {
+    it('var is not created if shouldSkipGeneratingVar return true', () => {
       const { vars } = cssVarsParser(
         {
           palette: {
@@ -291,7 +291,7 @@ describe('cssVarsParser', () => {
           },
         },
         {
-          shouldSkipVar: (keys) => keys.slice(-1)[0] === '500',
+          shouldSkipGeneratingVar: (keys) => keys.slice(-1)[0] === '500',
         },
       );
       expect(vars).to.deep.equal({

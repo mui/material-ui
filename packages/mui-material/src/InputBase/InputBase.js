@@ -210,7 +210,6 @@ export const InputBaseComponent = styled('input', {
     ...(ownerState.type === 'search' && {
       // Improve type search style.
       MozAppearance: 'textfield',
-      WebkitAppearance: 'textfield',
     }),
   };
 });
