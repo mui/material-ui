@@ -17,13 +17,16 @@ const faqData = [
     summary: 'How do I know if I need an license?',
     detail: (
       <React.Fragment>
-        If you have a doubt, always default to checking the license file of the npm package you are installing.
+        If you have a doubt, always default to checking the license file of the npm package you are
+        installing.
         <br />
         <br />
-        For instance{' '}
-        <Link href="https://unpkg.com/@mui/x-data-grid/LICENSE">@mui/x-data-grid</Link> is MIT while{' '}
-        <Link href="https://unpkg.com/@mui/x-data-grid-pro/LICENSE">@mui/x-data-grid-pro</Link>{' '}
-        is commercial.
+        For instance <Link href="https://unpkg.com/@mui/x-data-grid/LICENSE">
+          @mui/x-data-grid
+        </Link>{' '}
+        is MIT while{' '}
+        <Link href="https://unpkg.com/@mui/x-data-grid-pro/LICENSE">@mui/x-data-grid-pro</Link> is
+        commercial.
       </React.Fragment>
     ),
   },
