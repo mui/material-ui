@@ -1,10 +1,22 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useControlled } from '@mui/material/utils';
+import { unstable_useControlled as useControlled } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { appendOwnerState } from '../utils';
+import composeClasses from '../composeClasses';
+import { getTabsUnstyledUtilityClass } from './tabsUnstyledClasses';
 import TabsUnstyledProps, { TabsUnstyledTypeMap } from './TabsUnstyledProps';
 import Context from './TabsContext';
+
+const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
+  const { orientation } = ownerState;
+
+  const slots = {
+    root: ['root', orientation ],
+  };
+
+  return composeClasses(slots, getTabsUnstyledUtilityClass, {});
+};
 
 function useUniquePrefix() {
   const [id, setId] = React.useState<string | null>(null);
@@ -54,7 +66,7 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
     direction,
   };
 
-  // const classes = useUtilityClasses(ownerState);
+  const classes = useUtilityClasses(ownerState);
 
   const TabsRoot: React.ElementType = component ?? components.Root ?? 'div';
   const tabsRootProps = appendOwnerState(
