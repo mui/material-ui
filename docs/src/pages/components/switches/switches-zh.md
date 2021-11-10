@@ -58,7 +58,7 @@ You can control the switch with the `checked` and `onChange` props:
 The switch also comes with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
 
 ```jsx
-import SwitchUnstyled from '@mui/core/SwitchUnstyled';
+import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 ```
 
 The `SwitchUnstyled` component provides default components and assigns CSS classes you can style entirely on your own. You are free to choose any styling solution - plain CSS classes, a CSS framework, Emotion, etc. It is also possible to replace these default components by other HTML elements or custom components.
@@ -72,7 +72,7 @@ There are three components you can override by the `components` prop: `Root`, `T
 For the ultimate customizability, a `useSwitch` hook is available. It accepts almost the same options as the SwitchUnstyled component minus the `component`, `components`, and `componentsProps` props.
 
 ```jsx
-import { useSwitch } from '@mui/core/SwitchUnstyled';
+import { useSwitch } from '@mui/base/SwitchUnstyled';
 ```
 
 #### Basic example
