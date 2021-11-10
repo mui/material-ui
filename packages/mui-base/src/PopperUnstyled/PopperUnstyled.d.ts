@@ -4,7 +4,8 @@ import { PortalProps } from '../Portal';
 
 export type PopperPlacementType = Options['placement'];
 
-export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface PopperUnstyledProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   ref?: React.Ref<HTMLDivElement>;
   /**
    * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
@@ -34,6 +35,11 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    * so it's simply `document.body` most of the time.
    */
   container?: PortalProps['container'];
+  /**
+   * Direction of the text.
+   * @default 'ltr'
+   */
+  direction?: 'ltr' | 'rtl';
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
@@ -86,12 +92,10 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/components/autocomplete/)
- * - [Menus](https://mui.com/components/menus/)
  * - [Popper](https://mui.com/components/popper/)
  *
  * API:
  *
- * - [Popper API](https://mui.com/api/popper/)
+ * - [PopperUnstyled API](https://mui.com/api/popper-unstyled/)
  */
-export default function Popper(props: PopperProps): JSX.Element;
+export default function PopperUnstyled(props: PopperUnstyledProps): JSX.Element;
