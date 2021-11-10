@@ -15,7 +15,7 @@ We are excited to introduce [MUI X v5.0.0](https://github.com/mui-org/material-u
 This release features some major highlights:
 
 - [High-level goals for v5](#high-level-goals-for-v5)
-- [A new and improved virtualization engine](#a-new-and-improved-virtualization-engine)
+- [A new virtualization engine](#a-new-virtualization-engine)
 - [Improved state management](#improved-state-management)
 - [Reduced style specificity for easier customization](#reduced-style-specificity-for-easier-customization)
 - [Features highlights](#features-highlights)
@@ -28,7 +28,23 @@ This release features some major highlights:
 
 ## High-level goals for v5
 
-## A new and improved virtualization engine
+## A new virtualization engine
+
+The `DataGrid` and `DataGridPro` features a brand-new virtualization engine.
+We decided to rewrite it completely to address the many issues raised by the community and to make easier to release new features that impact the rendering of rows and columns.
+One of the many advantages over the previous version is that now we use the native scroll.
+This means that scrolling the grid is like scrolling a webpage.
+The jittering caused when the scroll is overridden is gone.
+Another advatange is that scrolling horizontally will have the same performance as scrolling vertically.
+
+To summarize, the new virtualization has the following features:
+
+- Scrolling runs at 40 FPS, on average
+- Same performance for horizontal and vertical scroll
+- No more jumps when changing the rendered rows
+- Better performance on mobile devices
+- Calling `apiRef.current.scrollToIndexes` works no matter where the cell is
+- Improved support for when virtualization is disabled.
 
 ## Improved state management
 
