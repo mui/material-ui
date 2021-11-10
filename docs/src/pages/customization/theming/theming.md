@@ -254,7 +254,7 @@ function App() {
 
 ### `ThemeProvider`
 
-This component takes a `theme` prop, and makes it available down the React tree thanks to the context.
+This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around.
 It should preferably be used at **the root of your component tree**.
 
 #### Props
