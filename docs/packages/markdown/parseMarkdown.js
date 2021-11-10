@@ -40,7 +40,11 @@ function getHeaders(markdown) {
   // eslint-disable-next-line no-cond-assign
   while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
     const key = regexMatches[1];
+<<<<<<< HEAD
     let value = regexMatches[2].replace(/(.*)/, '$1');
+=======
+    const value = regexMatches[2].replace(/(.*)/, '$1');
+>>>>>>> 00344848f7 (A better regex)
     if (value[0] === '[') {
       // Need double quotes to JSON parse.
       value = value.replace(/'/g, '"');
