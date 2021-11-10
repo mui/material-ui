@@ -1,9 +1,9 @@
+import * as React from 'react';
 import { expect } from 'chai';
-import createTheme from './createTheme';
 import { createRenderer } from 'test/utils';
 import Button from '@mui/material/Button';
-import { ThemeProvider } from '@mui/material/styles';
-import { deepOrange, green } from '../colors';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { deepOrange, green } from '@mui/material/colors';
 
 describe('createTheme', () => {
   const { render } = createRenderer();
