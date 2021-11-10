@@ -3,8 +3,6 @@ trigger:
     include:
       - 'master'
       - 'next'
-      # REVERT LATER
-      - 'core/size-snapshot-handoff'
 
 schedules:
   - cron: '0 0 * * *'
