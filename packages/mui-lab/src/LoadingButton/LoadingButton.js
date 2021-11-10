@@ -106,7 +106,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
       left: 14,
     }),
   ...(ownerState.loadingPosition === 'start' &&
-    (ownerState.variant === 'text') && {
+    ownerState.variant === 'text' && {
       left: 6,
     }),
   ...(ownerState.loadingPosition === 'center' && {
@@ -119,7 +119,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
       right: 14,
     }),
   ...(ownerState.loadingPosition === 'end' &&
-    (ownerState.variant === 'text') && {
+    ownerState.variant === 'text' && {
       right: 6,
     }),
   ...(ownerState.loadingPosition === 'start' &&
@@ -144,6 +144,7 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
     loading = false,
     loadingIndicator = LoadingIndicator,
     loadingPosition = 'center',
+    // eslint-disable-next-line react/prop-types
     variant = 'text',
     ...other
   } = props;
