@@ -108,6 +108,10 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -135,10 +139,19 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
    */
   direction: PropTypes.oneOf(['ltr', 'rtl']),
   /**
+   * Callback invoked when new value is being set.
+   */
+  onChange: PropTypes.func,
+  /**
    * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * If `true` the selected tab changes on focus. Otherwise it only
+   * changes on activation.
+   */
+  selectionFollowsFocus: PropTypes.bool,
   /**
    * The value of the currently selected `Tab`.
    * If you don't want any selected `Tab`, you can set this prop to `false`.

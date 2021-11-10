@@ -1,26 +1,40 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import { TabsContext } from '@mui/base/TabsUnstyled';
-import TabsList, { tabsListUnstyledClasses as classes } from '@mui/base/TabsListUnstyled';
+import TabsList, { tabsListUnstyledClasses } from '@mui/base/TabsListUnstyled';
 
 describe('<TabsListUnstyled />', () => {
   const { render } = createRenderer();
   const mount = createMount();
 
-  // TODO: Support wrapper for adding TabContext
-  // describeConformanceUnstyled(<TabsList />, () => ({
-  //   classes,
-  //   mount,
-  //   inheritComponent: 'div',
-  //   render: (node) => render(<TabsContext.Provider value={{ value: "0" }}>{node}</TabsContext.Provider>),
-  //   wrapMount: (mount) => (node) => mount(<TabsContext.Provider value={{ value: "0" }}>{node}</TabsContext.Provider>),
-  //   muiName: 'MuiTabs',
-  //   refInstanceof: window.HTMLDivElement,
-  //   testComponentPropWith: 'header',
-  //   slots: {
-  //     root: {
-  //       expectedClassName: classes.root,
-  //     },
-  //   },
-  // }));
+  describeConformanceUnstyled(<TabsList />, () => ({
+    inheritComponent: 'div',
+    render: (node) => {
+      const { container, ...other } = render(
+        <TabsContext.Provider value={{ value: '1', idPrefix: '1', onSelected: () => {} }}>
+          {node}
+        </TabsContext.Provider>,
+      );
+
+      return { container, ...other };
+    },
+    mount: (node: any) => {
+      const wrapper = mount(
+        <TabsContext.Provider value={{ value: '1', idPrefix: '1', onSelected: () => {} }}>
+          {node}
+        </TabsContext.Provider>,
+      );
+      return wrapper.childAt(0);
+    },
+    refInstanceof: window.HTMLDivElement,
+    testComponentPropWith: 'div',
+    muiName: 'MuiTabPanel',
+    slots: {
+      root: {
+        expectedClassName: tabsListUnstyledClasses.root,
+      },
+    },
+    // Need to be wrapped with TabsContext
+    skip: ['reactTestRenderer'],
+  }));
 });

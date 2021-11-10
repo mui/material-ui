@@ -174,12 +174,13 @@ Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd cla
 
 ## Unstyled
 
-The button also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+The Tabs also come with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ### Unstyled component
 
 ```js
 import TabsUnstyled from '@mui/base/TabsUnstyled';
+import TabsListUnstyled from '@mui/base/TabUnstyled';
 import TabUnstyled from '@mui/base/TabUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 ```

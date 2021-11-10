@@ -99,7 +99,7 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
   return (
     <TabRoot
       {...tabRootProps}
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, componentsProps.root?.className, className)}
       ref={ref}
       onClick={handleClick}
       onFocus={handleFocus}
@@ -115,52 +115,14 @@ TabUnstyled.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * @ignore
-   */
-  children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the Button.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * @ignore
-   */
-  componentsProps: PropTypes.object,
-  /**
-   * If `true`, the component is disabled.
-   * @default false
-   */
-  disabled: PropTypes.bool,
-  /**
    * Callback invoked when new value is being set.
    */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
-  /**
-   * If `true` the selected tab changes on focus. Otherwise it only
-   * changes on activation.
-   */
-  selectionFollowsFocus: PropTypes.bool,
   /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */

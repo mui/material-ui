@@ -146,8 +146,8 @@ function testComponentsProp(
       };
 
       const { container } = render(React.cloneElement(element, { components }));
-      const thumb = container.querySelector(slotElement);
-      expect(thumb).to.have.class(slotOptions.expectedClassName);
+      const renderedElement = container.querySelector(slotElement);
+      expect(renderedElement).to.have.class(slotOptions.expectedClassName);
     });
 
     if (slotOptions.isOptional) {

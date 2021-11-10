@@ -16,7 +16,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-core/src/TabPanelUnstyled/TabPanelUnstyled.tsx",
+  "filename": "/packages/mui-base/src/TabPanelUnstyled/TabPanelUnstyled.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
   "cssComponent": false

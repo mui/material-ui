@@ -1,7 +1,7 @@
 import { OverrideProps } from '@mui/types';
-import { ButtonUnstyledOwnerState } from '../ButtonUnstyled/ButtonUnstyled';
+import { ButtonUnstyledOwnProps } from '../ButtonUnstyled/ButtonUnstyled';
 
-export interface TabUnstyledOwnProps extends Omit<ButtonUnstyledOwnerState, 'onChange'> {
+export interface TabUnstyledOwnProps extends Omit<ButtonUnstyledOwnProps, 'onChange'> {
   /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */

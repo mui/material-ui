@@ -7,17 +7,14 @@ import {
   createRenderer,
   fireEvent,
   screen,
-  createServerRender,
   createMount,
-  strictModeDoubleLoggingSupressed,
 } from 'test/utils';
 import Tab from '@mui/base/TabUnstyled';
 import Tabs, { tabsUnstyledClasses as classes } from '@mui/base/TabsUnstyled';
 import TabsList from '@mui/base/TabsListUnstyled';
+import TabsUnstyledProps from './TabsUnstyledProps';
 
 describe('<TabsUnstyled />', () => {
-  // tests mocking getBoundingClientRect prevent mocha to exit
-  const isJSDOM = navigator.userAgent === 'node.js';
   const mount = createMount();
   const { render } = createRenderer();
 
@@ -49,7 +46,6 @@ describe('<TabsUnstyled />', () => {
   }));
 
   it('can be named via `aria-label`', () => {
-    // TODO: Move to TabsList
     render(
       <Tabs>
         <TabsList aria-label="string label">
@@ -200,26 +196,6 @@ describe('<TabsUnstyled />', () => {
   });
 
   describe('prop: orientation', () => {
-    it('should support orientation="vertical"', function test() {
-      if (isJSDOM) {
-        this.skip();
-      }
-
-      const { forceUpdate, container, getByRole } = render(
-        <Tabs value={1} variant="scrollable" scrollButtons orientation="vertical">
-          <TabsList>
-            <Tab />
-            <Tab />
-          </TabsList>
-        </Tabs>,
-      );
-      const tablist = getByRole('tablist');
-      const tablistContainer = tablist.parentElement;
-      const tab = tablist.children[1];
-
-      // TODO: test using other mechanism
-    });
-
     it('does not add aria-orientation by default', () => {
       render(
         <Tabs value={0}>
@@ -260,10 +236,10 @@ describe('<TabsUnstyled />', () => {
             const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
-                direction={direction}
+                direction={direction as TabsUnstyledProps['direction']}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                orientation={orientation}
+                orientation={orientation as TabsUnstyledProps['orientation']}
                 value={1}
               >
                 <TabsList>
@@ -291,10 +267,10 @@ describe('<TabsUnstyled />', () => {
             const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
-                direction={direction}
+                direction={direction as TabsUnstyledProps['direction']}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                orientation={orientation}
+                orientation={orientation as TabsUnstyledProps['orientation']}
                 selectionFollowsFocus
                 value={0}
               >
@@ -324,10 +300,10 @@ describe('<TabsUnstyled />', () => {
             const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
-                direction={direction}
+                direction={direction as TabsUnstyledProps['direction']}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                orientation={orientation}
+                orientation={orientation as TabsUnstyledProps['orientation']}
                 value={1}
               >
                 <TabsList>
@@ -355,10 +331,10 @@ describe('<TabsUnstyled />', () => {
             const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
-                direction={direction}
+                direction={direction as TabsUnstyledProps['direction']}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                orientation={orientation}
+                orientation={orientation as TabsUnstyledProps['orientation']}
                 selectionFollowsFocus
                 value={1}
               >
@@ -387,9 +363,9 @@ describe('<TabsUnstyled />', () => {
             const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
-                direction={direction}
+                direction={direction as TabsUnstyledProps['direction']}
                 onKeyDown={handleKeyDown}
-                orientation={orientation}
+                orientation={orientation as TabsUnstyledProps['orientation']}
                 selectionFollowsFocus
                 value={1}
               >
@@ -419,10 +395,10 @@ describe('<TabsUnstyled />', () => {
             const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
-                direction={direction}
+                direction={direction as TabsUnstyledProps['direction']}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                orientation={orientation}
+                orientation={orientation as TabsUnstyledProps['orientation']}
                 value={1}
               >
                 <TabsList>
@@ -450,10 +426,10 @@ describe('<TabsUnstyled />', () => {
             const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
-                direction={direction}
+                direction={direction as TabsUnstyledProps['direction']}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                orientation={orientation}
+                orientation={orientation as TabsUnstyledProps['orientation']}
                 selectionFollowsFocus
                 value={2}
               >
@@ -483,10 +459,10 @@ describe('<TabsUnstyled />', () => {
             const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
-                direction={direction}
+                direction={direction as TabsUnstyledProps['direction']}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                orientation={orientation}
+                orientation={orientation as TabsUnstyledProps['orientation']}
                 value={1}
               >
                 <TabsList>
@@ -514,10 +490,10 @@ describe('<TabsUnstyled />', () => {
             const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
-                direction={direction}
+                direction={direction as TabsUnstyledProps['direction']}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                orientation={orientation}
+                orientation={orientation as TabsUnstyledProps['orientation']}
                 selectionFollowsFocus
                 value={1}
               >
@@ -546,9 +522,9 @@ describe('<TabsUnstyled />', () => {
             const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
-                direction={direction}
+                direction={direction as TabsUnstyledProps['direction']}
                 onKeyDown={handleKeyDown}
-                orientation={orientation}
+                orientation={orientation as TabsUnstyledProps['orientation']}
                 selectionFollowsFocus
                 value={1}
               >

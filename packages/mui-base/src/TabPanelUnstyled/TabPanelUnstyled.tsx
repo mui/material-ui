@@ -72,7 +72,7 @@ const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(functi
       ref={ref}
       role="tabpanel"
       {...tabPanelRootProps}
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, componentsProps.root?.className, className)}
     >
       {!hidden && children}
     </TabPanelRoot>

@@ -211,7 +211,7 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
       role="tablist"
       {...tabsListRootProps}
       onKeyDown={handleKeyDown}
-      className={clsx(className, classes.root)}
+      className={clsx(className, componentsProps.root?.className, classes.root)}
     >
       {processedChildren}
     </TabsListRoot>
@@ -237,6 +237,10 @@ TabsListUnstyled.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
