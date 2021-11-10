@@ -193,7 +193,7 @@ Finally, you can convert your existing codebase to this option with this [top-le
 {
   resolve: {
     alias: {
-      '@mui/core$': '@mui/core/legacy',
+      '@mui/base$': '@mui/base/legacy',
       '@mui/material$': '@mui/material/legacy',
       '@mui/styled-engine$': '@mui/styled-engine/legacy',
       '@mui/system$': '@mui/system/legacy',
