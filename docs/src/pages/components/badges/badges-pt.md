@@ -67,7 +67,7 @@ Você pode usar a propriedade `anchorOrigin` para mover o emblema para qualquer 
 O badge também vem com uma versão sem estilo. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
 
 ```js
-import BadgeUnstyled from '@mui/core/BadgeUnstyled';
+import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 ```
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}
