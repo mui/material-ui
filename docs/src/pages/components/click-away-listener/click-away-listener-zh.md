@@ -37,10 +37,10 @@ githubLabel: 'component: ClickAwayListener'
 
 ## Unstyled
 
-- 📦 [784 B gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
+- 📦 [784 B gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
 
 As the component does not have any styles, it also comes with the unstyled package.
 
 ```js
-import ClickAwayListener from '@mui/core/ClickAwayListener';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 ```
