@@ -193,7 +193,7 @@ O pacote publicado no npm é **transpilado** com [Babel](https://github.com/babe
 {
   resolve: {
     alias: {
-      '@mui/core$': '@mui/core/legacy',
+      '@mui/base$': '@mui/base/legacy',
       '@mui/material$': '@mui/material/legacy',
       '@mui/styled-engine$': '@mui/styled-engine/legacy',
       '@mui/system$': '@mui/system/legacy',
