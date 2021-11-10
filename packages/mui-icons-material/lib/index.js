@@ -16541,6 +16541,36 @@ Object.defineProperty(exports, "EmojiEventsTwoTone", {
     return _EmojiEventsTwoTone.default;
   }
 });
+Object.defineProperty(exports, "EmojiFlags", {
+  enumerable: true,
+  get: function () {
+    return _EmojiFlags.default;
+  }
+});
+Object.defineProperty(exports, "EmojiFlagsOutlined", {
+  enumerable: true,
+  get: function () {
+    return _EmojiFlagsOutlined.default;
+  }
+});
+Object.defineProperty(exports, "EmojiFlagsRounded", {
+  enumerable: true,
+  get: function () {
+    return _EmojiFlagsRounded.default;
+  }
+});
+Object.defineProperty(exports, "EmojiFlagsSharp", {
+  enumerable: true,
+  get: function () {
+    return _EmojiFlagsSharp.default;
+  }
+});
+Object.defineProperty(exports, "EmojiFlagsTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _EmojiFlagsTwoTone.default;
+  }
+});
 Object.defineProperty(exports, "EmojiFoodBeverage", {
   enumerable: true,
   get: function () {
@@ -17595,6 +17625,30 @@ Object.defineProperty(exports, "Facebook", {
   enumerable: true,
   get: function () {
     return _Facebook.default;
+  }
+});
+Object.defineProperty(exports, "FacebookOutlined", {
+  enumerable: true,
+  get: function () {
+    return _FacebookOutlined.default;
+  }
+});
+Object.defineProperty(exports, "FacebookRounded", {
+  enumerable: true,
+  get: function () {
+    return _FacebookRounded.default;
+  }
+});
+Object.defineProperty(exports, "FacebookSharp", {
+  enumerable: true,
+  get: function () {
+    return _FacebookSharp.default;
+  }
+});
+Object.defineProperty(exports, "FacebookTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _FacebookTwoTone.default;
   }
 });
 Object.defineProperty(exports, "FactCheck", {
@@ -57017,6 +57071,30 @@ Object.defineProperty(exports, "WifiTetheringErrorRounded", {
     return _WifiTetheringErrorRounded.default;
   }
 });
+Object.defineProperty(exports, "WifiTetheringErrorRoundedOutlined", {
+  enumerable: true,
+  get: function () {
+    return _WifiTetheringErrorRoundedOutlined.default;
+  }
+});
+Object.defineProperty(exports, "WifiTetheringErrorRoundedRounded", {
+  enumerable: true,
+  get: function () {
+    return _WifiTetheringErrorRoundedRounded.default;
+  }
+});
+Object.defineProperty(exports, "WifiTetheringErrorRoundedSharp", {
+  enumerable: true,
+  get: function () {
+    return _WifiTetheringErrorRoundedSharp.default;
+  }
+});
+Object.defineProperty(exports, "WifiTetheringErrorRoundedTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _WifiTetheringErrorRoundedTwoTone.default;
+  }
+});
 Object.defineProperty(exports, "WifiTetheringErrorSharp", {
   enumerable: true,
   get: function () {
@@ -63118,6 +63196,16 @@ var _EmojiEventsSharp = _interopRequireDefault(require("./EmojiEventsSharp"));
 
 var _EmojiEventsTwoTone = _interopRequireDefault(require("./EmojiEventsTwoTone"));
 
+var _EmojiFlags = _interopRequireDefault(require("./EmojiFlags"));
+
+var _EmojiFlagsOutlined = _interopRequireDefault(require("./EmojiFlagsOutlined"));
+
+var _EmojiFlagsRounded = _interopRequireDefault(require("./EmojiFlagsRounded"));
+
+var _EmojiFlagsSharp = _interopRequireDefault(require("./EmojiFlagsSharp"));
+
+var _EmojiFlagsTwoTone = _interopRequireDefault(require("./EmojiFlagsTwoTone"));
+
 var _EmojiFoodBeverage = _interopRequireDefault(require("./EmojiFoodBeverage"));
 
 var _EmojiFoodBeverageOutlined = _interopRequireDefault(require("./EmojiFoodBeverageOutlined"));
@@ -63441,6 +63529,14 @@ var _ExtensionTwoTone = _interopRequireDefault(require("./ExtensionTwoTone"));
 var _Face = _interopRequireDefault(require("./Face"));
 
 var _Facebook = _interopRequireDefault(require("./Facebook"));
+
+var _FacebookOutlined = _interopRequireDefault(require("./FacebookOutlined"));
+
+var _FacebookRounded = _interopRequireDefault(require("./FacebookRounded"));
+
+var _FacebookSharp = _interopRequireDefault(require("./FacebookSharp"));
+
+var _FacebookTwoTone = _interopRequireDefault(require("./FacebookTwoTone"));
 
 var _FaceOutlined = _interopRequireDefault(require("./FaceOutlined"));
 
@@ -76609,6 +76705,14 @@ var _WifiTetheringError = _interopRequireDefault(require("./WifiTetheringError")
 var _WifiTetheringErrorOutlined = _interopRequireDefault(require("./WifiTetheringErrorOutlined"));
 
 var _WifiTetheringErrorRounded = _interopRequireDefault(require("./WifiTetheringErrorRounded"));
+
+var _WifiTetheringErrorRoundedOutlined = _interopRequireDefault(require("./WifiTetheringErrorRoundedOutlined"));
+
+var _WifiTetheringErrorRoundedRounded = _interopRequireDefault(require("./WifiTetheringErrorRoundedRounded"));
+
+var _WifiTetheringErrorRoundedSharp = _interopRequireDefault(require("./WifiTetheringErrorRoundedSharp"));
+
+var _WifiTetheringErrorRoundedTwoTone = _interopRequireDefault(require("./WifiTetheringErrorRoundedTwoTone"));
 
 var _WifiTetheringErrorSharp = _interopRequireDefault(require("./WifiTetheringErrorSharp"));
 
