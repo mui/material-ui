@@ -3,14 +3,14 @@ import { expect } from 'chai';
 import {
   act,
   describeConformance,
-  createClientRender,
+  createRenderer,
   screen,
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/material/Breadcrumbs';
 
 describe('<Breadcrumbs />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({
     classes,

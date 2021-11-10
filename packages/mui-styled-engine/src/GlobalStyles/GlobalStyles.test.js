@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import { ThemeProvider } from '@emotion/react';
 import styled from '..';
 import GlobalStyles from './GlobalStyles';
 
 describe('GlobalStyles', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should add global styles', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {

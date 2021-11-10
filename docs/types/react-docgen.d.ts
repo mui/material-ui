@@ -37,7 +37,7 @@ declare module 'react-docgen' {
   }
   export interface ReactDocgenApi {
     description: string;
-    props: Record<string, PropDescriptor>;
+    props?: Record<string, PropDescriptor>;
   }
 
   export interface BasePropTypeDescriptor {

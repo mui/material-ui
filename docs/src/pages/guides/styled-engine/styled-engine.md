@@ -68,10 +68,40 @@ If you are using TypeScript, you will need to also update the TSConfig.
  }
 ```
 
+### Next.js
+
+**next.config.js**
+
+```diff
++const withTM = require('next-transpile-modules')([
++  '@mui/material',
++  '@mui/system',
++  '@mui/icons-material', // If @mui/icons-material is being used
++]);
+
++module.exports = withTM({
+ webpack: (config) => {
+   config.resolve.alias = {
+     ...config.resolve.alias,
++    '@mui/styled-engine': '@mui/styled-engine-sc',
+    };
+    return config;
+  }
++});
+```
+
 ### Ready-to-use examples
 
 If you are using create-react-app, there is a ready-to-use template in the example projects.
-You can use the [create-react-app-with-styled-components example](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components), or its [TypeScript equivalent](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript).
+
+You can use these `styled-component` examples as a reference:
+
+<!-- #default-branch-switch -->
+
+- [create-react-app](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components)
+- [create-react-app with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
+- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs-with-styled-components-typescript)
+- [and many others](https://github.com/mui-org/material-ui/tree/master/examples)
 
 > **Note**: `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself. See the [Installation guide](/getting-started/installation/) for more info.
 

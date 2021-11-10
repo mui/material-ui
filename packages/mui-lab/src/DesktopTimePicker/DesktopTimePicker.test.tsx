@@ -6,7 +6,11 @@ import { act, describeConformance, fireEvent, screen, userEvent } from 'test/uti
 import { TransitionProps } from '@mui/material/transitions';
 import { TimePickerProps } from '@mui/lab/TimePicker';
 import DesktopTimePicker from '@mui/lab/DesktopTimePicker';
-import { wrapPickerMount, createPickerRender, adapterToUse } from '../internal/pickers/test-utils';
+import {
+  wrapPickerMount,
+  createPickerRenderer,
+  adapterToUse,
+} from '../internal/pickers/test-utils';
 
 describe('<DesktopTimePicker />', () => {
   let clock: ReturnType<typeof useFakeTimers>;
@@ -18,7 +22,7 @@ describe('<DesktopTimePicker />', () => {
     clock.restore();
   });
 
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   describeConformance(
     <DesktopTimePicker

@@ -1,5 +1,6 @@
 import * as recast from 'recast';
 import { parse as docgenParse, PropTypeDescriptor } from 'react-docgen';
+import { escapeCell } from './helpers';
 
 function getDeprecatedInfo(type: PropTypeDescriptor) {
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
@@ -17,7 +18,7 @@ function getDeprecatedInfo(type: PropTypeDescriptor) {
   return false;
 }
 
-function getChained(type: PropTypeDescriptor) {
+export function getChained(type: PropTypeDescriptor) {
   if (type.raw) {
     const marker = 'chainPropTypes';
     const indexStart = type.raw.indexOf(marker);
@@ -45,11 +46,6 @@ function getChained(type: PropTypeDescriptor) {
   }
 
   return false;
-}
-
-export function escapeCell(value: string): string {
-  // As the pipe is use for the table structure
-  return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
 }
 
 export function isElementTypeAcceptingRefProp(type: PropTypeDescriptor): boolean {

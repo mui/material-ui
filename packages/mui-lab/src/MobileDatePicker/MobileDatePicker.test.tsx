@@ -7,7 +7,7 @@ import PickersDay from '@mui/lab/PickersDay';
 import CalendarPickerSkeleton from '@mui/lab/CalendarPickerSkeleton';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import {
-  createPickerRender,
+  createPickerRenderer,
   FakeTransitionComponent,
   adapterToUse,
   openMobilePicker,
@@ -21,7 +21,7 @@ describe('<MobileDatePicker />', () => {
   afterEach(() => {
     clock.restore();
   });
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   it('Accepts date on `OK` button click', () => {
     const onChangeMock = spy();

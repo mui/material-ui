@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Typography, { TypographyTypeMap } from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
-import { generateUtilityClasses } from '@mui/core';
+import { generateUtilityClasses } from '@mui/base';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
 
 const classes = generateUtilityClasses('PrivatePickersMonth', ['root', 'selected']);

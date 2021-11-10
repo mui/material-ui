@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import CircularProgress, {
   circularProgressClasses as classes,
 } from '@mui/material/CircularProgress';
 
 describe('<CircularProgress />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<CircularProgress />, () => ({
     classes,

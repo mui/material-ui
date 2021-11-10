@@ -1,4 +1,4 @@
-import { act, fireEvent } from './createClientRender';
+import { act, fireEvent } from './createRenderer';
 
 export default function focusVisible(element: HTMLElement) {
   act(() => {

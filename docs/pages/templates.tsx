@@ -9,6 +9,7 @@ import TemplateDemo from 'docs/src/components/productTemplate/TemplateDemo';
 import Testimonials from 'docs/src/components/home/Testimonials';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import BrandingProvider from 'docs/src/BrandingProvider';
+import References, { TEMPLATES_CUSTOMERS } from 'docs/src/components/home/References';
 
 export default function Templates() {
   return (
@@ -21,6 +22,7 @@ export default function Templates() {
       <AppHeader />
       <main>
         <TemplateHero />
+        <References companies={TEMPLATES_CUSTOMERS} />
         <ValueProposition />
         <TemplateDemo />
         <Testimonials />

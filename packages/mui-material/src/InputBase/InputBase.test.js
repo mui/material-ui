@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
@@ -12,7 +12,7 @@ import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
 
 describe('<InputBase />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<InputBase />, () => ({
     classes,
@@ -561,6 +561,14 @@ describe('<InputBase />', () => {
       const { container } = render(<InputBase inputProps={{ ref: inputRef }} />);
       expect(inputRef.current).to.equal(container.querySelector('input'));
     });
+
+    it('should not repeat the same classname', () => {
+      const { container } = render(<InputBase inputProps={{ className: 'foo' }} />);
+      const input = container.querySelector('input');
+      const matches = input.className.match(/foo/g);
+      expect(input).to.have.class('foo');
+      expect(matches).to.have.length(1);
+    });
   });
 
   describe('prop: inputComponent with prop: inputProps', () => {
@@ -678,7 +686,12 @@ describe('<InputBase />', () => {
         </ThemeProvider>,
       );
       const fieldset = getByRole('textbox').nextSibling;
-      expect(fieldset).toHaveComputedStyle({ borderColor: 'rgb(0, 191, 165)' });
+      expect(fieldset).toHaveComputedStyle({
+        borderTopColor: 'rgb(0, 191, 165)',
+        borderRightColor: 'rgb(0, 191, 165)',
+        borderBottomColor: 'rgb(0, 191, 165)',
+        borderLeftColor: 'rgb(0, 191, 165)',
+      });
     });
   });
 });

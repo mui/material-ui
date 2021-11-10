@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import useTheme from './useTheme';
 import ThemeProvider from '../ThemeProvider';
 
 describe('useTheme', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should use the theme', () => {
     const ref = React.createRef();

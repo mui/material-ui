@@ -8,7 +8,6 @@ import {
 import { deepmerge } from '@mui/utils';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@mui/material/locale';
-import darkScrollbar from '@mui/material/darkScrollbar';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
@@ -128,6 +127,7 @@ export function ThemeProvider(props) {
   const { children } = props;
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
+
   const [themeOptions, dispatch] = React.useReducer(
     (state, action) => {
       switch (action.type) {
@@ -184,7 +184,7 @@ export function ThemeProvider(props) {
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
   React.useEffect(() => {
-    if (process.browser) {
+    if (typeof window !== 'undefined') {
       const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
       const nextPaletteMode = getCookie('paletteMode') || preferredMode;
 
@@ -232,8 +232,8 @@ export function ThemeProvider(props) {
       {
         components: {
           MuiCssBaseline: {
-            styleOverrides: {
-              body: paletteMode === 'dark' ? darkScrollbar() : null,
+            defaultProps: {
+              enableColorScheme: true,
             },
           },
         },
@@ -248,11 +248,21 @@ export function ThemeProvider(props) {
 
   React.useEffect(() => {
     // Expose the theme as a global variable so people can play with it.
-    if (process.browser) {
+    if (typeof window !== 'undefined') {
       window.theme = theme;
       window.createTheme = createTheme;
     }
   }, [theme]);
+
+  useEnhancedEffect(() => {
+    if (theme.palette.mode === 'dark') {
+      document.body.classList.remove('mode-light');
+      document.body.classList.add('mode-dark');
+    } else {
+      document.body.classList.remove('mode-dark');
+      document.body.classList.add('mode-light');
+    }
+  }, [theme.palette.mode]);
 
   return (
     <MuiThemeProvider theme={theme}>

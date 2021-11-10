@@ -331,10 +331,10 @@ function getUrl(hash: string) {
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  '@mui/core': (
+  '@mui/base': (
     <ColumnHead
       {...{
-        label: '@mui/core',
+        label: '@mui/base',
         tooltip: 'The unstyled components and react hooks.',
       }}
     />
@@ -527,11 +527,11 @@ const rowHeaders: Record<string, React.ReactNode> = {
 };
 
 const communityData: Record<string, React.ReactNode> = {
-  // Core
-  '@mui/core': <IconImage name="yes" title="Included" />,
+  // MUI Core
+  '@mui/base': <IconImage name="yes" title="Included" />,
   '@mui/material': <IconImage name="yes" title="Included" />,
   '@mui/system': <IconImage name="yes" title="Included" />,
-  // Advanced
+  // MUI X
   'data-grid/column-groups': <IconImage name="time" title="Work in progress" />,
   'data-grid/column-spanning': <IconImage name="time" title="Work in progress" />,
   'data-grid/column-resizing': <IconImage name="no" title="Not included" />,
@@ -552,7 +552,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/edit-row': <IconImage name="yes" title="Included" />,
   'data-grid/edit-cell': <IconImage name="yes" title="Included" />,
   'data-grid/file-csv': <IconImage name="yes" title="Included" />,
-  'data-grid/file-print': <IconImage name="time" title="Work in progress" />,
+  'data-grid/file-print': <IconImage name="yes" title="Included" />,
   'data-grid/file-clipboard': <IconImage name="no" title="Not included" />,
   'data-grid/file-excel': <IconImage name="no" title="Not included" />,
   'data-grid/customizable-components': <IconImage name="yes" title="Included" />,
@@ -579,11 +579,11 @@ const communityData: Record<string, React.ReactNode> = {
 };
 
 const proData: Record<string, React.ReactNode> = {
-  // Core
-  '@mui/core': <IconImage name="yes" title="Included" />,
+  // MUI Core
+  '@mui/base': <IconImage name="yes" title="Included" />,
   '@mui/material': <IconImage name="yes" title="Included" />,
   '@mui/system': <IconImage name="yes" title="Included" />,
-  // Advanced
+  // MUI X
   'data-grid/column-groups': <IconImage name="time" title="Work in progress" />,
   'data-grid/column-spanning': <IconImage name="time" title="Work in progress" />,
   'data-grid/column-resizing': <IconImage name="yes" title="Included" />,
@@ -604,7 +604,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/edit-row': <IconImage name="yes" title="Included" />,
   'data-grid/edit-cell': <IconImage name="yes" title="Included" />,
   'data-grid/file-csv': <IconImage name="yes" title="Included" />,
-  'data-grid/file-print': <IconImage name="time" title="Work in progress" />,
+  'data-grid/file-print': <IconImage name="yes" title="Included" />,
   'data-grid/file-clipboard': <IconImage name="time" title="Work in progress" />,
   'data-grid/file-excel': <IconImage name="no" title="Not included" />,
   'data-grid/customizable-components': <IconImage name="yes" title="Included" />,
@@ -633,11 +633,11 @@ const proData: Record<string, React.ReactNode> = {
 };
 
 const premiumData: Record<string, React.ReactNode> = {
-  // Core
-  '@mui/core': <IconImage name="yes" title="Included" />,
+  // MUI Core
+  '@mui/base': <IconImage name="yes" title="Included" />,
   '@mui/material': <IconImage name="yes" title="Included" />,
   '@mui/system': <IconImage name="yes" title="Included" />,
-  // Advanced
+  // MUI X
   'data-grid/column-groups': <IconImage name="time" title="Work in progress" />,
   'data-grid/column-spanning': <IconImage name="time" title="Work in progress" />,
   'data-grid/column-resizing': <IconImage name="yes" title="Included" />,
@@ -658,9 +658,9 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/edit-row': <IconImage name="yes" title="Included" />,
   'data-grid/edit-cell': <IconImage name="yes" title="Included" />,
   'data-grid/file-csv': <IconImage name="yes" title="Included" />,
-  'data-grid/file-print': <IconImage name="time" title="Work in progress" />,
+  'data-grid/file-print': <IconImage name="yes" title="Included" />,
   'data-grid/file-clipboard': <IconImage name="time" title="Work in progress" />,
-  'data-grid/file-excel': <IconImage name="no" title="Not included" />,
+  'data-grid/file-excel': <IconImage name="time" title="Work in progress" />,
   'data-grid/customizable-components': <IconImage name="yes" title="Included" />,
   'data-grid/virtualize-column': <IconImage name="yes" title="Included" />,
   'data-grid/virtualize-row': <IconImage name="yes" title="Included" />,
@@ -899,7 +899,7 @@ export default function PricingTable({
       <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>
         MUI Core
       </RowHead>
-      {renderRow('@mui/core')}
+      {renderRow('@mui/base')}
       {divider}
       {renderRow('@mui/material')}
       {divider}
