@@ -17,8 +17,7 @@ const faqData = [
     summary: 'How do I know if I need to buy license?',
     detail: (
       <React.Fragment>
-        If you are in doubt, check the license file of the npm package you're
-        installing.
+        If you are in doubt, check the license file of the npm package you're installing.
         <br />
         <br />
         For instance <Link href="https://unpkg.com/@mui/x-data-grid/LICENSE">
