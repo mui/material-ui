@@ -36,12 +36,12 @@ Você pode desativar o contorno (muitas vezes azul ou ouro) com a propriedade CS
 
 ## Unstyled
 
-- 📦 [4.7 kB gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
+- 📦 [4.7 kB gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
 
 The modal also comes with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
 
 ```js
-import ModalUnstyled from '@mui/core/ModalUnstyled';
+import ModalUnstyled from '@mui/base/ModalUnstyled';
 ```
 
 {{"demo": "pages/components/modal/ModalUnstyled.js"}}
