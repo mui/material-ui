@@ -338,6 +338,88 @@ const Image = styled('div')(({ theme, variant = 'filled', color = 'brand' }) => 
   theme.variant[variant]?.[color],
 ]);
 
+const lightVariant = {
+  brand: {
+    textColor: 'var(--joy-palette-brand-600)',
+    textHoverBg: 'var(--joy-palette-neutral-100)',
+    textActiveBg: 'var(--joy-palette-neutral-200)',
+    textDisabledColor: 'var(--joy-palette-neutral-300)',
+    outlinedBorder: 'var(--joy-palette-neutral-300)',
+    outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
+    filledColor: 'var(--joy-palette-brand-700)',
+    filledBg: 'var(--joy-palette-brand-100)',
+    filledHoverBg: 'var(--joy-palette-brand-200)',
+    filledActiveBg: 'var(--joy-palette-brand-300)',
+    filledDisabledColor: 'var(--joy-palette-brand-400)',
+    filledDisableBg: 'var(--joy-palette-brand-50)',
+    containedColor: '#fff',
+    containedBg: 'var(--joy-palette-brand-600)',
+    containedHoverBg: 'var(--joy-palette-brand-700)',
+    containedActiveBg: 'var(--joy-palette-brand-500)',
+    containedDisabledBg: 'var(--joy-palette-brand-300)',
+  },
+  neutral: {
+    textColor: 'var(--joy-palette-neutral-600)',
+    textHoverBg: 'var(--joy-palette-neutral-100)',
+    textActiveBg: 'var(--joy-palette-neutral-200)',
+    textDisabledColor: 'var(--joy-palette-neutral-300)',
+    outlinedBorder: 'var(--joy-palette-neutral-300)',
+    outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
+    filledColor: 'var(--joy-palette-neutral-700)',
+    filledBg: 'var(--joy-palette-neutral-100)',
+    filledHoverBg: 'var(--joy-palette-neutral-200)',
+    filledActiveBg: 'var(--joy-palette-neutral-300)',
+    filledDisabledColor: 'var(--joy-palette-neutral-400)',
+    filledDisableBg: 'var(--joy-palette-neutral-50)',
+    containedColor: '#fff',
+    containedBg: 'var(--joy-palette-neutral-600)',
+    containedHoverBg: 'var(--joy-palette-neutral-700)',
+    containedActiveBg: 'var(--joy-palette-neutral-500)',
+    containedDisabledBg: 'var(--joy-palette-neutral-300)',
+  },
+};
+
+const darkVariant = {
+  brand: {
+    textColor: 'var(--joy-palette-brand-200)',
+    textHoverBg: 'var(--joy-palette-neutral-800)',
+    textActiveBg: 'var(--joy-palette-neutral-700)',
+    textDisabledColor: 'var(--joy-palette-neutral-500)',
+    outlinedBorder: 'var(--joy-palette-neutral-700)',
+    outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
+    filledColor: 'var(--joy-palette-brand-200)',
+    filledBg: 'var(--joy-palette-brand-800)',
+    filledHoverBg: 'var(--joy-palette-brand-700)',
+    filledActiveBg: 'var(--joy-palette-brand-600)',
+    filledDisabledColor: 'var(--joy-palette-brand-500)',
+    filledDisableBg: 'var(--joy-palette-brand-800)',
+    containedColor: '#fff',
+    containedBg: 'var(--joy-palette-brand-600)',
+    containedHoverBg: 'var(--joy-palette-brand-700)',
+    containedActiveBg: 'var(--joy-palette-brand-500)',
+    containedDisabledBg: 'var(--joy-palette-brand-300)',
+  },
+  neutral: {
+    textColor: 'var(--joy-palette-neutral-200)',
+    textHoverBg: 'var(--joy-palette-neutral-800)',
+    textActiveBg: 'var(--joy-palette-neutral-700)',
+    textDisabledColor: 'var(--joy-palette-neutral-500)',
+    outlinedBorder: 'var(--joy-palette-neutral-700)',
+    outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
+    filledColor: 'var(--joy-palette-neutral-200)',
+    filledBg: 'var(--joy-palette-neutral-800)',
+    filledHoverBg: 'var(--joy-palette-neutral-700)',
+    filledActiveBg: 'var(--joy-palette-neutral-600)',
+    filledDisabledColor: 'var(--joy-palette-neutral-500)',
+    filledDisableBg: 'var(--joy-palette-neutral-800)',
+    containedColor: '#fff',
+    containedBg: 'var(--joy-palette-neutral-600)',
+    containedHoverBg: 'var(--joy-palette-neutral-700)',
+    containedActiveBg: 'var(--joy-palette-neutral-500)',
+    containedDisabledBg: 'var(--joy-palette-neutral-300)',
+  },
+};
+
 export default function JoyDashboard() {
   return (
     <CssVarsProvider
@@ -369,8 +451,14 @@ export default function JoyDashboard() {
           },
           lightRed: {
             palette: {
-              brand: colors.red,
-              neutral: colors.grey,
+              brand: {
+                ...colors.red,
+                ...lightVariant.brand,
+              },
+              neutral: {
+                ...colors.grey,
+                ...lightVariant.neutral,
+              },
               text: {
                 heading: 'var(--joy-palette-neutral-900)',
                 headingIntro: 'var(--joy-palette-brand-300)',
@@ -392,8 +480,14 @@ export default function JoyDashboard() {
           },
           darkRed: {
             palette: {
-              brand: colors.red,
-              neutral: colors.grey,
+              brand: {
+                ...colors.red,
+                ...darkVariant.brand,
+              },
+              neutral: {
+                ...colors.grey,
+                ...darkVariant.neutral,
+              },
               text: {
                 heading: '#fff',
                 headingIntro: 'var(--joy-palette-brand-300)',
@@ -415,8 +509,14 @@ export default function JoyDashboard() {
           },
           lightYellow: {
             palette: {
-              brand: colors.yellow,
-              neutral: colors.grey,
+              brand: {
+                ...colors.yellow,
+                ...lightVariant.brand,
+              },
+              neutral: {
+                ...colors.grey,
+                ...lightVariant.neutral,
+              },
               text: {
                 heading: 'var(--joy-palette-neutral-900)',
                 headingIntro: 'var(--joy-palette-brand-300)',
@@ -438,8 +538,14 @@ export default function JoyDashboard() {
           },
           darkYellow: {
             palette: {
-              brand: colors.yellow,
-              neutral: colors.grey,
+              brand: {
+                ...colors.yellow,
+                ...darkVariant.brand,
+              },
+              neutral: {
+                ...colors.grey,
+                ...darkVariant.neutral,
+              },
               text: {
                 heading: '#fff',
                 headingIntro: 'var(--joy-palette-brand-300)',
@@ -461,8 +567,14 @@ export default function JoyDashboard() {
           },
           lightGreen: {
             palette: {
-              brand: colors.green,
-              neutral: colors.grey,
+              brand: {
+                ...colors.green,
+                ...lightVariant.brand,
+              },
+              neutral: {
+                ...colors.grey,
+                ...lightVariant.neutral,
+              },
               text: {
                 heading: 'var(--joy-palette-neutral-900)',
                 headingIntro: 'var(--joy-palette-brand-300)',
@@ -484,8 +596,14 @@ export default function JoyDashboard() {
           },
           darkGreen: {
             palette: {
-              brand: colors.green,
-              neutral: colors.grey,
+              brand: {
+                ...colors.green,
+                ...darkVariant.brand,
+              },
+              neutral: {
+                ...colors.grey,
+                ...darkVariant.neutral,
+              },
               text: {
                 heading: '#fff',
                 headingIntro: 'var(--joy-palette-brand-300)',
