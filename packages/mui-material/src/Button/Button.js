@@ -318,7 +318,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const fullWidth = fullWidthProp || fullWidthContext || false;
   const size = sizeProp || sizeContext || 'medium';
   const variant = variantProp || variantContext || 'text';
-  const disableRipple = disableRippleProp || disableRippleContext || false;
+  const disableRipple = disableRippleContext || disableRippleProp;
 
   const ownerState = {
     ...props,
