@@ -126,12 +126,12 @@ In this example, an input allows a discrete value to be set.
 
 <!-- #default-branch-switch -->
 
-- 📦 [5.6 kB gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
+- 📦 [5.6 kB gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
 
 The slider also comes with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
 
 ```js
-import SliderUnstyled from '@mui/core/SliderUnstyled';
+import SliderUnstyled from '@mui/base/SliderUnstyled';
 ```
 
 {{"demo": "pages/components/slider/UnstyledSlider.js"}}
