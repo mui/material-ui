@@ -19,7 +19,10 @@ describe('[Joy] styled', () => {
     const { container } = render(<Text />);
 
     expect(container.firstChild).toHaveComputedStyle({
-      borderRadius: toPixel(defaultTheme.borderRadius.md),
+      borderTopLeftRadius: toPixel(defaultTheme.borderRadius.md),
+      borderTopRightRadius: toPixel(defaultTheme.borderRadius.md),
+      borderBottomRightRadius: toPixel(defaultTheme.borderRadius.md),
+      borderBottomLeftRadius: toPixel(defaultTheme.borderRadius.md),
     });
   });
 
@@ -37,6 +40,11 @@ describe('[Joy] styled', () => {
       </ThemeProvider>,
     );
 
-    expect(container.firstChild).toHaveComputedStyle({ borderRadius: '50%' });
+    expect(container.firstChild).toHaveComputedStyle({
+      borderTopLeftRadius: '50%',
+      borderTopRightRadius: '50%',
+      borderBottomRightRadius: '50%',
+      borderBottomLeftRadius: '50%',
+    });
   });
 });

@@ -32,29 +32,20 @@ export default function AppHeader() {
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState<string | null>(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const preferredMode = prefersDarkMode ? 'dark' : 'light';
 
   React.useEffect(() => {
-    setMode(getCookie('paletteMode') || 'system');
-  }, [setMode]);
+    const initialMode = getCookie('paletteMode') || 'system';
+    setMode(initialMode);
+  }, []);
 
   const handleChangeThemeMode = (checked: boolean) => {
-    let paletteMode = 'system';
-    paletteMode = checked ? 'dark' : 'light';
-    if (paletteMode === null) {
-      return;
-    }
-
+    const paletteMode = checked ? 'dark' : 'light';
     setMode(paletteMode);
 
-    if (paletteMode === 'system') {
-      document.cookie = `paletteMode=;path=/;max-age=31536000`;
-      changeTheme({ paletteMode: preferredMode });
-    } else {
-      document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
-      changeTheme({ paletteMode });
-    }
+    document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
+    changeTheme({ paletteMode });
   };
+
   return (
     <Header>
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>

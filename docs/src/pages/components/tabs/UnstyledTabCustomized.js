@@ -1,34 +1,47 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import Tabs from '@mui/core/TabsUnstyled';
-import TabsList from '@mui/core/TabsListUnstyled';
-import TabPanelUnstyled from '@mui/core/TabPanelUnstyled';
-import { buttonUnstyledClasses } from '@mui/core/ButtonUnstyled';
-import TabUnstyled, { tabUnstyledClasses } from '@mui/core/TabUnstyled';
+import Tabs from '@mui/base/TabsUnstyled';
+import TabsListUnstyled from '@mui/base/TabsListUnstyled';
+import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
+import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
+
+const primary = {
+  50: '#F0F7FF',
+  100: '#C2E0FF',
+  200: '#80BFFF',
+  300: '#66B2FF',
+  400: '#3399FF',
+  500: '#007FFF',
+  600: '#0072E5',
+  700: '#0059B2',
+  800: '#004C99',
+  900: '#003A75',
+};
 
 const Tab = styled(TabUnstyled)`
-  padding: 15px 20px;
-  color: #004386;
-  background: #fff;
-  font-weight: 600;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  transition: border 100ms ease;
+  color: ${primary[100]};
   cursor: pointer;
+  font-size: 1rem;
+  background: ${primary[500]};
+  padding: 15px 20px;
   border: none;
-  margin: 3px;
+  &.Mui-selected {
+    color: #fff;
+  }
 
   &:hover {
-    border-bottom: 2px solid #006ad4;
+    color: #fff;
   }
 
   &.${buttonUnstyledClasses.focusVisible} {
-    box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
+    color: #fff;
+    border: 1px solid ${primary[900]};
     outline: none;
   }
 
   &.${tabUnstyledClasses.selected} {
-    border-bottom: 2px solid #004386;
+    border-bottom: 2px solid #fff;
   }
 
   &.${buttonUnstyledClasses.disabled} {
@@ -42,16 +55,22 @@ const TabPanel = styled(TabPanelUnstyled)`
   width: 100%;
 `;
 
+const TabsList = styled(TabsListUnstyled)`
+  background-color: ${primary[500]};
+  border-radius: 10px;
+  box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04);
+  padding: 0 10px 0 10px;
+  margin-bottom: 10px;
+`;
+
 export default function Example() {
   return (
     <Tabs defaultValue={0}>
-      <div>
-        <TabsList>
-          <Tab>One</Tab>
-          <Tab>Two</Tab>
-          <Tab>Three</Tab>
-        </TabsList>
-      </div>
+      <TabsList>
+        <Tab>One</Tab>
+        <Tab>Two</Tab>
+        <Tab>Three</Tab>
+      </TabsList>
       <TabPanel value={0}>First content</TabPanel>
       <TabPanel value={1}>Second content</TabPanel>
       <TabPanel value={2}>Third content</TabPanel>

@@ -3,10 +3,14 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import { fireEvent, screen, describeConformance } from 'test/utils';
 import MonthPicker, { monthPickerClasses as classes } from '@mui/lab/MonthPicker';
-import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
+import {
+  adapterToUse,
+  wrapPickerMount,
+  createPickerRenderer,
+} from '../internal/pickers/test-utils';
 
 describe('<MonthPicker />', () => {
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   describeConformance(
     <MonthPicker

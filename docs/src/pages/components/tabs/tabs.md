@@ -179,9 +179,9 @@ The button also comes with an unstyled version. It's ideal for doing heavy custo
 ### Unstyled component
 
 ```js
-import TabsUnstyled from '@mui/core/TabsUnstyled';
-import TabUnstyled from '@mui/core/TabUnstyled';
-import TabPanelUnstyled from '@mui/core/TabPanelUnstyled';
+import TabsUnstyled from '@mui/base/TabsUnstyled';
+import TabUnstyled from '@mui/base/TabUnstyled';
+import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 ```
 
 {{"demo": "pages/components/tabs/UnstyledTabsBasic.js"}}

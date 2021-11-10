@@ -331,10 +331,10 @@ function getUrl(hash: string) {
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  '@mui/core': (
+  '@mui/base': (
     <ColumnHead
       {...{
-        label: '@mui/core',
+        label: '@mui/base',
         tooltip: 'The unstyled components and react hooks.',
       }}
     />
@@ -528,7 +528,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
 
 const communityData: Record<string, React.ReactNode> = {
   // MUI Core
-  '@mui/core': <IconImage name="yes" title="Included" />,
+  '@mui/base': <IconImage name="yes" title="Included" />,
   '@mui/material': <IconImage name="yes" title="Included" />,
   '@mui/system': <IconImage name="yes" title="Included" />,
   // MUI X
@@ -580,7 +580,7 @@ const communityData: Record<string, React.ReactNode> = {
 
 const proData: Record<string, React.ReactNode> = {
   // MUI Core
-  '@mui/core': <IconImage name="yes" title="Included" />,
+  '@mui/base': <IconImage name="yes" title="Included" />,
   '@mui/material': <IconImage name="yes" title="Included" />,
   '@mui/system': <IconImage name="yes" title="Included" />,
   // MUI X
@@ -634,7 +634,7 @@ const proData: Record<string, React.ReactNode> = {
 
 const premiumData: Record<string, React.ReactNode> = {
   // MUI Core
-  '@mui/core': <IconImage name="yes" title="Included" />,
+  '@mui/base': <IconImage name="yes" title="Included" />,
   '@mui/material': <IconImage name="yes" title="Included" />,
   '@mui/system': <IconImage name="yes" title="Included" />,
   // MUI X
@@ -899,7 +899,7 @@ export default function PricingTable({
       <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>
         MUI Core
       </RowHead>
-      {renderRow('@mui/core')}
+      {renderRow('@mui/base')}
       {divider}
       {renderRow('@mui/material')}
       {divider}
