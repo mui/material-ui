@@ -21,5 +21,5 @@ Backdrop组件可以用来提醒用户当前应用状态的变化，同时它也
 Backdrop组件也有一个无样式的版本。 在需要进行大量自定义样式时，它可以更好的控制住包的大小
 
 ```js
-import Backdrop from '@mui/core/Backdrop';
+import Backdrop from '@mui/base/Backdrop';
 ```
