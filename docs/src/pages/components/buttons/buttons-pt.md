@@ -171,7 +171,7 @@ The button also comes with an unstyled version. √â ideal para fazer personaliza√
 ### Unstyled component
 
 ```js
-import ButtonUnstyled from '@mui/core/ButtonUnstyled';
+import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 ```
 
 {{"demo": "pages/components/buttons/UnstyledButtonsSimple.js"}}
@@ -193,7 +193,7 @@ You are not limited to using HTML elements for the button structure. SVG element
 ### useButton hook
 
 ```js
-import { useButton } from '@mui/core/ButtonUnstyled';
+import { useButton } from '@mui/base/ButtonUnstyled';
 ```
 
 If you need to use Button's functionality in another component, you can use the `useButton` hook. It returns props to be placed on a custom button element and fields representing the internal state of the button.
