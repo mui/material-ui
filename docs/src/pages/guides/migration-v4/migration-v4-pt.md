@@ -26,7 +26,7 @@ To get the benefits of bug fixes and a lot of improvements such as the new styli
 - [Migrate from JSS](#migrate-from-jss)
 - [Resolução de problemas](#troubleshooting)
 
-> 💡 Aim to create small commits on any changes to help the migration go more smoothly. If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with this title format: `[Migration] Summary of your issue`.
+> 💡 Aim to create small commits on any changes to help the migration go more smoothly. If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: `[Migration] Summary of your issue`.
 
 ## Update React & TypeScript version
 
@@ -88,7 +88,7 @@ yarn add @mui/material @mui/styles
 ```text
 @material-ui/core -> @mui/material
 @material-ui/system -> @mui/system
-@material-ui/unstyled -> @mui/core
+@material-ui/unstyled -> @mui/base
 @material-ui/styles -> @mui/styles
 @material-ui/icons -> @mui/icons-material
 @material-ui/lab -> @mui/lab
