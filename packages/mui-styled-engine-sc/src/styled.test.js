@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import styled from '@mui/styled-engine-sc';
 
 describe('styled', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should help debug wrong args', () => {
     expect(() => {

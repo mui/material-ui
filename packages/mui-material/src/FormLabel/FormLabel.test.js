@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { describeConformance, act, createClientRender } from 'test/utils';
+import { describeConformance, act, createRenderer } from 'test/utils';
 import FormLabel, { formLabelClasses as classes } from '@mui/material/FormLabel';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import { hexToRgb } from '@mui/material/styles';
 import defaultTheme from '../styles/defaultTheme';
 
 describe('<FormLabel />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<FormLabel />, () => ({
     classes,

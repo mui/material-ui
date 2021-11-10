@@ -1,11 +1,11 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Typography, { typographyClasses as classes } from '@mui/material/Typography';
 
 describe('<Typography />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Typography />, () => ({
     classes,

@@ -38,9 +38,9 @@ const Plan = React.forwardRef<
           variant="outlined"
           disabled
           fullWidth
-          sx={{ py: 1, '&.Mui-disabled': { color: 'text.secondary' } }}
+          sx={{ py: 1, '&.Mui-disabled': { color: 'text.disabled' } }}
         >
-          Available later this year!
+          In progress!
         </Button>
       ) : (
         <Button

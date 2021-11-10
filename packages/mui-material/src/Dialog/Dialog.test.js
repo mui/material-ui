@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 
@@ -41,7 +41,7 @@ describe('<Dialog />', () => {
     clock.restore();
   });
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <Dialog open disablePortal>

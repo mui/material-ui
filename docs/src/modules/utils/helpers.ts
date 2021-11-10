@@ -162,7 +162,7 @@ export function getDependencies(
     '@mui/styles': getMuiPackageVersion('styles', muiCommitRef),
     '@mui/system': getMuiPackageVersion('system', muiCommitRef),
     '@mui/private-theming': getMuiPackageVersion('theming', muiCommitRef),
-    '@mui/core': getMuiPackageVersion('core', muiCommitRef),
+    '@mui/base': getMuiPackageVersion('base', muiCommitRef),
     '@mui/utils': getMuiPackageVersion('utils', muiCommitRef),
     '@mui/material-next': getMuiPackageVersion('material-next', muiCommitRef),
     '@mui/joy': getMuiPackageVersion('joy', muiCommitRef),
@@ -256,4 +256,9 @@ export function pathnameToLanguage(pathname: string): { userLanguage: string; ca
     userLanguage: 'en',
     canonical: pathname,
   };
+}
+
+export function escapeCell(value: string): string {
+  // As the pipe is use for the table structure
+  return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
 }

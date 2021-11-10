@@ -6,7 +6,7 @@ import {
   describeConformance,
   act,
   createEvent,
-  createClientRender,
+  createRenderer,
   fireEvent,
   screen,
 } from 'test/utils';
@@ -14,7 +14,7 @@ import TreeView from '@mui/lab/TreeView';
 import TreeItem, { treeItemClasses as classes } from '@mui/lab/TreeItem';
 
 describe('<TreeItem />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<TreeItem nodeId="one" label="one" />, () => ({
     classes,

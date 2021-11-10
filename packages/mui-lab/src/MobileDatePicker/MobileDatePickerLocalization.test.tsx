@@ -4,10 +4,10 @@ import fr from 'date-fns/locale/fr';
 import TextField from '@mui/material/TextField';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import { fireEvent, screen } from 'test/utils';
-import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
+import { adapterToUse, createPickerRenderer } from '../internal/pickers/test-utils';
 
 describe('<MobileDatePicker /> localization', () => {
-  const render = createPickerRender({ locale: fr });
+  const { render } = createPickerRenderer({ locale: fr });
 
   it('format for year view', () => {
     render(

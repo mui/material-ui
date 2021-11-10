@@ -8,7 +8,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@mui/core';
+} from '@mui/base';
 import { useTheme, alpha, styled, useThemeProps, Theme } from '@mui/material/styles';
 import { useForkRef } from '@mui/material/utils';
 import { ExtendMui } from '../internal/pickers/typings/helpers';
@@ -482,7 +482,11 @@ PickersDay.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * If `true`, renders as today date.
    * @default false

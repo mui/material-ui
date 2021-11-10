@@ -29,7 +29,7 @@ If you're adding a new test prefer a new component instead of editing existing f
 
 `yarn test:regresions:dev` will build all fixtures and render an overview page that lists all fixtures.
 This can be used to debug individual fixtures.
-By default, a devtools-like view is shown that can be disabled by appending `#no-dev` to the URL e.g. `http://localhost:5000/docs-customization-typography/CustomResponsiveFontSizes#no-dev` or forced by appending `#dev` to the URL e.g. `http://localhost:5000/docs-customization-typography/CustomResponsiveFontSizes#dev`.
+By default, a devtools-like view is shown that can be disabled by appending `#no-dev` to the URL e.g. `http://localhost:3000/docs-customization-typography/CustomResponsiveFontSizes#no-dev` or forced by appending `#dev` to the URL e.g. `http://localhost:3000/docs-customization-typography/CustomResponsiveFontSizes#dev`.
 
 ### Automatic
 

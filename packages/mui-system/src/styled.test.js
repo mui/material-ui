@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, screen } from 'test/utils';
+import { createRenderer, screen } from 'test/utils';
 import { styled, createTheme, ThemeProvider } from '@mui/system';
 
 describe('styled', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should work', () => {
     const Div = styled('div')`
@@ -146,7 +146,7 @@ describe('styled', () => {
         typography: {
           body1: {
             fontFamily: 'Roboto',
-            fontWeight: 400,
+            fontWeight: 300,
           },
         },
         components: {
@@ -453,7 +453,7 @@ describe('styled', () => {
 
       expect(container.firstChild).toHaveComputedStyle({
         fontFamily: 'Roboto',
-        fontWeight: '400',
+        fontWeight: '300',
       });
     });
 
@@ -478,7 +478,7 @@ describe('styled', () => {
 
       expect(container.firstChild).toHaveComputedStyle({
         fontFamily: 'Roboto',
-        fontWeight: '400',
+        fontWeight: '300',
       });
     });
 

@@ -11,5 +11,6 @@
     "rootDir": "./src"
   },
   "include": ["./src/**/*.ts*"],
-  "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"]
+  "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
+  "references": [{ "path": "../mui-system/tsconfig.build.json" }]
 }

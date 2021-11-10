@@ -1,6 +1,6 @@
 {
   "name": "@mui/styles",
-  "version": "5.0.2",
+  "version": "5.1.0",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Styles - The styling solution of MUI.",
@@ -8,7 +8,7 @@
   "keywords": [
     "react",
     "react-component",
-    "material-ui",
+    "mui",
     "styles"
   ],
   "repository": {
@@ -47,22 +47,22 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.15.4",
+    "@babel/runtime": "^7.16.0",
     "@emotion/hash": "^0.8.0",
-    "@mui/private-theming": "^5.0.1",
-    "@mui/types": "^7.0.0",
-    "@mui/utils": "^5.0.1",
+    "@mui/private-theming": "^5.1.0",
+    "@mui/types": "^7.1.0",
+    "@mui/utils": "^5.1.0",
     "clsx": "^1.1.1",
     "csstype": "^3.0.9",
     "hoist-non-react-statics": "^3.3.2",
-    "jss": "^10.8.1",
-    "jss-plugin-camel-case": "^10.8.1",
-    "jss-plugin-default-unit": "^10.8.1",
-    "jss-plugin-global": "^10.8.1",
-    "jss-plugin-nested": "^10.8.1",
-    "jss-plugin-props-sort": "^10.8.1",
-    "jss-plugin-rule-value-function": "^10.8.1",
-    "jss-plugin-vendor-prefixer": "^10.8.1",
+    "jss": "^10.8.2",
+    "jss-plugin-camel-case": "^10.8.2",
+    "jss-plugin-default-unit": "^10.8.2",
+    "jss-plugin-global": "^10.8.2",
+    "jss-plugin-nested": "^10.8.2",
+    "jss-plugin-props-sort": "^10.8.2",
+    "jss-plugin-rule-value-function": "^10.8.2",
+    "jss-plugin-vendor-prefixer": "^10.8.2",
     "prop-types": "^15.7.2"
   },
   "sideEffects": false,

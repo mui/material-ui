@@ -1,13 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, classes } = ownerState;
@@ -280,21 +281,44 @@ const ButtonEndIcon = styled('span', {
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiButton' });
   const {
+    className: classNameContext,
+    color: colorContext,
+    disabled: disabledContext,
+    disableElevation: disableElevationContext,
+    disableFocusRipple: disableFocusRippleContext,
+    disableRipple: disableRippleContext,
+    fullWidth: fullWidthContext,
+    size: sizeContext,
+    variant: variantContext,
+  } = React.useContext(ButtonGroupContext);
+  const {
     children,
-    color = 'primary',
+    className,
+    color: colorProp,
     component = 'button',
-    disabled = false,
-    disableElevation = false,
-    disableFocusRipple = false,
+    disabled: disabledProp,
+    disableElevation: disableElevationProp,
+    disableFocusRipple: disableFocusRippleProp,
+    disableRipple: disableRippleProp,
     endIcon: endIconProp,
     focusVisibleClassName,
-    fullWidth = false,
-    size = 'medium',
+    fullWidth: fullWidthProp,
+    size: sizeProp,
     startIcon: startIconProp,
     type,
-    variant = 'text',
+    variant: variantProp,
     ...other
   } = props;
+
+  const color = colorProp || colorContext || 'primary';
+  // TODO v6: Use nullish coalescing (??) instead of OR operator for these boolean props so that these boolean props for Button with ButtonGroup context take priority. See conversation from https://github.com/mui-org/material-ui/pull/28645#discussion_r738380902.
+  const disabled = disabledProp || disabledContext || false;
+  const disableElevation = disableElevationProp || disableElevationContext || false;
+  const disableFocusRipple = disableFocusRippleProp || disableFocusRippleContext || false;
+  const fullWidth = fullWidthProp || fullWidthContext || false;
+  const size = sizeProp || sizeContext || 'medium';
+  const variant = variantProp || variantContext || 'text';
+  const disableRipple = disableRippleProp || disableRippleContext || false;
 
   const ownerState = {
     ...props,
@@ -326,8 +350,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       ownerState={ownerState}
+      className={clsx(className, classNameContext)}
       component={component}
       disabled={disabled}
+      disableRipple={disableRipple}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
@@ -355,6 +381,10 @@ Button.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
@@ -425,7 +455,11 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * @ignore
    */

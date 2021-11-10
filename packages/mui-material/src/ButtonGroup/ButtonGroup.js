@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
+import ButtonGroupContext from './ButtonGroupContext';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -149,12 +149,18 @@ const ButtonGroupRoot = styled('div', {
         ownerState.color !== 'inherit' && {
           borderColor: theme.palette[ownerState.color].dark,
         }),
+      '&:hover': {
+        ...(ownerState.variant === 'outlined' &&
+          ownerState.orientation === 'horizontal' && {
+            borderRightColor: 'currentColor',
+          }),
+        ...(ownerState.variant === 'outlined' &&
+          ownerState.orientation === 'vertical' && {
+            borderBottomColor: 'currentColor',
+          }),
+      },
     },
     '&:hover': {
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.color !== 'inherit' && {
-          borderColor: theme.palette[ownerState.color].main,
-        }),
       ...(ownerState.variant === 'contained' && {
         boxShadow: 'none',
       }),
@@ -199,6 +205,31 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const context = React.useMemo(
+    () => ({
+      className: classes.grouped,
+      color,
+      disabled,
+      disableElevation,
+      disableFocusRipple,
+      disableRipple,
+      fullWidth,
+      size,
+      variant,
+    }),
+    [
+      color,
+      disabled,
+      disableElevation,
+      disableFocusRipple,
+      disableRipple,
+      fullWidth,
+      size,
+      variant,
+      classes.grouped,
+    ],
+  );
+
   return (
     <ButtonGroupRoot
       as={component}
@@ -208,34 +239,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      {React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-
-        if (process.env.NODE_ENV !== 'production') {
-          if (isFragment(child)) {
-            console.error(
-              [
-                "MUI: The ButtonGroup component doesn't accept a Fragment as a child.",
-                'Consider providing an array instead.',
-              ].join('\n'),
-            );
-          }
-        }
-
-        return React.cloneElement(child, {
-          className: clsx(classes.grouped, child.props.className),
-          color: child.props.color || color,
-          disabled: child.props.disabled || disabled,
-          disableElevation: child.props.disableElevation || disableElevation,
-          disableFocusRipple,
-          disableRipple,
-          fullWidth,
-          size: child.props.size || size,
-          variant: child.props.variant || variant,
-        });
-      })}
+      <ButtonGroupContext.Provider value={context}>{children}</ButtonGroupContext.Provider>
     </ButtonGroupRoot>
   );
 });
@@ -312,7 +316,11 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The variant to use.
    * @default 'outlined'

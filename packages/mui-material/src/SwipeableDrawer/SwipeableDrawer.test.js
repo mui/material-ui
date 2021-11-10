@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { fireEvent, createClientRender, describeConformance, screen } from 'test/utils';
+import { fireEvent, createRenderer, describeConformance, screen } from 'test/utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
@@ -69,7 +69,7 @@ describe('<SwipeableDrawer />', () => {
     clock.restore();
   });
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
     classes: {},

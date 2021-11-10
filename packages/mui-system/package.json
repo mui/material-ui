@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "5.0.5",
+  "version": "5.1.0",
   "private": false,
   "author": "MUI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
@@ -8,7 +8,7 @@
   "keywords": [
     "react",
     "react-component",
-    "material-ui",
+    "mui",
     "system"
   ],
   "repository": {
@@ -56,11 +56,11 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.15.4",
-    "@mui/private-theming": "^5.0.1",
-    "@mui/styled-engine": "^5.0.1",
-    "@mui/types": "^7.0.0",
-    "@mui/utils": "^5.0.1",
+    "@babel/runtime": "^7.16.0",
+    "@mui/private-theming": "^5.1.0",
+    "@mui/styled-engine": "^5.1.0",
+    "@mui/types": "^7.1.0",
+    "@mui/utils": "^5.1.0",
     "clsx": "^1.1.1",
     "csstype": "^3.0.9",
     "prop-types": "^15.7.2"

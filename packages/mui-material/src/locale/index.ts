@@ -1895,35 +1895,35 @@ export const kzKZ: Localization = {
 
 export const nlNL: Localization = {
   components: {
-    // MuiBreadcrumbs: {
-    //   defaultProps: {
-    //     expandText: 'Show path',
-    //   },
-    // },
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Pad tonen',
+      },
+    },
     MuiTablePagination: {
       defaultProps: {
-        // getItemAriaLabel: (type) => {
-        //   if (type === 'first') {
-        //     return 'Go to first page';
-        //   }
-        //   if (type === 'last') {
-        //     return 'Go to last page';
-        //   }
-        //   if (type === 'next') {
-        //     return 'Go to next page';
-        //   }
-        //   // if (type === 'previous') {
-        //   return 'Go to previous page';
-        // },
-        labelRowsPerPage: 'Regels per pagina :',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} van ${count !== -1 ? count : `more than ${to}`}`,
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Ga naar eerste pagina';
+          }
+          if (type === 'last') {
+            return 'Ga naar laatste pagina';
+          }
+          if (type === 'next') {
+            return 'Ga naar volgende pagina';
+          }
+          // if (type === 'previous') {
+          return 'Ga naar vorige pagina';
+        },
+        labelRowsPerPage: 'Regels per pagina:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}-${to} van ${count !== -1 ? count : `meer dan ${to}`}`,
       },
     },
     MuiRating: {
       defaultProps: {
         getLabelText: (value) => `${value} Ster${value !== 1 ? 'ren' : ''}`,
-        // emptyLabelText: 'Empty',
+        emptyLabelText: 'Leeg',
       },
     },
     MuiAutocomplete: {
@@ -1940,27 +1940,27 @@ export const nlNL: Localization = {
         closeText: 'Sluiten',
       },
     },
-    // MuiPagination: {
-    //   defaultProps: {
-    //     'aria-label': 'Pagination navigation',
-    //     getItemAriaLabel: (type, page, selected) => {
-    //       if (type === 'page') {
-    //         return `${selected ? '' : 'Go to '}page ${page}`;
-    //       }
-    //       if (type === 'first') {
-    //         return 'Go to first page';
-    //       }
-    //       if (type === 'last') {
-    //         return 'Go to last page';
-    //       }
-    //       if (type === 'next') {
-    //         return 'Go to next page';
-    //       }
-    //       // if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     },
-    //   },
-    // },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Navigatie via paginering',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Ga naar '}pagina ${page}`;
+          }
+          if (type === 'first') {
+            return 'Ga naar eerste pagina';
+          }
+          if (type === 'last') {
+            return 'Ga naar laatste pagina';
+          }
+          if (type === 'next') {
+            return 'Ga naar volgende pagina';
+          }
+          // if (type === 'previous') {
+          return 'Ga naar vorige pagina';
+        },
+      },
+    },
   },
 };
 

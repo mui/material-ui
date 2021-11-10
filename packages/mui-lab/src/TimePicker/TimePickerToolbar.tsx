@@ -5,7 +5,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@mui/core';
+} from '@mui/base';
 import PickersToolbarText from '../internal/pickers/PickersToolbarText';
 import PickersToolbarButton from '../internal/pickers/PickersToolbarButton';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
