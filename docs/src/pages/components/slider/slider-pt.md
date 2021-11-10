@@ -126,12 +126,12 @@ Na seguinte demonstração, o valor _x_ representa o valor _2^x_. Acrescentar em
 
 <!-- #default-branch-switch -->
 
-- 📦 [5.6 kB gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
+- 📦 [5.6 kB gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
 
 The slider also comes with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
 
 ```js
-import SliderUnstyled from '@mui/core/SliderUnstyled';
+import SliderUnstyled from '@mui/base/SliderUnstyled';
 ```
 
 {{"demo": "pages/components/slider/UnstyledSlider.js"}}
