@@ -67,7 +67,7 @@ Use `color` prop to apply theme palette to component.
 Badge组件还有一个无样式的版本。 在需要进行大量自定义样式时，它可以更好的控制住包的大小
 
 ```js
-import BadgeUnstyled from '@mui/core/BadgeUnstyled';
+import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 ```
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}
