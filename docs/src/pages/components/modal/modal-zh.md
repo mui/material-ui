@@ -36,12 +36,12 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## Unstyled
 
-- 📦 [4.7 kB gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
+- 📦 [4.7 kB gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
 
 The modal also comes with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
 
 ```js
-import ModalUnstyled from '@mui/core/ModalUnstyled';
+import ModalUnstyled from '@mui/base/ModalUnstyled';
 ```
 
 {{"demo": "pages/components/modal/ModalUnstyled.js"}}
