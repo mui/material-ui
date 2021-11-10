@@ -40,30 +40,30 @@ Let's take a look at each layer to understand how they work together, starting f
 
 > 💡 Glossary
 >
-> **install** refers to the action when you run `yarn add $module` or `npm install $module`.
+> **install** refers to running `yarn add $module` or `npm install $module`.
 >
-> **import** means you want to use some APIs from the module by writing `import ... from '$module'`.
+> **import** refers to making a module API available in your code by adding `import ... from '$module'`.
 
 ## Styled engines
 
-This layer is specifically related to stylesheet generation (CSS-in-js). We have introduced new styled-engines in v5 to unlock more possibilities and enable customization enhancement. Usually, developers does not need to interact with this layer on a daily basis because it is used internally in `@mui/system`.
+This layer is specifically related to stylesheet generation (CSS-in-JS). We have introduced new styled-engines in v5 to unlock more possibilities and enable enhanced customization. Usually, developers does not need to interact with this layer on a daily basis because it is used internally in `@mui/system`.
 
 They come in two packages:
 
-- `@mui/styled-engine` : an [emotion](https://emotion.sh/docs/styled) wrapper
-- `@mui/styled-engine-sc` : a [styled-components](https://styled-components.com/docs/basics#getting-started) wrapper
+- `@mui/styled-engine` : an [emotion](https://emotion.sh/docs/styled) wrapper.
+- `@mui/styled-engine-sc` : a [styled-components](https://styled-components.com/docs/basics#getting-started) wrapper.
 
-The reason that we create these adapters is to unify the APIs to support both `emotion` and `styled-components`, so that developers can choose what suit them the most.
+These adapters unify the APIs of both `emotion` and `styled-components`, so that developers can choose to use whichever suits them best.
 
-The old styled-engine `@mui/styles` (JSS wrapper) is deprecated and will be removed in the future.
+The previous style library `@mui/styles` (JSS wrapper) is deprecated and will be removed in the future.
 
-> The details about changing styling solution is in [this RFC](https://github.com/mui-org/material-ui/issues/22342)
+> The details about the change in styling solution are in [this RFC](https://github.com/mui-org/material-ui/issues/22342).
 
 ## System
 
 There is only one package in this layer - `@mui/system`.
 
-It uses emotion adapter (`@mui/styled-engine`) as a default styled-engine to create APIs for building a design system from scratch. For example, [`styled`](/system/styled/#main-content) from the styled-engine is enhanced to provide more theming capabilities.
+It uses the emotion adapter (`@mui/styled-engine`) as the default styled-engine to create APIs for building a design system from scratch. For example, [`styled`](/system/styled/#main-content) from the styled-engine is enhanced to provide more theming capabilities.
 
 If you want to switch the styled-engine to use styled-components, [follow this guide](/guides/styled-engine/#how-to-switch-to-styled-components).
 
@@ -75,7 +75,7 @@ Here are some benefits:
 - The `styled` API supports the `sx` prop by default.
 - Components created with `styled` are themeable via slots & variants.
 
-> **Note**: you will have to install either `emotion` or `styled-components`, because the styled-engine package depends on it.
+> **Note**: you will have to install either `emotion` or `styled-components`, because the respective styled-engine package depends on it.
 
 ## Core
 
