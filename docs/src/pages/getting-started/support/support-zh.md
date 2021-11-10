@@ -6,13 +6,13 @@
 
 若您对框架有一些提问或给出建议，社区是您的第一站。 欢迎来到社区！
 
-### StackOverflow <img src="/static/images/logos/stackoverflow.svg" width="24" height="24" alt="StackOverflow logo" loading="lazy" />
+### StackOverflow
 
 For crowdsourced answers from expert MUI developers in our community. StackOverflow is also frequented, from time to time, by the maintainers of MUI.
 
 [发布一个问题](https://stackoverflow.com/questions/tagged/material-ui)
 
-### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
+### GitHub
 
 MUI uses GitHub issues as a bug and feature request tracker. 如果你认为发现了一个 bug，或有一个新功能的想法，在您提交之前，请先确保它没有被 [报告过或解决过](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)。  您可以搜索已有的 Issues 或者 Pull Requests，这样可以知晓是否有人已报告过类似的问题。
 
@@ -40,7 +40,7 @@ New to MUI? 如果你知道从哪里开始，就很容易学会！
 
 [Learn MUI](/getting-started/learn/)
 
-### Twitter <img src="/static/images/logos/twitter.svg" width="24" height="24" alt="Twitter logo" loading="lazy" />
+### Twitter
 
 Receive the latest news on MUI.
 
@@ -73,7 +73,7 @@ The Pro plan allows developers to license extra features that are challenging to
 
 The Premium plan goes one step further by providing SLAs on the quality of the support.
 
-### Tidelift subscription <img src="/static/images/logos/tidelift.svg" width="24" height="24" alt="Tidelift logo" loading="lazy" />
+### Tidelift subscription
 
 MUI and the maintainers of thousands of other packages are working with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
 
