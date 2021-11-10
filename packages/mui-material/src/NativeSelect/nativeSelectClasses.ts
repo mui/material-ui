@@ -5,6 +5,8 @@ export interface NativeSelectClasses {
   root: string;
   /** Styles applied to the select component `select` class. */
   select: string;
+  /** Styles applied to the select component if `multiple={true}`. */
+  multiple: string;
   /** Styles applied to the select component if `variant="filled"`. */
   filled: string;
   /** Styles applied to the select component if `variant="outlined"`. */
@@ -36,6 +38,7 @@ export function getNativeSelectUtilityClasses(slot: string): string {
 const nativeSelectClasses: NativeSelectClasses = generateUtilityClasses('MuiNativeSelect', [
   'root',
   'select',
+  'multiple',
   'filled',
   'outlined',
   'standard',
