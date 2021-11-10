@@ -693,14 +693,14 @@ export default function JoyDashboard() {
               </li>
             </Box>
             <br />
-            <Card variant="filled" color="brand" sx={{ flexDirection: 'column', p: '1.5rem' }}>
+            <Card variant="contained" color="brand" sx={{ flexDirection: 'column', p: '1.5rem' }}>
               <Typography variant="h5" component="div" sx={{ my: 0, color: 'inherit' }}>
                 <b>Get Upgrade</b>
               </Typography>
-              <Typography sx={{ my: 0 }}>
+              <Typography sx={{ my: 0, color: 'inherit' }}>
                 Step to the next level, <br /> with more features.
               </Typography>
-              <Button variant="containedInteractive">Learn more</Button>
+              <Button variant="filledInteractive">Learn more</Button>
             </Card>
             <br />
             <Button

@@ -14,7 +14,7 @@ const colors = {
   purple: {
     50: '#FAF8FE',
     100: '#F0EBFD',
-    200: '#F0EBFD',
+    200: '#DDD1FA',
     300: '#C3B2F6',
     400: '#8E7AEE',
     500: '#5F54E7',
