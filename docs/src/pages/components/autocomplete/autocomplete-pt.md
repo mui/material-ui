@@ -112,7 +112,7 @@ Você pode agrupar as opções com a propriedade `groupBy`. Se você fizer isso,
 Para casos avançados de customização, o hook `useAutocomplete` é disponibilizado. Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. O componente de auto completar é baseado neste hook.
 
 ```tsx
-import { useAutocomplete } from '@mui/core/AutocompleteUnstyled';
+import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 ```
 
 The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
