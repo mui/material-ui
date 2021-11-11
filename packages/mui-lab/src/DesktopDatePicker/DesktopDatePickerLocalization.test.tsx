@@ -5,46 +5,46 @@ import enLocale from 'date-fns/locale/en-US';
 import TextField from '@mui/material/TextField';
 import DesktopDatePicker, { DesktopDatePickerProps } from '@mui/lab/DesktopDatePicker';
 import { fireEvent, screen } from 'test/utils';
-import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
+import { adapterToUse, createPickerRenderer } from '../internal/pickers/test-utils';
 
 describe('<DesktopDatePicker /> localization', () => {
-  describe('input validation', () => {
-    interface FormProps {
-      Picker: React.ElementType<DesktopDatePickerProps>;
-      PickerProps: Partial<DesktopDatePickerProps>;
-    }
+  const tests = [
+    {
+      locale: 'en-US',
+      valid: 'January 2020',
+      invalid: 'Januar 2020',
+      dateFnsLocale: enLocale,
+    },
+    {
+      locale: 'de',
+      valid: 'Januar 2020',
+      invalid: 'Janua 2020',
+      dateFnsLocale: deLocale,
+    },
+  ];
 
-    const Form = (props: FormProps) => {
-      const { Picker, PickerProps } = props;
-      const [value, setValue] = React.useState<unknown>(adapterToUse.date('01/01/2020'));
+  tests.forEach(({ valid, invalid, locale, dateFnsLocale }) => {
+    describe(`${locale} input validation`, () => {
+      const { render: localizedRender } = createPickerRenderer({ locale: dateFnsLocale });
 
-      return (
-        <Picker
-          onChange={setValue}
-          renderInput={(inputProps) => <TextField {...inputProps} />}
-          value={value}
-          {...PickerProps}
-        />
-      );
-    };
+      interface FormProps {
+        Picker: React.ElementType<DesktopDatePickerProps>;
+        PickerProps: Partial<DesktopDatePickerProps>;
+      }
 
-    const tests = [
-      {
-        locale: 'en-US',
-        valid: 'January 2020',
-        invalid: 'Januar 2020',
-        dateFnsLocale: enLocale,
-      },
-      {
-        locale: 'de',
-        valid: 'Januar 2020',
-        invalid: 'Janua 2020',
-        dateFnsLocale: deLocale,
-      },
-    ];
+      const Form = (props: FormProps) => {
+        const { Picker, PickerProps } = props;
+        const [value, setValue] = React.useState<unknown>(adapterToUse.date('01/01/2020'));
 
-    tests.forEach(({ valid, invalid, locale, dateFnsLocale }) => {
-      const localizedRender = createPickerRender({ locale: dateFnsLocale });
+        return (
+          <Picker
+            onChange={setValue}
+            renderInput={(inputProps) => <TextField {...inputProps} />}
+            value={value}
+            {...PickerProps}
+          />
+        );
+      };
 
       it(`${locale}: should set invalid`, () => {
         localizedRender(

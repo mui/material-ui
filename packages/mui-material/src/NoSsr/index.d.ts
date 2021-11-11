@@ -1,2 +1,2 @@
-export { default } from '@mui/core/NoSsr';
-export * from '@mui/core/NoSsr';
+export { default } from '@mui/base/NoSsr';
+export * from '@mui/base/NoSsr';
