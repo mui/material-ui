@@ -14,7 +14,9 @@ import TabsListUnstyledProps, { TabsListUnstyledTypeMap } from './TabListUnstyle
 import { useTabContext } from '../TabsUnstyled';
 
 const nextItem = (list: Element | null, item: Element | null): Element | null => {
-  if (!list) return null;
+  if (!list) {
+    return null;
+  }
 
   if (list === item) {
     return list.firstChild as Element | null;
@@ -26,7 +28,9 @@ const nextItem = (list: Element | null, item: Element | null): Element | null =>
 };
 
 const previousItem = (list: Element | null, item: Element | null): Element | null => {
-  if (!list) return null;
+  if (!list) {
+    return null;
+  }
 
   if (list === item) {
     return list.lastChild as Element | null;
@@ -190,13 +194,11 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
     const childValue = child.props.value === undefined ? childIndex : child.props.value;
     valueToIndex.set(childValue, childIndex);
 
-    childIndex++;
+    childIndex += 1;
 
     return React.cloneElement(child, {
       value: childValue,
-      ...(childIndex === 1 && value === false && !child.props.tabIndex
-        ? { tabIndex: 0 }
-        : value === childValue
+      ...((childIndex === 1 && value === false && !child.props.tabIndex) || value === childValue
         ? { tabIndex: 0 }
         : { tabIndex: -1 }),
     });

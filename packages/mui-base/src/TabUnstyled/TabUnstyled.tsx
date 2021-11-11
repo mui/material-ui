@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import ButtonUnstyled from '../ButtonUnstyled';
 import clsx from 'clsx';
+import ButtonUnstyled from '../ButtonUnstyled';
 import composeClasses from '../composeClasses';
 import { useTabContext, getTabId, getPanelId } from '../TabsUnstyled';
 import appendOwnerState from '../utils/appendOwnerState';
@@ -61,7 +61,9 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
 
   const handleFocus = (event: React.FocusEvent<HTMLButtonElement, Element>) => {
     if (selectionFollowsFocus && !selected) {
-      if (onChange) onChange(event, value);
+      if (onChange) {
+        onChange(event, value);
+      }
       context.onSelected(event, value);
     }
 
@@ -72,7 +74,9 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
 
   const handleClick = (event: React.MouseEvent<Element, MouseEvent>) => {
     if (!selected) {
-      if (onChange) onChange(event, value);
+      if (onChange) {
+        onChange(event, value);
+      }
       context.onSelected(event, value);
     }
 

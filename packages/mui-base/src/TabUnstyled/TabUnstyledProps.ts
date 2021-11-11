@@ -1,5 +1,5 @@
 import { OverrideProps } from '@mui/types';
-import { ButtonUnstyledOwnProps } from '../ButtonUnstyled/ButtonUnstyled';
+import { ButtonUnstyledOwnProps } from '../ButtonUnstyled';
 
 export interface TabUnstyledOwnProps extends Omit<ButtonUnstyledOwnProps, 'onChange'> {
   /**
