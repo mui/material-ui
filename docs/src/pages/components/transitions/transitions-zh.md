@@ -99,6 +99,6 @@ For more information on creating a custom transition, visit the _react-transitio
 
 - [Modal 模态框组件](/components/modal/#transitions)
 - [Dialog 对话框](/components/dialogs/#transitions)
-- [Popper](/components/popper/#transitions)
+- [Popper 弹出提示](/components/popper/#transitions)
 - [Snackbar（消息条）](/components/snackbars/#transitions)
 - [Tooltip](/components/tooltips/#transitions)
