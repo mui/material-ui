@@ -38,11 +38,10 @@ The packages can be categorized into 3 layers, as shown in the picture below:
 
 Let's take a look at each layer to understand how they work together, starting from the bottom:
 
-> 💡 Glossary
+> 📖 Glossary
 >
-> **install** refers to running `yarn add $module` or `npm install $module`.
->
-> **import** refers to making a module API available in your code by adding `import ... from '$module'`.
+> - **install** refers to running `yarn add $module` or `npm install $module`.
+> - **import** refers to making a module API available in your code by adding `import ... from '$module'`.
 
 ## Styled engines
 
