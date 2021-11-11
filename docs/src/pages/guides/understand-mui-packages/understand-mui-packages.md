@@ -34,7 +34,7 @@ For this reason, abstracting into smaller packages not only allows MUI to grow o
 
 The packages can be categorized into 3 layers, as shown in the picture below:
 
-<img src="/static/images/packages/mui-packages.png" style="display: block; width: 448px; max-width: 100%; margin: auto;" />
+<img src="/static/images/packages/mui-packages.png" style="display: block; width: 448px; margin: auto;" />
 
 Let's take a look at each layer to understand how they work together, starting from the bottom:
 
@@ -46,7 +46,9 @@ Let's take a look at each layer to understand how they work together, starting f
 
 ## Styled engines
 
-This layer is specifically related to stylesheet generation (CSS-in-JS). We have introduced new styled-engines in v5 to unlock more possibilities and enable enhanced customization. Usually, developers does not need to interact with this layer on a daily basis because it is used internally in `@mui/system`.
+This layer is specifically related to stylesheet generation (CSS-in-JS).
+MUI has introduced new styled-engines in v5 to unlock more possibilities and enable enhanced customization.
+Usually, developers do not need to interact with this layer on a daily basis because it is used internally in `@mui/system`.
 
 They come in two packages:
 
@@ -67,7 +69,7 @@ It uses the emotion adapter (`@mui/styled-engine`) as the default styled-engine 
 
 If you want to switch the styled-engine to use styled-components, [follow this guide](/guides/styled-engine/#how-to-switch-to-styled-components).
 
-<img src="/static/images/packages/mui-system.png" style="display: block; width: 720px; max-width: 100%; margin: 40px auto;" />
+<img src="/static/images/packages/mui-system.png" style="display: block; width: 720px; margin: 40px auto;" />
 
 Here are some benefits:
 
