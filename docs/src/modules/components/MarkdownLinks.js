@@ -42,7 +42,7 @@ function handleClick(event) {
     activeElement === null ||
     activeElement.nodeName !== 'A' ||
     activeElement.getAttribute('target') === '_blank' ||
-    activeElement.getAttribute('data-no-link') === 'true' ||
+    activeElement.getAttribute('data-no-markdown-link') === 'true' ||
     activeElement.getAttribute('href').indexOf('/') !== 0
   ) {
     return;

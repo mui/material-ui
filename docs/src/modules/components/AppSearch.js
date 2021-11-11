@@ -230,10 +230,10 @@ export default function AppSearch() {
         addStartScreen();
       }
       if (searchInput) {
-        const handleInput = (e) => {
+        const handleInput = (event) => {
           const newStartScreen = document.querySelector('.DocSearch-NewStartScreen');
           if (newStartScreen) {
-            newStartScreen.style.display = e.target.value !== '' ? 'none' : 'grid';
+            newStartScreen.style.display = event.target.value !== '' ? 'none' : 'grid';
           }
         };
         searchInput.addEventListener('input', handleInput);
