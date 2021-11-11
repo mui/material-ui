@@ -1,6 +1,11 @@
 {
   "props": {
     "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "default": "{}"
+    },
+    "disabled": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },
     "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
   },
