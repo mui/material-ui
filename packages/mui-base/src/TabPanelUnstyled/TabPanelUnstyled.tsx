@@ -5,7 +5,7 @@ import { OverridableComponent } from '@mui/types';
 import { appendOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabPanelUnstyledUtilityClass } from './tabPanelUnstyledClasses';
-import { useTabContext, getPanelId, getTabId } from '../TabsUnstyled';
+import useTabPanel from './useTabPanel';
 import TabPanelUnstyledProps, { TabPanelUnstyledTypeMap } from './TabPanelUnstyledProps';
 
 const useUtilityClasses = (ownerState: { hidden: boolean }) => {
@@ -41,14 +41,7 @@ const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(functi
     ...other
   } = props;
 
-  const context = useTabContext();
-  if (context === null) {
-    throw new TypeError('No TabContext provided');
-  }
-
-  const hidden = value !== context.value;
-  const id = getPanelId(context, value);
-  const tabId = getTabId(context, value);
+  const { hidden, getRootProps } = useTabPanel(props);
 
   const ownerState = {
     ...props,
@@ -66,9 +59,7 @@ const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(functi
 
   return (
     <TabPanelRoot
-      aria-labelledby={tabId}
-      hidden={hidden}
-      id={id}
+      {...getRootProps()}
       ref={ref}
       role="tabpanel"
       {...tabPanelRootProps}

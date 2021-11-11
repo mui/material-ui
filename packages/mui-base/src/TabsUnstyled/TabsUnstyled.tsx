@@ -1,12 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_useControlled as useControlled } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { appendOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabsUnstyledUtilityClass } from './tabsUnstyledClasses';
 import TabsUnstyledProps, { TabsUnstyledTypeMap } from './TabsUnstyledProps';
+import useTabs from './useTabs';
 import Context from './TabsContext';
 
 const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
@@ -19,13 +19,6 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
   return composeClasses(slots, getTabsUnstyledUtilityClass, {});
 };
 
-function useUniquePrefix() {
-  const [id, setId] = React.useState<string | null>(null);
-  React.useEffect(() => {
-    setId(`mui-p-${Math.round(Math.random() * 1e5)}`);
-  }, []);
-  return id;
-}
 /**
  *
  * Demos:
@@ -51,28 +44,8 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
     selectionFollowsFocus,
     ...other
   } = props;
-  const [value, setValue] = useControlled({
-    controlled: valueProp,
-    default: defaultValue,
-    name: 'TabsUnstyled',
-    state: 'value',
-  });
 
-  const idPrefix = useUniquePrefix();
-
-  const onSelected = React.useCallback(
-    (e, newValue) => {
-      setValue(newValue);
-      if (onChange) {
-        onChange(e, newValue);
-      }
-    },
-    [onChange, setValue],
-  );
-
-  const context = React.useMemo(() => {
-    return { idPrefix, value, onSelected, orientation, direction, selectionFollowsFocus };
-  }, [idPrefix, value, onSelected, orientation, direction, selectionFollowsFocus]);
+  const { tabsContextValue, getRootProps } = useTabs(props);
 
   const ownerState = {
     ...props,
@@ -91,11 +64,12 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
 
   return (
     <TabsRoot
+      {...getRootProps()}
       {...tabsRootProps}
       ref={ref}
       className={clsx(classes.root, componentsProps.root?.className, className)}
     >
-      <Context.Provider value={context}>{children}</Context.Provider>
+      <Context.Provider value={tabsContextValue}>{children}</Context.Provider>
     </TabsRoot>
   );
 }) as OverridableComponent<TabsUnstyledTypeMap>;

@@ -2,12 +2,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import clsx from 'clsx';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import ButtonUnstyled from '../ButtonUnstyled';
 import composeClasses from '../composeClasses';
-import { useTabContext, getTabId, getPanelId } from '../TabsUnstyled';
 import appendOwnerState from '../utils/appendOwnerState';
 import { getTabUnstyledUtilityClass } from './tabUnstyledClasses';
 import TabUnstyledProps, { TabUnstyledTypeMap } from './TabUnstyledProps';
+import useTab from './useTab';
 
 const useUtilityClasses = (ownerState: { selected: boolean; disabled: boolean }) => {
   const { selected, disabled } = ownerState;
@@ -30,6 +31,7 @@ const useUtilityClasses = (ownerState: { selected: boolean; disabled: boolean })
  */
 const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnstyled(props, ref) {
   const {
+    action,
     children,
     value: valueProp,
     className,
@@ -42,51 +44,30 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
     componentsProps = {},
     ...other
   } = props;
-  const context = useTabContext();
-  if (context === null) {
-    throw new TypeError('No TabContext provided');
-  }
 
-  const value = valueProp ?? 0;
-  const selected = context.value === value;
-  const selectionFollowsFocus = context.selectionFollowsFocus;
+  const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
+  const handleRef = useForkRef(tabRef, ref);
 
-  const a11yAttributes = {
-    role: 'tab',
-    'aria-controls': getPanelId(context, value),
-    id: getTabId(context, value),
-    'aria-selected': selected,
-    disabled,
-  };
+  const { active, focusVisible, setFocusVisible, selected, getRootProps } = useTab({
+    ...props,
+    ref: handleRef,
+  });
 
-  const handleFocus = (event: React.FocusEvent<HTMLButtonElement, Element>) => {
-    if (selectionFollowsFocus && !selected) {
-      if (onChange) {
-        onChange(event, value);
-      }
-      context.onSelected(event, value);
-    }
-
-    if (onFocus) {
-      onFocus(event);
-    }
-  };
-
-  const handleClick = (event: React.MouseEvent<Element, MouseEvent>) => {
-    if (!selected) {
-      if (onChange) {
-        onChange(event, value);
-      }
-      context.onSelected(event, value);
-    }
-
-    if (onClick) {
-      onClick(event);
-    }
-  };
+  React.useImperativeHandle(
+    action,
+    () => ({
+      focusVisible: () => {
+        setFocusVisible(true);
+        tabRef.current!.focus();
+      },
+    }),
+    [setFocusVisible],
+  );
 
   const ownerState = {
     ...props,
+    active,
+    focusVisible,
     disabled,
     selected,
   };
@@ -94,19 +75,14 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
   const classes = useUtilityClasses(ownerState);
 
   const TabRoot: React.ElementType = component ?? components.Root ?? ButtonUnstyled;
-  const tabRootProps = appendOwnerState(
-    TabRoot,
-    { ...a11yAttributes, ...other, ...componentsProps.root },
-    ownerState,
-  );
+  const tabRootProps = appendOwnerState(TabRoot, { ...other, ...componentsProps.root }, ownerState);
 
   return (
     <TabRoot
+      {...getRootProps()}
       {...tabRootProps}
       className={clsx(classes.root, componentsProps.root?.className, className)}
       ref={ref}
-      onClick={handleClick}
-      onFocus={handleFocus}
     >
       {children}
     </TabRoot>

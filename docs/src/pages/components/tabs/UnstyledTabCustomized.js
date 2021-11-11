@@ -26,9 +26,11 @@ const Tab = styled(TabUnstyled)`
   background: ${primary[500]};
   padding: 15px 20px;
   border: none;
+  display: flex;
 
   &.Mui-selected {
     color: #fff;
+    font-weight: bold;
   }
 
   &:hover {
@@ -38,8 +40,8 @@ const Tab = styled(TabUnstyled)`
   &.${buttonUnstyledClasses.focusVisible} {
     color: #fff;
     outline: none;
-    background-color: ${primary[700]};
-    border-bottom: 2px solid ${primary[700]};
+    background-color: ${primary[600]};
+    border-bottom: 2px solid ${primary[600]};
   }
 
   &.${tabUnstyledClasses.selected} {
@@ -59,10 +61,12 @@ const TabPanel = styled(TabPanelUnstyled)`
 
 const TabsList = styled(TabsListUnstyled)`
   background-color: ${primary[500]};
-  border-radius: 10px;
-  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.05), 0 10px 10px rgba(0, 0, 0, 0.02);
   padding: 0 10px 0 10px;
   margin-bottom: 10px;
+  display: flex;
+  align-content: space-between;
 `;
 
 export default function Example() {
