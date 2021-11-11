@@ -12,7 +12,7 @@ Themes let you apply a consistent tone to your app. It allows you to **customize
 
 如果你想要使用自定义的主题，那么需要使用 `MuiThemeProvider` 组件将样式注入到你的应用中。 However, this is optional; MUI components come with a default theme.
 
-`ThemeProvider` 依赖于 [React 的上下文（context）功能](https://reactjs.org/docs/context.html)来将主题传递给下级组件，所以你需要确保 `ThemeProvider` 是你试图自定义组件的父级组件。 您可以在 [API 章节](/styles/api/#themeprovider)中了解有关此内容的更多信息 。
+`ThemeProvider` 依赖于 [React 的上下文（context）功能](https://reactjs.org/docs/context.html)来将主题传递给下级组件，所以你需要确保 `ThemeProvider` 是你试图自定义组件的父级组件。 You can learn more about this in [the API section](#themeprovider).
 
 ## 主题配置变量
 
@@ -89,7 +89,7 @@ declare module '@mui/material/styles' {
 
 ### `createTheme(options, ...args) => theme`
 
-Generate a theme base on the options received.
+Generate a theme base on the options received. Then, pass it as a prop to [`ThemeProvider`](#themeprovider).
 
 #### 参数
 
@@ -241,4 +241,38 @@ function App() {
     </React.StrictMode>
   );
 }
+```
+
+### `ThemeProvider`
+
+This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. It should preferably be used at **the root of your component tree**.
+
+#### 属性
+
+| 名称                 | 类型                                       | 描述                                                                                                                                                                      |
+|:------------------ |:---------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;\* | node                                     | 您的组件树。                                                                                                                                                                  |
+| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. 您可以提供一个能够扩展外层主题的函数。 |
+
+#### 例子
+
+```jsx
+import * as React from 'react';
+import ReactDOM from 'react-dom';
+import { red } from '@mui/material/colors';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: red[500],
+    },
+  },
+});
+
+function App() {
+  return <ThemeProvider theme={theme}>...</ThemeProvider>;
+}
+
+ReactDOM.render(<App />, document.querySelector('#app'));
 ```
