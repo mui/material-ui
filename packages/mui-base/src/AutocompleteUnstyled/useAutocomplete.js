@@ -1013,10 +1013,6 @@ export default function useAutocomplete(props) {
       onBlur: handleBlur,
       onFocus: handleFocus,
       onChange: handleInputChange,
-      onClick: (event) => {
-        handleInputClick(event);
-        handleClick(event);
-      },
       // if open then this is handled imperativeley so don't let react override
       // only have an opinion about this when closed
       'aria-activedescendant': popupOpen ? '' : null,
@@ -1088,5 +1084,9 @@ export default function useAutocomplete(props) {
     setAnchorEl,
     focusedTag,
     groupedOptions,
+    onInputClick: (event) => {
+      handleInputClick(event);
+      handleClick(event);
+    },
   };
 }

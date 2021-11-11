@@ -437,6 +437,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     setAnchorEl,
     inputValue,
     groupedOptions,
+    onInputClick,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
   const hasClearIcon = !disableClearable && !disabled && dirty;
@@ -519,8 +520,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     });
   };
 
-  const { onClick: onInputClick, ...inputProps } = getInputProps();
-
   return (
     <React.Fragment>
       <AutocompleteRoot
@@ -576,7 +575,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           inputProps: {
             className: clsx(classes.input),
             disabled,
-            ...inputProps,
+            ...getInputProps(),
           },
         })}
       </AutocompleteRoot>
