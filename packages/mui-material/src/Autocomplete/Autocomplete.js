@@ -519,6 +519,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     });
   };
 
+  const { onMouseDown: onInputMouseDown, ...inputProps } = getInputProps();
+
   return (
     <React.Fragment>
       <AutocompleteRoot
@@ -536,6 +538,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           InputProps: {
             ref: setAnchorEl,
             className: classes.inputRoot,
+            onMouseDown: onInputMouseDown,
             startAdornment,
             endAdornment: (
               <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
@@ -573,7 +576,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           inputProps: {
             className: clsx(classes.input),
             disabled,
-            ...getInputProps(),
+            ...inputProps,
           },
         })}
       </AutocompleteRoot>
