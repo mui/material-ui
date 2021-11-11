@@ -119,6 +119,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     multiline = false,
     notched,
     type = 'text',
+    required,
     ...other
   } = props;
 
@@ -130,7 +131,16 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
       renderSuffix={(state) => (
         <NotchedOutlineRoot
           className={classes.notchedOutline}
-          label={label}
+          label={
+            label && required ? (
+              <React.Fragment>
+                {label}
+                {'\u00a0*'}
+              </React.Fragment>
+            ) : (
+              label
+            )
+          }
           notched={
             typeof notched !== 'undefined'
               ? notched
