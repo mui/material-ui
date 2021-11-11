@@ -18,6 +18,7 @@ This release features some major highlights:
 - [A new virtualization engine](#a-new-virtualization-engine)
 - [Improved state management](#improved-state-management)
 - [Reduced style specificity for easier customization](#reduced-style-specificity-for-easier-customization)
+  - [Limitations](#limitations)
 - [Features highlights](#features-highlights)
 - [v4 migration](#v4-migration)
   - [Change of the package names](#change-of-the-package-names)
@@ -49,6 +50,12 @@ To summarize, the new virtualization has the following features:
 ## Improved state management
 
 ## Reduced style specificity for easier customization
+
+In previous versions most of the `DataGrid` and `DataGridPro` components had a CSS specificity of 2, meaning that style overwrites and customizations were harder and required the developer to look at the DOM tree in order to pick the correct selector. With MUI X v5.0.0 we have reduced the CSS specificity of most of the internal `DataGrid` and `DataGridPro` components to 1. This will enable developers to more easily change the look and feel of the grid's components.
+
+#### Limitations
+
+Although there was a clear improvement we still had to keep the style specificity of 2 for some parts of the `DataGrid` and `DataGridPro`, more specificly the `GridColumnHeaderItem`, `GridRow` and `GridCell` along with all components that are nested in them. The reason for this is due to performance implications related to how Emotion injects the styles into the page. To keep the performance of our virtualization engine at its optimal we decided to keep the CSS specificity of 2 for the mentioned components.
 
 ## Features highlights
 
