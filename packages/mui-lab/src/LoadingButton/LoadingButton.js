@@ -144,7 +144,6 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
     loading = false,
     loadingIndicator = LoadingIndicator,
     loadingPosition = 'center',
-    // eslint-disable-next-line react/prop-types
     variant = 'text',
     ...other
   } = props;
