@@ -12,7 +12,7 @@ Para promover uma maior consistência entre os aplicativos, os temas claro e esc
 
 Se você deseja personalizar o tema, você precisa usar o ` ThemeProvider ` componente para injetar um tema em sua aplicação. However, this is optional; MUI components come with a default theme.
 
-O `ThemeProvider` depende do [ recurso de contexto do React](https://pt-br.reactjs.org/docs/context.html) afim de passar o tema para baixo na árvore de componentes, então você precisa ter certeza de que o `ThemeProvider` é um pai dos componentes que você está tentando customizar. Você pode aprender mais sobre isso lendo a [sessão da API](/styles/api/#themeprovider).
+O `ThemeProvider` depende do [ recurso de contexto do React](https://pt-br.reactjs.org/docs/context.html) afim de passar o tema para baixo na árvore de componentes, então você precisa ter certeza de que o `ThemeProvider` é um pai dos componentes que você está tentando customizar. You can learn more about this in [the API section](#themeprovider).
 
 ## Variáveis de configuração do tema
 
@@ -89,7 +89,7 @@ O tema interno **sobrescreverá** o tema externo. Você pode estender o tema ext
 
 ### `createTheme(options, ...args) => theme`
 
-Generate a theme base on the options received.
+Generate a theme base on the options received. Then, pass it as a prop to [`ThemeProvider`](#themeprovider).
 
 #### Argumentos
 
@@ -241,4 +241,38 @@ function App() {
     </React.StrictMode>
   );
 }
+```
+
+### `ThemeProvider`
+
+This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. It should preferably be used at **the root of your component tree**.
+
+#### Propriedades
+
+| Nome            | Tipo                                     | Descrição                                                                                                                                                                                                      |
+|:--------------- |:---------------------------------------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;* | node                                     | Sua árvore de componentes.                                                                                                                                                                                     |
+| theme&nbsp;*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. Você pode utilizar uma função para receber o tema externo. |
+
+#### Exemplos
+
+```jsx
+import * as React from 'react';
+import ReactDOM from 'react-dom';
+import { red } from '@mui/material/colors';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: red[500],
+    },
+  },
+});
+
+function App() {
+  return <ThemeProvider theme={theme}>...</ThemeProvider>;
+}
+
+ReactDOM.render(<App />, document.querySelector('#app'));
 ```
