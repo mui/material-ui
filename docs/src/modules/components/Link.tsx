@@ -41,7 +41,7 @@ const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedPro
         passHref
         locale={locale}
       >
-        <Anchor ref={ref} {...other} />
+        <Anchor data-no-markdown-link="true" ref={ref} {...other} />
       </NextLink>
     );
   },
