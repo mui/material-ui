@@ -242,6 +242,11 @@ export function getCookie(name: string): string | undefined {
   return undefined;
 }
 
+/**
+ * as is a reference to Next.js's as, the path in the URL
+ * pathname is a reference to Next.js's pathname, the name of page in the filesystem
+ * https://nextjs.org/docs/api-reference/next/router
+ */
 export function pathnameToLanguage(pathname: string): {
   userLanguage: string;
   canonicalAs: string;
