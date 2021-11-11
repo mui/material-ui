@@ -1641,7 +1641,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The `getContentAnchorEl` prop was removed to simplify the positioning logic.
 
-### Popper
+### Popper 弹出提示
 
 - Upgrade [Popper.js](https://github.com/popperjs/popper-core) from v1 to v2. This third-party library has introduced a lot of changes.<br /> You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
 
