@@ -547,7 +547,7 @@ export default function useAutocomplete(props) {
   const handleOpen = (event) => {
     // Prevent blur (which happens after onMouseDown event on Input fires)
     event.preventDefault();
-    if (open) {
+    if (open || disabledProp) {
       return;
     }
 
