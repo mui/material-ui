@@ -17,11 +17,11 @@ export interface StaticWrapperClasses {
 export type StaticWrapperClassKey = keyof StaticWrapperClasses;
 
 export function getStaticWrapperUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiStaticWrapper', slot);
+  return generateUtilityClass('MuiPickerStaticWrapper', slot);
 }
 
 export const staticWrapperClasses: StaticWrapperClasses = generateUtilityClasses(
-  'MuiStaticWrapper',
+  'MuiPickerStaticWrapper',
   ['root'],
 );
 
@@ -47,7 +47,7 @@ export interface StaticWrapperProps {
 }
 
 const StaticWrapperRoot = styled('div', {
-  name: 'MuiStaticWrapper',
+  name: 'MuiPickerStaticWrapper',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
   skipSx: true,
@@ -60,7 +60,7 @@ const StaticWrapperRoot = styled('div', {
 }));
 
 function StaticWrapper(inProps: StaticWrapperProps) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStaticWrapper' });
+  const props = useThemeProps({ props: inProps, name: 'MuiPickerStaticWrapper' });
   const { displayStaticWrapperAs, ...other } = props;
 
   const classes = useUtilityClasses(props);
