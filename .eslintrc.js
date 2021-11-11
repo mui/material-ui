@@ -353,7 +353,7 @@ module.exports = {
     },
     {
       files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
-      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx', 'packages/mui-joy/**'],
+      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx'],
       rules: {
         'no-restricted-imports': [
           'error',
@@ -364,13 +364,22 @@ module.exports = {
                 message: forbidTopLevelMessage,
               },
               {
+                name: '@mui/joy',
+                message: forbidTopLevelMessage,
+              },
+              {
                 name: '@mui/lab',
                 message: forbidTopLevelMessage,
               },
             ],
           },
         ],
-
+      },
+    },
+    {
+      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
+      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx', 'packages/mui-joy/**'],
+      rules: {
         'material-ui/mui-name-matches-component-name': [
           'error',
           {
