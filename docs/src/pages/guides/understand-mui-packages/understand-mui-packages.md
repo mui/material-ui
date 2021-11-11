@@ -2,7 +2,7 @@
 
 <p class="description">An overview of the MUI packages and the relationships between them.</p>
 
-## Tl;dr
+## Tl;DR
 
 - Use `@mui/material` if you want to use the components following the Material Design guidelines.
   > 💡 You can import styling APIs (eg. `ThemeProvider`, `styled`, etc.) directly from `@mui/material`.
@@ -22,8 +22,6 @@ The following is an up-to-date list of `@mui` public packages.
 - `@mui/styled-engine`
 - `@mui/styled-engine-sc`
 - `@mui/styles`
-
-> Other packages, such as `@mui/utils` and `@mui/types`, are used internally in the packages listed above.
 
 **Why does MUI have multiple packages? Why not just one?**
 
@@ -129,5 +127,3 @@ export default function CustomSwitch() {
   return <SwitchUnstyled component={Root} {...label} />;
 }
 ```
-
-> **Note**: there is no need to install `@mui/base` because it is a built in dependency the design system package, `@mui/material`.
