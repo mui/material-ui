@@ -8,20 +8,20 @@ export function toUnitless(value: string): number;
 
 export function convertLength(baseFontSize: string): (length: string, toUnit: string) => string;
 
-interface AlignPropertyParams {
+export interface AlignPropertyParams {
   size: number;
   grid: number;
 }
 export function alignProperty(params: AlignPropertyParams): number;
 
-interface FontGridParams {
+export interface FontGridParams {
   lineHeight: number;
   pixels: number;
   htmlFontSize: number;
 }
 export function fontGrid(params: FontGridParams): number;
 
-interface ResponsivePropertyParams {
+export interface ResponsivePropertyParams {
   cssProperty: string;
   min: number;
   max: number;
