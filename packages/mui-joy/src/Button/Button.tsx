@@ -10,16 +10,8 @@ import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
 const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
-  const {
-    classes,
-    color,
-    disabled,
-    focusVisible,
-    focusVisibleClassName,
-    fullWidth,
-    size,
-    variant,
-  } = ownerState;
+  const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
+    ownerState;
 
   const slots = {
     root: [
@@ -33,7 +25,7 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
     ],
   };
 
-  const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getButtonUtilityClass, {});
 
   if (focusVisible && focusVisibleClassName) {
     composedClasses.root += ` ${focusVisibleClassName}`;

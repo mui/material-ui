@@ -1,5 +1,4 @@
 import {
-  DistributiveOmit,
   OverridableComponent,
   OverridableStringUnion,
   OverridableTypeMap,
@@ -7,7 +6,6 @@ import {
 } from '@mui/types';
 import React from 'react';
 import { ColorPaletteProp } from '../styles/ColorSystem';
-import { ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -23,10 +21,6 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     action?: React.Ref<{
       focusVisible(): void;
     }>;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ButtonClasses>;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
@@ -80,10 +74,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
 }
 
 export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] &
-    (M['props'] extends { classes?: Record<string, string> }
-      ? DistributiveOmit<ButtonTypeMap['props'], 'classes'>
-      : ButtonTypeMap['props']);
+  props: M['props'] & ButtonTypeMap['props'];
   defaultComponent: M['defaultComponent'];
 }
 
