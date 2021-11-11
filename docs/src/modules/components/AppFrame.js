@@ -277,6 +277,7 @@ function AppFrame(props) {
                 {LANGUAGES_LABEL.map((language) => (
                   <MenuItem
                     component="a"
+                    data-no-markdown-link="true"
                     href={language.code === 'en' ? canonical : `/${language.code}${canonical}`}
                     key={language.code}
                     selected={userLanguage === language.code}
