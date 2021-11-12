@@ -34,19 +34,38 @@ This release features some major highlights:
 
 The `DataGrid` and `DataGridPro` features a brand-new virtualization engine.
 We decided to rewrite it completely to address the many issues raised by the community and to make easier to release new features that impact the rendering of rows and columns.
-One of the many advantages over the previous version is that now we use the native scroll.
+An advantage over the previous version is that now we use the native scroll.
 This means that scrolling the grid is like scrolling a webpage.
 The jittering caused when the scroll is overridden is gone.
-Another advatange is that scrolling horizontally will have the same performance as scrolling vertically.
 
-To summarize, the new virtualization has the following features:
+Talking about performance, one of the main problems we had was that scrolling horizontally was too laggy compared to vertical scrolling.
+After investigation, it was found that, although the columns were virtualized, a lot of unnecessary renders were occurring.
+This can be seen in the top part of the screenshot below, where it compares `v5.0.0-beta.4` (the last version before the new virtualization) with `v5.0.0`.
+On each scroll event, it renders again and each frame takes a long time to be drawn (some are even lost).
+To address these problems, we took the following actions:
 
-- Scrolling runs at 40 FPS, on average
-- Same performance for horizontal and vertical scroll
+- Avoid rendering the entire grid during scroll
+- Pass the correct value to the `key` prop to ensure that React will reuse the existing DOM nodes
+- Reduce the number of event listeners attached to each cell
+- Increase the number of columns rendered in the overscan (the extra columns rendered to make scroll smoother)
+- Delaying the rendering of new columns whenever it was possible
+
+The result of these actions is on the bottom part of the comparison.
+The number of frames that could be drawn in the same amount of time dramatically increased, compared to the previous virtualization.
+The time each frame takes to be rendered, indicated by the width of each block, was reduced.
+The idea of delaying the re-rendering also can be seen in the large voids between the blocks.
+Each void means that a re-render was not necessary since the required columns were already rendered by the overscan.
+
+![Performance comparison between v5.0.0-beta.4 and v5.0.0](https://user-images.githubusercontent.com/42154031/141475697-11281f83-9a2f-4a2b-8001-f459cbdccbd8.png)
+
+Some of the mentioned improvements were also applied to the rows, however, the gains were more subtle.
+Besides the better performance, the new virtualization also brings the following fixes:
+
+- Horizontal and vertical scroll share the same logic
 - No more jumps when changing the rendered rows
-- Better performance on mobile devices
 - Calling `apiRef.current.scrollToIndexes` works no matter where the cell is
-- Improved support for when virtualization is disabled.
+- Improved support for when virtualization is disabled
+- Fix keyboard navigation with arrow keys.
 
 ## Improved state management
 
