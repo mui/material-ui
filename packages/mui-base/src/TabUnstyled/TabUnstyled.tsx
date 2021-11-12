@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import clsx from 'clsx';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import ButtonUnstyled from '../ButtonUnstyled';
 import composeClasses from '../composeClasses';
 import appendOwnerState from '../utils/appendOwnerState';
 import { getTabUnstyledUtilityClass } from './tabUnstyledClasses';
@@ -74,7 +73,7 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
 
   const classes = useUtilityClasses(ownerState);
 
-  const TabRoot: React.ElementType = component ?? components.Root ?? ButtonUnstyled;
+  const TabRoot: React.ElementType = component ?? components.Root ?? 'button';
   const tabRootProps = appendOwnerState(TabRoot, { ...other, ...componentsProps.root }, ownerState);
 
   return (

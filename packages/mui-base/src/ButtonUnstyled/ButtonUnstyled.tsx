@@ -44,7 +44,6 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
     component,
     components = {},
     componentsProps = {},
-    ownerState: propsOwnerState,
     children,
     disabled,
     action,
@@ -87,8 +86,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   const buttonRootProps = appendOwnerState(
     ButtonRoot,
     { ...other, ...componentsProps.root },
-    // TODO: We need to find a way of how to componse multiple unstyled components
-    { ...ownerState, ...propsOwnerState },
+    ownerState,
   );
 
   const classes = useUtilityClasses(ownerState);
