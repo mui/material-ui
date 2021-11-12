@@ -9,7 +9,6 @@ card: true
 
 We are excited to introduce [MUI X v5.0.0](https://github.com/mui-org/material-ui-x/releases/tag/v5.0.0)!
 
-<!-- TODO: upload a MUI X v5 specific banner -->
 <img src="/static/blog/mui-x-v5/card.png" alt="" style="width: 100%; margin-bottom: 16px;" />
 
 This release features some major highlights:
