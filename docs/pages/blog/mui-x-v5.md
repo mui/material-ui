@@ -17,6 +17,8 @@ This release features some major highlights:
 - [High-level goals for v5](#high-level-goals-for-v5)
 - [A new virtualization engine](#a-new-virtualization-engine)
 - [Improved state management](#improved-state-management)
+  - [Improve the developer experience around the state](#improve-the-developer-experience-around-the-state)
+  - [Synchronous state initialization](#synchronous-state-initialization)
 - [Reduced style specificity for easier customization](#reduced-style-specificity-for-easier-customization)
   - [Limitations](#limitations)
 - [Features highlights](#features-highlights)
@@ -73,7 +75,7 @@ In the previous versions, the state was at first populated with default values, 
 This was causing an additional re-render with useless data and the X-team had to stay careful to avoid flickering between those fake data and the real ones.
 In v5, the state is initialized synchronously during the first render.
 
-Note that for now the state updates coming from controlled props are still asynchronous. 
+Note that for now the state updates coming from controlled props are still asynchronous.
 If you pass a `props.pageSize`, we will apply it to the state in a `useEffect` and therefore is you read the state just after the render (for instance in a `useLayoutEffect`), you will still see the old version.
 
 ## Reduced style specificity for easier customization
@@ -84,7 +86,7 @@ This will enable developers to more easily change the look and feel of the grid'
 
 **Before**
 
-```js
+```jsx
 const useStyles = makeStyles(() => ({
   root: {
     '& .MuiDataGrid-toolbarContainer': {
@@ -114,7 +116,7 @@ export default function App() {
 
 **After**
 
-```js
+```jsx
 const useStyles = makeStyles(() => ({
   root: {
     padding: 50,
