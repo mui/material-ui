@@ -701,6 +701,8 @@ export default function JoyDashboard() {
                 Step to the next level, <br /> with more features.
               </Typography>
               <Button variant="filledInteractive">Learn more</Button>
+              <Button variant="outlinedInteractive">Skip</Button>
+              <Button variant="textInteractive">Pause</Button>
             </Card>
             <br />
             <Button
@@ -827,7 +829,7 @@ export default function JoyDashboard() {
                           Remote
                         </Chip>
                         <Chip
-                          variant="filled"
+                          variant="outlined"
                           color="neutral"
                           sx={{
                             fontSize: '0.875rem',

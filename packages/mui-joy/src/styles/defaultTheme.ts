@@ -226,7 +226,7 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette'> = {
   variant: {
     text: {
       brand: {
-        color: 'var(--joy-palette-brand-textColor)',
+        color: 'var(--joy-variant-brand-textColor, var(--joy-palette-brand-textColor))',
       },
       neutral: {
         color: 'var(--joy-palette-neutral-textColor)',
@@ -234,12 +234,14 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette'> = {
     },
     textInteractive: {
       brand: {
-        color: 'var(--joy-palette-brand-textColor)',
+        color: 'var(--joy-variant-brand-textColor, var(--joy-palette-brand-textColor))',
         '&:hover': {
-          backgroundColor: 'var(--joy-palette-brand-textHoverBg)',
+          backgroundColor:
+            'var(--joy-variant-brand-textHoverBg, var(--joy-palette-brand-textHoverBg))',
         },
         '&:active': {
-          backgroundColor: 'var(--joy-palette-brand-textActiveBg)',
+          backgroundColor:
+            'var(--joy-variant-brand-textActiveBg, var(--joy-palette-brand-textActiveBg))',
         },
         '&.Mui-disabled': {
           color: 'var(--joy-palette-brand-textDisabledColor)',
@@ -260,9 +262,10 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette'> = {
     },
     outlined: {
       brand: {
-        color: 'var(--joy-palette-brand-textColor)',
+        color: 'var(--joy-variant-brand-outlinedColor, var(--joy-palette-brand-textColor))',
         border: '1px solid',
-        borderColor: 'var(--joy-palette-brand-outlinedBorder)',
+        borderColor:
+          'var(--joy-variant-brand-outlinedBorder, var(--joy-palette-brand-outlinedBorder))',
       },
       neutral: {
         color: 'var(--joy-palette-neutral-textColor)',
@@ -272,14 +275,17 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette'> = {
     },
     outlinedInteractive: {
       brand: {
-        color: 'var(--joy-palette-brand-textColor)',
+        color: 'var(--joy-variant-brand-outlinedColor, var(--joy-palette-brand-textColor))',
         border: '1px solid',
-        borderColor: 'var(--joy-palette-brand-outlinedBorder)',
+        borderColor:
+          'var(--joy-variant-brand-outlinedBorder, var(--joy-palette-brand-outlinedBorder))',
         '&:hover': {
-          backgroundColor: 'var(--joy-palette-brand-textHoverBg)',
+          backgroundColor:
+            'var(--joy-variant-brand-outlinedHoverBg, var(--joy-palette-brand-textHoverBg))',
         },
         '&:active': {
-          backgroundColor: 'var(--joy-palette-brand-textActiveBg)',
+          backgroundColor:
+            'var(--joy-variant-brand-outlinedActiveBg, var(--joy-palette-brand-textActiveBg))',
         },
         '&.Mui-disabled': {
           color: 'var(--joy-palette-brand-textDisabledColor)',
@@ -304,8 +310,8 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette'> = {
     },
     filled: {
       brand: {
-        color: 'var(--joy-palette-brand-filledColor)',
-        backgroundColor: 'var(--joy-palette-brand-filledBg)',
+        color: 'var(--joy-variant-brand-filledColor, var(--joy-palette-brand-filledColor))',
+        backgroundColor: 'var(--joy-variant-brand-filledBg, var(--joy-palette-brand-filledBg))',
       },
       neutral: {
         color: 'var(--joy-palette-neutral-filledColor)',
@@ -314,13 +320,15 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette'> = {
     },
     filledInteractive: {
       brand: {
-        color: 'var(--joy-palette-brand-filledColor)',
-        backgroundColor: 'var(--joy-palette-brand-filledBg)',
+        color: 'var(--joy-variant-brand-filledColor, var(--joy-palette-brand-filledColor))',
+        backgroundColor: 'var(--joy-variant-brand-filledBg, var(--joy-palette-brand-filledBg))',
         '&:hover': {
-          backgroundColor: 'var(--joy-palette-brand-filledHoverBg)',
+          backgroundColor:
+            'var(--joy-variant-brand-filledHoverBg, var(--joy-palette-brand-filledHoverBg))',
         },
         '&:active': {
-          backgroundColor: 'var(--joy-palette-brand-filledActiveBg)',
+          backgroundColor:
+            'var(--joy-variant-brand-filledActiveBg, var(--joy-palette-brand-filledActiveBg))',
         },
         '&.Mui-disabled': {
           color: 'var(--joy-palette-brand-filledDisabledColor)',
@@ -346,6 +354,17 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette'> = {
       brand: {
         color: 'var(--joy-palette-brand-containedColor)',
         backgroundColor: 'var(--joy-palette-brand-containedBg)',
+        '--joy-variant-brand-textColor': '#fff',
+        '--joy-variant-brand-textHoverBg': 'var(--joy-palette-brand-600)',
+        '--joy-variant-brand-textActiveBg': 'var(--joy-palette-brand-700)',
+        '--joy-variant-brand-outlinedColor': '#fff',
+        '--joy-variant-brand-outlinedBorder': 'var(--joy-palette-brand-400)',
+        '--joy-variant-brand-outlinedHoverBg': 'var(--joy-palette-brand-600)',
+        '--joy-variant-brand-outlinedActiveBg': 'var(--joy-palette-brand-700)',
+        '--joy-variant-brand-filledColor': '#fff',
+        '--joy-variant-brand-filledBg': 'var(--joy-palette-brand-500)',
+        '--joy-variant-brand-filledHoverBg': 'var(--joy-palette-brand-500)',
+        '--joy-variant-brand-filledActiveBg': 'var(--joy-palette-brand-700)',
       },
       neutral: {
         color: 'var(--joy-palette-neutral-containedColor)',
