@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { refType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import NotchedOutline from './NotchedOutline';
+import useFormControl from '../FormControl/useFormControl';
+import formControlState from '../FormControl/formControlState';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
 import InputBase, {
@@ -119,11 +121,17 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     multiline = false,
     notched,
     type = 'text',
-    required,
     ...other
   } = props;
 
   const classes = useUtilityClasses(props);
+
+  const muiFormControl = useFormControl();
+  const fcs = formControlState({
+    props,
+    muiFormControl,
+    states: ['required'],
+  });
 
   return (
     <InputBase
@@ -132,7 +140,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
         <NotchedOutlineRoot
           className={classes.notchedOutline}
           label={
-            label && required ? (
+            label && fcs.required ? (
               <React.Fragment>
                 {label}
                 {'\u00a0*'}
