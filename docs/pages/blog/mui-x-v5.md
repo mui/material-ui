@@ -49,6 +49,33 @@ To summarize, the new virtualization has the following features:
 
 ## Improved state management
 
+Several improvements were made to our state management to improve developer experience, performances and consistency in the execution order.
+
+#### Improve the developer experience around the state
+
+To improve developer experience for both the X-team and developers using the `apiRef` features, we are working on making the state structure and the tools to access it as easy to understand as possible.
+
+- We removed the `state` structure from the public API. Access data in the state should always be done through `apiRef` methods (`apiRef.current.getSelectedRows`) or selectors (`selectedGridRowsSelector`).
+- We renamed most selectors to have a consistent naming convention
+- We restructured our state so that each feature has a single sub state and is the only one to update it (`state.filter` is only managed by our `useGridFilter` hooks which exposes methods for both internal and 3rd party code to interact with this state).
+
+The work on that topic is far from over. We have several topics on progress or under discussion to improve the developing experience of people using the advanced features of the grid.
+Here are a few that should be release in the following months:
+
+- Strict typing of the event listeners and publishers
+- Examples for the event listeners
+- Documentation and examples for the selectors
+- Ability to simplify export and restore some parts of the grid state
+
+#### Synchronous state initialization
+
+In the previous versions, the state was at first populated with default values, and then in a `useEffect`, we were applying the values given as props (`props.pageSize` for instance) or derived from the props (the sorted and filtered rows derived from the `props.rows`, `props.sortModel` and `props.filterModel`).
+This was causing an additional re-render with useless data and the X-team had to stay careful to avoid flickering between those fake data and the real ones.
+In v5, the state is initialized synchronously during the first render.
+
+Note that for now the state updates coming from controlled props are still asynchronous. 
+If you pass a `props.pageSize`, we will apply it to the state in a `useEffect` and therefore is you read the state just after the render (for instance in a `useLayoutEffect`), you will still see the old version.
+
 ## Reduced style specificity for easier customization
 
 In previous versions most of the `DataGrid` and `DataGridPro` components had a CSS specificity of 2, meaning that style overrides and customizations were harder, requiring the developer to look at the DOM tree in order to pick the correct selector.
