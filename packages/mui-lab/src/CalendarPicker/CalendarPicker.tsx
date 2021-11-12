@@ -6,7 +6,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@mui/core';
+} from '@mui/base';
 import MonthPicker from '../MonthPicker/MonthPicker';
 import { useCalendarState } from './useCalendarState';
 import { useDefaultDates, useUtils } from '../internal/pickers/hooks/useUtils';
@@ -38,6 +38,11 @@ export interface CalendarPickerProps<TDate>
    * Default calendar month displayed when `value={null}`.
    */
   defaultCalendarMonth?: TDate;
+  /**
+   * If `true`, the picker and text field are disabled.
+   * @default false
+   */
+  disabled?: boolean;
   /**
    * @default false
    */
@@ -71,6 +76,11 @@ export interface CalendarPickerProps<TDate>
    * @default 'day'
    */
   openTo?: CalendarPickerView;
+  /**
+   * Make picker read only.
+   * @default false
+   */
+  readOnly?: boolean;
   /**
    * Disable heavy animations.
    * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
@@ -342,6 +352,11 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
    */
   defaultCalendarMonth: PropTypes.any,
   /**
+   * If `true`, the picker and text field are disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
    * @default false
    */
   disableFuture: PropTypes.bool,
@@ -380,6 +395,11 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
    * @default 'day'
    */
   openTo: PropTypes.oneOf(['day', 'month', 'year']),
+  /**
+   * Make picker read only.
+   * @default false
+   */
+  readOnly: PropTypes.bool,
   /**
    * Disable heavy animations.
    * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)

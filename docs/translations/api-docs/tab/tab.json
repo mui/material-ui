@@ -7,6 +7,7 @@
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>.Mui-focusVisible</code> class.",
     "icon": "The icon to display.",
+    "iconPosition": "The position of the icon relative to the label.",
     "label": "The label element.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "You can provide your own value. Otherwise, we fallback to the child position index.",

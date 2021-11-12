@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementAcceptingRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/core';
+import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
@@ -225,7 +225,7 @@ function composeEventHandler(handler, eventHandler) {
   };
 }
 
-// TODO (v6) Remove PopperComponent, PopperProps, TransitionComponent and TransitionProps.
+// TODO v6: Remove PopperComponent, PopperProps, TransitionComponent and TransitionProps.
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
   const {
@@ -625,7 +625,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const PopperComponent = components.Popper ?? TooltipPopper;
-  const TransitionComponent = TransitionComponentProp ?? components.Transition ?? Grow;
+  const TransitionComponent = components.Transition ?? TransitionComponentProp ?? Grow;
   const TooltipComponent = components.Tooltip ?? TooltipTooltip;
   const ArrowComponent = components.Arrow ?? TooltipArrow;
 
@@ -679,7 +679,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         transition
         {...interactiveWrapperListeners}
         {...popperProps}
-        className={clsx(classes.popper, componentsProps.popper?.className)}
+        className={clsx(classes.popper, PopperProps?.className, componentsProps.popper?.className)}
         popperOptions={popperOptions}
       >
         {({ TransitionProps: TransitionPropsInner }) => (
@@ -743,6 +743,8 @@ Tooltip.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The props used for each slot inside the Tooltip.
+   * Note that `componentsProps.popper` prop values win over `PopperProps`
+   * and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
    * @default {}
    */
   componentsProps: PropTypes.object,
@@ -857,7 +859,11 @@ Tooltip.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * Tooltip title. Zero-length titles string are never displayed.
    */

@@ -80,6 +80,84 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
   },
 ];
 
+export const DESIGNKITS_CUSTOMERS: Array<IconImageProps> = [
+  {
+    name: 'spotify',
+    alt: 'Spotify logo',
+    width: 100,
+    height: 52,
+  },
+  {
+    name: 'amazon',
+    alt: 'Amazon logo',
+    width: 80,
+    height: 52,
+  },
+  {
+    name: 'apple',
+    alt: 'Apple logo',
+    width: 29,
+    height: 52,
+  },
+  {
+    name: 'netflix',
+    alt: 'Netflix logo',
+    width: 80,
+    height: 52,
+  },
+  {
+    name: 'twitter',
+    alt: 'Twitter logo',
+    width: 31,
+    height: 52,
+  },
+  {
+    name: 'salesforce',
+    alt: 'Salesforce logo',
+    width: 50,
+    height: 52,
+  },
+];
+
+export const TEMPLATES_CUSTOMERS: Array<IconImageProps> = [
+  {
+    name: 'ebay',
+    alt: 'Ebay logo',
+    width: 73,
+    height: 52,
+  },
+  {
+    name: 'amazon',
+    alt: 'Amazon logo',
+    width: 80,
+    height: 52,
+  },
+  {
+    name: 'samsung',
+    alt: 'Samsung logo',
+    width: 88,
+    height: 52,
+  },
+  {
+    name: 'patreon',
+    alt: 'Patreon logo',
+    width: 103,
+    height: 52,
+  },
+  {
+    name: 'atandt',
+    alt: 'AT&T logo',
+    width: 71,
+    height: 52,
+  },
+  {
+    name: 'verizon',
+    alt: 'Verizon logo',
+    width: 91,
+    height: 52,
+  },
+];
+
 export default function CompaniesGrid({ data }: { data: Array<IconImageProps> }) {
   return (
     <Grid container spacing={4}>

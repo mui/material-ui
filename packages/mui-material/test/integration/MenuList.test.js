@@ -6,14 +6,14 @@ import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import {
   act,
-  createClientRender,
+  createRenderer,
   fireEvent,
   screen,
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 
 describe('<MenuList> integration', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   specify('the MenuItems have the `menuitem` role', () => {
     const { getAllByRole } = render(

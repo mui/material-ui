@@ -12,7 +12,7 @@ import {
   AutocompleteInputChangeReason,
   createFilterOptions,
   UseAutocompleteProps,
-} from '@mui/core';
+} from '@mui/base';
 import { AutocompleteClasses } from './autocompleteClasses';
 
 export {
@@ -190,7 +190,7 @@ export interface AutocompleteProps<
   /**
    * Render the group.
    *
-   * @param {any} option The group to render.
+   * @param {AutocompleteRenderGroupParams} params The group to render.
    * @returns {ReactNode}
    */
   renderGroup?: (params: AutocompleteRenderGroupParams) => React.ReactNode;

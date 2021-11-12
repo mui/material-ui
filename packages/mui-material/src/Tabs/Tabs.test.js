@@ -4,10 +4,9 @@ import { spy, useFakeTimers } from 'sinon';
 import {
   describeConformance,
   act,
-  createClientRender,
+  createRenderer,
   fireEvent,
   screen,
-  createServerRender,
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
 import Tab from '@mui/material/Tab';
@@ -43,7 +42,7 @@ describe('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
   const isJSDOM = navigator.userAgent === 'node.js';
 
-  const render = createClientRender();
+  const { render, renderToString } = createRenderer();
 
   before(function beforeHook() {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -847,10 +846,8 @@ describe('<Tabs />', () => {
   });
 
   describe('server-side render', () => {
-    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
-
     it('should let the selected <Tab /> render the indicator server-side', () => {
-      const container = serverRender(
+      const { container } = renderToString(
         <Tabs value={1}>
           <Tab />
           <Tab />

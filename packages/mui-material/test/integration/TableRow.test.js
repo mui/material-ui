@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableHead from '@mui/material/TableHead';
 import TableRow, { tableRowClasses as classes } from '@mui/material/TableRow';
 
 describe('<TableRow> integration', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should render with the head class when in the context of a table head', () => {
     const { getByRole } = render(

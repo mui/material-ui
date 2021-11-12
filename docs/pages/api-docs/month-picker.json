@@ -6,9 +6,16 @@
     "onChange": { "type": { "name": "func" }, "required": true },
     "classes": { "type": { "name": "object" } },
     "className": { "type": { "name": "string" } },
+    "disabled": { "type": { "name": "bool" } },
     "disableFuture": { "type": { "name": "bool" } },
     "disablePast": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } }
+    "readOnly": { "type": { "name": "bool" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "MonthPicker",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiMonthPicker" },

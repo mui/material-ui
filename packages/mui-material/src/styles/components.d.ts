@@ -128,9 +128,6 @@ export interface Components {
     styleOverrides?: ComponentsOverrides['MuiContainer'];
     variants?: ComponentsVariants['MuiContainer'];
   };
-  /**
-   * @deprecated See CssBaseline.d.ts
-   */
   MuiCssBaseline?: {
     defaultProps?: ComponentsProps['MuiCssBaseline'];
     styleOverrides?: ComponentsOverrides['MuiCssBaseline'];

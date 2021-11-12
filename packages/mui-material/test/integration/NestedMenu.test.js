@@ -1,8 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, within } from 'test/utils';
+import { createRenderer, within } from 'test/utils';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+
+const NoTransition = React.forwardRef(function NoTransition(props, ref) {
+  const { children, in: inProp } = props;
+  if (!inProp) {
+    return null;
+  }
+  return <div ref={ref}>{children}</div>;
+});
 
 function NestedMenu(props) {
   const { firstMenuOpen, secondMenuOpen } = props;
@@ -16,17 +24,19 @@ function NestedMenu(props) {
       </button>
       <Menu
         anchorEl={anchorEl}
+        hideBackdrop
         MenuListProps={{ id: 'second-menu' }}
         open={Boolean(secondMenuOpen && canBeOpen)}
-        transitionDuration={0}
+        TransitionComponent={NoTransition}
       >
         <MenuItem>Second Menu</MenuItem>
       </Menu>
       <Menu
         anchorEl={anchorEl}
+        hideBackdrop
         MenuListProps={{ id: 'first-menu' }}
         open={Boolean(firstMenuOpen && canBeOpen)}
-        transitionDuration={0}
+        TransitionComponent={NoTransition}
       >
         <MenuItem>Profile 1</MenuItem>
         <MenuItem>My account</MenuItem>
@@ -37,7 +47,7 @@ function NestedMenu(props) {
 }
 
 describe('<NestedMenu> integration', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should not be open', () => {
     const { queryAllByRole } = render(<NestedMenu />);

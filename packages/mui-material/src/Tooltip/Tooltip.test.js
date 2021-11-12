@@ -4,7 +4,7 @@ import { spy, useFakeTimers } from 'sinon';
 import {
   describeConformance,
   act,
-  createClientRender,
+  createRenderer,
   fireEvent,
   screen,
   simulatePointerDevice,
@@ -44,7 +44,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <Tooltip title="Hello World" open>
@@ -727,7 +727,9 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(getByRole('tooltip'));
-      clock.tick(111 + 10);
+      act(() => {
+        clock.tick(111 + 10);
+      });
 
       expect(getByRole('tooltip')).toBeVisible();
     });
@@ -1262,6 +1264,52 @@ describe('<Tooltip />', () => {
       unmount();
 
       expect(document.body.style.WebkitUserSelect).to.equal('text');
+    });
+  });
+
+  describe('className', () => {
+    it('should allow className from PopperProps', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          PopperProps={{ 'data-testid': 'popper', className: 'my-class' }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      expect(getByTestId('popper')).to.have.class('my-class');
+    });
+
+    it('should allow className from componentsProps.popper', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          componentsProps={{ popper: { 'data-testid': 'popper', className: 'my-class' } }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      expect(getByTestId('popper')).to.have.class('my-class');
+    });
+
+    it('should apply both the className from PopperProps and componentsProps.popper if both are passed', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          componentsProps={{ popper: { 'data-testid': 'popper', className: 'my-class' } }}
+          PopperProps={{ className: 'my-class-2' }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      expect(getByTestId('popper')).to.have.class('my-class-2');
+      expect(getByTestId('popper')).to.have.class('my-class');
     });
   });
 });

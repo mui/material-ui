@@ -225,3 +225,7 @@ If you are already using the [CssBaseline](/components/css-baseline/) component 
    )
  }
 ```
+
+## 6. Custom class name
+
+Check out [ClassName Generator](/guides/classname-generator/) section for more details.

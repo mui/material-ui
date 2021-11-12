@@ -18,7 +18,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-core/src/BackdropUnstyled/BackdropUnstyled.js",
+  "filename": "/packages/mui-base/src/BackdropUnstyled/BackdropUnstyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/backdrop/\">Backdrop</a></li></ul>",
   "cssComponent": false

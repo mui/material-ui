@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "5.0.3",
+  "version": "5.1.0",
   "private": false,
   "author": "MUI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
@@ -8,7 +8,7 @@
   "keywords": [
     "react",
     "react-component",
-    "material-ui",
+    "mui",
     "system"
   ],
   "repository": {
@@ -39,7 +39,7 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.4.1",
+    "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@types/react": "^16.8.6 || ^17.0.0",
     "react": "^17.0.2"
@@ -56,11 +56,11 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.15.4",
-    "@mui/private-theming": "^5.0.1",
-    "@mui/styled-engine": "^5.0.1",
-    "@mui/types": "^7.0.0",
-    "@mui/utils": "^5.0.1",
+    "@babel/runtime": "^7.16.0",
+    "@mui/private-theming": "^5.1.0",
+    "@mui/styled-engine": "^5.1.0",
+    "@mui/types": "^7.1.0",
+    "@mui/utils": "^5.1.0",
     "clsx": "^1.1.1",
     "csstype": "^3.0.9",
     "prop-types": "^15.7.2"

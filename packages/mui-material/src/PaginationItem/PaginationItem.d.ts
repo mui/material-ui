@@ -27,6 +27,21 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
       PaginationItemPropsColorOverrides
     >;
     /**
+     * The components used for first, last, next & previous item type
+     * @default {
+     *   first: FirstPageIcon,
+     *   last: LastPageIcon,
+     *   next: NavigateNextIcon,
+     *   previous: NavigateBeforeIcon,
+     * }
+     */
+    components?: {
+      first?: React.ElementType;
+      last?: React.ElementType;
+      next?: React.ElementType;
+      previous?: React.ElementType;
+    };
+    /**
      * If `true`, the component is disabled.
      * @default false
      */

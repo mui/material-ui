@@ -133,8 +133,9 @@ module.exports = {
                         '@mui/system': '../packages/mui-system/src',
                         '@mui/private-theming': '../packages/mui-private-theming/src',
                         '@mui/utils': '../packages/mui-utils/src',
-                        '@mui/core': '../packages/mui-core/src',
+                        '@mui/base': '../packages/mui-base/src',
                         '@mui/material-next': '../packages/mui-material-next/src',
+                        '@mui/joy': '../packages/mui-joy/src',
                       },
                       transformFunctions: ['require'],
                     },
@@ -180,6 +181,9 @@ module.exports = {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
+        if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
+          return;
+        }
         if (!page.children) {
           map[`${prefix}${page.pathname.replace(/^\/api-docs\/(.*)/, '/api/$1')}`] = {
             page: page.pathname,

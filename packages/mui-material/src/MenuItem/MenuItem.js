@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -127,7 +127,9 @@ const MenuItemRoot = styled(ButtonBase, {
     },
   }),
   ...(ownerState.dense && {
-    minHeight: 36,
+    minHeight: 32, // https://material.io/components/menus#specs > Dense
+    paddingTop: 4,
+    paddingBottom: 4,
     ...theme.typography.body2,
     [`& .${listItemIconClasses.root} svg`]: {
       fontSize: '1.25rem',
@@ -264,7 +266,11 @@ MenuItem.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * @default 0
    */

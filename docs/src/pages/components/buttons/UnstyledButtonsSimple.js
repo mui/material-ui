@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
-import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/core/ButtonUnstyled';
+import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 
-const CustomButtonRoot = styled('button')(`
+const CustomButtonRoot = styled('button')`
   background-color: #007fff;
   padding: 15px 20px;
   border-radius: 10px;
@@ -34,7 +34,7 @@ const CustomButtonRoot = styled('button')(`
     cursor: not-allowed;
     box-shadow: 0 0 0 0 rgba(0, 127, 255, 0);
   }
-`);
+`;
 
 function CustomButton(props) {
   return <ButtonUnstyled {...props} component={CustomButtonRoot} />;

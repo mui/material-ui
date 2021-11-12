@@ -4,7 +4,7 @@ import { SinonFakeTimers, useFakeTimers } from 'sinon';
 import TextField from '@mui/material/TextField';
 import { fireEvent, screen } from 'test/utils';
 import StaticDatePicker from '@mui/lab/StaticDatePicker';
-import { createPickerRender, adapterToUse } from '../internal/pickers/test-utils';
+import { createPickerRenderer, adapterToUse } from '../internal/pickers/test-utils';
 
 describe('<StaticDatePicker />', () => {
   let clock: SinonFakeTimers;
@@ -14,7 +14,7 @@ describe('<StaticDatePicker />', () => {
   afterEach(() => {
     clock.restore();
   });
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   it('render proper month', () => {
     render(

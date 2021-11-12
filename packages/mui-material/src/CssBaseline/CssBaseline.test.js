@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 describe('<CssBaseline />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('renders its children', () => {
     const { container } = render(
@@ -19,7 +19,11 @@ describe('<CssBaseline />', () => {
     expect(child).to.have.tagName('div');
   });
 
-  it('supports theme overrides as string', () => {
+  it('supports theme overrides as string', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
     const theme = createTheme({
       components: { MuiCssBaseline: { styleOverrides: `strong { font-weight: 500; }` } },
     });
@@ -37,7 +41,11 @@ describe('<CssBaseline />', () => {
     expect(child).toHaveComputedStyle({ fontWeight: '500' });
   });
 
-  it('supports theme overrides as object', () => {
+  it('supports theme overrides as object', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
     const theme = createTheme({
       components: { MuiCssBaseline: { styleOverrides: { strong: { fontWeight: '500' } } } },
     });

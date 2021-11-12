@@ -6,13 +6,17 @@ import {
   unstable_composeClasses as composeClasses,
   useAutocomplete,
   createFilterOptions,
-} from '@mui/core';
+} from '@mui/base';
 import { alpha } from '@mui/system';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
 import IconButton from '../IconButton';
 import Chip from '../Chip';
+import inputClasses from '../Input/inputClasses';
+import inputBaseClasses from '../InputBase/inputBaseClasses';
+import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
+import filledInputClasses from '../FilledInput/filledInputClasses';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import useThemeProps from '../styles/useThemeProps';
@@ -113,18 +117,18 @@ const AutocompleteRoot = styled('div', {
       minWidth: 30,
     },
   },
-  '& .MuiInput-root': {
+  [`& .${inputClasses.root}`]: {
     paddingBottom: 1,
     '& .MuiInput-input': {
       padding: '4px 4px 4px 0px',
     },
   },
-  '& .MuiInput-root.MuiInputBase-sizeSmall': {
-    '& .MuiInput-input': {
+  [`& .${inputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
+    [`& .${inputClasses.input}`]: {
       padding: '2px 4px 3px 0',
     },
   },
-  '& .MuiOutlinedInput-root': {
+  [`& .${outlinedInputClasses.root}`]: {
     padding: 9,
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
       paddingRight: 26 + 4 + 9,
@@ -139,13 +143,13 @@ const AutocompleteRoot = styled('div', {
       right: 9,
     },
   },
-  '& .MuiOutlinedInput-root.MuiInputBase-sizeSmall': {
+  [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
     padding: 6,
     [`& .${autocompleteClasses.input}`]: {
       padding: '2.5px 4px 2.5px 6px',
     },
   },
-  '& .MuiFilledInput-root': {
+  [`& .${filledInputClasses.root}`]: {
     paddingTop: 19,
     paddingLeft: 8,
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
@@ -154,18 +158,21 @@ const AutocompleteRoot = styled('div', {
     [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
       paddingRight: 52 + 4 + 9,
     },
-    '& .MuiFilledInput-input': {
+    [`& .${filledInputClasses.input}`]: {
       padding: '7px 4px',
     },
     [`& .${autocompleteClasses.endAdornment}`]: {
       right: 9,
     },
   },
-  '& .MuiFilledInput-root.MuiInputBase-sizeSmall': {
+  [`& .${filledInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
     paddingBottom: 1,
-    '& .MuiFilledInput-input': {
+    [`& .${filledInputClasses.input}`]: {
       padding: '2.5px 4px',
     },
+  },
+  [`& .${inputBaseClasses.hiddenLabel}`]: {
+    paddingTop: 8,
   },
   [`& .${autocompleteClasses.input}`]: {
     flexGrow: 1,
@@ -967,7 +974,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Render the group.
    *
-   * @param {any} option The group to render.
+   * @param {AutocompleteRenderGroupParams} params The group to render.
    * @returns {ReactNode}
    */
   renderGroup: PropTypes.func,
@@ -1012,7 +1019,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The value of the autocomplete.
    *

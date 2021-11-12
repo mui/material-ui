@@ -151,6 +151,7 @@ DesktopDateTimePicker.propTypes /* remove-proptypes */ = {
   disableCloseOnSelect: PropTypes.bool,
   /**
    * If `true`, the picker and text field are disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -340,11 +341,16 @@ DesktopDateTimePicker.propTypes /* remove-proptypes */ = {
    */
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
   /**
+   * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
+   */
+  PaperProps: PropTypes.object,
+  /**
    * Popper props passed down to [Popper](https://mui.com/api/popper/) component.
    */
   PopperProps: PropTypes.object,
   /**
    * Make picker read only.
+   * @default false
    */
   readOnly: PropTypes.bool,
   /**

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import { generateUtilityClasses } from '@mui/core';
+import { generateUtilityClasses } from '@mui/base';
 import PickersToolbarText from '../internal/pickers/PickersToolbarText';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
 import PickersToolbarButton from '../internal/pickers/PickersToolbarButton';

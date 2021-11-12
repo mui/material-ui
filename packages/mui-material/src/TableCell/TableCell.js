@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { darken, alpha, lighten } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import TableContext from '../Table/TableContext';
@@ -226,7 +226,11 @@ TableCell.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * Specify the cell type.
    * The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.

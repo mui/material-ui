@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createClientRender, screen } from 'test/utils';
+import { describeConformance, createRenderer, screen } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
-import { generateRowGap, generateColumnGap } from './Grid';
+import { generateRowGap, generateColumnGap, generateDirection } from './Grid';
 
 describe('<Grid />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Grid />, () => ({
     classes,
@@ -24,6 +24,26 @@ describe('<Grid />', () => {
     it('should apply the container class', () => {
       const { container } = render(<Grid container />);
       expect(container.firstChild).to.have.class(classes.container);
+    });
+
+    it('should apply the correct number of columns for nested containers', () => {
+      const { getByTestId } = render(
+        <Grid container columns={16}>
+          <Grid item xs={8}>
+            <Grid container columns={8} data-testid="nested-container-in-item">
+              <Grid item xs={8} />
+            </Grid>
+          </Grid>
+        </Grid>,
+      );
+      const container = getByTestId('nested-container-in-item');
+
+      // test whether the class of the child of the container is correct or not
+      expect(container.firstChild).to.have.class(classes.item);
+
+      // `columns` of nested container should have a higher priority than that of root container
+      // otherwise, max-width would be 50% in this test
+      expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
     });
   });
 
@@ -74,6 +94,59 @@ describe('<Grid />', () => {
     });
   });
 
+  describe('prop: direction', () => {
+    it('should have a direction', () => {
+      const { container } = render(<Grid container direction="column" />);
+      expect(container.firstChild).toHaveComputedStyle({ flexDirection: 'column' });
+    });
+
+    it('should support responsive values', () => {
+      const theme = createTheme();
+      expect(
+        generateDirection({
+          ownerState: {
+            container: true,
+            direction: { xs: 'row', sm: 'column' },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          flexDirection: 'row',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          flexDirection: 'column',
+          '& > .MuiGrid-item': {
+            maxWidth: 'none',
+          },
+        },
+      });
+    });
+
+    it('should generate correct responsive styles regardless of breakpoints order', () => {
+      const theme = createTheme();
+      expect(
+        generateDirection({
+          ownerState: {
+            container: true,
+            direction: { sm: 'column', xs: 'row' },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          flexDirection: 'row',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          flexDirection: 'column',
+          '& > .MuiGrid-item': {
+            maxWidth: 'none',
+          },
+        },
+      });
+    });
+  });
+
   describe('prop: spacing', () => {
     it('should have a spacing', () => {
       const { container } = render(<Grid container spacing={1} />);
@@ -92,56 +165,107 @@ describe('<Grid />', () => {
         paddingLeft: '12px',
       });
     });
-  });
 
-  it('should generate responsive styles', () => {
-    const theme = createTheme();
-    expect(
-      generateRowGap({
-        ownerState: {
-          container: true,
-          rowSpacing: { xs: 1, sm: 2 },
+    it('should generate correct responsive styles', () => {
+      const theme = createTheme();
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: { xs: 1, sm: 2 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '8px',
+          },
+          marginTop: '-8px',
         },
-        theme,
-      }),
-    ).to.deep.equal({
-      '@media (min-width:0px)': {
-        '& > .MuiGrid-item': {
-          paddingTop: '8px',
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          '& > .MuiGrid-item': {
+            paddingTop: '16px',
+          },
+          marginTop: '-16px',
         },
-        marginTop: '-8px',
-      },
-      [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
-        '& > .MuiGrid-item': {
-          paddingTop: '16px',
+      });
+
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: { xs: 1, sm: 2 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '8px',
+          },
+          marginLeft: '-8px',
+          width: 'calc(100% + 8px)',
         },
-        marginTop: '-16px',
-      },
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          '& > .MuiGrid-item': {
+            paddingLeft: '16px',
+          },
+          marginLeft: '-16px',
+          width: 'calc(100% + 16px)',
+        },
+      });
     });
 
-    expect(
-      generateColumnGap({
-        ownerState: {
-          container: true,
-          columnSpacing: { xs: 1, sm: 2 },
+    it('should generate correct responsive styles regardless of breakpoints order ', () => {
+      const theme = createTheme();
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: { sm: 2, xs: 1 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '8px',
+          },
+          marginTop: '-8px',
         },
-        theme,
-      }),
-    ).to.deep.equal({
-      '@media (min-width:0px)': {
-        '& > .MuiGrid-item': {
-          paddingLeft: '8px',
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          '& > .MuiGrid-item': {
+            paddingTop: '16px',
+          },
+          marginTop: '-16px',
         },
-        marginLeft: '-8px',
-        width: 'calc(100% + 8px)',
-      },
-      [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
-        '& > .MuiGrid-item': {
-          paddingLeft: '16px',
+      });
+
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: { sm: 2, xs: 1 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '8px',
+          },
+          marginLeft: '-8px',
+          width: 'calc(100% + 8px)',
         },
-        marginLeft: '-16px',
-        width: 'calc(100% + 16px)',
-      },
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          '& > .MuiGrid-item': {
+            paddingLeft: '16px',
+          },
+          marginLeft: '-16px',
+          width: 'calc(100% + 16px)',
+        },
+      });
     });
   });
 
