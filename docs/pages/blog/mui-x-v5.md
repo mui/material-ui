@@ -51,11 +51,15 @@ To summarize, the new virtualization has the following features:
 
 ## Reduced style specificity for easier customization
 
-In previous versions most of the `DataGrid` and `DataGridPro` components had a CSS specificity of 2, meaning that style overwrites and customizations were harder and required the developer to look at the DOM tree in order to pick the correct selector. With MUI X v5.0.0 we have reduced the CSS specificity of most of the internal `DataGrid` and `DataGridPro` components to 1. This will enable developers to more easily change the look and feel of the grid's components.
+In previous versions most of the `DataGrid` and `DataGridPro` components had a CSS specificity of 2, meaning that style overrides and customizations were harder, requiring the developer to look at the DOM tree in order to pick the correct selector.
+With MUI X v5.0.0 we have reduced the CSS specificity of most of the internal `DataGrid` and `DataGridPro` components to 1.
+This will enable developers to more easily change the look and feel of the grid's components.
 
 #### Limitations
 
-Although there was a clear improvement we still had to keep the style specificity of 2 for some parts of the `DataGrid` and `DataGridPro`, more specificly the `GridColumnHeaderItem`, `GridRow` and `GridCell` along with all components that are nested in them. The reason for this is due to performance implications related to how Emotion injects the styles into the page. To keep the performance of our virtualization engine at its optimal we decided to keep the CSS specificity of 2 for the mentioned components.
+Although this was a clear improvement we still had to keep the style specificity of 2 for some parts of the `DataGrid` and `DataGridPro`, more specifically the `GridColumnHeaderItem`, `GridRow` and `GridCell` along with all components that are nested in them.
+This is due to performance implications related to how Emotion injects styles into the page.
+To keep the performance of our virtualization engine at its optimal we decided to keep the CSS specificity of 2 for the mentioned components.
 
 ## Features highlights
 
@@ -71,7 +75,7 @@ Although there was a clear improvement we still had to keep the style specificit
 
 ### A public roadmap
 
-You can use our public roadmap on GitHub to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
+You can view our public roadmap on GitHub to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
 
 - [MUI X](https://github.com/mui-org/material-ui-x/projects/1)
 
