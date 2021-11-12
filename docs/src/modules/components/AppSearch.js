@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
@@ -16,6 +17,7 @@ import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
+import { useRouter } from 'next/router';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -148,13 +150,7 @@ const NewStartScreen = () => {
 
 function DocSearcHit(props) {
   const { children, hit } = props;
-
-  const parseUrl = document.createElement('a');
-  parseUrl.href = hit.url;
-
-  // `url` contains the domain.
-  // But we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
-  return <Link href={`${parseUrl.pathname}${parseUrl.hash}`}>{children}</Link>;
+  return <Link href={hit.url}>{children}</Link>;
 }
 
 DocSearcHit.propTypes = {
@@ -179,6 +175,13 @@ export default function AppSearch() {
   const onOpen = React.useCallback(() => {
     setIsOpen(true);
   }, [setIsOpen]);
+  const router = useRouter();
+  const keyboardNavigator = {
+    navigate({ itemUrl }) {
+      const url = userLanguage !== 'en' ? `/${userLanguage}${itemUrl}` : itemUrl;
+      router.push(url);
+    },
+  };
 
   const onClose = React.useCallback(() => {
     const modal = document.querySelector('.DocSearch-Container');
@@ -227,10 +230,10 @@ export default function AppSearch() {
         addStartScreen();
       }
       if (searchInput) {
-        const handleInput = (e) => {
+        const handleInput = (event) => {
           const newStartScreen = document.querySelector('.DocSearch-NewStartScreen');
           if (newStartScreen) {
-            newStartScreen.style.display = e.target.value !== '' ? 'none' : 'grid';
+            newStartScreen.style.display = event.target.value !== '' ? 'none' : 'grid';
           }
         };
         searchInput.addEventListener('input', handleInput);
@@ -280,17 +283,19 @@ export default function AppSearch() {
                 } else {
                   parseUrl.href = item.url;
                 }
+                const { canonical } = pathnameToLanguage(parseUrl.pathname);
                 return {
                   ...item,
                   // `url` contains the domain.
                   // But we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
-                  url: `${parseUrl.pathname}${parseUrl.hash}`,
+                  url: `${canonical}${parseUrl.hash}`,
                 };
               });
             }}
             hitComponent={DocSearcHit}
             initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
             onClose={onClose}
+            navigator={keyboardNavigator}
           />,
           document.body,
         )}

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementAcceptingRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/core';
+import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';

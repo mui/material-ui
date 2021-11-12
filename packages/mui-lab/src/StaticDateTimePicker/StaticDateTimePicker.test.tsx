@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { spy, useFakeTimers, SinonFakeTimers } from 'sinon';
 import { fireEvent, screen } from 'test/utils';
 import StaticDateTimePicker from '@mui/lab/StaticDateTimePicker';
-import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
+import { adapterToUse, createPickerRenderer } from '../internal/pickers/test-utils';
 
 describe('<StaticDateTimePicker />', () => {
   let clock: SinonFakeTimers;
@@ -17,7 +17,7 @@ describe('<StaticDateTimePicker />', () => {
     clock.restore();
   });
 
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   it('allows to select the same day and move to the next view', () => {
     const onChangeMock = spy();

@@ -14,7 +14,7 @@ If you wish to customize the theme, you need to use the `ThemeProvider` componen
 However, this is optional; MUI components come with a default theme.
 
 `ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
-You can learn more about this in [the API section](/styles/api/#themeprovider).
+You can learn more about this in [the API section](#themeprovider).
 
 ## Theme configuration variables
 
@@ -94,7 +94,7 @@ You can extend the outer theme by providing a function:
 
 ### `createTheme(options, ...args) => theme`
 
-Generate a theme base on the options received.
+Generate a theme base on the options received. Then, pass it as a prop to [`ThemeProvider`](#themeprovider).
 
 #### Arguments
 
@@ -250,4 +250,39 @@ function App() {
     </React.StrictMode>
   );
 }
+```
+
+### `ThemeProvider`
+
+This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around.
+It should preferably be used at **the root of your component tree**.
+
+#### Props
+
+| Name             | Type                                     | Description                                                                                                                                                                                               |
+| :--------------- | :--------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;\* | node                                     | Your component tree.                                                                                                                                                                                      |
+| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
+
+#### Examples
+
+```jsx
+import * as React from 'react';
+import ReactDOM from 'react-dom';
+import { red } from '@mui/material/colors';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: red[500],
+    },
+  },
+});
+
+function App() {
+  return <ThemeProvider theme={theme}>...</ThemeProvider>;
+}
+
+ReactDOM.render(<App />, document.querySelector('#app'));
 ```

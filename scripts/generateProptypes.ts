@@ -304,7 +304,7 @@ async function run(argv: HandlerArgv) {
 
   const allFiles = await Promise.all(
     [
-      path.resolve(__dirname, '../packages/mui-core/src'),
+      path.resolve(__dirname, '../packages/mui-base/src'),
       path.resolve(__dirname, '../packages/mui-material/src'),
       path.resolve(__dirname, '../packages/mui-lab/src'),
       path.resolve(__dirname, '../packages/mui-material-next/src'),

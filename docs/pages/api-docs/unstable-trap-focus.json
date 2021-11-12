@@ -14,7 +14,7 @@
   "name": "Unstable_TrapFocus",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
-  "filename": "/packages/mui-core/src/Unstable_TrapFocus/Unstable_TrapFocus.js",
+  "filename": "/packages/mui-base/src/Unstable_TrapFocus/Unstable_TrapFocus.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/trap-focus/\">Trap Focus</a></li></ul>",
   "cssComponent": false
