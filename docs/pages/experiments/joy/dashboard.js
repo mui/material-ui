@@ -15,13 +15,6 @@ const PushButton = styled('button', {
   cursor: selected ? 'initial' : 'pointer',
   border: 'none',
   background: 'transparent',
-  // border: '1px solid',
-  // color: selected ? 'var(--joy-palette-main)' : 'var(--joy-palette-text-content)',
-  // borderColor: selected ? 'var(--joy-palette-divider)' : 'transparent',
-  // backgroundColor: selected ? 'var(--joy-palette-selected)' : 'transparent',
-  // '&:hover, &:focus-visible': {
-  //   backgroundColor: 'var(--joy-palette-selected)',
-  // },
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
