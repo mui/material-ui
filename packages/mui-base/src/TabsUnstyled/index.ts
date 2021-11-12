@@ -5,3 +5,6 @@ export * from './TabsContext';
 
 export { default as tabsUnstyledClasses } from './tabsUnstyledClasses';
 export * from './tabsUnstyledClasses';
+
+export { default as useTabs } from './useTabs';
+export * from './useTabs';
