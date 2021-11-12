@@ -48,7 +48,8 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     dark: 'dark',
   },
   prefix: 'joy',
-  shouldSkipGeneratingVar: (keys) => keys[0] === 'typography' || keys[0] === 'variant',
+  shouldSkipGeneratingVar: (keys) =>
+    keys[0] === 'typography' || keys[0] === 'variant' || keys[0] === 'pattern',
 });
 
 export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
