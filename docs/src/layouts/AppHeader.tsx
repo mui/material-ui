@@ -100,7 +100,12 @@ export default function AppHeader() {
               },
             }}
           >
-            <GitHubIcon fontSize="small" />
+            <GitHubIcon
+              fontSize="small"
+              sx={{
+                color: (theme) => (theme.palette.mode === 'dark' ? 'grey.100' : 'primary.main'),
+              }}
+            />
           </IconButton>
         </Tooltip>
         {mode !== null ? (
