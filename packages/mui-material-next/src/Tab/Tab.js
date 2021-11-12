@@ -168,8 +168,6 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       className={clsx(classes.root, className)}
       ref={ref}
       ownerState={ownerState}
-      // TODO: This is set from the TabsList component
-      tabIndex={selected ? 0 : -1}
       {...other}
       {...getRootProps()}
     >

@@ -68,7 +68,6 @@ const useTab = (props: UseTabProps) => {
     const buttonResolvedProps = getRootPropsButton({
       onClick: handleClick,
       onFocus: handleFocus,
-      // TODO: Merge then with previous?
       ...otherHandlers,
     });
 
