@@ -74,7 +74,7 @@ export default function AppHeader() {
           <IconButton
             component="a"
             color="inherit"
-            href={process.env.SOURCE_CODE_REPO}
+            href="https://github.com/mui-org/"
             data-ga-event-category="header"
             data-ga-event-action="github"
             sx={{
@@ -83,6 +83,7 @@ export default function AppHeader() {
               mr: 1,
               borderRadius: 1,
               border: '1px solid',
+              color: (theme) => (theme.palette.mode === 'dark' ? 'grey.100' : 'primary.main'),
               bgcolor: (theme) =>
                 theme.palette.mode === 'dark' ? 'primaryDark.800' : 'transparent',
               borderColor: (theme) =>
@@ -98,12 +99,7 @@ export default function AppHeader() {
               },
             }}
           >
-            <GitHubIcon
-              fontSize="small"
-              sx={{
-                color: (theme) => (theme.palette.mode === 'dark' ? 'grey.100' : 'primary.main'),
-              }}
-            />
+            <GitHubIcon fontSize="small" />
           </IconButton>
         </Tooltip>
         {mode !== null ? (
