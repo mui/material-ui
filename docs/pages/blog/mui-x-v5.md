@@ -55,6 +55,68 @@ In previous versions most of the `DataGrid` and `DataGridPro` components had a C
 With MUI X v5.0.0 we have reduced the CSS specificity of most of the internal `DataGrid` and `DataGridPro` components to 1.
 This will enable developers to more easily change the look and feel of the grid's components.
 
+**Before**
+
+```js
+const useStyles = makeStyles(() => ({
+  root: {
+    '& .MuiDataGrid-toolbarContainer': {
+      padding: 50,
+    },
+  },
+}));
+
+const MyCustomToolbar = () => {
+  return <GridToolbarContainer>My custom toolbar</GridToolbarContainer>;
+};
+
+export default function App() {
+  const classes = useStyles();
+
+  return (
+    <div style={{ height: 400, width: '100%' }} className={classes.root}>
+      <DataGrid
+        components={{
+          Toolbar: MyCustomToolbar,
+        }}
+      />
+    </div>
+  );
+}
+```
+
+**After**
+
+```js
+const useStyles = makeStyles(() => ({
+  root: {
+    padding: 50,
+  },
+}));
+
+const MyCustomToolbar = () => {
+  const classes = useStyles();
+
+  return (
+    <GridToolbarContainer className={classes.root}>
+      My custom toolbar
+    </GridToolbarContainer>
+  );
+};
+
+export default function App() {
+  return (
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        components={{
+          Toolbar: MyCustomToolbar,
+        }}
+      />
+    </div>
+  );
+}
+```
+
 #### Limitations
 
 Although this was a clear improvement we still had to keep the style specificity of 2 for some parts of the `DataGrid` and `DataGridPro`, more specifically the `GridColumnHeaderItem`, `GridRow` and `GridCell` along with all components that are nested in them.
