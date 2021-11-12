@@ -3,55 +3,29 @@ import Head from 'next/head';
 import { GlobalStyles } from '@mui/styled-engine';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import {
-  styled,
-  CssVarsProvider,
-  useTheme,
-  useColorScheme,
-  JoyTheme,
-  SupportedColorScheme,
-  TypographySystems,
-} from '@mui/joy/styles';
-import colors from '@mui/joy/colors';
+import { styled, CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
-import ColorBadge from 'docs/src/pages/components/badges/ColorBadge';
-
-declare module '@mui/joy/styles' {
-  interface ColorSchemeOverrides {
-    lightRed: true;
-    darkRed: true;
-    lightYellow: true;
-    darkYellow: true;
-    lightGreen: true;
-    darkGreen: true;
-  }
-
-  interface Palette {
-    main: string;
-    mainContrast: string;
-    divider: string;
-    selected: string;
-    inverse: string;
-  }
-}
 
 const PushButton = styled('button', {
   shouldForwardProp: (prop) => prop !== 'selected',
-})<{ color?: string; selected?: boolean }>(({ selected }) => ({
+})(({ theme, selected }) => ({
   width: 36,
   height: 36,
   borderRadius: 18,
   cursor: selected ? 'initial' : 'pointer',
-  border: '1px solid',
-  color: selected ? 'var(--joy-palette-main)' : 'var(--joy-palette-text-content)',
-  borderColor: selected ? 'var(--joy-palette-divider)' : 'transparent',
-  backgroundColor: selected ? 'var(--joy-palette-selected)' : 'transparent',
+  border: 'none',
+  background: 'transparent',
+  // border: '1px solid',
+  // color: selected ? 'var(--joy-palette-main)' : 'var(--joy-palette-text-content)',
+  // borderColor: selected ? 'var(--joy-palette-divider)' : 'transparent',
+  // backgroundColor: selected ? 'var(--joy-palette-selected)' : 'transparent',
+  // '&:hover, &:focus-visible': {
+  //   backgroundColor: 'var(--joy-palette-selected)',
+  // },
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  '&:hover, &:focus-visible': {
-    backgroundColor: 'var(--joy-palette-selected)',
-  },
+  ...(selected ? theme.variant.filled.brand : theme.variant.textInteractive.neutral),
 }));
 
 const Button = styled('button')(({ theme, variant = 'containedInteractive', color = 'brand' }) => [
@@ -104,13 +78,11 @@ const Input = styled('input')(({ theme }) => [
 
 const Typography = styled('p', {
   shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'as',
-})<{
-  variant?: keyof TypographySystems;
-}>(({ theme, variant = 'body' }) => ({
+})(({ theme, variant = 'body' }) => ({
   ...theme.typography[variant],
 }));
 
-const Moon = (props: React.SVGProps<SVGSVGElement>) => (
+const Moon = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -129,7 +101,7 @@ const Moon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const System = (props: React.SVGProps<SVGSVGElement>) => (
+const System = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -151,7 +123,7 @@ const System = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const Sun = (props: React.SVGProps<SVGSVGElement>) => (
+const Sun = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -177,7 +149,7 @@ const Sun = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const Close = (props: React.SVGProps<SVGSVGElement>) => (
+const Close = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -197,8 +169,7 @@ const Close = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const ColorSchemePicker = () => {
-  const theme = useTheme();
-  const { mode, setMode, colorScheme, setColorScheme } = useColorScheme();
+  const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
     setMounted(true);
@@ -220,49 +191,8 @@ const ColorSchemePicker = () => {
         bgcolor: 'var(--joy-palette-inverse)',
       }}
     >
-      <Box sx={{ display: 'flex', gap: '8px', p: '5px' }}>
-        {Object.entries(theme.colorSchemes)
-          .filter(([name]) => name.startsWith('light'))
-          .map(([name, colorSystem]) => (
-            <PushButton
-              key={name}
-              selected={name === colorScheme || name.replace('light', 'dark') === colorScheme}
-              onClick={() =>
-                setColorScheme({
-                  light: name as SupportedColorScheme,
-                  dark: name.replace('light', 'dark') as SupportedColorScheme,
-                })
-              }
-            >
-              <Box
-                sx={{
-                  width: 16,
-                  height: 16,
-                  borderRadius: '50%',
-                  bgcolor: (() => {
-                    if (name === 'lightYellow') {
-                      return colorSystem.palette.brand[200];
-                    }
-                    if (name === 'lightGreen') {
-                      return colorSystem.palette.brand[300];
-                    }
-                    return colorSystem.palette.brand[500];
-                  })(),
-                }}
-              />
-            </PushButton>
-          ))}
-      </Box>
-      <Box
-        sx={{
-          alignSelf: 'stretch',
-          backgroundColor: 'var(--joy-palette-divider)',
-          width: '1px',
-          mx: '16px',
-        }}
-      />
       <Box sx={{ display: 'flex', gap: '8px', p: '6px' }}>
-        {(['system', 'light', 'dark'] as const).map((modeId) => {
+        {['system', 'light', 'dark'].map((modeId) => {
           const icons = {
             system: System,
             light: Sun,
@@ -338,88 +268,6 @@ const Image = styled('div')(({ theme, variant = 'filled', color = 'brand' }) => 
   theme.variant[variant]?.[color],
 ]);
 
-const lightVariant = {
-  brand: {
-    textColor: 'var(--joy-palette-brand-600)',
-    textHoverBg: 'var(--joy-palette-neutral-100)',
-    textActiveBg: 'var(--joy-palette-neutral-200)',
-    textDisabledColor: 'var(--joy-palette-neutral-300)',
-    outlinedBorder: 'var(--joy-palette-neutral-300)',
-    outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
-    filledColor: 'var(--joy-palette-brand-700)',
-    filledBg: 'var(--joy-palette-brand-100)',
-    filledHoverBg: 'var(--joy-palette-brand-200)',
-    filledActiveBg: 'var(--joy-palette-brand-300)',
-    filledDisabledColor: 'var(--joy-palette-brand-400)',
-    filledDisableBg: 'var(--joy-palette-brand-50)',
-    containedColor: '#fff',
-    containedBg: 'var(--joy-palette-brand-600)',
-    containedHoverBg: 'var(--joy-palette-brand-700)',
-    containedActiveBg: 'var(--joy-palette-brand-500)',
-    containedDisabledBg: 'var(--joy-palette-brand-300)',
-  },
-  neutral: {
-    textColor: 'var(--joy-palette-neutral-600)',
-    textHoverBg: 'var(--joy-palette-neutral-100)',
-    textActiveBg: 'var(--joy-palette-neutral-200)',
-    textDisabledColor: 'var(--joy-palette-neutral-300)',
-    outlinedBorder: 'var(--joy-palette-neutral-300)',
-    outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
-    filledColor: 'var(--joy-palette-neutral-700)',
-    filledBg: 'var(--joy-palette-neutral-100)',
-    filledHoverBg: 'var(--joy-palette-neutral-200)',
-    filledActiveBg: 'var(--joy-palette-neutral-300)',
-    filledDisabledColor: 'var(--joy-palette-neutral-400)',
-    filledDisableBg: 'var(--joy-palette-neutral-50)',
-    containedColor: '#fff',
-    containedBg: 'var(--joy-palette-neutral-600)',
-    containedHoverBg: 'var(--joy-palette-neutral-700)',
-    containedActiveBg: 'var(--joy-palette-neutral-500)',
-    containedDisabledBg: 'var(--joy-palette-neutral-300)',
-  },
-};
-
-const darkVariant = {
-  brand: {
-    textColor: 'var(--joy-palette-brand-200)',
-    textHoverBg: 'var(--joy-palette-neutral-800)',
-    textActiveBg: 'var(--joy-palette-neutral-700)',
-    textDisabledColor: 'var(--joy-palette-neutral-500)',
-    outlinedBorder: 'var(--joy-palette-neutral-700)',
-    outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
-    filledColor: 'var(--joy-palette-brand-200)',
-    filledBg: 'var(--joy-palette-brand-800)',
-    filledHoverBg: 'var(--joy-palette-brand-700)',
-    filledActiveBg: 'var(--joy-palette-brand-600)',
-    filledDisabledColor: 'var(--joy-palette-brand-500)',
-    filledDisableBg: 'var(--joy-palette-brand-800)',
-    containedColor: '#fff',
-    containedBg: 'var(--joy-palette-brand-600)',
-    containedHoverBg: 'var(--joy-palette-brand-700)',
-    containedActiveBg: 'var(--joy-palette-brand-500)',
-    containedDisabledBg: 'var(--joy-palette-brand-300)',
-  },
-  neutral: {
-    textColor: 'var(--joy-palette-neutral-200)',
-    textHoverBg: 'var(--joy-palette-neutral-800)',
-    textActiveBg: 'var(--joy-palette-neutral-700)',
-    textDisabledColor: 'var(--joy-palette-neutral-500)',
-    outlinedBorder: 'var(--joy-palette-neutral-700)',
-    outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
-    filledColor: 'var(--joy-palette-neutral-200)',
-    filledBg: 'var(--joy-palette-neutral-800)',
-    filledHoverBg: 'var(--joy-palette-neutral-700)',
-    filledActiveBg: 'var(--joy-palette-neutral-600)',
-    filledDisabledColor: 'var(--joy-palette-neutral-500)',
-    filledDisableBg: 'var(--joy-palette-neutral-800)',
-    containedColor: '#fff',
-    containedBg: 'var(--joy-palette-neutral-600)',
-    containedHoverBg: 'var(--joy-palette-neutral-700)',
-    containedActiveBg: 'var(--joy-palette-neutral-500)',
-    containedDisabledBg: 'var(--joy-palette-neutral-300)',
-  },
-};
-
 export default function JoyDashboard() {
   return (
     <CssVarsProvider
@@ -428,6 +276,44 @@ export default function JoyDashboard() {
         colorSchemes: {
           light: {
             palette: {
+              brand: {
+                textColor: 'var(--joy-palette-brand-600)',
+                textHoverBg: 'var(--joy-palette-neutral-100)',
+                textActiveBg: 'var(--joy-palette-neutral-200)',
+                textDisabledColor: 'var(--joy-palette-neutral-300)',
+                outlinedBorder: 'var(--joy-palette-neutral-300)',
+                outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
+                filledColor: 'var(--joy-palette-brand-700)',
+                filledBg: 'var(--joy-palette-brand-100)',
+                filledHoverBg: 'var(--joy-palette-brand-200)',
+                filledActiveBg: 'var(--joy-palette-brand-300)',
+                filledDisabledColor: 'var(--joy-palette-brand-400)',
+                filledDisableBg: 'var(--joy-palette-brand-50)',
+                containedColor: '#fff',
+                containedBg: 'var(--joy-palette-brand-600)',
+                containedHoverBg: 'var(--joy-palette-brand-700)',
+                containedActiveBg: 'var(--joy-palette-brand-500)',
+                containedDisabledBg: 'var(--joy-palette-brand-300)',
+              },
+              neutral: {
+                textColor: 'var(--joy-palette-neutral-600)',
+                textHoverBg: 'var(--joy-palette-neutral-100)',
+                textActiveBg: 'var(--joy-palette-neutral-200)',
+                textDisabledColor: 'var(--joy-palette-neutral-300)',
+                outlinedBorder: 'var(--joy-palette-neutral-300)',
+                outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
+                filledColor: 'var(--joy-palette-neutral-700)',
+                filledBg: 'var(--joy-palette-neutral-100)',
+                filledHoverBg: 'var(--joy-palette-neutral-200)',
+                filledActiveBg: 'var(--joy-palette-neutral-300)',
+                filledDisabledColor: 'var(--joy-palette-neutral-400)',
+                filledDisableBg: 'var(--joy-palette-neutral-50)',
+                containedColor: '#fff',
+                containedBg: 'var(--joy-palette-neutral-600)',
+                containedHoverBg: 'var(--joy-palette-neutral-700)',
+                containedActiveBg: 'var(--joy-palette-neutral-500)',
+                containedDisabledBg: 'var(--joy-palette-neutral-300)',
+              },
               divider: 'var(--joy-palette-neutral-200)',
               selected: 'var(--joy-palette-neutral-100)',
               inverse: '#fff',
@@ -441,6 +327,44 @@ export default function JoyDashboard() {
           },
           dark: {
             palette: {
+              brand: {
+                textColor: 'var(--joy-palette-brand-200)',
+                textHoverBg: 'var(--joy-palette-neutral-800)',
+                textActiveBg: 'var(--joy-palette-neutral-700)',
+                textDisabledColor: 'var(--joy-palette-neutral-500)',
+                outlinedBorder: 'var(--joy-palette-neutral-700)',
+                outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
+                filledColor: 'var(--joy-palette-brand-200)',
+                filledBg: 'var(--joy-palette-brand-800)',
+                filledHoverBg: 'var(--joy-palette-brand-700)',
+                filledActiveBg: 'var(--joy-palette-brand-600)',
+                filledDisabledColor: 'var(--joy-palette-brand-500)',
+                filledDisableBg: 'var(--joy-palette-brand-800)',
+                containedColor: '#fff',
+                containedBg: 'var(--joy-palette-brand-600)',
+                containedHoverBg: 'var(--joy-palette-brand-700)',
+                containedActiveBg: 'var(--joy-palette-brand-500)',
+                containedDisabledBg: 'var(--joy-palette-brand-300)',
+              },
+              neutral: {
+                textColor: 'var(--joy-palette-neutral-200)',
+                textHoverBg: 'var(--joy-palette-neutral-800)',
+                textActiveBg: 'var(--joy-palette-neutral-700)',
+                textDisabledColor: 'var(--joy-palette-neutral-500)',
+                outlinedBorder: 'var(--joy-palette-neutral-700)',
+                outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
+                filledColor: 'var(--joy-palette-neutral-200)',
+                filledBg: 'var(--joy-palette-neutral-800)',
+                filledHoverBg: 'var(--joy-palette-neutral-700)',
+                filledActiveBg: 'var(--joy-palette-neutral-600)',
+                filledDisabledColor: 'var(--joy-palette-neutral-500)',
+                filledDisableBg: 'var(--joy-palette-neutral-800)',
+                containedColor: '#fff',
+                containedBg: 'var(--joy-palette-neutral-600)',
+                containedHoverBg: 'var(--joy-palette-neutral-700)',
+                containedActiveBg: 'var(--joy-palette-neutral-500)',
+                containedDisabledBg: 'var(--joy-palette-neutral-300)',
+              },
               divider: 'var(--joy-palette-neutral-600)',
               selected: 'var(--joy-palette-neutral-800)',
               inverse: 'var(--joy-palette-neutral-900)',
@@ -449,178 +373,183 @@ export default function JoyDashboard() {
               surface: '#000',
             },
           },
-          lightRed: {
-            palette: {
-              brand: {
-                ...colors.red,
-                ...lightVariant.brand,
-              },
-              neutral: {
-                ...colors.grey,
-                ...lightVariant.neutral,
-              },
-              text: {
-                heading: 'var(--joy-palette-neutral-900)',
-                headingIntro: 'var(--joy-palette-brand-300)',
-                content: 'var(--joy-palette-neutral-600)',
-                detail: 'var(--joy-palette-neutral-500)',
-                overline: 'var(--joy-palette-neutral-500)',
-              },
-              bgNeutral: {
-                transparency: 'var(--joy-palette-brand-50)',
-                plain: 'var(--joy-palette-neutral-100)',
-              },
-              divider: 'var(--joy-palette-neutral-200)',
-              selected: 'var(--joy-palette-neutral-100)',
-              inverse: '#fff',
-              main: 'var(--joy-palette-brand-500)',
-              mainContrast: '#fff',
-              surface: '#fff',
+        },
+        variant: {
+          text: {
+            brand: {
+              color: 'var(--joy-variant-brand-textColor, var(--joy-palette-brand-textColor))',
+            },
+            neutral: {
+              color: 'var(--joy-palette-neutral-textColor)',
             },
           },
-          darkRed: {
-            palette: {
-              brand: {
-                ...colors.red,
-                ...darkVariant.brand,
+          textInteractive: {
+            brand: {
+              color: 'var(--joy-variant-brand-textColor, var(--joy-palette-brand-textColor))',
+              '&:hover': {
+                backgroundColor:
+                  'var(--joy-variant-brand-textHoverBg, var(--joy-palette-brand-textHoverBg))',
               },
-              neutral: {
-                ...colors.grey,
-                ...darkVariant.neutral,
+              '&:active': {
+                backgroundColor:
+                  'var(--joy-variant-brand-textActiveBg, var(--joy-palette-brand-textActiveBg))',
               },
-              text: {
-                heading: '#fff',
-                headingIntro: 'var(--joy-palette-brand-300)',
-                content: 'var(--joy-palette-neutral-200)',
-                detail: 'var(--joy-palette-neutral-300)',
-                overline: 'var(--joy-palette-neutral-500)',
+              '&.Mui-disabled': {
+                color: 'var(--joy-palette-brand-textDisabledColor)',
               },
-              bgNeutral: {
-                transparency: 'var(--joy-palette-neutral-900)',
-                plain: 'var(--joy-palette-neutral-900)',
+            },
+            neutral: {
+              color: 'var(--joy-palette-neutral-textColor)',
+              '&:hover': {
+                backgroundColor: 'var(--joy-palette-neutral-textHoverBg)',
               },
-              divider: 'var(--joy-palette-neutral-600)',
-              selected: 'var(--joy-palette-neutral-800)',
-              inverse: 'var(--joy-palette-neutral-900)',
-              main: 'var(--joy-palette-brand-500)',
-              mainContrast: '#fff',
-              surface: '#000',
+              '&:active': {
+                backgroundColor: 'var(--joy-palette-neutral-textActiveBg)',
+              },
+              '&.Mui-disabled': {
+                color: 'var(--joy-palette-neutral-textDisabledColor)',
+              },
             },
           },
-          lightYellow: {
-            palette: {
-              brand: {
-                ...colors.yellow,
-                ...lightVariant.brand,
-              },
-              neutral: {
-                ...colors.grey,
-                ...lightVariant.neutral,
-              },
-              text: {
-                heading: 'var(--joy-palette-neutral-900)',
-                headingIntro: 'var(--joy-palette-brand-300)',
-                content: 'var(--joy-palette-neutral-600)',
-                detail: 'var(--joy-palette-neutral-500)',
-                overline: 'var(--joy-palette-neutral-500)',
-              },
-              bgNeutral: {
-                transparency: 'var(--joy-palette-brand-50)',
-                plain: 'var(--joy-palette-neutral-100)',
-              },
-              divider: 'var(--joy-palette-neutral-200)',
-              selected: 'var(--joy-palette-neutral-100)',
-              inverse: '#fff',
-              main: 'var(--joy-palette-brand-400)',
-              mainContrast: '#fff',
-              surface: '#fff',
+          outlined: {
+            brand: {
+              color: 'var(--joy-variant-brand-outlinedColor, var(--joy-palette-brand-textColor))',
+              border: '1px solid',
+              borderColor:
+                'var(--joy-variant-brand-outlinedBorder, var(--joy-palette-brand-outlinedBorder))',
+            },
+            neutral: {
+              color: 'var(--joy-palette-neutral-textColor)',
+              border: '1px solid',
+              borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
             },
           },
-          darkYellow: {
-            palette: {
-              brand: {
-                ...colors.yellow,
-                ...darkVariant.brand,
+          outlinedInteractive: {
+            brand: {
+              color: 'var(--joy-variant-brand-outlinedColor, var(--joy-palette-brand-textColor))',
+              border: '1px solid',
+              borderColor:
+                'var(--joy-variant-brand-outlinedBorder, var(--joy-palette-brand-outlinedBorder))',
+              '&:hover': {
+                backgroundColor:
+                  'var(--joy-variant-brand-outlinedHoverBg, var(--joy-palette-brand-textHoverBg))',
               },
-              neutral: {
-                ...colors.grey,
-                ...darkVariant.neutral,
+              '&:active': {
+                backgroundColor:
+                  'var(--joy-variant-brand-outlinedActiveBg, var(--joy-palette-brand-textActiveBg))',
               },
-              text: {
-                heading: '#fff',
-                headingIntro: 'var(--joy-palette-brand-300)',
-                content: 'var(--joy-palette-neutral-200)',
-                detail: 'var(--joy-palette-neutral-300)',
-                overline: 'var(--joy-palette-neutral-500)',
+              '&.Mui-disabled': {
+                color: 'var(--joy-palette-brand-textDisabledColor)',
+                borderColor: 'var(--joy-palette-brand-outlinedDisabledBorder)',
               },
-              bgNeutral: {
-                transparency: 'var(--joy-palette-brand-900)',
-                plain: 'var(--joy-palette-neutral-900)',
+            },
+            neutral: {
+              color: 'var(--joy-palette-neutral-textColor)',
+              border: '1px solid',
+              borderColor: 'var(--joy-palette-neutral-outlinedBorder)',
+              '&:hover': {
+                backgroundColor: 'var(--joy-palette-neutral-textHoverBg)',
               },
-              divider: 'var(--joy-palette-neutral-600)',
-              selected: 'var(--joy-palette-neutral-800)',
-              inverse: 'var(--joy-palette-neutral-900)',
-              main: 'var(--joy-palette-brand-200)',
-              mainContrast: 'var(--joy-palette-brand-700)',
-              surface: '#000',
+              '&:active': {
+                backgroundColor: 'var(--joy-palette-neutral-textActiveBg)',
+              },
+              '&.Mui-disabled': {
+                color: 'var(--joy-palette-neutral-textDisabledColor)',
+                borderColor: 'var(--joy-palette-neutral-outlinedDisabledBorder)',
+              },
             },
           },
-          lightGreen: {
-            palette: {
-              brand: {
-                ...colors.green,
-                ...lightVariant.brand,
-              },
-              neutral: {
-                ...colors.grey,
-                ...lightVariant.neutral,
-              },
-              text: {
-                heading: 'var(--joy-palette-neutral-900)',
-                headingIntro: 'var(--joy-palette-brand-300)',
-                content: 'var(--joy-palette-neutral-600)',
-                detail: 'var(--joy-palette-neutral-500)',
-                overline: 'var(--joy-palette-neutral-500)',
-              },
-              bgNeutral: {
-                transparency: 'var(--joy-palette-brand-50)',
-                plain: 'var(--joy-palette-neutral-100)',
-              },
-              divider: 'var(--joy-palette-neutral-200)',
-              selected: 'var(--joy-palette-neutral-100)',
-              inverse: '#fff',
-              main: 'var(--joy-palette-brand-400)',
-              mainContrast: '#fff',
-              surface: '#fff',
+          filled: {
+            brand: {
+              color: 'var(--joy-variant-brand-filledColor, var(--joy-palette-brand-filledColor))',
+              backgroundColor:
+                'var(--joy-variant-brand-filledBg, var(--joy-palette-brand-filledBg))',
+            },
+            neutral: {
+              color: 'var(--joy-palette-neutral-filledColor)',
+              backgroundColor: 'var(--joy-palette-neutral-filledBg)',
             },
           },
-          darkGreen: {
-            palette: {
-              brand: {
-                ...colors.green,
-                ...darkVariant.brand,
+          filledInteractive: {
+            brand: {
+              color: 'var(--joy-variant-brand-filledColor, var(--joy-palette-brand-filledColor))',
+              backgroundColor:
+                'var(--joy-variant-brand-filledBg, var(--joy-palette-brand-filledBg))',
+              '&:hover': {
+                backgroundColor:
+                  'var(--joy-variant-brand-filledHoverBg, var(--joy-palette-brand-filledHoverBg))',
               },
-              neutral: {
-                ...colors.grey,
-                ...darkVariant.neutral,
+              '&:active': {
+                backgroundColor:
+                  'var(--joy-variant-brand-filledActiveBg, var(--joy-palette-brand-filledActiveBg))',
               },
-              text: {
-                heading: '#fff',
-                headingIntro: 'var(--joy-palette-brand-300)',
-                content: 'var(--joy-palette-neutral-200)',
-                detail: 'var(--joy-palette-neutral-300)',
-                overline: 'var(--joy-palette-neutral-500)',
+              '&.Mui-disabled': {
+                color: 'var(--joy-palette-brand-filledDisabledColor)',
+                backgroundColor: 'var(--joy-palette-brand-filledDisabledBg)',
               },
-              bgNeutral: {
-                transparency: 'var(--joy-palette-brand-900)',
-                plain: 'var(--joy-palette-neutral-900)',
+            },
+            neutral: {
+              color: 'var(--joy-palette-neutral-filledColor)',
+              backgroundColor: 'var(--joy-palette-neutral-filledBg)',
+              '&:hover': {
+                backgroundColor: 'var(--joy-palette-neutral-filledHoverBg)',
               },
-              divider: 'var(--joy-palette-neutral-600)',
-              selected: 'var(--joy-palette-neutral-800)',
-              inverse: 'var(--joy-palette-neutral-900)',
-              main: 'var(--joy-palette-brand-300)',
-              mainContrast: 'var(--joy-palette-brand-700)',
-              surface: '#000',
+              '&:active': {
+                backgroundColor: 'var(--joy-palette-neutral-filledActiveBg)',
+              },
+              '&.Mui-disabled': {
+                color: 'var(--joy-palette-neutral-filledDisabledColor)',
+                backgroundColor: 'var(--joy-palette-neutral-filledDisabledBg)',
+              },
+            },
+          },
+          contained: {
+            brand: {
+              color: 'var(--joy-palette-brand-containedColor)',
+              backgroundColor: 'var(--joy-palette-brand-containedBg)',
+              '--joy-variant-brand-textColor': '#fff',
+              '--joy-variant-brand-textHoverBg': 'var(--joy-palette-brand-600)',
+              '--joy-variant-brand-textActiveBg': 'var(--joy-palette-brand-700)',
+              '--joy-variant-brand-outlinedColor': '#fff',
+              '--joy-variant-brand-outlinedBorder': 'var(--joy-palette-brand-400)',
+              '--joy-variant-brand-outlinedHoverBg': 'var(--joy-palette-brand-600)',
+              '--joy-variant-brand-outlinedActiveBg': 'var(--joy-palette-brand-700)',
+              '--joy-variant-brand-filledColor': '#fff',
+              '--joy-variant-brand-filledBg': 'var(--joy-palette-brand-500)',
+              '--joy-variant-brand-filledHoverBg': 'var(--joy-palette-brand-500)',
+              '--joy-variant-brand-filledActiveBg': 'var(--joy-palette-brand-700)',
+            },
+            neutral: {
+              color: 'var(--joy-palette-neutral-containedColor)',
+              backgroundColor: 'var(--joy-palette-neutral-containedBg)',
+            },
+          },
+          containedInteractive: {
+            brand: {
+              color: 'var(--joy-palette-brand-containedColor)',
+              backgroundColor: 'var(--joy-palette-brand-containedBg)',
+              '&:hover': {
+                backgroundColor: 'var(--joy-palette-brand-containedHoverBg)',
+              },
+              '&:active': {
+                backgroundColor: 'var(--joy-palette-brand-containedActiveBg)',
+              },
+              '&.Mui-disabled': {
+                backgroundColor: 'var(--joy-palette-brand-containedDisabledBg)',
+              },
+            },
+            neutral: {
+              color: 'var(--joy-palette-neutral-containedColor)',
+              backgroundColor: 'var(--joy-palette-neutral-containedBg)',
+              '&:hover': {
+                backgroundColor: 'var(--joy-palette-neutral-containedHoverBg)',
+              },
+              '&:active': {
+                backgroundColor: 'var(--joy-palette-neutral-containedActiveBg)',
+              },
+              '&.Mui-disabled': {
+                backgroundColor: 'var(--joy-palette-neutral-containedDisabledBg)',
+              },
             },
           },
         },
@@ -641,7 +570,7 @@ export default function JoyDashboard() {
             margin: 0,
             backgroundColor: 'var(--joy-palette-bgNeutral-transparency)',
             color: 'var(--joy-palette-text-content)',
-            ...(theme as JoyTheme).typography.body,
+            ...theme.typography.body,
             '*': {
               boxSizing: 'border-box',
             },
