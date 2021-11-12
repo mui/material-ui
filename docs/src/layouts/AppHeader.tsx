@@ -16,7 +16,6 @@ import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
-import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 
 const Header = styled('header')(({ theme }) => ({
   position: 'sticky',
@@ -39,7 +38,6 @@ export default function AppHeader() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const t = useTranslate();
-  const userLanguage = useUserLanguage();
 
   React.useEffect(() => {
     const initialMode = getCookie('paletteMode') || 'system';
