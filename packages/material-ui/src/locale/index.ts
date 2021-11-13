@@ -1094,7 +1094,7 @@ export const nbNO: Localization = {
     },
     MuiRating: {
       getLabelText: (value) => `${value} Stjerne${value !== 1 ? 'r' : ''}`,
-      emptyLabelText: 'Empty',
+      emptyLabelText: 'Tom',
     },
     MuiAutocomplete: {
       clearText: 'Tøm',
