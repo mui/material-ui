@@ -15,7 +15,7 @@ import ROUTES from 'docs/src/route';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Header = styled('header')(({ theme }) => ({
   position: 'sticky',
