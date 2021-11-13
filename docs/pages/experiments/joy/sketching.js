@@ -2,7 +2,6 @@ import * as React from 'react';
 import Head from 'next/head';
 import { GlobalStyles } from '@mui/styled-engine';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import { styled, CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 
 const Moon = (props) => (
@@ -68,25 +67,6 @@ const Sun = (props) => (
       strokeWidth="1.5"
       strokeMiterlimit="10"
       strokeLinecap="round"
-    />
-  </svg>
-);
-
-const Close = (props) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    {...props}
-  >
-    <path
-      d="M17.25 6.75L6.75 17.25M17.25 17.25L6.75 6.75L17.25 17.25Z"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
     />
   </svg>
 );
@@ -172,36 +152,6 @@ const Button = styled('button')(({ theme, pattern = 'contained', color = 'brand'
   theme.pattern[`${pattern}Hover`]?.[color],
   theme.pattern[`${pattern}Active`]?.[color],
   theme.pattern[`${pattern}Disabled`]?.[color],
-]);
-
-const Badge = styled('span')(({ theme, pattern = 'contained', color = 'brand' }) => [
-  {
-    minHeight: 32,
-    minWidth: 32,
-    borderRadius: 4,
-    padding: '0.25rem 0.5rem',
-    textAlign: 'center',
-  },
-  theme.typography.caption,
-  {
-    fontWeight: 600,
-    lineHeight: 1,
-  },
-  theme.pattern[pattern]?.[color],
-]);
-
-const Avatar = styled('div')(({ theme, pattern = 'filled', color = 'brand' }) => [
-  theme.typography.h5,
-  {
-    width: 64,
-    height: 64,
-    borderRadius: '50%',
-    fontWeight: 700,
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  theme.pattern[pattern]?.[color],
 ]);
 
 const Paper = styled('div')(
@@ -301,30 +251,6 @@ const Input = styled('input')(({ theme, pattern = 'outlined', color = 'neutral' 
   theme.pattern[pattern]?.[color],
   theme.pattern[`${pattern}Hover`]?.[color],
   theme.pattern[`${pattern}Disabled`]?.[color],
-]);
-
-const Chip = styled('div')(({ theme, pattern = 'outlined', color = 'neutral' }) => [
-  {
-    borderRadius: '24px',
-    minHeight: '40px',
-    display: 'inline-flex',
-    alignItems: 'center',
-    padding: '6px 12px',
-  },
-  theme.pattern[pattern]?.[color],
-]);
-
-const Tabs = styled('div')(({ theme, pattern = 'text', color = 'neutral' }) => [
-  {
-    display: 'flex',
-    gap: '0.5rem',
-    padding: '0.25rem',
-    alignItems: 'center',
-    borderRadius: 40,
-    backgroundColor: 'var(--joy-palette-bgNeutral-plain)',
-  },
-  theme.pattern[pattern]?.[color],
-  pattern === 'contained' && theme.pattern.containedContext?.[color],
 ]);
 
 const Typography = styled('p', {
@@ -930,13 +856,13 @@ export default function JoyDashboard() {
                   Hi, Thomas,
                   <br />
                   <br />
-                  You don’t have to be a designer to appreciate good typography – just check out
-                  this student-made device that can detect and name fonts just by looking at it.
-                  While the pop culture world obsesses over the latest Snapchat filter fads and
-                  Instagram friending, skilled photographers are taking the shots that transcend
-                  social media Share Quote. Take advantage of an incredible offer to become a
-                  skilled and certified photographer, taking frame-worthy shots every time with The
-                  Hollywood Art Institute Photography Course and Certification. <br />
+                  You don’t have to be a designerto appreciate good typography – just check out this
+                  student-made device that can detect and namefonts just by looking at it. While the
+                  pop culture world obsesses over the latest Snapchat filter fads and Instagram
+                  friending, skilled photographers are taking the shots that transcend social media
+                  Share Quote. Take advantage of an incredible offer to become a skilled and
+                  certified photographer, taking frame-worthy shots every time with The Hollywood
+                  Art Institute Photography Course and Certification. <br />
                   <br />
                   Regards, Janet Erickson
                 </Typography>
