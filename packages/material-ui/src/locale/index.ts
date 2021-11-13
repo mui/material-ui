@@ -1082,52 +1082,53 @@ export const nlNL: Localization = {
 
 export const nbNO: Localization = {
   props: {
-      MuiBreadcrumbs: {
-          expandText: 'Vis sti',
+    MuiBreadcrumbs: {
+      expandText: 'Vis sti',
+    },
+    MuiTablePagination: {
+      backIconButtonText: 'Forrige side',
+      labelRowsPerPage: 'Rader pr side:',
+      labelDisplayedRows: ({ from, to, count }) =>
+        `${from}-${to} av ${count !== -1 ? count : `flere enn ${to}`}`,
+      nextIconButtonText: 'Neste side',
+    },
+    MuiRating: {
+      getLabelText: (value) => `${value} Stjerne${value !== 1 ? 'r' : ''}`,
+      emptyLabelText: 'Empty',
+    },
+    MuiAutocomplete: {
+      clearText: 'Tøm',
+      closeText: 'Lukk',
+      loadingText: 'Laster…',
+      noOptionsText: 'Ingen valgalternativer',
+      openText: 'Åpen',
+    },
+    MuiAlert: {
+      closeText: 'Lukk',
+    },
+    MuiPagination: {
+      'aria-label': 'Sidenavigasjon',
+      getItemAriaLabel: (type, page, selected) => {
+        if (type === 'page') {
+          return `${selected ? '' : 'Gå til '}side ${page}`;
+        }
+        if (type === 'first') {
+          return 'Gå til første side';
+        }
+        if (type === 'last') {
+          return 'Gå til siste side';
+        }
+        if (type === 'next') {
+          return 'Gå til neste side';
+        }
+        if (type === 'previous') {
+          return 'Gå til forrige side';
+        }
+        return undefined;
       },
-      MuiTablePagination: {
-          backIconButtonText: 'Forrige side',
-          labelRowsPerPage: 'Rader pr side:',
-          labelDisplayedRows: ({ from, to, count }) => `${from}-${to} av ${count !== -1 ? count : `flere enn ${to}`}`,
-          nextIconButtonText: 'Neste side',
-      },
-      MuiRating: {
-          getLabelText: (value) => `${value} Stjerne${value !== 1 ? 'r' : ''}`,
-          emptyLabelText: 'Empty',
-      },
-      MuiAutocomplete: {
-          clearText: 'Tøm',
-          closeText: 'Lukk',
-          loadingText: 'Laster…',
-          noOptionsText: 'Ingen valgalternativer',
-          openText: 'Åpen',
-      },
-      MuiAlert: {
-          closeText: 'Lukk',
-      },
-      MuiPagination: {
-          'aria-label': 'Sidenavigasjon',
-          getItemAriaLabel: (type, page, selected) => {
-              if (type === 'page') {
-                  return `${selected ? '' : 'Gå til '}side ${page}`
-              }
-              if (type === 'first') {
-                  return 'Gå til første side'
-              }
-              if (type === 'last') {
-                  return 'Gå til siste side'
-              }
-              if (type === 'next') {
-                  return 'Gå til neste side'
-              }
-              if (type === 'previous') {
-                  return 'Gå til forrige side'
-              }
-              return undefined
-          },
-      },
+    },
   },
-}
+};
 
 export const plPL: Localization = {
   props: {
