@@ -40,14 +40,15 @@ function LanguageNegotiation() {
   const userLanguage = useUserLanguage();
 
   React.useEffect(() => {
-    const { userLanguage: userLanguageUrl, canonical } = pathnameToLanguage(router.asPath);
+    const { userLanguage: userLanguageUrl, canonicalAs } = pathnameToLanguage(router.asPath);
     const preferedLanguage =
       LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
       acceptLanguage.get(navigator.language) ||
       userLanguage;
 
     if (userLanguageUrl === 'en' && userLanguage !== preferedLanguage) {
-      window.location = preferedLanguage === 'en' ? canonical : `/${preferedLanguage}${canonical}`;
+      window.location =
+        preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
     } else if (userLanguage !== userLanguageUrl) {
       setUserLanguage(userLanguageUrl);
     }

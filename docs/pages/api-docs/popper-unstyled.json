@@ -38,12 +38,12 @@
     "popperRef": { "type": { "name": "custom", "description": "ref" } },
     "transition": { "type": { "name": "bool" } }
   },
-  "name": "Popper",
+  "name": "PopperUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-material/src/Popper/Popper.tsx",
+  "filename": "/packages/mui-base/src/PopperUnstyled/PopperUnstyled.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li>\n<li><a href=\"/components/menus/\">Menus</a></li>\n<li><a href=\"/components/popper/\">Popper</a></li></ul>",
+  "demos": "<ul><li><a href=\"/components/popper/\">Popper</a></li></ul>",
   "cssComponent": false
 }

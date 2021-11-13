@@ -19,7 +19,7 @@ jobs:
           support-label: 'support'
           # Comment to post on issues marked as support requests. Add a link
           # to a support page, or set to `false` to disable
-          issue-comment: >
+          issue-comment: |
             👋 Thanks for using MUI Core!
 
             We use GitHub issues exclusively as a bug and feature requests tracker, however,

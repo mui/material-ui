@@ -1,4 +1,3 @@
-import { useThemeWithoutDefault as useTheme } from '@mui/system';
 import {
   chainPropTypes,
   HTMLElementType,
@@ -12,9 +11,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import Portal from '../Portal';
 
-function flipPlacement(placement, theme) {
-  const direction = (theme && theme.direction) || 'ltr';
-
+function flipPlacement(placement, direction) {
   if (direction === 'ltr') {
     return placement;
   }
@@ -44,6 +41,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
   const {
     anchorEl,
     children,
+    direction,
     disablePortal,
     modifiers,
     open,
@@ -65,8 +63,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
   }, [handlePopperRef]);
   React.useImperativeHandle(popperRefProp, () => popperRef.current, []);
 
-  const theme = useTheme();
-  const rtlPlacement = flipPlacement(initialPlacement, theme);
+  const rtlPlacement = flipPlacement(initialPlacement, direction);
   /**
    * placement initialized from prop but can change during lifetime if modifiers.flip.
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
@@ -173,11 +170,12 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
  */
-const Popper = React.forwardRef(function Popper(props, ref) {
+const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
   const {
     anchorEl,
     children,
     container: containerProp,
+    direction = 'ltr',
     disablePortal = false,
     keepMounted = false,
     modifiers,
@@ -214,6 +212,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
     <Portal disablePortal={disablePortal} container={container}>
       <PopperTooltip
         anchorEl={anchorEl}
+        direction={direction}
         disablePortal={disablePortal}
         modifiers={modifiers}
         ref={ref}
@@ -247,7 +246,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   );
 });
 
-Popper.propTypes /* remove-proptypes */ = {
+PopperUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -319,6 +318,11 @@ Popper.propTypes /* remove-proptypes */ = {
     HTMLElementType,
     PropTypes.func,
   ]),
+  /**
+   * Direction of the text.
+   * @default 'ltr'
+   */
+  direction: PropTypes.oneOf(['ltr', 'rtl']),
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
@@ -429,4 +433,4 @@ Popper.propTypes /* remove-proptypes */ = {
   transition: PropTypes.bool,
 };
 
-export default Popper;
+export default PopperUnstyled;

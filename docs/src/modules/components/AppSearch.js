@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
@@ -16,6 +17,7 @@ import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
+import { useRouter } from 'next/router';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -81,7 +83,7 @@ const NewStartScreen = () => {
   const startScreenOptions = [
     {
       category: {
-        name: 'Getting Started',
+        name: 'Getting started',
         icon: <ArticleOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
@@ -92,13 +94,13 @@ const NewStartScreen = () => {
     },
     {
       category: {
-        name: 'Popular Searches',
+        name: 'Popular searches',
         icon: <ToggleOffOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
         { name: 'Material Icons', href: '/components/material-icons/' },
         { name: 'Text Fields', href: '/components/text-fields/' },
-        { name: 'Button', href: '/components/buttons' },
+        { name: 'Button', href: '/components/buttons/' },
       ],
     },
     {
@@ -149,12 +151,17 @@ const NewStartScreen = () => {
 function DocSearcHit(props) {
   const { children, hit } = props;
 
-  const parseUrl = document.createElement('a');
-  parseUrl.href = hit.url;
+  if (hit.pathname) {
+    return (
+      <Link href={hit.pathname} as={hit.as}>
+        {children}
+      </Link>
+    );
+  }
 
-  // `url` contains the domain.
-  // But we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
-  return <Link href={`${parseUrl.pathname}${parseUrl.hash}`}>{children}</Link>;
+  // DocSearch stores the old results in its cache
+  // hit.pathname won't be defined for them.
+  return <Link href={hit.url}>{children}</Link>;
 }
 
 DocSearcHit.propTypes = {
@@ -179,6 +186,13 @@ export default function AppSearch() {
   const onOpen = React.useCallback(() => {
     setIsOpen(true);
   }, [setIsOpen]);
+  const router = useRouter();
+  const keyboardNavigator = {
+    navigate({ item }) {
+      const as = item.userLanguage !== 'en' ? `/${item.userLanguage}${item.as}` : item.as;
+      router.push(item.pathname, as);
+    },
+  };
 
   const onClose = React.useCallback(() => {
     const modal = document.querySelector('.DocSearch-Container');
@@ -227,10 +241,10 @@ export default function AppSearch() {
         addStartScreen();
       }
       if (searchInput) {
-        const handleInput = (e) => {
+        const handleInput = (event) => {
           const newStartScreen = document.querySelector('.DocSearch-NewStartScreen');
           if (newStartScreen) {
-            newStartScreen.style.display = e.target.value !== '' ? 'none' : 'grid';
+            newStartScreen.style.display = event.target.value !== '' ? 'none' : 'grid';
           }
         };
         searchInput.addEventListener('input', handleInput);
@@ -272,6 +286,8 @@ export default function AppSearch() {
             placeholder={search}
             transformItems={(items) => {
               return items.map((item) => {
+                // `url` contains the domain
+                // but we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
                 const parseUrl = document.createElement('a');
                 if (['lvl2', 'lvl3'].includes(item.type)) {
                   // remove '#heading-' from `href` url so that the link targets <span class="anchor-link"> inside <h2> or <h3>
@@ -280,17 +296,23 @@ export default function AppSearch() {
                 } else {
                   parseUrl.href = item.url;
                 }
+
+                const { canonicalAs, canonicalPathname } = pathnameToLanguage(
+                  `${parseUrl.pathname}${parseUrl.hash}`,
+                );
+
                 return {
                   ...item,
-                  // `url` contains the domain.
-                  // But we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
-                  url: `${parseUrl.pathname}${parseUrl.hash}`,
+                  pathname: canonicalPathname,
+                  as: canonicalAs,
+                  userLanguage,
                 };
               });
             }}
             hitComponent={DocSearcHit}
             initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
             onClose={onClose}
+            navigator={keyboardNavigator}
           />,
           document.body,
         )}
