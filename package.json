@@ -110,7 +110,7 @@
     "chai-dom": "^1.10.0",
     "chalk": "^4.1.2",
     "compression-webpack-plugin": "^9.0.0",
-    "concurrently": "^6.3.0",
+    "concurrently": "^6.4.0",
     "confusing-browser-globals": "^1.0.10",
     "core-js": "^2.6.11",
     "cpy-cli": "^3.1.1",
