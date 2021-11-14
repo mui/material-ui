@@ -2,7 +2,6 @@ import * as React from 'react';
 import Head from 'next/head';
 import { GlobalStyles } from '@mui/styled-engine';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import { styled, CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 
 const Moon = (props) => (
@@ -73,13 +72,7 @@ const Sun = (props) => (
 );
 
 const Bag = (props) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 512 512"
-    width="24"
-    height="24"
-    {...props}
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24" {...props}>
     <title>Bag Handle</title>
     <path
       d="M80 176a16 16 0 00-16 16v216c0 30.24 25.76 56 56 56h272c30.24 0 56-24.51 56-54.75V192a16 16 0 00-16-16zM160 176v-32a96 96 0 0196-96h0a96 96 0 0196 96v32"
@@ -384,197 +377,124 @@ const ColorSchemePicker = () => {
   );
 };
 
-const Button = styled('button')(
-  ({ theme, pattern = 'contained', color = 'brand' }) => [
-    {
-      minHeight: 48,
-      border: 0,
-      display: 'inline-flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: '0.5rem 2rem',
-      borderRadius: '24px',
-      cursor: 'pointer',
-      background: 'transparent',
-    },
-    theme.typography.button,
-    theme.pattern[pattern]?.[color],
-    theme.pattern[`${pattern}Hover`]?.[color],
-    theme.pattern[`${pattern}Active`]?.[color],
-    theme.pattern[`${pattern}Disabled`]?.[color],
-  ],
-);
-
-const Badge = styled('span')(
-  ({ theme, pattern = 'contained', color = 'brand' }) => [
-    {
-      minHeight: 32,
-      minWidth: 32,
-      borderRadius: 4,
-      padding: '0.25rem 0.5rem',
-      textAlign: 'center',
-    },
-    theme.typography.caption,
-    {
-      fontWeight: 600,
-      lineHeight: 1,
-    },
-    theme.pattern[pattern]?.[color],
-  ],
-);
-
-const Avatar = styled('div')(
-  ({ theme, pattern = 'filled', color = 'brand' }) => [
-    theme.typography.h5,
-    {
-      width: 64,
-      height: 64,
-      borderRadius: '50%',
-      fontWeight: 700,
-      display: 'inline-flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    theme.pattern[pattern]?.[color],
-  ],
-);
-
-const Paper = styled('div')(
-  ({ theme, pattern = 'text', color = 'neutral' }) => [
-    {
-      minWidth: 100,
-      minHeight: 120,
-      padding: '1rem',
-      borderRadius: 4,
-      backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
-    },
-    theme.pattern[pattern]?.[color],
-    pattern === 'contained' && theme.pattern.containedContext?.[color],
-  ],
-);
-
-const List = styled('ul')(({ theme, pattern = 'text', color = 'neutral' }) => [
+const Button = styled('button')(({ theme, pattern = 'contained', color = 'brand' }) => [
   {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'column',
-    gap: 4,
-    listStyle: 'none',
-    padding: '0.5rem 0.25rem',
+    minHeight: 48,
+    border: 0,
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '0.5rem 2rem',
+    borderRadius: '24px',
+    cursor: 'pointer',
+    background: 'transparent',
+  },
+  theme.typography.button,
+  theme.pattern[pattern]?.[color],
+  theme.pattern[`${pattern}Hover`]?.[color],
+  theme.pattern[`${pattern}Active`]?.[color],
+  theme.pattern[`${pattern}Disabled`]?.[color],
+]);
+
+const Badge = styled('span')(({ theme, pattern = 'contained', color = 'brand' }) => [
+  {
+    minHeight: 32,
+    minWidth: 32,
     borderRadius: 4,
-    margin: 0,
-    backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
+    padding: '0.25rem 0.5rem',
+    textAlign: 'center',
+  },
+  theme.typography.caption,
+  {
+    fontWeight: 600,
+    lineHeight: 1,
   },
   theme.pattern[pattern]?.[color],
 ]);
 
-const ListItem = styled('li')(
-  ({ theme, pattern = 'text', color = 'neutral' }) => [
-    theme.typography.body,
-    {
-      padding: '0.25rem 0.5rem',
-      borderRadius: 4,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-    },
-    theme.pattern[pattern]?.[color],
-    theme.pattern[`${pattern}Hover`]?.[color],
-    theme.pattern[`${pattern}Disabled`]?.[color],
-  ],
-);
-
-const IconButton = styled('button')(
-  ({ theme, pattern = 'filled', color = 'brand' }) => [
-    {
-      border: 0,
-      display: 'inline-flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: '0.25rem',
-      borderRadius: '8px',
-      cursor: 'pointer',
-      background: 'transparent',
-    },
-    theme.typography.button,
-    theme.pattern[pattern]?.[color],
-    theme.pattern[`${pattern}Hover`]?.[color],
-    theme.pattern[`${pattern}Disabled`]?.[color],
-  ],
-);
-
-const Divider = styled('hr')(
-  ({ theme, color = 'neutral', direction = 'horizontal' }) => [
-    {
-      display: 'block',
-      alignSelf: 'stretch',
-      margin: 0,
-      border: 0,
-      backgroundColor: `var(--joy-pattern-outlinedBorder, ${theme.vars.palette[color].outlinedBorder})`,
-    },
-    direction === 'horizontal' && {
-      height: 1,
-      margin: '1rem 0',
-    },
-    direction === 'vertical' && {
-      width: 1,
-      margin: '0 1rem',
-    },
-  ],
-);
-
-const Input = styled('input')(
-  ({ theme, pattern = 'outlined', color = 'neutral' }) => [
-    {
-      minHeight: 48,
-      maxWidth: '100%',
-      border: '2px solid transparent',
-      backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
-      borderRadius: '4px',
-      display: 'inline-flex',
-      alignItems: 'center',
-      padding: '0.5rem 1rem',
-      '&::placeholder': {
-        opacity: 0.72,
-        color: `var(--joy-pattern-${pattern}Color, ${theme.vars.palette.text.detail})`,
-      },
-    },
-    theme.typography.body,
-    theme.pattern[pattern]?.[color],
-    theme.pattern[`${pattern}Hover`]?.[color],
-    theme.pattern[`${pattern}Disabled`]?.[color],
-  ],
-);
-
-const Chip = styled('div')(
-  ({ theme, pattern = 'outlined', color = 'neutral' }) => [
-    {
-      borderRadius: '24px',
-      minHeight: '40px',
-      display: 'inline-flex',
-      alignItems: 'center',
-      padding: '6px 12px',
-    },
-    theme.pattern[pattern]?.[color],
-  ],
-);
-
-const Tabs = styled('div')(({ theme, pattern = 'text', color = 'neutral' }) => [
+const Avatar = styled('div')(({ theme, pattern = 'filled', color = 'brand' }) => [
+  theme.typography.h5,
   {
-    display: 'flex',
-    gap: '0.5rem',
-    padding: '0.25rem',
+    width: 64,
+    height: 64,
+    borderRadius: '50%',
+    fontWeight: 700,
+    display: 'inline-flex',
+    justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 40,
-    backgroundColor: 'var(--joy-palette-bgNeutral-plain)',
+  },
+  theme.pattern[pattern]?.[color],
+]);
+
+const Paper = styled('div')(({ theme, pattern = 'text', color = 'neutral' }) => [
+  {
+    minWidth: 100,
+    minHeight: 120,
+    padding: '1rem',
+    borderRadius: 4,
+    backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
   },
   theme.pattern[pattern]?.[color],
   pattern === 'contained' && theme.pattern.containedContext?.[color],
 ]);
 
-const Typography = styled('p', {
-  shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'as',
-})(({ theme, variant = 'body' }) => ({
+const IconButton = styled('button')(({ theme, pattern = 'filled', color = 'brand' }) => [
+  {
+    border: 0,
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '0.5rem',
+    borderRadius: '24px',
+    cursor: 'pointer',
+    background: 'transparent',
+  },
+  theme.typography.button,
+  theme.pattern[pattern]?.[color],
+  theme.pattern[`${pattern}Hover`]?.[color],
+  theme.pattern[`${pattern}Disabled`]?.[color],
+]);
+
+const Divider = styled('hr')(({ theme, color = 'neutral', direction = 'horizontal' }) => [
+  {
+    display: 'block',
+    alignSelf: 'stretch',
+    margin: 0,
+    border: 0,
+    backgroundColor: `var(--joy-pattern-outlinedBorder, ${theme.vars.palette[color].outlinedBorder})`,
+  },
+  direction === 'horizontal' && {
+    height: 1,
+    margin: '1rem 0',
+  },
+  direction === 'vertical' && {
+    width: 1,
+    margin: '0 1rem',
+  },
+]);
+
+const Input = styled('input')(({ theme, pattern = 'outlined', color = 'neutral' }) => [
+  {
+    minHeight: 48,
+    maxWidth: '100%',
+    border: '2px solid transparent',
+    backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
+    borderRadius: '4px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    padding: '0.5rem 1rem',
+    '&::placeholder': {
+      opacity: 0.72,
+      color: `var(--joy-pattern-${pattern}Color, ${theme.vars.palette.text.detail})`,
+    },
+  },
+  theme.typography.body,
+  theme.pattern[pattern]?.[color],
+  theme.pattern[`${pattern}Hover`]?.[color],
+  theme.pattern[`${pattern}Disabled`]?.[color],
+]);
+
+const Typography = styled('p')(({ theme, variant = 'body' }) => ({
   margin: 0,
   ...theme.typography[variant],
 }));
@@ -624,7 +544,7 @@ export default function JoyEcommerce() {
                 textDisabledColor: 'var(--joy-palette-neutral-300)',
 
                 outlinedColor: 'var(--joy-palette-neutral-600)',
-                outlinedBorder: 'var(--joy-palette-neutral-100)',
+                outlinedBorder: 'var(--joy-palette-neutral-200)',
                 outlinedHoverBg: 'var(--joy-palette-neutral-100)',
                 outlinedHoverBorder: 'var(--joy-palette-neutral-300)',
                 outlinedActiveBg: 'var(--joy-palette-neutral-200)',
@@ -686,7 +606,7 @@ export default function JoyEcommerce() {
                 textDisabledColor: 'var(--joy-palette-neutral-500)',
 
                 outlinedColor: 'var(--joy-palette-neutral-200)',
-                outlinedBorder: 'var(--joy-palette-neutral-800)',
+                outlinedBorder: 'var(--joy-palette-neutral-700)',
                 outlinedHoverBg: 'var(--joy-palette-neutral-800)',
                 outlinedHoverBorder: 'var(--joy-palette-neutral-600)',
                 outlinedActiveBg: 'var(--joy-palette-neutral-700)',
@@ -716,12 +636,10 @@ export default function JoyEcommerce() {
         pattern: {
           text: {
             brand: {
-              color:
-                'var(--joy-pattern-textColor, var(--joy-palette-brand-textColor))',
+              color: 'var(--joy-pattern-textColor, var(--joy-palette-brand-textColor))',
             },
             neutral: {
-              color:
-                'var(--joy-pattern-textColor, var(--joy-palette-neutral-textColor))',
+              color: 'var(--joy-pattern-textColor, var(--joy-palette-neutral-textColor))',
             },
           },
           textHover: {
@@ -770,15 +688,13 @@ export default function JoyEcommerce() {
           },
           outlined: {
             brand: {
-              color:
-                'var(--joy-pattern-outlinedColor, var(--joy-palette-brand-outlinedColor))',
+              color: 'var(--joy-pattern-outlinedColor, var(--joy-palette-brand-outlinedColor))',
               border: '1px solid',
               borderColor:
                 'var(--joy-pattern-outlinedBorder, var(--joy-palette-brand-outlinedBorder))',
             },
             neutral: {
-              color:
-                'var(--joy-pattern-outlinedColor, var(--joy-palette-neutral-outlinedColor))',
+              color: 'var(--joy-pattern-outlinedColor, var(--joy-palette-neutral-outlinedColor))',
               border: '1px solid',
               borderColor:
                 'var(--joy-pattern-outlinedBorder, var(--joy-palette-neutral-outlinedBorder))',
@@ -834,16 +750,12 @@ export default function JoyEcommerce() {
           },
           filled: {
             brand: {
-              color:
-                'var(--joy-pattern-filledColor, var(--joy-palette-brand-filledColor))',
-              backgroundColor:
-                'var(--joy-pattern-filledBg, var(--joy-palette-brand-filledBg))',
+              color: 'var(--joy-pattern-filledColor, var(--joy-palette-brand-filledColor))',
+              backgroundColor: 'var(--joy-pattern-filledBg, var(--joy-palette-brand-filledBg))',
             },
             neutral: {
-              color:
-                'var(--joy-pattern-filledColor, var(--joy-palette-neutral-filledColor))',
-              backgroundColor:
-                'var(--joy-pattern-filledBg, var(--joy-palette-neutral-filledBg))',
+              color: 'var(--joy-pattern-filledColor, var(--joy-palette-neutral-filledColor))',
+              backgroundColor: 'var(--joy-pattern-filledBg, var(--joy-palette-neutral-filledBg))',
             },
           },
           filledHover: {
@@ -938,8 +850,7 @@ export default function JoyEcommerce() {
             },
             neutral: {
               '&.Mui-disabled': {
-                backgroundColor:
-                  'var(--joy-palette-neutral-containedDisabledBg)',
+                backgroundColor: 'var(--joy-palette-neutral-containedDisabledBg)',
               },
             },
           },
@@ -952,12 +863,10 @@ export default function JoyEcommerce() {
                 '--joy-pattern-textActiveBg': 'var(--joy-palette-brand-700)',
                 '--joy-pattern-outlinedColor': '#fff',
                 '--joy-pattern-outlinedBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedHoverBorder':
-                  'var(--joy-palette-brand-400)',
+                '--joy-pattern-outlinedHoverBorder': 'var(--joy-palette-brand-400)',
                 '--joy-pattern-outlinedBg': 'transparent',
                 '--joy-pattern-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
-                '--joy-pattern-outlinedActiveBg':
-                  'var(--joy-palette-brand-700)',
+                '--joy-pattern-outlinedActiveBg': 'var(--joy-palette-brand-700)',
                 '--joy-pattern-filledColor': '#fff',
                 '--joy-pattern-filledBg': 'rgba(255, 255, 255, 0.2)',
                 '--joy-pattern-filledHoverBg': 'var(--joy-palette-brand-400)',
@@ -970,12 +879,10 @@ export default function JoyEcommerce() {
                 '--joy-pattern-textActiveBg': 'var(--joy-palette-brand-500)',
                 '--joy-pattern-outlinedColor': '#fff',
                 '--joy-pattern-outlinedBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedHoverBorder':
-                  'var(--joy-palette-brand-400)',
+                '--joy-pattern-outlinedHoverBorder': 'var(--joy-palette-brand-400)',
                 '--joy-pattern-outlinedBg': 'transparent',
                 '--joy-pattern-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
-                '--joy-pattern-outlinedActiveBg':
-                  'var(--joy-palette-brand-700)',
+                '--joy-pattern-outlinedActiveBg': 'var(--joy-palette-brand-700)',
                 '--joy-pattern-filledColor': '#fff',
                 '--joy-pattern-filledBg': 'rgba(255, 255, 255, 0.2)',
                 '--joy-pattern-filledHoverBg': 'var(--joy-palette-brand-400)',
@@ -989,12 +896,10 @@ export default function JoyEcommerce() {
               '--joy-pattern-textActiveBg': 'var(--joy-palette-neutral-700)',
               '--joy-pattern-outlinedColor': '#fff',
               '--joy-pattern-outlinedBorder': 'var(--joy-palette-neutral-400)',
-              '--joy-pattern-outlinedHoverBorder':
-                'var(--joy-palette-neutral-400)',
+              '--joy-pattern-outlinedHoverBorder': 'var(--joy-palette-neutral-400)',
               '--joy-pattern-outlinedBg': 'transparent',
               '--joy-pattern-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
-              '--joy-pattern-outlinedActiveBg':
-                'var(--joy-palette-neutral-700)',
+              '--joy-pattern-outlinedActiveBg': 'var(--joy-palette-neutral-700)',
               '--joy-pattern-filledColor': '#fff',
               '--joy-pattern-filledBg': 'rgba(255, 255, 255, 0.2)',
               '--joy-pattern-filledHoverBg': 'var(--joy-palette-neutral-400)',
@@ -1006,11 +911,7 @@ export default function JoyEcommerce() {
     >
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
@@ -1019,10 +920,7 @@ export default function JoyEcommerce() {
           type="module"
           src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
         />
-        <script
-          nomodule
-          src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-        />
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" />
       </Head>
 
       <GlobalStyles
@@ -1078,11 +976,7 @@ export default function JoyEcommerce() {
               mb: '2rem',
             }}
           >
-            <Avatar
-              pattern="filled"
-              color="neutral"
-              sx={{ width: '48px', height: '48px' }}
-            />
+            <Avatar pattern="filled" color="neutral" sx={{ width: '48px', height: '48px' }} />
             <Typography as="div" variant="h4" sx={{ flexGrow: 1, minWidth: 0 }}>
               Hi, Victoria!
             </Typography>
@@ -1198,25 +1092,15 @@ export default function JoyEcommerce() {
             </Box>
             <Box>
               <Box>
-                <Paper
-                  pattern="filled"
-                  sx={{ borderRadius: '20px', minHeight: '200px' }}
-                />
-                <Typography variant="headingSubtitle">
-                  Cotton T-shirt
-                </Typography>
+                <Paper pattern="filled" sx={{ borderRadius: '20px', minHeight: '200px' }} />
+                <Typography variant="headingSubtitle">Cotton T-shirt</Typography>
                 <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
                   $59.00
                 </Typography>
               </Box>
               <Box>
-                <Paper
-                  pattern="filled"
-                  sx={{ borderRadius: '20px', minHeight: '200px' }}
-                />
-                <Typography variant="headingSubtitle">
-                  Cotton T-shirt
-                </Typography>
+                <Paper pattern="filled" sx={{ borderRadius: '20px', minHeight: '200px' }} />
+                <Typography variant="headingSubtitle">Cotton T-shirt</Typography>
                 <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
                   $59.00
                 </Typography>
@@ -1265,22 +1149,10 @@ export default function JoyEcommerce() {
                 minWidth: 'unset',
               }}
             >
-              <Paper
-                pattern="filled"
-                sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }}
-              />
-              <Paper
-                pattern="filled"
-                sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }}
-              />
-              <Paper
-                pattern="filled"
-                sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }}
-              />
-              <Paper
-                pattern="filled"
-                sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }}
-              />
+              <Paper pattern="filled" sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }} />
+              <Paper pattern="filled" sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }} />
+              <Paper pattern="filled" sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }} />
+              <Paper pattern="filled" sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }} />
             </Paper>
           </Paper>
 
@@ -1310,9 +1182,7 @@ export default function JoyEcommerce() {
             }}
           >
             <Box>
-              <Typography sx={{ fontWeight: 600, mb: '0.5rem' }}>
-                Color
-              </Typography>
+              <Typography sx={{ fontWeight: 600, mb: '0.5rem' }}>Color</Typography>
               <Box sx={{ display: 'flex', gap: '0.75rem' }}>
                 <Avatar
                   pattern="filled"
@@ -1360,25 +1230,15 @@ export default function JoyEcommerce() {
               </Box>
             </Box>
             <Box>
-              <Typography sx={{ fontWeight: 600, mb: '0.5rem' }}>
-                Size
-              </Typography>
+              <Typography sx={{ fontWeight: 600, mb: '0.5rem' }}>Size</Typography>
               <Box sx={{ display: 'flex', gap: '0.75rem' }}>
                 <Button color="neutral" sx={{ minWidth: '48px', p: 0 }}>
                   S
                 </Button>
-                <Button
-                  color="neutral"
-                  pattern="filled"
-                  sx={{ minWidth: '48px', p: 0 }}
-                >
+                <Button color="neutral" pattern="filled" sx={{ minWidth: '48px', p: 0 }}>
                   M
                 </Button>
-                <Button
-                  color="neutral"
-                  pattern="filled"
-                  sx={{ minWidth: '48px', p: 0 }}
-                >
+                <Button color="neutral" pattern="filled" sx={{ minWidth: '48px', p: 0 }}>
                   L
                 </Button>
               </Box>
@@ -1404,6 +1264,144 @@ export default function JoyEcommerce() {
             </Box>
             <Button>Add to cart</Button>
           </Box>
+        </Box>
+
+        <Box
+          sx={{
+            minHeight: '568px',
+            bgcolor: 'var(--joy-palette-bgNeutral-plain)',
+            borderRadius: '32px',
+            p: '1rem',
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <IconButton color="neutral" pattern="text">
+              <ArrowBack width="32" height="32" />
+            </IconButton>
+            <Typography variant="h5" sx={{ textAlign: 'center', flexGrow: 1 }}>
+              Shopping Bag
+            </Typography>
+            <IconButton
+              color="neutral"
+              pattern="text"
+              sx={{
+                position: 'relative',
+              }}
+            >
+              <Bag width="32" height="32" />
+              <Badge
+                color="neutral"
+                sx={{
+                  lineHeight: 1,
+                  position: 'absolute',
+                  p: '0.25rem',
+                  top: 8,
+                  right: 8,
+                  transform: 'translate(50%, -50%)',
+                  minHeight: '26px',
+                  minWidth: '26px',
+                  borderRadius: '20px',
+                  border: '2px solid var(--joy-palette-bgNeutral-plain)',
+                }}
+              >
+                3
+              </Badge>
+            </IconButton>
+          </Box>
+
+          <Box sx={{ display: 'flex', gap: '1.5rem', flexDirection: 'column', my: '1.5rem' }}>
+            {[...Array(3)].map((_, index) => (
+              <Box key={index} sx={{ display: 'flex', gap: '1rem' }}>
+                <Avatar
+                  color="neutral"
+                  sx={{ borderRadius: '16px', height: '72px', width: '72px' }}
+                />
+                <Box sx={{ flexGrow: 1 }}>
+                  <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
+                    Fitting dress
+                  </Typography>
+                  <Typography sx={{ fontWeight: 'bold' }}>$199.00</Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <IconButton
+                      pattern="outlined"
+                      color="neutral"
+                      sx={{ borderRadius: '20px', padding: '0.25rem' }}
+                    >
+                      <Remove width="20" height="20" />
+                    </IconButton>
+                    <Typography variant="h5">1</Typography>
+                    <IconButton
+                      pattern="outlined"
+                      color="neutral"
+                      sx={{ borderRadius: '20px', padding: '0.25rem' }}
+                    >
+                      <Add width="20" height="20" />
+                    </IconButton>
+                  </Box>
+                </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Typography variant="headingIntro" sx={{ textAlign: 'center' }}>
+                    L
+                  </Typography>
+                  <IconButton pattern="text">
+                    <Trash />
+                  </IconButton>
+                </Box>
+              </Box>
+            ))}
+          </Box>
+
+          <Paper
+            pattern="filled"
+            sx={{
+              p: '0.25rem',
+              minHeight: 'unset',
+              display: 'flex',
+              alignItems: 'center',
+              borderRadius: '24px',
+              gap: '1rem',
+            }}
+          >
+            <Input
+              pattern="text"
+              placeholder="Promo code"
+              sx={{ flexGrow: 1, bgcolor: 'unset', borderRadius: '20px' }}
+            />
+            <Button>Apply</Button>
+          </Paper>
+
+          <Box
+            sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', p: '0.5rem', my: '2rem' }}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <Typography variant="headingIntro">Sub Total</Typography>
+              <Divider sx={{ height: 2, flexGrow: 1 }} />
+              <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                $367.00
+              </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <Typography variant="headingIntro">Shipping</Typography>
+              <Divider sx={{ height: 2, flexGrow: 1 }} />
+              <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                $4.00
+              </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <Typography variant="headingIntro">Bag Total</Typography>
+              <Divider sx={{ height: 2, flexGrow: 1 }} />
+              <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                $371.00
+              </Typography>
+            </Box>
+          </Box>
+          <Button sx={{ width: '100%', py: '1rem' }}>Proceed to Checkout</Button>
         </Box>
       </Box>
     </CssVarsProvider>
