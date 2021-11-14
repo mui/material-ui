@@ -169,7 +169,7 @@
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
-    "terser-webpack-plugin": "^5.2.4",
+    "terser-webpack-plugin": "^5.2.5",
     "tslint": "5.14.0",
     "typescript": "^4.4.4",
     "unist-util-visit": "^2.0.3",
