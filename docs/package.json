@@ -46,7 +46,7 @@
     "@mui/x-data-grid-generator": "^5.0.0-beta.6",
     "@mui/x-data-grid-pro": "^5.0.0-beta.6",
     "@trendmicro/react-interpolate": "^0.5.5",
-    "@types/autosuggest-highlight": "^3.1.1",
+    "@types/autosuggest-highlight": "^3.2.0",
     "@types/css-mediaquery": "^0.1.1",
     "@types/json2mq": "^0.2.0",
     "@types/markdown-to-jsx": "^7.0.1",
