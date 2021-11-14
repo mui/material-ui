@@ -27,8 +27,8 @@
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod",
   "dependencies": {
     "@babel/core": "^7.16.0",
-    "@babel/runtime": "^7.16.0",
-    "@babel/traverse": "^7.16.0",
+    "@babel/runtime": "^7.16.3",
+    "@babel/traverse": "^7.16.3",
     "jscodeshift": "^0.13.0",
     "jscodeshift-add-imports": "^1.0.10",
     "yargs": "^17.2.1"
