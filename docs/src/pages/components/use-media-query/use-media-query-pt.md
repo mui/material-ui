@@ -14,7 +14,7 @@ Algumas das principais características:
 - 📦 [1 kB gzipped](/size-snapshot).
 - 🤖 Suporta a renderização do lado do servidor.
 
-[A paleta](/system/palette/) com funções de estilo.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Consulta de mídia simples
 
