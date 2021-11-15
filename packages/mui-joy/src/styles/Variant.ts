@@ -1,4 +1,3 @@
-import { CSSObject } from '@mui/styled-engine';
 import { OverridableStringUnion } from '@mui/types';
 import { ColorPaletteProp } from './ColorSystem';
 
@@ -18,5 +17,5 @@ export type DefaultVariantKey =
   | `${DefaultVariantProp}${State}`;
 
 export type Variant = {
-  [k in VariantKey]: Record<ColorPaletteProp, CSSObject>;
+  [k in VariantKey]: Record<ColorPaletteProp, object>;
 };

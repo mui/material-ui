@@ -137,7 +137,7 @@ type BasePaletteRange =
   | 'filledHoverBg'
   | 'filledActiveBg'
   | 'filledDisabledColor'
-  | 'filledDisableBg'
+  | 'filledDisabledBg'
   | 'containedColor'
   | 'containedBg'
   | 'containedHoverBg'
@@ -207,7 +207,7 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> 
       filledHoverBg: 'var(--joy-palette-brand-200)',
       filledActiveBg: 'var(--joy-palette-brand-300)',
       filledDisabledColor: 'var(--joy-palette-brand-400)',
-      filledDisableBg: 'var(--joy-palette-brand-50)',
+      filledDisabledBg: 'var(--joy-palette-brand-50)',
 
       containedColor: '#fff',
       containedBg: 'var(--joy-palette-brand-500)',
@@ -235,7 +235,7 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> 
       filledHoverBg: 'var(--joy-palette-neutral-200)',
       filledActiveBg: 'var(--joy-palette-neutral-300)',
       filledDisabledColor: 'var(--joy-palette-neutral-400)',
-      filledDisableBg: 'var(--joy-palette-neutral-50)',
+      filledDisabledBg: 'var(--joy-palette-neutral-50)',
 
       containedColor: '#fff',
       containedBg: 'var(--joy-palette-neutral-600)',
@@ -281,7 +281,7 @@ export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> =
       filledHoverBg: 'var(--joy-palette-brand-700)',
       filledActiveBg: 'var(--joy-palette-brand-600)',
       filledDisabledColor: 'var(--joy-palette-brand-500)',
-      filledDisableBg: 'var(--joy-palette-brand-800)',
+      filledDisabledBg: 'var(--joy-palette-brand-800)',
 
       containedColor: '#fff',
       containedBg: 'var(--joy-palette-brand-500)',
@@ -309,7 +309,7 @@ export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> =
       filledHoverBg: 'var(--joy-palette-neutral-700)',
       filledActiveBg: 'var(--joy-palette-neutral-600)',
       filledDisabledColor: 'var(--joy-palette-neutral-500)',
-      filledDisableBg: 'var(--joy-palette-neutral-800)',
+      filledDisabledBg: 'var(--joy-palette-neutral-800)',
 
       containedColor: '#fff',
       containedBg: 'var(--joy-palette-neutral-600)',

@@ -25,7 +25,7 @@ export interface PaletteVariant {
   filledHoverBg: string;
   filledActiveBg: string;
   filledDisabledColor: string;
-  filledDisableBg: string;
+  filledDisabledBg: string;
 
   containedColor: string;
   containedBg: string;

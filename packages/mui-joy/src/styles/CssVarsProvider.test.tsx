@@ -36,7 +36,15 @@ describe('[Joy] CssVarsProvider', () => {
         const theme = useTheme();
         return (
           <div>
-            <div data-testid="palette">{JSON.stringify(theme.vars.palette)}</div>
+            <div data-testid="palette-brand">{JSON.stringify(theme.vars.palette.brand)}</div>
+            <div data-testid="palette-neutral">{JSON.stringify(theme.vars.palette.neutral)}</div>
+            <div data-testid="palette-text">{JSON.stringify(theme.vars.palette.text)}</div>
+            <div data-testid="palette-bgNeutral">
+              {JSON.stringify(theme.vars.palette.bgNeutral)}
+            </div>
+            <div data-testid="palette-focusVisible">
+              {JSON.stringify(theme.vars.palette.focusVisible)}
+            </div>
           </div>
         );
       };
@@ -47,44 +55,95 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('palette').textContent).to.equal(
+      expect(screen.getByTestId('palette-brand').textContent).to.equal(
         JSON.stringify({
-          brand: {
-            50: 'var(--joy-palette-brand-50)',
-            100: 'var(--joy-palette-brand-100)',
-            200: 'var(--joy-palette-brand-200)',
-            300: 'var(--joy-palette-brand-300)',
-            400: 'var(--joy-palette-brand-400)',
-            500: 'var(--joy-palette-brand-500)',
-            600: 'var(--joy-palette-brand-600)',
-            700: 'var(--joy-palette-brand-700)',
-            800: 'var(--joy-palette-brand-800)',
-            900: 'var(--joy-palette-brand-900)',
-          },
-          neutral: {
-            50: 'var(--joy-palette-neutral-50)',
-            100: 'var(--joy-palette-neutral-100)',
-            200: 'var(--joy-palette-neutral-200)',
-            300: 'var(--joy-palette-neutral-300)',
-            400: 'var(--joy-palette-neutral-400)',
-            500: 'var(--joy-palette-neutral-500)',
-            600: 'var(--joy-palette-neutral-600)',
-            700: 'var(--joy-palette-neutral-700)',
-            800: 'var(--joy-palette-neutral-800)',
-            900: 'var(--joy-palette-neutral-900)',
-          },
-          text: {
-            heading: 'var(--joy-palette-text-heading)',
-            headingIntro: 'var(--joy-palette-text-headingIntro)',
-            content: 'var(--joy-palette-text-content)',
-            detail: 'var(--joy-palette-text-detail)',
-            overline: 'var(--joy-palette-text-overline)',
-          },
-          bgNeutral: {
-            transparency: 'var(--joy-palette-bgNeutral-transparency)',
-            plain: 'var(--joy-palette-bgNeutral-plain)',
-          },
+          50: 'var(--joy-palette-brand-50)',
+          100: 'var(--joy-palette-brand-100)',
+          200: 'var(--joy-palette-brand-200)',
+          300: 'var(--joy-palette-brand-300)',
+          400: 'var(--joy-palette-brand-400)',
+          500: 'var(--joy-palette-brand-500)',
+          600: 'var(--joy-palette-brand-600)',
+          700: 'var(--joy-palette-brand-700)',
+          800: 'var(--joy-palette-brand-800)',
+          900: 'var(--joy-palette-brand-900)',
+          textColor: 'var(--joy-palette-brand-textColor)',
+          textHoverBg: 'var(--joy-palette-brand-textHoverBg)',
+          textActiveBg: 'var(--joy-palette-brand-textActiveBg)',
+          textDisabledColor: 'var(--joy-palette-brand-textDisabledColor)',
+          outlinedColor: 'var(--joy-palette-brand-outlinedColor)',
+          outlinedBorder: 'var(--joy-palette-brand-outlinedBorder)',
+          outlinedHoverBg: 'var(--joy-palette-brand-outlinedHoverBg)',
+          outlinedHoverBorder: 'var(--joy-palette-brand-outlinedHoverBorder)',
+          outlinedActiveBg: 'var(--joy-palette-brand-outlinedActiveBg)',
+          outlinedDisabledColor: 'var(--joy-palette-brand-outlinedDisabledColor)',
+          outlinedDisabledBorder: 'var(--joy-palette-brand-outlinedDisabledBorder)',
+          filledColor: 'var(--joy-palette-brand-filledColor)',
+          filledBg: 'var(--joy-palette-brand-filledBg)',
+          filledHoverBg: 'var(--joy-palette-brand-filledHoverBg)',
+          filledActiveBg: 'var(--joy-palette-brand-filledActiveBg)',
+          filledDisabledColor: 'var(--joy-palette-brand-filledDisabledColor)',
+          filledDisabledBg: 'var(--joy-palette-brand-filledDisabledBg)',
+          containedColor: 'var(--joy-palette-brand-containedColor)',
+          containedBg: 'var(--joy-palette-brand-containedBg)',
+          containedHoverBg: 'var(--joy-palette-brand-containedHoverBg)',
+          containedActiveBg: 'var(--joy-palette-brand-containedActiveBg)',
+          containedDisabledBg: 'var(--joy-palette-brand-containedDisabledBg)',
         }),
+      );
+      expect(screen.getByTestId('palette-neutral').textContent).to.equal(
+        JSON.stringify({
+          50: 'var(--joy-palette-neutral-50)',
+          100: 'var(--joy-palette-neutral-100)',
+          200: 'var(--joy-palette-neutral-200)',
+          300: 'var(--joy-palette-neutral-300)',
+          400: 'var(--joy-palette-neutral-400)',
+          500: 'var(--joy-palette-neutral-500)',
+          600: 'var(--joy-palette-neutral-600)',
+          700: 'var(--joy-palette-neutral-700)',
+          800: 'var(--joy-palette-neutral-800)',
+          900: 'var(--joy-palette-neutral-900)',
+          textColor: 'var(--joy-palette-neutral-textColor)',
+          textHoverBg: 'var(--joy-palette-neutral-textHoverBg)',
+          textActiveBg: 'var(--joy-palette-neutral-textActiveBg)',
+          textDisabledColor: 'var(--joy-palette-neutral-textDisabledColor)',
+          outlinedColor: 'var(--joy-palette-neutral-outlinedColor)',
+          outlinedBorder: 'var(--joy-palette-neutral-outlinedBorder)',
+          outlinedHoverBg: 'var(--joy-palette-neutral-outlinedHoverBg)',
+          outlinedHoverBorder: 'var(--joy-palette-neutral-outlinedHoverBorder)',
+          outlinedActiveBg: 'var(--joy-palette-neutral-outlinedActiveBg)',
+          outlinedDisabledColor: 'var(--joy-palette-neutral-outlinedDisabledColor)',
+          outlinedDisabledBorder: 'var(--joy-palette-neutral-outlinedDisabledBorder)',
+          filledColor: 'var(--joy-palette-neutral-filledColor)',
+          filledBg: 'var(--joy-palette-neutral-filledBg)',
+          filledHoverBg: 'var(--joy-palette-neutral-filledHoverBg)',
+          filledActiveBg: 'var(--joy-palette-neutral-filledActiveBg)',
+          filledDisabledColor: 'var(--joy-palette-neutral-filledDisabledColor)',
+          filledDisabledBg: 'var(--joy-palette-neutral-filledDisabledBg)',
+          containedColor: 'var(--joy-palette-neutral-containedColor)',
+          containedBg: 'var(--joy-palette-neutral-containedBg)',
+          containedHoverBg: 'var(--joy-palette-neutral-containedHoverBg)',
+          containedActiveBg: 'var(--joy-palette-neutral-containedActiveBg)',
+          containedDisabledBg: 'var(--joy-palette-neutral-containedDisabledBg)',
+        }),
+      );
+      expect(screen.getByTestId('palette-text').textContent).to.equal(
+        JSON.stringify({
+          heading: 'var(--joy-palette-text-heading)',
+          headingIntro: 'var(--joy-palette-text-headingIntro)',
+          content: 'var(--joy-palette-text-content)',
+          detail: 'var(--joy-palette-text-detail)',
+          overline: 'var(--joy-palette-text-overline)',
+        }),
+      );
+      expect(screen.getByTestId('palette-bgNeutral').textContent).to.equal(
+        JSON.stringify({
+          transparency: 'var(--joy-palette-bgNeutral-transparency)',
+          plain: 'var(--joy-palette-bgNeutral-plain)',
+        }),
+      );
+      expect(screen.getByTestId('palette-focusVisible').textContent).to.equal(
+        '"var(--joy-palette-focusVisible)"',
       );
     });
 
