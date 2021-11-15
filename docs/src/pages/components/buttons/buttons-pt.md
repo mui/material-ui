@@ -117,7 +117,7 @@ Os botões de carregamento podem mostrar estado de carregamento e desativar as i
 
 Alterne o interruptor de carregamento para ver a transição entre os diferentes estados.
 
-O componente ButtonBase define `pointer-events: none;` ao desabilitar os botões, o que previne que o cursor desabilitado seja exibido.
+{{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
 ## Complex button
 
