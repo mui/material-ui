@@ -326,8 +326,9 @@ const PushButton = styled('button', {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    '&:focus-visible': theme.focus.default,
   },
-  selected ? theme.pattern.filled?.brand : theme.pattern.text?.neutral,
+  selected ? theme.variant.filled?.brand : theme.variant.text?.neutral,
 ]);
 
 const ColorSchemePicker = () => {
@@ -349,7 +350,7 @@ const ColorSchemePicker = () => {
         minHeight: '48px',
         border: '1px solid',
         borderRadius: '24px',
-        ...theme.pattern.outlined.brand,
+        ...theme.variant.outlined.brand,
       })}
     >
       <Box sx={{ display: 'flex', gap: '8px', p: '6px' }}>
@@ -377,26 +378,29 @@ const ColorSchemePicker = () => {
   );
 };
 
-const Button = styled('button')(({ theme, pattern = 'contained', color = 'brand' }) => [
-  {
-    minHeight: 48,
-    border: 0,
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '0.5rem 2rem',
-    borderRadius: '24px',
-    cursor: 'pointer',
-    background: 'transparent',
-  },
-  theme.typography.button,
-  theme.pattern[pattern]?.[color],
-  theme.pattern[`${pattern}Hover`]?.[color],
-  theme.pattern[`${pattern}Active`]?.[color],
-  theme.pattern[`${pattern}Disabled`]?.[color],
-]);
+const Button = styled('button')(
+  ({ theme, variant = 'contained', color = 'brand', roundness = 'default' }) => [
+    {
+      minHeight: 48,
+      border: 0,
+      display: 'inline-flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '0.5rem 2rem',
+      cursor: 'pointer',
+      background: 'transparent',
+      borderRadius: theme.vars.borderRadius?.[roundness],
+      '&:focus-visible': theme.focus.default,
+    },
+    theme.typography.button,
+    theme.variant[variant]?.[color],
+    theme.variant[`${variant}Hover`]?.[color],
+    theme.variant[`${variant}Active`]?.[color],
+    theme.variant[`${variant}Disabled`]?.[color],
+  ],
+);
 
-const Badge = styled('span')(({ theme, pattern = 'contained', color = 'brand' }) => [
+const Badge = styled('span')(({ theme, variant = 'contained', color = 'brand' }) => [
   {
     minHeight: 32,
     minWidth: 32,
@@ -409,10 +413,10 @@ const Badge = styled('span')(({ theme, pattern = 'contained', color = 'brand' })
     fontWeight: 600,
     lineHeight: 1,
   },
-  theme.pattern[pattern]?.[color],
+  theme.variant[variant]?.[color],
 ]);
 
-const Avatar = styled('div')(({ theme, pattern = 'filled', color = 'brand' }) => [
+const Avatar = styled('div')(({ theme, variant = 'filled', color = 'brand' }) => [
   theme.typography.h5,
   {
     width: 64,
@@ -423,37 +427,39 @@ const Avatar = styled('div')(({ theme, pattern = 'filled', color = 'brand' }) =>
     justifyContent: 'center',
     alignItems: 'center',
   },
-  theme.pattern[pattern]?.[color],
+  theme.variant[variant]?.[color],
 ]);
 
-const Paper = styled('div')(({ theme, pattern = 'text', color = 'neutral' }) => [
+const Paper = styled('div')(({ theme, variant = 'text', color = 'neutral' }) => [
   {
     minWidth: 100,
     minHeight: 120,
     padding: '1rem',
-    borderRadius: 4,
-    backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
+    backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-bgNeutral-plain))`,
   },
-  theme.pattern[pattern]?.[color],
-  pattern === 'contained' && theme.pattern.containedContext?.[color],
+  theme.variant[variant]?.[color],
+  variant === 'contained' && theme.variant.containedContext?.[color],
 ]);
 
-const IconButton = styled('button')(({ theme, pattern = 'filled', color = 'brand' }) => [
-  {
-    border: 0,
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '0.5rem',
-    borderRadius: '24px',
-    cursor: 'pointer',
-    background: 'transparent',
-  },
-  theme.typography.button,
-  theme.pattern[pattern]?.[color],
-  theme.pattern[`${pattern}Hover`]?.[color],
-  theme.pattern[`${pattern}Disabled`]?.[color],
-]);
+const IconButton = styled('button')(
+  ({ theme, variant = 'filled', color = 'brand', roundness = 'default' }) => [
+    {
+      border: 0,
+      display: 'inline-flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '0.5rem',
+      cursor: 'pointer',
+      background: 'transparent',
+      borderRadius: theme.vars.borderRadius?.[roundness],
+      '&:focus-visible': theme.focus.default,
+    },
+    theme.typography.button,
+    theme.variant[variant]?.[color],
+    theme.variant[`${variant}Hover`]?.[color],
+    theme.variant[`${variant}Disabled`]?.[color],
+  ],
+);
 
 const Divider = styled('hr')(({ theme, color = 'neutral', direction = 'horizontal' }) => [
   {
@@ -461,7 +467,7 @@ const Divider = styled('hr')(({ theme, color = 'neutral', direction = 'horizonta
     alignSelf: 'stretch',
     margin: 0,
     border: 0,
-    backgroundColor: `var(--joy-pattern-outlinedBorder, ${theme.vars.palette[color].outlinedBorder})`,
+    backgroundColor: `var(--joy-variant-outlinedBorder, ${theme.vars.palette[color].outlinedBorder})`,
   },
   direction === 'horizontal' && {
     height: 1,
@@ -473,26 +479,29 @@ const Divider = styled('hr')(({ theme, color = 'neutral', direction = 'horizonta
   },
 ]);
 
-const Input = styled('input')(({ theme, pattern = 'outlined', color = 'neutral' }) => [
-  {
-    minHeight: 48,
-    maxWidth: '100%',
-    border: '2px solid transparent',
-    backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
-    borderRadius: '4px',
-    display: 'inline-flex',
-    alignItems: 'center',
-    padding: '0.5rem 1rem',
-    '&::placeholder': {
-      opacity: 0.72,
-      color: `var(--joy-pattern-${pattern}Color, ${theme.vars.palette.text.detail})`,
+const Input = styled('input')(
+  ({ theme, variant = 'outlined', color = 'neutral', roundness = 'default' }) => [
+    {
+      minHeight: 48,
+      maxWidth: '100%',
+      border: '2px solid transparent',
+      backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-bgNeutral-plain))`,
+      display: 'inline-flex',
+      alignItems: 'center',
+      padding: '0.5rem 1rem',
+      borderRadius: theme.vars.borderRadius?.[roundness],
+      '&:focus-visible': theme.focus.default,
+      '&::placeholder': {
+        opacity: 0.72,
+        color: `var(--joy-variant-${variant}Color, ${theme.vars.palette.text.detail})`,
+      },
     },
-  },
-  theme.typography.body,
-  theme.pattern[pattern]?.[color],
-  theme.pattern[`${pattern}Hover`]?.[color],
-  theme.pattern[`${pattern}Disabled`]?.[color],
-]);
+    theme.typography.body,
+    theme.variant[variant]?.[color],
+    theme.variant[`${variant}Hover`]?.[color],
+    theme.variant[`${variant}Disabled`]?.[color],
+  ],
+);
 
 const Typography = styled('p')(({ theme, variant = 'body' }) => ({
   margin: 0,
@@ -506,406 +515,6 @@ export default function JoyEcommerce() {
       theme={{
         fontFamily: {
           sans: 'Catamaran',
-        },
-        colorSchemes: {
-          light: {
-            palette: {
-              brand: {
-                textColor: 'var(--joy-palette-brand-600)',
-                textHoverBg: 'var(--joy-palette-neutral-100)',
-                textActiveBg: 'var(--joy-palette-neutral-200)',
-                textDisabledColor: 'var(--joy-palette-neutral-300)',
-
-                outlinedColor: 'var(--joy-palette-brand-600)',
-                outlinedBorder: 'var(--joy-palette-neutral-300)',
-                outlinedHoverBg: 'var(--joy-palette-neutral-100)',
-                outlinedHoverBorder: 'var(--joy-palette-neutral-400)',
-                outlinedActiveBg: 'var(--joy-palette-neutral-200)',
-                outlinedDisabledColor: 'var(--joy-palette-neutral-300)',
-                outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
-
-                filledColor: 'var(--joy-palette-brand-700)',
-                filledBg: 'var(--joy-palette-brand-100)',
-                filledHoverBg: 'var(--joy-palette-brand-200)',
-                filledActiveBg: 'var(--joy-palette-brand-300)',
-                filledDisabledColor: 'var(--joy-palette-brand-400)',
-                filledDisableBg: 'var(--joy-palette-brand-50)',
-
-                containedColor: '#fff',
-                containedBg: 'var(--joy-palette-brand-500)',
-                containedHoverBg: 'var(--joy-palette-brand-600)',
-                containedActiveBg: 'var(--joy-palette-brand-400)',
-                containedDisabledBg: 'var(--joy-palette-brand-300)',
-              },
-              neutral: {
-                textColor: 'var(--joy-palette-neutral-600)',
-                textHoverBg: 'var(--joy-palette-neutral-100)',
-                textActiveBg: 'var(--joy-palette-neutral-200)',
-                textDisabledColor: 'var(--joy-palette-neutral-300)',
-
-                outlinedColor: 'var(--joy-palette-neutral-600)',
-                outlinedBorder: 'var(--joy-palette-neutral-200)',
-                outlinedHoverBg: 'var(--joy-palette-neutral-100)',
-                outlinedHoverBorder: 'var(--joy-palette-neutral-300)',
-                outlinedActiveBg: 'var(--joy-palette-neutral-200)',
-                outlinedDisabledColor: 'var(--joy-palette-neutral-300)',
-                outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
-
-                filledColor: 'var(--joy-palette-neutral-700)',
-                filledBg: 'var(--joy-palette-neutral-100)',
-                filledHoverBg: 'var(--joy-palette-neutral-200)',
-                filledActiveBg: 'var(--joy-palette-neutral-300)',
-                filledDisabledColor: 'var(--joy-palette-neutral-400)',
-                filledDisableBg: 'var(--joy-palette-neutral-50)',
-
-                containedColor: '#fff',
-                containedBg: 'var(--joy-palette-neutral-600)',
-                containedHoverBg: 'var(--joy-palette-neutral-700)',
-                containedActiveBg: 'var(--joy-palette-neutral-500)',
-                containedDisabledBg: 'var(--joy-palette-neutral-300)',
-              },
-              bgNeutral: {
-                transparency: 'var(--joy-palette-neutral-50)',
-                plain: '#fff',
-              },
-            },
-          },
-          dark: {
-            palette: {
-              brand: {
-                textColor: 'var(--joy-palette-brand-200)',
-                textHoverBg: 'var(--joy-palette-neutral-800)',
-                textActiveBg: 'var(--joy-palette-neutral-700)',
-                textDisabledColor: 'var(--joy-palette-neutral-500)',
-
-                outlinedColor: 'var(--joy-palette-brand-200)',
-                outlinedBorder: 'var(--joy-palette-neutral-700)',
-                outlinedHoverBg: 'var(--joy-palette-neutral-800)',
-                outlinedHoverBorder: 'var(--joy-palette-neutral-600)',
-                outlinedActiveBg: 'var(--joy-palette-neutral-700)',
-                outlinedDisabledColor: 'var(--joy-palette-neutral-500)',
-                outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
-
-                filledColor: 'var(--joy-palette-brand-300)',
-                filledBg: 'var(--joy-palette-brand-800)',
-                filledHoverBg: 'var(--joy-palette-brand-700)',
-                filledActiveBg: 'var(--joy-palette-brand-600)',
-                filledDisabledColor: 'var(--joy-palette-brand-500)',
-                filledDisableBg: 'var(--joy-palette-brand-800)',
-
-                containedColor: '#fff',
-                containedBg: 'var(--joy-palette-brand-500)',
-                containedHoverBg: 'var(--joy-palette-brand-700)',
-                containedActiveBg: 'var(--joy-palette-brand-500)',
-                containedDisabledBg: 'var(--joy-palette-brand-300)',
-              },
-              neutral: {
-                textColor: 'var(--joy-palette-neutral-200)',
-                textHoverBg: 'var(--joy-palette-neutral-800)',
-                textActiveBg: 'var(--joy-palette-neutral-700)',
-                textDisabledColor: 'var(--joy-palette-neutral-500)',
-
-                outlinedColor: 'var(--joy-palette-neutral-200)',
-                outlinedBorder: 'var(--joy-palette-neutral-700)',
-                outlinedHoverBg: 'var(--joy-palette-neutral-800)',
-                outlinedHoverBorder: 'var(--joy-palette-neutral-600)',
-                outlinedActiveBg: 'var(--joy-palette-neutral-700)',
-                outlinedDisabledColor: 'var(--joy-palette-neutral-500)',
-                outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
-
-                filledColor: 'var(--joy-palette-neutral-200)',
-                filledBg: 'var(--joy-palette-neutral-800)',
-                filledHoverBg: 'var(--joy-palette-neutral-700)',
-                filledActiveBg: 'var(--joy-palette-neutral-600)',
-                filledDisabledColor: 'var(--joy-palette-neutral-500)',
-                filledDisableBg: 'var(--joy-palette-neutral-800)',
-
-                containedColor: '#fff',
-                containedBg: 'var(--joy-palette-neutral-600)',
-                containedHoverBg: 'var(--joy-palette-neutral-700)',
-                containedActiveBg: 'var(--joy-palette-neutral-500)',
-                containedDisabledBg: 'var(--joy-palette-neutral-300)',
-              },
-              bgNeutral: {
-                plain: '#040404',
-                transparency: 'var(--joy-palette-neutral-800)',
-              },
-            },
-          },
-        },
-        pattern: {
-          text: {
-            brand: {
-              color: 'var(--joy-pattern-textColor, var(--joy-palette-brand-textColor))',
-            },
-            neutral: {
-              color: 'var(--joy-pattern-textColor, var(--joy-palette-neutral-textColor))',
-            },
-          },
-          textHover: {
-            brand: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-textHoverBg, var(--joy-palette-brand-textHoverBg))',
-              },
-            },
-            neutral: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-textHoverBg, var(--joy-palette-neutral-textHoverBg))',
-              },
-            },
-          },
-          textActive: {
-            brand: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-textActiveBg, var(--joy-palette-brand-textActiveBg))',
-              },
-            },
-            neutral: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-textActiveBg, var(--joy-palette-neutral-textActiveBg))',
-              },
-            },
-          },
-          textDisabled: {
-            brand: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-textDisabledColor, var(--joy-palette-brand-textDisabledColor))',
-              },
-            },
-            neutral: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-textDisabledColor, var(--joy-palette-neutral-textDisabledColor))',
-              },
-            },
-          },
-          outlined: {
-            brand: {
-              color: 'var(--joy-pattern-outlinedColor, var(--joy-palette-brand-outlinedColor))',
-              border: '1px solid',
-              borderColor:
-                'var(--joy-pattern-outlinedBorder, var(--joy-palette-brand-outlinedBorder))',
-            },
-            neutral: {
-              color: 'var(--joy-pattern-outlinedColor, var(--joy-palette-neutral-outlinedColor))',
-              border: '1px solid',
-              borderColor:
-                'var(--joy-pattern-outlinedBorder, var(--joy-palette-neutral-outlinedBorder))',
-            },
-          },
-          outlinedHover: {
-            brand: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-outlinedHoverBg, var(--joy-palette-brand-outlinedHoverBg))',
-              },
-            },
-            neutral: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-outlinedHoverBg, var(--joy-palette-neutral-outlinedHoverBg))',
-              },
-            },
-          },
-          outlinedActive: {
-            brand: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-outlinedActiveBg, var(--joy-palette-brand-outlinedActiveBg))',
-              },
-            },
-            neutral: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-outlinedActiveBg, var(--joy-palette-neutral-outlinedActiveBg))',
-              },
-            },
-          },
-          outlinedDisabled: {
-            brand: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-outlinedDisabledColor, var(--joy-palette-brand-outlinedDisabledColor))',
-                borderColor:
-                  'var(--joy-pattern-outlinedDisabledBorder, var(--joy-palette-brand-outlinedDisabledBorder))',
-              },
-            },
-            neutral: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-outlinedDisabledColor, var(--joy-palette-neutral-outlinedDisabledColor))',
-                borderColor:
-                  'var(--joy-pattern-outlinedDisabledBorder, var(--joy-palette-neutral-outlinedDisabledBorder))',
-              },
-            },
-          },
-          filled: {
-            brand: {
-              color: 'var(--joy-pattern-filledColor, var(--joy-palette-brand-filledColor))',
-              backgroundColor: 'var(--joy-pattern-filledBg, var(--joy-palette-brand-filledBg))',
-            },
-            neutral: {
-              color: 'var(--joy-pattern-filledColor, var(--joy-palette-neutral-filledColor))',
-              backgroundColor: 'var(--joy-pattern-filledBg, var(--joy-palette-neutral-filledBg))',
-            },
-          },
-          filledHover: {
-            brand: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-filledHoverBg, var(--joy-palette-brand-filledHoverBg))',
-              },
-            },
-            neutral: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-filledHoverBg, var(--joy-palette-neutral-filledHoverBg))',
-              },
-            },
-          },
-          filledActive: {
-            brand: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-filledActiveBg, var(--joy-palette-brand-filledActiveBg))',
-              },
-            },
-            neutral: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-filledActiveBg, var(--joy-palette-neutral-filledActiveBg))',
-              },
-            },
-          },
-          filledDisabled: {
-            brand: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-filledDisabledColor, var(--joy-palette-brand-filledDisabledColor))',
-                backgroundColor:
-                  'var(--joy-pattern-filledDisabledBg, var(--joy-palette-brand-filledDisabledBg))',
-              },
-            },
-            neutral: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-filledDisabledColor, var(--joy-palette-neutral-filledDisabledColor))',
-                backgroundColor:
-                  'var(--joy-pattern-filledDisabledBg, var(--joy-palette-neutral-filledDisabledBg))',
-              },
-            },
-          },
-          contained: {
-            brand: {
-              color: 'var(--joy-palette-brand-containedColor)',
-              backgroundColor: 'var(--joy-palette-brand-containedBg)',
-            },
-            neutral: {
-              color: 'var(--joy-palette-neutral-containedColor)',
-              backgroundColor: 'var(--joy-palette-neutral-containedBg)',
-            },
-          },
-          containedHover: {
-            brand: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor: 'var(--joy-palette-brand-containedHoverBg)',
-              },
-            },
-            neutral: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor: 'var(--joy-palette-neutral-containedHoverBg)',
-              },
-            },
-          },
-          containedActive: {
-            brand: {
-              '&:active': {
-                backgroundColor: 'var(--joy-palette-brand-containedActiveBg)',
-              },
-            },
-            neutral: {
-              '&:active': {
-                backgroundColor: 'var(--joy-palette-neutral-containedActiveBg)',
-              },
-            },
-          },
-          containedDisabled: {
-            brand: {
-              '&.Mui-disabled': {
-                backgroundColor: 'var(--joy-palette-brand-containedDisabledBg)',
-              },
-            },
-            neutral: {
-              '&.Mui-disabled': {
-                backgroundColor: 'var(--joy-palette-neutral-containedDisabledBg)',
-              },
-            },
-          },
-          containedContext: {
-            brand: {
-              '[data-mui-color-scheme="light"] &': {
-                '--joy-pattern-textColor': 'var(--joy-palette-brand-100)',
-                '--joy-pattern-textBg': 'transparent',
-                '--joy-pattern-textHoverBg': 'var(--joy-palette-brand-500)',
-                '--joy-pattern-textActiveBg': 'var(--joy-palette-brand-700)',
-                '--joy-pattern-outlinedColor': '#fff',
-                '--joy-pattern-outlinedBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedHoverBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedBg': 'transparent',
-                '--joy-pattern-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
-                '--joy-pattern-outlinedActiveBg': 'var(--joy-palette-brand-700)',
-                '--joy-pattern-filledColor': '#fff',
-                '--joy-pattern-filledBg': 'rgba(255, 255, 255, 0.2)',
-                '--joy-pattern-filledHoverBg': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-filledActiveBg': 'var(--joy-palette-brand-400)',
-              },
-              '[data-mui-color-scheme="dark"] &': {
-                '--joy-pattern-textColor': '#fff',
-                '--joy-pattern-textBg': 'transparent',
-                '--joy-pattern-textHoverBg': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-textActiveBg': 'var(--joy-palette-brand-500)',
-                '--joy-pattern-outlinedColor': '#fff',
-                '--joy-pattern-outlinedBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedHoverBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedBg': 'transparent',
-                '--joy-pattern-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
-                '--joy-pattern-outlinedActiveBg': 'var(--joy-palette-brand-700)',
-                '--joy-pattern-filledColor': '#fff',
-                '--joy-pattern-filledBg': 'rgba(255, 255, 255, 0.2)',
-                '--joy-pattern-filledHoverBg': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-filledActiveBg': 'var(--joy-palette-brand-400)',
-              },
-            },
-            neutral: {
-              '--joy-pattern-textColor': 'var(--joy-palette-neutral-100)',
-              '--joy-pattern-textBg': 'transparent',
-              '--joy-pattern-textHoverBg': 'var(--joy-palette-neutral-500)',
-              '--joy-pattern-textActiveBg': 'var(--joy-palette-neutral-700)',
-              '--joy-pattern-outlinedColor': '#fff',
-              '--joy-pattern-outlinedBorder': 'var(--joy-palette-neutral-400)',
-              '--joy-pattern-outlinedHoverBorder': 'var(--joy-palette-neutral-400)',
-              '--joy-pattern-outlinedBg': 'transparent',
-              '--joy-pattern-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
-              '--joy-pattern-outlinedActiveBg': 'var(--joy-palette-neutral-700)',
-              '--joy-pattern-filledColor': '#fff',
-              '--joy-pattern-filledBg': 'rgba(255, 255, 255, 0.2)',
-              '--joy-pattern-filledHoverBg': 'var(--joy-palette-neutral-400)',
-              '--joy-pattern-filledActiveBg': 'var(--joy-palette-neutral-400)',
-            },
-          },
         },
       }}
     >
@@ -976,12 +585,12 @@ export default function JoyEcommerce() {
               mb: '2rem',
             }}
           >
-            <Avatar pattern="filled" color="neutral" sx={{ width: '48px', height: '48px' }} />
+            <Avatar variant="filled" color="neutral" sx={{ width: '48px', height: '48px' }} />
             <Typography as="div" variant="h4" sx={{ flexGrow: 1, minWidth: 0 }}>
               Hi, Victoria!
             </Typography>
             <IconButton
-              pattern="text"
+              variant="text"
               color="neutral"
               sx={{
                 borderRadius: '20px',
@@ -1012,10 +621,9 @@ export default function JoyEcommerce() {
             Find the best <br /> clothes for you
           </Typography>
           <Paper
-            pattern="filled"
+            variant="filled"
             sx={{
               py: 0,
-              borderRadius: '20px',
               minHeight: 'unset',
               display: 'flex',
               alignItems: 'center',
@@ -1024,11 +632,11 @@ export default function JoyEcommerce() {
           >
             <Search />
             <Input
-              pattern="text"
+              variant="text"
               placeholder="Search"
               sx={{ backgroundColor: 'unset', flexGrow: 1 }}
             />
-            <IconButton pattern="filled" color="neutral">
+            <IconButton variant="filled" color="neutral">
               <Options />
             </IconButton>
           </Paper>
@@ -1048,7 +656,7 @@ export default function JoyEcommerce() {
             <Box>
               <Box>
                 <Paper
-                  pattern="filled"
+                  variant="filled"
                   sx={{
                     borderRadius: '20px',
                     minHeight: '240px',
@@ -1057,7 +665,7 @@ export default function JoyEcommerce() {
                   }}
                 >
                   <IconButton
-                    pattern="contained"
+                    variant="contained"
                     sx={{
                       borderRadius: '20px',
                       padding: '0.5rem',
@@ -1077,7 +685,7 @@ export default function JoyEcommerce() {
               </Box>
               <Box>
                 <Paper
-                  pattern="filled"
+                  variant="filled"
                   sx={{
                     borderRadius: '20px',
                     minHeight: '160px',
@@ -1092,14 +700,14 @@ export default function JoyEcommerce() {
             </Box>
             <Box>
               <Box>
-                <Paper pattern="filled" sx={{ borderRadius: '20px', minHeight: '200px' }} />
+                <Paper variant="filled" sx={{ borderRadius: '20px', minHeight: '200px' }} />
                 <Typography variant="headingSubtitle">Cotton T-shirt</Typography>
                 <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
                   $59.00
                 </Typography>
               </Box>
               <Box>
-                <Paper pattern="filled" sx={{ borderRadius: '20px', minHeight: '200px' }} />
+                <Paper variant="filled" sx={{ borderRadius: '20px', minHeight: '200px' }} />
                 <Typography variant="headingSubtitle">Cotton T-shirt</Typography>
                 <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
                   $59.00
@@ -1118,19 +726,19 @@ export default function JoyEcommerce() {
           }}
         >
           <Paper
-            pattern="filled"
+            variant="filled"
             sx={{ borderRadius: '28px', position: 'relative', minHeight: 400 }}
           >
             <IconButton
               color="neutral"
-              pattern="text"
+              variant="text"
               sx={{ position: 'absolute', top: '1rem', left: '1rem' }}
             >
               <ArrowBack width="32" height="32" />
             </IconButton>
             <IconButton
               color="neutral"
-              pattern="text"
+              variant="text"
               sx={{ position: 'absolute', top: '1rem', right: '1rem' }}
             >
               <Heart width="32" height="32" />
@@ -1149,10 +757,10 @@ export default function JoyEcommerce() {
                 minWidth: 'unset',
               }}
             >
-              <Paper pattern="filled" sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }} />
-              <Paper pattern="filled" sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }} />
-              <Paper pattern="filled" sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }} />
-              <Paper pattern="filled" sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }} />
+              <Paper variant="filled" sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }} />
+              <Paper variant="filled" sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }} />
+              <Paper variant="filled" sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }} />
+              <Paper variant="filled" sx={{ minWidth: 56, minHeight: 56, borderRadius: '16px' }} />
             </Paper>
           </Paper>
 
@@ -1185,7 +793,7 @@ export default function JoyEcommerce() {
               <Typography sx={{ fontWeight: 600, mb: '0.5rem' }}>Color</Typography>
               <Box sx={{ display: 'flex', gap: '0.75rem' }}>
                 <Avatar
-                  pattern="filled"
+                  variant="filled"
                   sx={{
                     width: '48px',
                     height: '48px',
@@ -1212,7 +820,7 @@ export default function JoyEcommerce() {
                   </Badge>
                 </Avatar>
                 <Avatar
-                  pattern="filled"
+                  variant="filled"
                   sx={{
                     width: '48px',
                     height: '48px',
@@ -1220,7 +828,7 @@ export default function JoyEcommerce() {
                   }}
                 />
                 <Avatar
-                  pattern="filled"
+                  variant="filled"
                   sx={{
                     width: '48px',
                     height: '48px',
@@ -1235,10 +843,10 @@ export default function JoyEcommerce() {
                 <Button color="neutral" sx={{ minWidth: '48px', p: 0 }}>
                   S
                 </Button>
-                <Button color="neutral" pattern="filled" sx={{ minWidth: '48px', p: 0 }}>
+                <Button color="neutral" variant="filled" sx={{ minWidth: '48px', p: 0 }}>
                   M
                 </Button>
-                <Button color="neutral" pattern="filled" sx={{ minWidth: '48px', p: 0 }}>
+                <Button color="neutral" variant="filled" sx={{ minWidth: '48px', p: 0 }}>
                   L
                 </Button>
               </Box>
@@ -1275,7 +883,7 @@ export default function JoyEcommerce() {
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <IconButton color="neutral" pattern="text">
+            <IconButton color="neutral" variant="text">
               <ArrowBack width="32" height="32" />
             </IconButton>
             <Typography variant="h5" sx={{ textAlign: 'center', flexGrow: 1 }}>
@@ -1283,7 +891,7 @@ export default function JoyEcommerce() {
             </Typography>
             <IconButton
               color="neutral"
-              pattern="text"
+              variant="text"
               sx={{
                 position: 'relative',
               }}
@@ -1323,7 +931,7 @@ export default function JoyEcommerce() {
                   <Typography sx={{ fontWeight: 'bold' }}>$199.00</Typography>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     <IconButton
-                      pattern="outlined"
+                      variant="outlined"
                       color="neutral"
                       sx={{ borderRadius: '20px', padding: '0.25rem' }}
                     >
@@ -1331,7 +939,7 @@ export default function JoyEcommerce() {
                     </IconButton>
                     <Typography variant="h5">1</Typography>
                     <IconButton
-                      pattern="outlined"
+                      variant="outlined"
                       color="neutral"
                       sx={{ borderRadius: '20px', padding: '0.25rem' }}
                     >
@@ -1349,7 +957,7 @@ export default function JoyEcommerce() {
                   <Typography variant="headingIntro" sx={{ textAlign: 'center' }}>
                     L
                   </Typography>
-                  <IconButton pattern="text">
+                  <IconButton variant="text">
                     <Trash />
                   </IconButton>
                 </Box>
@@ -1358,7 +966,7 @@ export default function JoyEcommerce() {
           </Box>
 
           <Paper
-            pattern="filled"
+            variant="filled"
             sx={{
               p: '0.25rem',
               minHeight: 'unset',
@@ -1369,7 +977,7 @@ export default function JoyEcommerce() {
             }}
           >
             <Input
-              pattern="text"
+              variant="text"
               placeholder="Promo code"
               sx={{ flexGrow: 1, bgcolor: 'unset', borderRadius: '20px' }}
             />
