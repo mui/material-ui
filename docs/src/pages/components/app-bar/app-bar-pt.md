@@ -78,7 +78,7 @@ function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* content */}</Toolbar>
+        <Toolbar>{/* conteúdo */}</Toolbar>
       </AppBar>
       <Offset />
     </React.Fragment>
@@ -131,14 +131,14 @@ function HideOnScroll(props) {
   const trigger = useScrollTrigger();
   return (
     <Slide in={!trigger}>
-      <div>Hello</div>
+      <div>Olá</div>
     </Slide>
   );
 }
 ```
 
-## Enable color on dark
+## Habilitar cor no modo escuro
 
-Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode. Você pode sobrescrever esse comportamento definindo a propriedade ` enableColorOnDark` para `true`.
+Seguindo as [diretrizes do Material Design](https://material.io/design/color/dark-theme.html), a propriedade `color` não tem efeito sobre a aparência da barra de aplicativos no modo escuro. Você pode sobrescrever esse comportamento definindo a propriedade `enableColorOnDark` para `true`.
 
 {{"demo": "pages/components/app-bar/EnableColorOnDarkAppBar.js", "bg": true}}
