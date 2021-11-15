@@ -94,27 +94,19 @@ describe('<SpeedDial />', () => {
     const actions = getAllByRole('menuitem');
 
     fireEvent.mouseEnter(fab);
-    act(() => {
-      clock.runAll();
-    });
+    clock.runAll();
     expect(fab).to.have.attribute('aria-expanded', 'true');
 
     fireEvent.mouseOver(actions[0]);
-    act(() => {
-      clock.runAll();
-    });
+    clock.runAll();
     expect(queryByRole('tooltip')).not.to.equal(null);
 
     fireEvent.mouseLeave(actions[0]);
-    act(() => {
-      clock.runAll();
-    });
+    clock.runAll();
     expect(fab).to.have.attribute('aria-expanded', 'false');
 
     fireEvent.mouseEnter(fab);
-    act(() => {
-      clock.runAll();
-    });
+    clock.runAll();
     expect(queryByRole('tooltip')).to.equal(null);
     expect(fab).to.have.attribute('aria-expanded', 'true');
   });
@@ -171,9 +163,7 @@ describe('<SpeedDial />', () => {
         );
         const actions = getAllByRole('menuitem');
         fireEvent.mouseOver(actions[0]);
-        act(() => {
-          clock.runAll();
-        });
+        clock.runAll();
         expect(getByRole('tooltip').firstChild).to.have.class(tooltipClasses[className]);
       });
     });
@@ -192,9 +182,7 @@ describe('<SpeedDial />', () => {
       act(() => {
         fab.focus();
       });
-      act(() => {
-        clock.tick();
-      });
+      clock.tick();
 
       expect(handleOpen.callCount).to.equal(1);
       const actions = getAllByRole('menuitem');
@@ -218,30 +206,22 @@ describe('<SpeedDial />', () => {
       act(() => {
         fab.focus();
       });
-      act(() => {
-        clock.runAll();
-      });
+      clock.runAll();
 
       expect(fab).to.have.attribute('aria-expanded', 'true');
 
       fireEvent.keyDown(fab, { key: 'ArrowUp' });
-      act(() => {
-        clock.runAll();
-      });
+      clock.runAll();
       expect(queryByRole('tooltip')).not.to.equal(null);
 
       fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' });
-      act(() => {
-        clock.runAll();
-      });
+      clock.runAll();
 
       expect(queryByRole('tooltip')).to.equal(null);
       expect(fab).to.have.attribute('aria-expanded', 'false');
       expect(fab).toHaveFocus();
 
-      act(() => {
-        clock.runAll();
-      });
+      clock.runAll();
 
       expect(queryByRole('tooltip')).to.equal(null);
       expect(fab).to.have.attribute('aria-expanded', 'false');

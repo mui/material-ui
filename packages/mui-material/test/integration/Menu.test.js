@@ -318,10 +318,8 @@ describe('<Menu /> integration', () => {
     });
 
     // react-transition-group uses one commit per state transition so we need to wait a bit
-    act(() => {
-      fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
-      clock.tick(0);
-    });
+    fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
+    clock.tick(0);
 
     expect(screen.getByRole('menu', { hidden: true })).toBeInaccessible();
   });
@@ -336,8 +334,8 @@ describe('<Menu /> integration', () => {
 
     act(() => {
       getByTestId('Backdrop').click();
-      clock.tick(0);
     });
+    clock.tick(0);
 
     expect(getByRole('menu', { hidden: true })).toBeInaccessible();
   });

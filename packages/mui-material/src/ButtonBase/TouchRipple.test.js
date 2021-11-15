@@ -190,15 +190,13 @@ describe('<TouchRipple />', () => {
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      act(() => {
-        clock.tick(DELAY_RIPPLE);
-      });
+      clock.tick(DELAY_RIPPLE);
 
       expect(queryAllActiveRipples()).to.have.lengthOf(1);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
+      clock.tick(DELAY_RIPPLE);
       act(() => {
-        clock.tick(DELAY_RIPPLE);
         instance.stop({ type: 'touchend' }, cb);
       });
 
@@ -219,9 +217,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      act(() => {
-        clock.tick(DELAY_RIPPLE / 2);
-      });
+      clock.tick(DELAY_RIPPLE / 2);
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
@@ -233,9 +229,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllActiveRipples()).to.have.lengthOf(1);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      act(() => {
-        clock.tick(1);
-      });
+      clock.tick(1);
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(1);

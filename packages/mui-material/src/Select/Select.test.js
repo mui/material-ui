@@ -591,15 +591,11 @@ describe('<Select />', () => {
       );
 
       fireEvent.mouseDown(getByRole('button'));
-      act(() => {
-        clock.tick(99);
-      });
+      clock.tick(99);
 
       expect(onEntered.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(1);
-      });
+      clock.tick(1);
 
       expect(onEntered.callCount).to.equal(1);
     });
@@ -724,9 +720,7 @@ describe('<Select />', () => {
       // It's desired that this fails one day. The additional tick required to remove
       // this from the DOM is not a feature
       expect(getByRole('listbox', { hidden: true })).toBeInaccessible();
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
 
       expect(queryByRole('listbox', { hidden: true })).to.equal(null);
     });

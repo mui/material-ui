@@ -462,16 +462,12 @@ describe('<Tabs />', () => {
         }),
       });
       forceUpdate();
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(hasLeftScrollButton(container)).to.equal(true);
       expect(hasRightScrollButton(container)).to.equal(true);
       tablistContainer.scrollLeft = 0;
       fireEvent.scroll(container.querySelector(`.${classes.scroller}.${classes.scrollableX}`));
-      act(() => {
-        clock.tick(166);
-      });
+      clock.tick(166);
 
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(true);
@@ -573,17 +569,15 @@ describe('<Tabs />', () => {
         }),
       });
       forceUpdate();
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(hasLeftScrollButton(container)).to.equal(true);
       expect(hasRightScrollButton(container)).to.equal(true);
       tablistContainer.scrollLeft = 0;
 
       act(() => {
         window.dispatchEvent(new window.Event('resize', {}));
-        clock.tick(166);
       });
+      clock.tick(166);
 
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(true);
@@ -685,23 +679,17 @@ describe('<Tabs />', () => {
       Object.defineProperty(tablistContainer, 'scrollWidth', { value: 100 + 50 + 100 });
       tablistContainer.scrollLeft = 20;
       forceUpdate();
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(hasLeftScrollButton(container)).to.equal(true);
       expect(hasRightScrollButton(container)).to.equal(true);
 
       fireEvent.click(findScrollButton(container, 'left'));
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(tablistContainer.scrollLeft).not.to.be.above(0);
 
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(tablistContainer.scrollLeft).equal(100);
     });
   });
@@ -738,9 +726,7 @@ describe('<Tabs />', () => {
         right: 30,
       });
       forceUpdate();
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(tablistContainer.scrollLeft).to.equal(0);
     });
   });

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
+import { describeConformance, createRenderer, fireEvent } from 'test/utils';
 import Icon from '@mui/material/Icon';
 import Tooltip from '@mui/material/Tooltip';
 import { fabClasses } from '@mui/material/Fab';
@@ -34,9 +34,7 @@ describe('<SpeedDialAction />', () => {
     );
 
     fireEvent.mouseOver(container.querySelector('button'));
-    act(() => {
-      clock.tick(100);
-    });
+    clock.tick(100);
 
     expect(getByText('placeholder')).to.have.class('bar');
   });

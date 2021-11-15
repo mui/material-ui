@@ -526,10 +526,8 @@ describe('<Modal />', () => {
         act(() => {
           getByTestId('foreign-input').focus();
         });
-        act(() => {
-          // wait for the `contain` interval check to kick in.
-          clock.tick(500);
-        });
+        // wait for the `contain` interval check to kick in.
+        clock.tick(500);
 
         expect(getByTestId('foreign-input')).toHaveFocus();
       });
@@ -554,9 +552,7 @@ describe('<Modal />', () => {
         }
         render(<TestCase />);
         // exit transition started
-        act(() => {
-          clock.tick(timeout);
-        });
+        clock.tick(timeout);
         expect(document.querySelector('#modal-body')).to.equal(null);
       });
     });
@@ -616,18 +612,14 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
 
       setProps({ open: true });
-      act(() => {
-        clock.runToLast();
-      });
+      clock.runToLast();
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(0);
       expect(document.body.style).to.have.property('overflow', 'hidden');
 
       setProps({ open: false });
-      act(() => {
-        clock.runToLast();
-      });
+      clock.runToLast();
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(1);
@@ -693,9 +685,7 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
 
       setProps({ open: true });
-      act(() => {
-        clock.runToLast();
-      });
+      clock.runToLast();
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(0);
@@ -751,9 +741,7 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
 
       setProps({ open: true });
-      act(() => {
-        clock.runToLast();
-      });
+      clock.runToLast();
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(0);
@@ -767,9 +755,7 @@ describe('<Modal />', () => {
       expect(handleExited.callCount).to.equal(0);
       expect(document.body.style).to.have.property('overflow', '');
 
-      act(() => {
-        clock.runToLast();
-      });
+      clock.runToLast();
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(1);
