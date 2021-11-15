@@ -7,7 +7,7 @@ githubLabel: 'component: CssBaseline'
 
 <p class="description">MUI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
 
-[A paleta](/system/palette/) com funções de estilo.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Reset global
 
