@@ -22,7 +22,7 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 Assistente horizontal é ideal quando o conteúdo de uma etapa depende de uma etapa anterior.
 
-{{"demo": "pages/components/steppers/HorizontalLinearStepper.js", "bg": true}}
+Avoid using long step names in horizontal steppers.
 
 ### Linear
 
