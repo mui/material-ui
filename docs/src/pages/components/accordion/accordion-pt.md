@@ -14,9 +14,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them. Anteriormente, ele era formalmente conhecido como "painel de expansão".
+> **Nota:** Os acordeões não estão mais documentados nas [diretrizes do Material Design](https://material.io/), mas MUI continuará a suportá-los. Anteriormente, ele era formalmente conhecido como "painel de expansão".
 
-## Painel de Expansão Simples
+## Acordeão básico
 
 {{"demo": "pages/components/accordion/BasicAccordion.js", "bg": true}}
 
