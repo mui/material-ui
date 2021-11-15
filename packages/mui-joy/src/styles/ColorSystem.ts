@@ -5,7 +5,35 @@ import React from 'react';
  * Developer facing types, they can augment these types.
  * ====================================================
  */
-export interface PaletteRange {
+
+export interface PaletteVariant {
+  textColor: string;
+  textHoverBg: string;
+  textActiveBg: string;
+  textDisabledColor: string;
+
+  outlinedColor: string;
+  outlinedBorder: string;
+  outlinedHoverBg: string;
+  outlinedHoverBorder: string;
+  outlinedActiveBg: string;
+  outlinedDisabledColor: string;
+  outlinedDisabledBorder: string;
+
+  filledColor: string;
+  filledBg: string;
+  filledHoverBg: string;
+  filledActiveBg: string;
+  filledDisabledColor: string;
+  filledDisableBg: string;
+
+  containedColor: string;
+  containedBg: string;
+  containedHoverBg: string;
+  containedActiveBg: string;
+  containedDisabledBg: string;
+}
+export interface PaletteRange extends PaletteVariant {
   50: string;
   100: string;
   200: string;
