@@ -2,7 +2,7 @@
 
 <p class="description">Este pacote hospeda os componentes da incubadora que ainda não estão prontos para mover para o core.</p>
 
-A principal diferença entre o lab e o core (núcleo) é como os componentes são versionados. Having a separate lab package allows us to release breaking changes when necessary while the core package follows a [slower-moving policy](https://mui.com/versions/#release-frequency).
+A principal diferença entre o lab e o core (núcleo) é como os componentes são versionados. Ter um pacote separado para o lab nos permite liberar alterações críticas quando necessário, enquanto o pacote core segue uma [política de liberação mais controlada](https://mui.com/versions/#release-frequency).
 
 À medida que os desenvolvedores usam, testam os componentes e relatam problemas, os mantenedores aprendem mais sobre as deficiências dos componentes: recursos ausentes, problemas de acessibilidade, bugs, design de API, etc. Quanto mais antigo e mais usado for um componente, menor é a probabilidade de novos problemas serem encontrados e, consequentemente, necessidades de alterações críticas serem feitas.
 
@@ -21,19 +21,19 @@ Instale o pacote no diretório do seu projeto com:
 
 ```sh
 // usando npm
-npm install @material-ui/lab
+npm install @mui/lab
 
 // usando yarn
-yarn add @material-ui/lab
+yarn add @mui/lab
 ```
 
-O lab tem dependências com os componentes do core. If you are not already using MUI in your project, you can install it with:
+O lab tem dependências com os componentes do core. Se você ainda não está utilizando o MUI em seu projeto, poderá instalá-lo com:
 
 ```sh
-// with npm
+// usando npm
 npm install @mui/material
 
-// with yarn
+// usando yarn
 yarn add @mui/material
 ```
 
@@ -42,9 +42,9 @@ yarn add @mui/material
 Para se beneficiar de [CSS overrides](/customization/theme-components/#global-style-overrides) e [customização de propriedades padrão](/customization/theme-components/#default-props) com o tema, usuários de TypeScript precisam importar os seguintes tipos. Internamente, ele usa [ampliação de módulos](/guides/typescript/#customization-of-theme) para estender a estrutura padrão do tema com os componentes de extensão disponíveis no lab.
 
 ```tsx
-// When using TypeScript 4.x and above
+// Quando utilizando TypeScript 4.x e acima
 import type {} from '@mui/lab/themeAugmentation';
-// When using TypeScript 3.x and below
+// Quando utilizando TypeScript 3.x e abaixo
 import '@mui/lab/themeAugmentation';
 
 const theme = createTheme({
