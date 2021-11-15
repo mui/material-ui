@@ -105,7 +105,7 @@ const PushButton = styled('button', {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  selected ? theme.pattern.filled?.brand : theme.pattern.text?.neutral,
+  selected ? theme.variant.filled?.brand : theme.variant.text?.neutral,
 ]);
 
 const ColorSchemePicker = () => {
@@ -127,7 +127,7 @@ const ColorSchemePicker = () => {
         minHeight: '48px',
         border: '1px solid',
         borderRadius: '24px',
-        ...theme.pattern.outlined.brand,
+        ...theme.variant.outlined.brand,
       })}
     >
       <Box sx={{ display: 'flex', gap: '8px', p: '6px' }}>
@@ -155,7 +155,7 @@ const ColorSchemePicker = () => {
   );
 };
 
-const Button = styled('button')(({ theme, pattern = 'contained', color = 'brand' }) => [
+const Button = styled('button')(({ theme, variant = 'contained', color = 'brand' }) => [
   {
     minHeight: 48,
     border: 0,
@@ -169,13 +169,13 @@ const Button = styled('button')(({ theme, pattern = 'contained', color = 'brand'
     '&:focus-visible': theme.focus.default,
   },
   theme.typography.button,
-  theme.pattern[pattern]?.[color],
-  theme.pattern[`${pattern}Hover`]?.[color],
-  theme.pattern[`${pattern}Active`]?.[color],
-  theme.pattern[`${pattern}Disabled`]?.[color],
+  theme.variant[variant]?.[color],
+  theme.variant[`${variant}Hover`]?.[color],
+  theme.variant[`${variant}Active`]?.[color],
+  theme.variant[`${variant}Disabled`]?.[color],
 ]);
 
-const Badge = styled('span')(({ theme, pattern = 'contained', color = 'brand' }) => [
+const Badge = styled('span')(({ theme, variant = 'contained', color = 'brand' }) => [
   {
     minHeight: 32,
     minWidth: 32,
@@ -188,10 +188,10 @@ const Badge = styled('span')(({ theme, pattern = 'contained', color = 'brand' })
     fontWeight: 600,
     lineHeight: 1,
   },
-  theme.pattern[pattern]?.[color],
+  theme.variant[variant]?.[color],
 ]);
 
-const Avatar = styled('div')(({ theme, pattern = 'filled', color = 'brand' }) => [
+const Avatar = styled('div')(({ theme, variant = 'filled', color = 'brand' }) => [
   theme.typography.h5,
   {
     width: 64,
@@ -202,28 +202,25 @@ const Avatar = styled('div')(({ theme, pattern = 'filled', color = 'brand' }) =>
     justifyContent: 'center',
     alignItems: 'center',
   },
-  theme.pattern[pattern]?.[color],
+  theme.variant[variant]?.[color],
 ]);
 
 const Paper = styled('div')(
-  ({ theme, pattern = 'text', color = 'neutral', enableContext = false, elevation }) => {
-    console.log('theme', theme);
-    return [
-      {
-        minWidth: 100,
-        minHeight: 120,
-        padding: '1rem',
-        borderRadius: 4,
-        backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
-        boxShadow: theme.elevation?.[elevation],
-      },
-      theme.pattern[pattern]?.[color],
-      enableContext && pattern === 'contained' && theme.pattern.containedContext?.[color],
-    ];
-  },
+  ({ theme, variant = 'text', color = 'neutral', enableContext = false, elevation }) => [
+    {
+      minWidth: 100,
+      minHeight: 120,
+      padding: '1rem',
+      borderRadius: 4,
+      backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-bgNeutral-plain))`,
+      boxShadow: theme.elevation?.[elevation],
+    },
+    theme.variant[variant]?.[color],
+    enableContext && variant === 'contained' && theme.variant.containedContext?.[color],
+  ],
 );
 
-const List = styled('ul')(({ theme, pattern = 'text', color = 'neutral' }) => [
+const List = styled('ul')(({ theme, variant = 'text', color = 'neutral' }) => [
   {
     display: 'flex',
     width: '100%',
@@ -233,12 +230,12 @@ const List = styled('ul')(({ theme, pattern = 'text', color = 'neutral' }) => [
     padding: '0.5rem 0.25rem',
     borderRadius: 4,
     margin: 0,
-    backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
+    backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-bgNeutral-plain))`,
   },
-  theme.pattern[pattern]?.[color],
+  theme.variant[variant]?.[color],
 ]);
 
-const ListItem = styled('li')(({ theme, pattern = 'text', color = 'neutral' }) => [
+const ListItem = styled('li')(({ theme, variant = 'text', color = 'neutral' }) => [
   theme.typography.body,
   {
     padding: '0.25rem 0.5rem',
@@ -247,12 +244,12 @@ const ListItem = styled('li')(({ theme, pattern = 'text', color = 'neutral' }) =
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  theme.pattern[pattern]?.[color],
-  theme.pattern[`${pattern}Hover`]?.[color],
-  theme.pattern[`${pattern}Disabled`]?.[color],
+  theme.variant[variant]?.[color],
+  theme.variant[`${variant}Hover`]?.[color],
+  theme.variant[`${variant}Disabled`]?.[color],
 ]);
 
-const IconButton = styled('button')(({ theme, pattern = 'filled', color = 'brand' }) => [
+const IconButton = styled('button')(({ theme, variant = 'filled', color = 'brand' }) => [
   {
     border: 0,
     display: 'inline-flex',
@@ -265,34 +262,34 @@ const IconButton = styled('button')(({ theme, pattern = 'filled', color = 'brand
     '&:focus-visible': theme.focus.default,
   },
   theme.typography.button,
-  theme.pattern[pattern]?.[color],
-  theme.pattern[`${pattern}Hover`]?.[color],
-  theme.pattern[`${pattern}Disabled`]?.[color],
+  theme.variant[variant]?.[color],
+  theme.variant[`${variant}Hover`]?.[color],
+  theme.variant[`${variant}Disabled`]?.[color],
 ]);
 
-const Input = styled('input')(({ theme, pattern = 'outlined', color = 'neutral' }) => [
+const Input = styled('input')(({ theme, variant = 'outlined', color = 'neutral' }) => [
   {
     minHeight: 48,
     maxWidth: '100%',
     border: '2px solid transparent',
-    backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
+    backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-bgNeutral-plain))`,
     borderRadius: '4px',
     display: 'inline-flex',
     alignItems: 'center',
     padding: '0.5rem 1rem',
     '&::placeholder': {
       opacity: 0.72,
-      color: `var(--joy-pattern-${pattern}Color, ${theme.vars.palette.text.detail})`,
+      color: `var(--joy-variant-${variant}Color, ${theme.vars.palette.text.detail})`,
     },
     '&:focus-visible': theme.focus.default,
   },
   theme.typography.body,
-  theme.pattern[pattern]?.[color],
-  theme.pattern[`${pattern}Hover`]?.[color],
-  theme.pattern[`${pattern}Disabled`]?.[color],
+  theme.variant[variant]?.[color],
+  theme.variant[`${variant}Hover`]?.[color],
+  theme.variant[`${variant}Disabled`]?.[color],
 ]);
 
-const Chip = styled('div')(({ theme, pattern = 'outlined', color = 'neutral' }) => [
+const Chip = styled('div')(({ theme, variant = 'outlined', color = 'neutral' }) => [
   {
     borderRadius: '24px',
     minHeight: '40px',
@@ -300,10 +297,10 @@ const Chip = styled('div')(({ theme, pattern = 'outlined', color = 'neutral' }) 
     alignItems: 'center',
     padding: '6px 12px',
   },
-  theme.pattern[pattern]?.[color],
+  theme.variant[variant]?.[color],
 ]);
 
-const Tabs = styled('div')(({ theme, pattern = 'text', color = 'neutral' }) => [
+const Tabs = styled('div')(({ theme, variant = 'text', color = 'neutral' }) => [
   {
     display: 'flex',
     gap: '0.5rem',
@@ -312,403 +309,13 @@ const Tabs = styled('div')(({ theme, pattern = 'text', color = 'neutral' }) => [
     borderRadius: 40,
     backgroundColor: 'var(--joy-palette-bgNeutral-plain)',
   },
-  theme.pattern[pattern]?.[color],
-  pattern === 'contained' && theme.pattern.containedContext?.[color],
+  theme.variant[variant]?.[color],
+  variant === 'contained' && theme.variant.containedContext?.[color],
 ]);
 
 export default function JoyVariants() {
   return (
-    <CssVarsProvider
-      defaultMode="system"
-      theme={{
-        colorSchemes: {
-          light: {
-            palette: {
-              brand: {
-                textColor: 'var(--joy-palette-brand-600)',
-                textHoverBg: 'var(--joy-palette-neutral-100)',
-                textActiveBg: 'var(--joy-palette-neutral-200)',
-                textDisabledColor: 'var(--joy-palette-neutral-300)',
-                outlinedBorder: 'var(--joy-palette-neutral-300)',
-                outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
-                filledColor: 'var(--joy-palette-brand-700)',
-                filledBg: 'var(--joy-palette-brand-100)',
-                filledHoverBg: 'var(--joy-palette-brand-200)',
-                filledActiveBg: 'var(--joy-palette-brand-300)',
-                filledDisabledColor: 'var(--joy-palette-brand-400)',
-                filledDisableBg: 'var(--joy-palette-brand-50)',
-                containedColor: '#fff',
-                containedBg: 'var(--joy-palette-brand-600)',
-                containedHoverBg: 'var(--joy-palette-brand-700)',
-                containedActiveBg: 'var(--joy-palette-brand-500)',
-                containedDisabledBg: 'var(--joy-palette-brand-300)',
-              },
-              neutral: {
-                textColor: 'var(--joy-palette-neutral-600)',
-                textHoverBg: 'var(--joy-palette-neutral-100)',
-                textActiveBg: 'var(--joy-palette-neutral-200)',
-                textDisabledColor: 'var(--joy-palette-neutral-300)',
-                outlinedBorder: 'var(--joy-palette-neutral-300)',
-                outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
-                filledColor: 'var(--joy-palette-neutral-700)',
-                filledBg: 'var(--joy-palette-neutral-100)',
-                filledHoverBg: 'var(--joy-palette-neutral-200)',
-                filledActiveBg: 'var(--joy-palette-neutral-300)',
-                filledDisabledColor: 'var(--joy-palette-neutral-400)',
-                filledDisableBg: 'var(--joy-palette-neutral-50)',
-                containedColor: '#fff',
-                containedBg: 'var(--joy-palette-neutral-600)',
-                containedHoverBg: 'var(--joy-palette-neutral-700)',
-                containedActiveBg: 'var(--joy-palette-neutral-500)',
-                containedDisabledBg: 'var(--joy-palette-neutral-300)',
-              },
-              bgNeutral: {
-                transparency: 'var(--joy-palette-neutral-50)',
-                plain: '#fff',
-              },
-              // focus
-              focusedOutline: 'var(--joy-palette-brand-200)',
-            },
-            elevationRing: '0 0 0 1px var(--joy-palette-neutral-100)',
-          },
-          dark: {
-            palette: {
-              brand: {
-                textColor: 'var(--joy-palette-brand-200)',
-                textHoverBg: 'var(--joy-palette-neutral-800)',
-                textActiveBg: 'var(--joy-palette-neutral-700)',
-                textDisabledColor: 'var(--joy-palette-neutral-500)',
-                outlinedBorder: 'var(--joy-palette-neutral-700)',
-                outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
-                filledColor: 'var(--joy-palette-brand-100)',
-                filledBg: 'var(--joy-palette-brand-800)',
-                filledHoverBg: 'var(--joy-palette-brand-700)',
-                filledActiveBg: 'var(--joy-palette-brand-600)',
-                filledDisabledColor: 'var(--joy-palette-brand-500)',
-                filledDisableBg: 'var(--joy-palette-brand-800)',
-                containedColor: '#fff',
-                containedBg: 'var(--joy-palette-brand-500)',
-                containedHoverBg: 'var(--joy-palette-brand-700)',
-                containedActiveBg: 'var(--joy-palette-brand-500)',
-                containedDisabledBg: 'var(--joy-palette-brand-300)',
-              },
-              neutral: {
-                textColor: 'var(--joy-palette-neutral-200)',
-                textHoverBg: 'var(--joy-palette-neutral-800)',
-                textActiveBg: 'var(--joy-palette-neutral-700)',
-                textDisabledColor: 'var(--joy-palette-neutral-500)',
-                outlinedBorder: 'var(--joy-palette-neutral-700)',
-                outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
-                filledColor: 'var(--joy-palette-neutral-200)',
-                filledBg: 'var(--joy-palette-neutral-800)',
-                filledHoverBg: 'var(--joy-palette-neutral-700)',
-                filledActiveBg: 'var(--joy-palette-neutral-600)',
-                filledDisabledColor: 'var(--joy-palette-neutral-500)',
-                filledDisableBg: 'var(--joy-palette-neutral-800)',
-                containedColor: '#fff',
-                containedBg: 'var(--joy-palette-neutral-600)',
-                containedHoverBg: 'var(--joy-palette-neutral-700)',
-                containedActiveBg: 'var(--joy-palette-neutral-500)',
-                containedDisabledBg: 'var(--joy-palette-neutral-300)',
-              },
-              bgNeutral: {
-                plain: '#040404',
-              },
-              // focus
-              focusedOutline: 'var(--joy-palette-brand-400)',
-            },
-            elevationRing: '0 0 0 1px var(--joy-palette-neutral-700)',
-          },
-        },
-        pattern: {
-          text: {
-            brand: {
-              color: 'var(--joy-pattern-textColor, var(--joy-palette-brand-textColor))',
-            },
-            neutral: {
-              color: 'var(--joy-pattern-textColor, var(--joy-palette-neutral-textColor))',
-            },
-          },
-          textHover: {
-            brand: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-textHoverBg, var(--joy-palette-brand-textHoverBg))',
-              },
-            },
-            neutral: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-textHoverBg, var(--joy-palette-neutral-textHoverBg))',
-              },
-            },
-          },
-          textActive: {
-            brand: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-textActiveBg, var(--joy-palette-brand-textActiveBg))',
-              },
-            },
-            neutral: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-textActiveBg, var(--joy-palette-neutral-textActiveBg))',
-              },
-            },
-          },
-          textDisabled: {
-            brand: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-textDisabledColor, var(--joy-palette-brand-textDisabledColor))',
-              },
-            },
-            neutral: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-textDisabledColor, var(--joy-palette-neutral-textDisabledColor))',
-              },
-            },
-          },
-          outlined: {
-            brand: {
-              color: 'var(--joy-pattern-outlinedColor, var(--joy-palette-brand-textColor))',
-              border: '1px solid',
-              borderColor:
-                'var(--joy-pattern-outlinedBorder, var(--joy-palette-brand-outlinedBorder))',
-            },
-            neutral: {
-              color: 'var(--joy-pattern-outlinedColor, var(--joy-palette-neutral-textColor))',
-              border: '1px solid',
-              borderColor:
-                'var(--joy-pattern-outlinedBorder, var(--joy-palette-neutral-outlinedBorder))',
-            },
-          },
-          outlinedHover: {
-            brand: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-outlinedHoverBg, var(--joy-palette-brand-textHoverBg))',
-              },
-            },
-            neutral: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-textHoverBg, var(--joy-palette-neutral-textHoverBg))',
-              },
-            },
-          },
-          outlinedActive: {
-            brand: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-outlinedActiveBg, var(--joy-palette-brand-textActiveBg))',
-              },
-            },
-            neutral: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-textActiveBg, var(--joy-palette-neutral-textActiveBg))',
-              },
-            },
-          },
-          outlinedDisabled: {
-            brand: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-textDisabledColor, var(--joy-palette-brand-textDisabledColor))',
-                borderColor:
-                  'var(--joy-pattern-outlinedDisabledBorder, var(--joy-palette-brand-outlinedDisabledBorder))',
-              },
-            },
-            neutral: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-textDisabledColor, var(--joy-palette-neutral-textDisabledColor))',
-                borderColor:
-                  'var(--joy-pattern-outlinedDisabledBorder, var(--joy-palette-neutral-outlinedDisabledBorder))',
-              },
-            },
-          },
-          filled: {
-            brand: {
-              color: 'var(--joy-pattern-filledColor, var(--joy-palette-brand-filledColor))',
-              backgroundColor: 'var(--joy-pattern-filledBg, var(--joy-palette-brand-filledBg))',
-            },
-            neutral: {
-              color: 'var(--joy-pattern-filledColor, var(--joy-palette-neutral-filledColor))',
-              backgroundColor: 'var(--joy-pattern-filledBg, var(--joy-palette-neutral-filledBg))',
-            },
-          },
-          filledHover: {
-            brand: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-filledHoverBg, var(--joy-palette-brand-filledHoverBg))',
-              },
-            },
-            neutral: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-filledHoverBg, var(--joy-palette-neutral-filledHoverBg))',
-              },
-            },
-          },
-          filledActive: {
-            brand: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-filledActiveBg, var(--joy-palette-brand-filledActiveBg))',
-              },
-            },
-            neutral: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-filledActiveBg, var(--joy-palette-neutral-filledActiveBg))',
-              },
-            },
-          },
-          filledDisabled: {
-            brand: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-filledDisabledColor, var(--joy-palette-brand-filledDisabledColor))',
-                backgroundColor:
-                  'var(--joy-pattern-filledDisabledBg, var(--joy-palette-brand-filledDisabledBg))',
-              },
-            },
-            neutral: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-filledDisabledColor, var(--joy-palette-neutral-filledDisabledColor))',
-                backgroundColor:
-                  'var(--joy-pattern-filledDisabledBg, var(--joy-palette-neutral-filledDisabledBg))',
-              },
-            },
-          },
-          contained: {
-            brand: {
-              color: 'var(--joy-palette-brand-containedColor)',
-              backgroundColor: 'var(--joy-palette-brand-containedBg)',
-            },
-            neutral: {
-              color: 'var(--joy-palette-neutral-containedColor)',
-              backgroundColor: 'var(--joy-palette-neutral-containedBg)',
-            },
-          },
-          containedHover: {
-            brand: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor: 'var(--joy-palette-brand-containedHoverBg)',
-              },
-            },
-            neutral: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor: 'var(--joy-palette-neutral-containedHoverBg)',
-              },
-            },
-          },
-          containedActive: {
-            brand: {
-              '&:active': {
-                backgroundColor: 'var(--joy-palette-brand-containedActiveBg)',
-              },
-            },
-            neutral: {
-              '&:active': {
-                backgroundColor: 'var(--joy-palette-neutral-containedActiveBg)',
-              },
-            },
-          },
-          containedDisabled: {
-            brand: {
-              '&.Mui-disabled': {
-                backgroundColor: 'var(--joy-palette-brand-containedDisabledBg)',
-              },
-            },
-            neutral: {
-              '&.Mui-disabled': {
-                backgroundColor: 'var(--joy-palette-neutral-containedDisabledBg)',
-              },
-            },
-          },
-          containedContext: {
-            brand: {
-              '[data-mui-color-scheme="light"] &': {
-                '--joy-pattern-textColor': 'var(--joy-palette-brand-100)',
-                '--joy-pattern-textBg': 'transparent',
-                '--joy-pattern-textHoverBg': 'var(--joy-palette-brand-500)',
-                '--joy-pattern-textActiveBg': 'var(--joy-palette-brand-700)',
-                '--joy-pattern-outlinedColor': '#fff',
-                '--joy-pattern-outlinedBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedHoverBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedBg': 'transparent',
-                '--joy-pattern-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
-                '--joy-pattern-outlinedActiveBg': 'var(--joy-palette-brand-700)',
-                '--joy-pattern-filledColor': '#fff',
-                '--joy-pattern-filledBg': 'rgba(255, 255, 255, 0.2)',
-                '--joy-pattern-filledHoverBg': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-filledActiveBg': 'var(--joy-palette-brand-400)',
-              },
-              '[data-mui-color-scheme="dark"] &': {
-                '--joy-pattern-textColor': '#fff',
-                '--joy-pattern-textBg': 'transparent',
-                '--joy-pattern-textHoverBg': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-textActiveBg': 'var(--joy-palette-brand-500)',
-                '--joy-pattern-outlinedColor': '#fff',
-                '--joy-pattern-outlinedBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedHoverBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedBg': 'transparent',
-                '--joy-pattern-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
-                '--joy-pattern-outlinedActiveBg': 'var(--joy-palette-brand-700)',
-                '--joy-pattern-filledColor': '#fff',
-                '--joy-pattern-filledBg': 'rgba(255, 255, 255, 0.2)',
-                '--joy-pattern-filledHoverBg': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-filledActiveBg': 'var(--joy-palette-brand-400)',
-              },
-            },
-            neutral: {
-              '--joy-pattern-textColor': 'var(--joy-palette-neutral-100)',
-              '--joy-pattern-textBg': 'transparent',
-              '--joy-pattern-textHoverBg': 'var(--joy-palette-neutral-500)',
-              '--joy-pattern-textActiveBg': 'var(--joy-palette-neutral-700)',
-              '--joy-pattern-outlinedColor': '#fff',
-              '--joy-pattern-outlinedBorder': 'var(--joy-palette-neutral-400)',
-              '--joy-pattern-outlinedHoverBorder': 'var(--joy-palette-neutral-400)',
-              '--joy-pattern-outlinedBg': 'transparent',
-              '--joy-pattern-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
-              '--joy-pattern-outlinedActiveBg': 'var(--joy-palette-neutral-700)',
-              '--joy-pattern-filledColor': '#fff',
-              '--joy-pattern-filledBg': 'rgba(255, 255, 255, 0.2)',
-              '--joy-pattern-filledHoverBg': 'var(--joy-palette-neutral-400)',
-              '--joy-pattern-filledActiveBg': 'var(--joy-palette-neutral-400)',
-            },
-          },
-        },
-        focus: {
-          default: {
-            outline: '4px solid',
-            outlineColor: 'var(--joy-palette-focusedOutline)',
-          },
-        },
-        elevation: {
-          xs: 'var(--joy-elevationRing), 0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-          sm: 'var(--joy-elevationRing), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-          md: 'var(--joy-elevationRing), 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-          lg: 'var(--joy-elevationRing), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-          xl: 'var(--joy-elevationRing), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-        },
-      }}
-    >
+    <CssVarsProvider defaultMode="system">
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -755,82 +362,82 @@ export default function JoyVariants() {
             alignItems: 'center',
           }}
         >
-          <Button pattern="text">Text</Button>
-          <Button pattern="outlined">Outlined</Button>
-          <Button pattern="filled">Filled</Button>
-          <Button pattern="contained">Contained</Button>
+          <Button variant="text">Text</Button>
+          <Button variant="outlined">Outlined</Button>
+          <Button variant="filled">Filled</Button>
+          <Button variant="contained">Contained</Button>
           <Box>
-            <Badge pattern="outlined">1</Badge>
+            <Badge variant="outlined">1</Badge>
           </Box>
           <box>
-            <Badge pattern="filled">2</Badge>
+            <Badge variant="filled">2</Badge>
           </box>
           <Box>
-            <Badge pattern="contained">30</Badge>
+            <Badge variant="contained">30</Badge>
           </Box>
-          <Avatar pattern="outlined">A</Avatar>
-          <Avatar pattern="filled">B</Avatar>
-          <Avatar pattern="contained">C</Avatar>
-          <Paper pattern="text" elevation="xl">
+          <Avatar variant="outlined">A</Avatar>
+          <Avatar variant="filled">B</Avatar>
+          <Avatar variant="contained">C</Avatar>
+          <Paper variant="text" elevation="xl">
             Text Paper
           </Paper>
-          <Paper pattern="outlined" elevation="xl" sx={{ '--joy-elevation-ring': '0 0 #000' }}>
+          <Paper variant="outlined" elevation="xl" sx={{ '--joy-elevation-ring': '0 0 #000' }}>
             Outlined Paper
           </Paper>
-          <Paper pattern="filled" elevation="xl">
+          <Paper variant="filled" elevation="xl">
             Filled Paper
           </Paper>
-          <Paper pattern="contained">Contained Paper</Paper>
+          <Paper variant="contained">Contained Paper</Paper>
           <List>
-            <ListItem pattern="outlined">
+            <ListItem variant="outlined">
               ReactJS{' '}
-              <Badge pattern="filled" sx={{ minHeight: 'auto' }}>
+              <Badge variant="filled" sx={{ minHeight: 'auto' }}>
                 New
               </Badge>
             </ListItem>
             <ListItem>Angular</ListItem>
             <ListItem>Vue</ListItem>
           </List>
-          <List pattern="outlined">
+          <List variant="outlined">
             <ListItem>ReactJS</ListItem>
-            <ListItem pattern="filled">
+            <ListItem variant="filled">
               Angular{' '}
-              <Badge pattern="contained" color="neutral" sx={{ minHeight: 'auto' }}>
+              <Badge variant="contained" color="neutral" sx={{ minHeight: 'auto' }}>
                 OLD
               </Badge>
             </ListItem>
             <ListItem>Vue</ListItem>
           </List>
-          <List pattern="filled">
+          <List variant="filled">
             <ListItem>
               ReactJS{' '}
-              <Badge pattern="filled" color="neutral" sx={{ minHeight: 'auto' }}>
+              <Badge variant="filled" color="neutral" sx={{ minHeight: 'auto' }}>
                 12
               </Badge>
             </ListItem>
             <ListItem>
               Angular{' '}
-              <Badge pattern="filled" color="neutral" sx={{ minHeight: 'auto' }}>
+              <Badge variant="filled" color="neutral" sx={{ minHeight: 'auto' }}>
                 3
               </Badge>
             </ListItem>
-            <ListItem pattern="contained">
+            <ListItem variant="contained">
               Vue{' '}
-              <Badge pattern="filled" color="neutral" sx={{ minHeight: 'auto' }}>
+              <Badge variant="filled" color="neutral" sx={{ minHeight: 'auto' }}>
                 Latest
               </Badge>
             </ListItem>
           </List>
-          <IconButton pattern="text">
+          <IconButton variant="text">
             <Close />
           </IconButton>
-          <IconButton pattern="outlined">
+          <IconButton variant="outlined">
             <Moon />
           </IconButton>
-          <IconButton pattern="filled">
+          <IconButton variant="filled">
             <Sun />
           </IconButton>
-          <IconButton pattern="contained">
+          <IconButton variant="contained">
             <System />
           </IconButton>
           <Chip>
@@ -840,34 +447,34 @@ export default function JoyVariants() {
             Design
           </Chip>
           <Chip>
-            <IconButton pattern="contained" sx={{ mr: '6px', ml: '-6px' }}>
+            <IconButton variant="contained" sx={{ mr: '6px', ml: '-6px' }}>
               <Close width="20" height="20" />
             </IconButton>
             Regular
           </Chip>
-          <Chip pattern="filled" color="brand">
-            <IconButton pattern="contained" sx={{ mr: '6px', ml: '-6px' }}>
+          <Chip variant="filled" color="brand">
+            <IconButton variant="contained" sx={{ mr: '6px', ml: '-6px' }}>
               <Close width="20" height="20" />
             </IconButton>
             Full time
           </Chip>
-          <Chip pattern="contained">
-            <IconButton pattern="filled" color="neutral" sx={{ mr: '6px', ml: '-6px' }}>
+          <Chip variant="contained">
+            <IconButton variant="filled" color="neutral" sx={{ mr: '6px', ml: '-6px' }}>
               <Close width="20" height="20" />
             </IconButton>
             B2B
           </Chip>
-          <Input placeholder="Text" pattern="text" />
-          <Input placeholder="Outlined" pattern="outlined" />
-          <Input placeholder="Filled" pattern="filled" />
+          <Input placeholder="Text" variant="text" />
+          <Input placeholder="Outlined" variant="outlined" />
+          <Input placeholder="Filled" variant="filled" />
           <Tabs sx={{ gridColumn: 'span 2' }}>
-            <Button pattern="text">Tab 1</Button>
-            <Button pattern="text">Tab 2</Button>
+            <Button variant="text">Tab 1</Button>
+            <Button variant="text">Tab 2</Button>
             <Button>Tab 3</Button>
           </Tabs>
-          <Tabs pattern="filled" sx={{ gridColumn: 'span 2' }}>
-            <Button pattern="text">Tab 1</Button>
-            <Button pattern="text">Tab 2</Button>
+          <Tabs variant="filled" sx={{ gridColumn: 'span 2' }}>
+            <Button variant="text">Tab 1</Button>
+            <Button variant="text">Tab 2</Button>
             <Button>Tab 3</Button>
           </Tabs>
         </Box>
@@ -883,14 +490,14 @@ export default function JoyVariants() {
             alignItems: 'center',
           }}
         >
-          <Tabs pattern="contained" color="brand" sx={{ gridColumn: 'span 2' }}>
-            <Button pattern="text">Tab 1</Button>
-            <Button pattern="text">Tab 2</Button>
-            <Button pattern="filled">Tab 3</Button>
+          <Tabs variant="contained" color="brand" sx={{ gridColumn: 'span 2' }}>
+            <Button variant="text">Tab 1</Button>
+            <Button variant="text">Tab 2</Button>
+            <Button variant="filled">Tab 3</Button>
           </Tabs>
           <Paper
             enableContext
-            pattern="contained"
+            variant="contained"
             color="brand"
             sx={{
               display: 'flex',
@@ -901,7 +508,7 @@ export default function JoyVariants() {
               minHeight: '64px',
             }}
           >
-            <IconButton pattern="text">
+            <IconButton variant="text">
               <Close />
             </IconButton>
             <Chip color="brand" sx={{ ml: 'auto' }}>
@@ -910,11 +517,11 @@ export default function JoyVariants() {
               </IconButton>
               Design
             </Chip>
-            <Input pattern="filled" color="brand" placeholder="Search" />
+            <Input variant="filled" color="brand" placeholder="Search" />
           </Paper>
           <Paper
             enableContext
-            pattern="contained"
+            variant="contained"
             color="brand"
             sx={{
               display: 'flex',
@@ -925,15 +532,15 @@ export default function JoyVariants() {
               minHeight: '64px',
             }}
           >
-            <IconButton pattern="text">
+            <IconButton variant="text">
               <Close />
             </IconButton>
-            <Input pattern="outlined" color="brand" placeholder="Search" sx={{ ml: 'auto' }} />
-            <Avatar pattern="filled" sx={{ width: 48, height: 48 }} />
+            <Input variant="outlined" color="brand" placeholder="Search" sx={{ ml: 'auto' }} />
+            <Avatar variant="filled" sx={{ width: 48, height: 48 }} />
           </Paper>
           <Paper
             enableContext
-            pattern="contained"
+            variant="contained"
             color="neutral"
             sx={{
               display: 'flex',
@@ -946,13 +553,13 @@ export default function JoyVariants() {
             }}
           >
             Hello World
-            <Button pattern="outlined" color="brand">
+            <Button variant="outlined" color="brand">
               Notify
             </Button>
           </Paper>
           <Paper
             enableContext
-            pattern="contained"
+            variant="contained"
             color="neutral"
             sx={{
               minWidth: '256px',
@@ -967,7 +574,7 @@ export default function JoyVariants() {
                 <Sun />
                 Getting Started
               </ListItem>
-              <ListItem pattern="outlined">
+              <ListItem variant="outlined">
                 <Sun />
                 Components
               </ListItem>
@@ -981,16 +588,16 @@ export default function JoyVariants() {
               </ListItem>
             </List>
             <br />
-            <Button pattern="filled" sx={{ width: '100%', mb: '8px' }}>
+            <Button variant="filled" sx={{ width: '100%', mb: '8px' }}>
               Log out
             </Button>
-            <Button pattern="outlined" sx={{ width: '100%' }}>
+            <Button variant="outlined" sx={{ width: '100%' }}>
               What&apos;s new?
             </Button>
           </Paper>
           <Paper
             enableContext
-            pattern="contained"
+            variant="contained"
             color="brand"
             sx={{
               minWidth: '256px',
@@ -1005,7 +612,7 @@ export default function JoyVariants() {
                 <Sun />
                 Getting Started
               </ListItem>
-              <ListItem pattern="filled">
+              <ListItem variant="filled">
                 <Sun />
                 Components
               </ListItem>
@@ -1019,10 +626,10 @@ export default function JoyVariants() {
               </ListItem>
             </List>
             <br />
-            <Button pattern="filled" sx={{ width: '100%', mb: '8px' }}>
+            <Button variant="filled" sx={{ width: '100%', mb: '8px' }}>
               Log out
             </Button>
-            <Button pattern="outlined" sx={{ width: '100%' }}>
+            <Button variant="outlined" sx={{ width: '100%' }}>
               What&apos;s new?
             </Button>
           </Paper>
