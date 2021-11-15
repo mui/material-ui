@@ -6,7 +6,7 @@ const prism = require('./prism');
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
 const descriptionRegExp = /<p class="description">(.*?)<\/p>/s;
-const headerKeyValueRegExp = /(.*?): (.*)/g;
+const headerKeyValueRegExp = /(.*?):[\r\n]?\s+(\[[^\]]+\]|.*)/g;
 const emptyRegExp = /^\s*$/;
 
 /**
@@ -40,10 +40,13 @@ function getHeaders(markdown) {
   // eslint-disable-next-line no-cond-assign
   while ((regexMatches = headerKeyValueRegExp.exec(header)) !== null) {
     const key = regexMatches[1];
-    const value = regexMatches[2].replace(/(.*)/, '$1');
+    let value = regexMatches[2].replace(/(.*)/, '$1');
     if (value[0] === '[') {
       // Need double quotes to JSON parse.
-      headers[key] = JSON.parse(value.replace(/'/g, '"'));
+      value = value.replace(/'/g, '"');
+      // Remove the comma after the last value e.g. ["foo", "bar",] -> ["foo", "bar"].
+      value = value.replace(/,\s+\]$/g, ']');
+      headers[key] = JSON.parse(value);
     } else {
       // Remove trailing single quote yml escaping.
       headers[key] = value.replace(/^'|'$/g, '');
