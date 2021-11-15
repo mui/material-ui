@@ -35,7 +35,7 @@ export default function XPlans() {
               overline="Plans"
               title={
                 <Typography variant="h2">
-                  Available on <GradientText>MIT and commercial licenses</GradientText>
+                  Available with <GradientText>MIT and commercial licenses</GradientText>
                 </Typography>
               }
               description="The advanced components are available under two licenses: MUI X, the MIT licensed, free to use version; and MUI X Pro, the commercially license version with the most advanced features.
