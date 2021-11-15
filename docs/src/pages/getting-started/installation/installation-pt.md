@@ -1,18 +1,18 @@
 # Instalação
 
-<p class="description">Install MUI, the world's most popular React UI framework.</p>
+<p class="description">Instale MUI, o framework de componentes React UI mais popular do mundo.</p>
 
-MUI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
+MUI está disponível como um [pacote npm](https://www.npmjs.com/package/@mui/material).
 
 ## npm
 
 Para instalar e salvar em suas dependências do `package.json`, execute:
 
 ```sh
-// with npm
+// usando npm
 npm install @mui/material @emotion/react @emotion/styled
 
-// with yarn
+// usando yarn
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
@@ -23,10 +23,10 @@ Note que o pacote possui 2 dependências obrigatórias: [react](https://www.npmj
 Ou se você quiser utilizar `styled-components` como um motor de estilização:
 
 ```sh
-// with npm
+// usando npm
 npm install @mui/material @mui/styled-engine-sc styled-components
 
-// with yarn
+// usando yarn
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
