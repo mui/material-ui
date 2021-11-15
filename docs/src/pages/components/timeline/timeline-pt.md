@@ -9,7 +9,7 @@ packageName: '@mui/lab'
 
 <p class="description">A linha do tempo exibe uma lista de eventos em ordem cronológica.</p>
 
-**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but MUI supports it.
+**Nota:** Este componente não está documentado nas [diretrizes do Material Design](https://material.io/), mas MUI o suporta.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
