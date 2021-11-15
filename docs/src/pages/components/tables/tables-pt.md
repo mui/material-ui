@@ -22,7 +22,7 @@ As tabelas apresentam informação de uma forma que é fácil de digitalizar, pa
 
 Um exemplo simples sem frescuras.
 
-Uma tabela de dados contém uma linha de cabeçalho no topo que lista os nomes das colunas, seguidas pelas linhas dos dados.
+{{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
 
 ## Tabela de dados
 
