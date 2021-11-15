@@ -8,7 +8,6 @@ _Nov 15, 2021_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- 🎉 Add `PopperUnstyled` (#29488) @michaldudak
 - 🛠 Rename `@mui/core` to `@mui/base`. (#29585) @michaldudak
 - And many more 🐛 bug fixes and 📚 improvements.
 
