@@ -20,10 +20,7 @@ This release features some major highlights:
   - [Synchronous state initialization](#synchronous-state-initialization)
 - [Reduced style specificity for easier customization](#reduced-style-specificity-for-easier-customization)
   - [Limitations](#limitations)
-- [Features highlights](#features-highlights)
 - [v4 migration](#v4-migration)
-  - [Change of the package names](#change-of-the-package-names)
-  - [Change of the styling solution](#change-of-the-styling-solution)
 - [What's next?](#whats-next)
   - [A public roadmap](#a-public-roadmap)
 - [Thank you](#thank-you)
@@ -170,17 +167,13 @@ Although this was a clear improvement we still had to keep the style specificity
 This is due to performance implications related to how Emotion injects styles into the page.
 To keep the performance of our virtualization engine at its optimal we decided to keep the CSS specificity of 2 for the mentioned components.
 
-## Features highlights
-
-<!-- TODO: add subsections for the features we want to mentune, if any -->
-
 ## v4 migration
 
-### Change of the package names
-
-### Change of the styling solution
+You can check [this spage](https://mui.com/components/data-grid/migration-v4/) to learn more about migrating to v5.
 
 ## What's next?
+
+More exciting things are coming! We have big plans for this last quarter of 2021 in terms of features we plan to make available to both `DataGrid` and `DataGridPro` components. Things like **tree data**, **column pinning** and **variable row height** are part of our roadmap.
 
 ### A public roadmap
 
@@ -189,3 +182,7 @@ You can view our public roadmap on GitHub to learn about what features we're wor
 - [MUI X](https://github.com/mui-org/material-ui-x/projects/1)
 
 ## Thank you
+
+Finally, one last thank you to everyone who's contributed to MUI X v5.
+We are very excited about this release and we will continue to push forward and deliver the next generation of Enterprise React UI components!
+It's just the beginning.
