@@ -34,7 +34,7 @@ const PickersMonthRoot = styled<
   ...theme.typography.subtitle1,
   margin: '8px 0',
   height: 36,
-  borderRadius: 16,
+  borderRadius: 18,
   cursor: 'pointer',
   '&:focus, &:hover': {
     backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
