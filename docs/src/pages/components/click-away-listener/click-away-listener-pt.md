@@ -11,7 +11,7 @@ githubLabel: 'component: ClickAwayListener'
 - 📦 [1.5 kB gzipped](/size-snapshot).
 - ⚛️ Suporte para portais
 
-[A paleta](/system/palette/) com funções de estilo.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Exemplo
 
