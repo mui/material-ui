@@ -1,6 +1,6 @@
 import * as React from 'react';
 import colors from '../colors';
-import { ColorSystems, PaletteRange, PaletteText, PaletteBgNeutral } from './ColorSystem';
+import { ColorSystems, Palette, PaletteRange, PaletteText, PaletteBgNeutral } from './ColorSystem';
 
 /**
  * ====================================================
@@ -23,6 +23,10 @@ export interface Elevation {
   md: React.CSSProperties['borderRadius'];
   lg: React.CSSProperties['borderRadius'];
   xl: React.CSSProperties['borderRadius'];
+}
+
+export interface Focus {
+  default: React.CSSProperties;
 }
 
 export interface FontSize {
@@ -115,10 +119,12 @@ type BaseJoyTokens = {
     neutral: Pick<PaletteRange, BasePaletteRange>;
     text: Pick<PaletteText, 'heading' | 'headingIntro' | 'content' | 'detail' | 'overline'>;
     bgNeutral: Pick<PaletteBgNeutral, 'plain' | 'transparency'>;
+    focusVisible: Palette['focusVisible'];
   };
+  borderRadius: Pick<BorderRadius, 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   elevationRing: React.CSSProperties['boxShadow'];
   elevation: Pick<Elevation, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-  borderRadius: Pick<BorderRadius, 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
+  focus: Pick<Focus, 'default'>;
   htmlFontSize: React.CSSProperties['fontSize'];
   fontSize: Pick<
     FontSize,
@@ -164,6 +170,7 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> 
       transparency: 'var(--joy-palette-neutral-100)',
       plain: 'var(--joy-palette-neutral-100)',
     },
+    focusVisible: 'var(--joy-palette-brand-200)',
   },
   elevationRing: '0 0 #000',
 };
@@ -183,6 +190,7 @@ export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> =
       transparency: 'var(--joy-palette-neutral-900)',
       plain: 'var(--joy-palette-neutral-900)',
     },
+    focusVisible: 'var(--joy-palette-brand-400)',
   },
   elevationRing: '0 0 #000',
 };
@@ -207,6 +215,12 @@ const themeWithoutVars: BaseJoyTokens = {
     md: 'var(--joy-elevation-ring), 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
     lg: 'var(--joy-elevation-ring), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
     xl: 'var(--joy-elevation-ring), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+  },
+  focus: {
+    default: {
+      outline: '4px solid',
+      outlineColor: 'var(--joy-palette-focusVisible)',
+    },
   },
   htmlFontSize: '16px',
   fontSize: {

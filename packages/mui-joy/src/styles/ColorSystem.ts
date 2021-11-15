@@ -45,6 +45,7 @@ export type ColorPalette = {
 export interface Palette extends ColorPalette {
   text: PaletteText;
   bgNeutral: PaletteBgNeutral;
+  focusVisible: React.CSSProperties['outline'];
 }
 
 export interface ColorSystems {
