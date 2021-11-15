@@ -150,7 +150,7 @@ async function submitFeedback(page, rating, comment, language) {
 
 function getCurrentRating(pathname) {
   let userFeedback;
-  if (process.browser) {
+  if (typeof window !== 'undefined') {
     userFeedback = getCookie('feedback');
     userFeedback = userFeedback && JSON.parse(userFeedback);
   }
@@ -256,6 +256,7 @@ export default function AppLayoutDocsFooter() {
                   component={Link}
                   noLinkStyle
                   href={prevPage.pathname}
+                  {...prevPage.linkProps}
                   size="medium"
                   startIcon={<ChevronLeftIcon />}
                 >
@@ -297,6 +298,7 @@ export default function AppLayoutDocsFooter() {
                   component={Link}
                   noLinkStyle
                   href={nextPage.pathname}
+                  {...nextPage.linkProps}
                   size="medium"
                   endIcon={<ChevronRightIcon />}
                 >

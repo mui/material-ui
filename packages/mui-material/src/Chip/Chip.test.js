@@ -4,7 +4,7 @@ import { spy, stub } from 'sinon';
 import {
   describeConformance,
   act,
-  createClientRender,
+  createRenderer,
   fireEvent,
   focusVisible,
   simulatePointerDevice,
@@ -16,7 +16,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
 
 describe('<Chip />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Chip />, () => ({
     classes,

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createClientRender, screen } from 'test/utils';
+import { createRenderer, screen } from 'test/utils';
 import { isMuiElement, setRef, useForkRef } from '.';
 import { Input, ListItemSecondaryAction, SvgIcon } from '..';
 
 describe('utils/index.js', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describe('isMuiElement', () => {
     it('should match static muiName property', () => {

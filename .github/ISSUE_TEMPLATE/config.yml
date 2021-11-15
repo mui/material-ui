@@ -1,5 +1,4 @@
-blank_issues_enabled: false # force the usage of a template
 contact_links:
   - name: Support ❔
     url: https://mui.com/getting-started/support/
-    about: I need support with MUI.
+    about: I need support with MUI Core.

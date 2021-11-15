@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import Hidden from '@mui/material/Hidden';
 
 describe('<Hidden />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
   const child = <span>Hello</span>;
 
   describe('prop: implementation', () => {

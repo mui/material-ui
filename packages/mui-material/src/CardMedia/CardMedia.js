@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { getCardMediaUtilityClass } from './cardMediaClasses';
@@ -64,7 +64,7 @@ const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
     <CardMediaRoot
       className={clsx(classes.root, className)}
       as={component}
-      role={!isMediaComponent && image ? 'image' : undefined}
+      role={!isMediaComponent && image ? 'img' : undefined}
       ref={ref}
       style={composedStyle}
       ownerState={ownerState}
@@ -124,7 +124,11 @@ CardMedia.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 };
 
 export default CardMedia;

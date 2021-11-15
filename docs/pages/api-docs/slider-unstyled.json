@@ -109,7 +109,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/mui-core/src/SliderUnstyled/SliderUnstyled.js",
+  "filename": "/packages/mui-base/src/SliderUnstyled/SliderUnstyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/slider/\">Slider</a></li></ul>",
   "cssComponent": false

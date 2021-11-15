@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import AccordionDetails, {
   accordionDetailsClasses as classes,
 } from '@mui/material/AccordionDetails';
 
 describe('<AccordionDetails />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<AccordionDetails>Conformance</AccordionDetails>, () => ({
     classes,

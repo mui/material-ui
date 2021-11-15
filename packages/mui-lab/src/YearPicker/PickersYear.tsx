@@ -6,7 +6,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@mui/core';
+} from '@mui/base';
 import {
   WrapperVariant,
   WrapperVariantContext,

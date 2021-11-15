@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Avatar, { avatarClasses } from '../Avatar';
@@ -179,7 +179,11 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The variant to use.
    * @default 'circular'

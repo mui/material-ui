@@ -13,7 +13,7 @@ function Item(props) {
         m: 1,
         borderRadius: 1,
         textAlign: 'center',
-        fontSize: 19,
+        fontSize: '1rem',
         fontWeight: '700',
         ...sx,
       }}
@@ -23,7 +23,11 @@ function Item(props) {
 }
 
 Item.propTypes = {
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 };
 
 export default function GridTemplateRows() {

@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/core';
+import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 
 export interface ImageListItemClasses {
   /** Styles applied to the root element. */

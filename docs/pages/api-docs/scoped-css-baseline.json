@@ -2,7 +2,8 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } }
+    "component": { "type": { "name": "elementType" } },
+    "enableColorScheme": { "type": { "name": "bool" } }
   },
   "name": "ScopedCssBaseline",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiScopedCssBaseline" },

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { ClickAwayListenerProps } from '@mui/base/ClickAwayListener';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionProps } from '../transitions/transition';
-import { ClickAwayListenerProps } from '../ClickAwayListener';
 import { SnackbarClasses } from './snackbarClasses';
 
 export interface SnackbarOrigin {

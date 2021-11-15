@@ -77,15 +77,15 @@ jobs:
       - task: S3Upload@1
         inputs:
           regionName: 'eu-central-1'
-          bucketName: 'eps1lon-material-ui'
+          bucketName: 'mui-org-material-ui'
           globExpressions: '*.tgz'
           targetFolder: $(S3_ARTIFACTS_PATH_PERMA)
           filesAcl: 'public-read'
         displayName: 'Upload distributables to S3'
         condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
         env:
-          AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)
-          AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
+          AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID_SIZE_SNAPSHOT)
+          AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY_SIZE_SNAPSHOT)
 
       - task: PublishPipelineArtifact@1
         inputs:
@@ -106,9 +106,9 @@ jobs:
         displayName: 'persist size snapshot on S3'
         condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
         inputs:
-          awsCredentials: 's3 artifacts'
+          awsCredentials: 's3 artifacts v2'
           regionName: 'eu-central-1'
-          bucketName: 'eps1lon-material-ui'
+          bucketName: 'mui-org-material-ui'
           sourceFolder: '$(System.DefaultWorkingDirectory)'
           globExpressions: 'size-snapshot.json'
           targetFolder: $(S3_ARTIFACTS_PATH_PERMA)
@@ -121,9 +121,9 @@ jobs:
         displayName: 'symlink size-snapshot to latest'
         condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'), ne(variables['Build.Reason'], 'Schedule'))
         inputs:
-          awsCredentials: 's3 artifacts'
+          awsCredentials: 's3 artifacts v2'
           regionName: 'eu-central-1'
-          bucketName: 'eps1lon-material-ui'
+          bucketName: 'mui-org-material-ui'
           sourceFolder: '$(System.DefaultWorkingDirectory)'
           globExpressions: 'size-snapshot.json'
           targetFolder: 'artifacts/$(Build.SourceBranchName)/latest/'

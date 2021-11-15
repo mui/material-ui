@@ -107,6 +107,9 @@ export {
   GlobalStyles,
   GlobalStylesProps,
   StyledEngineProvider,
+  Interpolation,
+  CSSInterpolation,
+  CSSObject,
 } from '@mui/styled-engine';
 
 export * from './style';

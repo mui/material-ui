@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { isHostComponent } from '@mui/core';
-import BackdropUnstyled, { backdropUnstyledClasses } from '@mui/core/BackdropUnstyled';
+import { isHostComponent } from '@mui/base';
+import BackdropUnstyled, { backdropUnstyledClasses } from '@mui/base/BackdropUnstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Fade from '../Fade';
@@ -128,7 +128,11 @@ Backdrop.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

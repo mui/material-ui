@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { describeConformance, act, createClientRender } from 'test/utils';
+import { describeConformance, act, createRenderer } from 'test/utils';
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import FormLabel from '@mui/material/FormLabel';
 import InputLabel, { inputLabelClasses as classes } from '@mui/material/InputLabel';
 
 describe('<InputLabel />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<InputLabel>Foo</InputLabel>, () => ({
     classes,
