@@ -197,7 +197,7 @@ No futuro, pretendemos fornecer um [componente de campo número](https://github.
 
 A propriedade de texto auxiliar afeta a altura do campo de texto. Se dois campos de texto forem colocados lado a lado, um com um texto auxiliar e outro sem ele, terão alturas diferentes. Por exemplo:
 
-Para usos mais avançados, você pode tirar vantagem com:
+{{"demo": "pages/components/text-fields/HelperTextMisaligned.js"}}
 
 Isso pode ser corrigido passando um caractere de espaço para a propriedade `helperText`:
 
