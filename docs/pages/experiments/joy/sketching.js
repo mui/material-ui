@@ -84,8 +84,9 @@ const PushButton = styled('button', {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    '&:focus-visible': theme.focus.default,
   },
-  selected ? theme.pattern.filled?.brand : theme.pattern.text?.neutral,
+  selected ? theme.variant.filled?.brand : theme.variant.text?.neutral,
 ]);
 
 const ColorSchemePicker = () => {
@@ -107,7 +108,7 @@ const ColorSchemePicker = () => {
         minHeight: '48px',
         border: '1px solid',
         borderRadius: '24px',
-        ...theme.pattern.outlined.brand,
+        ...theme.variant.outlined.brand,
       })}
     >
       <Box sx={{ display: 'flex', gap: '8px', p: '6px' }}>
@@ -135,40 +136,46 @@ const ColorSchemePicker = () => {
   );
 };
 
-const Button = styled('button')(({ theme, pattern = 'contained', color = 'brand' }) => [
-  {
-    minHeight: 48,
-    border: 0,
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '0.5rem 2rem',
-    borderRadius: '24px',
-    cursor: 'pointer',
-    background: 'transparent',
-  },
-  theme.typography.button,
-  theme.pattern[pattern]?.[color],
-  theme.pattern[`${pattern}Hover`]?.[color],
-  theme.pattern[`${pattern}Active`]?.[color],
-  theme.pattern[`${pattern}Disabled`]?.[color],
-]);
+const Button = styled('button')(
+  ({ theme, variant = 'contained', color = 'brand', roundness = 'default' }) => [
+    {
+      minHeight: 48,
+      border: 0,
+      display: 'inline-flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '0.5rem 2rem',
+      cursor: 'pointer',
+      background: 'transparent',
+      borderRadius: theme.borderRadius?.[roundness],
+      '&:focus-visible': theme.focus.default,
+    },
+    theme.typography.button,
+    theme.variant[variant]?.[color],
+    theme.variant[`${variant}Hover`]?.[color],
+    theme.variant[`${variant}Active`]?.[color],
+    theme.variant[`${variant}Disabled`]?.[color],
+  ],
+);
 
 const Paper = styled('div')(
-  ({ theme, pattern = 'text', color = 'neutral', enableContext = false }) => [
+  ({ theme, variant = 'text', color = 'neutral', enableContext = false, elevation }) => [
     {
       minWidth: 100,
       minHeight: 120,
       padding: '1rem',
       borderRadius: 4,
-      backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
+      backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-bgNeutral-plain))`,
+      ...(elevation && {
+        boxShadow: theme.elevation?.[elevation],
+      }),
     },
-    theme.pattern[pattern]?.[color],
-    enableContext && pattern === 'contained' && theme.pattern.containedContext?.[color],
+    theme.variant[variant]?.[color],
+    enableContext && variant === 'contained' && theme.variant.containedContext?.[color],
   ],
 );
 
-const List = styled('ul')(({ theme, pattern = 'text', color = 'neutral' }) => [
+const List = styled('ul')(({ theme, variant = 'text', color = 'neutral' }) => [
   {
     display: 'flex',
     width: '100%',
@@ -178,12 +185,12 @@ const List = styled('ul')(({ theme, pattern = 'text', color = 'neutral' }) => [
     padding: '0.5rem 0.25rem',
     borderRadius: 4,
     margin: 0,
-    backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
+    backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-bgNeutral-plain))`,
   },
-  theme.pattern[pattern]?.[color],
+  theme.variant[variant]?.[color],
 ]);
 
-const ListItem = styled('li')(({ theme, pattern = 'text', color = 'neutral' }) => [
+const ListItem = styled('li')(({ theme, variant = 'text', color = 'neutral' }) => [
   theme.typography.body,
   {
     padding: '0.25rem 0.5rem',
@@ -191,28 +198,32 @@ const ListItem = styled('li')(({ theme, pattern = 'text', color = 'neutral' }) =
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+    '&:focus-visible': theme.focus.default,
   },
-  theme.pattern[pattern]?.[color],
-  theme.pattern[`${pattern}Hover`]?.[color],
-  theme.pattern[`${pattern}Disabled`]?.[color],
+  theme.variant[variant]?.[color],
+  theme.variant[`${variant}Hover`]?.[color],
+  theme.variant[`${variant}Disabled`]?.[color],
 ]);
 
-const IconButton = styled('button')(({ theme, pattern = 'filled', color = 'brand' }) => [
-  {
-    border: 0,
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '0.25rem',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    background: 'transparent',
-  },
-  theme.typography.button,
-  theme.pattern[pattern]?.[color],
-  theme.pattern[`${pattern}Hover`]?.[color],
-  theme.pattern[`${pattern}Disabled`]?.[color],
-]);
+const IconButton = styled('button')(
+  ({ theme, variant = 'filled', color = 'brand', roundness = 'default' }) => [
+    {
+      border: 0,
+      display: 'inline-flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: '0.25rem',
+      cursor: 'pointer',
+      background: 'transparent',
+      borderRadius: theme.borderRadius?.[roundness],
+      '&:focus-visible': theme.focus.default,
+    },
+    theme.typography.button,
+    theme.variant[variant]?.[color],
+    theme.variant[`${variant}Hover`]?.[color],
+    theme.variant[`${variant}Disabled`]?.[color],
+  ],
+);
 
 const Divider = styled('hr')(({ theme, color = 'neutral', direction = 'horizontal' }) => [
   {
@@ -220,7 +231,7 @@ const Divider = styled('hr')(({ theme, color = 'neutral', direction = 'horizonta
     alignSelf: 'stretch',
     margin: 0,
     border: 0,
-    backgroundColor: `var(--joy-pattern-outlinedBorder, ${theme.vars.palette[color].outlinedBorder})`,
+    backgroundColor: `var(--joy-variant-outlinedBorder, ${theme.vars.palette[color].outlinedBorder})`,
   },
   direction === 'horizontal' && {
     height: 1,
@@ -232,25 +243,26 @@ const Divider = styled('hr')(({ theme, color = 'neutral', direction = 'horizonta
   },
 ]);
 
-const Input = styled('input')(({ theme, pattern = 'outlined', color = 'neutral' }) => [
+const Input = styled('input')(({ theme, variant = 'outlined', color = 'neutral' }) => [
   {
     minHeight: 48,
     maxWidth: '100%',
     border: '2px solid transparent',
-    backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
+    backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-bgNeutral-plain))`,
     borderRadius: '4px',
     display: 'inline-flex',
     alignItems: 'center',
     padding: '0.5rem 1rem',
+    '&:focus-visible': theme.focus.default,
     '&::placeholder': {
       opacity: 0.72,
-      color: `var(--joy-pattern-${pattern}Color, ${theme.vars.palette.text.detail})`,
+      color: `var(--joy-variant-${variant}Color, ${theme.vars.palette.text.detail})`,
     },
   },
   theme.typography.body,
-  theme.pattern[pattern]?.[color],
-  theme.pattern[`${pattern}Hover`]?.[color],
-  theme.pattern[`${pattern}Disabled`]?.[color],
+  theme.variant[variant]?.[color],
+  theme.variant[`${variant}Hover`]?.[color],
+  theme.variant[`${variant}Disabled`]?.[color],
 ]);
 
 const Typography = styled('p', {
@@ -262,411 +274,7 @@ const Typography = styled('p', {
 
 export default function JoySketching() {
   return (
-    <CssVarsProvider
-      defaultMode="system"
-      theme={{
-        colorSchemes: {
-          light: {
-            palette: {
-              brand: {
-                textColor: 'var(--joy-palette-brand-600)',
-                textHoverBg: 'var(--joy-palette-neutral-100)',
-                textActiveBg: 'var(--joy-palette-neutral-200)',
-                textDisabledColor: 'var(--joy-palette-neutral-300)',
-
-                outlinedColor: 'var(--joy-palette-brand-600)',
-                outlinedBorder: 'var(--joy-palette-neutral-300)',
-                outlinedHoverBg: 'var(--joy-palette-neutral-100)',
-                outlinedHoverBorder: 'var(--joy-palette-neutral-400)',
-                outlinedActiveBg: 'var(--joy-palette-neutral-200)',
-                outlinedDisabledColor: 'var(--joy-palette-neutral-300)',
-                outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
-
-                filledColor: 'var(--joy-palette-brand-700)',
-                filledBg: 'var(--joy-palette-brand-100)',
-                filledHoverBg: 'var(--joy-palette-brand-200)',
-                filledActiveBg: 'var(--joy-palette-brand-300)',
-                filledDisabledColor: 'var(--joy-palette-brand-400)',
-                filledDisableBg: 'var(--joy-palette-brand-50)',
-
-                containedColor: '#fff',
-                containedBg: 'var(--joy-palette-brand-500)',
-                containedHoverBg: 'var(--joy-palette-brand-600)',
-                containedActiveBg: 'var(--joy-palette-brand-400)',
-                containedDisabledBg: 'var(--joy-palette-brand-300)',
-              },
-              neutral: {
-                textColor: 'var(--joy-palette-neutral-600)',
-                textHoverBg: 'var(--joy-palette-neutral-100)',
-                textActiveBg: 'var(--joy-palette-neutral-200)',
-                textDisabledColor: 'var(--joy-palette-neutral-300)',
-
-                outlinedColor: 'var(--joy-palette-neutral-600)',
-                outlinedBorder: 'var(--joy-palette-neutral-100)',
-                outlinedHoverBg: 'var(--joy-palette-neutral-100)',
-                outlinedHoverBorder: 'var(--joy-palette-neutral-300)',
-                outlinedActiveBg: 'var(--joy-palette-neutral-200)',
-                outlinedDisabledColor: 'var(--joy-palette-neutral-300)',
-                outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
-
-                filledColor: 'var(--joy-palette-neutral-700)',
-                filledBg: 'var(--joy-palette-neutral-100)',
-                filledHoverBg: 'var(--joy-palette-neutral-200)',
-                filledActiveBg: 'var(--joy-palette-neutral-300)',
-                filledDisabledColor: 'var(--joy-palette-neutral-400)',
-                filledDisableBg: 'var(--joy-palette-neutral-50)',
-
-                containedColor: '#fff',
-                containedBg: 'var(--joy-palette-neutral-600)',
-                containedHoverBg: 'var(--joy-palette-neutral-700)',
-                containedActiveBg: 'var(--joy-palette-neutral-500)',
-                containedDisabledBg: 'var(--joy-palette-neutral-300)',
-              },
-              bgNeutral: {
-                transparency: 'var(--joy-palette-neutral-50)',
-                plain: '#fff',
-              },
-            },
-          },
-          dark: {
-            palette: {
-              brand: {
-                textColor: 'var(--joy-palette-brand-200)',
-                textHoverBg: 'var(--joy-palette-neutral-800)',
-                textActiveBg: 'var(--joy-palette-neutral-700)',
-                textDisabledColor: 'var(--joy-palette-neutral-500)',
-
-                outlinedColor: 'var(--joy-palette-brand-200)',
-                outlinedBorder: 'var(--joy-palette-neutral-700)',
-                outlinedHoverBg: 'var(--joy-palette-neutral-800)',
-                outlinedHoverBorder: 'var(--joy-palette-neutral-600)',
-                outlinedActiveBg: 'var(--joy-palette-neutral-700)',
-                outlinedDisabledColor: 'var(--joy-palette-neutral-500)',
-                outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
-
-                filledColor: 'var(--joy-palette-brand-300)',
-                filledBg: 'var(--joy-palette-brand-800)',
-                filledHoverBg: 'var(--joy-palette-brand-700)',
-                filledActiveBg: 'var(--joy-palette-brand-600)',
-                filledDisabledColor: 'var(--joy-palette-brand-500)',
-                filledDisableBg: 'var(--joy-palette-brand-800)',
-
-                containedColor: '#fff',
-                containedBg: 'var(--joy-palette-brand-500)',
-                containedHoverBg: 'var(--joy-palette-brand-700)',
-                containedActiveBg: 'var(--joy-palette-brand-500)',
-                containedDisabledBg: 'var(--joy-palette-brand-300)',
-              },
-              neutral: {
-                textColor: 'var(--joy-palette-neutral-200)',
-                textHoverBg: 'var(--joy-palette-neutral-800)',
-                textActiveBg: 'var(--joy-palette-neutral-700)',
-                textDisabledColor: 'var(--joy-palette-neutral-500)',
-
-                outlinedColor: 'var(--joy-palette-neutral-200)',
-                outlinedBorder: 'var(--joy-palette-neutral-800)',
-                outlinedHoverBg: 'var(--joy-palette-neutral-800)',
-                outlinedHoverBorder: 'var(--joy-palette-neutral-600)',
-                outlinedActiveBg: 'var(--joy-palette-neutral-700)',
-                outlinedDisabledColor: 'var(--joy-palette-neutral-500)',
-                outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
-
-                filledColor: 'var(--joy-palette-neutral-200)',
-                filledBg: 'var(--joy-palette-neutral-800)',
-                filledHoverBg: 'var(--joy-palette-neutral-700)',
-                filledActiveBg: 'var(--joy-palette-neutral-600)',
-                filledDisabledColor: 'var(--joy-palette-neutral-500)',
-                filledDisableBg: 'var(--joy-palette-neutral-800)',
-
-                containedColor: '#fff',
-                containedBg: 'var(--joy-palette-neutral-600)',
-                containedHoverBg: 'var(--joy-palette-neutral-700)',
-                containedActiveBg: 'var(--joy-palette-neutral-500)',
-                containedDisabledBg: 'var(--joy-palette-neutral-300)',
-              },
-              bgNeutral: {
-                plain: '#040404',
-                transparency: 'var(--joy-palette-neutral-800)',
-              },
-            },
-          },
-        },
-        pattern: {
-          text: {
-            brand: {
-              color: 'var(--joy-pattern-textColor, var(--joy-palette-brand-textColor))',
-            },
-            neutral: {
-              color: 'var(--joy-pattern-textColor, var(--joy-palette-neutral-textColor))',
-            },
-          },
-          textHover: {
-            brand: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-textHoverBg, var(--joy-palette-brand-textHoverBg))',
-              },
-            },
-            neutral: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-textHoverBg, var(--joy-palette-neutral-textHoverBg))',
-              },
-            },
-          },
-          textActive: {
-            brand: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-textActiveBg, var(--joy-palette-brand-textActiveBg))',
-              },
-            },
-            neutral: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-textActiveBg, var(--joy-palette-neutral-textActiveBg))',
-              },
-            },
-          },
-          textDisabled: {
-            brand: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-textDisabledColor, var(--joy-palette-brand-textDisabledColor))',
-              },
-            },
-            neutral: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-textDisabledColor, var(--joy-palette-neutral-textDisabledColor))',
-              },
-            },
-          },
-          outlined: {
-            brand: {
-              color: 'var(--joy-pattern-outlinedColor, var(--joy-palette-brand-outlinedColor))',
-              border: '1px solid',
-              borderColor:
-                'var(--joy-pattern-outlinedBorder, var(--joy-palette-brand-outlinedBorder))',
-            },
-            neutral: {
-              color: 'var(--joy-pattern-outlinedColor, var(--joy-palette-neutral-outlinedColor))',
-              border: '1px solid',
-              borderColor:
-                'var(--joy-pattern-outlinedBorder, var(--joy-palette-neutral-outlinedBorder))',
-            },
-          },
-          outlinedHover: {
-            brand: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-outlinedHoverBg, var(--joy-palette-brand-outlinedHoverBg))',
-              },
-            },
-            neutral: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-outlinedHoverBg, var(--joy-palette-neutral-outlinedHoverBg))',
-              },
-            },
-          },
-          outlinedActive: {
-            brand: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-outlinedActiveBg, var(--joy-palette-brand-outlinedActiveBg))',
-              },
-            },
-            neutral: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-outlinedActiveBg, var(--joy-palette-neutral-outlinedActiveBg))',
-              },
-            },
-          },
-          outlinedDisabled: {
-            brand: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-outlinedDisabledColor, var(--joy-palette-brand-outlinedDisabledColor))',
-                borderColor:
-                  'var(--joy-pattern-outlinedDisabledBorder, var(--joy-palette-brand-outlinedDisabledBorder))',
-              },
-            },
-            neutral: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-outlinedDisabledColor, var(--joy-palette-neutral-outlinedDisabledColor))',
-                borderColor:
-                  'var(--joy-pattern-outlinedDisabledBorder, var(--joy-palette-neutral-outlinedDisabledBorder))',
-              },
-            },
-          },
-          filled: {
-            brand: {
-              color: 'var(--joy-pattern-filledColor, var(--joy-palette-brand-filledColor))',
-              backgroundColor: 'var(--joy-pattern-filledBg, var(--joy-palette-brand-filledBg))',
-            },
-            neutral: {
-              color: 'var(--joy-pattern-filledColor, var(--joy-palette-neutral-filledColor))',
-              backgroundColor: 'var(--joy-pattern-filledBg, var(--joy-palette-neutral-filledBg))',
-            },
-          },
-          filledHover: {
-            brand: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-filledHoverBg, var(--joy-palette-brand-filledHoverBg))',
-              },
-            },
-            neutral: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor:
-                  'var(--joy-pattern-filledHoverBg, var(--joy-palette-neutral-filledHoverBg))',
-              },
-            },
-          },
-          filledActive: {
-            brand: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-filledActiveBg, var(--joy-palette-brand-filledActiveBg))',
-              },
-            },
-            neutral: {
-              '&:active': {
-                backgroundColor:
-                  'var(--joy-pattern-filledActiveBg, var(--joy-palette-neutral-filledActiveBg))',
-              },
-            },
-          },
-          filledDisabled: {
-            brand: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-filledDisabledColor, var(--joy-palette-brand-filledDisabledColor))',
-                backgroundColor:
-                  'var(--joy-pattern-filledDisabledBg, var(--joy-palette-brand-filledDisabledBg))',
-              },
-            },
-            neutral: {
-              '&.Mui-disabled': {
-                color:
-                  'var(--joy-pattern-filledDisabledColor, var(--joy-palette-neutral-filledDisabledColor))',
-                backgroundColor:
-                  'var(--joy-pattern-filledDisabledBg, var(--joy-palette-neutral-filledDisabledBg))',
-              },
-            },
-          },
-          contained: {
-            brand: {
-              color: 'var(--joy-palette-brand-containedColor)',
-              backgroundColor: 'var(--joy-palette-brand-containedBg)',
-            },
-            neutral: {
-              color: 'var(--joy-palette-neutral-containedColor)',
-              backgroundColor: 'var(--joy-palette-neutral-containedBg)',
-            },
-          },
-          containedHover: {
-            brand: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor: 'var(--joy-palette-brand-containedHoverBg)',
-              },
-            },
-            neutral: {
-              cursor: 'pointer',
-              '&:hover': {
-                backgroundColor: 'var(--joy-palette-neutral-containedHoverBg)',
-              },
-            },
-          },
-          containedActive: {
-            brand: {
-              '&:active': {
-                backgroundColor: 'var(--joy-palette-brand-containedActiveBg)',
-              },
-            },
-            neutral: {
-              '&:active': {
-                backgroundColor: 'var(--joy-palette-neutral-containedActiveBg)',
-              },
-            },
-          },
-          containedDisabled: {
-            brand: {
-              '&.Mui-disabled': {
-                backgroundColor: 'var(--joy-palette-brand-containedDisabledBg)',
-              },
-            },
-            neutral: {
-              '&.Mui-disabled': {
-                backgroundColor: 'var(--joy-palette-neutral-containedDisabledBg)',
-              },
-            },
-          },
-          containedContext: {
-            brand: {
-              '[data-mui-color-scheme="light"] &': {
-                '--joy-pattern-textColor': 'var(--joy-palette-brand-100)',
-                '--joy-pattern-textBg': 'transparent',
-                '--joy-pattern-textHoverBg': 'var(--joy-palette-brand-500)',
-                '--joy-pattern-textActiveBg': 'var(--joy-palette-brand-700)',
-                '--joy-pattern-outlinedColor': '#fff',
-                '--joy-pattern-outlinedBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedHoverBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedBg': 'transparent',
-                '--joy-pattern-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
-                '--joy-pattern-outlinedActiveBg': 'var(--joy-palette-brand-700)',
-                '--joy-pattern-filledColor': '#fff',
-                '--joy-pattern-filledBg': 'rgba(255, 255, 255, 0.2)',
-                '--joy-pattern-filledHoverBg': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-filledActiveBg': 'var(--joy-palette-brand-400)',
-              },
-              '[data-mui-color-scheme="dark"] &': {
-                '--joy-pattern-textColor': '#fff',
-                '--joy-pattern-textBg': 'transparent',
-                '--joy-pattern-textHoverBg': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-textActiveBg': 'var(--joy-palette-brand-500)',
-                '--joy-pattern-outlinedColor': '#fff',
-                '--joy-pattern-outlinedBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedHoverBorder': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-outlinedBg': 'transparent',
-                '--joy-pattern-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
-                '--joy-pattern-outlinedActiveBg': 'var(--joy-palette-brand-700)',
-                '--joy-pattern-filledColor': '#fff',
-                '--joy-pattern-filledBg': 'rgba(255, 255, 255, 0.2)',
-                '--joy-pattern-filledHoverBg': 'var(--joy-palette-brand-400)',
-                '--joy-pattern-filledActiveBg': 'var(--joy-palette-brand-400)',
-              },
-            },
-            neutral: {
-              '--joy-pattern-textColor': 'var(--joy-palette-neutral-100)',
-              '--joy-pattern-textBg': 'transparent',
-              '--joy-pattern-textHoverBg': 'var(--joy-palette-neutral-500)',
-              '--joy-pattern-textActiveBg': 'var(--joy-palette-neutral-700)',
-              '--joy-pattern-outlinedColor': '#fff',
-              '--joy-pattern-outlinedBorder': 'var(--joy-palette-neutral-400)',
-              '--joy-pattern-outlinedHoverBorder': 'var(--joy-palette-neutral-400)',
-              '--joy-pattern-outlinedBg': 'transparent',
-              '--joy-pattern-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
-              '--joy-pattern-outlinedActiveBg': 'var(--joy-palette-neutral-700)',
-              '--joy-pattern-filledColor': '#fff',
-              '--joy-pattern-filledBg': 'rgba(255, 255, 255, 0.2)',
-              '--joy-pattern-filledHoverBg': 'var(--joy-palette-neutral-400)',
-              '--joy-pattern-filledActiveBg': 'var(--joy-palette-neutral-400)',
-            },
-          },
-        },
-      }}
-    >
+    <CssVarsProvider defaultMode="system">
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -690,7 +298,7 @@ export default function JoySketching() {
         })}
       />
       <Paper
-        pattern="contained"
+        variant="contained"
         enableContext
         color="brand"
         as="header"
@@ -704,7 +312,7 @@ export default function JoySketching() {
           top: 0,
         }}
       >
-        <IconButton pattern="outlined">
+        <IconButton variant="outlined">
           <Sun />
         </IconButton>
         <Divider direction="vertical" />
@@ -712,7 +320,7 @@ export default function JoySketching() {
         <Divider direction="vertical" />
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Sun />
-          <Input pattern="text" placeholder="Search..." />
+          <Input variant="text" placeholder="Search..." />
         </Box>
         <Box sx={{ ml: 'auto' }}>
           <ColorSchemePicker />
@@ -732,18 +340,18 @@ export default function JoySketching() {
               flexDirection: 'column',
               alignItems: 'center',
               gap: '1rem',
-              '--joy-pattern-outlinedColor': 'var(--joy-palette-brand-200)',
-              '--joy-pattern-outlinedBorder': 'var(--joy-palette-brand-700)',
-              '--joy-pattern-outlinedHoverBg': 'var(--joy-palette-brand-700)',
+              '--joy-variant-outlinedColor': 'var(--joy-palette-brand-200)',
+              '--joy-variant-outlinedBorder': 'var(--joy-palette-brand-700)',
+              '--joy-variant-outlinedHoverBg': 'var(--joy-palette-brand-700)',
             }}
           >
-            <IconButton pattern="outlined">
+            <IconButton variant="outlined">
               <Sun />
             </IconButton>
-            <IconButton pattern="outlined">
+            <IconButton variant="outlined">
               <Sun />
             </IconButton>
-            <IconButton pattern="outlined">
+            <IconButton variant="outlined">
               <Sun />
             </IconButton>
           </Box>
@@ -757,7 +365,7 @@ export default function JoySketching() {
               <Typography variant="overline">Browse</Typography>
             </Box>
             <List sx={{ px: '0.5rem' }}>
-              <ListItem pattern="filled" color="brand">
+              <ListItem variant="filled" color="brand">
                 Inbox
               </ListItem>
               <ListItem>Sent</ListItem>
@@ -774,7 +382,7 @@ export default function JoySketching() {
             {[...Array(5)].map((_, index) => (
               <React.Fragment key={index}>
                 <Box sx={{ p: '1rem', display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                  <Paper pattern="filled" sx={{ minWidth: 32, minHeight: 32 }} />
+                  <Paper variant="filled" sx={{ minWidth: 32, minHeight: 32 }} />
                   <Box sx={{ flexGrow: 1 }}>
                     <Box
                       sx={{
@@ -799,22 +407,22 @@ export default function JoySketching() {
           </Paper>
           <Divider color="neutral" direction="vertical" sx={{ m: '0px' }} />
           <Box sx={{ flexGrow: 1, p: '1rem' }}>
-            <Paper sx={{ p: 0 }}>
+            <Paper elevation="md" sx={{ p: 0 }}>
               <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', p: '1rem' }}>
-                <Paper pattern="filled" sx={{ minWidth: 32, minHeight: 32 }} />
+                <Paper variant="filled" sx={{ minWidth: 32, minHeight: 32 }} />
                 <Box sx={{ flexGrow: 1 }}>
                   <Typography variant="caption" sx={{ mb: '0.25rem' }}>
                     Janet Erickson
                   </Typography>
                   <Typography variant="detail">Today at 15:45</Typography>
                 </Box>
-                <Button pattern="outlined" color="brand" sx={{ minHeight: 34, p: '0.25rem 1rem' }}>
+                <Button variant="outlined" color="brand" sx={{ minHeight: 34, p: '0.25rem 1rem' }}>
                   Reply
                 </Button>
-                <IconButton pattern="outlined" color="brand">
+                <IconButton variant="outlined" color="brand">
                   <Sun />
                 </IconButton>
-                <IconButton pattern="outlined" color="brand">
+                <IconButton variant="outlined" color="brand">
                   <Sun />
                 </IconButton>
               </Box>
@@ -826,7 +434,7 @@ export default function JoySketching() {
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.25rem', mb: '1rem' }}>
                   <Typography variant="detail">From</Typography>
                   <Button
-                    pattern="filled"
+                    variant="filled"
                     sx={{
                       minHeight: '22px',
                       py: 0,
@@ -839,7 +447,7 @@ export default function JoySketching() {
                   </Button>
                   <Typography variant="detail">To</Typography>
                   <Button
-                    pattern="filled"
+                    variant="filled"
                     sx={{
                       minHeight: '22px',
                       py: 0,
@@ -871,11 +479,11 @@ export default function JoySketching() {
                   Attachments
                 </Typography>
                 <Box sx={{ display: 'flex', gap: '1rem' }}>
-                  <Paper pattern="filled" sx={{ minWidth: '64px', minHeight: '64px' }} />
-                  <Paper pattern="filled" sx={{ minWidth: '64px', minHeight: '64px' }} />
-                  <Paper pattern="outlined" sx={{ display: 'flex', p: 0, minHeight: 0 }}>
+                  <Paper variant="filled" sx={{ minWidth: '64px', minHeight: '64px' }} />
+                  <Paper variant="filled" sx={{ minWidth: '64px', minHeight: '64px' }} />
+                  <Paper variant="outlined" sx={{ display: 'flex', p: 0, minHeight: 0 }}>
                     <Paper
-                      pattern="filled"
+                      variant="filled"
                       sx={{ minWidth: '64px', minHeight: '64px', borderRadius: 0 }}
                     />
                     <Box sx={{ p: '0.75rem' }}>
