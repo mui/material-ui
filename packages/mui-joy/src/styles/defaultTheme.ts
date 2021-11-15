@@ -72,11 +72,6 @@ export interface LetterSpacing {
   lg: React.CSSProperties['letterSpacing'];
 }
 
-export interface Shadow {
-  ring: React.CSSProperties['boxShadow'];
-  md: React.CSSProperties['boxShadow'];
-}
-
 export interface TypographySystems {
   h1: React.CSSProperties;
   h2: React.CSSProperties;
@@ -96,6 +91,8 @@ export interface TypographySystems {
 
 export interface StaticTheme {
   borderRadius: BorderRadius;
+  elevation: Elevation;
+  focus: Focus;
   htmlFontSize: React.CSSProperties['fontSize'];
   fontFamily: FontFamily;
   fontSize: FontSize;
@@ -103,7 +100,7 @@ export interface StaticTheme {
   lineHeight: LineHeight;
   letterSpacing: LetterSpacing;
   typography: TypographySystems;
-  shadow: Shadow;
+  variant: Variant;
 }
 
 export interface ThemeWithoutVars extends StaticTheme, ColorSystems {}
@@ -186,7 +183,6 @@ type BaseJoyTokens = {
     | 'overline'
   >;
   variant: Pick<Variant, DefaultVariantKey>;
-  shadow: Pick<Shadow, 'ring' | 'md'>;
 };
 
 export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> = {
@@ -777,10 +773,6 @@ const themeWithoutVars: BaseJoyTokens = {
         '--joy-pattern-filledActiveBg': 'var(--joy-palette-neutral-400)',
       },
     },
-  },
-  shadow: {
-    ring: '0 0 0 0 rgba(0,0,0,0)',
-    md: 'var(--shadows-ring), 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
   },
 };
 
