@@ -49,6 +49,7 @@ To address these problems, we took the following actions:
 
 The result of these actions is on the bottom part of the comparison.
 The number of frames that could be drawn in the same amount of time dramatically increased, compared to the previous virtualization.
+In our benchmark, the FPS (frames per second) went from 20 to 40, on average.
 The time each frame takes to be rendered, indicated by the width of each block, was reduced.
 The idea of delaying the re-rendering also can be seen in the large voids between the blocks.
 Each void means that a re-render was not necessary since the required columns were already rendered by the overscan.
