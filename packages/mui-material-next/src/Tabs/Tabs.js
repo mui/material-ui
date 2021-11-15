@@ -392,10 +392,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const getScrollSize = () => {
     const containerSize = tabsRef.current[clientSize];
     let totalSize = 0;
-    const children = Array.from(tabListRef.current.children);
+    const currentChildren = Array.from(tabListRef.current.children);
 
-    for (let i = 0; i < children.length; i += 1) {
-      const tab = children[i];
+    for (let i = 0; i < currentChildren.length; i += 1) {
+      const tab = currentChildren[i];
       if (totalSize + tab[clientSize] > containerSize) {
         break;
       }

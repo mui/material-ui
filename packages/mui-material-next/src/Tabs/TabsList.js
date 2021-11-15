@@ -51,9 +51,9 @@ const TabsList = React.forwardRef((props, ref) => {
 });
 
 TabsList.propTypes = {
-  variant: PropTypes.oneOf(['fullWidth', 'scrollable', 'standard']),
   indicator: PropTypes.node,
   textColor: PropTypes.oneOf(['primary', 'secondary']),
+  variant: PropTypes.oneOf(['fullWidth', 'scrollable', 'standard']),
 };
 
 export default TabsList;
