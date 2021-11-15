@@ -206,18 +206,21 @@ const Avatar = styled('div')(({ theme, pattern = 'filled', color = 'brand' }) =>
 ]);
 
 const Paper = styled('div')(
-  ({ theme, pattern = 'text', color = 'neutral', enableContext = false, elevation }) => [
-    {
-      minWidth: 100,
-      minHeight: 120,
-      padding: '1rem',
-      borderRadius: 4,
-      backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
-      boxShadow: theme.elevation?.[elevation],
-    },
-    theme.pattern[pattern]?.[color],
-    enableContext && pattern === 'contained' && theme.pattern.containedContext?.[color],
-  ],
+  ({ theme, pattern = 'text', color = 'neutral', enableContext = false, elevation }) => {
+    console.log('theme', theme);
+    return [
+      {
+        minWidth: 100,
+        minHeight: 120,
+        padding: '1rem',
+        borderRadius: 4,
+        backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
+        boxShadow: theme.elevation?.[elevation],
+      },
+      theme.pattern[pattern]?.[color],
+      enableContext && pattern === 'contained' && theme.pattern.containedContext?.[color],
+    ];
+  },
 );
 
 const List = styled('ul')(({ theme, pattern = 'text', color = 'neutral' }) => [
@@ -365,8 +368,8 @@ export default function JoyVariants() {
               },
               // focus
               focusedOutline: 'var(--joy-palette-brand-200)',
-              elevationRing: 'var(--joy-palette-neutral-100)',
             },
+            elevationRing: '0 0 0 1px var(--joy-palette-neutral-100)',
           },
           dark: {
             palette: {
@@ -413,8 +416,8 @@ export default function JoyVariants() {
               },
               // focus
               focusedOutline: 'var(--joy-palette-brand-400)',
-              elevationRing: 'var(--joy-palette-neutral-700)',
             },
+            elevationRing: '0 0 0 1px var(--joy-palette-neutral-700)',
           },
         },
         pattern: {
@@ -698,12 +701,11 @@ export default function JoyVariants() {
           },
         },
         elevation: {
-          ring: '0 0 0 1px var(--joy-palette-elevationRing)',
-          xs: 'var(--joy-elevation-ring), 0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-          sm: 'var(--joy-elevation-ring), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-          md: 'var(--joy-elevation-ring), 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-          lg: 'var(--joy-elevation-ring), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-          xl: 'var(--joy-elevation-ring), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+          xs: 'var(--joy-elevationRing), 0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+          sm: 'var(--joy-elevationRing), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+          md: 'var(--joy-elevationRing), 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+          lg: 'var(--joy-elevationRing), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+          xl: 'var(--joy-elevationRing), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
         },
       }}
     >
