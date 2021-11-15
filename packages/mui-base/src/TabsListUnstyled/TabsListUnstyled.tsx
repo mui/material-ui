@@ -70,16 +70,6 @@ TabsListUnstyled.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * Defines a string value that labels the current element.
-   * @see aria-labelledby.
-   */
-  'aria-label': PropTypes.string,
-  /**
-   * Identifies the element (or elements) that labels the current element.
-   * @see aria-describedby.
-   */
-  'aria-labelledby': PropTypes.string,
-  /**
    * The content of the component.
    */
   children: PropTypes.node,

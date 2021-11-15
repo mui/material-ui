@@ -254,6 +254,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     const childValue = child.props.value === undefined ? childIndex : child.props.value;
     valueToIndex.set(childValue, childIndex);
     childIndex += 1;
+    return null;
   });
 
   const getTabsMeta = () => {
@@ -277,10 +278,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
     let tabMeta;
     if (tabsNode && value !== false) {
-      const children = tabListRef.current.children;
+      const currentChildren = tabListRef.current.children;
 
-      if (children.length > 0) {
-        const tab = children[valueToIndex.get(value)];
+      if (currentChildren.length > 0) {
+        const tab = currentChildren[valueToIndex.get(value)];
         if (process.env.NODE_ENV !== 'production') {
           if (!tab) {
             console.error(

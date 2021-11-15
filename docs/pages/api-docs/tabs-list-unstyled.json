@@ -1,7 +1,5 @@
 {
   "props": {
-    "aria-label": { "type": { "name": "string" } },
-    "aria-labelledby": { "type": { "name": "string" } },
     "children": { "type": { "name": "node" } },
     "component": { "type": { "name": "elementType" } },
     "components": {

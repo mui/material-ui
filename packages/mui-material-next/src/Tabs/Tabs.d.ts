@@ -2,8 +2,8 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
-import { TabScrollButtonProps } from '../TabScrollButton';
 import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
+import { TabScrollButtonProps } from '../TabScrollButton';
 import { TabsClasses } from './tabsClasses';
 
 export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {

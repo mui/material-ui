@@ -1,5 +1,11 @@
 {
   "props": {
+    "action": {
+      "type": {
+        "name": "union",
+        "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
+      }
+    },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },

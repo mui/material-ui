@@ -1,8 +1,6 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "aria-label": "Defines a string value that labels the current element.",
-    "aria-labelledby": "Identifies the element (or elements) that labels the current element.",
     "children": "The content of the component.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "components": "The components used for each slot inside the TabsList. Either a string to use a HTML element or a component.",

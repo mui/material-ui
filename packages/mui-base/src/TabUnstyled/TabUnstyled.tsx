@@ -94,6 +94,17 @@ TabUnstyled.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * A ref for imperative actions. It currently only supports `focusVisible()` action.
+   */
+  action: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.shape({
+        focusVisible: PropTypes.func.isRequired,
+      }),
+    }),
+  ]),
+  /**
    * @ignore
    */
   children: PropTypes.node,
