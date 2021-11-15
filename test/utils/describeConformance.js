@@ -149,7 +149,7 @@ export function describeRef(element, getOptions) {
  */
 export function testRootClass(element, getOptions) {
   it('applies the root class to the root component if it has this class', () => {
-    const { classes, render } = getOptions();
+    const { classes, render, skip } = getOptions();
     if (classes.root == null) {
       return;
     }
@@ -162,6 +162,7 @@ export function testRootClass(element, getOptions) {
         classes: { ...classes, root: `${classes.root} ${classesRootClassname}` },
       }),
     );
+
     // we established that the root component renders the outermost host previously. We immediately
     // jump to the host component because some components pass the `root` class
     // to the `classes` prop of the root component.
@@ -170,11 +171,14 @@ export function testRootClass(element, getOptions) {
     expect(container.firstChild).to.have.class(classes.root);
     expect(document.querySelectorAll(`.${classes.root}`).length).to.equal(1);
 
-    // Test that classes prop works
-    expect(container.firstChild).to.have.class(classesRootClassname);
+    // classes test only for @mui/material
+    if (!skip || !skip.includes('classesRoot')) {
+      // Test that classes prop works
+      expect(container.firstChild).to.have.class(classesRootClassname);
 
-    // Test that `classes` does not spread to DOM
-    expect(document.querySelectorAll('[classes]').length).to.equal(0);
+      // Test that `classes` does not spread to DOM
+      expect(document.querySelectorAll('[classes]').length).to.equal(0);
+    }
   });
 }
 
