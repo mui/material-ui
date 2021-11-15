@@ -17,6 +17,14 @@ export interface BorderRadius {
   xl: React.CSSProperties['borderRadius'];
 }
 
+export interface Elevation {
+  xs: React.CSSProperties['borderRadius'];
+  sm: React.CSSProperties['borderRadius'];
+  md: React.CSSProperties['borderRadius'];
+  lg: React.CSSProperties['borderRadius'];
+  xl: React.CSSProperties['borderRadius'];
+}
+
 export interface FontSize {
   xs: React.CSSProperties['fontSize'];
   sm: React.CSSProperties['fontSize'];
@@ -108,6 +116,8 @@ type BaseJoyTokens = {
     text: Pick<PaletteText, 'heading' | 'headingIntro' | 'content' | 'detail' | 'overline'>;
     bgNeutral: Pick<PaletteBgNeutral, 'plain' | 'transparency'>;
   };
+  elevationRing: React.CSSProperties['boxShadow'];
+  elevation: Pick<Elevation, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   borderRadius: Pick<BorderRadius, 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   htmlFontSize: React.CSSProperties['fontSize'];
   fontSize: Pick<
@@ -139,7 +149,7 @@ type BaseJoyTokens = {
   shadow: Pick<Shadow, 'ring' | 'md'>;
 };
 
-export const lightColorSystem: Pick<BaseJoyTokens, 'palette'> = {
+export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> = {
   palette: {
     brand: colors.purple,
     neutral: colors.grey,
@@ -155,9 +165,10 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette'> = {
       plain: 'var(--joy-palette-neutral-100)',
     },
   },
+  elevationRing: '0 0 #000',
 };
 
-export const darkColorSystem: Pick<BaseJoyTokens, 'palette'> = {
+export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> = {
   palette: {
     brand: colors.purple,
     neutral: colors.grey,
@@ -173,6 +184,7 @@ export const darkColorSystem: Pick<BaseJoyTokens, 'palette'> = {
       plain: 'var(--joy-palette-neutral-900)',
     },
   },
+  elevationRing: '0 0 #000',
 };
 
 /**
@@ -188,6 +200,13 @@ const themeWithoutVars: BaseJoyTokens = {
     md: '12px',
     lg: '20px',
     xl: '32px',
+  },
+  elevation: {
+    xs: 'var(--joy-elevation-ring), 0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    sm: 'var(--joy-elevation-ring), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+    md: 'var(--joy-elevation-ring), 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    lg: 'var(--joy-elevation-ring), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+    xl: 'var(--joy-elevation-ring), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
   },
   htmlFontSize: '16px',
   fontSize: {
@@ -353,9 +372,8 @@ export interface JoyTheme<ExtendedColorScheme extends string = never> extends Th
 const defaultTheme = {
   ...themeWithoutVars,
   colorSchemes: {
-    light: {
-      palette: themeWithoutVars.palette,
-    },
+    light: lightColorSystem,
+    dark: darkColorSystem,
   },
   vars: themeWithoutVars,
 } as JoyTheme;

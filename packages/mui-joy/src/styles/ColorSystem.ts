@@ -1,4 +1,5 @@
 import { OverridableStringUnion } from '@mui/types';
+import React from 'react';
 /**
  * ====================================================
  * Developer facing types, they can augment these types.
@@ -15,7 +16,6 @@ export interface PaletteRange {
   700: string;
   800: string;
   900: string;
-  channel500: string;
 }
 
 export interface PaletteText {
@@ -49,4 +49,5 @@ export interface Palette extends ColorPalette {
 
 export interface ColorSystems {
   palette: Palette;
+  elevationRing: React.CSSProperties['boxShadow'];
 }
