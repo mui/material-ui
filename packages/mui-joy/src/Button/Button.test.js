@@ -12,10 +12,10 @@ describe('Joy <Button />', () => {
     classes,
     ThemeProvider,
     refInstanceof: window.HTMLButtonElement,
-    muiName: 'JoyButton',
+    muiName: 'MuiButton',
     testVariantProps: { variant: 'contained', fullWidth: true },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
-    skip: ['propsSpread', 'componentsProp'],
+    skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 
   it('by default, should render with the root, variantText, sizeMedium and colorBrand classes', () => {

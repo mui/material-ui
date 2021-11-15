@@ -28,10 +28,10 @@ export interface ButtonClasses {
 export type ButtonClassKey = keyof ButtonClasses;
 
 export function getButtonUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyButton', slot);
+  return generateUtilityClass('MuiButton', slot);
 }
 
-const buttonClasses: ButtonClasses = generateUtilityClasses('JoyButton', [
+const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'root',
   'colorBrand',
   'variantText',

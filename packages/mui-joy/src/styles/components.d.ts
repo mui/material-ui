@@ -7,7 +7,7 @@ export type OverridesStyleRules<ClassKey extends string = string> = Record<
 >;
 
 export interface Components {
-  JoyButton?: {
+  MuiButton?: {
     defaultProps?: Partial<ButtonProps>;
     styleOverrides?: Partial<OverridesStyleRules<''>>;
     variants?: Array<{

@@ -35,7 +35,7 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
 };
 
 const ButtonRoot = styled('button', {
-  name: 'JoyButton',
+  name: 'MuiButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
@@ -133,7 +133,7 @@ const ButtonRoot = styled('button', {
 });
 
 const Button = React.forwardRef(function Button(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'JoyButton' });
+  const props = useThemeProps({ props: inProps, name: 'MuiButton' });
 
   const {
     children,
