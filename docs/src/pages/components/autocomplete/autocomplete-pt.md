@@ -115,7 +115,7 @@ Para casos avançados de customização, o hook `useAutocomplete` é disponibili
 import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 ```
 
-The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
+O hook `useAutocomplete` também é reexportado de @mui/material por conveniência e compatibilidade com versões anteriores.
 
 ```tsx
 import useAutocomplete from '@mui/material/useAutocomplete';
@@ -129,11 +129,11 @@ import useAutocomplete from '@mui/material/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-Head to the [customization](#customization) section for an example with the `Autocomplete` component instead of the hook.
+Vá para a seção [customização](#customization) para um exemplo com o componente `Autocomplete` em vez do hook.
 
 ## Requisições assíncronas
 
-The component supports two different asynchronous use-cases:
+O componente suporta dois cenários de uso assíncrono diferentes:
 
 - [Carregar ao abrir](#load-on-open): espera uma interação com o componente para carregar as opções.
 - [Pesquisar enquanto digita](#search-as-you-type): um novo pedido é feito para cada tecla pressionada.
@@ -233,7 +233,7 @@ import { createFilterOptions } from '@mui/material/Autocomplete';
 - `config.limit` (*number* [opcional]): Padrão null. Limitar o número de opções sugeridas a serem exibidas. Por exemplo, se `config.limit` é `100`, somente as primeiras `100` opções correspondentes são exibidas. Isto pode ser útil se um monte corresponderem e a virtualização não estiver configurada.
 - `config.matchFrom` (_'any' | 'start'_ [opcional]): Padrão `'any'`.
 - `config.stringify` (*func* [opcional]): Controla a forma como a opção é convertida em texto, dessa forma pode ser comparada com qualquer fragmento de texto.
-- `config.trim` (_bool_ [optional]): Defaults to `false`. Remover espaços ao fim.
+- `config.trim` (_bool_ [opcional]): Padrão `false`. Remover espaços ao fim.
 
 #### Retornos
 
@@ -272,15 +272,15 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 
 ## Eventos
 
-If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+Se você deseja evitar o comportamento padrão do teclado, você pode definir a propriedade do evento `defaultMuiPrevented` para `true`:
 
 ```jsx
 <Autocomplete
   onKeyDown={(event) => {
     if (event.key === 'Enter') {
-      // Prevent's default 'Enter' behavior.
+      // Previne o comportamento padrão do 'Enter'.
       event.defaultMuiPrevented = true;
-      // your handler code
+      // seu código manipulador
     }
   }}
 />
