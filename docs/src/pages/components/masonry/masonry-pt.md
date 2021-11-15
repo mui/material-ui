@@ -10,7 +10,7 @@ githubLabel: 'component: Masonry'
 
 Masonry maintains a list of content blocks with a consistent width but variable height. The contents are ordered by row. If a row is already filled with the specified number of columns, the next item starts another row, and it is added to the shortest column.
 
-[A paleta](/system/palette/) com funções de estilo.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basic masonry
 
