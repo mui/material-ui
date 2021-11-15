@@ -11,4 +11,4 @@ githubLabel: 'component: Hidden'
 
 <p class="description"></p>
 
-[A paleta](/system/palette/) com funções de estilo.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
