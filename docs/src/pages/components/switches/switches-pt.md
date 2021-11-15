@@ -37,7 +37,7 @@ Use a propriedade `size` para alterar o tamanho do interruptor.
 
 Você pode controlar o interruptor com as propriedades `checked` e `onChange`:
 
-{{"demo": "pages/components/switches/CustomizedSwitches.js"}}
+{{"demo": "pages/components/switches/ControlledSwitches.js"}}
 
 ## Interruptores com FormGroup
 
