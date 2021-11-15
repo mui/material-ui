@@ -1,50 +1,20 @@
 import * as React from 'react';
 import colors from '../colors';
+import { ColorSystems, PaletteRange, PaletteText, PaletteBgNeutral } from './ColorSystem';
 
 /**
  * ====================================================
  * Developer facing types, they can augment these types.
  * ====================================================
  */
-export interface PaletteRange {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
-}
-
-export interface PaletteText {
-  heading: React.CSSProperties['color'];
-  headingIntro: React.CSSProperties['color'];
-  content: React.CSSProperties['color'];
-  detail: React.CSSProperties['color'];
-  overline: React.CSSProperties['color'];
-}
-
-export interface PaletteBgNeutral {
-  transparency: React.CSSProperties['backgroundColor'];
-  plain: React.CSSProperties['backgroundColor'];
-}
-
-export interface Palette {
-  brand: PaletteRange;
-  neutral: PaletteRange;
-  text: PaletteText;
-  bgNeutral: PaletteBgNeutral;
-}
-
-export interface ColorSystems {
-  palette: Palette;
-}
 
 export interface BorderRadius {
+  default: React.CSSProperties['borderRadius'];
+  xs: React.CSSProperties['borderRadius'];
+  sm: React.CSSProperties['borderRadius'];
   md: React.CSSProperties['borderRadius'];
+  lg: React.CSSProperties['borderRadius'];
+  xl: React.CSSProperties['borderRadius'];
 }
 
 export interface FontSize {
@@ -138,7 +108,7 @@ type BaseJoyTokens = {
     text: Pick<PaletteText, 'heading' | 'headingIntro' | 'content' | 'detail' | 'overline'>;
     bgNeutral: Pick<PaletteBgNeutral, 'plain' | 'transparency'>;
   };
-  borderRadius: Pick<BorderRadius, 'md'>;
+  borderRadius: Pick<BorderRadius, 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   htmlFontSize: React.CSSProperties['fontSize'];
   fontSize: Pick<
     FontSize,
@@ -212,7 +182,12 @@ export const darkColorSystem: Pick<BaseJoyTokens, 'palette'> = {
 const themeWithoutVars: BaseJoyTokens = {
   ...lightColorSystem,
   borderRadius: {
-    md: '4px',
+    default: '28px',
+    xs: '4px',
+    sm: '8px',
+    md: '12px',
+    lg: '20px',
+    xl: '32px',
   },
   htmlFontSize: '16px',
   fontSize: {
@@ -228,7 +203,7 @@ const themeWithoutVars: BaseJoyTokens = {
     xl6: '4.5rem',
   },
   fontFamily: {
-    sans: 'Public Sans',
+    sans: '"Public Sans", Roboto',
     mono: 'Consolas',
   },
   fontWeight: {

@@ -174,7 +174,12 @@ describe('[Joy] CssVarsProvider', () => {
 
       expect(screen.getByTestId('border-radius').textContent).to.equal(
         JSON.stringify({
+          default: 'var(--joy-borderRadius-default)',
+          xs: 'var(--joy-borderRadius-xs)',
+          sm: 'var(--joy-borderRadius-sm)',
           md: 'var(--joy-borderRadius-md)',
+          lg: 'var(--joy-borderRadius-lg)',
+          xl: 'var(--joy-borderRadius-xl)',
         }),
       );
     });
