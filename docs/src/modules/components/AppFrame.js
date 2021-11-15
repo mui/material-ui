@@ -203,7 +203,7 @@ function AppFrame(props) {
   }, []);
 
   const router = useRouter();
-  const { canonical } = pathnameToLanguage(router.asPath);
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
   const { activePage } = React.useContext(PageContext);
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
@@ -278,7 +278,7 @@ function AppFrame(props) {
                   <MenuItem
                     component="a"
                     data-no-markdown-link="true"
-                    href={language.code === 'en' ? canonical : `/${language.code}${canonical}`}
+                    href={language.code === 'en' ? canonicalAs : `/${language.code}${canonicalAs}`}
                     key={language.code}
                     selected={userLanguage === language.code}
                     onClick={handleLanguageMenuClose}

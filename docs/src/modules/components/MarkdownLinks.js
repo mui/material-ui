@@ -2,7 +2,7 @@ import * as React from 'react';
 import Router from 'next/router';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
-export async function handleEvent(event, as) {
+export function handleEvent(event, as) {
   // Ignore click for new tab/new window behavior
   if (
     event.defaultPrevented ||
@@ -17,15 +17,8 @@ export async function handleEvent(event, as) {
 
   event.preventDefault();
 
-  let pathname = as.replace(/#(.*)$/, '');
-  pathname = pathnameToLanguage(pathname).canonical;
-
-  const success = await Router.push(pathname, as);
-  if (!success) {
-    return;
-  }
-  window.scrollTo(0, 0);
-  document.body.focus();
+  const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
+  Router.push(canonicalPathname, as);
 }
 
 /**

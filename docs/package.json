@@ -20,7 +20,7 @@
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@babel/plugin-transform-object-assign": "^7.16.0",
-    "@babel/runtime-corejs2": "^7.16.0",
+    "@babel/runtime-corejs2": "^7.16.3",
     "@date-io/core": "^2.11.0",
     "@date-io/date-fns-jalali": "^2.11.0",
     "@docsearch/react": "^3.0.0-alpha.40",
@@ -46,7 +46,7 @@
     "@mui/x-data-grid-generator": "^5.0.0-beta.6",
     "@mui/x-data-grid-pro": "^5.0.0-beta.6",
     "@trendmicro/react-interpolate": "^0.5.5",
-    "@types/autosuggest-highlight": "^3.1.1",
+    "@types/autosuggest-highlight": "^3.2.0",
     "@types/css-mediaquery": "^0.1.1",
     "@types/json2mq": "^0.2.0",
     "@types/markdown-to-jsx": "^7.0.1",
@@ -102,7 +102,7 @@
     "react-imask": "^6.2.2",
     "react-intersection-observer": "^8.32.2",
     "react-is": "^17.0.2",
-    "react-number-format": "^4.7.3",
+    "react-number-format": "^4.8.0",
     "react-router-dom": "^5.3.0",
     "react-spring": "^8.0.27",
     "react-swipeable-views": "^0.14.0",
@@ -122,7 +122,7 @@
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
-    "@types/marked": "^3.0.2",
+    "@types/marked": "^3.0.3",
     "@types/recharts": "^2.0.0",
     "cross-fetch": "^3.1.4",
     "gm": "^1.23.1"
