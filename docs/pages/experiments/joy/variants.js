@@ -166,6 +166,7 @@ const Button = styled('button')(({ theme, pattern = 'contained', color = 'brand'
     borderRadius: '24px',
     cursor: 'pointer',
     background: 'transparent',
+    '&:focus-visible': theme.focus.default,
   },
   theme.typography.button,
   theme.pattern[pattern]?.[color],
@@ -205,13 +206,14 @@ const Avatar = styled('div')(({ theme, pattern = 'filled', color = 'brand' }) =>
 ]);
 
 const Paper = styled('div')(
-  ({ theme, pattern = 'text', color = 'neutral', enableContext = false }) => [
+  ({ theme, pattern = 'text', color = 'neutral', enableContext = false, elevation }) => [
     {
       minWidth: 100,
       minHeight: 120,
       padding: '1rem',
       borderRadius: 4,
       backgroundColor: `var(--joy-pattern-${pattern}Bg, var(--joy-palette-bgNeutral-plain))`,
+      boxShadow: theme.elevation?.[elevation],
     },
     theme.pattern[pattern]?.[color],
     enableContext && pattern === 'contained' && theme.pattern.containedContext?.[color],
@@ -257,6 +259,7 @@ const IconButton = styled('button')(({ theme, pattern = 'filled', color = 'brand
     borderRadius: '50%',
     cursor: 'pointer',
     background: 'transparent',
+    '&:focus-visible': theme.focus.default,
   },
   theme.typography.button,
   theme.pattern[pattern]?.[color],
@@ -278,6 +281,7 @@ const Input = styled('input')(({ theme, pattern = 'outlined', color = 'neutral' 
       opacity: 0.72,
       color: `var(--joy-pattern-${pattern}Color, ${theme.vars.palette.text.detail})`,
     },
+    '&:focus-visible': theme.focus.default,
   },
   theme.typography.body,
   theme.pattern[pattern]?.[color],
@@ -309,7 +313,7 @@ const Tabs = styled('div')(({ theme, pattern = 'text', color = 'neutral' }) => [
   pattern === 'contained' && theme.pattern.containedContext?.[color],
 ]);
 
-export default function JoyDashboard() {
+export default function JoyVariants() {
   return (
     <CssVarsProvider
       defaultMode="system"
@@ -359,6 +363,9 @@ export default function JoyDashboard() {
                 transparency: 'var(--joy-palette-neutral-50)',
                 plain: '#fff',
               },
+              // focus
+              focusedOutline: 'var(--joy-palette-brand-200)',
+              elevationRing: 'var(--joy-palette-neutral-100)',
             },
           },
           dark: {
@@ -404,6 +411,9 @@ export default function JoyDashboard() {
               bgNeutral: {
                 plain: '#040404',
               },
+              // focus
+              focusedOutline: 'var(--joy-palette-brand-400)',
+              elevationRing: 'var(--joy-palette-neutral-700)',
             },
           },
         },
@@ -681,6 +691,20 @@ export default function JoyDashboard() {
             },
           },
         },
+        focus: {
+          default: {
+            outline: '4px solid',
+            outlineColor: 'var(--joy-palette-focusedOutline)',
+          },
+        },
+        elevation: {
+          ring: '0 0 0 1px var(--joy-palette-elevationRing)',
+          xs: 'var(--joy-elevation-ring), 0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+          sm: 'var(--joy-elevation-ring), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+          md: 'var(--joy-elevation-ring), 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+          lg: 'var(--joy-elevation-ring), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+          xl: 'var(--joy-elevation-ring), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        },
       }}
     >
       <Head>
@@ -745,9 +769,15 @@ export default function JoyDashboard() {
           <Avatar pattern="outlined">A</Avatar>
           <Avatar pattern="filled">B</Avatar>
           <Avatar pattern="contained">C</Avatar>
-          <Paper pattern="text">Text Paper</Paper>
-          <Paper pattern="outlined">Outlined Paper</Paper>
-          <Paper pattern="filled">Filled Paper</Paper>
+          <Paper pattern="text" elevation="xl">
+            Text Paper
+          </Paper>
+          <Paper pattern="outlined" elevation="xl" sx={{ '--joy-elevation-ring': '0 0 #000' }}>
+            Outlined Paper
+          </Paper>
+          <Paper pattern="filled" elevation="xl">
+            Filled Paper
+          </Paper>
           <Paper pattern="contained">Contained Paper</Paper>
           <List>
             <ListItem pattern="outlined">

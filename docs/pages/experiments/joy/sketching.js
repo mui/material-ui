@@ -260,7 +260,7 @@ const Typography = styled('p', {
   ...theme.typography[variant],
 }));
 
-export default function JoyDashboard() {
+export default function JoySketching() {
   return (
     <CssVarsProvider
       defaultMode="system"
