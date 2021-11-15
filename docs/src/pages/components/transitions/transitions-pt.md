@@ -10,7 +10,7 @@ githubLabel: 'component: Transition'
 
 MUI provides transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications.
 
-[A paleta](/system/palette/) com funções de estilo.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Collapse
 
