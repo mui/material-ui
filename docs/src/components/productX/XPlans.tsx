@@ -48,7 +48,7 @@ export default function XPlans() {
               variant="contained"
               endIcon={<KeyboardArrowRightRounded />}
             >
-              See plans comparison
+              Compare plans
             </Button>
           </Box>
         </Grid>
