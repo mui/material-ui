@@ -66,7 +66,7 @@ githubLabel: 'component: Popper'
 
 {{"demo": "pages/components/popper/PopperPopupState.js"}}
 
-## Unstyled
+## 素颜模式
 
 The @mui/base package contain an unstyled version of Popper - PopperUnstyled. It does not have a dependency on @mui/material. The only difference between Popper and PopperUnstyled is the support for theming. Popper can read the `direction` field from the current theme, while PopperUnstyled accepts the `direction` prop instead.
 
