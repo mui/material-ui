@@ -4,7 +4,7 @@
 
 <!-- generated comparing v5.1.0..master -->
 
-_Nov 15, 2021_
+_Nov 16, 2021_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
@@ -13,8 +13,8 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### `@mui/material@5.1.1`
 
-- &#8203;<!-- 34 -->[Breadcrumbs][divider] Replace decimal spacing values with integers and css calc (#29526) @anikcreative
-- &#8203;<!-- 10 -->[Select][nativeselect] Add `multiple` class (#29566) @aaronholla
+- &#8203;<!-- 34 -->[Breadcrumbs][Divider] Replace decimal spacing values with integers and css calc (#29526) @anikcreative
+- &#8203;<!-- 10 -->[Select][NativeSelect] Add `multiple` class (#29566) @aaronholla
 - &#8203;<!-- 09 -->[Popper] Split into PopperUnstyled and Popper (#29488) @michaldudak
 - &#8203;<!-- 08 -->[Select] Make it clear that `Select` is not a root component (#29593) @hbjORbj
 - &#8203;<!-- 13 -->[l10n] Improved Dutch (nl-NL) locale (#29592) @flipvrijn
@@ -26,7 +26,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### Docs
 
-- &#8203;<!-- 25 -->[docs] correct bundler configuration for using legacy MUI build (#29146) @petermikitsh
+- &#8203;<!-- 25 -->[docs] Correct bundler configuration for using legacy MUI build (#29146) @petermikitsh
 - &#8203;<!-- 24 -->[docs] Fix typo on autocomplete.md (#29570) @netizer
 - &#8203;<!-- 23 -->[docs] Fix dark mode on branding pages (#29611) @alexfauquette
 - &#8203;<!-- 22 -->[docs] Do not render CSS section in API docs navbar if there are no CSS classes (#29622) @ZeeshanTamboli
