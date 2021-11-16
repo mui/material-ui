@@ -20,7 +20,7 @@ githubLabel: 'component: TrapFocus'
 
 {{"demo": "pages/components/trap-focus/BasicTrapFocus.js"}}
 
-## Unstyled
+## 素颜模式
 
 - 📦 [2.0 kB gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
 
