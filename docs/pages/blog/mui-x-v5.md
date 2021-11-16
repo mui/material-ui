@@ -174,7 +174,7 @@ You can check [this spage](https://mui.com/components/data-grid/migration-v4/) t
 
 ## What's next?
 
-More exciting things are coming! We have big plans for this last quarter of 2021 in terms of features we plan to make available to both `DataGrid` and `DataGridPro` components. Things like **tree data**, **column pinning** and **variable row height** are part of our roadmap.
+More exciting things are coming! We have big plans for the rest of this quarter in terms of features we expect to release in both the `DataGrid` and `DataGridPro` components. Features such as **tree data**, **column pinning**, and **variable row height** are part of our roadmap.
 
 ### A public roadmap
 
