@@ -18,6 +18,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 09 -->[Popper] Split into PopperUnstyled and Popper (#29488) @michaldudak
 - &#8203;<!-- 08 -->[Select] Make it clear that `Select` is not a root component (#29593) @hbjORbj
 - &#8203;<!-- 13 -->[l10n] Improved Dutch (nl-NL) locale (#29592) @flipvrijn
+- &#8203;<!-- 10 -->[Table] Improve pagination range, use "en dash" over "hyphen" (#29579) @narekmal
 
 ### `@mui/base@5.0.0-alpha.55`
 
@@ -44,7 +45,10 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 16 -->[docs] Remove svg logos from the Support page (#29431) @oliviertassinari
 - &#8203;<!-- 15 -->[docs] Link UXPin integration (#29422) @oliviertassinari
 - &#8203;<!-- 14 -->[docs] Link to the new public roadmap for the design kits (#29433) @oliviertassinari
+- &#8203;<!-- 28 -->[docs] correct bundler configuration for using legacy MUI build (#29146) @petermikitsh
 - &#8203;<!-- 01 -->[website] Fix premium plan release date (#29430) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Add GitHub icon button to the navbar (#29640) @danilo-leal
+- &#8203;<!-- 39 -->[blog] Support many authors in markdown pages (#29633) @m4theushw
 
 ### Core
 
@@ -61,6 +65,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 04 -->[test] Always ignore "useLayoutEffect has no effect on the server"-warning (#29502) @eps1lon
 - &#8203;<!-- 03 -->[test] Restore StrictMode by default (#29589) @eps1lon
 - &#8203;<!-- 02 -->[test] createPickerRender -> createPickerRenderer (#29575) @eps1lon
+- &#8203;<!-- 09 -->[test] Allow experimental CLI to run exact test (#29685) @eps1lon
 
 All contributors of this release in alphabetical order: @aaronholla, @alexfauquette, @anikcreative, @daniel-sachs, @eps1lon, @flipvrijn, @hbjORbj, @joshua-lawrence, @michaldudak, @mnajdova, @netizer, @oliviertassinari, @petermikitsh, @siriwatknp, @ZeeshanTamboli
 
