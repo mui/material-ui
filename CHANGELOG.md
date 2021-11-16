@@ -1,5 +1,74 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.1.1
+
+<!-- generated comparing v5.1.0..master -->
+
+_Nov 16, 2021_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🛠 Rename `@mui/core` to `@mui/base`. (#29585) @michaldudak
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.1.1`
+
+- &#8203;<!-- 34 -->[Breadcrumbs][divider] Replace decimal spacing values with integers and css calc (#29526) @anikcreative
+- &#8203;<!-- 10 -->[Select][nativeselect] Add `multiple` class (#29566) @aaronholla
+- &#8203;<!-- 09 -->[Popper] Split into PopperUnstyled and Popper (#29488) @michaldudak
+- &#8203;<!-- 08 -->[Select] Make it clear that `Select` is not a root component (#29593) @hbjORbj
+- &#8203;<!-- 13 -->[l10n] Improved Dutch (nl-NL) locale (#29592) @flipvrijn
+- &#8203;<!-- 10 -->[Table] Improve pagination range, use "en dash" over "hyphen" (#29579) @narekmal
+
+### `@mui/base@5.0.0-alpha.55`
+
+#### BREAKING CHANGE
+
+- &#8203;<!-- 27 -->[core] Rename mui/core to mui/base (#29585) @michaldudak
+
+### `@mui/lab@5.0.0-alpha.55`
+
+- &#8203;<!-- 12 -->[LoadingButton] Text variant spacing fixed for both start and end (#29194) @joshua-lawrence
+- &#8203;<!-- 11 -->[Masonry] Check if container or child exists to prevent error (#29452) @hbjORbj
+
+### Docs
+
+- &#8203;<!-- 25 -->[docs] Correct bundler configuration for using legacy MUI build (#29146) @petermikitsh
+- &#8203;<!-- 24 -->[docs] Fix typo on autocomplete.md (#29570) @netizer
+- &#8203;<!-- 23 -->[docs] Fix dark mode on branding pages (#29611) @alexfauquette
+- &#8203;<!-- 22 -->[docs] Do not render CSS section in API docs navbar if there are no CSS classes (#29622) @ZeeshanTamboli
+- &#8203;<!-- 21 -->[docs] Fix link locale handling (#29624) @oliviertassinari
+- &#8203;<!-- 20 -->[docs] Fix Search navigation (#29623) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Fix broken link & update MUI packages explanation (#29583) @siriwatknp
+- &#8203;<!-- 18 -->[docs] Do not repeat language snippet in url in Algolia search (#29483) @hbjORbj
+- &#8203;<!-- 17 -->[docs] Update `ThemeProvider` API link (#29573) @siriwatknp
+- &#8203;<!-- 16 -->[docs] Remove svg logos from the Support page (#29431) @oliviertassinari
+- &#8203;<!-- 15 -->[docs] Link UXPin integration (#29422) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Link to the new public roadmap for the design kits (#29433) @oliviertassinari
+- &#8203;<!-- 28 -->[docs] correct bundler configuration for using legacy MUI build (#29146) @petermikitsh
+- &#8203;<!-- 01 -->[website] Fix premium plan release date (#29430) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Add GitHub icon button to the navbar (#29640) @danilo-leal
+- &#8203;<!-- 39 -->[blog] Support many authors in markdown pages (#29633) @m4theushw
+
+### Core
+
+- &#8203;<!-- 33 -->[core] Add `experiments` index page (#29582) @siriwatknp
+- &#8203;<!-- 32 -->[core] Move s3 bucket ownership to mui-org (#29609) @eps1lon
+- &#8203;<!-- 31 -->[core] Improve support request message (#29614) @mnajdova
+- &#8203;<!-- 30 -->[core] Use support request Github Action (#29594) @mnajdova
+- &#8203;<!-- 29 -->[core] Remove unused `getJsxPreview` util (#29586) @ZeeshanTamboli
+- &#8203;<!-- 28 -->[core] Use GitHub issue forms (#28038) @oliviertassinari
+- &#8203;<!-- 26 -->[core] Add playground (#29423) @oliviertassinari
+- &#8203;<!-- 07 -->[test] Correctly identify what the `raf` helper is for (#29683) @eps1lon
+- &#8203;<!-- 06 -->[test] Verify a quilted ImageList is created as test title suggests (#29565) @daniel-sachs
+- &#8203;<!-- 05 -->[test] Replace `createServerRender` with `createRenderer` (#29503) @eps1lon
+- &#8203;<!-- 04 -->[test] Always ignore "useLayoutEffect has no effect on the server"-warning (#29502) @eps1lon
+- &#8203;<!-- 03 -->[test] Restore StrictMode by default (#29589) @eps1lon
+- &#8203;<!-- 02 -->[test] createPickerRender -> createPickerRenderer (#29575) @eps1lon
+- &#8203;<!-- 09 -->[test] Allow experimental CLI to run exact test (#29685) @eps1lon
+
+All contributors of this release in alphabetical order: @aaronholla, @alexfauquette, @anikcreative, @daniel-sachs, @eps1lon, @flipvrijn, @hbjORbj, @joshua-lawrence, @michaldudak, @mnajdova, @netizer, @oliviertassinari, @petermikitsh, @siriwatknp, @ZeeshanTamboli
+
 ## 5.1.0
 
 <!-- generated comparing v5.0.6..master -->
