@@ -1,12 +1,12 @@
-# Learn MUI
+# Aprenda MUI
 
-<p class="description">New to MUI? É fácil de aprender, se você souber por onde começar! Este guia irá ajudá-lo a dar o pontapé inicial.</p>
+<p class="description">Novo em MUI? É fácil de aprender, se você souber por onde começar! Este guia irá ajudá-lo a dar o pontapé inicial.</p>
 
-Developers come to MUI from different backgrounds and with different learning styles. Se você prefere uma abordagem mais teórica ou prática, esperamos que você ache esta seção útil. Like any unfamiliar technology, MUI does have a learning curve. Com prática e paciência, você logo vai pegar o jeito.
+Desenvolvedores chegam em MUI de diferentes culturas e com diferentes estilos de aprendizagem. Se você prefere uma abordagem mais teórica ou prática, esperamos que você ache esta seção útil. Como qualquer tecnologia desconhecida, MUI tem uma curva de aprendizagem. Com prática e paciência, você logo vai pegar o jeito.
 
 ## Primeiro exemplo
 
-The [usage page](/getting-started/usage/#quick-start) contains a small MUI example with a live editor. Even if you don't know anything about MUI yet, try changing the code and see how it affects the result.
+A [página de uso](/getting-started/usage/#quick-start) contém um pequeno exemplo de MUI com um editor interativo. Even if you don't know anything about MUI yet, try changing the code and see how it affects the result.
 
 ## Projetos de exemplo
 
@@ -18,7 +18,7 @@ Esta [seleção de modelos básicos](/getting-started/templates/) pode ajudar vo
 
 ## Recursos recomendados
 
-When first learning MUI, you might find third-party blog posts, books and video courses more helpful than the official documentation. Aqui estão alguns recursos recomendados, uma parte deles é gratuita.
+Ao começar a aprender MUI, você pode encontrar postagens de blogs de terceiros, livros e cursos em vídeo mais úteis do que a documentação oficial. Aqui estão alguns recursos recomendados, uma parte deles é gratuita.
 
 ### Grátis
 
