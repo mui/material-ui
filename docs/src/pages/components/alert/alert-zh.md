@@ -9,7 +9,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 <p class="description">一个警告提示组件展示了一段简短且重要的信息，在不影响用户操作的同时能够吸引用户的注意力。</p>
 
-**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but MUI supports it.
+**注意：** 警告提示不属于 [Material Design 指南](https://material.io/) 中的一部分，但是 MUI 仍然会继续支持该组件。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
