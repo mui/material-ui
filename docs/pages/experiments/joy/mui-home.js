@@ -161,7 +161,6 @@ const IconButton = styled('button')(
 const Card = styled('div')(
   ({ theme, variant = 'text', color = 'neutral', roundness = 'default', elevation }) => [
     {
-      '--joy-palette-neutral-outlinedBg': 'var(--joy-palette-bgNeutral-plain)',
       minWidth: 280,
       maxWidth: 360,
       minHeight: 280,
@@ -352,6 +351,9 @@ export default function MuiHome() {
                 700: '#0059B2',
                 800: '#004C99',
                 900: '#003A75',
+              },
+              neutral: {
+                outlinedBg: '#fff',
               },
             },
           },
