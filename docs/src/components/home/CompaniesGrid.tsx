@@ -54,7 +54,7 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     width: 95,
     height: 52,
     style: {
-      marginTop: '-10px',
+      marginTop: '-8px',
     },
   },
   {
@@ -63,7 +63,7 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     width: 29,
     height: 52,
     style: {
-      marginTop: '-2px',
+      marginTop: '-6px',
     },
   },
   {
@@ -71,6 +71,9 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     alt: 'Siemens logo',
     width: 105,
     height: 52,
+    style: {
+      marginTop: '-2px',
+    },
   },
   {
     name: 'volvo',
@@ -84,7 +87,7 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     width: 97,
     height: 52,
     style: {
-      marginTop: '-10px',
+      marginTop: '-4px',
     },
   },
 ];
