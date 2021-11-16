@@ -36,9 +36,9 @@ Stay up to date with the development of the library by following the blog.
 
 ### Recursos 📖
 
-New to MUI? É fácil de aprender, se você souber por onde começar!
+Novo em MUI? É fácil de aprender, se você souber por onde começar!
 
-[Learn MUI](/getting-started/learn/)
+[Aprenda MUI](/getting-started/learn/)
 
 ### Twitter
 
