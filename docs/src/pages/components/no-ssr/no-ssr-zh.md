@@ -29,7 +29,7 @@ At its core, the NoSsr component's purpose is to **defer rendering**. 正如在�
 
 {{"demo": "pages/components/no-ssr/FrameDeferring.js"}}
 
-## Unstyled
+## 素颜模式
 
 - 📦 [784 B gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
 
