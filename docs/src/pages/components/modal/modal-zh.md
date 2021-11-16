@@ -34,7 +34,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 请注意，您可以通过 `outline: 0` 属性来禁用模态框的边缘（通常为蓝色或金色）。
 
-## Unstyled
+## 素颜模式
 
 - 📦 [4.7 kB gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
 
