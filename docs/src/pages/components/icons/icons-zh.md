@@ -36,10 +36,10 @@ These components use the MUI `SvgIcon` component to render the SVG path for each
 If you aren't already using MUI in your project, you can add it with:
 
 ```sh
-// with npm
+// 用 npm 安装
 npm install @mui/material
 
-// with yarn
+// 用 yarn 安装
 yarn add @mui/material
 ```
 
