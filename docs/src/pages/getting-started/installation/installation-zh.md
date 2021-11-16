@@ -1,18 +1,18 @@
 # 安装
 
-<p class="description">Install MUI, the world's most popular React UI framework.</p>
+<p class="description">安装 MUI —— 世界上最受欢迎的 React UI 框架。</p>
 
-MUI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
+MUI 可以通过 [npm package](https://www.npmjs.com/package/@mui/material) 来安装。
 
 ## npm
 
 若想安装并写入您的 `package.json` 依赖包，请运行以下命令：
 
 ```sh
-// with npm
+// 使用 npm 安装
 npm install @mui/material @emotion/react @emotion/styled
 
-// with yarn
+// 使用 yarn 安装
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
@@ -23,18 +23,18 @@ yarn add @mui/material @emotion/react @emotion/styled
 或者你想使用 `styled-components` 来作为样式引擎：
 
 ```sh
-// with npm
+// 使用 npm 安装
 npm install @mui/material @mui/styled-engine-sc styled-components
 
-// with yarn
+// 使用 yarn 安装
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
-> 💡 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+> 💡参考 [Styled Engine 指南](/guides/styled-engine/) 来了解更多配置 `styled-components` 作为样式引擎的更多信息。
 
-## Roboto font
+## Roboto 字体
 
-MUI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto) font in mind. So be sure to follow [these instructions](/components/typography/#general). 例如，通过 Google Web Fonts 引入：
+MUI 是使用 [Roboto](https://fonts.google.com/specimen/Roboto) 字体来设计的。 因此请务必遵循 [这些说明](/components/typography/#general) 来引入字体。 例如，通过 Google Web Fonts 引入：
 
 ```html
 <link
@@ -43,7 +43,7 @@ MUI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto) fon
 />
 ```
 
-## Font icons
+## 字体图标
 
 To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. Here are [some instructions](/components/icons/#font-icons) on how to do so. 例如，通过 Google Web Fonts 引入：
 
@@ -51,17 +51,17 @@ To use the font `Icon` component, you must first add the [Material icons](https:
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-## SVG icons
+## SVG 图标
 
 In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/) you must first install the [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) package:
 
 <!-- #default-branch-switch -->
 
 ```sh
-// with npm
+// 使用 npm 安装
 npm install @mui/icons-material
 
-// with yarn
+// 使用 yarn 安装
 yarn add @mui/icons-material
 ```
 
@@ -84,7 +84,7 @@ You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/ma
 
 <a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
 <a href="https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-adobe-xd.svg" alt="adobe-xd" /></a>
-<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="草图" /></a>
+<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
 
 A set of reusable components for design tools is available, designed to match the React components and to help you craft great products:
 
