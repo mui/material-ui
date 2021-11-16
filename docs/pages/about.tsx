@@ -309,7 +309,7 @@ const teamMembers: Array<Profile> = [
     title: 'Studio team',
     location: 'Brussels, Belgium',
     country: 'be',
-    about: 'Always curious, love cinema and hiking!',
+    about: 'Always curious, I enjoy cinema, and hiking!',
     github: 'janpot',
   },
 ];
