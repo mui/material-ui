@@ -62,7 +62,7 @@ Use `color` prop to apply theme palette to component.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
 
-## Unstyled
+## 素颜模式
 
 Badge组件还有一个无样式的版本。 在需要进行大量自定义样式时，它可以更好的控制住包的大小
 
