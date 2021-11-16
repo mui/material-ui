@@ -7,7 +7,7 @@ import {
 } from '@mui/core';
 import { DIALOG_WIDTH } from '../constants/dimensions';
 import { WrapperVariantContext, IsStaticVariantContext } from './WrapperVariantContext';
-import useThemeProps from '../../../../../mui-material/src/styles/useThemeProps';
+import { useThemeProps } from '@mui/material/styles';
 
 export interface StaticWrapperClasses {
   /** Styles applied to the root element. */
