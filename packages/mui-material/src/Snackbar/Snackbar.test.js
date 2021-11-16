@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
 
 describe('<Snackbar />', () => {
@@ -17,7 +17,7 @@ describe('<Snackbar />', () => {
     clock.restore();
   });
 
-  const clientRender = createClientRender();
+  const { render: clientRender } = createRenderer();
   /**
    * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
    *

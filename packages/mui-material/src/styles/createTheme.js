@@ -1,5 +1,5 @@
 import { deepmerge } from '@mui/utils';
-import { generateUtilityClass } from '@mui/core';
+import { generateUtilityClass } from '@mui/base';
 import { createTheme as systemCreateTheme } from '@mui/system';
 import createMixins from './createMixins';
 import createPalette from './createPalette';

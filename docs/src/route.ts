@@ -14,6 +14,7 @@ const ROUTES = {
   customization: '/customization/how-to-customize/',
   theming: '/customization/theming/',
   documentation: '/getting-started/usage/',
+  communityHelp: '/getting-started/support/#community-help-free',
   dataGridDocs: '/components/data-grid/getting-started/',
   blog: 'https://medium.com/material-ui',
   showcase: '/discover-more/showcase',

@@ -1,8 +1,8 @@
 {
   "props": {
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "addEndListener": { "type": { "name": "func" } },
     "appear": { "type": { "name": "bool" }, "default": "true" },
-    "children": { "type": { "name": "custom", "description": "element" } },
     "easing": {
       "type": {
         "name": "union",

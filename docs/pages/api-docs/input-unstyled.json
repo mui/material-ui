@@ -33,7 +33,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-core/src/InputUnstyled/InputUnstyled.tsx",
+  "filename": "/packages/mui-base/src/InputUnstyled/InputUnstyled.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
   "cssComponent": false

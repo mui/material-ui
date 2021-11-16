@@ -30,7 +30,7 @@ The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 - [Troubleshooting](#troubleshooting)
 
 > 💡 Aim to create small commits on any changes to help the migration go more smoothly.
-> If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with this title format: `[Migration] Summary of your issue`.
+> If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: `[Migration] Summary of your issue`.
 
 ## Update React & TypeScript version
 
@@ -95,7 +95,7 @@ yarn add @mui/material @mui/styles
 ```text
 @material-ui/core -> @mui/material
 @material-ui/system -> @mui/system
-@material-ui/unstyled -> @mui/core
+@material-ui/unstyled -> @mui/base
 @material-ui/styles -> @mui/styles
 @material-ui/icons -> @mui/icons-material
 @material-ui/lab -> @mui/lab
@@ -159,9 +159,11 @@ Transform `<TextField/>, <FormControl/>, <Select/>` component by applying `varia
 // if you have theme setup like this, ❌ don't run this codemod.
 // these default props can be removed later because `outlined` is the default value in v5
 createMuiTheme({
-  props: {
+  components: {
     MuiTextField: {
-      variant: 'outlined',
+      defaultProps: {
+        variant: 'outlined',
+      },
     },
   },
 });
@@ -185,9 +187,11 @@ Transform `<Link/>` component by apply `underline="hover"` if no `underline` pro
 // if you have theme setup like this, ❌ don't run this codemod.
 // this default props can be removed later because `always` is the default value in v5
 createMuiTheme({
-  props: {
+  components: {
     MuiLink: {
-      underline: 'always',
+      defaultProps: {
+        underline: 'always',
+      },
     },
   },
 });
@@ -519,6 +523,8 @@ declare module '@mui/styles' {
   +import { createGenerateClassName } from '@mui/styles';
   ```
 
+  To generate custom class names **without** using `@mui/styles`, check out [ClassNameGenerator](/guides/classname-generator/) for more details.
+
 #### createMuiTheme
 
 - The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
@@ -595,7 +601,7 @@ declare module '@mui/styles' {
 
 #### styled
 
-- The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
+- The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use the one exported from `@mui/styles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
   ```diff
   -import { styled } from '@mui/material/styles';
@@ -717,6 +723,12 @@ declare module '@mui/styles' {
 - This HOC was removed. There's an alternative using the [`useMediaQuery` hook](/components/use-media-query/#migrating-from-withwidth).
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent the application from crashing.
+
+### @mui/icons-material
+
+#### GitHub
+
+The `GitHub` icon was reduced in size from 24px to 22px wide to match the other icons size.
 
 ### @material-ui/pickers
 
@@ -2436,7 +2448,7 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
 -    backgroundColor: theme.palette.primary.main
 -  },
 -  cta: {
--    borderRadius: theme.shape.radius.
+-    borderRadius: theme.shape.radius
 -  },
 -  content: {
 -    color: theme.palette.common.white,
@@ -2457,7 +2469,7 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
 +    backgroundColor: theme.palette.primary.main
 +  },
 +  [`& .${classes.cta}`]: {
-+    borderRadius: theme.shape.radius.
++    borderRadius: theme.shape.radius
 +  },
 +  [`& .${classes.content}`]: {
 +    color: theme.palette.common.white,
@@ -2583,7 +2595,7 @@ yarn remove @mui/styles
 
 ### Storybook emotion with v5
 
-If your project use Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of emotion.
+If your project uses Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of emotion.
 
 ```js
 // .storybook/main.js
@@ -2608,7 +2620,49 @@ module.exports = {
 };
 ```
 
-For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133) on GitHub.
+and update `.storybook/preview.js` (otherwise, the "Docs" tab in storybook will display empty page)
+
+```js
+// .storybook/preview.js
+
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider as Emotion10ThemeProvider } from 'emotion-theming';
+
+const defaultTheme = createTheme(); // or your custom theme
+
+const withThemeProvider = (Story, context) => {
+  return (
+    <Emotion10ThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={defaultTheme}>
+        <Story {...context} />
+      </ThemeProvider>
+    </Emotion10ThemeProvider>
+  );
+};
+
+export const decorators = [withThemeProvider];
+
+// ...other storybook exports
+```
+
+**Tested versions**
+
+```json
+{
+  "@storybook/react": "6.3.8",
+  "@storybook/addon-docs": "6.3.8",
+  "@emotion/react": "11.4.1",
+  "@emotion/styled": "11.3.0",
+  "@mui/material": "5.0.2"
+}
+```
+
+> Note: This setup is a workaround and might not work in all cases.
+
+For more details, checkout these issues on GitHub.
+
+- https://github.com/storybookjs/storybook/issues/16099
+- https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133
 
 ### Cannot read property `scrollTop` of null
 
@@ -2776,3 +2830,25 @@ The root cause of this error comes from accessing empty theme. Make sure that yo
 - Make sure that no `useStyles` is called outside of `<ThemeProvider>`. If you have, consider fixing it like [this suggestion](#makestyles-typeerror-cannot-read-property-drawer-of-undefined)
 
 For more details, [checkout this issue](https://github.com/mui-org/material-ui/issues/28496)
+
+### Styles broken after migrating to v5
+
+There are two reasons why the styles of the components may be broken after you finished with all the steps in the previous sections.
+
+First, check if you have configured the `StyledEngineProvider` correct as shown in the [Style library](#style-library) section.
+
+If the `StyledEngineProvider` is already used at the top of your application and the styles are still broken, it may be the case that you still have `@material-ui/core` in your application.
+It may be coming from some of the dependencies that you have, that still depend on `@material-ui/core` (v4).
+
+The easiest way to check this is to run `npm ls @material-ui/core` (or `yarn why @material-ui/core`) which will give you the necessary information.
+
+Here is one example:
+
+```sh
+$ npm ls @material-ui/core
+project@0.1.0 /path/to/project
+└─┬  @mui/x-data-grid@4.0.0
+  └── @material-ui/core@4.12.3
+```
+
+You can notice based on the output above that `@material-ui/core` is a dependency of `@mui/x-data-grid`. In this specific example, you need to bump the version of `@mui/x-data-grid` to [version 5](https://www.npmjs.com/package/@mui/x-data-grid) so that it depends on `@mui/material` instead.

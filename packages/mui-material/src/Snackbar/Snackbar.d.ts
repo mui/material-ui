@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { ClickAwayListenerProps } from '@mui/base/ClickAwayListener';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionProps } from '../transitions/transition';
-import { ClickAwayListenerProps } from '../ClickAwayListener';
 import { SnackbarClasses } from './snackbarClasses';
 
 export interface SnackbarOrigin {
@@ -98,7 +98,7 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
-    TransitionProps & { children?: React.ReactElement<any, any> }
+    TransitionProps & { children: React.ReactElement<any, any> }
   >;
   /**
    * The duration for the transition, in milliseconds.

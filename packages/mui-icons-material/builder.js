@@ -146,7 +146,6 @@ export function cleanPaths({ svgPath, data }) {
       { name: 'convertShapeToPath' },
       { name: 'sortAttrs' },
       { name: 'removeDimensions' },
-      { name: 'removeAttrs' },
       { name: 'removeElementsByAttr' },
       { name: 'removeStyleElement' },
       { name: 'removeScriptElement' },

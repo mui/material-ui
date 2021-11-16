@@ -285,7 +285,7 @@ Slide.propTypes /* remove-proptypes */ = {
   /**
    * A single child content element.
    */
-  children: elementAcceptingRef,
+  children: elementAcceptingRef.isRequired,
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the container the Slide is transitioning from.

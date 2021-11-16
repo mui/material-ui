@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { createClientRender, describeConformance, screen } from 'test/utils';
+import { createRenderer, describeConformance, screen } from 'test/utils';
 import CardMedia, { cardMediaClasses as classes } from '@mui/material/CardMedia';
 
 describe('<CardMedia />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<CardMedia image="/fake.png" />, () => ({
     classes,
@@ -18,11 +18,11 @@ describe('<CardMedia />', () => {
     skip: ['componentsProp'],
   }));
 
-  it('has the image role if `image` is defined', () => {
+  it('has the img role if `image` is defined', () => {
     const { container } = render(<CardMedia image="/fake.png" />);
 
     const cardMedia = container.firstChild;
-    expect(cardMedia).to.have.attribute('role', 'image');
+    expect(cardMedia).to.have.attribute('role', 'img');
   });
 
   it('should have the backgroundImage specified', () => {

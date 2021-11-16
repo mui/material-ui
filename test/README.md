@@ -96,15 +96,6 @@ expect(() => {
 }).not.toErrorDev();
 ```
 
-#### Visual regression tests
-
-We try to use as many demos from the documentation as possible;
-however, we can't replace one with the other as they address different needs.
-With the regression tests:
-
-- You might need to test a more complex situation, e.g. a stress test of the grid.
-- You might need to test a simpler situation, e.g. a static progress bar.
-
 ## Commands
 
 MUI uses a wide range of tests approach as each of them comes with a different
@@ -173,14 +164,9 @@ In the end, components are going to be used in a real browser.
 The DOM is just one dimension of that environment,
 so we also need to take into account the rendering engine.
 
-#### Run the visual regression tests
+#### Visual regression tests
 
-We are using [Playwright](https://playwright.dev/) to take screenshots and comparing them with the baseline. It allows catching regressions like this one:
-
-![before](/test/docs-regressions-before.png)
-![diff](/test/docs-regressions-diff.png)
-
-Here is an [example](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/test/regressions/tests/Menu/SimpleMenuList.js#L6-L16) with the `Menu` component.
+Check out the [visual regression testing readme](./regressions/README.md) for more information.
 
 #### end-to-end tests
 
@@ -194,7 +180,7 @@ You can pass the same arguments as you could to `mocha`.
 For example, `yarn test:regressions:run --watch --grep "docs-system-basic"` to take new screenshots of every demo in `docs/src/pages/system/basic`.
 You can view the screenshots in `test/regressions/screenshots/chrome`.
 
-Alternatively, you might want to open `http://localhost:5000` (while `yarn test:regressions:dev` is running) to view individual views separately.
+Alternatively, you might want to open `http://localhost:3000` (while `yarn test:regressions:dev` is running) to view individual views separately.
 
 ### Caveats
 

@@ -145,7 +145,8 @@ const getTheme = (outerTheme) => {
 // TODO: Let demos decide whether they need JSS
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
-  insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
+  insertionPoint:
+    typeof window !== 'undefined' ? document.querySelector('#insertion-point-jss') : null,
 });
 
 /**

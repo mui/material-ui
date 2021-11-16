@@ -3,10 +3,10 @@ import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import { expect } from 'chai';
 import * as React from 'react';
 import { spy } from 'sinon';
-import { act, createClientRender, describeConformance, fireEvent } from 'test/utils';
+import { act, createRenderer, describeConformance, fireEvent } from 'test/utils';
 
 describe('<Tab />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Tab textColor="inherit" />, () => ({
     classes,
@@ -121,16 +121,16 @@ describe('<Tab />', () => {
       expect(getByTestId('icon')).not.to.equal(null);
     });
 
-    it('should create a wrapper', () => {
-      const { getByRole } = render(<Tab icon={<div data-testid="icon" />} />);
+    it('should add a classname when passed together with label', () => {
+      const { getByRole } = render(<Tab icon={<div className="test-icon" />} label="foo" />);
       const wrapper = getByRole('tab').children[0];
-      expect(wrapper.tagName).to.equal('SPAN');
+      expect(wrapper).to.have.class(classes.iconWrapper);
+      expect(wrapper).to.have.class('test-icon');
     });
 
-    it('should create a wrapper with bottom margin when passed together with label', () => {
-      const { getByRole } = render(<Tab icon={<div data-testid="icon" />} label="foo" />);
+    it('should have bottom margin when passed together with label', () => {
+      const { getByRole } = render(<Tab icon={<div />} label="foo" />);
       const wrapper = getByRole('tab').children[0];
-      expect(wrapper.tagName).to.equal('SPAN');
       expect(wrapper).toHaveComputedStyle({ marginBottom: '6px' });
     });
   });

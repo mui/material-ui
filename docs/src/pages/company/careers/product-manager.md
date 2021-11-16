@@ -5,7 +5,7 @@
 ## Details of the Role
 
 - Location: Remote (preference for UTC-5 to UTC+4).
-- Type of work: Contractor (full-time, convertible to an employee position in the future).
+- Type of work: Full-time (contractor or employee [depending on the case](https://www.notion.so/mui-org/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
@@ -60,7 +60,7 @@ You will initiate the exploration of a bold new product vertical.
 
 ## Compensation
 
-Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/careers/#perks-amp-benefits) page.
+Competitive compensation of up to \$140,000 USD/year, depending on the profile and location. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/careers/#perks-amp-benefits) page.
 
 ## Apply
 

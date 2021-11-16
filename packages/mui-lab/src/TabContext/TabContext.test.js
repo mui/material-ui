@@ -2,11 +2,11 @@
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import TabContext, { getPanelId, getTabId, useTabContext } from './TabContext';
 
 describe('<TabContext />', () => {
-  const render = createClientRender();
+  const { render, renderToString } = createRenderer();
 
   it('is null by default', () => {
     let value;
@@ -107,11 +107,8 @@ describe('<TabContext />', () => {
         <Tabs value="0" />
       </TabContext>
     );
-    const markup = ReactDOMServer.renderToString(reactElement);
-    const container = document.createElement('div');
-    container.innerHTML = markup;
-
-    const { getByRole } = render(reactElement, { container, hydrate: true });
+    const { hydrate } = renderToString(reactElement);
+    const { getByRole } = hydrate();
 
     const tabId = getByRole('tab').id;
     const tabpanelId = getByRole('tabpanel').id;

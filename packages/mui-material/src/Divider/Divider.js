@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -155,11 +155,11 @@ const DividerWrapper = styled('span', {
   },
 })(({ theme, ownerState }) => ({
   display: 'inline-block',
-  paddingLeft: theme.spacing(1.2),
-  paddingRight: theme.spacing(1.2),
+  paddingLeft: `calc(${theme.spacing(1)} * 1.2)`,
+  paddingRight: `calc(${theme.spacing(1)} * 1.2)`,
   ...(ownerState.orientation === 'vertical' && {
-    paddingTop: theme.spacing(1.2),
-    paddingBottom: theme.spacing(1.2),
+    paddingTop: `calc(${theme.spacing(1)} * 1.2)`,
+    paddingBottom: `calc(${theme.spacing(1)} * 1.2)`,
   }),
 }));
 
@@ -261,7 +261,11 @@ Divider.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The text alignment.
    * @default 'center'

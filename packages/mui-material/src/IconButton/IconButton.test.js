@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
 import Icon from '@mui/material/Icon';
 import ButtonBase from '@mui/material/ButtonBase';
 
 describe('<IconButton />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<IconButton>book</IconButton>, () => ({
     classes,

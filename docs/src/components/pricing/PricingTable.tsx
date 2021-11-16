@@ -19,7 +19,7 @@ const planInfo = {
     color: 'green',
     title: 'Community',
     description:
-      'Get started with the industry-standard UI library for building React user interfaces.',
+      'Get started with the industry-standard UI library for building React user interfaces (open-source, MIT licensed).',
   },
   pro: {
     color: 'blue',
@@ -29,7 +29,7 @@ const planInfo = {
   premium: {
     color: 'gold',
     title: 'Premium',
-    description: 'Unlock all the most advanced features including premium support.',
+    description: 'Unlock all the most advanced features and professional support.',
   },
 } as const;
 
@@ -331,10 +331,10 @@ function getUrl(hash: string) {
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  '@mui/core': (
+  '@mui/base': (
     <ColumnHead
       {...{
-        label: '@mui/core',
+        label: '@mui/base',
         tooltip: 'The unstyled components and react hooks.',
       }}
     />
@@ -527,159 +527,165 @@ const rowHeaders: Record<string, React.ReactNode> = {
 };
 
 const communityData: Record<string, React.ReactNode> = {
-  // Core
-  '@mui/core': <IconImage name="yes" />,
-  '@mui/material': <IconImage name="yes" />,
-  '@mui/system': <IconImage name="yes" />,
-  // Advanced
-  'data-grid/column-groups': <IconImage name="time" />,
-  'data-grid/column-spanning': <IconImage name="time" />,
-  'data-grid/column-resizing': <IconImage name="no" />,
-  'data-grid/column-reorder': <IconImage name="no" />,
-  'data-grid/column-pinning': <IconImage name="no" />,
-  'data-grid/row-sorting': <IconImage name="yes" />,
-  'data-grid/row-height': <IconImage name="yes" />,
-  'data-grid/row-spanning': <IconImage name="time" />,
-  'data-grid/row-reordering': <IconImage name="no" />,
-  'data-grid/row-selection': <IconImage name="yes" />,
-  'data-grid/row-multiselection': <IconImage name="no" />,
-  'data-grid/row-rangeselection': <IconImage name="no" />,
-  'data-grid/filter-quick': <IconImage name="time" />,
-  'data-grid/filter-column': <IconImage name="yes" />,
-  'data-grid/filter-multicolumn': <IconImage name="no" />,
-  'data-grid/pagination': <IconImage name="yes" />,
-  'data-grid/pagination-large': <IconImage name="no" />,
-  'data-grid/edit-row': <IconImage name="yes" />,
-  'data-grid/edit-cell': <IconImage name="yes" />,
-  'data-grid/file-csv': <IconImage name="yes" />,
-  'data-grid/file-print': <IconImage name="time" />,
-  'data-grid/file-clipboard': <IconImage name="no" />,
-  'data-grid/file-excel': <IconImage name="no" />,
-  'data-grid/customizable-components': <IconImage name="yes" />,
-  'data-grid/virtualize-column': <IconImage name="yes" />,
-  'data-grid/virtualize-row': <IconImage name="no" />,
-  'data-grid/tree-data': <IconImage name="no" />,
-  'data-grid/master-detail': <IconImage name="no" />,
-  'data-grid/grouping': <IconImage name="no" />,
-  'data-grid/aggregation': <IconImage name="no" />,
-  'data-grid/pivoting': <IconImage name="no" />,
-  'data-grid/accessibility': <IconImage name="yes" />,
-  'data-grid/keyboard-nav': <IconImage name="yes" />,
-  'data-grid/localization': <IconImage name="yes" />,
-  'data-grid-pro': <IconImage name="no" />,
-  'date-range-picker': <IconImage name="no" />,
+  // MUI Core
+  '@mui/base': <IconImage name="yes" title="Included" />,
+  '@mui/material': <IconImage name="yes" title="Included" />,
+  '@mui/system': <IconImage name="yes" title="Included" />,
+  // MUI X
+  'data-grid/column-groups': <IconImage name="time" title="Work in progress" />,
+  'data-grid/column-spanning': <IconImage name="time" title="Work in progress" />,
+  'data-grid/column-resizing': <IconImage name="no" title="Not included" />,
+  'data-grid/column-reorder': <IconImage name="no" title="Not included" />,
+  'data-grid/column-pinning': <IconImage name="no" title="Not included" />,
+  'data-grid/row-sorting': <IconImage name="yes" title="Included" />,
+  'data-grid/row-height': <IconImage name="yes" title="Included" />,
+  'data-grid/row-spanning': <IconImage name="time" title="Work in progress" />,
+  'data-grid/row-reordering': <IconImage name="no" title="Not included" />,
+  'data-grid/row-selection': <IconImage name="yes" title="Included" />,
+  'data-grid/row-multiselection': <IconImage name="no" title="Not included" />,
+  'data-grid/row-rangeselection': <IconImage name="no" title="Not included" />,
+  'data-grid/filter-quick': <IconImage name="time" title="Work in progress" />,
+  'data-grid/filter-column': <IconImage name="yes" title="Included" />,
+  'data-grid/filter-multicolumn': <IconImage name="no" title="Not included" />,
+  'data-grid/pagination': <IconImage name="yes" title="Included" />,
+  'data-grid/pagination-large': <IconImage name="no" title="Not included" />,
+  'data-grid/edit-row': <IconImage name="yes" title="Included" />,
+  'data-grid/edit-cell': <IconImage name="yes" title="Included" />,
+  'data-grid/file-csv': <IconImage name="yes" title="Included" />,
+  'data-grid/file-print': <IconImage name="yes" title="Included" />,
+  'data-grid/file-clipboard': <IconImage name="no" title="Not included" />,
+  'data-grid/file-excel': <IconImage name="no" title="Not included" />,
+  'data-grid/customizable-components': <IconImage name="yes" title="Included" />,
+  'data-grid/virtualize-column': <IconImage name="yes" title="Included" />,
+  'data-grid/virtualize-row': <IconImage name="no" title="Not included" />,
+  'data-grid/tree-data': <IconImage name="no" title="Not included" />,
+  'data-grid/master-detail': <IconImage name="no" title="Not included" />,
+  'data-grid/grouping': <IconImage name="no" title="Not included" />,
+  'data-grid/aggregation': <IconImage name="no" title="Not included" />,
+  'data-grid/pivoting': <IconImage name="no" title="Not included" />,
+  'data-grid/accessibility': <IconImage name="yes" title="Included" />,
+  'data-grid/keyboard-nav': <IconImage name="yes" title="Included" />,
+  'data-grid/localization': <IconImage name="yes" title="Included" />,
+  'data-grid-pro': <IconImage name="no" title="Not included" />,
+  'date-range-picker': <IconImage name="no" title="Not included" />,
   // Support
-  community: <IconImage name="yes" />,
-  'bugs/features': <IconImage name="yes" />,
-  'tech-advisory': <IconImage name="no" />,
-  'support-duration': <IconImage name="no" />,
-  'response-time': <IconImage name="no" />,
-  'pre-screening': <IconImage name="no" />,
-  'issue-escalation': <IconImage name="no" />,
+  community: <IconImage name="yes" title="Included" />,
+  'bugs/features': <IconImage name="yes" title="Included" />,
+  'tech-advisory': <IconImage name="no" title="Not included" />,
+  'support-duration': <IconImage name="no" title="Not included" />,
+  'response-time': <IconImage name="no" title="Not included" />,
+  'pre-screening': <IconImage name="no" title="Not included" />,
+  'issue-escalation': <IconImage name="no" title="Not included" />,
 };
 
 const proData: Record<string, React.ReactNode> = {
-  // Core
-  '@mui/core': <IconImage name="yes" />,
-  '@mui/material': <IconImage name="yes" />,
-  '@mui/system': <IconImage name="yes" />,
-  // Advanced
-  'data-grid/column-groups': <IconImage name="time" />,
-  'data-grid/column-spanning': <IconImage name="time" />,
-  'data-grid/column-resizing': <IconImage name="yes" />,
-  'data-grid/column-reorder': <IconImage name="yes" />,
-  'data-grid/column-pinning': <IconImage name="time" />,
-  'data-grid/row-sorting': <IconImage name="yes" />,
-  'data-grid/row-height': <IconImage name="yes" />,
-  'data-grid/row-spanning': <IconImage name="time" />,
-  'data-grid/row-reordering': <IconImage name="time" />,
-  'data-grid/row-selection': <IconImage name="yes" />,
-  'data-grid/row-multiselection': <IconImage name="yes" />,
-  'data-grid/row-rangeselection': <IconImage name="no" />,
-  'data-grid/filter-quick': <IconImage name="time" />,
-  'data-grid/filter-column': <IconImage name="yes" />,
-  'data-grid/filter-multicolumn': <IconImage name="yes" />,
-  'data-grid/pagination': <IconImage name="yes" />,
-  'data-grid/pagination-large': <IconImage name="yes" />,
-  'data-grid/edit-row': <IconImage name="yes" />,
-  'data-grid/edit-cell': <IconImage name="yes" />,
-  'data-grid/file-csv': <IconImage name="yes" />,
-  'data-grid/file-print': <IconImage name="time" />,
-  'data-grid/file-clipboard': <IconImage name="time" />,
-  'data-grid/file-excel': <IconImage name="no" />,
-  'data-grid/customizable-components': <IconImage name="yes" />,
-  'data-grid/virtualize-column': <IconImage name="yes" />,
-  'data-grid/virtualize-row': <IconImage name="yes" />,
-  'data-grid/tree-data': <IconImage name="time" />,
-  'data-grid/master-detail': <IconImage name="time" />,
-  'data-grid/grouping': <IconImage name="no" />,
-  'data-grid/aggregation': <IconImage name="no" />,
-  'data-grid/pivoting': <IconImage name="no" />,
-  'data-grid/accessibility': <IconImage name="yes" />,
-  'data-grid/keyboard-nav': <IconImage name="yes" />,
-  'data-grid/localization': <IconImage name="yes" />,
+  // MUI Core
+  '@mui/base': <IconImage name="yes" title="Included" />,
+  '@mui/material': <IconImage name="yes" title="Included" />,
+  '@mui/system': <IconImage name="yes" title="Included" />,
+  // MUI X
+  'data-grid/column-groups': <IconImage name="time" title="Work in progress" />,
+  'data-grid/column-spanning': <IconImage name="time" title="Work in progress" />,
+  'data-grid/column-resizing': <IconImage name="yes" title="Included" />,
+  'data-grid/column-reorder': <IconImage name="yes" title="Included" />,
+  'data-grid/column-pinning': <IconImage name="time" title="Work in progress" />,
+  'data-grid/row-sorting': <IconImage name="yes" title="Included" />,
+  'data-grid/row-height': <IconImage name="yes" title="Included" />,
+  'data-grid/row-spanning': <IconImage name="time" title="Work in progress" />,
+  'data-grid/row-reordering': <IconImage name="time" title="Work in progress" />,
+  'data-grid/row-selection': <IconImage name="yes" title="Included" />,
+  'data-grid/row-multiselection': <IconImage name="yes" title="Included" />,
+  'data-grid/row-rangeselection': <IconImage name="no" title="Not included" />,
+  'data-grid/filter-quick': <IconImage name="time" title="Work in progress" />,
+  'data-grid/filter-column': <IconImage name="yes" title="Included" />,
+  'data-grid/filter-multicolumn': <IconImage name="yes" title="Included" />,
+  'data-grid/pagination': <IconImage name="yes" title="Included" />,
+  'data-grid/pagination-large': <IconImage name="yes" title="Included" />,
+  'data-grid/edit-row': <IconImage name="yes" title="Included" />,
+  'data-grid/edit-cell': <IconImage name="yes" title="Included" />,
+  'data-grid/file-csv': <IconImage name="yes" title="Included" />,
+  'data-grid/file-print': <IconImage name="yes" title="Included" />,
+  'data-grid/file-clipboard': <IconImage name="time" title="Work in progress" />,
+  'data-grid/file-excel': <IconImage name="no" title="Not included" />,
+  'data-grid/customizable-components': <IconImage name="yes" title="Included" />,
+  'data-grid/virtualize-column': <IconImage name="yes" title="Included" />,
+  'data-grid/virtualize-row': <IconImage name="yes" title="Included" />,
+  'data-grid/tree-data': <IconImage name="time" title="Work in progress" />,
+  'data-grid/master-detail': <IconImage name="time" title="Work in progress" />,
+  'data-grid/grouping': <IconImage name="no" title="Not included" />,
+  'data-grid/aggregation': <IconImage name="no" title="Not included" />,
+  'data-grid/pivoting': <IconImage name="no" title="Not included" />,
+  'data-grid/accessibility': <IconImage name="yes" title="Included" />,
+  'data-grid/keyboard-nav': <IconImage name="yes" title="Included" />,
+  'data-grid/localization': <IconImage name="yes" title="Included" />,
   'data-grid-pro': <Info value="1 year" />,
-  'date-range-picker': <IconImage name="time" />,
+  'date-range-picker': <IconImage name="time" title="Work in progress" />,
   // Support
-  community: <IconImage name="yes" />,
-  'bugs/features': <Info value={<IconImage name="yes" />} metadata="Priority over Community" />,
-  'tech-advisory': <IconImage name="no" />,
+  community: <IconImage name="yes" title="Included" />,
+  'bugs/features': (
+    <Info value={<IconImage name="yes" title="Included" />} metadata="Priority over Community" />
+  ),
+  'tech-advisory': <IconImage name="no" title="Not included" />,
   'support-duration': <Info value="1 year" />,
-  'response-time': <IconImage name="no" />,
-  'pre-screening': <IconImage name="no" />,
-  'issue-escalation': <IconImage name="no" />,
+  'response-time': <IconImage name="no" title="Not included" />,
+  'pre-screening': <IconImage name="no" title="Not included" />,
+  'issue-escalation': <IconImage name="no" title="Not included" />,
 };
 
 const premiumData: Record<string, React.ReactNode> = {
-  // Core
-  '@mui/core': <IconImage name="yes" />,
-  '@mui/material': <IconImage name="yes" />,
-  '@mui/system': <IconImage name="yes" />,
-  // Advanced
-  'data-grid/column-groups': <IconImage name="time" />,
-  'data-grid/column-spanning': <IconImage name="time" />,
-  'data-grid/column-resizing': <IconImage name="yes" />,
-  'data-grid/column-reorder': <IconImage name="yes" />,
-  'data-grid/column-pinning': <IconImage name="time" />,
-  'data-grid/row-sorting': <IconImage name="yes" />,
-  'data-grid/row-height': <IconImage name="yes" />,
-  'data-grid/row-spanning': <IconImage name="time" />,
-  'data-grid/row-reordering': <IconImage name="time" />,
-  'data-grid/row-selection': <IconImage name="yes" />,
-  'data-grid/row-multiselection': <IconImage name="yes" />,
-  'data-grid/row-rangeselection': <IconImage name="time" />,
-  'data-grid/filter-quick': <IconImage name="time" />,
-  'data-grid/filter-column': <IconImage name="yes" />,
-  'data-grid/filter-multicolumn': <IconImage name="yes" />,
-  'data-grid/pagination': <IconImage name="yes" />,
-  'data-grid/pagination-large': <IconImage name="yes" />,
-  'data-grid/edit-row': <IconImage name="yes" />,
-  'data-grid/edit-cell': <IconImage name="yes" />,
-  'data-grid/file-csv': <IconImage name="yes" />,
-  'data-grid/file-print': <IconImage name="time" />,
-  'data-grid/file-clipboard': <IconImage name="time" />,
-  'data-grid/file-excel': <IconImage name="no" />,
-  'data-grid/customizable-components': <IconImage name="yes" />,
-  'data-grid/virtualize-column': <IconImage name="yes" />,
-  'data-grid/virtualize-row': <IconImage name="yes" />,
-  'data-grid/tree-data': <IconImage name="time" />,
-  'data-grid/master-detail': <IconImage name="time" />,
-  'data-grid/grouping': <IconImage name="time" />,
-  'data-grid/aggregation': <IconImage name="time" />,
-  'data-grid/pivoting': <IconImage name="time" />,
-  'data-grid/accessibility': <IconImage name="yes" />,
-  'data-grid/keyboard-nav': <IconImage name="yes" />,
-  'data-grid/localization': <IconImage name="yes" />,
+  // MUI Core
+  '@mui/base': <IconImage name="yes" title="Included" />,
+  '@mui/material': <IconImage name="yes" title="Included" />,
+  '@mui/system': <IconImage name="yes" title="Included" />,
+  // MUI X
+  'data-grid/column-groups': <IconImage name="time" title="Work in progress" />,
+  'data-grid/column-spanning': <IconImage name="time" title="Work in progress" />,
+  'data-grid/column-resizing': <IconImage name="yes" title="Included" />,
+  'data-grid/column-reorder': <IconImage name="yes" title="Included" />,
+  'data-grid/column-pinning': <IconImage name="time" title="Work in progress" />,
+  'data-grid/row-sorting': <IconImage name="yes" title="Included" />,
+  'data-grid/row-height': <IconImage name="yes" title="Included" />,
+  'data-grid/row-spanning': <IconImage name="time" title="Work in progress" />,
+  'data-grid/row-reordering': <IconImage name="time" title="Work in progress" />,
+  'data-grid/row-selection': <IconImage name="yes" title="Included" />,
+  'data-grid/row-multiselection': <IconImage name="yes" title="Included" />,
+  'data-grid/row-rangeselection': <IconImage name="time" title="Work in progress" />,
+  'data-grid/filter-quick': <IconImage name="time" title="Work in progress" />,
+  'data-grid/filter-column': <IconImage name="yes" title="Included" />,
+  'data-grid/filter-multicolumn': <IconImage name="yes" title="Included" />,
+  'data-grid/pagination': <IconImage name="yes" title="Included" />,
+  'data-grid/pagination-large': <IconImage name="yes" title="Included" />,
+  'data-grid/edit-row': <IconImage name="yes" title="Included" />,
+  'data-grid/edit-cell': <IconImage name="yes" title="Included" />,
+  'data-grid/file-csv': <IconImage name="yes" title="Included" />,
+  'data-grid/file-print': <IconImage name="yes" title="Included" />,
+  'data-grid/file-clipboard': <IconImage name="time" title="Work in progress" />,
+  'data-grid/file-excel': <IconImage name="time" title="Work in progress" />,
+  'data-grid/customizable-components': <IconImage name="yes" title="Included" />,
+  'data-grid/virtualize-column': <IconImage name="yes" title="Included" />,
+  'data-grid/virtualize-row': <IconImage name="yes" title="Included" />,
+  'data-grid/tree-data': <IconImage name="time" title="Work in progress" />,
+  'data-grid/master-detail': <IconImage name="time" title="Work in progress" />,
+  'data-grid/grouping': <IconImage name="time" title="Work in progress" />,
+  'data-grid/aggregation': <IconImage name="time" title="Work in progress" />,
+  'data-grid/pivoting': <IconImage name="time" title="Work in progress" />,
+  'data-grid/accessibility': <IconImage name="yes" title="Included" />,
+  'data-grid/keyboard-nav': <IconImage name="yes" title="Included" />,
+  'data-grid/localization': <IconImage name="yes" title="Included" />,
   'data-grid-pro': <Info value="1 year" />,
-  'date-range-picker': <IconImage name="time" />,
+  'date-range-picker': <IconImage name="time" title="Work in progress" />,
   // Support
-  community: <IconImage name="yes" />,
-  'bugs/features': <Info value={<IconImage name="yes" />} metadata="Priority over Pro" />,
-  'tech-advisory': <IconImage name="time" />,
+  community: <IconImage name="yes" title="Included" />,
+  'bugs/features': (
+    <Info value={<IconImage name="yes" title="Included" />} metadata="Priority over Pro" />
+  ),
+  'tech-advisory': <IconImage name="time" title="Work in progress" />,
   'support-duration': <Info value="1 year" />,
   'response-time': <Info value="2 business days" metadata="1 business day (priority only)" />,
   'pre-screening': <Info value="4 hours" metadata="priority only" />,
-  'issue-escalation': <Info value={<IconImage name="time" />} metadata="priority only" />,
+  'issue-escalation': (
+    <Info value={<IconImage name="time" title="Work in progress" />} metadata="priority only" />
+  ),
 };
 
 const RowCategory = (props: BoxProps) => (
@@ -883,24 +889,24 @@ export default function PricingTable({
               variant="outlined"
               disabled
               fullWidth
-              sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.secondary' } }}
+              sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.disabled' } }}
             >
-              Available later this year!
+              In progress!
             </Button>
           </Box>
         </Box>
       )}
       <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>
-        MUI Core
+        MUI Core (open-source)
       </RowHead>
-      {renderRow('@mui/core')}
+      {renderRow('@mui/base')}
       {divider}
       {renderRow('@mui/material')}
       {divider}
       {renderRow('@mui/system')}
 
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
-        MUI X
+        MUI X (open-core)
       </RowHead>
       <Box sx={{ position: 'relative', minHeight: 58, '& svg': { transition: '0.3s' }, ...gridSx }}>
         <Cell />

@@ -11,7 +11,7 @@ function Item(props: BoxProps) {
         p: 1,
         borderRadius: 1,
         textAlign: 'center',
-        fontSize: 19,
+        fontSize: '1rem',
         fontWeight: '700',
         ...sx,
       }}

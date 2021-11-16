@@ -1,10 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Stack from '@mui/material/Stack';
-import { ButtonUnstyledProps, useButton } from '@mui/core/ButtonUnstyled';
+import { ButtonUnstyledProps, useButton } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 
-const CustomButtonRoot = styled('button')(`
+const CustomButtonRoot = styled('button')`
   background-color: #007fff;
   padding: 15px 20px;
   border-radius: 10px;
@@ -35,7 +35,7 @@ const CustomButtonRoot = styled('button')(`
     cursor: not-allowed;
     box-shadow: 0 0 0 0 rgba(0, 127, 255, 0);
   }
-`);
+`;
 
 const CustomButton = React.forwardRef(function CustomButton(
   props: ButtonUnstyledProps,

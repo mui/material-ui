@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import TableCell, { tableCellClasses as classes } from '@mui/material/TableCell';
 import Table from '@mui/material/Table';
 import TableFooter from '@mui/material/TableFooter';
@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import TableBody from '@mui/material/TableBody';
 
 describe('<TableRow> integration', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
   function renderInTable(node, Variant) {
     return render(
       <Table>

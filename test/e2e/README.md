@@ -7,8 +7,9 @@ End-to-end tests (short <abbr title="end-to-end">e2e</abbr>) are split into two 
 
 ## Rendered UI
 
-The rendered UI is located inside a separate file in `./tests` and written as a React component.
-If you're adding a new test prefer a new component instead of adding existing files since that might unknowingly alter existing tests.
+The composition of all tests happens in `./index.js`.
+The rendered UI is located inside a separate file in `./fixtures` and written as a React component.
+If you're adding a new test prefer a new component instead of editing existing files since that might unknowingly alter existing tests.
 
 ## Instrumentation
 

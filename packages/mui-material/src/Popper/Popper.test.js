@@ -2,14 +2,14 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import { ThemeProvider, createTheme } from '@mui/system';
 import Grow from '@mui/material/Grow';
 import Popper from '@mui/material/Popper';
 
 describe('<Popper />', () => {
   let rtlTheme;
-  const render = createClientRender();
+  const { render } = createRenderer();
   const defaultProps = {
     anchorEl: () => document.createElement('svg'),
     children: <span>Hello World</span>,
@@ -72,7 +72,7 @@ describe('<Popper />', () => {
         out: 'top',
       },
     ].forEach((test) => {
-      it(`should ${test.in === test.out ? 'not' : ''} flip ${
+      it(`should ${test.in === test.out ? 'not ' : ''}flip ${
         test.in
       } when direction=rtl is used`, () => {
         function Test() {
@@ -289,6 +289,40 @@ describe('<Popper />', () => {
           'MockedPopper',
         );
       }).toErrorDev('It should be an HTML element instance');
+    });
+  });
+  describe('display', () => {
+    let clock;
+    beforeEach(() => {
+      clock = useFakeTimers();
+    });
+
+    afterEach(() => {
+      clock.restore();
+    });
+    it('should keep display:none when not toggled and transition/keepMounted/disablePortal props are set', () => {
+      const { getByRole, setProps } = render(
+        <Popper {...defaultProps} open={false} keepMounted transition disablePortal>
+          {({ TransitionProps }) => (
+            <Grow {...TransitionProps}>
+              <span>Hello World</span>
+            </Grow>
+          )}
+        </Popper>,
+      );
+
+      expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
+
+      setProps({ open: true });
+      act(() => {
+        clock.tick(0);
+      });
+
+      setProps({ open: false });
+      act(() => {
+        clock.tick(0);
+      });
+      expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
     });
   });
 });

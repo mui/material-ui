@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
 import AccordionSummary, {
   accordionSummaryClasses as classes,
 } from '@mui/material/AccordionSummary';
@@ -9,7 +9,7 @@ import Accordion from '@mui/material/Accordion';
 import ButtonBase from '@mui/material/ButtonBase';
 
 describe('<AccordionSummary />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<AccordionSummary />, () => ({
     classes,
@@ -85,7 +85,7 @@ describe('<AccordionSummary />', () => {
   it('fires onChange of the Accordion if clicked', () => {
     const handleChange = spy();
     const { getByRole } = render(
-      <Accordion onChange={handleChange}>
+      <Accordion onChange={handleChange} expanded={false}>
         <AccordionSummary />
       </Accordion>,
     );

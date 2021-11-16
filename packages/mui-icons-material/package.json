@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "5.0.3",
+  "version": "5.1.0",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -8,6 +8,7 @@
   "keywords": [
     "react",
     "react-component",
+    "mui",
     "material-ui",
     "material design",
     "icons"
@@ -35,13 +36,13 @@
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
     "src:download": "cd ../../ && babel-node --config-file ./babel.config.js packages/mui-icons-material/scripts/download.js",
-    "src:icons": "cd ../../ && UV_THREADPOOL_SIZE=64 babel-node --config-file ./babel.config.js packages/mui-icons-material/builder.js --output-dir packages/mui-icons-material/src --svg-dir packages/mui-icons-material/material-icons --renameFilter ./renameFilters/material-design-icons.js && cd packages/mui-icons-material && yarn build:lib:clean",
+    "src:icons": "cd ../../ && cross-env UV_THREADPOOL_SIZE=64 babel-node --config-file ./babel.config.js packages/mui-icons-material/builder.js --output-dir packages/mui-icons-material/src --svg-dir packages/mui-icons-material/material-icons --renameFilter ./renameFilters/material-design-icons.js && cd packages/mui-icons-material && yarn build:lib:clean",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-icons-material/**/*.test.{js,ts,tsx}'",
     "test:built-typings": "tslint -p test/generated-types/tsconfig.json \"test/generated-types/*.{ts,tsx}\"",
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
-    "@mui/material": "^5.0.0-rc.0",
+    "@mui/material": "^5.0.0",
     "@types/react": "^16.8.6 || ^17.0.0",
     "react": "^17.0.2"
   },
@@ -51,13 +52,13 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.15.4"
+    "@babel/runtime": "^7.16.3"
   },
   "devDependencies": {
     "fs-extra": "^10.0.0",
     "mustache": "^4.2.0",
     "shx": "^0.3.3",
-    "svgo": "^2.4.0",
+    "svgo": "^2.8.0",
     "yargs": "^17.2.1"
   },
   "sideEffects": false,

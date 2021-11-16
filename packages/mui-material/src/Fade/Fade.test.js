@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { act, createClientRender, describeConformance } from 'test/utils';
+import { act, createRenderer, describeConformance } from 'test/utils';
 import { Transition } from 'react-transition-group';
 import Fade from '@mui/material/Fade';
 
 describe('<Fade />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   const defaultProps = {
     in: true,

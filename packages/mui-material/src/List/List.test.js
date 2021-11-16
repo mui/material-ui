@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createClientRender } from 'test/utils';
+import { describeConformance, createRenderer } from 'test/utils';
 import ListSubheader, { listSubheaderClasses } from '@mui/material/ListSubheader';
 import ListItem, { listItemClasses } from '@mui/material/ListItem';
 import List, { listClasses as classes } from '@mui/material/List';
 
 describe('<List />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<List />, () => ({
     classes,

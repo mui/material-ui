@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, strictModeDoubleLoggingSupressed } from 'test/utils';
+import { createRenderer, strictModeDoubleLoggingSupressed } from 'test/utils';
 import HiddenCss from './HiddenCss';
 import { createTheme, ThemeProvider } from '../styles';
 import classes from './hiddenCssClasses';
@@ -8,7 +8,7 @@ import classes from './hiddenCssClasses';
 const TestChild = () => <div data-testid="test-child">bar</div>;
 
 describe('<HiddenCss />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describe('the generated class names', () => {
     it('should be ok with only', () => {
