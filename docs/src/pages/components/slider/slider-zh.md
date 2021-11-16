@@ -122,7 +122,7 @@ In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
-## Unstyled
+## 素颜模式
 
 <!-- #default-branch-switch -->
 
