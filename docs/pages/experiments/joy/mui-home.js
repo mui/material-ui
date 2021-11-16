@@ -161,11 +161,11 @@ const IconButton = styled('button')(
 const Card = styled('div')(
   ({ theme, variant = 'text', color = 'neutral', roundness = 'default', elevation }) => [
     {
+      '--joy-palette-neutral-outlinedBg': 'var(--joy-palette-bgNeutral-plain)',
       minWidth: 280,
       maxWidth: 360,
       minHeight: 280,
       borderRadius: theme.vars.borderRadius?.[roundness],
-      backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-bgNeutral-plain))`,
       ...(elevation && {
         boxShadow: theme.elevation?.[elevation],
       }),
