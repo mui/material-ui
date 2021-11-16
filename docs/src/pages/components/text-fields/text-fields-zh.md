@@ -277,7 +277,7 @@ For more advanced use cases, you might be able to take advantage of:
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
 
-## Unstyled
+## 素颜模式
 
 For advanced customization scenarios, you can use the unstyled primitives.
 
