@@ -26,7 +26,7 @@ githubLabel: 'component: TextareaAutosize'
 
 {{"demo": "pages/components/textarea-autosize/MaxHeightTextarea.js"}}
 
-## Unstyled
+## 素颜模式
 
 - 📦 [784 B gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
 
