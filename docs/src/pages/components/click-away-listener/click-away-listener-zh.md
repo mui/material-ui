@@ -35,7 +35,7 @@ githubLabel: 'component: ClickAwayListener'
 
 > ⚠️ 在此模式下，仅有文档对象滚动条上的交互被忽略。
 
-## Unstyled
+## 素颜模式
 
 - 📦 [784 B gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
 
