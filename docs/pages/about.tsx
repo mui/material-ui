@@ -309,7 +309,7 @@ const teamMembers: Array<Profile> = [
     title: 'Studio team',
     location: 'New Delhi, India',
     country: 'in',
-    about: 'Trains 🚅, architecture 🏛️, and psychology 🧠  nerd',
+    about: 'Trains 🚅 , architecture 🏛️, and psychology 🧠  nerd',
     twitter: 'bharattttttt',
     github: 'bharatkashyap',
   },
