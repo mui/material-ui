@@ -9,7 +9,7 @@ packageName: '@mui/lab'
 
 <p class="description">时间轴组件按时间顺序来展示了一系列的事件。</p>
 
-**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but MUI supports it.
+**注意：** 警告提示不属于 [Material Design 指南](https://material.io/) 中的一部分，但是 MUI 仍然会继续支持该组件。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
