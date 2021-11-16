@@ -61,7 +61,7 @@ function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* content */}</Toolbar>
+        <Toolbar>{/* 内容 */}</Toolbar>
       </AppBar>
       <Toolbar />
     </React.Fragment>
@@ -72,12 +72,13 @@ function App() {
 3. 也可以用 `theme.mixins.toolbar` 的 CSS：
 
 ```jsx
-function App() {
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
+function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* content */}</Toolbar>
+        <Toolbar>{/* 内容 */}</Toolbar>
       </AppBar>
       <Offset />
     </React.Fragment>
@@ -113,7 +114,7 @@ function App() {
 
 1. `options` (_object_ [optional]):
 
-   - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
+   - `options.disableHysteresis` (_bool_ [optional])：默认值是 `false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
    - `options.target` (_Node_ [optional])：默认值是 `window`。
    - `options.threshold` (_number_ [optional])：默认值是 `100`。 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。
 
@@ -130,14 +131,14 @@ function HideOnScroll(props) {
   const trigger = useScrollTrigger();
   return (
     <Slide in={!trigger}>
-      <div>Hello</div>
+      <div>你好</div>
     </Slide>
   );
 }
 ```
 
-## Enable color on dark
+## 在暗黑模式上启用颜色
 
-Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode. 您可以通过设置 ` enableColorOnDark ` 属性为`true` 来覆盖此行为。
+按照 [Material Design 规范](https://material.io/design/color/dark-theme.html)，`color` 属性在深色模式下对 app bar（应用栏）的外观没有影响。 您可以通过设置 ` enableColorOnDark ` 属性为`true` 来覆盖此行为。
 
 {{"demo": "pages/components/app-bar/EnableColorOnDarkAppBar.js", "bg": true}}
