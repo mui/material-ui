@@ -161,11 +161,11 @@ const Button = styled('button')(
 const Paper = styled('div')(
   ({ theme, variant = 'text', color = 'neutral', enableContext = false, elevation }) => [
     {
+      '--joy-palette-neutral-textBg': 'var(--joy-palette-bgNeutral-plain)',
       minWidth: 100,
       minHeight: 120,
       padding: '1rem',
       borderRadius: 4,
-      backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-bgNeutral-plain))`,
       ...(elevation && {
         boxShadow: theme.elevation?.[elevation],
       }),

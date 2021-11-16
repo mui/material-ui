@@ -430,12 +430,15 @@ const Avatar = styled('div')(({ theme, variant = 'filled', color = 'brand' }) =>
   theme.variant[variant]?.[color],
 ]);
 
-const Paper = styled('div')(({ theme, variant = 'text', color = 'neutral' }) => [
+const Paper = styled('div')(({ theme, variant = 'text', color = 'neutral', roundness }) => [
   {
+    '--joy-palette-neutral-textBg': 'var(--joy-palette-bgNeutral-plain)',
     minWidth: 100,
     minHeight: 120,
     padding: '1rem',
-    backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-bgNeutral-plain))`,
+    ...(roundness && {
+      borderRadius: theme.vars.borderRadius?.[roundness],
+    }),
   },
   theme.variant[variant]?.[color],
   variant === 'contained' && theme.variant.containedContext?.[color],
@@ -622,6 +625,7 @@ export default function JoyEcommerce() {
           </Typography>
           <Paper
             variant="filled"
+            roundness="sm"
             sx={{
               py: 0,
               minHeight: 'unset',

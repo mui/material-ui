@@ -510,9 +510,11 @@ const themeWithoutVars: BaseJoyTokens = {
     text: {
       brand: {
         color: 'var(--joy-variant-textColor, var(--joy-palette-brand-textColor))',
+        backgroundColor: 'var(--joy-variant-textBg, var(--joy-palette-brand-textBg))',
       },
       neutral: {
         color: 'var(--joy-variant-textColor, var(--joy-palette-neutral-textColor))',
+        backgroundColor: 'var(--joy-variant-textBg, var(--joy-palette-neutral-textBg))',
       },
     },
     textHover: {
@@ -560,11 +562,13 @@ const themeWithoutVars: BaseJoyTokens = {
         color: 'var(--joy-variant-outlinedColor, var(--joy-palette-brand-outlinedColor))',
         border: '1px solid',
         borderColor: 'var(--joy-variant-outlinedBorder, var(--joy-palette-brand-outlinedBorder))',
+        backgroundColor: 'var(--joy-variant-outlinedBg, var(--joy-palette-brand-outlinedBg))',
       },
       neutral: {
         color: 'var(--joy-variant-outlinedColor, var(--joy-palette-neutral-outlinedColor))',
         border: '1px solid',
         borderColor: 'var(--joy-variant-outlinedBorder, var(--joy-palette-neutral-outlinedBorder))',
+        backgroundColor: 'var(--joy-variant-outlinedBg, var(--joy-palette-neutral-outlinedBg))',
       },
     },
     outlinedHover: {

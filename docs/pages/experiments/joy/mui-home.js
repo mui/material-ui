@@ -195,7 +195,7 @@ const Avatar = styled('img')(
   ],
 );
 
-const TaskCard = () => (
+const TaskCard = ({ children }) => (
   <Card
     variant="contained"
     color="brand"
@@ -274,6 +274,7 @@ const TaskCard = () => (
         <b>60%</b>
       </Typography>
     </Box>
+    {children}
   </Card>
 );
 
@@ -376,14 +377,6 @@ export default function MuiHome() {
               text: {
                 content: '#fff',
               },
-            },
-          },
-        },
-        variant: {
-          outlined: {
-            neutral: {
-              backgroundColor:
-                'var(--joy-palette-neutral-outlinedBg, var(--joy-palette-bgNeutral-plain))',
             },
           },
         },
