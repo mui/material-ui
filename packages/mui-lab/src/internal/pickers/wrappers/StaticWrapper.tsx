@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, useThemeProps } from '@mui/material/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
@@ -7,7 +7,6 @@ import {
 } from '@mui/core';
 import { DIALOG_WIDTH } from '../constants/dimensions';
 import { WrapperVariantContext, IsStaticVariantContext } from './WrapperVariantContext';
-import { useThemeProps } from '@mui/material/styles';
 
 export interface StaticWrapperClasses {
   /** Styles applied to the root element. */
