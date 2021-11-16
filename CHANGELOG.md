@@ -17,6 +17,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 10 -->[Select][nativeselect] Add `multiple` class (#29566) @aaronholla
 - &#8203;<!-- 09 -->[Popper] Split into PopperUnstyled and Popper (#29488) @michaldudak
 - &#8203;<!-- 08 -->[Select] Make it clear that `Select` is not a root component (#29593) @hbjORbj
+- &#8203;<!-- 13 -->[l10n] Improved Dutch (nl-NL) locale (#29592) @flipvrijn
 
 ### `@mui/lab@5.0.0-alpha.55`
 
@@ -37,7 +38,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 16 -->[docs] Remove svg logos from the Support page (#29431) @oliviertassinari
 - &#8203;<!-- 15 -->[docs] Link UXPin integration (#29422) @oliviertassinari
 - &#8203;<!-- 14 -->[docs] Link to the new public roadmap for the design kits (#29433) @oliviertassinari
-- &#8203;<!-- 13 -->[l10n] Improved Dutch (nl-NL) locale (#29592) @flipvrijn
 - &#8203;<!-- 01 -->[website] Fix premium plan release date (#29430) @oliviertassinari
 
 ### Core
