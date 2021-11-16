@@ -9,7 +9,7 @@ githubLabel: 'component: Box'
 
 The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`.
 
-[A paleta](/system/palette/) com funções de estilo.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Exemplo
 
