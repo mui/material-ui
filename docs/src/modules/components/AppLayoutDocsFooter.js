@@ -256,7 +256,7 @@ export default function AppLayoutDocsFooter() {
                   component={Link}
                   noLinkStyle
                   href={prevPage.pathname}
-                  linkAs={prevPage.linkProps.as}
+                  {...prevPage.linkProps}
                   size="medium"
                   startIcon={<ChevronLeftIcon />}
                 >
@@ -298,7 +298,7 @@ export default function AppLayoutDocsFooter() {
                   component={Link}
                   noLinkStyle
                   href={nextPage.pathname}
-                  linkAs={nextPage.linkProps.as}
+                  {...nextPage.linkProps}
                   size="medium"
                   endIcon={<ChevronRightIcon />}
                 >

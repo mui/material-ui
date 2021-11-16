@@ -91,6 +91,7 @@ Link.propTypes = {
   as: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   className: PropTypes.string,
   href: PropTypes.any,
+  linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   noLinkStyle: PropTypes.bool,
   role: PropTypes.string,
 };
