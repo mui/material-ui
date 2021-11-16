@@ -140,13 +140,13 @@ O componente suporta dois cenários de uso assíncrono diferentes:
 
 ### Carregar ao abrir
 
-It displays a progress state as long as the network request is pending.
+Exibe um estado de progresso enquanto a requisição de rede estiver pendente.
 
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
 ### Pesquisar enquanto digita
 
-If your logic is fetching new options on each keystroke and using the current value of the textbox to filter on the server, you may want to consider throttling requests.
+Se sua lógica está buscando novas opções em cada tecla pressionada e usando o valor atual da caixa de texto para filtrar no servidor, você pode querer considerar um limite nas requisições.
 
 Additionally, you will need to disable the built-in filtering of the `Autocomplete` component by overriding the `filterOptions` prop:
 
