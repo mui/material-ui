@@ -53,7 +53,7 @@ You can control the switch with the `checked` and `onChange` props:
 
 🎨 如果您还在寻找灵感，您可以查看一下 [MUI Treasury 自定义的例子](https://mui-treasury.com/components/button)。
 
-## Unstyled
+## 素颜模式
 
 The switch also comes with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
 
