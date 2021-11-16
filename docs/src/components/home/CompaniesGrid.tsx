@@ -58,18 +58,18 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     },
   },
   {
-    name: 'siemens',
-    alt: 'Siemens logo',
-    width: 105,
+    name: 'apple',
+    alt: 'Apple logo',
+    width: 29,
     height: 52,
     style: {
       marginTop: '-2px',
     },
   },
   {
-    name: 'deloitte',
-    alt: 'Deloitte logo',
-    width: 97,
+    name: 'siemens',
+    alt: 'Siemens logo',
+    width: 105,
     height: 52,
   },
   {
@@ -79,9 +79,9 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     height: 52,
   },
   {
-    name: 'unity',
-    alt: 'Unity logo',
-    width: 69,
+    name: 'deloitte',
+    alt: 'Deloitte logo',
+    width: 97,
     height: 52,
     style: {
       marginTop: '-10px',

@@ -10,6 +10,7 @@ import XTheming from 'docs/src/components/productX/XTheming';
 import XRoadmap from 'docs/src/components/productX/XRoadmap';
 import References, { ADVANCED_CUSTOMERS } from 'docs/src/components/home/References';
 import AppFooter from 'docs/src/layouts/AppFooter';
+import XPlans from 'docs/src/components/productX/XPlans';
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
         <XComponents />
         <XDataGrid />
         <XTheming />
+        <XPlans />
         <XRoadmap />
       </main>
       <AppFooter />
