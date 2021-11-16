@@ -77,11 +77,11 @@
     "@babel/register": "^7.16.0",
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
-    "@eps1lon/enzyme-adapter-react-17": "npm:@eps1lon/enzyme-adapter-react-next",
+    "@eps1lon/enzyme-adapter-react-17": "^0.1.0",
     "@octokit/rest": "^18.12.0",
     "@rollup/plugin-replace": "^3.0.0",
     "@testing-library/dom": "^8.11.1",
-    "@testing-library/react": "alpha",
+    "@testing-library/react": "^12.1.2",
     "@types/chai": "^4.2.22",
     "@types/chai-dom": "^0.0.11",
     "@types/enzyme": "^3.10.10",
@@ -196,13 +196,7 @@
     "**/@types/react": "^17.0.34",
     "**/@types/react-dom": "^17.0.11",
     "**/cross-fetch": "^3.1.4",
-    "**/react-is": "^17.0.2",
-    "react": "18.0.0-alpha-a0d991fe6-20211031",
-    "react-test-renderer": "18.0.0-alpha-a0d991fe6-20211031",
-    "react-is": "18.0.0-alpha-a0d991fe6-20211031",
-    "react-dom": "18.0.0-alpha-a0d991fe6-20211031",
-    "scheduler": "0.21.0-alpha-a0d991fe6-20211031",
-    "use-sync-external-store": "1.0.0-alpha-a0d991fe6-20211031"
+    "**/react-is": "^17.0.2"
   },
   "nyc": {
     "include": [
