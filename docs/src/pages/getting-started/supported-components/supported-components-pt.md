@@ -1,6 +1,6 @@
-# Supported components
+# Componentes suportados
 
-<p class="description">A seguir, uma lista de componentes e recursos do Material Design. Those currently supported by MUI are highlighted ✓.</p>
+<p class="description">A seguir, uma lista de componentes e recursos do Material Design. Aqueles atualmente suportados por MUI são destacados com ✓.</p>
 
 Nós trabalhamos para seguir as orientações sempre que possível (aplicando senso comum onde as diretrizes contradizem - uma ocorrência mais comum do que se poderia esperar), não esperamos suportar cada componente, ou cada característica de cada componente, mas sim fornecer elementos base que permitem que os desenvolvedores criem interfaces e experiências de usuário atraentes.
 
