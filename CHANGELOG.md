@@ -13,11 +13,17 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### `@mui/material@5.1.1`
 
-- &#8203;<!-- 34 -->[Breadcrumbs][Divider] Replace decimal spacing values with integers and css calc (#29526) @anikcreative
-- &#8203;<!-- 10 -->[Select][NativeSelect] Add `multiple` class (#29566) @aaronholla
+- &#8203;<!-- 34 -->[Breadcrumbs][divider] Replace decimal spacing values with integers and css calc (#29526) @anikcreative
+- &#8203;<!-- 10 -->[Select][nativeselect] Add `multiple` class (#29566) @aaronholla
 - &#8203;<!-- 09 -->[Popper] Split into PopperUnstyled and Popper (#29488) @michaldudak
 - &#8203;<!-- 08 -->[Select] Make it clear that `Select` is not a root component (#29593) @hbjORbj
 - &#8203;<!-- 13 -->[l10n] Improved Dutch (nl-NL) locale (#29592) @flipvrijn
+
+### `@mui/base@5.0.0-alpha.55`
+
+#### BREAKING CHANGE
+
+- &#8203;<!-- 27 -->[core] Rename mui/core to mui/base (#29585) @michaldudak
 
 ### `@mui/lab@5.0.0-alpha.55`
 
@@ -48,7 +54,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 30 -->[core] Use support request Github Action (#29594) @mnajdova
 - &#8203;<!-- 29 -->[core] Remove unused `getJsxPreview` util (#29586) @ZeeshanTamboli
 - &#8203;<!-- 28 -->[core] Use GitHub issue forms (#28038) @oliviertassinari
-- &#8203;<!-- 27 -->[core] Rename mui/core to mui/base (#29585) @michaldudak
 - &#8203;<!-- 26 -->[core] Add playground (#29423) @oliviertassinari
 - &#8203;<!-- 07 -->[test] Correctly identify what the `raf` helper is for (#29683) @eps1lon
 - &#8203;<!-- 06 -->[test] Verify a quilted ImageList is created as test title suggests (#29565) @daniel-sachs
