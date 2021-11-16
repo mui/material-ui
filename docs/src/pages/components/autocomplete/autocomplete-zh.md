@@ -86,8 +86,8 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 如果您打算将此模块用于类似 [组合框](#combo-box) 的体验（一个选择控件元素的增强版），我们则建议如下的设置：
 
-- `selectOnFocus` 帮助用户清除所选值。
-- `clearOnBlur` 帮助用户输入一个新的值。
+- `selectOnFocus` to help the user clear the selected value.
+- `clearOnBlur` to help the user enter a new value.
 - `handleHomeEndKeys` 使用<kbd class="key">Home</kbd> 和 <kbd class="key">End</kbd> 键在弹出窗口内移动焦点。
 - 最后一个选项，例如 `加上 "你的搜索结果"`。
 
