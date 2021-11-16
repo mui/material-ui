@@ -71,11 +71,7 @@
     "hoist-non-react-statics": "^3.3.2",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2",
-    "react-transition-group": "^4.4.2",
-    "use-sync-external-store": "1.0.0-alpha-a0d991fe6-20211031"
-  },
-  "devDependencies": {
-    "@types/use-sync-external-store": "^0.0.0"
+    "react-transition-group": "^4.4.2"
   },
   "sideEffects": false,
   "publishConfig": {
