@@ -53,12 +53,18 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     alt: 'Boeing logo',
     width: 95,
     height: 52,
+    style: {
+      marginTop: '-10px',
+    },
   },
   {
     name: 'siemens',
     alt: 'Siemens logo',
     width: 105,
     height: 52,
+    style: {
+      marginTop: '-2px',
+    },
   },
   {
     name: 'deloitte',
@@ -77,6 +83,9 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
     alt: 'Unity logo',
     width: 69,
     height: 52,
+    style: {
+      marginTop: '-10px',
+    },
   },
 ];
 
