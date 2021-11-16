@@ -22,7 +22,7 @@ This release features some major highlights:
   - [Limitations](#limitations)
 - [v4 migration](#v4-migration)
 - [What's next?](#whats-next)
-  - [A public roadmap](#a-public-roadmap)
+  - [Public roadmap](#public-roadmap)
 - [Thank you](#thank-you)
 
 ## High-level goals for v5
@@ -170,6 +170,7 @@ To keep the performance of our virtualization engine at its optimal we decided t
 
 ## v4 migration
 
+We strongly recommend you migrate both MUI X to v5. In MUI X v5 we have not only added additional features but also spent time to do internal improvements and performance optimizations that we won't be included in v4. All new `DataGrid` and `DataGridPro` features will be only available on MUI X v5.
 You can check [this spage](https://mui.com/components/data-grid/migration-v4/) to learn more about migrating to v5.
 
 ## What's next?
