@@ -176,7 +176,7 @@ You can check [this spage](https://mui.com/components/data-grid/migration-v4/) t
 
 More exciting things are coming! We have big plans for the rest of this quarter in terms of features we expect to release in both the `DataGrid` and `DataGridPro` components. Features such as **tree data**, **column pinning**, and **variable row height** are part of our roadmap.
 
-### A public roadmap
+### Public roadmap
 
 You can view our public roadmap on GitHub to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
 
