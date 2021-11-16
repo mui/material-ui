@@ -169,7 +169,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 这个方法能支持任何元素，例如，一个 `<a>` 元素。
 
-## Unstyled
+## 素颜模式
 
 The button also comes with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
 
