@@ -303,6 +303,15 @@ const teamMembers: Array<Profile> = [
     twitter: 'AleFauquette',
     github: 'alexfauquette',
   },
+  {
+    src: '/static/branding/about/jan.jpg',
+    name: 'Jan Potoms',
+    title: 'Studio team',
+    location: 'Brussels, Belgium',
+    country: 'be',
+    about: 'Always curious, love cinema and hiking!',
+    github: 'janpot',
+  },
 ];
 
 const contributors = [
