@@ -724,6 +724,12 @@ const themeWithoutVars: BaseJoyTokens = {
     containedContext: {
       brand: {
         '[data-mui-color-scheme="light"] &': {
+          '--joy-palette-text-heading': '#fff',
+          '--joy-palette-text-headingIntro': '#fff',
+          '--joy-palette-text-content': '#fff',
+          '--joy-palette-text-detail': '#fff',
+          '--joy-palette-text-overline': 'var(--joy-palette-brand-200)',
+
           '--joy-variant-textColor': 'var(--joy-palette-brand-100)',
           '--joy-variant-textBg': 'transparent',
           '--joy-variant-textHoverBg': 'var(--joy-palette-brand-500)',
