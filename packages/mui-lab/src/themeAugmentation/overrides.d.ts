@@ -17,6 +17,7 @@ import { TimelineSeparatorClassKey } from '../TimelineSeparator';
 import { TreeItemClassKey } from '../TreeItem';
 import { TreeViewClassKey } from '../TreeView';
 import { YearPickerClassKey } from '../YearPicker';
+import { StaticWrapperClassKey } from '../internal/pickers/wrappers/StaticWrapper';
 
 // prettier-ignore
 export interface LabComponentNameToClassKey {
@@ -39,6 +40,7 @@ export interface LabComponentNameToClassKey {
   MuiTreeItem: TreeItemClassKey;
   MuiTreeView: TreeViewClassKey;
   MuiYearPicker: YearPickerClassKey;
+  MuiPickerStaticWrapper: StaticWrapperClassKey;
 }
 
 declare module '@mui/material/styles' {
