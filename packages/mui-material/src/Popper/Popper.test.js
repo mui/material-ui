@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import PropTypes from 'prop-types';
 import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/system';
 import Grow from '@mui/material/Grow';
@@ -261,26 +260,6 @@ describe('<Popper />', () => {
     });
   });
 
-  describe('warnings', () => {
-    beforeEach(() => {
-      PropTypes.resetWarningCache();
-    });
-
-    it('should warn if anchorEl is not valid', () => {
-      expect(() => {
-        PropTypes.checkPropTypes(
-          Popper.propTypes,
-          {
-            ...defaultProps,
-            open: true,
-            anchorEl: null,
-          },
-          'prop',
-          'MockedPopper',
-        );
-      }).toErrorDev('It should be an HTML element instance');
-    });
-  });
   describe('display', () => {
     clock.withFakeTimers();
 

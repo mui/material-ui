@@ -77,6 +77,7 @@ const MonthPickerRoot = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
   alignContent: 'stretch',
+  margin: '0 4px',
 });
 
 const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
