@@ -16,7 +16,7 @@ This release features some major highlights:
 - [High-level goals for v5](#high-level-goals-for-v5)
 - [A new virtualization engine](#a-new-virtualization-engine)
 - [Improved state management](#improved-state-management)
-  - [Improve the developer experience around the state](#improve-the-developer-experience-around-the-state)
+  - [Improving the developer experience around the state](#improving-the-developer-experience-around-the-state)
   - [Synchronous state initialization](#synchronous-state-initialization)
 - [Reduced style specificity for easier customization](#reduced-style-specificity-for-easier-customization)
   - [Limitations](#limitations)
@@ -84,7 +84,7 @@ Here are a few that should be release in the following months:
 - Strict typing of event listeners and publishers.
 - Examples for the event listeners.
 - Documentation and examples for selectors.
-- Ability to simplify export and restore some parts of the grid state
+- Add the ability to export and restore some parts of the grid state
 
 #### Synchronous state initialization
 
