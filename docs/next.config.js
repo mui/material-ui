@@ -181,6 +181,9 @@ module.exports = {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
+        if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
+          return;
+        }
         if (!page.children) {
           map[`${prefix}${page.pathname.replace(/^\/api-docs\/(.*)/, '/api/$1')}`] = {
             page: page.pathname,

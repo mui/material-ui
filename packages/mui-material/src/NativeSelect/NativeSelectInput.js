@@ -8,10 +8,10 @@ import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSele
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, disabled, open } = ownerState;
+  const { classes, variant, disabled, multiple, open } = ownerState;
 
   const slots = {
-    select: ['select', variant, disabled && 'disabled'],
+    select: ['select', variant, disabled && 'disabled', multiple && 'multiple'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
   };
 
@@ -73,7 +73,11 @@ const NativeSelectSelect = styled('select', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [styles.select, styles[ownerState.variant]];
+    return [
+      styles.select,
+      styles[ownerState.variant],
+      { [`&.${nativeSelectClasses.multiple}`]: styles.multiple },
+    ];
   },
 })(nativeSelectSelectStyles);
 

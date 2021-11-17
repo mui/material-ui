@@ -15,19 +15,6 @@ import { camelCase } from 'lodash/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
 
-async function raf() {
-  return new Promise((resolve) => {
-    // Chrome and Safari have a bug where calling rAF once returns the current
-    // frame instead of the next frame, so we need to call a double rAF here.
-    // See crbug.com/675795 for more.
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        resolve();
-      });
-    });
-  });
-}
-
 describe('<Tooltip />', () => {
   /**
    * @type {ReturnType<typeof useFakeTimers>}
@@ -1040,16 +1027,6 @@ describe('<Tooltip />', () => {
 
   describe('prop: followCursor', () => {
     it('should use the position of the mouse', async function test() {
-      // Only callig render() outputs:
-      // An update to ForwardRef(Popper) inside a test was not wrapped in act(...).
-      // Somethings is wrong in JSDOM and strict mode.
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
-      // Avoid mock of raf
-      clock.restore();
-
       const x = 50;
       const y = 10;
 
@@ -1074,8 +1051,11 @@ describe('<Tooltip />', () => {
         clientY: y,
       });
 
-      // Wait for the popperRef.current.update() call to resolve.
-      await raf();
+      // The `placement` of the Popper changed due to the previous action.
+      // Updates to the Popper are scheduled in a microtask (at least in the implementation of `@popperjs/core`) so we need to flush that microtask by awaiting a Promise.
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       expect(tooltipElement).toBeVisible();
 

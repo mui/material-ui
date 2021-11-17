@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { deepmerge } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
@@ -13,16 +12,10 @@ import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
-import { getSelectUtilityClasses } from './selectClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
-
-  const slots = {
-    root: ['root'],
-  };
-
-  return composeClasses(slots, getSelectUtilityClasses, classes);
+  return classes;
 };
 
 const Select = React.forwardRef(function Select(inProps, ref) {
@@ -72,7 +65,6 @@ const Select = React.forwardRef(function Select(inProps, ref) {
 
   const ownerState = { ...props, classes: classesProp };
   const classes = useUtilityClasses(ownerState);
-  const { root, ...otherClasses } = classesProp;
 
   const inputComponentRef = useForkRef(ref, InputComponent.ref);
 
@@ -100,12 +92,12 @@ const Select = React.forwardRef(function Select(inProps, ref) {
             SelectDisplayProps: { id, ...SelectDisplayProps },
           }),
       ...inputProps,
-      classes: inputProps ? deepmerge(otherClasses, inputProps.classes) : otherClasses,
+      classes: inputProps ? deepmerge(classes, inputProps.classes) : classes,
       ...(input ? input.props.inputProps : {}),
     },
     ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref: inputComponentRef,
-    className: clsx(classes.root, InputComponent.props.className, className),
+    className: clsx(InputComponent.props.className, className),
     ...other,
   });
 });

@@ -246,7 +246,7 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
-      expect(container.querySelectorAll('p')[1]).to.have.text('0-0 of 0');
+      expect(container.querySelectorAll('p')[1]).to.have.text('0–0 of 0');
     });
 
     it('should hide the rows per page selector if there are less than two options', () => {
@@ -296,9 +296,9 @@ describe('<TablePagination />', () => {
 
       const { container, getByRole } = render(<Test />);
 
-      expect(container).to.have.text('Rows per page:101-10 of more than 10');
+      expect(container).to.have.text('Rows per page:101–10 of more than 10');
       fireEvent.click(getByRole('button', { name: 'Go to next page' }));
-      expect(container).to.have.text('Rows per page:1011-20 of more than 20');
+      expect(container).to.have.text('Rows per page:1011–20 of more than 20');
     });
   });
 
@@ -420,7 +420,7 @@ describe('<TablePagination />', () => {
       );
 
       expect(container).to.include.text('All');
-      expect(container).to.include.text('1-25 of 25');
+      expect(container).to.include.text('1–25 of 25');
     });
   });
 
