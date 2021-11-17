@@ -223,7 +223,7 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> 
       textDisabledColor: 'var(--joy-palette-neutral-300)',
 
       outlinedColor: 'var(--joy-palette-neutral-600)',
-      outlinedBorder: 'var(--joy-palette-neutral-100)',
+      outlinedBorder: 'var(--joy-palette-neutral-200)',
       outlinedHoverBg: 'var(--joy-palette-neutral-100)',
       outlinedHoverBorder: 'var(--joy-palette-neutral-300)',
       outlinedActiveBg: 'var(--joy-palette-neutral-200)',
@@ -404,7 +404,6 @@ const themeWithoutVars: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xl4)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-xs)',
-      textTransform: 'capitalize',
       color: 'var(--joy-palette-text-heading)',
     },
     h2: {
@@ -413,7 +412,6 @@ const themeWithoutVars: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xl3)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
-      textTransform: 'capitalize',
       color: 'var(--joy-palette-text-heading)',
     },
     h3: {
@@ -422,7 +420,6 @@ const themeWithoutVars: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xl2)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
-      textTransform: 'capitalize',
       color: 'var(--joy-palette-text-heading)',
     },
     h4: {
@@ -431,7 +428,6 @@ const themeWithoutVars: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xl)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
-      textTransform: 'capitalize',
       color: 'var(--joy-palette-text-heading)',
     },
     h5: {
@@ -440,7 +436,6 @@ const themeWithoutVars: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-lg)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
-      textTransform: 'capitalize',
       color: 'var(--joy-palette-text-heading)',
     },
     headingSubtitle: {
@@ -449,7 +444,6 @@ const themeWithoutVars: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-lg)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
-      textTransform: 'capitalize',
       color: 'var(--joy-palette-text-content)',
     },
     body: {
@@ -458,7 +452,6 @@ const themeWithoutVars: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
-      textTransform: 'capitalize',
       color: 'var(--joy-palette-text-content)',
     },
     caption: {
@@ -467,7 +460,6 @@ const themeWithoutVars: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-sm)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
-      textTransform: 'capitalize',
       color: 'var(--joy-palette-text-content)',
     },
     detail: {
@@ -476,7 +468,6 @@ const themeWithoutVars: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xs)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
-      textTransform: 'capitalize',
       color: 'var(--joy-palette-text-detail)',
     },
     headingIntro: {
@@ -503,7 +494,6 @@ const themeWithoutVars: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-normal)',
       letterSpacing: 'var(--joy-letterSpacing-normal)',
-      textTransform: 'capitalize',
     },
   },
   variant: {
@@ -577,6 +567,8 @@ const themeWithoutVars: BaseJoyTokens = {
         '&:hover': {
           backgroundColor:
             'var(--joy-variant-outlinedHoverBg, var(--joy-palette-brand-outlinedHoverBg))',
+          borderColor:
+            'var(--joy-variant-outlinedHoverBorder, var(--joy-palette-brand-outlinedHoverBorder))',
         },
       },
       neutral: {
@@ -584,6 +576,8 @@ const themeWithoutVars: BaseJoyTokens = {
         '&:hover': {
           backgroundColor:
             'var(--joy-variant-outlinedHoverBg, var(--joy-palette-neutral-outlinedHoverBg))',
+          borderColor:
+            'var(--joy-variant-outlinedHoverBorder, var(--joy-palette-neutral-outlinedHoverBorder))',
         },
       },
     },

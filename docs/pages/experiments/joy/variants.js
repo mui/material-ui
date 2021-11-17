@@ -4,6 +4,7 @@ import { GlobalStyles } from '@mui/styled-engine';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { styled, CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 const Moon = (props) => (
   <svg
@@ -128,6 +129,7 @@ const ColorSchemePicker = () => {
         border: '1px solid',
         borderRadius: '24px',
         ...theme.variant.outlined.brand,
+        backgroundColor: 'var(--joy-palette-bgNeutral-transparency)',
       })}
     >
       <Box sx={{ display: 'flex', gap: '8px', p: '6px' }}>
@@ -179,9 +181,11 @@ const Badge = styled('span')(({ theme, variant = 'contained', color = 'brand' })
   {
     minHeight: 32,
     minWidth: 32,
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 4,
     padding: '0.25rem 0.5rem',
-    textAlign: 'center',
   },
   theme.typography.caption,
   {
@@ -243,6 +247,7 @@ const ListItem = styled('li')(({ theme, variant = 'text', color = 'neutral' }) =
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+    minWidth: 160,
   },
   theme.variant[variant]?.[color],
   theme.variant[`${variant}Hover`]?.[color],
@@ -352,288 +357,359 @@ export default function JoyVariants() {
         <ColorSchemePicker />
       </Box>
       <Container>
-        <h2>Patterns (`brand` as default)</h2>
+        <h2>Variants</h2>
+        <p>Demonstrate 4 common variants that any component can have.</p>
         <Box
           sx={{
             display: 'grid',
             gap: '16px',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
+            gridTemplateColumns: 'repeat(2, 1fr)',
             justifyItems: 'center',
             alignItems: 'center',
           }}
         >
-          <Button variant="text">Text</Button>
-          <Button variant="outlined">Outlined</Button>
-          <Button variant="filled">Filled</Button>
-          <Button variant="contained">Contained</Button>
-          <Box>
-            <Badge variant="outlined">1</Badge>
+          <Box sx={{ display: 'flex', gap: '16px' }}>
+            <Button variant="text">Text</Button>
+            <Button variant="outlined">Outlined</Button>
+            <Button variant="filled">Filled</Button>
+            <Button variant="contained">Contained</Button>
           </Box>
-          <box>
+          <Paper variant="contained" sx={{ width: '100%' }}>
+            <HighlightedCode
+              code={`
+<Button variant="text">Text</Button>
+<Button variant="outlined">Outlined</Button>
+<Button variant="filled">Filled</Button>
+<Button variant="contained">Contained</Button>`}
+              component="div"
+              language="jsx"
+            />
+          </Paper>
+
+          <Box sx={{ display: 'flex', gap: '16px' }}>
+            <Badge variant="outlined">1</Badge>
             <Badge variant="filled">2</Badge>
-          </box>
-          <Box>
             <Badge variant="contained">30</Badge>
           </Box>
-          <Avatar variant="outlined">A</Avatar>
-          <Avatar variant="filled">B</Avatar>
-          <Avatar variant="contained">C</Avatar>
-          <Paper variant="text" elevation="xl">
-            Text Paper
+          <Paper variant="contained" sx={{ width: '100%' }}>
+            <HighlightedCode
+              code={`
+<Badge variant="outlined">1</Badge>
+<Badge variant="filled">2</Badge>
+<Badge variant="contained">30</Badge>`}
+              component="div"
+              language="jsx"
+            />
           </Paper>
-          <Paper variant="outlined" elevation="xl" sx={{ '--joy-elevation-ring': '0 0 #000' }}>
-            Outlined Paper
+
+          <Box sx={{ display: 'flex', gap: '16px' }}>
+            <Avatar variant="outlined">A</Avatar>
+            <Avatar variant="filled">B</Avatar>
+            <Avatar variant="contained">C</Avatar>
+          </Box>
+          <Paper variant="contained" sx={{ width: '100%' }}>
+            <HighlightedCode
+              code={`
+<Avatar variant="outlined">A</Avatar>
+<Avatar variant="filled">B</Avatar>
+<Avatar variant="contained">C</Avatar>`}
+              component="div"
+              language="jsx"
+            />
           </Paper>
-          <Paper variant="filled" elevation="xl">
-            Filled Paper
+
+          <Box sx={{ display: 'flex', gap: '16px' }}>
+            <Paper variant="text" elevation="xl">
+              Text Paper
+            </Paper>
+            <Paper variant="outlined" elevation="xl">
+              Outlined Paper
+            </Paper>
+            <Paper variant="filled" elevation="xl">
+              Filled Paper
+            </Paper>
+            <Paper variant="contained">Contained Paper</Paper>
+          </Box>
+          <Paper variant="contained" sx={{ width: '100%' }}>
+            <HighlightedCode
+              code={`
+<Paper variant="text" elevation="xl">
+  Text Paper
+</Paper>
+<Paper variant="outlined" elevation="xl">
+  Outlined Paper
+</Paper>
+<Paper variant="filled" elevation="xl">
+  Filled Paper
+</Paper>
+<Paper variant="contained">Contained Paper</Paper>`}
+              component="div"
+              language="jsx"
+            />
           </Paper>
-          <Paper variant="contained">Contained Paper</Paper>
-          <List>
-            <ListItem variant="outlined">
-              ReactJS{' '}
-              <Badge variant="filled" sx={{ minHeight: 'auto' }}>
-                New
-              </Badge>
-            </ListItem>
-            <ListItem>Angular</ListItem>
-            <ListItem>Vue</ListItem>
-          </List>
-          <List variant="outlined">
-            <ListItem>ReactJS</ListItem>
-            <ListItem variant="filled">
-              Angular{' '}
-              <Badge variant="contained" color="neutral" sx={{ minHeight: 'auto' }}>
-                OLD
-              </Badge>
-            </ListItem>
-            <ListItem>Vue</ListItem>
-          </List>
-          <List variant="filled">
-            <ListItem>
-              ReactJS{' '}
-              <Badge variant="filled" color="neutral" sx={{ minHeight: 'auto' }}>
-                12
-              </Badge>
-            </ListItem>
-            <ListItem>
-              Angular{' '}
-              <Badge variant="filled" color="neutral" sx={{ minHeight: 'auto' }}>
-                3
-              </Badge>
-            </ListItem>
-            <ListItem variant="contained">
-              Vue{' '}
-              <Badge variant="filled" color="neutral" sx={{ minHeight: 'auto' }}>
-                Latest
-              </Badge>
-            </ListItem>
-          </List>
-          <IconButton variant="text">
-            <Close />
-          </IconButton>
-          <IconButton variant="outlined">
-            <Moon />
-          </IconButton>
-          <IconButton variant="filled">
-            <Sun />
-          </IconButton>
-          <IconButton variant="contained">
-            <System />
-          </IconButton>
-          <Chip>
-            <IconButton sx={{ mr: '6px', ml: '-6px' }}>
-              <Close width="20" height="20" />
-            </IconButton>
-            Design
-          </Chip>
-          <Chip>
-            <IconButton variant="contained" sx={{ mr: '6px', ml: '-6px' }}>
-              <Close width="20" height="20" />
-            </IconButton>
-            Regular
-          </Chip>
-          <Chip variant="filled" color="brand">
-            <IconButton variant="contained" sx={{ mr: '6px', ml: '-6px' }}>
-              <Close width="20" height="20" />
-            </IconButton>
-            Full time
-          </Chip>
-          <Chip variant="contained">
-            <IconButton variant="filled" color="neutral" sx={{ mr: '6px', ml: '-6px' }}>
-              <Close width="20" height="20" />
-            </IconButton>
-            B2B
-          </Chip>
-          <Input placeholder="Text" variant="text" />
-          <Input placeholder="Outlined" variant="outlined" />
-          <Input placeholder="Filled" variant="filled" />
-          <Tabs sx={{ gridColumn: 'span 2' }}>
-            <Button variant="text">Tab 1</Button>
-            <Button variant="text">Tab 2</Button>
-            <Button>Tab 3</Button>
-          </Tabs>
-          <Tabs variant="filled" sx={{ gridColumn: 'span 2' }}>
-            <Button variant="text">Tab 1</Button>
-            <Button variant="text">Tab 2</Button>
-            <Button>Tab 3</Button>
-          </Tabs>
-        </Box>
-        <br />
-        <br />
-        <h2>Pattern context (`contained` is a parent)</h2>
-        <Box
-          sx={{
-            display: 'grid',
-            gap: '16px',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
-            justifyItems: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Tabs variant="contained" color="brand" sx={{ gridColumn: 'span 2' }}>
-            <Button variant="text">Tab 1</Button>
-            <Button variant="text">Tab 2</Button>
-            <Button variant="filled">Tab 3</Button>
-          </Tabs>
-          <Paper
-            enableContext
-            variant="contained"
-            color="brand"
-            sx={{
-              display: 'flex',
-              gap: '16px',
-              alignItems: 'center',
-              gridColumn: 'span 3',
-              width: '100%',
-              minHeight: '64px',
-            }}
-          >
+
+          <Box sx={{ display: 'flex', gap: '16px' }}>
+            <List>
+              <ListItem variant="outlined">
+                ReactJS{' '}
+                <Badge variant="filled" sx={{ minHeight: 'auto' }}>
+                  New
+                </Badge>
+              </ListItem>
+              <ListItem>Angular</ListItem>
+              <ListItem>Vue</ListItem>
+            </List>
+          </Box>
+          <Paper variant="contained" sx={{ width: '100%' }}>
+            <HighlightedCode
+              code={`
+<List>
+  <ListItem variant="outlined">
+    ReactJS{' '}
+    <Badge variant="filled">
+      New
+    </Badge>
+  </ListItem>
+  <ListItem>Angular</ListItem>
+  <ListItem>Vue</ListItem>
+</List>`}
+              component="div"
+              language="jsx"
+            />
+          </Paper>
+
+          <Box sx={{ display: 'flex', gap: '16px' }}>
+            <List variant="outlined">
+              <ListItem>ReactJS</ListItem>
+              <ListItem variant="filled">
+                Angular{' '}
+                <Badge variant="contained" color="neutral" sx={{ minHeight: 'auto' }}>
+                  OLD
+                </Badge>
+              </ListItem>
+              <ListItem>Vue</ListItem>
+            </List>
+          </Box>
+          <Paper variant="contained" sx={{ width: '100%' }}>
+            <HighlightedCode
+              code={`
+<List variant="outlined">
+  <ListItem>ReactJS</ListItem>
+  <ListItem variant="filled">
+    Angular{' '}
+    <Badge variant="contained" color="neutral">
+      OLD
+    </Badge>
+  </ListItem>
+  <ListItem>Vue</ListItem>
+</List>
+              `}
+              component="div"
+              language="jsx"
+            />
+          </Paper>
+
+          <Box sx={{ display: 'flex', gap: '16px' }}>
+            <List variant="filled">
+              <ListItem>
+                ReactJS{' '}
+                <Badge variant="filled" color="neutral" sx={{ minHeight: 'auto' }}>
+                  12
+                </Badge>
+              </ListItem>
+              <ListItem>
+                Angular{' '}
+                <Badge variant="filled" color="neutral" sx={{ minHeight: 'auto' }}>
+                  3
+                </Badge>
+              </ListItem>
+              <ListItem variant="contained">
+                Vue{' '}
+                <Badge variant="filled" color="neutral" sx={{ minHeight: 'auto' }}>
+                  Latest
+                </Badge>
+              </ListItem>
+            </List>
+          </Box>
+          <Paper variant="contained" sx={{ width: '100%' }}>
+            <HighlightedCode
+              code={`
+<List variant="filled">
+  <ListItem>
+    ReactJS{' '}
+    <Badge variant="filled" color="neutral">
+      12
+    </Badge>
+  </ListItem>
+  <ListItem>
+    Angular{' '}
+    <Badge variant="filled" color="neutral">
+      3
+    </Badge>
+  </ListItem>
+  <ListItem variant="contained">
+    Vue{' '}
+    <Badge variant="filled" color="neutral">
+      Latest
+    </Badge>
+  </ListItem>
+</List>
+              `}
+              component="div"
+              language="jsx"
+            />
+          </Paper>
+
+          <Box sx={{ display: 'flex', gap: '16px' }}>
             <IconButton variant="text">
               <Close />
             </IconButton>
-            <Chip color="brand" sx={{ ml: 'auto' }}>
+            <IconButton variant="outlined">
+              <Moon />
+            </IconButton>
+            <IconButton variant="filled">
+              <Sun />
+            </IconButton>
+            <IconButton variant="contained">
+              <System />
+            </IconButton>
+          </Box>
+          <Paper variant="contained" sx={{ width: '100%' }}>
+            <HighlightedCode
+              code={`
+<IconButton variant="text">
+  <Close />
+</IconButton>
+<IconButton variant="outlined">
+  <Moon />
+</IconButton>
+<IconButton variant="filled">
+  <Sun />
+</IconButton>
+<IconButton variant="contained">
+  <System />
+</IconButton>
+              `}
+              component="div"
+              language="jsx"
+            />
+          </Paper>
+
+          <Box sx={{ display: 'flex', gap: '16px' }}>
+            <Chip>
               <IconButton sx={{ mr: '6px', ml: '-6px' }}>
                 <Close width="20" height="20" />
               </IconButton>
               Design
             </Chip>
-            <Input variant="filled" color="brand" placeholder="Search" />
+            <Chip>
+              <IconButton variant="contained" sx={{ mr: '6px', ml: '-6px' }}>
+                <Close width="20" height="20" />
+              </IconButton>
+              Regular
+            </Chip>
+            <Chip variant="filled" color="brand">
+              <IconButton variant="contained" sx={{ mr: '6px', ml: '-6px' }}>
+                <Close width="20" height="20" />
+              </IconButton>
+              Full time
+            </Chip>
+            <Chip variant="contained">
+              <IconButton variant="filled" color="neutral" sx={{ mr: '6px', ml: '-6px' }}>
+                <Close width="20" height="20" />
+              </IconButton>
+              B2B
+            </Chip>
+          </Box>
+          <Paper variant="contained" sx={{ width: '100%' }}>
+            <HighlightedCode
+              code={`
+<Chip>
+  <IconButton><Close /></IconButton>
+  Design
+</Chip>
+<Chip>
+  <IconButton variant="contained"><Close /></IconButton>
+  Regular
+</Chip>
+<Chip variant="filled" color="brand">
+  <IconButton variant="contained"><Close /></IconButton>
+  Full time
+</Chip>
+<Chip variant="contained">
+  <IconButton variant="filled" color="neutral">
+    <Close />
+  </IconButton>
+  B2B
+</Chip>
+              `}
+              component="div"
+              language="jsx"
+            />
           </Paper>
-          <Paper
-            enableContext
-            variant="contained"
-            color="brand"
-            sx={{
-              display: 'flex',
-              gap: '16px',
-              alignItems: 'center',
-              gridColumn: 'span 3',
-              width: '100%',
-              minHeight: '64px',
-            }}
-          >
-            <IconButton variant="text">
-              <Close />
-            </IconButton>
-            <Input variant="outlined" color="brand" placeholder="Search" sx={{ ml: 'auto' }} />
-            <Avatar variant="filled" sx={{ width: 48, height: 48 }} />
+
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <Input placeholder="Text" variant="text" />
+            <Input placeholder="Outlined" variant="outlined" />
+            <Input placeholder="Filled" variant="filled" />
+          </Box>
+          <Paper variant="contained" sx={{ width: '100%' }}>
+            <HighlightedCode
+              code={`
+<Input placeholder="Text" variant="text" />
+<Input placeholder="Outlined" variant="outlined" />
+<Input placeholder="Filled" variant="filled" />
+              `}
+              component="div"
+              language="jsx"
+            />
           </Paper>
-          <Paper
-            enableContext
-            variant="contained"
-            color="neutral"
-            sx={{
-              display: 'flex',
-              gap: '16px',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              gridColumn: 'span 2',
-              width: '100%',
-              minHeight: '64px',
-            }}
-          >
-            Hello World
-            <Button variant="outlined" color="brand">
-              Notify
-            </Button>
-          </Paper>
-          <Paper
-            enableContext
-            variant="contained"
-            color="neutral"
-            sx={{
-              minWidth: '256px',
-              gridColumn: 'span 2',
-            }}
-          >
-            <Input placeholder="Search..." sx={{ width: '100%' }} />
-            <br />
-            <br />
-            <List sx={{ '& > li': { justifyContent: 'flex-start', '& > svg': { mr: '0.5rem' } } }}>
-              <ListItem>
-                <Sun />
-                Getting Started
-              </ListItem>
-              <ListItem variant="outlined">
-                <Sun />
-                Components
-              </ListItem>
-              <ListItem>
-                <Sun />
-                Components
-              </ListItem>
-              <ListItem>
-                <Sun />
-                System
-              </ListItem>
-            </List>
-            <br />
-            <Button variant="filled" sx={{ width: '100%', mb: '8px' }}>
-              Log out
-            </Button>
-            <Button variant="outlined" sx={{ width: '100%' }}>
-              What&apos;s new?
-            </Button>
-          </Paper>
-          <Paper
-            enableContext
-            variant="contained"
-            color="brand"
-            sx={{
-              minWidth: '256px',
-              gridColumn: 'span 2',
-            }}
-          >
-            <Input placeholder="Search..." sx={{ width: '100%' }} />
-            <br />
-            <br />
-            <List sx={{ '& > li': { justifyContent: 'flex-start', '& > svg': { mr: '0.5rem' } } }}>
-              <ListItem>
-                <Sun />
-                Getting Started
-              </ListItem>
-              <ListItem variant="filled">
-                <Sun />
-                Components
-              </ListItem>
-              <ListItem>
-                <Sun />
-                Components
-              </ListItem>
-              <ListItem>
-                <Sun />
-                System
-              </ListItem>
-            </List>
-            <br />
-            <Button variant="filled" sx={{ width: '100%', mb: '8px' }}>
-              Log out
-            </Button>
-            <Button variant="outlined" sx={{ width: '100%' }}>
-              What&apos;s new?
-            </Button>
+
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <Tabs>
+              <Button variant="text">Tab 1</Button>
+              <Button variant="text">Tab 2</Button>
+              <Button>Tab 3</Button>
+            </Tabs>
+            <Tabs variant="outlined">
+              <Button variant="text">Tab 1</Button>
+              <Button variant="text">Tab 2</Button>
+              <Button>Tab 3</Button>
+            </Tabs>
+            <Tabs variant="filled" color="brand">
+              <Button variant="text">Tab 1</Button>
+              <Button variant="text">Tab 2</Button>
+              <Button>Tab 3</Button>
+            </Tabs>
+            <Tabs variant="contained">
+              <Button variant="text">Tab 1</Button>
+              <Button variant="text">Tab 2</Button>
+              <Button variant="filled" color="neutral">
+                Tab 3
+              </Button>
+            </Tabs>
+          </Box>
+          <Paper variant="contained" sx={{ width: '100%' }}>
+            <HighlightedCode
+              code={`
+<Tabs>
+  <Button variant="text">Tab 1</Button>
+  <Button variant="text">Tab 2</Button>
+  <Button>Tab 3</Button>
+</Tabs>
+<Tabs variant="filled">
+  <Button variant="text">Tab 1</Button>
+  <Button variant="text">Tab 2</Button>
+  <Button>Tab 3</Button>
+</Tabs>
+              `}
+              component="div"
+              language="jsx"
+            />
           </Paper>
         </Box>
+        <br />
+        <br />
         <br />
         <br />
         <br />
