@@ -63,7 +63,7 @@ Besides the better performance, the new virtualization engine also brings the fo
 - Horizontal and vertical scroll share the same logic.
 - No more jumps when changing the rendered rows.
 - Calling `apiRef.current.scrollToIndexes` works no matter where the cell is.
-- Improved support for when virtualization is disabled.
+- Improved support for when `disableVirtualization` is used.
 - Fixes keyboard navigation with arrow keys.
 
 ## Improved state management
