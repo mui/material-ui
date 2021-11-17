@@ -1,25 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
 import Portal from '@mui/base/Portal';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 describe('<ClickAwayListener />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render: clientRender } = createRenderer();
+  const { render: clientRender, clock } = createRenderer({ clock: 'fake' });
   /**
    * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
    *

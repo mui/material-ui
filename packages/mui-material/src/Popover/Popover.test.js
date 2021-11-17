@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
+import { spy, stub } from 'sinon';
 import { act, createMount, createRenderer, describeConformance, screen } from 'test/utils';
 import PropTypes from 'prop-types';
 import Grow from '@mui/material/Grow';
@@ -34,19 +34,8 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
 });
 
 describe('<Popover />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-
+  const { clock, render } = createRenderer({ clock: 'fake' });
   const mount = createMount();
-  const { render } = createRenderer();
 
   describeConformance(<Popover anchorEl={() => document.createElement('div')} open />, () => ({
     classes,
@@ -109,9 +98,7 @@ describe('<Popover />', () => {
 
       expect(screen.getByTestId('children')).toBeInaccessible();
 
-      act(() => {
-        clock.tick(1974);
-      });
+      clock.tick(1974);
 
       expect(screen.queryByTestId('children')).to.equal(null);
     });
@@ -237,9 +224,7 @@ describe('<Popover />', () => {
         onExited: 0,
       });
 
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
 
       expect({
         onEnter: handleEnter.callCount,
@@ -277,9 +262,7 @@ describe('<Popover />', () => {
         onExited: 0,
       });
 
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
 
       expect({
         onEnter: handleEnter.callCount,
@@ -413,9 +396,7 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
     }
 
     beforeEach(() => {
@@ -558,9 +539,7 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
     }
 
     it('should be positioned according to the passed coordinates', () => {
@@ -652,9 +631,7 @@ describe('<Popover />', () => {
 
       window.innerHeight = windowInnerHeight * 2;
       window.dispatchEvent(new window.Event('resize'));
-      act(() => {
-        clock.tick(166);
-      });
+      clock.tick(166);
 
       const afterStyle = {
         top: element.style.top,
@@ -695,9 +672,7 @@ describe('<Popover />', () => {
       window.innerHeight = windowInnerHeight * 2;
       window.dispatchEvent(new window.Event('resize'));
       setProps({ open: false });
-      act(() => {
-        clock.tick(166);
-      });
+      clock.tick(166);
 
       const afterStyle = {
         top: element.style.top,
@@ -747,9 +722,7 @@ describe('<Popover />', () => {
       act(() => {
         popoverActions.updatePosition();
       });
-      act(() => {
-        clock.tick(166);
-      });
+      clock.tick(166);
 
       const afterStyle = {
         top: element.style.top,

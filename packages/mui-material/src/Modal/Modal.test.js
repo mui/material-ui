@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { useFakeTimers, spy } from 'sinon';
+import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import { act, createRenderer, fireEvent, within, describeConformance, screen } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -9,7 +9,7 @@ import Fade from '@mui/material/Fade';
 import Modal, { modalClasses as classes } from '@mui/material/Modal';
 
 describe('<Modal />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   let savedBodyStyle;
 
@@ -467,15 +467,7 @@ describe('<Modal />', () => {
     });
 
     describe('', () => {
-      let clock;
-
-      beforeEach(() => {
-        clock = useFakeTimers();
-      });
-
-      afterEach(() => {
-        clock.restore();
-      });
+      clock.withFakeTimers();
 
       it('does not steal focus from other frames', function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
@@ -534,10 +526,8 @@ describe('<Modal />', () => {
         act(() => {
           getByTestId('foreign-input').focus();
         });
-        act(() => {
-          // wait for the `contain` interval check to kick in.
-          clock.tick(500);
-        });
+        // wait for the `contain` interval check to kick in.
+        clock.tick(500);
 
         expect(getByTestId('foreign-input')).toHaveFocus();
       });
@@ -562,25 +552,14 @@ describe('<Modal />', () => {
         }
         render(<TestCase />);
         // exit transition started
-        act(() => {
-          clock.tick(timeout);
-        });
+        clock.tick(timeout);
         expect(document.querySelector('#modal-body')).to.equal(null);
       });
     });
   });
 
   describe('two modal at the same time', () => {
-    /**
-     * @type {ReturnType<typeof useFakeTimers>}
-     */
-    let clock;
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('should open and close', () => {
       const TestCase = (props) => (
@@ -633,18 +612,14 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
 
       setProps({ open: true });
-      act(() => {
-        clock.runToLast();
-      });
+      clock.runToLast();
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(0);
       expect(document.body.style).to.have.property('overflow', 'hidden');
 
       setProps({ open: false });
-      act(() => {
-        clock.runToLast();
-      });
+      clock.runToLast();
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(1);
@@ -676,16 +651,7 @@ describe('<Modal />', () => {
   });
 
   describe('prop: closeAfterTransition', () => {
-    /**
-     * @type {ReturnType<typeof useFakeTimers>}
-     */
-    let clock;
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('when true it should close after Transition has finished', () => {
       const TestCase = (props) => (
@@ -719,9 +685,7 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
 
       setProps({ open: true });
-      act(() => {
-        clock.runToLast();
-      });
+      clock.runToLast();
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(0);
@@ -777,9 +741,7 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
 
       setProps({ open: true });
-      act(() => {
-        clock.runToLast();
-      });
+      clock.runToLast();
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(0);
@@ -793,9 +755,7 @@ describe('<Modal />', () => {
       expect(handleExited.callCount).to.equal(0);
       expect(document.body.style).to.have.property('overflow', '');
 
-      act(() => {
-        clock.runToLast();
-      });
+      clock.runToLast();
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(1);
