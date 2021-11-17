@@ -93,6 +93,10 @@ export interface CreateStyledComponent<
   JSXProps extends {} = {},
   T extends object = {},
 > {
+  (
+    ...styles: Array<Interpolation<ComponentProps & SpecificComponentProps & { theme: T }>>
+  ): StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>;
+
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
    */
