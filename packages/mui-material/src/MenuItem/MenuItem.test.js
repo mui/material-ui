@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, describeConformance, createClientRender, fireEvent, screen } from 'test/utils';
+import { act, describeConformance, createRenderer, fireEvent, screen } from 'test/utils';
 import MenuItem, { menuItemClasses as classes } from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 import ListContext from '../List/ListContext';
 
 describe('<MenuItem />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<MenuItem />, () => ({
     classes,

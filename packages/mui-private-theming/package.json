@@ -1,6 +1,6 @@
 {
   "name": "@mui/private-theming",
-  "version": "5.0.1",
+  "version": "5.1.1",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Theming - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
@@ -8,7 +8,7 @@
   "keywords": [
     "react",
     "react-component",
-    "material-ui",
+    "mui",
     "theme"
   ],
   "repository": {
@@ -47,8 +47,8 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.15.4",
-    "@mui/utils": "^5.0.1",
+    "@babel/runtime": "^7.16.3",
+    "@mui/utils": "^5.1.1",
     "prop-types": "^15.7.2"
   },
   "sideEffects": false,

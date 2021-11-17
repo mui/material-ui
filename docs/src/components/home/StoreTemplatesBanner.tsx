@@ -63,7 +63,7 @@ const StoreTemplateLink = React.forwardRef<
   return (
     <Anchor
       ref={ref}
-      aria-label="Goto MUI store"
+      aria-label="Go to MUI Store"
       href={linkMapping[brand]}
       target="_blank"
       {...props}
@@ -95,7 +95,7 @@ const StoreTemplateLink = React.forwardRef<
 
 const StoreTemplateImage = React.forwardRef<
   HTMLImageElement,
-  { brand: TemplateBrand } & JSX.IntrinsicElements['img']
+  { brand: TemplateBrand } & Omit<JSX.IntrinsicElements['img'], 'ref'>
 >(function StoreTemplateImage({ brand, ...props }, ref) {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;

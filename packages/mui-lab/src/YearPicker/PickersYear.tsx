@@ -6,7 +6,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@mui/core';
+} from '@mui/base';
 import {
   WrapperVariant,
   WrapperVariantContext,
@@ -77,7 +77,7 @@ const PickersYearButton = styled('button', { skipSx: true })<{
   margin: '8px 0',
   height: 36,
   width: 72,
-  borderRadius: 16,
+  borderRadius: 18,
   cursor: 'pointer',
   '&:focus, &:hover': {
     backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),

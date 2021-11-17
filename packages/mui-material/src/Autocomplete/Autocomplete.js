@@ -6,7 +6,7 @@ import {
   unstable_composeClasses as composeClasses,
   useAutocomplete,
   createFilterOptions,
-} from '@mui/core';
+} from '@mui/base';
 import { alpha } from '@mui/system';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
@@ -170,6 +170,9 @@ const AutocompleteRoot = styled('div', {
     [`& .${filledInputClasses.input}`]: {
       padding: '2.5px 4px',
     },
+  },
+  [`& .${inputBaseClasses.hiddenLabel}`]: {
+    paddingTop: 8,
   },
   [`& .${autocompleteClasses.input}`]: {
     flexGrow: 1,
@@ -1016,7 +1019,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The value of the autocomplete.
    *

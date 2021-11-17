@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import useThemeProps from '../styles/useThemeProps';
 import GlobalStyles from '../GlobalStyles';
 
-export const html = {
+export const html = (theme, enableColorScheme) => ({
   WebkitFontSmoothing: 'antialiased', // Antialiasing.
   MozOsxFontSmoothing: 'grayscale', // Antialiasing.
   // Change from `box-sizing: content-box` so that `width`
@@ -11,7 +11,8 @@ export const html = {
   boxSizing: 'border-box',
   // Fix font resize problem in iOS
   WebkitTextSizeAdjust: '100%',
-};
+  ...(enableColorScheme && { colorScheme: theme.palette.mode }),
+});
 
 export const body = (theme) => ({
   color: theme.palette.text.primary,
@@ -23,9 +24,9 @@ export const body = (theme) => ({
   },
 });
 
-export const styles = (theme) => {
+export const styles = (theme, enableColorScheme = false) => {
   let defaultStyles = {
-    html,
+    html: html(theme, enableColorScheme),
     '*, *::before, *::after': {
       boxSizing: 'inherit',
     },
@@ -56,10 +57,10 @@ export const styles = (theme) => {
  */
 function CssBaseline(inProps) {
   const props = useThemeProps({ props: inProps, name: 'MuiCssBaseline' });
-  const { children } = props;
+  const { children, enableColorScheme = false } = props;
   return (
     <React.Fragment>
-      <GlobalStyles styles={styles} />
+      <GlobalStyles styles={(theme) => styles(theme, enableColorScheme)} />
       {children}
     </React.Fragment>
   );
@@ -74,6 +75,13 @@ CssBaseline.propTypes /* remove-proptypes */ = {
    * You can wrap a node.
    */
   children: PropTypes.node,
+  /**
+   * Enable `color-scheme` css property to use `theme.palette.mode`.
+   * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+   * For browser support, check out https://caniuse.com/?search=color-scheme
+   * @default false
+   */
+  enableColorScheme: PropTypes.bool,
 };
 
 export default CssBaseline;

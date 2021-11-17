@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/core';
+import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import InputBase from '../InputBase';
@@ -107,7 +107,7 @@ const TablePaginationDisplayedRows = styled('p', {
 }));
 
 function defaultLabelDisplayedRows({ from, to, count }) {
-  return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
+  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
 }
 
 function defaultGetAriaLabel(type) {
@@ -310,7 +310,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    * @default function defaultLabelDisplayedRows({ from, to, count }) {
-   *   return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
+   *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
    * }
    */
   labelDisplayedRows: PropTypes.func,
@@ -396,7 +396,11 @@ TablePagination.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 };
 
 export default TablePagination;

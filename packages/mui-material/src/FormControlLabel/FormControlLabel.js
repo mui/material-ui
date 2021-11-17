@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useFormControl } from '../FormControl';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
@@ -175,9 +175,9 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    */
   inputRef: refType,
   /**
-   * The text to be used in an enclosing label element.
+   * A text or an element to be used in an enclosing label element.
    */
-  label: PropTypes.node,
+  label: PropTypes.oneOfType([PropTypes.element, PropTypes.number, PropTypes.string]).isRequired,
   /**
    * The position of the label.
    * @default 'end'
@@ -197,7 +197,11 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The value of the component.
    */

@@ -218,11 +218,15 @@ const pages: readonly MuiPage[] = [
           { pathname: '/api-docs/data-grid/grid-cell-params', title: 'GridCellParams' },
           { pathname: '/api-docs/data-grid/grid-row-params', title: 'GridRowParams' },
           {
-            pathname: '/api-docs/data-grid/grid-export-csv-options',
-            title: 'GridExportCSVOptions',
+            pathname: '/api-docs/data-grid/grid-csv-export-options',
+            title: 'GridCSVExportOptions',
+          },
+          {
+            pathname: '/api-docs/data-grid/grid-print-export-options',
+            title: 'GridPrintExportOptions',
           },
         ].map((page) => {
-          return { ...page, linkProps: { as: page.pathname.replace(/^\/api-docs/, '/api') } };
+          return { ...page, linkProps: { as: `${page.pathname.replace(/^\/api-docs/, '/api')}/` } };
         }),
       },
     ]
@@ -230,7 +234,7 @@ const pages: readonly MuiPage[] = [
         a.pathname.replace('/api-docs/', '').localeCompare(b.pathname.replace('/api-docs/', '')),
       )
       .map((page) => {
-        return { ...page, linkProps: { as: page.pathname.replace(/^\/api-docs/, '/api') } };
+        return { ...page, linkProps: { as: `${page.pathname.replace(/^\/api-docs/, '/api')}/` } };
       }),
   },
   {
@@ -289,6 +293,7 @@ const pages: readonly MuiPage[] = [
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
       { pathname: '/guides/classname-generator', title: 'ClassName Generator' },
+      { pathname: '/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
       { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
       { pathname: '/guides/styled-engine' },

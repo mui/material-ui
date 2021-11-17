@@ -10,6 +10,7 @@ import DesignKitFAQ from 'docs/src/components/productDesignKit/DesignKitFAQ';
 import Testimonials from 'docs/src/components/home/Testimonials';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import BrandingProvider from 'docs/src/BrandingProvider';
+import References, { DESIGNKITS_CUSTOMERS } from 'docs/src/components/home/References';
 
 export default function DesignKits() {
   return (
@@ -22,6 +23,7 @@ export default function DesignKits() {
       <AppHeader />
       <main>
         <DesignKitHero />
+        <References companies={DESIGNKITS_CUSTOMERS} />
         <DesignKitValues />
         <DesignKitDemo />
         <DesignKitFAQ />

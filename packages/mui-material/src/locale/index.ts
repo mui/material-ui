@@ -123,7 +123,7 @@ export const arEG: Localization = {
         },
         labelRowsPerPage: 'عدد الصفوف في الصفحة:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} من ${count !== -1 ? count : ` أكثر من${to}`}`,
+          `${from}–${to} من ${count !== -1 ? count : ` أكثر من${to}`}`,
       },
     },
     MuiRating: {
@@ -194,7 +194,7 @@ export const arSD: Localization = {
         },
         labelRowsPerPage: 'عدد الصفوف في الصفحة:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} من ${count !== -1 ? count : ` أكثر من${to}`}`,
+          `${from}–${to} من ${count !== -1 ? count : ` أكثر من${to}`}`,
       },
     },
     MuiRating: {
@@ -265,7 +265,7 @@ export const azAZ: Localization = {
         },
         labelRowsPerPage: 'Səhifəyə düşən sətrlər:',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} dən ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} dən ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -345,7 +345,7 @@ export const bnBD: Localization = {
         },
         labelRowsPerPage: 'প্রতি পৃষ্ঠায় সারি:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} / ${count !== -1 ? count : `${to} থেকে বেশি`}`,
+          `${from}–${to} / ${count !== -1 ? count : `${to} থেকে বেশি`}`,
       },
     },
     MuiRating: {
@@ -416,7 +416,7 @@ export const bgBG: Localization = {
         },
         labelRowsPerPage: 'Редове на страница:',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} от ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} от ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -487,7 +487,7 @@ export const caES: Localization = {
         // },
         labelRowsPerPage: 'Files per pàgina:',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} de ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} de ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -558,7 +558,7 @@ export const csCZ: Localization = {
         },
         labelRowsPerPage: 'Řádků na stránce:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} z ${count !== -1 ? count : `více než ${to}`}`,
+          `${from}–${to} z ${count !== -1 ? count : `více než ${to}`}`,
       },
     },
     MuiRating: {
@@ -637,7 +637,7 @@ export const deDE: Localization = {
         },
         labelRowsPerPage: 'Zeilen pro Seite:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} von ${count !== -1 ? count : `mehr als ${to}`}`,
+          `${from}–${to} von ${count !== -1 ? count : `mehr als ${to}`}`,
       },
     },
     MuiRating: {
@@ -709,7 +709,7 @@ export const elGR: Localization = {
         },
         labelRowsPerPage: 'Γραμμές ανα σελίδα:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} από ${count !== -1 ? count : `πάνω από ${to}`}`,
+          `${from}–${to} από ${count !== -1 ? count : `πάνω από ${to}`}`,
       },
     },
     MuiRating: {
@@ -780,7 +780,7 @@ export const enUS: Localization = {
       },
       labelRowsPerPage: 'Rows per page:',
       labelDisplayedRows: ({ from, to, count }) =>
-  `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`,
+  `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`,
     }},
     MuiRating: { defaultProps: { 
       getLabelText: value => `${value} Star${value !== 1 ? 's' : ''}`,
@@ -843,7 +843,7 @@ export const esES: Localization = {
         },
         labelRowsPerPage: 'Filas por página:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} de ${count !== -1 ? count : `más de ${to}`}`,
+          `${from}–${to} de ${count !== -1 ? count : `más de ${to}`}`,
       },
     },
     MuiRating: {
@@ -914,7 +914,7 @@ export const etEE: Localization = {
         },
         labelRowsPerPage: 'Ridu leheküljel:',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} / ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} / ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -990,7 +990,7 @@ export const faIR: Localization = {
         },
         labelRowsPerPage: 'تعداد سطرهای هر صفحه:',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} از ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} از ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1061,7 +1061,7 @@ export const fiFI: Localization = {
         },
         labelRowsPerPage: 'Rivejä per sivu:',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} / ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} / ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1132,7 +1132,7 @@ export const frFR: Localization = {
         },
         labelRowsPerPage: 'Lignes par page :',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} sur ${count !== -1 ? count : `plus que ${to}`}`,
+          `${from}–${to} sur ${count !== -1 ? count : `plus que ${to}`}`,
       },
     },
     MuiRating: {
@@ -1203,7 +1203,7 @@ export const heIL: Localization = {
         },
         labelRowsPerPage: 'שורות בעמוד:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} מתוך ${count !== -1 ? count : `יותר מ ${to}`}`,
+          `${from}–${to} מתוך ${count !== -1 ? count : `יותר מ ${to}`}`,
       },
     },
     MuiRating: {
@@ -1345,7 +1345,7 @@ export const huHU: Localization = {
         },
         labelRowsPerPage: 'Sorok száma:',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} / ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} / ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1416,7 +1416,7 @@ export const hyAM: Localization = {
         // },
         labelRowsPerPage: 'Տողեր մեկ էջում`',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} / ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} / ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1487,7 +1487,7 @@ export const idID: Localization = {
         // },
         labelRowsPerPage: 'Baris per halaman:',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} dari ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} dari ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1558,7 +1558,7 @@ export const isIS: Localization = {
         // },
         labelRowsPerPage: 'Raðir á síðu:',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} af ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} af ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1629,7 +1629,7 @@ export const itIT: Localization = {
         },
         labelRowsPerPage: 'Righe per pagina:',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} di ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} di ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -1842,7 +1842,7 @@ export const koKR: Localization = {
         },
         labelRowsPerPage: '페이지 당 행:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} / ${count !== -1 ? count : `${to}개 이상`}`,
+          `${from}–${to} / ${count !== -1 ? count : `${to}개 이상`}`,
       },
     },
     MuiRating: {
@@ -1913,7 +1913,7 @@ export const kzKZ: Localization = {
         },
         labelRowsPerPage: 'Беттегі қатарлар:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${count !== -1 ? count : `+${to}`} қатардың ішінен ${from}-${to}`,
+          `${count !== -1 ? count : `+${to}`} қатардың ішінен ${from}–${to}`,
       },
     },
     MuiRating: {
@@ -1965,35 +1965,35 @@ export const kzKZ: Localization = {
 
 export const nlNL: Localization = {
   components: {
-    // MuiBreadcrumbs: {
-    //   defaultProps: {
-    //     expandText: 'Show path',
-    //   },
-    // },
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Pad tonen',
+      },
+    },
     MuiTablePagination: {
       defaultProps: {
-        // getItemAriaLabel: (type) => {
-        //   if (type === 'first') {
-        //     return 'Go to first page';
-        //   }
-        //   if (type === 'last') {
-        //     return 'Go to last page';
-        //   }
-        //   if (type === 'next') {
-        //     return 'Go to next page';
-        //   }
-        //   // if (type === 'previous') {
-        //   return 'Go to previous page';
-        // },
-        labelRowsPerPage: 'Regels per pagina :',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} van ${count !== -1 ? count : `more than ${to}`}`,
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Ga naar eerste pagina';
+          }
+          if (type === 'last') {
+            return 'Ga naar laatste pagina';
+          }
+          if (type === 'next') {
+            return 'Ga naar volgende pagina';
+          }
+          // if (type === 'previous') {
+          return 'Ga naar vorige pagina';
+        },
+        labelRowsPerPage: 'Regels per pagina:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} van ${count !== -1 ? count : `meer dan ${to}`}`,
       },
     },
     MuiRating: {
       defaultProps: {
         getLabelText: (value) => `${value} Ster${value !== 1 ? 'ren' : ''}`,
-        // emptyLabelText: 'Empty',
+        emptyLabelText: 'Leeg',
       },
     },
     MuiAutocomplete: {
@@ -2010,27 +2010,27 @@ export const nlNL: Localization = {
         closeText: 'Sluiten',
       },
     },
-    // MuiPagination: {
-    //   defaultProps: {
-    //     'aria-label': 'Pagination navigation',
-    //     getItemAriaLabel: (type, page, selected) => {
-    //       if (type === 'page') {
-    //         return `${selected ? '' : 'Go to '}page ${page}`;
-    //       }
-    //       if (type === 'first') {
-    //         return 'Go to first page';
-    //       }
-    //       if (type === 'last') {
-    //         return 'Go to last page';
-    //       }
-    //       if (type === 'next') {
-    //         return 'Go to next page';
-    //       }
-    //       // if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     },
-    //   },
-    // },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Navigatie via paginering',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Ga naar '}pagina ${page}`;
+          }
+          if (type === 'first') {
+            return 'Ga naar eerste pagina';
+          }
+          if (type === 'last') {
+            return 'Ga naar laatste pagina';
+          }
+          if (type === 'next') {
+            return 'Ga naar volgende pagina';
+          }
+          // if (type === 'previous') {
+          return 'Ga naar vorige pagina';
+        },
+      },
+    },
   },
 };
 
@@ -2058,7 +2058,7 @@ export const plPL: Localization = {
         },
         labelRowsPerPage: 'Wierszy na stronę:',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} z ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} z ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -2140,7 +2140,7 @@ export const ptBR: Localization = {
         },
         labelRowsPerPage: 'Linhas por página:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} de ${count !== -1 ? count : `mais de ${to}`}`,
+          `${from}–${to} de ${count !== -1 ? count : `mais de ${to}`}`,
       },
     },
     MuiRating: {
@@ -2211,7 +2211,7 @@ export const ptPT: Localization = {
         },
         labelRowsPerPage: 'Linhas por página:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} de ${count !== -1 ? count : `mais de ${to}`}`,
+          `${from}–${to} de ${count !== -1 ? count : `mais de ${to}`}`,
       },
     },
     MuiRating: {
@@ -2282,7 +2282,7 @@ export const roRO: Localization = {
         },
         labelRowsPerPage: 'Rânduri pe pagină:',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} din ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} din ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -2353,7 +2353,7 @@ export const ruRU: Localization = {
         },
         labelRowsPerPage: 'Строк на странице:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} из ${count !== -1 ? count : `более чем ${to}`}`,
+          `${from}–${to} из ${count !== -1 ? count : `более чем ${to}`}`,
       },
     },
     MuiRating: {
@@ -2438,7 +2438,7 @@ export const siLK: Localization = {
         },
         labelRowsPerPage: 'පිටුවක පේළි:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} දක්වා ${count !== -1 ? count : `${to} ට වැඩි ප්‍රමාණයකින්`}`,
+          `${from}–${to} දක්වා ${count !== -1 ? count : `${to} ට වැඩි ප්‍රමාණයකින්`}`,
       },
     },
     MuiRating: {
@@ -2509,7 +2509,7 @@ export const skSK: Localization = {
         },
         labelRowsPerPage: 'Riadkov na stránke:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} z ${count !== -1 ? count : `viac ako ${to}`}`,
+          `${from}–${to} z ${count !== -1 ? count : `viac ako ${to}`}`,
       },
     },
     MuiRating: {
@@ -2588,7 +2588,7 @@ export const svSE: Localization = {
         },
         labelRowsPerPage: 'Rader per sida:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} av ${count !== -1 ? count : `fler än ${to}`}`,
+          `${from}–${to} av ${count !== -1 ? count : `fler än ${to}`}`,
       },
     },
     MuiRating: {
@@ -2659,7 +2659,7 @@ export const thTH: Localization = {
         },
         labelRowsPerPage: 'จำนวนแถวต่อหน้า:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} จาก ${count !== -1 ? count : `มากกว่า ${to}`}`,
+          `${from}–${to} จาก ${count !== -1 ? count : `มากกว่า ${to}`}`,
       },
     },
     MuiRating: {
@@ -2730,7 +2730,7 @@ export const trTR: Localization = {
         },
         labelRowsPerPage: 'Sayfa başına satır:',
         // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}-${to} tanesinden ${count !== -1 ? count : `more than ${to}`}`,
+        //   `${from}–${to} tanesinden ${count !== -1 ? count : `more than ${to}`}`,
       },
     },
     MuiRating: {
@@ -2801,7 +2801,7 @@ export const ukUA: Localization = {
         },
         labelRowsPerPage: 'Рядків на сторінці:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} з ${count !== -1 ? count : `понад ${to}`}`,
+          `${from}–${to} з ${count !== -1 ? count : `понад ${to}`}`,
       },
     },
     MuiRating: {
@@ -2883,7 +2883,7 @@ export const viVN: Localization = {
         // },
         labelRowsPerPage: 'Số hàng mỗi trang:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}-${to} trong ${count !== -1 ? count : `nhiều hơn ${to}`}`,
+          `${from}–${to} trong ${count !== -1 ? count : `nhiều hơn ${to}`}`,
       },
     },
     MuiRating: {

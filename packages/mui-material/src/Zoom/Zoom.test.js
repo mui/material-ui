@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { act, describeConformance, createClientRender } from 'test/utils';
+import { act, describeConformance, createRenderer } from 'test/utils';
 import { Transition } from 'react-transition-group';
 import Zoom from '@mui/material/Zoom';
 
 describe('<Zoom />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <Zoom in>

@@ -12,6 +12,10 @@ import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import Link from 'docs/src/modules/components/Link';
 import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
 import ROUTES from 'docs/src/route';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Header = styled('header')(({ theme }) => ({
   position: 'sticky',
@@ -32,29 +36,22 @@ export default function AppHeader() {
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState<string | null>(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const preferredMode = prefersDarkMode ? 'dark' : 'light';
+
+  const t = useTranslate();
 
   React.useEffect(() => {
-    setMode(getCookie('paletteMode') || 'system');
-  }, [setMode]);
+    const initialMode = getCookie('paletteMode') || 'system';
+    setMode(initialMode);
+  }, []);
 
   const handleChangeThemeMode = (checked: boolean) => {
-    let paletteMode = 'system';
-    paletteMode = checked ? 'dark' : 'light';
-    if (paletteMode === null) {
-      return;
-    }
-
+    const paletteMode = checked ? 'dark' : 'light';
     setMode(paletteMode);
 
-    if (paletteMode === 'system') {
-      document.cookie = `paletteMode=;path=/;max-age=31536000`;
-      changeTheme({ paletteMode: preferredMode });
-    } else {
-      document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
-      changeTheme({ paletteMode });
-    }
+    document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
+    changeTheme({ paletteMode });
   };
+
   return (
     <Header>
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
@@ -70,18 +67,50 @@ export default function AppHeader() {
           <HeaderNavBar />
         </Box>
         <Box sx={{ ml: 'auto' }} />
-        <Box sx={{ mr: 2 }}>
+        <Box sx={{ mr: { xs: 1, md: 1 } }}>
           <DeferredAppSearch />
         </Box>
-        <Box sx={{ display: { md: 'none' }, mr: 1 }}>
-          <HeaderNavDropdown />
-        </Box>
+        <Tooltip title={t('appFrame.github')} enterDelay={300}>
+          <IconButton
+            component="a"
+            color="inherit"
+            href="https://github.com/mui-org/"
+            data-ga-event-category="header"
+            data-ga-event-action="github"
+            sx={{
+              position: 'relative',
+              p: '6.5px',
+              mr: 1,
+              borderRadius: 1,
+              border: '1px solid',
+              color: (theme) => (theme.palette.mode === 'dark' ? 'grey.100' : 'primary.main'),
+              bgcolor: (theme) =>
+                theme.palette.mode === 'dark' ? 'primaryDark.800' : 'transparent',
+              borderColor: (theme) =>
+                theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200',
+              '& svg': { width: 18, height: 18 },
+              '&:focus': {
+                boxShadow: (theme) =>
+                  `0 0 0 1px ${
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[600]
+                      : theme.palette.grey[200]
+                  }`,
+              },
+            }}
+          >
+            <GitHubIcon fontSize="small" />
+          </IconButton>
+        </Tooltip>
         {mode !== null ? (
           <ThemeModeToggle
             checked={mode === 'system' ? prefersDarkMode : mode === 'dark'}
             onChange={handleChangeThemeMode}
           />
         ) : null}
+        <Box sx={{ display: { md: 'none' }, ml: 1 }}>
+          <HeaderNavDropdown />
+        </Box>
       </Container>
     </Header>
   );

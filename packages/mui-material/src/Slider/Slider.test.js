@@ -2,9 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { SliderUnstyled } from '@mui/core';
+import { SliderUnstyled } from '@mui/base';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
 
 function createTouches(touches) {
@@ -27,7 +27,7 @@ describe('<Slider />', () => {
     }
   });
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Slider value={0} />, () => ({
     classes,

@@ -1,5 +1,295 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.1.1
+
+<!-- generated comparing v5.1.0..master -->
+
+_Nov 16, 2021_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🛠 Renamed `@mui/core` to `@mui/base` (#29585) @michaldudak.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.1.1`
+
+- &#8203;<!-- 34 -->[Breadcrumbs][divider] Replace decimal spacing values with integers and css calc (#29526) @anikcreative
+- &#8203;<!-- 10 -->[Select][nativeselect] Add `multiple` class (#29566) @aaronholla
+- &#8203;<!-- 09 -->[Popper] Split into PopperUnstyled and Popper (#29488) @michaldudak
+- &#8203;<!-- 08 -->[Select] Make it clear that `Select` is not a root component (#29593) @hbjORbj
+- &#8203;<!-- 13 -->[l10n] Improved Dutch (nl-NL) locale (#29592) @flipvrijn
+- &#8203;<!-- 10 -->[Table] Improve pagination range, use "en dash" over "hyphen" (#29579) @narekmal
+
+### `@mui/base@5.0.0-alpha.55`
+
+#### Breaking changes
+
+- &#8203;<!-- 27 -->[core] Rename mui/core to mui/base (#29585) @michaldudak
+
+  Based on the results of the [poll](https://twitter.com/michaldudak/status/1452630484706635779) and our internal discussions, we decided to rename the `@mui/core` package to `@mui/base`. The main rationale for this is the fact that we use the term "Core" to refer to the core components product family, the one that includes Material Design components, unstyled components, System utilities, etc. Therefore, @mui/core was effectively a subset of MUI Core. This was confusing.
+
+  The new name better reflects the purpose of the package: it contains unstyled components, hooks, and utilities that serve as a **base** to build on.
+
+  ```diff
+  -import { useSwitch } from '@mui/core/SwitchUnstyled';
+  +import { useSwitch } from '@mui/base/SwitchUnstyled';
+  ```
+
+### `@mui/lab@5.0.0-alpha.55`
+
+- &#8203;<!-- 12 -->[LoadingButton] Text variant spacing fixed for both start and end (#29194) @joshua-lawrence
+- &#8203;<!-- 11 -->[Masonry] Check if container or child exists to prevent error (#29452) @hbjORbj
+
+### Docs
+
+- &#8203;<!-- 25 -->[docs] Correct bundler configuration for using legacy MUI build (#29146) @petermikitsh
+- &#8203;<!-- 24 -->[docs] Fix typo on autocomplete.md (#29570) @netizer
+- &#8203;<!-- 23 -->[docs] Fix dark mode on branding pages (#29611) @alexfauquette
+- &#8203;<!-- 22 -->[docs] Do not render CSS section in API docs navbar if there are no CSS classes (#29622) @ZeeshanTamboli
+- &#8203;<!-- 21 -->[docs] Fix link locale handling (#29624) @oliviertassinari
+- &#8203;<!-- 20 -->[docs] Fix Search navigation (#29623) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Fix broken link & update MUI packages explanation (#29583) @siriwatknp
+- &#8203;<!-- 18 -->[docs] Do not repeat language snippet in url in Algolia search (#29483) @hbjORbj
+- &#8203;<!-- 17 -->[docs] Update `ThemeProvider` API link (#29573) @siriwatknp
+- &#8203;<!-- 16 -->[docs] Remove svg logos from the Support page (#29431) @oliviertassinari
+- &#8203;<!-- 15 -->[docs] Link UXPin integration (#29422) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Link to the new public roadmap for the design kits (#29433) @oliviertassinari
+- &#8203;<!-- 28 -->[docs] correct bundler configuration for using legacy MUI build (#29146) @petermikitsh
+- &#8203;<!-- 01 -->[website] Fix premium plan release date (#29430) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Add GitHub icon button to the navbar (#29640) @danilo-leal
+- &#8203;<!-- 39 -->[blog] Support many authors in markdown pages (#29633) @m4theushw
+
+### Core
+
+- &#8203;<!-- 33 -->[core] Add `experiments` index page (#29582) @siriwatknp
+- &#8203;<!-- 32 -->[core] Move s3 bucket ownership to mui-org (#29609) @eps1lon
+- &#8203;<!-- 31 -->[core] Improve support request message (#29614) @mnajdova
+- &#8203;<!-- 30 -->[core] Use support request Github Action (#29594) @mnajdova
+- &#8203;<!-- 29 -->[core] Remove unused `getJsxPreview` util (#29586) @ZeeshanTamboli
+- &#8203;<!-- 28 -->[core] Use GitHub issue forms (#28038) @oliviertassinari
+- &#8203;<!-- 26 -->[core] Add playground (#29423) @oliviertassinari
+- &#8203;<!-- 07 -->[test] Correctly identify what the `raf` helper is for (#29683) @eps1lon
+- &#8203;<!-- 06 -->[test] Verify a quilted ImageList is created as test title suggests (#29565) @daniel-sachs
+- &#8203;<!-- 05 -->[test] Replace `createServerRender` with `createRenderer` (#29503) @eps1lon
+- &#8203;<!-- 04 -->[test] Always ignore "useLayoutEffect has no effect on the server"-warning (#29502) @eps1lon
+- &#8203;<!-- 03 -->[test] Restore StrictMode by default (#29589) @eps1lon
+- &#8203;<!-- 02 -->[test] createPickerRender -> createPickerRenderer (#29575) @eps1lon
+- &#8203;<!-- 09 -->[test] Allow experimental CLI to run exact test (#29685) @eps1lon
+
+All contributors of this release in alphabetical order: @aaronholla, @alexfauquette, @anikcreative, @daniel-sachs, @eps1lon, @flipvrijn, @hbjORbj, @joshua-lawrence, @michaldudak, @mnajdova, @netizer, @oliviertassinari, @petermikitsh, @siriwatknp, @ZeeshanTamboli
+
+## 5.1.0
+
+<!-- generated comparing v5.0.6..master -->
+
+_Nov 8, 2021_
+
+A big thanks to the 33 contributors who made this release possible. Here are some highlights ✨:
+
+- 🎉 Support custom elements under `ButtonGroup` (#28645) @ZeeshanTamboli
+- 🛠 Add support for arrays in the `sx` prop (#29297) @siriwatknp
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.1.0`
+
+- &#8203;<!-- 68 -->[Autocomplete] Fix `hiddenLabel` prop of `TextField variant={filled}` inside Autocomplete (#29234) @jatinsandilya
+- &#8203;<!-- 67 -->[Box] Support generateClassName and defaultClassName (#29347) @siriwatknp
+- &#8203;<!-- 66 -->[ButtonGroup] Fix variant outlined always has primary color borders on hover (#29487) @ZeeshanTamboli
+- &#8203;<!-- 65 -->[ButtonGroup] Support different elements under ButtonGroup (#28645) @ZeeshanTamboli
+- &#8203;<!-- 62 -->[CssBaseline] Add `enableColorScheme` prop so enable using `color-scheme` property to deal with dark mode (#29454) @alexfauquette
+- &#8203;<!-- 29 -->[FormControlLabel] Narrow the label type (#29324) @michaldudak
+- &#8203;<!-- 28 -->[Grid] Fix usage when columns > 12 (#29196) @tanay123456789
+- &#8203;<!-- 27 -->[InputBase] Do not repeat the same classname (#29353) @hbjORbj
+- &#8203;<!-- 30 -->[InputBase] Remove WebkitAppearance from search type (#29383) @nicbarajas
+- &#8203;<!-- 25 -->[ListItem] Add missing exports (#29571) @robcaldecott
+- &#8203;<!-- 22 -->[Pagination] Allow customization of icons (#29336) @mbeltramin
+- &#8203;<!-- 11 -->[TextField] Fix bootstrap, normalize.css, sanitize.css conflicts (#28674) @ChrisClaude
+- &#8203;<!-- 10 -->[TextField] Fix invisible wrap within notched inputs (#29088) @DASPRiD
+- &#8203;<!-- 09 -->[Tooltip] `open` prop in `componentsProps.popper` can be optional (#29370) @ZeeshanTamboli
+- &#8203;<!-- 08 -->[Tooltip] Fix `className` not getting applied from PopperProps (#29023) @ZeeshanTamboli
+- &#8203;<!-- 07 -->[useRadioGroup] Convert to TypeScript (#29326) @eps1lon
+
+### `@mui/system@5.1.0`
+
+- &#8203;<!-- 21 -->[system] Introduce `mode` to CssVarsProvider (#29418) @siriwatknp
+- &#8203;<!-- 20 -->[system] Improve breakpoints resolver function (#29300) @hbjORbj
+- &#8203;<!-- 19 -->[system] Add array support for `sx` prop (#29297) @siriwatknp
+
+### `@mui/codemod@5.1.0`
+
+- &#8203;<!-- 64 -->[codemod] Add codemod parser flag (#29059) (#29229) @ElonVolo
+
+### `@mui/lab@5.0.0-alpha.54`
+
+- &#8203;<!-- 52 -->[DatePicker] Fix disabled/readOnly for view components (#28815) @adamfitzgibbon
+- &#8203;<!-- 24 -->[Masonry] Fix crash on unmount when using React 18 (#29358) @eps1lon
+- &#8203;<!-- 23 -->[Masonry] Improve height computation and detect changes in `children` (#29351) @hbjORbj
+
+### `@mui/joy@5.0.0-alpha.0`
+
+- &#8203;<!-- 28 -->[Joy] Update default theme (#29478) @siriwatknp
+- &#8203;<!-- 26 -->[Joy] Export CssVarsProvider with default theme (#29150) @siriwatknp
+- &#8203;<!-- 25 -->[Joy] Remove `private` to leverage CodeSandbox (#29280) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 51 -->[docs] Add differences between styled and sx (#28685) @eric-burel
+- &#8203;<!-- 50 -->[docs] Track usage of dark mode in Google Analytics (#29419) @oliviertassinari
+- &#8203;<!-- 49 -->[docs] Remove create-mui-theme as it is no longer working (#29472) @IPJT
+- &#8203;<!-- 48 -->[docs] Fix warnings in AppSearch (#29459) @eps1lon
+- &#8203;<!-- 47 -->[docs] Add framework example for ClassNameGenerator (#29453) @siriwatknp
+- &#8203;<!-- 46 -->[docs] Fix layout shift when scrolling (#29436) @oliviertassinari
+- &#8203;<!-- 45 -->[docs] Fix layout-shift on id='main-content' (#29425) @oliviertassinari
+- &#8203;<!-- 44 -->[docs] Remove usage of `process.browser` (#29438) @oliviertassinari
+- &#8203;<!-- 43 -->[docs] Add instruction on how to use the child selector API with emotion (#29350) @mnajdova
+- &#8203;<!-- 42 -->[docs] Fix small typos (#29424) @oliviertassinari
+- &#8203;<!-- 41 -->[docs] Fix TOC highlighting logic (#29435) @oliviertassinari
+- &#8203;<!-- 40 -->[docs] Fix about page flags (#29314) @mbrookes
+- &#8203;<!-- 39 -->[docs] Fix Box JS docs (#29282) @Pablion
+- &#8203;<!-- 38 -->[docs] Update storybook section in migration to v5 docs (#28800) @siriwatknp
+- &#8203;<!-- 37 -->[docs] Document how to enable color on dark mode (#29340) @Wimukti
+- &#8203;<!-- 36 -->[docs] Display search functionality in all viewports (#28819) @eps1lon
+- &#8203;<!-- 35 -->[docs] Query heading for ToC on demand (#29204) @eps1lon
+- &#8203;<!-- 34 -->[docs] Add next.js styled-component guide and update links to example (#29118) @Jareechang
+- &#8203;<!-- 33 -->[docs] Fix overriding `MuiTextField`'s default props in the migration guide (#29174) @tm1000
+- &#8203;<!-- 32 -->[docs] Fix "clickable" and "deletable" typos (#28702) @jacklaurencegaray
+- &#8203;<!-- 31 -->[docs] Update migration-v4 docs for wrong import path (#29042) @busches
+- &#8203;<!-- 30 -->[docs] Add GitHub icon change to "Migration from v4 to v5" guide (#29182) @dan-mba
+- &#8203;<!-- 06 -->[website] Benny Joo joining MUI (#29499) @mnajdova
+- &#8203;<!-- 05 -->[website] Update the `Print export` feature info on the pricing page (#29484) @DanailH
+- &#8203;<!-- 04 -->[website] Improve the dev rel role description (#29477) @oliviertassinari
+- &#8203;<!-- 03 -->[website] Add customers section on Design Kits and Templates marketing pages (#29168) @danilo-leal
+- &#8203;<!-- 02 -->[website] Improvements to the /core product page @danilo-leal
+- &#8203;<!-- 01 -->[website] Fix typo on the About Page (#29286) @gssakash
+
+### Core
+
+- &#8203;<!-- 63 -->[core] Handle RecordType and FieldType in generatePropDescription.ts (#29467) @flaviendelangle
+- &#8203;<!-- 61 -->[core] Convert a named color to lowercase (#29465) @ainatenhi
+- &#8203;<!-- 60 -->[core] Allow to reuse functions from `docs:api` (#28828) @m4theushw
+- &#8203;<!-- 59 -->[core] Commit new nextjs 12 tsconfig (#29458) @eps1lon
+- &#8203;<!-- 58 -->[core] Settle on MUI X for the official name (#29420) @oliviertassinari
+- &#8203;<!-- 57 -->[core] Add mui as a npm keyword (#29427) @oliviertassinari
+- &#8203;<!-- 56 -->[core] Fix issue template redirection (#29432) @oliviertassinari
+- &#8203;<!-- 55 -->[core] Remove unecessary destructuration (#29354) @oliviertassinari
+- &#8203;<!-- 54 -->[core] Use cross-env to set env variables in material-icons scripts (#29327) @michaldudak
+- &#8203;<!-- 53 -->[core] Don't bump peer dependency ranges on dependency updates (#29303) @eps1lon
+- &#8203;<!-- 18 -->[test] Fix browser tests (#29505) @eps1lon
+- &#8203;<!-- 69 -->[test] Fix missing act warnings in latest React 18 alpha (#29357) @eps1lon
+- &#8203;<!-- 17 -->[test] Replace `createClientRender` with new `createRenderer` API (#29471) @eps1lon
+- &#8203;<!-- 16 -->[test] Fix possible "missing act" warning (#29463) @eps1lon
+- &#8203;<!-- 15 -->[test] Remove render#baseElement (#29462) @eps1lon
+- &#8203;<!-- 14 -->[test] Expose `AbortController` on global (#29360) @eps1lon
+- &#8203;<!-- 13 -->[test] Add internal test for uniqe `name` in `Rating` (#29329) @eps1lon
+- &#8203;<!-- 12 -->[test] Fix browser tests (#29305) @eps1lon
+
+All contributors of this release in alphabetical order: @adamfitzgibbon, @ainatenhi, @alexfauquette, @busches, @ChrisClaude, @dan-mba, @DanailH, @danilo-leal, @DASPRiD, @ElonVolo, @eps1lon, @eric-burel, @flaviendelangle, @gssakash, @hbjORbj, @IPJT, @jacklaurencegaray, @Jareechang, @jatinsandilya, @m4theushw, @mbeltramin, @mbrookes, @michaldudak, @mnajdova, @nicbarajas, @oliviertassinari, @Pablion, @robcaldecott, @siriwatknp, @tanay123456789, @tm1000, @Wimukti, @ZeeshanTamboli
+
+## 5.0.6
+
+<!-- generated comparing v5.0.5..master -->
+
+_Oct 27, 2021_
+
+A big thanks to the 4 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔧 Fix reported TypeScript issues on the `@mui/system` package because some packages were not released
+
+### `@mui/material@5.0.6`
+
+- &#8203;<!-- 4 -->[Autocomplete] Fix `clearOnBlur` prop (#29208) @hbjORbj
+- &#8203;<!-- 2 -->[Rating] Remove z-index from decimal stars (#29295) @williamhaley
+
+### `@mui/system@5.0.6`
+
+- &#8203;<!-- 5 -->[system] Fix various issues reported by using @mui/styled-engine-sc (#29035) @mnajdova
+- &#8203;<!-- 1 -->[system] Fix executing server-side Emotion component as function interpolation (#29290) @Andarist
+
+### Docs
+
+- &#8203;<!-- 3 -->[blog] Q3 2021 Update (#28970) @oliviertassinari
+
+All contributors of this release in alphabetical order: @Andarist, @hbjORbj, @oliviertassinari, @williamhaley
+
+## 5.0.5
+
+<!-- generated comparing v5.0.4..master -->
+
+_Oct 26, 2021_
+
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+
+- 🔧 Implement `Masonry` using Flexbox by @hbjORbj.
+- 🧪 Add three components to `@mui/base` by @rebeccahongsf and @hbjORbj.
+
+### `@mui/codemod@5.0.5`
+
+- &#8203;<!-- 38 -->[codemod] Support new package name in `link-underline-hover` transformer (#29214) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.52`
+
+- &#8203;<!-- 39 -->[ClickAwayListener] Move to the core package (#29186) @hbjORbj
+- &#8203;<!-- 13 -->[Popper] Move from mui-material to mui-base (#28923) @rebeccahongsf
+- &#8203;<!-- 04 -->[TextareaAutosize] Move to the core package (#29148) @hbjORbj
+
+### `@mui/lab@5.0.0-alpha.52`
+
+- &#8203;<!-- 16 -->[Masonry] Improve demo styles (#29218) @hbjORbj
+- &#8203;<!-- 15 -->[Masonry] Implement Masonry using Flexbox (#28059) @hbjORbj
+
+### `@mui/icons@5.0.5`
+
+- &#8203;<!-- 19 -->[icons] Add TipsAndUpdates icon (#29004) @hbjORbj
+
+### `@mui/material@5.0.5`
+
+- &#8203;<!-- 40 -->[CardMedia] Apply specified `img` role instead of custom `image` role (#29172) @eps1lon
+- &#8203;<!-- 32 -->[CSSBaseline] Remove incorrect @deprecated annotation (#29069) @adamfitzgibbon
+- &#8203;<!-- 20 -->[Grid] Support custom columns with nested grid (#28743) @Devesh21700Kumar
+- &#8203;<!-- 18 -->[InputBase] Remove wrong theme overriding with MUI's default theme (#29157) @hbjORbj
+- &#8203;<!-- 17 -->[LoadingButton] Fix `fullWidth` styling (#28652) @nikitabobers
+- &#8203;<!-- 16 -->[Popper] make Popper display:none whenever it's closed (#29233) @adamfitzgibbon
+- &#8203;<!-- 14 -->[Menu] Reduce min-height & padding in menu-item with dense property (#29180) @jatinsandilya
+- &#8203;<!-- 07 -->[Tab] `iconPosition` prop added in Tab (#28764) @deepanshu2506
+- &#8203;<!-- 03 -->[Tooltip] Correct inconsistent prop precedence (#29132) @michaldudak
+
+### `@mui/system@5.0.5`
+
+- &#8203;<!-- 11 -->[system] Allow function type for `sx` prop (#29198) @hbjORbj
+- &#8203;<!-- 10 -->[system] Fix various issues reported by using @mui/styled-engine-sc (#29035) @mnajdova
+- &#8203;<!-- 09 -->[system] Fix `colorScheme` conflict between application (#29139) @siriwatknp
+- &#8203;<!-- 08 -->[system] Add `unstable_createCssVarsProvider` api (#28965) @siriwatknp
+
+### Documentation
+
+- &#8203;<!-- 31 -->[docs] Fix path to `DataGrid` CSV export options page (#29220) @DanailH
+- &#8203;<!-- 30 -->[docs] Give anonymous components a name (#29189) @eps1lon
+- &#8203;<!-- 29 -->[docs] Add deploy context variables (#29195) @siriwatknp
+- &#8203;<!-- 28 -->[docs] Add MUI packages explanation (#29073) @siriwatknp
+- &#8203;<!-- 27 -->[docs] Fix typo in CSP policy (#29187) @JuliaNeumann
+- &#8203;<!-- 26 -->[docs] Dark mode conditional content rendering (#28665) @michal-perlakowski
+- &#8203;<!-- 25 -->[docs] Fix ClassNameGenerator introduced version #29177 @siriwatknp
+- &#8203;<!-- 24 -->[docs] Add missing `justifyContent` values and update box styling (#29117) @omarmosid
+- &#8203;<!-- 23 -->[docs] Make landing page hero section scrollable (#29141) @waxidiotic
+- &#8203;<!-- 22 -->[docs] Discourage importing different bundles directly (#29133) @eps1lon
+- &#8203;<!-- 21 -->[docs] Update module augmentation reference url (#29064) @gnowland
+- &#8203;<!-- 12 -->[pricing] Add tooltip to pricing icon (#28959) @siriwatknp
+- &#8203;<!-- 07 -->[Team] Add Alexandre in the about page (#29289)
+- &#8203;<!-- 02 -->[website] Fix status label overflow in AdvancedShowcase (#29143) @LorenzHenk
+- &#8203;<!-- 01 -->[website] Update legacy logos (#28908) @michaldudak
+
+### Core
+
+- &#8203;<!-- 37 -->[core] Order repro methods by preference (#29156) @eps1lon
+- &#8203;<!-- 36 -->[core] Remove unnecessary usages of `useEventCallback` (#28910) @NMinhNguyen
+- &#8203;<!-- 35 -->[core] add `unstable_ClassNameGenerator` API (#29051) @siriwatknp
+- &#8203;<!-- 34 -->[core] Fix issues when using styled-components (#29048) @mnajdova
+- &#8203;<!-- 33 -->[core] replace hard-coded classname with classes (#29070) @siriwatknp
+- &#8203;<!-- 06 -->[test] Add documentation for visual regression tests (#29154) @eps1lon
+- &#8203;<!-- 05 -->[test] Enable "missing act" warnings using new proposal (#29167) @eps1lon
+
+All contributors of this release in alphabetical order: @adamfitzgibbon, @DanailH, @deepanshu2506, @Devesh21700Kumar, @eps1lon, @gnowland, @hbjORbj, @jatinsandilya, @JuliaNeumann, @LorenzHenk, @michal-perlakowski, @michaldudak, @mnajdova, @nikitabobers, @NMinhNguyen, @omarmosid, @rebeccahongsf, @siriwatknp, @waxidiotic
+
 ## 5.0.4
 
 <!-- generated comparing v5.0.3..master -->
@@ -8,7 +298,7 @@ _Oct 14, 2021_
 
 A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
-- 🧪 Added `UnstyledInput` and `useInput` hook in the the first component in @mui/core package @michaldudak (#28053)
+- 🧪 Added `UnstyledInput` and `useInput` hook in the the first component in @mui/base package @michaldudak (#28053)
 - 🐛 Fixed many bugs and improved the documentation 📚.
 
 ### `@mui/material@5.0.4`
@@ -23,7 +313,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 05 -->[system] Update typing for `style` function (#28744) @hbjORbj
 
-### `@mui/core@5.0.0-alpha.51`
+### `@mui/base@5.0.0-alpha.51`
 
 - &#8203;<!-- 07 -->[InputUnstyled] Create unstyled input and useInput hook (#28053) @michaldudak
 
@@ -92,7 +382,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 42 -->Don't allow styled-components APIs on mui styled function (#28807) @hbjORbj
 
-### `@mui/core@5.0.0-alpha.50`
+### `@mui/base@5.0.0-alpha.50`
 
 - &#8203;<!-- 38 -->[ButtonUnstyled] Don't set redundant role=button (#28488) @michaldudak
 - &#8203;<!-- 43 -->[SliderUnstyled] Prevent unknown-prop error when using marks prop (#28868) @hbjORbj
@@ -471,10 +761,10 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   ```
   @material-ui/core => @mui/material        // represents Material Design components.
   @material-ui/icons => @mui/icons-material // represents Material Design icons.
-  @material-ui/unstyled => @mui/core        // fully functional components with minimum styles.
+  @material-ui/unstyled => @mui/base        // fully functional components with minimum styles.
   ```
 
-  > **Note**: `@mui/core` (previously `@material-ui/unstyled`) is not the same as `@material-ui/core`.
+  > **Note**: `@mui/base` (previously `@material-ui/unstyled`) is not the same as `@material-ui/core`.
 
   We encourage you to use the [codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) for smooth migration.
 
@@ -489,7 +779,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - &#8203;<!-- 05 -->[ToggleButtonGroup] Add "disabled" prop (#27998) @chetas411
 - &#8203;<!-- 34 -->[core] Export types for module augmentation (#28078) @m4theushw
 
-### `@mui/core@5.0.0-alpha.45`
+### `@mui/base@5.0.0-alpha.45`
 
 - &#8203;<!-- 38 -->[Button] Create ButtonUnstyled and useButton (#27600) @michaldudak
 

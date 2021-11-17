@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createClientRender } from 'test/utils';
+import { act, createRenderer } from 'test/utils';
 import useControlled from './useControlled';
 
 const TestComponent = ({ value: valueProp, defaultValue, children }) => {
@@ -13,7 +13,7 @@ const TestComponent = ({ value: valueProp, defaultValue, children }) => {
 };
 
 describe('useControlled', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('works correctly when is not controlled', () => {
     let valueState;

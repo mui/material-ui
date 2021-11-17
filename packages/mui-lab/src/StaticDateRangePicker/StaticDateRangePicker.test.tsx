@@ -5,7 +5,11 @@ import { useFakeTimers } from 'sinon';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
 import { describeConformance, screen } from 'test/utils';
-import { wrapPickerMount, createPickerRender, adapterToUse } from '../internal/pickers/test-utils';
+import {
+  wrapPickerMount,
+  createPickerRenderer,
+  adapterToUse,
+} from '../internal/pickers/test-utils';
 
 const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextFieldProps) => (
   <React.Fragment>
@@ -23,7 +27,7 @@ describe('<StaticDateRangePicker />', () => {
     clock.restore();
   });
 
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   describeConformance(
     <StaticDateRangePicker

@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import * as React from 'react';
 import { stub } from 'sinon';
 import { createMochaHooks } from './mochaHooks';
-import { createClientRender, act } from './createClientRender';
+import { createRenderer, act } from './createRenderer';
 
 describe('mochaHooks', () => {
   // one block per hook.
@@ -44,10 +44,11 @@ describe('mochaHooks', () => {
       });
     });
 
+    // TODO: May not be relevant in React 18
     describe('dedupes missing act() warnings by component', () => {
       const mochaHooks = createMochaHooks(Mocha);
       // missing act warnings only happen in StrictMode
-      const render = createClientRender({ strict: true });
+      const { render } = createRenderer({ strict: true });
 
       beforeEach(function beforeEachHook() {
         mochaHooks.beforeAll.forEach((beforeAllMochaHook) => {
@@ -99,13 +100,13 @@ describe('mochaHooks', () => {
           error.match(/An update to Parent inside a test was not wrapped in act/g),
         ).to.have.lengthOf(1);
         expect(
-          error.match(/An update to Parent ran an effect, but was not wrapped in act/g),
-        ).to.have.lengthOf(1);
+          error.match(/An update to Parent ran an effect, but was not wrapped in act/g) ?? [],
+        ).to.have.lengthOf(React.startTransition !== undefined ? 0 : 1);
         expect(
           error.match(
             /An update to ForwardRef\(Child\) ran an effect, but was not wrapped in act/g,
-          ),
-        ).to.have.lengthOf(1);
+          ) ?? [],
+        ).to.have.lengthOf(React.startTransition !== undefined ? 0 : 1);
       });
     });
   });

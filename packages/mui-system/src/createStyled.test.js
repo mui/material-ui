@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import createStyled from './createStyled';
 
 describe('createStyled', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describe('displayName', () => {
     // These tests rely on implementation details (namely `displayName`)

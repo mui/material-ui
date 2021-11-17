@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Paper from '@mui/material/Paper';
 import SnackbarContent, { snackbarContentClasses as classes } from '@mui/material/SnackbarContent';
 
 describe('<SnackbarContent />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<SnackbarContent message="conform?" />, () => ({
     classes,
