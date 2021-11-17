@@ -21,11 +21,15 @@ async function run(argv) {
       }
       return line;
     });
-  const globPattern = `**/*${argv.testFilePattern}*.test.{js,ts,tsx}`;
-  const spec = glob.sync(globPattern, {
-    cwd: workspaceRoot,
-    ignore,
-  });
+  const globPattern = `**/*${argv.testFilePattern}*`;
+  const spec = glob
+    .sync(globPattern, {
+      cwd: workspaceRoot,
+      ignore,
+    })
+    .filter((relativeFile) => {
+      return /\.test\.(js|ts|tsx)$/.test(relativeFile);
+    });
 
   if (spec.length === 0) {
     throw new Error(`Could not find any file test files matching '${globPattern}'`);
