@@ -21,7 +21,7 @@ async function run(argv) {
       }
       return line;
     });
-  const globPattern = `**/*${argv.testFilePattern}*`;
+  const globPattern = `**/*${argv.testFilePattern.replace(/\\/g, '/')}*`;
   const spec = glob
     .sync(globPattern, {
       cwd: workspaceRoot,
