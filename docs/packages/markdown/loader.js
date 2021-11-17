@@ -183,12 +183,18 @@ module.exports = async function demoLoader() {
       })
       .join('\n')}};
 
-    export async function resolveDemoImports() {
-      return Object.fromEntries(await Promise.all([
+    export async function resolveDemoImports(requests) {
+      const modules = await Object.fromEntries(await Promise.all([
         ${Array.from(demoImportedModuleIDs, (importModuleID) => {
           return `import('${importModuleID}').then(module => ['${importModuleID}', module])`;
         }).join(',\n')}
-      ]))
+      ]));
+      return requests.map(request => {
+        if (modules[request]) {
+          return modules[request]
+        }
+        throw new Error(\`Cannot find module '\${request}'\`)
+      });
     }
   `;
 
