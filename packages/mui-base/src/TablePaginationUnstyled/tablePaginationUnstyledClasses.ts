@@ -1,7 +1,7 @@
 import generateUtilityClass from '../generateUtilityClass';
 import generateUtilityClasses from '../generateUtilityClasses'
 
-export interface TablePaginationClasses {
+export interface TablePaginationUnstyledClasses {
   /** Styles applied to the root element. */
   root: string;
   /** Styles applied to the Toolbar component. */
@@ -22,18 +22,18 @@ export interface TablePaginationClasses {
   menuItem: string;
   /** Styles applied to the displayed rows Typography element. */
   displayedRows: string;
-  /** Styles applied to the internal `TablePaginationActions` component. */
+  /** Styles applied to the internal `TablePaginationUnstyledActions` component. */
   actions: string;
 }
 
-export type TablePaginationClassKey = keyof TablePaginationClasses;
+export type TablePaginationUnstyledClassKey = keyof TablePaginationUnstyledClasses;
 
-export function getTablePaginationUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiTablePagination', slot);
+export function getTablePaginationUnstyledUtilityClass(slot: string): string {
+  return generateUtilityClass('MuiTablePaginationUnstyled', slot);
 }
 
-const tablePaginationClasses: TablePaginationClasses = generateUtilityClasses(
-  'MuiTablePagination',
+const tablePaginationClasses: TablePaginationUnstyledClasses = generateUtilityClasses(
+  'MuiTablePaginationUnstyled',
   [
     'root',
     'toolbar',

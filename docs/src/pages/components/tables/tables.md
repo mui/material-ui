@@ -1,6 +1,6 @@
 ---
 title: React Table component
-components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, TablePaginationUnstyled
 githubLabel: 'component: Table'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#table
 materialDesign: https://material.io/components/data-tables
