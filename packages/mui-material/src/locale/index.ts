@@ -28,7 +28,7 @@ export interface Localization {
     };
   };
 }
-export const amh: Localization = {
+export const amET: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
