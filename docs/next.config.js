@@ -99,7 +99,7 @@ module.exports = {
             oneOf: [
               {
                 resourceQuery: /@mui\/markdown/,
-                use: require.resolve('@mui/markdown/loader'),
+                use: [options.defaultLoaders.babel, require.resolve('@mui/markdown/loader')],
               },
               {
                 // used in some /getting-started/templates

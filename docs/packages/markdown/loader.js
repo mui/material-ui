@@ -159,6 +159,5 @@ module.exports = async function demoLoader() {
       .join('\n')}};
   `;
 
-  // WARNING: Make sure the returned code is compatible with our .browserslistrc.
   return transformed;
 };
