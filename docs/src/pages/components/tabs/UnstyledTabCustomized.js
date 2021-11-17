@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import Tabs from '@mui/base/TabsUnstyled';
+import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
@@ -71,7 +71,7 @@ const TabsList = styled(TabsListUnstyled)`
 
 export default function Example() {
   return (
-    <Tabs defaultValue={0}>
+    <TabsUnstyled defaultValue={0}>
       <TabsList>
         <Tab>One</Tab>
         <Tab>Two</Tab>
@@ -80,6 +80,6 @@ export default function Example() {
       <TabPanel value={0}>First content</TabPanel>
       <TabPanel value={1}>Second content</TabPanel>
       <TabPanel value={2}>Third content</TabPanel>
-    </Tabs>
+    </TabsUnstyled>
   );
 }

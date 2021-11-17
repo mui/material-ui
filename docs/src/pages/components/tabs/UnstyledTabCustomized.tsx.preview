@@ -1,4 +1,4 @@
-<Tabs defaultValue={0}>
+<TabsUnstyled defaultValue={0}>
   <TabsList>
     <Tab>One</Tab>
     <Tab>Two</Tab>
@@ -7,4 +7,4 @@
   <TabPanel value={0}>First content</TabPanel>
   <TabPanel value={1}>Second content</TabPanel>
   <TabPanel value={2}>Third content</TabPanel>
-</Tabs>
+</TabsUnstyled>
