@@ -120,6 +120,12 @@ Virtualization helps with performance issues.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
+## Unstyled table
+
+If you would like to use unstyled Table, you can use the primitive elements and enhanced the table with an unstyled pagination as showned in the demo below.
+
+{{"demo": "pages/components/tables/TableUnstyled.js"}}
+
 ## Accessibility
 
 (WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)

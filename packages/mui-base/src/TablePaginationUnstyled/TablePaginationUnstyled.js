@@ -121,14 +121,14 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     ownerState,
   );
 
-  const Toolbar = components.Toolbar ?? 'p';
+  const Toolbar = components.Toolbar ?? 'div';
   const toolbarProps = appendOwnerState(
     Toolbar,
     componentsProps.toolbar,
     ownerState,
   );
 
-  const Spacer = components.Spacer ?? 'p';
+  const Spacer = components.Spacer ?? 'div';
   const spacerProps = appendOwnerState(
     Spacer,
     componentsProps.spacer,
