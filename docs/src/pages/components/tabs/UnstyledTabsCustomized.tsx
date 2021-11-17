@@ -69,7 +69,7 @@ const TabsList = styled(TabsListUnstyled)`
   align-content: space-between;
 `;
 
-export default function Example() {
+export default function UnstyledTabsCustomized() {
   return (
     <TabsUnstyled defaultValue={0}>
       <TabsList>

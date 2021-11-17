@@ -79,7 +79,7 @@ const useTabsList = (props: UseTabsListProps) => {
 
   const context = useTabContext();
   if (context === null) {
-    throw new TypeError('No TabContext provided');
+    throw new Error('No TabContext provided');
   }
 
   const { value, orientation = 'horizontal', direction = 'ltr' } = context;

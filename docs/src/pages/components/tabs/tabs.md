@@ -196,4 +196,4 @@ If a non-interactive element (such as a span) is provided this way, the `TabUnst
 The `TabPanelUnstyled` on the other hand renders a native `div` element by default.
 You are free to override this as well by setting the `component` or `components.Root` prop on the `TabPanelUnstyled`.
 
-{{"demo": "pages/components/tabs/UnstyledTabCustomized.js"}}
+{{"demo": "pages/components/tabs/UnstyledTabsCustomized.js"}}

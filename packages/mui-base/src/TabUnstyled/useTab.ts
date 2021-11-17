@@ -3,7 +3,7 @@ import { useButton } from '../ButtonUnstyled';
 
 export interface UseTabProps {
   /**
-   * You can provide your own value. Otherwise, we fallback to the child position index.
+   * You can provide your own value. Otherwise, we fall back to the child position index.
    */
   value?: number | string;
   /**
@@ -23,7 +23,7 @@ const useTab = (props: UseTabProps) => {
 
   const context = useTabContext();
   if (context === null) {
-    throw new TypeError('No TabContext provided');
+    throw new Error('No TabContext provided');
   }
 
   const value = valueProp ?? 0;

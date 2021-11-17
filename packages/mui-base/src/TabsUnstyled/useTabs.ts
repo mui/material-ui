@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { unstable_useControlled as useControlled } from '@mui/utils';
+import { unstable_useControlled as useControlled, unstable_useId as useId } from '@mui/utils';
 
 export interface UseTabsProps {
   /**
@@ -32,14 +32,6 @@ export interface UseTabsProps {
   selectionFollowsFocus?: boolean;
 }
 
-function useUniquePrefix() {
-  const [id, setId] = React.useState<string | null>(null);
-  React.useEffect(() => {
-    setId(`mui-p-${Math.round(Math.random() * 1e5)}`);
-  }, []);
-  return id;
-}
-
 const useTabs = (props: UseTabsProps) => {
   const {
     value: valueProp,
@@ -57,7 +49,7 @@ const useTabs = (props: UseTabsProps) => {
     state: 'value',
   });
 
-  const idPrefix = useUniquePrefix();
+  const idPrefix = useId();
 
   const onSelected = React.useCallback(
     (e, newValue) => {

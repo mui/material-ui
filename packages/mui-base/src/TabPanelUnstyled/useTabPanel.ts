@@ -12,7 +12,7 @@ const useTabPanel = (props: UseTabPanelProps) => {
 
   const context = useTabContext();
   if (context === null) {
-    throw new TypeError('No TabContext provided');
+    throw new Error('No TabContext provided');
   }
 
   const hidden = value !== context.value;

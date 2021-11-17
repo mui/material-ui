@@ -147,7 +147,7 @@ TabUnstyled.propTypes /* remove-proptypes */ = {
    */
   onFocus: PropTypes.func,
   /**
-   * You can provide your own value. Otherwise, we fallback to the child position index.
+   * You can provide your own value. Otherwise, we fall back to the child position index.
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;

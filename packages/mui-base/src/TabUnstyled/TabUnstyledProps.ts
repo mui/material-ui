@@ -3,7 +3,7 @@ import { ButtonUnstyledOwnProps } from '../ButtonUnstyled';
 
 export interface TabUnstyledOwnProps extends Omit<ButtonUnstyledOwnProps, 'onChange'> {
   /**
-   * You can provide your own value. Otherwise, we fallback to the child position index.
+   * You can provide your own value. Otherwise, we fall back to the child position index.
    */
   value?: number | string;
   /**

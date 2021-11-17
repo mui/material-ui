@@ -4,7 +4,7 @@ import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import TabUnstyled from '@mui/base/TabUnstyled';
 
-export default function Example() {
+export default function UnstyledTabsBasic() {
   return (
     <TabsUnstyled defaultValue={0}>
       <TabsListUnstyled>
