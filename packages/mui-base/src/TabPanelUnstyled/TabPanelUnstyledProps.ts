@@ -1,10 +1,7 @@
 import React from 'react';
 import { OverrideProps } from '@mui/types';
 
-export interface TabPanelOwnerState
-  extends Omit<TabPanelUnstyledProps, 'component' | 'components' | 'componentsProps'> {
-  hidden: boolean;
-}
+interface TabPanelUnstyledComponentsPropsOverrides {}
 
 export interface TabPanelUnstyledOwnProps {
   /**
@@ -30,7 +27,7 @@ export interface TabPanelUnstyledOwnProps {
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'> & { ownerState: TabPanelOwnerState };
+    root?: React.ComponentPropsWithRef<'div'> & TabPanelUnstyledComponentsPropsOverrides;
   };
 }
 

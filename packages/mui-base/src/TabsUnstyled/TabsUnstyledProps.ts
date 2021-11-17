@@ -1,10 +1,7 @@
 import React from 'react';
 import { OverrideProps } from '@mui/types';
 
-export interface TabsOwnerState
-  extends Omit<TabsUnstyledProps, 'component' | 'components' | 'componentsProps'> {
-  hidden: boolean;
-}
+interface TabsUnstyledComponentsPropsOverrides {}
 
 export interface TabsUnstyledOwnProps {
   /**
@@ -44,7 +41,7 @@ export interface TabsUnstyledOwnProps {
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'> & { ownerState: TabsOwnerState };
+    root?: React.ComponentPropsWithRef<'div'> & TabsUnstyledComponentsPropsOverrides;
   };
   /**
    * Callback invoked when new value is being set.

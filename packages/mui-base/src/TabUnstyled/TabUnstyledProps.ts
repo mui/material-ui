@@ -1,7 +1,10 @@
 import { OverrideProps } from '@mui/types';
 import { ButtonUnstyledOwnProps } from '../ButtonUnstyled';
 
-export interface TabUnstyledOwnProps extends Omit<ButtonUnstyledOwnProps, 'onChange'> {
+interface TabUnstyledComponentsPropsOverrides {}
+
+export interface TabUnstyledOwnProps
+  extends Omit<ButtonUnstyledOwnProps, 'onChange' | 'components' | 'componentsProps'> {
   /**
    * You can provide your own value. Otherwise, we fall back to the child position index.
    */
@@ -10,6 +13,21 @@ export interface TabUnstyledOwnProps extends Omit<ButtonUnstyledOwnProps, 'onCha
    * Callback invoked when new value is being set.
    */
   onChange?: (event: React.SyntheticEvent, value: number | string) => void;
+  /**
+   * The components used for each slot inside the Tab.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: {
+    Root?: React.ElementType;
+  };
+  /**
+   * The props used for each slot inside the Tab.
+   * @default {}
+   */
+  componentsProps?: {
+    root?: React.ComponentPropsWithRef<'div'> & TabUnstyledComponentsPropsOverrides;
+  };
 }
 
 type TabUnstyledProps<

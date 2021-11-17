@@ -6,7 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import { appendOwnerState } from '../utils';
 import { getTabsListUnstyledUtilityClass } from './tabsListUnstyledClasses';
-import TabsListUnstyledProps, { TabsListUnstyledTypeMap } from './TabListUnstyledProps';
+import TabsListUnstyledProps, { TabsListUnstyledTypeMap } from './TabsListUnstyledProps';
 import useTabsList from './useTabsList';
 
 const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {

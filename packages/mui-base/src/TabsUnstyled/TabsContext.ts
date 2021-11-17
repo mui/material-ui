@@ -4,7 +4,7 @@ export interface TabsContextValue {
   /**
    * Id used as a prefix for the current Tabs.
    */
-  idPrefix: string | null;
+  idPrefix: string | undefined;
   /**
    * The currently selected tab's value.
    */

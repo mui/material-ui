@@ -118,7 +118,7 @@ TabUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the Button.
+   * The components used for each slot inside the Tab.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
@@ -126,7 +126,8 @@ TabUnstyled.propTypes /* remove-proptypes */ = {
     Root: PropTypes.elementType,
   }),
   /**
-   * @ignore
+   * The props used for each slot inside the Tab.
+   * @default {}
    */
   componentsProps: PropTypes.object,
   /**
