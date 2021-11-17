@@ -29,44 +29,54 @@ export interface Localization {
   };
 }
 export const amh: Localization = {
-  
   components: {
-    MuiBreadcrumbs: { defaultProps: {
-      expandText: 'መንገድ አሳይ',
-    }},
-    MuiTablePagination: { defaultProps: { 
-      getItemAriaLabel: (type) => {
-        if (type === 'first') {
-          return 'ወደ መጀመሪያው ገጽ ይሂዱ';
-        }
-        if (type === 'last') {
-          return 'ወደ መጨረሻው ገጽ ይሂዱ';
-        }
-        if (type === 'next') {
-          return 'ወደ ቀጣዩ ገጽ ይሂዱ';
-        }
-        // if (type === 'previous') {
-        return 'ወደ ቀዳሚው ገጽ ይሂዱ';
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'መንገድ አሳይ',
       },
-      labelRowsPerPage: 'ረድፎች በአንድ ገጽ:',
-      labelDisplayedRows: ({ from, to, count }) =>
-    `${from}-${to} ከ ${count !== -1 ? count : `${to} በላይ`}`,
-      }},
-      MuiRating: { defaultProps: { 
-        getLabelText: value => `${value} ኮከ${value !== 1 ? 'ቦች' : 'ብ'}`,
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'ወደ መጀመሪያው ገጽ ይሂዱ';
+          }
+          if (type === 'last') {
+            return 'ወደ መጨረሻው ገጽ ይሂዱ';
+          }
+          if (type === 'next') {
+            return 'ወደ ቀጣዩ ገጽ ይሂዱ';
+          }
+          // if (type === 'previous') {
+          return 'ወደ ቀዳሚው ገጽ ይሂዱ';
+        },
+        labelRowsPerPage: 'ረድፎች በአንድ ገጽ:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}-${to} ከ ${count !== -1 ? count : `${to} በላይ`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} ኮከ${value !== 1 ? 'ቦች' : 'ብ'}`,
         emptyLabelText: 'ባዶ',
-      }},
-      MuiAutocomplete: { defaultProps: { 
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
         clearText: 'አጽዳ',
         closeText: 'ዝጋ',
         loadingText: 'በመጫን ላይ…',
         noOptionsText: 'አማራጮች የሉም',
         openText: 'ክፈት',
-      }},
-      MuiAlert: { defaultProps: { 
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
         closeText: 'ዝጋ',
-      }},
-      MuiPagination: {  defaultProps: { 
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
         'aria-label': 'የገጽ አሰሳ',
         getItemAriaLabel: (type, page, selected) => {
           if (type === 'page') {
@@ -88,7 +98,6 @@ export const amh: Localization = {
     },
   },
 };
-
 
 export const arEG: Localization = {
   components: {
