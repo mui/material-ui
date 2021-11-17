@@ -303,6 +303,14 @@ const teamMembers: Array<Profile> = [
     twitter: 'AleFauquette',
     github: 'alexfauquette',
   },
+  {
+    src: '/static/branding/about/alexandre.jpg',
+    name: 'Prakhar Gupta',
+    title: 'Studio team',
+    location: 'New Delhi, India',
+    country: 'in',
+    about: 'Into sports and hiking!',
+  },
 ];
 
 const contributors = [
