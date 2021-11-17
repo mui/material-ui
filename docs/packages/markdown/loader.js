@@ -30,6 +30,29 @@ function moduleIDToJSIdentifier(moduleID) {
 }
 
 /**
+ * @param {string} source
+ * @returns {string[]}
+ */
+function findImportedModuleIDs(source) {
+  const importRegex = /^import (.*) from '(.*)';$/;
+  return (
+    source
+      // Flatten multiline imports; TS createStyles workaround
+      .replace(/{\n/gm, '{')
+      .replace(/,\n/gm, ',')
+      .replace(/,}/gm, ' }')
+      .replace(/ {2}/gm, ' ')
+      .replace('makeStyles', 'makeStyles, createStyles')
+      .split('\n')
+      .map((line) => {
+        const result = importRegex.exec(line);
+        return result ? result[2] : null;
+      })
+      .filter(Boolean)
+  );
+}
+
+/**
  * @type {import('webpack').loader.Loader}
  */
 module.exports = async function demoLoader() {
@@ -76,6 +99,7 @@ module.exports = async function demoLoader() {
 
   const demos = {};
   const demoModuleIDs = new Set();
+  const demoImportedModuleIDs = new Set();
   const demoNames = Array.from(
     new Set(
       docs.en.rendered
@@ -99,11 +123,12 @@ module.exports = async function demoLoader() {
         moduleID.replace(/\//g, path.sep),
       );
       this.addDependency(moduleFilepath);
-      demos[demoName] = {
-        module: moduleID,
-        raw: await fs.readFile(moduleFilepath, { encoding: 'utf-8' }),
-      };
+      const raw = await fs.readFile(moduleFilepath, { encoding: 'utf-8' });
+      demos[demoName] = { module: moduleID, raw };
       demoModuleIDs.add(moduleID);
+
+      const importedModuleIDs = findImportedModuleIDs(raw);
+      importedModuleIDs.forEach((importModuleID) => demoImportedModuleIDs.add(importModuleID));
 
       try {
         const previewFilepath = moduleFilepath.replace(/\.js$/, '.tsx.preview');
@@ -157,8 +182,15 @@ module.exports = async function demoLoader() {
         return `${JSON.stringify(moduleID)}: ${getDemoIdentifier(moduleID)},`;
       })
       .join('\n')}};
+
+    export async function resolveDemoImports() {
+      return Object.fromEntries(await Promise.all([
+        ${Array.from(demoImportedModuleIDs, (importModuleID) => {
+          return `import('${importModuleID}').then(module => ['${importModuleID}', module])`;
+        }).join(',\n')}
+      ]))
+    }
   `;
 
-  // WARNING: Make sure the returned code is compatible with our .browserslistrc.
   return transformed;
 };
