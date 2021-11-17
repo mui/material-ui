@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { useFakeTimers } from 'sinon';
 import { act, createRenderer, fireEvent } from 'test/utils';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -9,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 
 describe('<Select> integration', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   describe('with Dialog', () => {
     function SelectAndDialog() {
@@ -39,18 +38,6 @@ describe('<Select> integration', () => {
       );
     }
 
-    /**
-     * @type {ReturnType<typeof useFakeTimers>}
-     */
-    let clock;
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should focus the selected item', () => {
       const { getByTestId, getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
@@ -66,9 +53,7 @@ describe('<Select> integration', () => {
       act(() => {
         getByTestId('select-backdrop').click();
       });
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
 
       expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
@@ -90,9 +75,7 @@ describe('<Select> integration', () => {
       act(() => {
         options[2].click();
       });
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
 
       expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
@@ -101,18 +84,6 @@ describe('<Select> integration', () => {
   });
 
   describe('with label', () => {
-    /**
-     * @type {ReturnType<typeof useFakeTimers>}
-     */
-    let clock;
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('requires `id` and `labelId` for a proper accessible name', () => {
       const { getByRole } = render(
         <FormControl>
@@ -154,9 +125,7 @@ describe('<Select> integration', () => {
         trigger.focus();
       });
       fireEvent.keyDown(trigger, { key: 'Enter' });
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
 
       expect(getByTestId('label')).to.have.class('focused-label');
     });

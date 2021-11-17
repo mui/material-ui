@@ -1,20 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { SinonFakeTimers, useFakeTimers } from 'sinon';
 import TextField from '@mui/material/TextField';
 import { fireEvent, screen } from 'test/utils';
 import StaticDatePicker from '@mui/lab/StaticDatePicker';
 import { createPickerRenderer, adapterToUse } from '../internal/pickers/test-utils';
 
 describe('<StaticDatePicker />', () => {
-  let clock: SinonFakeTimers;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-  const { render } = createPickerRenderer();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   it('render proper month', () => {
     render(

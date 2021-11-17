@@ -1,23 +1,16 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { expect } from 'chai';
-import { spy, useFakeTimers, SinonSpy, SinonFakeTimers } from 'sinon';
+import { spy, SinonSpy } from 'sinon';
 import { fireEvent, fireTouchChangedEvent, screen } from 'test/utils';
 import MobileDateTimePicker from '@mui/lab/MobileDateTimePicker';
 import { adapterToUse, createPickerRenderer } from '../internal/pickers/test-utils';
 
 describe('<MobileDateTimePicker />', () => {
-  let clock: SinonFakeTimers;
-
-  beforeEach(() => {
-    clock = useFakeTimers(adapterToUse.date('2018-01-01T00:00:00.000').getTime());
+  const { render } = createPickerRenderer({
+    clock: 'fake',
+    clockConfig: adapterToUse.date('2018-01-01T00:00:00.000').getTime(),
   });
-
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render } = createPickerRenderer();
 
   it('opens dialog on textField click for Mobile mode', () => {
     render(

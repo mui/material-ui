@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import sinon, { spy, stub, useFakeTimers } from 'sinon';
+import sinon, { spy, stub } from 'sinon';
 import {
   describeConformance,
   act,
@@ -11,7 +11,7 @@ import {
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 
 describe('<TextareaAutosize />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   describeConformance(<TextareaAutosize />, () => ({
     inheritComponent: 'textarea',
@@ -58,15 +58,7 @@ describe('<TextareaAutosize />', () => {
     });
 
     describe('resize', () => {
-      let clock;
-
-      beforeEach(() => {
-        clock = useFakeTimers();
-      });
-
-      afterEach(() => {
-        clock.restore();
-      });
+      clock.withFakeTimers();
 
       it('should handle the resize event', () => {
         const { container } = render(<TextareaAutosize />);
@@ -84,9 +76,7 @@ describe('<TextareaAutosize />', () => {
         });
         window.dispatchEvent(new window.Event('resize', {}));
 
-        act(() => {
-          clock.tick(166);
-        });
+        clock.tick(166);
 
         expect(input.style).to.have.property('height', '30px');
         expect(input.style).to.have.property('overflow', 'hidden');
