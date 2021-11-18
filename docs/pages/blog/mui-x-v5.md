@@ -25,7 +25,6 @@ This release features some major highlights:
   - [Public roadmap](#public-roadmap)
 - [Thank you](#thank-you)
 
-
 ## A new virtualization engine
 
 `DataGrid` and `DataGridPro` now feature a brand-new virtualization engine!
