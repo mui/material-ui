@@ -151,3 +151,6 @@ export * from './YearPicker';
 
 // createFilterOptions is exported from Autocomplete
 export { default as useAutocomplete } from './useAutocomplete';
+
+export { default as Masonry } from './Masonry';
+export * from './Masonry';
