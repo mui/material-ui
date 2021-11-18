@@ -24,6 +24,7 @@ const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ ownerState, t
   ...(ownerState.label === undefined && {
     padding: 0,
     lineHeight: '11px', // sync with `height` in `legend` styles
+    width: '0%',
     transition: theme.transitions.create('width', {
       duration: 150,
       easing: theme.transitions.easing.easeOut,
@@ -35,8 +36,7 @@ const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ ownerState, t
     padding: 0,
     height: 11, // sync with `lineHeight` in `legend` styles
     fontSize: '0.75em',
-    visibility: 'hidden',
-    maxWidth: 0.01,
+    maxWidth: '100%',
     transition: theme.transitions.create('max-width', {
       duration: 50,
       easing: theme.transitions.easing.easeOut,
