@@ -25,7 +25,6 @@ This release features some major highlights:
   - [Public roadmap](#public-roadmap)
 - [Thank you](#thank-you)
 
-## High-level goals for v5
 
 ## A new virtualization engine
 
