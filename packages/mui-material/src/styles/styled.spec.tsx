@@ -39,8 +39,12 @@ const Container = styled('div')<{ $heightLimit: boolean }>`
 `;
 
 // https://github.com/mui-org/material-ui/issues/28844
-type PropsFooVariant = { variant: 'foo' };
-type PropsBarVariant = { variant: 'bar' };
+interface PropsFooVariant {
+  variant: 'foo';
+}
+interface PropsBarVariant {
+  variant: 'bar';
+}
 const Component = (props: PropsFooVariant | PropsBarVariant) => <div />;
 const StyledComponent = styled(Component)(({ theme }) => ({}));
 const rendered = (
