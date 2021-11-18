@@ -9,6 +9,8 @@ card: true
 
 We are excited to introduce [MUI X v5.0.0](https://github.com/mui-org/material-ui-x/releases/tag/v5.0.0)!
 
+[MUI X](https://mui.com/x/) is our collection of advanced components (with both MIT and commercially licensed "Pro" features), that includes a data grid, date picker, and tree view. This release continues our focus on making the data grid the best in the industry. Read on to learn more!
+
 <img src="/static/blog/mui-x-v5/card.png" alt="" style="width: 100%; margin-bottom: 16px;" />
 
 This release features some major highlights:
