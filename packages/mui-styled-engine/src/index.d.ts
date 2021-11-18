@@ -100,7 +100,7 @@ export interface CreateStyledComponent<
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
    */
-  <AdditionalProps extends {} = {}>(
+  <AdditionalProps extends {}>(
     ...styles: Array<
       Interpolation<ComponentProps & SpecificComponentProps & AdditionalProps & { theme: T }>
     >
