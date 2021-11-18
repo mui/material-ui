@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { useFakeTimers } from 'sinon';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -70,19 +69,7 @@ function ButtonMenu(props) {
 ButtonMenu.propTypes = { selectedIndex: PropTypes.number };
 
 describe('<Menu /> integration', () => {
-  /**
-   * @type {ReturnType<useFakeTimers>}
-   */
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   it('is part of the DOM by default but hidden', () => {
     const { getByRole } = render(<ButtonMenu />);
@@ -331,10 +318,8 @@ describe('<Menu /> integration', () => {
     });
 
     // react-transition-group uses one commit per state transition so we need to wait a bit
-    act(() => {
-      fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
-      clock.tick(0);
-    });
+    fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
+    clock.tick(0);
 
     expect(screen.getByRole('menu', { hidden: true })).toBeInaccessible();
   });
@@ -349,8 +334,8 @@ describe('<Menu /> integration', () => {
 
     act(() => {
       getByTestId('Backdrop').click();
-      clock.tick(0);
     });
+    clock.tick(0);
 
     expect(getByRole('menu', { hidden: true })).toBeInaccessible();
   });

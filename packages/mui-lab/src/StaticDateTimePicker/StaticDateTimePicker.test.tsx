@@ -1,23 +1,13 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { expect } from 'chai';
-import { spy, useFakeTimers, SinonFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { fireEvent, screen } from 'test/utils';
 import StaticDateTimePicker from '@mui/lab/StaticDateTimePicker';
 import { adapterToUse, createPickerRenderer } from '../internal/pickers/test-utils';
 
 describe('<StaticDateTimePicker />', () => {
-  let clock: SinonFakeTimers;
-
-  beforeEach(() => {
-    clock = useFakeTimers(adapterToUse.date('2018-01-01T00:00:00.000').getTime());
-  });
-
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render } = createPickerRenderer();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   it('allows to select the same day and move to the next view', () => {
     const onChangeMock = spy();

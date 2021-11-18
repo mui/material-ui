@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
-import { act, createRenderer, describeConformance } from 'test/utils';
+import { spy } from 'sinon';
+import { createRenderer, describeConformance } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Transition } from 'react-transition-group';
 import Grow from '@mui/material/Grow';
 import useForkRef from '../utils/useForkRef';
 
 describe('<Grow />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   const defaultProps = {
     in: true,
@@ -36,15 +36,7 @@ describe('<Grow />', () => {
   );
 
   describe('calls the appropriate callbacks for each transition', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('calls the appropriate callbacks for each transition', () => {
       const handleAddEndListener = spy();
@@ -86,9 +78,7 @@ describe('<Grow />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleEntered.args[0][0]).to.equal(child);
@@ -110,9 +100,7 @@ describe('<Grow />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
 
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
@@ -122,15 +110,7 @@ describe('<Grow />', () => {
   describe('prop: timeout', () => {
     const enterDuration = 556;
     const leaveDuration = 446;
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     describe('onEnter', () => {
       it('should create proper easeOut animation', () => {
@@ -196,15 +176,11 @@ describe('<Grow />', () => {
 
         expect(handleEntered.callCount).to.equal(0);
 
-        act(() => {
-          clock.tick(0);
-        });
+        clock.tick(0);
 
         expect(handleEntered.callCount).to.equal(0);
 
-        act(() => {
-          clock.tick(autoTransitionDuration);
-        });
+        clock.tick(autoTransitionDuration);
 
         expect(handleEntered.callCount).to.equal(1);
 
@@ -217,9 +193,7 @@ describe('<Grow />', () => {
 
         expect(handleEntered2.callCount).to.equal(0);
 
-        act(() => {
-          clock.tick(0);
-        });
+        clock.tick(0);
 
         expect(handleEntered2.callCount).to.equal(1);
       });
@@ -232,15 +206,11 @@ describe('<Grow />', () => {
 
         expect(handleEntered.callCount).to.equal(0);
 
-        act(() => {
-          clock.tick(0);
-        });
+        clock.tick(0);
 
         expect(handleEntered.callCount).to.equal(0);
 
-        act(() => {
-          clock.tick(timeout);
-        });
+        clock.tick(timeout);
 
         expect(handleEntered.callCount).to.equal(1);
       });
@@ -255,18 +225,14 @@ describe('<Grow />', () => {
           </Grow>,
         );
 
-        act(() => {
-          clock.tick(0);
-        });
+        clock.tick(0);
 
         setProps({
           in: false,
         });
 
         expect(handleExited.callCount).to.equal(0);
-        act(() => {
-          clock.tick(0);
-        });
+        clock.tick(0);
 
         expect(handleExited.callCount).to.equal(1);
       });
@@ -278,22 +244,16 @@ describe('<Grow />', () => {
           <Grow {...defaultProps} timeout={timeout} onExited={handleExited} />,
         );
 
-        act(() => {
-          clock.tick(timeout);
-        });
+        clock.tick(timeout);
         setProps({
           in: false,
         });
 
         expect(handleExited.callCount).to.equal(0);
-        act(() => {
-          clock.tick(0);
-        });
+        clock.tick(0);
 
         expect(handleExited.callCount).to.equal(0);
-        act(() => {
-          clock.tick(timeout);
-        });
+        clock.tick(timeout);
 
         expect(handleExited.callCount).to.equal(1);
       });

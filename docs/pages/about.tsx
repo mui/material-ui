@@ -313,6 +313,15 @@ const teamMembers: Array<Profile> = [
     twitter: 'bharattttttt',
     github: 'bharatkashyap',
   },
+  {
+    src: '/static/branding/about/prakhar.jpg',
+    name: 'Prakhar Gupta',
+    title: 'Studio team',
+    location: 'New Delhi, India',
+    country: 'in',
+    about: 'Into sports and hiking!',
+    twitter: 'gprakhar123',
+  },
 ];
 
 const contributors = [
