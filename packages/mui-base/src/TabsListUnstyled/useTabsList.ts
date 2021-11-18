@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { unstable_ownerDocument as ownerDocument } from '@mui/utils';
+import {
+  unstable_ownerDocument as ownerDocument,
+  unstable_useForkRef as useForkRef,
+} from '@mui/utils';
 import { isFragment } from 'react-is';
 import { useTabContext } from '../TabsUnstyled';
 import extractEventHandlers from '../utils/extractEventHandlers';
@@ -70,12 +73,14 @@ export interface UseTabsListProps {
    * The content of the component.
    */
   children?: React.ReactNode;
+  ref: React.Ref<unknown>;
 }
 
 const useTabsList = (props: UseTabsListProps) => {
-  const { 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, children } = props;
+  const { 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, children, ref } = props;
 
-  const tabListRef = React.useRef<Element | null>(null);
+  const tabsListRef = React.createRef<any>();
+  const handleRef = useForkRef(tabsListRef, ref);
 
   const context = useTabContext();
   if (context === null) {
@@ -87,7 +92,7 @@ const useTabsList = (props: UseTabsListProps) => {
   const isRtl = direction === 'rtl';
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    const list = tabListRef.current;
+    const list = tabsListRef.current;
     const currentFocus = ownerDocument(list).activeElement;
     // Keyboard navigation assumes that [role="tab"] are siblings
     // though we might warn in the future about nested, interactive elements
@@ -150,6 +155,7 @@ const useTabsList = (props: UseTabsListProps) => {
       'aria-labelledby': ariaLabelledBy,
       'aria-orientation': orientation === 'vertical' ? 'vertical' : null,
       role: 'tablist',
+      ref: handleRef,
       ...mergedEventHandlers,
     };
   };
@@ -194,7 +200,6 @@ const useTabsList = (props: UseTabsListProps) => {
   return {
     isRtl,
     orientation,
-    tabListRef,
     value,
     processChildren,
     getRootProps,

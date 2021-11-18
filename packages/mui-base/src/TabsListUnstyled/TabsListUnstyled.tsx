@@ -32,8 +32,7 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
 const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props, ref) => {
   const { className, children, component, components = {}, componentsProps = {}, ...other } = props;
 
-  const { tabListRef, isRtl, orientation, getRootProps, processChildren } = useTabsList(props);
-  const handleRef = useForkRef(tabListRef, ref);
+  const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });
 
   const ownerState = {
     ...props,
@@ -54,7 +53,6 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
 
   return (
     <TabsListRoot
-      ref={handleRef}
       {...getRootProps()}
       {...tabsListRootProps}
       className={clsx(className, componentsProps.root?.className, classes.root)}

@@ -31,8 +31,7 @@ const FlexContainer = styled('div', {
 const TabsList = React.forwardRef((props, ref) => {
   const { variant, indicator, textColor, ...other } = props;
 
-  const { tabListRef, getRootProps, processChildren } = useTabsList(props);
-  const handleRef = useForkRef(tabListRef, ref);
+  const { getRootProps, processChildren } = useTabsList({ ...props, ref });
 
   const processedChildren = processChildren();
   const children = React.Children.map(processedChildren, (child) => {
@@ -44,7 +43,7 @@ const TabsList = React.forwardRef((props, ref) => {
   });
 
   return (
-    <FlexContainer {...other} {...getRootProps()} ref={handleRef}>
+    <FlexContainer {...other} {...getRootProps()}>
       {children}
     </FlexContainer>
   );
