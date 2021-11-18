@@ -89,8 +89,12 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
     const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
 
     const Select = components.Select ?? 'select';
-    const selectProps = appendOwnerState(Select, componentsProps.select, ownerState);
+    const selectProps = appendOwnerState(Select, {
+      ...componentsProps.select,
+      onChange: (e: React.SyntheticEvent) => onRowsPerPageChange && onRowsPerPageChange(e)
+    }, ownerState);
 
+    console.log(selectProps)
     const Actions = components.Actions ?? TablePaginationActionsUnstyled;
     const actionsProps = appendOwnerState(
       Actions,
@@ -124,7 +128,9 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
     const spacerProps = appendOwnerState(Spacer, componentsProps.spacer, ownerState);
 
     const selectId = useId(selectProps.id);
-    const labelId = useId(selectProps.labelId);
+    const labelId = useId(selectProps['aria-labelledby']);
+    console.log(labelId)
+    console.log(rowsPerPageOptions.length);
 
     return (
       <Root
@@ -144,7 +150,6 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
           {rowsPerPageOptions.length > 1 && (
             <Select
               value={rowsPerPage}
-              onChange={onRowsPerPageChange}
               id={selectId}
               aria-labelledby={labelId}
               {...selectProps}

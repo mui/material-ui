@@ -278,7 +278,7 @@ describe('<TablePaginationUnstyled />', () => {
   });
 
   describe('prop: count=-1', () => {
-    it.only('should display the "of more than" text and keep the nextButton enabled', () => {
+    it('should display the "of more than" text and keep the nextButton enabled', () => {
       const Test = () => {
         const [page, setPage] = React.useState(0);
         return (
@@ -381,9 +381,9 @@ describe('<TablePaginationUnstyled />', () => {
     });
   });
 
-  describe('prop: SelectProps', () => {
-    it('does allow manual label ids', () => {
-      const { getAllByRole } = render(
+  describe('prop: componentsProps: select', () => {
+    it.only('does allow manual label ids', () => {
+      const { container } = render(
         <table>
           <TableFooter>
             <TableRow>
@@ -403,7 +403,7 @@ describe('<TablePaginationUnstyled />', () => {
       );
 
       // will be `getByRole('combobox')` in aria 1.2
-      const [combobox] = getAllByRole('button');
+      const combobox = container.getElementsByTagName('select')[0];
       expect(combobox).toHaveAccessibleName('Rows per page: 10');
     });
   });
