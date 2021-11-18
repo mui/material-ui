@@ -283,10 +283,15 @@ const Input = styled('input')(({ theme, variant = 'outlined', color = 'neutral' 
     alignItems: 'center',
     padding: '0.5rem 1rem',
     '&::placeholder': {
-      opacity: 0.72,
-      color: `var(--joy-variant-${variant}Color, ${theme.vars.palette.text.detail})`,
+      opacity: 0.4,
+      color: `var(--joy-variant-${variant}Color, var(--joy-palette-${color}-textColor))`,
     },
-    '&:focus-visible': theme.focus.default,
+    '&:focus-visible': {
+      ...theme.focus.default,
+      ...(color !== 'neutral' && {
+        outlineColor: `var(--joy-palette-${color}-${variant === 'filled' ? '300' : '100'})`,
+      }),
+    },
   },
   theme.typography.body,
   theme.variant[variant]?.[color],
@@ -694,10 +699,19 @@ export default function JoyVariants() {
             />
           </Paper>
 
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <Input placeholder="Text" variant="text" />
-            <Input placeholder="Outlined" variant="outlined" />
-            <Input placeholder="Filled" variant="filled" />
+          <Box sx={{ display: 'flex', gap: '16px' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <Input placeholder="Text" variant="text" />
+              <Input placeholder="Outlined" variant="outlined" />
+              <Input placeholder="Outlined danger" variant="outlined" color="danger" />
+              <Input placeholder="Outlined success" variant="outlined" color="success" />
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <Input placeholder="Filled" variant="filled" />
+              <Input placeholder="Filled info" variant="filled" color="info" />
+              <Input placeholder="Filled danger" variant="filled" color="danger" />
+              <Input placeholder="Filled success" variant="filled" color="success" />
+            </Box>
           </Box>
           <Paper variant="contained" sx={{ width: '100%' }}>
             <HighlightedCode
