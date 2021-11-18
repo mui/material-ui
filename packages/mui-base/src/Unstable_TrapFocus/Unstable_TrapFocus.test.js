@@ -1,13 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import { act, createRenderer, screen } from 'test/utils';
 import TrapFocus from '@mui/base/Unstable_TrapFocus';
 import Portal from '@mui/base/Portal';
 
 describe('<TrapFocus />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   let initialFocus = null;
 
@@ -285,15 +284,7 @@ describe('<TrapFocus />', () => {
   });
 
   describe('interval', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('contains the focus if the active element is removed', () => {
       function WithRemovableElement({ hideButton = false }) {
@@ -335,9 +326,7 @@ describe('<TrapFocus />', () => {
           </div>,
         );
 
-        act(() => {
-          clock.tick(500); // trigger an interval call
-        });
+        clock.tick(500); // trigger an interval call
         expect(initialFocus).toHaveFocus();
 
         act(() => {

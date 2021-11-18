@@ -26,42 +26,24 @@ export type MuiMediaQueryListListener = (event: MuiMediaQueryListEvent) => void;
 export interface Options {
   defaultMatches?: boolean;
   matchMedia?: typeof window.matchMedia;
+  /**
+   * This option is kept for backwards compatibility and has no longer any effect.
+   * It's previous behavior is now handled automatically.
+   */
+  // TODO: Deprecate for v6
   noSsr?: boolean;
   ssrMatchMedia?: (query: string) => { matches: boolean };
 }
 
-export default function useMediaQuery<Theme = unknown>(
-  queryInput: string | ((theme: Theme) => string),
-  options: Options = {},
+function useMediaQueryOld(
+  query: string,
+  defaultMatches: boolean,
+  matchMedia: typeof window.matchMedia | null,
+  ssrMatchMedia: ((query: string) => { matches: boolean }) | null,
+  noSsr: boolean | undefined,
 ): boolean {
-  const theme = useTheme<Theme>();
-  // Wait for jsdom to support the match media feature.
-  // All the browsers MUI support have this built-in.
-  // This defensive check is here for simplicity.
-  // Most of the time, the match media logic isn't central to people tests.
   const supportMatchMedia =
     typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
-  const {
-    defaultMatches = false,
-    matchMedia = supportMatchMedia ? window.matchMedia : null,
-    noSsr = false,
-    ssrMatchMedia = null,
-  } = getThemeProps({ name: 'MuiUseMediaQuery', props: options, theme });
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (typeof queryInput === 'function' && theme === null) {
-      console.error(
-        [
-          'MUI: The `query` argument provided is invalid.',
-          'You are providing a function without a theme in the context.',
-          'One of the parent elements needs to use a ThemeProvider.',
-        ].join('\n'),
-      );
-    }
-  }
-
-  let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
-  query = query.replace(/^@media( ?)/m, '');
 
   const [match, setMatch] = React.useState(() => {
     if (noSsr && supportMatchMedia) {
@@ -93,12 +75,95 @@ export default function useMediaQuery<Theme = unknown>(
       }
     };
     updateMatch();
-    queryList.addListener(updateMatch);
+    queryList.addEventListener('change', updateMatch);
     return () => {
       active = false;
-      queryList.removeListener(updateMatch);
+      queryList.removeEventListener('change', updateMatch);
     };
   }, [query, matchMedia, supportMatchMedia]);
+
+  return match;
+}
+
+function useMediaQueryNew(
+  query: string,
+  defaultMatches: boolean,
+  matchMedia: typeof window.matchMedia | null,
+  ssrMatchMedia: ((query: string) => { matches: boolean }) | null,
+): boolean {
+  const getDefaultSnapshot = React.useCallback(() => defaultMatches, [defaultMatches]);
+  const getServerSnapshot = React.useMemo(() => {
+    if (ssrMatchMedia !== null) {
+      const { matches } = ssrMatchMedia(query);
+      return () => matches;
+    }
+    return getDefaultSnapshot;
+  }, [getDefaultSnapshot, query, ssrMatchMedia]);
+  const [getSnapshot, subscribe] = React.useMemo(() => {
+    if (matchMedia === null) {
+      return [getDefaultSnapshot, () => () => {}];
+    }
+
+    const mediaQueryList = matchMedia(query);
+
+    return [
+      () => mediaQueryList.matches,
+      (notify: () => void) => {
+        mediaQueryList.addEventListener('change', notify);
+        return () => {
+          mediaQueryList.removeEventListener('change', notify);
+        };
+      },
+    ];
+  }, [getDefaultSnapshot, matchMedia, query]);
+  const match = (React as any).useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  return match;
+}
+
+export default function useMediaQuery<Theme = unknown>(
+  queryInput: string | ((theme: Theme) => string),
+  options: Options = {},
+): boolean {
+  const theme = useTheme<Theme>();
+  // Wait for jsdom to support the match media feature.
+  // All the browsers MUI support have this built-in.
+  // This defensive check is here for simplicity.
+  // Most of the time, the match media logic isn't central to people tests.
+  const supportMatchMedia =
+    typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
+  const {
+    defaultMatches = false,
+    matchMedia = supportMatchMedia ? window.matchMedia : null,
+    ssrMatchMedia = null,
+    noSsr,
+  } = getThemeProps({ name: 'MuiUseMediaQuery', props: options, theme });
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (typeof queryInput === 'function' && theme === null) {
+      console.error(
+        [
+          'MUI: The `query` argument provided is invalid.',
+          'You are providing a function without a theme in the context.',
+          'One of the parent elements needs to use a ThemeProvider.',
+        ].join('\n'),
+      );
+    }
+  }
+
+  let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
+  query = query.replace(/^@media( ?)/m, '');
+
+  // TODO: Drop `useMediaQueryOld` and use  `use-sync-external-store` shim in `useMediaQueryNew` once the package is stable
+  const useMediaQueryImplementation =
+    (React as any).useSyncExternalStore !== undefined ? useMediaQueryNew : useMediaQueryOld;
+  const match = useMediaQueryImplementation(
+    query,
+    defaultMatches,
+    matchMedia,
+    ssrMatchMedia,
+    noSsr,
+  );
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks

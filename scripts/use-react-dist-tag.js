@@ -16,7 +16,14 @@ const { promisify } = require('util');
 const exec = promisify(childProcess.exec);
 
 // packages published from the react monorepo using the same version
-const reactPackageNames = ['react', 'react-dom', 'react-is', 'react-test-renderer', 'scheduler'];
+const reactPackageNames = [
+  'react',
+  'react-dom',
+  'react-is',
+  'react-test-renderer',
+  'scheduler',
+  'use-sync-external-store',
+];
 
 async function main(options) {
   const { distTag } = options;

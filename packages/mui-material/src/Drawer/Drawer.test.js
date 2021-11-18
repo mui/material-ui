@@ -1,24 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { useFakeTimers, spy } from 'sinon';
-import { act, createRenderer, describeConformance, screen } from 'test/utils';
+import { spy } from 'sinon';
+import { createRenderer, describeConformance, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
 import { getAnchor, isHorizontal } from './Drawer';
 
 describe('<Drawer />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   describeConformance(
     <Drawer open disablePortal>
@@ -65,9 +54,7 @@ describe('<Drawer />', () => {
 
         expect(handleEntered.callCount).to.equal(0);
 
-        act(() => {
-          clock.tick(transitionDuration.enter);
-        });
+        clock.tick(transitionDuration.enter);
 
         expect(handleEntered.callCount).to.equal(1);
       });
@@ -119,9 +106,7 @@ describe('<Drawer />', () => {
         expect(screen.getByTestId('child')).not.to.equal(null);
 
         setProps({ open: false });
-        act(() => {
-          clock.tick(transitionDuration);
-        });
+        clock.tick(transitionDuration);
 
         expect(screen.queryByTestId('child')).to.equal(null);
       });
@@ -158,9 +143,7 @@ describe('<Drawer />', () => {
 
       expect(handleEntered.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(transitionDuration);
-      });
+      clock.tick(transitionDuration);
 
       expect(handleEntered.callCount).to.equal(1);
       expect(container.firstChild.firstChild).to.have.class(classes.paper);
