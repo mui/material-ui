@@ -312,6 +312,15 @@ const teamMembers: Array<Profile> = [
     about: 'Always curious, I enjoy cinema, and hiking',
     github: 'janpot',
   },
+  {
+    src: '/static/branding/about/prakhar.jpg',
+    name: 'Prakhar Gupta',
+    title: 'Studio team',
+    location: 'New Delhi, India',
+    country: 'in',
+    about: 'Into sports and hiking!',
+    twitter: 'gprakhar123',
+  },
 ];
 
 const contributors = [

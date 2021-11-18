@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import TextField from '@mui/material/TextField';
 import { TransitionProps } from '@mui/material/transitions';
 import { fireEvent, screen, userEvent } from 'test/utils';
@@ -41,14 +41,7 @@ const UncontrolledOpenDesktopDatePicker = (({
 }) as typeof DesktopDatePicker;
 
 describe('<DesktopDatePicker />', () => {
-  let clock: SinonFakeTimers;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-  const { render } = createPickerRenderer();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   it('prop: components.OpenPickerIcon', () => {
     function HomeIcon(props: SvgIconProps) {

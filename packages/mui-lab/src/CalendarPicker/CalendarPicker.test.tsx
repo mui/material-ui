@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { fireEvent, screen, describeConformance } from 'test/utils';
 import CalendarPicker, { calendarPickerClasses as classes } from '@mui/lab/CalendarPicker';
 import {
@@ -10,15 +10,7 @@ import {
 } from '../internal/pickers/test-utils';
 
 describe('<CalendarPicker />', () => {
-  let clock: SinonFakeTimers;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render } = createPickerRenderer();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   describeConformance(<CalendarPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
     classes,

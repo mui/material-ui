@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
@@ -13,7 +13,7 @@ import {
 } from 'test/utils';
 
 describe('<MenuList> integration', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   specify('the MenuItems have the `menuitem` role', () => {
     const { getAllByRole } = render(
@@ -573,16 +573,7 @@ describe('<MenuList> integration', () => {
     });
 
     describe('time', () => {
-      let clock;
-      beforeEach(() => {
-        clock = useFakeTimers();
-      });
-
-      afterEach(() => {
-        act(() => {
-          clock.restore();
-        });
-      });
+      clock.withFakeTimers();
 
       it('should reset the character buffer after 500ms', () => {
         render(

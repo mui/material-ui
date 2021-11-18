@@ -1,20 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { useFakeTimers } from 'sinon';
 import TextField from '@mui/material/TextField';
 import { fireEvent, screen } from 'test/utils';
 import StaticDatePicker from '@mui/lab/StaticDatePicker';
 import { adapterToUse, createPickerRenderer } from '../internal/pickers/test-utils';
 
 describe('<StaticDatePicker /> keyboard interactions', () => {
-  let clock: ReturnType<typeof useFakeTimers>;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-  const { render } = createPickerRenderer();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   describe('Calendar keyboard navigation', () => {
     it('can autofocus selected day on mount', () => {
