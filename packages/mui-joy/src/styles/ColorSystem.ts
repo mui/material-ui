@@ -62,7 +62,7 @@ export interface PaletteBgNeutral {
 export interface ColorPalettePropOverrides {}
 
 export type ColorPaletteProp = OverridableStringUnion<
-  'brand' | 'neutral',
+  'brand' | 'neutral' | 'danger' | 'info' | 'success' | 'warning',
   ColorPalettePropOverrides
 >;
 

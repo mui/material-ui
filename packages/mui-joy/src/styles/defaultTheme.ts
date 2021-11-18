@@ -147,6 +147,10 @@ type BaseJoyTokens = {
   palette: {
     brand: Pick<PaletteRange, BasePaletteRange>;
     neutral: Pick<PaletteRange, BasePaletteRange>;
+    danger: Pick<PaletteRange, BasePaletteRange>;
+    info: Pick<PaletteRange, BasePaletteRange>;
+    success: Pick<PaletteRange, BasePaletteRange>;
+    warning: Pick<PaletteRange, BasePaletteRange>;
     text: Pick<PaletteText, 'heading' | 'headingIntro' | 'content' | 'detail' | 'overline'>;
     bgNeutral: Pick<PaletteBgNeutral, 'plain' | 'transparency'>;
     focusVisible: Palette['focusVisible'];
@@ -243,6 +247,118 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> 
       containedActiveBg: 'var(--joy-palette-neutral-500)',
       containedDisabledBg: 'var(--joy-palette-neutral-300)',
     },
+    danger: {
+      ...colors.red,
+      textColor: 'var(--joy-palette-danger-600)',
+      textHoverBg: 'var(--joy-palette-neutral-100)',
+      textActiveBg: 'var(--joy-palette-neutral-200)',
+      textDisabledColor: 'var(--joy-palette-neutral-300)',
+
+      outlinedColor: 'var(--joy-palette-danger-600)',
+      outlinedBorder: 'var(--joy-palette-neutral-300)',
+      outlinedHoverBg: 'var(--joy-palette-neutral-100)',
+      outlinedHoverBorder: 'var(--joy-palette-neutral-400)',
+      outlinedActiveBg: 'var(--joy-palette-neutral-200)',
+      outlinedDisabledColor: 'var(--joy-palette-neutral-300)',
+      outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
+
+      filledColor: 'var(--joy-palette-danger-700)',
+      filledBg: 'var(--joy-palette-danger-100)',
+      filledHoverBg: 'var(--joy-palette-danger-200)',
+      filledActiveBg: 'var(--joy-palette-danger-300)',
+      filledDisabledColor: 'var(--joy-palette-danger-400)',
+      filledDisabledBg: 'var(--joy-palette-danger-50)',
+
+      containedColor: '#fff',
+      containedBg: 'var(--joy-palette-danger-500)',
+      containedHoverBg: 'var(--joy-palette-danger-600)',
+      containedActiveBg: 'var(--joy-palette-danger-400)',
+      containedDisabledBg: 'var(--joy-palette-danger-300)',
+    },
+    info: {
+      ...colors.blue,
+      textColor: 'var(--joy-palette-info-600)',
+      textHoverBg: 'var(--joy-palette-neutral-100)',
+      textActiveBg: 'var(--joy-palette-neutral-200)',
+      textDisabledColor: 'var(--joy-palette-neutral-300)',
+
+      outlinedColor: 'var(--joy-palette-info-600)',
+      outlinedBorder: 'var(--joy-palette-neutral-300)',
+      outlinedHoverBg: 'var(--joy-palette-neutral-100)',
+      outlinedHoverBorder: 'var(--joy-palette-neutral-400)',
+      outlinedActiveBg: 'var(--joy-palette-neutral-200)',
+      outlinedDisabledColor: 'var(--joy-palette-neutral-300)',
+      outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
+
+      filledColor: 'var(--joy-palette-info-700)',
+      filledBg: 'var(--joy-palette-info-100)',
+      filledHoverBg: 'var(--joy-palette-info-200)',
+      filledActiveBg: 'var(--joy-palette-info-300)',
+      filledDisabledColor: 'var(--joy-palette-info-400)',
+      filledDisabledBg: 'var(--joy-palette-info-50)',
+
+      containedColor: '#fff',
+      containedBg: 'var(--joy-palette-info-500)',
+      containedHoverBg: 'var(--joy-palette-info-600)',
+      containedActiveBg: 'var(--joy-palette-info-400)',
+      containedDisabledBg: 'var(--joy-palette-info-300)',
+    },
+    success: {
+      ...colors.green,
+      textColor: 'var(--joy-palette-success-600)',
+      textHoverBg: 'var(--joy-palette-neutral-100)',
+      textActiveBg: 'var(--joy-palette-neutral-200)',
+      textDisabledColor: 'var(--joy-palette-neutral-300)',
+
+      outlinedColor: 'var(--joy-palette-success-600)',
+      outlinedBorder: 'var(--joy-palette-neutral-300)',
+      outlinedHoverBg: 'var(--joy-palette-neutral-100)',
+      outlinedHoverBorder: 'var(--joy-palette-neutral-400)',
+      outlinedActiveBg: 'var(--joy-palette-neutral-200)',
+      outlinedDisabledColor: 'var(--joy-palette-neutral-300)',
+      outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
+
+      filledColor: 'var(--joy-palette-success-700)',
+      filledBg: 'var(--joy-palette-success-100)',
+      filledHoverBg: 'var(--joy-palette-success-200)',
+      filledActiveBg: 'var(--joy-palette-success-300)',
+      filledDisabledColor: 'var(--joy-palette-success-400)',
+      filledDisabledBg: 'var(--joy-palette-success-50)',
+
+      containedColor: '#fff',
+      containedBg: 'var(--joy-palette-success-500)',
+      containedHoverBg: 'var(--joy-palette-success-600)',
+      containedActiveBg: 'var(--joy-palette-success-400)',
+      containedDisabledBg: 'var(--joy-palette-success-300)',
+    },
+    warning: {
+      ...colors.yellow,
+      textColor: 'var(--joy-palette-warning-600)',
+      textHoverBg: 'var(--joy-palette-neutral-100)',
+      textActiveBg: 'var(--joy-palette-neutral-200)',
+      textDisabledColor: 'var(--joy-palette-neutral-300)',
+
+      outlinedColor: 'var(--joy-palette-warning-600)',
+      outlinedBorder: 'var(--joy-palette-neutral-300)',
+      outlinedHoverBg: 'var(--joy-palette-neutral-100)',
+      outlinedHoverBorder: 'var(--joy-palette-neutral-400)',
+      outlinedActiveBg: 'var(--joy-palette-neutral-200)',
+      outlinedDisabledColor: 'var(--joy-palette-neutral-300)',
+      outlinedDisabledBorder: 'var(--joy-palette-neutral-200)',
+
+      filledColor: 'var(--joy-palette-warning-700)',
+      filledBg: 'var(--joy-palette-warning-100)',
+      filledHoverBg: 'var(--joy-palette-warning-200)',
+      filledActiveBg: 'var(--joy-palette-warning-300)',
+      filledDisabledColor: 'var(--joy-palette-warning-400)',
+      filledDisabledBg: 'var(--joy-palette-warning-50)',
+
+      containedColor: '#fff',
+      containedBg: 'var(--joy-palette-warning-500)',
+      containedHoverBg: 'var(--joy-palette-warning-600)',
+      containedActiveBg: 'var(--joy-palette-warning-400)',
+      containedDisabledBg: 'var(--joy-palette-warning-300)',
+    },
     text: {
       heading: 'var(--joy-palette-neutral-900)',
       headingIntro: 'var(--joy-palette-brand-300)',
@@ -316,6 +432,118 @@ export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> =
       containedHoverBg: 'var(--joy-palette-neutral-700)',
       containedActiveBg: 'var(--joy-palette-neutral-500)',
       containedDisabledBg: 'var(--joy-palette-neutral-300)',
+    },
+    danger: {
+      ...colors.red,
+      textColor: 'var(--joy-palette-danger-200)',
+      textHoverBg: 'var(--joy-palette-neutral-800)',
+      textActiveBg: 'var(--joy-palette-neutral-700)',
+      textDisabledColor: 'var(--joy-palette-neutral-500)',
+
+      outlinedColor: 'var(--joy-palette-danger-200)',
+      outlinedBorder: 'var(--joy-palette-neutral-700)',
+      outlinedHoverBg: 'var(--joy-palette-neutral-800)',
+      outlinedHoverBorder: 'var(--joy-palette-neutral-600)',
+      outlinedActiveBg: 'var(--joy-palette-neutral-700)',
+      outlinedDisabledColor: 'var(--joy-palette-neutral-500)',
+      outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
+
+      filledColor: 'var(--joy-palette-danger-300)',
+      filledBg: 'var(--joy-palette-danger-800)',
+      filledHoverBg: 'var(--joy-palette-danger-700)',
+      filledActiveBg: 'var(--joy-palette-danger-600)',
+      filledDisabledColor: 'var(--joy-palette-danger-500)',
+      filledDisabledBg: 'var(--joy-palette-danger-800)',
+
+      containedColor: '#fff',
+      containedBg: 'var(--joy-palette-danger-500)',
+      containedHoverBg: 'var(--joy-palette-danger-700)',
+      containedActiveBg: 'var(--joy-palette-danger-500)',
+      containedDisabledBg: 'var(--joy-palette-danger-300)',
+    },
+    info: {
+      ...colors.blue,
+      textColor: 'var(--joy-palette-info-200)',
+      textHoverBg: 'var(--joy-palette-neutral-800)',
+      textActiveBg: 'var(--joy-palette-neutral-700)',
+      textDisabledColor: 'var(--joy-palette-neutral-500)',
+
+      outlinedColor: 'var(--joy-palette-info-200)',
+      outlinedBorder: 'var(--joy-palette-neutral-700)',
+      outlinedHoverBg: 'var(--joy-palette-neutral-800)',
+      outlinedHoverBorder: 'var(--joy-palette-neutral-600)',
+      outlinedActiveBg: 'var(--joy-palette-neutral-700)',
+      outlinedDisabledColor: 'var(--joy-palette-neutral-500)',
+      outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
+
+      filledColor: 'var(--joy-palette-info-300)',
+      filledBg: 'var(--joy-palette-info-800)',
+      filledHoverBg: 'var(--joy-palette-info-700)',
+      filledActiveBg: 'var(--joy-palette-info-600)',
+      filledDisabledColor: 'var(--joy-palette-info-500)',
+      filledDisabledBg: 'var(--joy-palette-info-800)',
+
+      containedColor: '#fff',
+      containedBg: 'var(--joy-palette-info-500)',
+      containedHoverBg: 'var(--joy-palette-info-700)',
+      containedActiveBg: 'var(--joy-palette-info-500)',
+      containedDisabledBg: 'var(--joy-palette-info-300)',
+    },
+    success: {
+      ...colors.green,
+      textColor: 'var(--joy-palette-success-200)',
+      textHoverBg: 'var(--joy-palette-neutral-800)',
+      textActiveBg: 'var(--joy-palette-neutral-700)',
+      textDisabledColor: 'var(--joy-palette-neutral-500)',
+
+      outlinedColor: 'var(--joy-palette-success-200)',
+      outlinedBorder: 'var(--joy-palette-neutral-700)',
+      outlinedHoverBg: 'var(--joy-palette-neutral-800)',
+      outlinedHoverBorder: 'var(--joy-palette-neutral-600)',
+      outlinedActiveBg: 'var(--joy-palette-neutral-700)',
+      outlinedDisabledColor: 'var(--joy-palette-neutral-500)',
+      outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
+
+      filledColor: 'var(--joy-palette-success-300)',
+      filledBg: 'var(--joy-palette-success-800)',
+      filledHoverBg: 'var(--joy-palette-success-700)',
+      filledActiveBg: 'var(--joy-palette-success-600)',
+      filledDisabledColor: 'var(--joy-palette-success-500)',
+      filledDisabledBg: 'var(--joy-palette-success-800)',
+
+      containedColor: '#fff',
+      containedBg: 'var(--joy-palette-success-500)',
+      containedHoverBg: 'var(--joy-palette-success-700)',
+      containedActiveBg: 'var(--joy-palette-success-500)',
+      containedDisabledBg: 'var(--joy-palette-success-300)',
+    },
+    warning: {
+      ...colors.yellow,
+      textColor: 'var(--joy-palette-warning-200)',
+      textHoverBg: 'var(--joy-palette-neutral-800)',
+      textActiveBg: 'var(--joy-palette-neutral-700)',
+      textDisabledColor: 'var(--joy-palette-neutral-500)',
+
+      outlinedColor: 'var(--joy-palette-warning-200)',
+      outlinedBorder: 'var(--joy-palette-neutral-700)',
+      outlinedHoverBg: 'var(--joy-palette-neutral-800)',
+      outlinedHoverBorder: 'var(--joy-palette-neutral-600)',
+      outlinedActiveBg: 'var(--joy-palette-neutral-700)',
+      outlinedDisabledColor: 'var(--joy-palette-neutral-500)',
+      outlinedDisabledBorder: 'var(--joy-palette-neutral-800)',
+
+      filledColor: 'var(--joy-palette-warning-300)',
+      filledBg: 'var(--joy-palette-warning-800)',
+      filledHoverBg: 'var(--joy-palette-warning-700)',
+      filledActiveBg: 'var(--joy-palette-warning-600)',
+      filledDisabledColor: 'var(--joy-palette-warning-500)',
+      filledDisabledBg: 'var(--joy-palette-warning-800)',
+
+      containedColor: '#fff',
+      containedBg: 'var(--joy-palette-warning-500)',
+      containedHoverBg: 'var(--joy-palette-warning-700)',
+      containedActiveBg: 'var(--joy-palette-warning-500)',
+      containedDisabledBg: 'var(--joy-palette-warning-300)',
     },
     text: {
       heading: '#fff',
@@ -506,6 +734,22 @@ const themeWithoutVars: BaseJoyTokens = {
         color: 'var(--joy-variant-textColor, var(--joy-palette-neutral-textColor))',
         backgroundColor: 'var(--joy-variant-textBg, var(--joy-palette-neutral-textBg))',
       },
+      danger: {
+        color: 'var(--joy-variant-textColor, var(--joy-palette-danger-textColor))',
+        backgroundColor: 'var(--joy-variant-textBg, var(--joy-palette-danger-textBg))',
+      },
+      info: {
+        color: 'var(--joy-variant-textColor, var(--joy-palette-info-textColor))',
+        backgroundColor: 'var(--joy-variant-textBg, var(--joy-palette-info-textBg))',
+      },
+      success: {
+        color: 'var(--joy-variant-textColor, var(--joy-palette-success-textColor))',
+        backgroundColor: 'var(--joy-variant-textBg, var(--joy-palette-success-textBg))',
+      },
+      warning: {
+        color: 'var(--joy-variant-textColor, var(--joy-palette-warning-textColor))',
+        backgroundColor: 'var(--joy-variant-textBg, var(--joy-palette-warning-textBg))',
+      },
     },
     textHover: {
       brand: {
@@ -518,6 +762,30 @@ const themeWithoutVars: BaseJoyTokens = {
         cursor: 'pointer',
         '&:hover': {
           backgroundColor: 'var(--joy-variant-textHoverBg, var(--joy-palette-neutral-textHoverBg))',
+        },
+      },
+      danger: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: 'var(--joy-variant-textHoverBg, var(--joy-palette-danger-textHoverBg))',
+        },
+      },
+      info: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: 'var(--joy-variant-textHoverBg, var(--joy-palette-info-textHoverBg))',
+        },
+      },
+      success: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: 'var(--joy-variant-textHoverBg, var(--joy-palette-success-textHoverBg))',
+        },
+      },
+      warning: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: 'var(--joy-variant-textHoverBg, var(--joy-palette-warning-textHoverBg))',
         },
       },
     },
@@ -533,6 +801,29 @@ const themeWithoutVars: BaseJoyTokens = {
             'var(--joy-variant-textActiveBg, var(--joy-palette-neutral-textActiveBg))',
         },
       },
+      danger: {
+        '&:active': {
+          backgroundColor:
+            'var(--joy-variant-textActiveBg, var(--joy-palette-danger-textActiveBg))',
+        },
+      },
+      info: {
+        '&:active': {
+          backgroundColor: 'var(--joy-variant-textActiveBg, var(--joy-palette-info-textActiveBg))',
+        },
+      },
+      success: {
+        '&:active': {
+          backgroundColor:
+            'var(--joy-variant-textActiveBg, var(--joy-palette-success-textActiveBg))',
+        },
+      },
+      warning: {
+        '&:active': {
+          backgroundColor:
+            'var(--joy-variant-textActiveBg, var(--joy-palette-warning-textActiveBg))',
+        },
+      },
     },
     textDisabled: {
       brand: {
@@ -544,6 +835,29 @@ const themeWithoutVars: BaseJoyTokens = {
         '&.Mui-disabled': {
           color:
             'var(--joy-variant-textDisabledColor, var(--joy-palette-neutral-textDisabledColor))',
+        },
+      },
+      danger: {
+        '&.Mui-disabled': {
+          color:
+            'var(--joy-variant-textDisabledColor, var(--joy-palette-danger-textDisabledColor))',
+        },
+      },
+      info: {
+        '&.Mui-disabled': {
+          color: 'var(--joy-variant-textDisabledColor, var(--joy-palette-info-textDisabledColor))',
+        },
+      },
+      success: {
+        '&.Mui-disabled': {
+          color:
+            'var(--joy-variant-textDisabledColor, var(--joy-palette-success-textDisabledColor))',
+        },
+      },
+      warning: {
+        '&.Mui-disabled': {
+          color:
+            'var(--joy-variant-textDisabledColor, var(--joy-palette-warning-textDisabledColor))',
         },
       },
     },
@@ -559,6 +873,30 @@ const themeWithoutVars: BaseJoyTokens = {
         border: '1px solid',
         borderColor: 'var(--joy-variant-outlinedBorder, var(--joy-palette-neutral-outlinedBorder))',
         backgroundColor: 'var(--joy-variant-outlinedBg, var(--joy-palette-neutral-outlinedBg))',
+      },
+      danger: {
+        color: 'var(--joy-variant-outlinedColor, var(--joy-palette-danger-outlinedColor))',
+        border: '1px solid',
+        borderColor: 'var(--joy-variant-outlinedBorder, var(--joy-palette-danger-outlinedBorder))',
+        backgroundColor: 'var(--joy-variant-outlinedBg, var(--joy-palette-danger-outlinedBg))',
+      },
+      info: {
+        color: 'var(--joy-variant-outlinedColor, var(--joy-palette-info-outlinedColor))',
+        border: '1px solid',
+        borderColor: 'var(--joy-variant-outlinedBorder, var(--joy-palette-info-outlinedBorder))',
+        backgroundColor: 'var(--joy-variant-outlinedBg, var(--joy-palette-info-outlinedBg))',
+      },
+      success: {
+        color: 'var(--joy-variant-outlinedColor, var(--joy-palette-success-outlinedColor))',
+        border: '1px solid',
+        borderColor: 'var(--joy-variant-outlinedBorder, var(--joy-palette-success-outlinedBorder))',
+        backgroundColor: 'var(--joy-variant-outlinedBg, var(--joy-palette-success-outlinedBg))',
+      },
+      warning: {
+        color: 'var(--joy-variant-outlinedColor, var(--joy-palette-warning-outlinedColor))',
+        border: '1px solid',
+        borderColor: 'var(--joy-variant-outlinedBorder, var(--joy-palette-warning-outlinedBorder))',
+        backgroundColor: 'var(--joy-variant-outlinedBg, var(--joy-palette-warning-outlinedBg))',
       },
     },
     outlinedHover: {
@@ -580,6 +918,42 @@ const themeWithoutVars: BaseJoyTokens = {
             'var(--joy-variant-outlinedHoverBorder, var(--joy-palette-neutral-outlinedHoverBorder))',
         },
       },
+      danger: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor:
+            'var(--joy-variant-outlinedHoverBg, var(--joy-palette-danger-outlinedHoverBg))',
+          borderColor:
+            'var(--joy-variant-outlinedHoverBorder, var(--joy-palette-danger-outlinedHoverBorder))',
+        },
+      },
+      info: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor:
+            'var(--joy-variant-outlinedHoverBg, var(--joy-palette-info-outlinedHoverBg))',
+          borderColor:
+            'var(--joy-variant-outlinedHoverBorder, var(--joy-palette-info-outlinedHoverBorder))',
+        },
+      },
+      success: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor:
+            'var(--joy-variant-outlinedHoverBg, var(--joy-palette-success-outlinedHoverBg))',
+          borderColor:
+            'var(--joy-variant-outlinedHoverBorder, var(--joy-palette-success-outlinedHoverBorder))',
+        },
+      },
+      warning: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor:
+            'var(--joy-variant-outlinedHoverBg, var(--joy-palette-warning-outlinedHoverBg))',
+          borderColor:
+            'var(--joy-variant-outlinedHoverBorder, var(--joy-palette-warning-outlinedHoverBorder))',
+        },
+      },
     },
     outlinedActive: {
       brand: {
@@ -592,6 +966,30 @@ const themeWithoutVars: BaseJoyTokens = {
         '&:active': {
           backgroundColor:
             'var(--joy-variant-outlinedActiveBg, var(--joy-palette-neutral-outlinedActiveBg))',
+        },
+      },
+      danger: {
+        '&:active': {
+          backgroundColor:
+            'var(--joy-variant-outlinedActiveBg, var(--joy-palette-danger-outlinedActiveBg))',
+        },
+      },
+      info: {
+        '&:active': {
+          backgroundColor:
+            'var(--joy-variant-outlinedActiveBg, var(--joy-palette-info-outlinedActiveBg))',
+        },
+      },
+      success: {
+        '&:active': {
+          backgroundColor:
+            'var(--joy-variant-outlinedActiveBg, var(--joy-palette-success-outlinedActiveBg))',
+        },
+      },
+      warning: {
+        '&:active': {
+          backgroundColor:
+            'var(--joy-variant-outlinedActiveBg, var(--joy-palette-warning-outlinedActiveBg))',
         },
       },
     },
@@ -612,6 +1010,38 @@ const themeWithoutVars: BaseJoyTokens = {
             'var(--joy-variant-outlinedDisabledBorder, var(--joy-palette-neutral-outlinedDisabledBorder))',
         },
       },
+      danger: {
+        '&.Mui-disabled': {
+          color:
+            'var(--joy-variant-outlinedDisabledColor, var(--joy-palette-danger-outlinedDisabledColor))',
+          borderColor:
+            'var(--joy-variant-outlinedDisabledBorder, var(--joy-palette-danger-outlinedDisabledBorder))',
+        },
+      },
+      info: {
+        '&.Mui-disabled': {
+          color:
+            'var(--joy-variant-outlinedDisabledColor, var(--joy-palette-info-outlinedDisabledColor))',
+          borderColor:
+            'var(--joy-variant-outlinedDisabledBorder, var(--joy-palette-info-outlinedDisabledBorder))',
+        },
+      },
+      success: {
+        '&.Mui-disabled': {
+          color:
+            'var(--joy-variant-outlinedDisabledColor, var(--joy-palette-success-outlinedDisabledColor))',
+          borderColor:
+            'var(--joy-variant-outlinedDisabledBorder, var(--joy-palette-success-outlinedDisabledBorder))',
+        },
+      },
+      warning: {
+        '&.Mui-disabled': {
+          color:
+            'var(--joy-variant-outlinedDisabledColor, var(--joy-palette-warning-outlinedDisabledColor))',
+          borderColor:
+            'var(--joy-variant-outlinedDisabledBorder, var(--joy-palette-warning-outlinedDisabledBorder))',
+        },
+      },
     },
     filled: {
       brand: {
@@ -621,6 +1051,22 @@ const themeWithoutVars: BaseJoyTokens = {
       neutral: {
         color: 'var(--joy-variant-filledColor, var(--joy-palette-neutral-filledColor))',
         backgroundColor: 'var(--joy-variant-filledBg, var(--joy-palette-neutral-filledBg))',
+      },
+      danger: {
+        color: 'var(--joy-variant-filledColor, var(--joy-palette-danger-filledColor))',
+        backgroundColor: 'var(--joy-variant-filledBg, var(--joy-palette-danger-filledBg))',
+      },
+      info: {
+        color: 'var(--joy-variant-filledColor, var(--joy-palette-info-filledColor))',
+        backgroundColor: 'var(--joy-variant-filledBg, var(--joy-palette-info-filledBg))',
+      },
+      success: {
+        color: 'var(--joy-variant-filledColor, var(--joy-palette-success-filledColor))',
+        backgroundColor: 'var(--joy-variant-filledBg, var(--joy-palette-success-filledBg))',
+      },
+      warning: {
+        color: 'var(--joy-variant-filledColor, var(--joy-palette-warning-filledColor))',
+        backgroundColor: 'var(--joy-variant-filledBg, var(--joy-palette-warning-filledBg))',
       },
     },
     filledHover: {
@@ -638,6 +1084,34 @@ const themeWithoutVars: BaseJoyTokens = {
             'var(--joy-variant-filledHoverBg, var(--joy-palette-neutral-filledHoverBg))',
         },
       },
+      danger: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor:
+            'var(--joy-variant-filledHoverBg, var(--joy-palette-danger-filledHoverBg))',
+        },
+      },
+      info: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor:
+            'var(--joy-variant-filledHoverBg, var(--joy-palette-info-filledHoverBg))',
+        },
+      },
+      success: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor:
+            'var(--joy-variant-filledHoverBg, var(--joy-palette-success-filledHoverBg))',
+        },
+      },
+      warning: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor:
+            'var(--joy-variant-filledHoverBg, var(--joy-palette-warning-filledHoverBg))',
+        },
+      },
     },
     filledActive: {
       brand: {
@@ -650,6 +1124,30 @@ const themeWithoutVars: BaseJoyTokens = {
         '&:active': {
           backgroundColor:
             'var(--joy-variant-filledActiveBg, var(--joy-palette-neutral-filledActiveBg))',
+        },
+      },
+      danger: {
+        '&:active': {
+          backgroundColor:
+            'var(--joy-variant-filledActiveBg, var(--joy-palette-danger-filledActiveBg))',
+        },
+      },
+      info: {
+        '&:active': {
+          backgroundColor:
+            'var(--joy-variant-filledActiveBg, var(--joy-palette-info-filledActiveBg))',
+        },
+      },
+      success: {
+        '&:active': {
+          backgroundColor:
+            'var(--joy-variant-filledActiveBg, var(--joy-palette-success-filledActiveBg))',
+        },
+      },
+      warning: {
+        '&:active': {
+          backgroundColor:
+            'var(--joy-variant-filledActiveBg, var(--joy-palette-warning-filledActiveBg))',
         },
       },
     },
@@ -670,6 +1168,38 @@ const themeWithoutVars: BaseJoyTokens = {
             'var(--joy-variant-filledDisabledBg, var(--joy-palette-neutral-filledDisabledBg))',
         },
       },
+      danger: {
+        '&.Mui-disabled': {
+          color:
+            'var(--joy-variant-filledDisabledColor, var(--joy-palette-danger-filledDisabledColor))',
+          backgroundColor:
+            'var(--joy-variant-filledDisabledBg, var(--joy-palette-danger-filledDisabledBg))',
+        },
+      },
+      info: {
+        '&.Mui-disabled': {
+          color:
+            'var(--joy-variant-filledDisabledColor, var(--joy-palette-info-filledDisabledColor))',
+          backgroundColor:
+            'var(--joy-variant-filledDisabledBg, var(--joy-palette-info-filledDisabledBg))',
+        },
+      },
+      success: {
+        '&.Mui-disabled': {
+          color:
+            'var(--joy-variant-filledDisabledColor, var(--joy-palette-success-filledDisabledColor))',
+          backgroundColor:
+            'var(--joy-variant-filledDisabledBg, var(--joy-palette-success-filledDisabledBg))',
+        },
+      },
+      warning: {
+        '&.Mui-disabled': {
+          color:
+            'var(--joy-variant-filledDisabledColor, var(--joy-palette-warning-filledDisabledColor))',
+          backgroundColor:
+            'var(--joy-variant-filledDisabledBg, var(--joy-palette-warning-filledDisabledBg))',
+        },
+      },
     },
     contained: {
       brand: {
@@ -679,6 +1209,22 @@ const themeWithoutVars: BaseJoyTokens = {
       neutral: {
         color: 'var(--joy-palette-neutral-containedColor)',
         backgroundColor: 'var(--joy-palette-neutral-containedBg)',
+      },
+      danger: {
+        color: 'var(--joy-palette-danger-containedColor)',
+        backgroundColor: 'var(--joy-palette-danger-containedBg)',
+      },
+      info: {
+        color: 'var(--joy-palette-info-containedColor)',
+        backgroundColor: 'var(--joy-palette-info-containedBg)',
+      },
+      success: {
+        color: 'var(--joy-palette-success-containedColor)',
+        backgroundColor: 'var(--joy-palette-success-containedBg)',
+      },
+      warning: {
+        color: 'var(--joy-palette-warning-containedColor)',
+        backgroundColor: 'var(--joy-palette-warning-containedBg)',
       },
     },
     containedHover: {
@@ -694,6 +1240,30 @@ const themeWithoutVars: BaseJoyTokens = {
           backgroundColor: 'var(--joy-palette-neutral-containedHoverBg)',
         },
       },
+      danger: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: 'var(--joy-palette-danger-containedHoverBg)',
+        },
+      },
+      info: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: 'var(--joy-palette-info-containedHoverBg)',
+        },
+      },
+      success: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: 'var(--joy-palette-success-containedHoverBg)',
+        },
+      },
+      warning: {
+        cursor: 'pointer',
+        '&:hover': {
+          backgroundColor: 'var(--joy-palette-warning-containedHoverBg)',
+        },
+      },
     },
     containedActive: {
       brand: {
@@ -706,6 +1276,26 @@ const themeWithoutVars: BaseJoyTokens = {
           backgroundColor: 'var(--joy-palette-neutral-containedActiveBg)',
         },
       },
+      danger: {
+        '&:active': {
+          backgroundColor: 'var(--joy-palette-danger-containedActiveBg)',
+        },
+      },
+      info: {
+        '&:active': {
+          backgroundColor: 'var(--joy-palette-info-containedActiveBg)',
+        },
+      },
+      success: {
+        '&:active': {
+          backgroundColor: 'var(--joy-palette-success-containedActiveBg)',
+        },
+      },
+      warning: {
+        '&:active': {
+          backgroundColor: 'var(--joy-palette-warning-containedActiveBg)',
+        },
+      },
     },
     containedDisabled: {
       brand: {
@@ -716,6 +1306,26 @@ const themeWithoutVars: BaseJoyTokens = {
       neutral: {
         '&.Mui-disabled': {
           backgroundColor: 'var(--joy-palette-neutral-containedDisabledBg)',
+        },
+      },
+      danger: {
+        '&.Mui-disabled': {
+          backgroundColor: 'var(--joy-palette-danger-containedDisabledBg)',
+        },
+      },
+      info: {
+        '&.Mui-disabled': {
+          backgroundColor: 'var(--joy-palette-info-containedDisabledBg)',
+        },
+      },
+      success: {
+        '&.Mui-disabled': {
+          backgroundColor: 'var(--joy-palette-success-containedDisabledBg)',
+        },
+      },
+      warning: {
+        '&.Mui-disabled': {
+          backgroundColor: 'var(--joy-palette-warning-containedDisabledBg)',
         },
       },
     },
@@ -775,6 +1385,70 @@ const themeWithoutVars: BaseJoyTokens = {
         '--joy-variant-filledBg': 'rgba(255, 255, 255, 0.2)',
         '--joy-variant-filledHoverBg': 'var(--joy-palette-neutral-400)',
         '--joy-variant-filledActiveBg': 'var(--joy-palette-neutral-400)',
+      },
+      danger: {
+        '--joy-variant-textColor': 'var(--joy-palette-danger-100)',
+        '--joy-variant-textBg': 'transparent',
+        '--joy-variant-textHoverBg': 'var(--joy-palette-danger-500)',
+        '--joy-variant-textActiveBg': 'var(--joy-palette-danger-700)',
+        '--joy-variant-outlinedColor': '#fff',
+        '--joy-variant-outlinedBorder': 'var(--joy-palette-danger-400)',
+        '--joy-variant-outlinedHoverBorder': 'var(--joy-palette-danger-400)',
+        '--joy-variant-outlinedBg': 'transparent',
+        '--joy-variant-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
+        '--joy-variant-outlinedActiveBg': 'var(--joy-palette-danger-700)',
+        '--joy-variant-filledColor': '#fff',
+        '--joy-variant-filledBg': 'rgba(255, 255, 255, 0.2)',
+        '--joy-variant-filledHoverBg': 'var(--joy-palette-danger-400)',
+        '--joy-variant-filledActiveBg': 'var(--joy-palette-danger-400)',
+      },
+      info: {
+        '--joy-variant-textColor': 'var(--joy-palette-info-100)',
+        '--joy-variant-textBg': 'transparent',
+        '--joy-variant-textHoverBg': 'var(--joy-palette-info-500)',
+        '--joy-variant-textActiveBg': 'var(--joy-palette-info-700)',
+        '--joy-variant-outlinedColor': '#fff',
+        '--joy-variant-outlinedBorder': 'var(--joy-palette-info-400)',
+        '--joy-variant-outlinedHoverBorder': 'var(--joy-palette-info-400)',
+        '--joy-variant-outlinedBg': 'transparent',
+        '--joy-variant-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
+        '--joy-variant-outlinedActiveBg': 'var(--joy-palette-info-700)',
+        '--joy-variant-filledColor': '#fff',
+        '--joy-variant-filledBg': 'rgba(255, 255, 255, 0.2)',
+        '--joy-variant-filledHoverBg': 'var(--joy-palette-info-400)',
+        '--joy-variant-filledActiveBg': 'var(--joy-palette-info-400)',
+      },
+      success: {
+        '--joy-variant-textColor': 'var(--joy-palette-success-100)',
+        '--joy-variant-textBg': 'transparent',
+        '--joy-variant-textHoverBg': 'var(--joy-palette-success-500)',
+        '--joy-variant-textActiveBg': 'var(--joy-palette-success-700)',
+        '--joy-variant-outlinedColor': '#fff',
+        '--joy-variant-outlinedBorder': 'var(--joy-palette-success-400)',
+        '--joy-variant-outlinedHoverBorder': 'var(--joy-palette-success-400)',
+        '--joy-variant-outlinedBg': 'transparent',
+        '--joy-variant-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
+        '--joy-variant-outlinedActiveBg': 'var(--joy-palette-success-700)',
+        '--joy-variant-filledColor': '#fff',
+        '--joy-variant-filledBg': 'rgba(255, 255, 255, 0.2)',
+        '--joy-variant-filledHoverBg': 'var(--joy-palette-success-400)',
+        '--joy-variant-filledActiveBg': 'var(--joy-palette-success-400)',
+      },
+      warning: {
+        '--joy-variant-textColor': 'var(--joy-palette-warning-100)',
+        '--joy-variant-textBg': 'transparent',
+        '--joy-variant-textHoverBg': 'var(--joy-palette-warning-500)',
+        '--joy-variant-textActiveBg': 'var(--joy-palette-warning-700)',
+        '--joy-variant-outlinedColor': '#fff',
+        '--joy-variant-outlinedBorder': 'var(--joy-palette-warning-400)',
+        '--joy-variant-outlinedHoverBorder': 'var(--joy-palette-warning-400)',
+        '--joy-variant-outlinedBg': 'transparent',
+        '--joy-variant-outlinedHoverBg': 'rgba(255, 255, 255, 0.12)',
+        '--joy-variant-outlinedActiveBg': 'var(--joy-palette-warning-700)',
+        '--joy-variant-filledColor': '#fff',
+        '--joy-variant-filledBg': 'rgba(255, 255, 255, 0.2)',
+        '--joy-variant-filledHoverBg': 'var(--joy-palette-warning-400)',
+        '--joy-variant-filledActiveBg': 'var(--joy-palette-warning-400)',
       },
     },
   },

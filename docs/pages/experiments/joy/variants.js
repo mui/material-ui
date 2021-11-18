@@ -389,14 +389,48 @@ export default function JoyVariants() {
           <Box sx={{ display: 'flex', gap: '16px' }}>
             <Badge variant="outlined">1</Badge>
             <Badge variant="filled">2</Badge>
+            <Badge variant="filled" color="neutral">
+              2
+            </Badge>
+            <Badge variant="filled" color="danger">
+              2
+            </Badge>
+            <Badge variant="filled" color="info">
+              2
+            </Badge>
+            <Badge variant="filled" color="success">
+              2
+            </Badge>
+            <Badge variant="filled" color="warning">
+              2
+            </Badge>
             <Badge variant="contained">30</Badge>
+            <Badge variant="contained" color="neutral">
+              2
+            </Badge>
+            <Badge variant="contained" color="danger">
+              2
+            </Badge>
+            <Badge variant="contained" color="info">
+              2
+            </Badge>
+            <Badge variant="contained" color="success">
+              2
+            </Badge>
+            <Badge variant="contained" color="warning">
+              2
+            </Badge>
           </Box>
           <Paper variant="contained" sx={{ width: '100%' }}>
             <HighlightedCode
               code={`
 <Badge variant="outlined">1</Badge>
-<Badge variant="filled">2</Badge>
-<Badge variant="contained">30</Badge>`}
+<Badge variant="filled" color="neutral | danger | ...">
+  2
+</Badge>
+<Badge variant="contained" color="neutral | danger | ...">
+  30
+</Badge>`}
               component="div"
               language="jsx"
             />
@@ -405,13 +439,25 @@ export default function JoyVariants() {
           <Box sx={{ display: 'flex', gap: '16px' }}>
             <Avatar variant="outlined">A</Avatar>
             <Avatar variant="filled">B</Avatar>
+            <Avatar variant="filled" color="danger">
+              B
+            </Avatar>
+            <Avatar variant="filled" color="info">
+              B
+            </Avatar>
+            <Avatar variant="filled" color="success">
+              B
+            </Avatar>
+            <Avatar variant="filled" color="warning">
+              B
+            </Avatar>
             <Avatar variant="contained">C</Avatar>
           </Box>
           <Paper variant="contained" sx={{ width: '100%' }}>
             <HighlightedCode
               code={`
 <Avatar variant="outlined">A</Avatar>
-<Avatar variant="filled">B</Avatar>
+<Avatar variant="filled" color="danger | ...">B</Avatar>
 <Avatar variant="contained">C</Avatar>`}
               component="div"
               language="jsx"
