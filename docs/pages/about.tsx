@@ -304,6 +304,16 @@ const teamMembers: Array<Profile> = [
     github: 'alexfauquette',
   },
   {
+    src: '/static/branding/about/bharat.jpg',
+    name: 'Bharat Kashyap',
+    title: 'Studio team',
+    location: 'New Delhi, India',
+    country: 'in',
+    about: 'Trains 🚅 , architecture 🏛️ , and psychology 🧠 ',
+    twitter: 'bharattttttt',
+    github: 'bharatkashyap',
+  },
+  {
     src: '/static/branding/about/jan.jpg',
     name: 'Jan Potoms',
     title: 'Studio team',
