@@ -113,7 +113,7 @@ const theme = createTheme({
 
 Perhaps, however, you're adding some MUI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the [Style Library Interoperability](/guides/interoperability/) section, where we show how simple it is to restyle MUI components with alternative style libraries.
 
-## When should I use inline-style vs. CSS?
+## 我应该何时使用内联样式与 CSS？
 
 As a rule of thumb, only use inline-styles for dynamic style properties. CSS 的替代方案也有诸多优势，例如：
 
