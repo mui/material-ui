@@ -17,7 +17,7 @@ MUI provides icons support in three ways:
 
 ## Material Icons
 
-Google has created over 1,700 official Material icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@mui/icons-material` package. 您可以 [搜索完整的图标列表](/components/material-icons/)。
+Google has created over 1,900 official Material icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@mui/icons-material` package. 您可以 [搜索完整的图标列表](/components/material-icons/)。
 
 ### 安装
 
