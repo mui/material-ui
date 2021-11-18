@@ -50,4 +50,7 @@ export * from './TabUnstyled';
 export { default as TabsListUnstyled } from './TabsListUnstyled';
 export * from './TabsListUnstyled';
 
+export { default as TabPanelUnstyled } from './TabPanelUnstyled';
+export * from './TabPanelUnstyled';
+
 export * from './utils';
