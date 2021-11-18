@@ -201,6 +201,42 @@ describe('createCssVarsProvider', () => {
         ),
       ).not.toErrorDev(); // if `h1` is skipped, there will be no error.
     });
+
+    it('vars are merged from all colorSchemes regardless of selected color scheme', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: {
+            light: {
+              palette: {
+                primary: '#000',
+              },
+            },
+            dark: {
+              palette: {
+                grey: '#888',
+              },
+            },
+          },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Consumer = () => {
+        const theme = useTheme();
+        return (
+          <div>
+            <div>{theme.vars.palette.primary || ''}</div>
+            <div>{theme.vars.palette.grey || ''}</div>
+          </div>
+        );
+      };
+      render(
+        <CssVarsProvider>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+      expect(screen.getByText('var(--palette-primary)')).not.to.equal(null);
+      expect(screen.getByText('var(--palette-grey)')).not.to.equal(null);
+    });
   });
 
   describe('DOM', () => {
