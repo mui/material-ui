@@ -304,6 +304,15 @@ const teamMembers: Array<Profile> = [
     github: 'alexfauquette',
   },
   {
+    src: '/static/branding/about/jan.jpg',
+    name: 'Jan Potoms',
+    title: 'Studio team',
+    location: 'Brussels, Belgium',
+    country: 'be',
+    about: 'Always curious, I enjoy cinema, and hiking',
+    github: 'janpot',
+  },
+  {
     src: '/static/branding/about/prakhar.jpg',
     name: 'Prakhar Gupta',
     title: 'Studio team',
