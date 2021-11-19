@@ -159,11 +159,9 @@ export const getContainedDisabledVariant = (color: ColorPaletteProp) => ({
 
 export const getContainedOverrides = (color: ColorPaletteProp) => ({
   // typography
-  '--joy-palette-text-heading': `#fff`,
-  '--joy-palette-text-headingIntro': `#fff`,
-  '--joy-palette-text-content': `#fff`,
-  '--joy-palette-text-detail': `#fff`,
-  '--joy-palette-text-overline': `var(--joy-palette-${color}-200)`,
+  '--joy-palette-letter-major': `#fff`,
+  '--joy-palette-letter-minor': `var(--joy-palette-${color}-100)`,
+  '--joy-palette-letter-support': `var(--joy-palette-${color}-200)`,
 
   // other variants
   '--joy-variant-textColor': `var(--joy-palette-${color}-100)`,

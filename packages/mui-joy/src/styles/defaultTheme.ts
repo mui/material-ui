@@ -1,6 +1,6 @@
 import * as React from 'react';
 import colors from '../colors';
-import { ColorSystems, Palette, PaletteRange, PaletteText, PaletteBgNeutral } from './ColorSystem';
+import { ColorSystems, Palette, PaletteLetter, PaletteRange, PaletteSurface } from './ColorSystem';
 import { Variant, DefaultVariantKey } from './Variant';
 import {
   createLightModeVariantVariables,
@@ -53,6 +53,7 @@ export interface Focus {
 }
 
 export interface FontSize {
+  default: React.CSSProperties['fontSize'];
   xs: React.CSSProperties['fontSize'];
   sm: React.CSSProperties['fontSize'];
   md: React.CSSProperties['fontSize'];
@@ -66,31 +67,33 @@ export interface FontSize {
 }
 
 export interface FontFamily {
-  sans: React.CSSProperties['fontFamily'];
-  mono: React.CSSProperties['fontFamily'];
+  default: React.CSSProperties['fontFamily'];
+  display: React.CSSProperties['fontFamily'];
+  code: React.CSSProperties['fontFamily'];
+  fallback: React.CSSProperties['fontFamily'];
 }
 
 export interface FontWeight {
   // add string to support css variable value.
-  light: React.CSSProperties['fontWeight'] | string;
-  regular: React.CSSProperties['fontWeight'] | string;
-  medium: React.CSSProperties['fontWeight'] | string;
-  semiBold: React.CSSProperties['fontWeight'] | string;
-  bold: React.CSSProperties['fontWeight'] | string;
-  extraBold: React.CSSProperties['fontWeight'] | string;
-  black: React.CSSProperties['fontWeight'] | string;
+  default: React.CSSProperties['fontWeight'] | string;
+  xs: React.CSSProperties['fontWeight'] | string;
+  sm: React.CSSProperties['fontWeight'] | string;
+  md: React.CSSProperties['fontWeight'] | string;
+  lg: React.CSSProperties['fontWeight'] | string;
 }
 
 export interface LineHeight {
+  default: React.CSSProperties['lineHeight'];
   xs: React.CSSProperties['lineHeight'];
   sm: React.CSSProperties['lineHeight'];
-  normal: React.CSSProperties['lineHeight'];
+  md: React.CSSProperties['lineHeight'];
   lg: React.CSSProperties['lineHeight'];
 }
 
 export interface LetterSpacing {
-  xs: React.CSSProperties['letterSpacing'];
-  normal: React.CSSProperties['letterSpacing'];
+  default: React.CSSProperties['letterSpacing'];
+  sm: React.CSSProperties['letterSpacing'];
+  md: React.CSSProperties['letterSpacing'];
   lg: React.CSSProperties['letterSpacing'];
 }
 
@@ -173,26 +176,22 @@ type BaseJoyTokens = {
     info: Pick<PaletteRange, BasePaletteRange>;
     success: Pick<PaletteRange, BasePaletteRange>;
     warning: Pick<PaletteRange, BasePaletteRange>;
-    text: Pick<PaletteText, 'heading' | 'headingIntro' | 'content' | 'detail' | 'overline'>;
-    bgNeutral: Pick<PaletteBgNeutral, 'plain' | 'transparency'>;
+    letter: Pick<PaletteLetter, 'major' | 'minor' | 'support'>;
+    surface: Pick<PaletteSurface, 'default' | 'level1' | 'level2' | 'level3'>;
     focusVisible: Palette['focusVisible'];
   };
   borderRadius: Pick<BorderRadius, 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   elevationRing: React.CSSProperties['boxShadow'];
   elevation: Pick<Elevation, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   focus: Pick<Focus, 'default'>;
-  htmlFontSize: React.CSSProperties['fontSize'];
   fontSize: Pick<
     FontSize,
     'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2' | 'xl3' | 'xl4' | 'xl5' | 'xl6'
   >;
-  fontFamily: Pick<FontFamily, 'sans' | 'mono'>;
-  fontWeight: Pick<
-    FontWeight,
-    'light' | 'regular' | 'medium' | 'semiBold' | 'bold' | 'extraBold' | 'black'
-  >;
-  lineHeight: Pick<LineHeight, 'xs' | 'sm' | 'normal' | 'lg'>;
-  letterSpacing: Pick<LetterSpacing, 'xs' | 'normal' | 'lg'>;
+  fontFamily: Pick<FontFamily, 'default' | 'display' | 'code' | 'fallback'>;
+  fontWeight: Pick<FontWeight, 'default' | 'xs' | 'sm' | 'md' | 'lg'>;
+  lineHeight: Pick<LineHeight, 'default' | 'xs' | 'sm' | 'md' | 'lg'>;
+  letterSpacing: Pick<LetterSpacing, 'default' | 'sm' | 'md' | 'lg'>;
   typography: Pick<
     TypographySystems,
     | 'h1'
@@ -237,16 +236,16 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> 
       ...colors.yellow,
       ...createLightModeVariantVariables('warning'),
     },
-    text: {
-      heading: 'var(--joy-palette-neutral-900)',
-      headingIntro: 'var(--joy-palette-brand-300)',
-      content: 'var(--joy-palette-neutral-600)',
-      detail: 'var(--joy-palette-neutral-500)',
-      overline: 'var(--joy-palette-neutral-500)',
+    letter: {
+      major: 'var(--joy-palette-neutral-800)',
+      minor: 'var(--joy-palette-neutral-600)',
+      support: 'var(--joy-palette-neutral-500)',
     },
-    bgNeutral: {
-      transparency: 'var(--joy-palette-neutral-50)',
-      plain: '#fff',
+    surface: {
+      default: 'var(--joy-palette-neutral-50)',
+      level1: '#fff',
+      level2: 'var(--joy-palette-neutral-100)',
+      level3: 'var(--joy-palette-neutral-200)',
     },
     focusVisible: 'var(--joy-palette-brand-200)',
   },
@@ -279,16 +278,16 @@ export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> =
       ...colors.yellow,
       ...createDarkModeVariantVariables('warning'),
     },
-    text: {
-      heading: '#fff',
-      headingIntro: 'var(--joy-palette-brand-300)',
-      content: 'var(--joy-palette-neutral-200)',
-      detail: 'var(--joy-palette-neutral-300)',
-      overline: 'var(--joy-palette-neutral-500)',
+    letter: {
+      major: 'var(--joy-palette-neutral-100)',
+      minor: 'var(--joy-palette-neutral-300)',
+      support: 'var(--joy-palette-neutral-400)',
     },
-    bgNeutral: {
-      transparency: 'var(--joy-palette-neutral-800)',
-      plain: '#040404',
+    surface: {
+      default: 'var(--joy-palette-neutral-800)',
+      level1: 'var(--joy-palette-neutral-900)',
+      level2: 'var(--joy-palette-neutral-700)',
+      level3: 'var(--joy-palette-neutral-600)',
     },
     focusVisible: 'var(--joy-palette-brand-400)',
   },
@@ -322,7 +321,6 @@ const themeWithoutVars: BaseJoyTokens = {
       outlineColor: 'var(--joy-palette-focusVisible)',
     },
   },
-  htmlFontSize: '16px',
   fontSize: {
     xs: '0.75rem',
     sm: '0.875rem',
@@ -336,126 +334,129 @@ const themeWithoutVars: BaseJoyTokens = {
     xl6: '4.5rem',
   },
   fontFamily: {
-    sans: '"Public Sans", Roboto',
-    mono: 'Consolas',
+    default: '"Public Sans", var(--joy-fontFamily-fallback)',
+    display: '"PlusJakartaSans-ExtraBold", var(--joy-fontFamily-fallback)',
+    code: 'Consolas',
+    fallback:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   },
   fontWeight: {
-    light: 300,
-    regular: 400,
-    medium: 500,
-    semiBold: 600,
-    bold: 700,
-    extraBold: 800,
-    black: 900,
+    default: 400,
+    xs: 200,
+    sm: 300,
+    md: 500,
+    lg: 700,
   },
   lineHeight: {
+    default: 1.5,
     xs: 1,
     sm: 1.25,
-    normal: 1.5,
+    md: 1.7,
     lg: 2,
   },
   letterSpacing: {
-    xs: '-0.01em',
-    normal: 0,
-    lg: '0.1em',
+    default: 0,
+    sm: '-0.01em',
+    md: '0.1em',
+    lg: '0.125em',
   },
   typography: {
     h1: {
-      fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-bold)' as React.CSSProperties['fontWeight'],
+      fontFamily: 'var(--joy-fontFamily-display)',
+      fontWeight: 'var(--joy-fontWeight-lg)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl4)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-xs)',
       color: 'var(--joy-palette-text-heading)',
     },
     h2: {
-      fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-semiBold)' as React.CSSProperties['fontWeight'],
+      fontFamily: 'var(--joy-fontFamily-display)',
+      fontWeight: 'var(--joy-fontWeight-md)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl3)',
       lineHeight: 'var(--joy-lineHeight-sm)',
-      letterSpacing: 'var(--joy-letterSpacing-normal)',
+      letterSpacing: 'var(--joy-letterSpacing-default)',
       color: 'var(--joy-palette-text-heading)',
     },
     h3: {
-      fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
+      fontFamily: 'var(--joy-fontFamily-default)',
+      fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl2)',
       lineHeight: 'var(--joy-lineHeight-sm)',
-      letterSpacing: 'var(--joy-letterSpacing-normal)',
+      letterSpacing: 'var(--joy-letterSpacing-default)',
       color: 'var(--joy-palette-text-heading)',
     },
     h4: {
-      fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-medium)' as React.CSSProperties['fontWeight'],
+      fontFamily: 'var(--joy-fontFamily-default)',
+      fontWeight: 'var(--joy-fontWeight-md)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl)',
-      lineHeight: 'var(--joy-lineHeight-normal)',
-      letterSpacing: 'var(--joy-letterSpacing-normal)',
+      lineHeight: 'var(--joy-lineHeight-default)',
+      letterSpacing: 'var(--joy-letterSpacing-default)',
       color: 'var(--joy-palette-text-heading)',
     },
     h5: {
-      fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
+      fontFamily: 'var(--joy-fontFamily-default)',
+      fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-lg)',
-      lineHeight: 'var(--joy-lineHeight-normal)',
-      letterSpacing: 'var(--joy-letterSpacing-normal)',
+      lineHeight: 'var(--joy-lineHeight-default)',
+      letterSpacing: 'var(--joy-letterSpacing-default)',
       color: 'var(--joy-palette-text-heading)',
     },
     headingSubtitle: {
-      fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
+      fontFamily: 'var(--joy-fontFamily-default)',
+      fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-lg)',
-      lineHeight: 'var(--joy-lineHeight-normal)',
-      letterSpacing: 'var(--joy-letterSpacing-normal)',
-      color: 'var(--joy-palette-text-content)',
+      lineHeight: 'var(--joy-lineHeight-default)',
+      letterSpacing: 'var(--joy-letterSpacing-default)',
+      color: 'var(--joy-palette-letter-major)',
     },
     body: {
-      fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
+      fontFamily: 'var(--joy-fontFamily-default)',
+      fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
-      lineHeight: 'var(--joy-lineHeight-normal)',
-      letterSpacing: 'var(--joy-letterSpacing-normal)',
-      color: 'var(--joy-palette-text-content)',
+      lineHeight: 'var(--joy-lineHeight-default)',
+      letterSpacing: 'var(--joy-letterSpacing-default)',
+      color: 'var(--joy-palette-letter-major)',
     },
     caption: {
-      fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
+      fontFamily: 'var(--joy-fontFamily-default)',
+      fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-sm)',
-      lineHeight: 'var(--joy-lineHeight-normal)',
-      letterSpacing: 'var(--joy-letterSpacing-normal)',
-      color: 'var(--joy-palette-text-content)',
+      lineHeight: 'var(--joy-lineHeight-default)',
+      letterSpacing: 'var(--joy-letterSpacing-default)',
+      color: 'var(--joy-palette-letter-major)',
     },
     detail: {
-      fontFamily: 'var(--joy-fontFamily-sans)',
-      fontWeight: 'var(--joy-fontWeight-regular)' as React.CSSProperties['fontWeight'],
+      fontFamily: 'var(--joy-fontFamily-default)',
+      fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
-      lineHeight: 'var(--joy-lineHeight-normal)',
-      letterSpacing: 'var(--joy-letterSpacing-normal)',
-      color: 'var(--joy-palette-text-detail)',
+      lineHeight: 'var(--joy-lineHeight-default)',
+      letterSpacing: 'var(--joy-letterSpacing-default)',
+      color: 'var(--joy-palette-letter-minor)',
     },
     headingIntro: {
-      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontFamily: 'var(--joy-fontFamily-default)',
       fontWeight: 'var(--joy-fontWeight-extraBold)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
-      lineHeight: 'var(--joy-lineHeight-normal)',
+      lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-lg)',
       textTransform: 'uppercase',
-      color: 'var(--joy-palette-text-headingIntro)',
+      color: 'var(--joy-palette-letter-minor)',
     },
     overline: {
-      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontFamily: 'var(--joy-fontFamily-default)',
       fontWeight: 'var(--joy-fontWeight-extraBold)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
-      lineHeight: 'var(--joy-lineHeight-normal)',
+      lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-lg)',
       textTransform: 'uppercase',
-      color: 'var(--joy-palette-text-overline)',
+      color: 'var(--joy-palette-letter-support)',
     },
     button: {
-      fontFamily: 'var(--joy-fontFamily-sans)',
+      fontFamily: 'var(--joy-fontFamily-default)',
       fontWeight: 'var(--joy-fontWeight-bold)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
-      lineHeight: 'var(--joy-lineHeight-normal)',
-      letterSpacing: 'var(--joy-letterSpacing-normal)',
+      lineHeight: 'var(--joy-lineHeight-default)',
+      letterSpacing: 'var(--joy-letterSpacing-default)',
     },
   },
   variant: {

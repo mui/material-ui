@@ -38,10 +38,8 @@ describe('[Joy] CssVarsProvider', () => {
           <div>
             <div data-testid="palette-brand">{JSON.stringify(theme.vars.palette.brand)}</div>
             <div data-testid="palette-neutral">{JSON.stringify(theme.vars.palette.neutral)}</div>
-            <div data-testid="palette-text">{JSON.stringify(theme.vars.palette.text)}</div>
-            <div data-testid="palette-bgNeutral">
-              {JSON.stringify(theme.vars.palette.bgNeutral)}
-            </div>
+            <div data-testid="palette-letter">{JSON.stringify(theme.vars.palette.letter)}</div>
+            <div data-testid="palette-surface">{JSON.stringify(theme.vars.palette.surface)}</div>
             <div data-testid="palette-focusVisible">
               {JSON.stringify(theme.vars.palette.focusVisible)}
             </div>
@@ -127,19 +125,19 @@ describe('[Joy] CssVarsProvider', () => {
           containedDisabledBg: 'var(--joy-palette-neutral-containedDisabledBg)',
         }),
       );
-      expect(screen.getByTestId('palette-text').textContent).to.equal(
+      expect(screen.getByTestId('palette-letter').textContent).to.equal(
         JSON.stringify({
-          heading: 'var(--joy-palette-text-heading)',
-          headingIntro: 'var(--joy-palette-text-headingIntro)',
-          content: 'var(--joy-palette-text-content)',
-          detail: 'var(--joy-palette-text-detail)',
-          overline: 'var(--joy-palette-text-overline)',
+          major: 'var(--joy-palette-letter-major)',
+          minor: 'var(--joy-palette-letter-minor)',
+          support: 'var(--joy-palette-letter-support)',
         }),
       );
-      expect(screen.getByTestId('palette-bgNeutral').textContent).to.equal(
+      expect(screen.getByTestId('palette-surface').textContent).to.equal(
         JSON.stringify({
-          transparency: 'var(--joy-palette-bgNeutral-transparency)',
-          plain: 'var(--joy-palette-bgNeutral-plain)',
+          default: 'var(--joy-palette-surface-default)',
+          level1: 'var(--joy-palette-surface-level1)',
+          level2: 'var(--joy-palette-surface-level2)',
+          level3: 'var(--joy-palette-surface-level3)',
         }),
       );
       expect(screen.getByTestId('palette-focusVisible').textContent).to.equal(
@@ -183,33 +181,35 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('font-family').textContent).to.equal(
         JSON.stringify({
-          sans: 'var(--joy-fontFamily-sans)',
-          mono: 'var(--joy-fontFamily-mono)',
+          default: 'var(--joy-fontFamily-default)',
+          display: 'var(--joy-fontFamily-display)',
+          code: 'var(--joy-fontFamily-code)',
+          fallback: 'var(--joy-fontFamily-fallback)',
         }),
       );
       expect(screen.getByTestId('font-weight').textContent).to.equal(
         JSON.stringify({
-          light: 'var(--joy-fontWeight-light)',
-          regular: 'var(--joy-fontWeight-regular)',
-          medium: 'var(--joy-fontWeight-medium)',
-          semiBold: 'var(--joy-fontWeight-semiBold)',
-          bold: 'var(--joy-fontWeight-bold)',
-          extraBold: 'var(--joy-fontWeight-extraBold)',
-          black: 'var(--joy-fontWeight-black)',
+          default: 'var(--joy-fontWeight-default)',
+          xs: 'var(--joy-fontWeight-xs)',
+          sm: 'var(--joy-fontWeight-sm)',
+          md: 'var(--joy-fontWeight-md)',
+          lg: 'var(--joy-fontWeight-lg)',
         }),
       );
       expect(screen.getByTestId('line-height').textContent).to.equal(
         JSON.stringify({
+          default: 'var(--joy-lineHeight-default)',
           xs: 'var(--joy-lineHeight-xs)',
           sm: 'var(--joy-lineHeight-sm)',
-          normal: 'var(--joy-lineHeight-normal)',
+          md: 'var(--joy-lineHeight-md)',
           lg: 'var(--joy-lineHeight-lg)',
         }),
       );
       expect(screen.getByTestId('letter-spacing').textContent).to.equal(
         JSON.stringify({
-          xs: 'var(--joy-letterSpacing-xs)',
-          normal: 'var(--joy-letterSpacing-normal)',
+          default: 'var(--joy-letterSpacing-default)',
+          sm: 'var(--joy-letterSpacing-sm)',
+          md: 'var(--joy-letterSpacing-md)',
           lg: 'var(--joy-letterSpacing-lg)',
         }),
       );
@@ -265,8 +265,8 @@ describe('[Joy] CssVarsProvider', () => {
       expect(container.firstChild).toHaveComputedStyle({
         fontSize: '16px',
         fontFamily: fontFamiliesAreNotQuoted
-          ? defaultTheme.fontFamily.sans
-          : `"${defaultTheme.fontFamily.sans}"`,
+          ? defaultTheme.fontFamily.default
+          : `"${defaultTheme.fontFamily.default}"`,
         fontWeight: fontWeight400IsNormal ? 'normal' : '400',
         lineHeight: '24px',
       });

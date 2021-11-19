@@ -77,7 +77,7 @@ export default function JoySketching() {
           styles={(theme) => ({
             body: {
               margin: 0,
-              backgroundColor: 'var(--default-palette-bgNeutral-transparency)',
+              backgroundColor: 'var(--default-palette-surface-default)',
               color: 'var(--default-palette-text-content)',
               ...theme.typography.body,
               '*': {

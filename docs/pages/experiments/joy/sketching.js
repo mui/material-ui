@@ -161,7 +161,8 @@ const Button = styled('button')(
 const Paper = styled('div')(
   ({ theme, variant = 'text', color = 'neutral', enableContext = false, elevation }) => [
     {
-      '--joy-palette-neutral-textBg': 'var(--joy-palette-bgNeutral-plain)',
+      '--joy-palette-neutral-textBg': 'var(--joy-palette-surface-level1)',
+      '--joy-palette-neutral-filledBg': 'var(--joy-palette-surface-level2)',
       minWidth: 100,
       minHeight: 120,
       padding: '1rem',
@@ -185,7 +186,7 @@ const List = styled('ul')(({ theme, variant = 'text', color = 'neutral' }) => [
     padding: '0.5rem 0.25rem',
     borderRadius: 4,
     margin: 0,
-    backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-bgNeutral-plain))`,
+    backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-surface-level1))`,
   },
   theme.variant[variant]?.[color],
 ]);
@@ -232,6 +233,7 @@ const Divider = styled('hr')(({ theme, color = 'neutral', direction = 'horizonta
     margin: 0,
     border: 0,
     backgroundColor: `var(--joy-variant-outlinedBorder, ${theme.vars.palette[color].outlinedBorder})`,
+    opacity: 0.6,
   },
   direction === 'horizontal' && {
     height: 1,
@@ -248,7 +250,7 @@ const Input = styled('input')(({ theme, variant = 'outlined', color = 'neutral' 
     minHeight: 48,
     maxWidth: '100%',
     border: '2px solid transparent',
-    backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-bgNeutral-plain))`,
+    backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-surface-level1))`,
     borderRadius: '4px',
     display: 'inline-flex',
     alignItems: 'center',
@@ -256,7 +258,7 @@ const Input = styled('input')(({ theme, variant = 'outlined', color = 'neutral' 
     '&:focus-visible': theme.focus.default,
     '&::placeholder': {
       opacity: 0.72,
-      color: `var(--joy-variant-${variant}Color, ${theme.vars.palette.text.detail})`,
+      color: `var(--joy-variant-${variant}Color, ${theme.vars.palette.letter.minor})`,
     },
   },
   theme.typography.body,
@@ -288,8 +290,8 @@ export default function JoySketching() {
         styles={(theme) => ({
           body: {
             margin: 0,
-            backgroundColor: 'var(--joy-palette-bgNeutral-transparency)',
-            color: 'var(--joy-palette-text-content)',
+            backgroundColor: 'var(--joy-palette-surface-default)',
+            color: 'var(--joy-palette-letter-major)',
             ...theme.typography.body,
             '*': {
               boxSizing: 'border-box',
@@ -342,6 +344,7 @@ export default function JoySketching() {
               gap: '1rem',
               '--joy-variant-outlinedColor': 'var(--joy-palette-brand-200)',
               '--joy-variant-outlinedBorder': 'var(--joy-palette-brand-700)',
+              '--joy-variant-outlinedHoverBorder': 'var(--joy-palette-brand-500)',
               '--joy-variant-outlinedHoverBg': 'var(--joy-palette-brand-700)',
             }}
           >

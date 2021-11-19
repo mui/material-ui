@@ -561,8 +561,8 @@ export default function JoyDashboard() {
         styles={(theme) => ({
           body: {
             margin: 0,
-            backgroundColor: 'var(--joy-palette-bgNeutral-transparency)',
-            color: 'var(--joy-palette-text-content)',
+            backgroundColor: 'var(--joy-palette-surface-default)',
+            color: 'var(--joy-palette-letter-major)',
             ...theme.typography.body,
             '*': {
               boxSizing: 'border-box',

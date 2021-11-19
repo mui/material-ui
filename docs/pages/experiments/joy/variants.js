@@ -129,7 +129,7 @@ const ColorSchemePicker = () => {
         border: '1px solid',
         borderRadius: '24px',
         ...theme.variant.outlined.brand,
-        backgroundColor: 'var(--joy-palette-bgNeutral-transparency)',
+        backgroundColor: 'var(--joy-palette-surface-default)',
       })}
     >
       <Box sx={{ display: 'flex', gap: '8px', p: '6px' }}>
@@ -340,8 +340,8 @@ export default function JoyVariants() {
         styles={(theme) => ({
           body: {
             margin: 0,
-            backgroundColor: 'var(--joy-palette-bgNeutral-transparency)',
-            color: 'var(--joy-palette-text-content)',
+            backgroundColor: 'var(--joy-palette-surface-default)',
+            color: 'var(--joy-palette-letter-major)',
             ...theme.typography.body,
             '*': {
               boxSizing: 'border-box',

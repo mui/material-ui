@@ -42,7 +42,7 @@ const PushButton = styled('button', {
   borderRadius: 18,
   cursor: selected ? 'initial' : 'pointer',
   border: '1px solid',
-  color: selected ? 'var(--joy-palette-main)' : 'var(--joy-palette-text-content)',
+  color: selected ? 'var(--joy-palette-main)' : 'var(--joy-palette-letter-major)',
   borderColor: selected ? 'var(--joy-palette-divider)' : 'transparent',
   backgroundColor: selected ? 'var(--joy-palette-selected)' : 'transparent',
   display: 'flex',
@@ -418,8 +418,8 @@ export default function Joy() {
         styles={(theme) => ({
           body: {
             margin: 0,
-            backgroundColor: 'var(--joy-palette-bgNeutral-transparency)',
-            color: 'var(--joy-palette-text-content)',
+            backgroundColor: 'var(--joy-palette-surface-default)',
+            color: 'var(--joy-palette-letter-major)',
             ...(theme as JoyTheme).typography.body,
             '*': {
               boxSizing: 'border-box',

@@ -46,17 +46,17 @@ export interface PaletteRange extends PaletteVariant {
   900: string;
 }
 
-export interface PaletteText {
-  heading: React.CSSProperties['color'];
-  headingIntro: React.CSSProperties['color'];
-  content: React.CSSProperties['color'];
-  detail: React.CSSProperties['color'];
-  overline: React.CSSProperties['color'];
+export interface PaletteLetter {
+  major: React.CSSProperties['color'];
+  minor: React.CSSProperties['color'];
+  support: React.CSSProperties['color'];
 }
 
-export interface PaletteBgNeutral {
-  transparency: React.CSSProperties['backgroundColor'];
-  plain: React.CSSProperties['backgroundColor'];
+export interface PaletteSurface {
+  default: React.CSSProperties['backgroundColor'];
+  level1: React.CSSProperties['backgroundColor'];
+  level2: React.CSSProperties['backgroundColor'];
+  level3: React.CSSProperties['backgroundColor'];
 }
 
 export interface ColorPalettePropOverrides {}
@@ -73,8 +73,8 @@ export type ColorPalette = {
 };
 
 export interface Palette extends ColorPalette {
-  text: PaletteText;
-  bgNeutral: PaletteBgNeutral;
+  letter: PaletteLetter;
+  surface: PaletteSurface;
   focusVisible: React.CSSProperties['outline'];
 }
 

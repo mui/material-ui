@@ -134,7 +134,7 @@ const ColorSchemePicker = () => {
         border: '1px solid',
         borderRadius: '24px',
         ...theme.variant.outlined.brand,
-        backgroundColor: 'var(--joy-palette-bgNeutral-transparency)',
+        backgroundColor: 'var(--joy-palette-surface-default)',
       })}
     >
       <Box sx={{ display: 'flex', gap: '8px', p: '6px' }}>
@@ -386,8 +386,8 @@ export default function JoyVariants() {
           styles={(theme) => ({
             body: {
               margin: 0,
-              backgroundColor: 'var(--joy-palette-bgNeutral-transparency)',
-              color: 'var(--joy-palette-text-content)',
+              backgroundColor: 'var(--joy-palette-surface-default)',
+              color: 'var(--joy-palette-letter-major)',
               ...theme.typography.body,
               '*': {
                 boxSizing: 'border-box',
@@ -415,8 +415,8 @@ export default function JoyVariants() {
           <h2>Joy provides built-in contextual override</h2>
           <p>
             This page demonstrates built-in contextual override feature. Parent component that has
-            `contained` variant can will automatically adjust children to match its color. You can
-            customize the contextual override from the theming API.
+            `contained` variant will automatically adjust children to match its color. (Developers
+            will be able to customize the contextual override from the theming API.)
           </p>
           <Box
             sx={{
