@@ -288,8 +288,9 @@ const Input = styled('input')(({ theme, variant = 'outlined', color = 'neutral' 
     },
     '&:focus-visible': {
       ...theme.focus.default,
+      outlineWidth: 2,
       ...(color !== 'neutral' && {
-        outlineColor: `var(--joy-palette-${color}-${variant === 'filled' ? '300' : '100'})`,
+        outlineColor: `var(--joy-palette-${color}-filledHoverBg)`,
       }),
     },
   },

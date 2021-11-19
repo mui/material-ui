@@ -231,7 +231,6 @@ const TaskCard = ({ children }) => (
     </Box>
     <Box sx={{ display: 'flex', gap: '10px' }}>
       <Avatar
-        imgProps={{ 'aria-labelledby': 'demo-task-card-assigne-name' }}
         src="/static/images/avatar/1-sm.jpeg"
         variant="outlined"
         sx={{ borderColor: '#fff' }}
@@ -375,6 +374,7 @@ export default function MuiHome() {
                 outlinedBg: 'var(--joy-palette-brand-800)',
                 outlinedBorder: 'var(--joy-palette-brand-500)',
                 outlinedHoverBg: 'var(--joy-palette-brand-700)',
+                outlinedHoverBorder: 'var(--joy-palette-brand-400)',
               },
               text: {
                 content: '#fff',
