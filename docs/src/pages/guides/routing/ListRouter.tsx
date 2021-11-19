@@ -13,7 +13,9 @@ import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
   Route,
+  Routes,
   MemoryRouter,
+  useLocation,
 } from 'react-router-dom';
 
 interface ListItemLinkProps {
@@ -46,17 +48,23 @@ function ListItemLink(props: ListItemLinkProps) {
   );
 }
 
+function Content() {
+  const location = useLocation();
+  return (
+    <Typography variant="body2" sx={{ pb: 2 }} color="text.secondary">
+      Current route: {location.pathname}
+    </Typography>
+  );
+}
+
 export default function ListRouter() {
   return (
     <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
       <Box sx={{ width: 360 }}>
-        <Route>
-          {({ location }) => (
-            <Typography variant="body2" sx={{ pb: 2 }} color="text.secondary">
-              Current route: {location.pathname}
-            </Typography>
-          )}
-        </Route>
+        <Routes>
+          <Route path="*" element={<Content />} />
+        </Routes>
+
         <Paper elevation={0}>
           <List aria-label="main mailbox folders">
             <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
