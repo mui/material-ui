@@ -4,7 +4,7 @@ import { describeConformance, createRenderer, screen } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
-import { generateRowGap, generateColumnGap, generateDirection } from './Grid';
+import { generateGrid, generateRowGap, generateColumnGap, generateDirection } from './Grid';
 
 describe('<Grid />', () => {
   const { render } = createRenderer();
@@ -302,6 +302,45 @@ describe('<Grid />', () => {
           },
           marginLeft: '-16px',
           width: 'calc(100% + 16px)',
+        },
+      });
+    });
+  });
+
+  describe('prop: columns', () => {
+    it('should generate responsive grid', () => {
+      const theme = createTheme();
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: { xs: 4, sm: 8, md: 12 },
+            xs: 1,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        flexBasis: '25%',
+        flexGrow: 0,
+        maxWidth: '25%',
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          flexBasis: '12.5%',
+          flexGrow: 0,
+          maxWidth: '12.5%',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          flexBasis: '8.333333%',
+          flexGrow: 0,
+          maxWidth: '8.333333%',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.lg}px)`]: {
+          flexBasis: '8.333333%',
+          flexGrow: 0,
+          maxWidth: '8.333333%',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.xl}px)`]: {
+          flexBasis: '8.333333%',
+          flexGrow: 0,
+          maxWidth: '8.333333%',
         },
       });
     });
