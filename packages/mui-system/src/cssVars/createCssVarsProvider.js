@@ -50,7 +50,11 @@ export default function createCssVarsProvider(options) {
     defaultMode = desisgnSystemMode,
     defaultColorScheme = designSystemColorScheme,
   }) {
-    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = baseTheme;
+    // make sure that baseTheme is always independent of each <CssVarsProvider /> call.
+    // JSON.parse(JSON.stringify(...)) is okay to be used as long as the baseTheme is a plain object.
+    const clonedBaseTheme = React.useMemo(() => JSON.parse(JSON.stringify(baseTheme)), []);
+
+    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = clonedBaseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
 
     let mergedTheme = deepmerge(restBaseTheme, restThemeProp);
@@ -94,6 +98,8 @@ export default function createCssVarsProvider(options) {
       colorSchemes,
       vars: rootVars,
     };
+
+    // console.log('mergedTheme', mergedTheme);
 
     const styleSheet = {};
 
