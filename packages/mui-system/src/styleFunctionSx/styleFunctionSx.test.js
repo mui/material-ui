@@ -112,6 +112,21 @@ describe('styleFunctionSx', () => {
         },
       });
     });
+
+    it('allow values to be `null` or `undefined`', () => {
+      expect(() =>
+        styleFunctionSx({
+          theme,
+          sx: { transform: null },
+        }),
+      ).not.to.throw();
+
+      const result = styleFunctionSx({
+        theme,
+        sx: { typography: null, m: null },
+      });
+      expect(result).to.deep.equal({});
+    });
   });
 
   it('resolves non system CSS properties if specified', () => {

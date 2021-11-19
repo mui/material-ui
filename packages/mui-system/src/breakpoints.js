@@ -96,7 +96,7 @@ export function createEmptyBreakpointObject(breakpointsInput = {}) {
 export function removeUnusedBreakpoints(breakpointKeys, style) {
   return breakpointKeys.reduce((acc, key) => {
     const breakpointOutput = acc[key];
-    const isBreakpointUnused = Object.keys(breakpointOutput).length === 0;
+    const isBreakpointUnused = !breakpointOutput || Object.keys(breakpointOutput).length === 0;
     if (isBreakpointUnused) {
       delete acc[key];
     }
