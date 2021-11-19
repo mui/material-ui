@@ -265,7 +265,7 @@ export default function AppSearch() {
           fontSize="small"
           sx={{
             color: (theme) =>
-              theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.primary[500],
+              theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[500],
           }}
         />
         <SearchLabel>{search}</SearchLabel>

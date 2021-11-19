@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography, { TypographyTypeMap } from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { generateUtilityClasses } from '@mui/base';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
@@ -27,21 +27,28 @@ const PickersMonthRoot = styled<
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  cursor: 'pointer',
-  height: 64,
+  color: 'unset',
+  backgroundColor: 'transparent',
+  border: 0,
   outline: 0,
-  transition: theme.transitions.create('font-size', { duration: '100ms' }),
-  '&:focus': {
-    color: theme.palette.primary.main,
-    fontWeight: theme.typography.fontWeightMedium,
+  ...theme.typography.subtitle1,
+  margin: '8px 0',
+  height: 36,
+  borderRadius: 18,
+  cursor: 'pointer',
+  '&:focus, &:hover': {
+    backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
   },
   '&:disabled': {
     pointerEvents: 'none',
     color: theme.palette.text.secondary,
   },
   [`&.${classes.selected}`]: {
-    color: theme.palette.primary.main,
-    fontWeight: theme.typography.fontWeightMedium,
+    color: theme.palette.primary.contrastText,
+    backgroundColor: theme.palette.primary.main,
+    '&:focus, &:hover': {
+      backgroundColor: theme.palette.primary.dark,
+    },
   },
 }));
 

@@ -3,7 +3,7 @@
     "open": { "type": { "name": "bool" }, "required": true },
     "anchorEl": {
       "type": {
-        "name": "custom",
+        "name": "union",
         "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
       }
     },
