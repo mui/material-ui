@@ -30,7 +30,7 @@ This release features some major highlights:
 ## A new virtualization engine
 
 `DataGrid` and `DataGridPro` now feature a brand-new virtualization engine!
-We decided to rewrite it completely to address the many issues raised by the community, and to make easier to release new features that impact the rendering of rows and columns.
+We decided to rewrite it to address the many issues raised by the community and to make it easier to release new features that impact the rendering of rows and columns.
 An advantage over the previous version is that we now use the native scroll.
 This means that scrolling the grid is like scrolling a webpage,
 so any jittering caused when the scroll is overridden is gone.
