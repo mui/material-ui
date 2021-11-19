@@ -83,7 +83,7 @@
     "@types/luxon": "^1.27.1",
     "date-fns": "^2.25.0",
     "dayjs": "^1.10.7",
-    "luxon": "^1.28.0",
+    "luxon": "^1.21.3 || ^2.x",
     "moment": "^2.29.1"
   },
   "sideEffects": false,
