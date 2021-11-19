@@ -124,7 +124,7 @@ const ProductsSwitcher = ({
     <ProductItem
       aria-label="Go to design-kits page"
       icon={<IconImage name="product-designkits" />}
-      name="Design Kits"
+      name="Design kits"
       description="Our components available in your favorite design tool."
       href={ROUTES.productDesignKits}
     />,

@@ -3,7 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { refType } from '@mui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import capitalize from '../utils/capitalize';
@@ -27,6 +27,7 @@ const SelectSelect = styled('div', {
       // Win specificity over the input base
       { [`&.${selectClasses.select}`]: styles.select },
       { [`&.${selectClasses.select}`]: styles[ownerState.variant] },
+      { [`&.${selectClasses.multiple}`]: styles.multiple },
     ];
   },
 })(nativeSelectSelectStyles, {
@@ -82,10 +83,10 @@ function isEmpty(display) {
 }
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, disabled, open } = ownerState;
+  const { classes, variant, disabled, multiple, open } = ownerState;
 
   const slots = {
-    select: ['select', variant, disabled && 'disabled'],
+    select: ['select', variant, disabled && 'disabled', multiple && 'multiple'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
   };
@@ -371,7 +372,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     return React.cloneElement(child, {
-      'aria-selected': selected ? 'true' : undefined,
+      'aria-selected': selected ? 'true' : 'false',
       onClick: handleItemClick(child),
       onKeyUp: (event) => {
         if (event.key === ' ') {

@@ -1,23 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
-import { useFakeTimers } from 'sinon';
+import { describeConformance, createRenderer, fireEvent } from 'test/utils';
 import Icon from '@mui/material/Icon';
 import Tooltip from '@mui/material/Tooltip';
 import { fabClasses } from '@mui/material/Fab';
 import SpeedDialAction, { speedDialActionClasses as classes } from '@mui/material/SpeedDialAction';
 
 describe('<SpeedDialAction />', () => {
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   describeConformance(
     <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
@@ -44,9 +34,7 @@ describe('<SpeedDialAction />', () => {
     );
 
     fireEvent.mouseOver(container.querySelector('button'));
-    act(() => {
-      clock.tick(100);
-    });
+    clock.tick(100);
 
     expect(getByText('placeholder')).to.have.class('bar');
   });

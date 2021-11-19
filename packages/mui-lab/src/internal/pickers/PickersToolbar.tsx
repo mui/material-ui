@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
-import { generateUtilityClasses } from '@mui/core';
+import { generateUtilityClasses } from '@mui/base';
 import PenIcon from '../svg-icons/Pen';
 import CalendarIcon from '../svg-icons/Calendar';
 import ClockIcon from '../svg-icons/Clock';

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
-import ClickAwayListener from '@mui/core/ClickAwayListener';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';

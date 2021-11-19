@@ -226,7 +226,7 @@ const pages: readonly MuiPage[] = [
             title: 'GridPrintExportOptions',
           },
         ].map((page) => {
-          return { ...page, linkProps: { as: page.pathname.replace(/^\/api-docs/, '/api') } };
+          return { ...page, linkProps: { as: `${page.pathname.replace(/^\/api-docs/, '/api')}/` } };
         }),
       },
     ]
@@ -234,7 +234,7 @@ const pages: readonly MuiPage[] = [
         a.pathname.replace('/api-docs/', '').localeCompare(b.pathname.replace('/api-docs/', '')),
       )
       .map((page) => {
-        return { ...page, linkProps: { as: page.pathname.replace(/^\/api-docs/, '/api') } };
+        return { ...page, linkProps: { as: `${page.pathname.replace(/^\/api-docs/, '/api')}/` } };
       }),
   },
   {

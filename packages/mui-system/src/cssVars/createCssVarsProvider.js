@@ -17,6 +17,7 @@ export default function createCssVarsProvider(options) {
     defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
     prefix: designSystemPrefix = '',
+    shouldSkipGeneratingVar,
   } = options;
 
   if (
@@ -81,24 +82,28 @@ export default function createCssVarsProvider(options) {
       return colorScheme;
     })();
 
-    const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme, { prefix });
+    const { css: rootCss, vars: rootVars } = cssVarsParser(mergedTheme, {
+      prefix,
+      basePrefix: designSystemPrefix,
+      shouldSkipGeneratingVar,
+    });
 
     mergedTheme = {
       ...mergedTheme,
       ...colorSchemes[resolvedColorScheme],
+      colorSchemes,
       vars: rootVars,
     };
 
     const styleSheet = {};
 
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
-      const { css, vars } = cssVarsParser(scheme, { prefix });
-      if (key === resolvedColorScheme) {
-        mergedTheme.vars = {
-          ...mergedTheme.vars,
-          ...vars,
-        };
-      }
+      const { css, vars } = cssVarsParser(scheme, {
+        prefix,
+        basePrefix: designSystemPrefix,
+        shouldSkipGeneratingVar,
+      });
+      mergedTheme.vars = deepmerge(mergedTheme.vars, vars);
       const resolvedDefaultColorScheme = (() => {
         if (typeof defaultColorScheme === 'string') {
           return defaultColorScheme;

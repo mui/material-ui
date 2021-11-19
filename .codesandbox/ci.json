@@ -12,7 +12,7 @@
     "packages/mui-private-theming",
     "packages/mui-types",
     "packages/mui-utils",
-    "packages/mui-core",
+    "packages/mui-base",
     "packages/mui-styled-engine",
     "packages/mui-styled-engine-sc",
     "packages/mui-material-next",
@@ -30,7 +30,7 @@
     "@mui/private-theming": "packages/mui-private-theming/build",
     "@mui/types": "packages/mui-types/build",
     "@mui/utils": "packages/mui-utils/build",
-    "@mui/core": "packages/mui-core/build",
+    "@mui/base": "packages/mui-base/build",
     "@mui/material-next": "packages/mui-material-next/build",
     "@mui/joy": "packages/mui-joy/build"
   },

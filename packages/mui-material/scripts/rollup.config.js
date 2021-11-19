@@ -91,11 +91,11 @@ function resolveNestedImport(packageFolder, importee) {
 }
 
 // Resolve imports like:
-// import Portal from '@mui/core/Portal';
+// import Portal from '@mui/base/Portal';
 const nestedFolder = {
   resolveId: (importee) => {
-    if (importee.indexOf('@mui/core/') === 0) {
-      return resolveNestedImport('mui-core', importee);
+    if (importee.indexOf('@mui/base/') === 0) {
+      return resolveNestedImport('mui-base', importee);
     }
 
     if (importee.indexOf('@mui/private-theming/') === 0) {

@@ -22,9 +22,18 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 
 ## Writing Tests
 
-For all unit tests, please use the return value from `test/utils/createClientRender`.
+For all unit tests, please use the return value from `test/utils/createRenderer`.
 It prepares the test suite and returns a function with the same interface as
 [`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
+
+````js
+describe('test suite', () => {
+  const { render } = createRenderer()
+
+  test('first', () => {
+    render(<input />);
+  });
+})
 
 For new tests please use `expect` from the BDD testing approach. Prefer to use as expressive [matchers](https://www.chaijs.com/api/bdd/) as possible. This keeps
 the tests readable, and, more importantly, the message if they fail as descriptive as possible.
@@ -76,7 +85,7 @@ function SomeComponent({ variant }) {
 expect(() => {
   render(<SomeComponent variant="unexpected" />);
 }).toErrorDev(["That variant doesn't make sense.", '`variant` is deprecated.']);
-```
+````
 
 ```js
 function SomeComponent({ variant }) {
@@ -180,7 +189,7 @@ You can pass the same arguments as you could to `mocha`.
 For example, `yarn test:regressions:run --watch --grep "docs-system-basic"` to take new screenshots of every demo in `docs/src/pages/system/basic`.
 You can view the screenshots in `test/regressions/screenshots/chrome`.
 
-Alternatively, you might want to open `http://localhost:5000` (while `yarn test:regressions:dev` is running) to view individual views separately.
+Alternatively, you might want to open `http://localhost:3000` (while `yarn test:regressions:dev` is running) to view individual views separately.
 
 ### Caveats
 

@@ -48,49 +48,49 @@ Here are the most significant improvements since early July 2021.
 
   <a href="/components/masonry/"><img loading="lazy" src="/static/blog/2021-q3-update/masonry.png" style="width: 700px; margin-bottom: 16px;" /></a>
 
-- We introduced a new [package of components without styles](https://www.npmjs.com/package/@mui/core), laying the foundations for supporting multiple design systems with headless components.
+- We introduced a new [package of components without styles](https://www.npmjs.com/package/@mui/base), laying the foundations for supporting multiple design systems with headless components.
   While it was tough to balance the time between working on v5 stable and developing the unstyled components, we still managed to introduce the first few:
 
   - [Autocomplete](/components/autocomplete/#useautocomplete)
 
   ```jsx
-  import { useAutocomplete } from '@mui/core/AutocompleteUnstyled';
+  import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
   ```
 
   - [Button](/components/buttons/#unstyled)
 
   ```jsx
-  import { useButton } from '@mui/core/ButtonUnstyled';
+  import { useButton } from '@mui/base/ButtonUnstyled';
   ```
 
   - [Modal](/components/modal/#unstyled)
 
   ```jsx
-  import ModalUnstyled from '@mui/core/ModalUnstyled';
+  import ModalUnstyled from '@mui/base/ModalUnstyled';
   ```
 
   - [Slider](/components/slider/#unstyled)
 
   ```jsx
-  import SliderUnstyled from '@mui/core/SliderUnstyled';
+  import SliderUnstyled from '@mui/base/SliderUnstyled';
   ```
 
   - [Switch](/components/switches/#unstyled)
 
   ```jsx
-  import { useSwitch } from '@mui/core/SwitchUnstyled';
+  import { useSwitch } from '@mui/base/SwitchUnstyled';
   ```
 
   - [Portal](/components/portal/#unstyled)
 
   ```jsx
-  import Portal from '@mui/core/Portal';
+  import Portal from '@mui/base/Portal';
   ```
 
   - [TrapFocus](/components/trap-focus/#unstyled)
 
   ```jsx
-  import TrapFocus from '@mui/core/Unstable_TrapFocus';
+  import TrapFocus from '@mui/base/Unstable_TrapFocus';
   ```
 
 ### MUI X
@@ -193,7 +193,7 @@ We'll do our best, no guarantee!
   In the last few weeks, we have seen a strong influx of feedback from the community.
   We need to make the most of this feedback to solve regressions, improve the documentation for the new APIs, adjust the tradeoffs we took in the light of more information, and more.
   [15%](https://npm-stat.com/charts.html?package=%40material-ui%2Fcore&package=%40mui%2Fmaterial&from=2020-10-25&to=2021-10-15) of the community has migrated, so far.
-- 🦴 Migrate more components to `@mui/core`. [Michał](https://github.com/michaldudak) has recently added support for the [Button](https://mui.com/components/buttons/#unstyled).
+- 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Button](https://mui.com/components/buttons/#unstyled).
   You can follow our progress in the [umbrella issue](https://github.com/mui-org/material-ui/issues/27170).
 - 🎨 We are [exploring](https://github.com/mui-org/material-ui/discussions/29024) the introduction of CSS variables.
   Since v5, MUI is no longer actively supporting IE 11. Dropping this browser requirement unlocks new capabilities of the web platform.

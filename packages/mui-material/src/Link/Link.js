@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha, getPath } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';

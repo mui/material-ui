@@ -5,7 +5,7 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { ListItemButtonClasses } from './listItemButtonClasses';
 
-interface ListItemButtonBaseProps {
+export interface ListItemButtonBaseProps {
   /**
    * Defines the `align-items` style property.
    * @default 'center'

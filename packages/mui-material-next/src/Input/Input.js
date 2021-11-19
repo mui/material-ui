@@ -8,9 +8,9 @@ import {
   inputUnstyledClasses,
   unstable_composeClasses as composeClasses,
   appendOwnerState,
-} from '@mui/core';
+} from '@mui/base';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import TextareaAutosize from '@mui/core/TextareaAutosize';
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { getInputUtilityClass } from './inputClasses';
 
 const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !== 'classes';

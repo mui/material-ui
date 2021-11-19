@@ -8,7 +8,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@mui/core';
+} from '@mui/base';
 import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 
 type HTMLDivProps = JSX.IntrinsicElements['div'];

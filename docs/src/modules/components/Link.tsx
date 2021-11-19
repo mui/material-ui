@@ -41,7 +41,7 @@ const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedPro
         passHref
         locale={locale}
       >
-        <Anchor ref={ref} {...other} />
+        <Anchor data-no-markdown-link="true" ref={ref} {...other} />
       </NextLink>
     );
   },
@@ -86,10 +86,6 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     return <MuiLink className={className} href={href} ref={ref} {...other} />;
   }
 
-  if (noLinkStyle) {
-    return <NextLinkComposed className={className} ref={ref} to={href} {...other} />;
-  }
-
   let linkAs = linkAsProp || (href as string);
   if (
     userLanguage !== 'en' &&
@@ -98,6 +94,12 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     href.indexOf('/blog') !== 0
   ) {
     linkAs = `/${userLanguage}${linkAs}`;
+  }
+
+  if (noLinkStyle) {
+    return (
+      <NextLinkComposed className={className} ref={ref} to={href} linkAs={linkAs} {...other} />
+    );
   }
 
   return (

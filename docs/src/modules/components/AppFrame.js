@@ -203,7 +203,7 @@ function AppFrame(props) {
   }, []);
 
   const router = useRouter();
-  const { canonical } = pathnameToLanguage(router.asPath);
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
   const { activePage } = React.useContext(PageContext);
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
@@ -277,8 +277,8 @@ function AppFrame(props) {
                 {LANGUAGES_LABEL.map((language) => (
                   <MenuItem
                     component="a"
-                    data-no-link="true"
-                    href={language.code === 'en' ? canonical : `/${language.code}${canonical}`}
+                    data-no-markdown-link="true"
+                    href={language.code === 'en' ? canonicalAs : `/${language.code}${canonicalAs}`}
                     key={language.code}
                     selected={userLanguage === language.code}
                     onClick={handleLanguageMenuClose}
@@ -293,7 +293,6 @@ function AppFrame(props) {
                 </Box>
                 <MenuItem
                   component="a"
-                  data-no-link="true"
                   href={
                     userLanguage === 'en'
                       ? `${CROWDIN_ROOT_URL}`

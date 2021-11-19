@@ -38,8 +38,8 @@
   "name": "Select",
   "styles": {
     "classes": [
-      "root",
       "select",
+      "multiple",
       "filled",
       "outlined",
       "standard",

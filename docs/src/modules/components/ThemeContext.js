@@ -127,6 +127,7 @@ export function ThemeProvider(props) {
   const { children } = props;
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
+
   const [themeOptions, dispatch] = React.useReducer(
     (state, action) => {
       switch (action.type) {
@@ -252,6 +253,16 @@ export function ThemeProvider(props) {
       window.createTheme = createTheme;
     }
   }, [theme]);
+
+  useEnhancedEffect(() => {
+    if (theme.palette.mode === 'dark') {
+      document.body.classList.remove('mode-light');
+      document.body.classList.add('mode-dark');
+    } else {
+      document.body.classList.remove('mode-dark');
+      document.body.classList.add('mode-light');
+    }
+  }, [theme.palette.mode]);
 
   return (
     <MuiThemeProvider theme={theme}>

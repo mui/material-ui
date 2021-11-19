@@ -5,7 +5,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   act,
   createRenderer,
-  createServerRender,
   screen,
   RenderCounter,
   strictModeDoubleLoggingSupressed,
@@ -14,6 +13,8 @@ import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 
+const usesUseSyncExternalStore = React.useSyncExternalStore !== undefined;
+
 function createMatchMedia(width, ref) {
   const listeners = [];
   return (query) => {
@@ -21,10 +22,10 @@ function createMatchMedia(width, ref) {
       matches: mediaQuery.match(query, {
         width,
       }),
-      addListener: (listener) => {
+      addEventListener: (type, listener) => {
         listeners.push(listener);
       },
-      removeListener: (listener) => {
+      removeEventListener: (type, listener) => {
         const index = listeners.indexOf(listener);
         if (index > -1) {
           listeners.splice(index, 1);
@@ -40,7 +41,7 @@ function createMatchMedia(width, ref) {
 }
 
 describe('useMediaQuery', () => {
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
 
   describe('without window.matchMedia', () => {
     let originalMatchmedia;
@@ -118,7 +119,7 @@ describe('useMediaQuery', () => {
 
         render(<Test />);
         expect(screen.getByTestId('matches').textContent).to.equal('false');
-        expect(getRenderCountRef.current()).to.equal(2);
+        expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
       });
     });
 
@@ -158,10 +159,10 @@ describe('useMediaQuery', () => {
 
         render(<Test />);
         expect(screen.getByTestId('matches').textContent).to.equal('false');
-        expect(getRenderCountRef.current()).to.equal(2);
+        expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
       });
 
-      it('should render once if the default value does not match the expectation', () => {
+      it('should render once if the default value does not match the expectation but `noSsr` is enabled', () => {
         const getRenderCountRef = React.createRef();
         const Test = () => {
           const matches = useMediaQuery('(min-width:2000px)', {
@@ -198,13 +199,13 @@ describe('useMediaQuery', () => {
 
       const { unmount } = render(<Test />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
-      expect(getRenderCountRef.current()).to.equal(2);
+      expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
 
       unmount();
 
       render(<Test />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
-      expect(getRenderCountRef.current()).to.equal(2);
+      expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
     });
 
     it('should be able to change the query dynamically', () => {
@@ -226,10 +227,10 @@ describe('useMediaQuery', () => {
 
       const { setProps } = render(<Test query="(min-width:2000px)" />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
-      expect(getRenderCountRef.current()).to.equal(2);
+      expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
       setProps({ query: '(min-width:100px)' });
       expect(screen.getByTestId('matches').textContent).to.equal('true');
-      expect(getRenderCountRef.current()).to.equal(4);
+      expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 2 : 4);
     });
 
     it('should observe the media query', () => {
@@ -261,8 +262,6 @@ describe('useMediaQuery', () => {
   });
 
   describe('server-side', () => {
-    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
-
     it('should use the ssr match media ponyfill', () => {
       function MyComponent() {
         const matches = useMediaQuery('(min-width:2000px)');
@@ -286,7 +285,7 @@ describe('useMediaQuery', () => {
         );
       };
 
-      const container = serverRender(<Test />);
+      const { container } = renderToString(<Test />);
 
       expect(container.firstChild).to.have.text('true');
     });

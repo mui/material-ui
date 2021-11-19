@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/system';
-import { useSwitch, UseSwitchProps } from '@mui/core/SwitchUnstyled';
+import { useSwitch, UseSwitchProps } from '@mui/base/SwitchUnstyled';
 
 const SwitchRoot = styled('span')`
   display: inline-block;

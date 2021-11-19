@@ -135,13 +135,13 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 <!-- #default-branch-switch -->
 
-- 📦 [5.6 kB gzipped](https://bundlephobia.com/result?p=@mui/core@latest)
+- 📦 [5.6 kB gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
 
 The slider also comes with an unstyled version.
 It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import SliderUnstyled from '@mui/core/SliderUnstyled';
+import SliderUnstyled from '@mui/base/SliderUnstyled';
 ```
 
 {{"demo": "pages/components/slider/UnstyledSlider.js"}}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { isHostComponent } from '@mui/core';
-import BackdropUnstyled, { backdropUnstyledClasses } from '@mui/core/BackdropUnstyled';
+import { isHostComponent } from '@mui/base';
+import BackdropUnstyled, { backdropUnstyledClasses } from '@mui/base/BackdropUnstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Fade from '../Fade';

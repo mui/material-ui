@@ -25,6 +25,7 @@
     "classes": [
       "root",
       "select",
+      "multiple",
       "filled",
       "outlined",
       "standard",

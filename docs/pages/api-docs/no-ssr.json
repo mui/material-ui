@@ -7,7 +7,7 @@
   "name": "NoSsr",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
-  "filename": "/packages/mui-core/src/NoSsr/NoSsr.js",
+  "filename": "/packages/mui-base/src/NoSsr/NoSsr.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/no-ssr/\">No Ssr</a></li></ul>",
   "cssComponent": false

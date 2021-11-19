@@ -6,7 +6,7 @@ const path = require('path');
 const fetch = require('node-fetch');
 const lodash = require('lodash');
 
-const artifactServer = 'https://s3.eu-central-1.amazonaws.com/eps1lon-material-ui';
+const artifactServer = 'https://s3.eu-central-1.amazonaws.com/mui-org-material-ui';
 
 async function loadCurrentSnapshot() {
   return fse.readJSON(path.join(__dirname, '../../size-snapshot.json'));
@@ -28,11 +28,14 @@ async function loadSnapshot(commitId, ref) {
 
 const nullSnapshot = { parsed: 0, gzip: 0 };
 
-module.exports = async function loadComparison(parrentId, ref) {
+module.exports = async function loadComparison(parentId, ref) {
   const [currentSnapshot, previousSnapshot] = await Promise.all([
     loadCurrentSnapshot(),
-    // silence non existing snapshots
-    loadSnapshot(parrentId, ref).catch(() => ({})),
+    // continue non existing snapshots
+    loadSnapshot(parentId, ref).catch((reason) => {
+      console.warn(`Failed to load snapshot for ref '${ref}' and commit '${parentId}': `, reason);
+      return {};
+    }),
   ]);
 
   const bundleKeys = Object.keys({ ...currentSnapshot, ...previousSnapshot });
@@ -65,7 +68,7 @@ module.exports = async function loadComparison(parrentId, ref) {
   );
 
   return {
-    previous: parrentId,
+    previous: parentId,
     current: 'HEAD',
     bundles,
   };

@@ -32,7 +32,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-core/src/ModalUnstyled/ModalUnstyled.js",
+  "filename": "/packages/mui-base/src/ModalUnstyled/ModalUnstyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/modal/\">Modal</a></li></ul>",
   "cssComponent": false
