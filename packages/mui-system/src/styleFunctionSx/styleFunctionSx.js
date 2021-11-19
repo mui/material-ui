@@ -42,7 +42,7 @@ function styleFunctionSx(props) {
 
     Object.keys(sxObject).forEach((styleKey) => {
       const value = callIfFn(sxObject[styleKey], theme);
-      if (value) {
+      if (value !== null && value !== undefined) {
         if (typeof value === 'object') {
           if (propToStyleFunction[styleKey]) {
             css = merge(css, getThemeValue(styleKey, value, theme));

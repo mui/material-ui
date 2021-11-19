@@ -114,18 +114,13 @@ describe('styleFunctionSx', () => {
     });
 
     it('allow values to be `null` or `undefined`', () => {
-      expect(() =>
-        styleFunctionSx({
-          theme,
-          sx: { transform: null },
-        }),
-      ).not.to.throw();
-
       const result = styleFunctionSx({
         theme,
-        sx: { typography: null, m: null },
+        sx: { typography: null, m: 0, p: null, transform: null },
       });
-      expect(result).to.deep.equal({});
+      expect(result).to.deep.equal({
+        margin: '0px',
+      });
     });
   });
 
