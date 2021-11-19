@@ -135,7 +135,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          {getInitColorSchemeScript({ defaultMode: 'system' })}
+          {getInitColorSchemeScript({ enableSystem: true })}
           <Main />
           <script
             // eslint-disable-next-line react/no-danger
