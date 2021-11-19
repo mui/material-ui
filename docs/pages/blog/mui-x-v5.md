@@ -15,12 +15,11 @@ We are excited to introduce [MUI X v5.0.0](https://github.com/mui-org/material-u
 
 This release features some major highlights:
 
-- [High-level goals for v5](#high-level-goals-for-v5)
 - [A new virtualization engine](#a-new-virtualization-engine)
 - [Improved state management](#improved-state-management)
-  - [Improving the developer experience around the state](#improving-the-developer-experience-around-the-state)
-  - [Synchronous state initialization](#synchronous-state-initialization)
-- [Reduced style specificity for easier customization](#reduced-style-specificity-for-easier-customization)
+  - [Improved DX when using the state](#improved-dx-when-using-the-state)
+    - [Synchronous state initialization](#synchronous-state-initialization)
+- [Simplified style customization](#simplified-style-customization)
   - [Limitations](#limitations)
 - [v4 migration](#v4-migration)
 - [What's next?](#whats-next)
@@ -137,17 +136,41 @@ export default function App() {
 **After**
 
 ```jsx
-const useStyles = makeStyles(() => ({
-  root: {
-    padding: 50,
-  },
-}));
+const GridToolbarContainerStyled = styled(GridToolbarContainer)({
+  padding: 50,
+});
 
 const MyCustomToolbar = () => {
-  const classes = useStyles();
-
   return (
-    <GridToolbarContainer className={classes.root}>
+    <GridToolbarContainerStyled>
+      My custom toolbar
+    </GridToolbarContainer>
+  );
+};
+
+export default function App() {
+  return (
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        components={{
+          Toolbar: MyCustomToolbar,
+        }}
+      />
+    </div>
+  );
+}
+```
+
+Another way to customize this will be to use the `sx` `prop`.
+
+```jsx
+const MyCustomToolbar = () => {
+  return (
+    <GridToolbarContainer
+      sx={{
+        padding: 5, // means "theme.spacing(5)", NOT "5px"
+      }}
+    >
       My custom toolbar
     </GridToolbarContainer>
   );
@@ -185,9 +208,7 @@ More exciting things are coming! We have big plans for the rest of this quarter 
 
 ### Public roadmap
 
-You can view our public roadmap on GitHub to learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
-
-- [MUI X](https://github.com/mui-org/material-ui-x/projects/1)
+You can view our [public roadmap](https://github.com/mui-org/material-ui-x/projects/1) on GitHub to learn about what features we're working on, what stage they're at, and when we expect to bring them to you.
 
 ## Thank you
 
