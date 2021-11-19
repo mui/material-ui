@@ -52,7 +52,7 @@ const IconButton = styled('button')(({ theme, variant = 'filledInteractive', col
   theme.variant[variant]?.[color],
 ]);
 
-const Input = styled('input')(({ theme }) => [
+const Input = styled('input')(({ theme, variant = 'outlined' }) => [
   {
     minHeight: 48,
     border: '2px solid',
@@ -62,11 +62,13 @@ const Input = styled('input')(({ theme }) => [
     alignItems: 'center',
     padding: '0.5rem 1rem',
     '&::placeholder': {
-      color: theme.vars.palette.text.detail,
+      color: theme.vars.palette.letter.support,
     },
   },
   theme.typography.body,
-  theme.variant.outlinedInteractive.neutral,
+  theme.variant[variant]?.neutral,
+  theme.variant[`${variant}Hover`]?.neutral,
+  theme.variant[`${variant}Disabled`]?.neutral,
 ]);
 
 const Typography = styled('p', {

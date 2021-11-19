@@ -76,9 +76,9 @@ const Input = styled('input')(({ theme }) => ({
   display: 'inline-flex',
   alignItems: 'center',
   padding: '0.5rem 1rem',
-  color: theme.vars.palette.text.content,
+  color: theme.vars.palette.letter.major,
   '&::placeholder': {
-    color: theme.vars.palette.text.detail,
+    color: theme.vars.palette.letter.support,
   },
 }));
 
@@ -232,6 +232,7 @@ const ColorSchemePicker = () => {
           const Icon = icons[modeId];
           return (
             <PushButton
+              key={modeId}
               selected={mode === modeId}
               onClick={() => {
                 setMode(modeId);

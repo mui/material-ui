@@ -287,7 +287,7 @@ const Input = styled('input')(({ theme, variant = 'outlined', color = 'neutral' 
     padding: '0.5rem 1rem',
     '&::placeholder': {
       opacity: 0.72,
-      color: `var(--joy-variant-${variant}Color, ${theme.vars.palette.text.detail})`,
+      color: `var(--joy-variant-${variant}Color, ${theme.vars.palette.letter.support})`,
     },
     '&:focus-visible': theme.focus.default,
   },
