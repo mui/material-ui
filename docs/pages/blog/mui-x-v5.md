@@ -1,7 +1,7 @@
 ---
 title: Introducing MUI X v5.0
 description: We are excited to introduce MUI X v5.0.0!
-date: 2021-11-12T00:00:00.000Z
+date: 2021-11-22T00:00:00.000Z
 authors:
   ['oliviertassinari', 'm4theushw', 'flaviendelangle', 'DanailH', 'alexfauquette']
 card: true
@@ -9,7 +9,7 @@ card: true
 
 We are excited to introduce [MUI X v5.0.0](https://github.com/mui-org/material-ui-x/releases/tag/v5.0.0)!
 
-[MUI X](https://mui.com/x/) is our collection of advanced components (with both MIT and commercially licensed "Pro" features), that includes a data grid, date picker, and tree view. This release continues our focus on making the data grid the best in the industry. Read on to learn more!
+[MUI X](/x/) is our collection of advanced components (with both MIT and commercially licensed "Pro" features), that includes a data grid, date picker, and tree view. This release continues our focus on making the data grid the best in the industry. Read on to learn more!
 
 <img src="/static/blog/mui-x-v5/card.png" alt="" style="width: 100%; margin-bottom: 16px;" />
 
@@ -70,15 +70,16 @@ Besides the better performance, the new virtualization engine also brings the fo
 
 Several enhancements were made to state management to improve developer experience, performance and consistency in the execution order.
 
-#### Improving the developer experience around the state
+### Improved DX when using the state
 
-To improve developer experience for both the X-team and developers using the `apiRef` features, we are working on making the state structure and the tools to access it as easy to understand as possible.
+We have worked on simplifying the state structure and the tools to access it.
+These changes improved the developer experience when using the `apiRef` methods:
 
 - We removed the `state` structure from the public API. Access to data in the state should always be done through `apiRef` methods (`apiRef.current.getSelectedRows`) or selectors (`selectedGridRowsSelector`).
 - We renamed most selectors to have a consistent naming convention, making it easier to deduce their name or infer purpose.
-- We restructured our state so that each feature has a single substate, and is the only one to update it (`state.filter` is only managed by our `useGridFilter` hooks which exposes methods for both internal and 3rd party code to interact with this state).
+- We restructured our state so that each feature has a single sub-state, and the feature hook is the only one to update it (e.g. `state.filter` is only managed by the `useGridFilter` hook, which exposes methods for both internal and 3rd party code to interact with this state).
 
-The work on that topic is far from over. We have several developments in progress or under discussion to improve the developer experience when using the advanced features of the grid.
+The work on this topic isn't over. We have several developments in progress or under discussion to improve the developer experience when using the advanced features of the grid.
 Here are a few that should be release in the following months:
 
 - Strict typing of event listeners and publishers.
@@ -89,17 +90,19 @@ Here are a few that should be release in the following months:
 #### Synchronous state initialization
 
 In previous versions, the state was first populated with default values, and then in a `useEffect`, given the values provided as props (`props.pageSize` for instance), or derived from the props (the sorted and filtered rows derived from the `props.rows`, `props.sortModel` and `props.filterModel`).
-This was causing an additional render with useless data, and the we had to be careful to avoid flickering between the fake and real data.
+This was causing an additional render with useless data, and then we had to be careful to avoid flickering between the fake and real data.
 In v5, the state is initialized synchronously during the first render.
 
 Note that for now, the state updates coming from controlled props are still asynchronous.
 If you pass `props.pageSize`, we will apply it to the state in a `useEffect`, and therefore if you read the state just after the render (for instance in a `useLayoutEffect`), you will still see the old version.
 
-## Reduced style specificity for easier customization
+## Simplified style customization
 
-In previous versions most of the various `DataGrid` and `DataGridPro` components had a CSS specificity of 2, meaning that style overrides and customizations were harder, requiring you to look at the DOM tree in order to pick the correct selector.
+In previous versions, most of the built-in CSS of the `DataGrid` and `DataGridPro` components had a [CSS specificity](https://web.dev/learn/css/specificity/) of 2.
+This means that the CSS you would normally add would have less priority than the built-in CSS of the data grid.
+This was requiring you to open your dev tools, look at the DOM/CSSOM tree in order to use the correct CSS selector.
 With MUI X v5 we have reduced the CSS specificity of most of the internal `DataGrid` and `DataGridPro` components to 1.
-This will enable developers to more easily change the look and feel of the grid's components.
+This enables developers to more easily change the look and feel of the grid's components.
 
 **Before**
 
@@ -165,14 +168,16 @@ export default function App() {
 
 #### Limitations
 
-Although this was a clear improvement, we still had to keep a style specificity of 2 for some parts of the `DataGrid` and `DataGridPro`, specifically the `GridColumnHeaderItem`, `GridRow` and `GridCell` along with all of the components that are nested in them.
-This is due to performance implications related to how Emotion injects styles into the page,
+Although this was a clear improvement, we still had to keep a CSS specificity of 2 for some parts of the `DataGrid` and `DataGridPro`, specifically the `GridColumnHeaderItem`, `GridRow` and `GridCell` along with all of the components that are nested in them.
+This is due to performance implications related to how [emotion](https://emotion.sh/) injects styles into the page,
 and was necessary to keep the performance of our virtualization engine at its optimal.
 
 ## v4 migration
 
-We strongly recommend you migrate MUI X to v5. In MUI X v5 we have not only added additional features but also made significant internal improvements and performance optimizations that won't be included in v4. All new `DataGrid` and `DataGridPro` features will be only available in MUI X v5.
-You can check [this page](https://mui.com/components/data-grid/migration-v4/) to learn more about migrating to v5.
+We strongly recommend you migrate MUI X to v5.
+In MUI X v5 we have not only added additional features but also made significant internal improvements and performance optimizations that won't be included in v4.
+All-new `DataGrid` and `DataGridPro` features will be only available in MUI X v5.
+You can check [this page](/components/data-grid/migration-v4/) to learn more about migrating to v5.
 
 ## What's next?
 
