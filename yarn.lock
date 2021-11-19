@@ -2307,12 +2307,20 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@mui/core@^5.0.0-alpha.51":
+  version "0.0.0"
+  uid ""
+
+"@mui/core@link:./packages/mui-base":
+  version "0.0.0"
+  uid ""
+
 "@mui/x-data-grid-generator@^5.0.0-beta.6":
   version "5.0.0-beta.6"
   resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-5.0.0-beta.6.tgz#713767d4493a1066c3431a4728798ba921564aae"
   integrity sha512-fYAfvNi0WbJZidPGPBU4r3uQ3V4ZpTDG1MmRoR8iFXgPcrnzvh8f8IF8wDIOIH6CAzJ2ZO0MrnlQ92tbUiSemQ==
   dependencies:
-    "@mui/base" "^5.0.0-alpha.51"
+    "@mui/core" "^5.0.0-alpha.51"
     "@types/chance" "^1.1.3"
     chance "^1.1.7"
     clsx "^1.1.1"
