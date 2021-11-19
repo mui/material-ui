@@ -29,7 +29,8 @@ const Root = styled('div')`
     width: 100%;
   }
 
-  td, th {
+  td,
+  th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
@@ -38,14 +39,14 @@ const Root = styled('div')`
   th {
     background-color: #dddddd;
   }
-`
+`;
 const CustomTablePagination = styled(TablePaginationUnstyled)`
-  & .MuiTablePagination-toolbar {
+  & .MuiTablePaginationUnstyled-toolbar {
     display: flex;
     gap: 10px;
     align-items: center;
   }
-`
+`;
 
 export default function UnstyledTable() {
   const [page, setPage] = React.useState(0);
@@ -55,16 +56,11 @@ export default function UnstyledTable() {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  const handleChangePage = (
-    event,
-    newPage,
-  ) => {
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event,
-  ) => {
+  const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -73,15 +69,9 @@ export default function UnstyledTable() {
     <Root>
       <table style={{ minWidth: 500 }} aria-label="custom pagination table">
         <thead>
-          <th>
-            Dessert
-          </th>
-          <th>
-            Calories
-          </th>
-          <th>
-            Fat
-          </th>
+          <th>Dessert</th>
+          <th>Calories</th>
+          <th>Fat</th>
         </thead>
         <tbody>
           {(rowsPerPage > 0
@@ -89,9 +79,7 @@ export default function UnstyledTable() {
             : rows
           ).map((row) => (
             <tr key={row.name}>
-              <td scope="row">
-                {row.name}
-              </td>
+              <td scope="row">{row.name}</td>
               <td style={{ width: 160 }} align="right">
                 {row.calories}
               </td>
@@ -123,7 +111,7 @@ export default function UnstyledTable() {
                 actions: {
                   showFirstButton: true,
                   showLastButton: true,
-                }
+                },
               }}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}

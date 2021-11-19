@@ -2,19 +2,33 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformanceUnstyled, fireEvent, createRenderer } from 'test/utils';
+import { describeConformanceUnstyled, fireEvent, createRenderer, createMount } from 'test/utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableRow from '@mui/material/TableRow';
-import TablePaginationUnstyled, { tablePaginationUnstyledClasses as classes, LabelDisplayedRowsArgs } from '@mui/base/TablePaginationUnstyled';
+import TablePaginationUnstyled, {
+  tablePaginationUnstyledClasses as classes,
+  LabelDisplayedRowsArgs,
+} from '@mui/base/TablePaginationUnstyled';
+
+interface WithClassName {
+  className: string;
+}
 
 describe('<TablePaginationUnstyled />', () => {
   const noop = () => {};
   const { render } = createRenderer();
+  const mount = createMount();
+
+  const CustomRootComponent = React.forwardRef(
+    ({ className }: WithClassName, ref: React.Ref<any>) => (
+      <th className={className} ref={ref} data-testid="custom" />
+    ),
+  );
 
   describeConformanceUnstyled(
     <TablePaginationUnstyled count={1} onPageChange={noop} page={0} rowsPerPage={10} />,
     () => ({
-      inheritComponent: 'tr',
+      inheritComponent: 'td',
       render: (node) => {
         const { container, ...other } = render(
           <table>
@@ -23,9 +37,12 @@ describe('<TablePaginationUnstyled />', () => {
             </tbody>
           </table>,
         );
-        return { container: container?.firstChild?.firstChild?.firstChild as HTMLElement, ...other };
+        return {
+          container: container?.firstChild?.firstChild?.firstChild as HTMLElement,
+          ...other,
+        };
       },
-      wrapMount: (mount) => (node) => {
+      mount: (node: any) => {
         const wrapper = mount(
           <table>
             <tbody>
@@ -41,14 +58,12 @@ describe('<TablePaginationUnstyled />', () => {
       slots: {
         root: {
           expectedClassName: classes.root,
+          testWithComponent: CustomRootComponent as any,
           testWithElement: 'th',
         },
-        input: {
-          expectedClassName: classes.actions,
-          testWithElement: 'span',
-        },
       },
-  }));
+    }),
+  );
 
   describe('prop: labelDisplayedRows', () => {
     it('should use the labelDisplayedRows callback', () => {
@@ -84,7 +99,7 @@ describe('<TablePaginationUnstyled />', () => {
   });
 
   describe('prop: labelRowsPerPage', () => {
-    it.skip('labels the select for the current page', () => {
+    it('labels the select for the current page', () => {
       const { container } = render(
         <table>
           <TableFooter>
@@ -106,7 +121,7 @@ describe('<TablePaginationUnstyled />', () => {
       expect(combobox).toHaveAccessibleName('lines per page: 10');
     });
 
-    it.skip('accepts React nodes', () => {
+    it('accepts React nodes', () => {
       const { container } = render(
         <table>
           <TableFooter>
@@ -292,6 +307,11 @@ describe('<TablePaginationUnstyled />', () => {
                   onPageChange={(_, newPage) => {
                     setPage(newPage);
                   }}
+                  componentsProps={{
+                    displayedRows: {
+                      'data-testid': 'displayedRows',
+                    } as any,
+                  }}
                 />
               </TableRow>
             </TableFooter>
@@ -299,11 +319,11 @@ describe('<TablePaginationUnstyled />', () => {
         );
       };
 
-      const { container, getByRole } = render(<Test />);
+      const { getByRole, getByTestId } = render(<Test />);
 
-      expect(container).to.have.text('Rows per page:101-10 of more than 10');
+      expect(getByTestId('displayedRows')).to.have.text('1-10 of more than 10');
       fireEvent.click(getByRole('button', { name: 'Go to next page' }));
-      expect(container).to.have.text('Rows per page:1011-20 of more than 20');
+      expect(getByTestId('displayedRows')).to.have.text('11-20 of more than 20');
     });
   });
 
@@ -315,11 +335,15 @@ describe('<TablePaginationUnstyled />', () => {
           <TableFooter>
             <TableRow>
               <TablePaginationUnstyled
-                showFirstButton
                 page={1}
                 rowsPerPage={10}
                 count={98}
                 onPageChange={handleChangePage}
+                componentsProps={{
+                  actions: {
+                    showFirstButton: true,
+                  } as any,
+                }}
               />
             </TableRow>
           </TableFooter>
@@ -339,11 +363,15 @@ describe('<TablePaginationUnstyled />', () => {
           <TableFooter>
             <TableRow>
               <TablePaginationUnstyled
-                showLastButton
                 page={0}
                 rowsPerPage={10}
                 count={98}
                 onPageChange={handleChangePage}
+                componentsProps={{
+                  actions: {
+                    showLastButton: true,
+                  } as any,
+                }}
               />
             </TableRow>
           </TableFooter>
@@ -382,7 +410,7 @@ describe('<TablePaginationUnstyled />', () => {
   });
 
   describe('prop: componentsProps: select', () => {
-    it.only('does allow manual label ids', () => {
+    it('does allow manual label ids', () => {
       const { container } = render(
         <table>
           <TableFooter>
@@ -394,7 +422,7 @@ describe('<TablePaginationUnstyled />', () => {
                 onRowsPerPageChange={noop}
                 rowsPerPage={10}
                 componentsProps={{
-                  select: { id: 'foo', "aria-labelledby": 'bar' }
+                  select: { id: 'foo', 'aria-labelledby': 'bar' },
                 }}
               />
             </TableRow>

@@ -1,5 +1,5 @@
 import generateUtilityClass from '../generateUtilityClass';
-import generateUtilityClasses from '../generateUtilityClasses'
+import generateUtilityClasses from '../generateUtilityClasses';
 
 export interface TablePaginationUnstyledClasses {
   /** Styles applied to the root element. */

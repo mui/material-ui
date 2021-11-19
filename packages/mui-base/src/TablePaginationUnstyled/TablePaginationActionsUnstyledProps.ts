@@ -9,12 +9,12 @@ interface TablePaginationActionsUnstyledOwnProps extends React.HTMLAttributes<HT
    */
   classes?: {};
   count: number;
-   /**
+  /**
    * The components used for each slot inside the TablePagination.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-   components?: {
+  components?: {
     Root?: React.ElementType;
     FirstButton?: React.ElementType;
     LastButton?: React.ElementType;
@@ -30,17 +30,22 @@ interface TablePaginationActionsUnstyledOwnProps extends React.HTMLAttributes<HT
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'> & TablePaginationActionsUnstyledComponentsPropsOverrides;
-    firstButton?: React.ComponentPropsWithRef<'button'> & TablePaginationActionsUnstyledComponentsPropsOverrides;
-    lastButton?: React.ComponentPropsWithRef<'button'> & TablePaginationActionsUnstyledComponentsPropsOverrides;
-    nextButton?: React.ComponentPropsWithRef<'button'> & TablePaginationActionsUnstyledComponentsPropsOverrides;
-    backButton?: React.ComponentPropsWithRef<'button'> & TablePaginationActionsUnstyledComponentsPropsOverrides;
+    root?: React.ComponentPropsWithRef<'div'> &
+      TablePaginationActionsUnstyledComponentsPropsOverrides;
+    firstButton?: React.ComponentPropsWithRef<'button'> &
+      TablePaginationActionsUnstyledComponentsPropsOverrides;
+    lastButton?: React.ComponentPropsWithRef<'button'> &
+      TablePaginationActionsUnstyledComponentsPropsOverrides;
+    nextButton?: React.ComponentPropsWithRef<'button'> &
+      TablePaginationActionsUnstyledComponentsPropsOverrides;
+    backButton?: React.ComponentPropsWithRef<'button'> &
+      TablePaginationActionsUnstyledComponentsPropsOverrides;
   };
   /**
    * Direction of the text.
    * @default 'ltr'
    */
-   direction?: 'ltr' | 'rtl';  
+  direction?: 'ltr' | 'rtl';
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
@@ -69,7 +74,10 @@ type TablePaginationActionsUnstyledProps<
   component?: D;
 };
 
-export interface TablePaginationActionsUnstyledTypeMap<P = {}, D extends React.ElementType = 'button'> {
+export interface TablePaginationActionsUnstyledTypeMap<
+  P = {},
+  D extends React.ElementType = 'button',
+> {
   props: P & TablePaginationActionsUnstyledOwnProps;
   defaultComponent: D;
 }

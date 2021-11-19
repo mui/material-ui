@@ -44,12 +44,18 @@ export interface TablePaginationUnstyledTypeMap<P = {}, D extends React.ElementT
      */
     componentsProps?: {
       root?: React.ComponentPropsWithRef<'div'> & TablePaginationUnstyledComponentsPropsOverrides;
-      actions?: React.ComponentPropsWithRef<'div'> & TablePaginationUnstyledComponentsPropsOverrides;
-      select?: React.ComponentPropsWithRef<'select'> & TablePaginationUnstyledComponentsPropsOverrides;
-      selectLabel?: React.ComponentPropsWithRef<'p'> & TablePaginationUnstyledComponentsPropsOverrides;
-      menuItem?: React.ComponentPropsWithRef<'option'> & TablePaginationUnstyledComponentsPropsOverrides;
-      displayedRows?: React.ComponentPropsWithRef<'p'> & TablePaginationUnstyledComponentsPropsOverrides;
-      toolbar?: React.ComponentPropsWithRef<'div'> & TablePaginationUnstyledComponentsPropsOverrides;
+      actions?: React.ComponentPropsWithRef<'div'> &
+        TablePaginationUnstyledComponentsPropsOverrides;
+      select?: React.ComponentPropsWithRef<'select'> &
+        TablePaginationUnstyledComponentsPropsOverrides;
+      selectLabel?: React.ComponentPropsWithRef<'p'> &
+        TablePaginationUnstyledComponentsPropsOverrides;
+      menuItem?: React.ComponentPropsWithRef<'option'> &
+        TablePaginationUnstyledComponentsPropsOverrides;
+      displayedRows?: React.ComponentPropsWithRef<'p'> &
+        TablePaginationUnstyledComponentsPropsOverrides;
+      toolbar?: React.ComponentPropsWithRef<'div'> &
+        TablePaginationUnstyledComponentsPropsOverrides;
       spacer?: React.ComponentPropsWithRef<'div'> & TablePaginationUnstyledComponentsPropsOverrides;
     };
     /**
@@ -142,6 +148,5 @@ type TablePaginationUnstyledProps<
    */
   component?: D;
 };
-
 
 export default TablePaginationUnstyledProps;

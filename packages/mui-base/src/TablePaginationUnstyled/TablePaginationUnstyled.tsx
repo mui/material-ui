@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes, integerPropType } from '@mui/utils';
 import { unstable_useId as useId } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { appendOwnerState } from '../utils';
@@ -85,16 +86,20 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
       return rowsPerPage === -1 ? count : Math.min(count, (page + 1) * rowsPerPage);
     };
 
-    const Root = components.Root ?? component ?? 'td';
+    const Root = component ?? components.Root ?? 'td';
     const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
 
     const Select = components.Select ?? 'select';
-    const selectProps = appendOwnerState(Select, {
-      ...componentsProps.select,
-      onChange: (e: React.SyntheticEvent) => onRowsPerPageChange && onRowsPerPageChange(e)
-    }, ownerState);
+    const selectProps = appendOwnerState(
+      Select,
+      {
+        ...componentsProps.select,
+        onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
+          onRowsPerPageChange && onRowsPerPageChange(e),
+      },
+      ownerState,
+    );
 
-    console.log(selectProps)
     const Actions = components.Actions ?? TablePaginationActionsUnstyled;
     const actionsProps = appendOwnerState(
       Actions,
@@ -129,8 +134,6 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
 
     const selectId = useId(selectProps.id);
     const labelId = useId(selectProps['aria-labelledby']);
-    console.log(labelId)
-    console.log(rowsPerPageOptions.length);
 
     return (
       <Root
@@ -139,10 +142,14 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
         {...rootProps}
         className={clsx(classes.root, rootProps.className, className)}
       >
-        <Toolbar {...toolbarProps} className={classes.toolbar}>
-          <Spacer {...spacerProps} className={classes.spacer} />
+        <Toolbar {...toolbarProps} className={clsx(classes.toolbar, toolbarProps?.className)}>
+          <Spacer {...spacerProps} className={clsx(classes.spacer, toolbarProps?.spacer)} />
           {rowsPerPageOptions.length > 1 && (
-            <SelectLabel {...selectLabelProps} className={classes.selectLabel} id={labelId}>
+            <SelectLabel
+              {...selectLabelProps}
+              className={clsx(classes.selectLabel, selectLabelProps?.className)}
+              id={labelId}
+            >
               {labelRowsPerPage}
             </SelectLabel>
           )}
@@ -151,13 +158,15 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
             <Select
               value={rowsPerPage}
               id={selectId}
-              aria-labelledby={labelId}
               {...selectProps}
+              aria-label={rowsPerPage}
+              aria-labelledby={[labelId, selectId].filter(Boolean).join(' ') || undefined}
+              className={clsx(classes.select, selectProps?.className)}
             >
               {rowsPerPageOptions.map((rowsPerPageOption) => (
                 <MenuItem
                   {...menuItemProps}
-                  className={classes.menuItem}
+                  className={clsx(classes.menuItem, menuItemProps?.className)}
                   key={
                     typeof rowsPerPageOption !== 'number' && rowsPerPageOption.label
                       ? rowsPerPageOption.label
@@ -177,7 +186,10 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
             </Select>
           )}
 
-          <DisplayedRows {...displayedRowsProps} className={classes.displayedRows}>
+          <DisplayedRows
+            {...displayedRowsProps}
+            className={clsx(classes.displayedRows, displayedRowsProps?.className)}
+          >
             {labelDisplayedRows({
               from: count === 0 ? 0 : page * rowsPerPage + 1,
               to: getLabelDisplayedRowsTo(),
@@ -185,7 +197,7 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
               page,
             })}
           </DisplayedRows>
-          <Actions {...actionsProps} className={classes.actions} />
+          <Actions {...actionsProps} className={clsx(classes.actions, actionsProps?.className)} />
         </Toolbar>
       </Root>
     );
@@ -285,13 +297,28 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The zero-based index of the current page.
    */
-  page: PropTypes.number.isRequired,
+  page: chainPropTypes(integerPropType.isRequired, (props) => {
+    const { count, page, rowsPerPage } = props;
+
+    if (count === -1) {
+      return null;
+    }
+
+    const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
+    if (page < 0 || page > newLastPage) {
+      return new Error(
+        'MUI: The page prop of a TablePaginationUnstyled is out of range ' +
+          `(0 to ${newLastPage}, but page is ${page}).`,
+      );
+    }
+    return null;
+  }),
   /**
    * The number of rows per page.
    *
    * Set -1 to display all the rows.
    */
-  rowsPerPage: PropTypes.number.isRequired,
+  rowsPerPage: integerPropType.isRequired,
   /**
    * Customizes the options of the rows per page select field. If less than two options are
    * available, no select field will be displayed.

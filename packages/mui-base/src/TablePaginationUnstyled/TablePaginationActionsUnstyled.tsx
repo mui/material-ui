@@ -2,12 +2,14 @@ import * as React from 'react';
 import { OverridableComponent } from '@mui/types';
 import { appendOwnerState } from '../utils';
 import { ItemAriaLabelType } from './TablePaginationUnstyledProps';
-import TablePaginationActionsUnstyledProps, { TablePaginationActionsUnstyledTypeMap } from './TablePaginationActionsUnstyledProps';
+import TablePaginationActionsUnstyledProps, {
+  TablePaginationActionsUnstyledTypeMap,
+} from './TablePaginationActionsUnstyledProps';
 
-const LastPageIconDefault = () => <span>{">|"}</span>
-const FirstPageIconDefault = () => <span>{"|<"}</span>
-const NextPageIconDefault = () => <span>{">"}</span>
-const BackPageIconDefault = () => <span>{"<"}</span>
+const LastPageIconDefault = () => <span>{'>|'}</span>;
+const FirstPageIconDefault = () => <span>{'|<'}</span>;
+const NextPageIconDefault = () => <span>{'>'}</span>;
+const BackPageIconDefault = () => <span>{'<'}</span>;
 
 function defaultGetAriaLabel(type: ItemAriaLabelType) {
   return `Go to ${type} page`;
@@ -16,7 +18,10 @@ function defaultGetAriaLabel(type: ItemAriaLabelType) {
 /**
  * @ignore - internal component.
  */
-const TablePaginationActionsUnstyled = React.forwardRef<unknown, TablePaginationActionsUnstyledProps>(function TablePaginationActionsUnstyled(props, ref) {
+const TablePaginationActionsUnstyled = React.forwardRef<
+  unknown,
+  TablePaginationActionsUnstyledProps
+>(function TablePaginationActionsUnstyled(props, ref) {
   const {
     component,
     components = {},
@@ -29,6 +34,8 @@ const TablePaginationActionsUnstyled = React.forwardRef<unknown, TablePagination
     showFirstButton = false,
     showLastButton = false,
     direction,
+    // @ts-ignore
+    ownerState: ownerStateProp,
     ...other
   } = props;
 
@@ -50,45 +57,25 @@ const TablePaginationActionsUnstyled = React.forwardRef<unknown, TablePagination
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
-  const Root = components.Root ?? component ?? 'td';
-  const rootProps = appendOwnerState(
-    Root,
-    { ...other, ...componentsProps.root },
-    ownerState,
-  );
+  const Root = components.Root ?? component ?? 'div';
+  const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
 
   const FirstButton = components.FirstButton ?? 'button';
-  const firstButtonProps = appendOwnerState(
-    FirstButton,
-    componentsProps.firstButton,
-    ownerState,
-  );
+  const firstButtonProps = appendOwnerState(FirstButton, componentsProps.firstButton, ownerState);
 
   const LastButton = components.LastButton ?? 'button';
-  const lastButtonProps = appendOwnerState(
-    LastButton,
-    componentsProps.lastButton,
-    ownerState,
-  );
+  const lastButtonProps = appendOwnerState(LastButton, componentsProps.lastButton, ownerState);
 
   const NextButton = components.NextButton ?? 'button';
-  const nextButtonProps = appendOwnerState(
-    NextButton,
-    componentsProps.nextButton,
-    ownerState,
-  );
+  const nextButtonProps = appendOwnerState(NextButton, componentsProps.nextButton, ownerState);
 
   const BackButton = components.BackButton ?? 'button';
-  const backButtonProps = appendOwnerState(
-    BackButton,
-    componentsProps.backButton,
-    ownerState,
-  );
+  const backButtonProps = appendOwnerState(BackButton, componentsProps.backButton, ownerState);
 
   const LastPageIcon = components.LastPageIcon ?? LastPageIconDefault;
   const FirstPageIcon = components.FirstPageIcon ?? FirstPageIconDefault;
-  const NextPageIcon = components.NextPageIcon ?? NextPageIconDefault
-  const BackPageIcon = components.BackPageIcon ?? BackPageIconDefault
+  const NextPageIcon = components.NextPageIcon ?? NextPageIconDefault;
+  const BackPageIcon = components.BackPageIcon ?? BackPageIconDefault;
 
   return (
     <Root ref={ref} {...rootProps}>

@@ -2,8 +2,8 @@
   "props": {
     "count": { "type": { "name": "number" }, "required": true },
     "onPageChange": { "type": { "name": "func" }, "required": true },
-    "page": { "type": { "name": "number" }, "required": true },
-    "rowsPerPage": { "type": { "name": "number" }, "required": true },
+    "page": { "type": { "name": "custom", "description": "integer" }, "required": true },
+    "rowsPerPage": { "type": { "name": "custom", "description": "integer" }, "required": true },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
