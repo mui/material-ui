@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
@@ -229,6 +228,27 @@ if (unusedBlacklistPatterns.size > 0) {
   );
 }
 
+// eslint-disable-next-line react/prop-types
+function Link({ to, onClick }) {
+  return (
+    <a
+      href={to}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick?.(to);
+        window.history.pushState(null, '', to);
+      }}
+      type="button"
+    >
+      {to}
+    </a>
+  );
+}
+
+function computePath(fixture) {
+  return `/${fixture.suite}/${fixture.name}`;
+}
+
 function App(props) {
   const { fixtures } = props;
 
@@ -274,39 +294,30 @@ function App(props) {
     });
   }, []);
 
+  React.useEffect(() => {
+    fixtures.forEach((fixture) => {
+      if (fixture.Component === undefined) {
+        console.warn('Missing `Component` for ', fixture);
+      }
+    });
+  }, [fixtures]);
+
   const fixturePrepared = fontState !== 'pending';
 
-  function computePath(fixture) {
-    return `/${fixture.suite}/${fixture.name}`;
-  }
+  const [pathname, setPathname] = React.useState(window.location.pathname);
+  const currentFixture = fixtures.find((fixture) => computePath(fixture) === pathname);
+  const CurrentFixtureComponent = currentFixture?.Component;
 
   return (
-    <Router>
-      <Routes>
-        {fixtures.map((fixture) => {
-          const path = computePath(fixture);
-          const FixtureComponent = fixture.Component;
-          if (FixtureComponent === undefined) {
-            console.warn('Missing `Component` for ', fixture);
-            return null;
-          }
+    <div>
+      <div>
+        {CurrentFixtureComponent && fixturePrepared && (
+          <TestViewer>
+            <CurrentFixtureComponent />
+          </TestViewer>
+        )}
+      </div>
 
-          return (
-            <Route
-              key={path}
-              exact
-              path={path}
-              element={
-                fixturePrepared ? (
-                  <TestViewer>
-                    <FixtureComponent />
-                  </TestViewer>
-                ) : null
-              }
-            />
-          );
-        })}
-      </Routes>
       <div hidden={!isDev}>
         <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
         <p>
@@ -322,7 +333,7 @@ function App(props) {
                 const path = computePath(fixture);
                 return (
                   <li key={path}>
-                    <Link to={path}>{path}</Link>
+                    <Link to={path} onClick={setPathname} />
                   </li>
                 );
               })}
@@ -330,7 +341,7 @@ function App(props) {
           </nav>
         </details>
       </div>
-    </Router>
+    </div>
   );
 }
 
