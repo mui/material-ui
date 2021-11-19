@@ -310,7 +310,7 @@ const teamMembers: Array<Profile> = [
     github: 'alexfauquette',
   },
   {
-    src: '/static/branding/about/bharat.jpg',
+    src: '/static/branding/about/bharat.png',
     name: 'Bharat Kashyap',
     title: 'Studio team',
     location: 'New Delhi, India',
@@ -320,7 +320,7 @@ const teamMembers: Array<Profile> = [
     github: 'bharatkashyap',
   },
   {
-    src: '/static/branding/about/jan.jpg',
+    src: '/static/branding/about/jan.png',
     name: 'Jan Potoms',
     title: 'Studio team',
     location: 'Brussels, Belgium',
@@ -329,7 +329,7 @@ const teamMembers: Array<Profile> = [
     github: 'janpot',
   },
   {
-    src: '/static/branding/about/prakhar.jpg',
+    src: '/static/branding/about/prakhar.png',
     name: 'Prakhar Gupta',
     title: 'Studio team',
     location: 'New Delhi, India',
