@@ -303,6 +303,34 @@ const teamMembers: Array<Profile> = [
     twitter: 'AleFauquette',
     github: 'alexfauquette',
   },
+  {
+    src: '/static/branding/about/bharat.jpg',
+    name: 'Bharat Kashyap',
+    title: 'Studio team',
+    location: 'New Delhi, India',
+    country: 'in',
+    about: 'Trains 🚅 , architecture 🏛️ , and psychology 🧠 ',
+    twitter: 'bharattttttt',
+    github: 'bharatkashyap',
+  },
+  {
+    src: '/static/branding/about/jan.jpg',
+    name: 'Jan Potoms',
+    title: 'Studio team',
+    location: 'Brussels, Belgium',
+    country: 'be',
+    about: 'Always curious, I enjoy cinema, and hiking',
+    github: 'janpot',
+  },
+  {
+    src: '/static/branding/about/prakhar.jpg',
+    name: 'Prakhar Gupta',
+    title: 'Studio team',
+    location: 'New Delhi, India',
+    country: 'in',
+    about: 'Into sports and hiking!',
+    twitter: 'gprakhar123',
+  },
 ];
 
 const contributors = [
