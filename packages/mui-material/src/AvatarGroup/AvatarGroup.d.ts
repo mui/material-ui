@@ -30,6 +30,10 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    */
   sx?: SxProps<Theme>;
   /**
+   * Allow customization of how +x is calculated rather than using children length.
+   */
+  total?: number;
+  /**
    * The variant to use.
    * @default 'circular'
    */

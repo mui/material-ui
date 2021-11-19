@@ -185,6 +185,10 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
+   * Allow customization of how +x is calculated rather than using children length.
+   */
+  total: PropTypes.number,
+  /**
    * The variant to use.
    * @default 'circular'
    */
