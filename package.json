@@ -171,7 +171,7 @@
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^5.2.5",
     "tslint": "5.14.0",
-    "typescript": "^4.4.4",
+    "typescript": "^4.5.2",
     "unist-util-visit": "^2.0.3",
     "webpack": "^5.64.0",
     "webpack-bundle-analyzer": "^4.5.0",
@@ -195,6 +195,7 @@
     "**/@babel/runtime": "^7.16.3",
     "**/@types/react": "^17.0.34",
     "**/@types/react-dom": "^17.0.11",
+    "**/@mui/core": "link:./packages/mui-base",
     "**/cross-fetch": "^3.1.4",
     "**/react-is": "^17.0.2"
   },

@@ -15,6 +15,7 @@ import {
   within,
   RenderResult,
 } from '@testing-library/react/pure';
+import { useFakeTimers } from 'sinon';
 
 interface Interaction {
   id: number;
@@ -316,22 +317,122 @@ function renderToString(
   };
 }
 
+interface Clock {
+  /**
+   * Runs all timers until there are no more remaining.
+   * WARNING: This may cause an infinite loop if a timeout constantly schedules another timeout.
+   * Prefer to to run only pending timers with `runToLast` and unmount your component directly.
+   */
+  runAll(): void;
+  /**
+   * Runs only the currently pending timers.
+   */
+  runToLast(): void;
+  /**
+   * Tick the clock ahead `timeoutMS` milliseconds.
+   * @param timeoutMS
+   */
+  tick(timeoutMS: number): void;
+  /**
+   * Returns true if we're running with "real" i.e. native timers.
+   */
+  isReal(): boolean;
+  /**
+   * Runs the current test suite (i.e. `describe` block) with fake timers.
+   */
+  withFakeTimers(): void;
+}
+
+type ClockConfig = undefined | number | Date;
+
+function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
+  let clock: ReturnType<typeof useFakeTimers> | null = null;
+
+  let mode = defaultMode;
+
+  beforeEach(() => {
+    if (mode === 'fake') {
+      clock = useFakeTimers(config);
+    }
+  });
+
+  afterEach(() => {
+    clock?.restore();
+    clock = null;
+  });
+
+  return {
+    tick(timeoutMS: number) {
+      if (clock === null) {
+        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
+      }
+      traceSync('tick', () => {
+        rtlAct(() => {
+          clock!.tick(timeoutMS);
+        });
+      });
+    },
+    runAll() {
+      if (clock === null) {
+        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
+      }
+      traceSync('runAll', () => {
+        rtlAct(() => {
+          clock!.runAll();
+        });
+      });
+    },
+    runToLast() {
+      if (clock === null) {
+        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
+      }
+      traceSync('runToLast', () => {
+        rtlAct(() => {
+          clock!.runToLast();
+        });
+      });
+    },
+    isReal() {
+      return setTimeout.hasOwnProperty('clock') === false;
+    },
+    withFakeTimers() {
+      before(() => {
+        mode = 'fake';
+      });
+
+      after(() => {
+        mode = defaultMode;
+      });
+    },
+  };
+}
+
 interface Renderer {
+  clock: Clock;
   render(element: React.ReactElement, options?: RenderOptions): MuiRenderResult;
   renderToString(element: React.ReactElement, options?: RenderOptions): MuiRenderToStringResult;
 }
 
-export interface CreateRenderOptions
-  extends Pick<RenderOptions, 'legacyRoot' | 'strict' | 'strictEffects'> {}
+export interface CreateRendererOptions
+  extends Pick<RenderOptions, 'legacyRoot' | 'strict' | 'strictEffects'> {
+  /**
+   * @default 'real'
+   */
+  clock?: 'fake' | 'real';
+  clockConfig?: ClockConfig;
+}
 
-export function createRenderer(globalOptions: CreateRenderOptions = {}): Renderer {
+export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
   const {
+    clock: clockMode = 'real',
+    clockConfig,
     legacyRoot: globalLegacyRoot,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
   } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
+  const clock = createClock(clockMode, clockConfig);
 
   /**
    * Flag whether `createRenderer` was called in a suite i.e. describe() block.
@@ -400,12 +501,12 @@ export function createRenderer(globalOptions: CreateRenderOptions = {}): Rendere
   });
 
   afterEach(() => {
-    if (setTimeout.hasOwnProperty('clock')) {
+    if (!clock.isReal()) {
       const error = Error(
         "Can't cleanup before fake timers are restored.\n" +
           'Be sure to:\n' +
-          '  1. Restore the clock in `afterEach` instead of `after`.\n' +
-          '  2. Move the test hook to restore the clock before the call to `createRenderer()`.',
+          '  1. Only use `clock` from `createRenderer`.\n' +
+          '  2. Call `createRenderer` in a suite and not any test hook (e.g. `beforeEach`) or test itself (e.g. `it`).',
       );
       // Use saved stack otherwise the stack trace will not include the test location.
       error.stack = createClientRenderStack;
@@ -448,6 +549,7 @@ export function createRenderer(globalOptions: CreateRenderOptions = {}): Rendere
   }
 
   return {
+    clock,
     render(element: React.ReactElement, options: RenderOptions = {}) {
       if (!prepared) {
         throw new Error(

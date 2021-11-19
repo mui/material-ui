@@ -201,6 +201,42 @@ describe('createCssVarsProvider', () => {
         ),
       ).not.toErrorDev(); // if `h1` is skipped, there will be no error.
     });
+
+    it('vars are merged from all colorSchemes regardless of selected color scheme', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: {
+            light: {
+              palette: {
+                primary: '#000',
+              },
+            },
+            dark: {
+              palette: {
+                grey: '#888',
+              },
+            },
+          },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Consumer = () => {
+        const theme = useTheme();
+        return (
+          <div>
+            <div>{theme.vars.palette.primary || ''}</div>
+            <div>{theme.vars.palette.grey || ''}</div>
+          </div>
+        );
+      };
+      render(
+        <CssVarsProvider>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+      expect(screen.getByText('var(--palette-primary)')).not.to.equal(null);
+      expect(screen.getByText('var(--palette-grey)')).not.to.equal(null);
+    });
   });
 
   describe('DOM', () => {
@@ -431,6 +467,33 @@ describe('createCssVarsProvider', () => {
 
       expect(screen.getByTestId('swatch-color').textContent).to.equal('var(--palette-color)');
       expect(screen.getByTestId('swatch-bgcolor').textContent).to.equal('var(--palette-bgcolor)');
+    });
+
+    /**
+     * `colorSchemes` are useful for creating toggle UI.
+     * In some cases, developers might want to use the color defined in colorSchemes.
+     */
+    it('All `colorSchemes` is available in theme', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: {
+            light: {},
+            dark: {},
+          },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Consumer = () => {
+        const theme = useTheme();
+        return <div>{Object.keys(theme.colorSchemes).join(', ')}</div>;
+      };
+      const { container } = render(
+        <CssVarsProvider theme={{ colorSchemes: { dim: {} } }}>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild.textContent).to.equal('light, dark, dim');
     });
 
     it('able to override css variable prefix', () => {

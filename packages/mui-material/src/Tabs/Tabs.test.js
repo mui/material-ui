@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import {
   describeConformance,
   act,
@@ -42,7 +42,7 @@ describe('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
   const isJSDOM = navigator.userAgent === 'node.js';
 
-  const { render, renderToString } = createRenderer();
+  const { clock, render, renderToString } = createRenderer();
 
   before(function beforeHook() {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -429,7 +429,7 @@ describe('<Tabs />', () => {
   });
 
   describe('prop: variant="scrollable"', () => {
-    let clock;
+    clock.withFakeTimers();
     const tabs = (
       <Tabs value={0} style={{ width: 200 }} variant="scrollable">
         <Tab style={{ width: 120, minWidth: 'auto' }} />
@@ -437,14 +437,6 @@ describe('<Tabs />', () => {
         <Tab style={{ width: 120, minWidth: 'auto' }} />
       </Tabs>
     );
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
 
     it('should render with the scrollable class', () => {
       const { container } = render(tabs);
@@ -470,16 +462,12 @@ describe('<Tabs />', () => {
         }),
       });
       forceUpdate();
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(hasLeftScrollButton(container)).to.equal(true);
       expect(hasRightScrollButton(container)).to.equal(true);
       tablistContainer.scrollLeft = 0;
       fireEvent.scroll(container.querySelector(`.${classes.scroller}.${classes.scrollableX}`));
-      act(() => {
-        clock.tick(166);
-      });
+      clock.tick(166);
 
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(true);
@@ -517,15 +505,7 @@ describe('<Tabs />', () => {
   });
 
   describe('prop: scrollButtons', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('should render scroll buttons', () => {
       const { container } = render(
@@ -589,17 +569,15 @@ describe('<Tabs />', () => {
         }),
       });
       forceUpdate();
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(hasLeftScrollButton(container)).to.equal(true);
       expect(hasRightScrollButton(container)).to.equal(true);
       tablistContainer.scrollLeft = 0;
 
       act(() => {
         window.dispatchEvent(new window.Event('resize', {}));
-        clock.tick(166);
       });
+      clock.tick(166);
 
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(true);
@@ -682,15 +660,7 @@ describe('<Tabs />', () => {
   });
 
   describe('scroll button behavior', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('should scroll visible items', () => {
       const { container, forceUpdate, getByRole, getAllByRole } = render(
@@ -709,37 +679,23 @@ describe('<Tabs />', () => {
       Object.defineProperty(tablistContainer, 'scrollWidth', { value: 100 + 50 + 100 });
       tablistContainer.scrollLeft = 20;
       forceUpdate();
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(hasLeftScrollButton(container)).to.equal(true);
       expect(hasRightScrollButton(container)).to.equal(true);
 
       fireEvent.click(findScrollButton(container, 'left'));
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(tablistContainer.scrollLeft).not.to.be.above(0);
 
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(tablistContainer.scrollLeft).equal(100);
     });
   });
 
   describe('scroll into view behavior', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('should scroll left tab into view', function test() {
       if (isJSDOM) {
@@ -770,9 +726,7 @@ describe('<Tabs />', () => {
         right: 30,
       });
       forceUpdate();
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(tablistContainer.scrollLeft).to.equal(0);
     });
   });

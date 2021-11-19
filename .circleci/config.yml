@@ -691,7 +691,6 @@ workflows:
             branches:
               only:
                 - master
-                - next
     jobs:
       - test_unit:
           react-dist-tag: next
@@ -709,6 +708,5 @@ workflows:
             branches:
               only:
                 - master
-                - next
     jobs:
       - test_types_next
