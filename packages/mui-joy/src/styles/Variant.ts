@@ -3,7 +3,7 @@ import { ColorPaletteProp } from './ColorSystem';
 
 export interface VariantPropOverrides {}
 
-type DefaultVariantProp = 'text' | 'outlined' | 'filled' | 'contained';
+export type DefaultVariantProp = 'text' | 'outlined' | 'filled' | 'contained';
 
 export type VariantProp = OverridableStringUnion<DefaultVariantProp, VariantPropOverrides>;
 
