@@ -235,7 +235,7 @@ export default function GlobalCssPriority() {
   return (
     {/* Inject emotion before JSS */}
     <StyledEngineProvider injectFirst>
-      {/* Your component tree. Now you can override MUI's styles. */}
+      {/* Your component tree. 现在您可以覆盖 Material-UI 的样式。 */}
     </StyledEngineProvider>
   );
 }
@@ -260,7 +260,7 @@ export default function GlobalCssPriority() {
  export default function PlainCssPriority() {
    return (
      <CacheProvider value={cache}>
-       {/* Your component tree. Now you can override MUI's styles. */}
+       {/* Your component tree. 现在您可以覆盖 Material-UI 的样式。 */}
      </CacheProvider>
    );
  }
