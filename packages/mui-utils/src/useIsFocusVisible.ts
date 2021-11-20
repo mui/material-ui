@@ -2,8 +2,7 @@
 import * as React from 'react';
 
 let hadKeyboardEvent = true;
-let hadFocusVisibleRecently = false;
-let hadFocusVisibleRecentlyTimeout: undefined | number;
+let hidDocumentWhileFocusVisible = false;
 
 const inputTypesWhitelist: Record<string, boolean> = {
   text: true,
@@ -75,10 +74,11 @@ function handleVisibilityChange(this: Document) {
   if (this.visibilityState === 'hidden') {
     // If the tab becomes active again, the browser will handle calling focus
     // on the element (Safari actually calls it twice).
-    // If this tab change caused a blur on an element with focus-visible,
+    // If this tab change caused a blur event on an element with focus-visible,
     // re-apply the class when the user switches back to the tab.
-    if (hadFocusVisibleRecently) {
+    if (hidDocumentWhileFocusVisible) {
       hadKeyboardEvent = true;
+      hidDocumentWhileFocusVisible = false;
     }
   }
 }
@@ -134,22 +134,12 @@ export default function useIsFocusVisible(): UseIsFocusVisibleResult {
   /**
    * Should be called if a blur event is fired
    */
-  function handleBlurVisible() {
+  function handleBlurVisible(event: React.FocusEvent) {
     // checking against potential state variable does not suffice if we focus and blur synchronously.
     // React wouldn't have time to trigger a re-render so `focusVisible` would be stale.
-    // Ideally we would adjust `isFocusVisible(event)` to look at `relatedTarget` for blur events.
-    // This doesn't work in IE11 due to https://github.com/facebook/react/issues/3751
-    // TODO: check again if React releases their internal changes to focus event handling (https://github.com/facebook/react/pull/19186).
     if (isFocusVisibleRef.current) {
-      // To detect a tab/window switch, we look for a blur event followed
-      // rapidly by a visibility change.
-      // If we don't see a visibility change within 100ms, it's probably a
-      // regular focus change.
-      hadFocusVisibleRecently = true;
-      window.clearTimeout(hadFocusVisibleRecentlyTimeout!);
-      hadFocusVisibleRecentlyTimeout = window.setTimeout(() => {
-        hadFocusVisibleRecently = false;
-      }, 100);
+      // If we switch tabs a blur event will be fired without the element actually being blurred
+      hidDocumentWhileFocusVisible = document.activeElement === event.target;
 
       isFocusVisibleRef.current = false;
 
