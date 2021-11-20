@@ -8,7 +8,6 @@ export default function Sizes() {
   return (
     <Stack spacing={2} sx={{ width: 500 }}>
       <Autocomplete
-        id="size-small-standard"
         size="small"
         options={top100Films}
         getOptionLabel={(option) => option.title}
@@ -24,7 +23,6 @@ export default function Sizes() {
       />
       <Autocomplete
         multiple
-        id="size-small-standard-multi"
         size="small"
         options={top100Films}
         getOptionLabel={(option) => option.title}
@@ -39,7 +37,6 @@ export default function Sizes() {
         )}
       />
       <Autocomplete
-        id="size-small-outlined"
         size="small"
         options={top100Films}
         getOptionLabel={(option) => option.title}
@@ -50,7 +47,6 @@ export default function Sizes() {
       />
       <Autocomplete
         multiple
-        id="size-small-outlined-multi"
         size="small"
         options={top100Films}
         getOptionLabel={(option) => option.title}
@@ -60,7 +56,6 @@ export default function Sizes() {
         )}
       />
       <Autocomplete
-        id="size-small-filled"
         size="small"
         options={top100Films}
         getOptionLabel={(option) => option.title}
@@ -86,7 +81,6 @@ export default function Sizes() {
       />
       <Autocomplete
         multiple
-        id="size-small-filled-multi"
         size="small"
         options={top100Films}
         getOptionLabel={(option) => option.title}

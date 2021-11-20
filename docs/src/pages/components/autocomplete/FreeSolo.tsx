@@ -7,14 +7,12 @@ export default function FreeSolo() {
   return (
     <Stack spacing={2} sx={{ width: 300 }}>
       <Autocomplete
-        id="free-solo-demo"
         freeSolo
         options={top100Films.map((option) => option.title)}
         renderInput={(params) => <TextField {...params} label="freeSolo" />}
       />
       <Autocomplete
         freeSolo
-        id="free-solo-2-demo"
         disableClearable
         options={top100Films.map((option) => option.title)}
         renderInput={(params) => (

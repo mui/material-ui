@@ -5,7 +5,6 @@ import Autocomplete from '@mui/material/Autocomplete';
 export default function DisabledOptions() {
   return (
     <Autocomplete
-      id="disabled-options-demo"
       options={timeSlots}
       getOptionDisabled={(option) =>
         option === timeSlots[0] || option === timeSlots[2]

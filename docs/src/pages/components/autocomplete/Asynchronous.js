@@ -42,7 +42,6 @@ export default function Asynchronous() {
 
   return (
     <Autocomplete
-      id="asynchronous-demo"
       sx={{ width: 300 }}
       open={open}
       onOpen={() => {

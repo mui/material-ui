@@ -72,7 +72,6 @@ export default function FreeSoloCreateOptionDialog() {
 
           return filtered;
         }}
-        id="free-solo-dialog-demo"
         options={top100Films}
         getOptionLabel={(option) => {
           // e.g value selected with enter, right from the input
@@ -102,7 +101,6 @@ export default function FreeSoloCreateOptionDialog() {
             <TextField
               autoFocus
               margin="dense"
-              id="name"
               value={dialogValue.title}
               onChange={(event) =>
                 setDialogValue({
@@ -116,7 +114,6 @@ export default function FreeSoloCreateOptionDialog() {
             />
             <TextField
               margin="dense"
-              id="name"
               value={dialogValue.year}
               onChange={(event) =>
                 setDialogValue({

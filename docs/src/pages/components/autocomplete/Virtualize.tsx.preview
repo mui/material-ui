@@ -1,5 +1,4 @@
 <Autocomplete
-  id="virtualize-demo"
   sx={{ width: 300 }}
   disableListWrap
   PopperComponent={StyledPopper}

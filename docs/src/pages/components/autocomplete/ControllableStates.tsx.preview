@@ -1,0 +1,16 @@
+<div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
+<div>{`inputValue: '${inputValue}'`}</div>
+<br />
+<Autocomplete
+  value={value}
+  onChange={(event: any, newValue: string | null) => {
+    setValue(newValue);
+  }}
+  inputValue={inputValue}
+  onInputChange={(event, newInputValue) => {
+    setInputValue(newInputValue);
+  }}
+  options={options}
+  sx={{ width: 300 }}
+  renderInput={(params) => <TextField {...params} label="Controllable" />}
+/>

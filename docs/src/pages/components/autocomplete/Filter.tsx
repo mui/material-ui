@@ -10,7 +10,6 @@ const filterOptions = createFilterOptions({
 export default function Filter() {
   return (
     <Autocomplete
-      id="filter-demo"
       options={top100Films}
       getOptionLabel={(option) => option.title}
       filterOptions={filterOptions}

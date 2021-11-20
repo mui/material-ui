@@ -6,7 +6,6 @@ import Autocomplete from '@mui/material/Autocomplete';
 export default function CountrySelect() {
   return (
     <Autocomplete
-      id="country-select-demo"
       sx={{ width: 300 }}
       options={countries}
       autoHighlight
