@@ -69,6 +69,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     className,
     max = 5,
     spacing = 'medium',
+    total,
     variant = 'circular',
     ...other
   } = props;
@@ -98,7 +99,9 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     return React.isValidElement(child);
   });
 
-  const extraAvatars = children.length > clampedMax ? children.length - clampedMax + 1 : 0;
+  const totalAvatars = total && total > children.length ? total : children.length;
+  const shownAvatars = children.length > clampedMax ? clampedMax - 1 : children.length;
+  const extraAvatars = totalAvatars - shownAvatars;
 
   const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
 
@@ -122,7 +125,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
         </AvatarGroupAvatar>
       ) : null}
       {children
-        .slice(0, children.length - extraAvatars)
+        .slice(0, shownAvatars)
         .reverse()
         .map((child) => {
           return React.cloneElement(child, {
