@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import {
   describeConformance,
   act,
@@ -42,7 +42,7 @@ describe('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
   const isJSDOM = navigator.userAgent === 'node.js';
 
-  const { render, renderToString } = createRenderer();
+  const { clock, render, renderToString } = createRenderer();
 
   before(function beforeHook() {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -429,7 +429,8 @@ describe('<Tabs />', () => {
   });
 
   describe('prop: variant="scrollable"', () => {
-    let clock;
+    clock.withFakeTimers();
+
     const tabs = (
       <Tabs value={0} style={{ width: 200 }} variant="scrollable">
         <Tab style={{ width: 120, minWidth: 'auto' }} />
@@ -437,14 +438,6 @@ describe('<Tabs />', () => {
         <Tab style={{ width: 120, minWidth: 'auto' }} />
       </Tabs>
     );
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
 
     it('should render with the scrollable class', () => {
       const { container } = render(tabs);
@@ -517,15 +510,7 @@ describe('<Tabs />', () => {
   });
 
   describe('prop: scrollButtons', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('should render scroll buttons', () => {
       const { container } = render(
@@ -682,15 +667,7 @@ describe('<Tabs />', () => {
   });
 
   describe('scroll button behavior', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('should scroll visible items', () => {
       const { container, forceUpdate, getByRole, getAllByRole } = render(
@@ -731,15 +708,7 @@ describe('<Tabs />', () => {
   });
 
   describe('scroll into view behavior', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('should scroll left tab into view', function test() {
       if (isJSDOM) {
