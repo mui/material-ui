@@ -285,7 +285,8 @@ In order for the text field to be accessible, **the input should be linked to th
 </div>
 ```
 
-- If you are using the `TextField` component, you just have to provide a unique `id`.
+- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side.
+  Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
 - If you are composing the component:
 
 ```jsx
