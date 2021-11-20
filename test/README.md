@@ -112,6 +112,14 @@ trade-off, mainly completeness vs. speed.
 
 ### React API level
 
+#### Debugging tests
+
+If you want to debug tests with the e.g. Chrome inspector (chrome://inspect) you can run `yarn t <testFilePattern> --debug`.
+Note that the test will not get executed until you start code execution in the inspector.
+
+We have a dedicated task to use VSCode's integrated debugger to debug the currently opened test file.
+Open the test you want to run and press F5 (launch "Test Current File").
+
 #### Run the core mocha unit/integration test suite.
 
 To run all of the unit and integration tests run `yarn test:unit`
