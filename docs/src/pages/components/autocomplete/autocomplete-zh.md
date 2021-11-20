@@ -146,9 +146,9 @@ It displays a progress state as long as the network request is pending.
 
 ### 当你键入内容时进行搜索
 
-If your logic is fetching new options on each keystroke and using the current value of the textbox to filter on the server, you may want to consider throttling requests.
+如果您的逻辑在每次按键时都要获取新的选项，并使用文本框的当前值在服务器上进行过滤，那么您可能需要考虑对请求进行节流处理。
 
-Additionally, you will need to disable the built-in filtering of the `Autocomplete` component by overriding the `filterOptions` prop:
+此外，您需要通过 `filterOptions` 属性来禁用内置的 `Autocomplete（自动完成）` 组件的筛选功能：
 
 ```jsx
 <Autocomplete filterOptions={(x) => x} />
@@ -156,23 +156,23 @@ Additionally, you will need to disable the built-in filtering of the `Autocomple
 
 ### Google Maps Places
 
-A customized UI for Google Maps Places Autocomplete.
+一个自定义 UI 来配合 Google 地图位置的自动完成功能。
 
 {{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
 
-For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API.
+在这个演示中，我们需要加载 [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API。
 
 > ⚠️在你开始使用 Google Maps JavaScript API 之前，你必须注册并且创建一个可支付的账户。
 
 ## 多个值
 
-Also known as tags, the user is allowed to enter more than one value.
+当然您也可以将其作为标签，这样用户就可以输入更多的值。
 
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 
 ### 固定的选项
 
-In the event that you need to lock certain tag so that they can't be removed in the interface, you can set the chips disabled.
+有时候您需要锁定某个标签，这样他们不会被从界面中移除，那么这时您可以将 chips 设置为禁用来达到这个目的。
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
@@ -196,27 +196,27 @@ You can use the `limitTags` prop to limit the number of displayed options when n
 
 ### 自定义输入
 
-The `renderInput` prop allows you to customize the rendered input. The first argument of this render prop contains props that you need to forward. Pay specific attention to the `ref` and `inputProps` keys.
+使用 `renderInput` 属性，您可以对输入内容进行自定义渲染。 此 render 属性的第一个参数包含了您想要传递的那些属性。 请特别注意 `ref` 和 `inputProps` 。
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
 ### GitHub 标签选择器
 
-This demo reproduces the GitHub's label picker:
+该演示再现了 GitHub 的标签选择器：
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
-Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
+在该示例中使用  `useAutocomplete`  hook 而不是组件，您也可以查看 [Customized hook](#customized-hook) 部分来了解自定义示例。
 
 ## 高亮显示
 
-The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+下面的演示依赖于 [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight)，这是极小的 (1 kB) 工具集，它用于突出显示自动建议和自动完成组件中的文本。
 
 {{"demo": "pages/components/autocomplete/Highlights.js"}}
 
 ## 自定义筛选
 
-The component exposes a factory to create a filter method that can provided to the `filterOptions` prop. You can use it to change the default option filter behavior.
+此组件提供了一个 factory 来构建一个筛选的方法，来供给 `filterOptions` 属性使用。 你可以使用该方法来更改默认的筛选行为。
 
 ```js
 import { createFilterOptions } from '@mui/material/Autocomplete';
@@ -228,18 +228,18 @@ import { createFilterOptions } from '@mui/material/Autocomplete';
 
 1. `config` (_object_ [optional]):
 
-- `config.ignoreAccents` (_bool_ [optional]): Defaults to `true`. 移除字母的变音符号。
-- `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. 所有字母都小写。
+- `config.ignoreAccents` (_bool_ [optional])：默认为  `true`。 移除字母的变音符号。
+- `config.ignoreCase` (_bool_ [optional])：默认为 `true`。 所有字母都小写。
 - `config.limit` (*number* [optional]): 默认值为 null。 显示限定数量的建议选项。 例如，如果 `config.limit` 是 `100`,，那么只显示前 `100 个` 匹配的选项。 如果存在很多选项匹配，并且虚拟化设置还没建立成时，这样的限制是非常有效的。
 - `config.matchFrom` (_'any' | 'start'_ [optional]): 默认值为 `'any'`。
 - `config.stringify` (*func* [optional]): 控制如何将一个选项转换成一个字符串，这样，选项就能够和输入文本的片段相匹配。
-- `config.trim` (_bool_ [optional]): Defaults to `false`. 删除尾随空格。
+- `config.trim` (_bool_ [optional])：默认为 `false`。 删除尾随空格。
 
 #### 返回结果
 
-`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.
+`filterOptions`：返回的 filter（过滤）方法可以直接提供给带有 `filterOptions` 属性的 `Autocomplete` 组件，或者和 hooks 同名的参数。
 
-In the following demo, the options need to start with the query prefix:
+在下面的演示中，选项需要以查询前缀开始：
 
 ```jsx
 const filterOptions = createFilterOptions({
@@ -264,23 +264,23 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 <Autocomplete filterOptions={filterOptions} />;
 ```
 
-## 可视化
+## 虚拟滚动
 
-Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+在 10000 个随机生成的选项中搜索。 多亏了 [react-window](https://github.com/bvaughn/react-window)，这个列表得以实现虚拟滚动。
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
 ## 事件
 
-If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+如果您想要阻止默认的按键行为，您可以将事件的 `defaultMuiPrevented` 属性设置为 `true`：
 
 ```jsx
 <Autocomplete
   onKeyDown={(event) => {
     if (event.key === 'Enter') {
-      // Prevent's default 'Enter' behavior.
+      // 阻止默认的 'Enter' 行为.
       event.defaultMuiPrevented = true;
-      // your handler code
+      // 你的处理程序代码
     }
   }}
 />
