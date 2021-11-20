@@ -111,7 +111,7 @@ const PushButton = styled('button', {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  selected ? theme.variant.filled?.brand : theme.variant.text?.neutral,
+  selected ? theme.variant.filled?.primary : theme.variant.text?.neutral,
 ]);
 
 const ColorSchemePicker = () => {
@@ -133,7 +133,7 @@ const ColorSchemePicker = () => {
         minHeight: '48px',
         border: '1px solid',
         borderRadius: '24px',
-        ...theme.variant.outlined.brand,
+        ...theme.variant.outlined.primary,
         backgroundColor: 'var(--joy-palette-surface-default)',
       })}
     >
@@ -162,7 +162,7 @@ const ColorSchemePicker = () => {
   );
 };
 
-const Button = styled('button')(({ theme, variant = 'contained', color = 'brand' }) => [
+const Button = styled('button')(({ theme, variant = 'contained', color = 'primary' }) => [
   {
     minHeight: 48,
     border: 0,
@@ -182,7 +182,7 @@ const Button = styled('button')(({ theme, variant = 'contained', color = 'brand'
   theme.variant[`${variant}Disabled`]?.[color],
 ]);
 
-const Badge = styled('span')(({ theme, variant = 'contained', color = 'brand' }) => [
+const Badge = styled('span')(({ theme, variant = 'contained', color = 'primary' }) => [
   {
     minHeight: 32,
     minWidth: 32,
@@ -200,7 +200,7 @@ const Badge = styled('span')(({ theme, variant = 'contained', color = 'brand' })
   theme.variant[variant]?.[color],
 ]);
 
-const Avatar = styled('div')(({ theme, variant = 'filled', color = 'brand' }) => [
+const Avatar = styled('div')(({ theme, variant = 'filled', color = 'primary' }) => [
   theme.typography.h5,
   {
     width: 64,
@@ -257,7 +257,7 @@ const ListItem = styled('li')(({ theme, variant = 'text', color = 'neutral' }) =
   theme.variant[`${variant}Disabled`]?.[color],
 ]);
 
-const IconButton = styled('button')(({ theme, variant = 'filled', color = 'brand' }) => [
+const IconButton = styled('button')(({ theme, variant = 'filled', color = 'primary' }) => [
   {
     border: 0,
     display: 'inline-flex',
@@ -428,7 +428,7 @@ export default function JoyVariants() {
             }}
           >
             <Box sx={{ display: 'flex', gap: '16px' }}>
-              <Tabs variant="contained" color="brand">
+              <Tabs variant="contained" color="primary">
                 <Button variant="text">Tab 1</Button>
                 <Button variant="text">Tab 2</Button>
                 <Button variant="filled">Tab 3</Button>
@@ -437,7 +437,7 @@ export default function JoyVariants() {
             <Paper variant="contained" sx={{ width: '100%' }}>
               <HighlightedCode
                 code={`
-<Tabs variant="contained" color="brand">
+<Tabs variant="contained" color="primary">
   <Button variant="text">Tab 1</Button>
   <Button variant="text">Tab 2</Button>
   <Button variant="filled">Tab 3</Button>
@@ -448,33 +448,33 @@ export default function JoyVariants() {
             </Paper>
 
             <Box sx={{ display: 'flex', gap: '16px' }}>
-              <AppBar variant="contained" color="brand">
+              <AppBar variant="contained" color="primary">
                 <IconButton variant="text">
                   <Close />
                 </IconButton>
-                <Chip color="brand" sx={{ ml: 'auto' }}>
+                <Chip color="primary" sx={{ ml: 'auto' }}>
                   <IconButton sx={{ mr: '6px', ml: '-6px' }}>
                     <Close width="20" height="20" />
                   </IconButton>
                   Design
                 </Chip>
-                <Input variant="filled" color="brand" placeholder="Search" />
+                <Input variant="filled" color="primary" placeholder="Search" />
               </AppBar>
             </Box>
             <Paper variant="contained" sx={{ width: '100%' }}>
               <HighlightedCode
                 code={`
-<AppBar variant="contained" color="brand">
+<AppBar variant="contained" color="primary">
   <IconButton variant="text">
     <Close />
   </IconButton>
-  <Chip color="brand" sx={{ ml: 'auto' }}>
+  <Chip color="primary" sx={{ ml: 'auto' }}>
     <IconButton sx={{ mr: '6px', ml: '-6px' }}>
       <Close width="20" height="20" />
     </IconButton>
     Design
   </Chip>
-  <Input variant="filled" color="brand" placeholder="Search" />
+  <Input variant="filled" color="primary" placeholder="Search" />
 </AppBar>`}
                 component="div"
                 language="jsx"
@@ -482,22 +482,27 @@ export default function JoyVariants() {
             </Paper>
 
             <Box sx={{ display: 'flex', gap: '16px' }}>
-              <AppBar variant="contained" color="brand">
+              <AppBar variant="contained" color="primary">
                 <IconButton variant="text">
                   <Close />
                 </IconButton>
-                <Input variant="outlined" color="brand" placeholder="Search" sx={{ ml: 'auto' }} />
+                <Input
+                  variant="outlined"
+                  color="primary"
+                  placeholder="Search"
+                  sx={{ ml: 'auto' }}
+                />
                 <Avatar variant="filled" sx={{ width: 48, height: 48 }} />
               </AppBar>
             </Box>
             <Paper variant="contained" sx={{ width: '100%' }}>
               <HighlightedCode
                 code={`
-<AppBar variant="contained" color="brand">
+<AppBar variant="contained" color="primary">
   <IconButton variant="text">
     <Close />
   </IconButton>
-  <Input variant="outlined" color="brand" placeholder="Search" sx={{ ml: 'auto' }} />
+  <Input variant="outlined" color="primary" placeholder="Search" sx={{ ml: 'auto' }} />
   <Avatar variant="filled" sx={{ width: 48, height: 48 }} />
 </AppBar>`}
                 component="div"
@@ -508,7 +513,7 @@ export default function JoyVariants() {
             <Box sx={{ display: 'flex', gap: '16px' }}>
               <AppBar variant="contained" color="neutral">
                 Hello World
-                <Button variant="outlined" color="brand">
+                <Button variant="outlined" color="primary">
                   Notify
                 </Button>
               </AppBar>
@@ -521,7 +526,7 @@ export default function JoyVariants() {
   color="neutral"
 >
   Hello World
-  <Button variant="outlined" color="brand">
+  <Button variant="outlined" color="primary">
     Notify
   </Button>
 </AppBar>`}
@@ -611,7 +616,7 @@ export default function JoyVariants() {
             <Box>
               <Paper
                 variant="contained"
-                color="brand"
+                color="primary"
                 sx={{
                   minWidth: '256px',
                   gridColumn: 'span 2',
@@ -661,7 +666,7 @@ export default function JoyVariants() {
             <Paper variant="contained" sx={{ width: '100%' }}>
               <HighlightedCode
                 code={`
-<Paper variant="contained" color="brand">
+<Paper variant="contained" color="primary">
   <Input placeholder="Search..." sx={{ width: '100%' }} />
   <br />
   <br />

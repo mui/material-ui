@@ -202,12 +202,12 @@ const ColorSchemePicker = () => {
                   borderRadius: '50%',
                   bgcolor: (() => {
                     if (name === 'lightYellow') {
-                      return colorSystem.palette.brand[200];
+                      return colorSystem.palette.primary[200];
                     }
                     if (name === 'lightGreen') {
-                      return colorSystem.palette.brand[300];
+                      return colorSystem.palette.primary[300];
                     }
-                    return colorSystem.palette.brand[500];
+                    return colorSystem.palette.primary[500];
                   })(),
                 }}
               />
@@ -258,7 +258,7 @@ export default function Joy() {
               divider: 'var(--joy-palette-neutral-200)',
               selected: 'var(--joy-palette-neutral-100)',
               inverse: '#fff',
-              main: 'var(--joy-palette-brand-600)',
+              main: 'var(--joy-palette-primary-600)',
               mainContrast: '#fff',
             },
           },
@@ -267,17 +267,17 @@ export default function Joy() {
               divider: 'var(--joy-palette-neutral-600)',
               selected: 'var(--joy-palette-neutral-800)',
               inverse: 'var(--joy-palette-neutral-900)',
-              main: 'var(--joy-palette-brand-400)',
+              main: 'var(--joy-palette-primary-400)',
               mainContrast: '#fff',
             },
           },
           lightRed: {
             palette: {
-              brand: colors.red,
+              primary: colors.red,
               neutral: colors.grey,
               text: {
                 heading: 'var(--joy-palette-neutral-900)',
-                headingIntro: 'var(--joy-palette-brand-300)',
+                headingIntro: 'var(--joy-palette-primary-300)',
                 content: 'var(--joy-palette-neutral-600)',
                 detail: 'var(--joy-palette-neutral-500)',
                 overline: 'var(--joy-palette-neutral-500)',
@@ -289,17 +289,17 @@ export default function Joy() {
               divider: 'var(--joy-palette-neutral-200)',
               selected: 'var(--joy-palette-neutral-100)',
               inverse: '#fff',
-              main: 'var(--joy-palette-brand-500)',
+              main: 'var(--joy-palette-primary-500)',
               mainContrast: '#fff',
             },
           },
           darkRed: {
             palette: {
-              brand: colors.red,
+              primary: colors.red,
               neutral: colors.grey,
               text: {
                 heading: '#fff',
-                headingIntro: 'var(--joy-palette-brand-300)',
+                headingIntro: 'var(--joy-palette-primary-300)',
                 content: 'var(--joy-palette-neutral-200)',
                 detail: 'var(--joy-palette-neutral-300)',
                 overline: 'var(--joy-palette-neutral-500)',
@@ -311,17 +311,17 @@ export default function Joy() {
               divider: 'var(--joy-palette-neutral-600)',
               selected: 'var(--joy-palette-neutral-800)',
               inverse: 'var(--joy-palette-neutral-900)',
-              main: 'var(--joy-palette-brand-500)',
+              main: 'var(--joy-palette-primary-500)',
               mainContrast: '#fff',
             },
           },
           lightYellow: {
             palette: {
-              brand: colors.yellow,
+              primary: colors.yellow,
               neutral: colors.grey,
               text: {
                 heading: 'var(--joy-palette-neutral-900)',
-                headingIntro: 'var(--joy-palette-brand-300)',
+                headingIntro: 'var(--joy-palette-primary-300)',
                 content: 'var(--joy-palette-neutral-600)',
                 detail: 'var(--joy-palette-neutral-500)',
                 overline: 'var(--joy-palette-neutral-500)',
@@ -333,39 +333,39 @@ export default function Joy() {
               divider: 'var(--joy-palette-neutral-200)',
               selected: 'var(--joy-palette-neutral-100)',
               inverse: '#fff',
-              main: 'var(--joy-palette-brand-400)',
+              main: 'var(--joy-palette-primary-400)',
               mainContrast: '#fff',
             },
           },
           darkYellow: {
             palette: {
-              brand: colors.yellow,
+              primary: colors.yellow,
               neutral: colors.grey,
               text: {
                 heading: '#fff',
-                headingIntro: 'var(--joy-palette-brand-300)',
+                headingIntro: 'var(--joy-palette-primary-300)',
                 content: 'var(--joy-palette-neutral-200)',
                 detail: 'var(--joy-palette-neutral-300)',
                 overline: 'var(--joy-palette-neutral-500)',
               },
               bgNeutral: {
-                transparency: 'var(--joy-palette-brand-900)',
+                transparency: 'var(--joy-palette-primary-900)',
                 plain: 'var(--joy-palette-neutral-900)',
               },
               divider: 'var(--joy-palette-neutral-600)',
               selected: 'var(--joy-palette-neutral-800)',
               inverse: 'var(--joy-palette-neutral-900)',
-              main: 'var(--joy-palette-brand-200)',
-              mainContrast: 'var(--joy-palette-brand-700)',
+              main: 'var(--joy-palette-primary-200)',
+              mainContrast: 'var(--joy-palette-primary-700)',
             },
           },
           lightGreen: {
             palette: {
-              brand: colors.green,
+              primary: colors.green,
               neutral: colors.grey,
               text: {
                 heading: 'var(--joy-palette-neutral-900)',
-                headingIntro: 'var(--joy-palette-brand-300)',
+                headingIntro: 'var(--joy-palette-primary-300)',
                 content: 'var(--joy-palette-neutral-600)',
                 detail: 'var(--joy-palette-neutral-500)',
                 overline: 'var(--joy-palette-neutral-500)',
@@ -377,30 +377,30 @@ export default function Joy() {
               divider: 'var(--joy-palette-neutral-200)',
               selected: 'var(--joy-palette-neutral-100)',
               inverse: '#fff',
-              main: 'var(--joy-palette-brand-400)',
+              main: 'var(--joy-palette-primary-400)',
               mainContrast: '#fff',
             },
           },
           darkGreen: {
             palette: {
-              brand: colors.green,
+              primary: colors.green,
               neutral: colors.grey,
               text: {
                 heading: '#fff',
-                headingIntro: 'var(--joy-palette-brand-300)',
+                headingIntro: 'var(--joy-palette-primary-300)',
                 content: 'var(--joy-palette-neutral-200)',
                 detail: 'var(--joy-palette-neutral-300)',
                 overline: 'var(--joy-palette-neutral-500)',
               },
               bgNeutral: {
-                transparency: 'var(--joy-palette-brand-900)',
+                transparency: 'var(--joy-palette-primary-900)',
                 plain: 'var(--joy-palette-neutral-900)',
               },
               divider: 'var(--joy-palette-neutral-600)',
               selected: 'var(--joy-palette-neutral-800)',
               inverse: 'var(--joy-palette-neutral-900)',
-              main: 'var(--joy-palette-brand-300)',
-              mainContrast: 'var(--joy-palette-brand-700)',
+              main: 'var(--joy-palette-primary-300)',
+              mainContrast: 'var(--joy-palette-primary-700)',
             },
           },
         },

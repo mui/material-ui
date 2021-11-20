@@ -7,12 +7,12 @@ export const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   textDisabledColor: `var(--joy-palette-neutral-300)`,
 
   outlinedColor: `var(--joy-palette-${color}-600)`,
-  outlinedBorder: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-300)`,
-  outlinedHoverBg: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-100)`,
-  outlinedHoverBorder: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-400)`,
-  outlinedActiveBg: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-200)`,
-  outlinedDisabledColor: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-300)`,
-  outlinedDisabledBorder: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-200)`,
+  outlinedBorder: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-300)`,
+  outlinedHoverBg: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-100)`,
+  outlinedHoverBorder: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-400)`,
+  outlinedActiveBg: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-200)`,
+  outlinedDisabledColor: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-300)`,
+  outlinedDisabledBorder: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-200)`,
 
   filledColor: `var(--joy-palette-${color}-700)`,
   filledBg: `var(--joy-palette-${color}-100)`,
@@ -30,17 +30,17 @@ export const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
 
 export const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
   textColor: `var(--joy-palette-${color}-200)`,
-  textHoverBg: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-800)`,
-  textActiveBg: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-700)`,
-  textDisabledColor: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-500)`,
+  textHoverBg: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-800)`,
+  textActiveBg: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-700)`,
+  textDisabledColor: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-500)`,
 
   outlinedColor: `var(--joy-palette-${color}-200)`,
-  outlinedBorder: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-700)`,
-  outlinedHoverBg: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-800)`,
-  outlinedHoverBorder: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-600)`,
-  outlinedActiveBg: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-700)`,
-  outlinedDisabledColor: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-500)`,
-  outlinedDisabledBorder: `var(--joy-palette-${color === 'brand' ? 'neutral' : color}-800)`,
+  outlinedBorder: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-700)`,
+  outlinedHoverBg: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-800)`,
+  outlinedHoverBorder: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-600)`,
+  outlinedActiveBg: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-700)`,
+  outlinedDisabledColor: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-500)`,
+  outlinedDisabledBorder: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-800)`,
 
   filledColor: `var(--joy-palette-${color}-300)`,
   filledBg: `var(--joy-palette-${color}-800)`,
@@ -183,7 +183,7 @@ export const getContainedOverrides = (color: ColorPaletteProp) => ({
 export const createVariant = (generator: (color: ColorPaletteProp) => object) => {
   const colors: DefaultColorPalette[] = [
     'neutral',
-    'brand',
+    'primary',
     'danger',
     'info',
     'success',

@@ -86,7 +86,7 @@ const PushButton = styled('button', {
     alignItems: 'center',
     '&:focus-visible': theme.focus.default,
   },
-  selected ? theme.variant.filled?.brand : theme.variant.text?.neutral,
+  selected ? theme.variant.filled?.primary : theme.variant.text?.neutral,
 ]);
 
 const ColorSchemePicker = () => {
@@ -108,7 +108,7 @@ const ColorSchemePicker = () => {
         minHeight: '48px',
         border: '1px solid',
         borderRadius: '24px',
-        ...theme.variant.outlined.brand,
+        ...theme.variant.outlined.primary,
       })}
     >
       <Box sx={{ display: 'flex', gap: '8px', p: '6px' }}>
@@ -137,7 +137,7 @@ const ColorSchemePicker = () => {
 };
 
 const Button = styled('button')(
-  ({ theme, variant = 'contained', color = 'brand', roundness = 'default' }) => [
+  ({ theme, variant = 'contained', color = 'primary', roundness = 'default' }) => [
     {
       minHeight: 48,
       border: 0,
@@ -207,7 +207,7 @@ const ListItem = styled('li')(({ theme, variant = 'text', color = 'neutral' }) =
 ]);
 
 const IconButton = styled('button')(
-  ({ theme, variant = 'filled', color = 'brand', roundness = 'default' }) => [
+  ({ theme, variant = 'filled', color = 'primary', roundness = 'default' }) => [
     {
       border: 0,
       display: 'inline-flex',
@@ -302,7 +302,7 @@ export default function JoySketching() {
       <Paper
         variant="contained"
         enableContext
-        color="brand"
+        color="primary"
         as="header"
         sx={{
           minHeight: 56,
@@ -336,16 +336,16 @@ export default function JoySketching() {
               width: '100%',
               height: 'calc(100vh - 56px)',
               top: '56px',
-              bgcolor: 'var(--joy-palette-brand-900)',
+              bgcolor: 'var(--joy-palette-primary-900)',
               py: '1rem',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               gap: '1rem',
-              '--joy-variant-outlinedColor': 'var(--joy-palette-brand-200)',
-              '--joy-variant-outlinedBorder': 'var(--joy-palette-brand-700)',
-              '--joy-variant-outlinedHoverBorder': 'var(--joy-palette-brand-500)',
-              '--joy-variant-outlinedHoverBg': 'var(--joy-palette-brand-700)',
+              '--joy-variant-outlinedColor': 'var(--joy-palette-primary-200)',
+              '--joy-variant-outlinedBorder': 'var(--joy-palette-primary-700)',
+              '--joy-variant-outlinedHoverBorder': 'var(--joy-palette-primary-500)',
+              '--joy-variant-outlinedHoverBg': 'var(--joy-palette-primary-700)',
             }}
           >
             <IconButton variant="outlined">
@@ -368,7 +368,7 @@ export default function JoySketching() {
               <Typography variant="overline">Browse</Typography>
             </Box>
             <List sx={{ px: '0.5rem' }}>
-              <ListItem variant="filled" color="brand">
+              <ListItem variant="filled" color="primary">
                 Inbox
               </ListItem>
               <ListItem>Sent</ListItem>
@@ -419,13 +419,17 @@ export default function JoySketching() {
                   </Typography>
                   <Typography variant="detail">Today at 15:45</Typography>
                 </Box>
-                <Button variant="outlined" color="brand" sx={{ minHeight: 34, p: '0.25rem 1rem' }}>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  sx={{ minHeight: 34, p: '0.25rem 1rem' }}
+                >
                   Reply
                 </Button>
-                <IconButton variant="outlined" color="brand">
+                <IconButton variant="outlined" color="primary">
                   <Sun />
                 </IconButton>
-                <IconButton variant="outlined" color="brand">
+                <IconButton variant="outlined" color="primary">
                   <Sun />
                 </IconButton>
               </Box>
@@ -490,7 +494,10 @@ export default function JoySketching() {
                       sx={{ minWidth: '64px', minHeight: '64px', borderRadius: 0 }}
                     />
                     <Box sx={{ p: '0.75rem' }}>
-                      <Typography variant="caption" sx={{ color: 'var(--joy-palette-brand-500)' }}>
+                      <Typography
+                        variant="caption"
+                        sx={{ color: 'var(--joy-palette-primary-500)' }}
+                      >
                         blank_slates.doc
                       </Typography>
                       <Typography variant="detail">blank_slates.doc</Typography>

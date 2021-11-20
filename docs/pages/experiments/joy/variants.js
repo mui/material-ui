@@ -106,7 +106,7 @@ const PushButton = styled('button', {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  selected ? theme.variant.filled?.brand : theme.variant.text?.neutral,
+  selected ? theme.variant.filled?.primary : theme.variant.text?.neutral,
 ]);
 
 const ColorSchemePicker = () => {
@@ -128,7 +128,7 @@ const ColorSchemePicker = () => {
         minHeight: '48px',
         border: '1px solid',
         borderRadius: '24px',
-        ...theme.variant.outlined.brand,
+        ...theme.variant.outlined.primary,
         backgroundColor: 'var(--joy-palette-surface-default)',
       })}
     >
@@ -157,7 +157,7 @@ const ColorSchemePicker = () => {
   );
 };
 
-const Button = styled('button')(({ theme, variant = 'contained', color = 'brand' }) => [
+const Button = styled('button')(({ theme, variant = 'contained', color = 'primary' }) => [
   {
     minHeight: 48,
     border: 0,
@@ -177,7 +177,7 @@ const Button = styled('button')(({ theme, variant = 'contained', color = 'brand'
   theme.variant[`${variant}Disabled`]?.[color],
 ]);
 
-const Badge = styled('span')(({ theme, variant = 'contained', color = 'brand' }) => [
+const Badge = styled('span')(({ theme, variant = 'contained', color = 'primary' }) => [
   {
     minHeight: 32,
     minWidth: 32,
@@ -195,7 +195,7 @@ const Badge = styled('span')(({ theme, variant = 'contained', color = 'brand' })
   theme.variant[variant]?.[color],
 ]);
 
-const Avatar = styled('div')(({ theme, variant = 'filled', color = 'brand' }) => [
+const Avatar = styled('div')(({ theme, variant = 'filled', color = 'primary' }) => [
   theme.typography.h5,
   {
     width: 64,
@@ -254,7 +254,7 @@ const ListItem = styled('li')(({ theme, variant = 'text', color = 'neutral' }) =
   theme.variant[`${variant}Disabled`]?.[color],
 ]);
 
-const IconButton = styled('button')(({ theme, variant = 'filled', color = 'brand' }) => [
+const IconButton = styled('button')(({ theme, variant = 'filled', color = 'primary' }) => [
   {
     border: 0,
     display: 'inline-flex',
@@ -660,7 +660,7 @@ export default function JoyVariants() {
               </IconButton>
               Regular
             </Chip>
-            <Chip variant="filled" color="brand">
+            <Chip variant="filled" color="primary">
               <IconButton variant="contained" sx={{ mr: '6px', ml: '-6px' }}>
                 <Close width="20" height="20" />
               </IconButton>
@@ -684,7 +684,7 @@ export default function JoyVariants() {
   <IconButton variant="contained"><Close /></IconButton>
   Regular
 </Chip>
-<Chip variant="filled" color="brand">
+<Chip variant="filled" color="primary">
   <IconButton variant="contained"><Close /></IconButton>
   Full time
 </Chip>
@@ -737,7 +737,7 @@ export default function JoyVariants() {
               <Button variant="text">Tab 2</Button>
               <Button>Tab 3</Button>
             </Tabs>
-            <Tabs variant="filled" color="brand">
+            <Tabs variant="filled" color="primary">
               <Button variant="text">Tab 1</Button>
               <Button variant="text">Tab 2</Button>
               <Button>Tab 3</Button>

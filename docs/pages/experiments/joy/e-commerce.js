@@ -328,7 +328,7 @@ const PushButton = styled('button', {
     alignItems: 'center',
     '&:focus-visible': theme.focus.default,
   },
-  selected ? theme.variant.filled?.brand : theme.variant.text?.neutral,
+  selected ? theme.variant.filled?.primary : theme.variant.text?.neutral,
 ]);
 
 const ColorSchemePicker = () => {
@@ -350,7 +350,7 @@ const ColorSchemePicker = () => {
         minHeight: '48px',
         border: '1px solid',
         borderRadius: '24px',
-        ...theme.variant.outlined.brand,
+        ...theme.variant.outlined.primary,
       })}
     >
       <Box sx={{ display: 'flex', gap: '8px', p: '6px' }}>
@@ -379,7 +379,7 @@ const ColorSchemePicker = () => {
 };
 
 const Button = styled('button')(
-  ({ theme, variant = 'contained', color = 'brand', roundness = 'default' }) => [
+  ({ theme, variant = 'contained', color = 'primary', roundness = 'default' }) => [
     {
       minHeight: 48,
       border: 0,
@@ -400,7 +400,7 @@ const Button = styled('button')(
   ],
 );
 
-const Badge = styled('span')(({ theme, variant = 'contained', color = 'brand' }) => [
+const Badge = styled('span')(({ theme, variant = 'contained', color = 'primary' }) => [
   {
     minHeight: 32,
     minWidth: 32,
@@ -416,7 +416,7 @@ const Badge = styled('span')(({ theme, variant = 'contained', color = 'brand' })
   theme.variant[variant]?.[color],
 ]);
 
-const Avatar = styled('div')(({ theme, variant = 'filled', color = 'brand' }) => [
+const Avatar = styled('div')(({ theme, variant = 'filled', color = 'primary' }) => [
   theme.typography.h5,
   {
     width: 64,
@@ -445,7 +445,7 @@ const Paper = styled('div')(({ theme, variant = 'text', color = 'neutral', round
 ]);
 
 const IconButton = styled('button')(
-  ({ theme, variant = 'filled', color = 'brand', roundness = 'default' }) => [
+  ({ theme, variant = 'filled', color = 'primary', roundness = 'default' }) => [
     {
       border: 0,
       display: 'inline-flex',
@@ -549,7 +549,7 @@ export default function JoyEcommerce() {
         })}
       />
       <Paper
-        color="brand"
+        color="primary"
         as="header"
         sx={{
           minHeight: 56,

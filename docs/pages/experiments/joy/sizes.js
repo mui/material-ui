@@ -20,7 +20,7 @@ const Paper = styled('div')(
 );
 
 const Button = styled('button')(
-  ({ theme, variant = 'contained', color = 'brand', roundness = 'default', size }) => [
+  ({ theme, variant = 'contained', color = 'primary', roundness = 'default', size }) => [
     size === 'small' && {
       '--joy-Button-minHeight': theme.components?.Button?.sizes?.small?.minHeight || '40px',
       '--joy-Button-minWidth': theme.components?.Button?.sizes?.small?.minWidth || '4rem',

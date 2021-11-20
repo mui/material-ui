@@ -170,7 +170,7 @@ type BasePaletteRange =
   | 'containedDisabledBg';
 type BaseJoyTokens = {
   palette: {
-    brand: Pick<PaletteRange, BasePaletteRange>;
+    primary: Pick<PaletteRange, BasePaletteRange>;
     neutral: Pick<PaletteRange, BasePaletteRange>;
     danger: Pick<PaletteRange, BasePaletteRange>;
     info: Pick<PaletteRange, BasePaletteRange>;
@@ -212,9 +212,9 @@ type BaseJoyTokens = {
 
 export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> = {
   palette: {
-    brand: {
+    primary: {
       ...colors.purple,
-      ...createLightModeVariantVariables('brand'),
+      ...createLightModeVariantVariables('primary'),
     },
     neutral: {
       ...colors.grey,
@@ -247,16 +247,16 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> 
       level2: 'var(--joy-palette-neutral-100)',
       level3: 'var(--joy-palette-neutral-200)',
     },
-    focusVisible: 'var(--joy-palette-brand-200)',
+    focusVisible: 'var(--joy-palette-primary-200)',
   },
   elevationRing: '0 0 #000',
 };
 
 export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> = {
   palette: {
-    brand: {
+    primary: {
       ...colors.purple,
-      ...createDarkModeVariantVariables('brand'),
+      ...createDarkModeVariantVariables('primary'),
     },
     neutral: {
       ...colors.grey,
@@ -289,7 +289,7 @@ export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> =
       level2: 'var(--joy-palette-neutral-700)',
       level3: 'var(--joy-palette-neutral-600)',
     },
-    focusVisible: 'var(--joy-palette-brand-400)',
+    focusVisible: 'var(--joy-palette-primary-400)',
   },
   elevationRing: '0 0 #000',
 };

@@ -88,7 +88,7 @@ const PushButton = styled('button', {
     alignItems: 'center',
     '&:focus-visible': theme.focus.default,
   },
-  selected ? theme.variant.filled?.brand : theme.variant.text?.neutral,
+  selected ? theme.variant.filled?.primary : theme.variant.text?.neutral,
 ]);
 
 const ColorSchemePicker = () => {
@@ -110,7 +110,7 @@ const ColorSchemePicker = () => {
         minHeight: '48px',
         border: '1px solid',
         borderRadius: '24px',
-        ...theme.variant.outlined.brand,
+        ...theme.variant.outlined.primary,
       })}
     >
       <Box sx={{ display: 'flex', gap: '8px', p: '6px' }}>
@@ -139,7 +139,7 @@ const ColorSchemePicker = () => {
 };
 
 const IconButton = styled('button')(
-  ({ theme, variant = 'filled', color = 'brand', roundness = 'default' }) => [
+  ({ theme, variant = 'filled', color = 'primary', roundness = 'default' }) => [
     {
       border: 0,
       display: 'inline-flex',
@@ -179,7 +179,7 @@ const Typography = styled(MuiTypography)(({ theme, variant = 'body' }) => [
 ]);
 
 const Avatar = styled('img')(
-  ({ theme, variant = 'filled', color = 'brand', roundness = 'default' }) => [
+  ({ theme, variant = 'filled', color = 'primary', roundness = 'default' }) => [
     theme.typography.h5,
     {
       width: 40,
@@ -197,14 +197,14 @@ const Avatar = styled('img')(
 const TaskCard = ({ children }) => (
   <Card
     variant="contained"
-    color="brand"
+    color="primary"
     elevation="xl"
     sx={{
       display: 'flex',
       flexDirection: 'column',
       p: '25px',
       background:
-        'linear-gradient(to right bottom, var(--joy-palette-brand-500), var(--joy-palette-brand-700) 120%)',
+        'linear-gradient(to right bottom, var(--joy-palette-primary-500), var(--joy-palette-primary-700) 120%)',
     }}
   >
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -223,7 +223,7 @@ const TaskCard = ({ children }) => (
           p: '2px',
         }}
       >
-        <System color="var(--joy-palette-brand-500)" />
+        <System color="var(--joy-palette-primary-500)" />
       </Box>
       <Typography variant="h5" component="div" sx={{ mt: 1.5, fontWeight: 500 }}>
         Check the docs for getting every component API
@@ -239,7 +239,7 @@ const TaskCard = ({ children }) => (
         <Typography
           variant="caption"
           fontWeight={500}
-          sx={{ color: 'var(--joy-palette-brand-200)' }}
+          sx={{ color: 'var(--joy-palette-primary-200)' }}
         >
           Assigned to
         </Typography>
@@ -255,14 +255,14 @@ const TaskCard = ({ children }) => (
           borderRadius: 'var(--joy-borderRadius-default)',
           position: 'relative',
           flexGrow: 1,
-          bgcolor: 'var(--joy-palette-brand-400)',
+          bgcolor: 'var(--joy-palette-primary-400)',
           height: '4px',
         }}
       >
         <Box
           sx={{
             borderRadius: 'inherit',
-            bgcolor: 'var(--joy-palette-brand-50)',
+            bgcolor: 'var(--joy-palette-primary-50)',
             height: '100%',
             width: '60%',
           }}
@@ -339,7 +339,7 @@ export default function MuiHome() {
         colorSchemes: {
           light: {
             palette: {
-              brand: {
+              primary: {
                 50: '#F0F7FF',
                 100: '#C2E0FF',
                 200: '#A5D8FF',
@@ -358,7 +358,7 @@ export default function MuiHome() {
           },
           dark: {
             palette: {
-              brand: {
+              primary: {
                 50: '#E2EDF8',
                 100: '#CEE0F3',
                 200: '#91B9E3',
@@ -371,10 +371,10 @@ export default function MuiHome() {
                 900: '#0A1929',
               },
               neutral: {
-                outlinedBg: 'var(--joy-palette-brand-800)',
-                outlinedBorder: 'var(--joy-palette-brand-500)',
-                outlinedHoverBg: 'var(--joy-palette-brand-700)',
-                outlinedHoverBorder: 'var(--joy-palette-brand-400)',
+                outlinedBg: 'var(--joy-palette-primary-800)',
+                outlinedBorder: 'var(--joy-palette-primary-500)',
+                outlinedHoverBg: 'var(--joy-palette-primary-700)',
+                outlinedHoverBorder: 'var(--joy-palette-primary-400)',
               },
               text: {
                 content: '#fff',
@@ -395,7 +395,7 @@ export default function MuiHome() {
               boxSizing: 'border-box',
             },
             '&[data-mui-color-scheme="dark"]': {
-              backgroundColor: 'var(--joy-palette-brand-900)',
+              backgroundColor: 'var(--joy-palette-primary-900)',
             },
           },
         })}
