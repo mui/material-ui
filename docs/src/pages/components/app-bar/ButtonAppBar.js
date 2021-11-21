@@ -29,7 +29,7 @@ export default function ButtonAppBar() {
               News
             </Typography>
 
-            {/* responsive AppBar for mobile  start */}
+                {/* responsive AppBar for mobile  start */}
 
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <div>
@@ -68,8 +68,6 @@ export default function ButtonAppBar() {
                       Home
                     </Typography>
                   </MenuItem>
-
-                  <Box></Box>
                   <Box>
                     {/* NAVBAR FOR DESKTOP */}
 
@@ -118,28 +116,27 @@ export default function ButtonAppBar() {
                 </Typography>
               </MenuItem>
             </Box>
-            <Box sx={{ flexGrow: 1 }}></Box>
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <MenuItem>
-                <Typography
-                  variant="h6"
-                  noWrap
-                  component="div"
-                  // onClick={}
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    p: 1,
-                    m: 1
-                  }}
-                >
-                  Login
-                </Typography>
-              </MenuItem>
+            <Box sx={{ flexGrow: 1 }}>
+              <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <MenuItem>
+                  <Typography
+                    variant="h6"
+                    noWrap
+                    component="div"
+                    // onClick={}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      p: 1,
+                      m: 1
+                    }}
+                  >
+                    Login
+                  </Typography>
+                </MenuItem>
+              </Box>
+              {/* NAVBAR FOR DESKTOP  end*/}
             </Box>
- {/* NAVBAR FOR DESKTOP  END*/}
-
- {/* Menu dropdown icon*/}
             <Box>
               <IconButton
                 size="large"
