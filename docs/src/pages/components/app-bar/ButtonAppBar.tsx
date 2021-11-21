@@ -59,47 +59,44 @@ export default function ButtonAppBar() {
           </Toolbar>
         </AppBar>
         <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-          <div>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-              sx={{
-                display: { xs: 'block', sm: 'none' },
-                mt: '32px',
-                px: '20px',
-              }}
-            >
-              <MenuItem>
-                <Typography
-                  onClick={handleClose}
-                  variant="h6"
-                  noWrap
-                  component="div"
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    m: 1,
-                  }}
-                >
-                  login
-                </Typography>
-              </MenuItem>
-            </Menu>
-          </div>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+            sx={{
+              display: { xs: 'block', sm: 'none' },
+              mt: '32px',
+              px: '20px',
+            }}
+          >
+            <MenuItem>
+              <Typography
+                onClick={handleClose}
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  m: 1,
+                }}
+              >
+                login
+              </Typography>
+            </MenuItem>
+          </Menu>
         </Box>
       </Box>
     </Box>
   );
 }
-
