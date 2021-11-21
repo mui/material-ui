@@ -15,7 +15,7 @@ It can transform into a contextual action bar or be used as a navbar.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic App Bar
+## Basic Responsive App Bar
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
