@@ -3444,10 +3444,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-virtualized@^9.21.14":
-  version "9.21.14"
-  resolved "https://registry.yarnpkg.com/@types/react-virtualized/-/react-virtualized-9.21.14.tgz#8d465aa54386a7bebc7b61f71afc588bb800b868"
-  integrity sha512-wvZftXXYNpj3ELVm2v8pySnq/uxKD1UsFpRkNoBAbQFTnI4Bz4OcwjUhwvaqUq5dDoT6SCS2+PdCzysxMYfjdg==
+"@types/react-virtualized@^9.21.15":
+  version "9.21.15"
+  resolved "https://registry.yarnpkg.com/@types/react-virtualized/-/react-virtualized-9.21.15.tgz#349a4f9774504e514ea4c8ebbbfe6cc8db17f045"
+  integrity sha512-R4ntUW+Y/a7RgRpfeYz3iRe+kaDWtXieMeQum4AoYjjZsR/QhpKqFu4muSBhzA7OHJHd6qA0KkeTzxj5ah5tmQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/react" "*"
