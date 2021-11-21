@@ -34,7 +34,7 @@
     "yargs": "^17.2.1"
   },
   "devDependencies": {
-    "@types/jscodeshift": "0.11.2"
+    "@types/jscodeshift": "0.11.3"
   },
   "sideEffects": false,
   "publishConfig": {
