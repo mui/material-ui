@@ -2,10 +2,6 @@ import * as React from 'react';
 import { Result, Mode } from './useCurrentColorScheme';
 import getInitColorSchemeScript from './getInitColorSchemeScript';
 
-type RequiredDeep<T> = {
-  [K in keyof T]-?: RequiredDeep<T[K]>;
-};
-
 export type BuildCssVarsTheme<ThemeInput> = ThemeInput extends {
   colorSchemes: Record<string, infer ColorSystems>;
 }
@@ -35,9 +31,7 @@ type DecideTheme<
             DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
           >
         > &
-          RequiredDeep<
-            Record<ApplicationColorScheme, ApplicationTheme['colorSchemes'][ApplicationColorScheme]>
-          >;
+          Record<ApplicationColorScheme, ApplicationTheme['colorSchemes'][ApplicationColorScheme]>;
       };
     };
 

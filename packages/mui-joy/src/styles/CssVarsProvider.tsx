@@ -24,7 +24,7 @@ type JoyThemeInput = PartialDeep<Omit<StaticTheme, 'typography'>> & {
 };
 
 type ApplicationThemeInput = PartialDeep<Omit<StaticTheme, 'typography'>> & {
-  colorSchemes: Record<ExtendedColorScheme, ColorSystems>;
+  colorSchemes: Record<ExtendedColorScheme, PartialDeep<ColorSystems>>;
   typography?: Partial<StaticTheme['typography']>;
 };
 
