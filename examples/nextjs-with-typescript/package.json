@@ -21,12 +21,9 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@emotion/eslint-plugin": "^11.5.0",
     "@types/react": "17.0.35",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
     "eslint": "7.32.0",
     "eslint-config-next": "12.0.4",
-    "typescript": "4.5.0"
+    "typescript": "4.4.4"
   }
 }
