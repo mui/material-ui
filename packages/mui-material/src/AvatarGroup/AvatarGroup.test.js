@@ -49,6 +49,47 @@ describe('<AvatarGroup />', () => {
     expect(container.textContent).to.equal('+2');
   });
 
+  it('should display 3 avatars and "+7"', () => {
+    const { container } = render(
+      <AvatarGroup total={10}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(4);
+    expect(container.querySelectorAll('img').length).to.equal(3);
+    expect(container.textContent).to.equal('+7');
+  });
+
+  it('should display 3 avatars and "+2"', () => {
+    const { container } = render(
+      <AvatarGroup max={4} total={5}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(4);
+    expect(container.querySelectorAll('img').length).to.equal(3);
+    expect(container.textContent).to.equal('+2');
+  });
+
+  it('should display 3 avatars', () => {
+    const { container } = render(
+      <AvatarGroup max={3} total={3}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(3);
+    expect(container.querySelectorAll('img').length).to.equal(3);
+    expect(container.textContent).to.equal('');
+  });
+
   it('should display all avatars with default (circular) variant', () => {
     const { container } = render(
       <AvatarGroup>
