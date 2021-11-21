@@ -2308,12 +2308,26 @@
     glob-to-regexp "^0.3.0"
 
 "@mui/core@^5.0.0-alpha.51":
-  version "0.0.0"
-  uid ""
+  version "5.0.0-alpha.55"
+  dependencies:
+    "@babel/runtime" "^7.16.3"
+    "@emotion/is-prop-valid" "^1.1.1"
+    "@mui/utils" "^5.1.1"
+    "@popperjs/core" "^2.4.4"
+    clsx "^1.1.1"
+    prop-types "^15.7.2"
+    react-is "^17.0.2"
 
 "@mui/core@link:./packages/mui-base":
-  version "0.0.0"
-  uid ""
+  version "5.0.0-alpha.55"
+  dependencies:
+    "@babel/runtime" "^7.16.3"
+    "@emotion/is-prop-valid" "^1.1.1"
+    "@mui/utils" "^5.1.1"
+    "@popperjs/core" "^2.4.4"
+    clsx "^1.1.1"
+    prop-types "^15.7.2"
+    react-is "^17.0.2"
 
 "@mui/x-data-grid-generator@^5.0.0-beta.6":
   version "5.0.0-beta.6"
@@ -3430,10 +3444,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-virtualized@^9.21.14":
-  version "9.21.14"
-  resolved "https://registry.yarnpkg.com/@types/react-virtualized/-/react-virtualized-9.21.14.tgz#8d465aa54386a7bebc7b61f71afc588bb800b868"
-  integrity sha512-wvZftXXYNpj3ELVm2v8pySnq/uxKD1UsFpRkNoBAbQFTnI4Bz4OcwjUhwvaqUq5dDoT6SCS2+PdCzysxMYfjdg==
+"@types/react-virtualized@^9.21.15":
+  version "9.21.15"
+  resolved "https://registry.yarnpkg.com/@types/react-virtualized/-/react-virtualized-9.21.15.tgz#349a4f9774504e514ea4c8ebbbfe6cc8db17f045"
+  integrity sha512-R4ntUW+Y/a7RgRpfeYz3iRe+kaDWtXieMeQum4AoYjjZsR/QhpKqFu4muSBhzA7OHJHd6qA0KkeTzxj5ah5tmQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/react" "*"
