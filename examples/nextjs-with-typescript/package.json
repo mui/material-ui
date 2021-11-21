@@ -27,8 +27,6 @@
     "@typescript-eslint/parser": "^5.4.0",
     "eslint": "7.32.0",
     "eslint-config-next": "12.0.4",
-    "eslint-config-prettier": "^8.3.0",
-    "prettier": "^2.4.1",
     "typescript": "4.5.2"
   }
 }
