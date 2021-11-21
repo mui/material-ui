@@ -1,5 +1,4 @@
 import * as React from 'react';
-// eslint-disable-next-line
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import theme from '../../styles/theme';
@@ -61,7 +60,6 @@ MyDocument.getInitialProps = async (ctx) => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      // eslint-disable-next-line
       enhanceApp: (App: any) => (props) => <App emotionCache={cache} {...props} />,
     });
 
