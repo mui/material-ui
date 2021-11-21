@@ -25,7 +25,7 @@
   "devDependencies": {
     "@types/babel__core": "^7.1.16",
     "@types/doctrine": "^0.0.5",
-    "@types/lodash": "^4.14.176",
+    "@types/lodash": "^4.14.177",
     "@types/node": "^16.11.4",
     "@types/prettier": "^2.4.2",
     "@types/react": "^17.0.34",
