@@ -30,7 +30,7 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    */
   sx?: SxProps<Theme>;
   /**
-   * Allow customization of how +x is calculated rather than using children length.
+   * Specify total amount of avatars.
    */
   total?: number;
   /**
