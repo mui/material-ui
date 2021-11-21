@@ -1,13 +1,13 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import Container from '@mui/material/Container';
 
 export default function ButtonAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -28,29 +28,26 @@ export default function ButtonAppBar() {
             <Typography variant="h6" noWrap component="div">
               News
             </Typography>
-
-            {/* responsive AppBar for mobile  start */}
-
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
               <div>
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
                   anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
+                    vertical: 'top',
+                    horizontal: 'right',
                   }}
                   keepMounted
                   transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
+                    vertical: 'top',
+                    horizontal: 'right',
                   }}
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                   sx={{
-                    display: { xs: "block", sm: "none" },
-                    mt: "32px",
-                    px: "20px",
+                    display: { xs: 'block', sm: 'none' },
+                    mt: '32px',
+                    px: '20px',
                   }}
                 >
                   <MenuItem>
@@ -60,8 +57,8 @@ export default function ButtonAppBar() {
                       noWrap
                       component="div"
                       sx={{
-                        display: "flex",
-                        alignItems: "center",
+                        display: 'flex',
+                        alignItems: 'center',
                         m: 1,
                       }}
                     >
@@ -69,18 +66,15 @@ export default function ButtonAppBar() {
                     </Typography>
                   </MenuItem>
                   <Box>
-                    {/* NAVBAR FOR DESKTOP */}
-
                     <MenuItem>
                       <Typography
                         onClick={handleClose}
                         variant="h6"
                         noWrap
                         component="div"
-                        // onClick={}
                         sx={{
-                          display: "flex",
-                          alignItems: "center",
+                          display: 'flex',
+                          alignItems: 'center',
                           m: 1,
                         }}
                       >
@@ -92,22 +86,15 @@ export default function ButtonAppBar() {
               </div>
             </Box>
 
-            {/*  */}
-            {/* for mobile responsive APPbar end here */}
-            {/*  */}
-            {/*  */}
-            {/* NAVBAR FOR DESKTOP START HERE */}
-            {/*  */}
-
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <MenuItem>
                 <Typography
                   variant="h6"
                   noWrap
                   component="div"
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
+                    display: 'flex',
+                    alignItems: 'center',
                     p: 1,
                     m: 1,
                   }}
@@ -117,16 +104,15 @@ export default function ButtonAppBar() {
               </MenuItem>
             </Box>
             <Box sx={{ flexGrow: 1 }}>
-              <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem>
                   <Typography
                     variant="h6"
                     noWrap
                     component="div"
-                    // onClick={}
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
+                      display: 'flex',
+                      alignItems: 'center',
                       p: 1,
                       m: 1,
                     }}
@@ -135,7 +121,6 @@ export default function ButtonAppBar() {
                   </Typography>
                 </MenuItem>
               </Box>
-              {/* NAVBAR FOR DESKTOP  end*/}
             </Box>
             <Box>
               <IconButton
@@ -145,7 +130,7 @@ export default function ButtonAppBar() {
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
-                sx={{ display: { xs: "block", sm: "none" } }}
+                sx={{ display: { xs: 'block', sm: 'none' } }}
               >
                 <MenuIcon />
               </IconButton>
