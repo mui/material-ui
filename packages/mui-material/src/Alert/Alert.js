@@ -43,6 +43,7 @@ const AlertRoot = styled(Paper, {
 })(({ theme, ownerState }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
+  const getContrastText = theme.palette.mode === 'light' ? lighten : darken;
   const color = ownerState.color || ownerState.severity;
 
   return {
@@ -71,7 +72,10 @@ const AlertRoot = styled(Paper, {
       }),
     ...(color &&
       ownerState.variant === 'filled' && {
-        color: '#fff',
+        color:
+          theme.palette.mode === 'dark'
+            ? getContrastText(theme.palette[color].light)
+            : getContrastText(theme.palette[color].light, 1),
         fontWeight: theme.typography.fontWeightMedium,
         backgroundColor:
           theme.palette.mode === 'dark' ? theme.palette[color].dark : theme.palette[color].main,
