@@ -13,7 +13,7 @@
     },
     "project": "./tsconfig.json"
   },
-  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended", "prettier"], // make sure prettier is last
+  "extends": ["plugin:@typescript-eslint/recommended"], // make sure prettier is last
   "plugins": ["@emotion"],
   "rules": {
     "@emotion/jsx-import": "error",
