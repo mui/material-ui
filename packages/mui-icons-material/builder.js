@@ -25,7 +25,6 @@ const blacklistedIcons = [
   'ExposureZero', // Google product
   'VerticalDistribute', // Advanced text editor
   'HorizontalDistribute', // Advanced text editor
-  '123',
 ].reduce((iconsWithVariants, icon) => {
   return iconsWithVariants.concat([
     icon,
