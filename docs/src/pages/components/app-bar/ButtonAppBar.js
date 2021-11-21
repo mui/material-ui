@@ -26,7 +26,7 @@ export default function ButtonAppBar() {
         <Container maxWidth="xl">
           <Toolbar>
             <Typography variant="h6" noWrap component="div">
-              LOGO
+              MUI
             </Typography>
 
             {/* responsive AppBar for mobile  start */}
