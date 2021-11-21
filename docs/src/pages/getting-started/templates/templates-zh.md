@@ -8,7 +8,7 @@ title: 超过 9 个免费的 React 模板
 
 <!-- #default-branch-switch -->
 
-The templates can be combined with one of the [example projects](https://github.com/mui-org/material-ui/tree/master/examples) to form a complete starter.
+这个模板可以与任何一个  [示例程序](https://github.com/mui-org/material-ui/tree/master/examples)  组合，来构造一个完整的启动程序。
 
 通过注释或使用单独的文件，我们明确地定义了布局的每个部分，这样一来提取页面的某些部分（例如 “hero unit” 或页脚）而在其他页面中复用变得很简单。 对于包含多个部分的示例，源代码链接的 README 的一个表格则描述了每个文件的用途。
 
