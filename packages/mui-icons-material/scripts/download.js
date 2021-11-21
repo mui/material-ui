@@ -41,6 +41,8 @@ const ignoredIconNames = new Set([
   'space_dashboard',
   'water_drop',
   'waving_hand',
+  '123',
+  'medication_liquid'
 ]);
 
 const themeMap = {
