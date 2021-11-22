@@ -16,9 +16,9 @@ function useRandomId(idOverride?: string): string | undefined {
 
 /**
  *
- * @example <div id={useId} />
+ * @example <div id={useId()} />
  * @param idOverride
- * @returns {string} Can only be passed to props
+ * @returns {string}
  */
 export default function useReactId(idOverride?: string): string | undefined {
   // TODO: Remove `React as any` once `useId` is part of stable types.
