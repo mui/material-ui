@@ -8,23 +8,23 @@ import {
 import { DIALOG_WIDTH } from '../constants/dimensions';
 import { WrapperVariantContext, IsStaticVariantContext } from './WrapperVariantContext';
 
-export interface StaticWrapperClasses {
+export interface PickerStaticWrapperClasses {
   /** Styles applied to the root element. */
   root: string;
 }
 
-export type StaticWrapperClassKey = keyof StaticWrapperClasses;
+export type PickerStaticWrapperClassKey = keyof PickerStaticWrapperClasses;
 
 export function getStaticWrapperUtilityClass(slot: string): string {
   return generateUtilityClass('MuiPickerStaticWrapper', slot);
 }
 
-export const staticWrapperClasses: StaticWrapperClasses = generateUtilityClasses(
+export const pickerStaticWrapperClasses: PickerStaticWrapperClasses = generateUtilityClasses(
   'MuiPickerStaticWrapper',
   ['root'],
 );
 
-const useUtilityClasses = (ownerState: StaticWrapperProps) => {
+const useUtilityClasses = (ownerState: PickerStaticWrapperProps) => {
   const { classes } = ownerState;
   const slots = {
     root: ['root'],
@@ -33,19 +33,19 @@ const useUtilityClasses = (ownerState: StaticWrapperProps) => {
   return composeClasses(slots, getStaticWrapperUtilityClass, classes);
 };
 
-export interface StaticWrapperProps {
+export interface PickerStaticWrapperProps {
   children?: React.ReactNode;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<StaticWrapperClasses>;
+  classes?: Partial<PickerStaticWrapperClasses>;
   /**
    * Force static wrapper inner components to be rendered in mobile or desktop mode.
    */
   displayStaticWrapperAs: 'desktop' | 'mobile';
 }
 
-const StaticWrapperRoot = styled('div', {
+const PickerStaticWrapperRoot = styled('div', {
   name: 'MuiPickerStaticWrapper',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -58,7 +58,7 @@ const StaticWrapperRoot = styled('div', {
   backgroundColor: theme.palette.background.paper,
 }));
 
-function StaticWrapper(inProps: StaticWrapperProps) {
+function PickerStaticWrapper(inProps: PickerStaticWrapperProps) {
   const props = useThemeProps({ props: inProps, name: 'MuiPickerStaticWrapper' });
   const { displayStaticWrapperAs, ...other } = props;
 
@@ -69,10 +69,10 @@ function StaticWrapper(inProps: StaticWrapperProps) {
   return (
     <IsStaticVariantContext.Provider value={isStatic}>
       <WrapperVariantContext.Provider value={displayStaticWrapperAs}>
-        <StaticWrapperRoot className={classes.root} {...other} />
+        <PickerStaticWrapperRoot className={classes.root} {...other} />
       </WrapperVariantContext.Provider>
     </IsStaticVariantContext.Provider>
   );
 }
 
-export default StaticWrapper;
+export default PickerStaticWrapper;
