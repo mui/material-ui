@@ -8,8 +8,10 @@ _Nov 22, 2021_
 
 A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
-- 🧪 Created another unstyled component: TabsUnstyled (#29597) @mnajdova.
+- 🧪 Created another unstyled component: [TabsUnstyled](https://mui.com/components/tabs/#unstyled) (#29597) @mnajdova.
 - 🎉 Updated the Material Icons set with the latest changes from Google (#29328) @michaldudak.
+  This update adds almost 150 new icons and tweaks the appearance of many more.
+  With it, we're getting close to having 2000 icons in our set.
 - 🐛 Fixed bugs and improved the infrastructure and documentation 📚.
 
 ### `@mui/material@5.2.0`
