@@ -75,10 +75,11 @@ function useMediaQueryOld(
       }
     };
     updateMatch();
-    queryList.addEventListener('change', updateMatch);
+    // TODO: Use `addEventListener` once support for Safari < 14 is dropped
+    queryList.addListener(updateMatch);
     return () => {
       active = false;
-      queryList.removeEventListener('change', updateMatch);
+      queryList.removeListener(updateMatch);
     };
   }, [query, matchMedia, supportMatchMedia]);
 
@@ -109,9 +110,10 @@ function useMediaQueryNew(
     return [
       () => mediaQueryList.matches,
       (notify: () => void) => {
-        mediaQueryList.addEventListener('change', notify);
+        // TODO: Use `addEventListener` once support for Safari < 14 is dropped
+        mediaQueryList.addListener(notify);
         return () => {
-          mediaQueryList.removeEventListener('change', notify);
+          mediaQueryList.removeListener(notify);
         };
       },
     ];

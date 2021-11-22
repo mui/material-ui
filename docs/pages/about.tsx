@@ -86,7 +86,13 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
                 src: `${props.src}?s=70`,
                 srcSet: `${props.src}?s=140 2x`,
               })}
-              sx={{ width: 70, height: 70, bgcolor: 'primaryDark.800', borderRadius: 1 }}
+              sx={{
+                width: 70,
+                height: 70,
+                backgroundColor: (theme) =>
+                  theme.palette.mode === 'dark' ? 'primary.700' : 'primary.100',
+                borderRadius: 1,
+              }}
             />
             <Box
               sx={{
@@ -187,7 +193,7 @@ const Widget = ({
 
 const teamMembers: Array<Profile> = [
   {
-    src: '/static/branding/about/olivier.jpg',
+    src: '/static/branding/about/olivier.png',
     name: 'Olivier Tassinari',
     title: 'Co-founder',
     location: 'Paris, France',
@@ -198,7 +204,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Matt Brookes',
-    src: '/static/branding/about/matt.jpg',
+    src: '/static/branding/about/matt.png',
     title: 'Co-founder',
     location: 'London, UK',
     country: 'gb',
@@ -208,7 +214,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Sebastian Silbermann',
-    src: '/static/branding/about/sebastian.jpg',
+    src: '/static/branding/about/sebastian.png',
     title: 'Core components team',
     location: 'Dresden, Germany',
     country: 'de',
@@ -218,7 +224,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Marija Najdova',
-    src: '/static/branding/about/marija.jpg',
+    src: '/static/branding/about/marija.png',
     title: 'Core components team',
     location: 'Skopje, North Macedonia',
     country: 'mk',
@@ -228,7 +234,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Danail Hadjiatanasov',
-    src: '/static/branding/about/danail.jpg',
+    src: '/static/branding/about/danail.png',
     title: 'Advanced components team',
     location: 'Amsterdam, Netherlands',
     country: 'nl',
@@ -238,7 +244,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Matheus Wichman',
-    src: '/static/branding/about/matheus.jpg',
+    src: '/static/branding/about/matheus.png',
     title: 'Advanced components team',
     location: 'Esteio, Brazil',
     country: 'br',
@@ -247,7 +253,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Michał Dudak',
-    src: '/static/branding/about/michal.jpg',
+    src: '/static/branding/about/michal.png',
     title: 'Core components team',
     location: 'Silesia, Poland',
     country: 'pl',
@@ -257,7 +263,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Siriwat Kunaporn',
-    src: '/static/branding/about/siriwat.jpg',
+    src: '/static/branding/about/siriwat.png',
     title: 'Core components team',
     location: 'Bangkok, Thailand',
     country: 'th',
@@ -267,7 +273,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Danilo Leal',
-    src: '/static/branding/about/danilo.jpg',
+    src: '/static/branding/about/danilo.png',
     title: 'Design Lead',
     location: 'São Paulo, Brazil',
     country: 'br',
@@ -277,7 +283,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Flavien Delangle',
-    src: '/static/branding/about/flavien.jpg',
+    src: '/static/branding/about/flavien.png',
     title: 'Advanced components team',
     location: 'Lille, France',
     about: 'Love cycling 🚴‍♂️ and reading 📚',
@@ -286,7 +292,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Benny Joo',
-    src: '/static/branding/about/benny.jpg',
+    src: '/static/branding/about/benny.png',
     title: 'Core components team',
     location: 'London, UK',
     country: 'kr',
@@ -294,7 +300,7 @@ const teamMembers: Array<Profile> = [
     github: 'hbjORbj',
   },
   {
-    src: '/static/branding/about/alexandre.jpg',
+    src: '/static/branding/about/alexandre.png',
     name: 'Alexandre Fauquette',
     title: 'Advanced components team',
     location: 'Nancy, France',
@@ -304,7 +310,7 @@ const teamMembers: Array<Profile> = [
     github: 'alexfauquette',
   },
   {
-    src: '/static/branding/about/bharat.jpg',
+    src: '/static/branding/about/bharat.png',
     name: 'Bharat Kashyap',
     title: 'Studio team',
     location: 'New Delhi, India',
@@ -314,7 +320,7 @@ const teamMembers: Array<Profile> = [
     github: 'bharatkashyap',
   },
   {
-    src: '/static/branding/about/jan.jpg',
+    src: '/static/branding/about/jan.png',
     name: 'Jan Potoms',
     title: 'Studio team',
     location: 'Brussels, Belgium',
@@ -323,7 +329,7 @@ const teamMembers: Array<Profile> = [
     github: 'janpot',
   },
   {
-    src: '/static/branding/about/prakhar.jpg',
+    src: '/static/branding/about/prakhar.png',
     name: 'Prakhar Gupta',
     title: 'Studio team',
     location: 'New Delhi, India',

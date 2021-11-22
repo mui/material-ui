@@ -352,7 +352,14 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
 
   beforeEach(() => {
     if (mode === 'fake') {
-      clock = useFakeTimers(config);
+      clock = useFakeTimers({
+        now: config,
+        // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
+        // Technically we'd want to reset all modules between tests but we don't have that technology.
+        // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
+        // @ts-expect-error Requires https://github.com/DefinitelyTyped/DefinitelyTyped/pull/57290
+        shouldClearNativeTimers: true,
+      });
     }
   });
 
