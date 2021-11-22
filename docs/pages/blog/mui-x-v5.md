@@ -22,7 +22,7 @@ This release features some major highlights:
 - [A new virtualization engine](#a-new-virtualization-engine)
 - [Improved state management](#improved-state-management)
   - [Improved DX when using the state](#improved-dx-when-using-the-state)
-    - [Synchronous state initialization](#synchronous-state-initialization)
+  - [Synchronous state initialization](#synchronous-state-initialization)
 - [Simplified style customization](#simplified-style-customization)
   - [Limitations](#limitations)
 - [v4 migration](#v4-migration)
@@ -90,7 +90,7 @@ Here are a few that should be release in the following months:
 - Documentation and examples for selectors.
 - Add the ability to export and restore some parts of the grid state.
 
-#### Synchronous state initialization
+### Synchronous state initialization
 
 In previous versions, the state was first populated with default values, and then in a `useEffect`, given the values provided as props (`props.pageSize` for instance), or derived from the props (the sorted and filtered rows derived from the `props.rows`, `props.sortModel` and `props.filterModel`).
 This was causing an additional render with useless data, and then we had to be careful to avoid flickering between the fake and real data.
