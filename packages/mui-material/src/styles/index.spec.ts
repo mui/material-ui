@@ -18,16 +18,19 @@ const defaultTheme = createTheme();
 const customTheme = createTheme({
   components: {
     MuiButton: {
-      variants: [{
-        props: {},
-        style: ({ theme }) => sx(
-          {
-            m: 2,
-            p: 1,
-          },
-          defaultTheme,
-        )
-      }]
-    }
+      variants: [
+        {
+          props: {},
+          style: ({ theme }) =>
+            sx(
+              {
+                m: 2,
+                p: 1,
+              },
+              defaultTheme,
+            ),
+        },
+      ],
+    },
   },
 });
