@@ -110,28 +110,20 @@ This enables developers to more easily change the look and feel of the grid's co
 **Before**
 
 ```jsx
-const useStyles = makeStyles(() => ({
-  root: {
-    '& .MuiDataGrid-toolbarContainer': {
-      padding: 50,
-    },
+const GridToolbarContainerStyled = styled(GridToolbarContainer)({
+  '&.MuiDataGrid-toolbarContainer': {
+    padding: 40,
   },
-}));
+});
 
-const MyCustomToolbar = () => {
-  return <GridToolbarContainer>My custom toolbar</GridToolbarContainer>;
-};
+function MyCustomToolbar() {
+  return <GridToolbarContainerStyled>My custom toolbar</GridToolbarContainerStyled>;
+}
 
 export default function App() {
-  const classes = useStyles();
-
   return (
-    <div style={{ height: 400, width: '100%' }} className={classes.root}>
-      <DataGrid
-        components={{
-          Toolbar: MyCustomToolbar,
-        }}
-      />
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid components={{ Toolbar: MyCustomToolbar }} />
     </div>
   );
 }
@@ -141,10 +133,10 @@ export default function App() {
 
 ```jsx
 const GridToolbarContainerStyled = styled(GridToolbarContainer)({
-  padding: 50,
+  padding: 40,
 });
 
-const MyCustomToolbar = () => {
+function MyCustomToolbar() {
   return (
     <GridToolbarContainerStyled>
       My custom toolbar
@@ -155,39 +147,26 @@ const MyCustomToolbar = () => {
 export default function App() {
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        components={{
-          Toolbar: MyCustomToolbar,
-        }}
-      />
+      <DataGrid components={{ Toolbar: MyCustomToolbar }} />
     </div>
   );
 }
 ```
 
-Another way to customize this will be to use the `sx` `prop`.
+Another way to customize this will be to use the `sx` prop.
 
 ```jsx
-const MyCustomToolbar = () => {
+function MyCustomToolbar() {
+  // means "padding: theme.spacing(5)", NOT "5px"
   return (
-    <GridToolbarContainer
-      sx={{
-        padding: 5, // means "theme.spacing(5)", NOT "5px"
-      }}
-    >
-      My custom toolbar
-    </GridToolbarContainer>
+    <GridToolbarContainer sx={{ p: 5 }}>My custom toolbar</GridToolbarContainer>
   );
-};
+}
 
 export default function App() {
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        components={{
-          Toolbar: MyCustomToolbar,
-        }}
-      />
+      <DataGrid components={{ Toolbar: MyCustomToolbar }} />
     </div>
   );
 }
