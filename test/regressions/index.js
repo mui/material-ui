@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Link, useLocation } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
@@ -171,6 +172,17 @@ const blacklist = [
 
 const unusedBlacklistPatterns = new Set(blacklist);
 
+function PathWatcher({ onChange }) {
+  const previousPathname = React.useRef('');
+  const location = useLocation();
+  if (previousPathname.current !== location.pathname) {
+    previousPathname.current = location.pathname;
+    onChange(location.pathname);
+  }
+
+  return null;
+}
+
 function excludeDemoFixture(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
     return true;
@@ -225,23 +237,6 @@ if (unusedBlacklistPatterns.size > 0) {
     `The following patterns are unused:\n\n${Array.from(unusedBlacklistPatterns)
       .map((pattern) => `- ${pattern}`)
       .join('\n')}`,
-  );
-}
-
-// eslint-disable-next-line react/prop-types
-function Link({ to, onClick }) {
-  return (
-    <a
-      href={to}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick?.(to);
-        window.history.pushState(null, '', to);
-      }}
-      type="button"
-    >
-      {to}
-    </a>
   );
 }
 
@@ -319,27 +314,30 @@ function App(props) {
       </div>
 
       <div hidden={!isDev}>
-        <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
-        <p>
-          Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
-          appending <code>#no-dev</code>.
-        </p>
-        <a href="#no-dev">Hide devtools</a>
-        <details>
-          <summary id="my-test-summary">nav for all tests</summary>
-          <nav id="tests">
-            <ol>
-              {fixtures.map((fixture) => {
-                const path = computePath(fixture);
-                return (
-                  <li key={path}>
-                    <Link to={path} onClick={setPathname} />
-                  </li>
-                );
-              })}
-            </ol>
-          </nav>
-        </details>
+        <Router>
+          <PathWatcher onChange={setPathname} />
+          <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
+          <p>
+            Devtools can be enabled by appending <code>#dev</code> in the addressbar or disabled by
+            appending <code>#no-dev</code>.
+          </p>
+          <a href="#no-dev">Hide devtools</a>
+          <details>
+            <summary id="my-test-summary">nav for all tests</summary>
+            <nav id="tests">
+              <ol>
+                {fixtures.map((fixture) => {
+                  const path = computePath(fixture);
+                  return (
+                    <li key={path}>
+                      <Link to={path}>{path}</Link>
+                    </li>
+                  );
+                })}
+              </ol>
+            </nav>
+          </details>
+        </Router>
       </div>
     </div>
   );
