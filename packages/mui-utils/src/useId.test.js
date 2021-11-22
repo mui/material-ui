@@ -83,7 +83,7 @@ describe('useId', () => {
   });
 
   it('provides an ID on server in React 18', function test() {
-    if (React.unstable_useId === undefined) {
+    if (React.useId === undefined) {
       this.skip();
     }
     const TestComponent = () => {
