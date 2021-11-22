@@ -15,9 +15,13 @@ It can transform into a contextual action bar or be used as a navbar.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic Responsive App Bar
+## Basic App Bar
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
+
+## Responsive App Bar (Mobile, Desktop, Tablet)
+
+{{"demo": "pages/components/app-bar/ResponsiveAppBar.js", "bg": true}}
 
 ## App Bar with a primary search field
 
