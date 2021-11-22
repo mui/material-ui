@@ -120,21 +120,6 @@ const Navbar = () => {
                   Blogs
                 </Typography>
               </MenuItem>
-
-              <MenuItem>
-                <Typography
-                  variant="h6"
-                  noWrap
-                  component="div"
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    m: 1,
-                  }}
-                >
-                  SignUp
-                </Typography>
-              </MenuItem>
             </Menu>
           </Box>
           <Typography
