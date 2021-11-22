@@ -19,6 +19,7 @@ Read on to learn more!
 
 This release features some major highlights:
 
+- [High-level goals for v5](#a-new-virtualization-engine)
 - [A new virtualization engine](#a-new-virtualization-engine)
 - [Improved state management](#improved-state-management)
   - [Improved DX when using the state](#improved-dx-when-using-the-state)
@@ -29,6 +30,16 @@ This release features some major highlights:
 - [What's next?](#whats-next)
   - [Public roadmap](#public-roadmap)
 - [Thank you](#thank-you)
+
+## High-level goals for v5
+
+MUI develops different React components in two products: [MUI Core](/core/) and [MUI X](/x/).
+This approach recognizes that the problems solved by the components in these two products are different.
+The paths to success require different strategies.
+Many of the developers using MUI X also use MUI Core, these users care a lot about consistency (design, docs, dependencies, etc.).
+
+With the [release of MUI Core v5](/blog/mui-core-v5) two months ago MUI X had to work on providing a cohesive experience.
+The primary objective of this new major is to have MUI X provide a great **compatibility with MUI Core v5**.
 
 ## A new virtualization engine
 
@@ -187,7 +198,8 @@ You can check [this page](/components/data-grid/migration-v4/) to learn more abo
 
 ## What's next?
 
-More exciting things are coming! We have big plans for the rest of this quarter in terms of features we expect to release in both the `DataGrid` and `DataGridPro` components. Features such as **tree data**, **column pinning**, and **variable row height** are part of our roadmap.
+More exciting things are coming! We have big plans for the rest of this quarter in terms of features we expect to release in both the `DataGrid` and `DataGridPro` components.
+Features such as **tree data**, **column pinning**, and **variable row height** are part of our roadmap.
 
 ### Public roadmap
 
