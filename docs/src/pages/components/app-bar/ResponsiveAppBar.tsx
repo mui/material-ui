@@ -10,7 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 
-const Navbar = () => {
+const ResponsiveAppBar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [anchorElp, setAnchorElp] = React.useState<null | HTMLElement>(null);
 
@@ -235,4 +235,4 @@ const Navbar = () => {
     </AppBar>
   );
 };
-export default Navbar;
+export default ResponsiveAppBar;
