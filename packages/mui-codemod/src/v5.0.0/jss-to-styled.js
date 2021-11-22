@@ -572,12 +572,9 @@ export default function transformer(file, api, options) {
       if (!path.node.attributes) {
         path.node.attributes = [];
       }
-      if (!path.node.attributes.find((attr) => attr.name.name === 'classes')) {
-        // the jsx does not contain `classes` prop
-        path.node.attributes.push(
-          j.jsxAttribute(j.jsxIdentifier('classes'), j.jsxExpressionContainer(data.classes)),
-        );
-      }
+      path.node.attributes.push(
+        j.jsxAttribute(j.jsxIdentifier('classes'), j.jsxExpressionContainer(data.classes)),
+      );
     });
   });
 

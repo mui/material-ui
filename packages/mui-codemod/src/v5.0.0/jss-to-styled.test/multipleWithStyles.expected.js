@@ -7,7 +7,8 @@ const classes = {
   root: `${PREFIX}-root`,
   root2: `${PREFIX}-root2`,
   actions: `${PREFIX}-actions`,
-  root3: `${PREFIX}-root3`
+  root3: `${PREFIX}-root3`,
+  actions2: `${PREFIX}-actions2`
 };
 
 // TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
@@ -30,6 +31,10 @@ const Root = styled('div')((
 
   [`& .${classes.root3}`]: {
     backgroundColor: 'blue',
+  },
+
+  [`& .${classes.actions2}`]: {
+    padding: '0px',
   }
 }));
 
@@ -52,7 +57,8 @@ export const Test = () => (
       }} />
     <Button3
       classes={{
-        root: classes.root3
+        root: classes.root3,
+        actions: classes.actions2
       }} />
   </Root>
 );

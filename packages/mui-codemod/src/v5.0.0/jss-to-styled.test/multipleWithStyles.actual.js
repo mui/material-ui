@@ -21,6 +21,9 @@ const Button3 = withStyles({
   root: {
     backgroundColor: 'blue',
   },
+  actions: {
+    padding: '0px',
+  },
 })(Button);
 
 export const Test = () => (
