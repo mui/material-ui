@@ -167,6 +167,7 @@ function TopLayoutBlog(props) {
                   <div key={author} className="author">
                     <Avatar
                       sx={{ width: 32, height: 32 }}
+                      alt=""
                       src={`https://github.com/${authors[author].github}.png`}
                     />
                     <Typography variant="body2">{authors[author].name}</Typography>
