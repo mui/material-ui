@@ -199,7 +199,7 @@ You can check [this page](/components/data-grid/migration-v4/) to learn more abo
 ## What's next?
 
 More exciting things are coming! We have big plans for the rest of this quarter in terms of features we expect to release in both the `DataGrid` and `DataGridPro` components.
-Features such as **tree data**, **column pinning**, and **variable row height** are part of our roadmap.
+Features such as **[tree data](/components/data-grid/group-pivot/#tree-data)**, **[column pinning](/components/data-grid/columns/#column-pinning)**, and **[variable row height](https://github.com/mui-org/material-ui-x/issues/438)** are part of our roadmap.
 
 ### Public roadmap
 
