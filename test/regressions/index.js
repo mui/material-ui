@@ -236,15 +236,15 @@ function computePath(fixture) {
 const viewerRoot = document.getElementById('test-viewer');
 
 function FixtureRenderer({ component: FixtureComponent }) {
-  const children = (
-    <TestViewer>
-      <FixtureComponent />
-    </TestViewer>
-  );
-
   React.useLayoutEffect(() => {
+    const children = (
+      <TestViewer>
+        <FixtureComponent />
+      </TestViewer>
+    );
+
     ReactDOM.render(children, viewerRoot);
-  }, [children]);
+  }, [FixtureComponent]);
 
   React.useLayoutEffect(() => {
     return () => {
