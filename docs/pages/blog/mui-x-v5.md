@@ -203,6 +203,11 @@ Features such as **[tree data](/components/data-grid/group-pivot/#tree-data)**, 
 
 ### Public roadmap
 
+As a general rule, the data grid is the cornerstone of any application manipulating large amounts of data.
+We plan to focus on it as long as necessary to deliver most of the advanced features.
+
+Once we would have grown the team and made enough progress, we will expand to more components.
+
 You can view our [public roadmap](https://github.com/mui-org/material-ui-x/projects/1) on GitHub to learn about what features we're working on, what stage they're at, and when we expect to bring them to you.
 
 ## Thank you
