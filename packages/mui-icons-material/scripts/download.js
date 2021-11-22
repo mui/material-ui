@@ -42,7 +42,6 @@ const ignoredIconNames = new Set([
   'water_drop',
   'waving_hand',
   '123',
-  'medication_liquid',
   '6_ft_apart',
 ]);
 
