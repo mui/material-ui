@@ -121,6 +121,8 @@ export {
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
 
+export { default as unstable_sx } from './sx';
+
 export { default as Box } from './Box';
 export * from './Box';
 

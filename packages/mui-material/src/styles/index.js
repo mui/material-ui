@@ -13,6 +13,7 @@ export {
   lighten,
   css,
   keyframes,
+  unstable_sx,
 } from '@mui/system';
 export { default as createTheme, createMuiTheme } from './createTheme';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
