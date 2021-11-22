@@ -229,10 +229,6 @@ if (unusedBlacklistPatterns.size > 0) {
   );
 }
 
-function computePath(fixture) {
-  return `/${fixture.suite}/${fixture.name}`;
-}
-
 const viewerRoot = document.getElementById('test-viewer');
 
 function FixtureRenderer({ component: FixtureComponent }) {
@@ -301,6 +297,10 @@ function App(props) {
   }, []);
 
   const fixturePrepared = fontState !== 'pending';
+
+  function computePath(fixture) {
+    return `/${fixture.suite}/${fixture.name}`;
+  }
 
   return (
     <Router>
