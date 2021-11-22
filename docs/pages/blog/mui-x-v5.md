@@ -194,7 +194,8 @@ and was necessary to keep the performance of our virtualization engine at its op
 We strongly recommend you migrate MUI X to v5.
 In MUI X v5 we have not only added additional features but also made significant internal improvements and performance optimizations that won't be included in v4.
 All-new `DataGrid` and `DataGridPro` features will be only available in MUI X v5.
-You can check [this page](/components/data-grid/migration-v4/) to learn more about migrating to v5.
+
+Please check [the v4 migration guide](/components/data-grid/migration-v4/) to accelerate the transition.
 
 ## What's next?
 
