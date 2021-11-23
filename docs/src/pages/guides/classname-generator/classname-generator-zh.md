@@ -1,4 +1,4 @@
-# ClassName Generator
+# 类名生成器
 
 <p class="description">Configure classname generation at build time.</p>
 
