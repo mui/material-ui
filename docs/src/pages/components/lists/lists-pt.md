@@ -25,7 +25,7 @@ O último item da demonstração anterior mostra como você pode renderizar um l
 </ListItemButton>
 ```
 
-You can find a [demo with React Router following this section](/guides/routing/#list) of the documentation.
+Você pode encontrar uma [demonstração com React Router seguindo esta seção](/guides/routing/#list) da documentação.
 
 ## Lista Aninhada
 
