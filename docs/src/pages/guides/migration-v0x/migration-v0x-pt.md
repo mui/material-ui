@@ -12,7 +12,7 @@ I'm glad you asked! A resposta é não. The core concepts haven't changed. Você
 
 MUI was started [4 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). O ecossistema evoluiu muito desde então, também aprendemos muito. [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding MUI from the **ground-up** taking advantage of this knowledge to address long-standing issues. Para citar algumas das principais mudanças:
 
-- New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
+- Nova solução de estilo usando CSS-in-JS (melhor poder de [customização](/customization/how-to-customize/), melhor desempenho)
 - Novo tratamento de tema (aninhamento, auto-suporte, etc.)
 - Documentação rápida e brilhante graças a [Next.js](https://github.com/zeit/next.js)
 - Melhor [cobertura de teste](/guides/testing/) (99%+, executado em todos os principais navegadores, [testes de regressão visual](https://www.argos-ci.com/mui-org/material-ui))
@@ -44,7 +44,7 @@ import FlatButton from 'material-ui/FlatButton'; // v0.x
 import Button from '@mui/material/Button'; // v1.x
 ```
 
-2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) on your project.
+2. Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) em seu projeto.
 3. `MuiThemeProvider` é opcional para v1.x., mas se você tem um tema customizado, você é livre para usar as versões v0.x e v1.x do componente, ao mesmo tempo, como neste exemplo:
 
 ```jsx
@@ -83,7 +83,7 @@ Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/m
 
 ### Ícone Svg
 
-Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) on your project.
+Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) em seu projeto.
 
 Caminho de atualização do RaisedButton:
 
