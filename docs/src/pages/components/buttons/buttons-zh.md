@@ -12,10 +12,10 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 按钮可以展示用户能进行的操作。 他们通常直接放置在您的用户界面中，例如：
 
-- Modal windows
-- Forms
-- Cards
-- Toolbars
+- Modal windows（模态窗口）
+- Forms（表单）
+- Cards（卡片）
+- Toolbars（工具栏)
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
