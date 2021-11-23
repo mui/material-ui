@@ -1,7 +1,7 @@
 export * from './CssVarsProvider';
 export * from './defaultTheme';
 export * from './ColorSystem';
-export * from './Variant';
+export * from './Variants';
 export { default as styled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export { useTheme } from './ThemeProvider';

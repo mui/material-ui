@@ -1,4 +1,4 @@
-import { DefaultVariantKey } from './Variant';
+import { DefaultVariantKey, DefaultContextualOverrides } from './Variants';
 import { ColorPaletteProp, DefaultColorPalette } from './ColorSystem';
 
 export const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -15,12 +15,12 @@ export const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   outlinedDisabledColor: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-300)`,
   outlinedDisabledBorder: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-200)`,
 
-  filledColor: `var(--joy-palette-${color}-700)`,
-  filledBg: `var(--joy-palette-${color}-100)`,
-  filledHoverBg: `var(--joy-palette-${color}-200)`,
-  filledActiveBg: `var(--joy-palette-${color}-300)`,
-  filledDisabledColor: `var(--joy-palette-${color}-400)`,
-  filledDisabledBg: `var(--joy-palette-${color}-50)`,
+  lightColor: `var(--joy-palette-${color}-700)`,
+  lightBg: `var(--joy-palette-${color}-100)`,
+  lightHoverBg: `var(--joy-palette-${color}-200)`,
+  lightActiveBg: `var(--joy-palette-${color}-300)`,
+  lightDisabledColor: `var(--joy-palette-${color}-400)`,
+  lightDisabledBg: `var(--joy-palette-${color}-50)`,
 
   containedColor: `#fff`,
   containedBg: `var(--joy-palette-${color}-${color === 'neutral' ? '600' : '500'})`,
@@ -43,12 +43,12 @@ export const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
   outlinedDisabledColor: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-500)`,
   outlinedDisabledBorder: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-800)`,
 
-  filledColor: `var(--joy-palette-${color}-300)`,
-  filledBg: `var(--joy-palette-${color}-800)`,
-  filledHoverBg: `var(--joy-palette-${color}-700)`,
-  filledActiveBg: `var(--joy-palette-${color}-600)`,
-  filledDisabledColor: `var(--joy-palette-${color}-500)`,
-  filledDisabledBg: `var(--joy-palette-${color}-800)`,
+  lightColor: `var(--joy-palette-${color}-300)`,
+  lightBg: `var(--joy-palette-${color}-800)`,
+  lightHoverBg: `var(--joy-palette-${color}-700)`,
+  lightActiveBg: `var(--joy-palette-${color}-600)`,
+  lightDisabledColor: `var(--joy-palette-${color}-500)`,
+  lightDisabledBg: `var(--joy-palette-${color}-800)`,
 
   containedColor: `#fff`,
   containedBg: `var(--joy-palette-${color}-500)`,
@@ -163,10 +163,10 @@ export const getOutlinedDisabledVariant = (color: ColorPaletteProp) => ({
 export const getFilledDefaultVariant = (color: ColorPaletteProp) => ({
   color:
     color === 'context'
-      ? `var(--joy-variant-filledColor)`
-      : `var(--joy-palette-${color}-filledColor)`,
+      ? `var(--joy-variant-lightColor)`
+      : `var(--joy-palette-${color}-lightColor)`,
   backgroundColor:
-    color === 'context' ? `var(--joy-variant-filledBg)` : `var(--joy-palette-${color}-filledBg)`,
+    color === 'context' ? `var(--joy-variant-lightBg)` : `var(--joy-palette-${color}-lightBg)`,
 });
 
 export const getFilledHoverVariant = (color: ColorPaletteProp) => ({
@@ -174,8 +174,8 @@ export const getFilledHoverVariant = (color: ColorPaletteProp) => ({
   '&:hover': {
     backgroundColor:
       color === 'context'
-        ? `var(--joy-variant-filledHoverBg)`
-        : `var(--joy-palette-${color}-filledHoverBg)`,
+        ? `var(--joy-variant-lightHoverBg)`
+        : `var(--joy-palette-${color}-lightHoverBg)`,
   },
 });
 
@@ -183,8 +183,8 @@ export const getFilledActiveVariant = (color: ColorPaletteProp) => ({
   '&:active': {
     backgroundColor:
       color === 'context'
-        ? `var(--joy-variant-filledActiveBg)`
-        : `var(--joy-palette-${color}-filledActiveBg)`,
+        ? `var(--joy-variant-lightActiveBg)`
+        : `var(--joy-palette-${color}-lightActiveBg)`,
   },
 });
 
@@ -192,12 +192,12 @@ export const getFilledDisabledVariant = (color: ColorPaletteProp) => ({
   '&.Mui-disabled': {
     color:
       color === 'context'
-        ? `var(--joy-variant-filledDisabledColor)`
-        : `var(--joy-palette-${color}-filledDisabledColor)`,
+        ? `var(--joy-variant-lightDisabledColor)`
+        : `var(--joy-palette-${color}-lightDisabledColor)`,
     backgroundColor:
       color === 'context'
-        ? `var(--joy-variant-filledDisabledBg)`
-        : `var(--joy-palette-${color}-filledDisabledBg)`,
+        ? `var(--joy-variant-lightDisabledBg)`
+        : `var(--joy-palette-${color}-lightDisabledBg)`,
   },
 });
 
@@ -257,13 +257,13 @@ export const getContainedOverrides = (color: ColorPaletteProp) => ({
   '--joy-variant-outlinedBg': `transparent`,
   '--joy-variant-outlinedHoverBg': `rgba(255, 255, 255, 0.12)`,
   '--joy-variant-outlinedActiveBg': `var(--joy-palette-${color}-700)`,
-  '--joy-variant-filledColor': `#fff`,
-  '--joy-variant-filledBg': `rgba(255, 255, 255, 0.2)`,
-  '--joy-variant-filledHoverBg': `var(--joy-palette-${color}-400)`,
-  '--joy-variant-filledActiveBg': `var(--joy-palette-${color}-400)`,
+  '--joy-variant-lightColor': `#fff`,
+  '--joy-variant-lightBg': `rgba(255, 255, 255, 0.2)`,
+  '--joy-variant-lightHoverBg': `var(--joy-palette-${color}-400)`,
+  '--joy-variant-lightActiveBg': `var(--joy-palette-${color}-400)`,
 });
 
-export const createVariant = (variant: DefaultVariantKey) => {
+export const createVariant = (variant: DefaultVariantKey | DefaultContextualOverrides) => {
   const colors: DefaultColorPalette[] = [
     'neutral',
     'primary',
@@ -274,7 +274,7 @@ export const createVariant = (variant: DefaultVariantKey) => {
     'context',
   ];
   let result = {} as Record<DefaultColorPalette, object>;
-  const generatorMap: Record<DefaultVariantKey, Function> = {
+  const generatorMap: Record<DefaultVariantKey | DefaultContextualOverrides, Function> = {
     text: getTextDefaultVariant,
     textHover: getTextHoverVariant,
     textActive: getTextActiveVariant,
@@ -283,10 +283,10 @@ export const createVariant = (variant: DefaultVariantKey) => {
     outlinedHover: getOutlinedHoverVariant,
     outlinedActive: getOutlinedActiveVariant,
     outlinedDisabled: getOutlinedDisabledVariant,
-    filled: getFilledDefaultVariant,
-    filledHover: getFilledHoverVariant,
-    filledActive: getFilledActiveVariant,
-    filledDisabled: getFilledDisabledVariant,
+    light: getFilledDefaultVariant,
+    lightHover: getFilledHoverVariant,
+    lightActive: getFilledActiveVariant,
+    lightDisabled: getFilledDisabledVariant,
     contained: getContainedDefaultVariant,
     containedHover: getContainedHoverVariant,
     containedActive: getContainedActiveVariant,

@@ -12,7 +12,7 @@ import defaultTheme, {
   TypographySystems,
   Focus,
 } from './defaultTheme';
-import { Variant } from './Variant';
+import { Variants } from './Variants';
 import { ColorSystems } from './ColorSystem';
 
 type PartialDeep<T> = {
@@ -29,7 +29,7 @@ type ThemeInput = PartialDeep<
   ThemeScales & {
     focus: Focus;
     typography: TypographySystems;
-    variant: Variant;
+    variants: Variants;
   }
 > & {
   breakpoints?: BreakpointsOptions;

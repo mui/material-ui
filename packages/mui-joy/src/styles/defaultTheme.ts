@@ -1,8 +1,15 @@
 import * as React from 'react';
 import { createTheme as systemCreateTheme, Breakpoints, Spacing } from '@mui/system';
 import colors from '../colors';
-import { ColorSystems, Palette, PaletteLetter, PaletteRange, PaletteSurface } from './ColorSystem';
-import { Variant, DefaultVariantKey } from './Variant';
+import {
+  ColorSystems,
+  Palette,
+  PaletteLetter,
+  PaletteRange,
+  PaletteSurface,
+  ColorPaletteProp,
+} from './ColorSystem';
+import { Variants, DefaultVariantKey, DefaultContextualOverrides } from './Variants';
 import {
   createLightModeVariantVariables,
   createDarkModeVariantVariables,
@@ -135,12 +142,12 @@ type BasePaletteRange =
   | 'outlinedActiveBg'
   | 'outlinedDisabledColor'
   | 'outlinedDisabledBorder'
-  | 'filledColor'
-  | 'filledBg'
-  | 'filledHoverBg'
-  | 'filledActiveBg'
-  | 'filledDisabledColor'
-  | 'filledDisabledBg'
+  | 'lightColor'
+  | 'lightBg'
+  | 'lightHoverBg'
+  | 'lightActiveBg'
+  | 'lightDisabledColor'
+  | 'lightDisabledBg'
   | 'containedColor'
   | 'containedBg'
   | 'containedHoverBg'
@@ -185,7 +192,8 @@ type BaseJoyTokens = {
     | 'button'
     | 'overline'
   >;
-  variant: Pick<Variant, DefaultVariantKey>;
+  variants: Pick<Variants, DefaultVariantKey> &
+    Record<DefaultContextualOverrides, Record<Exclude<ColorPaletteProp, 'context'>, object>>;
 };
 
 export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> = {
@@ -438,7 +446,7 @@ const joyDesignTokens: BaseJoyTokens = {
       letterSpacing: 'var(--joy-letterSpacing-default)',
     },
   },
-  variant: {
+  variants: {
     text: createVariant('text'),
     textHover: createVariant('textHover'),
     textActive: createVariant('textActive'),
@@ -447,10 +455,10 @@ const joyDesignTokens: BaseJoyTokens = {
     outlinedHover: createVariant('outlinedHover'),
     outlinedActive: createVariant('outlinedActive'),
     outlinedDisabled: createVariant('outlinedDisabled'),
-    filled: createVariant('filled'),
-    filledHover: createVariant('filledHover'),
-    filledActive: createVariant('filledActive'),
-    filledDisabled: createVariant('filledDisabled'),
+    light: createVariant('light'),
+    lightHover: createVariant('lightHover'),
+    lightActive: createVariant('lightActive'),
+    lightDisabled: createVariant('lightDisabled'),
     contained: createVariant('contained'),
     containedHover: createVariant('containedHover'),
     containedActive: createVariant('containedActive'),
@@ -469,7 +477,7 @@ export interface JoyTheme<ExtendedColorScheme extends string = never>
   colorSchemes: Record<ColorScheme | ExtendedColorScheme, ColorSystems>;
   focus: Focus;
   typography: TypographySystems;
-  variant: Variant;
+  variants: Variants;
   spacing: Spacing;
   breakpoints: Breakpoints;
   vars: ThemeScales & ColorSystems;
