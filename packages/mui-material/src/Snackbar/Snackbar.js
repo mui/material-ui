@@ -220,6 +220,33 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     return undefined;
   }, [disableWindowBlurListener, handleResume, open]);
 
+  React.useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+
+    /**
+     * @param {KeyboardEvent} nativeEvent
+     */
+    function handleKeyDown(nativeEvent) {
+      if (!nativeEvent.defaultPrevented) {
+        // IE11, Edge (prior to using Bink?) use 'Esc'
+        if (nativeEvent.key === 'Escape' || nativeEvent.key === 'Esc') {
+          // not calling `preventDefault` since we don't know if people may ignore this event e.g. a permanently open snackbar
+          if (onClose) {
+            onClose(nativeEvent, 'escapeKeyDown');
+          }
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [exited, open, onClose]);
+
   // So we only render active snackbars.
   if (!open && exited) {
     return null;
