@@ -25,7 +25,7 @@ materialDesign: https://material.io/components/lists
 </ListItemButton>
 ```
 
-You can find a [demo with React Router following this section](/guides/routing/#list) of the documentation.
+你可以从这里查看 [React Router与文档此部分结合使用的相关样例](/guides/routing/#list)。
 
 ## 嵌套列表
 
