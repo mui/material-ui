@@ -51,13 +51,15 @@ const IconButtonRoot = styled(ButtonBase, {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+    ...(!ownerState.disableRipple && {
+      '&:hover': {
+        backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
       },
-    },
+    }),
     ...(ownerState.edge === 'start' && {
       marginLeft: ownerState.size === 'small' ? -3 : -12,
     }),
@@ -72,16 +74,18 @@ const IconButtonRoot = styled(ButtonBase, {
     ...(ownerState.color !== 'inherit' &&
       ownerState.color !== 'default' && {
         color: theme.palette[ownerState.color].main,
-        '&:hover': {
-          backgroundColor: alpha(
-            theme.palette[ownerState.color].main,
-            theme.palette.action.hoverOpacity,
-          ),
-          // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
+        ...(!ownerState.disableRipple && {
+          '&:hover': {
+            backgroundColor: alpha(
+              theme.palette[ownerState.color].main,
+              theme.palette.action.hoverOpacity,
+            ),
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
           },
-        },
+        }),
       }),
     ...(ownerState.size === 'small' && {
       padding: 5,

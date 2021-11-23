@@ -1384,11 +1384,6 @@ describe('<Autocomplete />', () => {
       }).toWarnDev([
         'returns duplicated headers',
         !strictModeDoubleLoggingSupressed && 'returns duplicated headers',
-        // React 18 Strict Effects run mount effects twice which lead to a cascading update
-        React.version.startsWith('18') && 'returns duplicated headers',
-        React.version.startsWith('18') &&
-          !strictModeDoubleLoggingSupressed &&
-          'returns duplicated headers',
       ]);
       const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);

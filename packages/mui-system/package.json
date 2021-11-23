@@ -62,7 +62,7 @@
     "@mui/types": "^7.1.0",
     "@mui/utils": "^5.1.1",
     "clsx": "^1.1.1",
-    "csstype": "^3.0.9",
+    "csstype": "^3.0.10",
     "prop-types": "^15.7.2"
   },
   "sideEffects": false,

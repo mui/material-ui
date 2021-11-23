@@ -327,7 +327,7 @@ jobs:
   test_browser:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:a0de6ebd61b878821914fe58bfd3f8fb3e6bcc8cfb06e3815ff387290e6e0b4a
+      - image: mcr.microsoft.com/playwright@sha256:e1d21147143af988f339ade2afd9ab6fc549f6e5ae998a6b4e1b9180a83d35f1
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -354,7 +354,7 @@ jobs:
   test_e2e:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:a0de6ebd61b878821914fe58bfd3f8fb3e6bcc8cfb06e3815ff387290e6e0b4a
+      - image: mcr.microsoft.com/playwright@sha256:e1d21147143af988f339ade2afd9ab6fc549f6e5ae998a6b4e1b9180a83d35f1
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -373,7 +373,7 @@ jobs:
   test_profile:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:a0de6ebd61b878821914fe58bfd3f8fb3e6bcc8cfb06e3815ff387290e6e0b4a
+      - image: mcr.microsoft.com/playwright@sha256:e1d21147143af988f339ade2afd9ab6fc549f6e5ae998a6b4e1b9180a83d35f1
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -400,7 +400,7 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:a0de6ebd61b878821914fe58bfd3f8fb3e6bcc8cfb06e3815ff387290e6e0b4a
+      - image: mcr.microsoft.com/playwright@sha256:e1d21147143af988f339ade2afd9ab6fc549f6e5ae998a6b4e1b9180a83d35f1
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -454,7 +454,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:a0de6ebd61b878821914fe58bfd3f8fb3e6bcc8cfb06e3815ff387290e6e0b4a
+      - image: mcr.microsoft.com/playwright@sha256:e1d21147143af988f339ade2afd9ab6fc549f6e5ae998a6b4e1b9180a83d35f1
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -478,7 +478,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:a0de6ebd61b878821914fe58bfd3f8fb3e6bcc8cfb06e3815ff387290e6e0b4a
+      - image: mcr.microsoft.com/playwright@sha256:e1d21147143af988f339ade2afd9ab6fc549f6e5ae998a6b4e1b9180a83d35f1
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -502,7 +502,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:a0de6ebd61b878821914fe58bfd3f8fb3e6bcc8cfb06e3815ff387290e6e0b4a
+      - image: mcr.microsoft.com/playwright@sha256:e1d21147143af988f339ade2afd9ab6fc549f6e5ae998a6b4e1b9180a83d35f1
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -526,7 +526,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:a0de6ebd61b878821914fe58bfd3f8fb3e6bcc8cfb06e3815ff387290e6e0b4a
+      - image: mcr.microsoft.com/playwright@sha256:e1d21147143af988f339ade2afd9ab6fc549f6e5ae998a6b4e1b9180a83d35f1
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -550,7 +550,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:a0de6ebd61b878821914fe58bfd3f8fb3e6bcc8cfb06e3815ff387290e6e0b4a
+      - image: mcr.microsoft.com/playwright@sha256:e1d21147143af988f339ade2afd9ab6fc549f6e5ae998a6b4e1b9180a83d35f1
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -574,7 +574,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:a0de6ebd61b878821914fe58bfd3f8fb3e6bcc8cfb06e3815ff387290e6e0b4a
+      - image: mcr.microsoft.com/playwright@sha256:e1d21147143af988f339ade2afd9ab6fc549f6e5ae998a6b4e1b9180a83d35f1
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
@@ -602,7 +602,7 @@ jobs:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     docker:
-      - image: mcr.microsoft.com/playwright@sha256:a0de6ebd61b878821914fe58bfd3f8fb3e6bcc8cfb06e3815ff387290e6e0b4a
+      - image: mcr.microsoft.com/playwright@sha256:e1d21147143af988f339ade2afd9ab6fc549f6e5ae998a6b4e1b9180a83d35f1
         environment:
           NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
