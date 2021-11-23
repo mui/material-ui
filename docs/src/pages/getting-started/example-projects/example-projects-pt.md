@@ -4,7 +4,7 @@
 
 ## Exemplos oficiais
 
-You can find some example projects in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
+Você pode encontrar alguns exemplos de projetos no repositório [GitHub](https://github.com/mui-org/material-ui) na pasta [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples):
 
 <!-- #default-branch-switch -->
 
@@ -18,7 +18,7 @@ You can find some example projects in the [GitHub repository](https://github.com
 
 Create React App é um projeto incrível para aprender React. Dê uma olhada nas [alternativas disponíveis](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) para ver qual projeto melhor atende às suas necessidades.
 
-O código-fonte deste site de documentação também está incluído no repositório. Este é um projeto um pouco mais complexo. Check out the [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) folder for build instructions.
+O código-fonte deste site de documentação também está incluído no repositório. Este é um projeto um pouco mais complexo. Confira a pasta [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) para instruções de compilação.
 
 ## Projetos de exemplo mais avançados
 
