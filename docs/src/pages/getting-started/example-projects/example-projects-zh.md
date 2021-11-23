@@ -4,7 +4,7 @@
 
 ## 官方示例
 
-You can find some example projects in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
+您可以在 [GitHub 存储库](https://github.com/mui-org/material-ui)中的 [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) 文件夹下找到一些示例项目：
 
 <!-- #default-branch-switch -->
 
@@ -18,7 +18,7 @@ You can find some example projects in the [GitHub repository](https://github.com
 
 Create React App 是一个很棒的学习 React 的项目。 请看一下这些[可用的替代方案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) ，看看哪个项目最符合您的需求。
 
-此文档站点的源代码也包含在存储库中。 这是一个稍微复杂一点的项目。 Check out the [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) folder for build instructions.
+此文档站点的源代码也包含在存储库中。 这是一个稍微复杂一点的项目。 请查看 [`/ docs`](https://github.com/mui-org/material-ui/tree/master/docs) 文件夹以获取创建项目的说明。
 
 ## 进阶示例项目
 
