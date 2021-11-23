@@ -182,7 +182,7 @@ It displays a progress state as long as the network request is pending.
 
 ### 限制标签数量
 
-You can use the `limitTags` prop to limit the number of displayed options when not focused.
+当没有聚焦时，你可以使用 `limitTags` 属性来限制显示选项的数量。
 
 {{"demo": "pages/components/autocomplete/LimitTags.js"}}
 
@@ -254,7 +254,7 @@ const filterOptions = createFilterOptions({
 
 ### Advanced 进阶
 
-For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). 就像这样：
+对于更复杂的过滤机制，譬如模糊匹配（fuzzy matching），我们推荐您看一下 [match-sorter](https://github.com/kentcdodds/match-sorter)。 就像这样：
 
 ```jsx
 import { matchSorter } from 'match-sorter';
@@ -294,7 +294,7 @@ Browsers have heuristics to help the user fill in form inputs. However, this can
 
 By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
 
-In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
+In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). 若您不需要自动填充，您可以尝试以下的方式：
 
 - 给输入框一个不同的名字，这样不会给浏览器泄露任何可以滥用的信息。 例如：`id="field1"` 而不是 `id="country"`。 若你不填写 id 的话，该组件则会使用一个随机的 id。
 - 设置 `autoComplete="new-password"`（当设置此属性时，有些浏览器会建议输入高复杂度的密码）。
@@ -313,14 +313,14 @@ Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Se
 
 ### iOS VoiceOver 辅助功能
 
-VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You can work around the issue with the `disablePortal` prop.
+iOS Safari 中的 VoiceOver 对 `aria-owns` 属性的支持并不是很到位。 你可以用 `disablePortal` 属性来解决这个问题。
 
 ### ListboxComponent
 
-If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
+若你提供一共自定义的 `ListboxComponent` 属性，请保证需要滚动功能的容器将 `role` 属性设置为 `listbox`。 这能保证滚动功能在一些情况下，例如当用键盘切换的时候，仍然能够正常显示。
 
 ## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-We encourage the usage of a label for the textbox. The component implements the WAI-ARIA authoring practices.
+我们鼓励用户在 textbox 中使用标签。 组件带入了 WAI-ARIA 授权的一些标准。
