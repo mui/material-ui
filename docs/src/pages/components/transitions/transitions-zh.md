@@ -20,7 +20,7 @@ Expand from the start edge of the child element. Use the `orientation` prop if y
 
 ## Fade 淡入淡出
 
-Fade in from transparent to opaque.
+从透明淡入至不透明。
 
 {{"demo": "pages/components/transitions/SimpleFade.js", "bg": true}}
 
@@ -34,7 +34,7 @@ The second example demonstrates how to change the `transform-origin`, and condit
 
 ## Slide 滑动
 
-Slide in from the edge of the screen. The `direction` prop controls which edge of the screen the transition starts from.
+从屏幕边缘滑入。 The `direction` prop controls which edge of the screen the transition starts from.
 
 The Transition component's `mountOnEnter` prop prevents the child component from being mounted until `in` is `true`. This prevents the relatively positioned component from scrolling into view from its off-screen position. Similarly, the `unmountOnExit` prop removes the component from the DOM after it has been transition off-screen.
 
@@ -48,9 +48,9 @@ The Slide component also accepts `container` prop, which is a reference to a DOM
 
 ## Zoom 放大
 
-Expand outwards from the center of the child element.
+从子元素的中心向外扩展。
 
-This example also demonstrates how to delay the enter transition.
+此示例还演示了如何延迟过渡的开始。
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
 
@@ -87,13 +87,13 @@ To animate a component when it is mounted or unmounted, you can use the [`Transi
 
 {{"demo": "pages/components/transitions/TransitionGroupExample.js"}}
 
-## TransitionComponent prop
+## TransitionComponent 属性
 
-Some MUI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition. You can use any of the above components or your own. It should respect the following conditions:
+Some MUI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition. 您可以使用上述的任何组件或者是您自己的组件。 它应遵守以下条件：
 
-- Accepts an `in` prop. 这对应于打开/关闭的状态。
+- 接受一个 `in` 属性。 这对应于打开/关闭的状态。
 - 当进入过渡时调用 `onEnter` 回调属性。
-- 当退出过渡完成后应该调用 `onExited` 回调属性。 These two callbacks allow to unmount the children when in a closed state and fully transitioned.
+- 当退出过渡完成后应该调用 `onExited` 回调属性。 这两个回调属性保证了当在一个关闭的状态并展示完过渡动画时，才会移除子内容。
 
 For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](https://reactcommunity.org/react-transition-group/transition). You can also visit the dedicated sections of some of the components:
 
