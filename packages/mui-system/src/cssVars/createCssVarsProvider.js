@@ -16,6 +16,7 @@ export default function createCssVarsProvider(options) {
     theme: baseTheme = {},
     defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
+    enableColorScheme = true,
     prefix: designSystemPrefix = '',
     shouldSkipGeneratingVar,
   } = options;
@@ -134,7 +135,7 @@ export default function createCssVarsProvider(options) {
     }, [colorScheme, attribute]);
 
     React.useEffect(() => {
-      if (!mode) {
+      if (!mode || !enableColorScheme) {
         return;
       }
       // `color-scheme` tells browser to render built-in elements according to its value: `light` or `dark`
