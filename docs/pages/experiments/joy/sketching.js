@@ -86,7 +86,7 @@ const PushButton = styled('button', {
     alignItems: 'center',
     '&:focus-visible': theme.focus.default,
   },
-  selected ? theme.variant.filled?.primary : theme.variant.text?.neutral,
+  selected ? theme.variant.filled?.context : theme.variant.text?.context,
 ]);
 
 const ColorSchemePicker = () => {
@@ -108,7 +108,7 @@ const ColorSchemePicker = () => {
         minHeight: '48px',
         border: '1px solid',
         borderRadius: '24px',
-        ...theme.variant.outlined.primary,
+        ...theme.variant.outlined.context,
       })}
     >
       <Box sx={{ display: 'flex', gap: '8px', p: '6px' }}>
@@ -158,23 +158,21 @@ const Button = styled('button')(
   ],
 );
 
-const Paper = styled('div')(
-  ({ theme, variant = 'text', color = 'neutral', enableContext = false, elevation }) => [
-    {
-      '--joy-palette-neutral-textBg': 'var(--joy-palette-surface-level1)',
-      '--joy-palette-neutral-filledBg': 'var(--joy-palette-surface-level2)',
-      minWidth: 100,
-      minHeight: 120,
-      padding: '1rem',
-      borderRadius: 4,
-      ...(elevation && {
-        boxShadow: theme.elevation?.[elevation],
-      }),
-    },
-    theme.variant[variant]?.[color],
-    enableContext && variant === 'contained' && theme.variant.containedContext?.[color],
-  ],
-);
+const Paper = styled('div')(({ theme, variant = 'text', color = 'neutral', elevation }) => [
+  {
+    '--joy-palette-neutral-textBg': 'var(--joy-palette-surface-level1)',
+    '--joy-palette-neutral-filledBg': 'var(--joy-palette-surface-level2)',
+    minWidth: 100,
+    minHeight: 120,
+    padding: '1rem',
+    borderRadius: 4,
+    ...(elevation && {
+      boxShadow: theme.elevation?.[elevation],
+    }),
+  },
+  theme.variant[variant]?.[color],
+  variant === 'contained' && theme.variant.containedOverrides?.[color],
+]);
 
 const List = styled('ul')(({ theme, variant = 'text', color = 'neutral' }) => [
   {
@@ -301,7 +299,6 @@ export default function JoySketching() {
       />
       <Paper
         variant="contained"
-        enableContext
         color="primary"
         as="header"
         sx={{
@@ -314,7 +311,7 @@ export default function JoySketching() {
           top: 0,
         }}
       >
-        <IconButton variant="outlined">
+        <IconButton variant="outlined" color="context">
           <Sun />
         </IconButton>
         <Divider direction="vertical" />
@@ -322,7 +319,7 @@ export default function JoySketching() {
         <Divider direction="vertical" />
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Sun />
-          <Input variant="text" placeholder="Search..." />
+          <Input variant="text" color="context" placeholder="Search..." />
         </Box>
         <Box sx={{ ml: 'auto' }}>
           <ColorSchemePicker />
@@ -348,13 +345,13 @@ export default function JoySketching() {
               '--joy-variant-outlinedHoverBg': 'var(--joy-palette-primary-700)',
             }}
           >
-            <IconButton variant="outlined">
+            <IconButton variant="outlined" color="context">
               <Sun />
             </IconButton>
-            <IconButton variant="outlined">
+            <IconButton variant="outlined" color="context">
               <Sun />
             </IconButton>
-            <IconButton variant="outlined">
+            <IconButton variant="outlined" color="context">
               <Sun />
             </IconButton>
           </Box>
