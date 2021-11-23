@@ -1,10 +1,10 @@
 ---
 title: React Masonry component
-components: Masonry
+components: Masonry 瀑布流
 githubLabel: 'component: Masonry'
 ---
 
-# Masonry
+# Masonry 瀑布流
 
 <p class="description">Masonry lays out contents of different sizes as blocks of the same width and variable height with configurable gaps.</p>
 
@@ -24,7 +24,7 @@ This example demonstrates the use of `Masonry` for images. `Masonry` orders its 
 
 {{"demo": "pages/components/masonry/ImageMasonry.js", "bg": true}}
 
-## 列
+## Columns 列
 
 This example demonstrates the use of the `columns` to configure the number of columns of a `Masonry`.
 
