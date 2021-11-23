@@ -156,23 +156,23 @@ Additionally, you will need to disable the built-in filtering of the `Autocomple
 
 ### Lugares com a API do Google Maps
 
-A customized UI for Google Maps Places Autocomplete.
+Uma customização de UI para o autocompletar de lugares do Google Maps.
 
 {{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
 
-For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API.
+Para esse exemplo, nós precisamos carregar a API de Javascript do [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial).
 
 > ⚠️ Antes de você começar a usar a API JavaScript do Google Maps você precisará estar cadastrado e ter uma conta.
 
 ## Múltiplos valores
 
-Also known as tags, the user is allowed to enter more than one value.
+Também conhecidos como tags, o usuário pode inserir mais de um valor.
 
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 
 ### Opções fixas
 
-In the event that you need to lock certain tag so that they can't be removed in the interface, you can set the chips disabled.
+Em ocasiões que você necessite travar certa tag para que não possa ser removida da interface, você pode defini-la como desabilitada.
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
@@ -182,7 +182,7 @@ In the event that you need to lock certain tag so that they can't be removed in 
 
 ### Limitar tags
 
-You can use the `limitTags` prop to limit the number of displayed options when not focused.
+Você pode usar a propriedade `limitTags` para limitrar o número de opções exibidas quando o componente não estiver com o foco.
 
 {{"demo": "pages/components/autocomplete/LimitTags.js"}}
 
@@ -196,27 +196,27 @@ Gosta mais de campos de texto menores? Use a propriedade `size`.
 
 ### Input customizado
 
-The `renderInput` prop allows you to customize the rendered input. The first argument of this render prop contains props that you need to forward. Pay specific attention to the `ref` and `inputProps` keys.
+A propriedade `renderInput` permite que você customize o input renderizado. O primeiro argumento desta propriedade de render, contém propriedades que você precisa encaminhar. Preste atenção específicamente nas chaves `ref` e `inputProps`.
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
 ### Seletor do GitHub
 
-This demo reproduces the GitHub's label picker:
+Esta demonstração reproduz o rótulo de seleção do GitHub's:
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
-Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
+Va para a seção [Hook customizado](#customized-hook) para um exemplo com o uso do hook customizado `useAutocomplete` ao invés do componente.
 
 ## Realce
 
-The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+A demonstração a seguir dependem do [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), um utilitário pequeno (1 kB) para realçar textos nos componentes autosuggest e autocomplete.
 
 {{"demo": "pages/components/autocomplete/Highlights.js"}}
 
 ## Filtro customizado
 
-The component exposes a factory to create a filter method that can provided to the `filterOptions` prop. You can use it to change the default option filter behavior.
+O componente expõe uma fábrica para criar um método de filtro que pode ser fornecido para a propriedade `filterOptions`. Você pode usar ela para modificar o comportamento padrão do filtro.
 
 ```js
 import { createFilterOptions } from '@mui/material/Autocomplete';
@@ -237,9 +237,9 @@ import { createFilterOptions } from '@mui/material/Autocomplete';
 
 #### Retornos
 
-`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.
+`filterOptions`: o método de filtro retornado pode ser fornecido diretamente para a propriedade `filterOptions` do componente `Autocomplete` ou para o parâmetro de mesmo nome no hook.
 
-In the following demo, the options need to start with the query prefix:
+Na demonstração a seguir, as opções necessárias para o filtro ser aplicado no inicio das opções:
 
 ```jsx
 const filterOptions = createFilterOptions({
@@ -254,7 +254,7 @@ const filterOptions = createFilterOptions({
 
 ### Avançado
 
-For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). Por exemplo:
+Para mecanismos de filtragem mais ricos, como correspondência difusa, recomenda-se explorar o [match-sorter](https://github.com/kentcdodds/match-sorter). Por exemplo:
 
 ```jsx
 import { matchSorter } from 'match-sorter';
@@ -266,7 +266,7 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 ## Virtualização
 
-Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+Pesquise dentro de 10.000 opções geradas aleatoriamente. A lista é virtualizada graças a [react-window](https://github.com/bvaughn/react-window).
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
@@ -294,7 +294,7 @@ Browsers have heuristics to help the user fill in form inputs. However, this can
 
 By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
 
-In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
+In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). No caso de você querer evitar o recurso de preenchimento automático, tente o seguinte:
 
 - Nomeie o campo sem fornecer informações para o navegador do que ele representa. `id="field1"` ao invés de `id="country"`. Se você deixar o id do vazio, o componente utiliza um id aleatório.
 - Defina `autoComplete="new-password"` (alguns navegadores irão sugerir uma senha forte para entradas com esta configuração de atributo):
@@ -313,14 +313,14 @@ Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Se
 
 ### iOS VoiceOver
 
-VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You can work around the issue with the `disablePortal` prop.
+VoiceOver no Safari do iOS não suporta o atributo `aria-owns` muito bem. Você pode contornar o problema com a propriedade `disablePortal`.
 
 ### ListboxComponent
 
-If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
+Se você fornecer um componente customizado na propriedade `ListboxComponent`, você precisará certificar-se de que o contêiner de scroll esteja com o atributo `role` definido como `listbox`. Isto garante o comportamento correto do scroll, por exemplo, quando utilizar o teclado para navegar.
 
 ## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-We encourage the usage of a label for the textbox. The component implements the WAI-ARIA authoring practices.
+Incentivamos a utilização de um rótulo para a caixa de texto. O componente implementa as práticas de autoria da WAI-ARIA.
