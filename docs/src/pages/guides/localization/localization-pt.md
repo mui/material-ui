@@ -37,50 +37,50 @@ const theme = createTheme(
 | Amharic                 | am-ET                     | `amET`             |
 | Arabic (Egypt)          | ar-EG                     | `arEG`             |
 | Arabic (Sudan)          | ar-SD                     | `arSD`             |
-| Armenian                | hy-AM                     | `hyAM`             |
-| Azerbaijani             | az-AZ                     | `azAZ`             |
+| Armênio                 | hy-AM                     | `hyAM`             |
+| Azerbaijano             | az-AZ                     | `azAZ`             |
 | Bangla                  | bn-BD                     | `bnBD`             |
-| Bulgarian               | bg-BG                     | `bgBG`             |
-| Catalan                 | ca-ES                     | `caES`             |
+| Búlgaro                 | bg-BG                     | `bgBG`             |
+| Catalão                 | ca-ES                     | `caES`             |
 | Chinese (Hong Kong)     | zh-HK                     | `zhHK`             |
-| Chinese (Simplified)    | zh-CN                     | `zhCN`             |
+| Chinês (Simplificado)   | zh-CN                     | `zhCN`             |
 | Chinese (Taiwan)        | zh-TW                     | `zhTW`             |
-| Czech                   | cs-CZ                     | `csCZ`             |
-| Dutch                   | nl-NL                     | `nlNL`             |
-| English (United States) | en-US                     | `enUS`             |
-| Estonian                | et-EE                     | `etEE`             |
-| Finnish                 | fi-FI                     | `fiFI`             |
-| French                  | fr-FR                     | `frFR`             |
-| German                  | de-DE                     | `deDE`             |
+| Tcheco                  | cs-CZ                     | `csCZ`             |
+| Holandês                | nl-NL                     | `nlNL`             |
+| Inglês (Estados Unidos) | en-US                     | `enUS`             |
+| Estoniano               | et-EE                     | `etEE`             |
+| Finlandês               | fi-FI                     | `fiFI`             |
+| Francês                 | fr-FR                     | `frFR`             |
+| Alemão                  | de-DE                     | `deDE`             |
 | Greek                   | el-GR                     | `elGR`             |
-| Hebrew                  | he-IL                     | `heIL`             |
+| Hebraico                | he-IL                     | `heIL`             |
 | Hindi                   | hi-IN                     | `hiIN`             |
-| Hungarian               | hu-HU                     | `huHU`             |
-| Icelandic               | is-IS                     | `isIS`             |
-| Indonesian              | id-ID                     | `idID`             |
-| Italian                 | it-IT                     | `itIT`             |
-| Japanese                | ja-JP                     | `jaJP`             |
+| Húngaro                 | hu-HU                     | `huHU`             |
+| Islandês                | is-IS                     | `isIS`             |
+| Indonésio               | id-ID                     | `idID`             |
+| Italiano                | it-IT                     | `itIT`             |
+| Japonês                 | ja-JP                     | `jaJP`             |
 | Khmer                   | kh-KH                     | `khKH`             |
 | Kazakh                  | kz-KZ                     | `kzKZ`             |
-| Korean                  | ko-KR                     | `koKR`             |
-| Persian                 | fa-IR                     | `faIR`             |
-| Polish                  | pl-PL                     | `plPL`             |
-| Portuguese              | pt-PT                     | `ptPT`             |
-| Portuguese (Brazil)     | pt-BR                     | `ptBR`             |
-| Romanian                | ro-RO                     | `roRO`             |
-| Russian                 | ru-RU                     | `ruRU`             |
+| Coreano                 | ko-KR                     | `koKR`             |
+| Persa                   | fa-IR                     | `faIR`             |
+| Polonês                 | pl-PL                     | `plPL`             |
+| Português (Europeu)     | pt-PT                     | `ptPT`             |
+| Português (Brasil)      | pt-BR                     | `ptBR`             |
+| Romeno                  | ro-RO                     | `roRO`             |
+| Russo                   | ru-RU                     | `ruRU`             |
 | Sinhalese               | si-LK                     | `siLK`             |
-| Slovak                  | sk-SK                     | `skSK`             |
-| Spanish                 | es-ES                     | `esES`             |
-| Swedish                 | sv-SE                     | `svSE`             |
+| Eslovaco                | sk-SK                     | `skSK`             |
+| Espanhol                | es-ES                     | `esES`             |
+| Sueco                   | sv-SE                     | `svSE`             |
 | Thai                    | th-TH                     | `thTH`             |
-| Turkish                 | tr-TR                     | `trTR`             |
-| Ukrainian               | uk-UA                     | `ukUA`             |
-| Vietnamese              | vi-VN                     | `viVN`             |
+| Turco                   | tr-TR                     | `trTR`             |
+| Ucraniano               | uk-UA                     | `ukUA`             |
+| Vietnamita              | vi-VN                     | `viVN`             |
 
 <!-- #default-branch-switch -->
 
-You can [find the source](https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/locale/index.ts) in the GitHub repository.
+Você pode [encontrar o fonte](https://github.com/mui-org/material-ui/blob/master/packages/mui-material/src/locale/index.ts) no repositório do GitHub.
 
 Para criar sua própria tradução, ou para personalizar o texto em Inglês. copie este arquivo para o seu projeto, faça as alterações necessárias e importe a localidade de lá.
 
