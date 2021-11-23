@@ -344,7 +344,7 @@ const joyDesignTokens: BaseJoyTokens = {
     },
     h2: {
       fontFamily: 'var(--joy-fontFamily-display)',
-      fontWeight: 'var(--joy-fontWeight-md)' as React.CSSProperties['fontWeight'],
+      fontWeight: 'var(--joy-fontWeight-lg)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl3)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
@@ -352,7 +352,7 @@ const joyDesignTokens: BaseJoyTokens = {
     },
     h3: {
       fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
+      fontWeight: 'var(--joy-fontWeight-md)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl2)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
@@ -368,7 +368,7 @@ const joyDesignTokens: BaseJoyTokens = {
     },
     h5: {
       fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
+      fontWeight: 'var(--joy-fontWeight-md)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-lg)',
       lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
@@ -376,7 +376,7 @@ const joyDesignTokens: BaseJoyTokens = {
     },
     h6: {
       fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
+      fontWeight: 'var(--joy-fontWeight-md)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
