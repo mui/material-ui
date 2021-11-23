@@ -55,7 +55,7 @@ export default function MyApp() {
 Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrões para toda a página. Mais especificamente:
 
 - A margem é removida em todos navegadores.
-- The default Material Design background color is applied. It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
+- A cor de fundo padrão do material design é aplicada. Isto usando [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) para dispositivos padrão e um fundo branco para dispositivos de impressão.
 - If `enableColorScheme` is provided to `CssBaseline`, native components color will be set by applying [`color-scheme`](https://web.dev/color-scheme/) on `<html>`. The value used is provided by the theme property `theme.palette.mode`.
 
 ### Leiaute
@@ -106,4 +106,4 @@ Esta API foi introduzida no @mui/material (v5.1.0) para alternar entre os modos 
 
 ## Customização
 
-Head to the [global customization](/customization/how-to-customize/#5-global-css-override) section of the documentation to change the output of these components.
+Vá até a seção de [customização global](/customization/how-to-customize/#5-global-css-override) da documentação para alterar o comportamento desses componentes.
