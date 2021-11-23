@@ -15,7 +15,7 @@ There are many ways to support MUI:
   - 编辑文档。 每个页面右上角都有一个“编辑此页面”的链接。
   - 通过 [创建一个问题](https://github.com/mui-org/material-ui/issues/new) 来报告错误或缺少的功能 。
   - 查看和评论一些现有的 [pull requests](https://github.com/mui-org/material-ui/pulls) 和 [issues](https://github.com/mui-org/material-ui/issues)。
-  - Help [translate](https://translate.mui.com) the documentation.
+  - 帮助我们 [翻译](https://translate.mui.com) 文档。
   - [改进我们的文档](https://github.com/mui-org/material-ui/tree/next/docs)，修复错误，或者通过 [拉取请求](https://github.com/mui-org/material-ui/pulls) 来添加功能。
 - **在 [OpenCollective](https://opencollective.com/material-ui)**上资助我们。 If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the MUI home page.
 
