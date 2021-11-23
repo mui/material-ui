@@ -238,12 +238,13 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByText('var(--palette-grey)')).not.to.equal(null);
     });
 
-    it('set `color-scheme` property to body with correct mode, given `mode` is `light` or `dark`', () => {
+    it('set `color-scheme` property to body with correct mode, given `enableColorScheme` is true and `mode` is `light` or `dark`', () => {
       const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: {}, dark: {} },
         },
         defaultColorScheme: 'light',
+        enableColorScheme: true,
       });
       const Consumer = () => {
         const { setMode } = useColorScheme();
@@ -265,7 +266,7 @@ describe('createCssVarsProvider', () => {
       );
     });
 
-    it('set `color-scheme` property to body with correct mode, given mode is `system`', () => {
+    it('set `color-scheme` property to body with correct mode, given `enableColorScheme` is true and mode is `system`', () => {
       window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
 
       const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
@@ -273,6 +274,7 @@ describe('createCssVarsProvider', () => {
           colorSchemes: { light: {}, dark: {} },
         },
         defaultColorScheme: 'light',
+        enableColorScheme: true,
       });
       const Consumer = () => {
         const { setMode } = useColorScheme();
@@ -291,6 +293,26 @@ describe('createCssVarsProvider', () => {
 
       expect(window.getComputedStyle(document.body).getPropertyValue('color-scheme')).to.equal(
         'dark',
+      );
+    });
+
+    it('does not set `color-scheme` property to body with correct mode, given`enableColorScheme` is false', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: {}, dark: {} },
+        },
+        defaultColorScheme: 'light',
+        enableColorScheme: false,
+      });
+      const Consumer = () => <div />;
+
+      render(
+        <CssVarsProvider>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+      expect(window.getComputedStyle(document.body).getPropertyValue('color-scheme')).not.to.equal(
+        'light',
       );
     });
   });
