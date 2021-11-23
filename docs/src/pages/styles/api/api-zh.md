@@ -8,19 +8,19 @@ title: Styles API
 
 ## `createGenerateClassName([options]) => class name generator`
 
-A function which returns [a class name generator function](https://cssinjs.org/jss-api/#generate-your-class-names).
+返回 [ 类名称生成器函数 ](https://cssinjs.org/jss-api/#generate-your-class-names) 的函数。
 
 ### 参数
 
 1. `options` (_object_ [optional]):
 
-   - `options.disableGlobal` (_bool_ [optional]): Defaults to `false`. 阻止生成确定性的类名。
+   - `options.disableGlobal` (_bool_ [optional])：默认值是 `false`。 阻止生成确定性的类名。
    - `options.seed` (*string* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 字符串用来在生产中对类名称加上前缀。
    - `options.seed` (_string_ [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 用于唯一标识生成器的字符串。 在同一个文档中使用多个生成器时，它可用于避免类名冲突。
 
 ### 返回结果
 
-`class name generator`: The generator should be provided to JSS.
+`类名生成器`：应该将生成器提供给JSS。
 
 ### 例子
 
@@ -39,7 +39,7 @@ export default function App() {
 
 ## `createStyles(styles) => styles`
 
-This function doesn't really "do anything" at runtime, it's just the identity function. Its only purpose is to defeat **TypeScript**'s type widening when providing style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
+这个函数在运行时并没有真正“做任何事”，它只是身份 函数。 它的唯一目的是，当向 `Theme` 的 `makeStyles`/`withStyles` 功能提供样式的规则时， 可以阻止 **TypeScript** 的类型扩展。
 
 ### 参数
 
@@ -47,7 +47,7 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 
 ### 返回结果
 
-`styles`: A styles object.
+`styles`: 一个样式对象。
 
 ### 例子
 
@@ -77,7 +77,7 @@ export default function MyComponent() {
 
 ## `makeStyles(styles, [options]) => hook`
 
-Link a style sheet with a function component using the **hook** pattern.
+使用 **hook** 的模式与一个具有函数组件的样式表相连。
 
 ### 参数
 
@@ -91,7 +91,7 @@ Link a style sheet with a function component using the **hook** pattern.
 
 ### 返回结果
 
-`hook`: A hook. This hook can be used in a function component. The documentation often calls this returned hook `useStyles`. It accepts one argument: the props that will be used for "interpolation" in the style sheet.
+`hook` ： 一个钩子。 该钩子可以用在功能组件中。 文档通常会调用这个回调 hook `useStyles`。 It accepts one argument: the props that will be used for "interpolation" in the style sheet.
 
 ### 例子
 
@@ -114,7 +114,7 @@ export default function MyComponent(props) {
 
 ## `ServerStyleSheets`
 
-This is a class helper to handle server-side rendering. [You can follow this guide for a practical approach](/guides/server-rendering/).
+这是一个处理服务器端渲染的类助手（class helper）。 [您可以遵循本指南以了解实际的操作](/guides/server-rendering/)。
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
@@ -137,29 +137,29 @@ const response = `
 
 ### `new ServerStyleSheets([options])`
 
-The instantiation accepts an options object as a first argument.
+实例化接受的第一个参数是一个 options 对象。
 
 1. `options` (_object_ [optional]): The options are spread as props to the [`StylesProvider`](#stylesprovider) component.
 
 ### `sheets.collect(node) => React element`
 
-The method wraps your React node in a provider element. It collects the style sheets during the rendering so they can be later sent to the client.
+此方法将你的 React 节点包装在一个 provider 元素中。 它在渲染过程中收集样式表，以便它们以后可以发送到客户端。
 
 ### `sheets.toString() => CSS string`
 
-The method returns the collected styles.
+该方法返回收集的样式。
 
-⚠️ You must call `.collect()` before using this method.
+⚠️ 在使用这个方法前，您必须调用 `.collect()`。
 
 ### `sheets.getStyleElement() => CSS React element`
 
-The method is an alternative to `.toString()` when you are rendering the whole page with React.
+若用 React 渲染整个页面时，此方法能够替代`.toString()`。
 
-⚠️ You must call `.collect()` before using this method.
+⚠️ 在使用这个方法前，您必须调用 `.collect()`。
 
 ## `styled(Component)(styles, [options]) => Component`
 
-Link a style sheet with a function component using the **styled components** pattern.
+使用 **styled components** 的模式与一个具有函数组件的样式表相连。
 
 ### 参数
 
@@ -168,7 +168,7 @@ Link a style sheet with a function component using the **styled components** pat
 3. `options` (_object_ [optional]):
 
 - `options.defaultTheme`（*object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.withTheme` (_bool_ [optional]): Defaults to `false`. 将 `theme` 对象作为属性提供给组件。
+- `options.withTheme` (_bool_ [optional])：默认值是 `false`。 将 `theme` 对象作为属性提供给组件。
 - `options.name` (*string* [optional]): 样式表的名称。 适合调试。 如果未提供该值，它将尝试回退到组件的名称。
 - `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
@@ -207,7 +207,7 @@ export default function StyledComponents() {
 
 ## `StylesProvider`
 
-This component allows you to change the behavior of the styling solution. It makes the options available down the React tree thanks to the context.
+此组件允许您更改样式解决方案的行为。 多亏了 context，选项可以在 React 树下层使用。
 
 It should preferably be used at **the root of your component tree**.
 
@@ -264,11 +264,11 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## `useTheme() => theme`
 
-This hook returns the `theme` object so it can be used inside a function component.
+该钩子返回`theme`对象因此可以在函数组件中使用。
 
 ### 返回结果
 
-`theme`: The theme object previously injected in the context.
+`theme`：事先在 context 中注入的主题对象。
 
 ### 例子
 
@@ -285,9 +285,9 @@ export default function MyComponent() {
 
 ## `withStyles(styles, [options]) => higher-order component`
 
-Link a style sheet with a component using the **higher-order component** pattern. It does not modify the component passed to it; instead, it returns a new component with a `classes` prop. This `classes` object contains the name of the class names injected in the DOM.
+Link a style sheet with a component using the **higher-order component** pattern. It does not modify the component passed to it; instead, it returns a new component with a `classes` prop. 这个`classes`对象包含DOM中注入的class名称。
 
-Some implementation details that might be interesting to being aware of:
+一些可能有趣的实现细节：
 
 - It adds a `classes` prop so you can override the injected class names from the outside.
 - 它将 refs 转发给内部的组件。
@@ -299,14 +299,14 @@ Some implementation details that might be interesting to being aware of:
 2. `options` (_object_ [optional]):
 
 - `options.defaultTheme`（*object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.withTheme` (_bool_ [optional]): Defaults to `false`. 将 `theme` 对象作为属性提供给组件。
+- `options.withTheme` (_bool_ [optional])：默认值是 `false`。 将 `theme` 对象作为属性提供给组件。
 - `options.name` (*string* [optional]): 样式表的名称。 适合调试。 如果未提供该值，它将尝试回退到组件的名称。
 - `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
 ### 返回结果
 
-`higher-order component`: Should be used to wrap a component.
+`higher-order component`：应用于包装组件。
 
 ### 例子
 
@@ -327,7 +327,7 @@ function MyComponent(props) {
 export default withStyles(styles)(MyComponent);
 ```
 
-Also, you can use as [decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) like so:
+此外, 还可以像这样使用 [修饰器](https://babeljs.io/docs/en/babel-plugin-proposal-decorators):
 
 ```jsx
 import * as React from 'react';
@@ -359,7 +359,7 @@ Provide the `theme` object as a prop of the input component so it can be used in
 
 ### 返回结果
 
-`Component` ：已创建的新组建。 Does forward refs to the inner component.
+`Component` ：已创建的新组建。 它将 refs 转发给内部的组件。
 
 ### 例子
 
