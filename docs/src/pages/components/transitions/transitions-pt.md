@@ -20,7 +20,7 @@ Expand from the start edge of the child element. Use the `orientation` prop if y
 
 ## Fade
 
-Fade in from transparent to opaque.
+Fade in de transparente para opaco.
 
 {{"demo": "pages/components/transitions/SimpleFade.js", "bg": true}}
 
@@ -34,7 +34,7 @@ The second example demonstrates how to change the `transform-origin`, and condit
 
 ## Slide
 
-Slide in from the edge of the screen. The `direction` prop controls which edge of the screen the transition starts from.
+Deslize a partir da borda da tela. The `direction` prop controls which edge of the screen the transition starts from.
 
 The Transition component's `mountOnEnter` prop prevents the child component from being mounted until `in` is `true`. This prevents the relatively positioned component from scrolling into view from its off-screen position. Similarly, the `unmountOnExit` prop removes the component from the DOM after it has been transition off-screen.
 
@@ -48,9 +48,9 @@ The Slide component also accepts `container` prop, which is a reference to a DOM
 
 ## Zoom
 
-Expand outwards from the center of the child element.
+Expandir para fora partindo do centro do elemento filho.
 
-This example also demonstrates how to delay the enter transition.
+Este exemplo também demonstra como atrasar a transição de entrada.
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
 
@@ -87,13 +87,13 @@ To animate a component when it is mounted or unmounted, you can use the [`Transi
 
 {{"demo": "pages/components/transitions/TransitionGroupExample.js"}}
 
-## TransitionComponent prop
+## Propriedade TransitionComponent
 
-Some MUI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition. You can use any of the above components or your own. It should respect the following conditions:
+Some MUI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition. Você pode usar qualquer um dos componentes acima ou seu próprio componente. Ele deve respeitar as seguintes condições:
 
-- Accepts an `in` prop. Isso corresponde ao estado de aberto/fechado.
+- Aceitar uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
 - Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
-- Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. These two callbacks allow to unmount the children when in a closed state and fully transitioned.
+- Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. Esses dois callbacks permitem desmontar os elementos filhos quando em estado fechado e totalmente transitados.
 
 For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](https://reactcommunity.org/react-transition-group/transition). You can also visit the dedicated sections of some of the components:
 
