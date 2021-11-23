@@ -12,13 +12,13 @@ githubLabel: 'component: TransferList'
 
 ## Basic transfer list
 
-For completeness, this example includes buttons for "move all", but not every transfer list needs these.
+Para completar, este exemplo inclui botões para "mover tudo", mas nem todas as transferências de lista precisam disso.
 
 {{"demo": "pages/components/transfer-list/TransferList.js", "bg": true}}
 
 ## Enhanced transfer list
 
-This example exchanges the "move all" buttons for a "select all / select none" checkbox, and adds a counter.
+Este exemplo troca os botões "mover todos" por uma caixa de seleção para "selecionar todos / selecionar nenhum" e adiciona um contador.
 
 {{"demo": "pages/components/transfer-list/SelectAllTransferList.js", "bg": true}}
 
