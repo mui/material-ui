@@ -1,36 +1,97 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer, screen } from 'test/utils';
 import useId from './useId';
 
-const TestComponent = ({ id: idProp }) => {
-  const id = useId(idProp);
-  return <span>{id}</span>;
-};
-
-TestComponent.propTypes = {
-  id: PropTypes.string,
-};
-
 describe('useId', () => {
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
 
   it('returns the provided ID', () => {
-    const { getByText, setProps } = render(<TestComponent id="some-id" />);
+    const TestComponent = ({ id: idProp }) => {
+      const id = useId(idProp);
+      return <span data-testid="target" id={id} />;
+    };
+    const { hydrate } = renderToString(<TestComponent id="some-id" />);
+    const { setProps } = hydrate();
 
-    expect(getByText('some-id')).not.to.equal(null);
+    expect(screen.getByTestId('target')).to.have.property('id', 'some-id');
 
     setProps({ id: 'another-id' });
-    expect(getByText('another-id')).not.to.equal(null);
+
+    expect(screen.getByTestId('target')).to.have.property('id', 'another-id');
   });
 
   it("generates an ID if one isn't provided", () => {
-    const { getByText, setProps } = render(<TestComponent />);
+    const TestComponent = ({ id: idProp }) => {
+      const id = useId(idProp);
+      return <span data-testid="target" id={id} />;
+    };
+    const { hydrate } = renderToString(<TestComponent />);
+    const { setProps } = hydrate();
 
-    expect(getByText(/^mui-[0-9]+$/)).not.to.equal(null);
+    expect(screen.getByTestId('target').id).not.to.equal('');
 
     setProps({ id: 'another-id' });
-    expect(getByText('another-id')).not.to.equal(null);
+    expect(screen.getByTestId('target')).to.have.property('id', 'another-id');
+  });
+
+  it('can be suffixed', () => {
+    function Widget() {
+      const id = useId();
+      const labelId = `${id}-label`;
+
+      return (
+        <React.Fragment>
+          <span data-testid="labelable" aria-labelledby={labelId} />
+          <span data-testid="label" id={labelId}>
+            Label
+          </span>
+        </React.Fragment>
+      );
+    }
+    render(<Widget />);
+
+    expect(screen.getByTestId('labelable')).to.have.attr(
+      'aria-labelledby',
+      screen.getByTestId('label').id,
+    );
+  });
+
+  it('can be used in in IDREF attributes', () => {
+    function Widget() {
+      const labelPartA = useId();
+      const labelPartB = useId();
+
+      return (
+        <React.Fragment>
+          <span data-testid="labelable" aria-labelledby={`${labelPartA} ${labelPartB}`} />
+          <span data-testid="labelA" id={labelPartA}>
+            A
+          </span>
+          <span data-testid="labelB" id={labelPartB}>
+            B
+          </span>
+        </React.Fragment>
+      );
+    }
+    render(<Widget />);
+
+    expect(screen.getByTestId('labelable')).to.have.attr(
+      'aria-labelledby',
+      `${screen.getByTestId('labelA').id} ${screen.getByTestId('labelB').id}`,
+    );
+  });
+
+  it('provides an ID on server in React 18', function test() {
+    if (React.useId === undefined) {
+      this.skip();
+    }
+    const TestComponent = () => {
+      const id = useId();
+      return <span data-testid="target" id={id} />;
+    };
+    renderToString(<TestComponent />);
+
+    expect(screen.getByTestId('target').id).not.to.equal('');
   });
 });

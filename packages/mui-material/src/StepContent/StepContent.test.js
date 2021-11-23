@@ -18,7 +18,15 @@ describe('<StepContent />', () => {
           <Step>{node}</Step>
         </Stepper>,
       );
-      return wrapper.find(Step).childAt(0).childAt(0).childAt(0);
+      // `wrapper.find(Step)` tree.
+      // "->" indicates the path we want
+      // "n:" indicates the index
+      // <ForwardRef(Step)>
+      // ->   0: <MuiStepRoot>
+      //        0: <Noop /> // from Emotion
+      // ->     1: <div className="MuiStep-root">
+      // ->       0: <MuiStepContentRoot />
+      return wrapper.find(Step).childAt(0).childAt(1).childAt(0);
     },
     muiName: 'MuiStepContent',
     refInstanceof: window.HTMLDivElement,

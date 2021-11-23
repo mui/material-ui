@@ -39,6 +39,7 @@
   "styles": {
     "classes": [
       "select",
+      "multiple",
       "filled",
       "outlined",
       "standard",

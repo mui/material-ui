@@ -19,7 +19,7 @@ const planInfo = {
     color: 'green',
     title: 'Community',
     description:
-      'Get started with the industry-standard UI library for building React user interfaces.',
+      'Get started with the industry-standard UI library for building React user interfaces (open-source, MIT licensed).',
   },
   pro: {
     color: 'blue',
@@ -29,7 +29,7 @@ const planInfo = {
   premium: {
     color: 'gold',
     title: 'Premium',
-    description: 'Unlock all the most advanced features including premium support.',
+    description: 'Unlock all the most advanced features and professional support.',
   },
 } as const;
 
@@ -889,15 +889,15 @@ export default function PricingTable({
               variant="outlined"
               disabled
               fullWidth
-              sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.secondary' } }}
+              sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.disabled' } }}
             >
-              Available later this year!
+              In progress!
             </Button>
           </Box>
         </Box>
       )}
       <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>
-        MUI Core
+        MUI Core (open-source)
       </RowHead>
       {renderRow('@mui/base')}
       {divider}
@@ -906,7 +906,7 @@ export default function PricingTable({
       {renderRow('@mui/system')}
 
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
-        MUI X
+        MUI X (open-core)
       </RowHead>
       <Box sx={{ position: 'relative', minHeight: 58, '& svg': { transition: '0.3s' }, ...gridSx }}>
         <Cell />

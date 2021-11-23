@@ -14,6 +14,22 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 
 const faqData = [
   {
+    summary: 'How do I know if I need to buy license?',
+    detail: (
+      <React.Fragment>
+        If you are in doubt, check the license file of the npm package you're installing.
+        <br />
+        <br />
+        For instance <Link href="https://unpkg.com/@mui/x-data-grid/LICENSE">
+          @mui/x-data-grid
+        </Link>{' '}
+        is MIT while{' '}
+        <Link href="https://unpkg.com/@mui/x-data-grid-pro/LICENSE">@mui/x-data-grid-pro</Link> is
+        commercial.
+      </React.Fragment>
+    ),
+  },
+  {
     summary: 'Why are you calling it "early access"?',
     detail: (
       <React.Fragment>

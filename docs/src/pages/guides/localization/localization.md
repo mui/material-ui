@@ -34,6 +34,7 @@ const theme = createTheme(
 
 | Locale                  | BCP 47 language tag | Import name |
 | :---------------------- | :------------------ | :---------- |
+| Amharic                 | am-ET               | `amET`      |
 | Arabic (Egypt)          | ar-EG               | `arEG`      |
 | Arabic (Sudan)          | ar-SD               | `arSD`      |
 | Armenian                | hy-AM               | `hyAM`      |

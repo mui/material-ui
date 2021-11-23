@@ -70,7 +70,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     componentsProps = {},
     disabled = false,
     error = false,
-    focused: visuallyFocused = false,
+    focused: visuallyFocused,
     onChange,
     required = false,
     value: incomingValue,

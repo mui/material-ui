@@ -64,8 +64,8 @@ function GoogleAnalytics() {
   React.useEffect(() => {
     // Wait for the title to be updated.
     setTimeout(() => {
-      const { canonical } = pathnameToLanguage(window.location.pathname);
-      window.ga('set', { page: canonical });
+      const { canonicalAs } = pathnameToLanguage(window.location.pathname);
+      window.ga('set', { page: canonicalAs });
       window.ga('send', { hitType: 'pageview' });
     });
   }, [router.route]);

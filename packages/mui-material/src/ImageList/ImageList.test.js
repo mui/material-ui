@@ -73,13 +73,13 @@ describe('<ImageList />', () => {
 
     it('should render with the quilted class', () => {
       const { getByTestId } = render(
-        <ImageList data-testid="test-root" variant="woven">
+        <ImageList data-testid="test-root" variant="quilted">
           {children}
         </ImageList>,
       );
 
       expect(getByTestId('test-root')).to.have.class(classes.root);
-      expect(getByTestId('test-root')).to.have.class(classes.woven);
+      expect(getByTestId('test-root')).to.have.class(classes.quilted);
     });
 
     it('should render with the woven class', () => {

@@ -3,6 +3,8 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export interface SelectClasses {
   /** Styles applied to the select component `select` class. */
   select: string;
+  /** Styles applied to the select component if `multiple={true}`. */
+  multiple: string;
   /** Styles applied to the select component if `variant="filled"`. */
   filled: string;
   /** Styles applied to the select component if `variant="outlined"`. */
@@ -33,6 +35,7 @@ export function getSelectUtilityClasses(slot: string): string {
 
 const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
   'select',
+  'multiple',
   'filled',
   'outlined',
   'standard',

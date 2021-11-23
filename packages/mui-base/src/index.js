@@ -29,7 +29,7 @@ export * from './ModalUnstyled';
 
 export { default as NoSsr } from './NoSsr';
 
-export { default as Popper } from './Popper';
+export { default as PopperUnstyled } from './PopperUnstyled';
 
 export { default as Portal } from './Portal';
 
@@ -42,5 +42,17 @@ export * from './SwitchUnstyled';
 export { default as TextareaAutosize } from './TextareaAutosize';
 
 export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
+
+export { default as TabsUnstyled } from './TabsUnstyled';
+export * from './TabsUnstyled';
+
+export { default as TabUnstyled } from './TabUnstyled';
+export * from './TabUnstyled';
+
+export { default as TabsListUnstyled } from './TabsListUnstyled';
+export * from './TabsListUnstyled';
+
+export { default as TabPanelUnstyled } from './TabPanelUnstyled';
+export * from './TabPanelUnstyled';
 
 export * from './utils';

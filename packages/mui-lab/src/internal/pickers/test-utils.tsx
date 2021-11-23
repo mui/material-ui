@@ -40,7 +40,7 @@ export const FakeTransitionComponent = React.forwardRef<HTMLDivElement, Transiti
   },
 );
 
-type CreateRenderOptions = import('test/utils').CreateRenderOptions;
+type CreateRenderOptions = import('test/utils').CreateRendererOptions;
 
 interface CreatePickerRendererOptions extends CreateRenderOptions {
   // object for date-fns, string for other adapters
@@ -56,7 +56,7 @@ export function createPickerRenderer({
   locale,
   ...createRendererOptions
 }: CreatePickerRendererOptions = {}) {
-  const { render: clientRender } = createRenderer(createRendererOptions);
+  const { clock, render: clientRender } = createRenderer(createRendererOptions);
 
   function Wrapper({ children }: { children?: React.ReactNode }) {
     return (
@@ -67,6 +67,7 @@ export function createPickerRenderer({
   }
 
   return {
+    clock,
     render(
       node: React.ReactElement,
       options?: Omit<import('test/utils').RenderOptions, 'wrapper'>,

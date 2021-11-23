@@ -37,7 +37,10 @@ function getUnstyledFilename(filename, definitionFile = false) {
   const separator = filename.indexOf('/') > -1 ? '/' : '\\';
 
   if (filename.indexOf('mui-base') === -1) {
-    unstyledFile = filename.replace('.d.ts', '').replace('.ts', '').replace('.js', '');
+    unstyledFile = filename
+      .replace(/.d.ts$/, '')
+      .replace(/.tsx?$/, '')
+      .replace(/.js$/, '');
     unstyledFile = unstyledFile.replace(/Styled/g, '');
 
     const pathParts = unstyledFile.split(separator);

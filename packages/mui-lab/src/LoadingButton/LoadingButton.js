@@ -101,17 +101,27 @@ const LoadingButtonLoadingIndicator = styled('div', {
   position: 'absolute',
   visibility: 'visible',
   display: 'flex',
-  ...(ownerState.loadingPosition === 'start' && {
-    left: 14,
-  }),
+  ...(ownerState.loadingPosition === 'start' &&
+    (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
+      left: 14,
+    }),
+  ...(ownerState.loadingPosition === 'start' &&
+    ownerState.variant === 'text' && {
+      left: 6,
+    }),
   ...(ownerState.loadingPosition === 'center' && {
     left: '50%',
     transform: 'translate(-50%)',
     color: theme.palette.action.disabled,
   }),
-  ...(ownerState.loadingPosition === 'end' && {
-    right: 14,
-  }),
+  ...(ownerState.loadingPosition === 'end' &&
+    (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
+      right: 14,
+    }),
+  ...(ownerState.loadingPosition === 'end' &&
+    ownerState.variant === 'text' && {
+      right: 6,
+    }),
   ...(ownerState.loadingPosition === 'start' &&
     ownerState.fullWidth && {
       position: 'relative',
@@ -134,6 +144,7 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
     loading = false,
     loadingIndicator = LoadingIndicator,
     loadingPosition = 'center',
+    variant = 'text',
     ...other
   } = props;
 
@@ -143,6 +154,7 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
     loading,
     loadingIndicator,
     loadingPosition,
+    variant,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -152,6 +164,7 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
       disabled={disabled || loading}
       ref={ref}
       {...other}
+      variant={variant}
       classes={classes}
       ownerState={ownerState}
     >
@@ -238,6 +251,11 @@ LoadingButton.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The variant to use.
+   * @default 'text'
+   */
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
 };
 
 export default LoadingButton;

@@ -2,7 +2,7 @@
 
 <p class="description">An overview of the MUI packages and the relationships between them.</p>
 
-## Tl;dr
+## Tl;DR
 
 - Use `@mui/material` if you want to use the components following the Material Design guidelines.
   > 💡 You can import styling APIs (eg. `ThemeProvider`, `styled`, etc.) directly from `@mui/material`.
@@ -23,8 +23,6 @@ The following is an up-to-date list of `@mui` public packages.
 - `@mui/styled-engine-sc`
 - `@mui/styles`
 
-> Other packages, such as `@mui/utils` and `@mui/types`, are used internally in the packages listed above.
-
 **Why does MUI have multiple packages? Why not just one?**
 
 MUI started as a single package that provided React Material Design components.
@@ -34,35 +32,49 @@ For this reason, abstracting into smaller packages not only allows MUI to grow o
 
 The packages can be categorized into 3 layers, as shown in the picture below:
 
-<img src="/static/images/packages/mui-packages.png" style="width: 700px; max-width: 100%;" />
+<img src="/static/images/packages/mui-packages.png" style="display: block; width: 448px; margin: auto;" />
 
 Let's take a look at each layer to understand how they work together, starting from the bottom:
 
+> 📖 Glossary
+>
+> - **install** refers to running `yarn add $module` or `npm install $module`.
+> - **import** refers to making a module API available in your code by adding `import ... from '$module'`.
+
 ## Styled engines
 
-This layer is specifically related to stylesheets.
-Currently we use `emotion` as the default style library for creating stylesheets.
-In addition, we also provide an adapter for developers who prefer to use styled-components.
+This layer is specifically related to stylesheet generation (CSS-in-JS).
+MUI has introduced new styled-engines in v5 to unlock more possibilities and enable enhanced customization.
+Usually, developers do not need to interact with this layer on a daily basis because it is used internally in `@mui/system`.
 
-These are the packages in this layer:
+They come in two packages:
 
-- `@mui/styled-engine` : an emotion wrapper
-- `@mui/styled-engine-sc` : a styled-components wrapper
-- `@mui/styles` : JSS wrapper (`deprecated`)
+- `@mui/styled-engine` : an [emotion](https://emotion.sh/docs/styled) wrapper.
+- `@mui/styled-engine-sc` : a [styled-components](https://styled-components.com/docs/basics#getting-started) wrapper.
 
-> These packages are already included in the design system package, so you don't need to worry about _importing_ them if you're using `@mui/material`, but you will need to [install](`@mui/styled-engine-sc`) if you wish to replace emotion as the default, as well as your chosen style library.
+These adapters unify the APIs of both `emotion` and `styled-components`, so that developers can choose to use whichever suits them best.
+
+The previous style library `@mui/styles` (JSS wrapper) is deprecated and will be removed in the future.
+
+> The details about the change in styling solution are in [this RFC](https://github.com/mui-org/material-ui/issues/22342).
 
 ## System
 
 There is only one package in this layer - `@mui/system`.
-It uses a styled-engine package and provides APIs for building a design system from scratch, for example, `styled` is enhanced to provide more theming capabilities.
+
+It uses the emotion adapter (`@mui/styled-engine`) as the default styled-engine to create APIs for building a design system from scratch. For example, [`styled`](/system/styled/#main-content) from the styled-engine is enhanced to provide more theming capabilities.
+
+If you want to switch the styled-engine to use styled-components, [follow this guide](/guides/styled-engine/#how-to-switch-to-styled-components).
+
+<img src="/static/images/packages/mui-system.png" style="display: block; width: 720px; margin: 40px auto;" />
+
 Here are some benefits:
 
 - You have full control of the `theme` object.
 - The `styled` API supports the `sx` prop by default.
 - Components created with `styled` are themeable via slots & variants.
 
-> **Note**: you will have to install either `emotion` or `styled-components`, because the `system` package depends on it.
+> **Note**: you will have to install either `emotion` or `styled-components`, because the respective styled-engine package depends on it.
 
 ## Base
 
@@ -115,5 +127,3 @@ export default function CustomSwitch() {
   return <SwitchUnstyled component={Root} {...label} />;
 }
 ```
-
-> **Note**: there is no need to install `@mui/base` because it is a built in dependency the design system package, `@mui/material`.

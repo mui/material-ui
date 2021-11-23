@@ -242,19 +242,38 @@ export function getCookie(name: string): string | undefined {
   return undefined;
 }
 
-export function pathnameToLanguage(pathname: string): { userLanguage: string; canonical: string } {
-  const userLanguage = pathname.substring(1, 3);
+/**
+ * as is a reference to Next.js's as, the path in the URL
+ * pathname is a reference to Next.js's pathname, the name of page in the filesystem
+ * https://nextjs.org/docs/api-reference/next/router
+ */
+export function pathnameToLanguage(pathname: string): {
+  userLanguage: string;
+  canonicalAs: string;
+  canonicalPathname: string;
+} {
+  let userLanguage;
+  const userLanguageCandidate = pathname.substring(1, 3);
 
-  if (LANGUAGES.indexOf(userLanguage) !== -1 && pathname.indexOf(`/${userLanguage}/`) === 0) {
-    return {
-      userLanguage,
-      canonical: userLanguage === 'en' ? pathname : pathname.substring(3),
-    };
+  if (
+    LANGUAGES.indexOf(userLanguageCandidate) !== -1 &&
+    pathname.indexOf(`/${userLanguageCandidate}/`) === 0
+  ) {
+    userLanguage = userLanguageCandidate;
+  } else {
+    userLanguage = 'en';
   }
 
+  const canonicalAs = userLanguage === 'en' ? pathname : pathname.substring(3);
+  const canonicalPathname = canonicalAs
+    .replace(/^\/api/, '/api-docs')
+    .replace(/#(.*)$/, '')
+    .replace(/\/$/, '');
+
   return {
-    userLanguage: 'en',
-    canonical: pathname,
+    userLanguage,
+    canonicalAs,
+    canonicalPathname,
   };
 }
 

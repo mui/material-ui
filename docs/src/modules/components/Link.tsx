@@ -41,7 +41,7 @@ const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedPro
         passHref
         locale={locale}
       >
-        <Anchor ref={ref} {...other} />
+        <Anchor data-no-markdown-link="true" ref={ref} {...other} />
       </NextLink>
     );
   },
@@ -51,6 +51,7 @@ export type LinkProps = {
   activeClassName?: string;
   as?: NextLinkProps['as'];
   href: NextLinkProps['href'];
+  linkAs?: NextLinkProps['as']; // Useful when the as prop is shallow by styled().
   noLinkStyle?: boolean;
 } & Omit<NextLinkComposedProps, 'to' | 'linkAs' | 'href'> &
   Omit<MuiLinkProps, 'href'>;
@@ -60,9 +61,10 @@ export type LinkProps = {
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props, ref) {
   const {
     activeClassName = 'active',
-    as: linkAsProp,
+    as: asProp,
     className: classNameProps,
     href,
+    linkAs: linkAsProp,
     noLinkStyle,
     role, // Link don't have roles.
     ...other
@@ -86,18 +88,20 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     return <MuiLink className={className} href={href} ref={ref} {...other} />;
   }
 
-  if (noLinkStyle) {
-    return <NextLinkComposed className={className} ref={ref} to={href} {...other} />;
-  }
-
-  let linkAs = linkAsProp || (href as string);
+  let linkAs = linkAsProp || asProp || (href as string);
   if (
     userLanguage !== 'en' &&
-    typeof href === 'string' &&
-    href.indexOf('/') === 0 &&
-    href.indexOf('/blog') !== 0
+    pathname &&
+    pathname.indexOf('/') === 0 &&
+    pathname.indexOf('/blog') !== 0
   ) {
     linkAs = `/${userLanguage}${linkAs}`;
+  }
+
+  if (noLinkStyle) {
+    return (
+      <NextLinkComposed className={className} ref={ref} to={href} linkAs={linkAs} {...other} />
+    );
   }
 
   return (

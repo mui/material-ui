@@ -21,11 +21,15 @@ async function run(argv) {
       }
       return line;
     });
-  const globPattern = `**/*${argv.testFilePattern}*.test.{js,ts,tsx}`;
-  const spec = glob.sync(globPattern, {
-    cwd: workspaceRoot,
-    ignore,
-  });
+  const globPattern = `**/*${argv.testFilePattern.replace(/\\/g, '/')}*`;
+  const spec = glob
+    .sync(globPattern, {
+      cwd: workspaceRoot,
+      ignore,
+    })
+    .filter((relativeFile) => {
+      return /\.test\.(js|ts|tsx)$/.test(relativeFile);
+    });
 
   if (spec.length === 0) {
     throw new Error(`Could not find any file test files matching '${globPattern}'`);
@@ -34,6 +38,9 @@ async function run(argv) {
   const args = ['mocha'].concat(spec);
   if (argv.bail) {
     args.push('--bail');
+  }
+  if (argv.debug || argv.inspecting) {
+    args.push('--timeout 0');
   }
   if (argv.debug) {
     args.push('--inspect-brk');
@@ -80,6 +87,16 @@ yargs
         .option('bail', {
           alias: 'b',
           description: 'Stop on first error.',
+          type: 'boolean',
+        })
+        .option('debug', {
+          alias: 'd',
+          description:
+            'Allows attaching a debugger and waits for the debugger to start code execution.',
+          type: 'boolean',
+        })
+        .option('inspecting', {
+          description: 'In case you expect to hit breakpoints that may interrupt a test.',
           type: 'boolean',
         })
         .option('production', {

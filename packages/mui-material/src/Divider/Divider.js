@@ -155,11 +155,11 @@ const DividerWrapper = styled('span', {
   },
 })(({ theme, ownerState }) => ({
   display: 'inline-block',
-  paddingLeft: theme.spacing(1.2),
-  paddingRight: theme.spacing(1.2),
+  paddingLeft: `calc(${theme.spacing(1)} * 1.2)`,
+  paddingRight: `calc(${theme.spacing(1)} * 1.2)`,
   ...(ownerState.orientation === 'vertical' && {
-    paddingTop: theme.spacing(1.2),
-    paddingBottom: theme.spacing(1.2),
+    paddingTop: `calc(${theme.spacing(1)} * 1.2)`,
+    paddingBottom: `calc(${theme.spacing(1)} * 1.2)`,
   }),
 }));
 

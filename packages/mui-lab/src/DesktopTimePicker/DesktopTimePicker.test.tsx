@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { expect } from 'chai';
 import { act, describeConformance, fireEvent, screen, userEvent } from 'test/utils';
 import { TransitionProps } from '@mui/material/transitions';
@@ -13,16 +13,7 @@ import {
 } from '../internal/pickers/test-utils';
 
 describe('<DesktopTimePicker />', () => {
-  let clock: ReturnType<typeof useFakeTimers>;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render } = createPickerRenderer();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   describeConformance(
     <DesktopTimePicker

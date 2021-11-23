@@ -1,6 +1,6 @@
 ---
 title: React Popper component
-components: Popper
+components: Popper, PopperUnstyled
 githubLabel: 'component: Popper'
 ---
 
@@ -75,8 +75,11 @@ state for you in most cases.
 
 ## Unstyled
 
-As the component does not have any styles, it also comes with the unstyled package.
+The @mui/base package contain an unstyled version of Popper - PopperUnstyled.
+It does not have a dependency on @mui/material.
+The only difference between Popper and PopperUnstyled is the support for theming.
+Popper can read the `direction` field from the current theme, while PopperUnstyled accepts the `direction` prop instead.
 
 ```js
-import Popper from '@mui/base/Popper';
+import Popper from '@mui/base/PopperUnstyled';
 ```
