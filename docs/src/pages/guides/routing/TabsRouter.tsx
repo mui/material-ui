@@ -3,7 +3,14 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
-import { MemoryRouter, Route, Link, matchPath, useLocation } from 'react-router-dom';
+import {
+  MemoryRouter,
+  Route,
+  Routes,
+  Link,
+  matchPath,
+  useLocation,
+} from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
 
 function Router(props: { children?: React.ReactNode }) {
@@ -24,9 +31,9 @@ function useRouteMatch(patterns: readonly string[]) {
 
   for (let i = 0; i < patterns.length; i += 1) {
     const pattern = patterns[i];
-    const possibeMatch = matchPath(pattern, pathname);
-    if (possibeMatch !== null) {
-      return possibeMatch;
+    const possibleMatch = matchPath(pattern, pathname);
+    if (possibleMatch !== null) {
+      return possibleMatch;
     }
   }
 
@@ -64,7 +71,9 @@ export default function TabsRouter() {
   return (
     <Router>
       <Box sx={{ width: '100%' }}>
-        <Route element={<CurrentRoute />} />
+        <Routes>
+          <Route element={<CurrentRoute />} />
+        </Routes>
         <MyTabs />
       </Box>
     </Router>
