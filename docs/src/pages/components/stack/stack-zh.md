@@ -1,10 +1,10 @@
 ---
 title: React Stack component
-components: Stack
+components: Stack 堆叠
 githubLabel: 'component: Stack'
 ---
 
-# Stack
+# Stack 堆叠
 
 <p class="description">The Stack component manages layout of immediate children along the vertical or horizontal axis with optional spacing and/or dividers between each child.</p>
 
