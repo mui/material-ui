@@ -46,10 +46,10 @@ export interface PaletteRange extends PaletteVariant {
   900: string;
 }
 
-export interface PaletteLetter {
-  major: React.CSSProperties['color'];
-  minor: React.CSSProperties['color'];
-  support: React.CSSProperties['color'];
+export interface PaletteText {
+  primary: React.CSSProperties['color'];
+  secondary: React.CSSProperties['color'];
+  tertiary: React.CSSProperties['color'];
 }
 
 export interface PaletteSurface {
@@ -80,7 +80,7 @@ export type ColorPalette = {
 };
 
 export interface Palette extends ColorPalette {
-  letter: PaletteLetter;
+  text: PaletteText;
   surface: PaletteSurface;
   focusVisible: React.CSSProperties['outline'];
 }

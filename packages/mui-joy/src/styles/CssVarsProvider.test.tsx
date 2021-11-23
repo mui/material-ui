@@ -41,7 +41,7 @@ describe('[Joy] CssVarsProvider', () => {
             <div data-testid="palette-info">{JSON.stringify(theme.vars.palette.info)}</div>
             <div data-testid="palette-success">{JSON.stringify(theme.vars.palette.success)}</div>
             <div data-testid="palette-warning">{JSON.stringify(theme.vars.palette.warning)}</div>
-            <div data-testid="palette-letter">{JSON.stringify(theme.vars.palette.letter)}</div>
+            <div data-testid="palette-text">{JSON.stringify(theme.vars.palette.text)}</div>
             <div data-testid="palette-surface">{JSON.stringify(theme.vars.palette.surface)}</div>
             <div data-testid="palette-focusVisible">
               {JSON.stringify(theme.vars.palette.focusVisible)}
@@ -272,11 +272,11 @@ describe('[Joy] CssVarsProvider', () => {
           containedDisabledBg: 'var(--joy-palette-warning-containedDisabledBg)',
         }),
       );
-      expect(screen.getByTestId('palette-letter').textContent).to.equal(
+      expect(screen.getByTestId('palette-text').textContent).to.equal(
         JSON.stringify({
-          major: 'var(--joy-palette-letter-major)',
-          minor: 'var(--joy-palette-letter-minor)',
-          support: 'var(--joy-palette-letter-support)',
+          primary: 'var(--joy-palette-text-primary)',
+          secondary: 'var(--joy-palette-text-secondary)',
+          tertiary: 'var(--joy-palette-text-tertiary)',
         }),
       );
       expect(screen.getByTestId('palette-surface').textContent).to.equal(

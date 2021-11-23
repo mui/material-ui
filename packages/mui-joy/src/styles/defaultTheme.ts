@@ -4,7 +4,7 @@ import colors from '../colors';
 import {
   ColorSystem,
   Palette,
-  PaletteLetter,
+  PaletteText,
   PaletteRange,
   PaletteSurface,
   ColorPaletteProp,
@@ -158,7 +158,7 @@ type BaseJoyTokens = {
     info: Pick<PaletteRange, BasePaletteRange>;
     success: Pick<PaletteRange, BasePaletteRange>;
     warning: Pick<PaletteRange, BasePaletteRange>;
-    letter: Pick<PaletteLetter, 'major' | 'minor' | 'support'>;
+    text: Pick<PaletteText, 'primary' | 'secondary' | 'tertiary'>;
     surface: Pick<PaletteSurface, 'default' | 'level1' | 'level2' | 'level3'>;
     focusVisible: Palette['focusVisible'];
   };
@@ -208,10 +208,10 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> 
       ...colors.yellow,
       ...createLightModeVariantVariables('warning'),
     },
-    letter: {
-      major: 'var(--joy-palette-neutral-800)',
-      minor: 'var(--joy-palette-neutral-600)',
-      support: 'var(--joy-palette-neutral-500)',
+    text: {
+      primary: 'var(--joy-palette-neutral-800)',
+      secondary: 'var(--joy-palette-neutral-600)',
+      tertiary: 'var(--joy-palette-neutral-500)',
     },
     surface: {
       default: 'var(--joy-palette-neutral-50)',
@@ -250,10 +250,10 @@ export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> =
       ...colors.yellow,
       ...createDarkModeVariantVariables('warning'),
     },
-    letter: {
-      major: 'var(--joy-palette-neutral-100)',
-      minor: 'var(--joy-palette-neutral-300)',
-      support: 'var(--joy-palette-neutral-400)',
+    text: {
+      primary: 'var(--joy-palette-neutral-100)',
+      secondary: 'var(--joy-palette-neutral-300)',
+      tertiary: 'var(--joy-palette-neutral-400)',
     },
     surface: {
       default: 'var(--joy-palette-neutral-800)',
