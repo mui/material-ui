@@ -38,7 +38,7 @@
 
 ### CSS classes
 
-All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-class-names) prop to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
+为了自定义样式，所有组件都接受 [`classes`](/customization/how-to-customize/#overriding-styles-with-class-names) 属性。 The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
 
 - 应用于根元素的类始终称为 `root`。
 - 所有默认样式都分组在单个类中。
@@ -90,7 +90,7 @@ The name of a boolean prop should be chosen based on the **default value**. This
 
 当设计组件的变体的 API 时，有两种选择：使用一个 _boolean_；或者使用一个_enum_。 比如说，我们选取了一个有着不同类型的按钮组件。 每个选项都有其优缺点：
 
-- Option 1 _boolean_:
+- 选项 1 _布尔值（boolean）_：
 
   ```tsx
   type Props = {
@@ -99,9 +99,9 @@ The name of a boolean prop should be chosen based on the **default value**. This
   };
   ```
 
-  This API enables the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
+  该 API 启用了简写的表示法：`<Button>`，`<Button contained />`，`<Button fab />`。
 
-- Option 2 _enum_:
+- 选项 2 _枚举（enum）_：
 
   ```tsx
   type Props = {
@@ -109,13 +109,13 @@ The name of a boolean prop should be chosen based on the **default value**. This
   };
   ```
 
-  This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
+  这个API更详细： `<Button>`,`<Button variant="contained">`,`<Button variant="fab">`。
 
   However, it prevents an invalid combination from being used, bounds the number of props exposed, and can easily support new values in the future.
 
 The MUI components use a combination of the two approaches according to the following rules:
 
-- A _boolean_ is used when **2** possible values are required.
+- 当需要 **2** 个可能的值时，我们使用 _boolean_。
 - An _enum_ is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.
 
 若回到之前的按钮组件示例；因为它需要 3 个可能的值，所以我们使用了 _enum_。
@@ -126,8 +126,8 @@ The MUI components use a combination of the two approaches according to the foll
 
 ## 术语表
 
-- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. See also [React Implementation Notes](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
-- **host element**: a DOM node in the context of `react-dom`, e.g. an instance of `window.HTMLDivElement`.
-- **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
-- **root component**: the outermost component that renders a host component.
-- **root element**: the outermost element that renders a host component.
+- **host component**：`react-dom` 的 DOM 节点类型，例如，一个 `“div”`。 另请参阅 [React 实施说明](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements)。
+- **host element**：`react-dom` 中的一个 DOM 节点，例如 `window.HTMLDivElement` 的实例。
+- **outermost**：从上到下读取组件树时的第一个组件，例如，广度优先（breadth-first）搜索。
+- **root component**：渲染一个宿主组件的最外层的那个组件。
+- **root element**：渲染一个宿主组件的最外层的那个元素。
