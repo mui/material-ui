@@ -22,7 +22,7 @@ githubLabel: 'component: TrapFocus'
 
 ## 素颜模式
 
-- 📦 [2.0 kB gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
+- 📦 [2.0kB 已压缩的包](https://bundlephobia.com/result?p=@mui/base@latest)
 
 As the component does not have any styles, it also comes with the unstyled package.
 
