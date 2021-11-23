@@ -407,7 +407,7 @@ describe('[Joy] CssVarsProvider', () => {
 
       const fallback = '-apple-system';
       const { container } = render(
-        <CssVarsProvider theme={{ fontFamily: { fallback: '' } }}>
+        <CssVarsProvider theme={{ fontFamily: { fallback } }}>
           <Text />
         </CssVarsProvider>,
       );
