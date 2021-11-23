@@ -237,6 +237,62 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByText('var(--palette-primary)')).not.to.equal(null);
       expect(screen.getByText('var(--palette-grey)')).not.to.equal(null);
     });
+
+    it('set `color-scheme` property to body with correct mode, given `mode` is `light` or `dark`', () => {
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: {}, dark: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Consumer = () => {
+        const { setMode } = useColorScheme();
+        return <button onClick={() => setMode('dark')}>change to dark</button>;
+      };
+      render(
+        <CssVarsProvider>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+      expect(window.getComputedStyle(document.body).getPropertyValue('color-scheme')).to.equal(
+        'light',
+      );
+
+      fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
+
+      expect(window.getComputedStyle(document.body).getPropertyValue('color-scheme')).to.equal(
+        'dark',
+      );
+    });
+
+    it('set `color-scheme` property to body with correct mode, given mode is `system`', () => {
+      window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
+
+      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: {}, dark: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+      const Consumer = () => {
+        const { setMode } = useColorScheme();
+        return <button onClick={() => setMode('system')}>change to system</button>;
+      };
+      render(
+        <CssVarsProvider>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+      expect(window.getComputedStyle(document.body).getPropertyValue('color-scheme')).to.equal(
+        'light',
+      );
+
+      fireEvent.click(screen.getByRole('button', { name: 'change to system' }));
+
+      expect(window.getComputedStyle(document.body).getPropertyValue('color-scheme')).to.equal(
+        'dark',
+      );
+    });
   });
 
   describe('DOM', () => {
