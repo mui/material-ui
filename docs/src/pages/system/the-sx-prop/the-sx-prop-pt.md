@@ -160,7 +160,7 @@ The same can be achieved by omitting the CSS property prefix `fontWeight`.
 
 ```jsx
 <Box sx={{ fontWeight: 'light' }} />
-// equivalent to fontWeight: theme.typography.fontWeightLight
+//equivalente à fontWeight: theme.typography.fontWeightLight
 ```
 
 There is additional `typography` prop available, which sets all values defined in the specific `theme.typography` variant.
