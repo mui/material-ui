@@ -108,6 +108,12 @@ You can take advantage of the [PickersDay](/api/pickers-day/) component.
 
 {{"demo": "pages/components/date-picker/CustomDay.js"}}
 
+## Customized weekday label rendering
+
+The displayed weekday labels are customizable with the `renderWeekdayLabel` function prop.
+
+{{"demo": "pages/components/date-picker/CustomWeekdayLabel.js"}}
+
 ## Dynamic data
 
 Sometimes it may be necessary to display additional info right in the calendar. Here's an example of prefetching and displaying server-side data using the `onMonthChange`, `loading`, and `renderDay` props.

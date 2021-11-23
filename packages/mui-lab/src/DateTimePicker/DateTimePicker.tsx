@@ -401,6 +401,10 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    */
   renderLoading: PropTypes.func,
   /**
+   * Custom renderer for the week day label.
+   */
+  renderWeekdayLabel: PropTypes.func,
+  /**
    * Custom formatter to be passed into Rifm component.
    */
   rifmFormatter: PropTypes.func,

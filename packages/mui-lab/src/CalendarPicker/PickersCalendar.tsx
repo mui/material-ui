@@ -33,6 +33,10 @@ export interface ExportedCalendarProps<TDate>
     pickersDayProps: PickersDayProps<TDate>,
   ) => JSX.Element;
   /**
+   * Custom renderer for the week day label.
+   */
+  renderWeekdayLabel?: (weekday: string, index: number) => JSX.Element;
+  /**
    * Component displaying when passed `loading` true.
    * @default () => "..."
    */
@@ -116,6 +120,11 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
     readOnly,
     reduceAnimations,
     renderDay,
+    renderWeekdayLabel = (weekday, i) => (
+      <PickersCalendarWeekDayLabel aria-hidden key={weekday + i.toString()} variant="caption">
+        {weekday.charAt(0).toUpperCase()}
+      </PickersCalendarWeekDayLabel>
+    ),
     renderLoading = () => <span data-mui-test="loading-progress">...</span>,
     showDaysOutsideCurrentMonth,
     slideDirection,
@@ -150,11 +159,7 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
   return (
     <React.Fragment>
       <PickersCalendarDayHeader>
-        {utils.getWeekdays().map((day, i) => (
-          <PickersCalendarWeekDayLabel aria-hidden key={day + i.toString()} variant="caption">
-            {day.charAt(0).toUpperCase()}
-          </PickersCalendarWeekDayLabel>
-        ))}
+        {utils.getWeekdays().map(renderWeekdayLabel)}
       </PickersCalendarDayHeader>
 
       {loading ? (
