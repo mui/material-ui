@@ -44,7 +44,7 @@ MUI provides an optional [CssBaseline](/components/css-baseline/) component. 它
 
 ## 不同版本的文档
 
-This documentation always reflects the latest stable version of MUI. You can find older versions of the documentation on a [separate page](https://mui.com/versions/).
+This documentation always reflects the latest stable version of MUI. 您可以在一个[单独的页面上](https://mui.com/versions/)找到旧版本的文档。
 
 ## 下一步
 
