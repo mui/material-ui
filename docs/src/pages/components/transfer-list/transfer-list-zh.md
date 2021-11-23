@@ -12,13 +12,13 @@ githubLabel: 'component: TransferList'
 
 ## Basic transfer list
 
-For completeness, this example includes buttons for "move all", but not every transfer list needs these.
+为了完整起见，此示例包括”移动全部”的按钮，但并非每个传传递列表都需要这些。
 
 {{"demo": "pages/components/transfer-list/TransferList.js", "bg": true}}
 
 ## Enhanced transfer list
 
-This example exchanges the "move all" buttons for a "select all / select none" checkbox, and adds a counter.
+本示例将“移动全部”按钮替换为“全选/不选”复选框，并添加了一个计数器。
 
 {{"demo": "pages/components/transfer-list/SelectAllTransferList.js", "bg": true}}
 
