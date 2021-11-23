@@ -4,69 +4,80 @@
 
 <!-- generated comparing v5.1.1..master -->
 
-_Nov 22, 2021_
+_Nov 23, 2021_
 
-A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
 - 🧪 Created another unstyled component: [TabsUnstyled](https://mui.com/components/tabs/#unstyled) (#29597) @mnajdova.
-- 🎉 Updated the Material Icons set with the latest changes from Google (#29328) @michaldudak.
-  This update adds almost 150 new icons and tweaks the appearance of many more.
+- 🎉 Updated the Material Icons set with the latest changes from Google (#29328) @michaldudak / (#29818) @chao813.
+  This update adds 200 new icons and tweaks the appearance of many more.
   With it, we're getting close to having 2000 icons in our set.
 - 🐛 Fixed bugs and improved the infrastructure and documentation 📚.
 
 ### `@mui/material@5.2.0`
 
-- &#8203;<!-- 21 -->[i18n] Add the amharic language (#29153) @NatiG100
-- &#8203;<!-- 18 -->[material] Fix types for `variants.style` to accept callbacks (#29610) @mnajdova
-- &#8203;<!-- 16 -->[Popper] Simplify prop types (#29680) @michaldudak
-- &#8203;<!-- 15 -->[Select] Include aria-selected=false when option not selected (#29695) @michaldudak
-- &#8203;<!-- 06 -->[useMediaQuery] Fix crash in Safari < 14 and IE 11 (#29776) @eps1lon
-- &#8203;<!-- 05 -->[useMediaQuery] Ensure no tearing in React 18 (#28491) @eps1lon
+- [IconButton] Remove on hover effect when `disableRipple` is set (#29298) @adamfitzgibbon
+- [i18n] Add the amharic language (#29153) @NatiG100
+- [material] Fix types for `variants.style` to accept callbacks (#29610) @mnajdova
+- [Popper] Simplify prop types (#29680) @michaldudak
+- [Select] Include aria-selected=false when option not selected (#29695) @michaldudak
+- [useMediaQuery] Fix crash in Safari < 14 and IE 11 (#29776) @eps1lon
+- [useMediaQuery] Ensure no tearing in React 18 (#28491) @eps1lon
+
+### `@mui/codemod@5.2.0`
+
+- [codemod] Fix `jss-to-styled` to support multiple withStyles (#29824) @siriwatknp
 
 ### `@mui/icons-material@5.2.0`
 
-- &#8203;<!-- 20 -->[icons] Sync recent Material Icons from Google (#29328) @michaldudak
+- [icons] Sync new Google Material Icons (#29818) @chao813
+- [icons] Sync recent Material Icons from Google (#29328) @michaldudak
 
 ### `@mui/system@5.2.0`
 
-- &#8203;<!-- 13 -->[system] Fix minor CssVars issues (#29747) @siriwatknp
+- [Box] Fix `sx` prop runtime issue when used as function (#29830) @mnajdova
+- [system] Fix `sx` throw error when value is `null` or `undefined` (#29756) @siriwatknp
+- [system] Fix minor CssVars issues (#29747) @siriwatknp
 
 ### `@mui/styled-engine@5.2.0`
 
-- &#8203;<!-- 14 -->[styled-engine] Fix props inference in styled-engine (#29739) @Janpot
+- [styled-engine] Fix props inference in styled-engine (#29739) @Janpot
 
 ### `@mui/base@5.0.0-alpha.56`
 
-- &#8203;<!-- 22 -->[FormControlUnstyled] `focused` is always false unless explicitly set to `true` @mwilkins91
-- &#8203;<!-- 12 -->[TabsUnstyled] Introduce new component (#29597) @mnajdova
+- [FormControlUnstyled] `focused` is always false unless explicitly set to `true` @mwilkins91
+- [TabsUnstyled] Introduce new component (#29597) @mnajdova
 
 ### `@mui/lab@5.0.0-alpha.56`
 
-- &#8203;<!-- 24 -->[DatePicker][timepicker] Add missing component declarations (#29517) @longzheng
-- &#8203;<!-- 19 -->[Masonry] exports from root package (#29754) @abhinav-22-tech
-- &#8203;<!-- 17 -->[pickers] Widen accepted `luxon` version range (#29761) @eps1lon
+- [DatePicker][timepicker] Add missing component declarations (#29517) @longzheng
+- [Masonry] exports from root package (#29754) @abhinav-22-tech
+- [pickers] Widen accepted `luxon` version range (#29761) @eps1lon
 
 ### Docs
 
-- &#8203;<!-- 28 -->[blog] Polish the Benny Joo joins MUI post (#29697) @oliviertassinari
-- &#8203;<!-- 27 -->[CHANGELOG] Explain why we do breaking changes @oliviertassinari
-- &#8203;<!-- 26 -->[core] Update latest issue template for codesandbox CI (#29783) @eps1lon
-- &#8203;<!-- 25 -->[core] Ensure `@mui/core` is an alias for `@mui/base` (#29762) @eps1lon
-- &#8203;<!-- 23 -->[docs] Update tooltip doc to better define touch action (#29717) @gnowland
-- &#8203;<!-- 04 -->[website] Standardize the background color from the MUI team photos (#29738) @danilo-leal
-- &#8203;<!-- 03 -->[website] Add Bharat to the About Us Page (#29714) @bharatkashyap
-- &#8203;<!-- 02 -->[website] Add about page entry for jan (#29701) @Janpot
-- &#8203;<!-- 01 -->[website] Adding Prakhar to the about page (#29737) @danilo-leal
+- [blog] Polish the Benny Joo joins MUI post (#29697) @oliviertassinari
+- [CHANGELOG] Explain why we do breaking changes @oliviertassinari
+- [core] Update latest issue template for codesandbox CI (#29783) @eps1lon
+- [core] Ensure `@mui/core` is an alias for `@mui/base` (#29762) @eps1lon
+- [docs] Fix broken Next and Previous links (#29711) @scallaway
+- [docs] Add a note that ToggleButton exclusive does not enforce selection (#29812) @mmacu
+- [docs] Update the list of supported locales (#29831) @michaldudak
+- [docs] Update tooltip doc to better define touch action (#29717) @gnowland
+- [website] Standardize the background color from the MUI team photos (#29738) @danilo-leal
+- [website] Add Bharat to the About Us Page (#29714) @bharatkashyap
+- [website] Add about page entry for jan (#29701) @Janpot
+- [website] Adding Prakhar to the about page (#29737) @danilo-leal
 
 ### Core
 
-- &#8203;<!-- 11 -->[test] Use renderer clock instead of custom useFakeTimers call (#29778) @eps1lon
-- &#8203;<!-- 10 -->[test] Only mock Date in regression tests (#29763) @eps1lon
-- &#8203;<!-- 09 -->[test] Disable nightly integration tests on `next` branch (#29748) @eps1lon
-- &#8203;<!-- 08 -->[test] Allow configuring clock directly from `createRenderer` (#29684) @eps1lon
-- &#8203;<!-- 07 -->[test] Accept backslashes as path separators in test CLI (#29694) @michaldudak
+- [test] Use renderer clock instead of custom useFakeTimers call (#29778) @eps1lon
+- [test] Only mock Date in regression tests (#29763) @eps1lon
+- [test] Disable nightly integration tests on `next` branch (#29748) @eps1lon
+- [test] Allow configuring clock directly from `createRenderer` (#29684) @eps1lon
+- [test] Accept backslashes as path separators in test CLI (#29694) @michaldudak
 
-All contributors of this release in alphabetical order: @abhinav-22-tech, @bharatkashyap, @danilo-leal, @eps1lon, @gnowland, @Janpot, @longzheng, @michaldudak, @mnajdova, @mwilkins91, @NatiG100, @oliviertassinari, @siriwatknp
+All contributors of this release in alphabetical order: @abhinav-22-tech, @adamfitzgibbon, @bharatkashyap, @chao813, @danilo-leal, @eps1lon, @gnowland, @Janpot, @longzheng, @michaldudak, @mmacu, @mnajdova, @mwilkins91, @NatiG100, @oliviertassinari, @scallaway, @siriwatknp
 
 ## 5.1.1
 
