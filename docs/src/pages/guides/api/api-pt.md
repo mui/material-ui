@@ -38,7 +38,7 @@ Evitamos documentar propriedades nativas suportadas pelo DOM como [`className`](
 
 ### Classes CSS
 
-All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-class-names) prop to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
+Todos os componentes aceitam uma propriedade [`classes`](/customization/how-to-customize/#overriding-styles-with-class-names) para customizar os estilos. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
 
 - A classe aplicada ao elemento raiz é sempre chamada de `root`.
 - Todos os estilos padrão são agrupados em uma única classe.
@@ -73,7 +73,7 @@ Os componentes aninhados dentro de um componente possuem:
 
 O nome de uma propriedade booleana deve ser escolhido com base no **valor padrão**. This choice allows:
 
-- the shorthand notation. For example, the `disabled` attribute on an input element, if supplied, defaults to `true`:
+- the shorthand notation. Por exemplo, o atributo `disabled` em um elemento de entrada, se fornecido, é padronizado para `true`:
 
   ```jsx
   <Input enabled={false} /> ❌
@@ -90,7 +90,7 @@ A maior parte de componentes controlados, é controlado pelas propriedades `valu
 
 Existem duas opções para projetar a API para as variações de um componente: com um *boolean*; ou com um *enum*. Por exemplo, vamos pegar um botão que tenha tipos diferentes. Cada opção tem seus prós e contras:
 
-- Option 1 _boolean_:
+- Opção 1 _booleano_:
 
   ```tsx
   type Props = {
@@ -101,7 +101,7 @@ Existem duas opções para projetar a API para as variações de um componente: 
 
   This API enables the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
 
-- Option 2 _enum_:
+- Opção 2 _enumerador_:
 
   ```tsx
   type Props = {
@@ -109,13 +109,13 @@ Existem duas opções para projetar a API para as variações de um componente: 
   };
   ```
 
-  This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
+  Esta API é mais verbosa: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
 
   However, it prevents an invalid combination from being used, bounds the number of props exposed, and can easily support new values in the future.
 
 The MUI components use a combination of the two approaches according to the following rules:
 
-- A _boolean_ is used when **2** possible values are required.
+- Um _booleano_ é usado quando **2** valores possíveis são necessários.
 - An _enum_ is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.
 
 Voltando ao exemplo do botão anterior; ele requer 3 valores possíveis, usamos um *enumerador*.
@@ -126,8 +126,8 @@ O `ref` é encaminhado para o elemento raiz. Isso significa que, sem alterar o e
 
 ## Glossário
 
-- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. See also [React Implementation Notes](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
-- **host element**: a DOM node in the context of `react-dom`, e.g. an instance of `window.HTMLDivElement`.
-- **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
-- **root component**: the outermost component that renders a host component.
-- **root element**: the outermost element that renders a host component.
+- **componente hospedeiro**: um tipo de nó DOM no contexto de `react-dom`, por exemplo, um `'div'`. Veja também as [Notas de implementação do React](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
+- **elemento hospedeiro**: um nó DOM no contexto de `react-dom`, por exemplo, uma instância de `window.HTMLDivElement`.
+- **mais externo**: O primeiro componente ao ler a árvore de componentes de cima para baixo, ou seja, busca em largura (breadth-first search).
+- **componente raiz**: o componente mais externo que renderiza um componente do hospedeiro.
+- **elemento raiz**: o elemento mais externo que renderiza um componente hospedeiro.
