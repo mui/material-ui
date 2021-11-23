@@ -99,7 +99,8 @@ export function cleanPaths({ svgPath, data }) {
   const input = data
     .replace(/ fill="#010101"/g, '')
     .replace(/<rect fill="none" width="24" height="24"\/>/g, '')
-    .replace(/<rect id="SVGID_1_" width="24" height="24"\/>/g, '');
+    .replace(/<rect id="SVGID_1_" width="24" height="24"\/>/g, '')
+    .replace(/xlink:href=/g, 'xlinkHref=');
 
   const result = svgo.optimize(input, {
     floatPrecision: 4,
@@ -197,7 +198,6 @@ export function cleanPaths({ svgPath, data }) {
   let paths = jsxResult.data
     .replace(/"\/>/g, '" />')
     .replace(/fill-opacity=/g, 'fillOpacity=')
-    .replace(/xlink:href=/g, 'xlinkHref=')
     .replace(/clip-rule=/g, 'clipRule=')
     .replace(/fill-rule=/g, 'fillRule=')
     .replace(/ clip-path=".+?"/g, '') // Fix visibility issue and save some bytes.
