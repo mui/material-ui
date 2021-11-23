@@ -71,11 +71,13 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 ### Core
 
+- [test] Allow debugging with Chrome and VSCode inspector (#29777) @eps1lon
 - [test] Use renderer clock instead of custom useFakeTimers call (#29778) @eps1lon
 - [test] Only mock Date in regression tests (#29763) @eps1lon
 - [test] Disable nightly integration tests on `next` branch (#29748) @eps1lon
 - [test] Allow configuring clock directly from `createRenderer` (#29684) @eps1lon
 - [test] Accept backslashes as path separators in test CLI (#29694) @michaldudak
+- [utils] Use built-in hook when available for useId (#26489) @eps1lon
 
 All contributors of this release in alphabetical order: @abhinav-22-tech, @adamfitzgibbon, @bharatkashyap, @chao813, @danilo-leal, @eps1lon, @gnowland, @Janpot, @longzheng, @michaldudak, @mmacu, @mnajdova, @mwilkins91, @NatiG100, @oliviertassinari, @scallaway, @siriwatknp
 
