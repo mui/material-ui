@@ -85,7 +85,7 @@ export interface Palette extends ColorPalette {
   focusVisible: React.CSSProperties['outline'];
 }
 
-export interface ColorSystems {
+export interface ColorSystem {
   palette: Palette;
   elevationRing: React.CSSProperties['boxShadow'];
 }

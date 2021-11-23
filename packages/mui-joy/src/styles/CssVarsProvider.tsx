@@ -9,11 +9,11 @@ import defaultTheme, {
   ColorScheme,
   lightColorSystem,
   darkColorSystem,
-  TypographySystems,
+  TypographySystem,
   Focus,
 } from './defaultTheme';
 import { Variants } from './Variants';
-import { ColorSystems } from './ColorSystem';
+import { ColorSystem } from './ColorSystem';
 
 type PartialDeep<T> = {
   [K in keyof T]?: PartialDeep<T[K]>;
@@ -28,7 +28,7 @@ export type SupportedColorScheme = ColorScheme | ExtendedColorScheme;
 type ThemeInput = PartialDeep<
   ThemeScales & {
     focus: Focus;
-    typography: TypographySystems;
+    typography: TypographySystem;
     variants: Variants;
   }
 > & {
@@ -37,11 +37,11 @@ type ThemeInput = PartialDeep<
 };
 
 type JoyThemeInput = ThemeInput & {
-  colorSchemes: Record<ColorScheme, PartialDeep<ColorSystems>>;
+  colorSchemes: Record<ColorScheme, PartialDeep<ColorSystem>>;
 };
 
 type ApplicationThemeInput = ThemeInput & {
-  colorSchemes: Record<ExtendedColorScheme, PartialDeep<ColorSystems>>;
+  colorSchemes: Record<ExtendedColorScheme, PartialDeep<ColorSystem>>;
 };
 
 const { palette, ...rest } = defaultTheme;

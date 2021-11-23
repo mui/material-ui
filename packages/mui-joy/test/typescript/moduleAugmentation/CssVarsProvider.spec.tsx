@@ -28,7 +28,7 @@ declare module '@mui/joy/styles' {
 
 // extends ColorSystems
 declare module '@mui/joy/styles' {
-  interface ColorSystems {
+  interface ColorSystem {
     bgcolor: string;
   }
 }
@@ -70,7 +70,7 @@ declare module '@mui/joy/styles' {
 
 // extends TypographySystems
 declare module '@mui/joy/styles' {
-  interface TypographySystems {
+  interface TypographySystem {
     ads: React.CSSProperties;
   }
 }

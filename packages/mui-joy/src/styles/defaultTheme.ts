@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createTheme as systemCreateTheme, Breakpoints, Spacing } from '@mui/system';
 import colors from '../colors';
 import {
-  ColorSystems,
+  ColorSystem,
   Palette,
   PaletteLetter,
   PaletteRange,
@@ -88,7 +88,7 @@ export interface LetterSpacing {
   lg: React.CSSProperties['letterSpacing'];
 }
 
-export interface TypographySystems {
+export interface TypographySystem {
   h1: React.CSSProperties;
   h2: React.CSSProperties;
   h3: React.CSSProperties;
@@ -175,7 +175,7 @@ type BaseJoyTokens = {
   lineHeight: Pick<LineHeight, 'default' | 'xs' | 'sm' | 'md' | 'lg'>;
   letterSpacing: Pick<LetterSpacing, 'default' | 'sm' | 'md' | 'lg'>;
   typography: Pick<
-    TypographySystems,
+    TypographySystem,
     'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'body3'
   >;
   variants: Pick<Variants, DefaultVariantKey> &
@@ -434,14 +434,14 @@ export type ColorScheme = 'light' | 'dark';
 
 export interface JoyTheme<ExtendedColorScheme extends string = never>
   extends ThemeScales,
-    ColorSystems {
-  colorSchemes: Record<ColorScheme | ExtendedColorScheme, ColorSystems>;
+    ColorSystem {
+  colorSchemes: Record<ColorScheme | ExtendedColorScheme, ColorSystem>;
   focus: Focus;
-  typography: TypographySystems;
+  typography: TypographySystem;
   variants: Variants;
   spacing: Spacing;
   breakpoints: Breakpoints;
-  vars: ThemeScales & ColorSystems;
+  vars: ThemeScales & ColorSystem;
 }
 
 const defaultSystemTheme = systemCreateTheme();
