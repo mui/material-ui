@@ -19,11 +19,13 @@ Com seleção exclusiva, selecionar uma opção desseleciona qualquer outra.
 
 In this example, text justification toggle buttons present options for left, center, right, and fully justified text (disabled), with only one item available for selection at a time.
 
+**Note**: Exclusive selection does not enforce that a button must be active. For that effect see [enforce value set](#enforce-value-set).
+
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
 ## Seleção múltipla
 
-Múltipla seleção permite que opções logicamente agrupadas, como negrito, itálico e sublinhado, tenham várias opções selecionadas.
+Multiple selection allows for logically-grouped options, like bold, italic, and underline, to have multiple options selected.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonsMultiple.js"}}
 
@@ -39,13 +41,13 @@ For larger or smaller buttons, use the `size` prop.
 
 ## Botões verticais
 
-Os botões podem ser empilhados verticalmente com a propriedade `orientation` definida para "vertical".
+The buttons can be stacked vertically with the `orientation` prop set to "vertical".
 
 {{"demo": "pages/components/toggle-button/VerticalToggleButtons.js"}}
 
 ## Forçar valor definido
 
-Se você deseja forçar que pelo menos um botão esteja ativo, você pode adaptar sua função handleChange.
+If you want to enforce that at least one button must be active, you can adapt your handleChange function.
 
 ```jsx
 const handleAlignment = (event, newAlignment) => {
@@ -82,4 +84,4 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 ### Teclado
 
-Até o momento, os botões de alternância estão na ordem DOM. Navegue entre eles com a tecla tab. O comportamento dos botões segue a semântica padrão do teclado.
+At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.
