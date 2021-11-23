@@ -62,14 +62,21 @@ export default function createCssVarsProvider(options) {
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
     const defaultDarkColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
-    const { mode, setMode, lightColorScheme, darkColorScheme, colorScheme, setColorScheme } =
-      useCurrentColorScheme({
-        supportedColorSchemes: allColorSchemes,
-        defaultLightColorScheme,
-        defaultDarkColorScheme,
-        modeStorageKey,
-        defaultMode,
-      });
+    const {
+      mode,
+      setMode,
+      systemMode,
+      lightColorScheme,
+      darkColorScheme,
+      colorScheme,
+      setColorScheme,
+    } = useCurrentColorScheme({
+      supportedColorSchemes: allColorSchemes,
+      defaultLightColorScheme,
+      defaultDarkColorScheme,
+      modeStorageKey,
+      defaultMode,
+    });
     const resolvedColorScheme = (() => {
       if (!colorScheme) {
         // This scope occurs on the server
@@ -125,6 +132,18 @@ export default function createCssVarsProvider(options) {
         document.body.setAttribute(attribute, colorScheme);
       }
     }, [colorScheme, attribute]);
+
+    React.useEffect(() => {
+      if (!mode) {
+        return;
+      }
+      // `color-scheme` tells browser to render built-in elements according to its value: `light` or `dark`
+      if (mode === 'system') {
+        document.body.style.setProperty('color-scheme', systemMode);
+      } else {
+        document.body.style.setProperty('color-scheme', mode);
+      }
+    }, [mode, systemMode]);
 
     return (
       <ColorSchemeContext.Provider
