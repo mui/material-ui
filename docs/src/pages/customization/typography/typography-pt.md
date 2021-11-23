@@ -130,7 +130,7 @@ Para automatizar estas configurações, você pode usar a função auxiliar [`re
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-Você pode ver isso em ação no exemplo abaixo. Adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+Você pode ver isso em ação no exemplo abaixo. Ajuste o tamanho da janela do navegador e observe como o tamanho da fonte muda à medida que a largura cruza os diferentes [pontos de quebra](/customization/breakpoints/):
 
 ```js
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
@@ -164,7 +164,7 @@ const theme = createTheme({
 
 ```css
 html {
-  font-size: 62.5%; /* 62.5% of 16px = 10px */
+  font-size: 62.5%; /* 62.5% de 16px = 10px */
 }
 ```
 
