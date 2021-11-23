@@ -18,11 +18,11 @@ As tabelas apresentam informação de uma forma que é fácil de digitalizar, pa
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic table
+## Estrutura
 
 Um exemplo simples sem frescuras.
 
-{{"demo": "pages/components/tables/BasicTable.js", "bg": true}}
+Uma tabela de dados contém uma linha de cabeçalho no topo que lista os nomes das colunas, seguidas pelas linhas dos dados.
 
 ## Tabela de dados
 
