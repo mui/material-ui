@@ -8,7 +8,7 @@
 
 Adicione um `ThemeProvider` para o nível superior de sua aplicação para passar um tema pela árvore de componentes do React. Dessa maneira, você poderá acessar o objeto de tema em funções de estilo.
 
-> This example creates a theme object for custom-built components. If you intend to use some of the MUI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/customization/theming/) to learn how to build your custom MUI theme.
+> Este exemplo cria um objeto de tema para componentes customizados. If you intend to use some of the MUI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/customization/theming/) to learn how to build your custom MUI theme.
 
 ```jsx
 import { ThemeProvider } from '@mui/styles';
@@ -221,7 +221,7 @@ Note que isto não suporta seletores, ou regras aninhadas.
 
 ## Ordem de injeção do CSS
 
-> It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles. You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+> É **realmente importante** entender como a especificidade do CSS é calculada pelo navegador, como um dos elementos chave para saber quando sobrescrever estilos. Recomendamos que você leia este parágrafo do MDN: [Como a especificidade é calculada?](https://developer.mozilla.org/pt-BR/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
 Por padrão, os estilos são inseridos **por último** no elemento `<head>` da sua página. Eles ganham mais especificidade do que qualquer outra folha de estilo em sua página, por exemplo, módulos CSS, componentes estilizados (styled components).
 
@@ -387,7 +387,7 @@ There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-m
 
 <!-- #default-branch-switch -->
 
-Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
+Consulte [este exemplo de projeto Gatsby](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) para um exemplo de como usar atualizado.
 
 ### Next.js
 
@@ -395,7 +395,7 @@ Você precisa ter um `pages/_document.js` customizado, então copie [esta lógic
 
 <!-- #default-branch-switch -->
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) for an up-to-date usage example.
+Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/master/examples/nextjs).
 
 ## Nomes de classes
 
@@ -446,27 +446,27 @@ However, when the following conditions are met, the class names are **determinis
 
 ### `jss-plugin-global`
 
-The [`jss-plugin-global`](#jss-plugins) plugin is installed in the default preset. You can use it to define global class names.
+O plugin [`jss-plugin-global`](#jss-plugins) é instalado na predefinição padrão. Você pode usá-lo para definir nomes de classes globais.
 
 {{"demo": "pages/styles/advanced/GlobalCss.js"}}
 
-### Hybrid
+### Híbrido
 
-You can also combine JSS generated class names with global ones.
+Você também pode combinar nomes de classe gerados pelo JSS com nomes globais.
 
 {{"demo": "pages/styles/advanced/HybridGlobalCss.js"}}
 
 ## Prefixos CSS
 
-JSS uses feature detection to apply the correct prefixes. [Don't be surprised](https://github.com/mui-org/material-ui/issues/9293) if you can't see a specific prefix in the latest version of Chrome. Your browser probably doesn't need it.
+O JSS usa recursos de detecção para aplicar os prefixos corretos. [Não fique surpreso](https://github.com/mui-org/material-ui/issues/9293) se você não conseguir ver um prefixo específico na versão mais recente do Chrome. Seu navegador provavelmente não precisa disso.
 
 ## TypeScript usage
 
-Using `withStyles` in TypeScript can be a little tricky, but there are some utilities to make the experience as painless as possible.
+Utilizando `withStyles` no TypeScript pode ser um pouco complicado, mas há alguns utilitários que tornam a experiência menos dolorosa possível.
 
-### Using `createStyles` to defeat type widening
+### Utilizando `createStyles` para evitar a ampliação de tipo (type widening)
 
-A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+Uma fonte frequente de confusão é a ampliação de tipos ([type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)) do TypeScript, que faz com que este exemplo não funcione como o esperado:
 
 ```ts
 const styles = {
@@ -479,10 +479,10 @@ const styles = {
 withStyles(styles);
 //         ^^^^^^
 //         Types of property 'flexDirection' are incompatible.
-//           Type 'string' is not assignable to type '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
+//           Tipo 'string' não pode ser atribuído para o tipo '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
 ```
 
-The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide. To fix this, you can pass the styles object directly to `withStyles`:
+The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide. Para corrigir isto, você pode passar o objeto de estilos diretamente para `withStyles`:
 
 ```ts
 withStyles({
@@ -493,7 +493,7 @@ withStyles({
 });
 ```
 
-However type widening rears its ugly head once more if you try to make the styles depend on the theme:
+No entanto, a ampliação de tipos continuará a causar dores de cabeça se você tentar fazer com que os estilos dependam do tema:
 
 ```ts
 withStyles(({ palette, spacing }) => ({
@@ -507,9 +507,9 @@ withStyles(({ palette, spacing }) => ({
 }));
 ```
 
-This is because TypeScript [widens the return types of function expressions](https://github.com/Microsoft/TypeScript/issues/241).
+Isso ocorre pois o TypeScript [amplia o retorno de tipos de expressões de função](https://github.com/Microsoft/TypeScript/issues/241).
 
-Because of this, using the `createStyles` helper function to construct your style rules object is recommended:
+Por causa disso, é recomendado usar a função utilitária `createStyles` para construir seu objeto de regras de estilo:
 
 ```ts
 // Non-dependent styles
@@ -533,11 +533,11 @@ const styles = ({ palette, spacing }: Theme) =>
   });
 ```
 
-`createStyles` is just the identity function; it doesn't "do anything" at runtime, just helps guide type inference at compile time.
+`createStyles` é apenas a identidade da função; ela não "faz nada" em tempo de execução, apenas auxilia a inferência de tipos em tempo de compilação.
 
-### Media queries
+### Consultas de Mídia (Media queries)
 
-`withStyles` allows a styles object with top level media-queries like so:
+`withStyles` permite utilizar um objeto de estilos de nível superior com consultas de mídia assim:
 
 ```ts
 const styles = createStyles({
@@ -581,9 +581,9 @@ const ambiguousStyles = createStyles({
 });
 ```
 
-### Augmenting your props using `WithStyles`
+### Incrementando suas propriedades utilizando `WithStyles`
 
-Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to define its props accordingly:
+Desde que um componente seja decorado com `withStyles(styles)`, ele recebe uma propriedade injetada `classes`, você pode querer definir estas propriedades de acordo com:
 
 ```ts
 const styles = (theme: Theme) =>
@@ -612,7 +612,7 @@ interface Props {
 }
 ```
 
-However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write:
+No entanto isto não é muito elegante de acordo com o princípio de software [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), porque requer que você mantenha os nomes das classes (`'root'`, `'paper'`, `'button'`, ...) em dois locais diferentes. Nós fornecemos um operador de tipo `WithStyles` para ajudar com isso, assim você pode apenas escrever:
 
 ```ts
 import { createStyles } from '@mui/styles';
@@ -637,9 +637,9 @@ interface Props extends WithStyles<typeof styles> {
 }
 ```
 
-### Decorating components
+### Decorando componentes
 
-Applying `withStyles(styles)` as a function works as expected:
+Aplicando `withStyles(styles)` como uma função, nos dá o resultado como o esperado:
 
 ```tsx
 const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) => (
@@ -662,4 +662,4 @@ const DecoratedClass = withStyles(styles)(
 );
 ```
 
-Unfortunately due to a [current limitation of TypeScript decorators](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles(styles)` can't be used as a decorator in TypeScript.
+Infelizmente devido a uma [limitação atual dos decoradores do TypeScript](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles(styles)` não pode ser usado como decorador no TypeScript.
