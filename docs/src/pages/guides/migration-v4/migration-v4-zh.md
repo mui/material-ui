@@ -385,7 +385,7 @@ The following changes are supported by the adapter:
 
 - The components' definitions in the theme were restructured under the `components` key, to allow for easier discoverability of the definitions related to any one component.
 
-  1. `props`
+  1. `属性`
 
   ```diff
    import { createTheme } from '@mui/material/styles';
@@ -1614,7 +1614,7 @@ As the core components use emotion as their style engine, the props used by emot
   >   +<PaginationItem shape="circular">
   > ```
 
-### Popover
+### 弹出框 (Popover)
 
 - The onE\* transition props were removed. Use TransitionProps instead.
 
@@ -1689,7 +1689,7 @@ As the core components use emotion as their style engine, the props used by emot
   +   <span class="PrivateSwitchBase-input">
   ```
 
-### Rating
+### Rating 评分
 
 - Move the component from the lab to the core. The component is now stable.
 
@@ -1769,7 +1769,7 @@ As the core components use emotion as their style engine, the props used by emot
 
   This was necessary to prevent overriding of `event.target` of the events that caused the change.
 
-### Skeleton
+### Skeleton 骨架屏
 
 - Move the component from the lab to the core. The component is now stable.
 
@@ -2180,7 +2180,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<span style={visuallyHidden}>Create a user</span>
   ```
 
-- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example
+- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. 例如
 
   ```diff
   const theme = createTheme({
