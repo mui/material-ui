@@ -12,7 +12,7 @@ Para promover uma maior consistência entre os aplicativos, os temas claro e esc
 
 Se você deseja personalizar o tema, você precisa usar o ` ThemeProvider ` componente para injetar um tema em sua aplicação. However, this is optional; MUI components come with a default theme.
 
-O `ThemeProvider` depende do [ recurso de contexto do React](https://pt-br.reactjs.org/docs/context.html) afim de passar o tema para baixo na árvore de componentes, então você precisa ter certeza de que o `ThemeProvider` é um pai dos componentes que você está tentando customizar. You can learn more about this in [the API section](#themeprovider).
+O `ThemeProvider` depende do [ recurso de contexto do React](https://pt-br.reactjs.org/docs/context.html) afim de passar o tema para baixo na árvore de componentes, então você precisa ter certeza de que o `ThemeProvider` é um pai dos componentes que você está tentando customizar. Você pode aprender mais sobre isso lendo a [sessão da API](#themeprovider).
 
 ## Variáveis de configuração do tema
 
@@ -40,7 +40,7 @@ const theme = createTheme({
 });
 ```
 
-If you are using TypeScript, you would also need to use [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) for the theme to accept the above values.
+Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) para que o tema aceite os valores acima.
 
 ```tsx
 declare module '@mui/material/styles' {
@@ -89,7 +89,7 @@ O tema interno **sobrescreverá** o tema externo. Você pode estender o tema ext
 
 ### `createTheme(options, ...args) => theme`
 
-Generate a theme base on the options received. Then, pass it as a prop to [`ThemeProvider`](#themeprovider).
+Gere uma base de temas sobre as opções recebidas. Then, pass it as a prop to [`ThemeProvider`](#themeprovider).
 
 #### Argumentos
 
@@ -188,10 +188,10 @@ Gera configurações de tipografia responsivas com base nas opções recebidas.
 1. `theme` (_object_): The theme object to enhance.
 2. `options` (_object_ [opcional]):
 
-- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
-- `disableAlign` (_bool_ [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
-- `factor` (_number_ [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
-- `variants` (_array\<string\>_ [optional]): Default to all. The typography variants to handle.
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
+- `disableAlign` (_bool_ [optional]): Default to `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
+- `factor` (_number_ [optional]): Default to `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
+- `variants` (_array\<string\>_ [optional]): Default to all. As variantes de tipografia para manipular.
 
 #### Retornos
 
@@ -245,7 +245,7 @@ function App() {
 
 ### `ThemeProvider`
 
-This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. It should preferably be used at **the root of your component tree**.
+This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
 
 #### Propriedades
 
