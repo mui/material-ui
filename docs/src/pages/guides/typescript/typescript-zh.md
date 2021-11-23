@@ -4,7 +4,7 @@
 
 ## Minimum configuration
 
-MUI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) example.
+MUI requires a minimum version of TypeScript 3.5. 请查看一下 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) 的例子。
 
 For types to work, you should have at the minimum the following options enabled in your `tsconfig.json`:
 
@@ -19,20 +19,20 @@ For types to work, you should have at the minimum the following options enabled 
 }
 ```
 
-The strict mode options are the same that are required for every types package published in the `@types/` namespace. Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors. To get the best type experience with the types we recommend setting `"strict": true`.
+对每个发布在 `@types/` 命名空间下的类型声明包，同样需要启用严格模式（strict mode）。 使用不太严格的 `tsconfig.json` 或省略某些库可能会带来一些错误。 To get the best type experience with the types we recommend setting `"strict": true`.
 
-## Handling `value` and event handlers
+## 处理`值`和事件处理器
 
-Many components concerned with user input offer a `value` prop or event handlers which include the current `value`. In most situations that `value` is only handled within React which allows it be of any type, such as objects or arrays.
+很多与用户输入有关的组件会提供一个 `value` 属性或者包含当前`值`的事件处理器。 大多数情况下`值`只在 React 内被处理，这样的话它能够是任何类型，譬如 objects 或者 arrays。
 
-However, that type cannot be verified at compile time in situations where it depends on the component's children e.g. for `Select` or `RadioGroup`. This means that the soundest option is to type it as `unknown` and let the developer decide how they want to narrow that type down. We do not offer the possibility to use a generic type in those cases for [the same reasons `event.target` is not generic in React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
+然而，如果是它依赖于组件子项的情况，此类型无法在编译时被验证，例如对于 `Select` 或者 `RadioGroup` 来说。 这意味着留给我们的最合适的选项是将其输入为 `unknown` 并让开发者自行决定如何来缩小该类型。 与 [`event.target` 在 React 中并不通用的原因](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682)相同，我们并不推荐您在这些案例中尝试使用一个通用的类型。
 
-The demos include typed variants that use type casting. It is an acceptable tradeoff because the types are all located in a single file and are very basic. You have to decide for yourself if the same tradeoff is acceptable for you. The library types are be strict by default and loose via opt-in.
+这些演示包括使用类型转换的类型变量。 鉴于所有的类型都位于一个文件中，并且都是非常基本的，这样的折衷可以接受。 您必须自行决定是否能够接受同样的折衷。 库的类型默认为严格的，但也可以通过选择性加入变得通融一点。
 
 ## 定制的`主题`
 
 Moved to [/customization/theming/#custom-variables](/customization/theming/#custom-variables).
 
-## Usage of `component` prop
+## `component` 属性的用法
 
 Moved to [/guides/composition/#with-typescript](/guides/composition/#with-typescript).
