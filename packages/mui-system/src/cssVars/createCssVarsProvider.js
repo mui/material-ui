@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { GlobalStyles } from '@mui/styled-engine';
 import { deepmerge } from '@mui/utils';
+import createSpacing from '../createTheme/createSpacing';
+import createBreakpoints from '../createTheme/createBreakpoints';
 import cssVarsParser from './cssVarsParser';
 import ThemeProvider from '../ThemeProvider';
 import getInitColorSchemeScript, {
@@ -19,6 +21,9 @@ export default function createCssVarsProvider(options) {
     prefix: designSystemPrefix = '',
     shouldSkipGeneratingVar,
   } = options;
+
+  const systemSpacing = createSpacing(baseTheme.spacing);
+  const systemBreakpoints = createBreakpoints(baseTheme.breakpoints ?? {});
 
   if (
     !baseTheme.colorSchemes ||
@@ -97,9 +102,11 @@ export default function createCssVarsProvider(options) {
       ...colorSchemes[resolvedColorScheme],
       colorSchemes,
       vars: rootVars,
+      spacing: themeProp.spacing ? createSpacing(themeProp.spacing) : systemSpacing,
+      breakpoints: themeProp.breakpoints
+        ? createBreakpoints(themeProp.breakpoints)
+        : systemBreakpoints,
     };
-
-    // console.log('mergedTheme', mergedTheme);
 
     const styleSheet = {};
 

@@ -1,11 +1,18 @@
-import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
+import {
+  unstable_createCssVarsProvider as createCssVarsProvider,
+  BreakpointsOptions,
+  SpacingOptions,
+} from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import defaultTheme, {
-  StaticTheme,
+  ThemeScales,
   ColorScheme,
   lightColorSystem,
   darkColorSystem,
+  TypographySystems,
+  Focus,
 } from './defaultTheme';
+import { Variant } from './Variant';
 import { ColorSystems } from './ColorSystem';
 
 type PartialDeep<T> = {
@@ -18,14 +25,23 @@ export type ExtendedColorScheme = OverridableStringUnion<never, ColorSchemeOverr
 
 export type SupportedColorScheme = ColorScheme | ExtendedColorScheme;
 
-type JoyThemeInput = PartialDeep<Omit<StaticTheme, 'typography'>> & {
-  colorSchemes: Record<ColorScheme, PartialDeep<ColorSystems>>;
-  typography?: Partial<StaticTheme['typography']>;
+type ThemeInput = PartialDeep<
+  ThemeScales & {
+    focus: Focus;
+    typography: TypographySystems;
+    variant: Variant;
+  }
+> & {
+  breakpoints?: BreakpointsOptions;
+  spacing?: SpacingOptions;
 };
 
-type ApplicationThemeInput = PartialDeep<Omit<StaticTheme, 'typography'>> & {
+type JoyThemeInput = ThemeInput & {
+  colorSchemes: Record<ColorScheme, PartialDeep<ColorSystems>>;
+};
+
+type ApplicationThemeInput = ThemeInput & {
   colorSchemes: Record<ExtendedColorScheme, PartialDeep<ColorSystems>>;
-  typography?: Partial<StaticTheme['typography']>;
 };
 
 const { palette, ...rest } = defaultTheme;

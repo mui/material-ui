@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { createTheme as systemCreateTheme, Breakpoints, Spacing } from '@mui/system';
 import colors from '../colors';
 import { ColorSystems, Palette, PaletteLetter, PaletteRange, PaletteSurface } from './ColorSystem';
 import { Variant, DefaultVariantKey } from './Variant';
@@ -97,21 +98,15 @@ export interface TypographySystems {
 
 // ---------------------------------------------------------------
 
-export interface StaticTheme {
+export interface ThemeScales {
   borderRadius: BorderRadius;
   elevation: Elevation;
-  focus: Focus;
-  htmlFontSize: React.CSSProperties['fontSize'];
   fontFamily: FontFamily;
   fontSize: FontSize;
   fontWeight: FontWeight;
   lineHeight: LineHeight;
   letterSpacing: LetterSpacing;
-  typography: TypographySystems;
-  variant: Variant;
 }
-
-export interface ThemeWithoutVars extends StaticTheme, ColorSystems {}
 
 /**
  * ==============================================
@@ -169,7 +164,7 @@ type BaseJoyTokens = {
   focus: Pick<Focus, 'default'>;
   fontSize: Pick<
     FontSize,
-    'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2' | 'xl3' | 'xl4' | 'xl5' | 'xl6'
+    'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2' | 'xl3' | 'xl4' | 'xl5' | 'xl6'
   >;
   fontFamily: Pick<FontFamily, 'default' | 'display' | 'code' | 'fallback'>;
   fontWeight: Pick<FontWeight, 'default' | 'xs' | 'sm' | 'md' | 'lg'>;
@@ -278,10 +273,10 @@ export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> =
 };
 
 /**
- * Base Joy Theme
+ * Base Joy design tokens
  * Any value with `var(--joy-*)` can be used. 'joy-' will be replaced by the application prefix if provided.
  */
-const themeWithoutVars: BaseJoyTokens = {
+const joyDesignTokens: BaseJoyTokens = {
   ...lightColorSystem,
   borderRadius: {
     default: '28px',
@@ -305,9 +300,10 @@ const themeWithoutVars: BaseJoyTokens = {
     },
   },
   fontSize: {
+    default: '1rem',
     xs: '0.75rem',
     sm: '0.875rem',
-    md: '1rem',
+    md: '1.125rem',
     lg: '1.25rem',
     xl: '1.5rem',
     xl2: '1.875rem',
@@ -467,18 +463,29 @@ const themeWithoutVars: BaseJoyTokens = {
 
 export type ColorScheme = 'light' | 'dark';
 
-export interface JoyTheme<ExtendedColorScheme extends string = never> extends ThemeWithoutVars {
+export interface JoyTheme<ExtendedColorScheme extends string = never>
+  extends ThemeScales,
+    ColorSystems {
   colorSchemes: Record<ColorScheme | ExtendedColorScheme, ColorSystems>;
-  vars: ThemeWithoutVars;
+  focus: Focus;
+  typography: TypographySystems;
+  variant: Variant;
+  spacing: Spacing;
+  breakpoints: Breakpoints;
+  vars: ThemeScales & ColorSystems;
 }
 
+const defaultSystemTheme = systemCreateTheme();
+
 const defaultTheme = {
-  ...themeWithoutVars,
+  ...joyDesignTokens,
   colorSchemes: {
     light: lightColorSystem,
     dark: darkColorSystem,
   },
-  vars: themeWithoutVars,
+  vars: joyDesignTokens,
+  breakpoints: defaultSystemTheme.breakpoints,
+  spacing: defaultSystemTheme.spacing,
 } as JoyTheme;
 
 export default defaultTheme;

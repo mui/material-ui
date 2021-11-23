@@ -22,7 +22,16 @@ type DecideTheme<
   ApplicationTheme extends { colorSchemes: Record<ApplicationColorScheme, any> },
   ApplicationColorScheme extends string | never,
 > = [ApplicationColorScheme] extends [never]
-  ? { theme?: DesignSystemTheme }
+  ? {
+      theme?: Omit<DesignSystemTheme, 'colorSchemes'> & {
+        colorSchemes: Partial<
+          Record<
+            DesignSystemColorScheme,
+            DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
+          >
+        >;
+      };
+    }
   : {
       theme: Omit<ApplicationTheme, 'colorSchemes'> & {
         colorSchemes: Partial<

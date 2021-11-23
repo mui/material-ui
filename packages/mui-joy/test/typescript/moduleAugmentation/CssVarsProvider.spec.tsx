@@ -5,7 +5,7 @@ import { CssVarsProvider } from '@mui/joy/styles';
 <CssVarsProvider
   theme={{
     fontFamily: {
-      sans: '"Rubik", sans-serif',
+      default: '"Rubik", sans-serif',
     },
     // @ts-expect-error 'color' does not exist in JoyTheme
     color: {},
@@ -80,7 +80,7 @@ declare module '@mui/joy/styles' {
     colorSchemes: {
       light: {
         palette: {
-          brand: {
+          primary: {
             1000: '',
           },
           neutral: {
