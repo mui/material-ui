@@ -65,7 +65,7 @@ function App({ children }) {
 
 ## Seletores nativos
 
-⚠️ Native input controls support by browsers [isn't perfect](https://caniuse.com/#feat=input-datetime).
+⚠️ O suporte dos navegadores aos controles de entrada nativos [não é perfeito](https://caniuse.com/#feat=input-datetime).
 
 Native date (`type="date"`), time (`type="time"`) and date&time (`type="datetime-local"`) pickers.
 
