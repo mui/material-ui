@@ -4,11 +4,11 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
+import { Button } from '@mui/material';
 
 const ResponsiveAppBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -32,12 +32,12 @@ const ResponsiveAppBar = () => {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar>
+        <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', md: 'flex' } }}
+            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             LOGO
           </Typography>
@@ -67,59 +67,26 @@ const ResponsiveAppBar = () => {
               }}
               open={Boolean(anchorEl)}
               onClose={handleClose}
-              sx={{
-                display: { xs: 'block', sm: 'none' },
-                mt: '32px',
-                px: '20px',
-              }}
+              sx={{ display: { xs: 'block', md: 'none' }, mt: '47px', px: '20px' }}
             >
-              <MenuItem>
-                <Typography
-                  onClick={handleClose}
-                  variant="h6"
-                  noWrap
-                  component="div"
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    m: 1,
-                  }}
-                >
-                  Home
-                </Typography>
-              </MenuItem>
-
-              <MenuItem>
-                <Typography
-                  onClick={handleClose}
-                  variant="h6"
-                  noWrap
-                  component="div"
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    m: 1,
-                  }}
-                >
-                  Shops
-                </Typography>
-              </MenuItem>
-
-              <MenuItem>
-                <Typography
-                  onClick={handleClose}
-                  variant="h6"
-                  noWrap
-                  component="div"
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    m: 1,
-                  }}
-                >
-                  Blogs
-                </Typography>
-              </MenuItem>
+              <Button
+                onClick={handleClose}
+                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
+              >
+                <Typography textAlign="center">Home</Typography>
+              </Button>
+              <Button
+                onClick={handleClose}
+                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
+              >
+                <Typography textAlign="center">Shops</Typography>
+              </Button>
+              <Button
+                onClick={handleClose}
+                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
+              >
+                <Typography textAlign="center">Blogs</Typography>
+              </Button>
             </Menu>
           </Box>
           <Typography
@@ -131,53 +98,24 @@ const ResponsiveAppBar = () => {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <MenuItem>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  py: 1,
-                  m: 1,
-                }}
-              >
-                Home
-              </Typography>
-            </MenuItem>
-
-            <MenuItem>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  py: 1,
-                  m: 1,
-                }}
-              >
-                Shops
-              </Typography>
-            </MenuItem>
-
-            <MenuItem>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  py: 1,
-                  m: 1,
-                }}
-              >
-                Blogs
-              </Typography>
-            </MenuItem>
+            <Button
+              onClick={handleClose}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Home
+            </Button>
+            <Button
+              onClick={handleClose}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Shops
+            </Button>
+            <Button
+              onClick={handleClose}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Blogs
+            </Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -202,32 +140,30 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElp)}
               onClose={handleClosep}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
-              <MenuItem onClick={handleClosep}>
-                <Typography
-                  noWrap
-                  component="div"
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  Dashboard
-                </Typography>
-              </MenuItem>
-              <MenuItem onClick={handleClosep}>
-                <Typography
-                  noWrap
-                  component="div"
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  Logout
-                </Typography>
-              </MenuItem>
+              <Button
+                onClick={handleClose}
+                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
+              >
+                <Typography textAlign="center">Profile</Typography>
+              </Button>
+              <Button
+                onClick={handleClose}
+                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
+              >
+                <Typography textAlign="center">My account</Typography>
+              </Button>
+              <Button
+                onClick={handleClose}
+                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
+              >
+                <Typography textAlign="center">Dashboard</Typography>
+              </Button>
+              <Button
+                onClick={handleClose}
+                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
+              >
+                <Typography textAlign="center">Logout</Typography>
+              </Button>
             </Menu>
           </Box>
         </Toolbar>

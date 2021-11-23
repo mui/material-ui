@@ -19,7 +19,7 @@ It can transform into a contextual action bar or be used as a navbar.
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
-## AppBar with responsive menu (Mobile,Desktop,Tablet)
+## AppBar with responsive menu
 
 {{"demo": "pages/components/app-bar/ResponsiveAppBar.js", "bg": true}}
 
