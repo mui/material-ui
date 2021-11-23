@@ -193,7 +193,7 @@ This button component has a `color` prop that changes its color:
 
 ### 压力测试
 
-In the following stress test, you can update the _theme color_ and the _background-color property_ live:
+在以下压力测试中，您可以实时更新_主题颜色_和 _background-color 属性_：
 
 ```js
 const useStyles = makeStyles((theme) => ({
