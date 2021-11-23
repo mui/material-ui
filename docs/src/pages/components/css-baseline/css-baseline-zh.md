@@ -55,7 +55,7 @@ export default function MyApp() {
 我们更新了 `<html>` 和 `<body>` 元素以提供更好的页面范围的默认值。 具体来说：
 
 - 所有浏览器中的边距将会被删除。
-- The default Material Design background color is applied. It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
+- 默认使用Material Design的背景颜色。 它在标准设备上使用的是 [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) ，而打印设备上使用的是白色背景。
 - If `enableColorScheme` is provided to `CssBaseline`, native components color will be set by applying [`color-scheme`](https://web.dev/color-scheme/) on `<html>`. The value used is provided by the theme property `theme.palette.mode`.
 
 ### 布局
@@ -106,4 +106,4 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 
 ## Customization 个性化
 
-Head to the [global customization](/customization/how-to-customize/#5-global-css-override) section of the documentation to change the output of these components.
+前往文档中的 [全局自定义](/customization/how-to-customize/#5-global-css-override) 部分来改变这些组件的输出。
