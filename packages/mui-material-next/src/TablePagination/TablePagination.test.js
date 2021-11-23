@@ -2,33 +2,23 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformanceUnstyled, fireEvent, createRenderer, createMount } from 'test/utils';
+import { describeConformance, fireEvent, createRenderer } from 'test/utils';
 import TableFooter from '@mui/material/TableFooter';
+import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-import TablePaginationUnstyled, {
-  tablePaginationUnstyledClasses as classes,
-  LabelDisplayedRowsArgs,
-} from '@mui/base/TablePaginationUnstyled';
+import TablePagination, {
+  tablePaginationClasses as classes,
+} from '@mui/material-next/TablePagination';
 
-interface WithClassName {
-  className: string;
-}
-
-describe('<TablePaginationUnstyled />', () => {
+describe('<TablePagination />', () => {
   const noop = () => {};
   const { render } = createRenderer();
-  const mount = createMount();
 
-  const CustomRootComponent = React.forwardRef(
-    ({ className }: WithClassName, ref: React.Ref<any>) => (
-      <th className={className} ref={ref} data-testid="custom" />
-    ),
-  );
-
-  describeConformanceUnstyled(
-    <TablePaginationUnstyled count={1} onPageChange={noop} page={0} rowsPerPage={10} />,
+  describeConformance(
+    <TablePagination count={1} onPageChange={noop} page={0} rowsPerPage={10} />,
     () => ({
-      inheritComponent: 'td',
+      classes,
+      inheritComponent: TableCell,
       render: (node) => {
         const { container, ...other } = render(
           <table>
@@ -37,12 +27,9 @@ describe('<TablePaginationUnstyled />', () => {
             </tbody>
           </table>,
         );
-        return {
-          container: container?.firstChild?.firstChild?.firstChild as HTMLElement,
-          ...other,
-        };
+        return { container: container.firstChild.firstChild.firstChild, ...other };
       },
-      mount: (node: any) => {
+      wrapMount: (mount) => (node) => {
         const wrapper = mount(
           <table>
             <tbody>
@@ -52,23 +39,19 @@ describe('<TablePaginationUnstyled />', () => {
         );
         return wrapper.find('tr').childAt(0);
       },
-      refInstanceof: window.HTMLTableCellElement,
-      testComponentPropWith: 'th',
       muiName: 'MuiTablePagination',
-      slots: {
-        root: {
-          expectedClassName: classes.root,
-          testWithComponent: CustomRootComponent as any,
-          testWithElement: 'th',
-        },
-      },
+      refInstanceof: window.HTMLTableCellElement,
+      testComponentPropWith: 'td',
+      testComponentsRootPropWith: 'td',
+      testDeepOverrides: { slotName: 'toolbar', slotClassName: classes.toolbar },
+      skip: ['themeVariants', 'componentsProps'],
     }),
   );
 
   describe('prop: labelDisplayedRows', () => {
     it('should use the labelDisplayedRows callback', () => {
       let labelDisplayedRowsCalled = false;
-      function labelDisplayedRows({ from, to, count, page }: LabelDisplayedRowsArgs) {
+      function labelDisplayedRows({ from, to, count, page }) {
         labelDisplayedRowsCalled = true;
         expect(from).to.equal(11);
         expect(to).to.equal(20);
@@ -81,7 +64,7 @@ describe('<TablePaginationUnstyled />', () => {
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
                 count={42}
                 page={1}
                 onPageChange={noop}
@@ -100,11 +83,11 @@ describe('<TablePaginationUnstyled />', () => {
 
   describe('prop: labelRowsPerPage', () => {
     it('labels the select for the current page', () => {
-      const { container } = render(
+      const { getAllByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
                 count={1}
                 page={0}
                 onPageChange={noop}
@@ -117,16 +100,17 @@ describe('<TablePaginationUnstyled />', () => {
         </table>,
       );
 
-      const combobox = container.getElementsByTagName('select')[0];
+      // will be `getByRole('combobox')` in aria 1.2
+      const [combobox] = getAllByRole('button');
       expect(combobox).toHaveAccessibleName('lines per page: 10');
     });
 
     it('accepts React nodes', () => {
-      const { container } = render(
+      const { getAllByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
                 count={1}
                 page={0}
                 onPageChange={noop}
@@ -144,18 +128,18 @@ describe('<TablePaginationUnstyled />', () => {
       );
 
       // will be `getByRole('combobox')` in aria 1.2
-      const combobox = container.getElementsByTagName('select')[0];
+      const [combobox] = getAllByRole('button');
       expect(combobox).toHaveAccessibleName('lines per page: 10');
     });
   });
 
   describe('prop: page', () => {
     it('should disable the back button on the first page', () => {
-      const { getByRole } = render(
+      const { getAllByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
                 count={11}
                 page={0}
                 onPageChange={noop}
@@ -167,18 +151,17 @@ describe('<TablePaginationUnstyled />', () => {
         </table>,
       );
 
-      const nextButton = getByRole('button', { name: 'Go to next page' });
-      const backButton = getByRole('button', { name: 'Go to previous page' });
+      const [, backButton, nextButton] = getAllByRole('button');
       expect(backButton).to.have.property('disabled', true);
       expect(nextButton).to.have.property('disabled', false);
     });
 
     it('should disable the next button on the last page', () => {
-      const { getByRole } = render(
+      const { getAllByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
                 count={11}
                 page={1}
                 onPageChange={noop}
@@ -190,8 +173,7 @@ describe('<TablePaginationUnstyled />', () => {
         </table>,
       );
 
-      const nextButton = getByRole('button', { name: 'Go to next page' });
-      const backButton = getByRole('button', { name: 'Go to previous page' });
+      const [, backButton, nextButton] = getAllByRole('button');
       expect(backButton).to.have.property('disabled', false);
       expect(nextButton).to.have.property('disabled', true);
     });
@@ -204,7 +186,7 @@ describe('<TablePaginationUnstyled />', () => {
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
                 count={30}
                 page={page}
                 onPageChange={(event, nextPage) => {
@@ -229,7 +211,7 @@ describe('<TablePaginationUnstyled />', () => {
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
                 count={30}
                 page={page}
                 onPageChange={(event, nextPage) => {
@@ -255,7 +237,7 @@ describe('<TablePaginationUnstyled />', () => {
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
                 count={0}
                 page={0}
                 rowsPerPage={10}
@@ -274,7 +256,7 @@ describe('<TablePaginationUnstyled />', () => {
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
                 page={0}
                 rowsPerPage={5}
                 rowsPerPageOptions={[5]}
@@ -300,17 +282,12 @@ describe('<TablePaginationUnstyled />', () => {
           <table>
             <TableFooter>
               <TableRow>
-                <TablePaginationUnstyled
+                <TablePagination
                   page={page}
                   rowsPerPage={10}
                   count={-1}
                   onPageChange={(_, newPage) => {
                     setPage(newPage);
-                  }}
-                  componentsProps={{
-                    displayedRows: {
-                      'data-testid': 'displayedRows',
-                    } as any,
                   }}
                 />
               </TableRow>
@@ -319,11 +296,11 @@ describe('<TablePaginationUnstyled />', () => {
         );
       };
 
-      const { getByRole, getByTestId } = render(<Test />);
+      const { container, getByRole } = render(<Test />);
 
-      expect(getByTestId('displayedRows')).to.have.text('1–10 of more than 10');
+      expect(container).to.have.text('Rows per page:101–10 of more than 10');
       fireEvent.click(getByRole('button', { name: 'Go to next page' }));
-      expect(getByTestId('displayedRows')).to.have.text('11–20 of more than 20');
+      expect(container).to.have.text('Rows per page:1011–20 of more than 20');
     });
   });
 
@@ -334,16 +311,12 @@ describe('<TablePaginationUnstyled />', () => {
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
+                showFirstButton
                 page={1}
                 rowsPerPage={10}
                 count={98}
                 onPageChange={handleChangePage}
-                componentsProps={{
-                  actions: {
-                    showFirstButton: true,
-                  } as any,
-                }}
               />
             </TableRow>
           </TableFooter>
@@ -362,16 +335,12 @@ describe('<TablePaginationUnstyled />', () => {
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
+                showLastButton
                 page={0}
                 rowsPerPage={10}
                 count={98}
                 onPageChange={handleChangePage}
-                componentsProps={{
-                  actions: {
-                    showLastButton: true,
-                  } as any,
-                }}
               />
             </TableRow>
           </TableFooter>
@@ -391,7 +360,7 @@ describe('<TablePaginationUnstyled />', () => {
     it('should raise a warning if the page prop is out of range', () => {
       expect(() => {
         PropTypes.checkPropTypes(
-          TablePaginationUnstyled.propTypes,
+          TablePagination.propTypes,
           {
             classes: {},
             page: 2,
@@ -401,29 +370,27 @@ describe('<TablePaginationUnstyled />', () => {
             onRowsPerPageChange: noop,
           },
           'prop',
-          'MockedTablePaginationUnstyled',
+          'MockedTablePagination',
         );
       }).toErrorDev(
-        'MUI: The page prop of a TablePaginationUnstyled is out of range (0 to 1, but page is 2).',
+        'MUI: The page prop of a TablePagination is out of range (0 to 1, but page is 2).',
       );
     });
   });
 
-  describe('prop: componentsProps: select', () => {
+  describe('prop: SelectProps', () => {
     it('does allow manual label ids', () => {
-      const { container } = render(
+      const { getAllByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
                 count={1}
                 page={0}
                 onPageChange={noop}
                 onRowsPerPageChange={noop}
                 rowsPerPage={10}
-                componentsProps={{
-                  select: { id: 'foo', 'aria-labelledby': 'bar' },
-                }}
+                SelectProps={{ id: 'foo', labelId: 'bar' }}
               />
             </TableRow>
           </TableFooter>
@@ -431,7 +398,7 @@ describe('<TablePaginationUnstyled />', () => {
       );
 
       // will be `getByRole('combobox')` in aria 1.2
-      const combobox = container.getElementsByTagName('select')[0];
+      const [combobox] = getAllByRole('button');
       expect(combobox).toHaveAccessibleName('Rows per page: 10');
     });
   });
@@ -442,7 +409,7 @@ describe('<TablePaginationUnstyled />', () => {
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                 count={25}
                 page={0}
@@ -465,14 +432,15 @@ describe('<TablePaginationUnstyled />', () => {
         <table>
           <TableFooter>
             <TableRow>
-              <TablePaginationUnstyled
+              <TablePagination
                 rowsPerPageOptions={[5, 10, { label: 'All', value: 10 }]}
                 count={10}
                 rowsPerPage={10}
                 page={0}
                 onPageChange={noop}
-                componentsProps={{
-                  select: { 'aria-label': 'rows per page' },
+                SelectProps={{
+                  inputProps: { 'aria-label': 'rows per page' },
+                  native: true,
                 }}
               />
             </TableRow>

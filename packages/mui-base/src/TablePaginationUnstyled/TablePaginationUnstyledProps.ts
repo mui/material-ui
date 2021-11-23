@@ -82,7 +82,7 @@ export interface TablePaginationUnstyledTypeMap<P = {}, D extends React.ElementT
      *
      * For localization purposes, you can use the provided [translations](/guides/localization/).
      * @default function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
-     *   return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
+     *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
      * }
      */
     labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
@@ -123,16 +123,6 @@ export interface TablePaginationUnstyledTypeMap<P = {}, D extends React.ElementT
      * @default [10, 25, 50, 100]
      */
     rowsPerPageOptions?: Array<number | { value: number; label: string }>;
-    /**
-     * If `true`, show the first-page button.
-     * @default false
-     */
-    showFirstButton?: boolean;
-    /**
-     * If `true`, show the last-page button.
-     * @default false
-     */
-    showLastButton?: boolean;
   };
   defaultComponent: D;
 }

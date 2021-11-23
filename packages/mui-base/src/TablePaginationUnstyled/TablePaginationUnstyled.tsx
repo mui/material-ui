@@ -16,7 +16,7 @@ import TablePaginationUnstyledProps, {
 } from './TablePaginationUnstyledProps';
 
 function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
-  return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
+  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
 }
 
 function defaultGetAriaLabel(type: ItemAriaLabelType) {
@@ -270,7 +270,7 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    * @default function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
-   *   return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;
+   *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
    * }
    */
   labelDisplayedRows: PropTypes.func,

@@ -19,7 +19,7 @@
     },
     "labelDisplayedRows": {
       "type": { "name": "func" },
-      "default": "function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {\n  return `${from}-${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
+      "default": "function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {\n  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
     },
     "labelRowsPerPage": { "type": { "name": "node" }, "default": "'Rows per page:'" },
     "onRowsPerPageChange": { "type": { "name": "func" } },
