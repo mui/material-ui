@@ -12,10 +12,10 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 [Botões](https://material.io/design/components/buttons.html) comunicam ações que os usuários podem realizar. Eles são normalmente colocados em toda a interface do usuário, em lugares como:
 
-- Modal windows
-- Forms
-- Cards
-- Toolbars
+- Janelas modais
+- Formulários
+- Cartões
+- Barras de ferramentas
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
