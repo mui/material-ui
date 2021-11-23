@@ -188,7 +188,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     if (onBlur) {
       onBlur(event);
     }
-    handlePause();
+    handleResume();
   };
   const handleMouseLeave = (event) => {
     if (onMouseLeave) {
