@@ -1,6 +1,6 @@
-import { unstable_sx as sx, styled, createTheme } from '@mui/material/styles';
+import { experimental_sx as sx, styled, createTheme } from '@mui/material/styles';
 
-// Can use the unstable_sx in the styled() utility
+// Can use the experimental_sx in the styled() utility
 const Test = styled('div')(({ theme }) =>
   sx(
     {
@@ -14,7 +14,7 @@ const Test = styled('div')(({ theme }) =>
 
 const defaultTheme = createTheme();
 
-// Can use the unstable_sx in the theme's variants
+// Can use the experimental_sx in the theme's variants
 const customTheme = createTheme({
   components: {
     MuiButton: {

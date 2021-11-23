@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { unstable_sx as sx } from '@mui/system';
+import { experimental_sx as sx } from '@mui/system';
 
 describe('sx', () => {
   const breakpointsValues = {
