@@ -4,7 +4,7 @@
 
 您还在找 v3 版本的文档吗？ You can [find the latest version here](https://mui.com/versions/).
 
-> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md).
+> 此文档尚未完成。 您是否已经升级了站点并且遇到了一些并没有在此涉及的问题？ [请在 GitHub 添加您的更改](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md)。
 
 ## 简介
 
@@ -12,7 +12,7 @@ This is a reference for upgrading your site from MUI v3 to v4. 您可能不会�
 
 ## 为什么您需要迁移呢
 
-This documentation page covers the **how** of migrating from v3 to v4. The **why** is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+此文档介绍了**如何**从 v3 版本迁移到 v4 版本。 关于迁移的**原因**，我们则在 [Medium上发布了一篇博客](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701)来详细解说。
 
 ## 更新您的依赖包
 
