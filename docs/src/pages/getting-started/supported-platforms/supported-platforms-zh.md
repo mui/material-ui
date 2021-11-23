@@ -48,7 +48,7 @@ MUI supports [Node.js](https://github.com/nodejs/node) starting with version 12.
 
 <!-- #react-peer-version -->
 
-MUI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). Have a look at the older [versions](https://mui.com/versions/) for backward compatibility.
+MUI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). 我们同时提供了向后兼容的 [版本](https://mui.com/versions/)。
 
 ## TypeScript
 
