@@ -8,7 +8,7 @@
 
 若您想将主题传递到 React 组件树，请将添加 `ThemeProvider` 包装到应用程序的顶层。 然后，您可以在样式函数中访问主题对象。
 
-> This example creates a theme object for custom-built components. If you intend to use some of the MUI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/customization/theming/) to learn how to build your custom MUI theme.
+> 此示例为自定义组件创建了一个主题对象（theme object）。 If you intend to use some of the MUI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/customization/theming/) to learn how to build your custom MUI theme.
 
 ```jsx
 import { ThemeProvider } from '@mui/styles';
@@ -116,7 +116,7 @@ function Parent() {
 }
 ```
 
-However, the class names are often non-deterministic. 父级组件如何覆盖嵌套元素的样式呢？
+但是，类名通常是不确定的。 父级组件如何覆盖嵌套元素的样式呢？
 
 ### `withStyles`
 
@@ -216,7 +216,7 @@ const useStyles = makeStyles({
 
 ## CSS 注入顺序
 
-> It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles. You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+> 了解浏览器如何计算 CSS 优先级是**非常重要的**，因为它是您在覆盖样式时需要了解的重点之一。 我们推荐您阅读 MDN 上的这段内容：[如何计算优先级？](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
 By default, the style tags are injected **last** in the `<head>` element of the page. 它们的优先级高于您页面上的任何其他样式标签，如 CSS 模块、styled components。
 
@@ -382,7 +382,7 @@ There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-m
 
 <!-- #default-branch-switch -->
 
-Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
+请参考 [Gatsby 项目案例](https://github.com/mui-org/material-ui/blob/master/examples/gatsby)以了解最新的使用方法。
 
 ### Next.js
 
@@ -390,7 +390,7 @@ Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/bl
 
 <!-- #default-branch-switch -->
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) for an up-to-date usage example.
+请参考[示例项目](https://github.com/mui-org/material-ui/blob/master/examples/nextjs)以获取最新的使用方法。
 
 ## 类名（Class names）
 
@@ -441,27 +441,27 @@ However, when the following conditions are met, the class names are **determinis
 
 ### `jss-plugin-global`
 
-The [`jss-plugin-global`](#jss-plugins) plugin is installed in the default preset. You can use it to define global class names.
+[`jss-plugin-global`](#jss-plugins) 插件安装在默认的预设中。 您可以使用它来定义全局类名称。
 
 {{"demo": "pages/styles/advanced/GlobalCss.js"}}
 
-### Hybrid
+### 混合
 
-You can also combine JSS generated class names with global ones.
+您也可以将 JSS 生成的类名称与全局名称结合起来。
 
 {{"demo": "pages/styles/advanced/HybridGlobalCss.js"}}
 
 ## CSS 前缀（prefixes）
 
-JSS uses feature detection to apply the correct prefixes. [Don't be surprised](https://github.com/mui-org/material-ui/issues/9293) if you can't see a specific prefix in the latest version of Chrome. Your browser probably doesn't need it.
+JSS 使用特征探测来应用正确的前缀。 如果您看不到最新版本 Chrome 中显示一个特定前缀，[请不要感到惊讶](https://github.com/mui-org/material-ui/issues/9293)。 您的浏览器可能不需要它。
 
 ## TypeScript usage
 
-Using `withStyles` in TypeScript can be a little tricky, but there are some utilities to make the experience as painless as possible.
+在 TypeScript 中使用 `withStyles` 可能有点棘手，但有一些实用程序可以帮助提高使用感受。
 
-### Using `createStyles` to defeat type widening
+### 使用 `createStyles` 来杜绝类型扩展
 
-A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+有一个造成混淆的常见原因是 TypeScript的 [类型扩展](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)，因此这个示例不会像预期那样工作：
 
 ```ts
 const styles = {
@@ -474,10 +474,10 @@ const styles = {
 withStyles(styles);
 //         ^^^^^^
 //         Types of property 'flexDirection' are incompatible.
-//           Type 'string' is not assignable to type '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
+//           'string' 类型不能赋予给这些类型：'"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'。
 ```
 
-The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide. To fix this, you can pass the styles object directly to `withStyles`:
+The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide. 要解决此问题，您可以将样式对象直接传递给 `withStyles`：
 
 ```ts
 withStyles({
@@ -488,7 +488,7 @@ withStyles({
 });
 ```
 
-However type widening rears its ugly head once more if you try to make the styles depend on the theme:
+然而，如果您尝试让样式随主题而变化，类型扩展会再次显示其不怎么雅观的部分：
 
 ```ts
 withStyles(({ palette, spacing }) => ({
@@ -502,9 +502,9 @@ withStyles(({ palette, spacing }) => ({
 }));
 ```
 
-This is because TypeScript [widens the return types of function expressions](https://github.com/Microsoft/TypeScript/issues/241).
+这是因为 TypeScript [扩展了函数表达式](https://github.com/Microsoft/TypeScript/issues/241)的返回类型。
 
-Because of this, using the `createStyles` helper function to construct your style rules object is recommended:
+因此，我们建议使用我们的 `createStyles` 帮助函数来构造样式规则对象：
 
 ```ts
 // Non-dependent styles
@@ -528,11 +528,11 @@ const styles = ({ palette, spacing }: Theme) =>
   });
 ```
 
-`createStyles` is just the identity function; it doesn't "do anything" at runtime, just helps guide type inference at compile time.
+`createStyles` 只是身份函数；它不会在运行时“做任何事情”，只是在编译时指导类型推断。
 
-### Media queries
+### Media queries（媒体查询）
 
-`withStyles` allows a styles object with top level media-queries like so:
+`withStyles` 允许样式对象具有顶级媒体查询的权限，如下所示：
 
 ```ts
 const styles = createStyles({
@@ -576,9 +576,9 @@ const ambiguousStyles = createStyles({
 });
 ```
 
-### Augmenting your props using `WithStyles`
+### 使用 `WithStyles` 来扩充你的属性
 
-Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to define its props accordingly:
+由于用 `withStyles(styles)` 装饰的组件被注入了一个特殊的 `classes` 属性，您需要相应地定义其属性：
 
 ```ts
 const styles = (theme: Theme) =>
@@ -607,7 +607,7 @@ interface Props {
 }
 ```
 
-However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write:
+然而，这是不是很 [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) ，因为它需要你在两个不同的地方保持类名（`'root'`， `'paper'`， `'button'`，...）。 我们提供了一个类型操作符 `WithStyles` 来帮助解决这个问题，因此您可以直接写入：:
 
 ```ts
 import { createStyles } from '@mui/styles';
@@ -632,9 +632,9 @@ interface Props extends WithStyles<typeof styles> {
 }
 ```
 
-### Decorating components
+### 装饰组件
 
-Applying `withStyles(styles)` as a function works as expected:
+将 `withStyles(styles)` 作为函数来如期使用：
 
 ```tsx
 const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) => (
@@ -657,4 +657,4 @@ const DecoratedClass = withStyles(styles)(
 );
 ```
 
-Unfortunately due to a [current limitation of TypeScript decorators](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles(styles)` can't be used as a decorator in TypeScript.
+不幸的是，由于[TypeScript 装饰器现有的限制 ](https://github.com/Microsoft/TypeScript/issues/4881)， `withStyles(styles)` 不能用在 TypeScript 中作为一个装饰器。
