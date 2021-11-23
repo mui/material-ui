@@ -104,6 +104,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
                 width: 24,
                 height: 24,
                 border: '2px solid #fff',
+                backgroundColor: '#fff',
                 borderRadius: 40,
                 overflow: 'hidden',
                 display: 'flex',
