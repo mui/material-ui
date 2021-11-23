@@ -105,7 +105,9 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     ContentProps,
     disableWindowBlurListener = false,
     message,
+    onBlur,
     onClose,
+    onFocus,
     onMouseEnter,
     onMouseLeave,
     open,
@@ -169,6 +171,12 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     }
   }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
 
+  const handleFocus = (event) => {
+    if (onFocus) {
+      onFocus(event);
+    }
+    handlePause();
+  };
   const handleMouseEnter = (event) => {
     if (onMouseEnter) {
       onMouseEnter(event);
@@ -176,6 +184,12 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     handlePause();
   };
 
+  const handleBlur = (event) => {
+    if (onBlur) {
+      onBlur(event);
+    }
+    handlePause();
+  };
   const handleMouseLeave = (event) => {
     if (onMouseLeave) {
       onMouseLeave(event);
@@ -229,6 +243,8 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     <ClickAwayListener onClickAway={handleClickAway} {...ClickAwayListenerProps}>
       <SnackbarRoot
         className={clsx(classes.root, className)}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         ownerState={ownerState}

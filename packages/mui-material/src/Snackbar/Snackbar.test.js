@@ -258,6 +258,8 @@ describe('<Snackbar />', () => {
       it('should be able to interrupt the timer', () => {
         const handleMouseEnter = spy();
         const handleMouseLeave = spy();
+        const handleBlur = spy();
+        const handleFocus = spy();
         const handleClose = spy();
         const autoHideDuration = 2e3;
 
@@ -265,6 +267,8 @@ describe('<Snackbar />', () => {
           <Snackbar
             action={<button>undo</button>}
             open
+            onBlur={handleBlur}
+            onFocus={handleFocus}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClose={handleClose}
@@ -278,12 +282,20 @@ describe('<Snackbar />', () => {
         clock.tick(autoHideDuration / 2);
         userInteraction.enter(container.querySelector('div'));
 
-        expect(handleMouseEnter.callCount).to.equal(1);
+        if (userInteraction.type === 'keyboard') {
+          expect(handleFocus.callCount).to.equal(1);
+        } else {
+          expect(handleMouseEnter.callCount).to.equal(1);
+        }
 
         clock.tick(autoHideDuration / 2);
         userInteraction.leave(container.querySelector('div'));
 
-        expect(handleMouseLeave.callCount).to.equal(1);
+        if (userInteraction.type === 'keyboard') {
+          expect(handleBlur.callCount).to.equal(1);
+        } else {
+          expect(handleMouseLeave.callCount).to.equal(1);
+        }
         expect(handleClose.callCount).to.equal(0);
 
         clock.tick(2e3);
