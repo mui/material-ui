@@ -71,19 +71,19 @@ You can use the `open`, `onOpen` and `onClose` props to control the behavior of 
 
 ## 变量宽度
 
-The `Tooltip` wraps long text by default to make it readable.
+`Tooltip` 为了保证较好的阅读性，会自动将较长的文字折行。
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
 ## 交互式
 
-Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). It won't close when the user hovers over the tooltip before the `leaveDelay` is expired. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
 {{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
 ## 禁用元素
 
-By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+默认情况下，`<Button>`等disabled的元素不会触发用户交互，因此`Tooltip`不会在hover等正常事件上激活显示。 若想容纳已禁用的元素激活工具提示，请添加一个简单的包装元素，如 `span`。
 
 > ⚠️  为了在 Safari 中正常显示，在文字提示的包装组件中，您至少需要一个 display 为 block 或 flex 的元素。
 
@@ -121,9 +121,9 @@ In the event you need to implement a custom placement, you can use the `anchorEl
 
 ## 显示和隐藏组件
 
-The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props, as shown in the Controlled Tooltips demo above.
+当用户的鼠标悬浮在该元素时工具提示会立即显示，并且当用户鼠标离开时立即隐藏。 A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props, as shown in the Controlled Tooltips demo above.
 
-On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` prop.
+在移动设备上使用时，用户长按元素就会显示出文字提示，并且持续 1500ms 之后就会自动隐藏。 You can disable this feature with the `disableTouchListener` prop.
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}
 
