@@ -74,6 +74,6 @@ According to the [Create React App Docs](https://create-react-app.dev/docs/advan
 
 To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build. This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
 
-### styled-components
+### global-css
 
 The configuration of the nonce is not straightforward, but you can follow [this issue](https://github.com/styled-components/styled-components/issues/2363) for more insights.
