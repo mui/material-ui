@@ -65,7 +65,7 @@ function App({ children }) {
 
 ## 原生的选择器
 
-⚠️ Native input controls support by browsers [isn't perfect](https://caniuse.com/#feat=input-datetime).
+⚠️ 浏览器原生输入控件[并不完美](https://caniuse.com/#feat=input-datetime)。
 
 Native date (`type="date"`), time (`type="time"`) and date&time (`type="datetime-local"`) pickers.
 
