@@ -24,10 +24,10 @@ Google has created over 1,900 official Material icons, each in five different "t
 请在您的项目目录中用以下方式安装依赖包：
 
 ```sh
-// with npm
+// 使用 npm 安装
 npm install @mui/icons-material
 
-// with yarn
+// 使用 yarn 安装
 yarn add @mui/icons-material
 ```
 
