@@ -1,6 +1,6 @@
 ---
 title: React Rating（评分）组件
-components: Rating
+components: Rating 评分
 githubLabel: 'component: Rating'
 waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 ---
