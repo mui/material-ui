@@ -342,12 +342,12 @@ describe('[Joy] CssVarsProvider', () => {
           sm: 'var(--joy-fontWeight-sm)',
           md: 'var(--joy-fontWeight-md)',
           lg: 'var(--joy-fontWeight-lg)',
+          xl: 'var(--joy-fontWeight-xl)',
         }),
       );
       expect(screen.getByTestId('line-height').textContent).to.equal(
         JSON.stringify({
           default: 'var(--joy-lineHeight-default)',
-          xs: 'var(--joy-lineHeight-xs)',
           sm: 'var(--joy-lineHeight-sm)',
           md: 'var(--joy-lineHeight-md)',
           lg: 'var(--joy-lineHeight-lg)',

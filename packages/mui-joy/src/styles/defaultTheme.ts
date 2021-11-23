@@ -71,11 +71,11 @@ export interface FontWeight {
   sm: React.CSSProperties['fontWeight'] | string;
   md: React.CSSProperties['fontWeight'] | string;
   lg: React.CSSProperties['fontWeight'] | string;
+  xl: React.CSSProperties['fontWeight'] | string;
 }
 
 export interface LineHeight {
   default: React.CSSProperties['lineHeight'];
-  xs: React.CSSProperties['lineHeight'];
   sm: React.CSSProperties['lineHeight'];
   md: React.CSSProperties['lineHeight'];
   lg: React.CSSProperties['lineHeight'];
@@ -171,8 +171,8 @@ type BaseJoyTokens = {
     'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2' | 'xl3' | 'xl4' | 'xl5' | 'xl6'
   >;
   fontFamily: Pick<FontFamily, 'default' | 'display' | 'code' | 'fallback'>;
-  fontWeight: Pick<FontWeight, 'default' | 'xs' | 'sm' | 'md' | 'lg'>;
-  lineHeight: Pick<LineHeight, 'default' | 'xs' | 'sm' | 'md' | 'lg'>;
+  fontWeight: Pick<FontWeight, 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
+  lineHeight: Pick<LineHeight, 'default' | 'sm' | 'md' | 'lg'>;
   letterSpacing: Pick<LetterSpacing, 'default' | 'sm' | 'md' | 'lg'>;
   typography: Pick<
     TypographySystem,
@@ -319,18 +319,18 @@ const joyDesignTokens: BaseJoyTokens = {
     sm: 300,
     md: 500,
     lg: 700,
+    xl: 800,
   },
   lineHeight: {
     default: 1.5,
-    xs: 1,
     sm: 1.25,
-    md: 1.714,
+    md: 1.72,
     lg: 2,
   },
   letterSpacing: {
     default: 0,
     sm: '-0.01em',
-    md: '0.1em',
+    md: '0.083em',
     lg: '0.125em',
   },
   typography: {
@@ -339,7 +339,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontWeight: 'var(--joy-fontWeight-lg)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl4)',
       lineHeight: 'var(--joy-lineHeight-sm)',
-      letterSpacing: 'var(--joy-letterSpacing-xs)',
+      letterSpacing: 'var(--joy-letterSpacing-sm)',
       color: 'var(--joy-palette-letter-major)',
     },
     h2: {
@@ -347,7 +347,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontWeight: 'var(--joy-fontWeight-lg)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl3)',
       lineHeight: 'var(--joy-lineHeight-sm)',
-      letterSpacing: 'var(--joy-letterSpacing-default)',
+      letterSpacing: 'var(--joy-letterSpacing-sm)',
       color: 'var(--joy-palette-letter-major)',
     },
     h3: {
@@ -402,7 +402,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontFamily: 'var(--joy-fontFamily-default)',
       fontWeight: 'var(--joy-fontWeight-md)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
-      lineHeight: 'var(--joy-lineHeight-lg)',
+      lineHeight: 'var(--joy-lineHeight-md)',
       letterSpacing: 'var(--joy-letterSpacing-md)',
       color: 'var(--joy-palette-letter-support)',
     },
