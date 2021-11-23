@@ -340,7 +340,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xl4)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-sm)',
-      color: 'var(--joy-palette-letter-major)',
+      color: 'var(--joy-palette-text-primary)',
     },
     h2: {
       fontFamily: 'var(--joy-fontFamily-display)',
@@ -348,7 +348,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xl3)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-sm)',
-      color: 'var(--joy-palette-letter-major)',
+      color: 'var(--joy-palette-text-primary)',
     },
     h3: {
       fontFamily: 'var(--joy-fontFamily-default)',
@@ -356,7 +356,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xl2)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
-      color: 'var(--joy-palette-letter-major)',
+      color: 'var(--joy-palette-text-primary)',
     },
     h4: {
       fontFamily: 'var(--joy-fontFamily-default)',
@@ -364,7 +364,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xl)',
       lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
-      color: 'var(--joy-palette-letter-major)',
+      color: 'var(--joy-palette-text-primary)',
     },
     h5: {
       fontFamily: 'var(--joy-fontFamily-default)',
@@ -372,7 +372,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-lg)',
       lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
-      color: 'var(--joy-palette-letter-major)',
+      color: 'var(--joy-palette-text-primary)',
     },
     h6: {
       fontFamily: 'var(--joy-fontFamily-default)',
@@ -380,7 +380,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
-      color: 'var(--joy-palette-letter-major)',
+      color: 'var(--joy-palette-text-primary)',
     },
     body1: {
       fontFamily: 'var(--joy-fontFamily-default)',
@@ -388,7 +388,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-default)',
       lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
-      color: 'var(--joy-palette-letter-major)',
+      color: 'var(--joy-palette-text-primary)',
     },
     body2: {
       fontFamily: 'var(--joy-fontFamily-default)',
@@ -396,7 +396,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-sm)',
       lineHeight: 'var(--joy-lineHeight-md)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
-      color: 'var(--joy-palette-letter-minor)',
+      color: 'var(--joy-palette-text-secondary)',
     },
     body3: {
       fontFamily: 'var(--joy-fontFamily-default)',
@@ -404,7 +404,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xs)',
       lineHeight: 'var(--joy-lineHeight-md)',
       letterSpacing: 'var(--joy-letterSpacing-md)',
-      color: 'var(--joy-palette-letter-support)',
+      color: 'var(--joy-palette-text-tertiary)',
     },
   },
   variants: {
