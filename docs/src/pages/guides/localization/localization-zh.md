@@ -34,7 +34,8 @@ const theme = createTheme(
 
 | 地区                      | BCP 47 语言标签 | 导入名称   |
 |:----------------------- |:----------- |:------ |
-| 阿拉伯语（埃及）                | ar-EG       | `arEG` |
+| Amharic                 | am-ET       | `amET` |
+| Arabic (Egypt)          | ar-EG       | `arEG` |
 | Arabic (Sudan)          | ar-SD       | `arSD` |
 | Armenian                | hy-AM       | `hyAM` |
 | Azerbaijani             | az-AZ       | `azAZ` |
