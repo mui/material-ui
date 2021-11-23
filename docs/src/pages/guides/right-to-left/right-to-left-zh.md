@@ -95,7 +95,7 @@ function RTL(props) {
 
 #### 4.3 JSS
 
-After installing the plugin in your project, you need to configure the JSS instance to load it. The next step is to make the new JSS instance available to all the components in the component tree. The [`StylesProvider`](/styles/api/#stylesprovider) component enables this:
+After installing the plugin in your project, you need to configure the JSS instance to load it. The next step is to make the new JSS instance available to all the components in the component tree. 我们有一个 [`StylesProvider`](/styles/api/#stylesprovider) 组件来服务这个需求：
 
 ```jsx
 import { create } from 'jss';
@@ -116,7 +116,7 @@ For more information on the plugin, head to the [plugin README](https://github.c
 
 ## 演示
 
-_Use the direction toggle button on the top right corner to flip the whole documentation_
+_请使用右上角的方向切换按钮来翻转整个文档。_
 
 {{"demo": "pages/guides/right-to-left/Direction.js"}}
 
@@ -141,7 +141,7 @@ const UnaffectedText = styled('div')`
 
 ### JSS
 
-If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning.
+若您想避免一个特殊的特定规则受到 `rtl` 转换的影响，您可以在最开始时加上`flip: false`。
 
 ```jsx
 const useStyles = makeStyles(
