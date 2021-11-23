@@ -398,15 +398,16 @@ describe('[Joy] CssVarsProvider', () => {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const fontFamiliesAreNotQuoted = /Firefox/.test(window.navigator.userAgent);
+      const fontFamiliesAreNotQuoted = /(Firefox|Chrome)/.test(window.navigator.userAgent);
       const fontWeight400IsNormal = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
       const Text = styled('p')(({ theme }) => ({
         ...theme.typography.body,
       }));
 
+      const fallback = '-apple-system';
       const { container } = render(
-        <CssVarsProvider>
+        <CssVarsProvider theme={{ fontFamily: { fallback: '' } }}>
           <Text />
         </CssVarsProvider>,
       );
@@ -414,8 +415,11 @@ describe('[Joy] CssVarsProvider', () => {
       expect(container.firstChild).toHaveComputedStyle({
         fontSize: '16px',
         fontFamily: fontFamiliesAreNotQuoted
-          ? defaultTheme.fontFamily.default
-          : `"${defaultTheme.fontFamily.default}"`,
+          ? defaultTheme.fontFamily.default?.replace('var(--joy-fontFamily-fallback)', fallback)
+          : `"${defaultTheme.fontFamily.default}"`.replace(
+              'var(--joy-fontFamily-fallback)',
+              fallback,
+            ),
         fontWeight: fontWeight400IsNormal ? 'normal' : '400',
         lineHeight: '24px',
       });

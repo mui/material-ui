@@ -24,7 +24,7 @@ type DecideTheme<
 > = [ApplicationColorScheme] extends [never]
   ? {
       theme?: Omit<DesignSystemTheme, 'colorSchemes'> & {
-        colorSchemes: Partial<
+        colorSchemes?: Partial<
           Record<
             DesignSystemColorScheme,
             DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
