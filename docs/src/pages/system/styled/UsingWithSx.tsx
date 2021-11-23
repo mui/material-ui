@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { styled, createTheme, ThemeProvider, experimental_sx as sx } from '@mui/system';
+import {
+  styled,
+  createTheme,
+  ThemeProvider,
+  experimental_sx as sx,
+} from '@mui/system';
 
 const customTheme = createTheme({
   palette: {
