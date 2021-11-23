@@ -12,7 +12,7 @@ I'm glad you asked! The answer is no. The core concepts haven't changed. 您会�
 
 MUI was started [4 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding MUI from the **ground-up** taking advantage of this knowledge to address long-standing issues. 譬如这些主要的变化：
 
-- New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
+- 我们采用 CSS-in-JS 这个新的样式方案（更好的[自定义](/customization/how-to-customize/)的能力和整体性能）
 - 新的主题处理 （有嵌套，自主支撑等。）
 - 感谢 [Next.js](https://github.com/zeit/next.js) 超快地创建文档
 - 更容易检测 [测试覆盖率](/guides/testing/) （99％以上，在所有主流浏览器上运行， [视觉回归测试](https://www.argos-ci.com/mui-org/material-ui)）
@@ -44,7 +44,7 @@ import FlatButton from 'material-ui/FlatButton'; // v0.x
 import Button from '@mui/material/Button'; // v1.x
 ```
 
-2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) on your project.
+2. 在您的项目上运行 [迁移帮助程序](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod)。
 3. `MuiThemeProvider` 对于v1.x.版本是可选的，但如果您有自定义主题，则可以同时使用该组件的v0.x和v1.x版本，如下所示：
 
 ```jsx
@@ -83,7 +83,7 @@ MUI doesn't provide a high-level API for solving this problem. 我们鼓励您�
 
 ### Svg Icon（Svg图标）
 
-Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) on your project.
+在您的项目上运行 [迁移帮助程序](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod)。
 
 这将应用如下更改：
 
