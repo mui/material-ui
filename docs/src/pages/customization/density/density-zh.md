@@ -4,7 +4,7 @@
 
 ## 使用密度
 
-本节解释了如何应用密度。 这不包括一些潜在的用例，也不包括在应用程序中使用密度的注意事项。 The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
+本节解释了如何应用密度。 这不包括一些潜在的用例，也不包括在应用程序中使用密度的注意事项。 <https://material.io/design/layout/applying-density. html#typographic-density>使用案例</>
 
 ## 实现密度（density）
 
