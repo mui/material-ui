@@ -160,9 +160,9 @@ function ThirdPartyComponent({ prop1 }: { prop1: string }) {
 
 ## 使用 refs 时的一些注意事项
 
-This section covers caveats when using a custom component as `children` or for the `component` prop.
+本节介绍将自定义组件用作`子组件`或`component`属性的值时的注意事项。
 
-Some of the components need access to the DOM node. This was previously possible by using `ReactDOM.findDOMNode`. This function is deprecated in favor of `ref` and ref forwarding. However, only the following component types can be given a `ref`:
+某些组件需要访问DOM节点。 之前提到，通过使用` ReactDOM.findDOMNode ` 就能实现。 该方法已被废弃，代替的是使用` ref `和 ref 转递。 然而，只有下列组件类型才可获得 `ref`：
 
 - Any MUI component
 - 类组件，如 `React.Component` 或 `React.PureComponent` 等
@@ -179,7 +179,7 @@ Note that you will still get this warning for `lazy` and `memo` components if th
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
-Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
+这只包含了两个最常见的用例。 更多信息见[React官方文档中的本章节](https://reactjs.org/docs/forwarding-refs.html)。
 
 ```diff
 -const MyButton = () => <div role="button" />;
@@ -197,11 +197,11 @@ Only the two most common use cases are covered. For more information see [this s
  <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
-To find out if the MUI component you're using has this requirement, check out the props API documentation for that component. If you need to forward refs the description will link to this section.
+To find out if the MUI component you're using has this requirement, check out the props API documentation for that component. 如果您需要转递 refs，描述将链接到此部分。
 
 ### 使用 StrictMode 的注意事项
 
-If you use class components for the cases described above you will still see warnings in `React.StrictMode`. `ReactDOM.findDOMNode` is used internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
+如果对上述情况，您使用类组件，那么您会看到 `React.StrictMode` 中的一些警告。 在内部使用 `ReactDOMfindDOMNode` 来达到向后的兼容性。 您可以使用 ` React.forwardRef ` 和类组件中的一个指定的属性来把 `ref` 传递到一个 DOM 组件中。 这样做不再会触发与 ` ReactDOM.findDOMNode ` 相关的弃用警告 。
 
 ```diff
  class Component extends React.Component {
