@@ -10,7 +10,7 @@
     "fullWidth": "Se <code>true</code>, o botão ocupará toda a largura de seu contêiner.",
     "selected": "If <code>true</code>, the button is rendered in an active state.",
     "size": "The size of the component. The prop defaults to the value inherited from the parent ToggleButtonGroup component.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
+    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
     "value": "The value to associate with the button when selected in a ToggleButtonGroup."
   },
   "classDescriptions": {
