@@ -15,7 +15,7 @@ There are many ways to support MUI:
   - Edite a documentação. Cada página da versão em inglês tem um link "EDIT THIS PAGE" no canto superior direito.
   - Reporte erros ou recursos faltantes [criando uma issue](https://github.com/mui-org/material-ui/issues/new).
   - Revise e comente em [pull requests](https://github.com/mui-org/material-ui/pulls) e [issues](https://github.com/mui-org/material-ui/issues) existentes.
-  - Help [translate](https://translate.mui.com) the documentation.
+  - Ajude a [traduzir](https://translate.mui.com) a documentação.
   - [Aprimore nossa documentação](https://github.com/mui-org/material-ui/tree/master/docs), corrija bugs, ou adicione recursos [enviando um pull request](https://github.com/mui-org/material-ui/pulls).
 - **Apoie-nos financeiramente no [OpenCollective](https://opencollective.com/material-ui)**. If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the MUI home page.
 
