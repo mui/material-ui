@@ -46,7 +46,7 @@ function MyTabs() {
   // users, users/new, users/edit.
   // Then the order should be ['users/add', 'users/edit', 'users'].
   const routeMatch = useRouteMatch(['/inbox/:id', '/drafts', '/trash']);
-  const currentTab = routeMatch?.pattern;
+  const currentTab = routeMatch?.pattern?.path;
 
   return (
     <Tabs value={currentTab}>
@@ -72,7 +72,7 @@ export default function TabsRouter() {
     <Router>
       <Box sx={{ width: '100%' }}>
         <Routes>
-          <Route element={<CurrentRoute />} />
+          <Route path="*" element={<CurrentRoute />} />
         </Routes>
         <MyTabs />
       </Box>

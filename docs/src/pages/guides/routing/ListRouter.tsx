@@ -17,6 +17,20 @@ import {
   MemoryRouter,
   useLocation,
 } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom/server';
+
+function Router(props: { children?: React.ReactNode }) {
+  const { children } = props;
+  if (typeof window === 'undefined') {
+    return <StaticRouter location="/drafts">{children}</StaticRouter>;
+  }
+
+  return (
+    <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+      {children}
+    </MemoryRouter>
+  );
+}
 
 interface ListItemLinkProps {
   icon?: React.ReactElement;
@@ -59,7 +73,7 @@ function Content() {
 
 export default function ListRouter() {
   return (
-    <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+    <Router>
       <Box sx={{ width: 360 }}>
         <Routes>
           <Route path="*" element={<Content />} />
@@ -77,6 +91,6 @@ export default function ListRouter() {
           </List>
         </Paper>
       </Box>
-    </MemoryRouter>
+    </Router>
   );
 }

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Link as RouterLink, MemoryRouter as Router } from 'react-router-dom';
+import { Link as RouterLink, MemoryRouter } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom/server';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -21,6 +22,19 @@ LinkBehavior.propTypes = {
     }),
     PropTypes.string,
   ]).isRequired,
+};
+
+function Router(props) {
+  const { children } = props;
+  if (typeof window === 'undefined') {
+    return <StaticRouter location="/">{children}</StaticRouter>;
+  }
+
+  return <MemoryRouter>{children}</MemoryRouter>;
+}
+
+Router.propTypes = {
+  children: PropTypes.node,
 };
 
 const theme = createTheme({
