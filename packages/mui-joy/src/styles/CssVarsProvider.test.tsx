@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from 'test/utils';
-import { styled, CssVarsProvider, useTheme } from '@mui/joy/styles';
-import defaultTheme from './defaultTheme';
+import { CssVarsProvider, useTheme } from '@mui/joy/styles';
 
 describe('[Joy] CssVarsProvider', () => {
   let originalMatchmedia: typeof window.matchMedia;
@@ -394,35 +393,19 @@ describe('[Joy] CssVarsProvider', () => {
   });
 
   describe('Typography', () => {
-    it('generate expected font style', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-      const fontFamiliesAreNotQuoted = /(Firefox|Chrome)/.test(window.navigator.userAgent);
-      const fontWeight400IsNormal = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    it('contain expected typography', function test() {
+      const Text = () => {
+        const theme = useTheme();
+        return <div>{Object.keys(theme.typography).join(',')}</div>;
+      };
 
-      const Text = styled('p')(({ theme }) => ({
-        ...theme.typography.body,
-      }));
-
-      const fallback = '-apple-system';
       const { container } = render(
-        <CssVarsProvider theme={{ fontFamily: { fallback } }}>
+        <CssVarsProvider>
           <Text />
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild).toHaveComputedStyle({
-        fontSize: '16px',
-        fontFamily: fontFamiliesAreNotQuoted
-          ? defaultTheme.fontFamily.default?.replace('var(--joy-fontFamily-fallback)', fallback)
-          : `"${defaultTheme.fontFamily.default}"`.replace(
-              'var(--joy-fontFamily-fallback)',
-              fallback,
-            ),
-        fontWeight: fontWeight400IsNormal ? 'normal' : '400',
-        lineHeight: '24px',
-      });
+      expect(container.firstChild?.textContent).to.equal('h1,h2,h3,h4,h5,h6,body1,body2,body3');
     });
   });
 });

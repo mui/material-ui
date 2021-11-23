@@ -94,13 +94,10 @@ export interface TypographySystems {
   h3: React.CSSProperties;
   h4: React.CSSProperties;
   h5: React.CSSProperties;
-  headingSubtitle: React.CSSProperties;
-  body: React.CSSProperties;
-  caption: React.CSSProperties;
-  detail: React.CSSProperties;
-  headingIntro: React.CSSProperties;
-  overline: React.CSSProperties;
-  button: React.CSSProperties;
+  h6: React.CSSProperties;
+  body1: React.CSSProperties;
+  body2: React.CSSProperties;
+  body3: React.CSSProperties;
 }
 
 // ---------------------------------------------------------------
@@ -179,18 +176,7 @@ type BaseJoyTokens = {
   letterSpacing: Pick<LetterSpacing, 'default' | 'sm' | 'md' | 'lg'>;
   typography: Pick<
     TypographySystems,
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'h4'
-    | 'h5'
-    | 'headingSubtitle'
-    | 'body'
-    | 'caption'
-    | 'detail'
-    | 'headingIntro'
-    | 'button'
-    | 'overline'
+    'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'body3'
   >;
   variants: Pick<Variants, DefaultVariantKey> &
     Record<DefaultContextualOverrides, Record<Exclude<ColorPaletteProp, 'context'>, object>>;
@@ -338,7 +324,7 @@ const joyDesignTokens: BaseJoyTokens = {
     default: 1.5,
     xs: 1,
     sm: 1.25,
-    md: 1.7,
+    md: 1.714,
     lg: 2,
   },
   letterSpacing: {
@@ -354,7 +340,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xl4)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-xs)',
-      color: 'var(--joy-palette-text-heading)',
+      color: 'var(--joy-palette-letter-major)',
     },
     h2: {
       fontFamily: 'var(--joy-fontFamily-display)',
@@ -362,7 +348,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xl3)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
-      color: 'var(--joy-palette-text-heading)',
+      color: 'var(--joy-palette-letter-major)',
     },
     h3: {
       fontFamily: 'var(--joy-fontFamily-default)',
@@ -370,7 +356,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xl2)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
-      color: 'var(--joy-palette-text-heading)',
+      color: 'var(--joy-palette-letter-major)',
     },
     h4: {
       fontFamily: 'var(--joy-fontFamily-default)',
@@ -378,7 +364,7 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-xl)',
       lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
-      color: 'var(--joy-palette-text-heading)',
+      color: 'var(--joy-palette-letter-major)',
     },
     h5: {
       fontFamily: 'var(--joy-fontFamily-default)',
@@ -386,17 +372,9 @@ const joyDesignTokens: BaseJoyTokens = {
       fontSize: 'var(--joy-fontSize-lg)',
       lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
-      color: 'var(--joy-palette-text-heading)',
-    },
-    headingSubtitle: {
-      fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
-      fontSize: 'var(--joy-fontSize-lg)',
-      lineHeight: 'var(--joy-lineHeight-default)',
-      letterSpacing: 'var(--joy-letterSpacing-default)',
       color: 'var(--joy-palette-letter-major)',
     },
-    body: {
+    h6: {
       fontFamily: 'var(--joy-fontFamily-default)',
       fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
@@ -404,46 +382,29 @@ const joyDesignTokens: BaseJoyTokens = {
       letterSpacing: 'var(--joy-letterSpacing-default)',
       color: 'var(--joy-palette-letter-major)',
     },
-    caption: {
+    body1: {
+      fontFamily: 'var(--joy-fontFamily-default)',
+      fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-default)',
+      lineHeight: 'var(--joy-lineHeight-default)',
+      letterSpacing: 'var(--joy-letterSpacing-default)',
+      color: 'var(--joy-palette-letter-major)',
+    },
+    body2: {
       fontFamily: 'var(--joy-fontFamily-default)',
       fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-sm)',
-      lineHeight: 'var(--joy-lineHeight-default)',
-      letterSpacing: 'var(--joy-letterSpacing-default)',
-      color: 'var(--joy-palette-letter-major)',
-    },
-    detail: {
-      fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-default)' as React.CSSProperties['fontWeight'],
-      fontSize: 'var(--joy-fontSize-xs)',
-      lineHeight: 'var(--joy-lineHeight-default)',
+      lineHeight: 'var(--joy-lineHeight-md)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
       color: 'var(--joy-palette-letter-minor)',
     },
-    headingIntro: {
+    body3: {
       fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-extraBold)' as React.CSSProperties['fontWeight'],
-      fontSize: 'var(--joy-fontSize-md)',
-      lineHeight: 'var(--joy-lineHeight-default)',
-      letterSpacing: 'var(--joy-letterSpacing-lg)',
-      textTransform: 'uppercase',
-      color: 'var(--joy-palette-letter-minor)',
-    },
-    overline: {
-      fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-extraBold)' as React.CSSProperties['fontWeight'],
+      fontWeight: 'var(--joy-fontWeight-md)' as React.CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
-      lineHeight: 'var(--joy-lineHeight-default)',
-      letterSpacing: 'var(--joy-letterSpacing-lg)',
-      textTransform: 'uppercase',
+      lineHeight: 'var(--joy-lineHeight-lg)',
+      letterSpacing: 'var(--joy-letterSpacing-md)',
       color: 'var(--joy-palette-letter-support)',
-    },
-    button: {
-      fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-bold)' as React.CSSProperties['fontWeight'],
-      fontSize: 'var(--joy-fontSize-md)',
-      lineHeight: 'var(--joy-lineHeight-default)',
-      letterSpacing: 'var(--joy-letterSpacing-default)',
     },
   },
   variants: {
