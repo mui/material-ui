@@ -20,12 +20,12 @@ export interface PaletteVariant {
   outlinedDisabledColor: string;
   outlinedDisabledBorder: string;
 
-  filledColor: string;
-  filledBg: string;
-  filledHoverBg: string;
-  filledActiveBg: string;
-  filledDisabledColor: string;
-  filledDisabledBg: string;
+  lightColor: string;
+  lightBg: string;
+  lightHoverBg: string;
+  lightActiveBg: string;
+  lightDisabledColor: string;
+  lightDisabledBg: string;
 
   containedColor: string;
   containedBg: string;
