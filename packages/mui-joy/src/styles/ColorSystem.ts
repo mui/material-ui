@@ -61,7 +61,14 @@ export interface PaletteSurface {
 
 export interface ColorPalettePropOverrides {}
 
-export type DefaultColorPalette = 'primary' | 'neutral' | 'danger' | 'info' | 'success' | 'warning';
+export type DefaultColorPalette =
+  | 'primary'
+  | 'neutral'
+  | 'danger'
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'context';
 
 export type ColorPaletteProp = OverridableStringUnion<
   DefaultColorPalette,
@@ -69,7 +76,7 @@ export type ColorPaletteProp = OverridableStringUnion<
 >;
 
 export type ColorPalette = {
-  [k in ColorPaletteProp]: PaletteRange;
+  [k in Exclude<ColorPaletteProp, 'context'>]: PaletteRange;
 };
 
 export interface Palette extends ColorPalette {

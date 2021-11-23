@@ -9,13 +9,15 @@ export type VariantProp = OverridableStringUnion<DefaultVariantProp, VariantProp
 
 type State = 'Hover' | 'Active' | 'Disabled';
 
-type VariantKey = VariantProp | 'containedContext' | `${VariantProp}${State}`;
+type VariantKey = VariantProp | 'containedOverrides' | `${VariantProp}${State}`;
 
 export type DefaultVariantKey =
   | DefaultVariantProp
-  | 'containedContext'
+  | 'containedOverrides'
   | `${DefaultVariantProp}${State}`;
 
 export type Variant = {
-  [k in VariantKey]: Record<ColorPaletteProp, object>;
+  [k in Exclude<VariantKey, 'containedOverrides'>]: Record<ColorPaletteProp, object>;
+} & {
+  containedOverrides: Record<Exclude<ColorPaletteProp, 'context'>, object>;
 };
