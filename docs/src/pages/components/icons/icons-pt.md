@@ -24,10 +24,10 @@ Google has created over 1,900 official Material icons, each in five different "t
 Instale o pacote no diretório do seu projeto com:
 
 ```sh
-// with npm
+// usando npm
 npm install @mui/icons-material
 
-// with yarn
+// usando yarn
 yarn add @mui/icons-material
 ```
 
