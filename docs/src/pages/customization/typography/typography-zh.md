@@ -186,8 +186,8 @@ _您需要在此页面的 html 元素上应用上述的 CSS 才能看到以下�
 - subtitle2
 - body1
 - body2
-- button
-- caption
+- button 按钮
+- caption 字幕
 - overline
 
 每个变体都可以被单独地定制：
