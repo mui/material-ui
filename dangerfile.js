@@ -4,8 +4,6 @@ const { danger, markdown } = require('danger');
 const { exec } = require('child_process');
 const { loadComparison } = require('./scripts/sizeSnapshot');
 
-const azureBuildId = process.env.AZURE_BUILD_ID;
-const azureBuildUrl = `https://dev.azure.com/mui-org/Material-UI/_build/results?buildId=${azureBuildId}`;
 const circleCIBuildNumber = process.env.CIRCLE_BUILD_NUM;
 const circleCIBuildUrl = `https://app.circleci.com/pipelines/github/mui-org/material-ui/jobs/${circleCIBuildNumber}`;
 const dangerCommand = process.env.DANGER_COMMAND;
@@ -110,15 +108,9 @@ function sieveResults(results) {
 }
 
 function prepareBundleSizeReport() {
-  if (azureBuildId !== undefined) {
-    markdown(
-      `Bundle size will be reported once [Azure build #${azureBuildId}](${azureBuildUrl}) finishes.`,
-    );
-  } else {
-    markdown(
-      `Bundle size will be reported once [CircleCI build #${circleCIBuildNumber}](${circleCIBuildUrl}) finishes.`,
-    );
-  }
+  markdown(
+    `Bundle size will be reported once [CircleCI build #${circleCIBuildNumber}](${circleCIBuildUrl}) finishes.`,
+  );
 }
 
 async function reportBundleSize() {
@@ -134,7 +126,7 @@ async function reportBundleSize() {
   await git(`fetch ${UPSTREAM_REMOTE}`);
   const mergeBaseCommit = await git(`merge-base HEAD ${UPSTREAM_REMOTE}/${upstreamRef}`);
 
-  const detailedComparisonRoute = `/size-comparison?buildId=${azureBuildId}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit}&prNumber=${danger.github.pr.number}`;
+  const detailedComparisonRoute = `/size-comparison?circleCIBuildNumber=${circleCIBuildNumber}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit}&prNumber=${danger.github.pr.number}`;
   const detailedComparisonUrl = `https://mui-dashboard.netlify.app${detailedComparisonRoute}`;
 
   const comparison = await loadComparison(mergeBaseCommit, upstreamRef);
