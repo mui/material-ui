@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@3.0.0
 
 parameters:
   browserstack-force:
@@ -31,6 +33,7 @@ defaults: &defaults
     BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
     REACT_DIST_TAG: << parameters.react-dist-tag >>
     TEST_GATE: << parameters.test-gate >>
+    AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:12
@@ -621,6 +624,79 @@ jobs:
       - run:
           name: Test fixture
           command: yarn start
+  test_bundle_size_monitor:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: prepare danger on PRs
+          command: yarn danger ci
+          environment:
+            DANGER_COMMAND: prepareBundleSizeReport
+      - run:
+          name: build @mui packages
+          command: yarn lerna run --ignore @mui/icons-material --parallel --scope "@mui/*" build
+      - run:
+          name: create @mui/material canary distributable
+          command: |
+            cd packages/mui-material/build
+            npm version 0.0.0-canary.${CIRCLE_SHA1} --no-git-tag-version
+            npm pack
+            mv mui-material-0.0.0-canary.${CIRCLE_SHA1}.tgz ../../../mui-material.tgz
+      - when:
+          # don't run on PRs
+          condition:
+            not: $CIRCLE_PR_NUMBER
+          steps:
+            # Upload distributables to S3
+            - aws-s3/copy:
+                arguments: --acl public-read
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws-region: AWS_REGION_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                from: mui-material.tgz
+                to: s3://mui-org-material-ui/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
+      - store_artifacts:
+          path: mui-material.tgz
+          destination: mui-material.tgz
+      - run:
+          name: create a size snapshot
+          command: yarn size:snapshot
+      - store_artifacts:
+          name: persist size snapshot as pipeline artifact
+          path: size-snapshot.json
+          destination: size-snapshot.json
+      - when:
+          # don't run on PRs
+          condition:
+            not: $CIRCLE_PR_NUMBER
+          steps:
+            # persist size snapshot on S3
+            - aws-s3/copy:
+                arguments: --acl public-read --content-type application/json
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws-region: AWS_REGION_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                from: size-snapshot.json
+                to: s3://mui-org-material-ui/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
+            # symlink size-snapshot to latest
+            - aws-s3/copy:
+                arguments: --acl public-read --content-type application/json
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws-region: AWS_REGION_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                from: size-snapshot.json
+                to: s3://mui-org-material-ui/artifacts/$CIRCLE_BRANCH/latest/
+      - when:
+          # Run on PRs
+          condition: $CIRCLE_PR_NUMBER
+          steps:
+            - run:
+                name: run danger on PRs
+                command: yarn danger ci
+                environment:
+                  DANGER_COMMAND: 'reportBundleSize'
 workflows:
   version: 2
   pipeline:
@@ -647,6 +723,9 @@ workflows:
           requires:
             - checkout
       - test_e2e:
+          requires:
+            - checkout
+      - test_bundle_size_monitor:
           requires:
             - checkout
   bundling:
