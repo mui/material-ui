@@ -650,11 +650,11 @@ jobs:
           steps:
             # Upload distributables to S3
             - aws-s3/copy:
-                arguments: --acl public-read --exclude "*" --include "*.tgz"
+                arguments: --acl public-read
                 aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
                 aws-region: AWS_REGION_ARTIFACTS
                 aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
-                from: .
+                from: mui-material.tgz
                 to: s3://mui-org-material-ui/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
       - store_artifacts:
           path: mui-material.tgz
