@@ -1,5 +1,5 @@
 const path = require('path');
-const withTM = require('next-transpile-modules')(['@mui/material', '@mui/system']) // pass the modules you would like to see transpiled
+const withTM = require('next-transpile-modules')(['@mui/material', '@mui/system']); // pass the modules you would like to see transpiled
 
 /** @type {import('next').NextConfig} */
 module.exports = withTM({
@@ -18,30 +18,28 @@ module.exports = withTM({
             loader: 'babel-loader',
             options: {
               presets: ['next/babel'],
-              plugins:  [
+              plugins: [
                 [
-                  "babel-plugin-styled-components",
+                  'babel-plugin-styled-components',
                   {
-                    "topLevelImportPaths": [
-                      "@mui/material",
-                      "@mui/material/styles",
-                      "@mui/system",
-                      "@mui/styled-engine-sc",
-                      "@mui/styled-engine"
+                    topLevelImportPaths: [
+                      '@mui/material',
+                      '@mui/material/styles',
+                      '@mui/system',
+                      '@mui/styled-engine-sc',
+                      '@mui/styled-engine',
                     ],
-                    "ssr": true
-                  }
-                ]
+                    ssr: true,
+                  },
+                ],
               ],
-              include: [
-                  'node_modules/@mui/',
-              ],
-              exclude: /node_modules\/(?!@mui).+/
-            }
-          }
-        }
-      ]
-    }
+              include: ['*', 'node_modules/@mui/'],
+              exclude: /node_modules\/(?!@mui).+/,
+            },
+          },
+        },
+      ],
+    };
     return config;
   },
-})
+});
