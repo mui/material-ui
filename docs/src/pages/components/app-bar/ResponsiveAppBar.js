@@ -8,7 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import { Button } from '@mui/material';
+import { Button, MenuItem, Tooltip } from '@mui/material';
 
 const ResponsiveAppBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -57,36 +57,29 @@ const ResponsiveAppBar = () => {
               id="menu-appbar"
               anchorEl={anchorEl}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
               keepMounted
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'right',
+                horizontal: 'left',
               }}
               open={Boolean(anchorEl)}
               onClose={handleClose}
-              sx={{ display: { xs: 'block', md: 'none' }, mt: '47px', px: '20px' }}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
             >
-              <Button
-                onClick={handleClose}
-                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
-              >
+              <MenuItem onClick={handleClose}>
                 <Typography textAlign="center">Home</Typography>
-              </Button>
-              <Button
-                onClick={handleClose}
-                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
-              >
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
                 <Typography textAlign="center">Shops</Typography>
-              </Button>
-              <Button
-                onClick={handleClose}
-                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
-              >
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
                 <Typography textAlign="center">Blogs</Typography>
-              </Button>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -119,11 +112,11 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Avatar
-              alt="Remy Sharp"
-              src="/static/images/avatar/2.jpg"
-              onClick={handleMenup}
-            />
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleMenup} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -140,30 +133,18 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElp)}
               onClose={handleClosep}
             >
-              <Button
-                onClick={handleClose}
-                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
-              >
+              <MenuItem onClick={handleClose}>
                 <Typography textAlign="center">Profile</Typography>
-              </Button>
-              <Button
-                onClick={handleClose}
-                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
-              >
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
                 <Typography textAlign="center">My account</Typography>
-              </Button>
-              <Button
-                onClick={handleClose}
-                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
-              >
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
                 <Typography textAlign="center">Dashboard</Typography>
-              </Button>
-              <Button
-                onClick={handleClose}
-                sx={{ mt: 1, mx: 2, color: '#424242', display: 'block' }}
-              >
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
                 <Typography textAlign="center">Logout</Typography>
-              </Button>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
