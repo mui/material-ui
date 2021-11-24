@@ -204,7 +204,7 @@ If you are one of those who prefers the `sx` syntax and wants to use it in both 
 
 The overhead added by using the `experimental_sx` utility is the same as if you were to use the `sx` prop on the component.
 
-> Note: You can use the `experimental_sx` outside of the `styled()` utility too, for example for defining the `variants` in your custom theme.
+> Note: You can use `experimental_sx` outside of the `styled()` utility, too; e.g., for defining `variants` in your custom theme.
 
 ## How to use components selector API
 
