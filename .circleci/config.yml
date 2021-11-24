@@ -647,7 +647,10 @@ jobs:
       - when:
           # don't run on PRs
           condition:
-            not: $CIRCLE_PR_NUMBER
+            not:
+              matches:
+                pattern: "^pull/\\d+"
+                value: << pipeline.git.branch >>
           steps:
             # Upload distributables to S3
             - aws-s3/copy:
@@ -670,7 +673,10 @@ jobs:
       - when:
           # don't run on PRs
           condition:
-            not: $CIRCLE_PR_NUMBER
+            not:
+              matches:
+                pattern: "^pull/\\d+"
+                value: << pipeline.git.branch >>
           steps:
             # persist size snapshot on S3
             - aws-s3/copy:
@@ -688,15 +694,11 @@ jobs:
                 aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: size-snapshot.json
                 to: s3://mui-org-material-ui/artifacts/$CIRCLE_BRANCH/latest/
-      - when:
-          # Run on PRs
-          condition: $CIRCLE_PR_NUMBER
-          steps:
-            - run:
-                name: run danger on PRs
-                command: yarn danger ci
-                environment:
-                  DANGER_COMMAND: 'reportBundleSize'
+      - run:
+          name: run danger on PRs
+          command: yarn danger ci
+          environment:
+            DANGER_COMMAND: 'reportBundleSize'
 workflows:
   version: 2
   pipeline:
