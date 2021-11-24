@@ -6,7 +6,9 @@ import { OverridableComponent } from '@mui/types';
 import { appendOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import isHostComponent from '../utils/isHostComponent';
-import TablePaginationActionsUnstyled, { defaultGetAriaLabel } from './TablePaginationActionsUnstyled';
+import TablePaginationActionsUnstyled, {
+  defaultGetAriaLabel,
+} from './TablePaginationActionsUnstyled';
 import { getTablePaginationUnstyledUtilityClass } from './tablePaginationUnstyledClasses';
 import TablePaginationUnstyledProps, {
   LabelDisplayedRowsArgs,
