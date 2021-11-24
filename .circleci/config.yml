@@ -697,7 +697,7 @@ jobs:
                 to: s3://mui-org-material-ui/artifacts/${CIRCLE_BRANCH}/latest/
       - when:
           # Run on PRs
-          condition: '$CIRCLE_PR_NUMBER'
+          condition: $CIRCLE_PR_NUMBER
           steps:
             - run:
                 name: run danger on PRs
