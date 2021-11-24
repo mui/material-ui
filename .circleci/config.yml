@@ -634,7 +634,6 @@ jobs:
           command: yarn danger ci
           environment:
             DANGER_COMMAND: prepareBundleSizeReport
-            DANGER_GITHUB_API_TOKEN: $DANGER_GITHUB_API_TOKEN
       - run:
           name: build @mui packages
           command: yarn lerna run --ignore @mui/icons-material --parallel --scope "@mui/*" build
@@ -705,7 +704,6 @@ jobs:
                 command: yarn danger ci
                 environment:
                   DANGER_COMMAND: 'reportBundleSize'
-                  DANGER_GITHUB_API_TOKEN: $DANGER_GITHUB_API_TOKEN
 workflows:
   version: 2
   pipeline:
