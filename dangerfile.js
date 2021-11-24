@@ -6,6 +6,8 @@ const { loadComparison } = require('./scripts/sizeSnapshot');
 
 const azureBuildId = process.env.AZURE_BUILD_ID;
 const azureBuildUrl = `https://dev.azure.com/mui-org/Material-UI/_build/results?buildId=${azureBuildId}`;
+const circleCIBuildNumber = process.env.CIRCLE_BUILD_NUM;
+const circleCIBuildUrl = `https://app.circleci.com/pipelines/github/mui-org/material-ui/jobs/${circleCIBuildNumber}`;
 const dangerCommand = process.env.DANGER_COMMAND;
 
 const parsedSizeChangeThreshold = 300;
@@ -108,9 +110,15 @@ function sieveResults(results) {
 }
 
 function prepareBundleSizeReport() {
-  markdown(
-    `Bundle size will be reported once [Azure build #${azureBuildId}](${azureBuildUrl}) finishes.`,
-  );
+  if (azureBuildId !== undefined) {
+    markdown(
+      `Bundle size will be reported once [Azure build #${azureBuildId}](${azureBuildUrl}) finishes.`,
+    );
+  } else {
+    markdown(
+      `Bundle size will be reported once [CircleCI build #${circleCIBuildNumber}](${circleCIBuildUrl}) finishes.`,
+    );
+  }
 }
 
 async function reportBundleSize() {
