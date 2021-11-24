@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_useId as useId } from '@mui/utils';
+import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/base';
 import TablePaginationUnstyled from '@mui/base/TablePaginationUnstyled';
 import { styled, useThemeProps } from '@mui/material/styles';
@@ -10,16 +10,17 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import TableCell from '@mui/material/TableCell';
 import Toolbar from '@mui/material/Toolbar';
-import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
-import { IconButton } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 import LastPageIcon from '@mui/material/internal/svg-icons/LastPage';
 import FirstPageIcon from '@mui/material/internal/svg-icons/FirstPage';
 import KeyboardArrowLeft from '@mui/material/internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/material/internal/svg-icons/KeyboardArrowRight';
+import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
 
 // This component is needed as the IconButton does not merge the ownerState
 // coming from props. This results in the prop overriding the internal ownerState
 const CustomIconButton = React.forwardRef((props, ref) => {
+  // eslint-disable-next-line react/prop-types
   const { ownerState, ...other } = props;
   return <IconButton ref={ref} {...other} />;
 });

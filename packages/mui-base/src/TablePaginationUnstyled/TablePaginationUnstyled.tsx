@@ -1,26 +1,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, integerPropType } from '@mui/utils';
-import { unstable_useId as useId } from '@mui/utils';
+import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { appendOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import isHostComponent from '../utils/isHostComponent';
-import TablePaginationActionsUnstyled from './TablePaginationActionsUnstyled';
+import TablePaginationActionsUnstyled, { defaultGetAriaLabel } from './TablePaginationActionsUnstyled';
 import { getTablePaginationUnstyledUtilityClass } from './tablePaginationUnstyledClasses';
 import TablePaginationUnstyledProps, {
   LabelDisplayedRowsArgs,
   TablePaginationUnstyledTypeMap,
-  ItemAriaLabelType,
 } from './TablePaginationUnstyledProps';
 
 function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
-}
-
-function defaultGetAriaLabel(type: ItemAriaLabelType) {
-  return `Go to ${type} page`;
 }
 
 const useUtilityClasses = () => {
@@ -108,6 +102,7 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
         rowsPerPage,
         count,
         onPageChange,
+        getItemAriaLabel,
         ...componentsProps.actions,
       },
       ownerState,

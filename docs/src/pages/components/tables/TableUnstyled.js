@@ -81,7 +81,7 @@ export default function UnstyledTable() {
             : rows
           ).map((row) => (
             <tr key={row.name}>
-              <td scope="row">{row.name}</td>
+              <td>{row.name}</td>
               <td style={{ width: 160 }} align="right">
                 {row.calories}
               </td>
