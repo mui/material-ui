@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mui/material": "latest",
-    "@mui/styled-engine-sc": "latest",
+    "@mui/material": "https://pkg.csb.dev/mui-org/material-ui/commit/97b8bd28/@mui/material",
+    "@mui/styled-engine-sc": "https://pkg.csb.dev/mui-org/material-ui/commit/97b8bd28/@mui/styled-engine-sc",
     "next": "latest",
     "next-transpile-modules": "latest",
     "react": "latest",
@@ -19,8 +19,10 @@
     "styled-components": "latest"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.0",
     "@types/react": "latest",
     "@types/styled-components": "latest",
+    "babel-loader": "^8.2.3",
     "babel-plugin-styled-components": "latest",
     "typescript": "latest"
   }
