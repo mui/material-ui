@@ -408,4 +408,54 @@ describe('[Joy] CssVarsProvider', () => {
       expect(container.firstChild?.textContent).to.equal('h1,h2,h3,h4,h5,h6,body1,body2,body3');
     });
   });
+
+  describe('Skipped vars', () => {
+    it('should not contain `variants` in theme.vars', () => {
+      const Consumer = () => {
+        const theme = useTheme();
+        // @ts-expect-error
+        return <div>{theme.vars.variants ? 'variants' : ''}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).not.to.equal('variants');
+    });
+
+    it('should not contain `typography` in theme.vars', () => {
+      const Consumer = () => {
+        const theme = useTheme();
+        // @ts-expect-error
+        return <div>{theme.vars.typography ? 'typography' : ''}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).not.to.equal('typography');
+    });
+
+    it('should not contain `focus` in theme.vars', () => {
+      const Consumer = () => {
+        const theme = useTheme();
+        // @ts-expect-error
+        return <div>{theme.vars.focus ? 'focus' : ''}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).not.to.equal('focus');
+    });
+  });
 });
