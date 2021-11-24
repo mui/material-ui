@@ -646,8 +646,7 @@ jobs:
             mv mui-material-0.0.0-canary.${CIRCLE_SHA1}.tgz ../../../mui-material.tgz
       - when:
           # don't run on PRs
-          condition:
-            not: $CIRCLE_PR_NUMBER
+          condition: $CIRCLE_PR_NUMBER
           steps:
             # Upload distributables to S3
             - aws-s3/copy:
@@ -672,8 +671,7 @@ jobs:
           destination: size-snapshot.json
       - when:
           # don't run on PRs
-          condition:
-            not: $CIRCLE_PR_NUMBER
+          condition: $CIRCLE_PR_NUMBER
           steps:
             # persist size snapshot on S3
             - aws-s3/copy:
@@ -697,7 +695,8 @@ jobs:
                 to: s3://mui-org-material-ui/artifacts/${CIRCLE_BRANCH}/latest/
       - when:
           # Run on PRs
-          condition: $CIRCLE_PR_NUMBER
+          condition:
+            not: $CIRCLE_PR_NUMBER
           steps:
             - run:
                 name: run danger on PRs
@@ -732,9 +731,7 @@ workflows:
       - test_e2e:
           requires:
             - checkout
-      - test_bundle_size_monitor:
-          requires:
-            - checkout
+      - test_bundle_size_monitor
   bundling:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
