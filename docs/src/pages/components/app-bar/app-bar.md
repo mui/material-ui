@@ -15,7 +15,6 @@ It can transform into a contextual action bar or be used as a navbar.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-
 ## App Bar with responsive menu
 
 {{"demo": "pages/components/app-bar/ResponsiveAppBar.js", "bg": true}}
