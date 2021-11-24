@@ -140,4 +140,19 @@ describe('sx', () => {
       });
     });
   });
+
+  it('does not throw if used without ThemeProvider', function test() {
+    const Test = styled('div')(
+      sx({
+        color: 'primary.main',
+        bgcolor: 'secondary.main',
+        m: 2,
+        p: 1,
+        fontSize: 'fontSize',
+        maxWidth: 'sm',
+      }),
+    );
+
+    expect(() => render(<Test />)).not.to.throw();
+  });
 });
