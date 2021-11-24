@@ -190,7 +190,7 @@ export default function createStyled(input = {}) {
       return Component;
     };
 
-    if(defaultStyledResolver.withConfig) {
+    if (defaultStyledResolver.withConfig) {
       muiStyledResolver.withConfig = defaultStyledResolver.withConfig;
     }
 

@@ -1,6 +1,17 @@
 {
   "presets": ["next/babel"],
   "plugins": [
-    ["styled-components", { "ssr": true }]
+    [
+      "babel-plugin-styled-components",
+      {
+        "topLevelImportPaths": [
+          "@mui/material",
+          "@mui/material/styles",
+          "@mui/system",
+          "@mui/styled-engine-sc"
+        ],
+        "ssr": true
+      }
+    ]
   ]
 }
