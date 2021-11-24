@@ -193,7 +193,11 @@ const GridRoot = styled('div', {
       container && styles.container,
       item && styles.item,
       zeroMinWidth && styles.zeroMinWidth,
-      container && spacing && spacing !== 0 && typeof +spacing === 'number' && styles[`spacing-xs-${String(spacing)}`],
+      container &&
+        spacing &&
+        spacing !== 0 &&
+        typeof +spacing === 'number' &&
+        styles[`spacing-xs-${String(spacing)}`],
       container && spacing?.xs && spacing.xs !== 0 && styles[`spacing-xs-${String(spacing.xs)}`],
       container && spacing?.sm && spacing.sm !== 0 && styles[`spacing-sm-${String(spacing.sm)}`],
       container && spacing?.md && spacing.md !== 0 && styles[`spacing-md-${String(spacing.md)}`],
@@ -250,7 +254,11 @@ const useUtilityClasses = (ownerState) => {
       container && 'container',
       item && 'item',
       zeroMinWidth && 'zeroMinWidth',
-      container && spacing && spacing !== 0 && typeof +spacing === 'number' && `spacing-xs-${String(spacing)}`,
+      container &&
+        spacing &&
+        spacing !== 0 &&
+        typeof +spacing === 'number' &&
+        `spacing-xs-${String(spacing)}`,
       container && spacing?.xs && spacing.xs !== 0 && `spacing-xs-${String(spacing.xs)}`,
       container && spacing?.sm && spacing.sm !== 0 && `spacing-sm-${String(spacing.sm)}`,
       container && spacing?.md && spacing.md !== 0 && `spacing-md-${String(spacing.md)}`,
