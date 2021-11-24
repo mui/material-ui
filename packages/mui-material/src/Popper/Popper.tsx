@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
-import { chainPropTypes, HTMLElementType, refType } from '@mui/utils';
+import { HTMLElementType, refType } from '@mui/utils';
 import { Direction, useThemeWithoutDefault as useTheme } from '@mui/system';
 
 export type PopperProps = Omit<PopperUnstyledProps, 'direction'>;
@@ -26,10 +26,6 @@ const Popper = React.forwardRef(function Popper(
   return <PopperUnstyled direction={theme?.direction} {...props} ref={ref} />;
 });
 
-function resolveAnchorEl(anchorEl: any) {
-  return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
-}
-
 Popper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
@@ -41,49 +37,11 @@ Popper.propTypes /* remove-proptypes */ = {
    * It's used to set the position of the popper.
    * The return value will passed as the reference object of the Popper instance.
    */
-  anchorEl: chainPropTypes(
-    PropTypes.oneOfType([HTMLElementType, PropTypes.object, PropTypes.func]),
-    (props) => {
-      if (props.open) {
-        const resolvedAnchorEl = resolveAnchorEl(props.anchorEl);
-
-        if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
-          const box = resolvedAnchorEl.getBoundingClientRect();
-
-          if (
-            process.env.NODE_ENV !== 'test' &&
-            box.top === 0 &&
-            box.left === 0 &&
-            box.right === 0 &&
-            box.bottom === 0
-          ) {
-            return new Error(
-              [
-                'MUI: The `anchorEl` prop provided to the component is invalid.',
-                'The anchor element should be part of the document layout.',
-                "Make sure the element is present in the document or that it's not display none.",
-              ].join('\n'),
-            );
-          }
-        } else if (
-          !resolvedAnchorEl ||
-          typeof resolvedAnchorEl.getBoundingClientRect !== 'function' ||
-          (resolvedAnchorEl.contextElement != null &&
-            resolvedAnchorEl.contextElement.nodeType !== 1)
-        ) {
-          return new Error(
-            [
-              'MUI: The `anchorEl` prop provided to the component is invalid.',
-              'It should be an HTML element instance or a virtualElement ',
-              '(https://popper.js.org/docs/v2/virtual-elements/).',
-            ].join('\n'),
-          );
-        }
-      }
-
-      return null;
-    },
-  ),
+  anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    HTMLElementType,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
   /**
    * Popper render function or node.
    */

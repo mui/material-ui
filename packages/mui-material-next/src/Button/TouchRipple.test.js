@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import { describeConformance, act, createRenderer } from 'test/utils';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
@@ -7,7 +6,7 @@ import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 const cb = () => {};
 
 describe('<TouchRipple />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   /**
    * @param {object} other props to spread to TouchRipple
@@ -176,18 +175,7 @@ describe('<TouchRipple />', () => {
   });
 
   describe('mobile', () => {
-    /**
-     * @type {ReturnType<typeof useFakeTimers>}
-     */
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('should delay the display of the ripples', () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
@@ -202,15 +190,13 @@ describe('<TouchRipple />', () => {
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      act(() => {
-        clock.tick(DELAY_RIPPLE);
-      });
+      clock.tick(DELAY_RIPPLE);
 
       expect(queryAllActiveRipples()).to.have.lengthOf(1);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
+      clock.tick(DELAY_RIPPLE);
       act(() => {
-        clock.tick(DELAY_RIPPLE);
         instance.stop({ type: 'touchend' }, cb);
       });
 
@@ -231,9 +217,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      act(() => {
-        clock.tick(DELAY_RIPPLE / 2);
-      });
+      clock.tick(DELAY_RIPPLE / 2);
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
@@ -245,9 +229,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllActiveRipples()).to.have.lengthOf(1);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      act(() => {
-        clock.tick(1);
-      });
+      clock.tick(1);
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(1);

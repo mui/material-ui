@@ -1,5 +1,5 @@
 import createSvgIcon from './utils/createSvgIcon';
 import { jsx as _jsx } from "react/jsx-runtime";
 export default createSvgIcon( /*#__PURE__*/_jsx("path", {
-  d: "M21 13H2v8h19v-8zm0-10H2v8h19V3z"
+  d: "M3 13h18v8H3zM3 3h18v8H3z"
 }), 'ViewAgendaSharp');

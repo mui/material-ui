@@ -1,5 +1,87 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.2.0
+
+<!-- generated comparing v5.1.1..master -->
+
+_Nov 23, 2021_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 🧪 Created another unstyled component: [TabsUnstyled](https://mui.com/components/tabs/#unstyled) (#29597) @mnajdova.
+- 🎉 Updated the Material Icons set with the latest changes from Google (#29328) @michaldudak / (#29818) @chao813.
+  This update adds 200 new icons and tweaks the appearance of many more.
+  With it, we're getting close to having 2000 icons in our set.
+- 🐛 Fixed bugs and improved the infrastructure and documentation 📚.
+
+### `@mui/material@5.2.0`
+
+- [IconButton] Remove on hover effect when `disableRipple` is set (#29298) @adamfitzgibbon
+- [i18n] Add the amharic language (#29153) @NatiG100
+- [material] Fix types for `variants.style` to accept callbacks (#29610) @mnajdova
+- [Popper] Simplify prop types (#29680) @michaldudak
+- [Select] Include aria-selected=false when option not selected (#29695) @michaldudak
+- [useMediaQuery] Fix crash in Safari < 14 and IE 11 (#29776) @eps1lon
+- [useMediaQuery] Ensure no tearing in React 18 (#28491) @eps1lon
+
+### `@mui/codemod@5.2.0`
+
+- [codemod] Fix `jss-to-styled` to support multiple withStyles (#29824) @siriwatknp
+
+### `@mui/icons-material@5.2.0`
+
+- [icons] Sync new Google Material Icons (#29818) @chao813
+- [icons] Sync recent Material Icons from Google (#29328) @michaldudak
+
+### `@mui/system@5.2.0`
+
+- [Box] Fix `sx` prop runtime issue when used as function (#29830) @mnajdova
+- [system] Fix `sx` throw error when value is `null` or `undefined` (#29756) @siriwatknp
+- [system] Fix minor CssVars issues (#29747) @siriwatknp
+
+### `@mui/styled-engine@5.2.0`
+
+- [styled-engine] Fix props inference in styled-engine (#29739) @Janpot
+
+### `@mui/base@5.0.0-alpha.56`
+
+- [FormControlUnstyled] `focused` is always false unless explicitly set to `true` @mwilkins91
+- [TabsUnstyled] Introduce new component (#29597) @mnajdova
+
+### `@mui/lab@5.0.0-alpha.56`
+
+- [DatePicker][timepicker] Add missing component declarations (#29517) @longzheng
+- [Masonry] exports from root package (#29754) @abhinav-22-tech
+- [pickers] Widen accepted `luxon` version range (#29761) @eps1lon
+
+### Docs
+
+- [blog] MUI X v5 blog post (#29590) @DanailH
+- [blog] Polish the Benny Joo joins MUI post (#29697) @oliviertassinari
+- [CHANGELOG] Explain why we do breaking changes @oliviertassinari
+- [core] Update latest issue template for codesandbox CI (#29783) @eps1lon
+- [core] Ensure `@mui/core` is an alias for `@mui/base` (#29762) @eps1lon
+- [docs] Fix broken Next and Previous links (#29711) @scallaway
+- [docs] Add a note that ToggleButton exclusive does not enforce selection (#29812) @mmacu
+- [docs] Update the list of supported locales (#29831) @michaldudak
+- [docs] Update tooltip doc to better define touch action (#29717) @gnowland
+- [website] Standardize the background color from the MUI team photos (#29738) @danilo-leal
+- [website] Add Bharat to the About Us Page (#29714) @bharatkashyap
+- [website] Add about page entry for jan (#29701) @Janpot
+- [website] Adding Prakhar to the about page (#29737) @danilo-leal
+
+### Core
+
+- [test] Allow debugging with Chrome and VSCode inspector (#29777) @eps1lon
+- [test] Use renderer clock instead of custom useFakeTimers call (#29778) @eps1lon
+- [test] Only mock Date in regression tests (#29763) @eps1lon
+- [test] Disable nightly integration tests on `next` branch (#29748) @eps1lon
+- [test] Allow configuring clock directly from `createRenderer` (#29684) @eps1lon
+- [test] Accept backslashes as path separators in test CLI (#29694) @michaldudak
+- [utils] Use built-in hook when available for useId (#26489) @eps1lon
+
+All contributors of this release in alphabetical order: @abhinav-22-tech, @adamfitzgibbon, @bharatkashyap, @chao813, @DanailH, @danilo-leal, @eps1lon, @gnowland, @Janpot, @longzheng, @michaldudak, @mmacu, @mnajdova, @mwilkins91, @NatiG100, @oliviertassinari, @scallaway, @siriwatknp
+
 ## 5.1.1
 
 <!-- generated comparing v5.1.0..master -->

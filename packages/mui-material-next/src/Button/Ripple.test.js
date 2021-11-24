@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { createRenderer } from 'test/utils';
 import Ripple from './Ripple';
 import classes from './touchRippleClasses';
 
 describe('<Ripple />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
 
   it('should have the ripple className', () => {
     const { container } = render(
@@ -80,15 +80,7 @@ describe('<Ripple />', () => {
   });
 
   describe('pulsating and stopping 2', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('handleExit should trigger a timer', () => {
       const handleExited = spy();
