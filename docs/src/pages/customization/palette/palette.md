@@ -130,7 +130,7 @@ Note that "contrastThreshold" follows a non-linear curve.
 
 ### Adding new colors
 
-You can add new colors inside and outside the palette of the theme as follow:
+You can add new colors inside and outside the palette of the theme as follows:
 
 ```js
 import { createTheme } from '@mui/material/styles';
