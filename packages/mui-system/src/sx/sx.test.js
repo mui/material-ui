@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
 import { experimental_sx as sx, styled, ThemeProvider } from '@mui/system';
