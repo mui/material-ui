@@ -10,7 +10,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import { Button } from '@mui/material';
-import Tooltip from '@mui/material/Tooltip';
 
 const ResponsiveAppBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -105,11 +104,11 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleMenup} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
+            <Avatar
+              alt="Remy Sharp"
+              src="/static/images/avatar/2.jpg"
+              onClick={handleMenup}
+            />
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
