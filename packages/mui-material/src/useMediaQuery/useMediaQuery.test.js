@@ -22,11 +22,10 @@ function createMatchMedia(width, ref) {
       matches: mediaQuery.match(query, {
         width,
       }),
-      // Mocking matchMedia in Safari < 14 where MediaQueryList doesn't inherit from EventTarget
-      addListener: (listener) => {
+      addEventListener: (type, listener) => {
         listeners.push(listener);
       },
-      removeListener: (listener) => {
+      removeEventListener: (type, listener) => {
         const index = listeners.indexOf(listener);
         if (index > -1) {
           listeners.splice(index, 1);
