@@ -733,6 +733,9 @@ workflows:
       - test_e2e:
           requires:
             - checkout
+      - test_bundle_size_monitor:
+          requires:
+            - checkout
   bundling:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
