@@ -140,9 +140,9 @@ export default function createCssVarsProvider(options) {
       }
       // `color-scheme` tells browser to render built-in elements according to its value: `light` or `dark`
       if (mode === 'system') {
-        document.body.style.setProperty('color-scheme', systemMode);
+        document.documentElement.style.setProperty('color-scheme', systemMode);
       } else {
-        document.body.style.setProperty('color-scheme', mode);
+        document.documentElement.style.setProperty('color-scheme', mode);
       }
     }, [mode, systemMode]);
 

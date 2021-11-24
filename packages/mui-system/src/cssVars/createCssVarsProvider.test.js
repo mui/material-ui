@@ -255,15 +255,15 @@ describe('createCssVarsProvider', () => {
           <Consumer />
         </CssVarsProvider>,
       );
-      expect(window.getComputedStyle(document.body).getPropertyValue('color-scheme')).to.equal(
-        'light',
-      );
+      expect(
+        window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
+      ).to.equal('light');
 
       fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
-      expect(window.getComputedStyle(document.body).getPropertyValue('color-scheme')).to.equal(
-        'dark',
-      );
+      expect(
+        window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
+      ).to.equal('dark');
     });
 
     it('set `color-scheme` property to body with correct mode, given `enableColorScheme` is true and mode is `system`', () => {
@@ -285,15 +285,15 @@ describe('createCssVarsProvider', () => {
           <Consumer />
         </CssVarsProvider>,
       );
-      expect(window.getComputedStyle(document.body).getPropertyValue('color-scheme')).to.equal(
-        'light',
-      );
+      expect(
+        window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
+      ).to.equal('light');
 
       fireEvent.click(screen.getByRole('button', { name: 'change to system' }));
 
-      expect(window.getComputedStyle(document.body).getPropertyValue('color-scheme')).to.equal(
-        'dark',
-      );
+      expect(
+        window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
+      ).to.equal('dark');
     });
 
     it('does not set `color-scheme` property to body with correct mode, given`enableColorScheme` is false', () => {
@@ -311,9 +311,9 @@ describe('createCssVarsProvider', () => {
           <Consumer />
         </CssVarsProvider>,
       );
-      expect(window.getComputedStyle(document.body).getPropertyValue('color-scheme')).not.to.equal(
-        'light',
-      );
+      expect(
+        window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
+      ).not.to.equal('light');
     });
   });
 
