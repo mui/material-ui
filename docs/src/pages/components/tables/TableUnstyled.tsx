@@ -74,9 +74,11 @@ export default function UnstyledTable() {
     <Root>
       <table style={{ minWidth: 500 }} aria-label="custom pagination table">
         <thead>
-          <th>Dessert</th>
-          <th>Calories</th>
-          <th>Fat</th>
+          <tr>
+            <th>Dessert</th>
+            <th>Calories</th>
+            <th>Fat</th>
+          </tr>
         </thead>
         <tbody>
           {(rowsPerPage > 0

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_useId as useId } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses, appendOwnerState } from '@mui/base';
 import TablePaginationUnstyled from '@mui/base/TablePaginationUnstyled';
 import { styled, useThemeProps } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
@@ -159,6 +159,15 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   const selectId = useId(SelectProps.id);
   const labelId = useId(SelectProps['aria-labelledby']);
 
+  const rootProps = appendOwnerState(TablePaginationRoot, {}, ownerState);
+  const actionsProps = appendOwnerState(ActionsComponent, {}, ownerState);
+  const selectProps = appendOwnerState(TablePaginationSelect, SelectProps, ownerState);
+  const menuItemProps = appendOwnerState(MenuItemComponent, {}, ownerState);
+  const displayedRowsProps = appendOwnerState(TablePaginationDisplayedRows, {}, ownerState);
+  const selectLabelProps = appendOwnerState(TablePaginationSelectLabel, {}, ownerState);
+  const spacerProps = appendOwnerState(TablePaginationSpacer, {}, ownerState);
+  const toolbarProps = appendOwnerState(TablePaginationToolbar, {}, ownerState);
+
   return (
     <TablePaginationUnstyled
       components={{
@@ -172,6 +181,10 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
         DisplayedRows: TablePaginationDisplayedRows,
       }}
       componentsProps={{
+        root: {
+          as: component,
+          ...rootProps,
+        },
         actions: {
           components: {
             FirstButton: CustomIconButton,
@@ -190,37 +203,47 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           showFirstButton,
           showLastButton,
           className: classes.actions,
+          ownerState,
+          ...actionsProps,
         },
         select: {
           variant: 'standard',
           input: <InputBase />,
-          ...SelectProps,
+          ...selectProps,
           id: selectId,
-          labelId,
+          ...(SelectProps.native ? {} : { labelId }),
           'aria-labelledby': labelId,
           className: clsx(classes.select, SelectProps.className),
+          classes: {
+            ...SelectProps.classes,
+            root: clsx(classes.selectRoot, (SelectProps.classes || {}).root),
+            select: clsx(classes.select, (SelectProps.classes || {}).select),
+          },
         },
         menuItem: {
           className: classes.menuItem,
+          ...menuItemProps,
         },
         displayedRows: {
           className: classes.displayedRows,
+          ...displayedRowsProps,
         },
         selectLabel: {
           className: classes.selectLabel,
+          ...selectLabelProps,
         },
         spacer: {
           className: classes.spacer,
+          ...spacerProps,
         },
         toolbar: {
           className: classes.toolbar,
+          ...toolbarProps,
         },
       }}
       ref={ref}
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
       {...other}
+      className={clsx(classes.root, className)}
     />
   );
 });
@@ -241,10 +264,6 @@ TablePagination.propTypes /* remove-proptypes */ = {
    */
   backIconButtonProps: PropTypes.object,
   /**
-   * @ignore
-   */
-  children: PropTypes.node,
-  /**
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
@@ -256,191 +275,99 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes.oneOfType([
-    PropTypes.oneOf([
-      'a',
-      'abbr',
-      'address',
-      'animate',
-      'animateMotion',
-      'animateTransform',
-      'area',
-      'article',
-      'aside',
-      'audio',
-      'b',
-      'base',
-      'bdi',
-      'bdo',
-      'big',
-      'blockquote',
-      'body',
-      'br',
-      'button',
-      'canvas',
-      'caption',
-      'circle',
-      'cite',
-      'clipPath',
-      'code',
-      'col',
-      'colgroup',
-      'data',
-      'datalist',
-      'dd',
-      'defs',
-      'del',
-      'desc',
-      'details',
-      'dfn',
-      'dialog',
-      'div',
-      'dl',
-      'dt',
-      'ellipse',
-      'em',
-      'embed',
-      'feBlend',
-      'feColorMatrix',
-      'feComponentTransfer',
-      'feComposite',
-      'feConvolveMatrix',
-      'feDiffuseLighting',
-      'feDisplacementMap',
-      'feDistantLight',
-      'feDropShadow',
-      'feFlood',
-      'feFuncA',
-      'feFuncB',
-      'feFuncG',
-      'feFuncR',
-      'feGaussianBlur',
-      'feImage',
-      'feMerge',
-      'feMergeNode',
-      'feMorphology',
-      'feOffset',
-      'fePointLight',
-      'feSpecularLighting',
-      'feSpotLight',
-      'feTile',
-      'feTurbulence',
-      'fieldset',
-      'figcaption',
-      'figure',
-      'filter',
-      'footer',
-      'foreignObject',
-      'form',
-      'g',
-      'h1',
-      'h2',
-      'h3',
-      'h4',
-      'h5',
-      'h6',
-      'head',
-      'header',
-      'hgroup',
-      'hr',
-      'html',
-      'i',
-      'iframe',
-      'image',
-      'img',
-      'input',
-      'ins',
-      'kbd',
-      'keygen',
-      'label',
-      'legend',
-      'li',
-      'line',
-      'linearGradient',
-      'link',
-      'main',
-      'map',
-      'mark',
-      'marker',
-      'mask',
-      'menu',
-      'menuitem',
-      'meta',
-      'metadata',
-      'meter',
-      'mpath',
-      'nav',
-      'noindex',
-      'noscript',
-      'object',
-      'ol',
-      'optgroup',
-      'option',
-      'output',
-      'p',
-      'param',
-      'path',
-      'pattern',
-      'picture',
-      'polygon',
-      'polyline',
-      'pre',
-      'progress',
-      'q',
-      'radialGradient',
-      'rect',
-      'rp',
-      'rt',
-      'ruby',
-      's',
-      'samp',
-      'script',
-      'section',
-      'select',
-      'slot',
-      'small',
-      'source',
-      'span',
-      'stop',
-      'strong',
-      'style',
-      'sub',
-      'summary',
-      'sup',
-      'svg',
-      'switch',
-      'symbol',
-      'table',
-      'tbody',
-      'td',
-      'template',
-      'text',
-      'textarea',
-      'textPath',
-      'tfoot',
-      'th',
-      'thead',
-      'time',
-      'title',
-      'tr',
-      'track',
-      'tspan',
-      'u',
-      'ul',
-      'use',
-      'var',
-      'video',
-      'view',
-      'wbr',
-      'webview',
-    ]),
-    PropTypes.elementType,
-    PropTypes.func,
-  ]),
+  component: PropTypes.elementType,
+  /**
+   * The total number of rows.
+   *
+   * To enable server side pagination for an unknown number of items, provide -1.
+   */
+  count: integerPropType.isRequired,
+  /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+   * This is important for screen reader users.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
+   * @returns {string}
+   * @default function defaultGetAriaLabel(type) {
+   *   return `Go to ${type} page`;
+   * }
+   */
+  getItemAriaLabel: PropTypes.func,
+  /**
+   * Customize the displayed rows label. Invoked with a `{ from, to, count, page }`
+   * object.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * @default function defaultLabelDisplayedRows({ from, to, count }) {
+   *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
+   * }
+   */
+  labelDisplayedRows: PropTypes.func,
+  /**
+   * Customize the rows per page label.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * @default 'Rows per page:'
+   */
+  labelRowsPerPage: PropTypes.node,
   /**
    * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
    */
   nextIconButtonProps: PropTypes.object,
+  /**
+   * Callback fired when the page is changed.
+   *
+   * @param {React.MouseEvent<HTMLButtonElement> | null} event The event source of the callback.
+   * @param {number} page The page selected.
+   */
+  onPageChange: PropTypes.func.isRequired,
+  /**
+   * Callback fired when the number of rows per page is changed.
+   *
+   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
+   */
+  onRowsPerPageChange: PropTypes.func,
+  /**
+   * The zero-based index of the current page.
+   */
+  page: chainPropTypes(integerPropType.isRequired, (props) => {
+    const { count, page, rowsPerPage } = props;
+
+    if (count === -1) {
+      return null;
+    }
+
+    const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
+    if (page < 0 || page > newLastPage) {
+      return new Error(
+        'MUI: The page prop of a TablePagination is out of range ' +
+          `(0 to ${newLastPage}, but page is ${page}).`,
+      );
+    }
+    return null;
+  }),
+  /**
+   * The number of rows per page.
+   *
+   * Set -1 to display all the rows.
+   */
+  rowsPerPage: integerPropType.isRequired,
+  /**
+   * Customizes the options of the rows per page select field. If less than two options are
+   * available, no select field will be displayed.
+   * Use -1 for the value with a custom label to show all the rows.
+   * @default [10, 25, 50, 100]
+   */
+  rowsPerPageOptions: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        value: PropTypes.number.isRequired,
+      }),
+    ]).isRequired,
+  ),
   /**
    * Props applied to the rows per page [`Select`](/api/select/) element.
    * @default {}

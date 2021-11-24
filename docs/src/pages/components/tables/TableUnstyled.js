@@ -69,9 +69,11 @@ export default function UnstyledTable() {
     <Root>
       <table style={{ minWidth: 500 }} aria-label="custom pagination table">
         <thead>
-          <th>Dessert</th>
-          <th>Calories</th>
-          <th>Fat</th>
+          <tr>
+            <th>Dessert</th>
+            <th>Calories</th>
+            <th>Fat</th>
+          </tr>
         </thead>
         <tbody>
           {(rowsPerPage > 0
@@ -104,9 +106,7 @@ export default function UnstyledTable() {
               page={page}
               componentsProps={{
                 select: {
-                  inputProps: {
-                    'aria-label': 'rows per page',
-                  },
+                  'aria-label': 'rows per page',
                 },
                 actions: {
                   showFirstButton: true,
