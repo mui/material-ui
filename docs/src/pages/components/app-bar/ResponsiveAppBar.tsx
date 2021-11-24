@@ -1,16 +1,16 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
-import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
 
 const ResponsiveAppBar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -95,19 +95,19 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Button
               onClick={handleClose}
-              sx={{ my: 2, color: 'white' }}
+              sx={{ my: 2, color: 'white', display: 'block' }}
             >
               Home
             </Button>
             <Button
               onClick={handleClose}
-              sx={{ my: 2, color: 'white' }}
+              sx={{ my: 2, color: 'white', display: 'block' }}
             >
               Shops
             </Button>
             <Button
               onClick={handleClose}
-              sx={{ my: 2, color: 'white' }}
+              sx={{ my: 2, color: 'white', display: 'block' }}
             >
               Blogs
             </Button>
