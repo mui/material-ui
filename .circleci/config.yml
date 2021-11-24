@@ -33,6 +33,7 @@ defaults: &defaults
     BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
     REACT_DIST_TAG: << parameters.react-dist-tag >>
     TEST_GATE: << parameters.test-gate >>
+    AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:12
@@ -649,15 +650,15 @@ jobs:
           condition:
             not: $CIRCLE_PR_NUMBER
           steps:
+            # Upload distributables to S3
             - aws-s3/copy:
-                name: Upload distributables to S3
                 arguments: |
                   --acl public-read \
                   --exclude "*"
                   --include "*.tgz"
-                aws-access-key-id: $AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws-region: eu-central-1
-                aws-secret-access-key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws-region: AWS_REGION_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: .
                 to: s3://mui-org-material-ui/artifacts/${CIRCLE_BRANCH}/${CIRCLE_SHA1}/
       - store_artifacts:
@@ -675,24 +676,24 @@ jobs:
           condition:
             not: $CIRCLE_PR_NUMBER
           steps:
+            # persist size snapshot on S3
             - aws-s3/copy:
-                name: persist size snapshot on S3
                 arguments: |
                   --acl public-read \
                   --content-type application/json
-                aws-access-key-id: $AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws-region: eu-central-1
-                aws-secret-access-key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws-region: AWS_REGION_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: size-snapshot.json
                 to: s3://mui-org-material-ui/artifacts/${CIRCLE_BRANCH}/${CIRCLE_SHA1}/
+            # symlink size-snapshot to latest
             - aws-s3/copy:
-                name: symlink size-snapshot to latest
                 arguments: |
                   --acl public-read \
                   --content-type application/json
-                aws-access-key-id: $AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws-region: eu-central-1
-                aws-secret-access-key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws-region: AWS_REGION_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: size-snapshot.json
                 to: s3://mui-org-material-ui/artifacts/${CIRCLE_BRANCH}/latest/
       - when:
