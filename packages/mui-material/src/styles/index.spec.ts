@@ -1,18 +1,13 @@
 import { experimental_sx as sx, styled, createTheme } from '@mui/material/styles';
 
 // Can use the experimental_sx in the styled() utility
-const Test = styled('div')(({ theme }) =>
-  sx(
-    {
-      color: 'primary.main',
-      bgcolor: 'primary.light',
-      m: 2,
-    },
-    theme,
-  ),
+const Test = styled('div')(
+  sx({
+    color: 'primary.main',
+    bgcolor: 'primary.light',
+    m: 2,
+  }),
 );
-
-const defaultTheme = createTheme();
 
 // Can use the experimental_sx in the theme's variants
 const customTheme = createTheme({
@@ -21,14 +16,10 @@ const customTheme = createTheme({
       variants: [
         {
           props: {},
-          style: ({ theme }) =>
-            sx(
-              {
-                m: 2,
-                p: 1,
-              },
-              defaultTheme,
-            ),
+          style: sx({
+            m: 2,
+            p: 1,
+          }),
         },
       ],
     },

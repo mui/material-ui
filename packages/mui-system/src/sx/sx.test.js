@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import { experimental_sx as sx } from '@mui/system';
+import { createRenderer } from 'test/utils';
+import { experimental_sx as sx, styled, ThemeProvider } from '@mui/system';
 
 describe('sx', () => {
+  const { render } = createRenderer();
   const breakpointsValues = {
     xs: 0,
     sm: 600,
@@ -52,73 +54,88 @@ describe('sx', () => {
   };
 
   describe('system', () => {
-    it('resolves system ', () => {
-      const result = sx(
-        {
+    it('resolves system when used inside styled()', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const Test = styled('div')(
+        sx({
           color: 'primary.main',
           bgcolor: 'secondary.main',
           m: 2,
           p: 1,
-          fontFamily: 'default',
-          fontWeight: 'light',
           fontSize: 'fontSize',
           maxWidth: 'sm',
-          displayPrint: 'block',
-          border: [1, 2, 3, 4, 5],
-        },
-        theme,
+        }),
       );
 
-      expect(result).to.deep.equal({
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Test />
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
         color: 'rgb(0, 0, 255)',
         backgroundColor: 'rgb(0, 255, 0)',
         margin: '20px',
         padding: '10px',
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-        fontWeight: 300,
-        fontSize: 14,
-        maxWidth: 600,
-        '@media print': {
-          display: 'block',
-        },
-        '@media (min-width:0px)': { border: '1px solid' },
-        '@media (min-width:600px)': { border: '2px solid' },
-        '@media (min-width:960px)': { border: '3px solid' },
-        '@media (min-width:1280px)': { border: '4px solid' },
-        '@media (min-width:1920px)': { border: '5px solid' },
+        fontSize: '14px',
+        maxWidth: '600px',
       });
     });
 
-    it('resolves system typography', () => {
-      const result = sx(
-        {
-          typography: ['body2', 'body1'],
+    it('resolves system when used inside variants', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const themeWithVariants = {
+        ...theme,
+        components: {
+          MuiTest: {
+            variants: [
+              {
+                props: {}, // all props
+                style: sx({
+                  color: 'primary.main',
+                  bgcolor: 'secondary.main',
+                  m: 2,
+                  p: 1,
+                  fontSize: 'fontSize',
+                  maxWidth: 'sm',
+                }),
+              },
+            ],
+          },
         },
-        theme,
+      };
+
+      const Test = styled('div', { name: 'MuiTest', slot: 'Root' })(
+        sx({
+          color: 'primary.main',
+          bgcolor: 'secondary.main',
+          m: 2,
+          p: 1,
+          fontSize: 'fontSize',
+          maxWidth: 'sm',
+        }),
       );
 
-      expect(result).to.deep.equal({
-        '@media (min-width:0px)': {
-          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-          fontSize: `${14 / 16}rem`,
-          letterSpacing: `${round(0.15 / 14)}em`,
-          fontWeight: 400,
-          lineHeight: 1.43,
-        },
-        '@media (min-width:600px)': {
-          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-          fontSize: '1rem',
-          letterSpacing: `${round(0.15 / 16)}em`,
-          fontWeight: 400,
-          lineHeight: 1.5,
-        },
-      });
-    });
+      const { container } = render(
+        <ThemeProvider theme={themeWithVariants}>
+          <Test />
+        </ThemeProvider>,
+      );
 
-    it('allow values to be `null` or `undefined`', () => {
-      const result = sx({ typography: null, m: 0, p: null, transform: null }, theme);
-      expect(result).to.deep.equal({
-        margin: '0px',
+      expect(container.firstChild).toHaveComputedStyle({
+        color: 'rgb(0, 0, 255)',
+        backgroundColor: 'rgb(0, 255, 0)',
+        margin: '20px',
+        padding: '10px',
+        fontSize: '14px',
+        maxWidth: '600px',
       });
     });
   });

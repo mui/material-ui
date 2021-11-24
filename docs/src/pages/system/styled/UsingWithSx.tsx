@@ -15,16 +15,13 @@ const customTheme = createTheme({
   },
 });
 
-const MyThemeComponent = styled('div')(({ theme }) =>
-  sx(
-    {
-      color: 'primary.contrastText',
-      backgroundColor: 'primary.main',
-      padding: 1,
-      borderRadius: 1,
-    },
-    theme,
-  ),
+const MyThemeComponent = styled('div')(
+  sx({
+    color: 'primary.contrastText',
+    backgroundColor: 'primary.main',
+    padding: 1,
+    borderRadius: 1,
+  }),
 );
 
 export default function ThemeUsage() {

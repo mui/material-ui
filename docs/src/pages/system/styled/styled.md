@@ -202,7 +202,9 @@ If you are one of those that prefer the `sx` syntax and want to use it in both t
 
 {{"demo": "pages/system/styled/UsingWithSx.js", "defaultCodeOpen": true}}
 
-> Note: You can use the `experimental_sx` outside of the `styled()` utility too, for example for defining the `variants`, or creating new `mixins` in your custom theme.
+The overhead added by using the `experimental_sx` utility is the same as if you were to use the `sx` prop on the component.
+
+> Note: You can use the `experimental_sx` outside of the `styled()` utility too, for example for defining the `variants` in your custom theme.
 
 ## How to use components selector API
 
