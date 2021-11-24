@@ -655,7 +655,7 @@ jobs:
                 aws-region: AWS_REGION_ARTIFACTS
                 aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: .
-                to: s3://mui-org-material-ui/artifacts/${CIRCLE_BRANCH}/${CIRCLE_SHA1}/
+                to: s3://mui-org-material-ui/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
       - store_artifacts:
           path: mui-material.tgz
           destination: mui-material.tgz
@@ -677,7 +677,7 @@ jobs:
                 aws-region: AWS_REGION_ARTIFACTS
                 aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: size-snapshot.json
-                to: s3://mui-org-material-ui/artifacts/${CIRCLE_BRANCH}/${CIRCLE_SHA1}/
+                to: s3://mui-org-material-ui/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
             # symlink size-snapshot to latest
             - aws-s3/copy:
                 arguments: --acl public-read --content-type application/json
@@ -685,7 +685,7 @@ jobs:
                 aws-region: AWS_REGION_ARTIFACTS
                 aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: size-snapshot.json
-                to: s3://mui-org-material-ui/artifacts/${CIRCLE_BRANCH}/latest/
+                to: s3://mui-org-material-ui/artifacts/$CIRCLE_BRANCH/latest/
       - when:
           # Run on PRs
           condition:
