@@ -35,49 +35,47 @@ export const CORE_CUSTOMERS: Array<IconImageProps> = [
   },
 ];
 
-const offset = -12;
-
 export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
   {
     name: 'southwest',
     width: 130,
     style: {
-      marginTop: 2 + offset,
+      marginTop: -10,
     },
   },
   {
     name: 'boeing',
     width: 160,
     style: {
-      marginTop: -11 + offset,
+      marginTop: -23,
     },
   },
   {
     name: 'apple',
     width: 29,
     style: {
-      marginTop: -9 + offset,
+      marginTop: -21,
     },
   },
   {
     name: 'siemens',
     width: 119,
     style: {
-      marginTop: -1 + offset,
+      marginTop: -13,
     },
   },
   {
     name: 'volvo',
     width: 128,
     style: {
-      marginTop: 1 + offset,
+      marginTop: -11,
     },
   },
   {
     name: 'deloitte',
     width: 97,
     style: {
-      marginTop: offset,
+      marginTop: -12,
     },
   },
 ];
