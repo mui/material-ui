@@ -662,14 +662,14 @@ jobs:
                 to: s3://mui-org-material-ui/artifacts/${CIRCLE_BRANCH}/${CIRCLE_SHA1}/
       - store_artifacts:
           path: mui-material.tgz
-          destination: canaries
+          destination: mui-material.tgz
       - run:
           name: create a size snapshot
           command: yarn size:snapshot
       - store_artifacts:
           name: persist size snapshot as pipeline artifact
           path: size-snapshot.json
-          destination: size-snapshot
+          destination: size-snapshot.json
       - when:
           # don't run on PRs
           condition:
