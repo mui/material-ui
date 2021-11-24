@@ -647,10 +647,9 @@ jobs:
       - when:
           # don't run on PRs
           condition:
-            not:
-              matches:
-                pattern: "^pull/\\d+"
-                value: << pipeline.git.branch >>
+            matches:
+              pattern: "^pull/\\d+"
+              value: << pipeline.git.branch >>
           steps:
             # Upload distributables to S3
             - aws-s3/copy:
