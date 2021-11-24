@@ -10,11 +10,8 @@
     "text": "You can <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MaterialUI\">follow us on Twitter</a> to receive exclusive tips and updates about MUI and the React ecosystem."
   },
   {
-    "id": 54,
-    "text": "<a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MaterialUI/status/1438518915236126723\">MUI Core v5</a> is out 🎉"
-  },
-  {
     "id": 55,
-    "text": "We want to understand the challenges you face with your current UI development process, so will be running user interviews over the coming weeks. If you'd like to take part, please share your details via this short <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://forms.gle/UBUikX7vQ1PSgNff6\">form</a> and we'll reach out to you!"
+    "title": "2021 Developer survey",
+    "text": "Help shape the future of MUI.<br />🙏<a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://mui-org.typeform.com/2021-dev-survey\">Please fill the survey.</a>"
   }
 ]
