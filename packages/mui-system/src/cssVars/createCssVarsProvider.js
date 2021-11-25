@@ -46,21 +46,6 @@ export default function createCssVarsProvider(options) {
     return value;
   };
 
-  const disableCSSTransition = () => {
-    const css = document.createElement('style');
-    css.appendChild(document.createTextNode(DISABLE_CSS_TRANSITION));
-    document.head.appendChild(css);
-
-    return () => {
-      // Force browser repaint
-      (() => window.getComputedStyle(document.body))();
-
-      setTimeout(() => {
-        document.head.removeChild(css);
-      }, 1);
-    };
-  };
-
   function CssVarsProvider({
     children,
     theme: themeProp = {},
@@ -72,6 +57,7 @@ export default function createCssVarsProvider(options) {
   }) {
     const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = baseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
+    const hasMounted = React.useRef(null);
 
     let mergedTheme = deepmerge(restBaseTheme, restThemeProp);
 
@@ -166,10 +152,28 @@ export default function createCssVarsProvider(options) {
     }, [mode, systemMode]);
 
     React.useEffect(() => {
-      if (disableTransitionOnChange) {
-        disableCSSTransition();
+      let timer;
+      if (disableTransitionOnChange && hasMounted.current) {
+        // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313
+        const css = document.createElement('style');
+        css.appendChild(document.createTextNode(DISABLE_CSS_TRANSITION));
+        document.head.appendChild(css);
+
+        // Force browser repaint
+        (() => window.getComputedStyle(document.body))();
+
+        timer = setTimeout(() => {
+          document.head.removeChild(css);
+        }, 1);
       }
-    }, [setMode]);
+      return () => {
+        clearTimeout(timer);
+      };
+    }, [colorScheme]);
+
+    React.useEffect(() => {
+      hasMounted.current = true;
+    }, []);
 
     return (
       <ColorSchemeContext.Provider

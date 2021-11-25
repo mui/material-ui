@@ -71,7 +71,7 @@ export default function createCssVarsProvider<
    */
   defaultMode?: Mode;
   /**
-   * Disable CSS transitions when switching between modes
+   * Disable CSS transitions when switching between modes or color schemes
    * @default false
    */
   disableTransitionOnChange?: boolean;
