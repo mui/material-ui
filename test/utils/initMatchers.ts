@@ -394,7 +394,7 @@ chai.use((chaiAPI, utils) => {
     if (usedShorthandProperties.length > 0) {
       throw new Error(
         [
-          `Shorthand properties are not supported in ${styleTypeHint} styles matchers since browser can compute them differently. `,
+          `Shorthand properties are not supported in ${styleTypeHint} styles matchers since browsers can compute them differently. `,
           'Use longhand properties instead for the follow shorthand properties:\n',
           usedShorthandProperties
             .map((cssProperty) => {
