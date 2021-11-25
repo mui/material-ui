@@ -31,13 +31,13 @@ const Root = styled('div')`
 
   td,
   th {
-    border: 1px solid #dddddd;
+    border: 1px solid #ddd;
     text-align: left;
     padding: 8px;
   }
 
   th {
-    background-color: #dddddd;
+    background-color: #ddd;
   }
 `;
 const CustomTablePagination = styled(TablePaginationUnstyled)`
