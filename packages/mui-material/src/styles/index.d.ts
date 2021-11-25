@@ -55,6 +55,7 @@ export {
   lighten,
   ColorFormat,
   ColorObject,
+  experimental_sx,
 } from '@mui/system';
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
