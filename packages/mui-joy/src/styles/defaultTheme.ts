@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as CSS from 'csstype';
 import { createTheme as systemCreateTheme, Breakpoints, Spacing, CSSObject } from '@mui/system';
 import colors from '../colors';
 import {
@@ -16,6 +16,8 @@ import {
   createVariant,
 } from './variantUtils';
 
+type CSSProperties = CSS.Properties<number | string>;
+
 /**
  * ====================================================
  * Developer facing types, they can augment these types.
@@ -23,20 +25,20 @@ import {
  */
 
 export interface BorderRadius {
-  default: React.CSSProperties['borderRadius'];
-  xs: React.CSSProperties['borderRadius'];
-  sm: React.CSSProperties['borderRadius'];
-  md: React.CSSProperties['borderRadius'];
-  lg: React.CSSProperties['borderRadius'];
-  xl: React.CSSProperties['borderRadius'];
+  default: CSSProperties['borderRadius'];
+  xs: CSSProperties['borderRadius'];
+  sm: CSSProperties['borderRadius'];
+  md: CSSProperties['borderRadius'];
+  lg: CSSProperties['borderRadius'];
+  xl: CSSProperties['borderRadius'];
 }
 
 export interface Elevation {
-  xs: React.CSSProperties['boxShadow'];
-  sm: React.CSSProperties['boxShadow'];
-  md: React.CSSProperties['boxShadow'];
-  lg: React.CSSProperties['boxShadow'];
-  xl: React.CSSProperties['boxShadow'];
+  xs: CSSProperties['boxShadow'];
+  sm: CSSProperties['boxShadow'];
+  md: CSSProperties['boxShadow'];
+  lg: CSSProperties['boxShadow'];
+  xl: CSSProperties['boxShadow'];
 }
 
 export interface Focus {
@@ -44,48 +46,48 @@ export interface Focus {
 }
 
 export interface FontSize {
-  default: React.CSSProperties['fontSize'];
-  xs: React.CSSProperties['fontSize'];
-  sm: React.CSSProperties['fontSize'];
-  md: React.CSSProperties['fontSize'];
-  lg: React.CSSProperties['fontSize'];
-  xl: React.CSSProperties['fontSize'];
-  xl2: React.CSSProperties['fontSize'];
-  xl3: React.CSSProperties['fontSize'];
-  xl4: React.CSSProperties['fontSize'];
-  xl5: React.CSSProperties['fontSize'];
-  xl6: React.CSSProperties['fontSize'];
+  default: CSSProperties['fontSize'];
+  xs: CSSProperties['fontSize'];
+  sm: CSSProperties['fontSize'];
+  md: CSSProperties['fontSize'];
+  lg: CSSProperties['fontSize'];
+  xl: CSSProperties['fontSize'];
+  xl2: CSSProperties['fontSize'];
+  xl3: CSSProperties['fontSize'];
+  xl4: CSSProperties['fontSize'];
+  xl5: CSSProperties['fontSize'];
+  xl6: CSSProperties['fontSize'];
 }
 
 export interface FontFamily {
-  default: React.CSSProperties['fontFamily'];
-  display: React.CSSProperties['fontFamily'];
-  code: React.CSSProperties['fontFamily'];
-  fallback: React.CSSProperties['fontFamily'];
+  default: CSSProperties['fontFamily'];
+  display: CSSProperties['fontFamily'];
+  code: CSSProperties['fontFamily'];
+  fallback: CSSProperties['fontFamily'];
 }
 
 export interface FontWeight {
   // add string to support css variable value.
-  default: React.CSSProperties['fontWeight'] | string;
-  xs: React.CSSProperties['fontWeight'] | string;
-  sm: React.CSSProperties['fontWeight'] | string;
-  md: React.CSSProperties['fontWeight'] | string;
-  lg: React.CSSProperties['fontWeight'] | string;
-  xl: React.CSSProperties['fontWeight'] | string;
+  default: CSSProperties['fontWeight'];
+  xs: CSSProperties['fontWeight'];
+  sm: CSSProperties['fontWeight'];
+  md: CSSProperties['fontWeight'];
+  lg: CSSProperties['fontWeight'];
+  xl: CSSProperties['fontWeight'];
 }
 
 export interface LineHeight {
-  default: React.CSSProperties['lineHeight'];
-  sm: React.CSSProperties['lineHeight'];
-  md: React.CSSProperties['lineHeight'];
-  lg: React.CSSProperties['lineHeight'];
+  default: CSSProperties['lineHeight'];
+  sm: CSSProperties['lineHeight'];
+  md: CSSProperties['lineHeight'];
+  lg: CSSProperties['lineHeight'];
 }
 
 export interface LetterSpacing {
-  default: React.CSSProperties['letterSpacing'];
-  sm: React.CSSProperties['letterSpacing'];
-  md: React.CSSProperties['letterSpacing'];
-  lg: React.CSSProperties['letterSpacing'];
+  default: CSSProperties['letterSpacing'];
+  sm: CSSProperties['letterSpacing'];
+  md: CSSProperties['letterSpacing'];
+  lg: CSSProperties['letterSpacing'];
 }
 
 export interface TypographySystem {
@@ -163,7 +165,7 @@ type BaseJoyTokens = {
     focusVisible: Palette['focusVisible'];
   };
   borderRadius: Pick<BorderRadius, 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-  elevationRing: React.CSSProperties['boxShadow'];
+  elevationRing: CSSProperties['boxShadow'];
   elevation: Pick<Elevation, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   focus: Pick<Focus, 'default'>;
   fontSize: Pick<
@@ -336,7 +338,7 @@ const joyDesignTokens: BaseJoyTokens = {
   typography: {
     h1: {
       fontFamily: 'var(--joy-fontFamily-display)',
-      fontWeight: 'var(--joy-fontWeight-lg)',
+      fontWeight: 'var(--joy-fontWeight-lg)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl4)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-sm)',
@@ -344,7 +346,7 @@ const joyDesignTokens: BaseJoyTokens = {
     },
     h2: {
       fontFamily: 'var(--joy-fontFamily-display)',
-      fontWeight: 'var(--joy-fontWeight-lg)',
+      fontWeight: 'var(--joy-fontWeight-lg)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl3)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-sm)',
@@ -352,7 +354,7 @@ const joyDesignTokens: BaseJoyTokens = {
     },
     h3: {
       fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-md)',
+      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl2)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
@@ -360,7 +362,7 @@ const joyDesignTokens: BaseJoyTokens = {
     },
     h4: {
       fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-md)',
+      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl)',
       lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
@@ -368,7 +370,7 @@ const joyDesignTokens: BaseJoyTokens = {
     },
     h5: {
       fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-md)',
+      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-lg)',
       lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
@@ -376,7 +378,7 @@ const joyDesignTokens: BaseJoyTokens = {
     },
     h6: {
       fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-md)',
+      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
@@ -384,7 +386,7 @@ const joyDesignTokens: BaseJoyTokens = {
     },
     body1: {
       fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-default)',
+      fontWeight: 'var(--joy-fontWeight-default)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-default)',
       lineHeight: 'var(--joy-lineHeight-default)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
@@ -392,7 +394,7 @@ const joyDesignTokens: BaseJoyTokens = {
     },
     body2: {
       fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-default)',
+      fontWeight: 'var(--joy-fontWeight-default)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-sm)',
       lineHeight: 'var(--joy-lineHeight-md)',
       letterSpacing: 'var(--joy-letterSpacing-default)',
@@ -400,7 +402,7 @@ const joyDesignTokens: BaseJoyTokens = {
     },
     body3: {
       fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-md)',
+      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
       lineHeight: 'var(--joy-lineHeight-md)',
       letterSpacing: 'var(--joy-letterSpacing-md)',
