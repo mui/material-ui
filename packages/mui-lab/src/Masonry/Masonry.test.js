@@ -44,7 +44,8 @@ describe('<Masonry />', () => {
       expect(getByTestId('container')).toHaveComputedStyle({
         width: `${width}px`,
         display: 'flex',
-        flexFlow: 'column wrap',
+        flexDirection: 'column',
+        flexWrap: 'wrap',
         alignContent: 'space-between',
         boxSizing: 'border-box',
         marginTop: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,

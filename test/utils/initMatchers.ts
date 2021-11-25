@@ -331,6 +331,18 @@ chai.use((chaiAPI, utils) => {
   ): void {
     const { styleTypeHint } = options;
 
+    // Compare objects using hyphen case.
+    // This is closer to actual CSS and required for getPropertyValue anyway.
+    const expectedStyle: Record<string, string> = {};
+    Object.keys(expectedStyleUnnormalized).forEach((cssProperty) => {
+      const hyphenCasedPropertyName = _.kebabCase(cssProperty);
+      const isVendorPrefixed = /^(moz|ms|o|webkit)-/.test(hyphenCasedPropertyName);
+      const propertyName = isVendorPrefixed
+        ? `-${hyphenCasedPropertyName}`
+        : hyphenCasedPropertyName;
+      expectedStyle[propertyName] = expectedStyleUnnormalized[cssProperty];
+    });
+
     const shorthandProperties = new Set([
       'all',
       'animation',
@@ -376,7 +388,7 @@ chai.use((chaiAPI, utils) => {
       'text-emphasis',
       'transition',
     ]);
-    const usedShorthandProperties = Object.keys(expectedStyleUnnormalized).filter((cssProperty) => {
+    const usedShorthandProperties = Object.keys(expectedStyle).filter((cssProperty) => {
       return shorthandProperties.has(cssProperty);
     });
     if (usedShorthandProperties.length > 0) {
@@ -392,18 +404,6 @@ chai.use((chaiAPI, utils) => {
         ].join(''),
       );
     }
-
-    // Compare objects using hyphen case.
-    // This is closer to actual CSS and required for getPropertyValue anyway.
-    const expectedStyle: Record<string, string> = {};
-    Object.keys(expectedStyleUnnormalized).forEach((cssProperty) => {
-      const hyphenCasedPropertyName = _.kebabCase(cssProperty);
-      const isVendorPrefixed = /^(moz|ms|o|webkit)-/.test(hyphenCasedPropertyName);
-      const propertyName = isVendorPrefixed
-        ? `-${hyphenCasedPropertyName}`
-        : hyphenCasedPropertyName;
-      expectedStyle[propertyName] = expectedStyleUnnormalized[cssProperty];
-    });
 
     const actualStyle: Record<string, string> = {};
     Object.keys(expectedStyle).forEach((cssProperty) => {
