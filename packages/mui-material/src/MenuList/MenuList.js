@@ -289,6 +289,11 @@ MenuList.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * If `true`, will allow focus on disabled items.
    * @default false
    */
