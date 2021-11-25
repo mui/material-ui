@@ -28,5 +28,6 @@ export type TransitionKeys =
 export interface TransitionProps
   extends TransitionActions,
     Partial<Pick<_TransitionProps & EasingProps, TransitionKeys>> {
+  id?: string;
   style?: React.CSSProperties;
 }
