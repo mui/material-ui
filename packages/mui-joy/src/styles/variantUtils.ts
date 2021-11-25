@@ -1,3 +1,4 @@
+import { CSSObject } from '@mui/system';
 import { DefaultVariantKey, DefaultContextualOverrides } from './Variants';
 import { ColorPaletteProp, DefaultColorPalette } from './ColorSystem';
 
@@ -273,7 +274,7 @@ export const createVariant = (variant: DefaultVariantKey | DefaultContextualOver
     'warning',
     'context',
   ];
-  let result = {} as Record<DefaultColorPalette, object>;
+  let result = {} as Record<DefaultColorPalette, CSSObject>;
   const generatorMap: Record<DefaultVariantKey | DefaultContextualOverrides, Function> = {
     text: getTextDefaultVariant,
     textHover: getTextHoverVariant,

@@ -1,4 +1,5 @@
 import { OverridableStringUnion } from '@mui/types';
+import { CSSObject } from '@mui/system';
 import { ColorPaletteProp } from './ColorSystem';
 
 export interface VariantPropOverrides {}
@@ -23,7 +24,7 @@ type VariantKey = VariantProp | 'containedOverrides' | `${VariantProp}${State}`;
 export type DefaultVariantKey = DefaultVariantProp | `${DefaultVariantProp}${State}`;
 
 export type Variants = {
-  [k in VariantKey]: Record<ColorPaletteProp, object>;
+  [k in VariantKey]: Record<ColorPaletteProp, CSSObject>;
 } & {
-  [k in ContextualOverrideKeys]: Record<Exclude<ColorPaletteProp, 'context'>, object>;
+  [k in ContextualOverrideKeys]: Record<Exclude<ColorPaletteProp, 'context'>, CSSObject>;
 };
