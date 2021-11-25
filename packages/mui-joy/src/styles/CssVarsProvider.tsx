@@ -19,13 +19,20 @@ type PartialDeep<T> = {
   [K in keyof T]?: PartialDeep<T[K]>;
 };
 
+type PartialNested<T> = {
+  [K in keyof T]?: {
+    [J in keyof T[K]]?: T[K][J];
+  };
+};
+
 export interface ColorSchemeOverrides {}
 
 export type ExtendedColorScheme = OverridableStringUnion<never, ColorSchemeOverrides>;
 
 export type SupportedColorScheme = ColorScheme | ExtendedColorScheme;
 
-type ThemeInput = PartialDeep<
+// Use PartialNested instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
+type ThemeInput = PartialNested<
   ThemeScales & {
     focus: Focus;
     typography: TypographySystem;

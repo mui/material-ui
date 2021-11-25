@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { createTheme as systemCreateTheme, Breakpoints, Spacing, CSSObject } from '@mui/system';
 import colors from '../colors';
 import {
@@ -22,20 +23,20 @@ import {
  */
 
 export interface BorderRadius {
-  default: CSSObject['borderRadius'];
-  xs: CSSObject['borderRadius'];
-  sm: CSSObject['borderRadius'];
-  md: CSSObject['borderRadius'];
-  lg: CSSObject['borderRadius'];
-  xl: CSSObject['borderRadius'];
+  default: React.CSSProperties['borderRadius'];
+  xs: React.CSSProperties['borderRadius'];
+  sm: React.CSSProperties['borderRadius'];
+  md: React.CSSProperties['borderRadius'];
+  lg: React.CSSProperties['borderRadius'];
+  xl: React.CSSProperties['borderRadius'];
 }
 
 export interface Elevation {
-  xs: CSSObject['borderRadius'];
-  sm: CSSObject['borderRadius'];
-  md: CSSObject['borderRadius'];
-  lg: CSSObject['borderRadius'];
-  xl: CSSObject['borderRadius'];
+  xs: React.CSSProperties['boxShadow'];
+  sm: React.CSSProperties['boxShadow'];
+  md: React.CSSProperties['boxShadow'];
+  lg: React.CSSProperties['boxShadow'];
+  xl: React.CSSProperties['boxShadow'];
 }
 
 export interface Focus {
@@ -43,48 +44,48 @@ export interface Focus {
 }
 
 export interface FontSize {
-  default: CSSObject['fontSize'];
-  xs: CSSObject['fontSize'];
-  sm: CSSObject['fontSize'];
-  md: CSSObject['fontSize'];
-  lg: CSSObject['fontSize'];
-  xl: CSSObject['fontSize'];
-  xl2: CSSObject['fontSize'];
-  xl3: CSSObject['fontSize'];
-  xl4: CSSObject['fontSize'];
-  xl5: CSSObject['fontSize'];
-  xl6: CSSObject['fontSize'];
+  default: React.CSSProperties['fontSize'];
+  xs: React.CSSProperties['fontSize'];
+  sm: React.CSSProperties['fontSize'];
+  md: React.CSSProperties['fontSize'];
+  lg: React.CSSProperties['fontSize'];
+  xl: React.CSSProperties['fontSize'];
+  xl2: React.CSSProperties['fontSize'];
+  xl3: React.CSSProperties['fontSize'];
+  xl4: React.CSSProperties['fontSize'];
+  xl5: React.CSSProperties['fontSize'];
+  xl6: React.CSSProperties['fontSize'];
 }
 
 export interface FontFamily {
-  default: CSSObject['fontFamily'];
-  display: CSSObject['fontFamily'];
-  code: CSSObject['fontFamily'];
-  fallback: CSSObject['fontFamily'];
+  default: React.CSSProperties['fontFamily'];
+  display: React.CSSProperties['fontFamily'];
+  code: React.CSSProperties['fontFamily'];
+  fallback: React.CSSProperties['fontFamily'];
 }
 
 export interface FontWeight {
   // add string to support css variable value.
-  default: CSSObject['fontWeight'] | string;
-  xs: CSSObject['fontWeight'] | string;
-  sm: CSSObject['fontWeight'] | string;
-  md: CSSObject['fontWeight'] | string;
-  lg: CSSObject['fontWeight'] | string;
-  xl: CSSObject['fontWeight'] | string;
+  default: React.CSSProperties['fontWeight'] | string;
+  xs: React.CSSProperties['fontWeight'] | string;
+  sm: React.CSSProperties['fontWeight'] | string;
+  md: React.CSSProperties['fontWeight'] | string;
+  lg: React.CSSProperties['fontWeight'] | string;
+  xl: React.CSSProperties['fontWeight'] | string;
 }
 
 export interface LineHeight {
-  default: CSSObject['lineHeight'];
-  sm: CSSObject['lineHeight'];
-  md: CSSObject['lineHeight'];
-  lg: CSSObject['lineHeight'];
+  default: React.CSSProperties['lineHeight'];
+  sm: React.CSSProperties['lineHeight'];
+  md: React.CSSProperties['lineHeight'];
+  lg: React.CSSProperties['lineHeight'];
 }
 
 export interface LetterSpacing {
-  default: CSSObject['letterSpacing'];
-  sm: CSSObject['letterSpacing'];
-  md: CSSObject['letterSpacing'];
-  lg: CSSObject['letterSpacing'];
+  default: React.CSSProperties['letterSpacing'];
+  sm: React.CSSProperties['letterSpacing'];
+  md: React.CSSProperties['letterSpacing'];
+  lg: React.CSSProperties['letterSpacing'];
 }
 
 export interface TypographySystem {
@@ -162,7 +163,7 @@ type BaseJoyTokens = {
     focusVisible: Palette['focusVisible'];
   };
   borderRadius: Pick<BorderRadius, 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-  elevationRing: CSSObject['boxShadow'];
+  elevationRing: React.CSSProperties['boxShadow'];
   elevation: Pick<Elevation, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   focus: Pick<Focus, 'default'>;
   fontSize: Pick<
