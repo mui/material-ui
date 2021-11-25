@@ -330,6 +330,69 @@ chai.use((chaiAPI, utils) => {
     options: { styleTypeHint: string },
   ): void {
     const { styleTypeHint } = options;
+
+    const shorthandProperties = new Set([
+      'all',
+      'animation',
+      'background',
+      'border',
+      'border-block-end',
+      'border-block-start',
+      'border-bottom',
+      'border-color',
+      'border-image',
+      'border-inline-end',
+      'border-inline-start',
+      'border-left',
+      'border-radius',
+      'border-right',
+      'border-style',
+      'border-top',
+      'border-width',
+      'column-rule',
+      'columns',
+      'flex',
+      'flex-flow',
+      'font',
+      'gap',
+      'grid',
+      'grid-area',
+      'grid-column',
+      'grid-row',
+      'grid-template',
+      'list-style',
+      'margin',
+      'mask',
+      'offset',
+      'outline',
+      'overflow',
+      'padding',
+      'place-content',
+      'place-items',
+      'place-self',
+      'scroll-margin',
+      'scroll-padding',
+      'text-decoration',
+      'text-emphasis',
+      'transition',
+    ]);
+    const usedShorthandProperties = Object.keys(expectedStyleUnnormalized).filter((cssProperty) => {
+      return shorthandProperties.has(cssProperty);
+    });
+    if (usedShorthandProperties.length > 0) {
+      throw new Error(
+        [
+          `Shorthand properties are not supported in ${styleTypeHint} styles matchers since browser can compute them differently. `,
+          'Use longhand properties instead for the follow shorthand properties:\n',
+          usedShorthandProperties
+            .map((cssProperty) => {
+              return `- https://developer.mozilla.org/en-US/docs/Web/CSS/${cssProperty}#constituent_properties`;
+            })
+            .join('\n'),
+        ].join(''),
+      );
+    }
+
     // Compare objects using hyphen case.
     // This is closer to actual CSS and required for getPropertyValue anyway.
     const expectedStyle: Record<string, string> = {};
