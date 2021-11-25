@@ -49,7 +49,7 @@ describe('<AvatarGroup />', () => {
     expect(container.textContent).to.equal('+2');
   });
 
-  it('should display 3 avatars and "+7"', () => {
+  it('should respect total', () => {
     const { container } = render(
       <AvatarGroup total={10}>
         <Avatar src="/fake.png" />
@@ -62,31 +62,27 @@ describe('<AvatarGroup />', () => {
     expect(container.textContent).to.equal('+7');
   });
 
-  it('should display 3 avatars and "+2"', () => {
+  it('should respect both total and max', () => {
     const { container } = render(
-      <AvatarGroup max={4} total={5}>
-        <Avatar src="/fake.png" />
-        <Avatar src="/fake.png" />
+      <AvatarGroup max={2} total={3}>
         <Avatar src="/fake.png" />
         <Avatar src="/fake.png" />
       </AvatarGroup>,
     );
-    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(4);
-    expect(container.querySelectorAll('img').length).to.equal(3);
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(2);
+    expect(container.querySelectorAll('img').length).to.equal(1);
     expect(container.textContent).to.equal('+2');
   });
 
-  it('should display 3 avatars', () => {
+  it('should respect total and clamp down shown avatars', () => {
     const { container } = render(
-      <AvatarGroup max={3} total={3}>
-        <Avatar src="/fake.png" />
-        <Avatar src="/fake.png" />
+      <AvatarGroup total={1}>
         <Avatar src="/fake.png" />
         <Avatar src="/fake.png" />
       </AvatarGroup>,
     );
-    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(3);
-    expect(container.querySelectorAll('img').length).to.equal(3);
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(1);
+    expect(container.querySelectorAll('img').length).to.equal(1);
     expect(container.textContent).to.equal('');
   });
 
