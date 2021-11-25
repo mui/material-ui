@@ -104,11 +104,9 @@ describe('<AvatarGroup />', () => {
     const { container } = render(
       <AvatarGroup total={-1}>
         <Avatar src="/fake.png" />
-        <Avatar src="/fake.png" />
-        <Avatar src="/fake.png" />
       </AvatarGroup>,
     );
-    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(3);
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(1);
     expect(container.textContent).to.equal('');
   });
 
