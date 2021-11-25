@@ -80,8 +80,14 @@ describe('sx', () => {
       expect(container.firstChild).toHaveComputedStyle({
         color: 'rgb(0, 0, 255)',
         backgroundColor: 'rgb(0, 255, 0)',
-        margin: '20px',
-        padding: '10px',
+        marginTop: '20px',
+        marginRight: '20px',
+        marginBottom: '20px',
+        marginLeft: '20px',
+        paddingTop: '10px',
+        paddingRight: '10px',
+        paddingBottom: '10px',
+        paddingLeft: '10px',
         fontSize: '14px',
         maxWidth: '600px',
       });
@@ -133,8 +139,14 @@ describe('sx', () => {
       expect(container.firstChild).toHaveComputedStyle({
         color: 'rgb(0, 0, 255)',
         backgroundColor: 'rgb(0, 255, 0)',
-        margin: '20px',
-        padding: '10px',
+        marginTop: '20px',
+        marginRight: '20px',
+        marginBottom: '20px',
+        marginLeft: '20px',
+        paddingTop: '10px',
+        paddingRight: '10px',
+        paddingBottom: '10px',
+        paddingLeft: '10px',
         fontSize: '14px',
         maxWidth: '600px',
       });
