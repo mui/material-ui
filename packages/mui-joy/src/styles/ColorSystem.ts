@@ -52,7 +52,7 @@ export interface PaletteText {
   tertiary: React.CSSProperties['color'];
 }
 
-export interface PaletteSurface {
+export interface PaletteBackground {
   default: React.CSSProperties['backgroundColor'];
   level1: React.CSSProperties['backgroundColor'];
   level2: React.CSSProperties['backgroundColor'];
@@ -81,7 +81,7 @@ export type ColorPalette = {
 
 export interface Palette extends ColorPalette {
   text: PaletteText;
-  surface: PaletteSurface;
+  background: PaletteBackground;
   focusVisible: React.CSSProperties['outline'];
 }
 

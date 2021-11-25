@@ -5,7 +5,7 @@ import {
   Palette,
   PaletteText,
   PaletteRange,
-  PaletteSurface,
+  PaletteBackground,
   ColorPaletteProp,
 } from './ColorSystem';
 import { Variants, DefaultVariantKey, DefaultContextualOverrides } from './Variants';
@@ -158,7 +158,7 @@ type BaseJoyTokens = {
     success: Pick<PaletteRange, BasePaletteRange>;
     warning: Pick<PaletteRange, BasePaletteRange>;
     text: Pick<PaletteText, 'primary' | 'secondary' | 'tertiary'>;
-    surface: Pick<PaletteSurface, 'default' | 'level1' | 'level2' | 'level3'>;
+    background: Pick<PaletteBackground, 'default' | 'level1' | 'level2' | 'level3'>;
     focusVisible: Palette['focusVisible'];
   };
   borderRadius: Pick<BorderRadius, 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
@@ -212,7 +212,7 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> 
       secondary: 'var(--joy-palette-neutral-600)',
       tertiary: 'var(--joy-palette-neutral-500)',
     },
-    surface: {
+    background: {
       default: 'var(--joy-palette-neutral-50)',
       level1: '#fff',
       level2: 'var(--joy-palette-neutral-100)',
@@ -254,7 +254,7 @@ export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> =
       secondary: 'var(--joy-palette-neutral-300)',
       tertiary: 'var(--joy-palette-neutral-400)',
     },
-    surface: {
+    background: {
       default: 'var(--joy-palette-neutral-800)',
       level1: 'var(--joy-palette-neutral-900)',
       level2: 'var(--joy-palette-neutral-700)',

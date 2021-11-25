@@ -42,7 +42,9 @@ describe('[Joy] CssVarsProvider', () => {
             <div data-testid="palette-success">{JSON.stringify(theme.vars.palette.success)}</div>
             <div data-testid="palette-warning">{JSON.stringify(theme.vars.palette.warning)}</div>
             <div data-testid="palette-text">{JSON.stringify(theme.vars.palette.text)}</div>
-            <div data-testid="palette-surface">{JSON.stringify(theme.vars.palette.surface)}</div>
+            <div data-testid="palette-background">
+              {JSON.stringify(theme.vars.palette.background)}
+            </div>
             <div data-testid="palette-focusVisible">
               {JSON.stringify(theme.vars.palette.focusVisible)}
             </div>
@@ -279,12 +281,12 @@ describe('[Joy] CssVarsProvider', () => {
           tertiary: 'var(--joy-palette-text-tertiary)',
         }),
       );
-      expect(screen.getByTestId('palette-surface').textContent).to.equal(
+      expect(screen.getByTestId('palette-background').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-palette-surface-default)',
-          level1: 'var(--joy-palette-surface-level1)',
-          level2: 'var(--joy-palette-surface-level2)',
-          level3: 'var(--joy-palette-surface-level3)',
+          default: 'var(--joy-palette-background-default)',
+          level1: 'var(--joy-palette-background-level1)',
+          level2: 'var(--joy-palette-background-level2)',
+          level3: 'var(--joy-palette-background-level3)',
         }),
       );
       expect(screen.getByTestId('palette-focusVisible').textContent).to.equal(
