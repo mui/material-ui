@@ -2,8 +2,8 @@ type UseListboxStrictPropsRequiredKeys =
   | 'isOptionDisabled'
   | 'disableListWrap'
   | 'disabledItemsFocusable'
-  | 'isOptionEqualToValue'
-  | 'selectMultiple';
+  | 'optionComparer'
+  | 'multiple';
 
 export type UseListboxStrictProps<TOption> = Omit<
   UseListboxProps<TOption>,
@@ -17,6 +17,7 @@ export enum ActionTypes {
   keyDown = 'keyDown',
   optionClick = 'optionClick',
   setControlledValue = 'setControlledValue',
+  optionsChange = 'optionsChange',
 }
 
 interface OptionClickAction<TOption> {
@@ -48,6 +49,14 @@ interface KeyDownAction<TOption> {
 interface SetControlledValueAction<TOption> {
   type: ActionTypes.setControlledValue;
   value: TOption | TOption[] | null;
+  props: UseListboxStrictProps<TOption>;
+}
+
+interface OptionsChangeAction<TOption> {
+  type: ActionTypes.optionsChange;
+  options: TOption[];
+  previousOptions: TOption[];
+  props: UseListboxStrictProps<TOption>;
 }
 
 export type ListboxAction<TOption> =
@@ -55,7 +64,8 @@ export type ListboxAction<TOption> =
   | FocusAction<TOption>
   | BlurAction<TOption>
   | KeyDownAction<TOption>
-  | SetControlledValueAction<TOption>;
+  | SetControlledValueAction<TOption>
+  | OptionsChangeAction<TOption>;
 
 export interface ListboxState<TOption> {
   highlightedIndex: number;
@@ -73,6 +83,10 @@ interface UseListboxCommonProps<TOption> {
    */
   options: TOption[];
   /**
+   * Id attribute of the listbox.
+   */
+  id?: string;
+  /**
    * A function that determines if a particular option is disabled.
    * @default () => false
    */
@@ -81,7 +95,7 @@ interface UseListboxCommonProps<TOption> {
    * A function that tests equality between two options.
    * @default (a, b) => a === b
    */
-  isOptionEqualToValue?: (option: TOption, value: TOption) => boolean;
+  optionComparer?: (optionA: TOption, optionB: TOption) => boolean;
   /**
    * If `true`, the highlight will not wrap around the list if arrow keys are used.
    * @default false
@@ -92,6 +106,10 @@ interface UseListboxCommonProps<TOption> {
    * @default false
    */
   disabledItemsFocusable?: boolean;
+  /**
+   * A function that generates the id attribute of indivcidual options.
+   */
+  optionIdGenerator?: (option: TOption, index: number) => string;
   /**
    * Custom state reducer function. It calculates the new state (highlighted and selected options)
    * based on the previous one and the performed action.
@@ -112,7 +130,7 @@ interface UseSingleSelectListboxProps<TOption> extends UseListboxCommonProps<TOp
    * If `true`, the component will allow to select multiple options.
    * @default false
    */
-  selectMultiple?: false;
+  multiple?: false;
   /**
    * The selected value. Use when the component is controlled.
    */
@@ -132,7 +150,7 @@ interface UseMultiSelectListboxProps<TOption> extends UseListboxCommonProps<TOpt
    * If `true`, the component will allow to select multiple options.
    * @default false
    */
-  selectMultiple: true;
+  multiple: true;
   /**
    * The selected value. Use when the component is controlled.
    */
@@ -146,3 +164,11 @@ interface UseMultiSelectListboxProps<TOption> extends UseListboxCommonProps<TOpt
 export type UseListboxProps<TOption> =
   | UseSingleSelectListboxProps<TOption>
   | UseMultiSelectListboxProps<TOption>;
+
+export interface OptionState<TOption> {
+  disabled: boolean;
+  highlighted: boolean;
+  index: number;
+  option: TOption;
+  selected: boolean;
+}

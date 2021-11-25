@@ -33,6 +33,8 @@ export { default as PopperUnstyled } from './PopperUnstyled';
 
 export { default as Portal } from './Portal';
 
+export { default as SelectUnstyled } from './SelectUnstyled';
+
 export { default as SliderUnstyled } from './SliderUnstyled';
 export * from './SliderUnstyled';
 

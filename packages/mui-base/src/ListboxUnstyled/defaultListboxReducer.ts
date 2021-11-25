@@ -69,20 +69,18 @@ function getNewHighlightedIndex<TOption>(
     if (newIndex < 0) {
       if ((!wrapAround && previouslyHighlightedIndex !== -1) || Math.abs(diff) > 1) {
         nextIndexCandidate = 0;
-      }
-
-      nextIndexCandidate = maxIndex;
-    }
-
-    if (newIndex > maxIndex) {
-      if (!wrapAround || Math.abs(diff) > 1) {
+      } else {
         nextIndexCandidate = maxIndex;
       }
-
-      nextIndexCandidate = 0;
+    } else if (newIndex > maxIndex) {
+      if (!wrapAround || Math.abs(diff) > 1) {
+        nextIndexCandidate = maxIndex;
+      } else {
+        nextIndexCandidate = 0;
+      }
+    } else {
+      nextIndexCandidate = newIndex;
     }
-
-    nextIndexCandidate = newIndex;
   }
 
   const nextIndex = findValidOptionToHighlight(
@@ -107,8 +105,8 @@ function handleKeyDown<TOption>(
     isOptionDisabled,
     disableListWrap,
     disabledItemsFocusable,
-    isOptionEqualToValue,
-    selectMultiple,
+    optionComparer,
+    multiple: selectMultiple,
   } = props;
 
   const moveHighlight = (
@@ -167,6 +165,7 @@ function handleKeyDown<TOption>(
       };
 
     case 'Enter':
+    case ' ':
       if (state.highlightedIndex !== -1) {
         const option = options[state.highlightedIndex];
         const disabled = isOptionDisabled
@@ -178,13 +177,11 @@ function handleKeyDown<TOption>(
         }
 
         if (selectMultiple) {
-          if (
-            ((state.selectedValue as TOption[]) ?? []).some((o) => isOptionEqualToValue(o, option))
-          ) {
+          if (((state.selectedValue as TOption[]) ?? []).some((o) => optionComparer(o, option))) {
             return {
               ...state,
               selectedValue: (state.selectedValue as TOption[]).filter(
-                (o) => !isOptionEqualToValue(o, option),
+                (o) => !optionComparer(o, option),
               ),
             };
           }
@@ -202,31 +199,6 @@ function handleKeyDown<TOption>(
       }
       break;
 
-    case ' ': {
-      if (!props.selectMultiple || state.highlightedIndex === -1) {
-        return state;
-      }
-
-      const option = options[state.highlightedIndex];
-      if (isOptionDisabled ? isOptionDisabled(option, state.highlightedIndex) : false) {
-        return state;
-      }
-
-      if (((state.selectedValue as TOption[]) ?? []).some((o) => isOptionEqualToValue(o, option))) {
-        return {
-          ...state,
-          selectedValue: (state.selectedValue as TOption[]).filter(
-            (o) => !isOptionEqualToValue(o, option),
-          ),
-        };
-      }
-
-      return {
-        ...state,
-        selectedValue: [...((state.selectedValue as TOption[]) ?? []), option],
-      };
-    }
-
     default:
       break;
   }
@@ -241,8 +213,8 @@ function handleOptionClick<TOption>(
   props: UseListboxStrictProps<TOption>,
 ): ListboxState<TOption> {
   const {
-    selectMultiple,
-    isOptionEqualToValue = (o, v) => o === v,
+    multiple: selectMultiple,
+    optionComparer = (o, v) => o === v,
     isOptionDisabled = () => false,
   } = props;
   const { selectedValue } = state;
@@ -253,9 +225,9 @@ function handleOptionClick<TOption>(
 
   if (selectMultiple) {
     const newSelectedValue = ((selectedValue as TOption[]) ?? []).some((v) =>
-      isOptionEqualToValue(v, option),
+      optionComparer(v, option),
     )
-      ? (selectedValue as TOption[]).filter((v) => !isOptionEqualToValue(v, option))
+      ? (selectedValue as TOption[]).filter((v) => !optionComparer(v, option))
       : [...((selectedValue as TOption[]) ?? []), option];
     return {
       ...state,
@@ -264,7 +236,7 @@ function handleOptionClick<TOption>(
     };
   }
 
-  if (selectedValue != null && isOptionEqualToValue(option, selectedValue as TOption)) {
+  if (selectedValue != null && optionComparer(option, selectedValue as TOption)) {
     return state;
   }
 
@@ -279,6 +251,40 @@ function handleBlur<TOption>(state: ListboxState<TOption>): ListboxState<TOption
   return {
     ...state,
     highlightedIndex: -1,
+  };
+}
+
+function handleOptionsChange<TOption>(
+  options: TOption[],
+  previousOptions: TOption[],
+  state: ListboxState<TOption>,
+  props: UseListboxStrictProps<TOption>,
+): ListboxState<TOption> {
+  const highlightedOption = previousOptions[state.highlightedIndex];
+  const hightlightedOptionNewIndex = options.findIndex((option) =>
+    props.optionComparer(option, highlightedOption),
+  );
+
+  if (props.multiple) {
+    // exclude selected values that are no longer in the options
+    const newSelectedValues = ((state.selectedValue ?? []) as TOption[]).filter((selectedValue) =>
+      options.some((option) => props.optionComparer(option, selectedValue)),
+    );
+
+    return {
+      ...state,
+      highlightedIndex: hightlightedOptionNewIndex,
+      selectedValue: newSelectedValues,
+    };
+  }
+
+  const newSelectedValue =
+    options.find((option) => props.optionComparer(option, state.selectedValue as TOption)) ?? null;
+
+  return {
+    ...state,
+    highlightedIndex: hightlightedOptionNewIndex,
+    selectedValue: newSelectedValue,
   };
 }
 
@@ -300,6 +306,8 @@ export default function defaultListboxReducer<TOption>(
         ...state,
         selectedValue: action.value,
       };
+    case ActionTypes.optionsChange:
+      return handleOptionsChange(action.options, action.previousOptions, state, action.props);
     default:
       return state;
   }

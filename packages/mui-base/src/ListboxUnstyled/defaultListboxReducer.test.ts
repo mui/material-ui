@@ -10,7 +10,18 @@ describe('useListbox defaultReducer', () => {
         selectedValue: null,
       };
 
-      const action: ListboxAction<string> = { type: ActionTypes.setControlledValue, value: 'foo' };
+      const action: ListboxAction<string> = {
+        type: ActionTypes.setControlledValue,
+        value: 'foo',
+        props: {
+          options: [],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          isOptionDisabled: () => false,
+          optionComparer: (o, v) => o === v,
+          multiple: false,
+        },
+      };
       const result = defaultReducer(state, action);
       expect(result.selectedValue).to.equal('foo');
     });
@@ -31,8 +42,8 @@ describe('useListbox defaultReducer', () => {
           disableListWrap: false,
           disabledItemsFocusable: false,
           isOptionDisabled: () => false,
-          isOptionEqualToValue: (o, v) => o === v,
-          selectMultiple: false,
+          optionComparer: (o, v) => o === v,
+          multiple: false,
         },
       };
 
@@ -56,8 +67,8 @@ describe('useListbox defaultReducer', () => {
           disableListWrap: false,
           disabledItemsFocusable: false,
           isOptionDisabled: () => false,
-          isOptionEqualToValue: (o, v) => o === v,
-          selectMultiple: false,
+          optionComparer: (o, v) => o === v,
+          multiple: false,
         },
         option: 'two',
         optionIndex: 1,
@@ -81,8 +92,8 @@ describe('useListbox defaultReducer', () => {
           disableListWrap: false,
           disabledItemsFocusable: false,
           isOptionDisabled: () => false,
-          isOptionEqualToValue: (o, v) => o === v,
-          selectMultiple: true,
+          optionComparer: (o, v) => o === v,
+          multiple: true,
         },
         option: 'two',
         optionIndex: 1,
@@ -106,8 +117,8 @@ describe('useListbox defaultReducer', () => {
           disableListWrap: false,
           disabledItemsFocusable: false,
           isOptionDisabled: () => false,
-          isOptionEqualToValue: (o, v) => o === v,
-          selectMultiple: true,
+          optionComparer: (o, v) => o === v,
+          multiple: true,
         },
         option: 'two',
         optionIndex: 1,
@@ -136,8 +147,8 @@ describe('useListbox defaultReducer', () => {
             disableListWrap: false,
             disabledItemsFocusable: false,
             isOptionDisabled: (_, index) => index === 0,
-            isOptionEqualToValue: (o, v) => o === v,
-            selectMultiple: false,
+            optionComparer: (o, v) => o === v,
+            multiple: false,
           },
         };
 
@@ -163,8 +174,8 @@ describe('useListbox defaultReducer', () => {
             disableListWrap: false,
             disabledItemsFocusable: false,
             isOptionDisabled: (_, index) => index === 4,
-            isOptionEqualToValue: (o, v) => o === v,
-            selectMultiple: false,
+            optionComparer: (o, v) => o === v,
+            multiple: false,
           },
         };
 
@@ -190,8 +201,8 @@ describe('useListbox defaultReducer', () => {
             disableListWrap: false,
             disabledItemsFocusable: false,
             isOptionDisabled: (_, index) => index === 0 || index === 4,
-            isOptionEqualToValue: (o, v) => o === v,
-            selectMultiple: false,
+            optionComparer: (o, v) => o === v,
+            multiple: false,
           },
         };
 
@@ -217,8 +228,8 @@ describe('useListbox defaultReducer', () => {
             disableListWrap: false,
             disabledItemsFocusable: false,
             isOptionDisabled: (_, index) => index === 0 || index === 4,
-            isOptionEqualToValue: (o, v) => o === v,
-            selectMultiple: false,
+            optionComparer: (o, v) => o === v,
+            multiple: false,
           },
         };
 
@@ -242,8 +253,8 @@ describe('useListbox defaultReducer', () => {
             disableListWrap: false,
             disabledItemsFocusable: false,
             isOptionDisabled: () => true,
-            isOptionEqualToValue: (o, v) => o === v,
-            selectMultiple: false,
+            optionComparer: (o, v) => o === v,
+            multiple: false,
           },
         };
 
@@ -269,8 +280,8 @@ describe('useListbox defaultReducer', () => {
             disableListWrap: false,
             disabledItemsFocusable: false,
             isOptionDisabled: () => false,
-            isOptionEqualToValue: (o, v) => o === v,
-            selectMultiple: false,
+            optionComparer: (o, v) => o === v,
+            multiple: false,
           },
         };
 
@@ -294,8 +305,8 @@ describe('useListbox defaultReducer', () => {
             disableListWrap: false,
             disabledItemsFocusable: false,
             isOptionDisabled: () => false,
-            isOptionEqualToValue: (o, v) => o === v,
-            selectMultiple: true,
+            optionComparer: (o, v) => o === v,
+            multiple: true,
           },
           option: 'two',
           optionIndex: 1,

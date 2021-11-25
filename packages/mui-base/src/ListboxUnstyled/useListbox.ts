@@ -1,103 +1,70 @@
 import * as React from 'react';
-import { unstable_useControlled as useControlled } from '@mui/utils';
-import {
-  UseListboxProps,
-  ListboxState,
-  ListboxAction,
-  UseListboxStrictProps,
-  ListboxReducer,
-  ActionTypes,
-} from './types';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import { UseListboxProps, UseListboxStrictProps, ActionTypes, OptionState } from './types';
 import defaultReducer from './defaultListboxReducer';
+import useControllableReducer from './useControllableReducer';
+import areArraysEqual from '../utils/areArraysEqual';
 
-const defaultOptionComparer = <TOption>(option: TOption, value: TOption) => option === value;
-
-function useControlledReducer<TOption>(
-  internalReducer: ListboxReducer<TOption>,
-  externalReducer: ListboxReducer<TOption> | undefined,
-  controlledValue: UseListboxProps<TOption>['value'],
-  defaultValue: UseListboxProps<TOption>['defaultValue'],
-  onValueChange: UseListboxProps<TOption>['onChange'],
-  onHighlightChange: UseListboxProps<TOption>['onHighlightChange'],
-  options: UseListboxProps<TOption>['options'],
-): [ListboxState<TOption>, (action: ListboxAction<TOption>) => void] {
-  const [value, setValueState] = useControlled({
-    controlled: controlledValue,
-    default: defaultValue,
-    name: 'useListbox',
-  });
-
-  const [state, dispatch] = React.useReducer<ListboxReducer<TOption>>(
-    externalReducer ?? internalReducer,
-    {
-      highlightedIndex: -1,
-      selectedValue: value,
-    } as ListboxState<TOption>,
-  );
-
-  React.useEffect(() => {
-    if (controlledValue !== undefined) {
-      dispatch({ type: ActionTypes.setControlledValue, value: controlledValue });
-    }
-  }, [controlledValue]);
-
-  React.useEffect(() => {
-    setValueState(state.selectedValue);
-    if (state.selectedValue != null) {
-      // @ts-ignore We know that selectedValue has the correct type depending on `selectMultiple` prop.
-      onValueChange?.(state.selectedValue);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- No need to re-run if the event handler changes
-  }, [state.selectedValue, setValueState]);
-
-  React.useEffect(() => {
-    if (state.highlightedIndex === -1) {
-      onHighlightChange?.(null);
-    } else {
-      onHighlightChange?.(options[state.highlightedIndex]);
-    }
-  });
-
-  return [state, dispatch];
-}
+const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 
 export default function useListbox<TOption>(
   props: UseListboxProps<TOption>,
-  ref: React.RefObject<Element>,
+  ref: React.Ref<Element>,
 ) {
   const {
-    defaultValue,
     disableListWrap = false,
     disabledItemsFocusable = false,
+    id,
     options,
-    selectMultiple = false,
+    multiple = false,
     isOptionDisabled = () => false,
-    isOptionEqualToValue = defaultOptionComparer,
-    onChange,
-    onHighlightChange,
+    optionComparer = defaultOptionComparer,
     stateReducer: externalReducer,
-    value: valueProp,
   } = props;
+
+  function defaultIdGenerator(_: TOption, index: number) {
+    return `${id}-option-${index}`;
+  }
+
+  const optionIdGenerator = props.optionIdGenerator ?? defaultIdGenerator;
 
   const propsWithDefaults: UseListboxStrictProps<TOption> = {
     ...props,
     disableListWrap,
     disabledItemsFocusable,
-    selectMultiple,
     isOptionDisabled,
-    isOptionEqualToValue,
+    multiple,
+    optionComparer,
   };
 
-  const [{ highlightedIndex, selectedValue }, dispatch] = useControlledReducer(
+  const listboxRef = React.useRef<Element | null>(null);
+  const handleRef = useForkRef(listboxRef, ref);
+
+  const [{ highlightedIndex, selectedValue }, dispatch] = useControllableReducer(
     defaultReducer,
     externalReducer,
-    valueProp,
-    defaultValue,
-    onChange,
-    onHighlightChange,
-    options,
+    propsWithDefaults,
   );
+
+  const previousOptions = React.useRef<TOption[]>([]);
+
+  React.useEffect(() => {
+    if (areArraysEqual(previousOptions.current, options, optionComparer)) {
+      return;
+    }
+
+    dispatch({
+      type: ActionTypes.optionsChange,
+      options,
+      previousOptions: previousOptions.current,
+      props: propsWithDefaults,
+    });
+
+    previousOptions.current = options;
+
+    // No need to re-run this effect if props change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [options, optionComparer, dispatch]);
 
   const createHandleOptionClick =
     (optionIndex: number, other: Record<string, React.EventHandler<any>>) =>
@@ -148,7 +115,7 @@ export default function useListbox<TOption>(
 
   const createHandleBlur =
     (other: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent<HTMLElement>) => {
-      if (ref.current?.contains(document.activeElement)) {
+      if (listboxRef.current?.contains(document.activeElement)) {
         // focus is within the listbox
         return;
       }
@@ -168,23 +135,29 @@ export default function useListbox<TOption>(
 
   const getRootProps = (other: Record<string, React.EventHandler<any>> = {}) => {
     return {
+      'aria-activedescendant':
+        highlightedIndex >= 0
+          ? optionIdGenerator(options[highlightedIndex], highlightedIndex)
+          : undefined,
+      id,
       onBlur: createHandleBlur(other),
       onFocus: createHandleFocus(other),
       onKeyDown: createHandleKeyDown(other),
       role: 'listbox',
       tabIndex: 0,
+      ref: handleRef,
     };
   };
 
   const getOptionState = (index: number) => {
     const option = options[index];
     let selected: boolean;
-    if (selectMultiple) {
+    if (multiple) {
       selected = ((selectedValue as TOption[]) ?? []).some(
-        (value) => value != null && isOptionEqualToValue(option, value),
+        (value) => value != null && optionComparer(option, value),
       );
     } else {
-      selected = isOptionEqualToValue(option, selectedValue as TOption);
+      selected = optionComparer(option, selectedValue as TOption);
     }
 
     const disabled = isOptionDisabled(option, index);
@@ -195,7 +168,7 @@ export default function useListbox<TOption>(
       selected,
       disabled,
       highlighted: highlightedIndex === index,
-    };
+    } as OptionState<TOption>;
   };
 
   const getOptionProps = (index: number, other: Record<string, React.EventHandler<any>> = {}) => {
@@ -205,6 +178,7 @@ export default function useListbox<TOption>(
       'aria-disabled': disabled || undefined,
       'aria-selected': selected,
       'data-option-index': index,
+      id: optionIdGenerator(options[index], index),
       onClick: createHandleOptionClick(index, other),
       role: 'option',
     };

@@ -153,6 +153,7 @@ export default function useButton(props: UseButtonProps) {
   };
 
   const buttonProps: Record<string, unknown> = {};
+
   if (hostElementName === 'BUTTON') {
     buttonProps.type = type ?? 'button';
     buttonProps.disabled = disabled;
@@ -191,9 +192,9 @@ export default function useButton(props: UseButtonProps) {
     return {
       tabIndex: disabled ? -1 : tabIndex,
       type,
-      ref: updateRef,
       ...buttonProps,
       ...mergedEventHandlers,
+      ref: updateRef,
     };
   };
 

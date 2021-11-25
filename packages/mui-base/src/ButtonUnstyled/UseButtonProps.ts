@@ -24,7 +24,7 @@ export default interface UseButtonProps {
   href?: string;
   onClick?: React.MouseEventHandler;
   onFocusVisible?: React.FocusEventHandler;
-  ref: React.Ref<any>;
+  ref?: React.Ref<any>;
   tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
   to?: string;
   /**
