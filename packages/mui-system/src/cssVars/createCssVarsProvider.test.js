@@ -2,12 +2,12 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen, fireEvent } from 'test/utils';
-import createCssVarsProvider from './createCssVarsProvider';
+import createCssVarsProvider, { DISABLE_CSS_TRANSITION } from './createCssVarsProvider';
 import { DEFAULT_ATTRIBUTE, DEFAULT_MODE_STORAGE_KEY } from './getInitColorSchemeScript';
 import useTheme from '../useTheme';
 
 describe('createCssVarsProvider', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer();
   let originalMatchmedia;
   let storage = {};
   const createMatchMedia = (matches) => () => ({
@@ -238,82 +238,235 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByText('var(--palette-grey)')).not.to.equal(null);
     });
 
-    it('set `color-scheme` property to body with correct mode, given `enableColorScheme` is true and `mode` is `light` or `dark`', () => {
-      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
-        theme: {
-          colorSchemes: { light: {}, dark: {} },
-        },
-        defaultColorScheme: 'light',
-        enableColorScheme: true,
+    describe('[option]: `enableColorScheme`', () => {
+      it('set `color-scheme` property to body with correct mode, given `enableColorScheme` is true and `mode` is `light` or `dark`', () => {
+        const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+          theme: {
+            colorSchemes: { light: {}, dark: {} },
+          },
+          defaultColorScheme: 'light',
+          enableColorScheme: true,
+        });
+        const Consumer = () => {
+          const { setMode } = useColorScheme();
+          return <button onClick={() => setMode('dark')}>change to dark</button>;
+        };
+        render(
+          <CssVarsProvider>
+            <Consumer />
+          </CssVarsProvider>,
+        );
+        expect(
+          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
+        ).to.equal('light');
+
+        fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
+
+        expect(
+          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
+        ).to.equal('dark');
       });
-      const Consumer = () => {
-        const { setMode } = useColorScheme();
-        return <button onClick={() => setMode('dark')}>change to dark</button>;
-      };
-      render(
-        <CssVarsProvider>
-          <Consumer />
-        </CssVarsProvider>,
-      );
-      expect(
-        window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-      ).to.equal('light');
 
-      fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
+      it('set `color-scheme` property to body with correct mode, given `enableColorScheme` is true and mode is `system`', () => {
+        window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
 
-      expect(
-        window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-      ).to.equal('dark');
+        const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+          theme: {
+            colorSchemes: { light: {}, dark: {} },
+          },
+          defaultColorScheme: 'light',
+          enableColorScheme: true,
+        });
+        const Consumer = () => {
+          const { setMode } = useColorScheme();
+          return <button onClick={() => setMode('system')}>change to system</button>;
+        };
+        render(
+          <CssVarsProvider>
+            <Consumer />
+          </CssVarsProvider>,
+        );
+        expect(
+          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
+        ).to.equal('light');
+
+        fireEvent.click(screen.getByRole('button', { name: 'change to system' }));
+
+        expect(
+          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
+        ).to.equal('dark');
+      });
+
+      it('does not set `color-scheme` property to body with correct mode, given`enableColorScheme` is false', () => {
+        const { CssVarsProvider } = createCssVarsProvider({
+          theme: {
+            colorSchemes: { light: {}, dark: {} },
+          },
+          defaultColorScheme: 'light',
+          enableColorScheme: false,
+        });
+        const Consumer = () => <div />;
+
+        render(
+          <CssVarsProvider>
+            <Consumer />
+          </CssVarsProvider>,
+        );
+        expect(
+          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
+        ).not.to.equal('light');
+      });
     });
 
-    it('set `color-scheme` property to body with correct mode, given `enableColorScheme` is true and mode is `system`', () => {
-      window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
+    describe('[option]: `disableTransitionOnChange`', () => {
+      clock.withFakeTimers();
+      it('disable all css transitions when switching bewteen modes, given `disableTransitionOnChange` is true', () => {
+        const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+          theme: {
+            colorSchemes: { light: {}, dark: {} },
+          },
+          defaultColorScheme: {
+            light: 'light',
+            dark: 'dark',
+          },
+          disableTransitionOnChange: true,
+        });
+        const Consumer = () => {
+          const { mode, setMode } = useColorScheme();
+          return (
+            <div>
+              <div data-testid="current-mode">{mode}</div>
+              <button onClick={() => setMode('dark')}>change to dark</button>;
+            </div>
+          );
+        };
+        render(
+          <CssVarsProvider>
+            <Consumer />
+          </CssVarsProvider>,
+        );
 
-      const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
-        theme: {
-          colorSchemes: { light: {}, dark: {} },
-        },
-        defaultColorScheme: 'light',
-        enableColorScheme: true,
+        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+          DISABLE_CSS_TRANSITION,
+        );
+        fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
+        expect(document.head.children[document.head.children.length - 1].textContent).to.equal(
+          DISABLE_CSS_TRANSITION,
+        );
+        expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
+
+        clock.runToLast();
+        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+          DISABLE_CSS_TRANSITION,
+        );
       });
-      const Consumer = () => {
-        const { setMode } = useColorScheme();
-        return <button onClick={() => setMode('system')}>change to system</button>;
-      };
-      render(
-        <CssVarsProvider>
-          <Consumer />
-        </CssVarsProvider>,
-      );
-      expect(
-        window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-      ).to.equal('light');
 
-      fireEvent.click(screen.getByRole('button', { name: 'change to system' }));
+      it('disable all css transitions when switching bewteen color schemes, given `disableTransitionOnChange` is true', () => {
+        const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+          theme: {
+            colorSchemes: { light: {}, dark: {} },
+          },
+          defaultColorScheme: {
+            light: 'light',
+            dark: 'dark',
+          },
+          disableTransitionOnChange: true,
+        });
+        const Consumer = () => {
+          const { colorScheme, setColorScheme } = useColorScheme();
+          return (
+            <div>
+              <div data-testid="current-color-scheme">{colorScheme}</div>
+              <button onClick={() => setColorScheme('dark')}>change to dark</button>;
+            </div>
+          );
+        };
+        render(
+          <CssVarsProvider>
+            <Consumer />
+          </CssVarsProvider>,
+        );
 
-      expect(
-        window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-      ).to.equal('dark');
-    });
+        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+          DISABLE_CSS_TRANSITION,
+        );
+        fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
+        expect(document.head.children[document.head.children.length - 1].textContent).to.equal(
+          DISABLE_CSS_TRANSITION,
+        );
+        expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
 
-    it('does not set `color-scheme` property to body with correct mode, given`enableColorScheme` is false', () => {
-      const { CssVarsProvider } = createCssVarsProvider({
-        theme: {
-          colorSchemes: { light: {}, dark: {} },
-        },
-        defaultColorScheme: 'light',
-        enableColorScheme: false,
+        clock.runToLast();
+        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+          DISABLE_CSS_TRANSITION,
+        );
       });
-      const Consumer = () => <div />;
 
-      render(
-        <CssVarsProvider>
-          <Consumer />
-        </CssVarsProvider>,
-      );
-      expect(
-        window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-      ).not.to.equal('light');
+      it('do not disable all css transitions when switching bewteen modes, given `disableTransitionOnChange` is false', () => {
+        const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+          theme: {
+            colorSchemes: { light: {}, dark: {} },
+          },
+          defaultColorScheme: 'light',
+          disableTransitionOnChange: false,
+        });
+        const Consumer = () => {
+          const { mode, setMode } = useColorScheme();
+          return (
+            <div>
+              <div data-testid="current-mode">{mode}</div>
+              <button onClick={() => setMode('dark')}>change to dark</button>;
+            </div>
+          );
+        };
+        render(
+          <CssVarsProvider>
+            <Consumer />
+          </CssVarsProvider>,
+        );
+
+        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+          DISABLE_CSS_TRANSITION,
+        );
+        fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
+        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+          DISABLE_CSS_TRANSITION,
+        );
+        expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
+      });
+
+      it('do not disable all css transitions when switching bewteen color schemes, given `disableTransitionOnChange` is false', () => {
+        const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
+          theme: {
+            colorSchemes: { light: {}, dark: {} },
+          },
+          defaultColorScheme: 'light',
+          disableTransitionOnChange: false,
+        });
+        const Consumer = () => {
+          const { colorScheme, setColorScheme } = useColorScheme();
+          return (
+            <div>
+              <div data-testid="current-color-scheme">{colorScheme}</div>
+              <button onClick={() => setColorScheme('dark')}>change to dark</button>;
+            </div>
+          );
+        };
+        render(
+          <CssVarsProvider>
+            <Consumer />
+          </CssVarsProvider>,
+        );
+
+        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+          DISABLE_CSS_TRANSITION,
+        );
+        fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
+        expect(document.head.children[document.head.children.length - 1].textContent).not.to.equal(
+          DISABLE_CSS_TRANSITION,
+        );
+        expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
+      });
     });
   });
 

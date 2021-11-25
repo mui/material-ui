@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Result, Mode } from './useCurrentColorScheme';
+import { Mode, Result } from './useCurrentColorScheme';
 
 type RequiredDeep<T> = {
   [K in keyof T]-?: RequiredDeep<T[K]>;
@@ -70,6 +70,11 @@ export default function createCssVarsProvider<
    * @default 'light'
    */
   defaultMode?: Mode;
+  /**
+   * Disable CSS transitions when switching between modes or color schemes
+   * @default false
+   */
+  disableTransitionOnChange?: boolean;
   /**
    * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
    * @default true
