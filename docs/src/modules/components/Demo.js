@@ -63,6 +63,7 @@ function useDemoData(codeVariant, demo, githubLocation) {
       raw: demo.rawTS,
       Component: demo.tsx,
       sourceLanguage: 'tsx',
+      Component: demo.tsx,
       title,
       product,
     };
@@ -75,6 +76,7 @@ function useDemoData(codeVariant, demo, githubLocation) {
     raw: demo.raw,
     Component: demo.js,
     sourceLanguage: 'jsx',
+    Component: demo.js,
     title,
     product,
   };
@@ -297,7 +299,7 @@ export default function Demo(props) {
   const showPreview =
     !demoOptions.hideToolbar && demoOptions.defaultCodeOpen !== false && Boolean(demo.jsxPreview);
 
-  const [demoKey, resetDemo] = React.useReducer((key) => key + 1, 0);
+  const [demoKey, setDemoKey] = React.useReducer((key) => key + 1, 0);
 
   const demoId = useUniqueId('demo-');
   const demoSourceId = useUniqueId(`demoSource-`);
@@ -306,6 +308,37 @@ export default function Demo(props) {
   const initialFocusRef = React.useRef(null);
 
   const [showAd, setShowAd] = React.useState(false);
+
+  const usePreview = showPreview && !codeOpen;
+  const initialCode = usePreview ? demo.jsxPreview : demoData.raw;
+  const [code, setCode] = React.useState(initialCode);
+  const resetDemo = React.useCallback(() => {
+    setCode(initialCode);
+    setDemoKey();
+  }, [initialCode]);
+  React.useEffect(() => {
+    resetDemo();
+  }, [resetDemo]);
+
+  const { element: interactiveElement, error } = useRunner({
+    code: usePreview
+      ? trimLeadingSpaces(demoData.raw).replace(trimLeadingSpaces(demo.jsxPreview), code)
+      : code,
+    scope: demo.scope,
+  });
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  function DeferredDemo() {
+    return <React.Fragment>{mounted ? interactiveElement : <demoData.Component />}</React.Fragment>;
+  }
+  const [debouncedError, setError] = React.useState(error);
+  const debouncedSetError = React.useMemo(() => debounce(setError, 300), []);
+  React.useEffect(() => {
+    debouncedSetError(error);
+  }, [error, debouncedSetError]);
 
   const isJoy = asPathWithoutLang.startsWith('/joy-ui');
   const DemoRoot = asPathWithoutLang.startsWith('/joy-ui') ? DemoRootJoy : DemoRootMaterial;
@@ -335,7 +368,9 @@ export default function Demo(props) {
           iframe={demoOptions.iframe}
           name={demoName}
           onResetDemoClick={resetDemo}
-        />
+        >
+          <DeferredDemo />
+        </DemoSandboxed>
       </DemoRoot>
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />

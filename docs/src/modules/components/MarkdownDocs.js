@@ -118,9 +118,10 @@ export default function MarkdownDocs(props) {
               demo={{
                 raw: demo.raw,
                 js: demoComponents[demo.module] ?? noComponent(demo.module),
+                scope: demos.scope,
                 jsxPreview: demo.jsxPreview,
                 rawTS: demo.rawTS,
-                tsx: demo.moduleTS ? demoComponents[demo.moduleTS] : null,
+                tsx: demoComponents[demo.moduleTS] ?? null,
               }}
               disableAd={disableAd}
               demoOptions={renderedMarkdownOrDemo}
