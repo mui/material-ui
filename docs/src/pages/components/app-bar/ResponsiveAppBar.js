@@ -12,23 +12,26 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
+const pages = ['Products', 'Pricing', 'Blog'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 const ResponsiveAppBar = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [anchorElp, setAnchorElp] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
   };
-  const handleMenup = (event) => {
-    setAnchorElp(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
   };
 
-  const handleClosep = () => {
-    setAnchorElp(null);
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
   };
 
   return (
@@ -50,14 +53,14 @@ const ResponsiveAppBar = () => {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleMenu}
+              onClick={handleOpenNavMenu}
               color="inherit"
             >
               <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
-              anchorEl={anchorEl}
+              anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
@@ -67,21 +70,17 @@ const ResponsiveAppBar = () => {
                 vertical: 'top',
                 horizontal: 'left',
               }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <MenuItem onClick={handleClose}>
-                <Typography textAlign="center">Home</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Typography textAlign="center">Shops</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Typography textAlign="center">Blogs</Typography>
-              </MenuItem>
+              {pages.map((page) => (
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
             </Menu>
           </Box>
           <Typography
@@ -93,36 +92,26 @@ const ResponsiveAppBar = () => {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button
-              onClick={handleClose}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              Home
-            </Button>
-            <Button
-              onClick={handleClose}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              Shops
-            </Button>
-            <Button
-              onClick={handleClose}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              Blogs
-            </Button>
+            {pages.map((page) => (
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page}
+              </Button>
+            ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleMenup} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
-              anchorEl={anchorElp}
+              anchorEl={anchorElUser}
               anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
@@ -132,21 +121,14 @@ const ResponsiveAppBar = () => {
                 vertical: 'top',
                 horizontal: 'right',
               }}
-              open={Boolean(anchorElp)}
-              onClose={handleClosep}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={handleClose}>
-                <Typography textAlign="center">Profile</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Typography textAlign="center">My account</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Typography textAlign="center">Dashboard</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Typography textAlign="center">Logout</Typography>
-              </MenuItem>
+              {settings.map((setting) => (
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
             </Menu>
           </Box>
         </Toolbar>
