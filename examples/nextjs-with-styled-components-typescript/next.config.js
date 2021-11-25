@@ -28,8 +28,8 @@ module.exports = withTM({
                       "@mui/system",
                       "@mui/styled-engine-sc",
                       "@mui/styled-engine",
-                      "./styled",
-                      '../styles/styled' // this is how locally MUI components import styled
+                      // This maps both the imports in ./src/Typography and the imports in mui
+                      ".*\/styled$"
                     ],
                     "ssr": true
                   }
