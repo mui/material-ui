@@ -99,8 +99,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     return React.isValidElement(child);
   });
 
-  const totalAvatars = total || children.length;
-
+  const totalAvatars = total === undefined || total < 0 ? children.length : total;
   const clampedChildren = totalAvatars < children.length ? totalAvatars : children.length;
 
   const shownAvatars =
