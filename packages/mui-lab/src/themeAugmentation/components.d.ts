@@ -16,10 +16,20 @@ export interface LabComponents {
     styleOverrides?: ComponentsOverrides['MuiClockPicker'];
     variants?: ComponentsVariants['MuiClockPicker'];
   };
+  MuiDatePicker?: {
+    defaultProps?: ComponentsProps['MuiDatePicker'];
+    styleOverrides?: ComponentsOverrides['MuiDatePicker'];
+    variants?: ComponentsVariants['MuiDatePicker'];
+  };
   MuiDateRangePickerDay?: {
     defaultProps?: ComponentsProps['MuiDateRangePickerDay'];
     styleOverrides?: ComponentsOverrides['MuiDateRangePickerDay'];
     variants?: ComponentsVariants['MuiDateRangePickerDay'];
+  };
+  MuiDateTimePicker?: {
+    defaultProps?: ComponentsProps['MuiDateTimePicker'];
+    styleOverrides?: ComponentsOverrides['MuiDateTimePicker'];
+    variants?: ComponentsVariants['MuiDateTimePicker'];
   };
   MuiLoadingButton?: {
     defaultProps?: ComponentsProps['MuiLoadingButton'];

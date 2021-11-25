@@ -15,3 +15,6 @@ const Text = (props: { sx?: SxProps<Theme> }) => null;
 
 // array
 <Text sx={[(theme) => ({ color: theme.color }), { m: 2 }]} />;
+
+// null
+<Text sx={{ m: null, transform: null, typography: undefined }} />;

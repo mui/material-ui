@@ -196,6 +196,16 @@ const MyStyledButton = (props) => (
 })
 ```
 
+### How can I use the `sx` syntax with the `styled()` utility?
+
+If you are one of those who prefers the `sx` syntax and wants to use it in both the `sx` prop and the `styled()` utility, you can use the `experimental_sx` utility from the `@mui/system`:
+
+{{"demo": "pages/system/styled/UsingWithSx.js", "defaultCodeOpen": true}}
+
+The overhead added by using the `experimental_sx` utility is the same as if you were to use the `sx` prop on the component.
+
+> Note: You can use `experimental_sx` outside of the `styled()` utility, too; e.g., for defining `variants` in your custom theme.
+
 ## How to use components selector API
 
 If you've ever used the `styled()` API of either [`emotion`](https://emotion.sh/docs/styled#targeting-another-emotion-component) or [`styled-components`](https://styled-components.com/docs/advanced#referring-to-other-components), you should have been able to use components as selectors.
