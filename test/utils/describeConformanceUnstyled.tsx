@@ -167,6 +167,7 @@ function testComponentsProp(
   it('uses the component provided in component prop when both component and components.Root are provided', () => {
     const RootComponentA = React.forwardRef(
       ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
+        // @ts-ignore
         <Element data-testid="a" ref={ref}>
           {children}
         </Element>
@@ -175,6 +176,7 @@ function testComponentsProp(
 
     const RootComponentB = React.forwardRef(
       ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
+        // @ts-ignore
         <Element data-testid="b" ref={ref}>
           {children}
         </Element>

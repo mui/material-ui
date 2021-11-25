@@ -11,7 +11,7 @@ const FirstPageIconDefault = () => <span>{'|<'}</span>;
 const NextPageIconDefault = () => <span>{'>'}</span>;
 const BackPageIconDefault = () => <span>{'<'}</span>;
 
-export function defaultGetAriaLabel(type: ItemAriaLabelType) {
+function defaultGetAriaLabel(type: ItemAriaLabelType) {
   return `Go to ${type} page`;
 }
 

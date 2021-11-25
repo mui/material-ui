@@ -6,9 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import { appendOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import isHostComponent from '../utils/isHostComponent';
-import TablePaginationActionsUnstyled, {
-  defaultGetAriaLabel,
-} from './TablePaginationActionsUnstyled';
+import TablePaginationActionsUnstyled from './TablePaginationActionsUnstyled';
 import { getTablePaginationUnstyledUtilityClass } from './tablePaginationUnstyledClasses';
 import TablePaginationUnstyledProps, {
   LabelDisplayedRowsArgs,
@@ -17,6 +15,10 @@ import TablePaginationUnstyledProps, {
 
 function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
+}
+
+function defaultGetAriaLabel(type: ItemAriaLabelType) {
+  return `Go to ${type} page`;
 }
 
 const useUtilityClasses = () => {
