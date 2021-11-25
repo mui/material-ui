@@ -25,6 +25,10 @@ describe('Joy <Button />', () => {
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.variantText);
     expect(button).to.have.class(classes.colorBrand);
+
+    // should not have other variant classes
+    expect(button).not.to.have.class(classes.variantOutlined);
+    expect(button).not.to.have.class(classes.variantContained);
   });
 
   it('should render an outlined button', () => {
