@@ -650,7 +650,7 @@ jobs:
             matches:
               # "^pull/\d+" is not valid YAML
               # "^pull/\\d+" matches neither 'pull/1' nor 'main'
-              pattern: "^pull/"
+              pattern: "^pull/.+$"
               value: << pipeline.git.branch >>
           steps:
             # Upload distributables to S3
@@ -678,7 +678,7 @@ jobs:
               matches:
                 # "^pull/\d+" is not valid YAML
                 # "^pull/\\d+" matches neither 'pull/1' nor 'main'
-                pattern: "^pull/"
+                pattern: "^pull/.+$"
                 value: << pipeline.git.branch >>
           steps:
             # persist size snapshot on S3
