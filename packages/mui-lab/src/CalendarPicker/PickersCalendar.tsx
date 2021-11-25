@@ -196,7 +196,9 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
                   };
 
                   return renderDay ? (
-                    renderDay(day, selectedDates, pickersDayProps)
+                    <React.Fragment key={pickersDayProps.key}>{
+                      renderDay(day, selectedDates, pickersDayProps)
+                    }</React.Fragment>
                   ) : (
                     <div role="cell" key={pickersDayProps.key}>
                       <PickersDay {...pickersDayProps} />
