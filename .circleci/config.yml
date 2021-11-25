@@ -649,7 +649,10 @@ jobs:
           condition:
             not:
               matches:
-                pattern: "^pull/\\d+"
+                # "^pull/\d+" is not valid YAML
+                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
+                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
+                pattern: "^pull/.+$"
                 value: << pipeline.git.branch >>
           steps:
             # Upload distributables to S3
@@ -675,7 +678,10 @@ jobs:
           condition:
             not:
               matches:
-                pattern: "^pull/\\d+"
+                # "^pull/\d+" is not valid YAML
+                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
+                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
+                pattern: "^pull/.+$"
                 value: << pipeline.git.branch >>
           steps:
             # persist size snapshot on S3
