@@ -1,5 +1,6 @@
 import { CSSInterpolation } from '@mui/system';
-import { ButtonProps } from '../Button/ButtonProps';
+import { GlobalStateSlot } from '@mui/base';
+import { ButtonProps, ButtonClassKey } from '../Button';
 
 export type OverridesStyleRules<ClassKey extends string = string> = Record<
   ClassKey,
@@ -9,7 +10,7 @@ export type OverridesStyleRules<ClassKey extends string = string> = Record<
 export interface Components {
   MuiButton?: {
     defaultProps?: Partial<ButtonProps>;
-    styleOverrides?: Partial<OverridesStyleRules<''>>;
+    styleOverrides?: Partial<OverridesStyleRules<Exclude<ButtonClassKey, GlobalStateSlot>>>;
     variants?: Array<{
       props: Partial<ButtonProps>;
       style: CSSInterpolation;
