@@ -135,7 +135,7 @@ export default function createCssVarsProvider(options) {
 
     React.useEffect(() => {
       if (colorScheme) {
-        document.body.setAttribute(attribute, colorScheme);
+        document.documentElement.setAttribute(attribute, colorScheme);
       }
     }, [colorScheme, attribute]);
 
