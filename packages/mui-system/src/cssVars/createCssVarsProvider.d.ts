@@ -71,6 +71,11 @@ export default function createCssVarsProvider<
    */
   defaultMode?: Mode;
   /**
+   * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
+   * @default true
+   */
+  enableColorScheme?: boolean;
+  /**
    * CSS variable prefix
    * @default ''
    */
