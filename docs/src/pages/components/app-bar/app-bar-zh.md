@@ -19,39 +19,43 @@ materialDesign: https://material.io/components/app-bars-top
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
-## 带一个主搜索输入框的应用栏
-
-一个主要搜索栏。
-
-{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
-
-## 带有菜单的应用栏
+## App Bar with menu
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
+## App Bar with responsive menu
+
+{{"demo": "pages/components/app-bar/ResponsiveAppBar.js", "bg": true}}
+
 ## 带有搜索输入框的应用栏
 
-一个侧边搜索栏。
+A side searchbar.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
 
-## 紧凑模式 (仅限桌面模式)
+## App Bar with a primary search field
+
+A primary searchbar.
+
+{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
+
+## Dense (desktop only)
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
-## 突出模式
+## Prominent
 
-一个突出的应用栏。
+A prominent app bar.
 
 {{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
-## 底部应用栏
+## Bottom App Bar
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
-## 固定的位置
+## Fixed placement
 
-当渲染一个固定位置的应用栏时，元素的尺寸不会影响页面的其余内容。 这可能导致部分内容会被挡在应用程序栏后面，而无法可见。 下面是3种可能的解决方案：
+When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
 
 1. 使用 `position =“ sticky”` 代替 fixed。 ⚠️ sticky 不支持 IE11。
 2. 可以渲染第二个 `<Toolbar />` 组件：
@@ -86,25 +90,25 @@ function App() {
 }
 ```
 
-## Scrolling 滚动
+## Scrolling
 
-您可以使用 `useScrollTrigger()` 这个 hook 来相应用户触发的滚动操作。
+You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 ### 隐藏应用栏
 
-向下滚动会隐藏应用栏，这样一来会留有更多的空间进行阅读。
+The app bar hides on scroll down to leave more space for reading.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
 ### 变高的应用栏
 
-应用栏会在滚动时提升，以表明用户还未到页面的顶部。
+The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
 ### 回到顶部
 
-在滚动的时候，会出现一个浮动操作按钮，这样以便于返回页面的顶部。
+A floating action buttons appears on scroll to make it easy to get back to the top of the page.
 
 {{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true}}
 
@@ -120,7 +124,7 @@ function App() {
 
 #### 返回结果
 
-`trigger`: 此滚动的位置符合要求吗？
+`trigger`: Does the scroll position match the criteria?
 
 #### 例子
 
@@ -137,8 +141,8 @@ function HideOnScroll(props) {
 }
 ```
 
-## 在暗黑模式上启用颜色
+## Enable color on dark
 
-按照 [Material Design 规范](https://material.io/design/color/dark-theme.html)，`color` 属性在深色模式下对 app bar（应用栏）的外观没有影响。 您可以通过设置 ` enableColorOnDark ` 属性为`true` 来覆盖此行为。
+Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
 
 {{"demo": "pages/components/app-bar/EnableColorOnDarkAppBar.js", "bg": true}}
