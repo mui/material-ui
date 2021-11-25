@@ -59,6 +59,10 @@
   "dashboardTitle": "Dashboard",
   "decreaseSpacing": "decrease spacing",
   "demoToolbarLabel": "demo source",
+  "demo": {
+    "pressEnter": "Press enter or type to enable tab-to-indent.",
+    "pressEscape": "Press escape to disable tab-to-indent."
+  },
   "diamondSponsors": "Diamond Sponsors",
   "editPage": "Edit this page",
   "emojiLove": "Love",

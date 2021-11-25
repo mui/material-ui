@@ -13,8 +13,18 @@ import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styl
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { load, dynamicWithFallbackProps } from 'docs/src/modules/utils/useDynamicWithFallback';
 import { getDesignTokens } from 'docs/src/modules/brandingTheme';
 import { highDensity } from 'docs/src/modules/components/ThemeContext';
+
+const EditableDemoPreview = dynamicWithFallbackProps(
+  () => load('DemoEditable', 'EditableDemoPreview'),
+  {
+    loading: ({ props }) => {
+      return props.fallback;
+    },
+  },
+);
 
 function FramedDemo(props) {
   const { children, document } = props;
@@ -73,6 +83,10 @@ const Frame = styled('iframe')(({ theme }) => ({
   height: 400,
   border: 0,
   boxShadow: theme.shadows[1],
+}));
+
+const Loading = styled('div')(() => ({
+  height: 40,
 }));
 
 function DemoFrame(props) {
@@ -162,7 +176,18 @@ const jss = create({
  * to an `iframe` if `iframe={true}`.
  */
 function DemoSandboxed(props) {
-  const { component: Component, iframe, name, onResetDemoClick, ...other } = props;
+  const {
+    component: Component,
+    iframe,
+    name,
+    onResetDemoClick,
+    isEditing,
+    resolveDemoImports,
+    dynamicCode,
+    demoKey,
+    language,
+    ...other
+  } = props;
   const Sandbox = iframe ? DemoFrame : React.Fragment;
   const sandboxProps = iframe ? { name, ...other } : {};
 
@@ -174,7 +199,17 @@ function DemoSandboxed(props) {
         <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
           <Sandbox {...sandboxProps}>
             {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
-            <Component />
+            {isEditing ? (
+              <EditableDemoPreview
+                resolveDemoImports={resolveDemoImports}
+                code={dynamicCode}
+                demoKey={demoKey}
+                language={language}
+                fallback={<Loading />}
+              />
+            ) : (
+              <Component />
+            )}
           </Sandbox>
         </ThemeProvider>
       </StylesProvider>
@@ -184,9 +219,14 @@ function DemoSandboxed(props) {
 
 DemoSandboxed.propTypes = {
   component: PropTypes.elementType.isRequired,
+  demoKey: PropTypes.number,
+  dynamicCode: PropTypes.string,
   iframe: PropTypes.bool,
+  isEditing: PropTypes.bool,
+  language: PropTypes.string,
   name: PropTypes.string.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,
+  resolveDemoImports: PropTypes.func,
 };
 
 export default React.memo(DemoSandboxed);

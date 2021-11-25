@@ -22,7 +22,14 @@ function noComponent(moduleID) {
 
 function MarkdownDocs(props) {
   const router = useRouter();
-  const { disableAd = false, disableToc = false, demos = {}, docs, demoComponents } = props;
+  const {
+    disableAd = true,
+    disableToc = false,
+    demos = {},
+    docs,
+    demoComponents,
+    resolveDemoImports,
+  } = props;
 
   const userLanguage = useUserLanguage();
   const t = useTranslate();
@@ -93,6 +100,7 @@ function MarkdownDocs(props) {
               tsx: demo.moduleTS ? demoComponents[demo.moduleTS] : null,
             }}
             disableAd={disableAd}
+            resolveDemoImports={resolveDemoImports}
             demoOptions={renderedMarkdownOrDemo}
             githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}/docs/src/${name}`}
           />
@@ -108,6 +116,7 @@ MarkdownDocs.propTypes = {
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
+  resolveDemoImports: PropTypes.func,
 };
 
 if (process.env.NODE_ENV !== 'production') {
