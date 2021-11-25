@@ -17,7 +17,7 @@ const Image = styled('img')(({ theme }) => ({
     theme.palette.mode === 'dark'
       ? 'drop-shadow(-8px 4px 20px rgba(0, 0, 0, 0.4))'
       : 'drop-shadow(-8px 4px 20px rgba(61, 71, 82, 0.1))',
-  transition: '0.4s',
+  transition: '0.3s',
   display: 'block',
   height: 'auto',
   borderRadius: '8px',
