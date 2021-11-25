@@ -2734,6 +2734,13 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.8.3.tgz#8b4eae3d9dd470c022cb9238128db8b1906e7fca"
   integrity sha512-olsVs3lo8qKycPoWAUv4bMyoTGVXsEpLR9XxGk3LJR5Qa92a1Eg/Fj1ATdhwtC/6VMaKtsz1nSAeheD2B2Ru9A==
 
+"@restart/hooks@^0.4.1":
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/@restart/hooks/-/hooks-0.4.4.tgz#1d68576371687e9af64c3ca233cffaffc921ff76"
+  integrity sha512-+7PS1Sh6Fv7WM6vbsi0eUDDfO/Ql2+ADOSwvQ2Sf4Xz66QExmI9FEPVsekxGpaFHqzciNUIEgIigv2ix6/gE4w==
+  dependencies:
+    dequal "^2.0.2"
+
 "@rollup/plugin-replace@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-replace/-/plugin-replace-4.0.0.tgz#e34c457d6a285f0213359740b43f39d969b38a67"
@@ -3383,10 +3390,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-is@^16.7.1 || ^17.0.0":
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/@types/react-is/-/react-is-17.0.1.tgz#8298442d3860a716e3e8435c1e6e36c189639bdb"
-  integrity sha512-X6jVqDIibL2sY0Qtth5EzNeUgPyoCWeBZdmE5xKr7hI4zaQDwN0VaQd7pJnlOB0mDGnOVH0cZZVXg9cnWhztQg==
+"@types/react-is@^16.7.1 || ^17.0.0", "@types/react-is@^17.0.3":
+  version "17.0.3"
+  resolved "https://registry.yarnpkg.com/@types/react-is/-/react-is-17.0.3.tgz#2d855ba575f2fc8d17ef9861f084acc4b90a137a"
+  integrity sha512-aBTIWg1emtu95bLTLx0cpkxwGW3ueZv71nE2YFBpL8k/z5czEW8yYpOo8Dp+UUAFAtKwNaOsh/ioSeQnWlZcfw==
   dependencies:
     "@types/react" "*"
 
@@ -3438,7 +3445,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@>=16", "@types/react@^17.0.39":
+"@types/react@*", "@types/react@>=16", "@types/react@^17.0.33", "@types/react@^17.0.39":
   version "17.0.39"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.39.tgz#d0f4cde092502a6db00a1cded6e6bf2abb7633ce"
   integrity sha512-UVavlfAxDd/AgAacMa60Azl7ygyQNRwC/DsHZmKgNvPmRR5p70AJ5Q9EAmL2NWOJmeV+vVUI4IAP7GZrN8h8Ug==
@@ -5532,10 +5539,15 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@2.2.6, classnames@^2.2.5, classnames@^2.2.6:
+classnames@2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
+
+classnames@^2.2.5, classnames@^2.2.6:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
 claudia-api-builder@^4.1.2:
   version "4.1.2"
@@ -6764,6 +6776,11 @@ deprecation@^2.0.0, deprecation@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/deprecation/-/deprecation-2.3.1.tgz#6368cbdb40abf3373b525ac87e4a260c3a700919"
   integrity sha512-xmHIy4F3scKVwMsQ4WnVaS8bHOx0DmVwRywosKhaILI0ywMDWPtBSku2HNxRvF7jtwDRsoEwYQSfbxj8b7RlJQ==
+
+dequal@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/dequal/-/dequal-2.0.2.tgz#85ca22025e3a87e65ef75a7a437b35284a7e319d"
+  integrity sha512-q9K8BlJVxK7hQYqa6XISGmBZbtQQWVXSrRrWreHC94rMt1QL/Impruc+7p2CYSYuVIUr+YCt6hjrs1kkdJRTug==
 
 des.js@^1.0.0:
   version "1.0.0"
@@ -10003,6 +10020,20 @@ istanbul-reports@^3.0.2:
   dependencies:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
+
+jarle@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jarle/-/jarle-2.0.0.tgz#be00df2719740e6868df7c74b43b116e7140af93"
+  integrity sha512-8VcqG4sOgA1xLK1wLl07WhA6KWoS5g0zoKvh9NFIGjf50+b/48rz4JJoXBd1+Fhc2NLSRb8LvR0ZEJ8j68KtPA==
+  dependencies:
+    "@restart/hooks" "^0.4.1"
+    "@types/react" "^17.0.33"
+    "@types/react-dom" "^17.0.10"
+    "@types/react-is" "^17.0.3"
+    prism-react-renderer "^1.2.1"
+    react-is "^17.0.2"
+    react-simple-code-editor "^0.11.0"
+    sourcemap-codec "^1.4.8"
 
 jest-diff@^27.2.5, jest-diff@^27.4.2:
   version "27.4.2"
@@ -13289,6 +13320,11 @@ prettyjson@^1.2.1:
     colors "^1.1.2"
     minimist "^1.2.0"
 
+prism-react-renderer@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-1.2.1.tgz#392460acf63540960e5e3caa699d851264e99b89"
+  integrity sha512-w23ch4f75V1Tnz8DajsYKvY5lF7H1+WvzvLUcF0paFxkTHSp42RS0H5CttdN2Q8RR3DRGZ9v5xD/h3n8C8kGmg==
+
 prismjs@^1.26.0:
   version "1.27.0"
   resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.27.0.tgz#bb6ee3138a0b438a3653dd4d6ce0cc6510a45057"
@@ -13784,6 +13820,11 @@ react-shallow-renderer@^16.13.1:
   dependencies:
     object-assign "^4.1.1"
     react-is "^16.12.0 || ^17.0.0"
+
+react-simple-code-editor@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/react-simple-code-editor/-/react-simple-code-editor-0.11.0.tgz#bb57c7c29b570f2ab229872599eac184f5bc673c"
+  integrity sha512-xGfX7wAzspl113ocfKQAR8lWPhavGWHL3xSzNLeseDRHysT+jzRBi/ExdUqevSMos+7ZtdfeuBOXtgk9HTwsrw==
 
 react-smooth@^2.0.0:
   version "2.0.0"
@@ -15129,7 +15170,7 @@ source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.0, source-map@~0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-sourcemap-codec@^1.4.4:
+sourcemap-codec@1.4.8, sourcemap-codec@^1.4.4, sourcemap-codec@^1.4.8:
   version "1.4.8"
   resolved "https://registry.yarnpkg.com/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz#ea804bd94857402e6992d05a38ef1ae35a9ab4c4"
   integrity sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==

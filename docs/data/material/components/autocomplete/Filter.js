@@ -7,21 +7,8 @@ const filterOptions = createFilterOptions({
   stringify: (option) => option.title,
 });
 
-export default function Filter() {
-  return (
-    <Autocomplete
-      id="filter-demo"
-      options={top100Films}
-      getOptionLabel={(option) => option.title}
-      filterOptions={filterOptions}
-      sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Custom filter" />}
-    />
-  );
-}
-
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
+const top100Films = () => [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },
@@ -147,3 +134,16 @@ const top100Films = [
   { title: '3 Idiots', year: 2009 },
   { title: 'Monty Python and the Holy Grail', year: 1975 },
 ];
+
+export default function Filter() {
+  return (
+    <Autocomplete
+      id="filter-demo"
+      options={top100Films()}
+      getOptionLabel={(option) => option.title}
+      filterOptions={filterOptions}
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="Custom filter" />}
+    />
+  );
+}

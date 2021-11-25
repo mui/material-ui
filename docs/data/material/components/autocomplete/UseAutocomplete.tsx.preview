@@ -4,7 +4,7 @@
 </div>
 {groupedOptions.length > 0 ? (
   <Listbox {...getListboxProps()}>
-    {(groupedOptions as typeof top100Films).map((option, index) => (
+    {(groupedOptions as FilmOptionType[]).map((option, index) => (
       <li {...getOptionProps({ option, index })}>{option.title}</li>
     ))}
   </Listbox>

@@ -4,75 +4,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 
-export default function Tags() {
-  return (
-    <Stack spacing={3} sx={{ width: 500 }}>
-      <Autocomplete
-        multiple
-        id="tags-standard"
-        options={top100Films}
-        getOptionLabel={(option) => option.title}
-        defaultValue={[top100Films[13]]}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="standard"
-            label="Multiple values"
-            placeholder="Favorites"
-          />
-        )}
-      />
-      <Autocomplete
-        multiple
-        id="tags-outlined"
-        options={top100Films}
-        getOptionLabel={(option) => option.title}
-        defaultValue={[top100Films[13]]}
-        filterSelectedOptions
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="filterSelectedOptions"
-            placeholder="Favorites"
-          />
-        )}
-      />
-      <Autocomplete
-        multiple
-        id="tags-filled"
-        options={top100Films.map((option) => option.title)}
-        defaultValue={[top100Films[13].title]}
-        freeSolo
-        renderTags={(value: readonly string[], getTagProps) =>
-          value.map((option: string, index: number) => (
-            <Chip variant="outlined" label={option} {...getTagProps({ index })} />
-          ))
-        }
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="filled"
-            label="freeSolo"
-            placeholder="Favorites"
-          />
-        )}
-      />
-      <Autocomplete
-        multiple
-        id="tags-readOnly"
-        options={top100Films.map((option) => option.title)}
-        defaultValue={[top100Films[12].title, top100Films[13].title]}
-        readOnly
-        renderInput={(params) => (
-          <TextField {...params} label="readOnly" placeholder="Favorites" />
-        )}
-      />
-    </Stack>
-  );
-}
-
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
+const top100Films = () => [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },
@@ -198,3 +131,70 @@ const top100Films = [
   { title: '3 Idiots', year: 2009 },
   { title: 'Monty Python and the Holy Grail', year: 1975 },
 ];
+
+export default function Tags() {
+  return (
+    <Stack spacing={3} sx={{ width: 500 }}>
+      <Autocomplete
+        multiple
+        id="tags-standard"
+        options={top100Films()}
+        getOptionLabel={(option) => option.title}
+        defaultValue={[top100Films()[13]]}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="standard"
+            label="Multiple values"
+            placeholder="Favorites"
+          />
+        )}
+      />
+      <Autocomplete
+        multiple
+        id="tags-outlined"
+        options={top100Films()}
+        getOptionLabel={(option) => option.title}
+        defaultValue={[top100Films()[13]]}
+        filterSelectedOptions
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="filterSelectedOptions"
+            placeholder="Favorites"
+          />
+        )}
+      />
+      <Autocomplete
+        multiple
+        id="tags-filled"
+        options={top100Films().map((option) => option.title)}
+        defaultValue={[top100Films()[13].title]}
+        freeSolo
+        renderTags={(value: readonly string[], getTagProps) =>
+          value.map((option: string, index: number) => (
+            <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+          ))
+        }
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="filled"
+            label="freeSolo"
+            placeholder="Favorites"
+          />
+        )}
+      />
+      <Autocomplete
+        multiple
+        id="tags-readOnly"
+        options={top100Films().map((option) => option.title)}
+        defaultValue={[top100Films()[12].title, top100Films()[13].title]}
+        readOnly
+        renderInput={(params) => (
+          <TextField {...params} label="readOnly" placeholder="Favorites" />
+        )}
+      />
+    </Stack>
+  );
+}

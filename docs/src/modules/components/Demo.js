@@ -1,4 +1,5 @@
 import * as React from 'react';
+import dynamic from 'next/dynamic';
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
@@ -10,6 +11,18 @@ import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { load, dynamicWithFallbackProps } from 'docs/src/modules/utils/useDynamicWithFallback';
+
+const EditableDemoPreview = dynamic(() =>
+  import('./DemoEditable').then((mod) => mod.EditableDemoPreview),
+);
+
+const EditableDemoEditor = dynamicWithFallbackProps(
+  async () => load('DemoEditable', 'EditableDemoEditor'),
+  {
+    loading: ({ props }) => props.fallback,
+  },
+);
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar
@@ -29,6 +42,22 @@ export function DemoToolbarFallback() {
   return <DemoToolbarFallbackRoot aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
 }
 
+/**
+ * Removes leading spaces (indentation) present in the `.tsx` previews
+ * to be able to replace the existing code with the incoming dynamic code
+ * @param {string} input
+ */
+
+function trimLeadingSpaces(input) {
+  if (!input) {
+    return undefined;
+  }
+  return input
+    .split('\n')
+    .map((line) => line.trim())
+    .join('\n');
+}
+
 function getDemoName(location) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2');
 }
@@ -44,6 +73,10 @@ function useDemoData(codeVariant, demo, githubLocation) {
       raw: demo.rawTS,
       Component: demo.tsx,
       sourceLanguage: 'tsx',
+      trimmed: {
+        raw: trimLeadingSpaces(demo.rawTS),
+        preview: trimLeadingSpaces(demo.jsxPreview),
+      },
       title,
     };
   }
@@ -55,6 +88,10 @@ function useDemoData(codeVariant, demo, githubLocation) {
     raw: demo.raw,
     Component: demo.js,
     sourceLanguage: 'jsx',
+    trimmed: {
+      raw: trimLeadingSpaces(demo.raw),
+      preview: trimLeadingSpaces(demo.jsxPreview),
+    },
     title,
   };
 }
@@ -148,7 +185,7 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
   pointerEvents: 'none',
 }));
 export default function Demo(props) {
-  const { demo, demoOptions, disableAd, githubLocation } = props;
+  const { demo, demoOptions, disableAd, githubLocation, resolveDemoImports } = props;
   const t = useTranslate();
   const codeVariant = useCodeVariant();
   const demoData = useDemoData(codeVariant, demo, githubLocation);
@@ -158,7 +195,6 @@ export default function Demo(props) {
     setDemoHovered(event.type === 'mouseenter');
   };
 
-  const DemoComponent = demoData.Component;
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
     () => ({
@@ -202,6 +238,50 @@ export default function Demo(props) {
 
   const [showAd, setShowAd] = React.useState(false);
 
+  const [editorValue, setEditorValue] = React.useState(
+    showPreview && !codeOpen ? demo.jsxPreview : demoData.raw,
+  );
+  const [dynamicCode, setDynamicCode] = React.useState(demoData.raw);
+  const handleEditorChange = React.useCallback(
+    (value) => {
+      setEditorValue(value);
+      setDynamicCode(
+        codeOpen ? value : demoData.trimmed.raw.replace(demoData.trimmed.preview, value),
+      );
+    },
+    [codeOpen, demoData.trimmed.raw, demoData.trimmed.preview],
+  );
+  const handleResetDemoClick = React.useCallback(() => {
+    resetDemo();
+    handleEditorChange(codeOpen ? demoData.raw : demo.jsxPreview);
+  }, [codeOpen, handleEditorChange, demoData.raw, demo.jsxPreview]);
+
+  React.useEffect(() => {
+    handleEditorChange(showPreview && !codeOpen ? demo.jsxPreview : demoData.raw);
+  }, [codeOpen, handleEditorChange, demoData.raw, demo.jsxPreview, showPreview]);
+
+  const DemoComponent = React.useMemo(
+    () => () =>
+      (
+        <EditableDemoPreview
+          resolveDemoImports={resolveDemoImports}
+          code={dynamicCode}
+          key={demoKey}
+          language={demoData.sourceLanguage}
+        />
+      ),
+    [dynamicCode, demoKey, resolveDemoImports, demoData],
+  );
+
+  const staticCode = (
+    <Code
+      id={demoSourceId}
+      code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
+      language={demoData.sourceLanguage}
+      tabIndex={0}
+    />
+  );
+
   return (
     <Root>
       <AnchorLink id={`${demoName}`} />
@@ -214,7 +294,7 @@ export default function Demo(props) {
       >
         <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
         <DemoSandboxed
-          key={demoKey}
+          demoKey={demoKey}
           style={demoSandboxedStyle}
           component={DemoComponent}
           iframe={demoOptions.iframe}
@@ -242,7 +322,7 @@ export default function Demo(props) {
                 setCodeOpen((open) => !open);
                 setShowAd(true);
               }}
-              onResetDemoClick={resetDemo}
+              onResetDemoClick={handleResetDemoClick}
               openDemoSource={openDemoSource}
               showPreview={showPreview}
             />
@@ -250,13 +330,16 @@ export default function Demo(props) {
         </NoSsr>
       )}
       <Collapse in={openDemoSource} unmountOnExit>
-        <div>
-          <Code
-            id={demoSourceId}
-            code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
-            language={demoData.sourceLanguage}
+        {
+          <EditableDemoEditor
+            language={codeVariant}
+            onChange={handleEditorChange}
+            name={demoName}
+            onResetDemoClick={resetDemo}
+            code={editorValue}
+            fallback={staticCode}
           />
-        </div>
+        }
       </Collapse>
       {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
     </Root>
@@ -268,4 +351,5 @@ Demo.propTypes = {
   demoOptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
   githubLocation: PropTypes.string.isRequired,
+  resolveDemoImports: PropTypes.func,
 };

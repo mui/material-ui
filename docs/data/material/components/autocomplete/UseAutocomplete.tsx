@@ -34,39 +34,13 @@ const Listbox = styled('ul')(({ theme }) => ({
   },
 }));
 
-export default function UseAutocomplete() {
-  const {
-    getRootProps,
-    getInputLabelProps,
-    getInputProps,
-    getListboxProps,
-    getOptionProps,
-    groupedOptions,
-  } = useAutocomplete({
-    id: 'use-autocomplete-demo',
-    options: top100Films,
-    getOptionLabel: (option) => option.title,
-  });
-
-  return (
-    <div>
-      <div {...getRootProps()}>
-        <Label {...getInputLabelProps()}>useAutocomplete</Label>
-        <Input {...getInputProps()} />
-      </div>
-      {groupedOptions.length > 0 ? (
-        <Listbox {...getListboxProps()}>
-          {(groupedOptions as typeof top100Films).map((option, index) => (
-            <li {...getOptionProps({ option, index })}>{option.title}</li>
-          ))}
-        </Listbox>
-      ) : null}
-    </div>
-  );
+interface FilmOptionType {
+  title: string;
+  year: number;
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
+const top100Films = (): FilmOptionType[] => [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },
@@ -192,3 +166,34 @@ const top100Films = [
   { title: '3 Idiots', year: 2009 },
   { title: 'Monty Python and the Holy Grail', year: 1975 },
 ];
+
+export default function UseAutocomplete() {
+  const {
+    getRootProps,
+    getInputLabelProps,
+    getInputProps,
+    getListboxProps,
+    getOptionProps,
+    groupedOptions,
+  } = useAutocomplete({
+    id: 'use-autocomplete-demo',
+    options: top100Films(),
+    getOptionLabel: (option) => option.title,
+  });
+
+  return (
+    <div>
+      <div {...getRootProps()}>
+        <Label {...getInputLabelProps()}>useAutocomplete</Label>
+        <Input {...getInputProps()} />
+      </div>
+      {groupedOptions.length > 0 ? (
+        <Listbox {...getListboxProps()}>
+          {(groupedOptions as FilmOptionType[]).map((option, index) => (
+            <li {...getOptionProps({ option, index })}>{option.title}</li>
+          ))}
+        </Listbox>
+      ) : null}
+    </div>
+  );
+}

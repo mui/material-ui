@@ -4,8 +4,16 @@ import {
   demos,
   docs,
   demoComponents,
+  resolveDemoImports,
 } from 'docs/data/material/components/autocomplete/autocomplete.md?@mui/markdown';
 
 export default function Page() {
-  return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;
+  return (
+    <MarkdownDocs
+      demos={demos}
+      docs={docs}
+      demoComponents={demoComponents}
+      resolveDemoImports={resolveDemoImports}
+    />
+  );
 }
