@@ -77,8 +77,7 @@ export interface BaseTextFieldProps
    */
   helperText?: React.ReactNode;
   /**
-   * The id of the `input` element.
-   * Use this prop to make `label` and `helperText` accessible for screen readers.
+   * The id of the `input` element. If not provided one will be generated for accessibility purposes.
    */
   id?: string;
   /**

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { refType } from '@mui/utils';
+import { refType, unstable_useId as useId } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Input from '../Input';
@@ -82,7 +82,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     FormHelperTextProps,
     fullWidth = false,
     helperText,
-    id,
+    id: providedId,
     InputLabelProps,
     inputProps,
     InputProps,
@@ -119,6 +119,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     variant,
   };
 
+  const id = useId(providedId);
   const classes = useUtilityClasses(ownerState);
 
   if (process.env.NODE_ENV !== 'production') {
@@ -289,8 +290,7 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   helperText: PropTypes.node,
   /**
-   * The id of the `input` element.
-   * Use this prop to make `label` and `helperText` accessible for screen readers.
+   * The id of the `input` element. If not provided one will be generated for accessibility purposes.
    */
   id: PropTypes.string,
   /**
