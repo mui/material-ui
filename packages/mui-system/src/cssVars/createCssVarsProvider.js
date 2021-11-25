@@ -11,11 +11,15 @@ import getInitColorSchemeScript, {
 } from './getInitColorSchemeScript';
 import useCurrentColorScheme from './useCurrentColorScheme';
 
+export const DISABLE_CSS_TRANSITION =
+  '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
+
 export default function createCssVarsProvider(options) {
   const {
     theme: baseTheme = {},
     defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
+    disableTransitionOnChange = false,
     enableColorScheme = true,
     prefix: designSystemPrefix = '',
     shouldSkipGeneratingVar,
@@ -40,6 +44,21 @@ export default function createCssVarsProvider(options) {
       throw new MuiError('MUI: `useColorScheme` must be called under <CssVarsProvider />');
     }
     return value;
+  };
+
+  const disableCSSTransition = () => {
+    const css = document.createElement('style');
+    css.appendChild(document.createTextNode(DISABLE_CSS_TRANSITION));
+    document.head.appendChild(css);
+
+    return () => {
+      // Force browser repaint
+      (() => window.getComputedStyle(document.body))();
+
+      setTimeout(() => {
+        document.head.removeChild(css);
+      }, 1);
+    };
   };
 
   function CssVarsProvider({
@@ -145,6 +164,12 @@ export default function createCssVarsProvider(options) {
         document.documentElement.style.setProperty('color-scheme', mode);
       }
     }, [mode, systemMode]);
+
+    React.useEffect(() => {
+      if (disableTransitionOnChange) {
+        disableCSSTransition();
+      }
+    }, [setMode]);
 
     return (
       <ColorSchemeContext.Provider
