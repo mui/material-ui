@@ -10,7 +10,7 @@ const ListHeader = ({ sx = [], children }) => (
         width: 'auto',
         textDecoration: 'underline',
       },
-      // `SxProps` type can be an array, spread `sx` directly will give you type error.
+      // You cannot spread `sx` directly because `SxProps` (typeof sx) can be an array.
       ...(Array.isArray(sx) ? sx : [sx]),
     ]}
   >
