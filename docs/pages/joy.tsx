@@ -521,9 +521,9 @@ export default function Joy() {
               <GradientText>start quick and look great</GradientText>
             </Typography>
             <Typography sx={{ mb: 4 }} level="h5">
-              Joy is a new design system being built on top of MUI's unstyled components. With a
-              beautiful and opinionated default theme, you'll be able to develop React UIs faster
-              while looking great.
+              Joy is a new design system being built on top of MUI&apos;s unstyled components. With
+              a beautiful and opinionated default theme, you&apos;ll be able to develop React UIs
+              faster while looking great.
             </Typography>
             <Typography sx={{ mb: 3 }}>
               Development still in early stage. Subscribe to the newsletter for updates
@@ -571,7 +571,7 @@ export default function Joy() {
               <br />
               <br />
               This year, we launched MUI Core v5, which already brings a bunch of updates that make
-              customization easier. And now, we'll be exploring them further in a brand new,
+              customization easier. And now, we&apos;ll be exploring them further in a brand new,
               open-source, design system.
             </Typography>
             <Button variant="outlined" size="large">
@@ -605,8 +605,9 @@ export default function Joy() {
                 <Typography sx={{ maxWidth: 700 }}>
                   Up until now, we focused on implementing Material Design. Developers have grown
                   tired of having their apps looking like just another Google product. With Joy,
-                  you'll have access to the quality of development we strive to have in the Material
-                  components but now, with a beautiful, different and opinionated, default theme.
+                  you&apos;ll have access to the quality of development we strive to have in the
+                  Material components but now, with a beautiful, different and opinionated, default
+                  theme.
                 </Typography>
               </Box>
 
@@ -619,9 +620,9 @@ export default function Joy() {
                 </Typography>
                 <Typography sx={{ maxWidth: 700 }}>
                   Along with the newly introduced `sx prop` and migration to emotion on the
-                  `@mui/material` package, we'll be introducing CSS variables to Joy, to add even
-                  more to how easy will be to customize the default theme and make the components
-                  follow your brand indentity.
+                  `@mui/material` package, we&apos;ll be introducing CSS variables to Joy, to add
+                  even more to how easy will be to customize the default theme and make the
+                  components follow your brand indentity.
                 </Typography>
               </Box>
 
@@ -635,8 +636,8 @@ export default function Joy() {
                 <Typography sx={{ maxWidth: 700 }}>
                   Many teams and companies rely on `@mui/material` for their design systems, which
                   adds risk to experimenting with new stuff. Joy, will be the lab to experiment
-                  different approaches and test bold ideas. As they get mature, they'll be available
-                  for the Material package as well.
+                  different approaches and test bold ideas. As they get mature, they&apos;ll be
+                  available for the Material package as well.
                 </Typography>
               </Box>
             </Box>
