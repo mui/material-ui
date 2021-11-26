@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses, muiStateClasses } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -9,7 +9,7 @@ import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
-import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
+import { useListItemButtonClassNameGenerator } from './listItemButtonClasses';
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -24,7 +24,16 @@ export const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (ownerState) => {
-  const { alignItems, classes, dense, disabled, disableGutters, divider, selected } = ownerState;
+  const {
+    alignItems,
+    classes,
+    dense,
+    disabled,
+    disableGutters,
+    divider,
+    selected,
+    generateClassName,
+  } = ownerState;
 
   const slots = {
     root: [
@@ -38,7 +47,7 @@ const useUtilityClasses = (ownerState) => {
     ],
   };
 
-  const composedClasses = composeClasses(slots, getListItemButtonUtilityClass, classes);
+  const composedClasses = composeClasses(slots, generateClassName, classes);
 
   return {
     ...classes,
@@ -73,16 +82,16 @@ const ListItemButtonRoot = styled(ButtonBase, {
       backgroundColor: 'transparent',
     },
   },
-  [`&.${listItemButtonClasses.selected}`]: {
+  [`&.${muiStateClasses.selected}`]: {
     backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    [`&.${listItemButtonClasses.focusVisible}`]: {
+    [`&.${muiStateClasses.focusVisible}`]: {
       backgroundColor: alpha(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
       ),
     },
   },
-  [`&.${listItemButtonClasses.selected}:hover`]: {
+  [`&.${muiStateClasses.selected}:hover`]: {
     backgroundColor: alpha(
       theme.palette.primary.main,
       theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -92,10 +101,10 @@ const ListItemButtonRoot = styled(ButtonBase, {
       backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     },
   },
-  [`&.${listItemButtonClasses.focusVisible}`]: {
+  [`&.${muiStateClasses.focusVisible}`]: {
     backgroundColor: theme.palette.action.focus,
   },
-  [`&.${listItemButtonClasses.disabled}`]: {
+  [`&.${muiStateClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
   ...(ownerState.divider && {
@@ -150,6 +159,8 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     }
   }, [autoFocus]);
 
+  const generateClassName = useListItemButtonClassNameGenerator();
+
   const ownerState = {
     ...props,
     alignItems,
@@ -157,6 +168,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     disableGutters,
     divider,
     selected,
+    generateClassName,
   };
 
   const classes = useUtilityClasses(ownerState);
