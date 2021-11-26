@@ -13,8 +13,6 @@ import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 
-const usesUseSyncExternalStore = React.useSyncExternalStore !== undefined;
-
 function createMatchMedia(width, ref) {
   const listeners = [];
   return (query) => {
@@ -22,7 +20,6 @@ function createMatchMedia(width, ref) {
       matches: mediaQuery.match(query, {
         width,
       }),
-      // Mocking matchMedia in Safari < 14 where MediaQueryList doesn't inherit from EventTarget
       addListener: (listener) => {
         listeners.push(listener);
       },
@@ -120,7 +117,7 @@ describe('useMediaQuery', () => {
 
         render(<Test />);
         expect(screen.getByTestId('matches').textContent).to.equal('false');
-        expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
+        expect(getRenderCountRef.current()).to.equal(2);
       });
     });
 
@@ -160,10 +157,10 @@ describe('useMediaQuery', () => {
 
         render(<Test />);
         expect(screen.getByTestId('matches').textContent).to.equal('false');
-        expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
+        expect(getRenderCountRef.current()).to.equal(2);
       });
 
-      it('should render once if the default value does not match the expectation but `noSsr` is enabled', () => {
+      it('should render once if the default value does not match the expectation', () => {
         const getRenderCountRef = React.createRef();
         const Test = () => {
           const matches = useMediaQuery('(min-width:2000px)', {
@@ -200,13 +197,13 @@ describe('useMediaQuery', () => {
 
       const { unmount } = render(<Test />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
-      expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
+      expect(getRenderCountRef.current()).to.equal(2);
 
       unmount();
 
       render(<Test />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
-      expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
+      expect(getRenderCountRef.current()).to.equal(2);
     });
 
     it('should be able to change the query dynamically', () => {
@@ -228,10 +225,10 @@ describe('useMediaQuery', () => {
 
       const { setProps } = render(<Test query="(min-width:2000px)" />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
-      expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
+      expect(getRenderCountRef.current()).to.equal(2);
       setProps({ query: '(min-width:100px)' });
       expect(screen.getByTestId('matches').textContent).to.equal('true');
-      expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 2 : 4);
+      expect(getRenderCountRef.current()).to.equal(4);
     });
 
     it('should observe the media query', () => {

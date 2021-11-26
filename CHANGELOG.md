@@ -1,5 +1,28 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.2.1
+
+<!-- generated comparing v5.2.0..master -->
+
+_Nov 25, 2021_
+
+A big thanks to the 7 contributors who made this release possible. Here are some highlights ✨:
+
+This is an early release to fix `export 'useId' (imported as 'React') was not found in 'react'` when bundling code depending on MUI Core.
+
+- &#8203;<!-- 10 -->[AppBar][docs] Add a fully responsive demo to docs (#29829) @karakib2k18
+- &#8203;<!-- 9 -->[core] Fix PR run detection in test_bundle_size_monitor (#29879) @eps1lon
+- &#8203;<!-- 8 -->[core] Move bundle size monitoring to CircleCI (#29876) @eps1lon
+- &#8203;<!-- 7 -->[docs] Add keys to Responsive AppBar demo (#29884) @mbrookes
+- &#8203;<!-- 6 -->[docs] MUI's 2021 Developer survey (#29765) @newguy-123
+- &#8203;<!-- 5 -->[docs] Smoother image loading UX (#29858) @oliviertassinari
+- &#8203;<!-- 4 -->[Select] Fix select display value with React Nodes (#29836) @kegi
+- &#8203;<!-- 3 -->[system] Add `experimental_sx` utility (#29833) @mnajdova
+- &#8203;<!-- 2 -->[test] Ignore "detected multiple renderers" warning for now (#29854) @eps1lon
+- &#8203;<!-- 1 -->[useMediaQuery][utils] Remove usage of React 18 APIs (#29870) @eps1lon
+
+All contributors of this release in alphabetical order: @eps1lon, @karakib2k18, @kegi, @mbrookes, @mnajdova, @newguy-123, @oliviertassinari
+
 ## 5.2.0
 
 <!-- generated comparing v5.1.1..master -->
