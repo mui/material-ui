@@ -1,0 +1,8 @@
+<MenuHeader
+  sx={(theme) => ({
+    color: 'primary.main',
+    ...theme.typography.overline,
+  })}
+>
+  Header
+</MenuHeader>
