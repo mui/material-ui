@@ -1,4 +1,8 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import {
+  generateUtilityClass,
+  generateUtilityClasses,
+  experimental_useClassNameGenerator as useClassNameGenerator,
+} from '@mui/base';
 
 export interface ListItemClasses {
   /** Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
@@ -29,8 +33,16 @@ export interface ListItemClasses {
 
 export type ListItemClassKey = keyof ListItemClasses;
 
+/**
+ * @deprecated Replaced by react hook `use{Component}ClassNameGenerator`.
+ * This function will be removed in the next major release.
+ */
 export function getListItemUtilityClass(slot: string): string {
   return generateUtilityClass('MuiListItem', slot);
+}
+
+export function useListItemClassNameGenerator() {
+  return useClassNameGenerator<ListItemClassKey>({ name: 'MuiListItem' });
 }
 
 const listItemClasses: ListItemClasses = generateUtilityClasses('MuiListItem', [

@@ -1,7 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/base';
+import {
+  unstable_composeClasses as composeClasses,
+  isHostComponent,
+  muiStateClasses,
+} from '@mui/base';
 import { chainPropTypes, elementTypeAcceptingRef } from '@mui/utils';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';
@@ -11,8 +15,8 @@ import isMuiElement from '../utils/isMuiElement';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
-import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
-import { listItemButtonClasses } from '../ListItemButton';
+import { useListItemClassNameGenerator } from './listItemClasses';
+import { useListItemButtonClassNameGenerator } from '../ListItemButton';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 
 export const overridesResolver = (props, styles) => {
@@ -42,6 +46,7 @@ const useUtilityClasses = (ownerState) => {
     divider,
     hasSecondaryAction,
     selected,
+    generateClassName,
   } = ownerState;
 
   const slots = {
@@ -60,7 +65,7 @@ const useUtilityClasses = (ownerState) => {
     container: ['container'],
   };
 
-  return composeClasses(slots, getListItemUtilityClass, classes);
+  return composeClasses(slots, generateClassName, classes);
 };
 
 export const ListItemRoot = styled('div', {
@@ -94,23 +99,23 @@ export const ListItemRoot = styled('div', {
     }),
   }),
   ...(!!ownerState.secondaryAction && {
-    [`& > .${listItemButtonClasses.root}`]: {
+    [`& > .${ownerState.generateListItemButtonClassName('root')}`]: {
       paddingRight: 48,
     },
   }),
-  [`&.${listItemClasses.focusVisible}`]: {
+  [`&.${muiStateClasses.focusVisible}`]: {
     backgroundColor: theme.palette.action.focus,
   },
-  [`&.${listItemClasses.selected}`]: {
+  [`&.${muiStateClasses.selected}`]: {
     backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    [`&.${listItemClasses.focusVisible}`]: {
+    [`&.${muiStateClasses.focusVisible}`]: {
       backgroundColor: alpha(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
       ),
     },
   },
-  [`&.${listItemClasses.disabled}`]: {
+  [`&.${muiStateClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
   ...(ownerState.alignItems === 'flex-start' && {
@@ -132,7 +137,7 @@ export const ListItemRoot = styled('div', {
         backgroundColor: 'transparent',
       },
     },
-    [`&.${listItemClasses.selected}:hover`]: {
+    [`&.${muiStateClasses.selected}:hover`]: {
       backgroundColor: alpha(
         theme.palette.primary.main,
         theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -211,6 +216,9 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
+  const generateClassName = useListItemClassNameGenerator();
+  const generateListItemButtonClassName = useListItemButtonClassNameGenerator();
+
   const ownerState = {
     ...props,
     alignItems,
@@ -223,6 +231,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     divider,
     hasSecondaryAction,
     selected,
+    generateClassName,
+    generateListItemButtonClassName,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -243,7 +253,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   if (button) {
     componentProps.component = componentProp || 'div';
     componentProps.focusVisibleClassName = clsx(
-      listItemClasses.focusVisible,
+      muiStateClasses.focusVisible,
       focusVisibleClassName,
     );
 
