@@ -372,7 +372,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     return React.cloneElement(child, {
-      'aria-selected': selected ? 'true' : undefined,
+      'aria-selected': selected ? 'true' : 'false',
       onClick: handleItemClick(child),
       onKeyUp: (event) => {
         if (event.key === ' ') {
@@ -417,7 +417,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   }
 
   if (computeDisplay) {
-    display = multiple ? displayMultiple.join(', ') : displaySingle;
+    if (multiple) {
+      display = displayMultiple.reduce((prev, curr) => [prev, ', ', curr]);
+    } else {
+      display = displaySingle;
+    }
   }
 
   // Avoid performing a layout computation in the render method.

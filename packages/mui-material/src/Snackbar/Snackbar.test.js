@@ -1,23 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
 
 describe('<Snackbar />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render: clientRender } = createRenderer();
+  const { clock, render: clientRender } = createRenderer({ clock: 'fake' });
   /**
    * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
    *
@@ -30,7 +18,7 @@ describe('<Snackbar />', () => {
    */
   function render(...args) {
     const result = clientRender(...args);
-    clock.next();
+    clock.tick(0);
     return result;
   }
 
@@ -59,6 +47,31 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([event, 'clickaway']);
+    });
+
+    it('should be called when pressing Escape', () => {
+      const handleClose = spy();
+      render(<Snackbar open onClose={handleClose} message="message" />);
+
+      expect(fireEvent.keyDown(document.body, { key: 'Escape' })).to.equal(true);
+      expect(handleClose.callCount).to.equal(1);
+      expect(handleClose.args[0][1]).to.deep.equal('escapeKeyDown');
+    });
+
+    it('can limit which Snackbars are closed when pressing Escape', () => {
+      const handleCloseA = spy((event) => event.preventDefault());
+      const handleCloseB = spy();
+      render(
+        <React.Fragment>
+          <Snackbar open onClose={handleCloseA} message="messageA" />
+          <Snackbar open onClose={handleCloseB} message="messageB" />
+        </React.Fragment>,
+      );
+
+      fireEvent.keyDown(document.body, { key: 'Escape' });
+
+      expect(handleCloseA.callCount).to.equal(1);
+      expect(handleCloseB.callCount).to.equal(0);
     });
   });
 
@@ -114,30 +127,22 @@ describe('<Snackbar />', () => {
       act(() => {
         setSnackbarOpen(true);
       });
-      act(() => {
-        clock.tick(duration);
-      });
+      clock.tick(duration);
 
       expect(onClose.callCount).to.equal(1);
       expect(onExited.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(duration / 2);
-      });
+      clock.tick(duration / 2);
 
       expect(onClose.callCount).to.equal(1);
       expect(onExited.callCount).to.equal(1);
 
-      act(() => {
-        clock.tick(duration);
-      });
+      clock.tick(duration);
 
       expect(onClose.callCount).to.equal(messageCount);
       expect(onExited.callCount).to.equal(1);
 
-      act(() => {
-        clock.tick(duration / 2);
-      });
+      clock.tick(duration / 2);
 
       expect(onClose.callCount).to.equal(messageCount);
       expect(onExited.callCount).to.equal(messageCount);
@@ -161,9 +166,7 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration);
-      });
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -183,13 +186,9 @@ describe('<Snackbar />', () => {
       );
 
       setProps({ open: true });
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
       setProps({ open: true, onClose: handleClose2 });
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
 
       expect(handleClose1.callCount).to.equal(0);
       expect(handleClose2.callCount).to.equal(1);
@@ -211,13 +210,9 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
       setProps({ autoHideDuration: undefined });
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
 
       expect(handleClose.callCount).to.equal(0);
     });
@@ -241,24 +236,18 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-        fireEvent.mouseEnter(container.querySelector('div'));
-      });
+      clock.tick(autoHideDuration / 2);
+      fireEvent.mouseEnter(container.querySelector('div'));
 
       expect(handleMouseEnter.callCount).to.equal(1);
 
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-        fireEvent.mouseLeave(container.querySelector('div'));
-      });
+      clock.tick(autoHideDuration / 2);
+      fireEvent.mouseLeave(container.querySelector('div'));
 
       expect(handleMouseLeave.callCount).to.equal(1);
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(2e3);
-      });
+      clock.tick(2e3);
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -273,9 +262,7 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration);
-      });
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(0);
     });
@@ -288,9 +275,7 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration);
-      });
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(0);
     });
@@ -310,13 +295,9 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
       setProps({ open: false });
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
 
       expect(handleClose.callCount).to.equal(0);
     });
@@ -340,20 +321,14 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
       fireEvent.mouseEnter(container.querySelector('div'));
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
       fireEvent.mouseLeave(container.querySelector('div'));
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(2e3);
-      });
+      clock.tick(2e3);
 
       expect(handleClose.callCount).to.equal(0);
     });
@@ -375,20 +350,14 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
       fireEvent.mouseEnter(container.querySelector('div'));
-      act(() => {
-        clock.tick(autoHideDuration / 2);
-      });
+      clock.tick(autoHideDuration / 2);
       fireEvent.mouseLeave(container.querySelector('div'));
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(resumeHideDuration);
-      });
+      clock.tick(resumeHideDuration);
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -412,12 +381,10 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        fireEvent.mouseEnter(container.querySelector('div'));
-        clock.tick(100);
-        fireEvent.mouseLeave(container.querySelector('div'));
-        clock.tick(resumeHideDuration);
-      });
+      fireEvent.mouseEnter(container.querySelector('div'));
+      clock.tick(100);
+      fireEvent.mouseLeave(container.querySelector('div'));
+      clock.tick(resumeHideDuration);
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -449,9 +416,7 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration);
-      });
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(0);
 
@@ -466,9 +431,7 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration);
-      });
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -494,9 +457,7 @@ describe('<Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(autoHideDuration);
-      });
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);

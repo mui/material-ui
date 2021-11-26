@@ -167,20 +167,31 @@ export default function transformer(file, api, options) {
     return declaration;
   }
 
+  const classesCount = {};
   /**
    *
    * @param {import('jscodeshift').ObjectExpression} objExpression
+   * @param {import('jscodeshift').ObjectExpression} prevObj
    */
-  function createClasses(objExpression) {
-    const classes = j.objectExpression([]);
+  function createClasses(objExpression, prevObj) {
+    const classes = prevObj || j.objectExpression([]);
     objExpression.properties.forEach((prop) => {
+      if (!classesCount[prop.key.name]) {
+        classesCount[prop.key.name] = 1;
+      } else {
+        classesCount[prop.key.name] += 1;
+      }
+      const resolvedKey =
+        classesCount[prop.key.name] === 1
+          ? prop.key.name
+          : `${prop.key.name}${classesCount[prop.key.name]}`;
       classes.properties.push(
         j.objectProperty(
-          prop.key,
+          j.identifier(resolvedKey),
           j.templateLiteral(
             [
               j.templateElement({ raw: '', cooked: '' }, false),
-              j.templateElement({ raw: `-${prop.key.name}`, cooked: `-${prop.key.name}` }, true),
+              j.templateElement({ raw: `-${resolvedKey}`, cooked: `-${resolvedKey}` }, true),
             ],
             [j.identifier('PREFIX')],
           ),
@@ -229,42 +240,59 @@ export default function transformer(file, api, options) {
   }
 
   /**
-   *
-   * @param {import('jscodeshift').ArrowFunctionExpression | import('jscodeshift').FunctionDeclaration} functionExpression
+   * @param {import('jscodeshift').ObjectExpression | import('jscodeshift').ArrowFunctionExpression | import('jscodeshift').FunctionDeclaration} expression
    */
-  function convertToStyledArg(functionExpression, rootKeys = []) {
+  function getObjectExpression(expression) {
     let objectExpression;
-    if (functionExpression.type === 'ObjectExpression') {
-      objectExpression = functionExpression;
+    if (expression.type === 'ObjectExpression') {
+      objectExpression = expression;
     }
-    if (functionExpression.type === 'ArrowFunctionExpression') {
-      if (functionExpression.body.type === 'BlockStatement') {
-        const returnStatement = functionExpression.body.body.find(
-          (b) => b.type === 'ReturnStatement',
-        );
+    if (expression.type === 'ArrowFunctionExpression') {
+      if (expression.body.type === 'BlockStatement') {
+        const returnStatement = expression.body.body.find((b) => b.type === 'ReturnStatement');
         objectExpression = returnStatement.argument;
       }
-      if (functionExpression.body.type === 'ObjectExpression') {
-        functionExpression.body.extra.parenthesized = false;
-        objectExpression = functionExpression.body;
+      if (expression.body.type === 'ObjectExpression') {
+        expression.body.extra.parenthesized = false;
+        objectExpression = expression.body;
       }
     }
-    if (functionExpression.type === 'FunctionDeclaration') {
-      functionExpression.type = 'FunctionExpression';
-      const returnStatement = functionExpression.body.body.find(
-        (b) => b.type === 'ReturnStatement',
-      );
+    if (expression.type === 'FunctionDeclaration') {
+      expression.type = 'FunctionExpression';
+      const returnStatement = expression.body.body.find((b) => b.type === 'ReturnStatement');
       objectExpression = returnStatement.argument;
     }
+    return objectExpression;
+  }
+
+  const stylesCount = {};
+  /**
+   *
+   * @param {import('jscodeshift').ObjectExpression | import('jscodeshift').ArrowFunctionExpression | import('jscodeshift').FunctionDeclaration} functionExpression
+   * @param {string[]} rootKeys
+   * @param {import('jscodeshift').ObjectExpression | import('jscodeshift').ArrowFunctionExpression | import('jscodeshift').FunctionDeclaration} prevStyleArg
+   */
+  function convertToStyledArg(functionExpression, rootKeys = [], prevStyleArg) {
+    const objectExpression = getObjectExpression(functionExpression);
+
     if (objectExpression) {
       objectExpression.properties.forEach((prop) => {
-        const selector = rootKeys.includes(prop.key.name) ? '&.' : '& .';
+        if (!stylesCount[prop.key.name]) {
+          stylesCount[prop.key.name] = 1;
+        } else {
+          stylesCount[prop.key.name] += 1;
+        }
+        const resolvedKey =
+          stylesCount[prop.key.name] === 1
+            ? prop.key.name
+            : `${prop.key.name}${stylesCount[prop.key.name]}`;
+        const selector = rootKeys.includes(resolvedKey) ? '&.' : '& .';
         prop.key = j.templateLiteral(
           [
             j.templateElement({ raw: selector, cooked: selector }, false),
             j.templateElement({ raw: '', cooked: '' }, true),
           ],
-          [j.identifier(`classes.${prop.key.name}`)],
+          [j.identifier(`classes.${resolvedKey}`)],
         );
         prop.computed = true;
         return prop;
@@ -280,6 +308,24 @@ export default function transformer(file, api, options) {
         prop.shorthand = true;
         return j.objectPattern([prop]);
       });
+    }
+
+    if (prevStyleArg) {
+      const prevObjectExpression = getObjectExpression(prevStyleArg);
+      if (objectExpression) {
+        // merge object
+        prevObjectExpression.properties = [
+          ...prevObjectExpression.properties,
+          ...objectExpression.properties,
+        ];
+      }
+
+      if (functionExpression.params && prevStyleArg.type === 'ObjectExpression') {
+        // turn prevStyleArg to ArrowFunction
+        prevStyleArg = j.arrowFunctionExpression(functionExpression.params, prevStyleArg);
+      }
+
+      return prevStyleArg;
     }
 
     return functionExpression;
@@ -321,26 +367,51 @@ export default function transformer(file, api, options) {
   const prefix = getPrefix(withStylesCall || makeStylesCall);
   const rootClassKeys = getRootClassKeys();
   const result = {};
+  const componentClassesCount = {};
+  const withStylesComponents = [];
+
   if (withStylesCall) {
     let stylesFnName;
-    root
-      .find(j.CallExpression, { callee: { name: 'withStyles' } })
-      .at(0)
-      .forEach((path) => {
-        const arg = path.node.arguments[0];
-        if (arg.type === 'Identifier') {
-          stylesFnName = arg.name;
+    root.find(j.CallExpression, { callee: { name: 'withStyles' } }).forEach((path) => {
+      const arg = path.node.arguments[0];
+      if (arg.type === 'Identifier') {
+        stylesFnName = arg.name;
+      }
+      const objectExpression = getReturnStatement(arg);
+      if (objectExpression) {
+        // do this first, because objectExpression will be mutated in `createClasses` below.
+        if (path.parent.parent && path.parent.parent.node.id) {
+          // save withStylesComponent name, to add classes on JSX
+          withStylesComponents.push({
+            variableName: path.parent.parent.node.id.name,
+            classes: j.objectExpression(
+              objectExpression.properties.map((prop) => {
+                if (!componentClassesCount[prop.key.name]) {
+                  componentClassesCount[prop.key.name] = 1;
+                } else {
+                  componentClassesCount[prop.key.name] += 1;
+                }
+                const resolvedKey =
+                  componentClassesCount[prop.key.name] === 1
+                    ? prop.key.name
+                    : `${prop.key.name}${componentClassesCount[prop.key.name]}`;
+                return j.property(
+                  'init',
+                  j.identifier(prop.key.name),
+                  j.memberExpression(j.identifier('classes'), j.identifier(resolvedKey)),
+                );
+              }),
+            ),
+          });
         }
-        const objectExpression = getReturnStatement(arg);
-        if (objectExpression) {
-          result.classes = createClasses(objectExpression, prefix);
-          result.styledArg = convertToStyledArg(arg, rootClassKeys);
-        }
-      });
+
+        result.classes = createClasses(objectExpression, result.classes);
+        result.styledArg = convertToStyledArg(arg, rootClassKeys, result.styledArg);
+      }
+    });
 
     root
       .find(j.VariableDeclarator, { id: { name: stylesFnName } })
-      .at(0)
       .forEach((path) => {
         let fnArg = path.node.init;
 
@@ -358,7 +429,7 @@ export default function transformer(file, api, options) {
           }
         }
         if (objectExpression) {
-          result.classes = createClasses(objectExpression, prefix);
+          result.classes = createClasses(objectExpression, result.classes);
           result.styledArg = convertToStyledArg(fnArg, rootClassKeys);
         }
       })
@@ -366,10 +437,9 @@ export default function transformer(file, api, options) {
 
     root
       .find(j.FunctionDeclaration, { id: { name: stylesFnName } })
-      .at(0)
       .forEach((path) => {
         const returnStatement = path.node.body.body.find((b) => b.type === 'ReturnStatement');
-        result.classes = createClasses(returnStatement.argument, prefix);
+        result.classes = createClasses(returnStatement.argument, result.classes);
         result.styledArg = convertToStyledArg(path.node, rootClassKeys);
       })
       .remove();
@@ -399,7 +469,7 @@ export default function transformer(file, api, options) {
           }
         }
         if (objectExpression) {
-          result.classes = createClasses(objectExpression, prefix);
+          result.classes = createClasses(objectExpression, result.classes);
           result.styledArg = convertToStyledArg(arg, rootClassKeys);
         }
       });
@@ -410,7 +480,7 @@ export default function transformer(file, api, options) {
       .forEach((path) => {
         const objectExpression = getReturnStatement(path.node.init);
         if (objectExpression) {
-          result.classes = createClasses(objectExpression, prefix);
+          result.classes = createClasses(objectExpression, result.classes);
           result.styledArg = convertToStyledArg(path.node.init, rootClassKeys);
         }
       })
@@ -421,7 +491,7 @@ export default function transformer(file, api, options) {
       .at(0)
       .forEach((path) => {
         const returnStatement = path.node.body.body.find((b) => b.type === 'ReturnStatement');
-        result.classes = createClasses(returnStatement.argument, prefix);
+        result.classes = createClasses(returnStatement.argument, result.classes);
         result.styledArg = convertToStyledArg(path.node, rootClassKeys);
       })
       .remove();
@@ -494,6 +564,21 @@ export default function transformer(file, api, options) {
   }
 
   /**
+   * Attach classes to components created by withStyles
+   * ex. const Button1 = withStyles(...)(Button)
+   */
+  withStylesComponents.forEach((data) => {
+    root.find(j.JSXOpeningElement, { name: { name: data.variableName } }).forEach((path) => {
+      if (!path.node.attributes) {
+        path.node.attributes = [];
+      }
+      path.node.attributes.push(
+        j.jsxAttribute(j.jsxIdentifier('classes'), j.jsxExpressionContainer(data.classes)),
+      );
+    });
+  });
+
+  /**
    * import styled if not exist
    */
   const imports = root
@@ -526,7 +611,7 @@ export default function transformer(file, api, options) {
     .find(j.ImportDeclaration)
     .filter((path) =>
       path.node.source.value.match(
-        /^@material-ui\/styles\/?(withStyles|makeStyles|createStyles)?$/,
+        /^(@material-ui|@mui)\/styles\/?(withStyles|makeStyles|createStyles)?$/,
       ),
     )
     .forEach((path) => {
@@ -539,6 +624,19 @@ export default function transformer(file, api, options) {
     })
     .filter((path) => !path.node.specifiers.length)
     .remove();
+
+  /**
+   * remove withStyles calls that create new component
+   */
+  root.find(j.CallExpression, { callee: { name: 'withStyles' } }).forEach((path) => {
+    if (
+      path.parent.parent.parent.node.type === 'VariableDeclaration' &&
+      path.parent.parent.parent.parent.node.type !== 'ExportNamedDeclaration' &&
+      path.parent.node.arguments[0].type === 'Identifier'
+    ) {
+      path.parent.parent.node.init = j.identifier(path.parent.node.arguments[0].name);
+    }
+  });
 
   return root
     .toSource(printOptions)
