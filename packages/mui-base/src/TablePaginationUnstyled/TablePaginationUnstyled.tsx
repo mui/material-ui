@@ -11,6 +11,7 @@ import { getTablePaginationUnstyledUtilityClass } from './tablePaginationUnstyle
 import TablePaginationUnstyledProps, {
   LabelDisplayedRowsArgs,
   TablePaginationUnstyledTypeMap,
+  ItemAriaLabelType,
 } from './TablePaginationUnstyledProps';
 
 function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
