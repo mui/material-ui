@@ -37,7 +37,7 @@ declare module '@mui/joy/styles' {
   }
 }
 
-const Button = styled('button')<{
+const Button = styled('button', { shouldForwardProp: (prop) => prop !== 'square' })<{
   variant?: VariantProp;
   color?: ColorPaletteProp;
   square?: boolean;
@@ -233,7 +233,7 @@ const Header = styled('header', { shouldForwardProp: (prop) => prop !== 'translu
     minHeight: 64,
     backgroundColor: theme.vars.palette.background.translucent1,
     backdropFilter: 'blur(8px)',
-    borderColor: theme.vars.palette.neutral.outlinedBorder,
+    borderColor: theme.vars.palette.background.level1,
   }),
 }));
 
@@ -287,16 +287,13 @@ const ColorSchemePicker = () => {
 
   return (
     <Box
-      // @ts-expect-error
-      sx={(theme: JoyTheme) => {
-        return {
-          position: 'relative',
-          display: 'inline-flex',
-          alignItems: 'center',
-          borderRadius: '24px',
-          ...theme.variants.outlined.primary,
-        };
-      }}
+      sx={(theme: JoyTheme) => ({
+        position: 'relative',
+        display: 'inline-flex',
+        alignItems: 'center',
+        borderRadius: '24px',
+        ...theme.variants.outlined.primary,
+      })}
     >
       <Box sx={{ display: 'flex', gap: '8px', p: 0.5 }}>
         {(['system', 'light', 'dark'] as const).map((modeId) => {
