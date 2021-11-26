@@ -169,9 +169,37 @@ const ColorSchemePicker = () => {
   );
 };
 
+const blue = {
+  50: '#F7F9FF',
+  100: '#E8EEFE',
+  200: '#CAD6FC',
+  300: '#A5BAFB',
+  400: '#6085F7',
+  500: '#3D62D5',
+  600: '#2B4697',
+  700: '#23397C',
+  800: '#121D40',
+  900: '#0B1228',
+};
+
 export default function Joy() {
   return (
-    <CssVarsProvider>
+    <CssVarsProvider
+      theme={{
+        colorSchemes: {
+          light: {
+            palette: {
+              primary: blue,
+            },
+          },
+          dark: {
+            palette: {
+              primary: blue,
+            },
+          },
+        },
+      }}
+    >
       <GlobalStyles
         // @ts-ignore
         styles={(theme: JoyTheme) => ({
@@ -183,7 +211,7 @@ export default function Joy() {
             boxSizing: 'border-box',
             // Fix font resize problem in iOS
             WebkitTextSizeAdjust: '100%',
-            backgroundColor: theme.vars.palette.surface.default,
+            backgroundColor: theme.vars.palette.background.default,
           },
           '*, *::before, *::after': {
             boxSizing: 'inherit',
@@ -194,7 +222,7 @@ export default function Joy() {
             // Add support for document.body.requestFullScreen().
             // Other elements, if background transparent, are not supported.
             '&::backdrop': {
-              backgroundColor: theme.vars.palette.surface.default,
+              backgroundColor: theme.vars.palette.background.default,
             },
           },
         })}
@@ -208,6 +236,9 @@ export default function Joy() {
           <ColorSchemePicker />
         </Container>
       </Header>
+      <Container sx={{ mt: 2 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}></Box>
+      </Container>
     </CssVarsProvider>
   );
 }
