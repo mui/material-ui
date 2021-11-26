@@ -148,6 +148,7 @@ export default function createCssVarsProvider(options) {
 
     React.useEffect(() => {
       if (colorScheme) {
+        // attaches attribute to <html> because the css variables are attached to :root (html)
         document.documentElement.setAttribute(attribute, colorScheme);
       }
     }, [colorScheme, attribute]);
