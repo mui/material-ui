@@ -788,7 +788,8 @@ async function run(argv: {
       return directories.concat(findComponents(componentDirectory));
     }, [] as ReadonlyArray<{ filename: string }>)
     .filter((component) => {
-      if (component.filename.includes('ThemeProvider')) {
+      const skippedList = ['ThemeProvider', 'ClassNameGenerator'];
+      if (skippedList.some((str) => component.filename.includes(str))) {
         return false;
       }
       if (grep === null) {
