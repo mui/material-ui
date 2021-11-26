@@ -112,6 +112,16 @@ describe('styleFunctionSx', () => {
         },
       });
     });
+
+    it('allow values to be `null` or `undefined`', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: { typography: null, m: 0, p: null, transform: null },
+      });
+      expect(result).to.deep.equal({
+        margin: '0px',
+      });
+    });
   });
 
   it('resolves non system CSS properties if specified', () => {

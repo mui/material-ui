@@ -1,6 +1,6 @@
 ---
 title: React Tabs component
-components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
+components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: Tabs'
 materialDesign: https://material.io/components/tabs
 waiAria: https://www.w3.org/TR/wai-aria-practices/#tabpanel
@@ -171,3 +171,29 @@ Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd cla
 ```
 
 {{"demo": "pages/components/tabs/AccessibleTabs2.js", "defaultCodeOpen": false}}
+
+## Unstyled
+
+The Tabs also come with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+### Unstyled component
+
+```js
+import TabsUnstyled from '@mui/base/TabsUnstyled';
+import TabsListUnstyled from '@mui/base/TabUnstyled';
+import TabUnstyled from '@mui/base/TabUnstyled';
+import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
+```
+
+{{"demo": "pages/components/tabs/UnstyledTabsBasic.js"}}
+
+#### Customizing the root element
+
+By default, the `TabUnstyled` renders a native `button` element.
+You are free to override this by setting the `component` or `components.Root` prop.
+If a non-interactive element (such as a span) is provided this way, the `TabUnstyled` will take care of adding accessibility attributes.
+
+The `TabPanelUnstyled` on the other hand renders a native `div` element by default.
+You are free to override this as well by setting the `component` or `components.Root` prop on the `TabPanelUnstyled`.
+
+{{"demo": "pages/components/tabs/UnstyledTabsCustomized.js"}}

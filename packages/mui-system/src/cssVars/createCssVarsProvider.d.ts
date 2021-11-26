@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Result, Mode } from './useCurrentColorScheme';
 import getInitColorSchemeScript from './getInitColorSchemeScript';
+import { Mode, Result } from './useCurrentColorScheme';
 
 export type BuildCssVarsTheme<ThemeInput> = ThemeInput extends {
   colorSchemes: Record<string, infer ColorSystems>;
@@ -74,6 +74,16 @@ export default function createCssVarsProvider<
    * @default 'light'
    */
   defaultMode?: Mode;
+  /**
+   * Disable CSS transitions when switching between modes or color schemes
+   * @default false
+   */
+  disableTransitionOnChange?: boolean;
+  /**
+   * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
+   * @default true
+   */
+  enableColorScheme?: boolean;
   /**
    * CSS variable prefix
    * @default ''
