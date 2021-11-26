@@ -42,22 +42,24 @@ function styleFunctionSx(props) {
 
     Object.keys(sxObject).forEach((styleKey) => {
       const value = callIfFn(sxObject[styleKey], theme);
-      if (typeof value === 'object') {
-        if (propToStyleFunction[styleKey]) {
-          css = merge(css, getThemeValue(styleKey, value, theme));
-        } else {
-          const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
-            [styleKey]: x,
-          }));
-
-          if (objectsHaveSameKeys(breakpointsValues, value)) {
-            css[styleKey] = styleFunctionSx({ sx: value, theme });
+      if (value !== null && value !== undefined) {
+        if (typeof value === 'object') {
+          if (propToStyleFunction[styleKey]) {
+            css = merge(css, getThemeValue(styleKey, value, theme));
           } else {
-            css = merge(css, breakpointsValues);
+            const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
+              [styleKey]: x,
+            }));
+
+            if (objectsHaveSameKeys(breakpointsValues, value)) {
+              css[styleKey] = styleFunctionSx({ sx: value, theme });
+            } else {
+              css = merge(css, breakpointsValues);
+            }
           }
+        } else {
+          css = merge(css, getThemeValue(styleKey, value, theme));
         }
-      } else {
-        css = merge(css, getThemeValue(styleKey, value, theme));
       }
     });
 

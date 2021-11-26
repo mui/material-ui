@@ -28,28 +28,38 @@ describe('<Masonry />', () => {
 
   describe('render', () => {
     it('should render with correct default styles', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
+      const width = 400;
       const columns = 4;
       const spacing = 1;
       const { getByTestId } = render(
-        <Masonry data-testid="container">
-          <div data-testid="child" />
-        </Masonry>,
+        <div style={{ width: `${width}px` }}>
+          <Masonry data-testid="container">
+            <div data-testid="child" />
+          </Masonry>
+        </div>,
       );
       expect(getByTestId('container')).toHaveComputedStyle({
-        width: '100%',
+        width: `${width}px`,
         display: 'flex',
-        flexFlow: 'column wrap',
+        flexDirection: 'column',
+        flexWrap: 'wrap',
         alignContent: 'space-between',
         boxSizing: 'border-box',
-        margin: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
+        marginTop: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
+        marginRight: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
+        marginBottom: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
+        marginLeft: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
       });
       expect(getByTestId('child')).toHaveComputedStyle({
         boxSizing: 'border-box',
-        margin: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
-        width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing)})`,
+        marginTop: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+        marginRight: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+        marginBottom: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+        marginLeft: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+        width: `${width / columns - parseToNumber(theme.spacing(spacing))}px`,
       });
     });
 
