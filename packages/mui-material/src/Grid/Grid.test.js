@@ -167,7 +167,7 @@ describe('<Grid />', () => {
     });
     it('should not support undefined values', () => {
       const { container } = render(
-        <Grid container spacing={null}>
+        <Grid container>
           <Grid item data-testid="child" />
         </Grid>,
       );

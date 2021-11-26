@@ -175,6 +175,23 @@ export function generateColumnGap({ theme, ownerState }) {
   return styles;
 }
 
+export function getSpacingStyles(spacing, container, styles = {}) {
+  if (!container || !spacing) { return []; }
+  if  (Number.isNaN(Number(spacing)) === false && Number(spacing) > 0) {
+    return [styles[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
+  }
+  const { xs, sm, md, lg, xl } = spacing;
+
+  return [
+    Number(xs) > 0 && (styles[`spacing-xs-${String(xs)}`] || `spacing-xs-${String(xs)}`),
+    Number(sm) > 0 && (styles[`spacing-sm-${String(sm)}`] || `spacing-sm-${String(sm)}`),
+    Number(md) > 0 && (styles[`spacing-md-${String(md)}`] || `spacing-md-${String(md)}`),
+    Number(lg) > 0 && (styles[`spacing-lg-${String(lg)}`] || `spacing-lg-${String(lg)}`),
+    Number(xl) > 0 && (styles[`spacing-xl-${String(xl)}`] || `spacing-xl-${String(xl)}`),
+  ]
+
+}
+
 // Default CSS values
 // flex: '0 1 auto',
 // flexDirection: 'row',
@@ -193,16 +210,7 @@ const GridRoot = styled('div', {
       container && styles.container,
       item && styles.item,
       zeroMinWidth && styles.zeroMinWidth,
-      container &&
-        spacing &&
-        spacing !== 0 &&
-        typeof +spacing === 'number' &&
-        styles[`spacing-xs-${String(spacing)}`],
-      container && spacing?.xs && spacing.xs !== 0 && styles[`spacing-xs-${String(spacing.xs)}`],
-      container && spacing?.sm && spacing.sm !== 0 && styles[`spacing-sm-${String(spacing.sm)}`],
-      container && spacing?.md && spacing.md !== 0 && styles[`spacing-md-${String(spacing.md)}`],
-      container && spacing?.lg && spacing.lg !== 0 && styles[`spacing-lg-${String(spacing.lg)}`],
-      container && spacing?.xl && spacing.xl !== 0 && styles[`spacing-xl-${String(spacing.xl)}`],
+      ...getSpacingStyles(spacing, container, styles),
       direction !== 'row' && styles[`direction-xs-${String(direction)}`],
       wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`],
       xs !== false && styles[`grid-xs-${String(xs)}`],
@@ -254,16 +262,7 @@ const useUtilityClasses = (ownerState) => {
       container && 'container',
       item && 'item',
       zeroMinWidth && 'zeroMinWidth',
-      container &&
-        spacing &&
-        spacing !== 0 &&
-        typeof +spacing === 'number' &&
-        `spacing-xs-${String(spacing)}`,
-      container && spacing?.xs && spacing.xs !== 0 && `spacing-xs-${String(spacing.xs)}`,
-      container && spacing?.sm && spacing.sm !== 0 && `spacing-sm-${String(spacing.sm)}`,
-      container && spacing?.md && spacing.md !== 0 && `spacing-md-${String(spacing.md)}`,
-      container && spacing?.lg && spacing.lg !== 0 && `spacing-lg-${String(spacing.lg)}`,
-      container && spacing?.xl && spacing.xl !== 0 && `spacing-xl-${String(spacing.xl)}`,
+      ...getSpacingStyles(spacing, container),
       direction !== 'row' && `direction-xs-${String(direction)}`,
       wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
       xs !== false && `grid-xs-${String(xs)}`,
