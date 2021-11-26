@@ -14,7 +14,12 @@ export * from './composeClasses';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';
-export { default as unstable_ClassNameGenerator } from './generateUtilityClass/ClassNameGenerator';
+export {
+  default as unstable_ClassNameGenerator,
+  muiStateClasses,
+  ClassNameProvider as experimental_ClassNameProvider,
+  useClassNameGenerator as experimental_useClassNameGenerator,
+} from './generateUtilityClass/ClassNameGenerator';
 
 export { default as generateUtilityClasses } from './generateUtilityClasses';
 export * from './generateUtilityClasses';

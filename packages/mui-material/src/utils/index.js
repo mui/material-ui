@@ -15,4 +15,8 @@ export { default as useControlled } from './useControlled';
 export { default as useEventCallback } from './useEventCallback';
 export { default as useForkRef } from './useForkRef';
 export { default as useIsFocusVisible } from './useIsFocusVisible';
-export { unstable_ClassNameGenerator } from '@mui/base';
+export {
+  unstable_ClassNameGenerator,
+  experimental_ClassNameProvider,
+  experimental_useClassNameGenerator,
+} from '@mui/base';
