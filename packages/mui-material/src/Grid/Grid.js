@@ -176,8 +176,10 @@ export function generateColumnGap({ theme, ownerState }) {
 }
 
 export function getSpacingStyles(spacing, container, styles = {}) {
-  if (!container || !spacing) { return []; }
-  if  (Number.isNaN(Number(spacing)) === false && Number(spacing) > 0) {
+  if (!container || !spacing) {
+    return [];
+  }
+  if (Number.isNaN(Number(spacing)) === false && Number(spacing) > 0) {
     return [styles[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
   }
   const { xs, sm, md, lg, xl } = spacing;
@@ -188,8 +190,7 @@ export function getSpacingStyles(spacing, container, styles = {}) {
     Number(md) > 0 && (styles[`spacing-md-${String(md)}`] || `spacing-md-${String(md)}`),
     Number(lg) > 0 && (styles[`spacing-lg-${String(lg)}`] || `spacing-lg-${String(lg)}`),
     Number(xl) > 0 && (styles[`spacing-xl-${String(xl)}`] || `spacing-xl-${String(xl)}`),
-  ]
-
+  ];
 }
 
 // Default CSS values
