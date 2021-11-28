@@ -113,7 +113,7 @@ Customization does not stop at CSS. You can use composition to build custom comp
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/text-field)。
+🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/text-field/)。
 
 ## `useFormControl`
 

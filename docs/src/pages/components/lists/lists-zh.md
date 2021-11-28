@@ -105,4 +105,4 @@ When rendering a list within a component that defines its own gutters, `ListItem
 
 ## Customization 个性化
 
-🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/list-item)。
+🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/list-item/)。

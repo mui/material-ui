@@ -46,7 +46,7 @@ O componente seleção é implementado como um elemento `<input>` personalizado 
 
 Como a experiência do usuário pode ser melhorada em dispositivos móveis usando a seleção nativa da plataforma, permitimos esse padrão.
 
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/select).
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/select/).
 
 ## TextField
 
@@ -60,7 +60,7 @@ O primeiro passo é estilizar o componente `InputBase`. Uma vez estilizado, voc�
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/select).
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/select/).
 
 ## Seleção Aberta Controlada
 

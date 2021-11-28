@@ -60,7 +60,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/select)。
+🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/select/)。
 
 ## 多重选择
 
