@@ -39,7 +39,7 @@
 
 ### 布局
 
-- [@mui-treasury/layout](https://mui-treasury.com/layout)：处理一个页面整体布局的组件。 您可以找到几个相关的例子，例如： [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs)。
+- [@mui-treasury/layout](https://mui-treasury.com/layout/)：处理一个页面整体布局的组件。 您可以找到几个相关的例子，例如： [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs/)。
 
 ### 通知
 

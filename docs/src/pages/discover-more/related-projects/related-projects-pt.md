@@ -39,7 +39,7 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
 ### Leiaute
 
-- [@mui-treasury/layout](https://mui-treasury.com/layout): Componentes para lidar com leiautes em geral de uma página. Você pode encontrar alguns exemplos, como este, [um clone de reactjs.org](https://mui-treasury.com/layout/clones/reactjs).
+- [@mui-treasury/layout](https://mui-treasury.com/layout/): Componentes para lidar com leiautes em geral de uma página. Você pode encontrar alguns exemplos, como este, [um clone de reactjs.org](https://mui-treasury.com/layout/clones/reactjs/).
 
 ### Notificação
 
