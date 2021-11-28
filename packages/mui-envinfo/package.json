@@ -6,7 +6,7 @@
   },
   "license": "MIT",
   "description": "Logs infos about the environment relevant to @mui/*",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "bin": "./envinfo.js",
   "dependencies": {
     "envinfo": "^7.8.1"
