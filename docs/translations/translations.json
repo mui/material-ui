@@ -24,7 +24,7 @@
     "ruleName": "Rule name",
     "slots": "Slots",
     "spreadHint": "Props of the {{spreadHintElement}} component are also available.",
-    "styleOverrides": "The name <code>{{componentStyles.name}}</code> can be used when providing <a href=\"/customization/globals/#default-props\">default props</a> or <a href=\"/customization/globals/#css\">style overrides</a> in the theme.",
+    "styleOverrides": "The name <code>{{componentStyles.name}}</code> can be used when providing <a href=\"/customization/theme-components/#default-props\">default props</a> or <a href=\"/customization/theme-components/#global-style-overrides\">style overrides</a> in the theme.",
     "type": "Type"
   },
   "albumDescr": "A responsive album / gallery page layout with a hero unit and footer.",
