@@ -3,9 +3,9 @@ import * as React from 'react';
 
 let hadKeyboardEvent = true;
 let hadFocusVisibleRecently = false;
-let hadFocusVisibleRecentlyTimeout = null;
+let hadFocusVisibleRecentlyTimeout: undefined | number;
 
-const inputTypesWhitelist = {
+const inputTypesWhitelist: Record<string, boolean> = {
   text: true,
   search: true,
   url: true,
@@ -28,18 +28,18 @@ const inputTypesWhitelist = {
  * @param {Element} node
  * @returns {boolean}
  */
-function focusTriggersKeyboardModality(node) {
-  const { type, tagName } = node;
+function focusTriggersKeyboardModality(node: Element) {
+  const { type, tagName } = node as HTMLInputElement;
 
-  if (tagName === 'INPUT' && inputTypesWhitelist[type] && !node.readOnly) {
+  if (tagName === 'INPUT' && inputTypesWhitelist[type] && !(node as HTMLInputElement).readOnly) {
     return true;
   }
 
-  if (tagName === 'TEXTAREA' && !node.readOnly) {
+  if (tagName === 'TEXTAREA' && !(node as HTMLInputElement).readOnly) {
     return true;
   }
 
-  if (node.isContentEditable) {
+  if ((node as HTMLElement).isContentEditable) {
     return true;
   }
 
@@ -53,7 +53,7 @@ function focusTriggersKeyboardModality(node) {
  * then the modality is keyboard. Otherwise, the modality is not keyboard.
  * @param {KeyboardEvent} event
  */
-function handleKeyDown(event) {
+function handleKeyDown(event: KeyboardEvent) {
   if (event.metaKey || event.altKey || event.ctrlKey) {
     return;
   }
@@ -71,7 +71,7 @@ function handlePointerDown() {
   hadKeyboardEvent = false;
 }
 
-function handleVisibilityChange() {
+function handleVisibilityChange(this: Document) {
   if (this.visibilityState === 'hidden') {
     // If the tab becomes active again, the browser will handle calling focus
     // on the element (Safari actually calls it twice).
@@ -83,7 +83,7 @@ function handleVisibilityChange() {
   }
 }
 
-function prepare(doc) {
+function prepare(doc: Document): void {
   doc.addEventListener('keydown', handleKeyDown, true);
   doc.addEventListener('mousedown', handlePointerDown, true);
   doc.addEventListener('pointerdown', handlePointerDown, true);
@@ -91,7 +91,7 @@ function prepare(doc) {
   doc.addEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
-export function teardown(doc) {
+export function teardown(doc: Document): void {
   doc.removeEventListener('keydown', handleKeyDown, true);
   doc.removeEventListener('mousedown', handlePointerDown, true);
   doc.removeEventListener('pointerdown', handlePointerDown, true);
@@ -99,7 +99,7 @@ export function teardown(doc) {
   doc.removeEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
-function isFocusVisible(event) {
+function isFocusVisible(event: React.FocusEvent): boolean {
   const { target } = event;
   try {
     return target.matches(':focus-visible');
@@ -115,7 +115,14 @@ function isFocusVisible(event) {
   return hadKeyboardEvent || focusTriggersKeyboardModality(target);
 }
 
-export default function useIsFocusVisible() {
+export interface UseIsFocusVisibleResult {
+  isFocusVisibleRef: React.MutableRefObject<boolean>;
+  onBlur: (event: React.FocusEvent<any>) => void;
+  onFocus: (event: React.FocusEvent<any>) => void;
+  ref: React.Ref<unknown>;
+}
+
+export default function useIsFocusVisible(): UseIsFocusVisibleResult {
   const ref = React.useCallback((node) => {
     if (node != null) {
       prepare(node.ownerDocument);
@@ -139,7 +146,7 @@ export default function useIsFocusVisible() {
       // If we don't see a visibility change within 100ms, it's probably a
       // regular focus change.
       hadFocusVisibleRecently = true;
-      window.clearTimeout(hadFocusVisibleRecentlyTimeout);
+      window.clearTimeout(hadFocusVisibleRecentlyTimeout!);
       hadFocusVisibleRecentlyTimeout = window.setTimeout(() => {
         hadFocusVisibleRecently = false;
       }, 100);
@@ -155,7 +162,7 @@ export default function useIsFocusVisible() {
   /**
    * Should be called if a blur event is fired
    */
-  function handleFocusVisible(event) {
+  function handleFocusVisible(event: React.FocusEvent) {
     if (isFocusVisible(event)) {
       isFocusVisibleRef.current = true;
       return true;
