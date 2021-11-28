@@ -83,7 +83,7 @@
     "@testing-library/dom": "^8.11.1",
     "@testing-library/react": "^12.1.2",
     "@types/chai": "^4.2.22",
-    "@types/chai-dom": "^0.0.11",
+    "@types/chai-dom": "^0.0.12",
     "@types/enzyme": "^3.10.10",
     "@types/format-util": "^1.0.1",
     "@types/fs-extra": "^9.0.13",
