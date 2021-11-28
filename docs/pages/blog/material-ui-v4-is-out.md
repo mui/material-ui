@@ -8,7 +8,7 @@ The core team. May 23, 2019.
 
 > React components for faster and simpler web development. Build your own design system, or start with Material Design.
 
-MUI v4 has finally arrived. We are so excited about this release, as it defines better foundations for the UI components. Thank you to everyone, especially to [the team](/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you.**
+MUI v4 has finally arrived. We are so excited about this release, as it defines better foundations for the UI components. Thank you to everyone, especially to [the team](/about/), and to everyone who's contributed code, issue triage, and support. **Thank you.**
 
 ✨✨✨ See the **[4.0.0 Release Note](https://github.com/mui-org/material-ui/releases/tag/v4.0.0)** on GitHub. ✨✨✨
 

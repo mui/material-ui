@@ -13,7 +13,7 @@ The core team. May 18, 2018.
 <p class="blog-description">Our new documentation header & logo by @hai-cea</p>
 
 It has taken us two years to do it, but MUI v1 has finally arrived!
-We are so excited about this release, as it's setting a new course for the project. Thank you to _everyone_, especially to [the team](/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you.**
+We are so excited about this release, as it's setting a new course for the project. Thank you to _everyone_, especially to [the team](/about/), and to everyone who's contributed code, issue triage, and support. **Thank you.**
 
 ✨✨✨ See the [**1.0.0 Release Note**](https://github.com/mui-org/material-ui/releases/tag/v1.0.0) on GitHub. ✨✨✨
 
