@@ -26,7 +26,7 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 ## Props
 
 The Select component is implemented as a custom `<input>` element of the [InputBase](/api/input-base/).
-It extends the [text field components](/components/text-fields) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected.
+It extends the [text field components](/components/text-fields/) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected.
 It shares the same styles and many of the same props. Refer to the respective component's API page for details.
 
 ### Filled and standard variants
