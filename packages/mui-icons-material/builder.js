@@ -113,7 +113,6 @@ export function cleanPaths({ svgPath, data }) {
       { name: 'removeTitle' },
       { name: 'removeDesc' },
       { name: 'removeUselessDefs' },
-      { name: 'removeXMLNS' },
       { name: 'removeEditorsNSData' },
       { name: 'removeEmptyAttrs' },
       { name: 'removeHiddenElems' },

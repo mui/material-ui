@@ -11,11 +11,16 @@ import getInitColorSchemeScript, {
 } from './getInitColorSchemeScript';
 import useCurrentColorScheme from './useCurrentColorScheme';
 
+export const DISABLE_CSS_TRANSITION =
+  '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
+
 export default function createCssVarsProvider(options) {
   const {
     theme: baseTheme = {},
     defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
+    disableTransitionOnChange = false,
+    enableColorScheme = true,
     prefix: designSystemPrefix = '',
     shouldSkipGeneratingVar,
   } = options;
@@ -52,6 +57,7 @@ export default function createCssVarsProvider(options) {
   }) {
     const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = baseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
+    const hasMounted = React.useRef(null);
 
     let mergedTheme = deepmerge(restBaseTheme, restThemeProp);
 
@@ -62,14 +68,21 @@ export default function createCssVarsProvider(options) {
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
     const defaultDarkColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.dark;
-    const { mode, setMode, lightColorScheme, darkColorScheme, colorScheme, setColorScheme } =
-      useCurrentColorScheme({
-        supportedColorSchemes: allColorSchemes,
-        defaultLightColorScheme,
-        defaultDarkColorScheme,
-        modeStorageKey,
-        defaultMode,
-      });
+    const {
+      mode,
+      setMode,
+      systemMode,
+      lightColorScheme,
+      darkColorScheme,
+      colorScheme,
+      setColorScheme,
+    } = useCurrentColorScheme({
+      supportedColorSchemes: allColorSchemes,
+      defaultLightColorScheme,
+      defaultDarkColorScheme,
+      modeStorageKey,
+      defaultMode,
+    });
     const resolvedColorScheme = (() => {
       if (!colorScheme) {
         // This scope occurs on the server
@@ -125,6 +138,42 @@ export default function createCssVarsProvider(options) {
         document.body.setAttribute(attribute, colorScheme);
       }
     }, [colorScheme, attribute]);
+
+    React.useEffect(() => {
+      if (!mode || !enableColorScheme) {
+        return;
+      }
+      // `color-scheme` tells browser to render built-in elements according to its value: `light` or `dark`
+      if (mode === 'system') {
+        document.documentElement.style.setProperty('color-scheme', systemMode);
+      } else {
+        document.documentElement.style.setProperty('color-scheme', mode);
+      }
+    }, [mode, systemMode]);
+
+    React.useEffect(() => {
+      let timer;
+      if (disableTransitionOnChange && hasMounted.current) {
+        // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313
+        const css = document.createElement('style');
+        css.appendChild(document.createTextNode(DISABLE_CSS_TRANSITION));
+        document.head.appendChild(css);
+
+        // Force browser repaint
+        (() => window.getComputedStyle(document.body))();
+
+        timer = setTimeout(() => {
+          document.head.removeChild(css);
+        }, 1);
+      }
+      return () => {
+        clearTimeout(timer);
+      };
+    }, [colorScheme]);
+
+    React.useEffect(() => {
+      hasMounted.current = true;
+    }, []);
 
     return (
       <ColorSchemeContext.Provider

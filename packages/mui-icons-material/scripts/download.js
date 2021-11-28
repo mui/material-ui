@@ -11,11 +11,13 @@ import retry from 'modules/waterfall/retry';
 // This is just a list of new icons.
 // In the future we might change what icons we want to exclude (e.g. by popularity)
 const ignoredIconNames = new Set([
+  '123',
+  '6_ft_apart',
   'ads_click',
   'area_chart',
   'back_hand',
-  'checklist',
   'checklist_rtl',
+  'checklist',
   'compost',
   'cruelty_free',
   'data_exploration',
