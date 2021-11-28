@@ -2004,7 +2004,7 @@ _May 31, 2021_
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 We have completed the migration to emotion of all the components (`@material-ui/core` and `@material-ui/lab`) @siriwatknp, @mnajdova.
-- 📦 Save [10 kB gzipped](https://bundlephobia.com/result?p=@material-ui/core@5.0.0-alpha.34) by removing the dependency on `@material-ui/styles` (JSS) from the core and the lab (#26377, #26382, #26376) @mnajdova.
+- 📦 Save [10 kB gzipped](https://bundlephobia.com/package/@material-ui/core@5.0.0-alpha.34) by removing the dependency on `@material-ui/styles` (JSS) from the core and the lab (#26377, #26382, #26376) @mnajdova.
 - ⚒️ Add many new [codemods](https://github.com/mui-org/material-ui/blob/HEAD/packages/mui-codemod/README.md) to automate the migration from v4 to v5 (#24867) @mbrookes.
 - And many more 🐛 bug fixes and 📚 improvements.
 
