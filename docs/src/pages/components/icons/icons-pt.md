@@ -116,7 +116,7 @@ function HomeIcon(props) {
 
 ### Propriedade Componente
 
-Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes estejam salvos no formato `.svg`. A biblioteca [svgr](https://github.com/smooth-code/svgr) possui loaders para importar arquivos SVG e usá-los como componentes React. Por exemplo, com webpack:
+Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes estejam salvos no formato `.svg`. A biblioteca [svgr](https://github.com/gregberge/svgr) possui loaders para importar arquivos SVG e usá-los como componentes React. Por exemplo, com webpack:
 
 ```jsx
 // webpack.config.js
