@@ -15,7 +15,7 @@ You can use it, but you don't have to, since MUI is also [interoperable with](/g
 
 ## Why use MUI's styling solution?
 
-In previous versions, MUI has used [Less](http://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited.
+In previous versions, MUI has used [Less](https://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited.
 [A _CSS-in-JS_ solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations,
 and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 
