@@ -179,6 +179,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   );
 
   const start = React.useCallback(
+    // eslint-disable-next-line default-param-last -- TODO: Default params should be last
     (event = {}, options = {}, cb) => {
       const {
         pulsate = false,

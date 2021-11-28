@@ -21,6 +21,7 @@ module.exports = {
   extends: [
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'airbnb',
     'airbnb-typescript',
     'prettier',
   ],
@@ -82,6 +83,9 @@ module.exports = {
     'no-constant-condition': 'error',
     // Use the proptype inheritance chain
     'no-prototype-builtins': 'off',
+    // No bad names come to mind that are frequently exported
+    // AirBnB restricts `default` but that also restricts `export { default } from 'module'`
+    'no-restricted-exports': 'off',
     'no-underscore-dangle': 'error',
     'nonblock-statement-body-position': 'error',
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
@@ -140,6 +144,7 @@ module.exports = {
     // Though we have to manually enforce it for function components with default values.
     'react/destructuring-assignment': 'off',
     'react/forbid-prop-types': 'off', // Too strict, no time for that
+    'react/function-component-definition': 'off', // Too many false positives.
     'react/jsx-curly-brace-presence': 'off', // broken
     // airbnb is using .jsx
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.tsx'] }],
@@ -147,6 +152,8 @@ module.exports = {
     'react/jsx-fragments': ['error', 'element'],
     // Enforces premature optimization
     'react/jsx-no-bind': 'off',
+    // Encourages premature optimization
+    'react/jsx-no-constructed-context-values': 'off',
     // We are a UI library.
     'react/jsx-props-no-spreading': 'off',
     // This rule is great for raising people awareness of what a key is and how it works.

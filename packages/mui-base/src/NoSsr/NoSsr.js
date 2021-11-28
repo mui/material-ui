@@ -27,7 +27,7 @@ function NoSsr(props) {
     }
   }, [defer]);
 
-  // We need the Fragment here to force react-docgen to recognise NoSsr as a component.
+  // eslint-disable-next-line react/jsx-no-useless-fragment -- We need the Fragment here to force react-docgen to recognise NoSsr as a component.
   return <React.Fragment>{mountedState ? children : fallback}</React.Fragment>;
 }
 

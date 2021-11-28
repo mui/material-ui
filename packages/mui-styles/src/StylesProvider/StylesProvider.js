@@ -38,6 +38,7 @@ export default function StylesProvider(props) {
   const { children, injectFirst = false, disableGeneration = false, ...localOptions } = props;
 
   const outerOptions = React.useContext(StylesContext);
+  // eslint-disable-next-line react/jsx-no-constructed-context-values -- legacy module that really needs a new context value on every render.
   const context = { ...outerOptions, disableGeneration, ...localOptions };
 
   if (process.env.NODE_ENV !== 'production') {

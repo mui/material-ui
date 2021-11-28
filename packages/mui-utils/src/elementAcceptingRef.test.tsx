@@ -103,6 +103,7 @@ describe('elementAcceptingRef', () => {
 
     // undesired behavior
     it('accepts Fragment', () => {
+      // eslint-disable-next-line react/jsx-no-useless-fragment -- it's just for testing
       assertPass(<React.Fragment />);
     });
   });
