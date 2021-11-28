@@ -48,6 +48,31 @@ describe('<Snackbar />', () => {
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([event, 'clickaway']);
     });
+
+    it('should be called when pressing Escape', () => {
+      const handleClose = spy();
+      render(<Snackbar open onClose={handleClose} message="message" />);
+
+      expect(fireEvent.keyDown(document.body, { key: 'Escape' })).to.equal(true);
+      expect(handleClose.callCount).to.equal(1);
+      expect(handleClose.args[0][1]).to.deep.equal('escapeKeyDown');
+    });
+
+    it('can limit which Snackbars are closed when pressing Escape', () => {
+      const handleCloseA = spy((event) => event.preventDefault());
+      const handleCloseB = spy();
+      render(
+        <React.Fragment>
+          <Snackbar open onClose={handleCloseA} message="messageA" />
+          <Snackbar open onClose={handleCloseB} message="messageB" />
+        </React.Fragment>,
+      );
+
+      fireEvent.keyDown(document.body, { key: 'Escape' });
+
+      expect(handleCloseA.callCount).to.equal(1);
+      expect(handleCloseB.callCount).to.equal(0);
+    });
   });
 
   describe('Consecutive messages', () => {

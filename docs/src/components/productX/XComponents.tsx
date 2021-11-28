@@ -24,9 +24,11 @@ import More from 'docs/src/components/action/More';
 import ROUTES from 'docs/src/route';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import Frame from 'docs/src/components/action/Frame';
+import IconImage from 'docs/src/components/icon/IconImage';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
-const DEMOS = ['Data Grid', 'Date Picker', 'Tree View', 'Sparkline', 'Charts'];
+const DEMOS = ['Data Grid', 'Date Range Picker', 'Tree View', 'Sparkline', 'Charts'];
+const WIP = DEMOS.slice(3);
 
 const AspectRatioImage = styled('div', {
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',
@@ -92,7 +94,7 @@ export default function XComponents() {
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
             <SectionHeadline
-              overline="Component library"
+              overline="React component library"
               title={
                 <Typography variant="h2">
                   Powerful components for <GradientText>advanced</GradientText> use-cases
@@ -105,6 +107,7 @@ export default function XComponents() {
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />
+                {WIP.includes(name) && <IconImage name="time" sx={{ ml: 'auto', mr: 2 }} />}
               </Highlighter>
             ))}
             <More href={ROUTES.roadmap} />
