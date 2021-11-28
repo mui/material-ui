@@ -200,7 +200,7 @@ export default function createCssVarsProvider(options) {
      */
     attribute: PropTypes.string,
     /**
-     * Your component tree.
+     * The component tree.
      */
     children: PropTypes.node,
     /**
@@ -216,7 +216,7 @@ export default function createCssVarsProvider(options) {
      */
     modeStorageKey: PropTypes.string,
     /**
-     * css variable prefix
+     * CSS variable prefix.
      */
     prefix: PropTypes.string,
     /**

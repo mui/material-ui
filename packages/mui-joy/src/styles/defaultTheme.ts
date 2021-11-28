@@ -66,7 +66,7 @@ export interface FontFamily {
 }
 
 export interface FontWeight {
-  // add string to support css variable value.
+  // add string to support CSS variable value.
   light: React.CSSProperties['fontWeight'] | string;
   regular: React.CSSProperties['fontWeight'] | string;
   medium: React.CSSProperties['fontWeight'] | string;
