@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { Box } from '@mui/system';
-import { useColorScheme, styled, JoyTheme, TypographySystem } from '@mui/joy/styles';
+import {
+  useColorScheme,
+  styled,
+  JoyTheme,
+  TypographySystem,
+  VariantProp,
+  ColorPaletteProp,
+  BorderRadius,
+  Elevation,
+} from '@mui/joy/styles';
 import { Moon, Sun, System } from 'docs/src/joy/icons';
-import { DemoProps } from 'docs/src/joy/DemoController';
+
+interface DemoProps {
+  variant?: VariantProp;
+  color?: ColorPaletteProp;
+  size?: 'small' | 'default' | 'large';
+  roundness?: keyof BorderRadius;
+  elevation?: keyof Elevation;
+}
 
 const shouldForwardProp = (prop: string) =>
   prop !== 'variant' &&
