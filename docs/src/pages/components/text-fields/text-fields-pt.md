@@ -259,8 +259,8 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao r
 </div>
 ```
 
-- Se você estiver usando o componente `TextField`, basta fornecer um `id` único.
-- Se você está compondo o componente:
+- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side. Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
+- If you are composing the component:
 
 ```jsx
 <div class="form-control" mark="crwd-mark">
