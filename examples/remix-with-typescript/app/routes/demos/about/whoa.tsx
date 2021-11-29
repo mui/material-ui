@@ -1,12 +1,11 @@
-import { Link } from "remix";
+import { Link } from 'remix';
 
 export default function AboutIndex() {
   return (
     <div>
       <p>
-        Whoa, this is a nested route! We render the <code>/about</code> layout
-        route component, and its <code>Outlet</code> renders our route
-        component. 🤯
+        Whoa, this is a nested route! We render the <code>/about</code> layout route component, and
+        its <code>Outlet</code> renders our route component. 🤯
       </p>
       <p>
         <strong>

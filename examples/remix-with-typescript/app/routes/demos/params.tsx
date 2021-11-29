@@ -1,7 +1,7 @@
-import { useCatch, Link, json, useLoaderData, Outlet } from "remix";
+import { useCatch, Link, json, useLoaderData, Outlet } from 'remix';
 
 export function meta() {
-  return { title: "Boundaries Demo" };
+  return { title: 'Boundaries Demo' };
 }
 
 export default function Boundaries() {

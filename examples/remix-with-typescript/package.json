@@ -10,17 +10,21 @@
     "start": "remix-serve build"
   },
   "dependencies": {
-    "@remix-run/react": "^1.0.6",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "remix": "^1.0.6",
-    "@remix-run/serve": "^1.0.6"
+    "@emotion/react": "latest",
+    "@emotion/server": "latest",
+    "@emotion/styled": "latest",
+    "@mui/material": "latest",
+    "@remix-run/react": "latest",
+    "@remix-run/serve": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "remix": "latest"
   },
   "devDependencies": {
-    "@remix-run/dev": "^1.0.6",
-    "@types/react": "^17.0.24",
-    "@types/react-dom": "^17.0.9",
-    "typescript": "^4.1.2"
+    "@remix-run/dev": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest"
   },
   "engines": {
     "node": ">=14"

@@ -44,16 +44,6 @@ body {
   line-height: 1.5;
 }
 
-a {
-  color: var(--color-links);
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--color-links-hover);
-  text-decoration: underline;
-}
-
 hr {
   display: block;
   height: 1px;
