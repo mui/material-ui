@@ -257,8 +257,8 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 </div>
 ```
 
-- 如果您使用的是 `TextField` 组件，那您只需提供独特的 `id`。
-- 如果您正在构造一个组件：
+- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side. Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
+- If you are composing the component:
 
 ```jsx
 <FormControl>
