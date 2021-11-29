@@ -9,7 +9,7 @@ _Nov 29, 2021_
 A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
 
 - ♿️ Improved accessibility of `Snackbar` and `TextField` in `@mui/material` (#29782) (#29850) (#29852) @eps1lon.
-- 🎉 Finished the first iteration of `Button` of `Joy` design system (#29464) @siriwatknp.
+- 🎉 Added support for `sx` syntax inside `styled()` utility (#29833) @mnajdova.
 - 🎉 Added support for more options for `createCssVarsProvider` in `@mui/system` (#29845) (#29857) @hbjORbj.
 - And many more 🐛 bug fixes and 📚 improvements.
 
