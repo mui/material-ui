@@ -22,7 +22,7 @@ githubLabel: 'component: TrapFocus'
 
 ## Unstyled
 
-- 📦 [2.0kB 已压缩的包](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
+- 📦 [2.0kB 已压缩的包](https://bundlephobia.com/package/@material-ui/unstyled@next)
 
 As the component does not have any styles, it also comes with the unstyled package.
 
