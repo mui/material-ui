@@ -61,6 +61,20 @@ const GOLDs = [
     description: 'Horse community.',
     href: 'https://www.hoodiebees.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
+  {
+    src: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/40.png',
+    srcSet: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/80.png 2x',
+    name: 'SunmatoSoft',
+    description: 'IT solutions and services to established companies that need tailored software.',
+    href: 'https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
+    srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
+    name: 'TopAussieCasinos.com',
+    description: '#1 Aussie Gambling Guide.',
+    href: 'https://topaussiecasinos.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
 ];
 
 export default function GoldSponsors() {
