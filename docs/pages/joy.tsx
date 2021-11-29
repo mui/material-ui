@@ -180,11 +180,11 @@ export default function Joy() {
           height: 'min(100vh, 700px)',
           width: '100%',
           background: 'var(--joy-palette-gradient-bg)',
-          filter: 'blur(300px)',
+          filter: 'blur(20px)', // Careful! too much blur px causes performance issue in Safari.
           transform: 'rotate(180deg)',
           mixBlendMode: 'normal',
           zIndex: -1,
-          opacity: 0.5,
+          opacity: 0.2,
         }}
       />
       <Header translucent={trigger}>

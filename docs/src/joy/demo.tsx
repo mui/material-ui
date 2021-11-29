@@ -13,7 +13,13 @@ import {
   Select,
   Tabs,
 } from 'docs/src/joy/components';
-import { Apps, Notifications, Person, Settings } from 'docs/src/joy/icons';
+import {
+  Apps,
+  Notifications,
+  Person,
+  Settings,
+  KeyboardArrowDownRounded,
+} from 'docs/src/joy/icons';
 import {
   nodeMap,
   useDemoController,
@@ -140,30 +146,32 @@ export default function JoyDemo() {
     nodeMap.get(selectedId)?.supportedProps?.includes(field) ? (
       <React.Fragment>
         <FormLabel htmlFor={field}>{capitalize(field)}</FormLabel>
-        <Select
-          id={field}
-          value={nodeData[selectedId]?.[field] || 'none'}
-          onChange={(event) => {
-            updateNode(selectedId, {
-              [field]: event.target.value,
-            });
-          }}
-        >
-          {!options.includes('none') &&
-            field !== 'variant' &&
-            field !== 'color' &&
-            field !== 'size' && (
-              <option value="none" disabled>
-                none
+        <Box sx={{ position: 'relative', mb: 2 }}>
+          <Select
+            id={field}
+            value={nodeData[selectedId]?.[field] || 'none'}
+            onChange={(event) => {
+              updateNode(selectedId, {
+                [field]: event.target.value,
+              });
+            }}
+          >
+            {!options.includes('none') &&
+              field !== 'variant' &&
+              field !== 'color' &&
+              field !== 'size' && (
+                <option value="none" disabled>
+                  none
+                </option>
+              )}
+            {options.map((option) => (
+              <option key={option} value={option}>
+                {option}
               </option>
-            )}
-          {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </Select>
-        <br />
+            ))}
+          </Select>
+          <KeyboardArrowDownRounded sx={{ position: 'absolute', top: 8, right: 8 }} />
+        </Box>
       </React.Fragment>
     ) : null;
   return (
@@ -288,8 +296,9 @@ export default function JoyDemo() {
             minWidth: 240,
           }}
         >
-          <Typography level="h5">Playground</Typography>
-          <br />
+          <Typography level="h5" sx={{ mb: 2 }}>
+            Playground
+          </Typography>
           {renderSelect('variant', variantOptions)}
           {renderSelect('color', colorOptions)}
           {renderSelect('size', sizeOptions)}

@@ -229,10 +229,13 @@ export const FormLabel = styled('label')(({ theme }) => [
 
 export const Select = styled('select')(({ theme, value }) => [
   {
+    width: '100%',
     display: 'flex',
     padding: '0.5rem',
     borderRadius: theme.vars.borderRadius.xs,
     border: 0,
+    boxShadow: 'none',
+    '-webkit-appearance': 'none',
     '&:focus-visible': theme.focus.default,
   },
   theme.typography.body1,
