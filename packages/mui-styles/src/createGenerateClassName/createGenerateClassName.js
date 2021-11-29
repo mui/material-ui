@@ -10,15 +10,13 @@ import { unstable_nested as nested } from '@mui/private-theming/ThemeProvider';
  * being untouched by simple user overrides.
  */
 const stateClasses = [
-  'active',
   'checked',
-  'completed',
   'disabled',
   'error',
-  'expanded',
   'focused',
   'focusVisible',
   'required',
+  'expanded',
   'selected',
 ];
 
