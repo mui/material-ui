@@ -1,24 +1,17 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { expect } from 'chai';
-import { useFakeTimers, SinonFakeTimers, spy } from 'sinon';
+import { spy } from 'sinon';
 import { act, fireEvent, screen, userEvent } from 'test/utils';
 import 'dayjs/locale/ru';
 import DesktopDateTimePicker from '@mui/lab/DesktopDateTimePicker';
 import { adapterToUse, createPickerRenderer } from '../internal/pickers/test-utils';
 
 describe('<DesktopDateTimePicker />', () => {
-  let clock: SinonFakeTimers;
-
-  beforeEach(() => {
-    clock = useFakeTimers(adapterToUse.date('2018-01-01T00:00:00.000').getTime());
+  const { render } = createPickerRenderer({
+    clock: 'fake',
+    clockConfig: adapterToUse.date('2018-01-01T00:00:00.000').getTime(),
   });
-
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render } = createPickerRenderer();
 
   it('opens when "Choose date" is clicked', () => {
     render(

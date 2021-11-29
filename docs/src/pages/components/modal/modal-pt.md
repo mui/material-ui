@@ -36,7 +36,7 @@ Você pode desativar o contorno (muitas vezes azul ou ouro) com a propriedade CS
 
 ## Unstyled
 
-- 📦 [4.7 kB gzipped](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
+- 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@material-ui/unstyled@next)
 
 The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 

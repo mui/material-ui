@@ -33,7 +33,7 @@ const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA
 
 export default class MyDocument extends Document {
   render() {
-    const { canonical, userLanguage } = this.props;
+    const { canonicalAs, userLanguage } = this.props;
 
     return (
       <Html lang={userLanguage}>
@@ -60,16 +60,16 @@ export default class MyDocument extends Document {
           {/* SEO */}
           <link
             rel="canonical"
-            href={`https://mui.com${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonical}`}
+            href={`https://mui.com${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonicalAs}`}
           />
-          <link rel="alternate" href={`https://mui.com${canonical}`} hrefLang="x-default" />
+          <link rel="alternate" href={`https://mui.com${canonicalAs}`} hrefLang="x-default" />
           {LANGUAGES_SSR.map((userLanguage2) => (
             <link
               key={userLanguage2}
               rel="alternate"
               href={`https://mui.com${
                 userLanguage2 === 'en' ? '' : `/${userLanguage2}`
-              }${canonical}`}
+              }${canonicalAs}`}
               hrefLang={userLanguage2}
             />
           ))}
@@ -221,7 +221,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
     return {
       ...initialProps,
-      canonical: pathnameToLanguage(url).canonical,
+      canonicalAs: pathnameToLanguage(url).canonicalAs,
       userLanguage: ctx.query.userLanguage || 'en',
       // Styles fragment is rendered after the app and page rendering finish.
       styles: [

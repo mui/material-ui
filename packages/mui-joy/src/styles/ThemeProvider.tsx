@@ -14,8 +14,13 @@ export const useTheme = () => {
 export default function ThemeProvider({
   children,
   theme,
-}: React.PropsWithChildren<{ theme?: PartialDeep<Omit<JoyTheme, 'vars'>> }>) {
-  let mergedTheme = deepmerge(defaultTheme, theme);
-  mergedTheme = { ...mergedTheme, vars: mergedTheme };
+}: React.PropsWithChildren<{
+  theme?: PartialDeep<Omit<JoyTheme, 'vars' | 'components'>> & {
+    components?: JoyTheme['components'];
+  };
+}>) {
+  const { components, ...filteredTheme } = theme || {};
+  let mergedTheme = deepmerge(defaultTheme, filteredTheme);
+  mergedTheme = { ...mergedTheme, vars: mergedTheme, components };
   return <SystemThemeProvider theme={mergedTheme}>{children}</SystemThemeProvider>;
 }

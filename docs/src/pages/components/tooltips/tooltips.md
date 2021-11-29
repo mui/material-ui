@@ -62,6 +62,8 @@ You can find a similar concept in the [wrapping components](/guides/composition/
 
 You can define the types of events that cause a tooltip to show.
 
+The touch action requires a long press due to the `enterTouchDelay` prop being set to `700`ms by default.
+
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
 ## Controlled tooltips

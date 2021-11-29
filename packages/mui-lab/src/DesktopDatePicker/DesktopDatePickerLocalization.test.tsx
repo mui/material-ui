@@ -24,7 +24,7 @@ describe('<DesktopDatePicker /> localization', () => {
   ];
 
   tests.forEach(({ valid, invalid, locale, dateFnsLocale }) => {
-    describe(`${locale} input validation`, () => {
+    describe(`input validation ${locale}`, () => {
       const { render: localizedRender } = createPickerRenderer({ locale: dateFnsLocale });
 
       interface FormProps {
@@ -46,7 +46,7 @@ describe('<DesktopDatePicker /> localization', () => {
         );
       };
 
-      it(`${locale}: should set invalid`, () => {
+      it(`should set invalid`, () => {
         localizedRender(
           <Form Picker={DesktopDatePicker} PickerProps={{ views: ['month', 'year'] }} />,
         );
@@ -57,7 +57,7 @@ describe('<DesktopDatePicker /> localization', () => {
         expect(input).to.have.attribute('aria-invalid', 'true');
       });
 
-      it(`${locale}: should set to valid when was invalid`, () => {
+      it(`should set to valid when was invalid`, () => {
         localizedRender(
           <Form Picker={DesktopDatePicker} PickerProps={{ views: ['month', 'year'] }} />,
         );

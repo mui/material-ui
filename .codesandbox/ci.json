@@ -35,7 +35,7 @@
     "@mui/joy": "packages/mui-joy/build"
   },
   "sandboxes": [
-    "material-ui-issue-dh2yh",
+    "material-ui-issue-latest-s2dsx",
     "github/mui-org/material-ui/tree/HEAD/examples/create-react-app",
     "github/mui-org/material-ui/tree/HEAD/examples/create-react-app-with-typescript",
     "github/mui-org/material-ui/tree/HEAD/examples/joy-cra-typescript"

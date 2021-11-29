@@ -105,4 +105,4 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 ## Customização
 
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/list-item).
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/list-item/).

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import {
   describeConformance,
   act,
@@ -16,22 +16,10 @@ import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
 
 describe('<Tooltip />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
+  const { clock, render } = createRenderer({ clock: 'fake' });
   beforeEach(() => {
     testReset();
-    clock = useFakeTimers();
   });
-
-  afterEach(() => {
-    act(() => {
-      clock.restore();
-    });
-  });
-
-  const { render } = createRenderer();
 
   describeConformance(
     <Tooltip title="Hello World" open>
@@ -246,20 +234,14 @@ describe('<Tooltip />', () => {
     expect(queryByRole('tooltip')).to.equal(null);
 
     fireEvent.mouseOver(getByRole('button'));
-    act(() => {
-      clock.tick(enterDelay);
-    });
+    clock.tick(enterDelay);
 
     expect(getByRole('tooltip')).toBeVisible();
 
-    act(() => {
-      fireEvent.mouseLeave(getByRole('button'));
-      // Tooltip schedules timeout even with no delay
-      clock.tick(0);
-    });
-    act(() => {
-      clock.tick(transitionTimeout);
-    });
+    fireEvent.mouseLeave(getByRole('button'));
+    // Tooltip schedules timeout even with no delay
+    clock.tick(0);
+    clock.tick(transitionTimeout);
 
     expect(queryByRole('tooltip')).to.equal(null);
   });
@@ -289,17 +271,13 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal([]);
 
     fireEvent.mouseOver(getByRole('button'));
-    act(() => {
-      clock.tick(100);
-    });
+    clock.tick(100);
 
     expect(eventLog).to.deep.equal(['mouseover', 'open']);
     setProps({ open: true });
 
     fireEvent.mouseLeave(getByRole('button'));
-    act(() => {
-      clock.tick(0);
-    });
+    clock.tick(0);
 
     expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
   });
@@ -315,9 +293,7 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal([]);
 
     fireEvent.mouseOver(getByTestId('trigger'));
-    act(() => {
-      clock.tick(100);
-    });
+    clock.tick(100);
 
     expect(eventLog).to.deep.equal(['mouseover']);
   });
@@ -331,9 +307,7 @@ describe('<Tooltip />', () => {
     );
 
     fireEvent.mouseLeave(getByTestId('trigger'));
-    act(() => {
-      clock.tick(0);
-    });
+    clock.tick(0);
 
     expect(eventLog).to.deep.equal(['mouseleave']);
   });
@@ -353,17 +327,13 @@ describe('<Tooltip />', () => {
       </Tooltip>,
     );
 
-    act(() => {
-      fireEvent.keyDown(
-        // We don't care about the target. Any Escape should dismiss the tooltip
-        // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
-        document.activeElement,
-        { key: 'Escape' },
-      );
-    });
-    act(() => {
-      clock.tick(transitionTimeout);
-    });
+    fireEvent.keyDown(
+      // We don't care about the target. Any Escape should dismiss the tooltip
+      // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+      document.activeElement,
+      { key: 'Escape' },
+    );
+    clock.tick(transitionTimeout);
 
     expect(handleClose.callCount).to.equal(1);
   });
@@ -398,21 +368,17 @@ describe('<Tooltip />', () => {
           <button type="submit">Hello World</button>
         </Tooltip>,
       );
-      act(() => {
-        fireEvent.touchStart(getByRole('button'));
-        clock.tick(enterTouchDelay + enterDelay);
-      });
+      fireEvent.touchStart(getByRole('button'));
+      clock.tick(enterTouchDelay + enterDelay);
 
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.touchEnd(getByRole('button'));
       act(() => {
         getByRole('button').blur();
-        clock.tick(leaveTouchDelay);
       });
-      act(() => {
-        clock.tick(transitionTimeout);
-      });
+      clock.tick(leaveTouchDelay);
+      clock.tick(transitionTimeout);
 
       expect(queryByRole('tooltip')).to.equal(null);
     });
@@ -462,9 +428,7 @@ describe('<Tooltip />', () => {
       );
 
       setProps({ open: true });
-      act(() => {
-        clock.tick(100);
-      });
+      clock.tick(100);
 
       expect(getByRole('tooltip')).toBeVisible();
       expect(handleFocus.callCount).to.equal(1);
@@ -485,9 +449,7 @@ describe('<Tooltip />', () => {
       focusVisible(getByRole('button'));
       expect(queryByRole('tooltip')).to.equal(null);
 
-      act(() => {
-        clock.tick(111);
-      });
+      clock.tick(111);
 
       expect(getByRole('tooltip')).toBeVisible();
     });
@@ -511,21 +473,15 @@ describe('<Tooltip />', () => {
 
       expect(queryByRole('tooltip')).to.equal(null);
 
-      act(() => {
-        clock.tick(111);
-      });
+      clock.tick(111);
 
       expect(getByRole('tooltip')).toBeVisible();
 
       act(() => {
         document.activeElement.blur();
       });
-      act(() => {
-        clock.tick(5);
-      });
-      act(() => {
-        clock.tick(6);
-      });
+      clock.tick(5);
+      clock.tick(6);
 
       expect(queryByRole('tooltip')).to.equal(null);
 
@@ -559,9 +515,7 @@ describe('<Tooltip />', () => {
       simulatePointerDevice();
 
       focusVisible(getByRole('button'));
-      act(() => {
-        clock.tick(enterDelay);
-      });
+      clock.tick(enterDelay);
 
       expect(getByRole('tooltip')).toBeVisible();
 
@@ -571,12 +525,8 @@ describe('<Tooltip />', () => {
 
       expect(getByRole('tooltip')).toBeVisible();
 
-      act(() => {
-        clock.tick(leaveDelay);
-      });
-      act(() => {
-        clock.tick(transitionTimeout);
-      });
+      clock.tick(leaveDelay);
+      clock.tick(transitionTimeout);
 
       expect(queryByRole('tooltip')).to.equal(null);
     });
@@ -703,9 +653,7 @@ describe('<Tooltip />', () => {
       );
 
       fireEvent.mouseOver(getByRole('button'));
-      act(() => {
-        clock.tick(100);
-      });
+      clock.tick(100);
 
       expect(getByRole('tooltip')).toBeVisible();
 
@@ -714,9 +662,7 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(getByRole('tooltip'));
-      act(() => {
-        clock.tick(111 + 10);
-      });
+      clock.tick(111 + 10);
 
       expect(getByRole('tooltip')).toBeVisible();
     });
@@ -736,9 +682,7 @@ describe('<Tooltip />', () => {
       );
 
       fireEvent.mouseOver(getByRole('button'));
-      act(() => {
-        clock.tick(100);
-      });
+      clock.tick(100);
 
       expect(getByRole('tooltip')).toBeVisible();
 
@@ -747,9 +691,7 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(getByRole('tooltip'));
-      act(() => {
-        clock.tick(111 + 10);
-      });
+      clock.tick(111 + 10);
 
       expect(getByRole('tooltip')).not.toBeVisible();
     });
@@ -921,9 +863,7 @@ describe('<Tooltip />', () => {
       act(() => {
         button.blur();
       });
-      act(() => {
-        clock.tick(transitionTimeout);
-      });
+      clock.tick(transitionTimeout);
 
       expect(getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['blur', 'close']);
@@ -1196,9 +1136,7 @@ describe('<Tooltip />', () => {
 
       expect(document.body.style.WebkitUserSelect).to.equal('none');
 
-      act(() => {
-        clock.tick(enterTouchDelay + enterDelay);
-      });
+      clock.tick(enterTouchDelay + enterDelay);
       expect(document.body.style.WebkitUserSelect).to.equal('text');
     });
 
@@ -1238,9 +1176,7 @@ describe('<Tooltip />', () => {
 
       document.body.style.WebkitUserSelect = 'text';
       // Let updates flush before unmounting
-      act(() => {
-        fireEvent.touchStart(getByRole('button'));
-      });
+      fireEvent.touchStart(getByRole('button'));
       unmount();
 
       expect(document.body.style.WebkitUserSelect).to.equal('text');
