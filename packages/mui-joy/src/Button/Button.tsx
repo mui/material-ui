@@ -43,7 +43,7 @@ const ButtonRoot = styled('button', {
       styles.root,
       styles[`variant${capitalize(ownerState.variant)}`],
       styles[`color${capitalize(ownerState.color)}`],
-      styles[`size${capitalize(ownerState.size)}`],
+      ownerState.size && styles[`size${capitalize(ownerState.size)}`],
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
