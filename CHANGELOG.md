@@ -10,7 +10,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 - 🛠 Improved accessibility of `Snackbar` and `TextField` in `@mui/material` (#29782) (#29850) (#29852) @eps1lon.
 - 🎉 Finished the first iteration of `Button` of `Joy` design system (#29464) @siriwatknp.
-- 🎉 Added support for more options for `createCSSVarsProvider` in `@mui/system` (#29845) (#29857) @hbjORbj.
+- 🎉 Added support for more options for `createCssVarsProvider` in `@mui/system` (#29845) (#29857) @hbjORbj.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@mui/material@5.2.2`
