@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { createRenderer, describeConformance } from 'test/utils';
 import PickerStaticWrapper, { pickerStaticWrapperClasses as classes } from './PickerStaticWrapper';
 
