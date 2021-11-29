@@ -59,9 +59,10 @@ export default function createCssVarsProvider(options) {
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
     const hasMounted = React.useRef(null);
 
-    let mergedTheme = deepmerge(restBaseTheme, restThemeProp);
-
+    // eslint-disable-next-line prefer-const
+    let { components = {}, ...mergedTheme } = deepmerge(restBaseTheme, restThemeProp);
     const colorSchemes = deepmerge(baseColorSchemes, colorSchemesProp);
+
     const allColorSchemes = Object.keys(colorSchemes);
 
     const defaultLightColorScheme =
@@ -104,6 +105,7 @@ export default function createCssVarsProvider(options) {
     mergedTheme = {
       ...mergedTheme,
       ...colorSchemes[resolvedColorScheme],
+      components,
       colorSchemes,
       vars: rootVars,
     };

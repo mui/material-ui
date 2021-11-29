@@ -1,6 +1,7 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import defaultTheme, { ColorSystems, StaticTheme } from './defaultTheme';
+import defaultTheme, { StaticTheme } from './defaultTheme';
+import { ColorSystems } from './ColorSystem';
 
 type PartialDeep<T> = {
   [K in keyof T]?: PartialDeep<T[K]>;

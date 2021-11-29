@@ -110,7 +110,7 @@ It also enables you to **stack** them on top of one another (although this is di
 
 By default, the snackbar won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended to give the user [sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) to respond.
 
-When open, **every** `Snackbar` will be dismissed if <kbd>Escape</kbd> is pressed.
+When open, **every** `Snackbar` will be dismissed if <kbd class="key">Escape</kbd> is pressed.
 Unless you don't handle `onClose` with the `"escapeKeyDown"` reason.
 If you want to limit this behavior to only dismiss the oldest currently open Snackbar call `event.preventDefault` in `onClose`.
 
