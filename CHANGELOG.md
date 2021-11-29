@@ -34,6 +34,11 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 - &#8203;<!-- 10 -->[system] Add support for `disableTransitionOnChange` in `createCssVarsProvider` (#29857) @hbjORbj
 - &#8203;<!-- 09 -->[system] Add support for `enableColorScheme` in `createCssVarsProvider` (#29845) @hbjORbj
 
+### `@mui/utils@5.2.2`
+
+- &#8203;<!-- 05 -->[useId] Trade random collisions for collisions on overflow (#29781) @eps1lon
+- &#8203;<!-- 04 -->[useIsFocusVisible] Convert to TypeScript (#29779) @eps1lon
+
 ### Docs
 
 - &#8203;<!-- 24 -->[docs] Fix v5-beta confusing example description (#29932) @oliviertassinari
@@ -56,8 +61,6 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 - &#8203;<!-- 25 -->[core] Fix PR detection pattern in test_bundle_size_monitor (#29895) @eps1lon
 - &#8203;<!-- 08 -->[test] Fix browser tests (#29929) @eps1lon
 - &#8203;<!-- 07 -->[test] Reject shorthand properties in style matchers (#29893) @eps1lon
-- &#8203;<!-- 05 -->[useId] Trade random collisions for collisions on overflow (#29781) @eps1lon
-- &#8203;<!-- 04 -->[useIsFocusVisible] Convert to TypeScript (#29779) @eps1lon
 
 All contributors of this release in alphabetical order: @danilo-leal, @eps1lon, @Harshikerfuffle, @hbjORbj, @mbrookes, @oliviertassinari, @radlinskii, @sinclairity, @siriwatknp
 
