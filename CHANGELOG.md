@@ -1,5 +1,69 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.2.2
+
+<!-- generated comparing v5.2.1..master -->
+
+_Nov 29, 2021_
+
+A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
+
+- ♿️ Improved accessibility of `Snackbar` and `TextField` in `@mui/material` (#29782) (#29850) (#29852) @eps1lon.
+- 🎉 Added support for `sx` syntax inside `styled()` utility (#29833) @mnajdova.
+- 🎉 Added support for more options for `createCssVarsProvider` in `@mui/system` (#29845) (#29857) @hbjORbj.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.2.2`
+
+- &#8203;<!-- 14 -->[MenuList] Add component prop (#29882) @Harshikerfuffle
+- &#8203;<!-- 13 -->[Snackbar] Interrupt auto-hide on keyboard interaction (#29852) @eps1lon
+- &#8203;<!-- 12 -->[Snackbar] Dismiss on Escape press (#29850) @eps1lon
+- &#8203;<!-- 06 -->[TextField] Associate accessible name and description by default (#29782) @eps1lon
+
+### `@mui/joy@5.0.0-alpha.4`
+
+- &#8203;<!-- 15 -->[Joy] Add `Button` - 1st iteration (#29464) @siriwatknp
+
+### `@mui/codemod@5.2.1`
+
+- &#8203;<!-- 28 -->[codemod] Fix alias import for box-sx-prop (#29902) @siriwatknp
+
+### `@mui/system@5.2.2`
+
+- &#8203;<!-- 11 -->[system] CSSVarsProvider cleans up `html[style]` when unmounting (#29946) @eps1lon
+- &#8203;<!-- 10 -->[system] Add support for `disableTransitionOnChange` in `createCssVarsProvider` (#29857) @hbjORbj
+- &#8203;<!-- 09 -->[system] Add support for `enableColorScheme` in `createCssVarsProvider` (#29845) @hbjORbj
+
+### `@mui/utils@5.2.2`
+
+- &#8203;<!-- 05 -->[useId] Trade random collisions for collisions on overflow (#29781) @eps1lon
+- &#8203;<!-- 04 -->[useIsFocusVisible] Convert to TypeScript (#29779) @eps1lon
+
+### Docs
+
+- &#8203;<!-- 24 -->[docs] Fix v5-beta confusing example description (#29932) @oliviertassinari
+- &#8203;<!-- 23 -->[docs] Apply the z-index on the right DOM element (#29934) @oliviertassinari
+- &#8203;<!-- 22 -->[docs] Improve git diff format (#29935) @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Fix typo (#29866) @sinclairity
+- &#8203;<!-- 20 -->[docs] Fix key display (#29933) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Fix outdated link to next/link docs (#29937) @radlinskii
+- &#8203;<!-- 18 -->[docs] Add how to pass `sx` prop (#29905) @siriwatknp
+- &#8203;<!-- 17 -->[docs] Fix typo in notifications @mbrookes
+- &#8203;<!-- 16 -->[docs] Black Friday sale notification @mbrookes
+- &#8203;<!-- 03 -->[website] Fix canonical links (#29938) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Fix SEO issues (#29939) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Improvements to the /x product page (#28964) @danilo-leal
+
+### Core
+
+- &#8203;<!-- 27 -->[core] Remove dead code (#29940) @oliviertassinari
+- &#8203;<!-- 26 -->[core] Move benchmark CI job from AZP to CircleCI (#29894) @eps1lon
+- &#8203;<!-- 25 -->[core] Fix PR detection pattern in test_bundle_size_monitor (#29895) @eps1lon
+- &#8203;<!-- 08 -->[test] Fix browser tests (#29929) @eps1lon
+- &#8203;<!-- 07 -->[test] Reject shorthand properties in style matchers (#29893) @eps1lon
+
+All contributors of this release in alphabetical order: @danilo-leal, @eps1lon, @Harshikerfuffle, @hbjORbj, @mbrookes, @oliviertassinari, @radlinskii, @sinclairity, @siriwatknp
+
 ## 5.2.1
 
 <!-- generated comparing v5.2.0..master -->
