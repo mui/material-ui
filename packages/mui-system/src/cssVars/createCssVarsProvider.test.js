@@ -42,6 +42,7 @@ describe('createCssVarsProvider', () => {
   });
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
+    document.documentElement.style.setProperty('color-scheme', 'normal');
   });
 
   describe('[Design System] CssVarsProvider', () => {
@@ -304,11 +305,6 @@ describe('createCssVarsProvider', () => {
       });
 
       it('does not set `color-scheme` property to body with correct mode, given`enableColorScheme` is false', () => {
-        // TODO: Previous tests are leaking.
-        // `color-scheme` should be `'normal'` but prior tests retain their `color-scheme`.
-        const priorColorScheme = window
-          .getComputedStyle(document.documentElement)
-          .getPropertyValue('color-scheme');
         const { CssVarsProvider } = createCssVarsProvider({
           theme: {
             colorSchemes: { light: {}, dark: {} },
@@ -324,7 +320,7 @@ describe('createCssVarsProvider', () => {
           </CssVarsProvider>,
         );
         expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: shouldSupportColorScheme ? priorColorScheme : '',
+          colorScheme: shouldSupportColorScheme ? 'normal' : '',
         });
       });
     });
