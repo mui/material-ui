@@ -71,7 +71,7 @@ export const walkObjectDeep = <Value, T = Record<string, any>>(
 const getCssValue = (keys: string[], value: string | number) => {
   if (typeof value === 'number') {
     if (['lineHeight', 'fontWeight', 'opacity', 'zIndex'].some((prop) => keys.includes(prop))) {
-      // css property that are unitless
+      // CSS property that are unitless
       return value;
     }
     return `${value}px`;

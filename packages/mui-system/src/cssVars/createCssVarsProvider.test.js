@@ -74,7 +74,7 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('current-color-scheme').textContent).to.equal('light');
     });
 
-    it('has css variable prefix', () => {
+    it('has CSS variable prefix', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: { fontSize: 16 } },

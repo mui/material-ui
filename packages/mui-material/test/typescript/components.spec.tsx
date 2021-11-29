@@ -862,7 +862,7 @@ const TextFieldTest = () => (
         max: '10',
         step: '1',
         style: {
-          // just a long css property to test autocompletion
+          // just a long CSS property to test autocompletion
           WebkitAnimationIterationCount: 0,
         },
       }}
