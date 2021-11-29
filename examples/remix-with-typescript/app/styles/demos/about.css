@@ -1,0 +1,26 @@
+/*
+ * Whoa whoa whoa, wait a sec...why are we overriding global CSS selectors?
+ * Isn't that kind of scary? How do we know this won't have side effects?
+ *
+ * In Remix, CSS that is included in a route file will *only* show up on that
+ * route (and for nested routes, its children). When the user navigates away
+ * from that route the CSS files linked from those routes will be automatically
+ * unloaded, making your styles much easier to predict and control.
+ *
+ * Read more about styling routes in the docs:
+ * https://remix.run/guides/styling
+ */
+
+:root {
+  --color-foreground: hsl(0, 0%, 7%);
+  --color-background: hsl(56, 100%, 50%);
+  --color-links: hsl(345, 56%, 39%);
+  --color-links-hover: hsl(345, 51%, 49%);
+  --color-border: rgb(184, 173, 20);
+  --font-body: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    Liberation Mono, Courier New, monospace;
+}
+
+.about__intro {
+  max-width: 500px;
+}
