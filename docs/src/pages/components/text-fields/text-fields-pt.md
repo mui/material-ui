@@ -115,7 +115,7 @@ Customization does not stop at CSS. You can use composition to build custom comp
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/text-field).
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/text-field/).
 
 ## `useFormControl`
 
@@ -275,6 +275,6 @@ Para que o campo de texto seja acessível, **o campo deve estar vinculado ao ró
 For more advanced use cases, you might be able to take advantage of:
 
 - [react-hook-form](https://react-hook-form.com/): React hook para validação de formulários.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings para usar Material-UI com [formik](https://jaredpalmer.com/formik).
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings para usar Material-UI com [formik](https://formik.org/).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).

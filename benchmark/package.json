@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@chakra-ui/system": "^1.8.2",
-    "@emotion/react": "^11.6.0",
+    "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.2.1",
     "@mui/styles": "^5.2.1",
@@ -28,8 +28,8 @@
     "redux": "^4.1.2",
     "serve-handler": "^6.1.3",
     "styled-components": "^5.3.3",
-    "theme-ui": "^0.12.0",
-    "webpack": "^5.64.2",
+    "theme-ui": "^0.12.1",
+    "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1"
   }
 }

@@ -92,7 +92,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
   <img src="/static/blog/2020-q3-update/react-testing-library.png" alt="" style="width: 640px; margin-bottom: 40px; margin-top: 24px;" />
 
 - 💅 We have completed the first iteration of the unstyled components for v5.<br />You can find a [new version](https://mui.com/components/slider-styled/#UnstyledSlider.tsx) of the slider in the lab without any styles.
-  The unstyled component weighs in at [5.2 kB gzipped](https://bundlephobia.com/result?p=@mui/lab@5.0.0-alpha.12), compared with 26 kB for the styled version (when used standalone). The component is best suited for use when you want to fully customize the look, without reimplementing the JavaScript and accessibility logic.<br />
+  The unstyled component weighs in at [5.2 kB gzipped](https://bundlephobia.com/package/@mui/lab@5.0.0-alpha.12), compared with 26 kB for the styled version (when used standalone). The component is best suited for use when you want to fully customize the look, without reimplementing the JavaScript and accessibility logic.<br />
   We're also pushing in this direction to address a concern we hear from large enterprises
   that want to be able to go one layer down in the abstraction, in order to gain more control.
 
