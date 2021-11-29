@@ -169,6 +169,12 @@ are evaluated in another step.
 
 Typechecks the repository. The log of the failed build should list all issues.
 
+##### ci/circleci: test_bundle_size_monitor
+
+This task is mostly responsible for monitoring the bundle size. It will only report
+the size if the change exceeds a certain threshold. If it fails there's usually
+something wrong with the way the packages or docs were built.
+
 ##### argos
 
 Evaluates the screenshots taken in `test/regressions/tests` and fails if it detects
@@ -179,12 +185,6 @@ might be intended. Clicking on _Details_ will show you the differences.
 
 Renders a preview of the docs with your changes if it succeeds. Otherwise `yarn docs:build`
 or `yarn docs:export` usually fail locally as well.
-
-##### mui-org.material-ui (Azure Pipelines)
-
-This task is mostly responsible for monitoring the bundle size. It will only report
-the size if the change exceeds a certain threshold. If it fails there's usually
-something wrong with the way the packages or docs were built.
 
 #### codecov/project
 
