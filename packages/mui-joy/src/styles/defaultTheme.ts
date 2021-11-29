@@ -1,48 +1,13 @@
 import * as React from 'react';
 import colors from '../colors';
+import { Components } from './components';
+import { ColorSystems, PaletteRange, PaletteText, PaletteBgNeutral } from './ColorSystem';
 
 /**
  * ====================================================
  * Developer facing types, they can augment these types.
  * ====================================================
  */
-export interface PaletteRange {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
-}
-
-export interface PaletteText {
-  heading: React.CSSProperties['color'];
-  headingIntro: React.CSSProperties['color'];
-  content: React.CSSProperties['color'];
-  detail: React.CSSProperties['color'];
-  overline: React.CSSProperties['color'];
-}
-
-export interface PaletteBgNeutral {
-  transparency: React.CSSProperties['backgroundColor'];
-  plain: React.CSSProperties['backgroundColor'];
-}
-
-export interface Palette {
-  brand: PaletteRange;
-  neutral: PaletteRange;
-  text: PaletteText;
-  bgNeutral: PaletteBgNeutral;
-}
-
-export interface ColorSystems {
-  palette: Palette;
-}
-
 export interface BorderRadius {
   md: React.CSSProperties['borderRadius'];
 }
@@ -108,8 +73,6 @@ export interface TypographySystems {
   overline: React.CSSProperties;
   button: React.CSSProperties;
 }
-
-// ---------------------------------------------------------------
 
 export interface StaticTheme {
   borderRadius: BorderRadius;
@@ -206,7 +169,7 @@ const themeWithoutVars: BaseJoyTokens = {
     xl6: '4.5rem',
   },
   fontFamily: {
-    sans: 'IBM Plex Sans',
+    sans: '"Public Sans", Roboto',
     mono: 'Consolas',
   },
   fontWeight: {
@@ -348,6 +311,7 @@ const themeWithoutVars: BaseJoyTokens = {
 
 export interface JoyTheme extends ThemeWithoutVars {
   vars: ThemeWithoutVars;
+  components?: Components;
 }
 
 const defaultTheme = {
