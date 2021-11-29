@@ -5,7 +5,6 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { rootShouldForwardProp } from '../styles/styled';
 import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
@@ -48,7 +47,6 @@ const ButtonRoot = styled('button', {
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
-  shouldForwardProp: rootShouldForwardProp,
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   const colorPalette = theme.vars.palette[ownerState.color || 'brand'];
   const neutral = theme.vars.palette.neutral;
