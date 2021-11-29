@@ -8,7 +8,7 @@ _Nov 29, 2021_
 
 A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
 
-- 🛠 Improved accessibility of `Snackbar` and `TextField` in `@mui/material` (#29782) (#29850) (#29852) @eps1lon.
+- ♿️ Improved accessibility of `Snackbar` and `TextField` in `@mui/material` (#29782) (#29850) (#29852) @eps1lon.
 - 🎉 Finished the first iteration of `Button` of `Joy` design system (#29464) @siriwatknp.
 - 🎉 Added support for more options for `createCssVarsProvider` in `@mui/system` (#29845) (#29857) @hbjORbj.
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -36,7 +36,6 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 ### Docs
 
-- &#8203;<!-- 27 -->[core] Remove dead code (#29940) @oliviertassinari
 - &#8203;<!-- 24 -->[docs] Fix v5-beta confusing example description (#29932) @oliviertassinari
 - &#8203;<!-- 23 -->[docs] Apply the z-index on the right DOM element (#29934) @oliviertassinari
 - &#8203;<!-- 22 -->[docs] Improve git diff format (#29935) @oliviertassinari
@@ -52,6 +51,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 ### Core
 
+- &#8203;<!-- 27 -->[core] Remove dead code (#29940) @oliviertassinari
 - &#8203;<!-- 26 -->[core] Move benchmark CI job from AZP to CircleCI (#29894) @eps1lon
 - &#8203;<!-- 25 -->[core] Fix PR detection pattern in test_bundle_size_monitor (#29895) @eps1lon
 - &#8203;<!-- 08 -->[test] Fix browser tests (#29929) @eps1lon
