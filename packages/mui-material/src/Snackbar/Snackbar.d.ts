@@ -12,7 +12,7 @@ export interface SnackbarOrigin {
   horizontal: 'left' | 'center' | 'right';
 }
 
-export type SnackbarCloseReason = 'timeout' | 'clickaway';
+export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
 
 export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -73,10 +73,10 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
    * The `reason` parameter can optionally be used to control the response to `onClose`,
    * for example ignoring `clickaway`.
    *
-   * @param {React.SyntheticEvent<any>} event The event source of the callback.
-   * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`.
+   * @param {React.SyntheticEvent<any> | Event} event The event source of the callback.
+   * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`, or `"escapeKeyDown"`.
    */
-  onClose?: (event: React.SyntheticEvent<any>, reason: SnackbarCloseReason) => void;
+  onClose?: (event: React.SyntheticEvent<any> | Event, reason: SnackbarCloseReason) => void;
   /**
    * If `true`, the component is shown.
    */
