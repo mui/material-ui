@@ -8,7 +8,7 @@
   "private": true,
   "dependencies": {
     "@types/draft-js": "^0.11.6",
-    "@types/react": "^17.0.35",
+    "@types/react": "^17.0.37",
     "case": "1.6.3",
     "deepmerge": "^4.2.2",
     "docs": "^5.0.1",

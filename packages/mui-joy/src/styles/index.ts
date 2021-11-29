@@ -4,4 +4,5 @@ export * from './ColorSystem';
 export * from './Variants';
 export { default as styled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
-export { useTheme } from './ThemeProvider';
+export * from './ThemeProvider';
+export { default as useThemeProps } from './useThemeProps';

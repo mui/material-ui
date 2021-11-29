@@ -38,7 +38,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.4.1",
+    "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@types/react": "^16.8.6 || ^17.0.0",
     "react": "^17.0.2",
@@ -56,9 +56,16 @@
     }
   },
   "dependencies": {
+    "@babel/runtime": "^7.16.3",
+    "@mui/base": "5.0.0-alpha.57",
     "@mui/system": "^5.2.1",
     "@mui/types": "^7.1.0",
-    "@mui/utils": "^5.2.1"
+    "@mui/utils": "^5.2.1",
+    "clsx": "^1.1.1",
+    "csstype": "^3.0.10",
+    "hoist-non-react-statics": "^3.3.2",
+    "prop-types": "^15.7.2",
+    "react-is": "^17.0.2"
   },
   "sideEffects": false,
   "publishConfig": {

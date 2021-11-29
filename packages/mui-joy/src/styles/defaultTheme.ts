@@ -15,6 +15,7 @@ import {
   createDarkModeVariantVariables,
   createVariant,
 } from './variantUtils';
+import { Components } from './components';
 
 type CSSProperties = CSS.Properties<number | string>;
 
@@ -444,6 +445,7 @@ export interface JoyTheme<ExtendedColorScheme extends string = never>
   spacing: Spacing;
   breakpoints: Breakpoints;
   vars: ThemeScales & ColorSystem;
+  components?: Components;
 }
 
 const defaultSystemTheme = systemCreateTheme();

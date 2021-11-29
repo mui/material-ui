@@ -705,6 +705,21 @@ jobs:
           command: yarn danger ci
           environment:
             DANGER_COMMAND: 'reportBundleSize'
+  test_benchmark:
+    <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright@sha256:e1d21147143af988f339ade2afd9ab6fc549f6e5ae998a6b4e1b9180a83d35f1
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout
+      - install_js:
+          browsers: true
+      - run: yarn benchmark:browser
+      - store_artifacts:
+          name: Publish benchmark results as a pipeline artifact.
+          path: tmp/benchmarks
+          destination: benchmarks
 workflows:
   version: 2
   pipeline:
@@ -797,3 +812,8 @@ workflows:
                 - master
     jobs:
       - test_types_next
+  benchmark:
+    when:
+      equal: [benchmark, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_benchmark
