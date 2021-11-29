@@ -22,7 +22,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 - &#8203;<!-- 15 -->[Joy] Add `Button` - 1st iteration (#29464) @siriwatknp
 
-### `@mui/codemod@5.2.2`
+### `@mui/codemod@5.2.1`
 
 - &#8203;<!-- 28 -->[codemod] Fix alias import for box-sx-prop (#29902) @siriwatknp
 
