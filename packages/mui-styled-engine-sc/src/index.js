@@ -7,6 +7,8 @@ export default function styled(tag, options) {
     stylesFactory = scStyled(tag).withConfig({
       displayName: options.label,
       shouldForwardProp: options.shouldForwardProp,
+      // This need to ne unique, is there a better way to set it?
+      componentId: options.label,
     });
   } else {
     stylesFactory = scStyled(tag);
