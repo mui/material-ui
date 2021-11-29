@@ -7,8 +7,6 @@ import ROUTES from 'docs/src/route';
 import ArrowRightAltRoundedIcon from '@mui/icons-material/ArrowRightAltRounded';
 
 export default function SurveyBanner() {
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
   return (
     <Box
       sx={{
