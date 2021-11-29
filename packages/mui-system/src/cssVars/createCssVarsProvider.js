@@ -143,14 +143,19 @@ export default function createCssVarsProvider(options) {
 
     React.useEffect(() => {
       if (!mode || !enableColorScheme) {
-        return;
+        return undefined;
       }
+      const priorColorScheme = document.documentElement.style.getPropertyValue('color-scheme');
       // `color-scheme` tells browser to render built-in elements according to its value: `light` or `dark`
       if (mode === 'system') {
         document.documentElement.style.setProperty('color-scheme', systemMode);
       } else {
         document.documentElement.style.setProperty('color-scheme', mode);
       }
+
+      return () => {
+        document.documentElement.style.setProperty('color-scheme', priorColorScheme);
+      };
     }, [mode, systemMode]);
 
     React.useEffect(() => {
