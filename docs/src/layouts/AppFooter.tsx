@@ -171,7 +171,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://www.linkedin.com/company/material-ui/"
+              href="https://www.linkedin.com/company/mui/"
               aria-label="linkedin"
               title="LinkedIn"
               size="small"
