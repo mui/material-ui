@@ -15,6 +15,7 @@ describe('createCssVarsProvider', () => {
     addListener: () => {},
     removeListener: () => {},
   });
+  let shouldSupportColorScheme;
 
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
@@ -33,6 +34,11 @@ describe('createCssVarsProvider', () => {
     // clear the localstorage
     storage = {};
     window.matchMedia = createMatchMedia(false);
+
+    // Currently supported Firefox does not support `color-scheme`.
+    // Instead of skipping relevant tests entirely we assert that they work differently in Firefox.
+    // This ensures that we're automatically notified once we remove older Firefox versions from the support matrix.
+    shouldSupportColorScheme = !/Firefox/.test(navigator.userAgent);
   });
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
@@ -256,15 +262,15 @@ describe('createCssVarsProvider', () => {
             <Consumer />
           </CssVarsProvider>,
         );
-        expect(
-          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-        ).to.equal('light');
+        expect(document.documentElement).toHaveComputedStyle({
+          colorScheme: shouldSupportColorScheme ? 'light' : '',
+        });
 
         fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
-        expect(
-          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-        ).to.equal('dark');
+        expect(document.documentElement).toHaveComputedStyle({
+          colorScheme: shouldSupportColorScheme ? 'dark' : '',
+        });
       });
 
       it('set `color-scheme` property to body with correct mode, given `enableColorScheme` is true and mode is `system`', () => {
@@ -286,18 +292,23 @@ describe('createCssVarsProvider', () => {
             <Consumer />
           </CssVarsProvider>,
         );
-        expect(
-          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-        ).to.equal('light');
+        expect(document.documentElement).toHaveComputedStyle({
+          colorScheme: shouldSupportColorScheme ? 'light' : '',
+        });
 
         fireEvent.click(screen.getByRole('button', { name: 'change to system' }));
 
-        expect(
-          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-        ).to.equal('dark');
+        expect(document.documentElement).toHaveComputedStyle({
+          colorScheme: shouldSupportColorScheme ? 'dark' : '',
+        });
       });
 
       it('does not set `color-scheme` property to body with correct mode, given`enableColorScheme` is false', () => {
+        // TODO: Previous tests are leaking.
+        // `color-scheme` should be `'normal'` but prior tests retain their `color-scheme`.
+        const priorColorScheme = window
+          .getComputedStyle(document.documentElement)
+          .getPropertyValue('color-scheme');
         const { CssVarsProvider } = createCssVarsProvider({
           theme: {
             colorSchemes: { light: {}, dark: {} },
@@ -312,9 +323,9 @@ describe('createCssVarsProvider', () => {
             <Consumer />
           </CssVarsProvider>,
         );
-        expect(
-          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-        ).not.to.equal('light');
+        expect(document.documentElement).toHaveComputedStyle({
+          colorScheme: shouldSupportColorScheme ? priorColorScheme : '',
+        });
       });
     });
 
