@@ -1,7 +1,7 @@
 import { CSSInterpolation } from '@mui/system';
 import { GlobalStateSlot } from '@mui/base';
-import { ButtonProps } from '../Button/ButtonProps';
-import { ButtonClassKey } from '../Button/buttonClasses';
+import { ButtonProps } from '../../Button/ButtonProps';
+import { ButtonClassKey } from '../../Button/buttonClasses';
 
 export type OverridesStyleRules<ClassKey extends string = string> = Record<
   ClassKey,
