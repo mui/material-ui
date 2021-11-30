@@ -129,7 +129,17 @@ describe('<Accordion />', () => {
     expect(queryByText('Hello')).to.equal(null);
   });
 
-  it('should handle the square prop', () => {
+  it('should handle the `square` prop', () => {
+    const { container } = render(<Accordion square>{minimalChildren}</Accordion>);
+    expect(container.firstChild).not.toHaveComputedStyle({
+      borderBottomLeftRadius: '4px',
+      borderBottomRightRadius: '4px',
+      borderTopLeftRadius: '4px',
+      borderTopRightRadius: '4px',
+    });
+  });
+
+  it('when `square` prop is passed, it should not have the rounded class', () => {
     const { container } = render(<Accordion square>{minimalChildren}</Accordion>);
     expect(container.firstChild).not.to.have.class(classes.rounded);
   });
