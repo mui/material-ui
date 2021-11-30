@@ -701,10 +701,7 @@ function AboutContent() {
                 </li>
                 <li>
                   Answer questions on{' '}
-                  <Link href="https://stackoverflow.com/questions/tagged/mui">
-                    StackOverflow
-                  </Link>
-                  .
+                  <Link href="https://stackoverflow.com/questions/tagged/mui">StackOverflow</Link>.
                 </li>
               </Box>
               <Link href="https://github.com/mui-org/material-ui" variant="body2">
