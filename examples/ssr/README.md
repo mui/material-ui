@@ -1,4 +1,4 @@
-# Server Rendering example
+# Server-side rendering example
 
 ## How to use
 

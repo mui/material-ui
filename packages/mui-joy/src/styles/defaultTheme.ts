@@ -218,7 +218,7 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> 
     },
     background: {
       default: '#fff',
-      level1: 'var(--joy-palette-neutral-50),
+      level1: 'var(--joy-palette-neutral-50)',
       level2: 'var(--joy-palette-neutral-100)',
       level3: 'var(--joy-palette-neutral-200)',
     },

@@ -22,7 +22,7 @@ React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染
 
 ## Unstyled
 
-- 📦 [970 B gzipped](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
+- 📦 [970 B gzipped](https://bundlephobia.com/package/@material-ui/unstyled@next)
 
 As the component does not have any styles, it also comes with the unstyled package.
 

@@ -1,4 +1,4 @@
-# ClassName Generator
+# ClassName generator
 
 <p class="description">Configure classname generation at build time.</p>
 
@@ -88,20 +88,21 @@ Now, the `Mui` class is gone.
   ```diff
   +import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
-  const theme = createTheme({
-    components: {
-      MuiOutlinedInput: {
-        styleOverrides: {
-          root: {
-  -         '& .MuiOutlinedInput-notchedOutline': {
-  +         [`& .${outlinedInputClasses.notchedOutline}`]: { // the result will contain the prefix.
-              borderWidth: 1,
-            }
-          }
-        }
-      }
-    }
-  });
+   const theme = createTheme({
+     components: {
+       MuiOutlinedInput: {
+         styleOverrides: {
+           root: {
+  -          '& .MuiOutlinedInput-notchedOutline': {
+  +          // the result will contain the prefix.
+  +          [`& .${outlinedInputClasses.notchedOutline}`]: {
+               borderWidth: 1,
+             }
+           }
+         }
+       }
+     }
+   });
   ```
 
 - This API should only be used at build-time.
@@ -125,20 +126,20 @@ Use ClassNameGenerator in `/pages/_app.js`.
 
 +ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
 
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Head from 'next/head';
+ import * as React from 'react';
+ import PropTypes from 'prop-types';
+ import Head from 'next/head';
 
-export default function MyApp(props) {
-  const { Component, pageProps } = props;
+ export default function MyApp(props) {
+   const { Component, pageProps } = props;
 
-  return (
-    <Component {...pageProps} />
-  );
-}
+   return (
+     <Component {...pageProps} />
+   );
+ }
 ```
 
-### Create react app
+### Create React App
 
 Use ClassNameGenerator in `/src/index.js`.
 
@@ -147,13 +148,11 @@ Use ClassNameGenerator in `/src/index.js`.
 
 +ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
 
-import * as React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+ import * as React from 'react';
+ import ReactDOM from 'react-dom';
+ import App from './App';
 
-ReactDOM.render(
-  <App />,
-);
+ ReactDOM.render(<App />);
 ```
 
 ### Gatsby
@@ -165,7 +164,7 @@ Use ClassNameGenerator in `gatsby-ssr.js` at the root folder.
 
 +ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
 
-export const wrapPageElement = ({ element }) => {
-  return element;
-};
+ export const wrapPageElement = ({ element }) => {
+   return element;
+ };
 ```

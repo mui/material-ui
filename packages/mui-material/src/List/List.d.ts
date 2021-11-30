@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '..';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
 import { ListClasses } from './listClasses';
 
 export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
@@ -39,6 +39,16 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
 }
 
 /**
+ * utility to create component types that inherit props from List.
+ */
+export interface ExtendListTypeMap<M extends OverridableTypeMap> {
+  props: M['props'] & ListTypeMap['props'];
+  defaultComponent: M['defaultComponent'];
+}
+
+export type ExtendList<M extends OverridableTypeMap> = OverridableComponent<ExtendListTypeMap<M>>;
+
+/**
  *
  * Demos:
  *
@@ -49,7 +59,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  *
  * - [List API](https://mui.com/api/list/)
  */
-declare const List: OverridableComponent<ListTypeMap>;
+declare const List: ExtendList<ListTypeMap>;
 
 export type ListProps<
   D extends React.ElementType = ListTypeMap['defaultComponent'],

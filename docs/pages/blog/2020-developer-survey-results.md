@@ -126,9 +126,9 @@ As the answers to these questions were pretty different, we grouped them into di
   <tr><td>3</td><td>styles - emotion</td><tr>
   <tr><td>3</td><td>styles - performance</td><tr>
   <tr><td>2</td><td>styles - agnostic to engine</td><tr>
-  <tr><td>2</td><td>styles - css modules</td><tr>
+  <tr><td>2</td><td>styles - CSS modules</td><tr>
   <tr><td>2</td><td>styles - utility class names</td><tr>
-  <tr><td>1</td><td>styles - atomic compiled css-in-js</td><tr>
+  <tr><td>1</td><td>styles - atomic compiled CSS-in-JS</td><tr>
   <tr><td>1</td><td>styles - keep jss</td><tr>
   <tr><td>1</td><td>styles - remove JSS</td><tr>
   <tr><th>25</th><th>typescript</th><tr>
