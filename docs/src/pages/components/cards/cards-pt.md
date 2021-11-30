@@ -63,4 +63,4 @@ Aqui está um exemplo de um controle de mídia com cartão.
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
 
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/components/card).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card/).
