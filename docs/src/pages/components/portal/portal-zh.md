@@ -22,7 +22,7 @@ React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染
 
 ## 素颜模式
 
-- 📦 [970 B gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
+- 📦 [970 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
 As the component does not have any styles, it also comes with the unstyled package.
 
