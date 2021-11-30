@@ -260,8 +260,8 @@ export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> =
       tertiary: 'var(--joy-palette-neutral-400)',
     },
     background: {
-      default: 'var(--joy-palette-neutral-800)',
-      level1: 'var(--joy-palette-neutral-900)',
+      default: 'var(--joy-palette-neutral-900)',
+      level1: 'var(--joy-palette-neutral-800)',
       level2: 'var(--joy-palette-neutral-700)',
       level3: 'var(--joy-palette-neutral-600)',
     },
@@ -328,7 +328,7 @@ const joyDesignTokens: BaseJoyTokens = {
   lineHeight: {
     default: 1.5,
     sm: 1.25,
-    md: 1.72,
+    md: 1.7,
     lg: 2,
   },
   letterSpacing: {
@@ -406,8 +406,8 @@ const joyDesignTokens: BaseJoyTokens = {
       fontFamily: 'var(--joy-fontFamily-default)',
       fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
-      lineHeight: 'var(--joy-lineHeight-md)',
-      letterSpacing: 'var(--joy-letterSpacing-md)',
+      lineHeight: 'var(--joy-lineHeight-default)',
+      letterSpacing: 'var(--joy-letterSpacing-default)',
       color: 'var(--joy-palette-text-tertiary)',
     },
   },
