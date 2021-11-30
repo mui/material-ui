@@ -701,7 +701,7 @@ function AboutContent() {
                 </li>
                 <li>
                   Answer questions on{' '}
-                  <Link href="https://stackoverflow.com/questions/tagged/material-ui">
+                  <Link href="https://stackoverflow.com/questions/tagged/mui">
                     StackOverflow
                   </Link>
                   .

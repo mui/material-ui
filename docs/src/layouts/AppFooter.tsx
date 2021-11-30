@@ -151,7 +151,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://stackoverflow.com/questions/tagged/material-ui"
+              href="https://stackoverflow.com/questions/tagged/mui"
               aria-label="Stack Overflow"
               title="Stack Overflow"
               size="small"
