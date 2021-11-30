@@ -88,4 +88,5 @@ export interface Palette extends ColorPalette {
 export interface ColorSystem {
   palette: Palette;
   elevationRing: React.CSSProperties['boxShadow'];
+  elevationChannel: string;
 }

@@ -168,6 +168,7 @@ type BaseJoyTokens = {
   };
   borderRadius: Pick<BorderRadius, 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   elevationRing: CSSProperties['boxShadow'];
+  elevationChannel: string;
   elevation: Pick<Elevation, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   focus: Pick<Focus, 'default'>;
   fontSize: Pick<
@@ -186,7 +187,10 @@ type BaseJoyTokens = {
     Record<DefaultContextualOverrides, Record<Exclude<ColorPaletteProp, 'context'>, CSSObject>>;
 };
 
-export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> = {
+export const lightColorSystem: Pick<
+  BaseJoyTokens,
+  'palette' | 'elevationRing' | 'elevationChannel'
+> = {
   palette: {
     primary: {
       ...colors.purple,
@@ -226,9 +230,13 @@ export const lightColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> 
     focusVisible: 'var(--joy-palette-primary-200)',
   },
   elevationRing: '0 0 #000',
+  elevationChannel: '187 187 187',
 };
 
-export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> = {
+export const darkColorSystem: Pick<
+  BaseJoyTokens,
+  'palette' | 'elevationRing' | 'elevationChannel'
+> = {
   palette: {
     primary: {
       ...colors.purple,
@@ -268,6 +276,7 @@ export const darkColorSystem: Pick<BaseJoyTokens, 'palette' | 'elevationRing'> =
     focusVisible: 'var(--joy-palette-primary-400)',
   },
   elevationRing: '0 0 #000',
+  elevationChannel: '0 0 0',
 };
 
 /**
@@ -285,11 +294,11 @@ const joyDesignTokens: BaseJoyTokens = {
     xl: '24px',
   },
   elevation: {
-    xs: 'var(--joy-elevationRing), 0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-    sm: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px rgba(187, 187, 187, 0.11), 0.5px 1.3px 1.8px -0.6px rgba(187, 187, 187, 0.18), 1.1px 2.7px 3.8px -1.2px rgba(187, 187, 187, 0.26)',
-    md: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px rgba(187, 187, 187, 0.12), 1.1px 2.8px 3.9px -0.4px rgba(187, 187, 187, 0.17), 2.4px 6.1px 8.6px -0.8px rgba(187, 187, 187, 0.23), 5.3px 13.3px 18.8px -1.2px rgba(187, 187, 187, 0.29)',
-    lg: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px rgba(187, 187, 187, 0.11), 1.8px 4.5px 6.4px -0.2px rgba(187, 187, 187, 0.13), 3.2px 7.9px 11.2px -0.4px rgba(187, 187, 187, 0.16), 4.8px 12px 17px -0.5px rgba(187, 187, 187, 0.19), 7px 17.5px 24.7px -0.7px rgba(187, 187, 187, 0.21)',
-    xl: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px rgba(187, 187, 187, 0.11), 1.8px 4.5px 6.4px -0.2px rgba(187, 187, 187, 0.13), 3.2px 7.9px 11.2px -0.4px rgba(187, 187, 187, 0.16), 4.8px 12px 17px -0.5px rgba(187, 187, 187, 0.19), 7px 17.5px 24.7px -0.7px rgba(187, 187, 187, 0.21), 10.2px 25.5px 36px -0.9px rgba(187, 187, 187, 0.24), 14.8px 36.8px 52.1px -1.1px rgba(187, 187, 187, 0.27), 21px 52.3px 74px -1.2px rgba(187, 187, 187, 0.29)',
+    xs: 'var(--joy-elevationRing), 0 1px 2px 0 rgba(var(--joy-elevationChannel) / 0.12)',
+    sm: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px rgba(var(--joy-elevationChannel) / 0.11), 0.5px 1.3px 1.8px -0.6px rgba(var(--joy-elevationChannel) / 0.18), 1.1px 2.7px 3.8px -1.2px rgba(var(--joy-elevationChannel) / 0.26)',
+    md: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px rgba(var(--joy-elevationChannel) / 0.12), 1.1px 2.8px 3.9px -0.4px rgba(var(--joy-elevationChannel) / 0.17), 2.4px 6.1px 8.6px -0.8px rgba(var(--joy-elevationChannel) / 0.23), 5.3px 13.3px 18.8px -1.2px rgba(var(--joy-elevationChannel) / 0.29)',
+    lg: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px rgba(var(--joy-elevationChannel) / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(var(--joy-elevationChannel) / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(var(--joy-elevationChannel) / 0.16), 4.8px 12px 17px -0.5px rgba(var(--joy-elevationChannel) / 0.19), 7px 17.5px 24.7px -0.7px rgba(var(--joy-elevationChannel) / 0.21)',
+    xl: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px rgba(var(--joy-elevationChannel) / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(var(--joy-elevationChannel) / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(var(--joy-elevationChannel) / 0.16), 4.8px 12px 17px -0.5px rgba(var(--joy-elevationChannel) / 0.19), 7px 17.5px 24.7px -0.7px rgba(var(--joy-elevationChannel) / 0.21), 10.2px 25.5px 36px -0.9px rgba(var(--joy-elevationChannel) / 0.24), 14.8px 36.8px 52.1px -1.1px rgba(var(--joy-elevationChannel) / 0.27), 21px 52.3px 74px -1.2px rgba(var(--joy-elevationChannel) / 0.29)',
   },
   focus: {
     default: {
