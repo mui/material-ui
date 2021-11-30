@@ -9,20 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/cache": "^11.6.0",
-    "@emotion/react": "^11.6.0",
-    "@emotion/server": "^11.4.0",
-    "@emotion/styled": "^11.6.0",
-    "@mui/icons-material": "^5.1.1",
-    "@mui/material": "^5.1.1",
-    "next": "12.0.4",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "@emotion/cache": "latest",
+    "@emotion/react": "latest",
+    "@emotion/server": "latest",
+    "@emotion/styled": "latest",
+    "@mui/icons-material": "latest",
+    "@mui/material": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
-    "@types/react": "17.0.35",
-    "eslint": "7.32.0",
-    "eslint-config-next": "12.0.4",
-    "typescript": "4.5.2"
+    "@types/react": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "typescript": "latest"
   }
 }
