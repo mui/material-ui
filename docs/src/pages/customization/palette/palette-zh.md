@@ -120,7 +120,7 @@ type PaletteTonalOffset =
 
 ### 添加新的颜色
 
-您可以在主题的调色板内外添加新的颜色，如下所示：
+You can add new colors inside and outside the palette of the theme as follows:
 
 ```js
 import { createTheme } from '@mui/material/styles';
