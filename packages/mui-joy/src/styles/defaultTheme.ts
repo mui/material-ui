@@ -15,8 +15,10 @@ import {
   createDarkModeVariantVariables,
   createVariant,
 } from './variantUtils';
-import { Components } from './types/components';
+import { Components } from './components';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
+import { Elevation } from './types/elevation';
+import { BorderRadius } from './types/borderRadius';
 
 type CSSProperties = CSS.Properties<number | string>;
 
@@ -25,23 +27,6 @@ type CSSProperties = CSS.Properties<number | string>;
  * Developer facing types, they can augment these types.
  * ====================================================
  */
-
-export interface BorderRadius {
-  default: CSSProperties['borderRadius'];
-  xs: CSSProperties['borderRadius'];
-  sm: CSSProperties['borderRadius'];
-  md: CSSProperties['borderRadius'];
-  lg: CSSProperties['borderRadius'];
-  xl: CSSProperties['borderRadius'];
-}
-
-export interface Elevation {
-  xs: CSSProperties['boxShadow'];
-  sm: CSSProperties['boxShadow'];
-  md: CSSProperties['boxShadow'];
-  lg: CSSProperties['boxShadow'];
-  xl: CSSProperties['boxShadow'];
-}
 
 export interface Focus {
   default: CSSObject;

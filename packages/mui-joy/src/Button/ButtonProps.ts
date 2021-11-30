@@ -5,7 +5,7 @@ import {
   OverrideProps,
 } from '@mui/types';
 import React from 'react';
-import { ColorPaletteProp, VariantProp, Elevation, BorderRadius } from '../styles';
+import { ColorPaletteProp, VariantProp, ElevationProp, RoundnessProp } from '../styles/types';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -40,7 +40,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     /**
      * The intensity of the shadow.
      */
-    elevation?: keyof Elevation;
+    elevation?: ElevationProp;
     /**
      * This prop can help identify which element has keyboard focus.
      * The class name will be applied when the element gains the focus through keyboard interaction.
@@ -59,7 +59,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      * The border-radius of the component.
      * @default 'default'
      */
-    roundness?: keyof BorderRadius;
+    roundness?: RoundnessProp;
     /**
      * The size of the component.
      */
