@@ -51,7 +51,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/switch).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch/).
 
 ## Unstyled
 
