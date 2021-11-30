@@ -312,8 +312,8 @@ const joyDesignTokens: BaseJoyTokens = {
   },
   fontFamily: {
     default: '"Public Sans", var(--joy-fontFamily-fallback)',
-    display: '"PlusJakartaSans-ExtraBold", var(--joy-fontFamily-fallback)',
-    code: 'Consolas',
+    display: '"Public Sans", var(--joy-fontFamily-fallback)',
+    code: 'Source Code Pro,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
     fallback:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   },
