@@ -129,6 +129,11 @@ describe('<Accordion />', () => {
     expect(queryByText('Hello')).to.equal(null);
   });
 
+  it('should handle the square prop', () => {
+    const { container } = render(<Accordion square>{minimalChildren}</Accordion>);
+    expect(container.firstChild).not.to.have.class(classes.rounded);
+  });
+
   describe('prop: children', () => {
     describe('first child', () => {
       beforeEach(() => {
