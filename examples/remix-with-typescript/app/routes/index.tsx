@@ -76,8 +76,8 @@ export default function Index() {
         </Typography>
         <Typography gutterBottom>
           Check out all the demos in this starter, and then just deconste the{' '}
-          <code>app/routes/demos</code> and <code>app/styles/demos</code> folders when you&apos;re ready
-          to turn this into your next project.
+          <code>app/routes/demos</code> and <code>app/styles/demos</code> folders when you&apos;re
+          ready to turn this into your next project.
         </Typography>
       </main>
       <aside>

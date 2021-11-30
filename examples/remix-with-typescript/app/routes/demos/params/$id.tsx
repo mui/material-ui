@@ -81,8 +81,8 @@ export function CatchBoundary() {
       <h2>Oops!</h2>
       <p>{message}</p>
       <p>
-        (Isn&apos;t it cool that the user gets to stay in context and try a different link in the parts
-        of the UI that didn&apos;t blow up?)
+        (Isn&apos;t it cool that the user gets to stay in context and try a different link in the
+        parts of the UI that didn&apos;t blow up?)
       </p>
     </React.Fragment>
   );
@@ -97,8 +97,8 @@ export function ErrorBoundary({ error }: { error: Error }) {
       <h2>Error!</h2>
       <p>{error.message}</p>
       <p>
-        (Isn&apos;t it cool that the user gets to stay in context and try a different link in the parts
-        of the UI that didn&apos;t blow up?)
+        (Isn&apos;t it cool that the user gets to stay in context and try a different link in the
+        parts of the UI that didn&apos;t blow up?)
       </p>
     </React.Fragment>
   );
