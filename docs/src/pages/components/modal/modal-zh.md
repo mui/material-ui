@@ -36,7 +36,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## 素颜模式
 
-- 📦 [4.7kB 已压缩的包](https://bundlephobia.com/result?p=@mui/base@latest)
+- 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
 The modal also comes with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
 
