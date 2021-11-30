@@ -39,7 +39,7 @@ This is a collection of third-party projects that extend MUI.
 
 ### 布局
 
-- [@mui-treasury/layout](https://mui-treasury.com/layout)：处理一个页面整体布局的组件。 您可以找到几个相关的例子，例如： [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs)。
+- [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs/).
 
 ### 通知
 
@@ -52,7 +52,7 @@ This is a collection of third-party projects that extend MUI.
 ### 表单
 
 - [react-hook-form](https://react-hook-form.com/): React hook for form validation.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using MUI with [formik](https://jaredpalmer.com/formik).
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using MUI with [formik](https://formik.org/).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
 - [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using MUI with [UI Schema](https://github.com/ui-schema/ui-schema), JSON Schema compatible
