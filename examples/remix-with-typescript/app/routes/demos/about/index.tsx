@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Link } from 'remix';
 
 export default function AboutIndex() {

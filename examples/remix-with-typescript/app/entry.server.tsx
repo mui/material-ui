@@ -1,11 +1,15 @@
+import * as React from 'react';
 import { RemixServer } from 'remix';
 import type { EntryContext } from 'remix';
-import { renderToString } from "react-dom/server";
+import { renderToString } from 'react-dom/server';
 import createEmotionServer from '@emotion/server/create-instance';
-import createEmotionCache from './createEmotionCache';
 import { CacheProvider } from '@emotion/react';
+import createEmotionCache from './createEmotionCache';
 
 function renderFullPage(html: string, css: string) {
+  const bodyTagContent = html.match(/<body[^>]*>([\s\S]*)<\/body>/)?.[1];
+  const headTagContent = html.match(/<head[^>]*>([\s\S]*)<\/head>/)?.[1];
+
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -14,11 +18,14 @@ function renderFullPage(html: string, css: string) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         ${css}
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+	      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
+	      ${headTagContent}
       </head>
       <body>
-        ${html}
+        ${bodyTagContent}
       </body>
-    </html>    
+    </html>
   `;
 }
 
@@ -33,7 +40,7 @@ export default function handleRequest(
   const cache = createEmotionCache();
   const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
 
-  let initialMarkup = renderToString(
+  const initialMarkup = renderToString(
     <CacheProvider value={cache}>
       <RemixServer context={remixContext} url={request.url} />
     </CacheProvider>,

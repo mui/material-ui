@@ -1,3 +1,4 @@
+import * as React from 'react';
 import type { MetaFunction, LoaderFunction } from 'remix';
 import { useLoaderData, json, Link } from 'remix';
 import Typography from '@mui/material/Typography';
@@ -11,8 +12,8 @@ type IndexData = {
 // you can connect to a database or run any server side code you want right next
 // to the component that renders it.
 // https://remix.run/api/conventions#loader
-export let loader: LoaderFunction = () => {
-  let data: IndexData = {
+export const loader: LoaderFunction = () => {
+  const data: IndexData = {
     resources: [
       {
         name: 'Remix Docs',
@@ -48,7 +49,7 @@ export let loader: LoaderFunction = () => {
 };
 
 // https://remix.run/api/conventions#meta
-export let meta: MetaFunction = () => {
+export const meta: MetaFunction = () => {
   return {
     title: 'Remix Starter',
     description: 'Welcome to remix!',
@@ -57,23 +58,25 @@ export let meta: MetaFunction = () => {
 
 // https://remix.run/guides/routing#index-routes
 export default function Index() {
-  let data = useLoaderData<IndexData>();
+  const data = useLoaderData<IndexData>();
 
   return (
     <div className="remix__page">
       <main>
-        <Typography variant="h4" component="h2" color="primary.main" gutterBottom>Welcome to Remix + MUI!</Typography>
+        <Typography variant="h4" component="h2" color="primary.main" gutterBottom>
+          Welcome to Remix + MUI!
+        </Typography>
         <Typography gutterBottom>
           This project is created using <code>npx create-remix@latest</code>
         </Typography>
         <Typography gutterBottom>
           Feel free to take a look around the code to see how Remix does things, it might be a bit
-          different than what you’re used to. When you're ready to dive deeper, we've got plenty of
-          resources to get you up-and-running quickly.
+          different than what you&apos;re used to. When you&apos;re ready to dive deeper, we&apos;ve
+          got plenty of resources to get you up-and-running quickly.
         </Typography>
         <Typography gutterBottom>
-          Check out all the demos in this starter, and then just delete the{' '}
-          <code>app/routes/demos</code> and <code>app/styles/demos</code> folders when you're ready
+          Check out all the demos in this starter, and then just deconste the{' '}
+          <code>app/routes/demos</code> and <code>app/styles/demos</code> folders when you&apos;re ready
           to turn this into your next project.
         </Typography>
       </main>
