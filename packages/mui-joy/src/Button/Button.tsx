@@ -206,14 +206,21 @@ Button.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
+   * The intensity of the shadow.
+   */
+  elevation: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
+  /**
    * If `true`, the button will take up the full width of its container.
    * @default false
    */
   fullWidth: PropTypes.bool,
   /**
+   * The border-radius of the component.
+   * @default 'default'
+   */
+  roundness: PropTypes.oneOf(['default', 'lg', 'md', 'sm', 'xl', 'xs']),
+  /**
    * The size of the component.
-   * `small` is equivalent to the dense button styling.
-   * @default 'medium'
    */
   size: PropTypes.oneOf(['small', 'large']),
   /**
