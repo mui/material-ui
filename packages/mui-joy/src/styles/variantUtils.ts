@@ -1,6 +1,6 @@
 import { CSSObject } from '@mui/system';
-import { DefaultVariantKey, DefaultContextualOverrides } from './Variants';
-import { ColorPaletteProp, DefaultColorPalette } from './ColorSystem';
+import { DefaultVariantKey, DefaultContextualOverrides } from './types/variants';
+import { ColorPaletteProp, DefaultColorPalette } from './types/colorSystem';
 
 export const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   textColor: `var(--joy-palette-${color}-600)`,

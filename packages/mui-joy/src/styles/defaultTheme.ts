@@ -8,14 +8,15 @@ import {
   PaletteRange,
   PaletteBackground,
   ColorPaletteProp,
-} from './ColorSystem';
-import { Variants, DefaultVariantKey, DefaultContextualOverrides } from './Variants';
+} from './types/colorSystem';
+import { Variants, DefaultVariantKey, DefaultContextualOverrides } from './types/variants';
 import {
   createLightModeVariantVariables,
   createDarkModeVariantVariables,
   createVariant,
 } from './variantUtils';
-import { Components } from './components';
+import { Components } from './types/components';
+import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 
 type CSSProperties = CSS.Properties<number | string>;
 
@@ -433,12 +434,10 @@ const joyDesignTokens: BaseJoyTokens = {
 
 // ---------------------------------------------------------------
 
-export type ColorScheme = 'light' | 'dark';
-
-export interface JoyTheme<ExtendedColorScheme extends string = never>
+export interface JoyTheme<ApplicationColorScheme extends string = ExtendedColorScheme>
   extends ThemeScales,
     ColorSystem {
-  colorSchemes: Record<ColorScheme | ExtendedColorScheme, ColorSystem>;
+  colorSchemes: Record<DefaultColorScheme | ApplicationColorScheme, ColorSystem>;
   focus: Focus;
   typography: TypographySystem;
   variants: Variants;
@@ -459,6 +458,6 @@ const defaultTheme = {
   vars: joyDesignTokens,
   breakpoints: defaultSystemTheme.breakpoints,
   spacing: defaultSystemTheme.spacing,
-} as JoyTheme;
+} as JoyTheme<never>;
 
 export default defaultTheme;

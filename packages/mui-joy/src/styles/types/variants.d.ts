@@ -1,6 +1,6 @@
 import { OverridableStringUnion } from '@mui/types';
 import { CSSObject } from '@mui/system';
-import { ColorPaletteProp } from './ColorSystem';
+import { ColorPaletteProp } from './colorSystem';
 
 export interface VariantPropOverrides {}
 

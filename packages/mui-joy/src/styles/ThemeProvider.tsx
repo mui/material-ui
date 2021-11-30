@@ -2,7 +2,7 @@ import * as React from 'react';
 import { deepmerge } from '@mui/utils';
 import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from '@mui/system';
 import defaultTheme, { JoyTheme } from './defaultTheme';
-import { ExtendedColorScheme } from './CssVarsProvider';
+import { ExtendedColorScheme } from './types/colorScheme';
 
 type PartialDeep<T> = {
   [K in keyof T]?: PartialDeep<T[K]>;
