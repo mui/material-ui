@@ -70,7 +70,7 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(document.body);
+      fireEvent.mouseUp(document.body);
       expect(handleClickAway.callCount).to.equal(1);
       expect(handleClickAway.args[0].length).to.equal(1);
     });
@@ -83,7 +83,7 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(container.querySelector('span'));
+      fireEvent.mouseUp(container.querySelector('span'));
       expect(handleClickAway.callCount).to.equal(0);
     });
 
@@ -95,12 +95,12 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
       const preventDefault = (event) => event.preventDefault();
-      document.body.addEventListener('click', preventDefault);
+      document.body.addEventListener('mouseup', preventDefault);
 
-      fireEvent.click(document.body);
+      fireEvent.mouseUp(document.body);
       expect(handleClickAway.callCount).to.equal(1);
 
-      document.body.removeEventListener('click', preventDefault);
+      document.body.removeEventListener('mouseup', preventDefault);
     });
 
     it('should not be called when clicking inside a portaled element', () => {
@@ -115,7 +115,7 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(getByText('Inside a portal'));
+      fireEvent.mouseDown(getByText('Inside a portal'));
       expect(handleClickAway.callCount).to.equal(0);
     });
 
@@ -131,6 +131,7 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
+      fireEvent.mouseUp(getByText('Inside a portal'));
       fireEvent.click(getByText('Inside a portal'));
       expect(handleClickAway.callCount).to.equal(1);
     });
@@ -170,13 +171,13 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      fireEvent.click(getByText('Outside a portal'));
+      fireEvent.mouseDown(getByText('Outside a portal'));
       expect(handleClickAway.callCount).to.equal(0);
 
-      fireEvent.click(getByText('Stop all inside a portal'));
+      fireEvent.mouseDown(getByText('Stop all inside a portal'));
       expect(handleClickAway.callCount).to.equal(0);
 
-      fireEvent.click(getByText('Stop inside a portal'));
+      fireEvent.mouseDown(getByText('Stop inside a portal'));
       // undesired behavior in React 16
       expect(handleClickAway.callCount).to.equal(React.version.startsWith('16') ? 1 : 0);
     });
@@ -202,6 +203,7 @@ describe('<ClickAwayListener />', () => {
         }
         render(<Test />);
 
+        fireDiscreteEvent.mouseUp(screen.getByTestId('trigger'));
         fireDiscreteEvent.click(screen.getByTestId('trigger'));
 
         expect(screen.getByTestId('child')).not.to.equal(null);
@@ -273,7 +275,7 @@ describe('<ClickAwayListener />', () => {
       fireDiscreteEvent.mouseUp(mouseUpTarget);
       fireDiscreteEvent.click(clickTarget);
 
-      expect(onClickAway.callCount).to.equal(1);
+      expect(onClickAway.callCount).to.equal(0);
     });
   });
 
@@ -285,7 +287,7 @@ describe('<ClickAwayListener />', () => {
           <span />
         </ClickAwayListener>,
       );
-      fireEvent.click(document.body);
+      fireEvent.mouseUp(document.body);
       expect(handleClickAway.callCount).to.equal(0);
     });
 
@@ -357,7 +359,7 @@ describe('<ClickAwayListener />', () => {
         <Child />
       </ClickAwayListener>,
     );
-    fireEvent.click(document.body);
+    fireEvent.mouseUp(document.body);
     expect(handleClickAway.callCount).to.equal(0);
   });
 
@@ -388,7 +390,10 @@ describe('<ClickAwayListener />', () => {
       render(<Test />);
 
       act(() => {
-        screen.getByRole('button').click();
+        const target = screen.getByRole('button');
+        fireEvent.mouseDown(target);
+        fireEvent.mouseUp(target);
+        target.click();
       });
 
       expect(handleClickAway.callCount).to.equal(1);
@@ -413,7 +418,10 @@ describe('<ClickAwayListener />', () => {
       render(<Test />);
 
       act(() => {
-        screen.getByRole('button').click();
+        const target = screen.getByRole('button');
+        fireEvent.mouseDown(target);
+        fireEvent.mouseUp(target);
+        target.click();
       });
 
       expect(handleClickAway.callCount).to.equal(0);

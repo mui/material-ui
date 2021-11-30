@@ -42,11 +42,10 @@ describe('<Snackbar />', () => {
       const handleClose = spy();
       render(<Snackbar open onClose={handleClose} message="message" />);
 
-      const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
-      document.body.dispatchEvent(event);
+      fireEvent.mouseUp(document.body);
 
       expect(handleClose.callCount).to.equal(1);
-      expect(handleClose.args[0]).to.deep.equal([event, 'clickaway']);
+      expect(handleClose.args[0][1]).to.deep.equal('clickaway');
     });
 
     it('should be called when pressing Escape', () => {

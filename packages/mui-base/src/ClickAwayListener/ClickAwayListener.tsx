@@ -69,7 +69,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
   const {
     children,
     disableReactTree = false,
-    mouseEvent = 'onClick',
+    mouseEvent = 'onMouseUp',
     onClickAway,
     touchEvent = 'onTouchEnd',
   } = props;
