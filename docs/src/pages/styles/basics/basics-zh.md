@@ -10,7 +10,7 @@ MUI aims to provide a strong foundation for building dynamic UIs. For the sake o
 
 ## Why use MUI's styling solution?
 
-In previous versions, MUI has used [Less](http://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited. [_CSS-in-JS_ 方案](https://github.com/oliviertassinari/a-journey-toward-better-style) 突破了这些限制，并**提供了很多强大的功能**（主题嵌套、动态样式、自我支持等等）。
+In previous versions, MUI has used [Less](https://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited. [_CSS-in-JS_ 方案](https://github.com/oliviertassinari/a-journey-toward-better-style) 突破了这些限制，并**提供了很多强大的功能**（主题嵌套、动态样式、自我支持等等）。
 
 MUI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
@@ -21,7 +21,7 @@ MUI's styling solution is inspired by many other styling libraries such as [styl
 - 🚀它的运行速度 [非常快](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles)。
 - 🧩你可以通过一个 [插件](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API 来扩展。
 - ⚡️它使用 [JSS](https://github.com/cssinjs/jss) 为其核心 —— 一个 [高性能的](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript 到 CSS 的编译器，它在运行时和服务器端编译。
-- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@mui/styles); and no bundle size increase if used alongside MUI.
+- 📦 Less than [15 KB gzipped](https://bundlephobia.com/package/@mui/styles); and no bundle size increase if used alongside MUI.
 
 ## 安装
 
