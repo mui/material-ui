@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from 'test/utils';
-import { styled, CssVarsProvider, useTheme } from '@mui/joy/styles';
-import defaultTheme from './defaultTheme';
+import { CssVarsProvider, useTheme } from '@mui/joy/styles';
 
 describe('[Joy] CssVarsProvider', () => {
   let originalMatchmedia: typeof window.matchMedia;
@@ -36,7 +35,19 @@ describe('[Joy] CssVarsProvider', () => {
         const theme = useTheme();
         return (
           <div>
-            <div data-testid="palette">{JSON.stringify(theme.vars.palette)}</div>
+            <div data-testid="palette-primary">{JSON.stringify(theme.vars.palette.primary)}</div>
+            <div data-testid="palette-neutral">{JSON.stringify(theme.vars.palette.neutral)}</div>
+            <div data-testid="palette-danger">{JSON.stringify(theme.vars.palette.danger)}</div>
+            <div data-testid="palette-info">{JSON.stringify(theme.vars.palette.info)}</div>
+            <div data-testid="palette-success">{JSON.stringify(theme.vars.palette.success)}</div>
+            <div data-testid="palette-warning">{JSON.stringify(theme.vars.palette.warning)}</div>
+            <div data-testid="palette-text">{JSON.stringify(theme.vars.palette.text)}</div>
+            <div data-testid="palette-background">
+              {JSON.stringify(theme.vars.palette.background)}
+            </div>
+            <div data-testid="palette-focusVisible">
+              {JSON.stringify(theme.vars.palette.focusVisible)}
+            </div>
           </div>
         );
       };
@@ -47,44 +58,239 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('palette').textContent).to.equal(
+      expect(screen.getByTestId('palette-primary').textContent).to.equal(
         JSON.stringify({
-          brand: {
-            50: 'var(--joy-palette-brand-50)',
-            100: 'var(--joy-palette-brand-100)',
-            200: 'var(--joy-palette-brand-200)',
-            300: 'var(--joy-palette-brand-300)',
-            400: 'var(--joy-palette-brand-400)',
-            500: 'var(--joy-palette-brand-500)',
-            600: 'var(--joy-palette-brand-600)',
-            700: 'var(--joy-palette-brand-700)',
-            800: 'var(--joy-palette-brand-800)',
-            900: 'var(--joy-palette-brand-900)',
-          },
-          neutral: {
-            50: 'var(--joy-palette-neutral-50)',
-            100: 'var(--joy-palette-neutral-100)',
-            200: 'var(--joy-palette-neutral-200)',
-            300: 'var(--joy-palette-neutral-300)',
-            400: 'var(--joy-palette-neutral-400)',
-            500: 'var(--joy-palette-neutral-500)',
-            600: 'var(--joy-palette-neutral-600)',
-            700: 'var(--joy-palette-neutral-700)',
-            800: 'var(--joy-palette-neutral-800)',
-            900: 'var(--joy-palette-neutral-900)',
-          },
-          text: {
-            heading: 'var(--joy-palette-text-heading)',
-            headingIntro: 'var(--joy-palette-text-headingIntro)',
-            content: 'var(--joy-palette-text-content)',
-            detail: 'var(--joy-palette-text-detail)',
-            overline: 'var(--joy-palette-text-overline)',
-          },
-          bgNeutral: {
-            transparency: 'var(--joy-palette-bgNeutral-transparency)',
-            plain: 'var(--joy-palette-bgNeutral-plain)',
-          },
+          50: 'var(--joy-palette-primary-50)',
+          100: 'var(--joy-palette-primary-100)',
+          200: 'var(--joy-palette-primary-200)',
+          300: 'var(--joy-palette-primary-300)',
+          400: 'var(--joy-palette-primary-400)',
+          500: 'var(--joy-palette-primary-500)',
+          600: 'var(--joy-palette-primary-600)',
+          700: 'var(--joy-palette-primary-700)',
+          800: 'var(--joy-palette-primary-800)',
+          900: 'var(--joy-palette-primary-900)',
+          textColor: 'var(--joy-palette-primary-textColor)',
+          textHoverBg: 'var(--joy-palette-primary-textHoverBg)',
+          textActiveBg: 'var(--joy-palette-primary-textActiveBg)',
+          textDisabledColor: 'var(--joy-palette-primary-textDisabledColor)',
+          outlinedColor: 'var(--joy-palette-primary-outlinedColor)',
+          outlinedBorder: 'var(--joy-palette-primary-outlinedBorder)',
+          outlinedHoverBg: 'var(--joy-palette-primary-outlinedHoverBg)',
+          outlinedHoverBorder: 'var(--joy-palette-primary-outlinedHoverBorder)',
+          outlinedActiveBg: 'var(--joy-palette-primary-outlinedActiveBg)',
+          outlinedDisabledColor: 'var(--joy-palette-primary-outlinedDisabledColor)',
+          outlinedDisabledBorder: 'var(--joy-palette-primary-outlinedDisabledBorder)',
+          lightColor: 'var(--joy-palette-primary-lightColor)',
+          lightBg: 'var(--joy-palette-primary-lightBg)',
+          lightHoverBg: 'var(--joy-palette-primary-lightHoverBg)',
+          lightActiveBg: 'var(--joy-palette-primary-lightActiveBg)',
+          lightDisabledColor: 'var(--joy-palette-primary-lightDisabledColor)',
+          lightDisabledBg: 'var(--joy-palette-primary-lightDisabledBg)',
+          containedColor: 'var(--joy-palette-primary-containedColor)',
+          containedBg: 'var(--joy-palette-primary-containedBg)',
+          containedHoverBg: 'var(--joy-palette-primary-containedHoverBg)',
+          containedActiveBg: 'var(--joy-palette-primary-containedActiveBg)',
+          containedDisabledBg: 'var(--joy-palette-primary-containedDisabledBg)',
         }),
+      );
+      expect(screen.getByTestId('palette-neutral').textContent).to.equal(
+        JSON.stringify({
+          50: 'var(--joy-palette-neutral-50)',
+          100: 'var(--joy-palette-neutral-100)',
+          200: 'var(--joy-palette-neutral-200)',
+          300: 'var(--joy-palette-neutral-300)',
+          400: 'var(--joy-palette-neutral-400)',
+          500: 'var(--joy-palette-neutral-500)',
+          600: 'var(--joy-palette-neutral-600)',
+          700: 'var(--joy-palette-neutral-700)',
+          800: 'var(--joy-palette-neutral-800)',
+          900: 'var(--joy-palette-neutral-900)',
+          textColor: 'var(--joy-palette-neutral-textColor)',
+          textHoverBg: 'var(--joy-palette-neutral-textHoverBg)',
+          textActiveBg: 'var(--joy-palette-neutral-textActiveBg)',
+          textDisabledColor: 'var(--joy-palette-neutral-textDisabledColor)',
+          outlinedColor: 'var(--joy-palette-neutral-outlinedColor)',
+          outlinedBorder: 'var(--joy-palette-neutral-outlinedBorder)',
+          outlinedHoverBg: 'var(--joy-palette-neutral-outlinedHoverBg)',
+          outlinedHoverBorder: 'var(--joy-palette-neutral-outlinedHoverBorder)',
+          outlinedActiveBg: 'var(--joy-palette-neutral-outlinedActiveBg)',
+          outlinedDisabledColor: 'var(--joy-palette-neutral-outlinedDisabledColor)',
+          outlinedDisabledBorder: 'var(--joy-palette-neutral-outlinedDisabledBorder)',
+          lightColor: 'var(--joy-palette-neutral-lightColor)',
+          lightBg: 'var(--joy-palette-neutral-lightBg)',
+          lightHoverBg: 'var(--joy-palette-neutral-lightHoverBg)',
+          lightActiveBg: 'var(--joy-palette-neutral-lightActiveBg)',
+          lightDisabledColor: 'var(--joy-palette-neutral-lightDisabledColor)',
+          lightDisabledBg: 'var(--joy-palette-neutral-lightDisabledBg)',
+          containedColor: 'var(--joy-palette-neutral-containedColor)',
+          containedBg: 'var(--joy-palette-neutral-containedBg)',
+          containedHoverBg: 'var(--joy-palette-neutral-containedHoverBg)',
+          containedActiveBg: 'var(--joy-palette-neutral-containedActiveBg)',
+          containedDisabledBg: 'var(--joy-palette-neutral-containedDisabledBg)',
+        }),
+      );
+      expect(screen.getByTestId('palette-danger').textContent).to.equal(
+        JSON.stringify({
+          50: 'var(--joy-palette-danger-50)',
+          100: 'var(--joy-palette-danger-100)',
+          200: 'var(--joy-palette-danger-200)',
+          300: 'var(--joy-palette-danger-300)',
+          400: 'var(--joy-palette-danger-400)',
+          500: 'var(--joy-palette-danger-500)',
+          600: 'var(--joy-palette-danger-600)',
+          700: 'var(--joy-palette-danger-700)',
+          800: 'var(--joy-palette-danger-800)',
+          900: 'var(--joy-palette-danger-900)',
+          textColor: 'var(--joy-palette-danger-textColor)',
+          textHoverBg: 'var(--joy-palette-danger-textHoverBg)',
+          textActiveBg: 'var(--joy-palette-danger-textActiveBg)',
+          textDisabledColor: 'var(--joy-palette-danger-textDisabledColor)',
+          outlinedColor: 'var(--joy-palette-danger-outlinedColor)',
+          outlinedBorder: 'var(--joy-palette-danger-outlinedBorder)',
+          outlinedHoverBg: 'var(--joy-palette-danger-outlinedHoverBg)',
+          outlinedHoverBorder: 'var(--joy-palette-danger-outlinedHoverBorder)',
+          outlinedActiveBg: 'var(--joy-palette-danger-outlinedActiveBg)',
+          outlinedDisabledColor: 'var(--joy-palette-danger-outlinedDisabledColor)',
+          outlinedDisabledBorder: 'var(--joy-palette-danger-outlinedDisabledBorder)',
+          lightColor: 'var(--joy-palette-danger-lightColor)',
+          lightBg: 'var(--joy-palette-danger-lightBg)',
+          lightHoverBg: 'var(--joy-palette-danger-lightHoverBg)',
+          lightActiveBg: 'var(--joy-palette-danger-lightActiveBg)',
+          lightDisabledColor: 'var(--joy-palette-danger-lightDisabledColor)',
+          lightDisabledBg: 'var(--joy-palette-danger-lightDisabledBg)',
+          containedColor: 'var(--joy-palette-danger-containedColor)',
+          containedBg: 'var(--joy-palette-danger-containedBg)',
+          containedHoverBg: 'var(--joy-palette-danger-containedHoverBg)',
+          containedActiveBg: 'var(--joy-palette-danger-containedActiveBg)',
+          containedDisabledBg: 'var(--joy-palette-danger-containedDisabledBg)',
+        }),
+      );
+      expect(screen.getByTestId('palette-info').textContent).to.equal(
+        JSON.stringify({
+          50: 'var(--joy-palette-info-50)',
+          100: 'var(--joy-palette-info-100)',
+          200: 'var(--joy-palette-info-200)',
+          300: 'var(--joy-palette-info-300)',
+          400: 'var(--joy-palette-info-400)',
+          500: 'var(--joy-palette-info-500)',
+          600: 'var(--joy-palette-info-600)',
+          700: 'var(--joy-palette-info-700)',
+          800: 'var(--joy-palette-info-800)',
+          900: 'var(--joy-palette-info-900)',
+          textColor: 'var(--joy-palette-info-textColor)',
+          textHoverBg: 'var(--joy-palette-info-textHoverBg)',
+          textActiveBg: 'var(--joy-palette-info-textActiveBg)',
+          textDisabledColor: 'var(--joy-palette-info-textDisabledColor)',
+          outlinedColor: 'var(--joy-palette-info-outlinedColor)',
+          outlinedBorder: 'var(--joy-palette-info-outlinedBorder)',
+          outlinedHoverBg: 'var(--joy-palette-info-outlinedHoverBg)',
+          outlinedHoverBorder: 'var(--joy-palette-info-outlinedHoverBorder)',
+          outlinedActiveBg: 'var(--joy-palette-info-outlinedActiveBg)',
+          outlinedDisabledColor: 'var(--joy-palette-info-outlinedDisabledColor)',
+          outlinedDisabledBorder: 'var(--joy-palette-info-outlinedDisabledBorder)',
+          lightColor: 'var(--joy-palette-info-lightColor)',
+          lightBg: 'var(--joy-palette-info-lightBg)',
+          lightHoverBg: 'var(--joy-palette-info-lightHoverBg)',
+          lightActiveBg: 'var(--joy-palette-info-lightActiveBg)',
+          lightDisabledColor: 'var(--joy-palette-info-lightDisabledColor)',
+          lightDisabledBg: 'var(--joy-palette-info-lightDisabledBg)',
+          containedColor: 'var(--joy-palette-info-containedColor)',
+          containedBg: 'var(--joy-palette-info-containedBg)',
+          containedHoverBg: 'var(--joy-palette-info-containedHoverBg)',
+          containedActiveBg: 'var(--joy-palette-info-containedActiveBg)',
+          containedDisabledBg: 'var(--joy-palette-info-containedDisabledBg)',
+        }),
+      );
+      expect(screen.getByTestId('palette-success').textContent).to.equal(
+        JSON.stringify({
+          50: 'var(--joy-palette-success-50)',
+          100: 'var(--joy-palette-success-100)',
+          200: 'var(--joy-palette-success-200)',
+          300: 'var(--joy-palette-success-300)',
+          400: 'var(--joy-palette-success-400)',
+          500: 'var(--joy-palette-success-500)',
+          600: 'var(--joy-palette-success-600)',
+          700: 'var(--joy-palette-success-700)',
+          800: 'var(--joy-palette-success-800)',
+          900: 'var(--joy-palette-success-900)',
+          textColor: 'var(--joy-palette-success-textColor)',
+          textHoverBg: 'var(--joy-palette-success-textHoverBg)',
+          textActiveBg: 'var(--joy-palette-success-textActiveBg)',
+          textDisabledColor: 'var(--joy-palette-success-textDisabledColor)',
+          outlinedColor: 'var(--joy-palette-success-outlinedColor)',
+          outlinedBorder: 'var(--joy-palette-success-outlinedBorder)',
+          outlinedHoverBg: 'var(--joy-palette-success-outlinedHoverBg)',
+          outlinedHoverBorder: 'var(--joy-palette-success-outlinedHoverBorder)',
+          outlinedActiveBg: 'var(--joy-palette-success-outlinedActiveBg)',
+          outlinedDisabledColor: 'var(--joy-palette-success-outlinedDisabledColor)',
+          outlinedDisabledBorder: 'var(--joy-palette-success-outlinedDisabledBorder)',
+          lightColor: 'var(--joy-palette-success-lightColor)',
+          lightBg: 'var(--joy-palette-success-lightBg)',
+          lightHoverBg: 'var(--joy-palette-success-lightHoverBg)',
+          lightActiveBg: 'var(--joy-palette-success-lightActiveBg)',
+          lightDisabledColor: 'var(--joy-palette-success-lightDisabledColor)',
+          lightDisabledBg: 'var(--joy-palette-success-lightDisabledBg)',
+          containedColor: 'var(--joy-palette-success-containedColor)',
+          containedBg: 'var(--joy-palette-success-containedBg)',
+          containedHoverBg: 'var(--joy-palette-success-containedHoverBg)',
+          containedActiveBg: 'var(--joy-palette-success-containedActiveBg)',
+          containedDisabledBg: 'var(--joy-palette-success-containedDisabledBg)',
+        }),
+      );
+      expect(screen.getByTestId('palette-warning').textContent).to.equal(
+        JSON.stringify({
+          50: 'var(--joy-palette-warning-50)',
+          100: 'var(--joy-palette-warning-100)',
+          200: 'var(--joy-palette-warning-200)',
+          300: 'var(--joy-palette-warning-300)',
+          400: 'var(--joy-palette-warning-400)',
+          500: 'var(--joy-palette-warning-500)',
+          600: 'var(--joy-palette-warning-600)',
+          700: 'var(--joy-palette-warning-700)',
+          800: 'var(--joy-palette-warning-800)',
+          900: 'var(--joy-palette-warning-900)',
+          textColor: 'var(--joy-palette-warning-textColor)',
+          textHoverBg: 'var(--joy-palette-warning-textHoverBg)',
+          textActiveBg: 'var(--joy-palette-warning-textActiveBg)',
+          textDisabledColor: 'var(--joy-palette-warning-textDisabledColor)',
+          outlinedColor: 'var(--joy-palette-warning-outlinedColor)',
+          outlinedBorder: 'var(--joy-palette-warning-outlinedBorder)',
+          outlinedHoverBg: 'var(--joy-palette-warning-outlinedHoverBg)',
+          outlinedHoverBorder: 'var(--joy-palette-warning-outlinedHoverBorder)',
+          outlinedActiveBg: 'var(--joy-palette-warning-outlinedActiveBg)',
+          outlinedDisabledColor: 'var(--joy-palette-warning-outlinedDisabledColor)',
+          outlinedDisabledBorder: 'var(--joy-palette-warning-outlinedDisabledBorder)',
+          lightColor: 'var(--joy-palette-warning-lightColor)',
+          lightBg: 'var(--joy-palette-warning-lightBg)',
+          lightHoverBg: 'var(--joy-palette-warning-lightHoverBg)',
+          lightActiveBg: 'var(--joy-palette-warning-lightActiveBg)',
+          lightDisabledColor: 'var(--joy-palette-warning-lightDisabledColor)',
+          lightDisabledBg: 'var(--joy-palette-warning-lightDisabledBg)',
+          containedColor: 'var(--joy-palette-warning-containedColor)',
+          containedBg: 'var(--joy-palette-warning-containedBg)',
+          containedHoverBg: 'var(--joy-palette-warning-containedHoverBg)',
+          containedActiveBg: 'var(--joy-palette-warning-containedActiveBg)',
+          containedDisabledBg: 'var(--joy-palette-warning-containedDisabledBg)',
+        }),
+      );
+      expect(screen.getByTestId('palette-text').textContent).to.equal(
+        JSON.stringify({
+          primary: 'var(--joy-palette-text-primary)',
+          secondary: 'var(--joy-palette-text-secondary)',
+          tertiary: 'var(--joy-palette-text-tertiary)',
+        }),
+      );
+      expect(screen.getByTestId('palette-background').textContent).to.equal(
+        JSON.stringify({
+          default: 'var(--joy-palette-background-default)',
+          level1: 'var(--joy-palette-background-level1)',
+          level2: 'var(--joy-palette-background-level2)',
+          level3: 'var(--joy-palette-background-level3)',
+        }),
+      );
+      expect(screen.getByTestId('palette-focusVisible').textContent).to.equal(
+        '"var(--joy-palette-focusVisible)"',
       );
     });
 
@@ -110,6 +316,7 @@ describe('[Joy] CssVarsProvider', () => {
 
       expect(screen.getByTestId('font-size').textContent).to.equal(
         JSON.stringify({
+          default: 'var(--joy-fontSize-default)',
           xs: 'var(--joy-fontSize-xs)',
           sm: 'var(--joy-fontSize-sm)',
           md: 'var(--joy-fontSize-md)',
@@ -124,33 +331,35 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('font-family').textContent).to.equal(
         JSON.stringify({
-          sans: 'var(--joy-fontFamily-sans)',
-          mono: 'var(--joy-fontFamily-mono)',
+          default: 'var(--joy-fontFamily-default)',
+          display: 'var(--joy-fontFamily-display)',
+          code: 'var(--joy-fontFamily-code)',
+          fallback: 'var(--joy-fontFamily-fallback)',
         }),
       );
       expect(screen.getByTestId('font-weight').textContent).to.equal(
         JSON.stringify({
-          light: 'var(--joy-fontWeight-light)',
-          regular: 'var(--joy-fontWeight-regular)',
-          medium: 'var(--joy-fontWeight-medium)',
-          semiBold: 'var(--joy-fontWeight-semiBold)',
-          bold: 'var(--joy-fontWeight-bold)',
-          extraBold: 'var(--joy-fontWeight-extraBold)',
-          black: 'var(--joy-fontWeight-black)',
+          default: 'var(--joy-fontWeight-default)',
+          xs: 'var(--joy-fontWeight-xs)',
+          sm: 'var(--joy-fontWeight-sm)',
+          md: 'var(--joy-fontWeight-md)',
+          lg: 'var(--joy-fontWeight-lg)',
+          xl: 'var(--joy-fontWeight-xl)',
         }),
       );
       expect(screen.getByTestId('line-height').textContent).to.equal(
         JSON.stringify({
-          xs: 'var(--joy-lineHeight-xs)',
+          default: 'var(--joy-lineHeight-default)',
           sm: 'var(--joy-lineHeight-sm)',
-          normal: 'var(--joy-lineHeight-normal)',
+          md: 'var(--joy-lineHeight-md)',
           lg: 'var(--joy-lineHeight-lg)',
         }),
       );
       expect(screen.getByTestId('letter-spacing').textContent).to.equal(
         JSON.stringify({
-          xs: 'var(--joy-letterSpacing-xs)',
-          normal: 'var(--joy-letterSpacing-normal)',
+          default: 'var(--joy-letterSpacing-default)',
+          sm: 'var(--joy-letterSpacing-sm)',
+          md: 'var(--joy-letterSpacing-md)',
           lg: 'var(--joy-letterSpacing-lg)',
         }),
       );
@@ -174,23 +383,46 @@ describe('[Joy] CssVarsProvider', () => {
 
       expect(screen.getByTestId('border-radius').textContent).to.equal(
         JSON.stringify({
+          default: 'var(--joy-borderRadius-default)',
+          xs: 'var(--joy-borderRadius-xs)',
+          sm: 'var(--joy-borderRadius-sm)',
           md: 'var(--joy-borderRadius-md)',
+          lg: 'var(--joy-borderRadius-lg)',
+          xl: 'var(--joy-borderRadius-xl)',
         }),
+      );
+    });
+
+    it('elevation ring & channel', () => {
+      const Vars = () => {
+        const theme = useTheme();
+        return (
+          <div>
+            <div data-testid="elevation-ring">{theme.vars.elevationRing}</div>
+            <div data-testid="elevation-channel">{theme.vars.elevationChannel}</div>
+          </div>
+        );
+      };
+
+      render(
+        <CssVarsProvider>
+          <Vars />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('elevation-ring').textContent).to.equal('var(--joy-elevationRing)');
+      expect(screen.getByTestId('elevation-channel').textContent).to.equal(
+        'var(--joy-elevationChannel)',
       );
     });
   });
 
-  describe('Typography', () => {
-    it('generate expected font style', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-      const fontFamiliesAreNotQuoted = /(Firefox|Chrome)/.test(window.navigator.userAgent);
-      const fontWeight400IsNormal = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-      const Text = styled('p')(({ theme }) => ({
-        ...theme.typography.body,
-      }));
+  describe('Focus', () => {
+    it('contain expected focus', function test() {
+      const Text = () => {
+        const theme = useTheme();
+        return <div>{Object.keys(theme.focus).join(',')}</div>;
+      };
 
       const { container } = render(
         <CssVarsProvider>
@@ -198,14 +430,145 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild).toHaveComputedStyle({
-        fontSize: '16px',
-        fontFamily: fontFamiliesAreNotQuoted
-          ? defaultTheme.fontFamily.sans
-          : `"${defaultTheme.fontFamily.sans}"`,
-        fontWeight: fontWeight400IsNormal ? 'normal' : '400',
-        lineHeight: '24px',
-      });
+      expect(container.firstChild?.textContent).to.equal('default');
+    });
+  });
+
+  describe('Typography', () => {
+    it('contain expected typography', function test() {
+      const Text = () => {
+        const theme = useTheme();
+        return <div>{Object.keys(theme.typography).join(',')}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal('h1,h2,h3,h4,h5,h6,body1,body2,body3');
+    });
+  });
+
+  describe('Variant', () => {
+    it('contain expected variants', function test() {
+      const Text = () => {
+        const theme = useTheme();
+        return <div>{Object.keys(theme.variants).join(',')}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal(
+        [
+          'text',
+          'textHover',
+          'textActive',
+          'textDisabled',
+          'outlined',
+          'outlinedHover',
+          'outlinedActive',
+          'outlinedDisabled',
+          'light',
+          'lightHover',
+          'lightActive',
+          'lightDisabled',
+          'contained',
+          'containedHover',
+          'containedActive',
+          'containedDisabled',
+          'containedOverrides',
+        ].join(','),
+      );
+    });
+  });
+
+  describe('Spacing', () => {
+    it('provides spacing utility', function test() {
+      const Text = () => {
+        const theme = useTheme();
+        return <div>{theme.spacing(2)}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal('16px');
+    });
+  });
+
+  describe('Breakpoints', () => {
+    it('provides breakpoint utilities', function test() {
+      const Text = () => {
+        const theme = useTheme();
+        return <div>{theme.breakpoints.up('sm')}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal('@media (min-width:600px)');
+    });
+  });
+
+  describe('Skipped vars', () => {
+    it('should not contain `variants` in theme.vars', () => {
+      const Consumer = () => {
+        const theme = useTheme();
+        // @ts-expect-error
+        return <div>{theme.vars.variants ? 'variants' : ''}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).not.to.equal('variants');
+    });
+
+    it('should not contain `typography` in theme.vars', () => {
+      const Consumer = () => {
+        const theme = useTheme();
+        // @ts-expect-error
+        return <div>{theme.vars.typography ? 'typography' : ''}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).not.to.equal('typography');
+    });
+
+    it('should not contain `focus` in theme.vars', () => {
+      const Consumer = () => {
+        const theme = useTheme();
+        // @ts-expect-error
+        return <div>{theme.vars.focus ? 'focus' : ''}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).not.to.equal('focus');
     });
   });
 });

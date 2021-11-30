@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { GlobalStyles } from '@mui/styled-engine';
 import { deepmerge } from '@mui/utils';
+import createSpacing from '../createTheme/createSpacing';
+import createBreakpoints from '../createTheme/createBreakpoints';
 import cssVarsParser from './cssVarsParser';
 import ThemeProvider from '../ThemeProvider';
 import getInitColorSchemeScript, {
@@ -24,6 +26,9 @@ export default function createCssVarsProvider(options) {
     prefix: designSystemPrefix = '',
     shouldSkipGeneratingVar,
   } = options;
+
+  const systemSpacing = createSpacing(baseTheme.spacing);
+  const systemBreakpoints = createBreakpoints(baseTheme.breakpoints ?? {});
 
   if (
     !baseTheme.colorSchemes ||
@@ -55,7 +60,11 @@ export default function createCssVarsProvider(options) {
     defaultMode = desisgnSystemMode,
     defaultColorScheme = designSystemColorScheme,
   }) {
-    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = baseTheme;
+    // make sure that baseTheme is always independent of each <CssVarsProvider /> call.
+    // JSON.parse(JSON.stringify(...)) is okay to be used as long as the baseTheme is a plain object.
+    const clonedBaseTheme = React.useMemo(() => JSON.parse(JSON.stringify(baseTheme)), []);
+
+    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = clonedBaseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
     const hasMounted = React.useRef(null);
 
@@ -108,6 +117,10 @@ export default function createCssVarsProvider(options) {
       components,
       colorSchemes,
       vars: rootVars,
+      spacing: themeProp.spacing ? createSpacing(themeProp.spacing) : systemSpacing,
+      breakpoints: themeProp.breakpoints
+        ? createBreakpoints(themeProp.breakpoints)
+        : systemBreakpoints,
     };
 
     const styleSheet = {};
@@ -137,7 +150,8 @@ export default function createCssVarsProvider(options) {
 
     React.useEffect(() => {
       if (colorScheme) {
-        document.body.setAttribute(attribute, colorScheme);
+        // attaches attribute to <html> because the css variables are attached to :root (html)
+        document.documentElement.setAttribute(attribute, colorScheme);
       }
     }, [colorScheme, attribute]);
 

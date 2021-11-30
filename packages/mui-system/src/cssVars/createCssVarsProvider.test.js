@@ -151,7 +151,7 @@ describe('createCssVarsProvider', () => {
       fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
       expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
-      expect(document.body.getAttribute('data-mui-color-scheme')).to.equal('dark');
+      expect(document.documentElement.getAttribute('data-mui-color-scheme')).to.equal('dark');
     });
 
     it('display error if non-existed colorScheme is set', () => {
@@ -500,7 +500,7 @@ describe('createCssVarsProvider', () => {
   });
 
   describe('DOM', () => {
-    it('attach default dataset on body', () => {
+    it('attach default dataset on html', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: {} },
@@ -509,7 +509,7 @@ describe('createCssVarsProvider', () => {
       });
       render(<CssVarsProvider />);
 
-      expect(document.body.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('light');
+      expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('light');
     });
 
     it('use custom attribute', () => {
@@ -523,7 +523,7 @@ describe('createCssVarsProvider', () => {
 
       render(<CssVarsProvider attribute={customAttribute} />);
 
-      expect(document.body.getAttribute('data-foo-bar')).to.equal('light');
+      expect(document.documentElement.getAttribute('data-foo-bar')).to.equal('light');
     });
   });
 

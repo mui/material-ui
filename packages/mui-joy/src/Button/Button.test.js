@@ -18,17 +18,18 @@ describe('Joy <Button />', () => {
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 
-  it('by default, should render with the root, variantText, sizeMedium and colorBrand classes', () => {
+  it('by default, should render with the root, variantContained, and colorPrimary classes', () => {
     const { getByRole } = render(<Button>Hello World</Button>);
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
-    expect(button).to.have.class(classes.variantText);
-    expect(button).to.have.class(classes.colorBrand);
+    expect(button).to.have.class(classes.variantContained);
+    expect(button).to.have.class(classes.colorPrimary);
 
     // should not have other variant classes
     expect(button).not.to.have.class(classes.variantOutlined);
-    expect(button).not.to.have.class(classes.variantContained);
+    expect(button).not.to.have.class(classes.variantText);
+    expect(button).not.to.have.class(classes.variantLight);
   });
 
   it('should render an outlined button', () => {
@@ -36,6 +37,13 @@ describe('Joy <Button />', () => {
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.variantOutlined);
+  });
+
+  it('should render a light button', () => {
+    const { getByRole } = render(<Button variant="light">Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.variantLight);
   });
 
   it('should render a contained button', () => {
