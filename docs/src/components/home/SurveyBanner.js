@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
-import ArrowRightAltRoundedIcon from '@mui/icons-material/ArrowRightAltRounded';
 
 export default function SurveyBanner() {
   return (
@@ -29,7 +28,7 @@ export default function SurveyBanner() {
         Help shape the future of MUI! &nbsp;🚀 &nbsp;&nbsp;&nbsp;Please take a few minutes to
         complete the{' '}
         <Link href={ROUTES.suvery2021} sx={{ color: '#fff', textDecoration: 'underline' }}>
-          2021 MUI developer survey <ArrowRightAltRoundedIcon fontSize="small" />
+          2021 MUI developer survey &#8594;
         </Link>
       </Typography>
     </Box>
