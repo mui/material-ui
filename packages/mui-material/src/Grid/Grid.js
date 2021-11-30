@@ -181,7 +181,10 @@ export function resolveSpacingClasses(spacing, container, styles = {}) {
     return [];
   }
   // in case of string/number `spacing`
-  if ((typeof spacing === 'string' && !Number.isNaN(Number(spacing))) || typeof spacing === 'number') {
+  if (
+    (typeof spacing === 'string' && !Number.isNaN(Number(spacing))) ||
+    typeof spacing === 'number'
+  ) {
     return [styles[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
   }
   // in case of object `spacing`
