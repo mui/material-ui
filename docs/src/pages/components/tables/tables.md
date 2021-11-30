@@ -122,7 +122,7 @@ Virtualization helps with performance issues.
 
 ## Unstyled table
 
-If you would like to use unstyled Table, you can use the primitive elements and enhanced the table with an unstyled pagination as showned in the demo below.
+If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below.
 
 {{"demo": "pages/components/tables/TableUnstyled.js"}}
 
