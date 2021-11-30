@@ -72,7 +72,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
 
-🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/checkbox)。
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox/).
 
 ## 什么时候使用
 
