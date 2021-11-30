@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Outconst } from 'remix';
+import { Outlet } from 'remix';
 import type { MetaFunction, LinksFunction } from 'remix';
 
 import stylesUrl from '~/styles/demos/about.css';
@@ -36,7 +36,7 @@ export default function Index() {
           .
         </p>
         <hr />
-        <Outconst />
+        <Outlet />
       </div>
     </div>
   );
