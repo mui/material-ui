@@ -275,7 +275,7 @@ A ordem de chamada do hook e a ordem de concatenação da classe **não importam
 
 ### Ponto de inserção (insertionPoint)
 
-JSS [fornece um mecanismo](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) para controlar esta situação. Adicionando um `ponto de inserção` dentro do HTML, você pode [ controlar a ordem](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) que as regras CSS são aplicadas aos seus componentes.
+JSS [fornece um mecanismo](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) para controlar esta situação. By adding an `insertionPoint` within the HTML you can [control the order](https://cssinjs.org/jss-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
 
 #### Comentário HTML
 
