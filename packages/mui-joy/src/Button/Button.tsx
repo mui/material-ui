@@ -9,8 +9,17 @@ import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
 const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
-  const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
-    ownerState;
+  const {
+    color,
+    disabled,
+    focusVisible,
+    focusVisibleClassName,
+    fullWidth,
+    size,
+    variant,
+    elevation,
+    roundness,
+  } = ownerState;
 
   const slots = {
     root: [
@@ -21,6 +30,8 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
+      elevation && `elevation${capitalize(elevation)}`,
+      roundness && `roundness${capitalize(roundness)}`,
     ],
   };
 
@@ -44,6 +55,8 @@ const ButtonRoot = styled('button', {
       styles[`variant${capitalize(ownerState.variant)}`],
       styles[`color${capitalize(ownerState.color)}`],
       ownerState.size && styles[`size${capitalize(ownerState.size)}`],
+      ownerState.elevation && styles[`elevation${capitalize(ownerState.elevation)}`],
+      ownerState.roundness && styles[`roundness${capitalize(ownerState.roundness)}`],
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
@@ -52,7 +65,7 @@ const ButtonRoot = styled('button', {
     {
       padding: '0.25rem 1.5rem',
       minHeight: '40px',
-      borderRadius: theme.vars.borderRadius.default,
+      borderRadius: theme.vars.borderRadius[ownerState.roundness!],
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -60,20 +73,29 @@ const ButtonRoot = styled('button', {
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
+      transition:
+        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...theme.typography.body1,
       fontWeight: theme.vars.fontWeight.md,
+      ...(ownerState.elevation && {
+        boxShadow: theme.vars.elevation[ownerState.elevation],
+      }),
+      ...(ownerState.size === 'small' && {
+        padding: '0.25rem 1rem',
+        minHeight: '32px',
+        ...theme.typography.body2,
+        fontWeight: theme.vars.fontWeight.md,
+      }),
+      ...(ownerState.size === 'large' && {
+        padding: '0.25rem 2rem',
+        minHeight: '48px',
+        ...theme.typography.h6,
+        fontWeight: theme.vars.fontWeight.md,
+      }),
       [`&.${buttonClasses.focusVisible}`]: theme.focus.default,
     },
     ownerState.fullWidth && {
       width: '100%',
-    },
-    ownerState.size === 'small' && {
-      padding: '0.25rem 1rem',
-      minHeight: '32px',
-    },
-    ownerState.size === 'large' && {
-      padding: '0.25rem 2rem',
-      minHeight: '48px',
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
@@ -92,6 +114,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     component = 'button',
     color = 'primary',
     variant = 'contained',
+    roundness = 'default',
+    elevation,
     size,
     fullWidth = false,
     ...other
@@ -125,6 +149,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     color,
     fullWidth,
     variant,
+    roundness,
+    elevation,
     size,
     focusVisible,
   };

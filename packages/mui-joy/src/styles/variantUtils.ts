@@ -94,6 +94,8 @@ export const getTextActiveVariant = (color: ColorPaletteProp) => ({
 
 export const getTextDisabledVariant = (color: ColorPaletteProp) => ({
   '&.Mui-disabled': {
+    pointerEvents: 'none',
+    cursor: 'default',
     color:
       color === 'context'
         ? `var(--joy-variant-textDisabledColor)`
@@ -150,6 +152,8 @@ export const getOutlinedActiveVariant = (color: ColorPaletteProp) => ({
 
 export const getOutlinedDisabledVariant = (color: ColorPaletteProp) => ({
   '&.Mui-disabled': {
+    pointerEvents: 'none',
+    cursor: 'default',
     color:
       color === 'context'
         ? `var(--joy-variant-outlinedDisabledColor)`
@@ -191,6 +195,8 @@ export const getFilledActiveVariant = (color: ColorPaletteProp) => ({
 
 export const getFilledDisabledVariant = (color: ColorPaletteProp) => ({
   '&.Mui-disabled': {
+    pointerEvents: 'none',
+    cursor: 'default',
     color:
       color === 'context'
         ? `var(--joy-variant-lightDisabledColor)`
@@ -234,6 +240,8 @@ export const getContainedActiveVariant = (color: ColorPaletteProp) => ({
 
 export const getContainedDisabledVariant = (color: ColorPaletteProp) => ({
   '&.Mui-disabled': {
+    pointerEvents: 'none',
+    cursor: 'default',
     backgroundColor:
       color === 'context'
         ? `var(--joy-variant-containedDisabledBg)`

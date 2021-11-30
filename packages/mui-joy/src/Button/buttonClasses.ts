@@ -15,6 +15,16 @@ export interface ButtonClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element if `elevation="xs"`. */
+  elevationXs: string;
+  /** Styles applied to the root element if `elevation="sm"`. */
+  elevationSm: string;
+  /** Styles applied to the root element if `elevation="md"`. */
+  elevationMd: string;
+  /** Styles applied to the root element if `elevation="lg"`. */
+  elevationLg: string;
+  /** Styles applied to the root element if `elevation="xl"`. */
+  elevationXl: string;
   /** Styles applied to the root element if `variant="text"`. */
   variantText: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -27,6 +37,16 @@ export interface ButtonClasses {
   focusVisible: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
+  /** Styles applied to the root element if `roundness="xs"`. */
+  roundnessXs: string;
+  /** Styles applied to the root element if `roundness="sm"`. */
+  roundnessSm: string;
+  /** Styles applied to the root element if `roundness="md"`. */
+  roundnessMd: string;
+  /** Styles applied to the root element if `roundness="lg"`. */
+  roundnessLg: string;
+  /** Styles applied to the root element if `roundness="xl"`. */
+  roundnessXl: string;
   /** Styles applied to the root element if `size="small"`. */
   sizeSmall: string;
   /** Styles applied to the root element if `size="large"`. */
@@ -49,12 +69,22 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'elevationXs',
+  'elevationSm',
+  'elevationMd',
+  'elevationLg',
+  'elevationXl',
   'variantText',
   'variantOutlined',
   'variantLight',
   'variantContained',
   'focusVisible',
   'disabled',
+  'roundnessXs',
+  'roundnessSm',
+  'roundnessMd',
+  'roundnessLg',
+  'roundnessXl',
   'sizeSmall',
   'sizeLarge',
   'fullWidth',

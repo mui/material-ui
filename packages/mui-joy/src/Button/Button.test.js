@@ -73,4 +73,18 @@ describe('Joy <Button />', () => {
 
     expect(button).to.have.class(classes.fullWidth);
   });
+
+  it('should render an elevated button', () => {
+    const { getByRole } = render(<Button elevation="xs">Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.elevationXs);
+  });
+
+  it('should render a rounded button', () => {
+    const { getByRole } = render(<Button roundness="sm">Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.roundnessSm);
+  });
 });

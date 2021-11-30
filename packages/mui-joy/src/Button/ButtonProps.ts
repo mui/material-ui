@@ -5,8 +5,7 @@ import {
   OverrideProps,
 } from '@mui/types';
 import React from 'react';
-import { ColorPaletteProp } from '../styles/types/colorSystem';
-import { VariantProp } from '../styles/types/variants';
+import { ColorPaletteProp, VariantProp, Elevation, BorderRadius } from '../styles';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -39,6 +38,10 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     disabled?: boolean;
     /**
+     * The intensity of the shadow.
+     */
+    elevation?: keyof Elevation;
+    /**
      * This prop can help identify which element has keyboard focus.
      * The class name will be applied when the element gains the focus through keyboard interaction.
      * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
@@ -53,9 +56,12 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     fullWidth?: boolean;
     /**
+     * The border-radius of the component.
+     * @default 'default'
+     */
+    roundness?: keyof BorderRadius;
+    /**
      * The size of the component.
-     * `small` is equivalent to the dense button styling.
-     * @default 'medium'
      */
     size?: OverridableStringUnion<'small' | 'large', ButtonPropsSizeOverrides>;
     /**
