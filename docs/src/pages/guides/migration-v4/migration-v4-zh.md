@@ -54,7 +54,7 @@ const theme = createMuiTheme();
 
 const useStyles = makeStyles((theme) => {
   root: {
-    // some css that access to theme
+    // some CSS that access to theme
   }
 });
 
@@ -580,7 +580,7 @@ declare module '@mui/styles' {
   >   +import { ServerStyleSheets } from '@mui/styles';
   > ```
 
-#### styled
+#### 样式
 
 - The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use the one exported from `@mui/styles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
@@ -1390,7 +1390,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### Hidden 隐藏组件
 
-- This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query) hook.
+- This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query/) hook.
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, further fixes are required.
 
