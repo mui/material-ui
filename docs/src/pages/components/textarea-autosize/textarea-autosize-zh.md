@@ -28,7 +28,7 @@ githubLabel: 'component: TextareaAutosize'
 
 ## 素颜模式
 
-- 📦 [784 B gzipped](https://bundlephobia.com/result?p=@mui/base@latest)
+- 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
 As the component does not have any styles, it also comes with the unstyled package.
 
