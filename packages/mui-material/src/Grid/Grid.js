@@ -175,13 +175,16 @@ export function generateColumnGap({ theme, ownerState }) {
   return styles;
 }
 
-export function getSpacingStyles(spacing, container, styles = {}) {
-  if (!container || !spacing) {
+export function resolveSpacingClasses(spacing, container, styles = {}) {
+  // in case of grid item or undefined/null or `spacing` <= 0
+  if (!container || !spacing || spacing <= 0) {
     return [];
   }
-  if (Number.isNaN(Number(spacing)) === false && Number(spacing) > 0) {
+  // in case of string/number `spacing`
+  if ((typeof spacing === 'string' && !Number.isNaN(Number(spacing))) || typeof spacing === 'number') {
     return [styles[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
   }
+  // in case of object `spacing`
   const { xs, sm, md, lg, xl } = spacing;
 
   return [
@@ -211,7 +214,7 @@ const GridRoot = styled('div', {
       container && styles.container,
       item && styles.item,
       zeroMinWidth && styles.zeroMinWidth,
-      ...getSpacingStyles(spacing, container, styles),
+      ...resolveSpacingClasses(spacing, container, styles),
       direction !== 'row' && styles[`direction-xs-${String(direction)}`],
       wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`],
       xs !== false && styles[`grid-xs-${String(xs)}`],
@@ -263,7 +266,7 @@ const useUtilityClasses = (ownerState) => {
       container && 'container',
       item && 'item',
       zeroMinWidth && 'zeroMinWidth',
-      ...getSpacingStyles(spacing, container),
+      ...resolveSpacingClasses(spacing, container),
       direction !== 'row' && `direction-xs-${String(direction)}`,
       wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
       xs !== false && `grid-xs-${String(xs)}`,

@@ -165,6 +165,7 @@ describe('<Grid />', () => {
         paddingLeft: '12px',
       });
     });
+
     it('should not support undefined values', () => {
       const { container } = render(
         <Grid container>
@@ -173,6 +174,7 @@ describe('<Grid />', () => {
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-undefined');
     });
+
     it('should not support zero values', () => {
       const { container } = render(
         <Grid container spacing={0}>
@@ -181,6 +183,7 @@ describe('<Grid />', () => {
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-0');
     });
+
     it('should support object values', () => {
       const { container } = render(
         <Grid container spacing={{ sm: 1.5, md: 2 }}>
