@@ -8,7 +8,7 @@
         "name": "enum",
         "description": "'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;false"
       },
-      "default": "'onClick'"
+      "default": "'onMouseUp'"
     },
     "touchEvent": {
       "type": {

@@ -38,7 +38,7 @@ export interface ClickAwayListenerProps {
   disableReactTree?: boolean;
   /**
    * The mouse event to listen to. You can disable the listener by providing `false`.
-   * @default 'onClick'
+   * @default 'onMouseUp'
    */
   mouseEvent?: ClickAwayMouseEventHandler | false;
   /**
@@ -227,7 +227,7 @@ ClickAwayListener.propTypes /* remove-proptypes */ = {
   disableReactTree: PropTypes.bool,
   /**
    * The mouse event to listen to. You can disable the listener by providing `false`.
-   * @default 'onClick'
+   * @default 'onMouseUp'
    */
   mouseEvent: PropTypes.oneOf(['onClick', 'onMouseDown', 'onMouseUp', false]),
   /**
