@@ -50,9 +50,9 @@ const ButtonRoot = styled('button', {
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   return [
     {
-      padding: '0.25rem 2rem',
-      minHeight: '48px',
-      borderRadius: '28px',
+      padding: '0.25rem 1.5rem',
+      minHeight: '40px',
+      borderRadius: theme.vars.borderRadius.default,
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -68,10 +68,12 @@ const ButtonRoot = styled('button', {
       width: '100%',
     },
     ownerState.size === 'small' && {
-      minHeight: '40px',
+      padding: '0.25rem 1rem',
+      minHeight: '32px',
     },
     ownerState.size === 'large' && {
-      minHeight: '56px',
+      padding: '0.25rem 2rem',
+      minHeight: '48px',
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
