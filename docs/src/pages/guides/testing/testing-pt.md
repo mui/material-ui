@@ -4,7 +4,7 @@
 
 ## Espaço do usuário
 
-It's generally recommended to test your application without tying the tests too closely to MUI. This is how MUI components are tested internally. Uma biblioteca que tem uma API de primeira classe para esta abordagem é [`@testing-library/react`](https://testing-library.com/docs/react-testing-library/intro).
+It's generally recommended to test your application without tying the tests too closely to MUI. This is how MUI components are tested internally. A library that has a first-class API for this approach is [`@testing-library/react`](https://testing-library.com/docs/react-testing-library/intro/).
 
 For example, when rendering a `TextField` your test should not need to query for the specific MUI instance of the `TextField` but rather for the `input`, or `[role="textbox"]`.
 
