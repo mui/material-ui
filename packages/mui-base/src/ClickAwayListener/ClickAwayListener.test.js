@@ -32,6 +32,33 @@ describe('<ClickAwayListener />', () => {
     expect(container.querySelectorAll('span').length).to.equal(1);
   });
 
+  it('should not be highlighted on tap', function test() {
+    if (
+      /jsdom/.test(window.navigator.userAgent) ||
+      !('webkitTapHighlightColor' in document.body.style)
+    ) {
+      this.skip();
+    }
+
+    const initialTapHighlightColor = window.getComputedStyle(document.body).webkitTapHighlightColor;
+    const transparentColor = 'rgba(0, 0, 0, 0)';
+    render(
+      <ClickAwayListener onClickAway={() => {}}>
+        <div data-testid="child">
+          Not tappable
+          <button data-testid="tappable">tappable</button>
+        </div>
+      </ClickAwayListener>,
+    );
+
+    expect(screen.getByTestId('child')).toHaveComputedStyle({
+      webkitTapHighlightColor: transparentColor,
+    });
+    expect(screen.getByTestId('tappable')).toHaveComputedStyle({
+      webkitTapHighlightColor: initialTapHighlightColor,
+    });
+  });
+
   describe('prop: onClickAway', () => {
     it('should be called when clicking away', () => {
       const handleClickAway = spy();
