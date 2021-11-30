@@ -27,7 +27,7 @@ export default function SurveyBanner() {
       >
         Help shape the future of MUI! &nbsp;🚀 &nbsp;&nbsp;&nbsp;Please take a few minutes to
         complete the{' '}
-        <Link href={ROUTES.suvery2021} sx={{ color: '#fff', textDecoration: 'underline' }}>
+        <Link href={ROUTES.survey2021} sx={{ color: '#fff', textDecoration: 'underline' }}>
           2021 MUI developer survey &#8594;
         </Link>
       </Typography>
