@@ -1,6 +1,5 @@
 export * from './utils';
 
-export { default as useAutocomplete } from './AutocompleteUnstyled';
 export * from './AutocompleteUnstyled';
 
 export { default as BackdropUnstyled } from './BackdropUnstyled';
@@ -22,6 +21,7 @@ export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';
 
 export { default as generateUtilityClasses } from './generateUtilityClasses';
+export * from './generateUtilityClasses';
 
 export { default as FormControlUnstyled } from './FormControlUnstyled';
 export * from './FormControlUnstyled';

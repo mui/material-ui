@@ -1,6 +1,5 @@
 export * from './utils';
 
-export { default as useAutocomplete } from './AutocompleteUnstyled';
 export * from './AutocompleteUnstyled';
 
 export { default as BackdropUnstyled } from './BackdropUnstyled';
