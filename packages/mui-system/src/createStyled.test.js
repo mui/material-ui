@@ -137,7 +137,7 @@ describe('createStyled', () => {
       expect(SomeMuiComponent).to.have.property('displayName', 'Styled(Component)');
     });
 
-    it('filter non-HTML props if tag is string', () => {
+    it('does not forward invalid props to DOM', () => {
       const styled = createStyled({});
       const Anchor = styled('a')({});
 

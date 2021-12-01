@@ -91,7 +91,9 @@ export function getShouldForwardProp(input = {}) {
         ? (prop) => isPropValid(prop) && slotShouldForwardProp(prop)
         : slotShouldForwardProp;
     }
-    return shouldForwardProp;
+    return isStringTag(tag)
+      ? (prop) => isPropValid(prop) && shouldForwardProp(prop)
+      : shouldForwardProp;
   }
   return shouldForwardPropOption;
 }
@@ -136,6 +138,7 @@ export default function createStyled(input = {}) {
     }
 
     const finalShouldForwardProp = getShouldForwardProp({
+      tag,
       slot: componentSlot,
       rootShouldForwardProp,
       slotShouldForwardProp,
