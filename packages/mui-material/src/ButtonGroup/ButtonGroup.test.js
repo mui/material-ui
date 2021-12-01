@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, screen } from 'test/utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material/ButtonGroup';
-import Button from '@mui/material/Button';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Button, { buttonClasses } from '@mui/material/Button';
 import ButtonGroupContext from './ButtonGroupContext';
 
 describe('<ButtonGroup />', () => {
@@ -169,5 +170,33 @@ describe('<ButtonGroup />', () => {
     expect(context.disableElevation).to.equal(false);
     expect(context.disabled).to.equal(false);
     expect(context.color).to.equal('primary');
+  });
+
+  describe('theme default props on Button', () => {
+    it('should override default variant prop', () => {
+      render(
+        <ThemeProvider
+          theme={createTheme({
+            components: {
+              MuiButton: {
+                defaultProps: {
+                  color: 'primary',
+                  size: 'medium',
+                  variant: 'contained',
+                },
+              },
+            },
+          })}
+        >
+          <ButtonGroup variant="outlined" size="small" color="secondary">
+            <Button>Hello World</Button>
+          </ButtonGroup>
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByRole('button')).to.have.class(buttonClasses.outlined);
+      expect(screen.getByRole('button')).to.have.class(buttonClasses.sizeSmall);
+      expect(screen.getByRole('button')).to.have.class(buttonClasses.outlinedSecondary);
+    });
   });
 });
