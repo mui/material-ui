@@ -44,10 +44,4 @@ describe('mergeProps', () => {
       foo: '',
     });
   });
-
-  it('combine `className`', () => {
-    expect(mergeProps({ className: 'foo' }, { className: 'bar' })).to.deep.equal({
-      className: 'foo bar',
-    });
-  });
 });

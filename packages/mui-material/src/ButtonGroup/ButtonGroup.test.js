@@ -151,6 +151,16 @@ describe('<ButtonGroup />', () => {
     expect(button).to.have.class('MuiButton-fullWidth');
   });
 
+  it('classes.grouped should be merged with Button className', () => {
+    render(
+      <ButtonGroup>
+        <Button className="foo-bar">Hello World</Button>
+      </ButtonGroup>,
+    );
+    expect(screen.getByRole('button')).to.have.class(classes.grouped);
+    expect(screen.getByRole('button')).to.have.class('foo-bar');
+  });
+
   it('should forward the context to children', () => {
     let context;
     render(

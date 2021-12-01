@@ -280,15 +280,15 @@ const ButtonEndIcon = styled('span', {
 }));
 
 const Button = React.forwardRef(function Button(inProps, ref) {
+  // props priority: `inProps` > `contextProps` > `themeDefaultProps`
   const contextProps = React.useContext(ButtonGroupContext);
   const mergedProps = mergeProps(contextProps, inProps);
   const props = useThemeProps({ props: mergedProps, name: 'MuiButton' });
-  // props priority:
-  // `inProps` > `contextProps` > `themeDefaultProps`
   const {
     children,
     color = 'primary',
     component = 'button',
+    className,
     disabled = false,
     disableElevation = false,
     disableFocusRipple = false,
@@ -332,6 +332,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       ownerState={ownerState}
+      className={clsx(className, contextProps.className)}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
