@@ -1,6 +1,5 @@
 import { internal_mergeProps as mergeProps } from '@mui/utils';
 
-/* eslint-disable no-restricted-syntax */
 export default function getThemeProps(params) {
   const { theme, name, props } = params;
 
