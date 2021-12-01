@@ -123,7 +123,7 @@ const globals = {
 const globalsWithoutEmotion = {
   ...globals,
   '@emotion/react': 'emotionReact',
-  '@emotion/styled': 'emotionStyled'
+  '@emotion/styled': 'emotionStyled',
 };
 
 const babelOptions = {
@@ -205,7 +205,7 @@ const rollupConfig = [
       file: 'build/umd/material-ui.emotionless.development.js',
       format: 'umd',
       name: 'MaterialUI',
-      globals : globalsWithoutEmotion,
+      globals: globalsWithoutEmotion,
     },
     external: Object.keys(globalsWithoutEmotion),
     plugins: [
@@ -245,7 +245,7 @@ const rollupConfig = [
       file: 'build/umd/material-ui.emotionless.production.min.js',
       format: 'umd',
       name: 'MaterialUI',
-      globals : globalsWithoutEmotion,
+      globals: globalsWithoutEmotion,
     },
     external: Object.keys(globalsWithoutEmotion),
     plugins: [
@@ -258,7 +258,7 @@ const rollupConfig = [
       terser(),
       sizeSnapshot({ snapshotPath: 'size-snapshot.json' }),
     ],
-  }
+  },
 ];
 
 export default rollupConfig;
