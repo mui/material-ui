@@ -7,28 +7,28 @@ import { alpha, styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import ButtonBase from '@mui/material/ButtonBase';
 import Link from 'docs/src/modules/components/Link';
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
-import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
-import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
-import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
-import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import BookOutlined from '@mui/icons-material/BookOutlined';
-import ChromeReaderModeOutlined from '@mui/icons-material/ChromeReaderModeOutlined';
+import ArticleTwoToneIcon from '@mui/icons-material/ArticleTwoTone';
+import ToggleOffTwoToneIcon from '@mui/icons-material/ToggleOffTwoTone';
+import IntegrationInstructionsTwoToneIcon from '@mui/icons-material/IntegrationInstructionsTwoTone';
+import BuildCircleTwoToneIcon from '@mui/icons-material/BuildCircleTwoTone';
+import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
+import VisibilityTwoToneIcon from '@mui/icons-material/VisibilityTwoTone';
+import ColorLensTwoToneIcon from '@mui/icons-material/ColorLensTwoTone';
+import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
+import BookTwoToneIcon from '@mui/icons-material/BookTwoTone';
+import ChromeReaderModeTwoToneIcon from '@mui/icons-material/ChromeReaderModeTwoTone';
 
 const iconsMap = {
-  DescriptionIcon: ArticleOutlinedIcon,
-  ToggleOnIcon: ToggleOffOutlinedIcon,
-  CodeIcon: CodeRoundedIcon,
-  BuildIcon: BuildOutlinedIcon,
-  CreateIcon: CreateOutlinedIcon,
-  VisibilityIcon: VisibilityOutlinedIcon,
-  StyleIcon: ColorLensOutlinedIcon,
-  AddIcon: AddCircleOutlineOutlinedIcon,
-  BookIcon: BookOutlined,
-  ReaderIcon: ChromeReaderModeOutlined,
+  DescriptionIcon: ArticleTwoToneIcon,
+  ToggleOnIcon: ToggleOffTwoToneIcon,
+  CodeIcon: IntegrationInstructionsTwoToneIcon,
+  BuildIcon: BuildCircleTwoToneIcon,
+  CreateIcon: CreateTwoToneIcon,
+  VisibilityIcon: VisibilityTwoToneIcon,
+  StyleIcon: ColorLensTwoToneIcon,
+  AddIcon: AddCircleTwoToneIcon,
+  BookIcon: BookTwoToneIcon,
+  ReaderIcon: ChromeReaderModeTwoToneIcon,
 };
 
 const Item = styled(function Item({ component: Component = 'div', ...props }) {
@@ -57,8 +57,8 @@ const Item = styled(function Item({ component: Component = 'div', ...props }) {
     backgroundColor: theme.palette.action.focus,
   },
   [theme.breakpoints.up('md')]: {
-    paddingTop: 5,
-    paddingBottom: 5,
+    paddingTop: 3,
+    paddingBottom: 3,
   },
 }));
 
@@ -66,7 +66,7 @@ const ItemLink = styled(Item, {
   shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon',
 })(({ theme, hasIcon, depth }) => {
   return {
-    fontSize: theme.typography.pxToRem(13.5),
+    fontSize: theme.typography.pxToRem(14),
     color: theme.palette.text.secondary,
     '&.app-drawer-active': {
       // color: theme.palette.primary.main,
@@ -131,7 +131,7 @@ const ItemButton = styled(Item, {
     textTransform: depth === 0 ? 'none' : 'uppercase',
     letterSpacing: depth === 0 ? 'normal' : '.1rem',
     fontWeight: depth === 0 ? 500 : 700,
-    margin: depth === 0 ? theme.spacing(0.5, 0) : '12px 0 4px',
+    margin: depth === 0 ? null : '16px 0 2px',
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
       color: (() => {
@@ -148,7 +148,7 @@ const ItemButton = styled(Item, {
     [`&:hover ${ItemButtonIcon}`]: {
       color: theme.palette.text.primary,
     },
-    paddingLeft: 36,
+    paddingLeft: 36 + (depth > 1 ? (depth - 3) * -10 : 0),
     ...(hasIcon && {
       paddingLeft: 2,
     }),
@@ -194,13 +194,17 @@ export default function AppNavDrawerItem(props) {
     <Box
       component="span"
       sx={{
-        '& svg': { fontSize: (theme) => theme.typography.pxToRem(14) },
+        my: 0.4,
+        '& svg': { fontSize: (theme) => theme.typography.pxToRem(17) },
         display: 'flex',
         alignItems: 'center',
         height: '100%',
-        marginRight: 1.5,
-        p: 0.5,
+        marginRight: 1.2,
+        p: 0.4,
         borderRadius: '5px',
+        border: 1,
+        borderColor: (theme) =>
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200],
         backgroundColor: (theme) =>
           theme.palette.mode === 'dark'
             ? theme.palette.primaryDark[700]
@@ -210,12 +214,6 @@ export default function AppNavDrawerItem(props) {
       <IconComponent {...iconProps} />
     </Box>
   ) : null;
-
-  const divider = depth === 0 && (
-    <li>
-      <Divider sx={{ my: 1.2 }} />
-    </li>
-  );
 
   if (href) {
     return (
@@ -235,7 +233,6 @@ export default function AppNavDrawerItem(props) {
             {title}
           </ItemLink>
         </StyledLi>
-        {divider}
       </React.Fragment>
     );
   }
@@ -263,7 +260,6 @@ export default function AppNavDrawerItem(props) {
           children
         )}
       </StyledLi>
-      {divider}
     </React.Fragment>
   );
 }
