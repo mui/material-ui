@@ -72,30 +72,6 @@ export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
-export function getShouldForwardProp(input = {}) {
-  const {
-    tag,
-    slot,
-    rootShouldForwardProp = shouldForwardProp,
-    slotShouldForwardProp = shouldForwardProp,
-    shouldForwardProp: shouldForwardPropOption,
-  } = input;
-  if (!shouldForwardPropOption) {
-    if (!slot && isStringTag(tag)) {
-      // preserve the behavior in emotion & styled-components
-      return (prop) => isPropValid(prop) && shouldForwardProp(prop);
-    }
-    if (slot === 'Root') {
-      return rootShouldForwardProp;
-    }
-    if (slot) {
-      return slotShouldForwardProp;
-    }
-    return shouldForwardProp;
-  }
-  return shouldForwardPropOption;
-}
-
 export const systemDefaultTheme = createTheme();
 
 const lowercaseFirstLetter = (string) => {
@@ -115,7 +91,6 @@ export default function createStyled(input = {}) {
       skipVariantsResolver: inputSkipVariantsResolver,
       skipSx: inputSkipSx,
       overridesResolver,
-      shouldForwardProp: shouldForwardPropOption,
       ...options
     } = inputOptions;
 
@@ -135,16 +110,20 @@ export default function createStyled(input = {}) {
       }
     }
 
-    const finalShouldForwardProp = getShouldForwardProp({
-      tag,
-      slot: componentSlot,
-      rootShouldForwardProp,
-      slotShouldForwardProp,
-      shouldForwardProp: shouldForwardPropOption,
-    });
+    let shouldForwardPropOption = shouldForwardProp;
+
+    if (componentSlot === 'Root') {
+      shouldForwardPropOption = rootShouldForwardProp;
+    } else if (componentSlot) {
+      // any other slot specified
+      shouldForwardPropOption = slotShouldForwardProp;
+    } else if (isStringTag(tag)) {
+      // if no `slot` specified and tag is string (html), preserve the behavior in emotion & styled-components.
+      shouldForwardPropOption = (prop) => isPropValid(prop) && shouldForwardProp(prop);
+    }
 
     const defaultStyledResolver = styledEngineStyled(tag, {
-      shouldForwardProp: finalShouldForwardProp,
+      shouldForwardProp: shouldForwardPropOption,
       label,
       ...options,
     });
