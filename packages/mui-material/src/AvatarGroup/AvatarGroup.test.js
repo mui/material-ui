@@ -86,26 +86,6 @@ describe('<AvatarGroup />', () => {
     expect(container.textContent).to.equal('');
   });
 
-  it('should display no avatars when total is zero', () => {
-    const { container } = render(
-      <AvatarGroup total={0}>
-        <Avatar src="/fake.png" />
-      </AvatarGroup>,
-    );
-    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(0);
-    expect(container.textContent).to.equal('');
-  });
-
-  it('should ignore negative total', () => {
-    const { container } = render(
-      <AvatarGroup total={-1}>
-        <Avatar src="/fake.png" />
-      </AvatarGroup>,
-    );
-    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(1);
-    expect(container.textContent).to.equal('');
-  });
-
   it('should display all avatars with default (circular) variant', () => {
     const { container } = render(
       <AvatarGroup>
