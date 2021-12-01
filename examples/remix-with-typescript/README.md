@@ -1,53 +1,38 @@
-# Welcome to Remix!
+# Remix example
 
-- [Remix Docs](https://remix.run/docs)
+## How to use
 
-## Development
+Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
-From your terminal:
+<!-- #default-branch-switch -->
 
 ```sh
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/remix-with-typescript
+cd nextjs
+```
+
+Install it and run:
+
+```sh
+npm install
 npm run dev
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
+or:
 
-## Deployment
+<!-- #default-branch-switch -->
 
-First, build your app for production:
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/remix-with-typescript)
 
-```sh
-npm run build
-```
+## The idea behind the example
 
-Then run the app in production mode:
+The project uses [Remix](https://remix.run/), which is a full stack web framework that lets you focus on the user interface and work back through web fundamentals to deliver a fast, slick, and resilient user experience.
+It includes `@mui/material` and its peer dependencies, including `emotion`, the default style engine in MUI v5.
+If you prefer, you can [use styled-components instead](https://mui.com/guides/interoperability/#styled-components).
 
-```sh
-npm start
-```
+## What's next?
 
-Now you'll need to pick a host to deploy it to.
+<!-- #default-branch-switch -->
 
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
-
-### Using a Template
-
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over your `app/` folder to the new project that's pre-configured for your target server.
-
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
-```
+You now have a working example project.
+You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/getting-started/templates/) section.

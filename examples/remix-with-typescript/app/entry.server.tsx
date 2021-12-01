@@ -1,31 +1,16 @@
 import * as React from 'react';
+import { renderToString } from 'react-dom/server';
 import { RemixServer } from 'remix';
 import type { EntryContext } from 'remix';
-import { renderToString } from 'react-dom/server';
-import createEmotionServer from '@emotion/server/create-instance';
+
+import createEmotionCache from './src/createEmotionCache';
+import theme from './src/theme';
+import StylesContext from './src/StylesContext';
+
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
-import createEmotionCache from './createEmotionCache';
-
-function renderFullPage(html: string, css: string) {
-  const bodyTagContent = html.match(/<body[^>]*>([\s\S]*)<\/body>/)?.[1];
-  const headTagContent = html.match(/<head[^>]*>([\s\S]*)<\/head>/)?.[1];
-
-  return `
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        ${css}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-	      ${headTagContent}
-      </head>
-      <body>
-        ${bodyTagContent}
-      </body>
-    </html>
-  `;
-}
+import createEmotionServer from '@emotion/server/create-instance';
 
 export default function handleRequest(
   request: Request,
@@ -33,25 +18,39 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext,
 ) {
-  // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
-  // However, be aware that it can have global side effects.
   const cache = createEmotionCache();
-  const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
+  const { extractCriticalToChunks } = createEmotionServer(cache);
 
-  const initialMarkup = renderToString(
+  const MuiRemixServer = () => (
     <CacheProvider value={cache}>
-      <RemixServer context={remixContext} url={request.url} />
-    </CacheProvider>,
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <RemixServer context={remixContext} url={request.url} />
+      </ThemeProvider>
+    </CacheProvider>
   );
 
-  // This is important. It prevents emotion to render invalid HTML.
-  // See https://github.com/mui-org/material-ui/issues/26561#issuecomment-855286153
-  const emotionStyles = extractCriticalToChunks(initialMarkup);
-  const emotionCSS = constructStyleTagsFromChunks(emotionStyles);
+  // Render the component to a string.
+  const html = renderToString(
+    <StylesContext.Provider value={null}>
+      <MuiRemixServer />
+    </StylesContext.Provider>,
+  );
+
+  // Grab the CSS from emotion
+  const emotionChunks = extractCriticalToChunks(html);
+
+  // Re-render including the extracted css.
+  const markup = renderToString(
+    <StylesContext.Provider value={emotionChunks.styles}>
+      <MuiRemixServer />
+    </StylesContext.Provider>,
+  );
 
   responseHeaders.set('Content-Type', 'text/html');
 
-  return new Response(renderFullPage(initialMarkup, emotionCSS), {
+  return new Response(`<!DOCTYPE html>${markup}`, {
     status: responseStatusCode,
     headers: responseHeaders,
   });

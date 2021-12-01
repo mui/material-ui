@@ -10,6 +10,7 @@
     "start": "remix-serve build"
   },
   "dependencies": {
+    "@emotion/cache": "latest",
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
