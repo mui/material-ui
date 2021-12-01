@@ -106,6 +106,11 @@ export interface LabComponents {
     styleOverrides?: ComponentsOverrides['MuiYearPicker'];
     variants?: ComponentsVariants['MuiYearPicker'];
   };
+  MuiPickerStaticWrapper?: {
+    defaultProps?: ComponentsProps['MuiPickerStaticWrapper'];
+    styleOverrides?: ComponentsOverrides['MuiPickerStaticWrapper'];
+    variants?: ComponentsVariants['MuiPickerStaticWrapper'];
+  };
 }
 
 declare module '@mui/material/styles' {

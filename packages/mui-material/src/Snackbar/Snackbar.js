@@ -105,7 +105,9 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     ContentProps,
     disableWindowBlurListener = false,
     message,
+    onBlur,
     onClose,
+    onFocus,
     onMouseEnter,
     onMouseLeave,
     open,
@@ -169,6 +171,12 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     }
   }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
 
+  const handleFocus = (event) => {
+    if (onFocus) {
+      onFocus(event);
+    }
+    handlePause();
+  };
   const handleMouseEnter = (event) => {
     if (onMouseEnter) {
       onMouseEnter(event);
@@ -176,6 +184,12 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     handlePause();
   };
 
+  const handleBlur = (event) => {
+    if (onBlur) {
+      onBlur(event);
+    }
+    handleResume();
+  };
   const handleMouseLeave = (event) => {
     if (onMouseLeave) {
       onMouseLeave(event);
@@ -220,6 +234,33 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     return undefined;
   }, [disableWindowBlurListener, handleResume, open]);
 
+  React.useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+
+    /**
+     * @param {KeyboardEvent} nativeEvent
+     */
+    function handleKeyDown(nativeEvent) {
+      if (!nativeEvent.defaultPrevented) {
+        // IE11, Edge (prior to using Bink?) use 'Esc'
+        if (nativeEvent.key === 'Escape' || nativeEvent.key === 'Esc') {
+          // not calling `preventDefault` since we don't know if people may ignore this event e.g. a permanently open snackbar
+          if (onClose) {
+            onClose(nativeEvent, 'escapeKeyDown');
+          }
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [exited, open, onClose]);
+
   // So we only render active snackbars.
   if (!open && exited) {
     return null;
@@ -229,6 +270,8 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     <ClickAwayListener onClickAway={handleClickAway} {...ClickAwayListenerProps}>
       <SnackbarRoot
         className={clsx(classes.root, className)}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         ownerState={ownerState}
@@ -315,16 +358,24 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   message: PropTypes.node,
   /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
    * Callback fired when the component requests to be closed.
    * Typically `onClose` is used to set state in the parent component,
    * which is used to control the `Snackbar` `open` prop.
    * The `reason` parameter can optionally be used to control the response to `onClose`,
    * for example ignoring `clickaway`.
    *
-   * @param {React.SyntheticEvent<any>} event The event source of the callback.
-   * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`.
+   * @param {React.SyntheticEvent<any> | Event} event The event source of the callback.
+   * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`, or `"escapeKeyDown"`.
    */
   onClose: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
   /**
    * @ignore
    */
@@ -348,7 +399,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
