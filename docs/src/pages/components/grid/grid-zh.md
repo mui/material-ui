@@ -167,7 +167,7 @@ The `Grid` component is using CSS flexbox internally. But as seen below, you can
 
 {{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}
 
-## System props
+## 系统属性
 
 As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding:
 
