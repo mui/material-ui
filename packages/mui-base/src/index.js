@@ -13,7 +13,6 @@ export { default as ButtonUnstyled } from './ButtonUnstyled';
 export * from './ButtonUnstyled';
 
 export { default as ClickAwayListener } from './ClickAwayListener';
-export * from './ClickAwayListener';
 
 export { default as unstable_composeClasses } from './composeClasses';
 
