@@ -29,7 +29,7 @@ Box 组件能够封装您的组件。 It creates a new DOM element, a `<div>` th
 
 当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
 
-但是，有时您必须针对到底层的 DOM 元素。 As an example, you may want to change the border of the Button. 但是按钮组件已经定义自己的样式。 所以使用 CSS 继承是于事无补的。 To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a MUI component.
+但是，有时您必须针对到底层的 DOM 元素。 比如，你要修改按钮的边框 但是按钮组件已经定义自己的样式。 所以使用 CSS 继承是于事无补的。 想要解决这个问题，可以将[`sx`](/system/basics/#the-sx-prop)作为MUI组件的props使用
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -59,7 +59,7 @@ import Box from '@mui/material/Box';
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | component 用于根节点。 可以是一个使用 DOM 元素或者一个组件的字符串。 |
 | <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | 接受所有系统属性，以及任何有效的 CSS 属性。                   |
 
-## System props
+## 系统属性
 
 As a CSS utility component, the `Box` also supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
 
