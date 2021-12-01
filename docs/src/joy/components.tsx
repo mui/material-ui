@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Box } from '@mui/system';
+import Box from '@mui/joy/Box';
 import {
   useColorScheme,
   styled,
-  JoyTheme,
   TypographySystem,
   VariantProp,
   ColorPaletteProp,
@@ -344,8 +343,7 @@ export const ColorSchemePicker = () => {
 
   return (
     <Box
-      // @ts-ignore
-      sx={(theme: JoyTheme) => ({
+      sx={(theme) => ({
         position: 'relative',
         display: 'inline-flex',
         alignItems: 'center',

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { Box } from '@mui/system';
-import { JoyTheme, styled } from '@mui/joy/styles';
+import Box from '@mui/joy/Box';
+import { styled } from '@mui/joy/styles';
 import { Button, Typography, FormLabel, Select, Tabs } from 'docs/src/joy/components';
 import { KeyboardArrowDownRounded } from 'docs/src/joy/icons';
 import {
@@ -171,8 +171,7 @@ export default function JoyDemo() {
             overflow: 'hidden',
             mx: { xs: -2, sm: 0 },
           },
-          // @ts-ignore
-          (theme: JoyTheme) => ({
+          (theme) => ({
             ...theme.variants.outlined.neutral,
           }),
         ]}
@@ -226,7 +225,6 @@ export default function JoyDemo() {
                 gap: 2,
               },
               (theme) => ({
-                // @ts-ignore
                 borderRadius: theme.vars.borderRadius.xs,
                 boxShadow: theme.vars.elevation.md,
                 ...theme.variants.contained.success,
