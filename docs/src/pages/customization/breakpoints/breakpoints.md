@@ -16,7 +16,7 @@ Each breakpoint (a key) matches with a _fixed_ screen width (a value):
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 - **xs,** extra-small: 0px
-- **sm,** small: 600px
+- **sm,** small: 600pxxzxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 - **md,** medium: 900px
 - **lg,** large: 1200px
 - **xl,** extra-large: 1536px
