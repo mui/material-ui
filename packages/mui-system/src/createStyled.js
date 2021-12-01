@@ -81,19 +81,17 @@ export function getShouldForwardProp(input = {}) {
     shouldForwardProp: shouldForwardPropOption,
   } = input;
   if (!shouldForwardPropOption) {
+    if (!slot && isStringTag(tag)) {
+      // preserve the behavior in emotion & styled-components
+      return (prop) => isPropValid(prop) && shouldForwardProp(prop);
+    }
     if (slot === 'Root') {
-      return isStringTag(tag)
-        ? (prop) => isPropValid(prop) && rootShouldForwardProp(prop)
-        : rootShouldForwardProp;
+      return rootShouldForwardProp;
     }
     if (slot) {
-      return isStringTag(tag)
-        ? (prop) => isPropValid(prop) && slotShouldForwardProp(prop)
-        : slotShouldForwardProp;
+      return slotShouldForwardProp;
     }
-    return isStringTag(tag)
-      ? (prop) => isPropValid(prop) && shouldForwardProp(prop)
-      : shouldForwardProp;
+    return shouldForwardProp;
   }
   return shouldForwardPropOption;
 }

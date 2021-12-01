@@ -19,10 +19,9 @@ describe('createStyled', () => {
         expect(shouldForwardProp('id')).to.equal(true);
       });
 
-      it('does not forward invalid html props & mui props if tag is string', () => {
+      it('does not forward invalid html props & mui props if tag is string & no slot is provided', () => {
         const shouldForwardProp = getShouldForwardProp({
           tag: 'a',
-          slot: 'Root',
         });
 
         expect(shouldForwardProp('id')).to.equal(true);
@@ -42,18 +41,6 @@ describe('createStyled', () => {
         expect(shouldForwardProp('foo')).to.equal(false);
       });
 
-      it('does not forward invalid html props & use rootShouldForwardProp if tag is string', () => {
-        const shouldForwardProp = getShouldForwardProp({
-          slot: 'Root',
-          rootShouldForwardProp: (prop) => prop !== 'foo',
-        });
-
-        expect(shouldForwardProp('id')).to.equal(true);
-        expect(shouldForwardProp('sx')).to.equal(true);
-
-        expect(shouldForwardProp('foo')).to.equal(false);
-      });
-
       it('use slot if slot exists but is not "Root"', () => {
         const shouldForwardProp = getShouldForwardProp({
           slot: 'Something',
@@ -63,18 +50,6 @@ describe('createStyled', () => {
 
         expect(shouldForwardProp('id')).to.equal(true);
         expect(shouldForwardProp('foo')).to.equal(true);
-        expect(shouldForwardProp('bar')).to.equal(false);
-      });
-
-      it('does not forward invalid html props & use slotShouldForwardProp if tag is string', () => {
-        const shouldForwardProp = getShouldForwardProp({
-          slot: 'Something',
-          slotShouldForwardProp: (prop) => prop !== 'bar',
-        });
-
-        expect(shouldForwardProp('id')).to.equal(true);
-        expect(shouldForwardProp('sx')).to.equal(true);
-
         expect(shouldForwardProp('bar')).to.equal(false);
       });
     });
