@@ -212,7 +212,7 @@ export default function AppTableOfContents(props) {
     <Nav aria-label={t('pageTOC')}>
       <NoSsr>
         <Link
-          href={ROUTES.suvery2021}
+          href={ROUTES.survey2021}
           target="_blank"
           data-ga-event-category="survey-2021"
           data-ga-event-action="click"
