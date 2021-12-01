@@ -9,9 +9,9 @@ export const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   textDisabledColor: `var(--joy-palette-neutral-300)`,
 
   outlinedColor: `var(--joy-palette-${color}-600)`,
-  outlinedBorder: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-300)`,
+  outlinedBorder: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-200)`,
   outlinedHoverBg: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-100)`,
-  outlinedHoverBorder: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-400)`,
+  outlinedHoverBorder: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-300)`,
   outlinedActiveBg: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-200)`,
   outlinedDisabledColor: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-300)`,
   outlinedDisabledBorder: `var(--joy-palette-${color === 'primary' ? 'neutral' : color}-200)`,
@@ -24,9 +24,9 @@ export const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   lightDisabledBg: `var(--joy-palette-${color}-50)`,
 
   containedColor: `#fff`,
-  containedBg: `var(--joy-palette-${color}-${color === 'neutral' ? '600' : '500'})`,
-  containedHoverBg: `var(--joy-palette-${color}-600)`,
-  containedActiveBg: `var(--joy-palette-${color}-400)`,
+  containedBg: `var(--joy-palette-${color}-600)`,
+  containedHoverBg: `var(--joy-palette-${color}-700)`,
+  containedActiveBg: `var(--joy-palette-${color}-800)`,
   containedDisabledBg: `var(--joy-palette-${color}-300)`,
 });
 

@@ -178,7 +178,7 @@ export const lightColorSystem: Pick<
 > = {
   palette: {
     primary: {
-      ...colors.purple,
+      ...colors.blue,
       ...createLightModeVariantVariables('primary'),
     },
     neutral: {
@@ -224,7 +224,7 @@ export const darkColorSystem: Pick<
 > = {
   palette: {
     primary: {
-      ...colors.purple,
+      ...colors.blue,
       ...createDarkModeVariantVariables('primary'),
     },
     neutral: {
@@ -271,12 +271,12 @@ export const darkColorSystem: Pick<
 const joyDesignTokens: BaseJoyTokens = {
   ...lightColorSystem,
   borderRadius: {
-    default: '16px',
+    default: '8px',
     xs: '4px',
     sm: '8px',
     md: '12px',
-    lg: '18px',
-    xl: '24px',
+    lg: '16px',
+    xl: '20px',
   },
   elevation: {
     xs: 'var(--joy-elevationRing), 0 1px 2px 0 rgba(var(--joy-elevationChannel) / 0.12)',
