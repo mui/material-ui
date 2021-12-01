@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import NoSsr from '@mui/material/NoSsr';
+import ROUTES from 'docs/src/route';
 
 const Nav = styled('nav')(({ theme }) => {
   return {
@@ -208,6 +210,47 @@ export default function AppTableOfContents(props) {
 
   return (
     <Nav aria-label={t('pageTOC')}>
+      <NoSsr>
+        <Link
+          href={ROUTES.suvery2021}
+          target="_blank"
+          data-ga-event-category="survey-2021"
+          data-ga-event-action="click"
+          data-ga-event-label="table-contents"
+          sx={(theme) => ({
+            mb: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            p: 1,
+            borderRadius: 1,
+            border: '1px solid',
+            borderColor: theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.300',
+            '&:hover, &:focus-visible': {
+              borderColor: theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.500',
+            },
+            '& > img': {
+              width: '100%',
+              height: 'auto',
+              aspectRatio: 3 / 2,
+              borderRadius: 0.5,
+            },
+          })}
+        >
+          <img
+            src="/static/images/survey/table-contents-banner.png"
+            alt="2021 MUI developer survey"
+            width="600"
+            height="400"
+          />
+          <Typography
+            component="span"
+            variant="body2"
+            sx={{ mt: 1, color: 'text.primary', textAlign: 'center' }}
+          >
+            Help us shape the future of MUI! 🚀
+          </Typography>
+        </Link>
+      </NoSsr>
       {toc.length > 0 ? (
         <React.Fragment>
           <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>

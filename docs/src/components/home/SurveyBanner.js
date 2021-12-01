@@ -28,7 +28,14 @@ export default function SurveyBanner() {
       >
         Help shape the future of MUI! &nbsp;🚀 &nbsp;&nbsp;&nbsp;Please take a few minutes to
         complete the{' '}
-        <Link href={ROUTES.suvery2021} sx={{ color: '#fff', textDecoration: 'underline' }}>
+        <Link
+          href={ROUTES.suvery2021}
+          target="_blank"
+          data-ga-event-category="survey-2021"
+          data-ga-event-action="click"
+          data-ga-event-label="header"
+          sx={{ color: '#fff', textDecoration: 'underline' }}
+        >
           2021 MUI developer survey <ArrowRightAltRoundedIcon fontSize="small" />
         </Link>
       </Typography>
