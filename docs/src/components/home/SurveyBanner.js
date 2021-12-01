@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
-import ArrowRightAltRoundedIcon from '@mui/icons-material/ArrowRightAltRounded';
 
 export default function SurveyBanner() {
   return (
@@ -36,7 +35,7 @@ export default function SurveyBanner() {
           data-ga-event-label="header"
           sx={{ color: '#fff', textDecoration: 'underline' }}
         >
-          2021 MUI developer survey <ArrowRightAltRoundedIcon fontSize="small" />
+          2021 MUI developer survey &#8594;
         </Link>
       </Typography>
     </Box>
