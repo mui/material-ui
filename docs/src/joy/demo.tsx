@@ -1,25 +1,9 @@
 import * as React from 'react';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { Box } from '@mui/system';
-import { JoyTheme } from '@mui/joy/styles';
-import {
-  Button,
-  List,
-  ListItemButton,
-  Badge,
-  Typography,
-  TextField,
-  FormLabel,
-  Select,
-  Tabs,
-} from 'docs/src/joy/components';
-import {
-  Apps,
-  Notifications,
-  Person,
-  Settings,
-  KeyboardArrowDownRounded,
-} from 'docs/src/joy/icons';
+import { JoyTheme, styled } from '@mui/joy/styles';
+import { Button, Typography, FormLabel, Select, Tabs } from 'docs/src/joy/components';
+import { KeyboardArrowDownRounded } from 'docs/src/joy/icons';
 import {
   nodeMap,
   useDemoController,
@@ -29,67 +13,22 @@ import {
 } from 'docs/src/joy/DemoController';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
-const Button1 = registerNode(Button, {
-  id: 'button1',
-  displayName: 'Button',
-  supportedProps: ['variant', 'color', 'size', 'roundness', 'elevation'],
+const FakeTabs = React.forwardRef<
+  HTMLDivElement,
+  DemoProps & Omit<JSX.IntrinsicElements['div'], 'ref'>
+>(({ children, onMouseOver, onClick, onMouseLeave, ...props }, ref) => {
+  return (
+    <Box
+      ref={ref}
+      {...{ onMouseOver, onMouseLeave, onClick }}
+      sx={{ px: { xs: 0, sm: 2 }, py: 2, position: 'relative' }}
+    >
+      <Tabs {...props}>{children}</Tabs>
+    </Box>
+  );
 });
 
-const Button2 = registerNode(Button, {
-  id: 'button2',
-  displayName: 'Button',
-  supportedProps: ['variant', 'color', 'size', 'roundness', 'elevation'],
-});
-
-const Button3 = registerNode(Button, {
-  id: 'button3',
-  displayName: 'Button',
-  supportedProps: ['variant', 'color', 'size', 'roundness', 'elevation'],
-});
-
-const Button4 = registerNode(Button, {
-  id: 'button4',
-  displayName: 'Button',
-  supportedProps: ['variant', 'color', 'size', 'roundness', 'elevation'],
-});
-
-const List1 = registerNode(List, {
-  id: 'List1',
-  displayName: 'List',
-  supportedProps: ['variant', 'color', 'roundness', 'elevation'],
-});
-
-const ListItemButton1 = registerNode(ListItemButton, {
-  id: 'ListItemButton1',
-  displayName: 'ListItemButton',
-  supportedProps: ['variant', 'color', 'roundness', 'elevation'],
-});
-
-const ListItemButton2 = registerNode(ListItemButton, {
-  id: 'ListItemButton2',
-  displayName: 'ListItemButton',
-  supportedProps: ['variant', 'color', 'roundness', 'elevation'],
-});
-
-const ListItemButton3 = registerNode(ListItemButton, {
-  id: 'ListItemButton3',
-  displayName: 'ListItemButton',
-  supportedProps: ['variant', 'color', 'roundness', 'elevation'],
-});
-
-const Badge1 = registerNode(Badge, {
-  id: 'Badge1',
-  displayName: 'Badge',
-  supportedProps: ['variant', 'color', 'roundness', 'elevation'],
-});
-
-const Badge2 = registerNode(Badge, {
-  id: 'Badge2',
-  displayName: 'Badge',
-  supportedProps: ['variant', 'color', 'roundness', 'elevation'],
-});
-
-const Tabs1 = registerNode(Tabs, {
+const Tabs1 = registerNode(FakeTabs, {
   id: 'Tabs1',
   displayName: 'Tabs',
   supportedProps: ['variant', 'color', 'roundness', 'elevation'],
@@ -113,34 +52,69 @@ const Tab3 = registerNode(Button, {
   supportedProps: ['variant', 'color', 'size', 'roundness', 'elevation'],
 });
 
-const Input1 = registerNode(TextField, {
-  id: 'Input1',
-  displayName: 'Input',
-  supportedProps: ['variant', 'color', 'size', 'roundness', 'elevation'],
-});
-
-const SearchButton1 = registerNode(Button, {
-  id: 'SearchButton1',
-  displayName: 'Button',
-  supportedProps: ['variant', 'color', 'size', 'roundness', 'elevation'],
-});
+const ColorButton = styled('button', {
+  shouldForwardProp: (prop) => prop !== 'selected' && prop !== 'value',
+})<{ selected?: boolean; value: string }>(({ theme, value, selected }) => [
+  {
+    border: 'none',
+    width: 24,
+    height: 24,
+    borderRadius: '50%',
+    position: 'relative',
+    cursor: 'pointer',
+    backgroundColor: value,
+    '&:focus-visible': theme.focus.default,
+    '&:before': {
+      display: 'block',
+      content: '""',
+      borderRadius: '50%',
+      width: '100%',
+      height: '100%',
+      border: '2px solid',
+      borderColor: value,
+      position: 'absolute',
+      opacity: selected ? 0.6 : 0,
+      top: 0,
+      left: 0,
+      transform: selected ? 'scale(1.5)' : 'scale(0.8)',
+      transition: 'transform 0.3s',
+    },
+  },
+]);
 
 export default function JoyDemo() {
   const variantOptions = ['text', 'outlined', 'light', 'contained'];
-  const colorOptions = ['primary', 'neutral', 'danger', 'info', 'success', 'warning'];
+  const colorOptions = ['primary', 'neutral', 'danger', 'info', 'success', 'warning'] as const;
   const sizeOptions = ['small', 'default', 'large'];
   const roundnessOptions = ['default', 'xs', 'sm', 'md', 'lg', 'xl'];
   const elevationOptions = ['none', 'sm', 'md', 'lg'];
+
+  const [open, setOpen] = React.useState(false);
+
   const { nodeData, hoveredId, selectedId, hoverNode, selectNode, leaveNode, updateNode } =
     useDemoController({
-      button1: {
-        variant: 'contained',
-        color: 'primary',
-        size: 'small',
+      Tabs1: {
+        variant: 'outlined',
+        color: 'neutral',
         roundness: 'default',
         elevation: undefined,
       },
     });
+
+  const getDisplayedProps = (id: string) => {
+    return (
+      nodeMap.get(id)?.supportedProps.map((prop) => {
+        const result = nodeData[id]?.[prop] || nodeMap.get(id)?.defaultProps[prop];
+        // @ts-ignore 'none' is exceptional
+        return result && result !== 'default' && result !== 'none'
+          ? { key: prop, value: result }
+          : null;
+      }) as Array<{ key: string; value: string }>
+    )
+      .filter((val) => !!val)
+      .map(({ key, value }) => `${key}="${value}"`)
+      .join(' ');
+  };
 
   const renderSelect = (field: keyof DemoProps, options: Array<string>) =>
     nodeMap.get(selectedId)?.supportedProps?.includes(field) ? (
@@ -151,6 +125,9 @@ export default function JoyDemo() {
             id={field}
             value={nodeData[selectedId]?.[field] || 'none'}
             onChange={(event) => {
+              if (field === 'variant') {
+                setOpen(event.target.value === 'contained');
+              }
               updateNode(selectedId, {
                 [field]: event.target.value,
               });
@@ -192,6 +169,7 @@ export default function JoyDemo() {
             gridTemplateColumns: { xs: '1fr', sm: '1fr min-content' },
             borderRadius: 1,
             overflow: 'hidden',
+            mx: { xs: -2, sm: 0 },
           },
           // @ts-ignore
           (theme: JoyTheme) => ({
@@ -202,63 +180,23 @@ export default function JoyDemo() {
         <Box
           sx={{
             p: 2,
+            position: 'relative',
             display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            minHeight: 360,
+            flexDirection: 'column',
           }}
           onMouseOver={() => {
             hoverNode(null);
           }}
         >
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 1,
-                  my: 1.5,
-                  alignItems: 'center',
-                }}
-              >
-                <Button1 square>
-                  <Apps fontSize="lg" />
-                </Button1>
-                <Button2 square variant="text" color="neutral" size="small" roundness="default">
-                  <Person fontSize="lg" />
-                </Button2>
-                <Button3 square variant="text" color="neutral" size="small" roundness="default">
-                  <Notifications fontSize="lg" />
-                </Button3>
-                <Button4 square variant="text" color="neutral" size="small" roundness="default">
-                  <Settings fontSize="lg" />
-                </Button4>
-              </Box>
-              <List1 variant="outlined" color="neutral" sx={{ flexGrow: 1 }}>
-                <li>
-                  <ListItemButton1 variant="light" color="info">
-                    Products{' '}
-                    <Badge1 variant="contained" color="success">
-                      12
-                    </Badge1>
-                  </ListItemButton1>
-                </li>
-                <li>
-                  <ListItemButton2 variant="text" color="neutral">
-                    Orders{' '}
-                    <Badge2 variant="light" color="neutral">
-                      7
-                    </Badge2>
-                  </ListItemButton2>
-                </li>
-                <li>
-                  <ListItemButton3 variant="text" color="neutral">
-                    Customers
-                  </ListItemButton3>
-                </li>
-              </List1>
-            </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              flexGrow: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: { xs: 160, sm: 200 },
+            }}
+          >
             <Tabs1 variant="outlined" color="neutral">
               <Tab1 color="primary" size="default" variant="light">
                 Popular
@@ -270,17 +208,55 @@ export default function JoyDemo() {
                 All
               </Tab3>
             </Tabs1>
-            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-              <Input1
-                placeholder="Type name or sku"
-                variant="outlined"
-                color="neutral"
-                size="default"
-              />
-              <SearchButton1 variant="contained" color="primary" size="default">
-                Search
-              </SearchButton1>
-            </Box>
+          </Box>
+          <Box
+            sx={[
+              {
+                bottom: 16,
+                left: 16,
+                right: 16,
+                opacity: open ? 1 : 0,
+                visibility: open ? 'visible' : 'hidden',
+                transition: '0.4s',
+                py: 1,
+                px: 1.5,
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                gap: 2,
+              },
+              (theme) => ({
+                // @ts-ignore
+                borderRadius: theme.vars.borderRadius.xs,
+                boxShadow: theme.vars.elevation.md,
+                ...theme.variants.contained.success,
+                ...theme.variants.containedOverrides.success,
+              }),
+            ]}
+          >
+            <Typography color="context" level="body2">
+              🎨 Contextual override is a new feature that let children adapt to the parent that has
+              high contrast background.
+            </Typography>
+            <Button
+              size="small"
+              color="context"
+              variant="light"
+              sx={{ flexShrink: 0 }}
+              onClick={() => {
+                updateNode('Tab1', {
+                  color: 'context',
+                });
+                updateNode('Tab2', {
+                  color: 'context',
+                });
+                updateNode('Tab3', {
+                  color: 'context',
+                });
+              }}
+            >
+              Enable
+            </Button>
           </Box>
         </Box>
         <Box
@@ -300,20 +276,45 @@ export default function JoyDemo() {
             Playground
           </Typography>
           {renderSelect('variant', variantOptions)}
-          {renderSelect('color', colorOptions)}
+          <FormLabel htmlFor="color">Color</FormLabel>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              columnGap: 3,
+              rowGap: 2,
+              pt: 1,
+              pb: 3,
+              px: 1,
+            }}
+          >
+            {colorOptions.map((color) => (
+              <ColorButton
+                aria-label={`color ${color}`}
+                key={color}
+                selected={color === nodeData[selectedId]?.color}
+                value={`var(--joy-palette-${color}-500)`}
+                onClick={() => {
+                  updateNode(selectedId, {
+                    color,
+                  });
+                }}
+              />
+            ))}
+          </Box>
           {renderSelect('size', sizeOptions)}
           {renderSelect('roundness', roundnessOptions)}
           {renderSelect('elevation', elevationOptions)}
         </Box>
         <Box
           sx={{
-            py: 2,
-            px: 3,
+            p: 2,
             borderTop: '1px solid',
             borderColor: 'neutral.outlinedBorder',
             gridRowStart: 2,
             minHeight: 130,
-            fontSize: '0.75rem',
+            fontSize: { xs: '0.75rem', md: '0.825rem' },
             bgcolor: 'primary.900',
 
             '& pre': {
@@ -322,20 +323,20 @@ export default function JoyDemo() {
           }}
         >
           <HighlightedCode
-            code={`
-<${nodeMap.get(selectedId)?.displayName}
-  ${nodeMap
-    .get(selectedId)
-    ?.supportedProps.filter((prop) => {
-      const result = nodeData[selectedId][prop];
-      // @ts-ignore 'none' is exceptional
-      return result && result !== 'default' && result !== 'none';
-    })
-    .map((prop) => `${prop}="${nodeData[selectedId][prop]}"`)
-    .join('\n  ')}
-/>`}
             component="div"
             language="jsx"
+            code={`
+<Tabs ${getDisplayedProps('Tabs1')}>
+  <Tab ${getDisplayedProps('Tab1')}>
+    Popular
+  </Tab>
+  <Tab ${getDisplayedProps('Tab2')}>
+    New
+  </Tab>
+  <Tab ${getDisplayedProps('Tab3')}>
+    All
+  </Tab>
+</Tabs>`}
           />
         </Box>
       </Box>

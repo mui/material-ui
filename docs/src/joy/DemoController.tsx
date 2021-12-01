@@ -80,7 +80,7 @@ export const DemoContext = React.createContext<
 
 export const nodeMap = new Map<
   string,
-  { displayName: string; supportedProps: Array<keyof DemoProps> }
+  { displayName: string; supportedProps: Array<keyof DemoProps>; defaultProps: DemoProps }
 >();
 
 export const useDemoController = (defaultSelectedNode: Record<string, DemoProps>) => {
@@ -111,28 +111,25 @@ export const useDemoController = (defaultSelectedNode: Record<string, DemoProps>
     },
     selectNode: (id: string, defaultProps: DemoProps) => {
       setNodeData((currentNodes) => {
-        if (id in currentNodes) {
-          return currentNodes;
-        }
         return {
           ...currentNodes,
-          [id]: defaultProps,
+          [id]: {
+            ...defaultProps,
+            ...currentNodes[id],
+          },
         };
       });
       setSelectedId(id);
     },
     updateNode: (id: string, props: DemoProps) => {
       setNodeData((currentNodes) => {
-        if (currentNodes[id]) {
-          return {
-            ...currentNodes,
-            [id]: {
-              ...currentNodes[id],
-              ...props,
-            },
-          };
-        }
-        return currentNodes;
+        return {
+          ...currentNodes,
+          [id]: {
+            ...currentNodes[id],
+            ...props,
+          },
+        };
       });
     },
   };
@@ -146,7 +143,7 @@ export const registerNode = <T extends React.ComponentType<DemoProps>>(
     supportedProps: Array<keyof DemoProps>;
   },
 ) => {
-  nodeMap.set(config.id, config);
+  nodeMap.set(config.id, { ...config, defaultProps: {} });
   return (({ children, ...props }) => {
     const context = React.useContext(DemoContext);
     const ref = React.useRef<HTMLElement | null>(null);
@@ -161,11 +158,11 @@ export const registerNode = <T extends React.ComponentType<DemoProps>>(
         defaultProps[key] = value;
       }
     });
+    nodeMap.set(config.id, { ...config, defaultProps });
     return (
       // @ts-ignore internal component
       <Component
         ref={ref}
-        data-mui-demo="true"
         {...props}
         {...nodeData[config.id]}
         onMouseOver={(event: React.MouseEvent) => {

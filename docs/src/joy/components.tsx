@@ -149,7 +149,17 @@ export const Badge = styled('span', {
 
 export const Typography = styled('p', { shouldForwardProp })<{
   level?: keyof TypographySystem;
-}>(({ theme, level = 'body1' }) => [{ margin: 0 }, theme.typography[level]]);
+  color?: ColorPaletteProp;
+}>(({ theme, level = 'body1', color }) => [
+  { margin: 0 },
+  theme.typography[level],
+  color && {
+    color:
+      color === 'context'
+        ? `var(--joy-variant-textColor)`
+        : `var(--joy-palette-${color}-textColor)`,
+  },
+]);
 
 export const Input = styled('input', {
   shouldForwardProp,
@@ -248,8 +258,7 @@ export const Select = styled('select')(({ theme, value }) => [
 export const Tabs = styled('div', { shouldForwardProp })<DemoProps>(
   ({ theme, variant = 'outlined', color = 'neutral', roundness = 'default', elevation }) => [
     {
-      position: 'relative',
-      padding: '0.25rem',
+      padding: '0.375rem',
       display: 'flex',
       gap: '0.5rem',
       ...(roundness && {
@@ -260,6 +269,7 @@ export const Tabs = styled('div', { shouldForwardProp })<DemoProps>(
       }),
     },
     theme.variants[variant]?.[color],
+    variant === 'contained' && theme.variants.containedOverrides[color],
   ],
 );
 
