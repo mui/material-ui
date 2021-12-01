@@ -392,6 +392,46 @@ describe('[Joy] CssVarsProvider', () => {
         }),
       );
     });
+
+    it('elevation ring & channel', () => {
+      const Vars = () => {
+        const theme = useTheme();
+        return (
+          <div>
+            <div data-testid="elevation-ring">{theme.vars.elevationRing}</div>
+            <div data-testid="elevation-channel">{theme.vars.elevationChannel}</div>
+          </div>
+        );
+      };
+
+      render(
+        <CssVarsProvider>
+          <Vars />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('elevation-ring').textContent).to.equal('var(--joy-elevationRing)');
+      expect(screen.getByTestId('elevation-channel').textContent).to.equal(
+        'var(--joy-elevationChannel)',
+      );
+    });
+  });
+
+  describe('Focus', () => {
+    it('contain expected focus', function test() {
+      const Text = () => {
+        const theme = useTheme();
+        return <div>{Object.keys(theme.focus).join(',')}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal('default');
+    });
   });
 
   describe('Typography', () => {
@@ -408,6 +448,77 @@ describe('[Joy] CssVarsProvider', () => {
       );
 
       expect(container.firstChild?.textContent).to.equal('h1,h2,h3,h4,h5,h6,body1,body2,body3');
+    });
+  });
+
+  describe('Variant', () => {
+    it('contain expected variants', function test() {
+      const Text = () => {
+        const theme = useTheme();
+        return <div>{Object.keys(theme.variants).join(',')}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal(
+        [
+          'text',
+          'textHover',
+          'textActive',
+          'textDisabled',
+          'outlined',
+          'outlinedHover',
+          'outlinedActive',
+          'outlinedDisabled',
+          'light',
+          'lightHover',
+          'lightActive',
+          'lightDisabled',
+          'contained',
+          'containedHover',
+          'containedActive',
+          'containedDisabled',
+          'containedOverrides',
+        ].join(','),
+      );
+    });
+  });
+
+  describe('Spacing', () => {
+    it('provides spacing utility', function test() {
+      const Text = () => {
+        const theme = useTheme();
+        return <div>{theme.spacing(2)}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal('16px');
+    });
+  });
+
+  describe('Breakpoints', () => {
+    it('provides breakpoint utilities', function test() {
+      const Text = () => {
+        const theme = useTheme();
+        return <div>{theme.breakpoints.up('sm')}</div>;
+      };
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal('@media (min-width:600px)');
     });
   });
 

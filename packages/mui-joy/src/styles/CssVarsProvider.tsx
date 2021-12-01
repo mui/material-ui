@@ -3,17 +3,16 @@ import {
   BreakpointsOptions,
   SpacingOptions,
 } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
 import defaultTheme, {
   ThemeScales,
-  ColorScheme,
   lightColorSystem,
   darkColorSystem,
   TypographySystem,
   Focus,
 } from './defaultTheme';
-import { Variants } from './Variants';
-import { ColorSystem } from './ColorSystem';
+import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
+import { Variants } from './types/variants';
+import { ColorSystem } from './types/colorSystem';
 
 type PartialDeep<T> = {
   [K in keyof T]?: PartialDeep<T[K]>;
@@ -24,12 +23,6 @@ type PartialNested<T> = {
     [J in keyof T[K]]?: T[K][J];
   };
 };
-
-export interface ColorSchemeOverrides {}
-
-export type ExtendedColorScheme = OverridableStringUnion<never, ColorSchemeOverrides>;
-
-export type SupportedColorScheme = ColorScheme | ExtendedColorScheme;
 
 // Use PartialNested instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
 type ThemeInput = PartialNested<
@@ -44,7 +37,7 @@ type ThemeInput = PartialNested<
 };
 
 type JoyThemeInput = ThemeInput & {
-  colorSchemes: Record<ColorScheme, PartialDeep<ColorSystem>>;
+  colorSchemes: Record<DefaultColorScheme, PartialDeep<ColorSystem>>;
 };
 
 type ApplicationThemeInput = ThemeInput & {
@@ -55,7 +48,7 @@ const { palette, ...rest } = defaultTheme;
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   JoyThemeInput,
-  ColorScheme,
+  DefaultColorScheme,
   ApplicationThemeInput,
   ExtendedColorScheme
 >({

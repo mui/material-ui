@@ -36,7 +36,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## Unstyled
 
-- 📦 [4.7kB 已压缩的包](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
+- 📦 [4.7kB 已压缩的包](https://bundlephobia.com/package/@material-ui/unstyled@next)
 
 The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 

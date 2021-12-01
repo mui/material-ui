@@ -15,6 +15,7 @@ describe('createCssVarsProvider', () => {
     addListener: () => {},
     removeListener: () => {},
   });
+  let shouldSupportColorScheme;
 
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
@@ -33,6 +34,11 @@ describe('createCssVarsProvider', () => {
     // clear the localstorage
     storage = {};
     window.matchMedia = createMatchMedia(false);
+
+    // Currently supported Firefox does not support `color-scheme`.
+    // Instead of skipping relevant tests entirely we assert that they work differently in Firefox.
+    // This ensures that we're automatically notified once we remove older Firefox versions from the support matrix.
+    shouldSupportColorScheme = !/Firefox/.test(navigator.userAgent);
   });
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
@@ -68,7 +74,7 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('current-color-scheme').textContent).to.equal('light');
     });
 
-    it('has css variable prefix', () => {
+    it('has CSS variable prefix', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: { fontSize: 16 } },
@@ -239,7 +245,7 @@ describe('createCssVarsProvider', () => {
     });
 
     describe('[option]: `enableColorScheme`', () => {
-      it('set `color-scheme` property to body with correct mode, given `enableColorScheme` is true and `mode` is `light` or `dark`', () => {
+      it('set `color-scheme` property on <html> with correct mode, given `enableColorScheme` is true and `mode` is `light` or `dark`', () => {
         const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
           theme: {
             colorSchemes: { light: {}, dark: {} },
@@ -256,18 +262,18 @@ describe('createCssVarsProvider', () => {
             <Consumer />
           </CssVarsProvider>,
         );
-        expect(
-          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-        ).to.equal('light');
+        expect(document.documentElement).toHaveComputedStyle({
+          colorScheme: shouldSupportColorScheme ? 'light' : '',
+        });
 
         fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
-        expect(
-          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-        ).to.equal('dark');
+        expect(document.documentElement).toHaveComputedStyle({
+          colorScheme: shouldSupportColorScheme ? 'dark' : '',
+        });
       });
 
-      it('set `color-scheme` property to body with correct mode, given `enableColorScheme` is true and mode is `system`', () => {
+      it('set `color-scheme` property on <html> with correct mode, given `enableColorScheme` is true and mode is `system`', () => {
         window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
 
         const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
@@ -286,18 +292,21 @@ describe('createCssVarsProvider', () => {
             <Consumer />
           </CssVarsProvider>,
         );
-        expect(
-          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-        ).to.equal('light');
+        expect(document.documentElement).toHaveComputedStyle({
+          colorScheme: shouldSupportColorScheme ? 'light' : '',
+        });
 
         fireEvent.click(screen.getByRole('button', { name: 'change to system' }));
 
-        expect(
-          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-        ).to.equal('dark');
+        expect(document.documentElement).toHaveComputedStyle({
+          colorScheme: shouldSupportColorScheme ? 'dark' : '',
+        });
       });
 
-      it('does not set `color-scheme` property to body with correct mode, given`enableColorScheme` is false', () => {
+      it('does not set `color-scheme` property on <html> with correct mode, given`enableColorScheme` is false', () => {
+        const currentColorScheme = window
+          .getComputedStyle(document.documentElement)
+          .getPropertyValue('color-scheme');
         const { CssVarsProvider } = createCssVarsProvider({
           theme: {
             colorSchemes: { light: {}, dark: {} },
@@ -312,9 +321,29 @@ describe('createCssVarsProvider', () => {
             <Consumer />
           </CssVarsProvider>,
         );
-        expect(
-          window.getComputedStyle(document.documentElement).getPropertyValue('color-scheme'),
-        ).not.to.equal('light');
+        expect(document.documentElement).toHaveComputedStyle({
+          colorScheme: shouldSupportColorScheme ? currentColorScheme : '',
+        });
+      });
+
+      it('cleans up `color-scheme` property on <html>, given`enableColorScheme` is true', () => {
+        const previousColorScheme = window
+          .getComputedStyle(document.documentElement)
+          .getPropertyValue('color-scheme');
+        const { CssVarsProvider } = createCssVarsProvider({
+          theme: {
+            colorSchemes: { light: {}, dark: {} },
+          },
+          defaultColorScheme: 'light',
+          enableColorScheme: true,
+        });
+        const { unmount } = render(<CssVarsProvider />);
+
+        unmount();
+
+        expect(document.documentElement).toHaveComputedStyle({
+          colorScheme: previousColorScheme,
+        });
       });
     });
 
@@ -746,6 +775,28 @@ describe('createCssVarsProvider', () => {
       );
 
       expect(screen.getByTestId('text').textContent).to.equal('var(--foo-bar-fontSize)');
+    });
+
+    it('does not take `theme.components` into account', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: { fontSize: 16 } },
+          components: 'any',
+        },
+        defaultColorScheme: 'light',
+      });
+      const Text = () => {
+        const theme = useTheme();
+
+        return <div data-testid={`text`}>{theme.vars.components}</div>;
+      };
+      render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('text').textContent).not.to.equal('var(--components)');
     });
 
     it('`defaultMode` is specified', () => {

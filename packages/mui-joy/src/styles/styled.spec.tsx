@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, styled, VariantProp, ColorPaletteProp } from '@mui/joy/styles';
+import { styled, VariantProp, ColorPaletteProp } from '@mui/joy/styles';
 
 const Basic = styled('button')({
   fontWeight: 'var(--fontSize-md)' as React.CSSProperties['fontWeight'],

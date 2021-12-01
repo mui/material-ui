@@ -68,9 +68,10 @@ export default function createCssVarsProvider(options) {
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
     const hasMounted = React.useRef(null);
 
-    let mergedTheme = deepmerge(restBaseTheme, restThemeProp);
-
+    // eslint-disable-next-line prefer-const
+    let { components = {}, ...mergedTheme } = deepmerge(restBaseTheme, restThemeProp);
     const colorSchemes = deepmerge(baseColorSchemes, colorSchemesProp);
+
     const allColorSchemes = Object.keys(colorSchemes);
 
     const defaultLightColorScheme =
@@ -113,6 +114,7 @@ export default function createCssVarsProvider(options) {
     mergedTheme = {
       ...mergedTheme,
       ...colorSchemes[resolvedColorScheme],
+      components,
       colorSchemes,
       vars: rootVars,
       spacing: themeProp.spacing ? createSpacing(themeProp.spacing) : systemSpacing,
@@ -155,14 +157,19 @@ export default function createCssVarsProvider(options) {
 
     React.useEffect(() => {
       if (!mode || !enableColorScheme) {
-        return;
+        return undefined;
       }
+      const priorColorScheme = document.documentElement.style.getPropertyValue('color-scheme');
       // `color-scheme` tells browser to render built-in elements according to its value: `light` or `dark`
       if (mode === 'system') {
         document.documentElement.style.setProperty('color-scheme', systemMode);
       } else {
         document.documentElement.style.setProperty('color-scheme', mode);
       }
+
+      return () => {
+        document.documentElement.style.setProperty('color-scheme', priorColorScheme);
+      };
     }, [mode, systemMode]);
 
     React.useEffect(() => {
@@ -214,7 +221,7 @@ export default function createCssVarsProvider(options) {
      */
     attribute: PropTypes.string,
     /**
-     * Your component tree.
+     * The component tree.
      */
     children: PropTypes.node,
     /**
@@ -230,7 +237,7 @@ export default function createCssVarsProvider(options) {
      */
     modeStorageKey: PropTypes.string,
     /**
-     * css variable prefix
+     * CSS variable prefix.
      */
     prefix: PropTypes.string,
     /**

@@ -11,7 +11,7 @@ export default function About() {
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Gatsby v5 example
+          Gatsby example
         </Typography>
         <Link to="/">Go to the main page</Link>
         <ProTip />
