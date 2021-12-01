@@ -18,6 +18,10 @@ function Document({ children, title }: { children: React.ReactNode; title?: stri
         {title ? <title>{title}</title> : null}
         <Meta />
         <Links />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
         {styleData?.map(({ key, ids, css }) => (
           <style
             key={key}
