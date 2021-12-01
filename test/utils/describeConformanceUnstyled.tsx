@@ -26,6 +26,7 @@ export interface UnstyledConformanceOptions
   ) => MuiRenderResult;
   skip?: (keyof typeof fullSuite)[];
   slots: Record<string, SlotTestingOptions>;
+  testComponentPropWith?: string;
 }
 
 function throwMissingPropError(field: string): never {
@@ -66,7 +67,7 @@ function testPropForwarding(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
-  const { render } = getOptions();
+  const { render, testComponentPropWith: Element = 'div' } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -75,7 +76,8 @@ function testPropForwarding(
   it('forwards custom props to the root element if a component is provided', () => {
     const CustomRoot = React.forwardRef(
       ({ fooBar, tabIndex }: WithCustomProp, ref: React.ForwardedRef<any>) => {
-        return <div ref={ref} data-foobar={fooBar} tabIndex={tabIndex} />;
+        // @ts-ignore
+        return <Element ref={ref} data-foobar={fooBar} tabIndex={tabIndex} />;
       },
     );
 
@@ -99,7 +101,7 @@ function testPropForwarding(
     };
 
     const { container } = render(
-      React.cloneElement(element, { components: { Root: 'div' }, ...otherProps }),
+      React.cloneElement(element, { components: { Root: Element }, ...otherProps }),
     );
 
     expect(container.firstChild).to.have.attribute('tabindex', otherProps.tabIndex);
@@ -111,7 +113,7 @@ function testComponentsProp(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
-  const { render, slots } = getOptions();
+  const { render, slots, testComponentPropWith: Element = 'div' } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -165,17 +167,19 @@ function testComponentsProp(
   it('uses the component provided in component prop when both component and components.Root are provided', () => {
     const RootComponentA = React.forwardRef(
       ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
-        <div data-testid="a" ref={ref}>
+        // @ts-ignore
+        <Element data-testid="a" ref={ref}>
           {children}
-        </div>
+        </Element>
       ),
     );
 
     const RootComponentB = React.forwardRef(
       ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
-        <div data-testid="b" ref={ref}>
+        // @ts-ignore
+        <Element data-testid="b" ref={ref}>
           {children}
-        </div>
+        </Element>
       ),
     );
 
@@ -238,7 +242,7 @@ function testOwnerStatePropagation(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
-  const { render, slots } = getOptions();
+  const { render, slots, testComponentPropWith: Element = 'div' } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -254,7 +258,8 @@ function testOwnerStatePropagation(
         ({ ownerState, expectedOwnerState }: WithOwnerState, ref: React.Ref<any>) => {
           expect(ownerState).not.to.equal(undefined);
           expect(ownerState).to.deep.include(expectedOwnerState);
-          return <div ref={ref} />;
+          // @ts-ignore
+          return <Element ref={ref} />;
         },
       );
 
