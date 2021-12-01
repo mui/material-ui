@@ -2,10 +2,98 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createRenderer } from 'test/utils';
-import createStyled from './createStyled';
+import createStyled, { getShouldForwardProp } from './createStyled';
 
 describe('createStyled', () => {
   const { render } = createRenderer();
+
+  describe('getShouldForwardProp', () => {
+    describe('without custom shouldForwardProp', () => {
+      it('does not forward mui props', () => {
+        const shouldForwardProp = getShouldForwardProp();
+        expect(shouldForwardProp('theme')).to.equal(false);
+        expect(shouldForwardProp('ownerState')).to.equal(false);
+        expect(shouldForwardProp('sx')).to.equal(false);
+        expect(shouldForwardProp('as')).to.equal(false);
+
+        expect(shouldForwardProp('id')).to.equal(true);
+      });
+
+      it('does not forward invalid html props & mui props if tag is string', () => {
+        const shouldForwardProp = getShouldForwardProp({
+          tag: 'a',
+          slot: 'Root',
+        });
+
+        expect(shouldForwardProp('id')).to.equal(true);
+
+        expect(shouldForwardProp('foo')).to.equal(false);
+        expect(shouldForwardProp('sx')).to.equal(false);
+        expect(shouldForwardProp('as')).to.equal(false);
+      });
+
+      it('use rootShouldForwardProp if slot is "Root"', () => {
+        const shouldForwardProp = getShouldForwardProp({
+          slot: 'Root',
+          rootShouldForwardProp: (prop) => prop !== 'foo',
+        });
+
+        expect(shouldForwardProp('id')).to.equal(true);
+        expect(shouldForwardProp('foo')).to.equal(false);
+      });
+
+      it('does not forward invalid html props & use rootShouldForwardProp if tag is string', () => {
+        const shouldForwardProp = getShouldForwardProp({
+          slot: 'Root',
+          rootShouldForwardProp: (prop) => prop !== 'foo',
+        });
+
+        expect(shouldForwardProp('id')).to.equal(true);
+        expect(shouldForwardProp('sx')).to.equal(true);
+
+        expect(shouldForwardProp('foo')).to.equal(false);
+      });
+
+      it('use slot if slot exists but is not "Root"', () => {
+        const shouldForwardProp = getShouldForwardProp({
+          slot: 'Something',
+          rootShouldForwardProp: (prop) => prop !== 'foo',
+          slotShouldForwardProp: (prop) => prop !== 'bar',
+        });
+
+        expect(shouldForwardProp('id')).to.equal(true);
+        expect(shouldForwardProp('foo')).to.equal(true);
+        expect(shouldForwardProp('bar')).to.equal(false);
+      });
+
+      it('does not forward invalid html props & use slotShouldForwardProp if tag is string', () => {
+        const shouldForwardProp = getShouldForwardProp({
+          slot: 'Something',
+          slotShouldForwardProp: (prop) => prop !== 'bar',
+        });
+
+        expect(shouldForwardProp('id')).to.equal(true);
+        expect(shouldForwardProp('sx')).to.equal(true);
+
+        expect(shouldForwardProp('bar')).to.equal(false);
+      });
+    });
+
+    describe('with custom shouldForwardProp', () => {
+      it('forward mui props', () => {
+        const shouldForwardProp = getShouldForwardProp({
+          shouldForwardProp: (prop) => prop !== 'foo',
+        });
+        expect(shouldForwardProp('theme')).to.equal(true);
+        expect(shouldForwardProp('ownerState')).to.equal(true);
+        expect(shouldForwardProp('sx')).to.equal(true);
+        expect(shouldForwardProp('as')).to.equal(true);
+        expect(shouldForwardProp('id')).to.equal(true);
+
+        expect(shouldForwardProp('foo')).to.equal(false);
+      });
+    });
+  });
 
   describe('displayName', () => {
     // These tests rely on implementation details (namely `displayName`)

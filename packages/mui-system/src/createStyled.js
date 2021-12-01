@@ -72,6 +72,30 @@ export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
+export function getShouldForwardProp(input = {}) {
+  const {
+    tag,
+    slot,
+    rootShouldForwardProp = shouldForwardProp,
+    slotShouldForwardProp = shouldForwardProp,
+    shouldForwardProp: shouldForwardPropOption,
+  } = input;
+  if (!shouldForwardPropOption) {
+    if (slot === 'Root') {
+      return isStringTag(tag)
+        ? (prop) => isPropValid(prop) && rootShouldForwardProp(prop)
+        : rootShouldForwardProp;
+    }
+    if (slot) {
+      return isStringTag(tag)
+        ? (prop) => isPropValid(prop) && slotShouldForwardProp(prop)
+        : slotShouldForwardProp;
+    }
+    return shouldForwardProp;
+  }
+  return shouldForwardPropOption;
+}
+
 export const systemDefaultTheme = createTheme();
 
 const lowercaseFirstLetter = (string) => {
@@ -91,6 +115,7 @@ export default function createStyled(input = {}) {
       skipVariantsResolver: inputSkipVariantsResolver,
       skipSx: inputSkipSx,
       overridesResolver,
+      shouldForwardProp: shouldForwardPropOption,
       ...options
     } = inputOptions;
 
@@ -110,19 +135,15 @@ export default function createStyled(input = {}) {
       }
     }
 
-    let shouldForwardPropOption = shouldForwardProp;
-
-    if (componentSlot === 'Root') {
-      shouldForwardPropOption = rootShouldForwardProp;
-    } else if (componentSlot) {
-      // any other slot specified
-      shouldForwardPropOption = slotShouldForwardProp;
-    }
+    const finalShouldForwardProp = getShouldForwardProp({
+      slot: componentSlot,
+      rootShouldForwardProp,
+      slotShouldForwardProp,
+      shouldForwardProp: shouldForwardPropOption,
+    });
 
     const defaultStyledResolver = styledEngineStyled(tag, {
-      shouldForwardProp: isStringTag(tag)
-        ? (prop) => isPropValid(prop) && shouldForwardPropOption(prop)
-        : shouldForwardPropOption,
+      shouldForwardProp: finalShouldForwardProp,
       label,
       ...options,
     });
