@@ -52,7 +52,7 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 `MenuItem` 的原理是用额外的样式包装了 `ListItem` 组件。 你可以将同样的列表合成功能来装饰 `MenuItem` 组件：
 
-🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/menu)。
+🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/menu/)。
 
 ## 最大高度的菜单
 
