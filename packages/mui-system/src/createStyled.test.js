@@ -48,6 +48,21 @@ describe('createStyled', () => {
 
       expect(SomeMuiComponent).to.have.property('displayName', 'Styled(Component)');
     });
+
+    it('filter non-HTML props if tag is string', () => {
+      const styled = createStyled({});
+      const Anchor = styled('a')({});
+
+      const { container } = render(
+        <Anchor href="/" color="red" shouldBeRemoved data-foo="bar">
+          Link
+        </Anchor>,
+      );
+      expect(container.firstChild).to.have.property('href', '/');
+      expect(container.firstChild.getAttribute('data-foo')).to.equal('bar');
+      expect(container.firstChild.getAttribute('color')).to.equal('red'); // color is for Safari mask-icon link
+      expect(container.firstChild.getAttribute('shouldBeRemoved')).not.to.equal('true');
+    });
   });
 
   describe('styles', () => {
