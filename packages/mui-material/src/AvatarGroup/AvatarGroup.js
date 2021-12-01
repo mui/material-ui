@@ -193,6 +193,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Specify total amount of avatars.
+   * @default children.length
    */
   total: PropTypes.number,
   /**
