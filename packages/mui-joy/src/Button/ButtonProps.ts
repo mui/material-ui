@@ -5,7 +5,8 @@ import {
   OverrideProps,
 } from '@mui/types';
 import React from 'react';
-import { ColorPaletteProp } from '../styles/ColorSystem';
+import { ColorPaletteProp } from '../styles/types/colorSystem';
+import { VariantProp } from '../styles/types/variants';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -56,7 +57,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
-    size?: OverridableStringUnion<'small' | 'medium' | 'large', ButtonPropsSizeOverrides>;
+    size?: OverridableStringUnion<'small' | 'large', ButtonPropsSizeOverrides>;
     /**
      * @default 0
      */
@@ -65,10 +66,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      * The variant to use.
      * @default 'text'
      */
-    variant?: OverridableStringUnion<
-      'text' | 'outlined' | 'contained',
-      ButtonPropsVariantOverrides
-    >;
+    variant?: OverridableStringUnion<VariantProp, ButtonPropsVariantOverrides>;
   };
   defaultComponent: D;
 }

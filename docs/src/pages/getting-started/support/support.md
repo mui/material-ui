@@ -9,7 +9,7 @@ The community is your first stop for questions and advice about the framework. W
 ### StackOverflow
 
 For crowdsourced answers from expert MUI developers in our community.
-StackOverflow is also frequented, from time to time, by the maintainers of MUI.
+StackOverflow is also visited from time to time by the maintainers of MUI.
 
 [Post a question](https://stackoverflow.com/questions/tagged/material-ui)
 

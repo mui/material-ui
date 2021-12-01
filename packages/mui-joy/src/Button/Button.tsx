@@ -18,9 +18,9 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       fullWidth && 'fullWidth',
-      `variant${capitalize(variant!)}`,
-      `color${capitalize(color!)}`,
-      `size${capitalize(size!)}`,
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
     ],
   };
 
@@ -43,18 +43,16 @@ const ButtonRoot = styled('button', {
       styles.root,
       styles[`variant${capitalize(ownerState.variant)}`],
       styles[`color${capitalize(ownerState.color)}`],
-      styles[`size${capitalize(ownerState.size)}`],
+      ownerState.size && styles[`size${capitalize(ownerState.size)}`],
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
-  const colorPalette = theme.vars.palette[ownerState.color || 'brand'];
-  const neutral = theme.vars.palette.neutral;
   return [
     {
-      padding: '0.25rem 2rem',
-      minHeight: '48px',
-      borderRadius: '28px',
+      padding: '0.25rem 1.5rem',
+      minHeight: '40px',
+      borderRadius: theme.vars.borderRadius.default,
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -62,71 +60,25 @@ const ButtonRoot = styled('button', {
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
-      ...theme.typography.button,
-      [`&.${buttonClasses.disabled}`]: {
-        pointerEvents: 'none',
-        cursor: 'default',
-      },
-      [`&.${buttonClasses.focusVisible}`]: {
-        outline: '4px solid',
-        outlineColor: colorPalette[300],
-      },
-      ...(ownerState.fullWidth && {
-        width: '100%',
-      }),
+      ...theme.typography.body1,
+      fontWeight: theme.vars.fontWeight.md,
+      [`&.${buttonClasses.focusVisible}`]: theme.focus.default,
+    },
+    ownerState.fullWidth && {
+      width: '100%',
     },
     ownerState.size === 'small' && {
-      minHeight: '40px',
+      padding: '0.25rem 1rem',
+      minHeight: '32px',
     },
     ownerState.size === 'large' && {
-      minHeight: '56px',
+      padding: '0.25rem 2rem',
+      minHeight: '48px',
     },
-    ownerState.variant === 'text' && {
-      color: colorPalette[600],
-      [`&.${buttonClasses.focusVisible}`]: {
-        outlineColor: neutral[200],
-      },
-      '&:hover': {
-        backgroundColor: neutral[100],
-      },
-      '&:active': {
-        backgroundColor: neutral[200],
-      },
-      [`&.${buttonClasses.disabled}`]: {
-        color: neutral[300],
-      },
-    },
-    ownerState.variant === 'contained' && {
-      backgroundColor: colorPalette[600],
-      color: '#fff',
-      '&:hover': {
-        backgroundColor: colorPalette[700],
-      },
-      '&:active': {
-        backgroundColor: colorPalette[500],
-      },
-      [`&.${buttonClasses.disabled}`]: {
-        backgroundColor: colorPalette[300],
-      },
-    },
-    ownerState.variant === 'outlined' && {
-      color: colorPalette[600],
-      border: '1px solid',
-      borderColor: neutral[300],
-      [`&.${buttonClasses.focusVisible}`]: {
-        outlineColor: neutral[200],
-      },
-      '&:hover': {
-        backgroundColor: neutral[100],
-      },
-      '&:active': {
-        backgroundColor: neutral[200],
-      },
-      [`&.${buttonClasses.disabled}`]: {
-        borderColor: neutral[200],
-        color: neutral[300],
-      },
-    },
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+    theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+    theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   ];
 });
 
@@ -138,9 +90,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     className,
     action,
     component = 'button',
-    color = 'brand',
-    variant = 'text',
-    size = 'medium',
+    color = 'primary',
+    variant = 'contained',
+    size,
     fullWidth = false,
     ...other
   } = props;
@@ -220,7 +172,7 @@ Button.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['brand', 'neutral']),
+  color: PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.
@@ -237,12 +189,12 @@ Button.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['small', 'large']),
   /**
    * The variant to use.
    * @default 'text'
    */
-  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
+  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
 } as any;
 
 export default Button;

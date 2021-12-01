@@ -18,3 +18,6 @@ const Text = (props: { sx?: SxProps<Theme> }) => null;
 
 // null
 <Text sx={{ m: null, transform: null, typography: undefined }} />;
+
+// array contains boolean
+<Text sx={[false && { p: 2 }, { m: 2 }]} />;

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { deepmerge } from '@mui/utils';
 import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from '@mui/system';
 import defaultTheme, { JoyTheme } from './defaultTheme';
+import { ExtendedColorScheme } from './types/colorScheme';
 
 type PartialDeep<T> = {
   [K in keyof T]?: PartialDeep<T[K]>;
@@ -15,7 +16,7 @@ export default function ThemeProvider({
   children,
   theme,
 }: React.PropsWithChildren<{
-  theme?: PartialDeep<Omit<JoyTheme, 'vars' | 'components'>> & {
+  theme?: PartialDeep<Omit<JoyTheme<ExtendedColorScheme>, 'vars' | 'components'>> & {
     components?: JoyTheme['components'];
   };
 }>) {

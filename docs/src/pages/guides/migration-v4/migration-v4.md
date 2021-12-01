@@ -61,7 +61,7 @@ const theme = createMuiTheme();
 
 const useStyles = makeStyles((theme) => {
   root: {
-    // some css that access to theme
+    // some CSS that access to theme
   }
 });
 

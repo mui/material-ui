@@ -74,7 +74,7 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('current-color-scheme').textContent).to.equal('light');
     });
 
-    it('has css variable prefix', () => {
+    it('has CSS variable prefix', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: { fontSize: 16 } },
@@ -151,7 +151,7 @@ describe('createCssVarsProvider', () => {
       fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
       expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
-      expect(document.body.getAttribute('data-mui-color-scheme')).to.equal('dark');
+      expect(document.documentElement.getAttribute('data-mui-color-scheme')).to.equal('dark');
     });
 
     it('display error if non-existed colorScheme is set', () => {
@@ -245,7 +245,7 @@ describe('createCssVarsProvider', () => {
     });
 
     describe('[option]: `enableColorScheme`', () => {
-      it('set `color-scheme` property to body with correct mode, given `enableColorScheme` is true and `mode` is `light` or `dark`', () => {
+      it('set `color-scheme` property on <html> with correct mode, given `enableColorScheme` is true and `mode` is `light` or `dark`', () => {
         const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
           theme: {
             colorSchemes: { light: {}, dark: {} },
@@ -273,7 +273,7 @@ describe('createCssVarsProvider', () => {
         });
       });
 
-      it('set `color-scheme` property to body with correct mode, given `enableColorScheme` is true and mode is `system`', () => {
+      it('set `color-scheme` property on <html> with correct mode, given `enableColorScheme` is true and mode is `system`', () => {
         window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
 
         const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
@@ -303,10 +303,8 @@ describe('createCssVarsProvider', () => {
         });
       });
 
-      it('does not set `color-scheme` property to body with correct mode, given`enableColorScheme` is false', () => {
-        // TODO: Previous tests are leaking.
-        // `color-scheme` should be `'normal'` but prior tests retain their `color-scheme`.
-        const priorColorScheme = window
+      it('does not set `color-scheme` property on <html> with correct mode, given`enableColorScheme` is false', () => {
+        const currentColorScheme = window
           .getComputedStyle(document.documentElement)
           .getPropertyValue('color-scheme');
         const { CssVarsProvider } = createCssVarsProvider({
@@ -324,7 +322,27 @@ describe('createCssVarsProvider', () => {
           </CssVarsProvider>,
         );
         expect(document.documentElement).toHaveComputedStyle({
-          colorScheme: shouldSupportColorScheme ? priorColorScheme : '',
+          colorScheme: shouldSupportColorScheme ? currentColorScheme : '',
+        });
+      });
+
+      it('cleans up `color-scheme` property on <html>, given`enableColorScheme` is true', () => {
+        const previousColorScheme = window
+          .getComputedStyle(document.documentElement)
+          .getPropertyValue('color-scheme');
+        const { CssVarsProvider } = createCssVarsProvider({
+          theme: {
+            colorSchemes: { light: {}, dark: {} },
+          },
+          defaultColorScheme: 'light',
+          enableColorScheme: true,
+        });
+        const { unmount } = render(<CssVarsProvider />);
+
+        unmount();
+
+        expect(document.documentElement).toHaveComputedStyle({
+          colorScheme: previousColorScheme,
         });
       });
     });
@@ -482,7 +500,7 @@ describe('createCssVarsProvider', () => {
   });
 
   describe('DOM', () => {
-    it('attach default dataset on body', () => {
+    it('attach default dataset on html', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: {
           colorSchemes: { light: {} },
@@ -491,7 +509,7 @@ describe('createCssVarsProvider', () => {
       });
       render(<CssVarsProvider />);
 
-      expect(document.body.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('light');
+      expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('light');
     });
 
     it('use custom attribute', () => {
@@ -505,7 +523,7 @@ describe('createCssVarsProvider', () => {
 
       render(<CssVarsProvider attribute={customAttribute} />);
 
-      expect(document.body.getAttribute('data-foo-bar')).to.equal('light');
+      expect(document.documentElement.getAttribute('data-foo-bar')).to.equal('light');
     });
   });
 
