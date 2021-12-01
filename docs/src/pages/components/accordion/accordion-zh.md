@@ -16,7 +16,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 > **注意：** 扩展面板不属于 [Material Design 指南](https://material.io/) 中的一部分，但是 MUI 仍然会继续支持该组件。 它之前被称为 "expansion panel（扩展面板）"。
 
-## Basic accordion
+## 基础扩展面板
 
 {{"demo": "pages/components/accordion/BasicAccordion.js", "bg": true}}
 
