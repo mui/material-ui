@@ -119,6 +119,13 @@ const globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
 };
+
+const globalsWithoutEmotion = {
+  ...globals,
+  '@emotion/react': 'emotionReact',
+  '@emotion/styled': 'emotionStyled'
+};
+
 const babelOptions = {
   exclude: /node_modules/,
   // We are using @babel/plugin-transform-runtime
@@ -171,7 +178,7 @@ function onwarn(warning) {
   }
 }
 
-export default [
+const rollupConfig = [
   {
     input,
     onwarn,
@@ -182,6 +189,25 @@ export default [
       globals,
     },
     external: Object.keys(globals),
+    plugins: [
+      nodeResolve(nodeOptions),
+      nestedFolder,
+      babel(babelOptions),
+      commonjs(commonjsOptions),
+      nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
+      replace({ preventAssignment: true, 'process.env.NODE_ENV': JSON.stringify('development') }),
+    ],
+  },
+  {
+    input,
+    onwarn,
+    output: {
+      file: 'build/umd/material-ui.emotionless.development.js',
+      format: 'umd',
+      name: 'MaterialUI',
+      globals : globalsWithoutEmotion,
+    },
+    external: Object.keys(globalsWithoutEmotion),
     plugins: [
       nodeResolve(nodeOptions),
       nestedFolder,
@@ -212,4 +238,27 @@ export default [
       sizeSnapshot({ snapshotPath: 'size-snapshot.json' }),
     ],
   },
+  {
+    input,
+    onwarn,
+    output: {
+      file: 'build/umd/material-ui.emotionless.production.min.js',
+      format: 'umd',
+      name: 'MaterialUI',
+      globals : globalsWithoutEmotion,
+    },
+    external: Object.keys(globalsWithoutEmotion),
+    plugins: [
+      nodeResolve(nodeOptions),
+      nestedFolder,
+      babel(babelOptions),
+      commonjs(commonjsOptions),
+      nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
+      replace({ preventAssignment: true, 'process.env.NODE_ENV': JSON.stringify('production') }),
+      terser(),
+      sizeSnapshot({ snapshotPath: 'size-snapshot.json' }),
+    ],
+  }
 ];
+
+export default rollupConfig;
