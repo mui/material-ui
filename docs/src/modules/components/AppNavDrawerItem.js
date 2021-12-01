@@ -127,9 +127,11 @@ const ItemButton = styled(Item, {
       }
       return theme.palette.text.primary;
     })(),
-    fontSize: theme.typography.pxToRem(depth === 0 ? 14.5 : 12),
+    fontSize: theme.typography.pxToRem(depth === 0 ? 14.5 : 11),
+    textTransform: depth === 0 ? 'none' : 'uppercase',
+    letterSpacing: depth === 0 ? 'normal' : '.1rem',
     fontWeight: depth === 0 ? 500 : 700,
-    margin: depth === 0 ? theme.spacing(0.5, 0) : '8px 0 4px',
+    margin: depth === 0 ? theme.spacing(0.5, 0) : '12px 0 4px',
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
       color: (() => {
