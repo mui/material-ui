@@ -11,7 +11,7 @@ githubLabel: 'component: ClickAwayListener'
 - 📦 [1.5 kB gzipped](/size-snapshot).
 - ⚛️ Suporte para portais
 
-[A paleta](/system/palette/) com funções de estilo.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Exemplo
 
@@ -34,3 +34,13 @@ Por padrão, o componente responde aos eventos de clique e de toque final (click
 {{"demo": "pages/components/click-away-listener/LeadingClickAway.js"}}
 
 > ⚠️ Neste modo, apenas as interações na barra de rolagem do documento são ignoradas.
+
+## Unstyled
+
+- 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
+
+As the component does not have any styles, it also comes with the unstyled package.
+
+```js
+import ClickAwayListener from '@mui/base/ClickAwayListener';
+```
