@@ -24,7 +24,7 @@ import createDescribeableProp, {
 } from 'docs/src/modules/utils/createDescribeableProp';
 import generatePropDescription from 'docs/src/modules/utils/generatePropDescription';
 import parseStyles, { Styles } from 'docs/src/modules/utils/parseStyles';
-import createGenerateClassName from '@mui/styles/createGenerateClassName';
+import generateUtilityClass from '@mui/base/generateUtilityClass';
 import * as ttp from 'typescript-to-proptypes';
 import { getLineFeed, getUnstyledFilename } from './helpers';
 
@@ -61,8 +61,6 @@ interface ReactApi extends ReactDocgenApi {
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography'];
-
-const generateClassName = createGenerateClassName();
 
 function writePrettifiedFile(
   filename: string,
@@ -486,18 +484,11 @@ async function buildDocs(options: {
     reactApi.styles.name = generateMuiName(reactApi.name);
   }
   reactApi.styles.classes.forEach((key) => {
-    reactApi.styles.globalClasses[key] = generateClassName(
-      // @ts-expect-error
-      {
-        key,
-      },
-      {
-        options: {
-          name: reactApi.styles.name || generateMuiName(name),
-          theme: {},
-        },
-      },
+    const globalClass = generateUtilityClass(
+      reactApi.styles.name || generateMuiName(reactApi.name),
+      key,
     );
+    reactApi.styles.globalClasses[key] = globalClass;
   });
 
   const propErrors: Array<[propName: string, error: Error]> = [];
