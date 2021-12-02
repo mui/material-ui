@@ -1,4 +1,4 @@
-import { internal_mergeProps as mergeProps } from '@mui/utils';
+import { internal_resolveProps as resolveProps } from '@mui/utils';
 
 export default function getThemeProps(params) {
   const { theme, name, props } = params;
@@ -12,5 +12,5 @@ export default function getThemeProps(params) {
     return props;
   }
 
-  return mergeProps(theme.components[name].defaultProps, props);
+  return resolveProps(theme.components[name].defaultProps, props);
 }
