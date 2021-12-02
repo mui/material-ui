@@ -99,17 +99,16 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     return React.isValidElement(child);
   });
 
-  let maxAvatars = 0;
-  let extraAvatars = 0;
+  const totalAvatars = total || children.length;
 
-  if (!total) {
-    extraAvatars = children.length > clampedMax ? children.length - clampedMax + 1 : 0; // limit `extraAvatars`
-    maxAvatars = children.length - extraAvatars;
-  } else {
-    clampedMax = Math.min(total + 1, clampedMax); // limit `clampedMax` so
-    maxAvatars = Math.min(children.length, clampedMax - 1);
-    extraAvatars = Math.max(total - clampedMax, total - maxAvatars, 0);
+  if (totalAvatars === clampedMax) {
+    clampedMax += 1;
   }
+
+  clampedMax = Math.min(totalAvatars + 1, clampedMax);
+
+  const maxAvatars = Math.min(children.length, clampedMax - 1);
+  const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
 
   const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
 

@@ -98,6 +98,20 @@ describe('<AvatarGroup />', () => {
     expect(container.textContent).to.equal('+8');
   });
 
+  it('should display all avatars if total === max === children.length', () => {
+    const { container } = render(
+      <AvatarGroup total={4} max={4}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(4);
+    expect(container.querySelectorAll('img').length).to.equal(4);
+    expect(container.textContent).to.equal('');
+  });
+
   it('should display all avatars with default (circular) variant', () => {
     const { container } = render(
       <AvatarGroup>
