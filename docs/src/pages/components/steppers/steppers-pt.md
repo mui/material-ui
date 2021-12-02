@@ -16,13 +16,13 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Nota:** Os assistentes não estão mais documentados nas [diretrizes do Material Design](https://material.io/), mas o Material-UI continuará a suportá-los.
+> **Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them.
 
 ## Assistente horizontal
 
 Assistente horizontal é ideal quando o conteúdo de uma etapa depende de uma etapa anterior.
 
-{{"demo": "pages/components/steppers/HorizontalLinearStepper.js", "bg": true}}
+Avoid using long step names in horizontal steppers.
 
 ### Linear
 
@@ -36,9 +36,9 @@ Este exemplo também mostra o uso de uma etapa opcional, colocando a propriedade
 
 ### Não linear
 
-Os assistentes não lineares permitem que os usuários entrem em um fluxo de várias etapas a qualquer momento.
+Os assistentes não lineares permitem que os usuários insiram um fluxo de várias etapas a qualquer momento.
 
-Este exemplo é semelhante ao horizontal linear, porém as etapas não são mais automaticamente definidas para `disabled={true}` com base na propriedade `activeStep`.
+Este exemplo é semelhante ao não linear, porém as etapas não são mais automaticamente definidas `disabled={true}` com base na propriedade `activeStep`.
 
 O uso do `StepButton` aqui, demonstra rótulos de etapas clicáveis, além de definir a propriedade sinalizadora `completed`. No entanto, como as etapas podem ser acessadas de maneira não linear, cabe a sua própria implementação determinar quando todas as etapas são concluídas (ou mesmo se precisam ser concluídas).
 
@@ -66,7 +66,7 @@ Assistentes verticais são projetados para telas com tamanhos estreitos. Eles s�
 
 {{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
-### Texto
+### Performance
 
 The content of a step is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to keep the step mounted with:
 
@@ -78,7 +78,7 @@ The content of a step is unmounted when closed. If you need to make the content 
 
 Este componente implementa um assistente compacto adequado para um dispositivo mobile. Tem funcionalidades mais limitadas do que o assistente vertical. Veja [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) para essa inspiração.
 
-Use pontos quando o número de etapas não for grande.
+O assistente mobile suporta três variantes para mostrar progresso através das etapas disponíveis: texto, pontos e progresso.
 
 ### Texto
 
@@ -86,7 +86,7 @@ Use pontos quando o número de etapas não for grande.
 
 {{"demo": "pages/components/steppers/TextMobileStepper.js", "bg": true}}
 
-### Pontos
+### Texto
 
 Use uma barra de progresso quando houver muitas etapas, ou se houver etapas que precisem ser inseridas durante o processo (com base nas respostas de etapas anteriores).
 
