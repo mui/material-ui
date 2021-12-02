@@ -52,14 +52,13 @@ describe('createStyled', () => {
     it('does not forward invalid props to DOM if no `slot` specified', () => {
       // This scenario is usually used by library consumers
       const styled = createStyled({});
-      const Anchor = styled('a')({});
+      const Button = styled('button')({});
 
       const { container } = render(
-        <Anchor href="/" color="red" shouldBeRemoved data-foo="bar">
+        <Button color="red" shouldBeRemoved data-foo="bar">
           Link
-        </Anchor>,
+        </Button>,
       );
-      expect(container.firstChild).to.have.property('href', '/');
       expect(container.firstChild.getAttribute('data-foo')).to.equal('bar');
       expect(container.firstChild.getAttribute('color')).to.equal('red'); // color is for Safari mask-icon link
       expect(container.firstChild.getAttribute('shouldBeRemoved')).not.to.equal('true');
