@@ -15,33 +15,37 @@ materialDesign: https://material.io/components/app-bars-top
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 简单的应用栏
+## 基础应用栏
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
-
-## 带一个主搜索输入框的应用栏
-
-一个主要搜索栏。
-
-{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
 ## 带有菜单的应用栏
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
+## 带有响应式菜单的应用栏
+
+{{"demo": "pages/components/app-bar/ResponsiveAppBar.js", "bg": true}}
+
 ## 带有搜索输入框的应用栏
 
-一个侧边搜索栏。
+侧边搜索栏。
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
 
-## 紧凑模式 (仅限桌面模式)
+## 带有主要搜索输入框的应用栏
+
+主要搜索栏。
+
+{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
+
+## 紧凑模式（仅限桌面模式）
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
-## 突出模式
+## Prominent
 
-一个突出的应用栏。
+A prominent app bar.
 
 {{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
@@ -49,9 +53,9 @@ materialDesign: https://material.io/components/app-bars-top
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
-## 固定的位置
+## 固定位置
 
-当渲染一个固定位置的应用栏时，元素的尺寸不会影响页面的其余内容。 这可能导致部分内容会被挡在应用程序栏后面，而无法可见。 下面是3种可能的解决方案：
+当渲染一个固定位置的应用栏时，元素的尺寸不会影响页面的其余内容。 这可能导致部分内容会被挡在应用栏后面使其无法可见。 下面有 3 种解决方案：
 
 1. 使用 `position =“ sticky”` 代替 fixed。 ⚠️ sticky 不支持 IE11。
 2. 可以渲染第二个 `<Toolbar />` 组件：
@@ -61,7 +65,7 @@ function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* content */}</Toolbar>
+        <Toolbar>{/* 内容 */}</Toolbar>
       </AppBar>
       <Toolbar />
     </React.Fragment>
@@ -78,7 +82,7 @@ function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* content */}</Toolbar>
+        <Toolbar>{/* 内容 */}</Toolbar>
       </AppBar>
       <Offset />
     </React.Fragment>
@@ -86,9 +90,9 @@ function App() {
 }
 ```
 
-## Scrolling 滚动
+## 滚动
 
-您可以使用 `useScrollTrigger()` 这个 hook 来相应用户触发的滚动操作。
+您可以使用 `useScrollTrigger()` 这个 hook 来响应用户触发的滚动操作。
 
 ### 隐藏应用栏
 
@@ -98,7 +102,7 @@ function App() {
 
 ### 变高的应用栏
 
-应用栏会在滚动时提升，以表明用户还未到页面的顶部。
+应用栏阴影会在滚动时加深，以表明用户还未到页面的顶部。
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
@@ -114,18 +118,18 @@ function App() {
 
 1. `options` (_object_ [optional]):
 
-   - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
+   - `options.disableHysteresis` (_bool_ [optional])：默认值是 `false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
    - `options.target` (_Node_ [optional])：默认值是 `window`。
    - `options.threshold` (_number_ [optional])：默认值是 `100`。 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。
 
 #### 返回结果
 
-`trigger`: 此滚动的位置符合要求吗？
+`trigger` ：滚动位置是否与目标值匹配？
 
 #### 例子
 
 ```jsx
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 function HideOnScroll(props) {
   const trigger = useScrollTrigger();
@@ -137,26 +141,8 @@ function HideOnScroll(props) {
 }
 ```
 
-## Enable Color on Dark
+## 在深色模式上启用颜色
 
-Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the AppBar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
+根据 [Material Design 规范](https://material.io/design/color/dark-theme.html)，`color` 属性在深色模式下对应用栏的外观没有影响。 您可以通过设置 ` enableColorOnDark ` 属性为 `true` 来覆盖此行为。
 
-```jsx
-// Specific element via prop
-<AppBar enableColorOnDark />
-
-// Affect all AppBars via theme
-<ThemeProvider
-  theme={createTheme({
-    components: {
-      MuiAppBar: {
-        defaultProps: {
-          enableColorOnDark: true,
-        },
-      },
-    },
-  })}
->
-  <AppBar />
-</ThemeProvider>
-```
+{{"demo": "pages/components/app-bar/EnableColorOnDarkAppBar.js", "bg": true}}
