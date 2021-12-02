@@ -128,7 +128,7 @@ const ItemButton = styled(Item, {
     })(),
     fontSize: theme.typography.pxToRem(depth === 0 ? 14.5 : 11),
     textTransform: depth === 0 ? 'none' : 'uppercase',
-    letterSpacing: depth === 0 ? 'normal' : '.1rem',
+    letterSpacing: depth === 0 ? null : '.1rem',
     fontWeight: depth === 0 ? 500 : 700,
     margin: depth === 0 ? null : '16px 0 2px',
     '&:hover': {
