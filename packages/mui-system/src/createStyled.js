@@ -1,6 +1,6 @@
 // Both emotion & styled-components is using `@emotion/is-prop-valid`
-// emotion: https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js?_pjax=%23js-repo-pjax-container%2C%20div%5Bitemtype%3D%22http%3A%2F%2Fschema.org%2FSoftwareSourceCode%22%5D%20main%2C%20%5Bdata-pjax-container%5D#L7
-// styled-components: https://github.com/styled-components/styled-components/blob/38256f562b244877e146ce5a2fc77a5f54b133d7/packages/styled-components/src/models/StyledComponent.ts?_pjax=%23js-repo-pjax-container%2C%20div%5Bitemtype%3D%22http%3A%2F%2Fschema.org%2FSoftwareSourceCode%22%5D%20main%2C%20%5Bdata-pjax-container%5D#L1
+// emotion: https://github.com/emotion-js/emotion/blob/26ded6109f/packages/styled/src/utils.js
+// styled-components: https://github.com/styled-components/styled-components/blob/38256f562b/packages/styled-components/src/models/StyledComponent.ts
 import isPropValid from '@emotion/is-prop-valid';
 import styledEngineStyled from '@mui/styled-engine';
 import { getDisplayName } from '@mui/utils';

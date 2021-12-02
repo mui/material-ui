@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
+    "@emotion/is-prop-valid": "^1.1.1",
     "@mui/private-theming": "^5.2.2",
     "@mui/styled-engine": "^5.2.0",
     "@mui/types": "^7.1.0",
