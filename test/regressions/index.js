@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
@@ -229,6 +229,28 @@ if (unusedBlacklistPatterns.size > 0) {
   );
 }
 
+const viewerRoot = document.getElementById('test-viewer');
+
+function FixtureRenderer({ component: FixtureComponent }) {
+  React.useLayoutEffect(() => {
+    const children = (
+      <TestViewer>
+        <FixtureComponent />
+      </TestViewer>
+    );
+
+    ReactDOM.render(children, viewerRoot);
+  }, [FixtureComponent]);
+
+  React.useLayoutEffect(() => {
+    return () => {
+      ReactDOM.unmountComponentAtNode(viewerRoot);
+    };
+  }, []);
+
+  return null;
+}
+
 function App(props) {
   const { fixtures } = props;
 
@@ -282,7 +304,7 @@ function App(props) {
 
   return (
     <Router>
-      <Switch>
+      <Routes>
         {fixtures.map((fixture) => {
           const path = computePath(fixture);
           const FixtureComponent = fixture.Component;
@@ -292,16 +314,16 @@ function App(props) {
           }
 
           return (
-            <Route key={path} exact path={path}>
-              {fixturePrepared && (
-                <TestViewer>
-                  <FixtureComponent />
-                </TestViewer>
-              )}
-            </Route>
+            <Route
+              key={path}
+              exact
+              path={path}
+              element={fixturePrepared ? <FixtureRenderer component={FixtureComponent} /> : null}
+            />
           );
         })}
-      </Switch>
+      </Routes>
+
       <div hidden={!isDev}>
         <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
         <p>

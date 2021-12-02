@@ -175,6 +175,30 @@ export function generateColumnGap({ theme, ownerState }) {
   return styles;
 }
 
+export function resolveSpacingClasses(spacing, container, styles = {}) {
+  // in case of grid item or undefined/null or `spacing` <= 0
+  if (!container || !spacing || spacing <= 0) {
+    return [];
+  }
+  // in case of string/number `spacing`
+  if (
+    (typeof spacing === 'string' && !Number.isNaN(Number(spacing))) ||
+    typeof spacing === 'number'
+  ) {
+    return [styles[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
+  }
+  // in case of object `spacing`
+  const { xs, sm, md, lg, xl } = spacing;
+
+  return [
+    Number(xs) > 0 && (styles[`spacing-xs-${String(xs)}`] || `spacing-xs-${String(xs)}`),
+    Number(sm) > 0 && (styles[`spacing-sm-${String(sm)}`] || `spacing-sm-${String(sm)}`),
+    Number(md) > 0 && (styles[`spacing-md-${String(md)}`] || `spacing-md-${String(md)}`),
+    Number(lg) > 0 && (styles[`spacing-lg-${String(lg)}`] || `spacing-lg-${String(lg)}`),
+    Number(xl) > 0 && (styles[`spacing-xl-${String(xl)}`] || `spacing-xl-${String(xl)}`),
+  ];
+}
+
 // Default CSS values
 // flex: '0 1 auto',
 // flexDirection: 'row',
@@ -193,7 +217,7 @@ const GridRoot = styled('div', {
       container && styles.container,
       item && styles.item,
       zeroMinWidth && styles.zeroMinWidth,
-      container && spacing !== 0 && styles[`spacing-xs-${String(spacing)}`],
+      ...resolveSpacingClasses(spacing, container, styles),
       direction !== 'row' && styles[`direction-xs-${String(direction)}`],
       wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`],
       xs !== false && styles[`grid-xs-${String(xs)}`],
@@ -245,7 +269,7 @@ const useUtilityClasses = (ownerState) => {
       container && 'container',
       item && 'item',
       zeroMinWidth && 'zeroMinWidth',
-      container && spacing !== 0 && `spacing-xs-${String(spacing)}`,
+      ...resolveSpacingClasses(spacing, container),
       direction !== 'row' && `direction-xs-${String(direction)}`,
       wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
       xs !== false && `grid-xs-${String(xs)}`,
