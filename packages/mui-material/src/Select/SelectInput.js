@@ -325,8 +325,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   if (isFilled({ value }) || displayEmpty) {
     if (renderValue) {
       display = renderValue(value);
-    } else if (Array.isArray(value) && value.length === 0) {
-      display = '';
     } else {
       computeDisplay = true;
     }
@@ -420,7 +418,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   if (computeDisplay) {
     if (multiple) {
-      display = displayMultiple.reduce((prev, curr) => [prev, ', ', curr]);
+      if (value.length === 0) {
+        display = '';
+      } else {
+        display = displayMultiple.reduce((prev, curr) => [prev, ', ', curr]);
+      }
     } else {
       display = displaySingle;
     }
