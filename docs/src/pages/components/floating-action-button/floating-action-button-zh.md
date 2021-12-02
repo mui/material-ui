@@ -11,7 +11,7 @@ materialDesign: https://material.io/components/buttons-floating-action-button
 
 浮动操作按钮组件出现在所有屏幕内容的前面，通常是以圆形的形状出现，并且中间有一个图标。 FAB 有两种类型：常规（regular）和扩展（extended）。
 
-Only use a FAB if it is the most suitable way to present a screen's primary action. 在每个屏幕中，我们建议只有一个浮动操作按钮来表示最常见的操作。 在每个屏幕中，我们建议只有一个浮动操作按钮来表示最常见的操作。
+Only use a FAB if it is the most suitable way to present a screen's primary action. 在每个屏幕中，我们建议只有一个浮动操作按钮来表示最常见的操作。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
