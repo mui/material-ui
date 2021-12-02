@@ -1,5 +1,11 @@
 import * as CSS from 'csstype';
-import { createTheme as systemCreateTheme, Breakpoints, Spacing, CSSObject } from '@mui/system';
+import {
+  createTheme as systemCreateTheme,
+  Breakpoints,
+  Spacing,
+  CSSObject,
+  SxProps as SystemSxProps,
+} from '@mui/system';
 import colors from '../colors';
 import {
   ColorSystem,
@@ -15,7 +21,6 @@ import {
   createDarkModeVariantVariables,
   createVariant,
 } from './variantUtils';
-import { Components } from './components';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Elevation } from './types/elevation';
 import { BorderRadius } from './types/borderRadius';
@@ -438,8 +443,9 @@ export interface JoyTheme<ApplicationColorScheme extends string = ExtendedColorS
   spacing: Spacing;
   breakpoints: Breakpoints;
   vars: ThemeScales & ColorSystem;
-  components?: Components;
 }
+
+export type SxProps = SystemSxProps<JoyTheme>;
 
 const defaultSystemTheme = systemCreateTheme();
 

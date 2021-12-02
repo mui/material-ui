@@ -1,10 +1,11 @@
+import React from 'react';
 import {
   OverridableComponent,
   OverridableStringUnion,
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import React from 'react';
+import { SxProps } from '../styles/defaultTheme';
 import { ColorPaletteProp, VariantProp, ElevationProp, RoundnessProp } from '../styles/types';
 
 export interface ButtonPropsVariantOverrides {}
@@ -64,6 +65,10 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      * The size of the component.
      */
     size?: OverridableStringUnion<'small' | 'large', ButtonPropsSizeOverrides>;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
     /**
      * @default 0
      */

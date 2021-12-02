@@ -13,6 +13,7 @@ import defaultTheme, {
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Variants } from './types/variants';
 import { ColorSystem } from './types/colorSystem';
+import { Components } from './components';
 
 type PartialDeep<T> = {
   [K in keyof T]?: PartialDeep<T[K]>;
@@ -34,6 +35,7 @@ type ThemeInput = PartialNested<
 > & {
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
+  components?: Components;
 };
 
 type JoyThemeInput = ThemeInput & {
