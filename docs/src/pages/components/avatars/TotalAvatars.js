@@ -4,7 +4,7 @@ import AvatarGroup from '@mui/material/AvatarGroup';
 
 export default function TotalAvatars() {
   return (
-    <AvatarGroup total={10} max={10}>
+    <AvatarGroup total={24}>
       <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
       <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
       <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
