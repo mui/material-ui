@@ -7,9 +7,9 @@ materialDesign: https://material.io/design/iconography/system-icons.html
 
 # Icons 图标
 
-<p class="description">我们提供了一些建议和指导，能够帮助您在 Material-UI 中使用图标。</p>
+<p class="description">Guidance and suggestions for using icons with MUI.</p>
 
-Material-UI 通过以下三种方式来支持图标的使用：
+MUI provides icons support in three ways:
 
 1. 您可以将标准的 [Material Design 图标](#material-icons) 导出为 React 组件 (SVG icons)。
 1. 或者可以将自定义的 SVG 图标通过 [SvgIcon](#svgicon) 组件来包装成一个 React 组件。
@@ -17,7 +17,7 @@ Material-UI 通过以下三种方式来支持图标的使用：
 
 ## Material Icons
 
-Google has created over 1,700 official Material icons, each in five different "themes" (see below). 对于每个 SVG 图标，我们从 `@material-ui/icons` 包中导出相应的 React 组件。 您可以 [搜索完整的图标列表](/components/material-icons/)。
+Google has created over 1,900 official Material icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@mui/icons-material` package. 您可以 [搜索完整的图标列表](/components/material-icons/)。
 
 ### 安装
 
@@ -25,22 +25,22 @@ Google has created over 1,700 official Material icons, each in five different "t
 
 ```sh
 // 使用 npm 安装
-npm install @material-ui/icons@next
+npm install @mui/icons-material
 
 // 使用 yarn 安装
-yarn add @material-ui/icons@next
+yarn add @mui/icons-material
 ```
 
-这些组件使用 Material-UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@mui/material` 具有对等依赖性。
+These components use the MUI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
 
-如果你的项目中还没有使用 Material-UI，那么你可以用以下方法添加它：
+If you aren't already using MUI in your project, you can add it with:
 
 ```sh
 // 用 npm 安装
-npm install @material-ui/core@next
+npm install @mui/material
 
 // 用 yarn 安装
-yarn add @material-ui/core@next
+yarn add @mui/material
 ```
 
 ### 使用
@@ -50,36 +50,36 @@ yarn add @material-ui/core@next
 - 方法 1:
 
   ```jsx
-  import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-  import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
+  import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+  import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
   ```
 
 - 方法 2:
 
   ```jsx
-  import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+  import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
 对于捆绑包的大小来说，最安全的是方案 1，但有些开发者更喜欢方案 2。 在使用第二个方法之前，请确保您遵循 [最小化捆绑包大小指南](/guides/minimizing-bundle-size/#option-2)。
 
-每个 Material icon 都有一个“主题”：Filled（默认）, Outlined, Rounded, Two-tone, 和 Sharp。 要导入非默认主题的图标组件，请在图标名称后附加主题名称。 例如，`@material-ui/icons/Delete` 图标可以：
+每个 Material icon 都有一个“主题”：Filled（默认）, Outlined, Rounded, Two-tone, 和 Sharp。 要导入非默认主题的图标组件，请在图标名称后附加主题名称。 For example `@mui/icons-material/Delete` icon with:
 
-- 导出为 Filled 主题（默认值）：`@material-ui/icons/Delete`，
-- 导出为 Outlined 主题：`@material-ui/icons/DeleteOutlined`，
-- 导出为 Rounded 主题：`@material-ui/icons/DeleteRounded `，
-- 导出为 Twotone 主题：`@material-ui/icons/DeleteTwoTone `，
-- 导出为 Sharp 主题：`@material-ui/icons/DeleteSharp `，
+- Filled theme (default) is exported as `@mui/icons-material/Delete`,
+- Outlined theme is exported as `@mui/icons-material/DeleteOutlined`,
+- Rounded theme is exported as `@mui/icons-material/DeleteRounded`,
+- Twotone theme is exported as `@mui/icons-material/DeleteTwoTone`,
+- Sharp theme is exported as `@mui/icons-material/DeleteSharp`.
 
-> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。
+> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
 ### 测试
 
-出于测试目的，每个从 `@material-ui/icons` 暴露的图标都有一个 `data-testid` 属性，这其中包含了图标的名称。 就像这样：
+For testing purposes, each icon exposed from `@mui/icons-material` has a `data-testid` attribute with the name of the icon. 就像这样：
 
 ```jsx
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@mui/icons-material/Delete';
 ```
 
 一旦挂载后，它就具有以下属性：
@@ -93,7 +93,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 如果你需要使用自定义的 SVG 图标（而它在 [Material Icons](/components/material-icons/) 中不存在），那么你可以使用 `SvgIcon` 封装。 此组件是原生 `<svg>` 元素的拓展版：
 
 - 它具备一些内置的无障碍设计。
-- SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 （使用 `viewBox` 属性，您可以随意自定义）。
+- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other MUI components that use icons. （使用 `viewBox` 属性，您可以随意自定义）。
 - 默认情况下，此组件会继承当前的颜色。 当然，通过 `color` 这个属性，你可以让图标使用主题里的颜色。
 
 ```jsx
@@ -116,7 +116,7 @@ function HomeIcon(props) {
 
 ### 组件属性
 
-即使图标以 `.svg` 的格式保存，你依然可以使用 `SvgIcon` 来包装它。 通过 [svgr](https://github.com/gregberge/svgr) 提供的加载器，您可以导入 SVG 文件，并以 React 组件形式使用。 譬如，使用 webpack ：
+即使图标以 `.svg` 的格式保存，你依然可以使用 `SvgIcon` 来包装它。 [svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. 譬如，使用 webpack ：
 
 ```jsx
 // webpack.config.js
@@ -179,12 +179,12 @@ FontAwesomeIcon 的 `fullWidth` 属性也可以用来应用近似正确的尺寸
 
 ## Icon (Font icons)
 
-对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
+对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 先决条件，你必须要在项目中包含 [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web)。 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
-<Icon>star</Icon>
+<Icon>star</Icon>;
 ```
 
 默认情况下，一个图标会继承使用当前的文本颜色。 您也可以选择使用以下任何一个主题颜色属性来设置图标的颜色：`primary`，`secondary`，`action`，`error` 以及 `disabled`。
@@ -204,13 +204,13 @@ import Icon from '@material-ui/core/Icon';
 对于其他字体，你可以使用 `baseClassName` 属性来自定义基线类名。 例如，你可以使用 Material Design 显示 two-tone 图标：
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <link
   rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone"
-  // 引入 MD 的 two tones 变体                                   ^^^^^^^^
-/>
+  // Import the two tones MD variant                           ^^^^^^^^
+/>;
 ```
 
 {{"demo": "pages/components/icons/TwoToneIcons.js"}}
@@ -291,8 +291,8 @@ const theme = createTheme({
 对于可聚焦的交互式元素，例如当与图标按钮一起使用时，你可以使用 `aria-label` 属性：
 
 ```jsx
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 // ...
 
@@ -308,9 +308,9 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 你需要提供一个只有辅助技术才能看到的文本替代方案：
 
 ```jsx
-import Box from '@material-ui/core/Box';
-import Icon from '@material-ui/core/Icon';
-import { visuallyHidden } from '@material-ui/utils';
+import Box from '@mui/material/Box';
+import Icon from '@mui/material/Icon';
+import { visuallyHidden } from '@mui/utils';
 
 // ...
 
