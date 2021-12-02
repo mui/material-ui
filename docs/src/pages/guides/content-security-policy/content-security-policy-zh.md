@@ -20,7 +20,7 @@ CSP 通过要求开发人员检索其资产的来源并将其列入白名单来�
 
 ### 服务端渲染（SSR）
 
-如果要将 CSP 与 Material-UI （和 JSS）一起使用，你需要使用一次性加密数字（nonce）。 随机数是一个随机生成的字符串，只使用一次，因此您需要添加服务器中间件以在每个请求上生成一个。 关于如何使用 Express 和 React Helmet 来实现，JSS 有一个[很棒的教程](https://github.com/cssinjs/jss/blob/master/docs/csp.md)。 关于一些基本的纲要，请继续阅读。
+To use CSP with MUI (and emotion), you need to use a nonce. 随机数是一个随机生成的字符串，只使用一次，因此您需要添加服务器中间件以在每个请求上生成一个。
 
 CSP nonce 是一个 Base 64 编码的字符串。 你可以生成这样一个：
 
@@ -34,36 +34,46 @@ const nonce = new Buffer(uuidv4()).toString('base64');
 
 ```js
 header('Content-Security-Policy').set(
-  `default-src 'self'; style-src: 'self' 'nonce-${nonce}';`,
+  `default-src 'self'; style-src 'self' 'nonce-${nonce}';`,
 );
 ```
 
-你应该在服务端的 `<style>` 标签中传递一次性加密数字（nonce）。
+You should pass the nonce in the `<style>` tags on the server.
 
 ```jsx
 <style
-  id="jss-server-side"
+  data-emotion={`${style.key} ${style.ids.join(' ')}`}
   nonce={nonce}
-  dangerouslySetInnerHTML={{
-    __html: sheets.toString(),
-  }}
+  dangerouslySetInnerHTML={{ __html: style.css }}
 />
 ```
 
-然后，您必须将此随机数传递给 JSS ，以便将其添加到后续 `<style>` 标记中。
+Then, you must pass this nonce to the emotion cache so it can add it to subsequent `<style>`.
 
-这样的原理是通过将 `<meta property="csp-nonce" content={nonce} />` 标签传递到 HTML 的 `<head>` 中。 然后，通常情况下，JSS 寻找一个 `<meta property="csp-unce"` 标签，并使用 `content` 的值作为随机数。
+> Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from emotion and add the `prepend: true` option.
 
-下面是一个虚拟的头部（header）可以看起来的示例：
+```js
+const cache = createCache({
+  key: 'my-prefix-key',
+  nonce: nonce,
+  prepend: true,
+});
 
-```html
-<head>
-  <meta property="csp-nonce" content="this-is-a-nonce-123" />
-</head>
+function App(props) {
+  return (
+    <CacheProvider value={cache}>
+      <Home />
+    </CacheProvider>
+  );
+}
 ```
 
 ### Create React App (CRA)
 
-根据 [Create React App 文档](https://create-react-app.dev/docs/advanced-configuration/)，Create React App 会在生产构建过程中默认将运行时脚本动态嵌入到 index.html 中。 这需要在你的每次部署时都要在 CSP 中设置一个新的哈希值。
+According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default. This will require a new hash to be set in your CSP during each deployment.
 
-要将 CSP 与 Create React App 的项目一起使用，你需要在用于生产构建的 `.env` 文件中设置 `INLINE_RUNTIME_CHUNK=false`。 这将像往常一样导入运行时脚本，而不是直接嵌入它，就可以避免在每次部署时都需要设置一个新的哈希值的情况了。
+To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build. This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
+
+### styled-components
+
+The configuration of the nonce is not straightforward, but you can follow [this issue](https://github.com/styled-components/styled-components/issues/2363) for more insights.
