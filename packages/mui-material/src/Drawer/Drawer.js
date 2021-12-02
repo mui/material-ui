@@ -44,8 +44,11 @@ const DrawerRoot = styled(Modal, {
   name: 'MuiDrawer',
   slot: 'Root',
   overridesResolver,
-})(({ theme }) => ({
+})(({ theme, ownerState }) => ({
   zIndex: theme.zIndex.drawer,
+  ...(!ownerState.open && {
+    zIndex: -1,
+  }),
 }));
 
 const DrawerDockedRoot = styled('div', {
@@ -54,9 +57,12 @@ const DrawerDockedRoot = styled('div', {
   slot: 'Docked',
   skipVariantsResolver: false,
   overridesResolver,
-})({
+})(({ ownerState }) => ({
   flex: '0 0 auto',
-});
+  ...(!ownerState.open && {
+    zIndex: -1,
+  }),
+}));
 
 const DrawerPaper = styled(Paper, {
   name: 'MuiDrawer',
