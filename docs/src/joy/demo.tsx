@@ -87,7 +87,7 @@ export default function JoyDemo() {
   const colorOptions = ['primary', 'neutral', 'danger', 'info', 'success', 'warning'] as const;
   const sizeOptions = ['small', 'default', 'large'];
   const roundnessOptions = ['default', 'xs', 'sm', 'md', 'lg', 'xl'];
-  const elevationOptions = ['none', 'sm', 'md', 'lg'];
+  const elevationOptions = ['none', 'xs', 'sm', 'md', 'lg', 'xl'];
 
   const [open, setOpen] = React.useState(false);
 
@@ -100,6 +100,26 @@ export default function JoyDemo() {
         elevation: undefined,
       },
     });
+
+  const isNotContextColor = ['Tab1', 'Tab2', 'Tab3'].some(
+    (id) => nodeData[id]?.color !== 'context',
+  );
+  const tabsVariant = nodeData.Tabs1?.variant;
+
+  React.useEffect(() => {
+    if (tabsVariant === 'contained') {
+      if (!isNotContextColor) {
+        const timeout = setTimeout(() => {
+          setOpen(false);
+        }, 500);
+        return () => {
+          clearTimeout(timeout);
+        };
+      }
+      setOpen(true);
+    }
+    return () => {};
+  }, [isNotContextColor, open, tabsVariant]);
 
   const getDisplayedProps = (id: string) => {
     return (
@@ -125,9 +145,6 @@ export default function JoyDemo() {
             id={field}
             value={nodeData[selectedId]?.[field] || 'none'}
             onChange={(event) => {
-              if (field === 'variant') {
-                setOpen(event.target.value === 'contained');
-              }
               updateNode(selectedId, {
                 [field]: event.target.value,
               });
@@ -223,18 +240,17 @@ export default function JoyDemo() {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 gap: 2,
+                bgcolor: 'rgba(0 0 0 / 0.8)',
               },
               (theme) => ({
                 borderRadius: theme.vars.borderRadius.xs,
                 boxShadow: theme.vars.elevation.md,
-                ...theme.variants.contained.success,
-                ...theme.variants.containedOverrides.success,
+                ...theme.variants.containedOverrides.neutral,
               }),
             ]}
           >
-            <Typography color="context" level="body2">
-              🎨 Contextual override is a new feature that let children adapt to the parent that has
-              high contrast background.
+            <Typography color="context" level="body2" sx={{ display: 'flex' }}>
+              `context` color adapts the component to high contrast background.
             </Typography>
             <Button
               size="small"
@@ -253,7 +269,7 @@ export default function JoyDemo() {
                 });
               }}
             >
-              Enable
+              Try it out!
             </Button>
           </Box>
         </Box>

@@ -9,7 +9,7 @@ import {
   BorderRadius,
   Elevation,
 } from '@mui/joy/styles';
-import { Moon, Sun, System } from 'docs/src/joy/icons';
+import { Moon, Sun } from 'docs/src/joy/icons';
 
 interface DemoProps {
   variant?: VariantProp;
@@ -342,39 +342,19 @@ export const ColorSchemePicker = () => {
   }
 
   return (
-    <Box
-      sx={(theme) => ({
-        position: 'relative',
-        display: 'inline-flex',
-        alignItems: 'center',
-        borderRadius: '24px',
-        ...theme.variants.outlined.primary,
-      })}
+    <Button
+      square
+      variant="outlined"
+      onClick={() => {
+        if (mode === 'light') {
+          setMode('dark');
+        } else {
+          setMode('light');
+        }
+      }}
     >
-      <Box sx={{ display: 'flex', gap: '8px', p: 0.5 }}>
-        {(['system', 'light', 'dark'] as const).map((modeId) => {
-          const icons = {
-            system: System,
-            light: Sun,
-            dark: Moon,
-          };
-          const Icon = icons[modeId];
-          return (
-            <Button
-              key={modeId}
-              square
-              variant={mode === modeId ? 'contained' : 'text'}
-              size="small"
-              onClick={() => {
-                setMode(modeId);
-              }}
-            >
-              <Icon fontSize="lg" />
-            </Button>
-          );
-        })}
-      </Box>
-    </Box>
+      {mode === 'light' ? <Moon /> : <Sun />}
+    </Button>
   );
 };
 

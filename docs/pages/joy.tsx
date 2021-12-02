@@ -31,7 +31,6 @@ declare module '@mui/joy/styles' {
       text: string;
       bg: string;
     };
-    shadow: string;
   }
 
   interface PaletteBackground {
@@ -82,7 +81,6 @@ export default function Joy() {
               background: {
                 translucent1: 'rgba(255, 255, 255, 0.6)',
               },
-              shadow: '0deg 0% 73%',
             },
           },
           dark: {
@@ -105,16 +103,11 @@ export default function Joy() {
               background: {
                 translucent1: 'rgba(0, 0, 0, 0.6)',
               },
-              shadow: '0deg 0% 12%',
             },
           },
         },
         fontFamily: {
           display: '"PlusJakartaSans-ExtraBold", var(--joy-fontFamily-fallback)',
-        },
-        lineHeight: {
-          sm: 1.2,
-          md: 1.7,
         },
         typography: {
           body2: {
@@ -131,11 +124,6 @@ export default function Joy() {
             textTransform: 'uppercase',
             color: 'var(--joy-palette-primary-textColor)',
           },
-        },
-        elevation: {
-          sm: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px hsl(var(--joy-palette-shadow) / 0.11), 0.5px 1.3px 1.8px -0.6px hsl(var(--joy-palette-shadow) / 0.18), 1.1px 2.7px 3.8px -1.2px hsl(var(--joy-palette-shadow) / 0.26)',
-          md: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px hsl(var(--joy-palette-shadow) / 0.12), 1.1px 2.8px 3.9px -0.4px hsl(var(--joy-palette-shadow) / 0.17), 2.4px 6.1px 8.6px -0.8px hsl(var(--joy-palette-shadow) / 0.23), 5.3px 13.3px 18.8px -1.2px hsl(var(--joy-palette-shadow) / 0.29)',
-          lg: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px hsl(var(--joy-palette-shadow) / 0.11), 1.8px 4.5px 6.4px -0.2px hsl(var(--joy-palette-shadow) / 0.13), 3.2px 7.9px 11.2px -0.4px hsl(var(--joy-palette-shadow) / 0.16), 4.8px 12px 17px -0.5px hsl(var(--joy-palette-shadow) / 0.19), 7px 17.5px 24.7px -0.7px hsl(var(--joy-palette-shadow) / 0.21), 10.2px 25.5px 36px -0.9px hsl(var(--joy-palette-shadow) / 0.24), 14.8px 36.8px 52.1px -1.1px hsl(var(--joy-palette-shadow) / 0.27), 21px 52.3px 74px -1.2px hsl(var(--joy-palette-shadow) / 0.29)',
         },
       }}
     >
