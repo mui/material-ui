@@ -72,6 +72,7 @@ export { ComponentsProps, ComponentsPropsList } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides, ComponentNameToClassKey } from './overrides';
 export { Components } from './components';
+export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
