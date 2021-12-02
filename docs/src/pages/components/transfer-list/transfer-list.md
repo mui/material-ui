@@ -1,7 +1,7 @@
 ---
 title: Transfer List React component
 components: List, ListItem, Checkbox, Switch
-githubLabel: 'component: TransferList'
+githubLabel: 'component: transfer list'
 ---
 
 # Transfer List

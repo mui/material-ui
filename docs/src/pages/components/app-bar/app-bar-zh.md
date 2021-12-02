@@ -1,7 +1,7 @@
 ---
 title: React App Bar（应用栏）组件
 components: AppBar, Toolbar, Menu
-githubLabel: 'component: AppBar'
+githubLabel: 'component: app bar'
 materialDesign: https://material.io/components/app-bars-top
 ---
 

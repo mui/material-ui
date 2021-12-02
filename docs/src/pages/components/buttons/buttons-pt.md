@@ -2,7 +2,7 @@
 title: Componente React para Botão
 components: Button, IconButton, ButtonBase
 materialDesign: https://material.io/components/buttons
-githubLabel: 'component: Button'
+githubLabel: 'component: button'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 ---
 

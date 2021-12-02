@@ -1,7 +1,7 @@
 ---
 title: Backdrop React Component
 components: Backdrop, BackdropUnstyled
-githubLabel: 'component: Backdrop'
+githubLabel: 'component: backdrop'
 ---
 
 # Backdrop
