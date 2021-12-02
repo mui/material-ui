@@ -57,7 +57,7 @@ If there is an error loading the avatar image, the component falls back to an al
 
 ## Grouped
 
-`AvatarGroup` renders its children as a stack.
+`AvatarGroup` renders its children as a stack. Use the `max` prop to limit the number of avatars.
 
 {{"demo": "pages/components/avatars/GroupAvatars.js"}}
 
