@@ -195,7 +195,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * Specify total amount of avatars.
+   * The total number of avatars. Used for calculating the number of extra avatars.
    * @default children.length
    */
   total: PropTypes.number,
