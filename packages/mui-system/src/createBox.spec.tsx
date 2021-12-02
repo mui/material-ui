@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Box, Theme } from '@mui/system';
+import { createBox } from '@mui/system';
+
+const Box = createBox();
 
 interface TestProps {
   test?: string;
