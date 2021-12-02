@@ -1,22 +1,22 @@
 ---
 title: React Stack component
-components: Stack
+components: Stack 堆叠
 githubLabel: 'component: Stack'
 ---
 
-# Stack
+# Stack 堆叠
 
 <p class="description">The Stack component manages layout of immediate children along the vertical or horizontal axis with optional spacing and/or dividers between each child.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 使用
 
-`Stack` is concerned with one-dimensional layouts, while [Grid](/components/grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
+`Stack` 关注一维布局，而 [Grid](/components/grid/) 处理二维布局。 默认方向是垂直堆叠子项的 `列`。
 
 {{"demo": "pages/components/stack/BasicStack.js", "bg": true}}
 
-To control space between children, use the `spacing` prop. The spacing value can be any number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
+要控制子组件之间的空间，请使用 `spacing` 属性。 间距值可以是任何数字，包括小数（浮点数）和任何字符串（文字）。 该属性借助 [`theme.spaming()`](/customization/spacing/) 被转换为 CSS 属性。
 
 ## 方向
 
@@ -42,7 +42,7 @@ You can switch the `direction` or `spacing` values based on the active breakpoin
 
 {{"demo": "pages/components/stack/InteractiveStack.js", "hideToolbar": true, "bg": true}}
 
-## System props
+## 系统属性
 
 As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a margin-top:
 
