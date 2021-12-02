@@ -86,6 +86,18 @@ describe('<AvatarGroup />', () => {
     expect(container.textContent).to.equal('');
   });
 
+  it('should display extra if clamp max is >= total', () => {
+    const { container } = render(
+      <AvatarGroup total={10} max={10}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(3);
+    expect(container.querySelectorAll('img').length).to.equal(2);
+    expect(container.textContent).to.equal('+8');
+  });
+
   it('should display all avatars with default (circular) variant', () => {
     const { container } = render(
       <AvatarGroup>

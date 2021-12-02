@@ -61,6 +61,12 @@ If there is an error loading the avatar image, the component falls back to an al
 
 {{"demo": "pages/components/avatars/GroupAvatars.js"}}
 
+### Total avatars
+
+If you need to control the total amount of avatars, use the `total` prop.
+
+{{"demo": "pages/components/avatars/TotalAvatars.js"}}
+
 ## With badge
 
 {{"demo": "pages/components/avatars/BadgeAvatars.js"}}
