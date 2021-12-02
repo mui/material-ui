@@ -1,8 +1,8 @@
 # 项目展示
 
-<p class="description">以下列表展示了使用 Material-UI 的一些公共的应用程序。</p>
+<p class="description">The following is a list of some of the public apps using MUI.</p>
 
-您在使用 Material-UI 吗？ [分享你的产品](https://github.com/mui-org/material-ui/issues/22426)。
+您正在使用MUI吗？ [分享你的产品](https://github.com/mui-org/material-ui/issues/22426)。
 
 我们所展示的网站至少要在其中一个维度上有良好的排名：
 
