@@ -2601,8 +2601,12 @@ import './style.css';
 import Chip from '@mui/material/Chip';
 
 const ChipWithGreenIcon = () => (
-  <Chip classes={{ deleteIcon: 'green' }} label="delete icon is green" onDelete={() => {}} />
-)
+  <Chip
+    classes={{ deleteIcon: 'green' }}
+    label="delete icon is green"
+    onDelete={() => {}}
+  />
+);
 ```
 
 In this example, in order to correctly apply a particular style to the delete icon of `Chip`, you need to select the component as specifically as follows:
@@ -2614,7 +2618,6 @@ In this example, in order to correctly apply a particular style to the delete ic
 ```
 
 The following will not correctly apply the style to the delete icon:
-
 
 ```css
 .green {
