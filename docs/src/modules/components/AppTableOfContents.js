@@ -248,6 +248,7 @@ export default function AppTableOfContents(props) {
             variant="body2"
             fontWeight="medium"
             sx={{ color: 'primary.50' }}
+            // eslint-disable-next-line material-ui/no-hardcoded-labels
           >
             Developer survey
             <br />
@@ -256,13 +257,14 @@ export default function AppTableOfContents(props) {
             component="span"
             variant="caption"
             fontWeight="normal"
-            sx={(theme) => ({
+            sx={{
               mt: 1,
               pt: 1,
               color: 'primary.50',
               borderTop: 1,
               borderColor: 'primary.400',
-            })}
+            }}
+            // eslint-disable-next-line material-ui/no-hardcoded-labels
           >
             Help us shape the future of MUI! &#8594;
           </Typography>
