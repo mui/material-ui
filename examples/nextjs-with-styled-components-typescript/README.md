@@ -33,11 +33,11 @@ It includes `@mui/material` and its peer dependencies, including `styled-compone
 
 Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link).
 The example folder provides adapters for usage with MUI.
-More information [in the documentation](https://material-ui.com/guides/routing/#next-js).
+More information [in the documentation](https://mui.com/guides/routing/#next-js).
 
 ## What's next?
 
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://material-ui.com/getting-started/templates/) section.
+You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/getting-started/templates/) section.

@@ -28,11 +28,11 @@ type DesktopDatePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/components/date-picker/)
  *
  * API:
  *
- * - [DesktopDatePicker API](https://material-ui.com/api/desktop-date-picker/)
+ * - [DesktopDatePicker API](https://mui.com/api/desktop-date-picker/)
  */
 const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
   inProps: DesktopDatePickerProps<TDate>,
@@ -50,6 +50,7 @@ const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
   const {
     onChange,
     PopperProps,
+    PaperProps,
     ToolbarComponent = DatePickerToolbar,
     TransitionComponent,
     value,
@@ -63,6 +64,7 @@ const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
       DateInputProps={AllDateInputProps}
       KeyboardDateInputComponent={KeyboardDateInput}
       PopperProps={PopperProps}
+      PaperProps={PaperProps}
       TransitionComponent={TransitionComponent}
     >
       <Picker
@@ -134,6 +136,7 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
   disableCloseOnSelect: PropTypes.bool,
   /**
    * If `true`, the picker and text field are disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -279,11 +282,16 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
    */
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
   /**
-   * Popper props passed down to [Popper](https://material-ui.com/api/popper/) component.
+   * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
+   */
+  PaperProps: PropTypes.object,
+  /**
+   * Popper props passed down to [Popper](https://mui.com/api/popper/) component.
    */
   PopperProps: PropTypes.object,
   /**
    * Make picker read only.
+   * @default false
    */
   readOnly: PropTypes.bool,
   /**
@@ -292,12 +300,12 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
    */
   reduceAnimations: PropTypes.bool,
   /**
-   * Custom renderer for day. Check the [PickersDay](https://material-ui.com/api/pickers-day/) component.
+   * Custom renderer for day. Check the [PickersDay](https://mui.com/api/pickers-day/) component.
    */
   renderDay: PropTypes.func,
   /**
    * The `renderInput` prop allows you to customize the rendered input.
-   * The `props` argument of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api) that you need to forward.
+   * The `props` argument of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api) that you need to forward.
    * Pay specific attention to the `ref` and `inputProps` keys.
    * @example ```jsx
    * renderInput={props => <TextField {...props} />}
@@ -355,7 +363,7 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
    */
   toolbarTitle: PropTypes.node,
   /**
-   * Custom component for popper [Transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).
+   * Custom component for popper [Transition](https://mui.com/components/transitions/#transitioncomponent-prop).
    */
   TransitionComponent: PropTypes.elementType,
   /**

@@ -67,7 +67,7 @@ const theme = createTheme({
           props: { variant: 'dashed' },
           style: {
             textTransform: 'none',
-            border: `2px dashed grey${blue[500]}`,
+            border: `2px dashed ${blue[500]}`,
           },
         },
         {

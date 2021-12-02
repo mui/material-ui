@@ -24,7 +24,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     classes?: Partial<AvatarClasses>;
     /**
-     * <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes">Attributes</a> applied to the `img` element if the component is used to display an image.
+     * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
      * It can be used to listen for the loading error event.
      */
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
@@ -61,11 +61,11 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Avatars](https://material-ui.com/components/avatars/)
+ * - [Avatars](https://mui.com/components/avatars/)
  *
  * API:
  *
- * - [Avatar API](https://material-ui.com/api/avatar/)
+ * - [Avatar API](https://mui.com/api/avatar/)
  */
 declare const Avatar: OverridableComponent<AvatarTypeMap>;
 

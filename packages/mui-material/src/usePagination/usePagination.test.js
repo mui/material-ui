@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import { expect } from 'chai';
 import usePagination from '@mui/material/usePagination';
 
 describe('usePagination', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
   const serialize = (items) => items.map((item) => (item.type === 'page' ? item.page : item.type));
 
   const renderHook = (useHook) => {

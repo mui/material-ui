@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import TextField from '@mui/material/TextField';
 import { TransitionProps } from '@mui/material/transitions';
 import { fireEvent, screen, userEvent } from 'test/utils';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import {
-  createPickerRender,
+  createPickerRenderer,
   FakeTransitionComponent,
   adapterToUse,
-  getByMuiTest,
 } from '../internal/pickers/test-utils';
 
 const UncontrolledOpenDesktopDatePicker = (({
@@ -42,14 +41,7 @@ const UncontrolledOpenDesktopDatePicker = (({
 }) as typeof DesktopDatePicker;
 
 describe('<DesktopDatePicker />', () => {
-  let clock: SinonFakeTimers;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-  const render = createPickerRender();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   it('prop: components.OpenPickerIcon', () => {
     function HomeIcon(props: SvgIconProps) {
@@ -273,7 +265,28 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    expect(getByMuiTest('picker-toolbar')).toBeVisible();
+    expect(screen.getByMuiTest('picker-toolbar')).toBeVisible();
+  });
+
+  it('switches between views uncontrolled', () => {
+    const handleViewChange = spy();
+    render(
+      <DesktopDatePicker
+        open
+        showToolbar
+        onChange={() => {}}
+        TransitionComponent={FakeTransitionComponent}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
+        renderInput={(params) => <TextField {...params} />}
+        onViewChange={handleViewChange}
+      />,
+    );
+
+    fireEvent.click(screen.getByLabelText(/switch to year view/i));
+
+    expect(handleViewChange.callCount).to.equal(1);
+    expect(screen.queryByLabelText(/switch to year view/i)).to.equal(null);
+    expect(screen.getByLabelText('year view is open, switch to calendar view')).toBeVisible();
   });
 
   describe('prop: PopperProps', () => {
@@ -298,6 +311,34 @@ describe('<DesktopDatePicker />', () => {
 
       fireEvent.click(popper);
       fireEvent.touchStart(popper);
+
+      expect(handleClick.callCount).to.equal(1);
+      expect(handleTouchStart.callCount).to.equal(1);
+    });
+  });
+
+  describe('prop: PaperProps', () => {
+    it('forwards onClick and onTouchStart', () => {
+      const handleClick = spy();
+      const handleTouchStart = spy();
+      render(
+        <DesktopDatePicker
+          open
+          onChange={() => {}}
+          PaperProps={{
+            onClick: handleClick,
+            onTouchStart: handleTouchStart,
+            // @ts-expect-error `data-*` attributes are not recognized in props objects
+            'data-testid': 'paper',
+          }}
+          renderInput={(params) => <TextField {...params} />}
+          value={null}
+        />,
+      );
+      const paper = screen.getByTestId('paper');
+
+      fireEvent.click(paper);
+      fireEvent.touchStart(paper);
 
       expect(handleClick.callCount).to.equal(1);
       expect(handleTouchStart.callCount).to.equal(1);

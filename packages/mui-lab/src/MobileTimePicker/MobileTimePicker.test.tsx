@@ -2,13 +2,12 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { describeConformance, fireEvent, fireTouchChangedEvent } from 'test/utils';
+import { describeConformance, fireEvent, fireTouchChangedEvent, screen } from 'test/utils';
 import MobileTimePicker from '@mui/lab/MobileTimePicker';
 import {
   wrapPickerMount,
-  createPickerRender,
+  createPickerRenderer,
   adapterToUse,
-  getByMuiTest,
 } from '../internal/pickers/test-utils';
 
 function createMouseEventWithOffsets(
@@ -28,7 +27,7 @@ function createMouseEventWithOffsets(
 }
 
 describe('<MobileTimePicker />', () => {
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   describeConformance(
     <MobileTimePicker
@@ -73,10 +72,16 @@ describe('<MobileTimePicker />', () => {
       offsetY: 15,
     };
 
-    fireEvent(getByMuiTest('clock'), createMouseEventWithOffsets('mousemove', fakeEventOptions));
-    fireEvent(getByMuiTest('clock'), createMouseEventWithOffsets('mouseup', fakeEventOptions));
+    fireEvent(
+      screen.getByMuiTest('clock'),
+      createMouseEventWithOffsets('mousemove', fakeEventOptions),
+    );
+    fireEvent(
+      screen.getByMuiTest('clock'),
+      createMouseEventWithOffsets('mouseup', fakeEventOptions),
+    );
 
-    expect(getByMuiTest('hours')).to.have.text('11');
+    expect(screen.getByMuiTest('hours')).to.have.text('11');
     expect(onChangeMock.callCount).to.equal(1);
   });
 
@@ -97,10 +102,10 @@ describe('<MobileTimePicker />', () => {
       />,
     );
 
-    fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', {
+    fireTouchChangedEvent(screen.getByMuiTest('clock'), 'touchmove', {
       changedTouches: [{ clientX: 20, clientY: 15 }],
     });
-    expect(getByMuiTest('minutes')).to.have.text('53');
+    expect(screen.getByMuiTest('minutes')).to.have.text('53');
   });
 
   it('allows to select full date from empty', function test() {
@@ -123,10 +128,10 @@ describe('<MobileTimePicker />', () => {
 
     render(<TimePickerWithState />);
 
-    expect(getByMuiTest('hours')).to.have.text('--');
-    expect(getByMuiTest('minutes')).to.have.text('--');
+    expect(screen.getByMuiTest('hours')).to.have.text('--');
+    expect(screen.getByMuiTest('minutes')).to.have.text('--');
 
-    fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', {
+    fireTouchChangedEvent(screen.getByMuiTest('clock'), 'touchmove', {
       changedTouches: [
         {
           clientX: 20,
@@ -135,7 +140,7 @@ describe('<MobileTimePicker />', () => {
       ],
     });
 
-    expect(getByMuiTest('hours')).not.to.have.text('--');
-    expect(getByMuiTest('minutes')).not.to.have.text('--');
+    expect(screen.getByMuiTest('hours')).not.to.have.text('--');
+    expect(screen.getByMuiTest('minutes')).not.to.have.text('--');
   });
 });

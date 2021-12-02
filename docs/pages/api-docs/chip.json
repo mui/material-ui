@@ -24,7 +24,12 @@
       },
       "default": "'medium'"
     },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "variant": {
       "type": {
         "name": "union",
@@ -82,6 +87,5 @@
   "filename": "/packages/mui-material/src/Chip/Chip.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/chips/\">Chips</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

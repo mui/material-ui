@@ -37,7 +37,7 @@ const DesignKitValues = () => {
         Collaboration
       </Typography>
       <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-        Be more <GradientText>efficient</GradientText> designing and developing with the same
+        Be more efficient <GradientText>designing and developing</GradientText> with the same
         library
       </Typography>
       <Grid container spacing={2}>

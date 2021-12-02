@@ -1,7 +1,8 @@
 {
   "props": {
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "addEndListener": { "type": { "name": "func" } },
     "appear": { "type": { "name": "bool" }, "default": "true" },
-    "children": { "type": { "name": "custom", "description": "element" } },
     "easing": {
       "type": {
         "name": "union",
@@ -27,6 +28,5 @@
     "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
   },
   "demos": "<ul><li><a href=\"/components/transitions/\">Transitions</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

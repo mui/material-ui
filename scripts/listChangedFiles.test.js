@@ -19,13 +19,15 @@ describe('listChangedFiles', function listChangedFilesSuite() {
   const timeEnd = process.env.CI ? console.timeEnd : noop;
   it('should detect changes', async () => {
     time('should detect changes');
-    const changesBeforeAdd = await listChangedFiles({ branch: 'next' });
+    // #default-branch-switch
+    const changesBeforeAdd = await listChangedFiles({ branch: 'master' });
     timeLog('should detect changes');
     const testFile = 'someTestFile.yml';
     try {
       await writeFileAsync(testFile, 'console.log("hello");');
       timeLog('should detect changes');
-      const changesAfterAdd = await listChangedFiles({ branch: 'next' });
+      // #default-branch-switch
+      const changesAfterAdd = await listChangedFiles({ branch: 'master' });
       timeLog('should detect changes');
       expect(changesBeforeAdd).not.to.contain(testFile);
       expect(changesAfterAdd).to.contain(testFile);

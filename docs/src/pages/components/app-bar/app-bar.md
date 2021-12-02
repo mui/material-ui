@@ -19,21 +19,25 @@ It can transform into a contextual action bar or be used as a navbar.
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
-## App Bar with a primary search field
-
-A primary searchbar.
-
-{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
-
 ## App Bar with menu
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
+
+## App Bar with responsive menu
+
+{{"demo": "pages/components/app-bar/ResponsiveAppBar.js", "bg": true}}
 
 ## App Bar with search field
 
 A side searchbar.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
+
+## App Bar with a primary search field
+
+A primary searchbar.
+
+{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
 ## Dense (desktop only)
 
@@ -137,27 +141,9 @@ function HideOnScroll(props) {
 }
 ```
 
-## Enable Color on Dark
+## Enable color on dark
 
-Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the AppBar in dark mode.
+Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode.
 You can override this behavior by setting the `enableColorOnDark` prop to `true`.
 
-```jsx
-// Specific element via prop
-<AppBar enableColorOnDark />
-
-// Affect all AppBars via theme
-<ThemeProvider
-  theme={createTheme({
-    components: {
-      MuiAppBar: {
-        defaultProps: {
-          enableColorOnDark: true,
-        },
-      },
-    },
-  })}
->
-  <AppBar />
-</ThemeProvider>
-```
+{{"demo": "pages/components/app-bar/EnableColorOnDarkAppBar.js", "bg": true}}

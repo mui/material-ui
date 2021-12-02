@@ -8,13 +8,13 @@ The core team. May 23, 2019.
 
 > React components for faster and simpler web development. Build your own design system, or start with Material Design.
 
-MUI v4 has finally arrived. We are so excited about this release, as it defines better foundations for the UI components. Thank you to everyone, especially to [the team](/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you.**
+MUI v4 has finally arrived. We are so excited about this release, as it defines better foundations for the UI components. Thank you to everyone, especially to [the team](/about/), and to everyone who's contributed code, issue triage, and support. **Thank you.**
 
 ✨✨✨ See the **[4.0.0 Release Note](https://github.com/mui-org/material-ui/releases/tag/v4.0.0)** on GitHub. ✨✨✨
 
 ![TypeScript switch](/static/blog/material-ui-v4-is-out/banner.png)
 
-<p class="blog-description">https://material-ui.com/</p>
+<p class="blog-description">https://mui.com/</p>
 
 ## Summary
 
@@ -27,7 +27,7 @@ MUI v4 has finally arrived. We are so excited about this release, as it defines 
 
 MUI v1 was [released](https://medium.com/material-ui/material-ui-v1-is-out-e73ce13463eb) one year ago. Version 4 is our most important major release since then. For those unfamiliar with the history of the project, we didn't release a v2, and v3 only introduced a slight browsers support change.
 
-This release happens within our [fixed frequency](https://material-ui.com/versions/#release-frequency) release strategy. We try to release a major at least every 12 months and at most every 6 months. The migration from v0 to v1 was painful, it almost felt like using two different UI libraries. We've done our best to minimize the time needed to migrate from v3 to v4. To help ease the transition, you can follow this [migration guide](/guides/migration-v3/) 📚. It shouldn't take more than a few hours.
+This release happens within our [fixed frequency](https://mui.com/versions/#release-frequency) release strategy. We try to release a major at least every 12 months and at most every 6 months. The migration from v0 to v1 was painful, it almost felt like using two different UI libraries. We've done our best to minimize the time needed to migrate from v3 to v4. To help ease the transition, you can follow this [migration guide](/guides/migration-v3/) 📚. It shouldn't take more than a few hours.
 
 This release is influenced by two major factors. First, following the Developer Survey we ran in March, we have [analyzed the results](/blog/2019-developer-survey-results/) and used them to change [our priorities](/discover-more/roadmap/#our-priorities) for the coming year. Secondly, we needed to be up to date with the latest best practices in the React community and with the Material Design Specification.
 
@@ -37,15 +37,15 @@ The Material Design team at Google has made the customization of their design sy
 
 ![Demo1](/static/blog/material-ui-v4-is-out/demo1.png)
 
-<p class="blog-description"><a href="https://material-ui.com/components/text-fields/#customized-inputs">live demo</a></p>
+<p class="blog-description"><a href="https://mui.com/components/text-fields/#customized-inputs">live demo</a></p>
 
 ![Demo2](/static/blog/material-ui-v4-is-out/demo2.png)
 
-<p class="blog-description"><a href="https://material-ui.com/components/tabs/#customized-tabs">live demo</a></p>
+<p class="blog-description"><a href="https://mui.com/components/tabs/#customized-tabs">live demo</a></p>
 
 ![Demo3](/static/blog/material-ui-v4-is-out/demo3.png)
 
-<p class="blog-description"><a href="https://mui-treasury.com/styles/button">live demo</a></p>
+<p class="blog-description"><a href="https://mui-treasury.com/styles/button/">live demo</a></p>
 
 After listening to v3 customization experiences of hundreds of developers, we realized that we could do better. We have found 4 classes of common problems.
 
@@ -163,7 +163,7 @@ import {
 
 <p class="blog-description">Fine level tracking</p>
 
-- **Preact X.** We have introduced a working [integration example with Preact](https://github.com/mui-org/material-ui/blob/next/examples/preact/README.md). Preact is a fast, 1/10 smaller alternative to React, with the same modern API. We will do our best to support it.
+- **Preact X.** We have introduced a working [integration example with Preact](https://github.com/mui-org/material-ui/blob/HEAD/examples/preact/README.md). Preact is a fast, 1/10 smaller alternative to React, with the same modern API. We will do our best to support it.
 - **Runtime performance**. We have heard that some people struggle with the runtime cost of using MUI. We have solved a few problems reported, but nothing systematic. We have observed [a slight gain](https://github.com/mui-org/material-ui/pull/15023) by moving from the classes API to the hooks API. However, it's hard to make progress as we lack a properly setup performance bench. It's something to consider for v5.
 
 ### Preparing for the future

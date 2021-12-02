@@ -10,4 +10,4 @@ Copy the files into your project, or one of the [example projects](https://githu
 
 <!-- #default-branch-switch -->
 
-View the demo at https://material-ui.com/getting-started/templates/blog/.
+View the demo at https://mui.com/getting-started/templates/blog/.

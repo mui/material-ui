@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformance, fireEvent, createClientRender } from 'test/utils';
+import { describeConformance, fireEvent, createRenderer } from 'test/utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
@@ -10,7 +10,7 @@ import TablePagination, { tablePaginationClasses as classes } from '@mui/materia
 
 describe('<TablePagination />', () => {
   const noop = () => {};
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <TablePagination count={1} onPageChange={noop} page={0} rowsPerPage={10} />,
@@ -246,7 +246,7 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
-      expect(container.querySelectorAll('p')[1]).to.have.text('0-0 of 0');
+      expect(container.querySelectorAll('p')[1]).to.have.text('0–0 of 0');
     });
 
     it('should hide the rows per page selector if there are less than two options', () => {
@@ -296,9 +296,9 @@ describe('<TablePagination />', () => {
 
       const { container, getByRole } = render(<Test />);
 
-      expect(container).to.have.text('Rows per page:101-10 of more than 10');
+      expect(container).to.have.text('Rows per page:101–10 of more than 10');
       fireEvent.click(getByRole('button', { name: 'Go to next page' }));
-      expect(container).to.have.text('Rows per page:1011-20 of more than 20');
+      expect(container).to.have.text('Rows per page:1011–20 of more than 20');
     });
   });
 
@@ -420,7 +420,7 @@ describe('<TablePagination />', () => {
       );
 
       expect(container).to.include.text('All');
-      expect(container).to.include.text('1-25 of 25');
+      expect(container).to.include.text('1–25 of 25');
     });
   });
 

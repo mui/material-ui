@@ -3,7 +3,12 @@
     "classes": { "type": { "name": "object" } },
     "icon": { "type": { "name": "node" } },
     "openIcon": { "type": { "name": "node" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "SpeedDialIcon",
   "styles": {
@@ -16,6 +21,5 @@
   "filename": "/packages/mui-material/src/SpeedDialIcon/SpeedDialIcon.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/speed-dial/\">Speed Dial</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

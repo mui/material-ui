@@ -17,6 +17,5 @@
   "filename": "/packages/mui-material/src/MenuList/MenuList.js",
   "inheritance": { "component": "List", "pathname": "/api/list/" },
   "demos": "<ul><li><a href=\"/components/menus/\">Menus</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

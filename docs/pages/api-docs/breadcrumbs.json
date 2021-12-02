@@ -14,7 +14,12 @@
     },
     "maxItems": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
     "separator": { "type": { "name": "node" }, "default": "'/'" },
-    "sx": { "type": { "name": "object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "Breadcrumbs",
   "styles": {
@@ -27,6 +32,5 @@
   "filename": "/packages/mui-material/src/Breadcrumbs/Breadcrumbs.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/breadcrumbs/\">Breadcrumbs</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

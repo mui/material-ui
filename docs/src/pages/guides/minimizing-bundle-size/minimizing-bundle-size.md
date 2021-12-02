@@ -60,16 +60,16 @@ Anything deeper is considered private and can cause issues, such as module dupli
 // ✅ OK
 import { Add as AddIcon } from '@mui/icons-material';
 import { Tabs } from '@mui/material';
-//                                 ^^^^ 1st or top-level
+//                         ^^^^^^^^ 1st or top-level
 
 // ✅ OK
 import AddIcon from '@mui/icons-material/Add';
 import Tabs from '@mui/material/Tabs';
-//                                  ^^^^ 2nd level
+//                              ^^^^ 2nd level
 
 // ❌ NOT OK
 import TabIndicator from '@mui/material/Tabs/TabIndicator';
-//                                               ^^^^^^^^^^^^ 3rd level
+//                                           ^^^^^^^^^^^^ 3rd level
 ```
 
 If you're using `eslint` you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/rules/no-restricted-imports). The following `.eslintrc` configuration will highlight problematic imports from `@mui` packages:
@@ -201,7 +201,23 @@ It will perform the following diffs:
 
 The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
 
-⚠️ In order to minimize duplication of code in users' bundles, library authors are **strongly discouraged** to import from any of the other bundles.
+⚠️ Developers are **strongly discouraged** to import from any of the other bundles directly.
+Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles.
+Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
+
+```js
+{
+  resolve: {
+    alias: {
+      '@mui/base': '@mui/base/legacy',
+      '@mui/lab': '@mui/lab/legacy',
+      '@mui/material': '@mui/material/legacy',
+      '@mui/styled-engine': '@mui/styled-engine/legacy',
+      '@mui/system': '@mui/system/legacy',
+    }
+  }
+}
+```
 
 ### Modern bundle
 

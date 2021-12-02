@@ -9,7 +9,12 @@
     "MenuListProps": { "type": { "name": "object" }, "default": "{}" },
     "onClose": { "type": { "name": "func" } },
     "PopoverClasses": { "type": { "name": "object" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "transitionDuration": {
       "type": {
         "name": "union",
@@ -30,6 +35,5 @@
   "filename": "/packages/mui-material/src/Menu/Menu.js",
   "inheritance": { "component": "Popover", "pathname": "/api/popover/" },
   "demos": "<ul><li><a href=\"/components/app-bar/\">App Bar</a></li>\n<li><a href=\"/components/menus/\">Menus</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

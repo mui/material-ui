@@ -2,7 +2,7 @@
 title: React Table（表格）组件
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: Table'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
+waiAria: https://www.w3.org/TR/wai-aria-practices/#table
 materialDesign: https://material.io/components/data-tables
 ---
 
@@ -113,7 +113,7 @@ Here is an example of a table with scrollable rows and fixed column headers. It 
 
 ## 无障碍设计
 
-（WAI 教程：https://www.w3.org/WAI/tutorials/tables/）
+（WAI 教程：<https://www.w3.org/WAI/tutorials/tables/>）
 
 ### Caption 字幕
 

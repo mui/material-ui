@@ -15,7 +15,7 @@ export default function transformer(file, api, options) {
     .filter((path) => path.node.source.value === '@material-ui/core/withWidth')
     .forEach(() => {
       lastImport.insertAfter(
-        '// FIXME checkout https://material-ui.com/components/use-media-query/#migrating-from-withwidth\nconst withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;',
+        '// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth\nconst withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;',
       );
     })
     .remove();
@@ -29,7 +29,7 @@ export default function transformer(file, api, options) {
         .filter((s) => s.imported.name === 'withWidth')
         .forEach((s) => {
           lastImport.insertAfter(
-            '// FIXME checkout https://material-ui.com/components/use-media-query/#migrating-from-withwidth\nconst withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;'.replace(
+            '// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth\nconst withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;'.replace(
               /withWidth/g,
               s.local.name,
             ),

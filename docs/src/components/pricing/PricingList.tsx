@@ -38,9 +38,9 @@ const Plan = React.forwardRef<
           variant="outlined"
           disabled
           fullWidth
-          sx={{ py: 1, '&.Mui-disabled': { color: 'text.secondary' } }}
+          sx={{ py: 1, '&.Mui-disabled': { color: 'text.disabled' } }}
         >
-          Available later this year!
+          In progress!
         </Button>
       ) : (
         <Button
@@ -48,7 +48,11 @@ const Plan = React.forwardRef<
           fullWidth
           component={Link}
           noLinkStyle
-          href={plan === 'community' ? '/getting-started/usage/' : '/store/items/material-ui-pro/'}
+          href={
+            plan === 'community'
+              ? '/getting-started/usage/'
+              : 'https://material-ui.com/store/items/material-ui-pro/'
+          }
           endIcon={<KeyboardArrowRightRounded />}
           sx={{ py: 1 }}
         >
@@ -94,7 +98,7 @@ export default function PricingList() {
             borderBottom: '1px solid',
             borderColor: 'divider',
             '&.Mui-selected': {
-              bgcolor: 'grey.50',
+              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50'),
             },
           },
         }}

@@ -6,7 +6,11 @@ import getJSExports from '../util/getJSExports';
 if (process.env.NODE_ENV === 'test') {
   const resolve = require.resolve;
   require.resolve = (source) =>
-    resolve(source.replace(/^@material-ui\/core\/modern/, '../../../mui-material/src'));
+    resolve(
+      source
+        .replace(/^@material-ui\/core\/es/, '../../../mui-material/src')
+        .replace(/^@material-ui\/core\/modern/, '../../../mui-material/src'),
+    );
 }
 
 export default function transformer(fileInfo, api, options) {
@@ -47,11 +51,18 @@ export default function transformer(fileInfo, api, options) {
     }
     const targetImportPath = `${targetModule}/${subpath}`;
 
-    const whitelist = getJSExports(
-      require.resolve(`${importModule}/modern/${subpath}`, {
+    let loader;
+    try {
+      loader = require.resolve(`${importModule}/modern/${subpath}`, {
         paths: [dirname(fileInfo.path)],
-      }),
-    );
+      });
+    } catch (error) {
+      loader = require.resolve(`${importModule}/es/${subpath}`, {
+        paths: [dirname(fileInfo.path)],
+      });
+    }
+
+    const whitelist = getJSExports(loader);
 
     path.node.specifiers.forEach((specifier, index) => {
       if (!path.node.specifiers.length) {

@@ -17,7 +17,7 @@ export const componentCode = `<Card>
   <Box sx={{ p: 2, display: 'flex' }}>
     <Avatar variant="rounded" src="avatar1.jpg" />
     <Stack spacing={0.5}>
-      <Typography fontWeight={600}>Michael Scott</Typography>
+      <Typography fontWeight={700}>Michael Scott</Typography>
       <Typography variant="body2" color="text.secondary">
       <LocationOn sx={{color: grey[500]}} /> Scranton, PA
       </Typography>
@@ -68,7 +68,7 @@ export default function MaterialDesignDemo(props: CardProps) {
             '& svg': { fontSize: 20, verticalAlign: 'bottom', mr: 0.5 },
           }}
         >
-          <Typography fontWeight={600}>Michael Scott</Typography>
+          <Typography fontWeight={700}>Michael Scott</Typography>
           <Typography2 variant="body2" color="text.secondary">
             <LocationOn sx={{ color: grey[500] }} />
             Scranton, PA

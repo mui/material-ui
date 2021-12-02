@@ -5,7 +5,12 @@
     "icon": { "type": { "name": "node" } },
     "label": { "type": { "name": "node" } },
     "showLabel": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "value": { "type": { "name": "any" } }
   },
   "name": "BottomNavigationAction",
@@ -19,6 +24,5 @@
   "filename": "/packages/mui-material/src/BottomNavigationAction/BottomNavigationAction.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/bottom-navigation/\">Bottom Navigation</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -48,18 +48,6 @@ const pages: readonly MuiPage[] = [
     children: [
       {
         pathname: '/components',
-        subheader: '/components/layout',
-        children: [
-          { pathname: '/components/box' },
-          { pathname: '/components/container' },
-          { pathname: '/components/grid' },
-          { pathname: '/components/stack' },
-          { pathname: '/components/image-list' },
-          { pathname: '/components/hidden' },
-        ],
-      },
-      {
-        pathname: '/components',
         subheader: '/components/inputs',
         children: [
           { pathname: '/components/autocomplete' },
@@ -75,43 +63,6 @@ const pages: readonly MuiPage[] = [
           { pathname: '/components/text-fields', title: 'Text field' },
           { pathname: '/components/transfer-list' },
           { pathname: '/components/toggle-button' },
-        ],
-      },
-      {
-        pathname: '/components',
-        subheader: '/components/navigation',
-        children: [
-          { pathname: '/components/bottom-navigation' },
-          { pathname: '/components/breadcrumbs' },
-          { pathname: '/components/drawers', title: 'Drawer' },
-          { pathname: '/components/links', title: 'Link' },
-          { pathname: '/components/menus', title: 'Menu' },
-          { pathname: '/components/pagination' },
-          { pathname: '/components/speed-dial' },
-          { pathname: '/components/steppers', title: 'Stepper' },
-          { pathname: '/components/tabs' },
-        ],
-      },
-      {
-        pathname: '/components',
-        subheader: '/components/surfaces',
-        children: [
-          { pathname: '/components/accordion' },
-          { pathname: '/components/app-bar' },
-          { pathname: '/components/cards', title: 'Card' },
-          { pathname: '/components/paper' },
-        ],
-      },
-      {
-        pathname: '/components',
-        subheader: '/components/feedback',
-        children: [
-          { pathname: '/components/alert' },
-          { pathname: '/components/backdrop' },
-          { pathname: '/components/dialogs' },
-          { pathname: '/components/progress' },
-          { pathname: '/components/skeleton' },
-          { pathname: '/components/snackbars', title: 'Snackbar' },
         ],
       },
       {
@@ -132,29 +83,51 @@ const pages: readonly MuiPage[] = [
       },
       {
         pathname: '/components',
-        subheader: '/components/data-grid',
+        subheader: '/components/feedback',
         children: [
-          {
-            pathname: '/components/data-grid',
-            subheader: '/components/data-grid/overview',
-          },
-          { pathname: '/components/data-grid/demo' },
-          { pathname: '/components/data-grid/getting-started' },
-          { pathname: '/components/data-grid/layout' },
-          { pathname: '/components/data-grid/columns' },
-          { pathname: '/components/data-grid/rows' },
-          { pathname: '/components/data-grid/editing' },
-          { pathname: '/components/data-grid/sorting' },
-          { pathname: '/components/data-grid/filtering' },
-          { pathname: '/components/data-grid/pagination' },
-          { pathname: '/components/data-grid/selection' },
-          { pathname: '/components/data-grid/export' },
-          { pathname: '/components/data-grid/components' },
-          { pathname: '/components/data-grid/style' },
-          { pathname: '/components/data-grid/localization' },
-          { pathname: '/components/data-grid/virtualization' },
-          { pathname: '/components/data-grid/accessibility' },
-          { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
+          { pathname: '/components/alert' },
+          { pathname: '/components/backdrop' },
+          { pathname: '/components/dialogs' },
+          { pathname: '/components/progress' },
+          { pathname: '/components/skeleton' },
+          { pathname: '/components/snackbars', title: 'Snackbar' },
+        ],
+      },
+      {
+        pathname: '/components',
+        subheader: '/components/surfaces',
+        children: [
+          { pathname: '/components/accordion' },
+          { pathname: '/components/app-bar' },
+          { pathname: '/components/cards', title: 'Card' },
+          { pathname: '/components/paper' },
+        ],
+      },
+      {
+        pathname: '/components',
+        subheader: '/components/navigation',
+        children: [
+          { pathname: '/components/bottom-navigation' },
+          { pathname: '/components/breadcrumbs' },
+          { pathname: '/components/drawers', title: 'Drawer' },
+          { pathname: '/components/links', title: 'Link' },
+          { pathname: '/components/menus', title: 'Menu' },
+          { pathname: '/components/pagination' },
+          { pathname: '/components/speed-dial' },
+          { pathname: '/components/steppers', title: 'Stepper' },
+          { pathname: '/components/tabs' },
+        ],
+      },
+      {
+        pathname: '/components',
+        subheader: '/components/layout',
+        children: [
+          { pathname: '/components/box' },
+          { pathname: '/components/container' },
+          { pathname: '/components/grid' },
+          { pathname: '/components/stack' },
+          { pathname: '/components/image-list' },
+          { pathname: '/components/hidden' },
         ],
       },
       {
@@ -171,6 +144,35 @@ const pages: readonly MuiPage[] = [
           { pathname: '/components/textarea-autosize' },
           { pathname: '/components/transitions' },
           { pathname: '/components/use-media-query', title: 'useMediaQuery' },
+        ],
+      },
+      {
+        pathname: '/components',
+        subheader: '/components/data-grid',
+        children: [
+          {
+            pathname: '/components/data-grid',
+            subheader: '/components/data-grid/overview',
+            title: 'Overview',
+          },
+          { pathname: '/components/data-grid/demo' },
+          { pathname: '/components/data-grid/getting-started' },
+          { pathname: '/components/data-grid/layout' },
+          { pathname: '/components/data-grid/columns' },
+          { pathname: '/components/data-grid/rows' },
+          { pathname: '/components/data-grid/editing' },
+          { pathname: '/components/data-grid/sorting' },
+          { pathname: '/components/data-grid/filtering' },
+          { pathname: '/components/data-grid/pagination' },
+          { pathname: '/components/data-grid/selection' },
+          { pathname: '/components/data-grid/events' },
+          { pathname: '/components/data-grid/export' },
+          { pathname: '/components/data-grid/components' },
+          { pathname: '/components/data-grid/style' },
+          { pathname: '/components/data-grid/localization' },
+          { pathname: '/components/data-grid/virtualization' },
+          { pathname: '/components/data-grid/accessibility' },
+          { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
         ],
       },
       {
@@ -209,21 +211,36 @@ const pages: readonly MuiPage[] = [
         title: 'Data Grid',
         children: [
           { pathname: '/api-docs/data-grid', title: 'API Reference' },
-          { pathname: '/api-docs/data-grid/data-grid' },
-          { pathname: '/api-docs/data-grid/x-grid' },
-          { pathname: '/api-docs/data-grid/grid-api' },
-          { pathname: '/api-docs/data-grid/grid-col-def' },
-          { pathname: '/api-docs/data-grid/grid-cell-params' },
-          { pathname: '/api-docs/data-grid/grid-row-params' },
-          { pathname: '/api-docs/data-grid/grid-export-csv-options' },
-        ],
+          { pathname: '/api-docs/data-grid/data-grid', title: 'DataGrid' },
+          { pathname: '/api-docs/data-grid/data-grid-pro', title: 'DataGridPro' },
+          { pathname: '/api-docs/data-grid/grid-api', title: 'GridApi' },
+          { pathname: '/api-docs/data-grid/grid-col-def', title: 'GridColDef' },
+          { pathname: '/api-docs/data-grid/grid-cell-params', title: 'GridCellParams' },
+          { pathname: '/api-docs/data-grid/grid-row-params', title: 'GridRowParams' },
+          {
+            pathname: '/api-docs/data-grid/grid-csv-export-options',
+            title: 'GridCSVExportOptions',
+          },
+          {
+            pathname: '/api-docs/data-grid/grid-print-export-options',
+            title: 'GridPrintExportOptions',
+          },
+        ].map((page) => {
+          return {
+            ...page,
+            linkProps: { linkAs: `${page.pathname.replace(/^\/api-docs/, '/api')}/` },
+          };
+        }),
       },
     ]
       .sort((a, b) =>
         a.pathname.replace('/api-docs/', '').localeCompare(b.pathname.replace('/api-docs/', '')),
       )
       .map((page) => {
-        return { ...page, linkProps: { as: page.pathname.replace(/^\/api-docs/, '/api') } };
+        return {
+          ...page,
+          linkProps: { linkAs: `${page.pathname.replace(/^\/api-docs/, '/api')}/` },
+        };
       }),
   },
   {
@@ -281,6 +298,8 @@ const pages: readonly MuiPage[] = [
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
+      { pathname: '/guides/classname-generator', title: 'ClassName Generator' },
+      { pathname: '/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
       { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
       { pathname: '/guides/styled-engine' },
@@ -319,9 +338,9 @@ const pages: readonly MuiPage[] = [
       { pathname: '/discover-more/roadmap' },
       { pathname: '/discover-more/backers', title: 'Sponsors & Backers' },
       { pathname: '/discover-more/vision' },
-      { pathname: '/discover-more/team' },
       { pathname: '/discover-more/changelog' },
       { pathname: '/discover-more/languages' },
+      { pathname: '/about', title: 'About us' },
     ],
   },
   {

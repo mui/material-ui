@@ -19,13 +19,13 @@ Buttons communicate actions that users can take. They are typically placed throu
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic Button
+## Basic button
 
 The `Button` comes with three variants: text (default), contained, and outlined.
 
 {{"demo": "pages/components/buttons/BasicButtons.js"}}
 
-### Text buttons
+### Text button
 
 [Text buttons](https://material.io/components/buttons#text-button)
 are typically used for less-pronounced actions, including those located: in dialogs, in cards.
@@ -33,7 +33,7 @@ In cards, text buttons help maintain an emphasis on card content.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
-### Contained buttons
+### Contained button
 
 [Contained buttons](https://material.io/components/buttons#contained-button)
 are high-emphasis, distinguished by their use of elevation and fill.
@@ -45,7 +45,7 @@ You can remove the elevation with the `disableElevation` prop.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-### Outlined buttons
+### Outlined button
 
 [Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons.
 They contain actions that are important but aren't the primary action in an app.
@@ -121,9 +121,9 @@ You can learn more about this in the [overrides documentation page](/customizati
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button/).
 
-## Loading buttons
+## Loading button
 
 The loading buttons can show loading state and disable interactions.
 
@@ -133,7 +133,7 @@ Toggle the loading switch to see the transition between the different states.
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
-## Complex buttons
+## Complex button
 
 The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
 You can take advantage of this lower-level component to build custom interactions.
@@ -187,7 +187,7 @@ The button also comes with an unstyled version. It's ideal for doing heavy custo
 ### Unstyled component
 
 ```js
-import ButtonUnstyled from '@mui/core/ButtonUnstyled';
+import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 ```
 
 {{"demo": "pages/components/buttons/UnstyledButtonsSimple.js"}}
@@ -212,7 +212,7 @@ SVG elements, even with complex structure, are equally acceptable.
 ### useButton hook
 
 ```js
-import { useButton } from '@mui/core/ButtonUnstyled';
+import { useButton } from '@mui/base/ButtonUnstyled';
 ```
 
 If you need to use Button's functionality in another component, you can use the `useButton` hook.

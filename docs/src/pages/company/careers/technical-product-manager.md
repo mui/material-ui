@@ -1,18 +1,18 @@
 # Technical Product Manager
 
-<p class="description">We are looking for a technical product manager to guide our roadmap and build a great product.</p>
+<p class="description">You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features. Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning.</p>
 
 ## Details of the Role
 
 - Location: Remote (preference for UTC-5 to UTC+4).
-- Type of work: Contractor (full-time, convertible to an employee position in the future).
+- Type of work: Full-time (contractor or employee [depending on the case](https://www.notion.so/mui-org/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - We're a remote company, we prefer asynchronous communication over meetings.
 - We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
 
 ## About us
 
-See the [careers](/company/careers/) and [about us](https://next.material-ui.com/branding/about/) pages.
+See the [careers](/careers/) and [about us](/about/) pages.
 
 ### Why we're hiring
 
@@ -25,7 +25,7 @@ Our users are continuously providing feedback on the most important [pains they 
 
 ### Why this is interesting
 
-Our solution is empowering React developers to build awesome applications. It should be easy, it shouldn't require any advanced technical skills. Hundreds of thousands of developers use Material-UI every month.
+Our solution is empowering React developers to build awesome applications. It should be easy, it shouldn't require any advanced technical skills. Hundreds of thousands of developers use MUI every month.
 We are the second most used UI library in the world, after Bootstrap.
 
 Our enterprise components portfolio is still small, with a million interesting and challenging problems to solve.
@@ -60,7 +60,7 @@ You will be joining the advanced components team.
 
 ## Compensation
 
-Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/company/careers/#perks-amp-benefits) page.
+Competitive compensation of up to \$140,000 USD/year, depending on the profile and location. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/careers/#perks-amp-benefits) page.
 
 ## Apply
 

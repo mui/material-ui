@@ -25,7 +25,12 @@
       "default": "'medium'"
     },
     "startIcon": { "type": { "name": "node" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "variant": {
       "type": {
         "name": "union",
@@ -81,6 +86,5 @@
   "filename": "/packages/mui-material/src/Button/Button.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/button-group/\">Button Group</a></li>\n<li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

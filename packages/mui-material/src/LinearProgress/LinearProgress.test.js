@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import {
-  createClientRender,
+  createRenderer,
   screen,
   describeConformance,
   strictModeDoubleLoggingSupressed,
@@ -9,7 +9,7 @@ import {
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';
 
 describe('<LinearProgress />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<LinearProgress />, () => ({
     classes,

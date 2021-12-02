@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createClientRender } from 'test/utils';
+import { describeConformance, act, createRenderer } from 'test/utils';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import ButtonBase from '../ButtonBase';
 import classes from './switchBaseClasses';
 
 describe('<SwitchBase />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <SwitchBase checkedIcon="checked" icon="unchecked" type="checkbox" />,
@@ -432,6 +432,25 @@ describe('<SwitchBase />', () => {
           : 'Warning: A component is changing an uncontrolled input to be controlled.',
         'MUI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
       ]);
+    });
+  });
+
+  describe('checkbox form submission', () => {
+    it('`value` falls back to the platform default if no `value` is set', () => {
+      const { getByRole } = render(
+        <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" />,
+      );
+
+      // https://html.spec.whatwg.org/multipage/input.html#dom-input-value-default-on
+      expect(getByRole('checkbox')).to.have.property('value', 'on');
+    });
+
+    it('`value` can be overwritten', () => {
+      const { getByRole } = render(
+        <SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" value="red" />,
+      );
+
+      expect(getByRole('checkbox')).to.have.property('value', 'red');
     });
   });
 });

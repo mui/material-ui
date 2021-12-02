@@ -52,10 +52,10 @@ export type StepClasskey = keyof NonNullable<StepProps['classes']>;
  *
  * Demos:
  *
- * - [Steppers](https://material-ui.com/components/steppers/)
+ * - [Steppers](https://mui.com/components/steppers/)
  *
  * API:
  *
- * - [Step API](https://material-ui.com/api/step/)
+ * - [Step API](https://mui.com/api/step/)
  */
 export default function Step(props: StepProps): JSX.Element;

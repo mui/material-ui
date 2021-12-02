@@ -4,7 +4,7 @@
 
 ## 用户空间
 
-通常情况下，我们建议测试应用程序时不要将测试程序与 Material-UI 捆绑得太紧。 这就是 Material-UI 组件内部的测试方式。 要实现此方法可以使用一个广泛流行的 API 库 [`@test-library/reaction`](https://testing-library.com/docs/react-testing-library/intro)。
+通常情况下，我们建议测试应用程序时不要将测试程序与 Material-UI 捆绑得太紧。 这就是 Material-UI 组件内部的测试方式。 要实现此方法可以使用一个广泛流行的 API 库 [`@test-library/reaction`](https://testing-library.com/docs/react-testing-library/intro/)。
 
 例如，当渲染 `TextField` 时，你的测试用例不应该查询有关 `TextField` 的特定 Material-UI 实例，而是应该查询 `input` 或 `[role="textbox"]`。
 

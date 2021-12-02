@@ -15,7 +15,19 @@
       },
       "default": "'center'"
     },
-    "sx": { "type": { "name": "object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'"
+      },
+      "default": "'text'"
+    }
   },
   "name": "LoadingButton",
   "styles": {
@@ -71,6 +83,5 @@
   "filename": "/packages/mui-lab/src/LoadingButton/LoadingButton.js",
   "inheritance": { "component": "Button", "pathname": "/api/button/" },
   "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

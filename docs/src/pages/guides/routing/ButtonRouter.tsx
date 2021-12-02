@@ -1,11 +1,24 @@
 import * as React from 'react';
-import { MemoryRouter as Router } from 'react-router';
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+  MemoryRouter,
+} from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom/server';
 import Button from '@mui/material/Button';
 
 const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
   (props, ref) => <RouterLink ref={ref} to="/" {...props} role={undefined} />,
 );
+
+function Router(props: { children?: React.ReactNode }) {
+  const { children } = props;
+  if (typeof window === 'undefined') {
+    return <StaticRouter location="/">{children}</StaticRouter>;
+  }
+
+  return <MemoryRouter>{children}</MemoryRouter>;
+}
 
 export default function ButtonRouter() {
   return (

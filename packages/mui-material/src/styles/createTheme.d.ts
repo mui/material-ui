@@ -19,7 +19,7 @@ export interface ThemeOptions extends SystemThemeOptions {
 }
 
 /**
- * Our [TypeScript guide on theme customization](https://material-ui.com/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
+ * Our [TypeScript guide on theme customization](https://mui.com/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
 export interface Theme extends SystemTheme {
   mixins: Mixins;
@@ -42,6 +42,6 @@ export function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme
  * Generate a theme base on the options received.
  * @param options Takes an incomplete theme object and adds the missing parts.
  * @param args Deep merge the arguments with the about to be returned theme.
- * @returns A complete, ready to use theme object.
+ * @returns A complete, ready-to-use theme object.
  */
 export default function createTheme(options?: ThemeOptions, ...args: object[]): Theme;

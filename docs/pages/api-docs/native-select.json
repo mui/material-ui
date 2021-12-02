@@ -6,7 +6,12 @@
     "input": { "type": { "name": "element" }, "default": "<Input />" },
     "inputProps": { "type": { "name": "object" } },
     "onChange": { "type": { "name": "func" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "value": { "type": { "name": "any" } },
     "variant": {
       "type": {
@@ -20,6 +25,7 @@
     "classes": [
       "root",
       "select",
+      "multiple",
       "filled",
       "outlined",
       "standard",
@@ -39,6 +45,5 @@
   "filename": "/packages/mui-material/src/NativeSelect/NativeSelect.js",
   "inheritance": { "component": "Input", "pathname": "/api/input/" },
   "demos": "<ul><li><a href=\"/components/selects/\">Selects</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

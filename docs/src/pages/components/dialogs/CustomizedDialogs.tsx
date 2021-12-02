@@ -10,10 +10,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuDialogContent-root': {
+  '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
   },
-  '& .MuDialogActions-root': {
+  '& .MuiDialogActions-root': {
     padding: theme.spacing(1),
   },
 }));

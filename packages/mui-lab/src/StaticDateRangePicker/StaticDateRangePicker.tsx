@@ -1,7 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useThemeProps } from '@mui/material/styles';
-import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
+import PickerStaticWrapper, {
+  PickerStaticWrapperProps,
+} from '../internal/pickers/wrappers/PickerStaticWrapper';
 import { useDefaultDates, useUtils } from '../internal/pickers/hooks/useUtils';
 import { RangeInput, DateRange } from '../DateRangePicker/RangeTypes';
 import {
@@ -73,7 +75,7 @@ export interface StaticDateRangePickerProps<TDate = unknown>
    * Force static wrapper inner components to be rendered in mobile or desktop mode.
    * @default 'mobile'
    */
-  displayStaticWrapperAs?: StaticWrapperProps['displayStaticWrapperAs'];
+  displayStaticWrapperAs?: PickerStaticWrapperProps['displayStaticWrapperAs'];
 }
 
 type StaticDateRangePickerComponent = (<TDate>(
@@ -84,11 +86,11 @@ type StaticDateRangePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
+ * - [Date Range Picker](https://mui.com/components/date-range-picker/)
  *
  * API:
  *
- * - [StaticDateRangePicker API](https://material-ui.com/api/static-date-range-picker/)
+ * - [StaticDateRangePicker API](https://mui.com/api/static-date-range-picker/)
  */
 const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TDate>(
   inProps: StaticDateRangePickerProps<TDate>,
@@ -151,7 +153,7 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
   };
 
   return (
-    <StaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
+    <PickerStaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
       <DateRangePickerView<any>
         open={wrapperProps.open}
         DateInputProps={DateInputProps}
@@ -163,7 +165,7 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
         {...pickerProps}
         {...restProps}
       />
-    </StaticWrapper>
+    </PickerStaticWrapper>
   );
 }) as StaticDateRangePickerComponent;
 
@@ -230,6 +232,7 @@ StaticDateRangePicker.propTypes /* remove-proptypes */ = {
   disableCloseOnSelect: PropTypes.bool,
   /**
    * If `true`, the picker and text field are disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -379,6 +382,7 @@ StaticDateRangePicker.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
   /**
    * Make picker read only.
+   * @default false
    */
   readOnly: PropTypes.bool,
   /**
@@ -393,7 +397,7 @@ StaticDateRangePicker.propTypes /* remove-proptypes */ = {
   renderDay: PropTypes.func,
   /**
    * The `renderInput` prop allows you to customize the rendered input.
-   * The `startProps` and `endProps` arguments of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api),
+   * The `startProps` and `endProps` arguments of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api),
    * that you need to forward to the range start/end inputs respectively.
    * Pay specific attention to the `ref` and `inputProps` keys.
    * @example

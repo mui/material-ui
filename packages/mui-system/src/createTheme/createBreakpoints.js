@@ -9,10 +9,10 @@ export default function createBreakpoints(breakpoints) {
     // For instance with the first breakpoint xs: [xs, sm).
     values = {
       xs: 0, // phone
-      sm: 600, // tablets
+      sm: 600, // tablet
       md: 900, // small laptop
       lg: 1200, // desktop
-      xl: 1536, // large screens
+      xl: 1536, // large screen
     },
     unit = 'px',
     step = 5,

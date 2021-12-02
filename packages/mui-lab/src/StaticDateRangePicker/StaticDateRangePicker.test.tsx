@@ -1,15 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { isWeekend } from 'date-fns';
-import { useFakeTimers } from 'sinon';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
-import { describeConformance } from 'test/utils';
+import { describeConformance, screen } from 'test/utils';
 import {
   wrapPickerMount,
-  createPickerRender,
+  createPickerRenderer,
   adapterToUse,
-  getAllByMuiTest,
 } from '../internal/pickers/test-utils';
 
 const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextFieldProps) => (
@@ -20,15 +18,7 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
 );
 
 describe('<StaticDateRangePicker />', () => {
-  let clock: ReturnType<typeof useFakeTimers>;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const render = createPickerRender();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   describeConformance(
     <StaticDateRangePicker
@@ -71,9 +61,9 @@ describe('<StaticDateRangePicker />', () => {
     );
 
     expect(
-      getAllByMuiTest('DateRangePickerDay').filter(
-        (day) => day.getAttribute('disabled') !== undefined,
-      ),
+      screen
+        .getAllByMuiTest('DateRangePickerDay')
+        .filter((day) => day.getAttribute('disabled') !== undefined),
     ).to.have.length(31);
   });
 

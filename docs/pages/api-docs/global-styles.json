@@ -13,6 +13,5 @@
   "filename": "/packages/mui-material/src/GlobalStyles/GlobalStyles.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/customization/how-to-customize/\">How To Customize</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

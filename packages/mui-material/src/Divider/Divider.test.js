@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createClientRender } from 'test/utils';
+import { describeConformance, createRenderer } from 'test/utils';
 import Divider, { dividerClasses as classes } from '@mui/material/Divider';
 
 describe('<Divider />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Divider />, () => ({
     classes,

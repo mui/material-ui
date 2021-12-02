@@ -17,7 +17,12 @@
       },
       "default": "'fixed'"
     },
-    "sx": { "type": { "name": "object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "AppBar",
   "styles": {
@@ -42,6 +47,5 @@
   "filename": "/packages/mui-material/src/AppBar/AppBar.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/app-bar/\">App Bar</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

@@ -8,7 +8,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@mui/core';
+} from '@mui/base';
 import { useTheme, alpha, styled, useThemeProps, Theme } from '@mui/material/styles';
 import { useForkRef } from '@mui/material/utils';
 import { ExtendMui } from '../internal/pickers/typings/helpers';
@@ -482,7 +482,11 @@ PickersDay.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * If `true`, renders as today date.
    * @default false
@@ -494,11 +498,11 @@ PickersDay.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/components/date-picker/)
  *
  * API:
  *
- * - [PickersDay API](https://material-ui.com/api/pickers-day/)
+ * - [PickersDay API](https://mui.com/api/pickers-day/)
  */
 export default React.memo(PickersDay, areDayPropsEqual) as <TDate>(
   props: PickersDayProps<TDate> & React.RefAttributes<HTMLButtonElement>,

@@ -6,12 +6,11 @@ import ClockPicker, { clockPickerClasses as classes } from '@mui/lab/ClockPicker
 import {
   adapterToUse,
   wrapPickerMount,
-  createPickerRender,
-  getByMuiTest,
+  createPickerRenderer,
 } from '../internal/pickers/test-utils';
 
 describe('<ClockPicker />', () => {
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   describeConformance(
     <ClockPicker date={adapterToUse.date()} showViewSwitcher onChange={() => {}} />,
@@ -223,7 +222,7 @@ describe('<ClockPicker />', () => {
         />,
       );
 
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['13:--']);
+      fireTouchChangedEvent(screen.getByMuiTest('clock'), 'touchmove', clockTouchEvent['13:--']);
 
       expect(handleChange.callCount).to.equal(1);
       const [date, selectionState] = handleChange.firstCall.args;
@@ -247,7 +246,7 @@ describe('<ClockPicker />', () => {
         />,
       );
 
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:20']);
+      fireTouchChangedEvent(screen.getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:20']);
 
       expect(handleChange.callCount).to.equal(1);
       const [date, selectionState] = handleChange.firstCall.args;
@@ -269,7 +268,7 @@ describe('<ClockPicker />', () => {
         />,
       );
 
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:20']);
+      fireTouchChangedEvent(screen.getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:20']);
 
       expect(handleChange.callCount).to.equal(0);
     });
@@ -287,7 +286,7 @@ describe('<ClockPicker />', () => {
         />,
       );
 
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['20:--']);
+      fireTouchChangedEvent(screen.getByMuiTest('clock'), 'touchmove', clockTouchEvent['20:--']);
 
       expect(handleChange.callCount).to.equal(0);
     });
@@ -307,7 +306,7 @@ describe('<ClockPicker />', () => {
         />,
       );
 
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:10']);
+      fireTouchChangedEvent(screen.getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:10']);
 
       expect(handleChange.callCount).to.equal(1);
       const [date, selectionState] = handleChange.firstCall.args;
@@ -329,7 +328,7 @@ describe('<ClockPicker />', () => {
         />,
       );
 
-      fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:20']);
+      fireTouchChangedEvent(screen.getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:20']);
 
       expect(handleChange.callCount).to.equal(0);
     });

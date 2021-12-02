@@ -2,7 +2,7 @@
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
-const template = `// FIXME checkout https://material-ui.com/components/use-media-query/#using-material-uis-breakpoint-helpers
+const template = `// FIXME checkout https://mui.com/components/use-media-query/#using-material-uis-breakpoint-helpers
 const withMobileDialog = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="lg" fullScreen={false} />;`;
 
 export default function transformer(file, api, options) {

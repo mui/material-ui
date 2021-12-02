@@ -4,10 +4,10 @@ import MuiButton from '@mui/material/Button';
 import { Icon } from './Icon';
 
 interface Props {
-  disabled: boolean;
-  disableElevation: boolean;
+  disabled?: boolean;
+  disableElevation?: boolean;
   endIcon: string;
-  fullWidth: boolean;
+  fullWidth?: boolean;
   href?: string;
   startIcon: string;
   startIconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
@@ -44,10 +44,7 @@ export function Button(props: Props): JSX.Element {
 }
 
 Button.defaultProps = {
-  disabled: false,
-  disableElevation: false,
   endIcon: undefined,
-  fullWidth: false,
   startIcon: undefined,
   startIconTheme: 'Filled' as 'Filled',
   endIconTheme: 'Filled' as 'Filled',

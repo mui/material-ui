@@ -20,18 +20,6 @@ declare module '@mui/material/styles/createPalette' {
 
   interface Palette {
     primaryDark: PaletteColor;
-    svgBg: {
-      base: string;
-      active: string;
-    };
-    svgFilled: {
-      base: string;
-      active: string;
-    };
-    svgStroke: {
-      base: string;
-      active: string;
-    };
   }
 }
 
@@ -140,7 +128,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       ...(mode === 'light' && {
         text: {
           primary: grey[900],
-          secondary: grey[800],
+          secondary: grey[700],
         },
       }),
       ...(mode === 'dark' && {
@@ -194,18 +182,6 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         800: '#DB9A00',
         900: '#8F6400',
       },
-      svgBg: {
-        base: mode === 'dark' ? blueDark[400] : grey[50],
-        active: mode === 'dark' ? blueDark[400] : grey[50],
-      },
-      svgFilled: {
-        base: mode === 'dark' ? blueDark[800] : grey[500],
-        active: mode === 'dark' ? blue[300] : blue[500],
-      },
-      svgStroke: {
-        base: mode === 'dark' ? blueDark[600] : '#ffffff',
-        active: mode === 'dark' ? blue[700] : '#ffffff',
-      },
     },
     shape: {
       borderRadius: 10,
@@ -213,15 +189,22 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     spacing: 10,
     typography: {
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
-      fontFamilyCode: ['"IBM Plex Mono"', ...systemFont].join(','),
+      fontFamilyCode: [
+        'Consolas',
+        'Menlo',
+        'Monaco',
+        'Andale Mono',
+        'Ubuntu Mono',
+        'monospace',
+      ].join(','),
       fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
       fontFamilySystem: systemFont.join(','),
       fontWeightExtraBold: 800,
       h1: {
         fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
-        fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 4.5rem)',
+        fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 4rem)',
         fontWeight: 800,
-        lineHeight: 80 / 72,
+        lineHeight: 78 / 70,
         ...(mode === 'light' && {
           color: blueDark[900],
         }),
@@ -279,7 +262,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontSize: defaultTheme.typography.pxToRem(12), // 12px
         lineHeight: 18 / 12,
         letterSpacing: 0,
-        fontWeight: 600,
+        fontWeight: 700,
       },
     },
   } as ThemeOptions);
@@ -323,12 +306,15 @@ export function getThemedComponents(theme: Theme) {
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[700]
                   : theme.palette.grey[50],
+              ...theme.typography.body2,
               fontFamily: theme.typography.fontFamilyCode,
+              fontWeight: 600,
+              WebkitFontSmoothing: 'subpixel-antialiased',
               '&:hover, &.Mui-focusVisible': {
                 borderColor: theme.palette.primary.main,
                 backgroundColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[500]
+                    ? theme.palette.primaryDark[600]
                     : theme.palette.primary[50],
                 '& .MuiButton-endIcon': {
                   color:
@@ -344,14 +330,6 @@ export function getThemedComponents(theme: Theme) {
                 color:
                   theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[700],
               },
-            },
-          },
-          {
-            props: { variant: 'code', size: 'large' },
-            style: {
-              ...theme.typography.body2,
-              fontFamily: theme.typography.fontFamilyCode,
-              fontWeight: theme.typography.fontWeightBold,
             },
           },
         ],
@@ -386,7 +364,7 @@ export function getThemedComponents(theme: Theme) {
               theme.palette.mode === 'dark'
                 ? theme.palette.primary[400]
                 : theme.palette.primary[600],
-            fontWeight: 600,
+            fontWeight: 700,
             display: 'inline-flex',
             alignItems: 'center',
             '&.MuiTypography-body1 > svg': {
@@ -394,6 +372,16 @@ export function getThemedComponents(theme: Theme) {
             },
             '& svg:last-child': {
               marginLeft: 2,
+            },
+          },
+        },
+      },
+      MuiListItemButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: 5,
+            '&:hover, &:focus': {
+              backgroundColor: theme.palette.mode === 'dark' ? '' : theme.palette.grey[100],
             },
           },
         },
@@ -447,7 +435,7 @@ export function getThemedComponents(theme: Theme) {
           },
           head: {
             color: theme.palette.text.primary,
-            fontWeight: 600,
+            fontWeight: 700,
           },
           body: {
             color: theme.palette.text.secondary,
@@ -466,7 +454,7 @@ export function getThemedComponents(theme: Theme) {
         styleOverrides: {
           root: {
             textTransform: 'none',
-            fontWeight: 600,
+            fontWeight: 700,
             color:
               theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
             borderColor:
@@ -525,6 +513,11 @@ export function getThemedComponents(theme: Theme) {
             width: '14px',
             height: '14px',
           },
+        },
+      },
+      MuiCssBaseline: {
+        defaultProps: {
+          enableColorScheme: true,
         },
       },
     },

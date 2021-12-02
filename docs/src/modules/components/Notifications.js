@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Popper from '@mui/material/Popper';
 import Grow from '@mui/material/Grow';
 import MuiPaper from '@mui/material/Paper';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import MuiList from '@mui/material/List';
 import MuiListItem from '@mui/material/ListItem';
 import MuiDivider from '@mui/material/Divider';
@@ -103,7 +103,7 @@ export default function Notifications() {
         .then((newMessages) => {
           if (active) {
             const seen = getCookie('lastSeenNotification');
-            const lastSeenNotification = seen === '' ? 0 : parseInt(seen, 10);
+            const lastSeenNotification = seen === undefined ? 0 : parseInt(seen, 10);
             setNotifications({
               messages: newMessages || [],
               lastSeen: lastSeenNotification,

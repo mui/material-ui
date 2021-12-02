@@ -111,4 +111,4 @@ You can learn more about this in the
 
 {{"demo": "pages/components/lists/CustomizedList.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item/).

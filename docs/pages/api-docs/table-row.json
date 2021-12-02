@@ -5,7 +5,12 @@
     "component": { "type": { "name": "elementType" } },
     "hover": { "type": { "name": "bool" } },
     "selected": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "TableRow",
   "styles": {
@@ -18,6 +23,5 @@
   "filename": "/packages/mui-material/src/TableRow/TableRow.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

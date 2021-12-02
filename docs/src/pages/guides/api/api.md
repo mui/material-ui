@@ -43,7 +43,7 @@ We avoid documenting native properties supported by the DOM like [`className`](/
 
 ### CSS Classes
 
-All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) prop to customize the styles.
+All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-class-names) prop to customize the styles.
 The classes design answers two constraints:
 to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
 

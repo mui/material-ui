@@ -43,9 +43,9 @@ export interface FormControlLabelProps
    */
   inputRef?: React.Ref<any>;
   /**
-   * The text to be used in an enclosing label element.
+   * A text or an element to be used in an enclosing label element.
    */
-  label: React.ReactNode;
+  label: string | number | React.ReactElement;
   /**
    * The position of the label.
    * @default 'end'
@@ -75,12 +75,12 @@ export interface FormControlLabelProps
  *
  * Demos:
  *
- * - [Checkboxes](https://material-ui.com/components/checkboxes/)
- * - [Radio Buttons](https://material-ui.com/components/radio-buttons/)
- * - [Switches](https://material-ui.com/components/switches/)
+ * - [Checkboxes](https://mui.com/components/checkboxes/)
+ * - [Radio Buttons](https://mui.com/components/radio-buttons/)
+ * - [Switches](https://mui.com/components/switches/)
  *
  * API:
  *
- * - [FormControlLabel API](https://material-ui.com/api/form-control-label/)
+ * - [FormControlLabel API](https://mui.com/api/form-control-label/)
  */
 export default function FormControlLabel(props: FormControlLabelProps): JSX.Element;

@@ -8,7 +8,7 @@ export default function EditPage(props) {
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
-  const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
+  const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
   const crowdInPath = markdownLocation.substring(0, markdownLocation.lastIndexOf('/'));
 

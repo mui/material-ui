@@ -26,7 +26,7 @@ By default, `Stack` arranges items vertically in a `column`. However, the `direc
 
 ## Divisores
 
-Use the `divider` prop to insert an element between each child. This works particularly well with the [Divider](/components/divider/) component.
+Use the `divider` prop to insert an element between each child. This works particularly well with the [Divider](/components/dividers/) component.
 
 {{"demo": "pages/components/stack/DividerStack.js", "bg": true}}
 

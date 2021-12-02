@@ -57,7 +57,7 @@ export function useMeridiemMode<TDate>(
   const handleMeridiemChange = React.useCallback(
     (mode: 'am' | 'pm') => {
       const timeWithMeridiem = convertToMeridiem<TDate>(date, mode, Boolean(ampm), utils);
-      onChange(timeWithMeridiem, 'shallow');
+      onChange(timeWithMeridiem, 'partial');
     },
     [ampm, date, onChange, utils],
   );

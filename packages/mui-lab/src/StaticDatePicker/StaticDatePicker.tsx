@@ -2,7 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { BaseDatePickerProps, useDatePickerDefaultizedProps } from '../DatePicker/shared';
 import DatePickerToolbar from '../DatePicker/DatePickerToolbar';
-import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
+import PickerStaticWrapper, {
+  PickerStaticWrapperProps,
+} from '../internal/pickers/wrappers/PickerStaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { useDateValidation } from '../internal/pickers/hooks/useValidation';
@@ -20,7 +22,7 @@ export interface StaticDatePickerProps<TDate = unknown> extends BaseDatePickerPr
    * Force static wrapper inner components to be rendered in mobile or desktop mode.
    * @default 'mobile'
    */
-  displayStaticWrapperAs?: StaticWrapperProps['displayStaticWrapperAs'];
+  displayStaticWrapperAs?: PickerStaticWrapperProps['displayStaticWrapperAs'];
 }
 
 type StaticDatePickerComponent = (<TDate>(
@@ -31,11 +33,11 @@ type StaticDatePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/components/date-picker/)
  *
  * API:
  *
- * - [StaticDatePicker API](https://material-ui.com/api/static-date-picker/)
+ * - [StaticDatePicker API](https://mui.com/api/static-date-picker/)
  */
 const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
   inProps: StaticDatePickerProps<TDate>,
@@ -62,7 +64,7 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
   const DateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
-    <StaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
+    <PickerStaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
@@ -70,7 +72,7 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
         DateInputProps={DateInputProps}
         {...other}
       />
-    </StaticWrapper>
+    </PickerStaticWrapper>
   );
 }) as StaticDatePickerComponent;
 
@@ -127,6 +129,7 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   disableCloseOnSelect: PropTypes.bool,
   /**
    * If `true`, the picker and text field are disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -278,6 +281,7 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
   /**
    * Make picker read only.
+   * @default false
    */
   readOnly: PropTypes.bool,
   /**
@@ -286,12 +290,12 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
    */
   reduceAnimations: PropTypes.bool,
   /**
-   * Custom renderer for day. Check the [PickersDay](https://material-ui.com/api/pickers-day/) component.
+   * Custom renderer for day. Check the [PickersDay](https://mui.com/api/pickers-day/) component.
    */
   renderDay: PropTypes.func,
   /**
    * The `renderInput` prop allows you to customize the rendered input.
-   * The `props` argument of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api) that you need to forward.
+   * The `props` argument of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api) that you need to forward.
    * Pay specific attention to the `ref` and `inputProps` keys.
    * @example ```jsx
    * renderInput={props => <TextField {...props} />}

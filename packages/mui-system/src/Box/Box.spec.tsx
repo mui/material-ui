@@ -44,7 +44,13 @@ function GapTest() {
 }
 
 function ComponentPropTest() {
-  <Box component="img" src="https://material-ui.com/" alt="Material UI" />;
+  <Box component="img" src="https://mui.com/" alt="Material UI" />;
   <Box component={Test} test="Test string" />;
   <Box maxWidth={(theme: Theme) => theme.breakpoints.values.sm} />;
+}
+
+function ThemeCallbackTest() {
+  <Box sx={{ background: (theme) => theme.palette.primary.main }} />;
+  <Box sx={{ ':hover': (theme) => ({ background: theme.palette.primary.main }) }} />;
+  <Box sx={{ '& .some-class': (theme) => ({ background: theme.palette.primary.main }) }} />;
 }

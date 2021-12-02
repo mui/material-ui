@@ -31,7 +31,7 @@ npm install @material-ui/icons
 yarn add @material-ui/icons
 ```
 
-Esses componentes usam o componente `SvgIcon` do Material-UI para renderizar o caminho SVG de cada ícone, e por isso tem uma dependência com `@materialui/core`.
+Esses componentes usam o componente `SvgIcon` do Material-UI para renderizar o caminho SVG de cada ícone, e por isso tem uma dependência com `@mui/material`.
 
 Se você ainda não estiver usando Material-UI no seu projeto, você pode adicioná-lo com:
 
@@ -116,7 +116,7 @@ function HomeIcon(props) {
 
 ### Propriedade Componente
 
-Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes estejam salvos no formato `.svg`. A biblioteca [svgr](https://github.com/smooth-code/svgr) possui loaders para importar arquivos SVG e usá-los como componentes React. Por exemplo, com webpack:
+Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes estejam salvos no formato `.svg`. A biblioteca [svgr](https://github.com/gregberge/svgr) possui loaders para importar arquivos SVG e usá-los como componentes React. Por exemplo, com webpack:
 
 ```jsx
 // webpack.config.js

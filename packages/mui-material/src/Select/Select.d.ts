@@ -148,12 +148,12 @@ export interface SelectProps<T = unknown>
  *
  * Demos:
  *
- * - [Selects](https://material-ui.com/components/selects/)
+ * - [Selects](https://mui.com/components/selects/)
  *
  * API:
  *
- * - [Select API](https://material-ui.com/api/select/)
- * - inherits [OutlinedInput API](https://material-ui.com/api/outlined-input/)
+ * - [Select API](https://mui.com/api/select/)
+ * - inherits [OutlinedInput API](https://mui.com/api/outlined-input/)
  */
 declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & { muiName: string };
 

@@ -2,9 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { SliderUnstyled } from '@mui/core';
+import { SliderUnstyled } from '@mui/base';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
 
 function createTouches(touches) {
@@ -27,7 +27,7 @@ describe('<Slider />', () => {
     }
   });
 
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Slider value={0} />, () => ({
     classes,
@@ -259,7 +259,7 @@ describe('<Slider />', () => {
       expect(handleChange.callCount).to.equal(3);
       expect(handleChange.args[0][1]).to.deep.equal([21, 30]);
       expect(handleChange.args[1][1]).to.deep.equal([22, 30]);
-      expect(handleChange.args[2][1]).to.equal(handleChange.args[1][1]);
+      expect(handleChange.args[2][1]).not.to.equal(handleChange.args[1][1]);
     });
 
     it('should not react to right clicks', () => {

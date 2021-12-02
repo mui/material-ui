@@ -2,7 +2,7 @@
 title: Material 图标
 components: Icon, SvgIcon
 materialDesign: https://material.io/design/iconography/system-icons.html
-packageName: '@material-ui/icons'
+packageName: '@mui/icons-material'
 githubLabel: 'package: icons'
 ---
 
@@ -10,7 +10,7 @@ githubLabel: 'package: icons'
 
 <p class="description">你可以在我们的官方网站上使用超过 1,700 个 React Material 图标。</p>
 
-The following npm package, [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons), includes the 1,700+ official [Material icons](https://fonts.google.com/icons) converted to [`SvgIcon`](/api/svg-icon/) components.
+The following npm package, [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material), includes the 1,700+ official [Material icons](https://fonts.google.com/icons) converted to [`SvgIcon`](/api/svg-icon/) components.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

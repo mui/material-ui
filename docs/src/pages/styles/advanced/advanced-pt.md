@@ -385,13 +385,13 @@ Existe [um plugin oficial Gatsby](https://github.com/hupe1980/gatsby-plugin-mate
 
 <!-- #default-branch-switch -->
 
-Consulte [este exemplo de projeto Gatsby](https://github.com/mui-org/material-ui/blob/next/examples/gatsby) para um exemplo de uso atualizado.
+Consulte [este exemplo de projeto Gatsby](https://github.com/mui-org/material-ui/blob/HEAD/examples/gatsby) para um exemplo de uso atualizado.
 
 ### Next.js
 
 Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
 
-Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/next/examples/nextjs).
+Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/HEAD/examples/nextjs).
 
 ## Nomes de classes
 

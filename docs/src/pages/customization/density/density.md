@@ -71,14 +71,6 @@ const theme = createTheme({
       defaultProps: {
         size: 'small',
       },
-      styleOverrides: {
-        sizeSmall: {
-          // Adjust spacing to reach minimal touch target hitbox
-          marginLeft: 4,
-          marginRight: 4,
-          padding: 12,
-        },
-      },
     },
     MuiInputBase: {
       defaultProps: {

@@ -3,10 +3,10 @@ import Stack from '@mui/material/Stack';
 import ButtonUnstyled, {
   ButtonUnstyledProps,
   buttonUnstyledClasses,
-} from '@mui/core/ButtonUnstyled';
+} from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 
-const CustomButtonRoot = styled('span')(`
+const CustomButtonRoot = styled('span')`
   background-color: #007fff;
   padding: 15px 20px;
   border-radius: 10px;
@@ -37,7 +37,7 @@ const CustomButtonRoot = styled('span')(`
     cursor: not-allowed;
     box-shadow: 0 0 0 0 rgba(0, 127, 255, 0);
   }
-`);
+`;
 
 function CustomButton(props: ButtonUnstyledProps) {
   return <ButtonUnstyled {...props} component={CustomButtonRoot} />;

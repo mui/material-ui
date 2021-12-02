@@ -17,7 +17,7 @@ Material-UI 的样式方案来自于许多其他 CSS-in-JS 库的启发，例如
 - 🚀它的运行速度 [非常快](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles)。
 - 🧩你可以通过一个 [插件](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API 来扩展。
 - ⚡️它使用 [JSS](https://github.com/cssinjs/jss) 为其核心 —— 一个 [高性能的](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript 到 CSS 的编译器，它在运行时和服务器端编译。
-- 📦低于[15KB压缩](https://bundlephobia.com/result?p=@material-ui/styles)；若和 Material-UI 一起使用，将不会有捆绑的尺寸增加。
+- 📦低于[15KB压缩](https://bundlephobia.com/package/@material-ui/styles)；若和 Material-UI 一起使用，将不会有捆绑的尺寸增加。
 
 ## 安装
 

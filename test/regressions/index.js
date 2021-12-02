@@ -1,24 +1,29 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
 // Get all the fixtures specifically written for preventing visual regressions.
-const requireRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/);
+const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
 const regressionFixtures = [];
-requireRegressionFixtures.keys().forEach((path) => {
+importRegressionFixtures.keys().forEach((path) => {
   const [suite, name] = path
     .replace('./', '')
     .replace(/\.\w+$/, '')
     .split('/');
 
-  regressionFixtures.push({
-    path,
-    suite: `regression-${suite}`,
-    name,
-    Component: requireRegressionFixtures(path).default,
-  });
+  // TODO: Why does webpack include a key for the absolute and relative path?
+  // We just want the relative path
+  if (path.startsWith('./')) {
+    regressionFixtures.push({
+      path,
+      suite: `regression-${suite}`,
+      name,
+      Component: React.lazy(() => importRegressionFixtures(path)),
+    });
+  }
 }, []);
 
 const blacklist = [
@@ -106,6 +111,7 @@ const blacklist = [
   'docs-components-snackbars/SimpleSnackbar.png', // Needs interaction
   'docs-components-snackbars/TransitionsSnackbar.png', // Needs interaction
   'docs-components-speed-dial', // Needs interaction
+  'docs-components-stack/InteractiveStack.png', // Redundant
   'docs-components-steppers/HorizontalNonLinearStepper.png', // Redundant
   'docs-components-steppers/SwipeableTextMobileStepper.png', // Flaky image loading
   'docs-components-steppers/TextMobileStepper.png', // Flaky image loading
@@ -197,23 +203,23 @@ function excludeDemoFixture(suite, name) {
 }
 
 // Also use some of the demos to avoid code duplication.
-const requireDemos = require.context('docs/src/pages', true, /js$/);
+const importDemos = require.context('docs/src/pages', true, /js$/, 'lazy');
 const demoFixtures = [];
-requireDemos.keys().forEach((path) => {
+importDemos.keys().forEach((path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
-  if (!excludeDemoFixture(suite, name)) {
+  // TODO: Why does webpack include a key for the absolute and relative path?
+  // We just want the relative path
+  if (path.startsWith('./') && !excludeDemoFixture(suite, name)) {
     demoFixtures.push({
       path,
       suite,
       name,
-      Component: requireDemos(path).default,
+      Component: React.lazy(() => importDemos(path)),
     });
   }
 }, []);
-
-const fixtures = regressionFixtures.concat(demoFixtures);
 
 if (unusedBlacklistPatterns.size > 0) {
   console.warn(
@@ -223,7 +229,31 @@ if (unusedBlacklistPatterns.size > 0) {
   );
 }
 
-function App() {
+const viewerRoot = document.getElementById('test-viewer');
+
+function FixtureRenderer({ component: FixtureComponent }) {
+  React.useLayoutEffect(() => {
+    const children = (
+      <TestViewer>
+        <FixtureComponent />
+      </TestViewer>
+    );
+
+    ReactDOM.render(children, viewerRoot);
+  }, [FixtureComponent]);
+
+  React.useLayoutEffect(() => {
+    return () => {
+      ReactDOM.unmountComponentAtNode(viewerRoot);
+    };
+  }, []);
+
+  return null;
+}
+
+function App(props) {
+  const { fixtures } = props;
+
   function computeIsDev() {
     if (window.location.hash === '#dev') {
       return true;
@@ -274,7 +304,7 @@ function App() {
 
   return (
     <Router>
-      <Switch>
+      <Routes>
         {fixtures.map((fixture) => {
           const path = computePath(fixture);
           const FixtureComponent = fixture.Component;
@@ -284,16 +314,16 @@ function App() {
           }
 
           return (
-            <Route key={path} exact path={path}>
-              {fixturePrepared && (
-                <TestViewer>
-                  <FixtureComponent />
-                </TestViewer>
-              )}
-            </Route>
+            <Route
+              key={path}
+              exact
+              path={path}
+              element={fixturePrepared ? <FixtureRenderer component={FixtureComponent} /> : null}
+            />
           );
         })}
-      </Switch>
+      </Routes>
+
       <div hidden={!isDev}>
         <div data-webfontloader={fontState}>webfontloader: {fontState}</div>
         <p>
@@ -321,8 +351,12 @@ function App() {
   );
 }
 
+App.propTypes = {
+  fixtures: PropTypes.array,
+};
+
 const container = document.getElementById('react-root');
-const children = <App />;
+const children = <App fixtures={regressionFixtures.concat(demoFixtures)} />;
 if (typeof ReactDOM.unstable_createRoot === 'function') {
   const root = ReactDOM.unstable_createRoot(container);
   root.render(children);

@@ -24,7 +24,6 @@ if (staging) {
 
 module.exports = {
   eslint: {
-    // TODO: https://github.com/mui-org/material-ui/issues/25966
     ignoreDuringBuilds: true,
   },
   typescript: {
@@ -43,8 +42,9 @@ module.exports = {
           analyzerMode: 'server',
           generateStatsFile: true,
           analyzerPort: options.isServer ? 8888 : 8889,
-          // Will be available at `.next/stats.json`
-          statsFilename: 'stats.json',
+          reportTitle: `${options.isServer ? 'server' : 'client'} docs bundle`,
+          // Will be available at `.next/${statsFilename}`
+          statsFilename: `stats-${options.isServer ? 'server' : 'client'}.json`,
         }),
       );
     }
@@ -69,6 +69,7 @@ module.exports = {
             '@mui/x-data-grid',
             '@mui/x-data-grid-pro',
             '@mui/x-data-grid-generator',
+            '@mui/x-license-pro',
           ].includes(request);
 
           if (hasDependencyOnRepoPackages) {
@@ -132,20 +133,9 @@ module.exports = {
                         '@mui/system': '../packages/mui-system/src',
                         '@mui/private-theming': '../packages/mui-private-theming/src',
                         '@mui/utils': '../packages/mui-utils/src',
-                        '@mui/core': '../packages/mui-core/src',
+                        '@mui/base': '../packages/mui-base/src',
                         '@mui/material-next': '../packages/mui-material-next/src',
-                        // all legacy package names in this monorepo
-                        '@material-ui/core': '../packages/mui-material/src',
-                        '@material-ui/docs': '../packages/mui-docs/src',
-                        '@material-ui/icons': '../packages/mui-icons-material/lib',
-                        '@material-ui/lab': '../packages/mui-lab/src',
-                        '@material-ui/styled-engine': '../packages/mui-styled-engine/src',
-                        '@material-ui/styles': '../packages/mui-styles/src',
-                        '@material-ui/system': '../packages/mui-system/src',
-                        '@material-ui/private-theming': '../packages/mui-private-theming/src',
-                        '@material-ui/utils': '../packages/mui-utils/src',
-                        '@material-ui/unstyled': '../packages/mui-core/src',
-                        '@material-ui/core/*': '../packages/mui-material/src/*',
+                        '@mui/joy': '../packages/mui-joy/src',
                       },
                       transformFunctions: ['require'],
                     },
@@ -165,7 +155,6 @@ module.exports = {
       },
     };
   },
-  trailingSlash: true,
   env: {
     COMMIT_REF: process.env.COMMIT_REF,
     ENABLE_AD: process.env.ENABLE_AD,
@@ -192,6 +181,9 @@ module.exports = {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
+        if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
+          return;
+        }
         if (!page.children) {
           map[`${prefix}${page.pathname.replace(/^\/api-docs\/(.*)/, '/api/$1')}`] = {
             page: page.pathname,
@@ -223,8 +215,13 @@ module.exports = {
     return map;
   },
   reactStrictMode,
+  trailingSlash: true,
   async rewrites() {
-    return [{ source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' }];
+    return [
+      { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
+      // Make sure to include the trailing slash if `trailingSlash` option is set
+      { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
+    ];
   },
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
   optimizeFonts: false,

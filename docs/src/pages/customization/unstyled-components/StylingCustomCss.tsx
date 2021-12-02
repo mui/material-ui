@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SwitchUnstyled, { switchUnstyledClasses } from '@mui/core/SwitchUnstyled';
+import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
 
 const css = `
   .my-switch {

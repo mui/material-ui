@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NProgress from 'nprogress';
 import { withStyles } from '@mui/styles';
 import { createTheme } from '@mui/material/styles';
-import NoSsr from '@mui/core/NoSsr';
+import NoSsr from '@mui/base/NoSsr';
 import { exactProp } from '@mui/utils';
 
 NProgress.configure({
@@ -87,7 +87,7 @@ const GlobalStyles = withStyles(styles, { defaultTheme, flip: false, name: 'MuiN
 );
 
 /**
- * Elegant and ready to use wrapper on top of https://github.com/rstacruz/nprogress/.
+ * Elegant and ready-to-use wrapper on top of https://github.com/rstacruz/nprogress/.
  * The implementation is highly inspired by the YouTube one.
  */
 function NProgressBar(props) {

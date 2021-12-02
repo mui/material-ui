@@ -35,7 +35,9 @@ export interface ExportedArrowSwitcherProps {
   rightArrowButtonText?: string;
 }
 
-interface ArrowSwitcherProps extends ExportedArrowSwitcherProps, React.HTMLProps<HTMLDivElement> {
+interface ArrowSwitcherProps
+  extends ExportedArrowSwitcherProps,
+    Omit<React.HTMLProps<HTMLDivElement>, 'ref'> {
   children?: React.ReactNode;
   isLeftDisabled: boolean;
   isLeftHidden?: boolean;
@@ -45,7 +47,7 @@ interface ArrowSwitcherProps extends ExportedArrowSwitcherProps, React.HTMLProps
   onRightClick: () => void;
 }
 
-const PickersArrowSwitcherRoot = styled('div', { skipSx: true })<{
+const PickersArrowSwitcherRoot = styled('div')<{
   ownerState: ArrowSwitcherProps;
 }>({
   display: 'flex',

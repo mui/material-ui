@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useTheme, styled, Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
+import Tooltip from '@mui/material/Tooltip';
 
 export type IconImageProps = {
   name:
@@ -14,9 +15,6 @@ export type IconImageProps = {
     | 'yes'
     | 'no'
     | 'time'
-    | 'give-feedback'
-    | 'join-community'
-    | 'support-us'
     | 'spotify'
     | 'amazon'
     | 'nasa'
@@ -27,13 +25,23 @@ export type IconImageProps = {
     | 'boeing'
     | 'siemens'
     | 'deloitte'
+    | 'apple'
+    | 'twitter'
+    | 'salesforce'
+    | 'verizon'
+    | 'atandt'
+    | 'patreon'
+    | 'ebay'
+    | 'samsung'
     | 'volvo';
   sx?: SxProps<Theme>;
-} & JSX.IntrinsicElements['img'];
+  ref?: React.Ref<HTMLImageElement>;
+  title?: string;
+} & Omit<JSX.IntrinsicElements['img'], 'ref'>;
 
 const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 
-export default function IconImage({ name, ...props }: IconImageProps) {
+export default function IconImage({ name, title, ...props }: IconImageProps) {
   const theme = useTheme();
   let width = '';
   let height = '';
@@ -54,12 +62,6 @@ export default function IconImage({ name, ...props }: IconImageProps) {
     width = '18';
     height = '18';
   }
-  if (['give-feedback', 'join-community', 'support-us'].indexOf(name) !== -1) {
-    category = 'about/';
-    mode = '';
-    width = '28';
-    height = '28';
-  }
   if (
     [
       'spotify',
@@ -72,12 +74,20 @@ export default function IconImage({ name, ...props }: IconImageProps) {
       'boeing',
       'siemens',
       'deloitte',
+      'apple',
+      'twitter',
+      'salesforce',
       'volvo',
+      'verizon',
+      'atandt',
+      'patreon',
+      'ebay',
+      'samsung',
     ].indexOf(name) !== -1
   ) {
     category = 'companies/';
   }
-  return (
+  const element = (
     <Img
       src={`/static/branding/${category}${name}${mode}.svg`}
       alt=""
@@ -87,4 +97,8 @@ export default function IconImage({ name, ...props }: IconImageProps) {
       {...props}
     />
   );
+  if (!title) {
+    return element;
+  }
+  return <Tooltip title={title}>{element}</Tooltip>;
 }

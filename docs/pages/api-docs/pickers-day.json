@@ -10,7 +10,12 @@
     "disableMargin": { "type": { "name": "bool" } },
     "selected": { "type": { "name": "bool" } },
     "showDaysOutsideCurrentMonth": { "type": { "name": "bool" } },
-    "sx": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "today": { "type": { "name": "bool" } }
   },
   "name": "PickersDay",
@@ -32,6 +37,5 @@
   "filename": "/packages/mui-lab/src/PickersDay/PickersDay.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

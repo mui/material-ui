@@ -1,24 +1,19 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { expect } from 'chai';
 import { act, describeConformance, fireEvent, screen, userEvent } from 'test/utils';
 import { TransitionProps } from '@mui/material/transitions';
 import { TimePickerProps } from '@mui/lab/TimePicker';
 import DesktopTimePicker from '@mui/lab/DesktopTimePicker';
-import { wrapPickerMount, createPickerRender, adapterToUse } from '../internal/pickers/test-utils';
+import {
+  wrapPickerMount,
+  createPickerRenderer,
+  adapterToUse,
+} from '../internal/pickers/test-utils';
 
 describe('<DesktopTimePicker />', () => {
-  let clock: ReturnType<typeof useFakeTimers>;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const render = createPickerRender();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   describeConformance(
     <DesktopTimePicker
@@ -199,6 +194,29 @@ describe('<DesktopTimePicker />', () => {
     fireEvent.click(nextViewButton);
     expect(screen.getByLabelText(/Select seconds/)).toBeVisible();
     expect(nextViewButton).to.have.attribute('disabled');
+  });
+
+  it('fires a change event when meridiem changes', () => {
+    const handleChange = spy();
+    render(
+      <DesktopTimePicker
+        ampm
+        onChange={handleChange}
+        open
+        renderInput={(params) => <TextField {...params} />}
+        value={adapterToUse.date('2019-01-01T04:20:00.000')}
+      />,
+    );
+    const buttonPM = screen.getByRole('button', { name: 'PM' });
+
+    act(() => {
+      buttonPM.click();
+    });
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.firstCall.args[0]).toEqualDateTime(
+      adapterToUse.date('2019-01-01T16:20:00.000'),
+    );
   });
 
   context('input validation', () => {

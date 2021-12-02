@@ -5,7 +5,12 @@
     "cols": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "component": { "type": { "name": "elementType" } },
     "rows": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
-    "sx": { "type": { "name": "object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "ImageListItem",
   "styles": {
@@ -18,6 +23,5 @@
   "filename": "/packages/mui-material/src/ImageListItem/ImageListItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/image-list/\">Image List</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

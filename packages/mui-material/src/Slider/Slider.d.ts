@@ -3,7 +3,7 @@ import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
   SliderUnstyledTypeMap,
-} from '@mui/core/SliderUnstyled';
+} from '@mui/base/SliderUnstyled';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
@@ -73,12 +73,12 @@ export const SliderValueLabel: React.FC<SliderValueLabelProps>;
  *
  * Demos:
  *
- * - [Slider](https://material-ui.com/components/slider/)
+ * - [Slider](https://mui.com/components/slider/)
  *
  * API:
  *
- * - [Slider API](https://material-ui.com/api/slider/)
- * - inherits [SliderUnstyled API](https://material-ui.com/api/slider-unstyled/)
+ * - [Slider API](https://mui.com/api/slider/)
+ * - inherits [SliderUnstyled API](https://mui.com/api/slider-unstyled/)
  */
 declare const Slider: ExtendSliderUnstyled<SliderTypeMap>;
 

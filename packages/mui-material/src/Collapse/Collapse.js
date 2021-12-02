@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { elementTypeAcceptingRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { duration } from '../styles/createTransitions';
@@ -99,6 +99,7 @@ const CollapseWrapperInner = styled('div', {
 const Collapse = React.forwardRef(function Collapse(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiCollapse' });
   const {
+    addEndListener,
     children,
     className,
     collapsedSize: collapsedSizeProp = '0px',
@@ -251,9 +252,13 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     }
   });
 
-  const addEndListener = (next) => {
+  const handleAddEndListener = (next) => {
     if (timeout === 'auto') {
       timer.current = setTimeout(next, autoTransitionDuration.current || 0);
+    }
+    if (addEndListener) {
+      // Old call signature before `react-transition-group` implemented `nodeRef`
+      addEndListener(nodeRef.current, next);
     }
   };
 
@@ -266,7 +271,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       onExit={handleExit}
       onExited={handleExited}
       onExiting={handleExiting}
-      addEndListener={addEndListener}
+      addEndListener={handleAddEndListener}
       nodeRef={nodeRef}
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
@@ -313,6 +318,12 @@ Collapse.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * Add a custom transition end trigger. Called with the transitioning DOM
+   * node and a done callback. Allows for more fine grained transition end
+   * logic. Note: Timeouts are still used as a fallback if provided.
+   */
+  addEndListener: PropTypes.func,
   /**
    * The content node to be collapsed.
    */
@@ -386,7 +397,11 @@ Collapse.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

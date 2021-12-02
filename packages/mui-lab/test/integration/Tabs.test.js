@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
 describe('<TabContext /> integration', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('wires up aria attributes', () => {
     const { getAllByRole, setProps } = render(

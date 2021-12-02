@@ -34,11 +34,11 @@ It includes `@mui/material` and its peer dependencies, including `emotion`, the 
 
 <!-- #default-branch-switch -->
 
-If you prefer, you can [use styled-components instead](https://material-ui.com/guides/interoperability/#styled-components).
+If you prefer, you can [use styled-components instead](https://mui.com/guides/interoperability/#styled-components).
 
 ## What's next?
 
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://material-ui.com/getting-started/templates/) section.
+You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/getting-started/templates/) section.

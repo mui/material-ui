@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import {
   describeConformance,
   act,
-  createClientRender,
+  createRenderer,
   fireEvent,
   screen,
   simulatePointerDevice,
@@ -15,36 +15,11 @@ import { camelCase } from 'lodash/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
 
-async function raf() {
-  return new Promise((resolve) => {
-    // Chrome and Safari have a bug where calling rAF once returns the current
-    // frame instead of the next frame, so we need to call a double rAF here.
-    // See crbug.com/675795 for more.
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        resolve();
-      });
-    });
-  });
-}
-
 describe('<Tooltip />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
+  const { clock, render } = createRenderer({ clock: 'fake' });
   beforeEach(() => {
     testReset();
-    clock = useFakeTimers();
   });
-
-  afterEach(() => {
-    act(() => {
-      clock.restore();
-    });
-  });
-
-  const render = createClientRender();
 
   describeConformance(
     <Tooltip title="Hello World" open>
@@ -259,20 +234,14 @@ describe('<Tooltip />', () => {
     expect(queryByRole('tooltip')).to.equal(null);
 
     fireEvent.mouseOver(getByRole('button'));
-    act(() => {
-      clock.tick(enterDelay);
-    });
+    clock.tick(enterDelay);
 
     expect(getByRole('tooltip')).toBeVisible();
 
-    act(() => {
-      fireEvent.mouseLeave(getByRole('button'));
-      // Tooltip schedules timeout even with no delay
-      clock.tick(0);
-    });
-    act(() => {
-      clock.tick(transitionTimeout);
-    });
+    fireEvent.mouseLeave(getByRole('button'));
+    // Tooltip schedules timeout even with no delay
+    clock.tick(0);
+    clock.tick(transitionTimeout);
 
     expect(queryByRole('tooltip')).to.equal(null);
   });
@@ -302,17 +271,13 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal([]);
 
     fireEvent.mouseOver(getByRole('button'));
-    act(() => {
-      clock.tick(100);
-    });
+    clock.tick(100);
 
     expect(eventLog).to.deep.equal(['mouseover', 'open']);
     setProps({ open: true });
 
     fireEvent.mouseLeave(getByRole('button'));
-    act(() => {
-      clock.tick(0);
-    });
+    clock.tick(0);
 
     expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
   });
@@ -328,9 +293,7 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal([]);
 
     fireEvent.mouseOver(getByTestId('trigger'));
-    act(() => {
-      clock.tick(100);
-    });
+    clock.tick(100);
 
     expect(eventLog).to.deep.equal(['mouseover']);
   });
@@ -344,9 +307,7 @@ describe('<Tooltip />', () => {
     );
 
     fireEvent.mouseLeave(getByTestId('trigger'));
-    act(() => {
-      clock.tick(0);
-    });
+    clock.tick(0);
 
     expect(eventLog).to.deep.equal(['mouseleave']);
   });
@@ -366,17 +327,13 @@ describe('<Tooltip />', () => {
       </Tooltip>,
     );
 
-    act(() => {
-      fireEvent.keyDown(
-        // We don't care about the target. Any Escape should dismiss the tooltip
-        // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
-        document.activeElement,
-        { key: 'Escape' },
-      );
-    });
-    act(() => {
-      clock.tick(transitionTimeout);
-    });
+    fireEvent.keyDown(
+      // We don't care about the target. Any Escape should dismiss the tooltip
+      // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+      document.activeElement,
+      { key: 'Escape' },
+    );
+    clock.tick(transitionTimeout);
 
     expect(handleClose.callCount).to.equal(1);
   });
@@ -411,21 +368,17 @@ describe('<Tooltip />', () => {
           <button type="submit">Hello World</button>
         </Tooltip>,
       );
-      act(() => {
-        fireEvent.touchStart(getByRole('button'));
-        clock.tick(enterTouchDelay + enterDelay);
-      });
+      fireEvent.touchStart(getByRole('button'));
+      clock.tick(enterTouchDelay + enterDelay);
 
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.touchEnd(getByRole('button'));
       act(() => {
         getByRole('button').blur();
-        clock.tick(leaveTouchDelay);
       });
-      act(() => {
-        clock.tick(transitionTimeout);
-      });
+      clock.tick(leaveTouchDelay);
+      clock.tick(transitionTimeout);
 
       expect(queryByRole('tooltip')).to.equal(null);
     });
@@ -475,9 +428,7 @@ describe('<Tooltip />', () => {
       );
 
       setProps({ open: true });
-      act(() => {
-        clock.tick(100);
-      });
+      clock.tick(100);
 
       expect(getByRole('tooltip')).toBeVisible();
       expect(handleFocus.callCount).to.equal(1);
@@ -498,9 +449,7 @@ describe('<Tooltip />', () => {
       focusVisible(getByRole('button'));
       expect(queryByRole('tooltip')).to.equal(null);
 
-      act(() => {
-        clock.tick(111);
-      });
+      clock.tick(111);
 
       expect(getByRole('tooltip')).toBeVisible();
     });
@@ -524,21 +473,15 @@ describe('<Tooltip />', () => {
 
       expect(queryByRole('tooltip')).to.equal(null);
 
-      act(() => {
-        clock.tick(111);
-      });
+      clock.tick(111);
 
       expect(getByRole('tooltip')).toBeVisible();
 
       act(() => {
         document.activeElement.blur();
       });
-      act(() => {
-        clock.tick(5);
-      });
-      act(() => {
-        clock.tick(6);
-      });
+      clock.tick(5);
+      clock.tick(6);
 
       expect(queryByRole('tooltip')).to.equal(null);
 
@@ -572,9 +515,7 @@ describe('<Tooltip />', () => {
       simulatePointerDevice();
 
       focusVisible(getByRole('button'));
-      act(() => {
-        clock.tick(enterDelay);
-      });
+      clock.tick(enterDelay);
 
       expect(getByRole('tooltip')).toBeVisible();
 
@@ -584,12 +525,8 @@ describe('<Tooltip />', () => {
 
       expect(getByRole('tooltip')).toBeVisible();
 
-      act(() => {
-        clock.tick(leaveDelay);
-      });
-      act(() => {
-        clock.tick(transitionTimeout);
-      });
+      clock.tick(leaveDelay);
+      clock.tick(transitionTimeout);
 
       expect(queryByRole('tooltip')).to.equal(null);
     });
@@ -716,9 +653,7 @@ describe('<Tooltip />', () => {
       );
 
       fireEvent.mouseOver(getByRole('button'));
-      act(() => {
-        clock.tick(100);
-      });
+      clock.tick(100);
 
       expect(getByRole('tooltip')).toBeVisible();
 
@@ -747,9 +682,7 @@ describe('<Tooltip />', () => {
       );
 
       fireEvent.mouseOver(getByRole('button'));
-      act(() => {
-        clock.tick(100);
-      });
+      clock.tick(100);
 
       expect(getByRole('tooltip')).toBeVisible();
 
@@ -758,9 +691,7 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(getByRole('tooltip'));
-      act(() => {
-        clock.tick(111 + 10);
-      });
+      clock.tick(111 + 10);
 
       expect(getByRole('tooltip')).not.toBeVisible();
     });
@@ -932,9 +863,7 @@ describe('<Tooltip />', () => {
       act(() => {
         button.blur();
       });
-      act(() => {
-        clock.tick(transitionTimeout);
-      });
+      clock.tick(transitionTimeout);
 
       expect(getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['blur', 'close']);
@@ -1038,16 +967,6 @@ describe('<Tooltip />', () => {
 
   describe('prop: followCursor', () => {
     it('should use the position of the mouse', async function test() {
-      // Only callig render() outputs:
-      // An update to ForwardRef(Popper) inside a test was not wrapped in act(...).
-      // Somethings is wrong in JSDOM and strict mode.
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
-      // Avoid mock of raf
-      clock.restore();
-
       const x = 50;
       const y = 10;
 
@@ -1072,8 +991,11 @@ describe('<Tooltip />', () => {
         clientY: y,
       });
 
-      // Wait for the popperRef.current.update() call to resolve.
-      await raf();
+      // The `placement` of the Popper changed due to the previous action.
+      // Updates to the Popper are scheduled in a microtask (at least in the implementation of `@popperjs/core`) so we need to flush that microtask by awaiting a Promise.
+      await act(async () => {
+        await Promise.resolve();
+      });
 
       expect(tooltipElement).toBeVisible();
 
@@ -1089,6 +1011,96 @@ describe('<Tooltip />', () => {
           transform: `translate3d(${x}px, ${y}px, 0px)`,
         });
       }
+    });
+  });
+
+  describe('prop: components', () => {
+    it('can render a different Popper component', () => {
+      const CustomPopper = () => <div data-testid="CustomPopper" />;
+      const { getByTestId } = render(
+        <Tooltip title="Hello World" open components={{ Popper: CustomPopper }}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(getByTestId('CustomPopper')).toBeVisible();
+    });
+
+    it('can render a different Tooltip component', () => {
+      const CustomTooltip = React.forwardRef((props, ref) => (
+        <div data-testid="CustomTooltip" ref={ref} />
+      ));
+      const { getByTestId } = render(
+        <Tooltip title="Hello World" open components={{ Tooltip: CustomTooltip }}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(getByTestId('CustomTooltip')).toBeVisible();
+    });
+
+    it('can render a different Arrow component', () => {
+      const CustomArrow = React.forwardRef((props, ref) => (
+        <div data-testid="CustomArrow" ref={ref} />
+      ));
+      const { getByTestId } = render(
+        <Tooltip title="Hello World" open arrow components={{ Arrow: CustomArrow }}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(getByTestId('CustomArrow')).toBeVisible();
+    });
+  });
+
+  describe('prop: componentsProps', () => {
+    it('can provide custom props for the inner Popper component', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          componentsProps={{ popper: { 'data-testid': 'CustomPopper' } }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(getByTestId('CustomPopper')).toBeVisible();
+    });
+
+    it('can provide custom props for the inner Tooltip component', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          componentsProps={{ tooltip: { 'data-testid': 'CustomTooltip' } }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(getByTestId('CustomTooltip')).toBeVisible();
+    });
+
+    it('can provide custom props for the inner Arrow component', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          arrow
+          componentsProps={{ arrow: { 'data-testid': 'CustomArrow' } }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(getByTestId('CustomArrow')).toBeVisible();
     });
   });
 
@@ -1118,16 +1130,31 @@ describe('<Tooltip />', () => {
           <button type="submit">Hello World</button>
         </Tooltip>,
       );
-      document.body.style.WebkitUserSelect = 'revert';
+      document.body.style.WebkitUserSelect = 'text';
 
       fireEvent.touchStart(getByRole('button'));
 
       expect(document.body.style.WebkitUserSelect).to.equal('none');
 
-      act(() => {
-        clock.tick(enterTouchDelay + enterDelay);
-      });
-      expect(document.body.style.WebkitUserSelect.toLowerCase()).to.equal('revert');
+      clock.tick(enterTouchDelay + enterDelay);
+      expect(document.body.style.WebkitUserSelect).to.equal('text');
+    });
+
+    it('ensures text-selection is reset after single press', () => {
+      const { getByRole } = render(
+        <Tooltip title="Hello World">
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+      document.body.style.WebkitUserSelect = 'text';
+
+      fireEvent.touchStart(getByRole('button'));
+
+      expect(document.body.style.WebkitUserSelect).to.equal('none');
+
+      fireEvent.touchEnd(getByRole('button'));
+
+      expect(document.body.style.WebkitUserSelect).to.equal('text');
     });
 
     it('restores user-select when unmounted during longpress', () => {
@@ -1147,14 +1174,58 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
 
-      document.body.style.WebkitUserSelect = 'revert';
+      document.body.style.WebkitUserSelect = 'text';
       // Let updates flush before unmounting
-      act(() => {
-        fireEvent.touchStart(getByRole('button'));
-      });
+      fireEvent.touchStart(getByRole('button'));
       unmount();
 
-      expect(document.body.style.WebkitUserSelect.toLowerCase()).to.equal('revert');
+      expect(document.body.style.WebkitUserSelect).to.equal('text');
+    });
+  });
+
+  describe('className', () => {
+    it('should allow className from PopperProps', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          PopperProps={{ 'data-testid': 'popper', className: 'my-class' }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      expect(getByTestId('popper')).to.have.class('my-class');
+    });
+
+    it('should allow className from componentsProps.popper', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          componentsProps={{ popper: { 'data-testid': 'popper', className: 'my-class' } }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      expect(getByTestId('popper')).to.have.class('my-class');
+    });
+
+    it('should apply both the className from PopperProps and componentsProps.popper if both are passed', () => {
+      const { getByTestId } = render(
+        <Tooltip
+          title="Hello World"
+          open
+          componentsProps={{ popper: { 'data-testid': 'popper', className: 'my-class' } }}
+          PopperProps={{ className: 'my-class-2' }}
+        >
+          <button type="submit">Hello World</button>
+        </Tooltip>,
+      );
+
+      expect(getByTestId('popper')).to.have.class('my-class-2');
+      expect(getByTestId('popper')).to.have.class('my-class');
     });
   });
 });

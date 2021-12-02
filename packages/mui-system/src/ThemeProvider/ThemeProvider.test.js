@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import { useTheme } from '@mui/private-theming';
 import { ThemeContext } from '@mui/styled-engine';
 import ThemeProvider from './ThemeProvider';
 
 describe('ThemeProvider', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should provide the theme to the mui theme context', () => {
     let theme;

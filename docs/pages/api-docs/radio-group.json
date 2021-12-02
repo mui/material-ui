@@ -13,6 +13,5 @@
   "filename": "/packages/mui-material/src/RadioGroup/RadioGroup.js",
   "inheritance": { "component": "FormGroup", "pathname": "/api/form-group/" },
   "demos": "<ul><li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

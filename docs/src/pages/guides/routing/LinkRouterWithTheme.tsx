@@ -1,10 +1,14 @@
 import * as React from 'react';
-import { MemoryRouter as Router } from 'react-router';
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
-import { Theme, ThemeProvider, createTheme } from '@mui/material/styles';
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+  MemoryRouter,
+} from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom/server';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Link from '@mui/material/Link';
+import Link, { LinkProps } from '@mui/material/Link';
 
 const LinkBehavior = React.forwardRef<
   any,
@@ -15,27 +19,34 @@ const LinkBehavior = React.forwardRef<
   return <RouterLink data-testid="custom-link" ref={ref} to={href} {...other} />;
 });
 
-const themeSetter = (outerTheme: Theme) =>
-  createTheme(outerTheme, {
-    components: {
-      MuiLink: {
-        defaultProps: {
-          // @ts-ignore
-          component: LinkBehavior,
-        },
-      },
-      MuiButtonBase: {
-        defaultProps: {
-          LinkComponent: LinkBehavior,
-        },
+function Router(props: { children?: React.ReactNode }) {
+  const { children } = props;
+  if (typeof window === 'undefined') {
+    return <StaticRouter location="/">{children}</StaticRouter>;
+  }
+
+  return <MemoryRouter>{children}</MemoryRouter>;
+}
+
+const theme = createTheme({
+  components: {
+    MuiLink: {
+      defaultProps: {
+        component: LinkBehavior,
+      } as LinkProps,
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        LinkComponent: LinkBehavior,
       },
     },
-  });
+  },
+});
 
 export default function LinkRouterWithTheme() {
   return (
     <Stack sx={{ typography: 'body1' }} alignItems="center" spacing={1}>
-      <ThemeProvider theme={themeSetter}>
+      <ThemeProvider theme={theme}>
         <Router>
           <Link href="/">Link</Link>
           <Button href="/" variant="contained">

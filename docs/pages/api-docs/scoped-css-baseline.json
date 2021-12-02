@@ -2,7 +2,8 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } }
+    "component": { "type": { "name": "elementType" } },
+    "enableColorScheme": { "type": { "name": "bool" } }
   },
   "name": "ScopedCssBaseline",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiScopedCssBaseline" },
@@ -11,6 +12,5 @@
   "filename": "/packages/mui-material/src/ScopedCssBaseline/ScopedCssBaseline.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/css-baseline/\">Css Baseline</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

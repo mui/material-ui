@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import styled from '@mui/styled-engine-sc';
 
 describe('styled', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should help debug wrong args', () => {
     expect(() => {
@@ -33,5 +33,9 @@ describe('styled', () => {
     const { container } = render(<StyledComponent color="blue" />);
     expect(container.firstChild).not.to.have.attribute('color');
     expect(container.querySelector('[class^=TestComponent]')).not.to.equal(null);
+  });
+
+  it("should not allow styled-components's APIs: .attrs", () => {
+    expect(typeof styled('span').attrs).to.equal('undefined');
   });
 });

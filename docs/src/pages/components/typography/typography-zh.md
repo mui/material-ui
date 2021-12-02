@@ -1,6 +1,6 @@
 ---
 title: React Typography（文字铸排）组件
-components: 文字铸排
+components: Typography
 githubLabel: 'component: Typography'
 materialDesign: https://material.io/design/typography/the-type-system.html
 ---

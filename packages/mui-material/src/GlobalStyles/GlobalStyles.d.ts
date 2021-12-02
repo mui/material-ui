@@ -11,10 +11,10 @@ export interface GlobalStylesProps {
  *
  * Demos:
  *
- * - [How To Customize](https://material-ui.com/customization/how-to-customize/)
+ * - [How To Customize](https://mui.com/customization/how-to-customize/)
  *
  * API:
  *
- * - [GlobalStyles API](https://material-ui.com/api/global-styles/)
+ * - [GlobalStyles API](https://mui.com/api/global-styles/)
  */
 export default function GlobalStyles(props: GlobalStylesProps): React.ReactElement;

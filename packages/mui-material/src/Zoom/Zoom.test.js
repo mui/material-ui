@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
-import { act, describeConformance, createClientRender } from 'test/utils';
+import { spy } from 'sinon';
+import { describeConformance, createRenderer } from 'test/utils';
 import { Transition } from 'react-transition-group';
 import Zoom from '@mui/material/Zoom';
 
 describe('<Zoom />', () => {
-  const render = createClientRender();
+  const { clock, render } = createRenderer();
 
   describeConformance(
     <Zoom in>
@@ -29,17 +29,10 @@ describe('<Zoom />', () => {
   );
 
   describe('transition lifecycle', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
+    clock.withFakeTimers();
 
     it('tests', () => {
+      const handleAddEndListener = spy();
       const handleEnter = spy();
       const handleEntering = spy();
       const handleEntered = spy();
@@ -48,6 +41,7 @@ describe('<Zoom />', () => {
       const handleExited = spy();
       const { container, setProps } = render(
         <Zoom
+          addEndListener={handleAddEndListener}
           onEnter={handleEnter}
           onEntering={handleEntering}
           onEntered={handleEntered}
@@ -62,6 +56,10 @@ describe('<Zoom />', () => {
 
       setProps({ in: true });
 
+      expect(handleAddEndListener.callCount).to.equal(1);
+      expect(handleAddEndListener.args[0][0]).to.equal(child);
+      expect(typeof handleAddEndListener.args[0][1]).to.equal('function');
+
       expect(handleEnter.callCount).to.equal(1);
       expect(handleEnter.args[0][0]).to.equal(child);
 
@@ -72,9 +70,7 @@ describe('<Zoom />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(handleEntered.callCount).to.equal(1);
       expect(handleEntered.args[0][0]).to.equal(child);
 
@@ -90,9 +86,7 @@ describe('<Zoom />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
-      act(() => {
-        clock.tick(1000);
-      });
+      clock.tick(1000);
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
     });

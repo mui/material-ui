@@ -65,7 +65,7 @@ export interface TreeItemProps
   TransitionComponent?: React.JSXElementConstructor<TransitionProps>;
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition) component.
    */
   TransitionProps?: TransitionProps;
   /**
@@ -78,10 +78,10 @@ export interface TreeItemProps
  *
  * Demos:
  *
- * - [Tree View](https://material-ui.com/components/tree-view/)
+ * - [Tree View](https://mui.com/components/tree-view/)
  *
  * API:
  *
- * - [TreeItem API](https://material-ui.com/api/tree-item/)
+ * - [TreeItem API](https://mui.com/api/tree-item/)
  */
 export default function TreeItem(props: TreeItemProps): JSX.Element;

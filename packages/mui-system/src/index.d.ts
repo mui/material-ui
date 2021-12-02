@@ -107,6 +107,9 @@ export {
   GlobalStyles,
   GlobalStylesProps,
   StyledEngineProvider,
+  Interpolation,
+  CSSInterpolation,
+  CSSObject,
 } from '@mui/styled-engine';
 
 export * from './style';
@@ -117,6 +120,8 @@ export {
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
+
+export { default as experimental_sx } from './sx';
 
 export { default as Box } from './Box';
 export * from './Box';
@@ -154,3 +159,6 @@ export * from './colorManipulator';
 
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
+
+export { default as unstable_createCssVarsProvider } from './cssVars';
+export * from './cssVars';

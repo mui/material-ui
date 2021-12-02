@@ -33,4 +33,4 @@ yarn add @mui/material
 
 <!-- #default-branch-switch -->
 
-[The documentation](https://material-ui.com/components/about-the-lab/)
+[The documentation](https://mui.com/components/about-the-lab/)

@@ -43,7 +43,12 @@
       "deprecated": true,
       "deprecationInfo": "checkout <a href=\"/api/list-item-button/\">ListItemButton</a> instead"
     },
-    "sx": { "type": { "name": "object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "ListItem",
   "styles": {
@@ -73,6 +78,5 @@
   "filename": "/packages/mui-material/src/ListItem/ListItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li>\n<li><a href=\"/components/transfer-list/\">Transfer List</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

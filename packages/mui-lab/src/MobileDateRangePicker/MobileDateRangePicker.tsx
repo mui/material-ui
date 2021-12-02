@@ -86,11 +86,11 @@ type MobileDateRangePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
+ * - [Date Range Picker](https://mui.com/components/date-range-picker/)
  *
  * API:
  *
- * - [MobileDateRangePicker API](https://material-ui.com/api/mobile-date-range-picker/)
+ * - [MobileDateRangePicker API](https://mui.com/api/mobile-date-range-picker/)
  */
 const MobileDateRangePicker = React.forwardRef(function MobileDateRangePicker<TDate>(
   inProps: MobileDateRangePickerProps<TDate>,
@@ -259,6 +259,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   disableCloseOnSelect: PropTypes.bool,
   /**
    * If `true`, the picker and text field are disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
@@ -410,6 +411,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
   /**
    * Make picker read only.
+   * @default false
    */
   readOnly: PropTypes.bool,
   /**
@@ -424,7 +426,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   renderDay: PropTypes.func,
   /**
    * The `renderInput` prop allows you to customize the rendered input.
-   * The `startProps` and `endProps` arguments of this render prop contains props of [TextField](https://material-ui.com/api/text-field/#textfield-api),
+   * The `startProps` and `endProps` arguments of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api),
    * that you need to forward to the range start/end inputs respectively.
    * Pay specific attention to the `ref` and `inputProps` keys.
    * @example

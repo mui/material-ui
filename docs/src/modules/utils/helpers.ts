@@ -13,13 +13,7 @@ const dateAdapterPackageMapping: Record<string, string> = {
   AdapterMoment: 'moment',
 };
 
-export function titleize(hyphenedString: string): string {
-  if (process.env.NODE_ENV !== 'production') {
-    if (typeof hyphenedString !== 'string' || hyphenedString.length <= 0) {
-      console.error('titleize(hyphenedString) expects a non empty string argument.');
-    }
-  }
-
+function titleize(hyphenedString: string): string {
   return hyphenedString
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -168,9 +162,10 @@ export function getDependencies(
     '@mui/styles': getMuiPackageVersion('styles', muiCommitRef),
     '@mui/system': getMuiPackageVersion('system', muiCommitRef),
     '@mui/private-theming': getMuiPackageVersion('theming', muiCommitRef),
-    '@mui/core': getMuiPackageVersion('core', muiCommitRef),
+    '@mui/base': getMuiPackageVersion('base', muiCommitRef),
     '@mui/utils': getMuiPackageVersion('utils', muiCommitRef),
     '@mui/material-next': getMuiPackageVersion('material-next', muiCommitRef),
+    '@mui/joy': getMuiPackageVersion('joy', muiCommitRef),
   };
 
   // TODO: Where is this coming from and why does it need to be injected this way.
@@ -232,30 +227,57 @@ export function getDependencies(
  * @return The cookie value
  */
 export function getCookie(name: string): string | undefined {
-  // `process.browser` is set by nextjs where we only use `getCookie`
-  // but this file is imported from nodejs scripts so TypeScript complains for that environment.
-  if ((process as any).browser) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) {
-      return parts[1].split(';').shift();
-    }
+  if (typeof document === 'undefined') {
+    throw new Error(
+      'getCookie() is not supported on the server. Fallback to a different value when rendering on the server.',
+    );
   }
+
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) {
+    return parts[1].split(';').shift();
+  }
+
   return undefined;
 }
 
-export function pathnameToLanguage(pathname: string): { userLanguage: string; canonical: string } {
-  const userLanguage = pathname.substring(1, 3);
+/**
+ * as is a reference to Next.js's as, the path in the URL
+ * pathname is a reference to Next.js's pathname, the name of page in the filesystem
+ * https://nextjs.org/docs/api-reference/next/router
+ */
+export function pathnameToLanguage(pathname: string): {
+  userLanguage: string;
+  canonicalAs: string;
+  canonicalPathname: string;
+} {
+  let userLanguage;
+  const userLanguageCandidate = pathname.substring(1, 3);
 
-  if (LANGUAGES.indexOf(userLanguage) !== -1 && pathname.indexOf(`/${userLanguage}/`) === 0) {
-    return {
-      userLanguage,
-      canonical: userLanguage === 'en' ? pathname : pathname.substring(3),
-    };
+  if (
+    LANGUAGES.indexOf(userLanguageCandidate) !== -1 &&
+    pathname.indexOf(`/${userLanguageCandidate}/`) === 0
+  ) {
+    userLanguage = userLanguageCandidate;
+  } else {
+    userLanguage = 'en';
   }
 
+  const canonicalAs = userLanguage === 'en' ? pathname : pathname.substring(3);
+  const canonicalPathname = canonicalAs
+    .replace(/^\/api/, '/api-docs')
+    .replace(/#(.*)$/, '')
+    .replace(/\/$/, '');
+
   return {
-    userLanguage: 'en',
-    canonical: pathname,
+    userLanguage,
+    canonicalAs,
+    canonicalPathname,
   };
+}
+
+export function escapeCell(value: string): string {
+  // As the pipe is use for the table structure
+  return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
 }

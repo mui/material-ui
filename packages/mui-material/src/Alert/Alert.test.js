@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Alert, { alertClasses as classes } from '@mui/material/Alert';
 import Paper from '@mui/material/Paper';
 
 describe('<Alert />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Alert />, () => ({
     classes,

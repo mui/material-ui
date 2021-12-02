@@ -9,7 +9,7 @@ import { ParseableDate } from '../internal/pickers/constants/prop-types';
 import { BasePickerProps, ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { ExportedDateInputProps } from '../internal/pickers/PureDateInput';
 
-export type DateTimePickerView = 'year' | 'day' | 'month' | 'hours' | 'minutes';
+export type DateTimePickerView = 'year' | 'day' | 'month' | 'hours' | 'minutes' | 'seconds';
 
 export interface BaseDateTimePickerProps<TDate>
   extends ExportedClockPickerProps<TDate>,
@@ -44,6 +44,10 @@ export interface BaseDateTimePickerProps<TDate>
    * Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
    */
   maxDateTime?: TDate;
+  /**
+   * Callback fired on view change.
+   */
+  onViewChange?: (view: DateTimePickerView) => void;
   /**
    * First view to show.
    */
@@ -86,7 +90,7 @@ export function useDateTimePickerDefaultizedProps<Props extends BaseDateTimePick
     ...other
   }: Props,
   name: string,
-): DefaultizedProps<Props> {
+): DefaultizedProps<Props> & Required<Pick<BaseDateTimePickerProps<unknown>, 'openTo' | 'views'>> {
   const utils = useUtils();
   const defaultDates = useDefaultDates<unknown>();
   const minDate = minDateProp ?? defaultDates.minDate;

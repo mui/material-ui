@@ -11,18 +11,25 @@ import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const DIAMONDs = [
   {
-    src: 'https://avatars3.githubusercontent.com/u/1287123?s=40',
-    srcSet: 'https://avatars3.githubusercontent.com/u/1287123?s=80 2x',
+    src: '/static/sponsors/octopus.svg',
+    srcSet: '/static/sponsors/octopus.svg',
     name: 'Octopus Deploy',
     description: 'Repeatable reliable deployments.',
     href: 'https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://avatars3.githubusercontent.com/u/8424863?s=40',
-    srcSet: 'https://avatars3.githubusercontent.com/u/8424863?s=80 2x',
+    src: '/static/sponsors/doit-square.svg',
+    srcSet: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
     description: 'Management platform for Google Cloud and AWS.',
     href: 'https://www.doit-intl.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: '/static/sponsors/aptugo.svg',
+    srcSet: '/static/sponsors/aptugo.svg',
+    name: 'Aptugo',
+    description: "Build scalable Web and Mobile Apps fast and easy with Aptugo's visual interface.",
+    href: 'https://www.aptugo.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
 
@@ -32,28 +39,11 @@ export default function DiamondSponsors() {
     threshold: 0,
     rootMargin: '500px',
   });
+  const maxNumberOfDiamondSponsors = 3;
+  const spotIsAvailable = maxNumberOfDiamondSponsors > DIAMONDs.length;
   return (
     <Box ref={ref}>
-      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-        <Box
-          sx={{
-            display: 'inline-block',
-            mr: 1,
-            mt: 0.2,
-            borderRadius: 1,
-            width: 12,
-            height: 12,
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[200]
-                : theme.palette.primary[500],
-            border: '3px solid',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[500]
-                : theme.palette.primary[100],
-          }}
-        />
+      <Box sx={{ mb: 2 }}>
         <Typography
           component="h3"
           variant="h5"
@@ -74,44 +64,51 @@ export default function DiamondSponsors() {
             <SponsorCard logoSize={64} inView={inView} item={item} />
           </Grid>
         ))}
-        <Grid item xs={12} sm={6} md={4}>
-          <Paper
-            variant="outlined"
-            sx={{
-              p: 2,
-              display: 'flex',
-              alignItems: 'center',
-              height: '100%',
-              borderStyle: 'dashed',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-            }}
-          >
-            <IconButton
-              aria-label="Become MUI sponsor"
-              component="a"
-              href="mailto:diamond@mui.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              color="primary"
-              sx={{ mr: 2, border: '1px solid', borderColor: 'divider' }}
+        {spotIsAvailable && (
+          <Grid item xs={12} sm={6} md={4}>
+            <Paper
+              variant="outlined"
+              sx={{
+                p: 2,
+                display: 'flex',
+                alignItems: 'center',
+                height: '100%',
+                borderStyle: 'dashed',
+                borderColor: (theme) =>
+                  theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
+              }}
             >
-              <AddRounded />
-            </IconButton>
-            <Box>
-              <Typography variant="body2" color="text.primary" fontWeight="bold">
-                Become our sponsor!
-              </Typography>
-              <Typography variant="body2" color="text.primary">
-                To join us, contact us at{' '}
-                <Link href="mailto:diamond@mui.com" target="_blank" rel="noopener noreferrer">
-                  diamond@mui.com
-                </Link>{' '}
-                for pre-approval.
-              </Typography>
-            </Box>
-          </Paper>
-        </Grid>
+              <IconButton
+                aria-label="Become MUI sponsor"
+                component="a"
+                href="mailto:diamond@mui.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                color="primary"
+                sx={{
+                  mr: 2,
+                  border: '1px solid',
+                  borderColor: (theme) =>
+                    theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
+                }}
+              >
+                <AddRounded />
+              </IconButton>
+              <div>
+                <Typography variant="body2" color="text.primary" fontWeight="bold">
+                  Become our sponsor!
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  To join us, contact us at{' '}
+                  <Link href="mailto:diamond@mui.com" target="_blank" rel="noopener noreferrer">
+                    diamond@mui.com
+                  </Link>{' '}
+                  for pre-approval.
+                </Typography>
+              </div>
+            </Paper>
+          </Grid>
+        )}
       </Grid>
     </Box>
   );

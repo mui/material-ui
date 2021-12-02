@@ -1,18 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createTheme } from '@mui/material/styles';
+import { styled, createTheme } from '@mui/material/styles';
 import { withStyles } from '@mui/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import { useRouter } from 'next/router';
+import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import AppFooter from 'docs/src/modules/components/AppFooter';
+import AppFooter from 'docs/src/layouts/AppFooter';
 import { exactProp } from '@mui/utils';
-import MarkdownElement from './MarkdownElement';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
 const authors = {
   oliviertassinari: {
@@ -22,6 +22,42 @@ const authors = {
   mbrookes: {
     name: 'Matt Brookes',
     github: 'mbrookes',
+  },
+  eps1lon: {
+    name: 'Sebastian Silbermann',
+    github: 'eps1lon',
+  },
+  mnajdova: {
+    name: 'Marija Najdova',
+    github: 'mnajdova',
+  },
+  michaldudak: {
+    name: 'Michał Dudak',
+    github: 'michaldudak',
+  },
+  siriwatknp: {
+    name: 'Siriwat Kunaporn',
+    github: 'siriwatknp',
+  },
+  'danilo-leal': {
+    name: 'Danilo Leal',
+    github: 'danilo-leal',
+  },
+  m4theushw: {
+    name: 'Matheus Wichman',
+    github: 'm4theushw',
+  },
+  flaviendelangle: {
+    name: 'Flavien Delangle',
+    github: 'flaviendelangle',
+  },
+  DanailH: {
+    name: 'Danail Hadjiatanasov',
+    github: 'DanailH',
+  },
+  alexfauquette: {
+    name: 'Alexandre Fauquette',
+    github: 'alexfauquette',
   },
 };
 
@@ -67,16 +103,23 @@ const styles = (theme) => ({
     color: theme.palette.text.secondary,
     ...theme.typography.body2,
   },
-  avatar: {
+});
+
+const AuthorsContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  marginBottom: theme.spacing(1),
+  '& .author': {
     display: 'flex',
     alignItems: 'center',
-    paddingBottom: theme.spacing(5),
+    paddingBottom: theme.spacing(3),
+    paddingRight: theme.spacing(2),
     fontWeight: theme.typography.fontWeightMedium,
     '& .MuiAvatar-root': {
       marginRight: theme.spacing(1),
     },
   },
-});
+}));
 
 function TopLayoutBlog(props) {
   const { classes, docs } = props;
@@ -91,9 +134,7 @@ function TopLayoutBlog(props) {
         description={description}
         largeCard={headers.card === 'true' ? true : undefined}
         card={
-          headers.card === 'true'
-            ? `https://material-ui.com/static${router.pathname}/card.png`
-            : undefined
+          headers.card === 'true' ? `https://mui.com/static${router.pathname}/card.png` : undefined
         }
       />
       <div className={classes.root}>
@@ -121,20 +162,25 @@ function TopLayoutBlog(props) {
               <MarkdownElement>
                 <h1>{headers.title}</h1>
               </MarkdownElement>
-              <Stack direction="row" spacing={3}>
+              <AuthorsContainer>
                 {headers.authors.map((author) => (
-                  <div key={author} className={classes.avatar}>
-                    <Avatar src={`https://github.com/${authors[author].github}.png`} />
-                    <Typography>{authors[author].name}</Typography>
+                  <div key={author} className="author">
+                    <Avatar
+                      sx={{ width: 32, height: 32 }}
+                      alt=""
+                      src={`https://github.com/${authors[author].github}.png`}
+                    />
+                    <Typography variant="body2">{authors[author].name}</Typography>
                   </div>
                 ))}
-              </Stack>
+              </AuthorsContainer>
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}
         </AppContainer>
+        <Divider />
         <AppFooter />
       </div>
     </AppFrame>

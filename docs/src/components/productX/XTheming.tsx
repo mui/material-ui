@@ -108,7 +108,7 @@ export default function XTheming() {
                   Advanced and <GradientText>beautiful</GradientText>
                 </Typography>
               }
-              description="Use the sophisticated theming features to make the MUI X components looks exactly as you want. "
+              description="Use the sophisticated theming features to make the MUI X components look exactly as you want. "
             />
           </Box>
           <Group sx={{ mt: 4 }}>

@@ -1,25 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { SinonFakeTimers, useFakeTimers } from 'sinon';
 import TextField from '@mui/material/TextField';
 import { fireEvent, screen } from 'test/utils';
 import StaticDatePicker from '@mui/lab/StaticDatePicker';
-import {
-  createPickerRender,
-  adapterToUse,
-  getByMuiTest,
-  getAllByMuiTest,
-} from '../internal/pickers/test-utils';
+import { createPickerRenderer, adapterToUse } from '../internal/pickers/test-utils';
 
 describe('<StaticDatePicker />', () => {
-  let clock: SinonFakeTimers;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-  const render = createPickerRender();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   it('render proper month', () => {
     render(
@@ -32,7 +19,7 @@ describe('<StaticDatePicker />', () => {
 
     expect(screen.getByText('January')).toBeVisible();
     expect(screen.getByText('2019')).toBeVisible();
-    expect(getAllByMuiTest('day')).to.have.length(31);
+    expect(screen.getAllByMuiTest('day')).to.have.length(31);
   });
 
   it('switches between months', () => {
@@ -45,7 +32,7 @@ describe('<StaticDatePicker />', () => {
       />,
     );
 
-    expect(getByMuiTest('calendar-month-text')).to.have.text('January');
+    expect(screen.getByMuiTest('calendar-month-text')).to.have.text('January');
 
     const nextMonth = screen.getByLabelText('Next month');
     const previousMonth = screen.getByLabelText('Previous month');
@@ -56,7 +43,7 @@ describe('<StaticDatePicker />', () => {
     fireEvent.click(previousMonth);
     fireEvent.click(previousMonth);
 
-    expect(getByMuiTest('calendar-month-text')).to.have.text('December');
+    expect(screen.getByMuiTest('calendar-month-text')).to.have.text('December');
   });
 
   it('prop `shouldDisableYear` – disables years dynamically', () => {

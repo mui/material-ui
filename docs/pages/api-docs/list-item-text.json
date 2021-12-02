@@ -8,7 +8,12 @@
     "primaryTypographyProps": { "type": { "name": "object" } },
     "secondary": { "type": { "name": "node" } },
     "secondaryTypographyProps": { "type": { "name": "object" } },
-    "sx": { "type": { "name": "object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "ListItemText",
   "styles": {
@@ -21,6 +26,5 @@
   "filename": "/packages/mui-material/src/ListItemText/ListItemText.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

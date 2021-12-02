@@ -25,4 +25,4 @@ Then, he will likely focus on a [second design system](https://github.com/mui-or
 
 We couldn't be more excited to have Danilo on the team! He's the first designer to join us, ever.
 A focus area with high potential 🌈 and that we have underinvested in for too long.
-See the other areas we want to invest in: we are [hiring](/company/careers/#open-roles).
+See the other areas we want to invest in: we are [hiring](/careers/#open-roles).

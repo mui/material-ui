@@ -5,13 +5,13 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 ## Getting started
 
 1. Add a unit test to `packages/*/src/TheUnitInQuestion/TheUnitInQuestion.test.js` or an integration test `packages/*/test/`.
-2. Run `yarn test:watch`.
+2. Run `yarn t TheUnitInQuestion`.
 3. Implement the tested behavior
 4. Open a PR once the test passes or you want somebody to review your work
 
 ## Tools we use
 
-- [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro)
+- [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/)
 - [Chai](https://www.chaijs.com/)
 - [Sinon](https://sinonjs.org/)
 - [Mocha](https://mochajs.org/)
@@ -20,11 +20,20 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 - [jsdom](https://github.com/jsdom/jsdom)
 - [enzyme](https://airbnb.io/enzyme/) (old tests only)
 
-## Writing Tests
+## Writing tests
 
-For all unit tests, please use the return value from `test/utils/createClientRender`.
+For all unit tests, please use the return value from `test/utils/createRenderer`.
 It prepares the test suite and returns a function with the same interface as
 [`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
+
+````js
+describe('test suite', () => {
+  const { render } = createRenderer()
+
+  test('first', () => {
+    render(<input />);
+  });
+})
 
 For new tests please use `expect` from the BDD testing approach. Prefer to use as expressive [matchers](https://www.chaijs.com/api/bdd/) as possible. This keeps
 the tests readable, and, more importantly, the message if they fail as descriptive as possible.
@@ -76,7 +85,7 @@ function SomeComponent({ variant }) {
 expect(() => {
   render(<SomeComponent variant="unexpected" />);
 }).toErrorDev(["That variant doesn't make sense.", '`variant` is deprecated.']);
-```
+````
 
 ```js
 function SomeComponent({ variant }) {
@@ -96,15 +105,6 @@ expect(() => {
 }).not.toErrorDev();
 ```
 
-#### Visual regression tests
-
-We try to use as many demos from the documentation as possible;
-however, we can't replace one with the other as they address different needs.
-With the regression tests:
-
-- You might need to test a more complex situation, e.g. a stress test of the grid.
-- You might need to test a simpler situation, e.g. a static progress bar.
-
 ## Commands
 
 MUI uses a wide range of tests approach as each of them comes with a different
@@ -112,15 +112,23 @@ trade-off, mainly completeness vs. speed.
 
 ### React API level
 
+#### Debugging tests
+
+If you want to debug tests with the e.g. Chrome inspector (chrome://inspect) you can run `yarn t <testFilePattern> --debug`.
+Note that the test will not get executed until you start code execution in the inspector.
+
+We have a dedicated task to use VSCode's integrated debugger to debug the currently opened test file.
+Open the test you want to run and press F5 (launch "Test Current File").
+
 #### Run the core mocha unit/integration test suite.
 
 To run all of the unit and integration tests run `yarn test:unit`
 
-If you want to `grep` for certain tests add `-g STRING_TO_GREP`.
+If you want to `grep` for certain tests add `-g STRING_TO_GREP` though for development we recommend `yarn t <testFilePattern>`.
 
 #### Watch the core mocha unit/integration test suite.
 
-`yarn test:watch`
+`yarn t <testFilePattern>`
 
 First, we have the **unit test** suite.
 It uses [mocha](https://mochajs.org) and a thin wrapper around `@testing-library/react`.
@@ -154,7 +162,7 @@ Our tests run on different browsers to increase the coverage:
 ##### BrowserStack
 
 We only use BrowserStack for non-PR commits to save ressources.
-Browserstack rarely reports actual issues so we only use it as a stop-gap for releases not merges.
+BrowserStack rarely reports actual issues so we only use it as a stop-gap for releases not merges.
 
 To force a run of BrowserStack on a PR you have to run the pipeline with `browserstack-force` set to `true`.
 For example, you've opened a PR with the number 64209 and now after everything is green you want to make sure the change passes all browsers:
@@ -173,14 +181,9 @@ In the end, components are going to be used in a real browser.
 The DOM is just one dimension of that environment,
 so we also need to take into account the rendering engine.
 
-#### Run the visual regression tests
+#### Visual regression tests
 
-We are using [Playwright](https://playwright.dev/) to take screenshots and comparing them with the baseline. It allows catching regressions like this one:
-
-![before](/test/docs-regressions-before.png)
-![diff](/test/docs-regressions-diff.png)
-
-Here is an [example](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/test/regressions/tests/Menu/SimpleMenuList.js#L6-L16) with the `Menu` component.
+Check out the [visual regression testing readme](./regressions/README.md) for more information.
 
 #### end-to-end tests
 
@@ -194,7 +197,7 @@ You can pass the same arguments as you could to `mocha`.
 For example, `yarn test:regressions:run --watch --grep "docs-system-basic"` to take new screenshots of every demo in `docs/src/pages/system/basic`.
 You can view the screenshots in `test/regressions/screenshots/chrome`.
 
-Alternatively, you might want to open `http://localhost:5000` (while `yarn test:regressions:dev` is running) to view individual views separately.
+Alternatively, you might want to open `http://localhost:3000` (while `yarn test:regressions:dev` is running) to view individual views separately.
 
 ### Caveats
 

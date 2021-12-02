@@ -55,7 +55,7 @@ export default function BasicTimeline() {
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
    * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://material-ui.com/customization/palette/#toggling-color-mode
+   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
    */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
@@ -155,7 +155,7 @@ export default function BasicTimeline() {
                 variant="body2"
                 sx={{ mb: 1 }}
               >
-                Add these properties:
+                Use the sx prop to add these properties:
               </Typography>
               <InfoOutlined fontSize="small" sx={{ ml: 'auto', color: 'grey.500' }} />
             </Box>

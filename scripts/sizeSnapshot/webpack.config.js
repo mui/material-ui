@@ -17,8 +17,6 @@ async function getWebpackEntries() {
         entryName = '@material-ui/core/Paper.esm';
       } else if (componentName === 'TextareaAutosize') {
         entryName = '@material-ui/core/Textarea';
-      } else if (['Popper'].indexOf(componentName) !== -1) {
-        entryName = `@material-ui/core/${componentName}`;
       }
 
       return {
@@ -28,13 +26,18 @@ async function getWebpackEntries() {
     },
   );
 
-  const corePackagePath = path.join(workspaceRoot, 'packages/mui-core/build');
+  const corePackagePath = path.join(workspaceRoot, 'packages/mui-base/build');
   const coreComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
+      let entryName = componentName;
+
+      if (['Popper'].indexOf(componentName) !== -1) {
+        entryName = `@material-ui/core/${componentName}`;
+      }
 
       return {
-        id: componentName,
+        id: entryName,
         path: path.relative(workspaceRoot, path.dirname(componentPath)),
       };
     },
@@ -63,6 +66,18 @@ async function getWebpackEntries() {
       path: path.relative(workspaceRoot, path.dirname(componentPath)),
     };
   });
+
+  const joyPackagePath = path.join(workspaceRoot, 'packages/mui-joy/build');
+  const joyComponents = (await glob(path.join(joyPackagePath, '([A-Z])*/index.js'))).map(
+    (componentPath) => {
+      const componentName = path.basename(path.dirname(componentPath));
+
+      return {
+        name: componentName,
+        path: path.relative(workspaceRoot, path.dirname(componentPath)),
+      };
+    },
+  );
 
   return [
     {
@@ -142,6 +157,11 @@ async function getWebpackEntries() {
       path: path.join(path.relative(workspaceRoot, materialNextPackagePath), 'index.js'),
     },
     ...materialNextComponents,
+    {
+      name: '@mui/joy',
+      path: path.join(path.relative(workspaceRoot, joyPackagePath), 'index.js'),
+    },
+    ...joyComponents,
   ];
 }
 
@@ -151,7 +171,10 @@ module.exports = async function webpackConfig(webpack, environment) {
 
   const entries = await getWebpackEntries();
   const configurations = entries.map((entry) => {
-    return {
+    /**
+     * @type {import('webpack').Configuration}
+     */
+    const configuration = {
       // ideally this would be computed from the bundles peer dependencies
       // Ensure that `react` as well as `react/*` are considered externals but not `react*`
       externals: /^(date-fns|dayjs|luxon|moment|react|react-dom)(\/.*)?$/,
@@ -166,6 +189,12 @@ module.exports = async function webpackConfig(webpack, environment) {
       },
       output: {
         filename: '[name].js',
+        library: {
+          // TODO: Use `type: 'module'` once it is supported (currently incompatible with `externals`)
+          name: 'M',
+          type: 'var',
+          // type: 'module',
+        },
         path: path.join(__dirname, 'build'),
       },
       plugins: [
@@ -190,11 +219,18 @@ module.exports = async function webpackConfig(webpack, environment) {
           '@mui/system': path.join(workspaceRoot, 'packages/mui-system/build'),
           '@mui/private-theming': path.join(workspaceRoot, 'packages/mui-private-theming/build'),
           '@mui/utils': path.join(workspaceRoot, 'packages/mui-utils/build'),
-          '@mui/core': path.join(workspaceRoot, 'packages/mui-core/build'),
+          '@mui/base': path.join(workspaceRoot, 'packages/mui-base/build'),
+          '@mui/material-next': path.join(workspaceRoot, 'packages/mui-material-next/build'),
+          '@mui/joy': path.join(workspaceRoot, 'packages/mui-joy/build'),
         },
       },
       entry: { [entry.id]: path.join(workspaceRoot, entry.path) },
+      // TODO: 'browserslist:modern'
+      // See https://github.com/webpack/webpack/issues/14203
+      target: 'web',
     };
+
+    return configuration;
   });
 
   return configurations;

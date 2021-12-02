@@ -1,6 +1,6 @@
 ---
 title: React Table component
-components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, TablePaginationUnstyled
 githubLabel: 'component: Table'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#table
 materialDesign: https://material.io/components/data-tables
@@ -120,9 +120,15 @@ Virtualization helps with performance issues.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
+## Unstyled table
+
+If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below.
+
+{{"demo": "pages/components/tables/TableUnstyled.js"}}
+
 ## Accessibility
 
-(WAI tutorial: https://www.w3.org/WAI/tutorials/tables/)
+(WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
 
 ### Caption
 

@@ -53,7 +53,7 @@
     "PaperComponent": "The component used to render the body of the popup.",
     "PopperComponent": "The component used to position the popup.",
     "popupIcon": "The icon to display in place of the default popup icon.",
-    "renderGroup": "Render the group.<br><br><strong>Signature:</strong><br><code>function(option: any) =&gt; ReactNode</code><br><em>option:</em> The group to render.",
+    "renderGroup": "Render the group.<br><br><strong>Signature:</strong><br><code>function(params: AutocompleteRenderGroupParams) =&gt; ReactNode</code><br><em>params:</em> The group to render.",
     "renderInput": "Render the input.<br><br><strong>Signature:</strong><br><code>function(params: object) =&gt; ReactNode</code><br>",
     "renderOption": "Render the option, use <code>getOptionLabel</code> by default.<br><br><strong>Signature:</strong><br><code>function(props: object, option: T, state: object) =&gt; ReactNode</code><br><em>props:</em> The props to apply on the li element.<br><em>option:</em> The option to render.<br><em>state:</em> The state of the component.",
     "renderTags": "Render the selected value.<br><br><strong>Signature:</strong><br><code>function(value: Array&lt;T&gt;, getTagProps: function) =&gt; ReactNode</code><br><em>value:</em> The <code>value</code> provided to the component.<br><em>getTagProps:</em> A tag props getter.",

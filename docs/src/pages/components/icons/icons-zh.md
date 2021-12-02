@@ -31,7 +31,7 @@ npm install @material-ui/icons@next
 yarn add @material-ui/icons@next
 ```
 
-这些组件使用 Material-UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@materialui/core` 具有对等依赖性。
+这些组件使用 Material-UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@mui/material` 具有对等依赖性。
 
 如果你的项目中还没有使用 Material-UI，那么你可以用以下方法添加它：
 
@@ -116,7 +116,7 @@ function HomeIcon(props) {
 
 ### 组件属性
 
-即使图标以 `.svg` 的格式保存，你依然可以使用 `SvgIcon` 来包装它。 通过 [svgr](https://github.com/smooth-code/svgr) 提供的加载器，您可以导入 SVG 文件，并以 React 组件形式使用。 譬如，使用 webpack ：
+即使图标以 `.svg` 的格式保存，你依然可以使用 `SvgIcon` 来包装它。 通过 [svgr](https://github.com/gregberge/svgr) 提供的加载器，您可以导入 SVG 文件，并以 React 组件形式使用。 譬如，使用 webpack ：
 
 ```jsx
 // webpack.config.js

@@ -5,7 +5,7 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { ListItemButtonClasses } from './listItemButtonClasses';
 
-interface ListItemButtonBaseProps {
+export interface ListItemButtonBaseProps {
   /**
    * Defines the `align-items` style property.
    * @default 'center'
@@ -70,12 +70,12 @@ export type ListItemButtonTypeMap<
  *
  * Demos:
  *
- * - [Lists](https://material-ui.com/components/lists/)
+ * - [Lists](https://mui.com/components/lists/)
  *
  * API:
  *
- * - [ListItemButton API](https://material-ui.com/api/list-item-button/)
- * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
+ * - [ListItemButton API](https://mui.com/api/list-item-button/)
+ * - inherits [ButtonBase API](https://mui.com/api/button-base/)
  */
 declare const ListItemButton: ExtendButtonBase<ListItemButtonTypeMap>;
 

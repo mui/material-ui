@@ -1,6 +1,6 @@
 ---
 title: React Popper component
-components: Popper
+components: Popper, PopperUnstyled
 githubLabel: 'component: Popper'
 ---
 
@@ -72,3 +72,14 @@ There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcor
 state for you in most cases.
 
 {{"demo": "pages/components/popper/PopperPopupState.js"}}
+
+## Unstyled
+
+The @mui/base package contain an unstyled version of Popper - PopperUnstyled.
+It does not have a dependency on @mui/material.
+The only difference between Popper and PopperUnstyled is the support for theming.
+Popper can read the `direction` field from the current theme, while PopperUnstyled accepts the `direction` prop instead.
+
+```js
+import Popper from '@mui/base/PopperUnstyled';
+```

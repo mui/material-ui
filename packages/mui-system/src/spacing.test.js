@@ -168,6 +168,12 @@ describe('system spacing', () => {
         paddingBottom: 8,
         paddingTop: 8,
       });
+      const output3 = spacing({
+        paddingInline: 1,
+      });
+      expect(output3).to.deep.equal({
+        paddingInline: 8,
+      });
     });
 
     it('should support string values', () => {
@@ -346,6 +352,12 @@ describe('system spacing', () => {
         marginBottom: 8,
         marginTop: 8,
       });
+      const output3 = margin({
+        marginInline: 1,
+      });
+      expect(output3).to.deep.equal({
+        marginInline: 8,
+      });
     });
 
     it('should support string values', () => {
@@ -523,6 +535,12 @@ describe('system spacing', () => {
       expect(output2).to.deep.equal({
         paddingBottom: 8,
         paddingTop: 8,
+      });
+      const output3 = padding({
+        paddingInline: 1,
+      });
+      expect(output3).to.deep.equal({
+        paddingInline: 8,
       });
     });
 

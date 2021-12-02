@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import * as React from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider as MDThemeProvider, createTheme } from '@mui/material/styles';
 import ReactTestRenderer from 'react-test-renderer';
 import createMount from './createMount';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
@@ -149,7 +149,7 @@ export function describeRef(element, getOptions) {
  */
 export function testRootClass(element, getOptions) {
   it('applies the root class to the root component if it has this class', () => {
-    const { classes, render } = getOptions();
+    const { classes, render, skip } = getOptions();
     if (classes.root == null) {
       return;
     }
@@ -162,6 +162,7 @@ export function testRootClass(element, getOptions) {
         classes: { ...classes, root: `${classes.root} ${classesRootClassname}` },
       }),
     );
+
     // we established that the root component renders the outermost host previously. We immediately
     // jump to the host component because some components pass the `root` class
     // to the `classes` prop of the root component.
@@ -170,9 +171,14 @@ export function testRootClass(element, getOptions) {
     expect(container.firstChild).to.have.class(classes.root);
     expect(document.querySelectorAll(`.${classes.root}`).length).to.equal(1);
 
-    // Test that classes prop works
-    expect(container.firstChild).to.have.class(classesRootClassname);
-    expect(document.querySelectorAll('[classes]').length).to.equal(0);
+    // classes test only for @mui/material
+    if (!skip || !skip.includes('classesRoot')) {
+      // Test that classes prop works
+      expect(container.firstChild).to.have.class(classesRootClassname);
+
+      // Test that `classes` does not spread to DOM
+      expect(document.querySelectorAll('[classes]').length).to.equal(0);
+    }
   });
 }
 
@@ -199,12 +205,12 @@ export function testReactTestRenderer(element) {
  * @property {object} classes - `classes` of the component provided by `@mui/styled-engine`
  * @property {import('react').ElementType} [inheritComponent] - The element type that receives spread props or `undefined` if props are not spread.
  * @property {string} muiName
- * @property {(node: React.ReactElement) => import('./createClientRender').MuiRenderResult} [render] - Should be a return value from createClientRender
+ * @property {(node: React.ReactElement) => import('./createRenderer').MuiRenderResult} [render] - Should be a return value from createRenderer
  * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
  * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
  * @property {Array<keyof typeof fullSuite>} [skip] - Skip the specified tests
  * @property {string} [testComponentsRootPropWith] - The host component that should be rendered instead.
- * @property {{ slotName: string, slotClassName: string }} [testDeepOverrides]
+ * @property {{ slotName: string, slotClassName: string } | Array<{ slotName: string, slotClassName: string }>} [testDeepOverrides]
  * @property {{ prop?: string, value?: any, styleKey: string }} [testStateOverrides]
  * @property {object} [testVariantProps]
  * @property {(mount: (node: React.ReactNode) => import('enzyme').ReactWrapper) => (node: React.ReactNode) => import('enzyme').ReactWrapper} [wrapMount] - You can use this option to mount the component with enzyme in a WrapperComponent. Make sure the returned node corresponds to the input node and not the wrapper component.
@@ -245,7 +251,7 @@ function testThemeDefaultProps(element, getOptions) {
   describe('theme default components:', () => {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
-      const { muiName, render } = getOptions();
+      const { muiName, render, ThemeProvider = MDThemeProvider } = getOptions();
 
       if (!muiName) {
         throwMissingPropError('muiName');
@@ -284,7 +290,7 @@ function testThemeStyleOverrides(element, getOptions) {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const { muiName, testStateOverrides, render } = getOptions();
+      const { muiName, testStateOverrides, render, ThemeProvider = MDThemeProvider } = getOptions();
 
       if (!testStateOverrides) {
         return;
@@ -333,11 +339,27 @@ function testThemeStyleOverrides(element, getOptions) {
         testDeepOverrides,
         testRootOverrides = { slotName: 'root' },
         render,
+        ThemeProvider = MDThemeProvider,
       } = getOptions();
 
       const testStyle = {
         mixBlendMode: 'darken',
       };
+
+      function resolveDeepOverrides(callback) {
+        if (!testDeepOverrides) {
+          return {};
+        }
+        const styles = {};
+        if (Array.isArray(testDeepOverrides)) {
+          testDeepOverrides.forEach((slot) => {
+            callback(styles, slot);
+          });
+        } else {
+          callback(styles, testDeepOverrides);
+        }
+        return styles;
+      }
 
       const theme = createTheme({
         components: {
@@ -345,16 +367,16 @@ function testThemeStyleOverrides(element, getOptions) {
             styleOverrides: {
               [testRootOverrides.slotName]: {
                 ...testStyle,
-                ...(testDeepOverrides && {
-                  [`& .${testDeepOverrides.slotClassName}`]: {
+                ...resolveDeepOverrides((styles, slot) => {
+                  styles[`& .${slot.slotClassName}`] = {
                     fontVariantCaps: 'all-petite-caps',
-                  },
+                  };
                 }),
               },
-              ...(testDeepOverrides && {
-                [testDeepOverrides.slotName]: {
+              ...resolveDeepOverrides((styles, slot) => {
+                styles[slot.slotName] = {
                   mixBlendMode: 'darken',
-                },
+                };
               }),
             },
           },
@@ -374,19 +396,21 @@ function testThemeStyleOverrides(element, getOptions) {
       }
 
       if (testDeepOverrides) {
-        expect(
-          document.querySelector(`.${testDeepOverrides.slotClassName}`),
-        ).to.toHaveComputedStyle({
-          fontVariantCaps: 'all-petite-caps',
-          mixBlendMode: 'darken',
-        });
+        (Array.isArray(testDeepOverrides) ? testDeepOverrides : [testDeepOverrides]).forEach(
+          (slot) => {
+            expect(document.querySelector(`.${slot.slotClassName}`)).to.toHaveComputedStyle({
+              fontVariantCaps: 'all-petite-caps',
+              mixBlendMode: 'darken',
+            });
+          },
+        );
 
         const themeWithoutRootOverrides = createTheme({
           components: {
             [muiName]: {
               styleOverrides: {
-                ...(testDeepOverrides && {
-                  [testDeepOverrides.slotName]: testStyle,
+                ...resolveDeepOverrides((styles, slot) => {
+                  styles[slot.slotName] = testStyle;
                 }),
               },
             },
@@ -394,9 +418,14 @@ function testThemeStyleOverrides(element, getOptions) {
         });
 
         setProps({ theme: themeWithoutRootOverrides });
-        expect(
-          document.querySelector(`.${testDeepOverrides.slotClassName}`),
-        ).to.toHaveComputedStyle(testStyle);
+
+        (Array.isArray(testDeepOverrides) ? testDeepOverrides : [testDeepOverrides]).forEach(
+          (slot) => {
+            expect(document.querySelector(`.${slot.slotClassName}`)).to.toHaveComputedStyle(
+              testStyle,
+            );
+          },
+        );
       }
     });
 
@@ -405,7 +434,13 @@ function testThemeStyleOverrides(element, getOptions) {
         this.skip();
       }
 
-      const { muiName, classes, testStateOverrides, render } = getOptions();
+      const {
+        muiName,
+        classes,
+        testStateOverrides,
+        render,
+        ThemeProvider = MDThemeProvider,
+      } = getOptions();
 
       const classKeys = Object.keys(classes);
 
@@ -472,7 +507,7 @@ function testThemeVariants(element, getOptions) {
         this.skip();
       }
 
-      const { muiName, testVariantProps, render } = getOptions();
+      const { muiName, testVariantProps, render, ThemeProvider = MDThemeProvider } = getOptions();
 
       if (!testVariantProps) {
         throw new Error('missing testVariantProps');

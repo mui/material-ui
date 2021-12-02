@@ -2,10 +2,10 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import MobileDateRangePicker from '@mui/lab/MobileDateRangePicker';
 import { describeConformance } from 'test/utils';
-import { wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
+import { wrapPickerMount, createPickerRenderer } from '../internal/pickers/test-utils';
 
 describe('<MobileDateRangePicker />', () => {
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   describeConformance(
     <MobileDateRangePicker

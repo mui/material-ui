@@ -16,9 +16,9 @@ import { spacing, palette, unstable_styleFunctionSx as styleFunction } from '@mu
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 
-const StyledFunction = materialStyled('div')(() => ({
+const StyledFunction = materialStyled('div')({
   color: 'blue',
-}));
+});
 
 function renderFullPage(html, css) {
   return `

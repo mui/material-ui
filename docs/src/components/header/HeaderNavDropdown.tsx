@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
@@ -45,13 +45,13 @@ const UList = styled('ul')({
 
 const PRODUCTS = [
   {
-    name: 'Core',
-    description: 'Ready to use, forever free, foundational components.',
+    name: 'MUI Core',
+    description: 'Ready-to-use foundational components, free forever.',
     href: ROUTES.productCore,
   },
   {
-    name: 'Advanced',
-    description: 'Powerful and robust components for your complex apps.',
+    name: 'MUI X',
+    description: 'Advanced and powerful components for complex use-cases.',
     href: ROUTES.productAdvanced,
   },
   {
@@ -60,7 +60,7 @@ const PRODUCTS = [
     href: ROUTES.productTemplates,
   },
   {
-    name: 'Design Kits',
+    name: 'Design kits',
     description: 'Our components available in your favorite design tool.',
     href: ROUTES.productDesignKits,
   },
@@ -82,7 +82,7 @@ export default function HeaderNavDropdown() {
           p: '6.5px',
           borderRadius: 1,
           border: '1px solid',
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'transparent'),
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'transparent'),
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
           '& svg': { width: 18, height: 18 },
           '&:focus': {

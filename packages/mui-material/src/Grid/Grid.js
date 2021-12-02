@@ -17,7 +17,7 @@ import {
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -56,11 +56,15 @@ function generateGrid(globalStyles, theme, breakpoint, ownerState) {
   } else {
     const columnsBreakpointValues = resolveBreakpointValues({
       values: ownerState.columns,
-      base: theme.breakpoints.values,
+      breakpoints: theme.breakpoints.values,
     });
 
+    const columnValue =
+      typeof columnsBreakpointValues === 'object'
+        ? columnsBreakpointValues[breakpoint]
+        : columnsBreakpointValues;
     // Keep 7 significant numbers.
-    const width = `${Math.round((size / columnsBreakpointValues[breakpoint]) * 10e7) / 10e5}%`;
+    const width = `${Math.round((size / columnValue) * 10e7) / 10e5}%`;
     let more = {};
 
     if (ownerState.container && ownerState.item && ownerState.columnSpacing !== 0) {
@@ -92,8 +96,13 @@ function generateGrid(globalStyles, theme, breakpoint, ownerState) {
   }
 }
 
-function generateDirection({ theme, ownerState }) {
-  return handleBreakpoints({ theme }, ownerState.direction, (propValue) => {
+export function generateDirection({ theme, ownerState }) {
+  const directionValues = resolveBreakpointValues({
+    values: ownerState.direction,
+    breakpoints: theme.breakpoints.values,
+  });
+
+  return handleBreakpoints({ theme }, directionValues, (propValue) => {
     const output = {
       flexDirection: propValue,
     };
@@ -113,7 +122,12 @@ export function generateRowGap({ theme, ownerState }) {
   let styles = {};
 
   if (container && rowSpacing !== 0) {
-    styles = handleBreakpoints({ theme }, rowSpacing, (propValue) => {
+    const rowSpacingValues = resolveBreakpointValues({
+      values: rowSpacing,
+      breakpoints: theme.breakpoints.values,
+    });
+
+    styles = handleBreakpoints({ theme }, rowSpacingValues, (propValue) => {
       const themeSpacing = theme.spacing(propValue);
 
       if (themeSpacing !== '0px') {
@@ -137,9 +151,13 @@ export function generateColumnGap({ theme, ownerState }) {
   let styles = {};
 
   if (container && columnSpacing !== 0) {
-    styles = handleBreakpoints({ theme }, columnSpacing, (propValue) => {
-      const themeSpacing = theme.spacing(propValue);
+    const columnSpacingValues = resolveBreakpointValues({
+      values: columnSpacing,
+      breakpoints: theme.breakpoints.values,
+    });
 
+    styles = handleBreakpoints({ theme }, columnSpacingValues, (propValue) => {
+      const themeSpacing = theme.spacing(propValue);
       if (themeSpacing !== '0px') {
         return {
           width: `calc(100% + ${getOffset(themeSpacing)})`,
@@ -155,6 +173,30 @@ export function generateColumnGap({ theme, ownerState }) {
   }
 
   return styles;
+}
+
+export function resolveSpacingClasses(spacing, container, styles = {}) {
+  // in case of grid item or undefined/null or `spacing` <= 0
+  if (!container || !spacing || spacing <= 0) {
+    return [];
+  }
+  // in case of string/number `spacing`
+  if (
+    (typeof spacing === 'string' && !Number.isNaN(Number(spacing))) ||
+    typeof spacing === 'number'
+  ) {
+    return [styles[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
+  }
+  // in case of object `spacing`
+  const { xs, sm, md, lg, xl } = spacing;
+
+  return [
+    Number(xs) > 0 && (styles[`spacing-xs-${String(xs)}`] || `spacing-xs-${String(xs)}`),
+    Number(sm) > 0 && (styles[`spacing-sm-${String(sm)}`] || `spacing-sm-${String(sm)}`),
+    Number(md) > 0 && (styles[`spacing-md-${String(md)}`] || `spacing-md-${String(md)}`),
+    Number(lg) > 0 && (styles[`spacing-lg-${String(lg)}`] || `spacing-lg-${String(lg)}`),
+    Number(xl) > 0 && (styles[`spacing-xl-${String(xl)}`] || `spacing-xl-${String(xl)}`),
+  ];
 }
 
 // Default CSS values
@@ -175,7 +217,7 @@ const GridRoot = styled('div', {
       container && styles.container,
       item && styles.item,
       zeroMinWidth && styles.zeroMinWidth,
-      container && spacing !== 0 && styles[`spacing-xs-${String(spacing)}`],
+      ...resolveSpacingClasses(spacing, container, styles),
       direction !== 'row' && styles[`direction-xs-${String(direction)}`],
       wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`],
       xs !== false && styles[`grid-xs-${String(xs)}`],
@@ -227,7 +269,7 @@ const useUtilityClasses = (ownerState) => {
       container && 'container',
       item && 'item',
       zeroMinWidth && 'zeroMinWidth',
-      container && spacing !== 0 && `spacing-xs-${String(spacing)}`,
+      ...resolveSpacingClasses(spacing, container),
       direction !== 'row' && `direction-xs-${String(direction)}`,
       wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
       xs !== false && `grid-xs-${String(xs)}`,
@@ -246,7 +288,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const props = extendSxProp(themeProps);
   const {
     className,
-    columns: columnsProp = 12,
+    columns: columnsProp,
     columnSpacing: columnSpacingProp,
     component = 'div',
     container = false,
@@ -267,7 +309,11 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const rowSpacing = rowSpacingProp || spacing;
   const columnSpacing = columnSpacingProp || spacing;
 
-  const columns = React.useContext(GridContext) || columnsProp;
+  const columnsContext = React.useContext(GridContext);
+
+  // setting prop before context to accomodate nesting
+  // colums set with default breakpoint unit of 12
+  const columns = columnsProp || columnsContext || 12;
 
   const ownerState = {
     ...props,
@@ -370,23 +416,25 @@ Grid.propTypes /* remove-proptypes */ = {
    */
   item: PropTypes.bool,
   /**
-   * Defines the number of grids the component is going to use.
-   * It's applied for the `lg` breakpoint and wider screens if not overridden.
+   * If a number, it sets the number of columns the grid item uses.
+   * It can't be greater than the total number of columns of the container (12 by default).
+   * If 'auto', the grid item's width matches its content.
+   * If false, the prop is ignored.
+   * If true, the grid item's width grows to use the space available in the grid container.
+   * The value is applied for the `lg` breakpoint and wider screens if not overridden.
    * @default false
    */
-  lg: PropTypes.oneOfType([
-    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    PropTypes.bool,
-  ]),
+  lg: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
   /**
-   * Defines the number of grids the component is going to use.
-   * It's applied for the `md` breakpoint and wider screens if not overridden.
+   * If a number, it sets the number of columns the grid item uses.
+   * It can't be greater than the total number of columns of the container (12 by default).
+   * If 'auto', the grid item's width matches its content.
+   * If false, the prop is ignored.
+   * If true, the grid item's width grows to use the space available in the grid container.
+   * The value is applied for the `md` breakpoint and wider screens if not overridden.
    * @default false
    */
-  md: PropTypes.oneOfType([
-    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    PropTypes.bool,
-  ]),
+  md: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
   /**
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
@@ -398,14 +446,15 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * Defines the number of grids the component is going to use.
-   * It's applied for the `sm` breakpoint and wider screens if not overridden.
+   * If a number, it sets the number of columns the grid item uses.
+   * It can't be greater than the total number of columns of the container (12 by default).
+   * If 'auto', the grid item's width matches its content.
+   * If false, the prop is ignored.
+   * If true, the grid item's width grows to use the space available in the grid container.
+   * The value is applied for the `sm` breakpoint and wider screens if not overridden.
    * @default false
    */
-  sm: PropTypes.oneOfType([
-    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    PropTypes.bool,
-  ]),
+  sm: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
   /**
    * Defines the space between the type `item` components.
    * It can only be used on a type `container` component.
@@ -420,7 +469,11 @@ Grid.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.object,
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
@@ -428,23 +481,25 @@ Grid.propTypes /* remove-proptypes */ = {
    */
   wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
   /**
-   * Defines the number of grids the component is going to use.
-   * It's applied for the `xl` breakpoint and wider screens.
+   * If a number, it sets the number of columns the grid item uses.
+   * It can't be greater than the total number of columns of the container (12 by default).
+   * If 'auto', the grid item's width matches its content.
+   * If false, the prop is ignored.
+   * If true, the grid item's width grows to use the space available in the grid container.
+   * The value is applied for the `xl` breakpoint and wider screens if not overridden.
    * @default false
    */
-  xl: PropTypes.oneOfType([
-    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    PropTypes.bool,
-  ]),
+  xl: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
   /**
-   * Defines the number of grids the component is going to use.
-   * It's applied for all the screen sizes with the lowest priority.
+   * If a number, it sets the number of columns the grid item uses.
+   * It can't be greater than the total number of columns of the container (12 by default).
+   * If 'auto', the grid item's width matches its content.
+   * If false, the prop is ignored.
+   * If true, the grid item's width grows to use the space available in the grid container.
+   * The value is applied for all the screen sizes with the lowest priority.
    * @default false
    */
-  xs: PropTypes.oneOfType([
-    PropTypes.oneOf(['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-    PropTypes.bool,
-  ]),
+  xs: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
   /**
    * If `true`, it sets `min-width: 0` on the item.
    * Refer to the limitations section of the documentation to better understand the use case.

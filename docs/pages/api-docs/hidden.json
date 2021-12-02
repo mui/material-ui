@@ -34,6 +34,5 @@
   "filename": "/packages/mui-material/src/Hidden/Hidden.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/hidden/\">Hidden</a></li></ul>",
-  "styledComponent": true,
   "cssComponent": false
 }

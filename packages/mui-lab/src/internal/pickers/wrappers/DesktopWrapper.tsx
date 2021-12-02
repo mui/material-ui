@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { useForkRef } from '@mui/material/utils';
 import { WrapperVariantContext } from './WrapperVariantContext';
-import PickersPopper, { ExportedPickerPopperProps } from '../PickersPopper';
+import PickersPopper, {
+  ExportedPickerPopperProps,
+  ExportedPickerPaperProps,
+} from '../PickersPopper';
 import { DateInputPropsLike, PrivateWrapperProps } from './WrapperProps';
 
-export interface DesktopWrapperProps extends ExportedPickerPopperProps {
+export interface DesktopWrapperProps extends ExportedPickerPopperProps, ExportedPickerPaperProps {
   children?: React.ReactNode;
 }
 
@@ -23,6 +26,7 @@ function DesktopWrapper(props: InternalDesktopWrapperProps) {
     onDismiss,
     open,
     PopperProps,
+    PaperProps,
     TransitionComponent,
   } = props;
   const ownInputRef = React.useRef<HTMLInputElement>(null);
@@ -37,6 +41,7 @@ function DesktopWrapper(props: InternalDesktopWrapperProps) {
         anchorEl={ownInputRef.current}
         TransitionComponent={TransitionComponent}
         PopperProps={PopperProps}
+        PaperProps={PaperProps}
         onClose={onDismiss}
       >
         {children}

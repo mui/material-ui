@@ -24,7 +24,7 @@ npm start
 
 Note that CodeSandbox is not supporting react-app-rewired, yet you can [still see the code](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components).
 
-The following link leverages this demo: https://material-ui.com/guides/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`
+The following link leverages this demo: https://mui.com/guides/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`
 
 [![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-interoperability-w9z9d)
 
@@ -37,4 +37,4 @@ This example demonstrates how you can setup [Create React App](https://github.co
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://material-ui.com/getting-started/templates/) section.
+You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/getting-started/templates/) section.

@@ -29,9 +29,10 @@ function TestViewer(props) {
 
     // Use a "real timestamp" so that we see a useful date instead of "00:00"
     // eslint-disable-next-line react-hooks/rules-of-hooks -- not a React hook
-    const clock = useFakeTimers(new Date('Mon Aug 18 14:11:54 2014 -0500'));
-    // and wait `load-css` timeouts to be flushed
-    clock.runToLast();
+    const clock = useFakeTimers({
+      now: new Date('Mon Aug 18 14:11:54 2014 -0500'),
+      toFake: ['Date'],
+    });
     // In case the child triggered font fetching we're not ready yet.
     // The fonts event handler will mark the test as ready on `loadingdone`
     if (document.fonts.status === 'loaded') {
@@ -67,13 +68,15 @@ function TestViewer(props) {
           },
         }}
       />
-      <Box
-        aria-busy={!ready}
-        data-testid="testcase"
-        sx={{ bgcolor: 'background.default', display: 'inline-block', p: 1 }}
-      >
-        {children}
-      </Box>
+      <React.Suspense fallback={<div aria-busy />}>
+        <Box
+          aria-busy={!ready}
+          data-testid="testcase"
+          sx={{ bgcolor: 'background.default', display: 'inline-block', p: 1 }}
+        >
+          {children}
+        </Box>
+      </React.Suspense>
     </React.Fragment>
   );
 }
