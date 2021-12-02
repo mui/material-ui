@@ -323,10 +323,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   // No need to display any value if the field is empty.
   if (isFilled({ value }) || displayEmpty) {
-    if (Array.isArray(value) && value.length === 0) {
-      display = '';
-    } else if (renderValue) {
+    if (renderValue) {
       display = renderValue(value);
+    } else if (Array.isArray(value) && value.length === 0) {
+      display = '';
     } else {
       computeDisplay = true;
     }
