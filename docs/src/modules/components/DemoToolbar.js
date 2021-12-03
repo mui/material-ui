@@ -62,14 +62,24 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-const DemoTooltip = styled(Tooltip)(({ theme }) => ({
-  zIndex: theme.zIndex.appBar - 1,
-}));
+function DemoTooltip(props) {
+  return (
+    <Tooltip
+      componentsProps={{
+        popper: {
+          sx: {
+            zIndex: (theme) => theme.zIndex.appBar - 1,
+          },
+        },
+      }}
+      {...props}
+    />
+  );
+}
 
 function ToggleCodeTooltip(props) {
   const { showSourceHint, ...other } = props;
   const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-
   const [open, setOpen] = React.useState(false);
 
   return (

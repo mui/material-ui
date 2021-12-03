@@ -948,7 +948,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Hidden
 
-- This component was removed because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query) hook.
+- This component was removed because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query/) hook.
 
   Use the `sx` prop to replace `implementation="css"`:
 

@@ -1,9 +1,6 @@
 import * as React from 'react';
+import getInitColorSchemeScript from './getInitColorSchemeScript';
 import { Mode, Result } from './useCurrentColorScheme';
-
-type RequiredDeep<T> = {
-  [K in keyof T]-?: RequiredDeep<T[K]>;
-};
 
 export type BuildCssVarsTheme<ThemeInput> = ThemeInput extends {
   colorSchemes: Record<string, infer ColorSystems>;
@@ -25,7 +22,16 @@ type DecideTheme<
   ApplicationTheme extends { colorSchemes: Record<ApplicationColorScheme, any> },
   ApplicationColorScheme extends string | never,
 > = [ApplicationColorScheme] extends [never]
-  ? { theme?: DesignSystemTheme }
+  ? {
+      theme?: Omit<DesignSystemTheme, 'colorSchemes'> & {
+        colorSchemes?: Partial<
+          Record<
+            DesignSystemColorScheme,
+            DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
+          >
+        >;
+      };
+    }
   : {
       theme: Omit<ApplicationTheme, 'colorSchemes'> & {
         colorSchemes: Partial<
@@ -34,9 +40,7 @@ type DecideTheme<
             DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
           >
         > &
-          RequiredDeep<
-            Record<ApplicationColorScheme, ApplicationTheme['colorSchemes'][ApplicationColorScheme]>
-          >;
+          Record<ApplicationColorScheme, ApplicationTheme['colorSchemes'][ApplicationColorScheme]>;
       };
     };
 
@@ -134,7 +138,7 @@ export default function createCssVarsProvider<
     >,
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<DesignSystemColorScheme | ApplicationColorScheme>;
-  getInitColorSchemeScript: () => React.ReactElement;
+  getInitColorSchemeScript: typeof getInitColorSchemeScript;
 };
 
 // disable automatic export

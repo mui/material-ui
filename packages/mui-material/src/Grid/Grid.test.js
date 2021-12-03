@@ -166,6 +166,44 @@ describe('<Grid />', () => {
       });
     });
 
+    it('should not support undefined values', () => {
+      const { container } = render(
+        <Grid container>
+          <Grid item data-testid="child" />
+        </Grid>,
+      );
+      expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-undefined');
+    });
+
+    it('should not support zero values', () => {
+      const { container } = render(
+        <Grid container spacing={0}>
+          <Grid item data-testid="child" />
+        </Grid>,
+      );
+      expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-0');
+    });
+
+    it('should support object values', () => {
+      const { container } = render(
+        <Grid container spacing={{ sm: 1.5, md: 2 }}>
+          <Grid item data-testid="child" />
+        </Grid>,
+      );
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-sm-1.5');
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-md-2');
+    });
+
+    it('should ignore object values of zero', () => {
+      const { container } = render(
+        <Grid container spacing={{ sm: 0, md: 2 }}>
+          <Grid item data-testid="child" />
+        </Grid>,
+      );
+      expect(container.firstChild).not.to.have.class('MuiGrid-spacing-sm-0');
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-md-2');
+    });
+
     it('should generate correct responsive styles', () => {
       const theme = createTheme();
       expect(

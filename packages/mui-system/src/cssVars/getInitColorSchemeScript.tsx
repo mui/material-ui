@@ -43,7 +43,7 @@ export default function getInitColorSchemeScript(options?: {
           colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
         }
         if (colorScheme) {
-          document.body.setAttribute('${attribute}', colorScheme);
+          document.documentElement.setAttribute('${attribute}', colorScheme);
         }
       } catch (e) {} })();`,
       }}

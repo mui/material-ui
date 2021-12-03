@@ -72,7 +72,7 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
 
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/checkbox).
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/checkbox/).
 
 ## Quando usar
 
