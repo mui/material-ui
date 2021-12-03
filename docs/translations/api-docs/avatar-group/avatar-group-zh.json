@@ -6,6 +6,7 @@
     "max": "Max avatars to show before +x.",
     "spacing": "Spacing between avatars.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
+    "total": "The total number of avatars. Used for calculating the number of extra avatars.",
     "variant": "The variant to use."
   },
   "classDescriptions": {
