@@ -63,3 +63,5 @@ function CustomLink({ children, ...props }: React.PropsWithChildren<JSX.Intrinsi
   return <a {...props}>{children}</a>;
 }
 <Button component={CustomLink} href="/" />;
+
+<Button sx={{ borderRadius: 0 }}>Button</Button>;
