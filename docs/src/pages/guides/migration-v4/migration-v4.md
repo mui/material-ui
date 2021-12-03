@@ -2609,7 +2609,7 @@ const ChipWithGreenIcon = () => (
 );
 ```
 
-In this example, in order to correctly apply a particular style to the delete icon of `Chip`, you need to select the component as specifically as follows:
+In this example, in order to correctly apply a particular style to the delete icon of `Chip`, you need to bump the specificity as shown below:
 
 ```css
 .MuiChip-root .green {
