@@ -100,6 +100,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
     onChange,
     onMonthChange,
     readOnly,
+    ...other
   } = props;
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);
@@ -137,7 +138,12 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
   };
 
   return (
-    <MonthPickerRoot ref={ref} className={clsx(classes.root, className)} ownerState={ownerState}>
+    <MonthPickerRoot
+      ref={ref}
+      className={clsx(classes.root, className)}
+      ownerState={ownerState}
+      {...other}
+    >
       {utils.getMonthArray(date || now).map((month) => {
         const monthNumber = utils.getMonth(month);
         const monthText = utils.format(month, 'monthShort');
