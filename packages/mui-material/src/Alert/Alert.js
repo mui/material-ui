@@ -47,7 +47,6 @@ const AlertRoot = styled(Paper, {
 
   return {
     ...theme.typography.body2,
-    borderRadius: theme.shape.borderRadius,
     backgroundColor: 'transparent',
     display: 'flex',
     padding: '6px 16px',
