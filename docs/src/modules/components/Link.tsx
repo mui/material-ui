@@ -12,7 +12,6 @@ import { useUserLanguage } from 'docs/src/modules/utils/i18n';
  * - /docs/src/modules/components/Link.tsx
  * - /examples/nextjs/src/Link.tsx
  * - /examples/nextjs-with-typescript/src/Link.tsx
- * - /examples/nextjs-with-styled-components-typescript/src/Link.tsx
  */
 
 // Add support for the sx prop for consistency with the other branches.
