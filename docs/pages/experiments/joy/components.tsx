@@ -117,7 +117,7 @@ export default function JoyComponents() {
               gap: 3,
               alignItems: 'center',
               border: 1,
-              borderColor: 'neutral.200',
+              borderColor: 'neutral.outlinedBorder',
             }}
           >
             <Button size="small">Contained</Button>
@@ -138,7 +138,8 @@ export default function JoyComponents() {
               gap: 3,
               alignItems: 'center',
               border: 1,
-              borderColor: 'neutral.200',
+              borderColor: 'neutral.outlinedBorder',
+              ml: '-1px',
             }}
           >
             <Button size="small" elevation="md">
@@ -167,7 +168,7 @@ export default function JoyComponents() {
               gap: 3,
               alignItems: 'center',
               border: 1,
-              borderColor: 'neutral.200',
+              borderColor: 'neutral.outlinedBorder',
             }}
           >
             <Button>Contained</Button>
@@ -182,7 +183,8 @@ export default function JoyComponents() {
               gap: 3,
               alignItems: 'center',
               border: 1,
-              borderColor: 'neutral.200',
+              borderColor: 'neutral.outlinedBorder',
+              ml: '-1px',
             }}
           >
             <Button elevation="md">Contained</Button>
@@ -209,7 +211,7 @@ export default function JoyComponents() {
               gap: 3,
               alignItems: 'center',
               border: 1,
-              borderColor: 'neutral.200',
+              borderColor: 'neutral.outlinedBorder',
             }}
           >
             <Button size="large">Contained</Button>
@@ -230,7 +232,8 @@ export default function JoyComponents() {
               gap: 3,
               alignItems: 'center',
               border: 1,
-              borderColor: 'neutral.200',
+              borderColor: 'neutral.outlinedBorder',
+              ml: '-1px',
             }}
           >
             <Button size="large" elevation="md">
