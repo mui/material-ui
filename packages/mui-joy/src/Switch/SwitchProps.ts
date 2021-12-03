@@ -2,9 +2,11 @@ import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
 import { SwitchClasses } from './switchClasses';
-import { ColorPaletteProp } from '../styles/ColorSystem';
+import { ColorPaletteProp, Elevation, BorderRadius } from '../styles';
 
 export interface SwitchPropsColorOverrides {}
+
+export interface SwitchPropsSizeOverrides {}
 
 export interface SwitchProps extends UseSwitchProps {
   /**
@@ -25,5 +27,21 @@ export interface SwitchProps extends UseSwitchProps {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color?: OverridableStringUnion<ColorPaletteProp, SwitchPropsColorOverrides>;
+  color?: OverridableStringUnion<
+    Exclude<ColorPaletteProp, 'context' | 'neutral'>,
+    SwitchPropsColorOverrides
+  >;
+  /**
+   * The intensity of the shadow.
+   */
+  elevation?: keyof Elevation;
+  /**
+   * The border-radius of the component.
+   * @default 'default'
+   */
+  roundness?: keyof BorderRadius;
+  /**
+   * The size of the component.
+   */
+  size?: OverridableStringUnion<'small' | 'large', SwitchPropsSizeOverrides>;
 }

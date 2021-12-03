@@ -31,32 +31,42 @@ const SwitchRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
-  const colorPalette = theme.vars.palette[ownerState.color || 'brand'];
   return {
-    '--joy-Switch-track-radius': '20px',
+    '--joy-Switch-track-radius': theme.vars.borderRadius[ownerState.roundness!],
     '--joy-Switch-track-width': '48px',
     '--joy-Switch-track-height': '24px',
     '--joy-Switch-thumb-size': '16px',
+    ...(ownerState.size === 'small' && {
+      '--joy-Switch-track-width': '40px',
+      '--joy-Switch-track-height': '20px',
+      '--joy-Switch-thumb-size': '12px',
+    }),
+    ...(ownerState.size === 'large' && {
+      '--joy-Switch-track-width': '64px',
+      '--joy-Switch-track-height': '32px',
+      '--joy-Switch-thumb-size': '24px',
+    }),
     '--joy-Switch-thumb-radius': 'calc(var(--joy-Switch-track-radius) - 2px)',
     '--joy-Switch-thumb-width': 'var(--joy-Switch-thumb-size)',
     '--joy-Switch-thumb-offset':
       'max((var(--joy-Switch-track-height) - var(--joy-Switch-thumb-size)) / 2, 0px)',
+    display: 'inline-block',
+    width: 'var(--joy-Switch-track-width)', // should have the same width as track because flex parent can stretch SwitchRoot.
     borderRadius: 'var(--joy-Switch-track-radius)',
     position: 'relative',
     padding:
       'calc((var(--joy-Switch-thumb-size) / 2) - (var(--joy-Switch-track-height) / 2)) calc(-1 * var(--joy-Switch-thumb-offset))',
-    [`&.${switchClasses.focusVisible}`]: {
-      outline: '4px solid',
-      outlineColor: theme.vars.palette.brand[300],
-    },
-    color: theme.vars.palette.neutral[600],
+    ...(ownerState.elevation && {
+      boxShadow: theme.vars.elevation[ownerState.elevation],
+    }),
+    color: theme.vars.palette.neutral.containedBg,
     '&:hover': {
-      color: theme.vars.palette.neutral[500],
+      color: theme.vars.palette.neutral.containedBg,
     },
     [`&.${switchClasses.checked}`]: {
-      color: colorPalette[600],
+      color: theme.vars.palette[ownerState.color!].containedBg,
       '&:hover': {
-        color: colorPalette[700],
+        color: theme.vars.palette[ownerState.color!].containedHoverBg,
       },
     },
     [`&.${switchClasses.disabled}`]: {
@@ -64,6 +74,7 @@ const SwitchRoot = styled('span', {
       cursor: 'default',
       opacity: 0.6,
     },
+    [`&.${switchClasses.focusVisible}`]: theme.focus.default,
   };
 });
 
@@ -131,6 +142,10 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     onFocusVisible,
     readOnly: readOnlyProp,
     required,
+    color = 'primary',
+    elevation,
+    roundness = 'default',
+    size,
     ...otherProps
   } = props;
 
@@ -153,6 +168,10 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     disabled,
     focusVisible,
     readOnly,
+    color,
+    elevation,
+    roundness,
+    size,
   };
 
   const classes = useUtilityClasses(ownerState);
