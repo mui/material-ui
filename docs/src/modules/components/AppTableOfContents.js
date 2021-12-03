@@ -196,6 +196,7 @@ export default function AppTableOfContents(props) {
   const itemLink = (item, secondary) => (
     <NavItem
       display="block"
+      // always replace the #* in the url because `router.asPath` might contain previous #
       href={`${router.asPath.replace(/#.*/, '')}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
