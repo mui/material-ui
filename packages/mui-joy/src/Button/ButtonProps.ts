@@ -32,7 +32,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      * Either a string to use a HTML element or a component.
      * This is equivalent to `components.Root`. If both are provided, the `component` is used.
      */
-    component?: D;
+    component?: React.ElementType;
     /**
      * If `true`, the component is disabled.
      * @default false
