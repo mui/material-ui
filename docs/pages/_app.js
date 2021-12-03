@@ -13,7 +13,7 @@ import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { useRouter } from 'next/router';
-import pages from 'docs/src/pages';
+import pages, { materialPages, systemPages } from 'docs/src/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
@@ -198,7 +198,15 @@ function AppWrapper(props) {
     }
   }, []);
 
-  const activePage = findActivePage(pages, router.pathname);
+  let productPages = pages;
+  if (router.asPath.startsWith('/material')) {
+    productPages = materialPages;
+  }
+  if (router.asPath.startsWith('/system')) {
+    productPages = systemPages;
+  }
+
+  const activePage = findActivePage(productPages, router.pathname);
 
   let fonts = [];
   if (router.pathname.match(/onepirate/)) {
@@ -216,7 +224,7 @@ function AppWrapper(props) {
       </NextHead>
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
         <CodeVariantProvider>
-          <PageContext.Provider value={{ activePage, pages }}>
+          <PageContext.Provider value={{ activePage, pages: productPages }}>
             <ThemeProvider>
               <DocsStyledEngineProvider cacheLtr={emotionCache}>
                 {children}
