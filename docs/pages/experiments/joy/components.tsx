@@ -100,155 +100,36 @@ const ColorSchemePicker = () => {
 };
 
 export default function JoyComponents() {
+  const buttonProps = {
+    variant: ['text', 'outlined', 'light', 'contained'],
+    size: ['small', undefined, 'large'],
+    color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
+    roundness: ['xs', 'sm', 'md', 'lg', 'xl'],
+    elevation: ['xs', 'sm', 'md', 'lg', 'xl'],
+  } as const;
   return (
     <CssVarsProvider>
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Box sx={{ px: 3 }}>
           <ColorSchemePicker />
         </Box>
-        <Typography level="h5" sx={{ my: 1 }}>
-          Small
-        </Typography>
-        <Box sx={{ display: 'flex' }}>
-          <Box
-            sx={{
-              p: 4,
-              display: 'flex',
-              gap: 3,
-              alignItems: 'center',
-              border: 1,
-              borderColor: 'neutral.outlinedBorder',
-            }}
-          >
-            <Button size="small">Contained</Button>
-            <Button variant="light" size="small">
-              Light
-            </Button>
-            <Button variant="outlined" size="small">
-              Outlined
-            </Button>
-            <Button variant="text" size="small">
-              Text
-            </Button>
-          </Box>
-          <Box
-            sx={{
-              p: 4,
-              display: 'flex',
-              gap: 3,
-              alignItems: 'center',
-              border: 1,
-              borderColor: 'neutral.outlinedBorder',
-              ml: '-1px',
-            }}
-          >
-            <Button size="small" elevation="md">
-              Contained
-            </Button>
-            <Button variant="light" size="small" elevation="md">
-              Light
-            </Button>
-            <Button variant="outlined" size="small" elevation="md">
-              Outlined
-            </Button>
-            <Button variant="text" size="small" elevation="md">
-              Text
-            </Button>
-          </Box>
-        </Box>
-
-        <Typography level="h5" sx={{ mt: 4, mb: 1 }}>
-          Default
-        </Typography>
-        <Box sx={{ display: 'flex' }}>
-          <Box
-            sx={{
-              p: 4,
-              display: 'flex',
-              gap: 3,
-              alignItems: 'center',
-              border: 1,
-              borderColor: 'neutral.outlinedBorder',
-            }}
-          >
-            <Button>Contained</Button>
-            <Button variant="light">Light</Button>
-            <Button variant="outlined">Outlined</Button>
-            <Button variant="text">Text</Button>
-          </Box>
-          <Box
-            sx={{
-              p: 4,
-              display: 'flex',
-              gap: 3,
-              alignItems: 'center',
-              border: 1,
-              borderColor: 'neutral.outlinedBorder',
-              ml: '-1px',
-            }}
-          >
-            <Button elevation="md">Contained</Button>
-            <Button variant="light" elevation="md">
-              Light
-            </Button>
-            <Button variant="outlined" elevation="md">
-              Outlined
-            </Button>
-            <Button variant="text" elevation="md">
-              Text
-            </Button>
-          </Box>
-        </Box>
-
-        <Typography level="h5" sx={{ mt: 4, mb: 1 }}>
-          Large
-        </Typography>
-        <Box sx={{ display: 'flex' }}>
-          <Box
-            sx={{
-              p: 4,
-              display: 'flex',
-              gap: 3,
-              alignItems: 'center',
-              border: 1,
-              borderColor: 'neutral.outlinedBorder',
-            }}
-          >
-            <Button size="large">Contained</Button>
-            <Button variant="light" size="large">
-              Light
-            </Button>
-            <Button variant="outlined" size="large">
-              Outlined
-            </Button>
-            <Button variant="text" size="large">
-              Text
-            </Button>
-          </Box>
-          <Box
-            sx={{
-              p: 4,
-              display: 'flex',
-              gap: 3,
-              alignItems: 'center',
-              border: 1,
-              borderColor: 'neutral.outlinedBorder',
-              ml: '-1px',
-            }}
-          >
-            <Button size="large" elevation="md">
-              Contained
-            </Button>
-            <Button variant="light" size="large" elevation="md">
-              Light
-            </Button>
-            <Button variant="outlined" size="large" elevation="md">
-              Outlined
-            </Button>
-            <Button variant="text" size="large" elevation="md">
-              Text
-            </Button>
-          </Box>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
+          {Object.entries(buttonProps).map(([propName, propValue]) => (
+            <Box
+              key={propName}
+              sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
+            >
+              <Typography sx={{ textDecoration: 'underline' }}>{propName}</Typography>
+              {propValue.map((value) => (
+                <Box>
+                  <Button {...{ [propName]: value }}>Button</Button>
+                  <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
+                    {value || 'default'}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+          ))}
         </Box>
       </Box>
     </CssVarsProvider>
