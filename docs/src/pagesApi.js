@@ -147,6 +147,7 @@ module.exports = [
   { pathname: '/api-docs/table-footer' },
   { pathname: '/api-docs/table-head' },
   { pathname: '/api-docs/table-pagination' },
+  { pathname: '/api-docs/table-pagination-unstyled' },
   { pathname: '/api-docs/table-row' },
   { pathname: '/api-docs/table-sort-label' },
   { pathname: '/api-docs/tab-list' },

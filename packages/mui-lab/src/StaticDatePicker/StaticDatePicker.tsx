@@ -2,7 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { BaseDatePickerProps, useDatePickerDefaultizedProps } from '../DatePicker/shared';
 import DatePickerToolbar from '../DatePicker/DatePickerToolbar';
-import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
+import PickerStaticWrapper, {
+  PickerStaticWrapperProps,
+} from '../internal/pickers/wrappers/PickerStaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { useDateValidation } from '../internal/pickers/hooks/useValidation';
@@ -20,7 +22,7 @@ export interface StaticDatePickerProps<TDate = unknown> extends BaseDatePickerPr
    * Force static wrapper inner components to be rendered in mobile or desktop mode.
    * @default 'mobile'
    */
-  displayStaticWrapperAs?: StaticWrapperProps['displayStaticWrapperAs'];
+  displayStaticWrapperAs?: PickerStaticWrapperProps['displayStaticWrapperAs'];
 }
 
 type StaticDatePickerComponent = (<TDate>(
@@ -62,7 +64,7 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
   const DateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
-    <StaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
+    <PickerStaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
       <Picker
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
@@ -70,7 +72,7 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
         DateInputProps={DateInputProps}
         {...other}
       />
-    </StaticWrapper>
+    </PickerStaticWrapper>
   );
 }) as StaticDatePickerComponent;
 

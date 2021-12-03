@@ -13,7 +13,7 @@ The core team. May 18, 2018.
 <p class="blog-description">Our new documentation header & logo by @hai-cea</p>
 
 It has taken us two years to do it, but MUI v1 has finally arrived!
-We are so excited about this release, as it's setting a new course for the project. Thank you to _everyone_, especially to [the team](/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you.**
+We are so excited about this release, as it's setting a new course for the project. Thank you to _everyone_, especially to [the team](/about/), and to everyone who's contributed code, issue triage, and support. **Thank you.**
 
 ✨✨✨ See the [**1.0.0 Release Note**](https://github.com/mui-org/material-ui/releases/tag/v1.0.0) on GitHub. ✨✨✨
 
@@ -50,7 +50,7 @@ We know the ease of use is a critical part of user acquisition. The more user we
 
 - **Documentation**. We have made a huge investment in the documentation. We use [Next.js](https://github.com/zeit/next.js) for a blazingly fast navigation experience. It's also allowing us to provide a first server-side support for the components. We had added a search bar powered by [Algolia's DocSearch](https://community.algolia.com/docsearch/). (don't miss the s shortcut to focus the search bar). We have added many new documentation sections: guides, FAQ, etc. We have made the demos more interactive thanks to a direct integration with [CodeSandbox](https://codesandbox.io/s/4j7m47vlm4).
 
-- **DOM**. We have focused on providing low-level components, in this v1 rewrite. By low-level, we mean components as close as possible to the underlying DOM structure and as stateless as possible. It should help reduce the mental overhead of using the components, encourage interoperability, and simplify customizability. For instance with the TextField. The component was broken down into 4 components. Our Input exposes the same API than a native input. You can switch one for the other. Leveraging this structural choice, we were able to demonstrate 3 autocomplete integration example with [Downshift](https://github.com/paypal/downshift), [react-autosuggest](https://github.com/moroshko/react-autosuggest), and [react-select](https://github.com/JedWatson/react-select).
+- **DOM**. We have focused on providing low-level components, in this v1 rewrite. By low-level, we mean components as close as possible to the underlying DOM structure and as stateless as possible. It should help reduce the mental overhead of using the components, encourage interoperability, and simplify customizability. For instance with the TextField. The component was broken down into 4 components. Our Input exposes the same API than a native input. You can switch one for the other. Leveraging this structural choice, we were able to demonstrate 3 autocomplete integration example with [Downshift](https://github.com/downshift-js/downshift), [react-autosuggest](https://github.com/moroshko/react-autosuggest), and [react-select](https://github.com/JedWatson/react-select).
 
 ### Code quality
 

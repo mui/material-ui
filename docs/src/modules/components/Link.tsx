@@ -57,7 +57,7 @@ export type LinkProps = {
   Omit<MuiLinkProps, 'href'>;
 
 // A styled version of the Next.js Link component:
-// https://nextjs.org/docs/#with-link
+// https://nextjs.org/docs/api-reference/next/link
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props, ref) {
   const {
     activeClassName = 'active',
@@ -71,7 +71,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
   } = props;
 
   const router = useRouter();
-  const pathname = typeof href === 'string' ? href : href.pathname;
+  const pathname = typeof href === 'string' ? href : href?.pathname;
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === pathname && activeClassName,
   });

@@ -4,7 +4,7 @@
 
 ## Espaço do usuário
 
-Geralmente é recomendado testar sua aplicação sem vincular os testes ao Material-UI. É assim que os componentes do Material-UI são testados internamente. Uma biblioteca que tem uma API de primeira classe para esta abordagem é [`@testing-library/react`](https://testing-library.com/docs/react-testing-library/intro).
+Geralmente é recomendado testar sua aplicação sem vincular os testes ao Material-UI. É assim que os componentes do Material-UI são testados internamente. Uma biblioteca que tem uma API de primeira classe para esta abordagem é [`@testing-library/react`](https://testing-library.com/docs/react-testing-library/intro/).
 
 Por exemplo, ao renderizar um `TextField` seu teste não precisa consultar a instância específica do Material-UI do `TextField`, mas sim um `input`, ou `[role="textbox"]`.
 
