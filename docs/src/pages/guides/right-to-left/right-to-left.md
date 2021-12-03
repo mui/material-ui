@@ -140,7 +140,7 @@ const UnaffectedText = styled('div')`
 `;
 ```
 
-{{"demo": "pages/guides/right-to-left/RtlOptOutStylis.js", "hideToolbar": true}}
+{{"demo": "pages/guides/right-to-left/RtlOptOutStylis.js", "hideEditButton": true}}
 
 ### JSS
 

@@ -202,6 +202,7 @@ export const componentSettings = {
       'edge',
       'disableRipple',
       'disableFocusRipple',
+      'inclusiveDisabled',
       'sx',
     ],
     propValues: {

@@ -9,6 +9,7 @@ interface Props {
   endIcon: string;
   fullWidth?: boolean;
   href?: string;
+  inclusiveDisabled?: boolean;
   startIcon: string;
   startIconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   endIconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
@@ -74,6 +75,10 @@ addPropertyControls(Button, {
   href: {
     type: ControlType.String,
     title: 'Href',
+  },
+  inclusiveDisabled: {
+    type: ControlType.Boolean,
+    title: 'Inclusive disabled',
   },
   startIcon: {
     type: ControlType.String,

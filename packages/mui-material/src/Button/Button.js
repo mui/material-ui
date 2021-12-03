@@ -85,7 +85,7 @@ const ButtonRoot = styled(ButtonBase, {
         duration: theme.transitions.duration.short,
       },
     ),
-    '&:hover': {
+    '&:hover': !ownerState.inclusiveDisabled && {
       textDecoration: 'none',
       backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
@@ -143,7 +143,7 @@ const ButtonRoot = styled(ButtonBase, {
         boxShadow: theme.shadows[6],
       }),
     },
-    [`&.${buttonClasses.disabled}`]: {
+    [`&.${buttonClasses.disabled}, &.${buttonClasses.inclusiveDisabled}`]: {
       color: theme.palette.action.disabled,
       ...(ownerState.variant === 'outlined' && {
         border: `1px solid ${theme.palette.action.disabledBackground}`,
@@ -157,6 +157,9 @@ const ButtonRoot = styled(ButtonBase, {
         boxShadow: theme.shadows[0],
         backgroundColor: theme.palette.action.disabledBackground,
       }),
+    },
+    [`&.${buttonClasses.inclusiveDisabled}`]: {
+      cursor: 'not-allowed',
     },
     ...(ownerState.variant === 'text' && {
       padding: '6px 8px',
@@ -297,6 +300,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     color: colorProp,
     component = 'button',
     disabled: disabledProp,
+    inclusiveDisabled: inclusiveDisabledProp,
     disableElevation: disableElevationProp,
     disableFocusRipple: disableFocusRippleProp,
     disableRipple: disableRippleProp,
@@ -313,6 +317,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const color = colorProp || colorContext || 'primary';
   // TODO v6: Use nullish coalescing (??) instead of OR operator for these boolean props so that these boolean props for Button with ButtonGroup context take priority. See conversation from https://github.com/mui-org/material-ui/pull/28645#discussion_r738380902.
   const disabled = disabledProp || disabledContext || false;
+  const inclusiveDisabled = inclusiveDisabledProp ?? disabled;
   const disableElevation = disableElevationProp || disableElevationContext || false;
   const disableFocusRipple = disableFocusRippleProp || disableFocusRippleContext || false;
   const fullWidth = fullWidthProp || fullWidthContext || false;
@@ -353,6 +358,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       className={clsx(className, classNameContext)}
       component={component}
       disabled={disabled}
+      inclusiveDisabled={inclusiveDisabled}
       disableRipple={disableRipple}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
@@ -439,6 +445,11 @@ Button.propTypes /* remove-proptypes */ = {
    * If defined, an `a` element will be used as the root node.
    */
   href: PropTypes.string,
+  /**
+   * If `true`, the component is disabled but allows cursor interactions such as mouse hover (for tooltips) and focus.
+   * @default disabled
+   */
+  inclusiveDisabled: PropTypes.bool,
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.

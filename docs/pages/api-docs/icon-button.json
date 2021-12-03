@@ -19,6 +19,7 @@
       },
       "default": "false"
     },
+    "inclusiveDisabled": { "type": { "name": "bool" }, "default": "disabled" },
     "size": {
       "type": {
         "name": "union",
@@ -43,6 +44,7 @@
       "colorPrimary",
       "colorSecondary",
       "disabled",
+      "inclusiveDisabled",
       "sizeSmall",
       "sizeMedium",
       "sizeLarge"

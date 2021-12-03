@@ -33,6 +33,8 @@ export interface ButtonClasses {
   focusVisible: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
+  /** State class applied to the root element if `inclusiveDisabled={true}`. */
+  inclusiveDisabled: string;
   /** Styles applied to the root element if `color="inherit"`. */
   colorInherit: string;
   /** Styles applied to the root element if `size="small"` and `variant="text"`. */
@@ -96,6 +98,7 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'disableElevation',
   'focusVisible',
   'disabled',
+  'inclusiveDisabled',
   'colorInherit',
   'textSizeSmall',
   'textSizeMedium',

@@ -79,6 +79,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     className,
     component = 'button',
     disabled = false,
+    inclusiveDisabled = disabled,
     disableRipple = false,
     disableTouchRipple = false,
     focusRipple = false,
@@ -136,7 +137,11 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }
   }, [disableRipple, focusRipple, focusVisible]);
 
-  function useRippleHandler(rippleAction, eventCallback, skipRippleAction = disableTouchRipple) {
+  function useRippleHandler(
+    rippleAction,
+    eventCallback,
+    skipRippleAction = disableTouchRipple || inclusiveDisabled,
+  ) {
     return useEventCallback((event) => {
       if (eventCallback) {
         eventCallback(event);
@@ -206,6 +211,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     return component && component !== 'button' && !(button.tagName === 'A' && button.href);
   };
 
+  const handleClick = (event) => {
+    if (!inclusiveDisabled && onClick) {
+      onClick(event);
+    }
+  };
+
   /**
    * IE11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
    */
@@ -217,7 +228,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       !keydownRef.current &&
       focusVisible &&
       rippleRef.current &&
-      event.key === ' '
+      event.key === ' ' &&
+      !inclusiveDisabled
     ) {
       keydownRef.current = true;
       rippleRef.current.stop(event, () => {
@@ -241,9 +253,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       !disabled
     ) {
       event.preventDefault();
-      if (onClick) {
-        onClick(event);
-      }
+      handleClick(event);
     }
   });
 
@@ -255,7 +265,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       event.key === ' ' &&
       rippleRef.current &&
       focusVisible &&
-      !event.defaultPrevented
+      !event.defaultPrevented &&
+      !inclusiveDisabled
     ) {
       keydownRef.current = false;
       rippleRef.current.stop(event, () => {
@@ -268,13 +279,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
     // Keyboard accessibility for non interactive elements
     if (
-      onClick &&
       event.target === event.currentTarget &&
       isNonNativeButton() &&
       event.key === ' ' &&
       !event.defaultPrevented
     ) {
-      onClick(event);
+      handleClick(event);
     }
   });
 
@@ -288,6 +298,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   if (ComponentProp === 'button') {
     buttonProps.type = type === undefined ? 'button' : type;
     buttonProps.disabled = disabled;
+    if (!disabled && inclusiveDisabled) {
+      buttonProps['aria-disabled'] = inclusiveDisabled;
+    }
   } else {
     if (!other.href && !other.to) {
       buttonProps.role = 'button';
@@ -327,6 +340,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     centerRipple,
     component,
     disabled,
+    inclusiveDisabled,
     disableRipple,
     disableTouchRipple,
     focusRipple,
@@ -342,7 +356,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       onBlur={handleBlur}
-      onClick={onClick}
+      onClick={handleClick}
       onContextMenu={handleContextMenu}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
@@ -438,6 +452,11 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   href: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  /**
+   * If `true`, the component is disabled but allows cursor interactions such as mouse hover (for tooltips) and focus.
+   * @default disabled
+   */
+  inclusiveDisabled: PropTypes.bool,
   /**
    * The component used to render a link when the `href` prop is provided.
    * @default 'a'
