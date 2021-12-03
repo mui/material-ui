@@ -69,10 +69,11 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     className,
     max = 5,
     spacing = 'medium',
+    total,
     variant = 'circular',
     ...other
   } = props;
-  const clampedMax = max < 2 ? 2 : max;
+  let clampedMax = max < 2 ? 2 : max;
 
   const ownerState = {
     ...props,
@@ -98,7 +99,16 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     return React.isValidElement(child);
   });
 
-  const extraAvatars = children.length > clampedMax ? children.length - clampedMax + 1 : 0;
+  const totalAvatars = total || children.length;
+
+  if (totalAvatars === clampedMax) {
+    clampedMax += 1;
+  }
+
+  clampedMax = Math.min(totalAvatars + 1, clampedMax);
+
+  const maxAvatars = Math.min(children.length, clampedMax - 1);
+  const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
 
   const marginLeft = spacing && SPACINGS[spacing] !== undefined ? SPACINGS[spacing] : -spacing;
 
@@ -122,7 +132,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
         </AvatarGroupAvatar>
       ) : null}
       {children
-        .slice(0, children.length - extraAvatars)
+        .slice(0, maxAvatars)
         .reverse()
         .map((child) => {
           return React.cloneElement(child, {
@@ -184,6 +194,11 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The total number of avatars. Used for calculating the number of extra avatars.
+   * @default children.length
+   */
+  total: PropTypes.number,
   /**
    * The variant to use.
    * @default 'circular'
