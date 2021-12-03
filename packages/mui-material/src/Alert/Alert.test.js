@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import Alert, { alertClasses as classes } from '@mui/material/Alert';
-import Paper, {paperClasses} from '@mui/material/Paper';
+import Paper, { paperClasses } from '@mui/material/Paper';
 
 describe('<Alert />', () => {
   const { render } = createRenderer();
