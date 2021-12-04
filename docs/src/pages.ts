@@ -1,4 +1,4 @@
-import pagesApi from './pagesApi';
+import pagesApi, { materialPagesApi } from './pagesApi';
 
 export interface MuiPage {
   pathname: string;
@@ -179,7 +179,7 @@ export const materialPages: readonly MuiPage[] = [
     pathname: '/material/api-docs',
     icon: 'CodeIcon',
     children: [
-      ...pagesApi,
+      ...materialPagesApi,
       {
         pathname: '/material/api-docs/data-grid',
         title: 'Data Grid',
