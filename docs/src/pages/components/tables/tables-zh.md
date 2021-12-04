@@ -1,8 +1,8 @@
 ---
 title: React Table（表格）组件
-components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, TablePaginationUnstyled
 githubLabel: 'component: Table'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#table
+waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
 materialDesign: https://material.io/components/data-tables
 ---
 
@@ -46,7 +46,7 @@ The [`DataGrid` component](/components/data-grid/) is designed for use-cases tha
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## 自定义表格
+## Customization 个性化
 
 以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
@@ -70,7 +70,7 @@ The [`DataGrid` component](/components/data-grid/) is designed for use-cases tha
 
 ### 自定义表格分页操作
 
-`TablePagination` 组件的 ` ActionsComponent ` 属性能够让您实现一些自定义的行为。
+通过 `TablePagination` 组件的 `Action` 属性，可以实现自定义操作。
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
@@ -111,12 +111,18 @@ Here is an example of a table with scrollable rows and fixed column headers. It 
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
+## Unstyled table
+
+If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below.
+
+{{"demo": "pages/components/tables/TableUnstyled.js"}}
+
 ## 无障碍设计
 
-（WAI 教程：<https://www.w3.org/WAI/tutorials/tables/>）
+(WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
 
 ### Caption 字幕
 
-字幕能够充当表格的表头。 大多数屏幕阅读器能够宣读字幕的内容。 标题可以帮助用户找到表格，了解表格的内容，决定是否要阅读。
+A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}
