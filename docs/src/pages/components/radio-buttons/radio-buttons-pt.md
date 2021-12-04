@@ -62,7 +62,7 @@ Em geral, os botões de opção devem ter um valor selecionado por padrão. Se e
 
 {{"demo": "pages/components/radio-buttons/ErrorRadios.js"}}
 
-## Opções customizadas
+## Customização
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -75,7 +75,7 @@ Para situações de uso avançadas de customização, um hook `useRadioGroup()` 
 ### API
 
 ```jsx
-import { useRadioGroup } from '@material-ui/core/RadioGroup';
+import { useRadioGroup } from '@mui/material/RadioGroup';
 ```
 
 #### Retornos
