@@ -23,10 +23,10 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 当你创建一个模态对话框时，使用[对话框（Dialog）](/components/dialogs/)组件比直接使用模态框更佳。 以下的组件将将模态框作为一个低级别的组件运用：
 
-- [Dialog](/components/dialogs/)
+- [Dialog 对话框](/components/dialogs/)
 - [Drawer（抽屉）](/components/drawers/)
 - [Menu](/components/menus/)
-- [Popover](/components/popover/)
+- [弹出框 (Popover)](/components/popover/)
 
 ## Basic modal
 
@@ -34,14 +34,14 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 请注意，您可以通过 `outline: 0` 属性来禁用模态框的边缘（通常为蓝色或金色）。
 
-## Unstyled
+## 素颜模式
 
-- 📦 [4.7kB 已压缩的包](https://bundlephobia.com/package/@material-ui/unstyled@next)
+- 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+The modal also comes with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
 
 ```js
-import ModalUnstyled from '@material-ui/unstyled/ModalUnstyled';
+import ModalUnstyled from '@mui/base/ModalUnstyled';
 ```
 
 {{"demo": "pages/components/modal/ModalUnstyled.js"}}
@@ -65,7 +65,7 @@ Modals can be nested, for example a select within a dialog, but stacking of more
 
 {{"demo": "pages/components/modal/TransitionsModal.js"}}
 
-或者，您也可以使用 [react-spring](https://github.com/pmndrs/react-spring)。
+Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring).
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 

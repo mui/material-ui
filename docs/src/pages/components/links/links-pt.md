@@ -23,7 +23,7 @@ Quando você usa `target="_blank"` com Links, é [recomendado](https://developer
 
 ## Sublinhado
 
-A propriedade `underline` pode ser usada para definir o comportamento sublinhado. O padrão é `hover`.
+A propriedade `underline` pode ser usada para definir o comportamento sublinhado. The default is `always`.
 
 {{"demo": "pages/components/links/UnderlineLink.js"}}
 
@@ -36,7 +36,7 @@ Quando você usa `target="_blank"` com Links, é [recomendado](https://developer
 
 ## Biblioteca de roteamento de terceiros
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. O componente `Link` fornece uma propriedade para lidar com este caso: `component`. Here is a [more detailed guide](/guides/routing/#link).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. O componente `Link` fornece uma propriedade para lidar com este caso: `component`. Aqui está um [guia mais detalhado](/guides/routing/#link).
 
 ## Acessibilidade
 
@@ -44,6 +44,6 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 - Ao fornecer o conteúdo para o link, evite descrições genéricas como "clique aqui" ou "vá para". Em vez disso, use [descrições específicas](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
 - Para a melhor experiência do usuário, os links devem se destacar do texto na página. For instance, you can keep the default `underline="always"` behavior.
-- Se o link não tem um href significativo, [ele deve ser renderizado usando um elemento `<button>`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md).
+- If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md).
 
 {{"demo": "pages/components/links/ButtonLink.js"}}

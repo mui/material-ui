@@ -32,6 +32,12 @@ githubLabel: 'component: Pagination'
 
 {{"demo": "pages/components/pagination/PaginationButtons.js"}}
 
+## Custom icons
+
+It's possible to customize the control icons.
+
+{{"demo": "pages/components/pagination/CustomIcons.js"}}
+
 ## 分页范围
 
 你可以使用 `siblingRange` 属性来指定当前页面两侧显示的数字多少，并使用`boundaryRange`属性来调整在起始和结束页码旁边显示的位数。
@@ -51,7 +57,7 @@ githubLabel: 'component: Pagination'
 For advanced customization use cases, a headless `usePagination()` hook is exposed. 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 The Pagination component is built on this hook.
 
 ```jsx
-import { usePagination } from '@material-ui/core/Pagination';
+import { usePagination } from '@mui/material/Pagination';
 ```
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}
@@ -64,7 +70,7 @@ import { usePagination } from '@material-ui/core/Pagination';
 
 {{"demo": "pages/components/pagination/TablePagination.js"}}
 
-> ⚠️注意，`Pagination` 页面的属性从 1 开始，以满足在 URL 中包含当前页面参数值的要求，而 `TablePagination` 页面的属性则从 0 开始，以满足渲染大量表格数据时基于零开始的 JavaScript 数组的要求。
+> ⚠️ Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data.
 
 您可以在文档的 [表格部分](/components/tables/#custom-pagination-options) 中了解更多关于此用例的信息。
 

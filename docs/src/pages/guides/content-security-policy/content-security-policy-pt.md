@@ -20,7 +20,7 @@ Você pode ler mais sobre o CSP no [MDN Web Docs](https://developer.mozilla.org/
 
 ### Renderização do lado do Servidor (SSR)
 
-Para usar o CSP com Material-UI (e JSS), você precisa usar um nonce. Um nonce é uma string gerada aleatoriamente que é usada apenas uma vez, portanto, você precisa adicionar um middleware de servidor para gerar um em cada solicitação. JSS tem um [ótimo tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) sobre como conseguir isso com Express and React Helmet. Para um resumo básico, continue lendo.
+To use CSP with MUI (and emotion), you need to use a nonce. Um nonce é uma string gerada aleatoriamente que é usada apenas uma vez, portanto, você precisa adicionar um middleware de servidor para gerar um em cada solicitação.
 
 Um nonce CSP é uma string codificada na Base 64. Você pode gerar um assim:
 
@@ -34,36 +34,46 @@ Você deve usar o UUID versão 4, pois ele gera uma string **imprevisível**. Em
 
 ```js
 header('Content-Security-Policy').set(
-  `default-src 'self'; style-src: 'self' 'nonce-${nonce}';`,
+  `default-src 'self'; style-src 'self' 'nonce-${nonce}';`,
 );
 ```
 
-Você deve passar o nonce na tag `<style>` no servidor.
+You should pass the nonce in the `<style>` tags on the server.
 
 ```jsx
 <style
-  id="jss-server-side"
+  data-emotion={`${style.key} ${style.ids.join(' ')}`}
   nonce={nonce}
-  dangerouslySetInnerHTML={{
-    __html: sheets.toString(),
-  }}
+  dangerouslySetInnerHTML={{ __html: style.css }}
 />
 ```
 
-Então, você deve passar este nonce para o JSS para que ele possa adicioná-lo às tags `<style>` subsequentes.
+Then, you must pass this nonce to the emotion cache so it can add it to subsequent `<style>`.
 
-A maneira como você faz isso é passando uma tag `<meta property="csp-nonce" content={nonce} />` no `<head>` do seu HTML. O JSS irá então, por convenção, procurar por uma tag `<meta property="csp-nonce"` e usar o valor do `content` como um nonce.
+> Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from emotion and add the `prepend: true` option.
 
-Aqui está um exemplo de como um cabeçalho fictício poderia parecer:
+```js
+const cache = createCache({
+  key: 'my-prefix-key',
+  nonce: nonce,
+  prepend: true,
+});
 
-```html
-<head>
-  <meta property="csp-nonce" content="this-is-a-nonce-123" />
-</head>
+function App(props) {
+  return (
+    <CacheProvider value={cache}>
+      <Home />
+    </CacheProvider>
+  );
+}
 ```
 
 ### Create React App (CRA)
 
-De acordo com [a documentação de Create React App](https://create-react-app.dev/docs/advanced-configuration/), uma aplicação de Create React App incorporará dinamicamente o script de tempo de execução em index.html durante a compilação de produção por padrão. Isto exigirá que um novo hash seja definido em seu CSP durante cada implantação.
+According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default. This will require a new hash to be set in your CSP during each deployment.
 
-Para usar um CSP com um projeto inicializado como um Create React App, você precisará definir a variável `INLINE_RUNTIME_CHUNK=false` no arquivo `.env` usado para sua compilação de produção. Isto irá importar o script de execução como de costume em vez de incorporá-lo, evitando a necessidade de definir um novo hash durante cada implantação.
+To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build. This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
+
+### global-css
+
+The configuration of the nonce is not straightforward, but you can follow [this issue](https://github.com/styled-components/styled-components/issues/2363) for more insights.

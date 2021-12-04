@@ -1,6 +1,6 @@
 ---
 title: Componente React Popper
-components: Popper
+components: Popper, PopperUnstyled
 githubLabel: 'component: Popper'
 ---
 
@@ -18,7 +18,7 @@ Algumas características importantes do componente `Popper`:
 - Clicar fora não oculta o componente `Popper`. Se você precisar desse comportamento, você pode usar o componente [`ClickAwayListener`](/components/click-away-listener/) - veja o exemplo na [seção da documentação do menu](/components/menus/#menulist-composition).
 - O `anchorEl` é passado como o objeto de referência para criar uma nova instância `Popper.js`.
 
-[A paleta](/system/palette/) com funções de estilo.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Popper Simples
 
@@ -36,7 +36,7 @@ Popper possui suporte interno para [react-transition-group](https://github.com/r
 
 {{"demo": "pages/components/popper/TransitionsPopper.js"}}
 
-Como alternativa, você pode usar [react-spring](https://github.com/pmndrs/react-spring).
+Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring).
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 
@@ -65,3 +65,11 @@ Para situações de uso mais avançadas, você pode tirar proveito com:
 Existe um pacote de terceiros [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) que cuida do estado popover para você na maioria das situações.
 
 {{"demo": "pages/components/popper/PopperPopupState.js"}}
+
+## Unstyled
+
+The @mui/base package contain an unstyled version of Popper - PopperUnstyled. It does not have a dependency on @mui/material. The only difference between Popper and PopperUnstyled is the support for theming. Popper can read the `direction` field from the current theme, while PopperUnstyled accepts the `direction` prop instead.
+
+```js
+import Popper from '@mui/base/PopperUnstyled';
+```

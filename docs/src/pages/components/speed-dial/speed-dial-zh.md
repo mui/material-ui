@@ -14,7 +14,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 简单的快速拨号组件
+## Basic speed dial
 
 浮动操作按钮可以显示相关操作。
 
@@ -26,7 +26,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 ## 自定义关闭图标
 
-您可以使用 `SpeedDialIcon` 组件的 `icon` 和 `openIcon` 属性，给关闭和打开状态提供一个备用的图标。
+您可以使用 `SpeedDialIcon` 组件的 `图标` 和 `openIcon` 道具 为关闭和打开状态提供备用图标。
 
 {{"demo": "pages/components/speed-dial/ControlledOpenSpeedDial.js"}}
 
@@ -63,5 +63,5 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 - 对焦时打开快速拨号组件。
 - 空格键和回车键将会触发所选的快速拨号动作，并且切换快速拨号组件的打开状态。
-- 光标键可将焦点移至下一个或上一个快速拨号操作。 （请注意，任何光标键的方向都可以用来打开快速拨号。 这使得实际或感知到的快速拨号盘方向的预期行为成为可能，例如，对于屏幕阅读器用户来说，他们认为快速拨号盘是一个下拉菜单。 )
+- 光标键可将焦点移至下一个或上一个快速拨号操作。 （请注意，任何光标键的方向都可以用来打开快速拨号。 这使得实际或感知到的快速拨号盘方向的预期行为成为可能，例如，对于屏幕阅读器用户来说，他们认为快速拨号盘是一个下拉菜单。)
 - Escape 键将会关闭快速拨号盘，如果一个快速快速拨号盘的动作被聚焦，则将该焦点回退到 Fab。
