@@ -192,7 +192,7 @@ This button component has a `color` prop that changes its color:
 
 ### Adapting the hook API
 
-{{"demo": "pages/styles/basics/AdaptingHook.js", "react":"next"}}
+{{"demo": "pages/styles/basics/AdaptingHook.js"}}
 
 ### Adapting the styled components API
 
