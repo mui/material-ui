@@ -25,6 +25,10 @@
   },
   "license": "MIT",
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui"
+  },
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@babel/runtime": "^7.16.3",
