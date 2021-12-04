@@ -72,7 +72,7 @@ export default Main() {
 
 ## TransitionGroup 动画组
 
-要在安装或卸载组件时对其进行动画处理，可以使用 _react-transition-group_ 中的 [`TransitionGroup`](https://reactcommunity.org/react-transition-group/transition-group) 组件。 当组件被添加或删除时，`in` 属性会被 `TransitionGroup` 自动切换。
+要在安装或卸载组件时对其进行动画处理，可以使用 _react-transition-group_ 中的 [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition-group) 组件。 当组件被添加或删除时，`in` 属性会被 `TransitionGroup` 自动切换。
 
 {{"demo": "pages/components/transitions/TransitionGroupExample.js"}}
 
