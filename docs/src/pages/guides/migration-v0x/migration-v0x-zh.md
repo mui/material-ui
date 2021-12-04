@@ -14,7 +14,7 @@ Material-UI 这个项目是从[4年前](https://github.com/mui-org/material-ui/c
 
 - New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
 - 新的主题处理 （有嵌套，自主支撑等。）
-- 感谢 [Next.js](https://github.com/zeit/next.js) 超快地创建文档
+- 感谢 [Next.js](https://github.com/vercel/next.js) 超快地创建文档
 - 更容易检测 [测试覆盖率](/guides/testing/) （99％以上，在所有主流浏览器上运行， [视觉回归测试](https://www.argos-ci.com/mui-org/material-ui)）
 - 完全的 [服务器端渲染](/guides/server-rendering/) 支持
 - 大范围地 [支持的浏览器](/getting-started/supported-platforms/)
