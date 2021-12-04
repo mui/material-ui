@@ -320,4 +320,4 @@ import { visuallyHidden } from '@material-ui/utils';
 
 #### Referência
 
-- https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/
+- https://www.tpgi.com/using-aria-enhance-svg-accessibility/

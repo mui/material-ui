@@ -10658,7 +10658,7 @@ If you want to avoid the default browser required property handling, you can add
 ###### _Aug 20, 2017_
 
 A big shout-out to @sebald for our first TypeScript coverage.
-Another notable change is [the migration of the documentation](#7759) to [Next.js](https://github.com/zeit/next.js), it's twice as fast as before 🚀.
+Another notable change is [the migration of the documentation](#7759) to [Next.js](https://github.com/vercel/next.js), it's twice as fast as before 🚀.
 
 A big thanks to the 9 contributors who made this release possible.
 

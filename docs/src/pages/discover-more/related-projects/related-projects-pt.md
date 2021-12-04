@@ -52,7 +52,7 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 ### Formulário
 
 - [react-hook-form](https://react-hook-form.com/): React hook para validação de formulários.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings para usar Material-UI com [formik](https://formik.org/).
+- [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings para usar Material-UI com [formik](https://formik.org/).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings para usar Material-UI com [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings para usar Material-UI com [React Final Form](https://final-form.org/react).
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): Uma grade de dados para Material-UI com paginação, ordenação, filtragem, agrupamento e funções de edição.([Com licenciamento de uso pago](https://js.devexpress.com/licensing/)).

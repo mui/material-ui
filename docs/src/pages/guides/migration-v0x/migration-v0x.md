@@ -19,7 +19,7 @@ taking advantage of this knowledge to address long-standing issues. To name some
 
 - New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
 - New theme handling (nesting, self-supporting, etc.)
-- Blazing fast documentation thanks to [Next.js](https://github.com/zeit/next.js)
+- Blazing fast documentation thanks to [Next.js](https://github.com/vercel/next.js)
 - Way better [test coverage](/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui-org/material-ui))
 - Full [server-side rendering](/guides/server-rendering/) support
 - Wide range of [supported browsers](/getting-started/supported-platforms/)

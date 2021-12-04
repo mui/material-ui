@@ -50,7 +50,7 @@ const theme = createTheme({
 
 You can achieve the integration with third-party routing libraries with the `component` prop. You can learn more about this prop in the [composition guide](/guides/composition/#component-prop).
 
-Here are a few demos with [react-router](https://github.com/ReactTraining/react-router). You can apply the same strategy with all the components: BottomNavigation, Card, etc.
+Here are a few demos with [react-router](https://github.com/remix-run/react-router). You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
 ### Link
 

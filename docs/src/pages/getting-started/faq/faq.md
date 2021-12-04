@@ -446,4 +446,4 @@ return (
 
 ## I cannot use components as selectors in the styled() utility. What should I do?
 
-If you are getting the error: `TypeError: Cannot convert a Symbol value to a string`, take a look at the [styled()](/system/styled#how-to-use-components-selector-api) docs page for instructions on how you can fix this.
+If you are getting the error: `TypeError: Cannot convert a Symbol value to a string`, take a look at the [styled()](/system/styled/#how-to-use-components-selector-api) docs page for instructions on how you can fix this.

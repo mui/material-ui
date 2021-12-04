@@ -113,7 +113,7 @@ function getInheritance(
 
   switch (inheritedComponentName) {
     case 'Transition':
-      pathname = 'https://reactcommunity.org/react-transition-group/transition#Transition-props';
+      pathname = 'http://reactcommunity.org/react-transition-group/transition/#Transition-props';
       break;
 
     default:

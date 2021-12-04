@@ -93,7 +93,7 @@ No entanto, você precisa aplicar as duas etapas seguintes corretamente.
 
 Escolha um dos seguintes plugins:
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) com a seguinte configuração:
+- [babel-plugin-import](https://github.com/umijs/babel-plugin-import) com a seguinte configuração:
 
   `yarn add -D babel-plugin-import`
 

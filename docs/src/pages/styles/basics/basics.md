@@ -19,9 +19,9 @@ In previous versions, MUI has used [Less](https://lesscss.org/), and then a cust
 [A _CSS-in-JS_ solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations,
 and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 
-MUI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
+MUI's styling solution is inspired by many other styling libraries such as [styled-components](https://styled-components.com/) and [emotion](https://emotion.sh/).
 
-- 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
+- 💅 You can expect [the same advantages](https://styled-components.com/docs/basics#motivation) as styled-components.
 
 <!-- #default-branch-switch -->
 

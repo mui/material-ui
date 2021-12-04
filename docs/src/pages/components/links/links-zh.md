@@ -44,6 +44,6 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 - 当提供链接对应的内容时，避免使用泛泛的描述，比如“点击这里”或“跳转”之类。 相反的，请使用 [具体详细的描述](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text)说明。
 - 为了获得最佳的用户体验，链接应该从页面上的文字中脱颖而出。 For instance, you can keep the default `underline="always"` behavior.
-- 如果一个链接没有赋予一个有意义的 href 值，[它应该加载成一个`<按钮>`元素](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md)。
+- 如果一个链接没有赋予一个有意义的 href 值，[它应该加载成一个`<按钮>`元素](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md)。
 
 {{"demo": "pages/components/links/ButtonLink.js"}}

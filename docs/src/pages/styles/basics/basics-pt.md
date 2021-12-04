@@ -8,9 +8,9 @@ Material-UI visa fornecer uma base sólida para a criação de interfaces de usu
 
 Nas versões anteriores, o Material-UI usava o LESS, e em seguida, uma solução customizada no estilo em linha para escrever os estilos dos componentes, mas essas abordagens provaram ser limitadas. [Uma solução *CSS-em-JS*](https://github.com/oliviertassinari/a-journey-toward-better-style) supera muitas destas limitações, e **libera excelentes funcionalidades**(aninhamento de temas, estilos dinâmicos, auto-suporte etc.).
 
-A solução de estilo do Material-UI é inspirada em muitas outras bibliotecas de estilo, como [styled-components](https://www.styled-components.com/) e [emotion](https://emotion.sh/).
+A solução de estilo do Material-UI é inspirada em muitas outras bibliotecas de estilo, como [styled-components](https://styled-components.com/) e [emotion](https://emotion.sh/).
 
-- 💅 Você pode esperar [as mesmas vantagens](https://www.styled-components.com/docs/basics#motivation) que styled-components.
+- 💅 Você pode esperar [as mesmas vantagens](https://styled-components.com/docs/basics#motivation) que styled-components.
 
 <!-- #default-branch-switch -->
 

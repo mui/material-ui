@@ -44,6 +44,6 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 - Ao fornecer o conteúdo para o link, evite descrições genéricas como "clique aqui" ou "vá para". Em vez disso, use [descrições específicas](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
 - Para a melhor experiência do usuário, os links devem se destacar do texto na página. For instance, you can keep the default `underline="always"` behavior.
-- Se o link não tem um href significativo, [ele deve ser renderizado usando um elemento `<button>`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md).
+- Se o link não tem um href significativo, [ele deve ser renderizado usando um elemento `<button>`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md).
 
 {{"demo": "pages/components/links/ButtonLink.js"}}

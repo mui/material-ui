@@ -52,7 +52,7 @@
 ### 表单
 
 - [react-hook-form](https://react-hook-form.com/)：用于表单验证的 React 钩子。
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui)：用于 [formik](https://formik.org/) 和 Material-UI 捆绑使用。
+- [formik-material-ui](https://github.com/stackworx/formik-mui)：用于 [formik](https://formik.org/) 和 Material-UI 捆绑使用。
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui)：用于 [Redux Form](https://redux-form.com/) 和 Material-UI 捆绑使用。
 - [mui-rff](https://github.com/lookfirst/mui-rff)：用于 [React Final Form](https://final-form.org/react) 和 Material-UI 捆绑使用。
 - [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) 用于 [UI Schema](https://github.com/ui-schema/ui-schema) 和 Material-UI 捆绑使用，兼容 JSON Schema

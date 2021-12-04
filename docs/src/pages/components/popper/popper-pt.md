@@ -36,7 +36,7 @@ Popper possui suporte interno para [react-transition-group](https://github.com/r
 
 {{"demo": "pages/components/popper/TransitionsPopper.js"}}
 
-Como alternativa, você pode usar [react-spring](https://github.com/react-spring/react-spring).
+Como alternativa, você pode usar [react-spring](https://github.com/pmndrs/react-spring).
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 

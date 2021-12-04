@@ -14,7 +14,7 @@ Material-UI foi iniciado [4 anos atrás](https://github.com/mui-org/material-ui/
 
 - New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
 - Novo tratamento de tema (aninhamento, auto-suporte, etc.)
-- Documentação rápida e brilhante graças a [Next.js](https://github.com/zeit/next.js)
+- Documentação rápida e brilhante graças a [Next.js](https://github.com/vercel/next.js)
 - Melhor [cobertura de teste](/guides/testing/) (99%+, executado em todos os principais navegadores, [testes de regressão visual](https://www.argos-ci.com/mui-org/material-ui))
 - Suporte completo [a renderização do lado do servidor](/guides/server-rendering/)
 - Vasta gama de [navegadores suportados](/getting-started/supported-platforms/)

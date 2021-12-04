@@ -65,7 +65,7 @@ O modal possui suporte interno para [react-transition-group](https://github.com/
 
 {{"demo": "pages/components/modal/TransitionsModal.js"}}
 
-Como alternativa, você pode usar [react-spring](https://github.com/react-spring/react-spring).
+Como alternativa, você pode usar [react-spring](https://github.com/pmndrs/react-spring).
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
