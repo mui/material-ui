@@ -31,7 +31,7 @@ If you want to start with a more complete and real-world example, you could take
 
 ### Free
 
-- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/graphql-starter):
+- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/relay-starter-kit):
 
   - ![stars](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
   - GraphQL API project using code-first design (TypeScript, OAuth, GraphQL.js, Knex, Cloud SQL)
