@@ -39,7 +39,7 @@ materialDesign: https://material.io/components/cards
 
 {{"demo": "pages/components/cards/MediaCard.js", "bg": true}}
 
-默认情况下，我们结合 `<div>` 元素和一张 _背景图片_ 来展示多媒体元素。 在某些情况下它也可能会出现问题，例如，你想要显示一个视频或一张响应式的图片。 使用 `component` 属性可以解决这样的情况：
+默认情况下，我们结合 `<div>` 元素和一张 _背景图片_ 来展示多媒体元素。 在某些情况下它也可能会出现问题，例如，你想要显示一个视频或一张响应式的图片。 Use the `component` prop for these use cases:
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
@@ -63,6 +63,4 @@ materialDesign: https://material.io/components/cards
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
 
-## Customization 个性化
-
-🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/components/card/)。
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card/).
