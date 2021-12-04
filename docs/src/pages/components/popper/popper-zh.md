@@ -36,7 +36,7 @@ githubLabel: 'component: Popper'
 
 {{"demo": "pages/components/popper/TransitionsPopper.js"}}
 
-或者，您也可以使用 [react-spring](https://github.com/react-spring/react-spring)。
+或者，您也可以使用 [react-spring](https://github.com/pmndrs/react-spring)。
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 

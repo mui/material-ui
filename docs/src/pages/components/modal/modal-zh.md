@@ -65,7 +65,7 @@ Modals can be nested, for example a select within a dialog, but stacking of more
 
 {{"demo": "pages/components/modal/TransitionsModal.js"}}
 
-或者，您也可以使用 [react-spring](https://github.com/react-spring/react-spring)。
+或者，您也可以使用 [react-spring](https://github.com/pmndrs/react-spring)。
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
