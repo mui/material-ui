@@ -1,6 +1,6 @@
 ---
 title: Componente React Abas
-components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
+components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: Tabs'
 materialDesign: https://material.io/components/tabs
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
@@ -16,13 +16,13 @@ As [abas](https://material.io/design/components/tabs.html) organizam e permitem 
 
 ## Abas simples
 
-A basic example with tab panels.
+Um exemplo básico com painéis de guias.
 
 {{"demo": "pages/components/tabs/BasicTabs.js"}}
 
 ## API experimental
 
-O `@material-ui/lab` oferece componentes auxiliares que injetam propriedades para implementar abas acessíveis seguindo as [práticas de autoria da WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
+`@mui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
 
 {{"demo": "pages/components/tabs/LabTabs.js"}}
 
@@ -32,7 +32,7 @@ Os rótulos longos serão quebrados automaticamente nas abas. If the label is to
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
-## Colored tab
+## Abas coloridas
 
 {{"demo": "pages/components/tabs/ColorTabs.js"}}
 
@@ -88,7 +88,7 @@ Botões de rolagem da esquerda e direita nunca serão apresentados com `scrollBu
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
-## Abas customizadas
+## Customização
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -104,13 +104,13 @@ O rótulo das abas podem ser compostos apenas por ícones ou apenas por texto.
 
 Note que você pode restaurar a barra de rolagem com `visibleScrollbar`.
 
-## Nav tabs
+## Guias de navegação
 
-By default, tabs use a `button` element, but you can provide your custom tag or component. Veja um exemplo de implementação da navegação por abas:
+Por padrão, as guias usam um elemento `botão`, mas você pode fornecer sua tag ou componente personalizado. Veja um exemplo de implementação da navegação por abas:
 
 {{"demo": "pages/components/tabs/NavTabs.js"}}
 
-## Icon tabs
+## Abas com ícones
 
 O rótulo das abas podem ser compostos apenas por ícones ou apenas por texto.
 
@@ -118,9 +118,15 @@ O rótulo das abas podem ser compostos apenas por ícones ou apenas por texto.
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js"}}
 
+## Icon position
+
+By default, the icon is positioned at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`.
+
+{{"demo": "pages/components/tabs/IconPositionTabs.js"}}
+
 ## Biblioteca de roteamento de terceiros
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Aqui está um [guia mais detalhado](/guides/routing/#tabs).
 
 ## Acessibilidade
 
@@ -131,7 +137,7 @@ As etapas a seguir são necessárias para fornecer a informação coerente para 
 1. Rotule o componente `Tabs` com `aria-label` ou `aria-labelledby`.
 2. Para os componentes `Tab`, precisam estar conectados com seu correspondente `[role="tabpanel"]` definindo o correto `id`, `aria-controls` e `aria-labelledby`.
 
-Um exemplo para a implementação atual pode ser encontrado nas demonstrações desta página. Nós também publicamos [uma API experimental](#experimental-api) no pacote `@material-ui/lab` que não requer nenhum trabalho extra.
+Um exemplo para a implementação atual pode ser encontrado nas demonstrações desta página. We've also published [an experimental API](#experimental-api) in `@mui/lab` that does not require extra work.
 
 ### Navegação por teclado
 
@@ -142,7 +148,7 @@ Os componentes implementam a navegação do teclado usando o comportamento de "a
 As duas demonstrações seguintes diferem apenas no seu comportamento de navegação por teclado. Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Left</kbd>.
 
 ```jsx
-/* Abas onde a seleção segue o foco */
+/* Tabs where selection follows focus */
 <Tabs selectionFollowsFocus />
 ```
 
@@ -154,3 +160,26 @@ As duas demonstrações seguintes diferem apenas no seu comportamento de navega�
 ```
 
 {{"demo": "pages/components/tabs/AccessibleTabs2.js", "defaultCodeOpen": false}}
+
+## Unstyled
+
+The Tabs also come with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+
+### Unstyled component
+
+```js
+import TabsUnstyled from '@mui/base/TabsUnstyled';
+import TabsListUnstyled from '@mui/base/TabUnstyled';
+import TabUnstyled from '@mui/base/TabUnstyled';
+import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
+```
+
+{{"demo": "pages/components/tabs/UnstyledTabsBasic.js"}}
+
+#### Customizing the root element
+
+By default, the `TabUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `TabUnstyled` will take care of adding accessibility attributes.
+
+The `TabPanelUnstyled` on the other hand renders a native `div` element by default. You are free to override this as well by setting the `component` or `components.Root` prop on the `TabPanelUnstyled`.
+
+{{"demo": "pages/components/tabs/UnstyledTabsCustomized.js"}}
