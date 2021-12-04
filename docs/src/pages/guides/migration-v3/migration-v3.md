@@ -87,7 +87,7 @@ yarn add @mui/styles
 - Remove the first option argument of `withTheme()`.
   (The first argument was a placeholder for a potential future option that never arose.)
 
-  It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
+  It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://styled-components.com).
 
   ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
