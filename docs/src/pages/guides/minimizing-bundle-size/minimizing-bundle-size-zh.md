@@ -93,7 +93,7 @@ import { Button, TextField } from '@material-ui/core';
 
 请在以下插件中选择一个：
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) 的配置如下：
+- [babel-plugin-import](https://github.com/umijs/babel-plugin-import) 的配置如下：
 
   `yarn add -D babel-plugin-import`
 
