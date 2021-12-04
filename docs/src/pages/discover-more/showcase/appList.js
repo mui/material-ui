@@ -338,7 +338,7 @@ const appList = [
       'Learn React, MUI, Next, Express, Mongoose, MongoDB, third party APIs, and more.',
     image: 'builderbook.jpg',
     link: 'https://builderbook.org/',
-    source: 'https://github.com/builderbook/builderbook',
+    source: 'https://github.com/async-labs/builderbook',
     stars: 1837,
     dateAdded: '2018-01-05',
   },
@@ -461,7 +461,7 @@ const appList = [
       'Modular audio production suite with multi-track audio mixing, audio effects, ' +
       'parameter automation, MIDI editing, synthesis, cloud production, and more.',
     image: 'audionodes.jpg',
-    link: 'https://audionodes.com/',
+    link: 'https://www.audionodes.com/',
     dateAdded: '2018-01-07',
   },
   {
