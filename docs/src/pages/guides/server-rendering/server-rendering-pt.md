@@ -1,12 +1,12 @@
-# Renderização no servidor
+# Server rendering
 
 <p class="description">A situação de uso mais comum para a renderização do lado do servidor, é manipular a renderização inicial quando um usuário (ou rastreador de mecanismo de pesquisa) solicita sua aplicação.</p>
 
 Quando o servidor recebe a solicitação, ele renderiza o(s) componente(s) requerido(s) em uma cadeia HTML e o envia como uma resposta ao cliente. A partir desse momento, o cliente assume as funções de renderização.
 
-## Material-UI no servidor
+## MUI on the server
 
-O Material-UI foi projetado em base com garantias de renderização no servidor, mas cabe a você certificar-se de que ele será integrado corretamente. É importante fornecer a página com o CSS necessário, caso contrário a página irá renderizar somente o HTML até o CSS ser injetado pelo cliente, causando uma tremulação (FOUC). Para injetar o estilo no cliente, precisamos:
+MUI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated. É importante fornecer a página com o CSS necessário, caso contrário a página irá renderizar somente o HTML até o CSS ser injetado pelo cliente, causando uma tremulação (FOUC). Para injetar o estilo no cliente, precisamos:
 
 1. Create a fresh, new [`emotion cache`](https://emotion.sh/docs/@emotion/cache) instance on every request.
 2. Renderize a árvore React com o coletor do lado do servidor.
@@ -26,10 +26,10 @@ Crie um tema que será compartilhado entre o cliente e o servidor:
 `theme.js`
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import red from '@material-ui/core/colors/red';
+import { createTheme } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
 
-// Cria a instância do tema.
+// Create a theme instance.
 const theme = createTheme({
   palette: {
     primary: {
@@ -74,25 +74,23 @@ const port = 3000;
 app.listen(port);
 ```
 
-### Handling the request
+### ### Manipulando as requests
 
-The first thing that we need to do on every request is to create a new `emotion cache`.
+A primeira coisa que nós precisamos fazer em cada request é criar um novo `emotion cache`.
 
 When rendering, we will wrap `App`, the root component, inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. Para fazer isso, usamos [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-Material-UI is using emotion as its default styled engine. We need to extract the styles from the emotion instance. For this, we need to share the same cache configuration for both the client and server:
+MUI is using emotion as its default styled engine. We need to extract the styles from the emotion instance. For this, we need to share the same cache configuration for both the client and server:
 
-`getCache.js`
+`createEmotionCache.js`
 
 ```js
 import createCache from '@emotion/cache';
 
-export default function getCache() {
-  const cache = createCache({ key: 'css' });
-  cache.compat = true;
-  return cache;
+export default function createEmotionCache() {
+  return createCache({ key: 'css' });
 }
 ```
 
@@ -104,15 +102,16 @@ Vamos ver como isso é passado na função `renderFullPage`.
 import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
 import theme from './theme';
-import getCache from './getCache';
+import createEmotionCache from './createEmotionCache';
 
 function handleRender(req, res) {
-  const cache = getCache();
+  const cache = createEmotionCache();
   const { extractCriticalToChunks, constructStyleTagsFromChunks } =
     createEmotionServer(cache);
 
@@ -178,16 +177,18 @@ The client-side is straightforward. All we need to do is use the same cache conf
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
 import App from './App';
 import theme from './theme';
-import getCache from './getCache';
+import createEmotionCache from './createEmotionCache';
+
+const cache = createEmotionCache();
 
 function Main() {
   return (
-    <CacheProvider value={getCache}>
+    <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
