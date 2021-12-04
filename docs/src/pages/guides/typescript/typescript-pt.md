@@ -27,7 +27,7 @@ Utilizando `withStyles` no TypeScript pode ser um pouco complicado, mas há algu
 
 ### Utilizando `createStyles` para evitar a ampliação de tipo (type widening)
 
-Uma fonte frequente de confusão é a ampliação de tipos ([type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)) do TypeScript, que faz com que este exemplo não funcione como o esperado:
+Uma fonte frequente de confusão é a ampliação de tipos ([type widening](https://mariusschulz.com/blog/literal-type-widening-in-typescript)) do TypeScript, que faz com que este exemplo não funcione como o esperado:
 
 ```ts
 const styles = {
