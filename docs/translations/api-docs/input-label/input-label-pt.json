@@ -6,12 +6,12 @@
     "color": "A cor do componente. Ela da suporte para as cores do tema que fazem sentido para este componente.",
     "disableAnimation": "If <code>true</code>, the transition animation is disabled.",
     "disabled": "Se <code>true</code>, o componente está desabilitado.",
-    "error": "If <code>true</code>, the label should be displayed in an error state.",
+    "error": "If <code>true</code>, the label is displayed in an error state.",
     "focused": "If <code>true</code>, the <code>input</code> of this label is focused.",
     "margin": "If <code>dense</code>, will adjust vertical spacing. This is normally obtained via context from FormControl.",
     "required": "if <code>true</code>, the label will indicate that the <code>input</code> is required.",
     "shrink": "If <code>true</code>, the label is shrunk.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
     "variant": "A variante a usar."
   },
   "classDescriptions": {
@@ -19,27 +19,27 @@
       "description": "Estilos aplicados ao elemento raiz."
     },
     "focused": {
-      "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "<code>focused={true}</code>"
     },
     "disabled": {
-      "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "<code>disabled={true}</code>"
     },
     "error": {
-      "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "<code>error={true}</code>"
     },
     "required": {
-      "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "<code>required={true}</code>"
     },
     "asterisk": {
-      "description": "Pseudo-class applied to {{nodeName}}.",
+      "description": "State class applied to {{nodeName}}.",
       "nodeName": "the asterisk element"
     },
     "formControl": {
