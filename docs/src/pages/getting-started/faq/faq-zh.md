@@ -10,7 +10,7 @@
 
 - **口口相传**。 通过在您的网站上 [链接到 material-ui.com](https://material-ui.com/) 来传播 Material-UI ，每个反向链接对我们来说都很重要。 在 [Twitter 上关注我们](https://twitter.com/MaterialUI) ，点赞并转发一些重要的新闻。 或者只是与您的朋友谈论我们。
 - **给我们反馈** 。 告诉我们一些做得好的地方或者可以改进的地方。 请给您最希望看到能够解决的问题投票（👍）。
-- **帮助新用户** 。 您可以在 [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) 中回答一些问题。
+- **帮助新用户** 。 您可以在 [StackOverflow](https://stackoverflow.com/questions/tagged/mui) 中回答一些问题。
 - **做出一些改变吧**。
   - 编辑文档。 每个页面右上角都有一个“编辑此页面”的链接。
   - 通过 [创建一个问题](https://github.com/mui-org/material-ui/issues/new) 来报告错误或缺少的功能 。

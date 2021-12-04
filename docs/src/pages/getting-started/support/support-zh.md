@@ -10,7 +10,7 @@
 
 而我们社区的 Material-UI 开发，会解决那些众包的技术问题。  以及一些 Material-UI 核心团队回答的常见问答。
 
-[发布一个问题](https://stackoverflow.com/questions/tagged/material-ui)
+[发布一个问题](https://stackoverflow.com/questions/tagged/mui)
 
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 

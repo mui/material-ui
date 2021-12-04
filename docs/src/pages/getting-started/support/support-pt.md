@@ -10,7 +10,7 @@ A comunidade é sua primeira parada para perguntas e conselhos sobre o framework
 
 Para questões técnicas colaborativas, conte com o apoio de desenvolvedores de Material-UI especializados em nossa comunidade. Também frequentado pela equipe principal do Material-UI.
 
-[Poste uma pergunta](https://stackoverflow.com/questions/tagged/material-ui)
+[Poste uma pergunta](https://stackoverflow.com/questions/tagged/mui)
 
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 
