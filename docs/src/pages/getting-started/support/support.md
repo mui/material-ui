@@ -34,7 +34,7 @@ If you think you have found a bug, or have a new feature idea, please start by m
 
 Stay up to date with the development of the library by following the blog.
 
-[Read the latest posts](https://medium.com/material-ui/)
+[Read the latest posts](https://medium.com/material-ui)
 
 ### Resources 📖
 
