@@ -165,7 +165,7 @@ As duas demonstrações seguintes diferem apenas no seu comportamento de navega�
 
 The Tabs also come with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
 
-### Unstyled component
+### Componente sem estilo
 
 ```js
 import TabsUnstyled from '@mui/base/TabsUnstyled';
@@ -176,7 +176,7 @@ import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 
 {{"demo": "pages/components/tabs/UnstyledTabsBasic.js"}}
 
-#### Customizing the root element
+#### Customizando o elemento raiz
 
 By default, the `TabUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `TabUnstyled` will take care of adding accessibility attributes.
 
