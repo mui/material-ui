@@ -20,7 +20,12 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
      * Override or extend the styles applied to the component.
      */
     classes?: Partial<TypographyClasses>;
-
+    /**
+     * The component used for the Root slot.
+     * Either a string to use a HTML element or a component.
+     * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+     */
+    component?: React.ElementType;
     /**
      * If `true`, the text will have a bottom margin.
      * @default false
@@ -101,16 +106,4 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
 export type TypographyProps<
   D extends React.ElementType = TypographyTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<
-  TypographyTypeMap<
-    P & {
-      /**
-       * The component used for the Root slot.
-       * Either a string to use a HTML element or a component.
-       */
-      component?: D;
-    },
-    D
-  >,
-  D
->;
+> = OverrideProps<TypographyTypeMap<P, D>, D>;

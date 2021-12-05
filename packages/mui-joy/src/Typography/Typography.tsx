@@ -80,7 +80,7 @@ const defaultVariantMapping = {
   inherit: 'p',
 };
 
-const Typography = React.forwardRef(function Typography(inProps: TypographyProps, ref) {
+const Typography = React.forwardRef(function Typography(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiTypography' });
   const props = extendSxProp(themeProps);
 
@@ -110,13 +110,14 @@ const Typography = React.forwardRef(function Typography(inProps: TypographyProps
     variantMapping,
   };
 
-  const Component = (component ||
-    (paragraph
+  const Component =
+    component ||
+    ((paragraph
       ? 'p'
       : levelMapping[level || variant] ||
         variantMapping[level || variant] ||
-        defaultVariantMapping[level || variant]) ||
-    'span') as React.ElementType;
+        defaultVariantMapping[level || variant] ||
+        'span') as React.ElementType);
 
   const classes = useUtilityClasses(ownerState);
 
@@ -134,21 +135,18 @@ const Typography = React.forwardRef(function Typography(inProps: TypographyProps
 Typography.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * Set the text-align on the component.
    * @default 'inherit'
+   * @deprecated use `sx` prop instead. <Typography sx={{ textAlign: 'center' }} />
    */
   align: PropTypes.oneOf(['center', 'inherit', 'justify', 'left', 'right']),
   /**
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -164,6 +162,52 @@ Typography.propTypes /* remove-proptypes */ = {
    */
   gutterBottom: PropTypes.bool,
   /**
+   * Applies the theme typography styles.
+   * @default 'body1'
+   */
+  level: PropTypes.oneOf([
+    'body1',
+    'body2',
+    'body3',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'inherit',
+  ]),
+  /**
+   * The component maps the variant prop to a range of different HTML element types.
+   * For instance, body1 to `<h6>`.
+   * If you wish to change that mapping, you can provide your own.
+   * Alternatively, you can use the `component` prop.
+   * @default {
+   *   h1: 'h1',
+   *   h2: 'h2',
+   *   h3: 'h3',
+   *   h4: 'h4',
+   *   h5: 'h5',
+   *   h6: 'h6',
+   *   body1: 'p',
+   *   body2: 'p',
+   *   body3: 'p',
+   *   inherit: 'p',
+   * }
+   */
+  levelMapping: PropTypes.shape({
+    body1: PropTypes.string,
+    body2: PropTypes.string,
+    body3: PropTypes.string,
+    h1: PropTypes.string,
+    h2: PropTypes.string,
+    h3: PropTypes.string,
+    h4: PropTypes.string,
+    h5: PropTypes.string,
+    h6: PropTypes.string,
+    inherit: PropTypes.string,
+  }),
+  /**
    * If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
    *
    * Note that text overflow can only happen with block or inline-block level elements
@@ -174,19 +218,13 @@ Typography.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the element will be a paragraph element.
    * @default false
+   * @deprecated use `component` prop instead.
    */
   paragraph: PropTypes.bool,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
-  /**
    * Applies the theme typography styles.
    * @default 'body1'
+   * @deprecated use `level` prop instead.
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf([
@@ -209,7 +247,7 @@ Typography.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component maps the variant prop to a range of different HTML element types.
-   * For instance, subtitle1 to `<h6>`.
+   * For instance, body1 to `<h6>`.
    * If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` prop.
    * @default {
@@ -219,14 +257,14 @@ Typography.propTypes /* remove-proptypes */ = {
    *   h4: 'h4',
    *   h5: 'h5',
    *   h6: 'h6',
-   *   subtitle1: 'h6',
-   *   subtitle2: 'h6',
    *   body1: 'p',
    *   body2: 'p',
+   *   body3: 'p',
    *   inherit: 'p',
    * }
+   * @deprecated use `levelMapping` prop instead.
    */
   variantMapping: PropTypes /* @typescript-to-proptypes-ignore */.object,
-};
+} as any;
 
 export default Typography;
