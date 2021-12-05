@@ -5298,10 +5298,10 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-chai-dom@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/chai-dom/-/chai-dom-1.10.0.tgz#73f270fb316ff8ebcdd085cd8b71184b04255fa9"
-  integrity sha512-/FE0NvEGMXx1x1YQlc8ihLrEhH8JawflchuGe6ypIAX/4Zwmkr4cC3mfR9pDytbxsE/2LSm719TeU7VF/TCmtg==
+chai-dom@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/chai-dom/-/chai-dom-1.11.0.tgz#aa3af405b3d9b0470d185b17081ed23ca5fdaeb4"
+  integrity sha512-ZzGlEfk1UhHH5+N0t9bDqstOxPEXmn3EyXvtsok5rfXVDOFDJbHVy12rED6ZwkJAUDs2w7/Da4Hlq2LB63kltg==
 
 chai@^4.3.4:
   version "4.3.4"
