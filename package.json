@@ -149,7 +149,7 @@
     "node-fetch": "^2.6.6",
     "nyc": "^15.1.0",
     "playwright": "^1.17.1",
-    "prettier": "^2.5.0",
+    "prettier": "^2.5.1",
     "process": "^0.11.10",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
