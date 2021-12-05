@@ -13,10 +13,10 @@ export default function ControlledRadioButtonsGroup() {
   };
 
   return (
-    <FormControl component="fieldset">
-      <FormLabel component="legend">Gender</FormLabel>
+    <FormControl>
+      <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
       <RadioGroup
-        aria-label="gender"
+        aria-labelledby="demo-controlled-radio-buttons-group"
         name="controlled-radio-buttons-group"
         value={value}
         onChange={handleChange}

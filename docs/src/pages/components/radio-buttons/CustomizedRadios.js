@@ -68,9 +68,13 @@ function BpRadio(props) {
 
 export default function CustomizedRadios() {
   return (
-    <FormControl component="fieldset">
-      <FormLabel component="legend">Gender</FormLabel>
-      <RadioGroup defaultValue="female" aria-label="gender" name="customized-radios">
+    <FormControl>
+      <FormLabel id="demo-customized-radios">Gender</FormLabel>
+      <RadioGroup
+        defaultValue="female"
+        aria-labelledby="demo-customized-radios"
+        name="customized-radios"
+      >
         <FormControlLabel value="female" control={<BpRadio />} label="Female" />
         <FormControlLabel value="male" control={<BpRadio />} label="Male" />
         <FormControlLabel value="other" control={<BpRadio />} label="Other" />
