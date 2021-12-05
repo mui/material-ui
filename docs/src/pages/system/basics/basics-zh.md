@@ -1,8 +1,8 @@
 # MUI System
 
-<p class="description">CSS utilities for rapidly laying out custom designs.</p>
+<p class="description">用于快速布置自定义设计的 CSS 工具集。</p>
 
-MUI comes with dozens of **ready-to-use** components in the core. 开始使用这些组件时可能会非常困难，但当涉及到通过定制设计使你的网站脱颖而出时，从这样无风格的状态开始可能更简单。 介绍该系统：
+MUI核心配备了几十个**可随时使用**的组件。 这些组件是一个极好的起点，但当涉及到通过定制设计使你的网站脱颖而出时，从一个没有风格的状态开始可能会更简单。 系统介绍：
 
 **系统**让你可以利用主题中所定义的值来快速构建自定义 UI 组件。
 
@@ -36,7 +36,7 @@ npm install @mui/system @mui/styled-engine-sc styled-components
 yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
 
-Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+请参阅[Styled Engine guide](/guides/styled-engine/)，了解更多关于如何配置`styled-components`作为样式引擎的信息。
 
 ## 为什么要使用系统？
 
@@ -152,11 +152,11 @@ return (
 
 用户没有必要在样式组件的用法和定义的地方不断跳转。 有了这个系统，直接就可以在你需要的组件上面进行样式定制。
 
-**2. UI 中要达成一致是很困难的。**
+**2. 为事物命名是很难的。**
 
-你有没有发现自己在为一个样式组件找一个好名字而苦恼？ 该系统可以直接将样式映射到元素。 所以你要做的就是只关心实际的样式属性。
+你是否曾发现自己在为一个有样式的组件寻找一个好名字而苦恼？ 该系统可以直接将样式映射到元素。 所以你要做的就是只关心实际的样式属性。
 
-**3。 UI 中要达成一致是很困难的。**
+**3.  UI 中要达成一致是很困难的。**
 
 当不止一个人在构建应用程序时尤其如此，因为团队成员之间必须就设计标记的选择和使用方式进行一些协调，主题结构的哪些部分应该使用哪些 CSS 属性等等。
 
@@ -166,7 +166,7 @@ return (
 
 `sx` 属性作为系统的主要部分，为了解决了这些问题，它提供了一种快速 & 简单的方式，也就是将特定 CSS 属性的正确设计标记直接应用到 React 元素中。 [上面的这个演示](#demo) 展示了如何使用它来创建一次性设计。
 
-This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。 For more details, visit the [`sx` prop page](/system/the-sx-prop/).
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。 有关更多详细信息，请访问 [`sx` prop 的页面](/system/the-sx-prop/)。
 
 ### 何时使用？
 
@@ -180,7 +180,7 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 优点：
 
 - 📚 它允许 API 具有很大的灵活性。 `sx` 属性支持 CSS 的超集。 所以**不需要重学 CSS**。 只要你学会了标准化的 CSS 语法，就可以了，很安全，十年来都没有变化。 当然如果你想要节省时间的话，也可以**选择**学习速记语法。
-- 📦 自动清除。 只有页面上使用过的 CSS 才会被发送到客户端。 所以初始化该捆绑包的大小成本是**灵活的**。 它的大小不会随着使用 CSS 属性的数量变多而同时增长。 You pay the cost of [@emotion/react](https://bundlephobia.com/package/@emotion/react) and [@mui/system](https://bundlephobia.com/package/@mui/system). 在 gzip 的环境下，它们大概占用约 15kb 的空间。 如果你已经正在使用核心组件，那么将不会带来额外的捆绑包资源占用。
+- 📦 自动清除。 只有页面上使用过的 CSS 才会被发送到客户端。 所以初始化该捆绑包的大小成本是**灵活的**。 它的大小不会随着使用 CSS 属性的数量变多而同时增长。 你只需承担 [@emotion/react](https://bundlephobia.com/package/@emotion/react) 以及 [@mui/system](https://bundlephobia.com/package/@mui/system)的空间大小. 在 gzip 的环境下，它们大概占用约 15kb 的空间。 如果你已经正在使用核心组件，那么将不会带来额外的捆绑包资源占用。
 
 缺点：
 
@@ -201,9 +201,9 @@ _Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/mast
 
 ### API 权衡
 
-Having the system under one prop (`sx`) helps to differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic. It's important for the **separation of concerns**. For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), not to be confused with the color CSS property.
+将系统设在一个prop下(`sx`)有助于区分仅仅为了CSS 实用工具而定义的props。 按构成部分开列的业务逻辑开列的次数。 它对 **关注点分离** 很重要。 例如，一个按钮上的 `color` prop 会影响多个状态(hover，focus 等)，不会与颜色的 CSS 属性混淆。
 
-Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _props_ for the above reason. These components are designed to solve CSS problems, they are CSS component utilities.
+只有 `Box`, `Stack`, `类型`, 和 `格子` 组件接受系统属性为 _props_ 基于上述理由。 这些组件旨在解决CSS 问题，它们是 CSS 组件实用工具。
 
 ## 使用
 
@@ -280,7 +280,7 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 
 #### 1. 将断点作为对象
 
-定义断点的第一种选择是将断点定义为一个对象，将断点作为其键。 Note that each breakpoint property matches the breakpoint and every larger breakpoint. For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`. 这里又是前面的例子，使用的是对象语法。
+定义断点的第一种选择是将断点定义为一个对象，将断点作为其键。 请注意，每个断点属性都与断点和每个大断点相匹配。 For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`. 这里又是前面的例子，使用的是对象语法。
 
 {{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
 
@@ -290,7 +290,7 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 
 {{"demo": "pages/system/basics/BreakpointsAsArray.js"}}
 
-> ⚠️ 只有当主题的断点数量有限时，才建议使用这个选项，例如 3.<br />。 如果你需要使用更多的断点，那么首选对象 API。 For instance, the default theme of MUI has 5.
+> ⚠️ 只有当主题的断点数量有限时，才建议使用这个选项，例如 3.<br />。 如果你需要使用更多的断点，那么首选对象 API。 例如，MUI默认主题设为 5。
 
 你可以使用 `null` 值来跳过断点：
 
@@ -366,7 +366,7 @@ declare module '@mui/material/styles' {
 
 ### 1. 核心组件
 
-All core MUI components will support the `sx` prop.
+所有核心MUI组件将支持 `sx` prop。
 
 ### 2. Box 分组
 
@@ -374,7 +374,7 @@ All core MUI components will support the `sx` prop.
 
 ### 3。 自定义组件
 
-In addition to MUI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
+除了MUI组件外，您也可以将 `sx` prop添加到您的自定义组件。 使用 `风格的` 实用程序来自 `@mui/material/styles`
 
 ```jsx
 import { styled } from '@mui/material/styles';
