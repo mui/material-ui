@@ -33,7 +33,7 @@ Use a propriedade `size` para alterar o tamanho do interruptor.
 
 {{"demo": "pages/components/switches/ColorSwitches.js"}}
 
-## Controlled
+## Controlado
 
 Você pode controlar o interruptor com as propriedades `checked` e `onChange`:
 
