@@ -147,7 +147,7 @@ The following aliases are available for the spacing properties:
 
 _Head to the [spacing page](/system/spacing/) for more details._
 
-### Tipografia
+### Typography
 
 The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their value to the `theme.typography` value.
 
