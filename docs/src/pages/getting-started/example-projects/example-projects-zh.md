@@ -77,7 +77,7 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 - [ScaffoldHub](https://scaffoldhub.io/?partner=1):
 
   - 使用此在线工具构建您的完整应用程序
-  - Choose your framework and library (React & MUI!)
+  - 选择您的框架和库（React & Material UI!）
   - 选择您的数据库（SQL，MongoDB 或 Firestree）
   - 用直观的 GUI 模拟你的数据库和应用程序
   - 生成您的应用程序，包括一个完整的 scaffolded 后台
@@ -85,5 +85,5 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 
 - [Divjoy](https://divjoy.com?via=material-ui):
 
-  - Create your MUI app in minutes.
-  - You'll get a nice template, authentication, database integration, subscription payments, and more.
+  - 在几分钟内创建您的 MUI 应用程序。
+  - 您将获得一个好模板、认证模块、数据库整合、订阅付款等等。
