@@ -169,7 +169,7 @@ The `Grid` component is using CSS flexbox internally. But as seen below, you can
 
 ## 系统属性
 
-As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding:
+As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. 您可以直接在组件上使用它们作为props。 For instance, a padding:
 
 ```jsx
 <Grid item p={2}>
