@@ -1,11 +1,11 @@
 ---
 title: Componente React de Tipografia
-components: Tipografia
+components: Typography
 githubLabel: 'component: Typography'
 materialDesign: https://material.io/design/typography/the-type-system.html
 ---
 
-# Tipografia
+# Typography
 
 <p class="description">Use a tipografia para apresentar seu design e conteúdo da forma mais clara e eficiente possível.</p>
 
