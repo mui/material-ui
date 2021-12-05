@@ -2307,17 +2307,6 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@mui/core@link:./packages/mui-base":
-  version "5.0.0-alpha.58"
-  dependencies:
-    "@babel/runtime" "^7.16.3"
-    "@emotion/is-prop-valid" "^1.1.1"
-    "@mui/utils" "^5.2.2"
-    "@popperjs/core" "^2.4.4"
-    clsx "^1.1.1"
-    prop-types "^15.7.2"
-    react-is "^17.0.2"
-
 "@mui/x-data-grid-generator@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-5.1.0.tgz#b778548a31b13378f496c0cdf0fc6fde4a7deab6"
