@@ -95,7 +95,7 @@ For larger or smaller icon buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/IconButtonSizes.js"}}
 
-### Colors
+### Cores
 
 Use a propriedade `color` para aplicar uma paleta de cores ao componente.
 
@@ -109,7 +109,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button/).
 
-## Loading button
+## Botão de carregamento
 
 Os botões de carregamento podem mostrar estado de carregamento e desativar as interações.
 
@@ -119,7 +119,7 @@ Alterne o interruptor de carregamento para ver a transição entre os diferentes
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
-## Complex button
+## Botão complexo
 
 Os botões de texto, botões contidos, botões de ação flutuante e botões de ícone são construídos com base no mesmo componente: O componente `ButtonBase`. Você pode usar esse componente para construir interações diferentes.
 
@@ -168,7 +168,7 @@ Isso tem a vantagem de suportar qualquer elemento, por exemplo, um elemento de l
 
 The button also comes with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
 
-### Unstyled component
+### Componente sem estilo
 
 ```js
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
@@ -176,7 +176,7 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 {{"demo": "pages/components/buttons/UnstyledButtonsSimple.js"}}
 
-#### Customizing the root element
+#### Customizando o elemento raiz
 
 By default, the `ButtonUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
 
@@ -186,7 +186,7 @@ Compare the attributes on the span with the button from the previous demo.
 
 #### Complex customization
 
-You are not limited to using HTML elements for the button structure. SVG elements, even with complex structure, are equally acceptable.
+You are not limited to using HTML elements for the button structure. Elementos SVG, mesmo que com uma estrutura complexa, são igualmente aceitáveis.
 
 {{"demo": "pages/components/buttons/UnstyledButtonCustom.js"}}
 
