@@ -285,7 +285,7 @@ For advanced customization scenarios, you can use the unstyled primitives.
 
 The basic building blocks are the `InputUnstyled` component and the `useInput` hook.
 
-### Unstyled component
+### Componente sem estilo
 
 The `InputUnstyled` component wraps the native `input` or `textarea` element. You can, optionally, provide a custom component to be rendered instead.
 
