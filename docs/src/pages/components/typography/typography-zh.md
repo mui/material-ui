@@ -1,6 +1,6 @@
 ---
 title: React Typography（文字铸排）组件
-components: Typography
+components: 文字铸排
 githubLabel: 'component: Typography'
 materialDesign: https://material.io/design/typography/the-type-system.html
 ---
@@ -9,13 +9,13 @@ materialDesign: https://material.io/design/typography/the-type-system.html
 
 <p class="description">使用文字铸排可以尽可能清晰、高效地展示您的设计和内容。</p>
 
-大量字阶和样式会影响任何布局的美观性。 一个带有限量字阶的 [文字铸排比例（typographic scale）](https://material.io/design/typography/#type-scale) 能够和排版网格搭配工作。
+大量字阶和样式会影响任何布局的美观性。 [版式比例](https://material.io/design/typography/#type-scale)是一组有限的类型大小, 与布局网格一起工作很好。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## 概述
 
-Material-UI **不会**自动加载 *Roboto* 字体。 你负责加载你的应用程序中使用的任何字体。 有这样几个简单的方法来加载 Roboto 字体。 若想查询更高级的配置，请参阅[主题定制部分](/customization/typography/)。
+The _Roboto_ font will **not** be automatically loaded by MUI. 你负责加载你的应用程序中使用的任何字体。 有这样几个简单的方法来加载 Roboto 字体。 若想查询更高级的配置，请参阅[主题定制部分](/customization/typography/)。
 
 ## Roboto 字体 CDN
 
@@ -45,7 +45,7 @@ import '@fontsource/roboto/700.css';
 
 有关更多信息请查看 [Fontsource](https://github.com/fontsource/fontsource)。
 
-您可以将 Fontsource 配置为加载特定的子集（subsets）、字体粗细（weights）和样式（styles）。 Material-UI 默认的排版配置仅依赖于 300，400，500 和 700 的字体权重。
+您可以将 Fontsource 配置为加载特定的子集（subsets）、字体粗细（weights）和样式（styles）。 MUI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## 组件
 
@@ -63,7 +63,7 @@ import '@fontsource/roboto/700.css';
 
 文字铸排组件通过 `variantMapping` 属性关联了一种 UI 变体和某一种语义元素。 重要的是要意识到排版组件的风格是独立于语义基础元素的。
 
-- 使用 `component` 属性，您可以一次性改变底层元素的样式：
+- You can change the underlying element for a one-off situation with the `component` prop:
 
 ```jsx
 {
@@ -103,7 +103,7 @@ const theme = createTheme({
 
 除了使用默认的排版变体外，你还可以添加自定义的排版，或者禁用任何你不需要的排版。 更多信息请参见 [添加 & 禁用变体](/customization/typography/#adding-amp-disabling-variants) 示例。
 
-## System props
+## 系统属性
 
 As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
 

@@ -1,7 +1,7 @@
 {
   "componentDescription": "Chips represent complex entities in small blocks, such as a contact.",
   "propDescriptions": {
-    "avatar": "The Avatar for the Card Header.",
+    "avatar": "The Avatar element to display.",
     "children": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
     "clickable": "If <code>true</code>, the chip will appear clickable, and will raise when pressed, even if the onClick prop is not defined. If <code>false</code>, the chip will not appear clickable, even if onClick prop is defined. This can be used, for example, along with the component prop to indicate an anchor Chip is clickable. Note: this controls the UI and does not affect the onClick event.",
@@ -12,8 +12,8 @@
     "icon": "Icon element.",
     "label": "O conteúdo do componente.",
     "onDelete": "Callback fired when the delete icon is clicked. If set, the delete icon will be shown.",
-    "size": "The size of the autocomplete.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "size": "The size of the component.",
+    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
     "variant": "A variante a usar."
   },
   "classDescriptions": {
@@ -41,7 +41,7 @@
       "conditions": "<code>color=\"secondary\"</code>"
     },
     "disabled": {
-      "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "<code>disabled={true}</code>"
     },
@@ -121,26 +121,26 @@
     },
     "icon": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the icon element"
+      "nodeName": "o elemento ícone"
     },
     "iconSmall": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "the icon element",
+      "nodeName": "o elemento ícone",
       "conditions": "<code>size=\"small\"</code>"
     },
     "iconMedium": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "the icon element",
+      "nodeName": "o elemento ícone",
       "conditions": "<code>size=\"medium\"</code>"
     },
     "iconColorPrimary": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "the icon element",
+      "nodeName": "o elemento ícone",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "iconColorSecondary": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "the icon element",
+      "nodeName": "o elemento ícone",
       "conditions": "<code>color=\"secondary\"</code>"
     },
     "label": {
@@ -192,7 +192,7 @@
       "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"outlined\"</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "teclado focado"
     }

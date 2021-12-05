@@ -118,7 +118,7 @@ Yes, it's really all you need to get started as you can see in this live and int
 ## Questions
 
 For _how-to_ questions and other non-issues,
-please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of GitHub issues.
+please use [StackOverflow](https://stackoverflow.com/questions/tagged/mui) instead of GitHub issues.
 There is a StackOverflow tag called "material-ui" that you can use to tag your questions.
 
 ## Examples

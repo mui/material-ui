@@ -1,10 +1,10 @@
 # Density 密度
 
-<p class="description">如何为 Material-UI 组件设置自定义的密度。</p>
+<p class="description">How to apply density to MUI components.</p>
 
 ## 使用密度
 
-本节解释了如何应用密度。 这不包括一些潜在的用例，也不包括在应用程序中使用密度的注意事项。 在 Material design 规范中有一个 [全面的指南](https://material.io/design/layout/applying-density.html#typographic-density)，它详细地介绍了本章的内容。
+本节解释了如何应用密度。 这不包括一些潜在的用例，也不包括在应用程序中使用密度的注意事项。 <https://material.io/design/layout/applying-density. html#typographic-density>使用案例</>
 
 ## 实现密度（density）
 
@@ -14,7 +14,7 @@
 
 以下组件有一些能够达到较大密度的属性：
 
-- [Button](/api/button/)
+- [Button 按钮](/api/button/)
 - [Fab](/api/fab/)
 - [FilledInput](/api/filled-input/)
 - [FormControl](/api/form-control/)
@@ -24,13 +24,13 @@
 - [InputLabel](/api/input-label/)
 - [ListItem](/api/list-item/)
 - [OutlinedInput](/api/outlined-input/)
-- [Table](/api/table/)
+- [Table 表格](/api/table/)
 - [TextField](/api/text-field/)
 - [Toolbar](/api/toolbar/)
 
 ## 探索主题的密度
 
-该工具允许您可以来通过 spacing 和 component 属性来应用密度。 您可以浏览一下，看看在 Material-UI 组件上使用后的整体感觉如何。
+该工具允许您可以来通过 spacing 和 component 属性来应用密度。 You can browse around and see how this applies to the overall feel of MUI components.
 
 如果您启用了较大的密度，那么一个自定义的主题将被应用到当前的文档中。 该主题仅为演示使用。 您 _不应该_ 将此主题应用在整个应用程序中，因为这可能会对用户的体验产生一些负面影响。 在 [Material design 规范](https://material.io/design/layout/applying-density.html#typographic-density) 的示例中，列举了不应该使用密度的情景。
 
@@ -62,14 +62,6 @@ const theme = createTheme({
     MuiIconButton: {
       defaultProps: {
         size: 'small',
-      },
-      styleOverrides: {
-        sizeSmall: {
-          // Adjust spacing to reach minimal touch target hitbox
-          marginLeft: 4,
-          marginRight: 4,
-          padding: 12,
-        },
       },
     },
     MuiInputBase: {

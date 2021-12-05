@@ -6,7 +6,7 @@
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
     "position": "Position of the title bar.",
     "subtitle": "String or element serving as subtitle (support text).",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
     "title": "Title to be displayed."
   },
   "classDescriptions": {
@@ -58,7 +58,7 @@
     "actionIcon": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "the actionIcon",
-      "conditions": "supplied"
+      "conditions": "fornecido"
     },
     "actionIconActionPosLeft": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",

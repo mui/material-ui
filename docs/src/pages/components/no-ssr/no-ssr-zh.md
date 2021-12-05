@@ -23,8 +23,18 @@ components: NoSsr
 
 ## 延迟帧数
 
-在其核心中，NoSr 组件的目的是 **推迟渲染**。 正如在前一个演示中所展示的那样，您可以使用它来将推迟从服务器到客户端的渲染。
+At its core, the NoSsr component's purpose is to **defer rendering**. 正如在前一个演示中所展示的那样，您可以使用它来将推迟从服务器到客户端的渲染。
 
 但你也可以使用它来推迟客户端自身的渲染。 您可以使用 `defer` 属性来**等待一个屏幕帧**后，再渲染子组件。 React 会做  [2 次提交](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects)  而不是 1 次。
 
 {{"demo": "pages/components/no-ssr/FrameDeferring.js"}}
+
+## 素颜模式
+
+- 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
+
+As the component does not have any styles, it also comes with the unstyled package.
+
+```js
+import NoSsr from '@mui/base/NoSsr';
+```

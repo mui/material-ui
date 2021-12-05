@@ -10,6 +10,7 @@ You can find some example projects in the [GitHub repository](https://github.com
 
 - [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/nextjs-with-typescript))
 - [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript))
+- [Remix](https://github.com/mui-org/material-ui/tree/master/examples/remix-with-typescript)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
 - [Preact](https://github.com/mui-org/material-ui/tree/master/examples/preact)
 - [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)

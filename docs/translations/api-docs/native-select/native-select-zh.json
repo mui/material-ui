@@ -5,9 +5,9 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "IconComponent": "The icon that displays the arrow.",
     "input": "An <code>Input</code> element; does not have to be a material-ui specific <code>Input</code>.",
-    "inputProps": "Attributes applied to the <code>select</code> element.",
-    "onChange": "Callback fired when a menu item is selected.<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><em>event:</em> The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string).",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "inputProps": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attributes\">Attributes</a> applied to the <code>select</code> element.",
+    "onChange": "Callback fired when a menu item is selected.<br><br><strong>Signature:</strong><br><code>function(event: React.ChangeEvent&lt;HTMLSelectElement&gt;) =&gt; void</code><br><em>event:</em> The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string).",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "The <code>input</code> value. The DOM API casts this to a string.",
     "variant": "The variant to use."
   },
@@ -18,6 +18,11 @@
     "select": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the select component `select` class"
+    },
+    "multiple": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the select component",
+      "conditions": "<code>multiple={true}</code>"
     },
     "filled": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -35,7 +40,7 @@
       "conditions": "<code>variant=\"standard\"</code>"
     },
     "disabled": {
-      "description": "Pseudo-class applied to {{nodeName}}.",
+      "description": "State class applied to {{nodeName}}.",
       "nodeName": "the select component `disabled` class"
     },
     "icon": {

@@ -71,7 +71,7 @@ The `grid-auto-flow` property controls how the auto-placement algorithm works, s
 
 ### grid-column
 
-The `grid-column` property is a shorthand for `grid-column-start` + `grid-column-end`. You can see how it's used in the [grid-auto-columns example](/system/grid/#grid-auto-columns). You can see how it's used in the [grid-auto-columns example](/system/grid/#grid-auto-columns). You can see how it's used in the [grid-auto-columns example](/system/grid/#grid-auto-columns).
+The `grid-column` property is a shorthand for `grid-column-start` + `grid-column-end`. You can see how it's used in the [grid-auto-columns example](/system/grid/#grid-auto-columns).
 
 You can either set the start and end line:
 
@@ -152,7 +152,7 @@ The `grid-area` property allows you to give an item a name so that it can be ref
 ## API
 
 ```js
-import { flexbox } from '@material-ui/system';
+import { grid } from '@mui/system';
 ```
 
 | 导入名称                  | 属性                    | CSS 属性                  | Theme key |

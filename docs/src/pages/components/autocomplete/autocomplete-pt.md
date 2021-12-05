@@ -24,7 +24,7 @@ O valor deve ser escolhido a partir de um conjunto predefinido de valores permit
 
 {{"demo": "pages/components/autocomplete/ComboBox.js"}}
 
-### Estrutura das opções
+### Estrutura de opções
 
 Por padrão, o componente aceita as seguintes estruturas de opções:
 
@@ -47,11 +47,11 @@ const options = [
 const options = ['The Godfather', 'Pulp Fiction'];
 ```
 
-No entanto, você pode usar estruturas diferentes fornecendo um prop `getOptionLabel`.
+No entanto, você pode usar estruturas diferentes fornecendo a propriedade `getOptionLabel`.
 
 ### Área de exemplos
 
-Each of the following examples demonstrates one feature of the Autocomplete component.
+Cada um dos exemplos a seguir demonstra uma funcionalidade do componente Autocomplete.
 
 {{"demo": "pages/components/autocomplete/Playground.js"}}
 
@@ -61,14 +61,14 @@ Escolha um dos 248 países.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
-### Controlled states
+### Estados controlados
 
 O componente tem dois estados que podem ser controlados:
 
 1. o estado "value" com a combinação das propriedades `value`/`onChange`. Esse estado representa o valor selecionado pelo usuário, por exemplo, quando pressionando <kbd class="key">Enter</kbd>.
 2. o estado "input value" com a combinação das propriedades `inputValue`/`onInputChange`. Esse estado representa o valor exibido na caixa de texto.
 
-> ⚠️ These two states are isolated, they should be controlled independently.
+> ⚠️Esses dois estados são isolados e devem ser controlados de forma independente.
 
 {{"demo": "pages/components/autocomplete/ControllableStates.js"}}
 
@@ -99,7 +99,7 @@ Você pode também exibir um diálogo quando o usuário quiser adicionar um novo
 
 ## Agrupamento
 
-Você pode agrupar as opções com o prop `groupBy`. Se você fizer isso, certifique-se de que as opções também estejam classificadas com a mesma dimensão que serão agrupadas, caso contrário, você notará cabeçalhos duplicados.
+Você pode agrupar as opções com a propriedade `groupBy`. Se você fizer isso, certifique-se de que as opções também estejam classificadas com a mesma dimensão que serão agrupadas, caso contrário, você notará cabeçalhos duplicados.
 
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
@@ -109,10 +109,16 @@ Você pode agrupar as opções com o prop `groupBy`. Se você fizer isso, certif
 
 ## `useAutocomplete`
 
-For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. The Autocomplete component is built on this hook.
+Para casos avançados de customização, o hook `useAutocomplete` é disponibilizado. Ele aceita quase as mesmas opções do componente autocompletar exceto todas as propriedades relacionadas a renderização do JSX. O componente de auto completar é baseado neste hook.
 
-```jsx
-import useAutocomplete from '@material-ui/core/useAutocomplete';
+```tsx
+import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
+```
+
+O hook `useAutocomplete` também é reexportado de @mui/material por conveniência e compatibilidade com versões anteriores.
+
+```tsx
+import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
 - 📦 [4.5 kB gzipado](/size-snapshot).
@@ -123,26 +129,26 @@ import useAutocomplete from '@material-ui/core/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-Vá para a seção de [customização](#customization) para um exemplo com o componente `Autocomplete` em vez do hook.
+Vá para a seção [customização](#customization) para um exemplo com o componente `Autocomplete` em vez do hook.
 
 ## Requisições assíncronas
 
-O componente suporta duas situações de uso assíncronas diferentes:
+O componente suporta dois cenários de uso assíncrono diferentes:
 
 - [Carregar ao abrir](#load-on-open): espera uma interação com o componente para carregar as opções.
 - [Pesquisar enquanto digita](#search-as-you-type): um novo pedido é feito para cada tecla pressionada.
 
 ### Carregar ao abrir
 
-Exibe um estado de progresso enquanto a solicitação de rede estiver pendente.
+Exibe um estado de progresso enquanto a requisição de rede estiver pendente.
 
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
 ### Pesquisar enquanto digita
 
-Se sua lógica é buscar novas opções a cada tecla pressionada e usando o valor atual da caixa de texto para filtrar no servidor, você pode querer considerar a limitação de requisições.
+Se sua lógica está buscando novas opções em cada tecla pressionada e usando o valor atual da caixa de texto para filtrar no servidor, você pode querer considerar um limite nas requisições.
 
-Além disso, você precisará desabilitar a filtragem integrada do componente `Autocomplete` sobrescrevendo o prop `filterOptions`:
+Additionally, you will need to disable the built-in filtering of the `Autocomplete` component by overriding the `filterOptions` prop:
 
 ```jsx
 <Autocomplete filterOptions={(x) => x} />
@@ -213,21 +219,21 @@ A demonstração a seguir dependem do [autosuggest-highlight](https://github.com
 O componente expõe uma fábrica para criar um método de filtro que pode ser fornecido para a propriedade `filterOptions`. Você pode usar ela para modificar o comportamento padrão do filtro.
 
 ```js
-import { createFilterOptions } from '@material-ui/core/Autocomplete';
+import { createFilterOptions } from '@mui/material/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`
 
 #### Argumentos
 
-1. `config` (_object_ [optional]):
+1. `config` (_object_ [opcional]):
 
-- `config.ignoreAccents` (_bool_ [optional]): Defaults to `true`. Remover sinais diacríticos.
-- `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. Minúsculas em tudo.
+- `config.ignoreAccents` (_bool_ [optional]): Padrão como `verdadeiro`. Remover sinais diacríticos.
+- `config.ignoreCase` (*boolean* [optional]): Padrão como `verdadeiro`. Minúsculas em tudo.
 - `config.limit` (*number* [opcional]): Padrão null. Limitar o número de opções sugeridas a serem exibidas. Por exemplo, se `config.limit` é `100`, somente as primeiras `100` opções correspondentes são exibidas. Isto pode ser útil se um monte corresponderem e a virtualização não estiver configurada.
 - `config.matchFrom` (_'any' | 'start'_ [opcional]): Padrão `'any'`.
 - `config.stringify` (*func* [opcional]): Controla a forma como a opção é convertida em texto, dessa forma pode ser comparada com qualquer fragmento de texto.
-- `config.trim` (_bool_ [optional]): Defaults to `false`. Remover espaços ao fim.
+- `config.trim` (_bool_ [opcional]): Padrão `false`. Remover espaços ao fim.
 
 #### Retornos
 
@@ -251,7 +257,7 @@ const filterOptions = createFilterOptions({
 Para mecanismos de filtragem mais ricos, como correspondência difusa, recomenda-se explorar o [match-sorter](https://github.com/kentcdodds/match-sorter). Por exemplo:
 
 ```jsx
-import matchSorter from 'match-sorter';
+import { matchSorter } from 'match-sorter';
 
 const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 
@@ -274,7 +280,7 @@ Se você deseja evitar o comportamento padrão do teclado, você pode definir a 
     if (event.key === 'Enter') {
       // Previne o comportamento padrão do 'Enter'.
       event.defaultMuiPrevented = true;
-      // your handler code
+      // seu código manipulador
     }
   }}
 />
@@ -286,9 +292,9 @@ Se você deseja evitar o comportamento padrão do teclado, você pode definir a 
 
 Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component.
 
-By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Atualmente, o Google Chrome não suporta essa configuração de atributo ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). Uma solução alternativa possível é remover o `id` para que o componente gere um aleatório.
+By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
 
-No entanto, além de relembrar valores fornecidos anteriormente, o navegador também pode propor sugestões de **autofill** (preenchimento automático para informações de login, endereço ou detalhes de pagamento). No caso de você querer evitar o recurso de preenchimento automático, tente o seguinte:
+In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). No caso de você querer evitar o recurso de preenchimento automático, tente o seguinte:
 
 - Nomeie o campo sem fornecer informações para o navegador do que ele representa. `id="field1"` ao invés de `id="country"`. Se você deixar o id do vazio, o componente utiliza um id aleatório.
 - Defina `autoComplete="new-password"` (alguns navegadores irão sugerir uma senha forte para entradas com esta configuração de atributo):
@@ -303,7 +309,7 @@ No entanto, além de relembrar valores fornecidos anteriormente, o navegador tam
   />
   ```
 
-Leia [este guia na MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) para mais detalhes.
+Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
 
 ### iOS VoiceOver
 
