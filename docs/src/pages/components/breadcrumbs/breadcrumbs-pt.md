@@ -23,7 +23,7 @@ Mantendo o último caminho de navegação interativo.
 
 ## Separador customizado
 
-In the following examples, we are using two string separators and an SVG icon.
+Nos exemplos a seguir, nós estamos usando dois separadores de string e um ícone SVG.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
