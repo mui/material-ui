@@ -1196,7 +1196,7 @@ As the core components use emotion as their style engine, the props used by emot
   >      </Typography>
   > ```
 
-### Divisor
+### Divider
 
 - Use border instead of background color. It prevents inconsistent height on scaled screens. If you have customized the color of the border, you will need to update the CSS property override:
 
@@ -1418,7 +1418,7 @@ As the core components use emotion as their style engine, the props used by emot
   +return hidden ? null : <Paper />;
   ```
 
-### Icon
+### Ícone
 
 - The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikely event that you were using the value `default`, the prop can be removed:
 
@@ -2169,7 +2169,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Tooltip>
   ```
 
-### Tipografia
+### Typography
 
 - Remove the `srOnly` variant. You can use the `visuallyHidden` utility in conjunction with the `sx` prop instead.
 
