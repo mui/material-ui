@@ -26,7 +26,7 @@
 - [从 JSS 迁移](#migrate-from-jss)
 - [故障排除（Troubleshooting）](#troubleshooting)
 
-> 💡 目标是创建最小的更改，使迁移更顺利。 如果您遇到任何问题，请检查 [疑难解答](#troubleshooting) 部分。 对于其它没有在此文档描述的错误，请以此格式`[Migration] Summary of your issue`[创建问题](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml)。
+> 💡 目标是创建最小的更改，使迁移更顺利。 如果您遇到任何问题，请查看 [疑难解答](#troubleshooting) 章节。 对于其它没有在此文档描述的错误，请以此格式`[Migration] Summary of your issue`[创建问题](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml)。
 
 ## 更新 React & TypeScript 版本
 
@@ -822,20 +822,20 @@ declare module '@mui/styles' {
   >   +<Autocomplete clearIcon={defaultClearIcon} />
   > ```
 
-- The following values of the reason argument in `onChange` and `onClose` were renamed for consistency:
+- 为了一致性，`onChange` 和 `onClose` 中的参数的以下值被重命名：
 
-  1. `create-option` to `createOption`
-  2. `select-option` to `selectOption`
-  3. `remove-option` to `removeOption`
+  1. `create-option` 变为 `createOption`
+  2. `select-option` 变为 `selectOption`
+  3. `remove-option` 变为 `removeOption`
 
-- Change the CSS rules that use `[data-focus="true"]` to use `.Mui-focused`. The `data-focus` attribute is not set on the focused option anymore, instead, global class names are used.
+- 更改使用 `[data-focus="true"]` 的 CSS 规则以使用 `.Mui-focus`。 `data-focus` 属性不再设置在聚焦选项上，而是使用全局类名称。
 
   ```diff
   -'.MuiAutocomplete-option[data-focus="true"]': {
   +'.MuiAutocomplete-option.Mui-focused': {
   ```
 
-- Rename `getOptionSelected` to `isOptionEqualToValue` to better describe its purpose.
+- 将 `getOptionSelected` 重命名为 `isOptionEqualTValue` 以更好地描述其目的。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -847,7 +847,7 @@ declare module '@mui/styles' {
 
 ### Avatar 头像组件
 
-- Rename `circle` to `circular` for consistency:
+- 为保持一致性，我们将 `circle` 重命名为 `circular`。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -858,14 +858,14 @@ declare module '@mui/styles' {
   >   +<Avatar classes={{ circular: 'className' }}>
   > ```
 
-  Since `circular` is the default value, the variant prop can be deleted:
+  既然 `circular` 是默认值，那么variant 属性可以删除：
 
   ```diff
   -<Avatar variant="circle">
   +<Avatar>
   ```
 
-- Move the AvatarGroup from the lab to the core.
+- AvatarGroup 已从实验室包移动到核心包。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -876,7 +876,7 @@ declare module '@mui/styles' {
 
 ### Badge 徽章
 
-- Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency.
+- 为保持一致性，我们将 `circle` 重命名为 `circular`，`rectangle` 重命名为 `rectangular`。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -906,18 +906,18 @@ declare module '@mui/styles' {
    }}>
   ```
 
-### BottomNavigation
+### BottomNavigation 底部导航
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript：`onChange` 中的 `event` 的类型不再是 `React.ChangeEvent`，而是`React.SyntheticEvent`。
 
   ```diff
   -<BottomNavigation onChange={(event: React.ChangeEvent<{}>) => {}} />
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-### BottomNavigationAction
+### BottomNavigationAction 底部导航动作
 
-- Remove the `span` element that wraps the children. Remove the `wrapper` classKey too. More details about [this change](https://github.com/mui-org/material-ui/pull/26923).
+- 移除包装子节点的 `span`。 也删除 `wrapper` 这个类名称。 更多关于 [此更改](https://github.com/mui-org/material-ui/pull/26923) 的详细信息。
 
   ```diff
    <button class="MuiBottomNavigationAction-root">
@@ -932,7 +932,7 @@ declare module '@mui/styles' {
 
 ### Box 分组
 
-- The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit `px` value.
+- `borderRadius` 系统属性值转换已被更改。 如果它收到一个数字，它就会将这个值与 `theme.shape.borderRadius` 的值相乘。 使用一个字符串来提供一个显式的 `px` 值。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -946,7 +946,7 @@ declare module '@mui/styles' {
   +<Box borderRadius="16px">
   ```
 
-- The Box system props have an optional alternative API in v5, using the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the "why" behind this new API.
+- 盒子（Box）组件的属性在 v5 中有一个可选的替代API，使用 `sx` 属性。 您可以[阅读这个章节](/system/basics/#api-tradeoff)了解为什么要使用这个新的API。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -955,7 +955,7 @@ declare module '@mui/styles' {
   >   <Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
   > ```
 
-- The following properties have been renamed because they are considered deprecated CSS properties by the CSS specification:
+- 以下属性已重命名，因为根据CSS规则它们被视为已废弃的 CSS 属性：
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
 
@@ -972,9 +972,9 @@ declare module '@mui/styles' {
   +<Box rowGap={3}>
   ```
 
-  (Note that the system grid function wasn't documented in v4.)
+  请注意，grid 函数未在v4系统中还未被使用。
 
-- The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a MUI component.
+- `clone` 属性已被删除，因为它的行为可以通过应用 `sx` 直接针对子节点，前提是子节点是MUI 组件。
 
   ```diff
   -<Box sx={{ border: '1px dashed grey' }} clone>
@@ -983,7 +983,7 @@ declare module '@mui/styles' {
   +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
   ```
 
-- The ability to pass a render prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a MUI component.
+- 传递渲染属性的能力已被删除，因为如果子节点是一个 MUI 组件的话，它的属性可以通过 `sx` 直接对子节点应用。
 
   ```diff
   -<Box sx={{ border: '1px dashed grey' }}>
@@ -992,7 +992,7 @@ declare module '@mui/styles' {
   +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
   ```
 
-  For non-MUI components, use the `component` prop.
+  对于非 MUI 组件，使用 `component` 属性。
 
   ```diff
   -<Box sx={{ border: '1px dashed grey' }}>
@@ -1003,7 +1003,7 @@ declare module '@mui/styles' {
 
 ### Button 按钮
 
-- The button `color` prop is now "primary" by default, and "default" has been removed. This makes the button closer to the Material Design guidelines and simplifies the API.
+- 按钮的 `颜色（color）` 属性默认情况下为 "primary"，同时 "default" 属性已被删除。 这使按钮更接近Meterial设计准则，并简化了API。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1012,9 +1012,9 @@ declare module '@mui/styles' {
   >   +<Button>
   > ```
 
-  If you prefer to use the `default` color in v4, take a look at this [CodeSandbox](https://codesandbox.io/s/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx)
+  如果您喜欢使用 v4 中的 `default` 颜色，请查看 [CodeSandbox](https://codesandbox.io/s/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx)
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666). `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+- 包裹子元素的`span`已经被删除。 `label`类名称同样被删除。 这个更改的[更多细节](https://github.com/mui-org/material-ui/pull/26666)。
 
   ```diff
    <button class="MuiButton-root">
@@ -1024,13 +1024,13 @@ declare module '@mui/styles' {
    </button>
   ```
 
-### Chip
+### Chip 纸片组件
 
-- Rename `default` variant to `filled` for consistency.
+- 为保持一致性，将variant的默认值从 `default` 变更为 `filled`：
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
 
-  Since `filled` is the default value, the variant prop can be deleted:
+  既然 `filled` 是默认值，那么variant 属性可以删除：
 
   ```diff
   -<Chip variant="default">
@@ -1039,7 +1039,7 @@ declare module '@mui/styles' {
 
 ### Checkbox 选择框
 
-- The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
+- 组件不再有 `.MuiIconButtonroot` 和 `.MuiIconButton-label` 类名，以 `.MuiButtonBase-root` 代替。
 
   ```diff
   - <span class="MuiIconButton-root MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
@@ -1049,9 +1049,9 @@ declare module '@mui/styles' {
   +   <span class="PrivateSwitchBase-input">
   ```
 
-### CircularProgress
+### CircularProgress 环形进度条
 
-- The `static` variant has been renamed to `determinate`, and the previous appearance of `determinate` has been replaced by that of `static`. It was an exception to Material Design, and was removed from the specification.
+- variant 属性的`static`重命名为`determinate`，之前的`determinate`显示效果替换为之前的`static`效果。 它被Material Design视为错误，并且在规范中被删除。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1060,11 +1060,11 @@ declare module '@mui/styles' {
   >   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
   > ```
 
-> NB: If you had previously customized determinate, your customizations are probably no longer valid. Please remove them.
+> 注意：如果你之前已经定制了 determinate，那么你的定制可能不再有效。 所以请删除它们。
 
 ### Collapse 折叠
 
-- The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.
+- `collapsedHeight` 属性已重命名为 `collapsedSize` 以便支持水平方向的大小。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1073,16 +1073,16 @@ declare module '@mui/styles' {
   >   +<Collapse collapsedSize={40}>
   > ```
 
-- The `classes.container` key was changed to match the convention of the other components.
+- 已更改 `classes.container` 键以匹配其他组件的约定行为。
 
   ```diff
   -<Collapse classes={{ container: 'collapse' }}>
   +<Collapse classes={{ root: 'collapse' }}>
   ```
 
-### CssBaseline
+### CssBaseline 基线
 
-- The component was migrated to use the `@mui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
+- 此组件迁移为使用 `@mui/styled-engine` (`emotion` 或者 `styled-components`)替代`JSS`。 定义样式覆盖时，您应该删除 `@global` 键。 您也可以在 JavaScript 语义对象上开始使用 CSS 模板语法。
 
   ```diff
   const theme = createTheme({
@@ -1105,7 +1105,7 @@ declare module '@mui/styles' {
   });
   ```
 
-- The `body` font size has changed from `theme.typography.body2` (`0.875rem`) to `theme.typography.body1` (`1rem`). To return to the previous size, you can override it in the theme:
+- `body` 的字体大小已经从 `theme.typography.body2` (`0.875rem`) 变为 `theme.typography.body1` (`1rem`)。 要返回之前的大小，您可以在主题中覆盖它：
 
   ```js
   const theme = createMuiTheme({
@@ -1125,7 +1125,7 @@ declare module '@mui/styles' {
 
 ### Dialog 对话框
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- onE\* 过渡属性已被删除。 请使用 TransitionProps 来代替它。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1148,7 +1148,7 @@ declare module '@mui/styles' {
   >    >
   > ```
 
-- Remove the `disableBackdropClick` prop because it is redundant. Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
+- 删除 `disableBackdropClick` 属性，因为它是冗余的。 `reason === 'backdropClick'`取代了`onClose` 关闭事件。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1164,9 +1164,9 @@ declare module '@mui/styles' {
   >    />
   > ```
 
-- Remove the `withMobileDialog` higher-order component. The hook API allows a simpler and more flexible solution:
+- 删除了高阶组件 `withMobileDialog`。 Hook API 提供了更简单灵活的方案：
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent application crash, further fixes are required. 
+  > ✅ 这是在 [preset-safe codemod](#preset-safe) 中通过应用硬编码函数来处理的，以防止应用程序崩溃，需要进一步修复。 
   > 
   > ```diff
   >   -import withMobileDialog from '@mui/material/withMobileDialog';
@@ -1184,7 +1184,7 @@ declare module '@mui/styles' {
   >   +export default ResponsiveDialog;
   > ```
 
-- Flatten DialogTitle DOM structure, remove `disableTypography` prop
+- 平整DialogTitle DOM结构，移除 `disableTypography` 属性。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1197,9 +1197,9 @@ declare module '@mui/styles' {
   >      </Typography>
   > ```
 
-### Divider
+### Divider 分隔线
 
-- Use border instead of background color. It prevents inconsistent height on scaled screens. If you have customized the color of the border, you will need to update the CSS property override:
+- 你需要使用边框来代替背景色。 这个改动可以防止在缩放屏幕上出现高度不一致的情况。 如果您已经自定义了边界的颜色，您需要更新覆盖的 CSS 属性：
 
   ```diff
   .MuiDivider-root {
@@ -1208,9 +1208,9 @@ declare module '@mui/styles' {
   }
   ```
 
-### ExpansionPanel（扩展面板）
+### ExpansionPanel 扩展面板
 
-- Rename the `ExpansionPanel` components to `Accordion` to use a more common naming convention:
+- 为使用更通用的命名约定，我们将 `ExpansionPanel` 组件重命名为 `Accordion`：
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1249,20 +1249,20 @@ declare module '@mui/styles' {
   >   +</Accordion>
   > ```
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript：`onChange` 中的 `event` 的类型不再是 `React.ChangeEvent`，而是`React.SyntheticEvent`。
 
   ```diff
   -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```
 
-### ExpansionPanelDetails
+### ExpansionPanelDetails 扩展面板详情
 
-- Remove `display: flex` from `AccordionDetails` (formerly `ExpansionPanelDetails`) as its too opinionated. Most developers expect a display block.
+- 因为过于自以为是，我们删除了 `AccordionDetails`（之前的`ExpansionPanelDetails`）中的 `display: flex`。 大多数开发者都期望显示为块级（block）元素。
 
-### ExpansionPanelSummary
+### ExpansionPanelSummary 扩展面板概要
 
-- Rename `focused` to `focusVisible` for consistency:
+- 为保持一致性，我们将 `focused` 重命名为 `focusVisible`。
 
   ```diff
    <AccordionSummary
@@ -1273,11 +1273,11 @@ declare module '@mui/styles' {
     />
   ```
 
-- Remove `IconButtonProps` prop from `AccordionSummary` (formerly `ExpansionPanelSummary`). The component renders a `<div>` element instead of an `IconButton`. The prop is no longer necessary.
+- 删除  `AccordionSummary` (之前的`ExpansionPanelSummary`)中的 `IconButtonProps` 属性。 该组件渲染一个 `<div>` 元素而不是 `IconButton`。 所以不再需要该属性了。
 
-### Fab
+### Fab 浮动按钮
 
-- Rename `round` to `circular` for consistency:
+- 为保持一致性，我们将 `round` 重命名为 `circular`。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1286,7 +1286,7 @@ declare module '@mui/styles' {
   >   +<Fab variant="circular">
   > ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666). `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27112).
+- 包裹子元素的`span`已经被删除。 `label`类名称同样被删除。 更多关于 [此更改](https://github.com/mui-org/material-ui/pull/27112) 的详细信息。
 
   ```diff
    <button class="MuiFab-root">
@@ -1296,11 +1296,11 @@ declare module '@mui/styles' {
    </button>
   ```
 
-### FormControl
+### FormControl 表单控件
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines.
+- 将variant的默认值从 `standard` 更改为 `outlined`。 Standard 已从Material设计准则中删除。
 
-  > ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod. 
+  > ✅ 这在 [variant-prop codemod](#variant-prop)中已解决，在运行此codemod之前请阅读详细信息。 
   > 
   > ```diff
   >   -<FormControl value="Standard" />
@@ -1309,18 +1309,18 @@ declare module '@mui/styles' {
   >   +<FormControl value="Outlined" />
   > ```
 
-### FormControlLabel
+### FormControlLabel 表单控件标签
 
-- The `label` prop is now required. If you were using a `FormControlLabel` without a `label`, you can replace it with just the value of the `control` prop.
+- `label` 属性现在是必需的。 如果您使用了`FormControlLabel`而没有`label`, 你可以用`control`属性替代。
 
 ```diff
 -<FormControlLabel control={<Checkbox />} />
 +<Checkbox />
 ```
 
-### Grid
+### Grid 栅格
 
-- Rename `justify` prop to `justifyContent` to align with the CSS property name.
+- 为了保持CSS属性名的一致性，`justify`属性重命名为`justifyContent`。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1329,7 +1329,7 @@ declare module '@mui/styles' {
   >   +<Grid justifyContent="center">
   > ```
 
-- The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options.
+- 属性: `alignItems` `alignContent` `justifyContent`和他们的`classes`属性，以及styleOverrides键已被删除，包括："align-items-xs-center", “align-items-xs-flex-start”、“align-items-xs-flex-end”、“align-item-item-xs-basine”， “align-content-xs-center”、“align-content-xs-flex-start”、“align-content-xs-space-between ”、“align-content-xs-space-around”、“jusy-content-xs-center”、“jusify-content-xs-flex-end”、“jusy-content-xs-spacen”、“justify-content-xs-space-around”和“justify-content-xs-space-evality”。 现在这些属性被视为系统的一部分，而不是在 `Grid` 组件本身。 如果您仍然想要为他们添加样式覆盖，您可以使用 `theme.components.MuiGrid.variants` 选项。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1353,17 +1353,17 @@ declare module '@mui/styles' {
   >   });
   > ```
 
-### GridList
+### GridList 栅格列表
 
-- Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
+- 为保持和当前 Material Design 命名的一致性，我们将 `GridList` 组件重命名为 `ImageList`。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
 
-- Rename the GridList `spacing` prop to `gap` to align with the CSS attribute.
-- Rename the GridList `cellHeight` prop to `rowHeight`.
-- Add the `variant` prop to GridList.
-- Rename the GridListItemBar `actionPosition` prop to `position`. (Note also the related classname changes.)
-- Use CSS object-fit. For IE11 support either use a polyfill such as https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
+- 为保持和 CSS 属性名字的一致性，我们将栅格列表的 `spacing` 属性重命名为 `gap`。
+- 将栅格列表`cellHeight` 属性重命名为 `rowHeight`。
+- 添加 `variant` 属性到栅格列表中。
+- 我们将 GridListItemBar 的 `actionPosition` 属性重命名为 `position`。 (也要注意相关的类名变化)。
+- 使用 CSS object-fit。 如果要兼容 IE11，那么你可以使用 polyfill 来转换它，例如 https://www.npmjs.com/package/object-fit-images，或者继续使用 v4 组件。
 
   ```diff
   -import GridList from '@mui/material/GridList';
@@ -1391,11 +1391,11 @@ declare module '@mui/styles' {
 
 ### Hidden 隐藏组件
 
-- This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query/) hook.
+- 此组件被废弃，因为它的功能可以使用 [`sx`](/system/basics/#the-sx-prop) 属性或 [`useMediaQuery`](/components/use-media-query/) 钩子替代。
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, further fixes are required.
+  > ✅ 这是在 [preset-safe codemod](#preset-safe) 中通过应用假的 `Hidden`组件以防止应用程序崩溃，需要进一步修复。
 
-  Use the `sx` prop to replace `implementation="css"`:
+  使用 `sx` 属性替换 `implementation="css"`:
 
   ```diff
   -<Hidden implementation="css" xlUp><Paper /></Hidden>
@@ -1411,7 +1411,7 @@ declare module '@mui/styles' {
   +<Box component="button" sx={{ display: { xs: 'none', md: 'block' } }} />
   ```
 
-  Use the `useMediaQuery` hook to replace `implementation="js"`:
+  使用 `useMediaQuery` 钩子来替换 `implementation="js"`:
 
   ```diff
   -<Hidden implementation="js" xlUp><Paper /></Hidden>
@@ -1419,18 +1419,18 @@ declare module '@mui/styles' {
   +return hidden ? null : <Paper />;
   ```
 
-### 图标
+### Icon 图标
 
-- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikely event that you were using the value `default`, the prop can be removed:
+- 为了一致性，`fontSize` 的默认值已从 `default` 更改为 `medium`。 如果您使用的值为 `default`, 那么这个属性可以被删除：
 
   ```diff
   -<Icon fontSize="default">icon-name</Icon>
   +<Icon>icon-name</Icon>
   ```
 
-### IconButton
+### IconButton 图标按钮
 
-- The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
+- 默认尺寸的填充缩减为 `8px` ，因此默认图标按钮大小为 `40px`。 要获得旧的默认大小 (`48px`)，请使用 `size="large"`。 当Material Design停止记录图标按钮模式时，更改是为了更好地匹配谷歌的产品。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1439,7 +1439,7 @@ declare module '@mui/styles' {
   >   + <IconButton size="large">
   > ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666). `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+- 包裹子元素的`span`已经被删除。 `label`类名称同样被删除。 这个更改的[更多细节](https://github.com/mui-org/material-ui/pull/26666)。
 
   ```diff
    <button class="MuiIconButton-root">
@@ -1449,11 +1449,11 @@ declare module '@mui/styles' {
    </button>
   ```
 
-### React Link（链接）组件
+### Link 链接
 
-- The default `underline` prop is changed from `"hover"` to `"always"`. To get the same behavior as in v4, apply `defaultProps` in theme
+- 默认 `underline` 属性已从 `"hover"` 更改为 `"always"`。 要获得与v4相同的行为，请在主题中应用 `defaultProps`。
 
-  > ✅ This is handled in [link-underline-hover codemod](#link-underline-hover), read the details before running this codemod. 
+  > ✅ 这在 [link-underline-hover codemod](#link-underline-hover)中已解决，在运行此codemod之前请阅读详细信息。 
   > 
   > ```js
   >   createTheme({
@@ -1467,9 +1467,9 @@ declare module '@mui/styles' {
   >   });
   > ```
 
-### Menu
+### Menu 菜单
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- onE\* 过渡属性已被删除。 请使用 TransitionProps 来代替它。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1492,9 +1492,9 @@ declare module '@mui/styles' {
   >    >
   > ```
 
-  > Note: The `selectedMenu` variant will no longer vertically align the selected item with the anchor.
+  > 注意：`selectedMenu` 变量不再将所选项目与锚点垂直对齐。
 
-- Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it. You can restore the previous behavior with:
+- 更改 `anchorOrigin.vertical` 的默认值，以遵循 Material Design 指引。 菜单现在在锚点下方显示，而不是顶部。 您可以用以下方法恢复到以前的行为：
 
   ```diff
    <Menu
@@ -1504,27 +1504,27 @@ declare module '@mui/styles' {
   +  }}
   ```
 
-### MenuItem
+### MenuItem 菜单项
 
-- The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`. The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
+- `MenuItem` 组件继承 `ButtonBase` 组件而不是 `ListItem`。 与“MuiListItem-\*”相关的类名已被删除，主题中的 `Listitem` 不再影响 `MenuItem`。
 
   ```diff
   -<li className="MuiButtonBase-root MuiMenuItem-root MuiListItem-root">
   +<li className="MuiButtonBase-root MuiMenuItem-root">
   ```
 
-- prop `listItemClasses` is removed, use `classes` instead.
+- 属性 `listItemClasses` 已被删除，请使用 `classes` 代替。
 
   ```diff
   -<MenuItem listItemClasses={{...}}>
   +<MenuItem classes={{...}}>
   ```
 
-  Read more about [MenuItem CSS API](/api/menu-item/#css)
+  阅读更多关于 [MenuItem CSS API](/api/menu-item/#css)
 
-### Modal 模态框组件
+### Modal 模态框
 
-- Remove the `disableBackdropClick` prop because it is redundant. Use `onClose` with `reason === 'backdropClick'` instead.
+- 删除 `disableBackdropClick` 属性，因为它是冗余的。 使用 `onClose` 和 `reason === 'backdropClick'` 代替。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1540,7 +1540,7 @@ declare module '@mui/styles' {
   >    />
   > ```
 
-- Remove the `onEscapeKeyDown` prop because it is redundant. Use `onClose` with `reason === "escapeKeyDown"` instead.
+- 删除 `onEscapeKeyDown` 属性，因为它是冗余的。 使用 `onClose` 和 `reason === "escapeKeyDown"` 代替。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1555,29 +1555,29 @@ declare module '@mui/styles' {
   >    />
   > ```
 
-- Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+- 移除 `onRendered` 属性。 具体迁移方法根据你的使用情况而定，你可以在子元素上使用 [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs)，也可以在子组件中使用 effect 钩子。
 
-### NativeSelect
+### NativeSelect 原生选择器
 
-- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
+- 将 `selectMenu` 槽位合并到 `select`。 `selectMenu` 槽位是多余的。 `root` 槽位不再应用于选择器，而是应用于根节点。
 
   ```diff
   -<NativeSelect classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
   +<NativeSelect classes={{ select: 'class1 class2 class3' }} />
   ```
 
-### OutlinedInput
+### OutlinedInput 轮廓输入框
 
-- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
+- 删除 `labelWidth` 属性。 `label` 属性现在实现了相同的目的，使用CSS样式而不是JavaScript衡量边框内部的间距。
 
   ```diff
   -<OutlinedInput labelWidth={20} />
   +<OutlinedInput label="First Name" />
   ```
 
-### Paper
+### Paper 纸张
 
-- Change the background opacity based on the elevation in dark mode. This change was done to follow the Material Design guidelines. You can revert it in the theme:
+- 在深色模式下更改背景不透明度。 这项修改是为了遵循Material Design指导原则。 您可以在主题中还原：
 
   ```diff
   const theme = createTheme({
@@ -1604,7 +1604,7 @@ declare module '@mui/styles' {
   >   +import usePagination from '@mui/material/usePagination';
   > ```
 
-- Rename `round` to `circular` for consistency:
+- 为保持一致性，我们将 `round` 重命名为 `circular`。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1615,9 +1615,9 @@ declare module '@mui/styles' {
   >   +<PaginationItem shape="circular">
   > ```
 
-### 弹出框 (Popover)
+### Popover 弹出框
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- onE\* 过渡属性已被删除。 请使用 TransitionProps 来代替它。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1640,20 +1640,20 @@ declare module '@mui/styles' {
   >    >
   > ```
 
-- The `getContentAnchorEl` prop was removed to simplify the positioning logic.
+- `getContentAnchorEl` 属性已被删除，以简化定位逻辑。
 
 ### Popper 弹出提示
 
-- Upgrade [Popper.js](https://github.com/popperjs/popper-core) from v1 to v2. This third-party library has introduced a lot of changes.<br /> You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
+- 我们将 [Popper.js](https://github.com/popperjs/popper-core) 从 v1 升级到 v2。 <br /> 你可以阅读 [它们的迁移指南](https://popper.js.org/docs/v2/migration-guide/) 或参考以下摘要：
 
-  - The CSS prefixes have changed:
+  - CSS 前缀已更改：
     ```diff
     popper: {
       zIndex: 1,
     - '&[x-placement*="bottom"] .arrow': {
     + '&[data-popper-placement*="bottom"] .arrow': {
     ```
-  - Method names have changed:
+  - 方法名称已更改：
 
     ```diff
     -popperRef.current.scheduleUpdate()
@@ -1665,22 +1665,22 @@ declare module '@mui/styles' {
     +popperRef.current.forceUpdate()
     ```
 
-  - Modifiers' API has changed a lot. There are too many changes to be covered here.
+  - 修改器的 API（Modifiers' API）发生了大量改变。 这其中有太多的内容不能涵盖说明。
 
-### Portal
+### Portal 传送门
 
-- Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+- 移除 `onRendered` 属性。 具体迁移方法根据你的使用情况而定，你可以在子元素上使用 [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs)，也可以在子组件中使用 effect 钩子。
 
-### Radio 单选框组件
+### Radio 单选框
 
-- The radio color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the radio closer to the Material Design guidelines.
+- 现在单选框颜色属性的默认值为"primary"。 若要继续使用“secondary”颜色，您必须明确指定 `secondary`。 这使单选框更接近于Material Design准则。
 
   ```diff
   -<Radio />
   +<Radio color="secondary />
   ```
 
-- The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
+- 此组件不再有 `.MuiIconButtonroot` 和 `.MuiIconButton-label` 类名，以 `.MuiButtonBase-root` 代替。
 
   ```diff
   - <span class="MuiIconButton-root MuiButtonBase-root MuiRadio-root PrivateSwitchBase-root">
@@ -1701,7 +1701,7 @@ declare module '@mui/styles' {
   >   +import Rating from '@mui/material/Rating';
   > ```
 
-- Change the default empty icon to improve accessibility. If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
+- 为提高无障碍的可访问性，我们更改了默认的空图标。 如果你有自定义了 `icon` 属性，但没有使用 `emptyIcon` 属性，你可以用以下方法还原到以前的行为：
 
   ```diff
    <Rating
@@ -1710,7 +1710,7 @@ declare module '@mui/styles' {
    />
   ```
 
-- Rename `visuallyhidden` to `visuallyHidden` for consistency:
+- 为保持一致性，我们将 `visuallyhidden` 重命名为 `visuallyHidden`：
 
   ```diff
    <Rating
@@ -1721,11 +1721,11 @@ declare module '@mui/styles' {
    />
   ```
 
-### RootRef
+### RootRef 根引用
 
-- This component was removed. You can get a reference to the underlying DOM node of our components via `ref` prop. The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
+- 该组件已被移除。 你可以通过 `ref` 属性来获取对我们组件的底层 DOM 节点的引用。 该组件依赖 [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode)，在 [`React.StrictMode`  中已被弃用](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)。
 
-  > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, further fixes are required. 
+  > ✅ 这是在 [preset-safe codemod](#preset-safe) 中通过应用假的 `RootRef`组件以防止应用程序崩溃，需要进一步修复。 
   > 
   > ```diff
   >   -<RootRef rootRef={ref}>
@@ -1734,11 +1734,11 @@ declare module '@mui/styles' {
   >   +<Button ref={ref} />
   > ```
 
-### Select 选择属性
+### Select 选择器
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
+- 将variant的默认值从 `standard` 更改为 `outlined`。 Standard 已从Material设计准则中删除。 如果您正在使用表单控制组件构建该选择器。 您只需要更新 `FormControl`，选择器继承其上下文中的变量。
 
-  > ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod. 
+  > ✅ 这在 [variant-prop codemod](#variant-prop)中已解决，在运行此codemod之前请阅读详细信息。 
   > 
   > ```diff
   >   -<Select value="Standard" />
@@ -1747,21 +1747,21 @@ declare module '@mui/styles' {
   >   +<Select value="Outlined" />
   > ```
 
-- Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined. The TextField already handles it by default.
+- 删除 `labelWidth` 属性。 `label` 属性现在实现了相同的目的，使用CSS样式而不是JavaScript衡量边框内部的间距。 TextField 已默认处理它。
 
   ```diff
   -<Select variant="outlined" labelWidth={20} />
   +<Select variant="outlined" label="Gender" />
   ```
 
-- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
+- 将 `selectMenu` 槽位合并到 `select`。 `selectMenu` 槽位是多余的。 `root` 槽位不再应用于选择器，而是应用于根节点。
 
   ```diff
   -<Select classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
   +<Select classes={{ select: 'class1 class2 class3' }} />
   ```
 
-- The `event` in `onChange` is now a synthetic, native `Event` not a React event.
+- `onchange` 中的 `event` 现在是一个合成事件，原生 `Event` 不是一个React事件。
 
   ```diff
   -<Select onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
@@ -1770,7 +1770,7 @@ declare module '@mui/styles' {
 
   This was necessary to prevent overriding of `event.target` of the events that caused the change.
 
-### Skeleton 骨架屏
+### Skeleton
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
@@ -1824,14 +1824,14 @@ declare module '@mui/styles' {
 
 ### Snackbar（消息条）
 
-- The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with:
+- The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. 您可以用以下方法恢复到以前的行为：
 
   ```diff
   -<Snackbar />
   +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
   ```
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- onE\* 过渡属性已被删除。 请使用 TransitionProps 来代替它。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1897,7 +1897,7 @@ declare module '@mui/styles' {
 
 ### SvgIcon（Svg 图标）
 
-- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed:
+- 为了一致性，`fontSize` 的默认值已从 `default` 更改为 `medium`。 In the unlikey event that you were using the value `default`, the prop can be removed:
 
   ```diff
   -<SvgIcon fontSize="default">
@@ -1921,14 +1921,14 @@ declare module '@mui/styles' {
   }
   ```
 
-- The switch color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the switch closer to the Material Design guidelines.
+- The switch color prop is now "primary" by default. 若要继续使用“secondary”颜色，您必须明确指定 `secondary`。 This brings the switch closer to the Material Design guidelines.
 
   ```diff
   -<Switch />
   +<Switch color="secondary" />
   ```
 
-- The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
+- 组件不再有 `.MuiIconButtonroot` 和 `.MuiIconButton-label` 类名，以 `.MuiButtonBase-root` 代替。
 
   ```diff
    <span class="MuiSwitch-root">
@@ -2000,7 +2000,7 @@ declare module '@mui/styles' {
   +<Tabs indicatorColor="primary" textColor="inherit" />
   ```
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript：`onChange` 中的 `event` 的类型不再是 `React.ChangeEvent`，而是`React.SyntheticEvent`。
 
   ```diff
   -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
@@ -2027,7 +2027,7 @@ declare module '@mui/styles' {
 
 - Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://material.io/components/tabs#specs)
 - Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://material.io/components/tabs#specs)
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666). `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26926).
+- 包裹子元素的`span`已经被删除。 `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26926).
 
   ```diff
    <button class="MuiTab-root">
@@ -2040,9 +2040,9 @@ declare module '@mui/styles' {
 
 ### TextField
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines.
+- 将variant的默认值从 `standard` 更改为 `outlined`。 Standard 已从Material设计准则中删除。
 
-  > ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod. 
+  > ✅ 这在 [variant-prop codemod](#variant-prop)中已解决，在运行此codemod之前请阅读详细信息。 
   > 
   > ```diff
   >   -<TextField value="Standard" />
@@ -2145,7 +2145,7 @@ declare module '@mui/styles' {
   >   +import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
   > ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666). `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27111).
+- 包裹子元素的`span`已经被删除。 `label`类名称同样被删除。 More details about [this change](https://github.com/mui-org/material-ui/pull/27111).
 
   ```diff
    <button class="MuiToggleButton-root">
@@ -2170,7 +2170,7 @@ declare module '@mui/styles' {
   +<Tooltip>
   ```
 
-### 文字铸排
+### Typography
 
 - Remove the `srOnly` variant. You can use the `visuallyHidden` utility in conjunction with the `sx` prop instead.
 
