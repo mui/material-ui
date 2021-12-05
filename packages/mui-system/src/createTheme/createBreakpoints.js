@@ -56,7 +56,16 @@ export default function createBreakpoints(breakpoints) {
   }
 
   function not(key) {
-    return only(key).replace('@media', '@media not all and');
+    // handle first and last key separately, for better readability
+    const keyIndex = keys.indexOf(key);
+    if (keyIndex === 0) {
+      return up(keys[1]);
+    }
+    if (keyIndex === keys.length - 1) {
+      return down(keys[keyIndex]);
+    }
+
+    return between(key, keys[keys.indexOf(key) + 1]).replace('@media', '@media not all and');
   }
 
   return {
