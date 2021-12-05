@@ -1,6 +1,6 @@
 ---
 title: React Masonry component
-components: Masonry 瀑布流
+components: Masonry
 githubLabel: 'component: Masonry'
 ---
 
