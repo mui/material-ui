@@ -230,7 +230,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 - [DialogContentText] Use a variante de tipografia `body1` em vez de `subtitle1`.
 - [Dialog] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
-### Divisor
+### Divider
 
 - [Divider] Remova a propriedade obsoleta `inset`.
 
@@ -384,7 +384,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 - [Tooltip] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 - [Tooltip] Aparece somente após o foco ser "focus-visible" em vez de qualquer foco.
 
-### Tipografia
+### Typography
 
 - [Typography] Remova as variantes de tipografia descontinuadas. Você pode atualizar executando as seguintes substituições:
   - display4 => h1
