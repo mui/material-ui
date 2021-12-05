@@ -2,8 +2,8 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-// @ts-ignore
-import { Box, CSSObject } from '@mui/system';
+import { CSSObject } from '@mui/system';
+import Box from '@mui/joy/Box';
 import { CssVarsProvider, JoyTheme } from '@mui/joy/styles';
 import { GlobalStyles } from '@mui/styled-engine';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
@@ -18,8 +18,18 @@ import {
   ColorSchemePicker,
   IconWrapper,
 } from 'docs/src/joy/components';
-import { Github, Twitter, LinkedIn, Flask, Sparkles, Hammer } from 'docs/src/joy/icons';
+import {
+  Github,
+  Twitter,
+  LinkedIn,
+  Flask,
+  Sparkles,
+  Hammer,
+  CheckCircleOutline,
+} from 'docs/src/joy/icons';
 import JoyDemo from 'docs/src/joy/demo';
+import CONFIG from 'docs/src/config';
+import useEmailSubscribe from 'docs/src/modules/utils/useEmailSubscribe';
 
 declare module '@mui/joy/styles' {
   interface TypographySystem {
@@ -49,6 +59,55 @@ const blue = {
   700: '#23397C',
   800: '#121D40',
   900: '#0B1228',
+};
+
+const EmailSubscribe = () => {
+  const { form, setForm, onSubmit } = useEmailSubscribe(CONFIG.JOY_SUBSCRIBE_URL);
+  if (form.status === 'sent') {
+    return (
+      <Box
+        sx={(theme) => ({
+          ...theme.variants.outlined.success,
+          bgcolor: 'success.lightBg',
+          p: 2,
+          borderRadius: 1,
+          maxWidth: 400,
+          display: 'flex',
+          gap: 1,
+        })}
+      >
+        <CheckCircleOutline fontSize="lg" />
+        <div>
+          <Typography
+            level="body2"
+            sx={{ mb: '0.25rem', color: 'inherit', fontWeight: 'var(--joy-fontWeight-md)' }}
+          >
+            Thanks for subscribing!
+          </Typography>
+          <Typography level="body2" sx={{ lineHeight: 'var(--joy-lineHeight-default)' }}>
+            We&apos;re working hard to make Joy available to you. Expect to hear from us with
+            updates as soon as possible.
+          </Typography>
+        </div>
+      </Box>
+    );
+  }
+  return (
+    <Box component="form" onSubmit={onSubmit} sx={{ display: 'flex', gap: 1, maxWidth: 400 }}>
+      <Input
+        id="email-subscribe"
+        name="email"
+        type="email"
+        placeholder="Enter your email"
+        required
+        onChange={(event) => setForm({ email: event.target.value, status: 'initial' })}
+        sx={{ flexGrow: 1 }}
+      />
+      <Button disabled={form.status === 'loading'} type="submit">
+        Subscribe
+      </Button>
+    </Box>
+  );
 };
 
 export default function Joy() {
@@ -207,10 +266,7 @@ export default function Joy() {
             <Typography sx={{ mb: 3 }}>
               Development still in early stage. Subscribe to the newsletter for updates
             </Typography>
-            <Box sx={{ display: 'flex', gap: 1, maxWidth: 400 }}>
-              <Input placeholder="Enter your email" sx={{ flexGrow: 1 }} />
-              <Button>Subscribe</Button>
-            </Box>
+            <EmailSubscribe />
           </Box>
           <Box
             sx={{
@@ -336,10 +392,7 @@ export default function Joy() {
             <Typography sx={{ mb: 3, mt: 8 }}>
               Development still in early stage. Subscribe to the newsletter for updates
             </Typography>
-            <Box sx={{ display: 'flex', gap: 1, maxWidth: 400 }}>
-              <Input placeholder="Enter your email" sx={{ flexGrow: 1 }} />
-              <Button>Subscribe</Button>
-            </Box>
+            <EmailSubscribe />
           </Grid>
           <Grid item xs={6} sm="auto">
             <Box sx={{ minWidth: 144 }}>

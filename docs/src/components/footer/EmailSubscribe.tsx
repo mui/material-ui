@@ -10,45 +10,12 @@ import FormHelperText from '@mui/material/FormHelperText';
 import InputBase from '@mui/material/InputBase';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import CONFIG from 'docs/src/config';
+import useEmailSubscribe from 'docs/src/modules/utils/useEmailSubscribe';
 
 const Form = styled('form')({});
 
-function searchParams(params: any) {
-  return Object.keys(params)
-    .filter((key) => params[key] != null)
-    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-    .join('&');
-}
-
 export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
-  const [form, setForm] = React.useState<{
-    email: string;
-    status: 'initial' | 'loading' | 'failure' | 'sent';
-  }>({
-    email: '',
-    status: 'initial',
-  });
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setForm((current) => ({ ...current, status: 'loading' }));
-    try {
-      await fetch(CONFIG.NEWSLETTER_SUBSCRIBE_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        mode: 'no-cors',
-        body: searchParams({
-          EMAIL: form.email,
-          email_address_check: '',
-          locale: 'en',
-        }),
-      });
-      setForm((current) => ({ ...current, status: 'sent' }));
-    } catch (error) {
-      setForm((current) => ({ ...current, status: 'failure' }));
-    }
-  };
+  const { form, setForm, onSubmit } = useEmailSubscribe(CONFIG.NEWSLETTER_SUBSCRIBE_URL);
   if (form.status === 'sent') {
     return (
       <Alert
@@ -84,7 +51,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     );
   }
   return (
-    <Form onSubmit={handleSubmit} sx={sx}>
+    <Form onSubmit={onSubmit} sx={sx}>
       <FormLabel
         htmlFor="email-subscribe"
         sx={{ typography: 'caption', mb: 0.5, color: 'text.secondary', fontWeight: 500 }}
