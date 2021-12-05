@@ -36,11 +36,11 @@ Use the `size` prop or customize the font size of the svg icons to change the si
 
 {{"demo": "pages/components/checkboxes/ColorCheckboxes.js"}}
 
-## Icon
+## Ícone
 
 {{"demo": "pages/components/checkboxes/IconCheckboxes.js"}}
 
-## Controlled
+## Controlado
 
 Você pode controlar a checkbox com as opções `checked` e `onChange`:
 
