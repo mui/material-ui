@@ -104,6 +104,25 @@ const ButtonRoot = styled('button', {
   ];
 });
 
+ButtonRoot.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  ownerState: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object,
+} as any;
+
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiButton' });
 
@@ -204,7 +223,7 @@ Button.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * The intensity of the shadow.
    */
