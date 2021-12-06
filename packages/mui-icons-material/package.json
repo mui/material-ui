@@ -23,6 +23,10 @@
     "url": "https://github.com/mui-org/material-ui/issues"
   },
   "homepage": "https://mui.com/components/material-icons/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui"
+  },
   "scripts": {
     "build": "shx cp -r lib/ build/ && yarn build:typings && yarn build:copy-files",
     "build:lib": "yarn build:node && yarn build:stable",
