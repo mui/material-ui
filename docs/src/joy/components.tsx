@@ -26,7 +26,25 @@ const shouldForwardProp = (prop: string) =>
   prop !== 'roundness' &&
   prop !== 'ownerState' &&
   prop !== 'size' &&
-  prop !== 'sx';
+  prop !== 'sx' &&
+  prop !== 'as';
+
+export const Anchor = styled('a', { shouldForwardProp })<{
+  level?: keyof TypographySystem;
+  color?: ColorPaletteProp;
+}>(({ theme, level = 'body2' }) => [
+  theme.typography[level],
+  {
+    margin: 0,
+    textDecoration: 'none',
+    display: 'block',
+    lineHeight: theme.vars.lineHeight.md,
+    '&:hover': {
+      color: theme.vars.palette.primary.textColor,
+      textDecoration: 'underline',
+    },
+  },
+]);
 
 export const Button = styled('button', {
   shouldForwardProp,

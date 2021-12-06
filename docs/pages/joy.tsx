@@ -1,10 +1,13 @@
 import * as React from 'react';
+import NextLink from 'next/link';
+import CONFIG from 'docs/src/config';
+import ROUTES from 'docs/src/route';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { CSSObject } from '@mui/system';
 import Box from '@mui/joy/Box';
-import { CssVarsProvider, JoyTheme } from '@mui/joy/styles';
+import { CssVarsProvider, JoyTheme, styled } from '@mui/joy/styles';
 import { GlobalStyles } from '@mui/styled-engine';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
@@ -17,6 +20,7 @@ import {
   Widget,
   ColorSchemePicker,
   IconWrapper,
+  Anchor,
 } from 'docs/src/joy/components';
 import {
   Github,
@@ -28,7 +32,6 @@ import {
   CheckCircleOutline,
 } from 'docs/src/joy/icons';
 import JoyDemo from 'docs/src/joy/demo';
-import CONFIG from 'docs/src/config';
 import useEmailSubscribe from 'docs/src/modules/utils/useEmailSubscribe';
 
 declare module '@mui/joy/styles' {
@@ -109,6 +112,8 @@ const EmailSubscribe = () => {
     </Box>
   );
 };
+
+const ButtonLink = styled(Button)<Omit<JSX.IntrinsicElements['a'], 'ref'>>();
 
 export default function Joy() {
   const trigger = useScrollTrigger({
@@ -237,9 +242,19 @@ export default function Joy() {
       <Header translucent={trigger}>
         <Container sx={{ display: 'flex', alignItems: 'center', maxWidth: { xl: 1536 } }}>
           <SvgMuiLogo />
-          <Button square variant="outlined" sx={{ ml: 'auto', mr: 1 }}>
+          <ButtonLink
+            as="a"
+            target="_blank"
+            rel="noopener noreferrer"
+            href={ROUTES.githubOrg}
+            aria-label="github"
+            title="GitHub"
+            square
+            variant="outlined"
+            sx={{ ml: 'auto', mr: 1 }}
+          >
             <Github />
-          </Button>
+          </ButtonLink>
           <ColorSchemePicker />
         </Container>
       </Header>
@@ -401,13 +416,19 @@ export default function Joy() {
               </Typography>
               <Box component="ul">
                 <li>
-                  <Typography level="body2">MUI Core</Typography>
+                  <NextLink passHref href={ROUTES.productCore}>
+                    <Anchor>MUI Core</Anchor>
+                  </NextLink>
                 </li>
                 <li>
-                  <Typography level="body2">Templates</Typography>
+                  <NextLink passHref href={ROUTES.productTemplates}>
+                    <Anchor>Templates</Anchor>
+                  </NextLink>
                 </li>
                 <li>
-                  <Typography level="body2">Design Kits</Typography>
+                  <NextLink passHref href={ROUTES.productDesignKits}>
+                    <Anchor>Design Kits</Anchor>
+                  </NextLink>
                 </li>
               </Box>
             </Box>
@@ -419,22 +440,34 @@ export default function Joy() {
               </Typography>
               <Box component="ul">
                 <li>
-                  <Typography level="body2">About</Typography>
+                  <NextLink passHref href={ROUTES.about}>
+                    <Anchor>About</Anchor>
+                  </NextLink>
                 </li>
                 <li>
-                  <Typography level="body2">Vision</Typography>
+                  <NextLink passHref href={ROUTES.vision}>
+                    <Anchor>Vision</Anchor>
+                  </NextLink>
                 </li>
                 <li>
-                  <Typography level="body2">Careers</Typography>
+                  <NextLink passHref href={ROUTES.careers}>
+                    <Anchor>Careers</Anchor>
+                  </NextLink>
                 </li>
                 <li>
-                  <Typography level="body2">Blog</Typography>
+                  <Anchor href={ROUTES.blog} target="_blank" rel="noopener noreferrer">
+                    Blog
+                  </Anchor>
                 </li>
                 <li>
-                  <Typography level="body2">Support</Typography>
+                  <NextLink passHref href={ROUTES.support}>
+                    <Anchor>Support</Anchor>
+                  </NextLink>
                 </li>
                 <li>
-                  <Typography level="body2">Contact us</Typography>
+                  <Anchor target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
+                    Contact us
+                  </Anchor>
                 </li>
               </Box>
             </Box>
@@ -464,18 +497,59 @@ export default function Joy() {
             Copyright 2021 Material-UI SAS.
           </Typography>
           <Box sx={{ display: 'flex', gap: 3 }}>
-            <Button square variant="text" color="neutral" sx={{ ml: 'auto' }}>
+            <ButtonLink
+              as="a"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={ROUTES.githubOrg}
+              aria-label="github"
+              title="GitHub"
+              square
+              variant="text"
+              color="neutral"
+              sx={{ ml: 'auto' }}
+            >
               <Github />
-            </Button>
-            <Button square variant="text" color="neutral">
+            </ButtonLink>
+            <ButtonLink
+              as="a"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={ROUTES.stackOverflowMuiTag}
+              aria-label="Stack Overflow"
+              title="Stack Overflow"
+              square
+              variant="text"
+              color="neutral"
+            >
               <SvgStackOverflow />
-            </Button>
-            <Button square variant="text" color="neutral">
+            </ButtonLink>
+            <ButtonLink
+              as="a"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={ROUTES.twitterMui}
+              aria-label="twitter"
+              title="Twitter"
+              square
+              variant="text"
+              color="neutral"
+            >
               <Twitter />
-            </Button>
-            <Button square variant="text" color="neutral">
+            </ButtonLink>
+            <ButtonLink
+              as="a"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={ROUTES.linkedInMui}
+              aria-label="linkedin"
+              title="LinkedIn"
+              square
+              variant="text"
+              color="neutral"
+            >
               <LinkedIn />
-            </Button>
+            </ButtonLink>
           </Box>
         </Box>
       </Container>

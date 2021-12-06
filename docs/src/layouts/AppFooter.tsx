@@ -141,7 +141,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/mui-org"
+              href={ROUTES.githubOrg}
               aria-label="github"
               title="GitHub"
               size="small"
@@ -151,7 +151,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://stackoverflow.com/questions/tagged/mui"
+              href={ROUTES.stackOverflowMuiTag}
               aria-label="Stack Overflow"
               title="Stack Overflow"
               size="small"
@@ -161,7 +161,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://twitter.com/MaterialUI"
+              href={ROUTES.twitterMui}
               aria-label="twitter"
               title="Twitter"
               size="small"
@@ -171,7 +171,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://www.linkedin.com/company/mui/"
+              href={ROUTES.linkedInMui}
               aria-label="linkedin"
               title="LinkedIn"
               size="small"
