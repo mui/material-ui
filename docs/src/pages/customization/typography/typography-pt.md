@@ -1,4 +1,4 @@
-# Tipografia
+# Typography
 
 <p class="description">O tema fornece um conjunto de tipos de tamanhos que funcionam bem juntos e também com a grade de leiaute.</p>
 
