@@ -61,7 +61,7 @@ function SellHero() {
             variant="contained"
             component={Link}
             naked
-            to="https://material-ui.zendesk.com/hc/en-us/articles/360008775380-How-do-I-apply-to-be-a-contributor-"
+            to="https://support.mui.com/hc/en-us/articles/360008775380-How-do-I-apply-to-be-a-contributor-"
             target="_blank"
             rel="noopener"
             className={classes.apply}

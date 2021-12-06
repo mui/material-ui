@@ -16,7 +16,7 @@ export default function Index() {
   return (
     <React.Fragment>
       <Typography variant="h4" component="h1" gutterBottom>
-        Next.js with TypeScript example
+        Remix with TypeScript example
       </Typography>
       <Link to="/about" color="secondary">
         Go to the about page

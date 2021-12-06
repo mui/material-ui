@@ -59,7 +59,7 @@
     "mustache": "^4.2.0",
     "shx": "^0.3.3",
     "svgo": "^2.8.0",
-    "yargs": "^17.2.1"
+    "yargs": "^17.3.0"
   },
   "sideEffects": false,
   "publishConfig": {

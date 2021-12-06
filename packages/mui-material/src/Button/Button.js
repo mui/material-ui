@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { internal_resolveProps as resolveProps } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled, { rootShouldForwardProp } from '../styles/styled';
@@ -279,46 +280,27 @@ const ButtonEndIcon = styled('span', {
 }));
 
 const Button = React.forwardRef(function Button(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiButton' });
-  const {
-    className: classNameContext,
-    color: colorContext,
-    disabled: disabledContext,
-    disableElevation: disableElevationContext,
-    disableFocusRipple: disableFocusRippleContext,
-    disableRipple: disableRippleContext,
-    fullWidth: fullWidthContext,
-    size: sizeContext,
-    variant: variantContext,
-  } = React.useContext(ButtonGroupContext);
+  // props priority: `inProps` > `contextProps` > `themeDefaultProps`
+  const contextProps = React.useContext(ButtonGroupContext);
+  const resolvedProps = resolveProps(contextProps, inProps);
+  const props = useThemeProps({ props: resolvedProps, name: 'MuiButton' });
   const {
     children,
-    className,
-    color: colorProp,
+    color = 'primary',
     component = 'button',
-    disabled: disabledProp,
-    disableElevation: disableElevationProp,
-    disableFocusRipple: disableFocusRippleProp,
-    disableRipple: disableRippleProp,
+    className,
+    disabled = false,
+    disableElevation = false,
+    disableFocusRipple = false,
     endIcon: endIconProp,
     focusVisibleClassName,
-    fullWidth: fullWidthProp,
-    size: sizeProp,
+    fullWidth = false,
+    size = 'medium',
     startIcon: startIconProp,
     type,
-    variant: variantProp,
+    variant = 'text',
     ...other
   } = props;
-
-  const color = colorProp || colorContext || 'primary';
-  // TODO v6: Use nullish coalescing (??) instead of OR operator for these boolean props so that these boolean props for Button with ButtonGroup context take priority. See conversation from https://github.com/mui-org/material-ui/pull/28645#discussion_r738380902.
-  const disabled = disabledProp || disabledContext || false;
-  const disableElevation = disableElevationProp || disableElevationContext || false;
-  const disableFocusRipple = disableFocusRippleProp || disableFocusRippleContext || false;
-  const fullWidth = fullWidthProp || fullWidthContext || false;
-  const size = sizeProp || sizeContext || 'medium';
-  const variant = variantProp || variantContext || 'text';
-  const disableRipple = disableRippleProp || disableRippleContext || false;
 
   const ownerState = {
     ...props,
@@ -350,10 +332,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       ownerState={ownerState}
-      className={clsx(className, classNameContext)}
+      className={clsx(className, contextProps.className)}
       component={component}
       disabled={disabled}
-      disableRipple={disableRipple}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}

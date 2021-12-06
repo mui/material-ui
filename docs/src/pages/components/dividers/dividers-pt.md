@@ -1,6 +1,6 @@
 ---
 title: Componente React Divisor
-components: Divider
+components: Divisor
 githubLabel: 'component: Divider'
 materialDesign: https://material.io/components/dividers
 ---
@@ -9,13 +9,13 @@ materialDesign: https://material.io/components/dividers
 
 <p class="description">Um divisor é uma linha fina que agrupa conteúdo em listas e leiautes.</p>
 
-[Divisores](https://material.io/design/components/dividers.html) separam conteúdos em grupos correspondentes.
+[Divisores](https://material.io/design/components/dividers.html) separam grupos de conteúdos.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Divisores de lista
 
-O divisor renderiza como um `<hr>` por padrão. Você pode adicionar a renderização desse elemento no DOM usando a propriedade `divider` no componente `ListItem`.
+O divisor renderiza como um `<hr>` por padrão. Você pode salvar a renderização desse elemento DOM usando a propriedade `divider` no componente `ListItem`.
 
 {{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 
@@ -23,7 +23,7 @@ O divisor renderiza como um `<hr>` por padrão. Você pode adicionar a renderiza
 
 Em uma lista, você deve garantir que o `Divider` seja renderizado como um elemento `<li>` para corresponder à especificação HTML5. Os exemplos abaixo mostram duas maneiras de conseguir isso.
 
-## Divisores de inclusão
+## Divisores de inserção
 
 {{"demo": "pages/components/dividers/InsetDividers.js", "bg": true}}
 

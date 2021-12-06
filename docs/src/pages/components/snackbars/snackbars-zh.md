@@ -26,7 +26,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 {{"demo": "pages/components/snackbars/SimpleSnackbar.js"}}
 
-## 自定义的消息条
+## Customization 个性化
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
@@ -68,6 +68,22 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 你可以修改 [Slide](/components/transitions/#slide) 过渡的方向 。
 
+Example of making the slide transition to the left:
+
+```jsx
+import Slide from '@material-ui/core/Slide';
+
+function TransitionLeft(props) {
+  return <Slide {...props} direction="left" />;
+}
+
+export default function MyComponent() {
+  return <Snackbar TransitionComponent={TransitionLeft} />;
+}
+```
+
+Other examples:
+
 {{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
 
 ## 补充项目
@@ -76,14 +92,36 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 ### notistack
 
-![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/notistack.svg)
+![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
 以下例子演示了如何使用 [notistack](https://github.com/iamhosseindhv/notistack)。 notistack 有一个 **imperative API** 可以轻松地显示一串消息条，且无需处理其打开/关闭状态。 It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design guidelines).
 
-TODO: Add example once notistack is compatible with v5 or replace with [#1824](https://github.com/mui-org/material-ui/issues/1824).
+{{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
 
 ## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
 
-- 默认情况下，消息条不会自动隐藏。 但是，如果您决定使用 `autoHideDuration` 属性，我们建议给用户提供 [足够的时间](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) 来响应。
+By default, the snackbar won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended to give the user [sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) to respond.
+
+When open, **every** `Snackbar` will be dismissed if <kbd class="key">Escape</kbd> is pressed. Unless you don't handle `onClose` with the `"escapeKeyDown"` reason. If you want to limit this behavior to only dismiss the oldest currently open Snackbar call `event.preventDefault` in `onClose`.
+
+```jsx
+export default function MyComponent() {
+  const [open, setOpen] = React.useState(true);
+
+  return (
+    <React.Fragment>
+      <Snackbar
+        open={open}
+        onClose={(event, reason) => {
+          // `reason === 'escapeKeyDown'` if `Escape` was pressed
+          setOpen(false);
+          // call `event.preventDefault` to only close one Snackbar at a time.
+        }}
+      />
+      <Snackbar open={open} onClose={() => setOpen(false)} />
+    </React.Fragment>
+  );
+}
+```

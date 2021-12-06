@@ -9,7 +9,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 <p class="description">Um alerta exibe uma mensagem curta e importante de uma forma que atrai a atenção do usuário sem interromper o que ele estiver fazendo.</p>
 
-**Observação:** Este componente não está documentado nas [diretrizes do Material Design](https://material.io/), mas o Material-UI o suporta.
+**Nota:** Este componente não está documentado nas [diretrizes do Material Design](https://material.io/), mas MUI o suporta.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -45,7 +45,7 @@ A propriedade `icon` permite que você adicione um ícone no início do componen
 
 Você pode alterar a severidade padrão e o mapeamento do ícone com a propriedade `iconMapping`. Isso pode ser definido globalmente utilizando a [customização do tema](/customization/theme-components/#default-props).
 
-Definir a propriedade `icon` como falso removerá o ícone completamente.
+Definir a propriedade ícone como falso removerá o ícone completamente.
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 

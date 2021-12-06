@@ -12,7 +12,7 @@ There are many ways to support MUI:
   Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
-  [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
+  [StackOverflow](https://stackoverflow.com/questions/tagged/mui).
 - **Make changes happen**.
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
@@ -446,4 +446,4 @@ return (
 
 ## I cannot use components as selectors in the styled() utility. What should I do?
 
-If you are getting the error: `TypeError: Cannot convert a Symbol value to a string`, take a look at the [styled()](/system/styled#how-to-use-components-selector-api) docs page for instructions on how you can fix this.
+If you are getting the error: `TypeError: Cannot convert a Symbol value to a string`, take a look at the [styled()](/system/styled/#how-to-use-components-selector-api) docs page for instructions on how you can fix this.

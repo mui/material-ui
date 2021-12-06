@@ -478,7 +478,7 @@ Using `withStyles` in TypeScript can be a little tricky, but there are some util
 
 ### Using `createStyles` to defeat type widening
 
-A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/literal-type-widening-in-typescript), which causes this example not to work as expected:
 
 ```ts
 const styles = {

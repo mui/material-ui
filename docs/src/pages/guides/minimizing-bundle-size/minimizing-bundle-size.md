@@ -106,7 +106,7 @@ However, you need to apply the two following steps correctly.
 
 Pick one of the following plugins:
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration:
+- [babel-plugin-import](https://github.com/umijs/babel-plugin-import) with the following configuration:
 
   `yarn add -D babel-plugin-import`
 

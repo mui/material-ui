@@ -9,7 +9,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 <p class="description">一个警告提示组件展示了一段简短且重要的信息，在不影响用户操作的同时能够吸引用户的注意力。</p>
 
-**请注意：**该组件不再出现在 [Material Design 指南](https://material.io/)中, 但 Material-UI 会继续支持此组件。
+**注意：** 警告提示不属于 [Material Design 指南](https://material.io/) 中的一部分，但是 MUI 仍然会继续支持该组件。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -65,7 +65,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 你可以使用消息条（Snackbar）来显示一个带警告提示组件的 [toast](/components/snackbars/#customized-snackbars) 。
 
-## 颜色
+## Color 颜色
 
 使用 `color` 属性可以覆盖不同程度提醒的默认颜色。
 

@@ -26,7 +26,7 @@ or:
 
 ## The idea behind the example
 
-The project uses [Next.js](https://github.com/zeit/next.js), which is a framework for server-rendered React apps.
+The project uses [Next.js](https://github.com/vercel/next.js), which is a framework for server-rendered React apps.
 It includes `@mui/material` and its peer dependencies, including `styled-components`, which is used instead of the default style engine in MUI v5.
 
 ## The link component
