@@ -6,28 +6,29 @@ import { alpha, styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import ButtonBase from '@mui/material/ButtonBase';
 import Link from 'docs/src/modules/components/Link';
-import ArticleTwoToneIcon from '@mui/icons-material/ArticleTwoTone';
-import ToggleOffTwoToneIcon from '@mui/icons-material/ToggleOffTwoTone';
-import IntegrationInstructionsTwoToneIcon from '@mui/icons-material/IntegrationInstructionsTwoTone';
-import BuildCircleTwoToneIcon from '@mui/icons-material/BuildCircleTwoTone';
-import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
-import VisibilityTwoToneIcon from '@mui/icons-material/VisibilityTwoTone';
-import ColorLensTwoToneIcon from '@mui/icons-material/ColorLensTwoTone';
-import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
-import BookTwoToneIcon from '@mui/icons-material/BookTwoTone';
-import ChromeReaderModeTwoToneIcon from '@mui/icons-material/ChromeReaderModeTwoTone';
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
+import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import BuildCircleOutlinedIcon from '@mui/icons-material/BuildCircleOutlined';
+import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
+import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import BookRoundedIcon from '@mui/icons-material/BookRounded';
+import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRounded';
 
 const iconsMap = {
-  DescriptionIcon: ArticleTwoToneIcon,
-  ToggleOnIcon: ToggleOffTwoToneIcon,
-  CodeIcon: IntegrationInstructionsTwoToneIcon,
-  BuildIcon: BuildCircleTwoToneIcon,
-  CreateIcon: CreateTwoToneIcon,
-  VisibilityIcon: VisibilityTwoToneIcon,
-  StyleIcon: ColorLensTwoToneIcon,
-  AddIcon: AddCircleTwoToneIcon,
-  BookIcon: BookTwoToneIcon,
-  ReaderIcon: ChromeReaderModeTwoToneIcon,
+  DescriptionIcon: ArticleRoundedIcon,
+  ToggleOnIcon: ToggleOffRoundedIcon,
+  CodeIcon: CodeRoundedIcon,
+  BuildIcon: HandymanRoundedIcon,
+  CreateIcon: EditRoundedIcon,
+  VisibilityIcon: VisibilityRoundedIcon,
+  StyleIcon: InvertColorsRoundedIcon,
+  AddIcon: AddCircleRoundedIcon,
+  BookIcon: BookRoundedIcon,
+  ReaderIcon: ChromeReaderModeRoundedIcon,
 };
 
 const Item = styled(function Item({ component: Component = 'div', ...props }) {
@@ -91,7 +92,7 @@ const ItemLink = styled(Item, {
         ),
       },
     },
-    paddingLeft: 36 + (depth > 2 ? (depth - 2) * 10 : 0),
+    paddingLeft: 42 + (depth > 2 ? (depth - 2) * 10 : 0),
     ...(hasIcon && {
       paddingLeft: 2,
     }),
@@ -130,7 +131,7 @@ const ItemButton = styled(Item, {
     textTransform: depth === 0 ? 'none' : 'uppercase',
     letterSpacing: depth === 0 ? null : '.1rem',
     fontWeight: depth === 0 ? 500 : 700,
-    margin: depth === 0 ? null : '16px 0 2px',
+    marginTop: depth === 0 ? 12 : depth > 1 ? (depth - 3) * -4 : 12,
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
       color: (() => {
@@ -147,7 +148,7 @@ const ItemButton = styled(Item, {
     [`&:hover ${ItemButtonIcon}`]: {
       color: theme.palette.text.primary,
     },
-    paddingLeft: 36 + (depth > 1 ? (depth - 3) * -10 : 0),
+    paddingLeft: 42 + (depth > 1 ? (depth - 3) * -10 : 0),
     ...(hasIcon && {
       paddingLeft: 2,
     }),
@@ -193,21 +194,17 @@ export default function AppNavDrawerItem(props) {
     <Box
       component="span"
       sx={{
-        my: 0.4,
-        '& svg': { fontSize: (theme) => theme.typography.pxToRem(17) },
+        '& svg': { fontSize: (theme) => theme.typography.pxToRem(16) },
         display: 'flex',
         alignItems: 'center',
         height: '100%',
-        marginRight: 1.2,
-        p: 0.4,
-        borderRadius: '5px',
+        marginRight: 1.5,
+        p: 0.5,
+        backgroundColor: 'transparent',
+        borderRadius: '8px',
         border: 1,
         borderColor: (theme) =>
-          theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200],
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'dark'
-            ? theme.palette.primaryDark[700]
-            : theme.palette.primary[50],
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200],
       }}
     >
       <IconComponent {...iconProps} />
