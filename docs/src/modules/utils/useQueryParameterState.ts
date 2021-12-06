@@ -69,9 +69,11 @@ export default function useQueryParameterState(
 
     if (router.isReady) {
       isInitialized.current = true;
+      // eslint-disable-next-line no-console
+      console.log(urlValue, router.query, window.location.search);
       setState(urlValue || initialValue);
     }
-  }, [router, urlValue, initialValue]);
+  }, [name, router, urlValue, initialValue]);
 
   return [state, setUserState];
 }
