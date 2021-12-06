@@ -24,6 +24,8 @@ import Radio from '@mui/material/Radio';
 import SvgIcon from '@mui/material/SvgIcon';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import useLatest from 'docs/src/modules/utils/useLatest';
+import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
 // For Debugging
 // import Menu from '@mui/icons-material/Menu';
 // import MenuOutlined from '@mui/icons-material/MenuOutlined';
@@ -46,7 +48,6 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
 import * as mui from '@mui/icons-material';
-import { useRouter } from 'next/router';
 import synonyms from './synonyms';
 
 // const mui = {
@@ -444,74 +445,6 @@ const allIcons = Object.keys(mui)
     allIconsMap[importName] = icon;
     return icon;
   });
-
-function useQueryParameterState(name, initialValue = '') {
-  const router = useRouter();
-
-  const getUrlValue = React.useCallback(() => {
-    return router.query[name];
-  }, [router, name]);
-
-  const [state, setState] = React.useState(getUrlValue() || initialValue);
-
-  const setUrlValue = React.useMemo(
-    () =>
-      debounce((newValue = '') => {
-        const query = new URLSearchParams(window.location.search);
-        if (newValue) {
-          query.set(name, newValue);
-        } else {
-          query.delete(name);
-        }
-        const newSearch = query.toString();
-        if (window.location.search !== newSearch) {
-          router.replace(
-            {
-              pathname: router.pathname,
-              // hash: window.location.hash,
-              search: newSearch,
-            },
-            undefined,
-            {
-              scroll: false,
-              shallow: true,
-            },
-          );
-        }
-      }, 220),
-    [name, router],
-  );
-
-  const isFirstRender = React.useRef(true);
-  React.useEffect(() => {
-    const urlValue = getUrlValue();
-
-    if (isFirstRender.current && urlValue !== state) {
-      // This syncs the initial value to the url
-      setUrlValue(state);
-    }
-
-    isFirstRender.current = false;
-  }, [state, getUrlValue, setUrlValue]);
-
-  const setUserState = React.useCallback(
-    (newValue) => {
-      setUrlValue(newValue);
-      setState(newValue);
-    },
-    [setUrlValue],
-  );
-
-  return [state, setUserState];
-}
-
-function useLatest(value) {
-  const latest = React.useRef(value);
-  if (value !== undefined) {
-    latest.current = value;
-  }
-  return latest.current;
-}
 
 export default function SearchIcons() {
   const [keys, setKeys] = React.useState(null);
