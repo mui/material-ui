@@ -12,7 +12,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 
   <a href="https://mui.com/components/tables/#unstyled-table"><img width="800" alt="unstyled table" src="https://user-images.githubusercontent.com/4512430/144862194-584356ef-7d9d-462c-a631-186a7e716193.png"></a>
 
-  You can follow our progress at https://github.com/mui-org/material-ui/issues/27170.
+  You can follow our progress with unstyled components at https://github.com/mui-org/material-ui/issues/27170.
 
 - 🎉 We have added an example of how to use MUI with [Remix](https://remix.run/) (#29952) @mnajdova
 
