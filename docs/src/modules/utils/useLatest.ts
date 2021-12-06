@@ -5,7 +5,7 @@ import * as React from 'react';
  */
 export default function useLatest<T>(value: T | undefined): T | undefined {
   const latest = React.useRef(value);
-  if (value !== undefined) {
+  if (value !== undefined && value !== null) {
     latest.current = value;
   }
   return latest.current;

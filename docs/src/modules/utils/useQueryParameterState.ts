@@ -5,7 +5,9 @@ import { useRouter } from 'next/router';
 /**
  * Similar to `React.useState`, but it syncs back the current state to a query
  * parameter in the url, therefore it only supports strings. Wrap the result with
- * parse/stringify logic if more complex values are needed
+ * parse/stringify logic if more complex values are needed.
+ *
+ * REMARK: this doesn't listen for router changes (yet) to update back the state.
  */
 export default function useQueryParameterState(
   name: string,

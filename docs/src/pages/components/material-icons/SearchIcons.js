@@ -507,7 +507,9 @@ export default function SearchIcons() {
     [theme, keys],
   );
 
-  const dialogSelectedIcon = useLatest(allIconsMap[selectedIcon]);
+  const dialogSelectedIcon = useLatest(
+    selectedIcon ? allIconsMap[selectedIcon] : null,
+  );
 
   return (
     <Grid container sx={{ minHeight: 500 }}>
