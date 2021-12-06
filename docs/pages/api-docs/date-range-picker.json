@@ -30,6 +30,7 @@
       "default": "{}"
     },
     "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "currentCalendarMonth": { "type": { "name": "any" } },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "desktopModeMediaQuery": {
       "type": { "name": "string" },

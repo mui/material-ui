@@ -27,6 +27,10 @@ export interface ExportedDesktopDateRangeCalendarProps<TDate> {
    */
   calendars?: 1 | 2 | 3;
   /**
+   * Current calendar month to display.
+   */
+  currentCalendarMonth?: TDate;
+  /**
    * Custom renderer for `<DateRangePicker />` days. @DateIOType
    * @example (date, dateRangePickerDayProps) => <DateRangePickerDay {...dateRangePickerDayProps} />
    */
@@ -90,6 +94,7 @@ function DateRangePickerViewDesktop<TDate>(props: DesktopDateRangeCalendarProps<
     changeMonth,
     components,
     componentsProps,
+    currentCalendarMonth,
     currentlySelectingRangeEnd,
     currentMonth,
     date,
@@ -143,6 +148,13 @@ function DateRangePickerViewDesktop<TDate>(props: DesktopDateRangeCalendarProps<
     }),
     [],
   );
+
+  React.useEffect(() => {
+    if (!currentCalendarMonth) {
+      return;
+    }
+    changeMonth(currentCalendarMonth);
+  }, [changeMonth, currentCalendarMonth]);
 
   const selectNextMonth = React.useCallback(() => {
     changeMonth(utils.getNextMonth(currentMonth));

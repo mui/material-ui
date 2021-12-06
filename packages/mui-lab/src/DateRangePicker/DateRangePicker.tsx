@@ -236,6 +236,10 @@ DateRangePicker.propTypes /* remove-proptypes */ = {
    */
   componentsProps: PropTypes.object,
   /**
+   * Current calendar month to display.
+   */
+  currentCalendarMonth: PropTypes.any,
+  /**
    * Default calendar month displayed when `value={null}`.
    */
   defaultCalendarMonth: PropTypes.any,
