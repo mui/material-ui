@@ -32,24 +32,48 @@ const Tabs1 = registerNode(FakeTabs, {
   id: 'Tabs1',
   displayName: 'Tabs',
   supportedProps: ['variant', 'color', 'roundness', 'elevation'],
+  defaultProps: {
+    variant: 'outlined',
+    color: 'neutral',
+    roundness: 'default',
+    elevation: undefined,
+  },
 });
 
 const Tab1 = registerNode(Button, {
   id: 'Tab1',
   displayName: 'Tab',
   supportedProps: ['variant', 'color', 'size', 'roundness', 'elevation'],
+  defaultProps: {
+    variant: 'light',
+    color: 'primary',
+    size: 'default',
+    roundness: 'default',
+  },
 });
 
 const Tab2 = registerNode(Button, {
   id: 'Tab2',
   displayName: 'Tab',
   supportedProps: ['variant', 'color', 'size', 'roundness', 'elevation'],
+  defaultProps: {
+    variant: 'text',
+    color: 'neutral',
+    size: 'default',
+    roundness: 'default',
+  },
 });
 
 const Tab3 = registerNode(Button, {
   id: 'Tab3',
   displayName: 'Tab',
   supportedProps: ['variant', 'color', 'size', 'roundness', 'elevation'],
+  defaultProps: {
+    variant: 'text',
+    color: 'neutral',
+    size: 'default',
+    roundness: 'default',
+  },
 });
 
 const ColorButton = styled('button', {
@@ -91,13 +115,16 @@ const FlashingCode = ({
 }) => {
   const [transparent, setTransparent] = React.useState(true);
   React.useEffect(() => {
-    setTransparent(false);
-    const timeout = setTimeout(() => {
-      setTransparent(true);
-    }, 300);
-    return () => {
-      clearTimeout(timeout);
-    };
+    if (flashing) {
+      setTransparent(false);
+      const timeout = setTimeout(() => {
+        setTransparent(true);
+      }, 300);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+    return () => {};
   }, [flashing]);
   return (
     <FlashCode startLine={startLine} lineHeight="19px" sx={{ opacity: transparent ? 0 : 1 }} />
@@ -241,16 +268,10 @@ export default function JoyDemo() {
               minHeight: { xs: 160, sm: 200 },
             }}
           >
-            <Tabs1 variant="outlined" color="neutral">
-              <Tab1 color="primary" size="default" variant="light">
-                Popular
-              </Tab1>
-              <Tab2 color="neutral" size="default" variant="text">
-                New
-              </Tab2>
-              <Tab3 color="neutral" size="default" variant="text">
-                All
-              </Tab3>
+            <Tabs1>
+              <Tab1>Popular</Tab1>
+              <Tab2>New</Tab2>
+              <Tab3>All</Tab3>
             </Tabs1>
           </Box>
           <Box
@@ -297,9 +318,9 @@ export default function JoyDemo() {
                 });
                 setFlash((currentFlash) => ({
                   ...currentFlash,
-                  Tab1: currentFlash.Tab1 + 1,
-                  Tab2: currentFlash.Tab2 + 1,
-                  Tab3: currentFlash.Tab3 + 1,
+                  Tab1: (currentFlash.Tab1 ?? 0) + 1,
+                  Tab2: (currentFlash.Tab2 ?? 0) + 1,
+                  Tab3: (currentFlash.Tab3 ?? 0) + 1,
                 }));
               }}
             >
@@ -406,7 +427,7 @@ export default function JoyDemo() {
               pointerEvents: 'none',
             }}
           >
-            <FlashingCode flashing={flash.Tabs} />
+            <FlashingCode flashing={flash.Tabs1} />
             <FlashingCode startLine={1} flashing={flash.Tab1} />
             <FlashingCode startLine={4} flashing={flash.Tab2} />
             <FlashingCode startLine={7} flashing={flash.Tab3} />

@@ -113,7 +113,7 @@ const EmailSubscribe = () => {
   );
 };
 
-const ButtonLink = styled(Button)<Omit<JSX.IntrinsicElements['a'], 'ref'>>();
+const ButtonLink = styled(Button)<Omit<JSX.IntrinsicElements['a'], 'ref'>>({});
 
 export default function Joy() {
   const trigger = useScrollTrigger({

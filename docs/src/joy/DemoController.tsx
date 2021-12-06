@@ -23,7 +23,6 @@ const InnerFrame = ({
         borderColor: 'danger.500',
         pointerEvents: 'none',
         opacity: 1,
-        transition: '0.2s',
         ...(state === 'hidden' && { opacity: 0 }),
         ...(state === 'hovered' && { borderColor: 'neutral.400' }),
       }}
@@ -92,7 +91,7 @@ export const useDemoController = (defaultSelectedNode: Record<string, DemoProps>
     () =>
       debounce((id: string | null) => {
         setHoveredId(id);
-      }, 40),
+      }, 80),
     [],
   );
 
@@ -141,9 +140,10 @@ export const registerNode = <T extends React.ComponentType<DemoProps>>(
     id: string;
     displayName: string;
     supportedProps: Array<keyof DemoProps>;
+    defaultProps: DemoProps;
   },
 ) => {
-  nodeMap.set(config.id, { ...config, defaultProps: {} });
+  nodeMap.set(config.id, config);
   return (({ children, ...props }) => {
     const context = React.useContext(DemoContext);
     const ref = React.useRef<HTMLElement | null>(null);
@@ -151,19 +151,13 @@ export const registerNode = <T extends React.ComponentType<DemoProps>>(
       return null;
     }
     const { hoveredId, selectedId, nodeData, hoverNode, leaveNode, selectNode } = context;
-    const defaultProps: DemoProps = {};
-    Object.entries(props).forEach((item) => {
-      const [key, value] = item as [keyof DemoProps, any];
-      if (config.supportedProps.includes(key)) {
-        defaultProps[key] = value;
-      }
-    });
-    nodeMap.set(config.id, { ...config, defaultProps });
+    const defaultProps = nodeMap.get(config.id)?.defaultProps;
     return (
       // @ts-ignore internal component
       <Component
         ref={ref}
         {...props}
+        {...defaultProps}
         {...nodeData[config.id]}
         onMouseOver={(event: React.MouseEvent) => {
           event.stopPropagation(); // prevent calling onMouseOver on the upper parents
@@ -174,7 +168,9 @@ export const registerNode = <T extends React.ComponentType<DemoProps>>(
         }}
         onClick={(event: React.SyntheticEvent) => {
           event.stopPropagation(); // prevent calling onClick on the upper parents
-          selectNode(config.id, defaultProps);
+          if (defaultProps) {
+            selectNode(config.id, defaultProps);
+          }
         }}
       >
         <InnerFrame

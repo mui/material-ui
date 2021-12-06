@@ -282,7 +282,7 @@ export const Select = styled('select')(({ theme, value }) => [
     borderRadius: theme.vars.borderRadius.xs,
     border: 0,
     boxShadow: 'none',
-    '-webkit-appearance': 'none',
+    WebkitAppearance: 'none',
     '&:focus-visible': theme.focus.default,
   },
   theme.typography.body1,
