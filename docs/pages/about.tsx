@@ -724,7 +724,7 @@ function AboutContent() {
                 All funds donated are managed transparently, and Sponsors receive recognition in the
                 README and on the MUI home page.
               </Typography>
-              <Link href="https://opencollective.com/material-ui" variant="body2">
+              <Link href="https://opencollective.com/mui" variant="body2">
                 See Open Collective{' '}
                 <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
               </Link>

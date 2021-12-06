@@ -93,7 +93,7 @@ export default Main() {
 
 ## TransitionGroup
 
-To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition/-group) component from _react-transition-group_.
+To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition-group/) component from _react-transition-group_.
 As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
 
 {{"demo": "pages/components/transitions/TransitionGroupExample.js"}}

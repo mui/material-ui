@@ -18,7 +18,7 @@ You can find some example projects in the [GitHub repository](https://github.com
 - [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
 
 Create React App is an awesome project for learning React.
-Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) to see which project best fits your needs.
+Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
 
 The source code for this documentation site is also included in the repository.
 This is a slightly more complex project.
@@ -31,7 +31,7 @@ If you want to start with a more complete and real-world example, you could take
 
 ### Free
 
-- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/graphql-starter):
+- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/relay-starter-kit):
 
   - ![stars](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
   - GraphQL API project using code-first design (TypeScript, OAuth, GraphQL.js, Knex, Cloud SQL)
