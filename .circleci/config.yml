@@ -645,16 +645,15 @@ jobs:
             npm pack
             mv mui-material-0.0.0-canary.${CIRCLE_SHA1}.tgz ../../../mui-material.tgz
       - when:
-          condition: true
           # don't run on PRs
-          # condition:
-          #   not:
-          #     matches:
-          #       # "^pull/\d+" is not valid YAML
-          #       # "^pull/\\d+" matches neither 'pull/1' nor 'main'
-          #       # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-          #       pattern: '^pull/.+$'
-          #       value: << pipeline.git.branch >>
+          condition:
+            not:
+              matches:
+                # "^pull/\d+" is not valid YAML
+                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
+                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
+                pattern: '^pull/.+$'
+                value: << pipeline.git.branch >>
           steps:
             # Upload distributables to S3
             - aws-s3/copy:
@@ -674,16 +673,15 @@ jobs:
           path: size-snapshot.json
           destination: size-snapshot.json
       - when:
-          condition: true
           # don't run on PRs
-          # condition:
-          #   not:
-          #     matches:
-          #       # "^pull/\d+" is not valid YAML
-          #       # "^pull/\\d+" matches neither 'pull/1' nor 'main'
-          #       # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-          #       pattern: '^pull/.+$'
-          #       value: << pipeline.git.branch >>
+          condition:
+            not:
+              matches:
+                # "^pull/\d+" is not valid YAML
+                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
+                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
+                pattern: '^pull/.+$'
+                value: << pipeline.git.branch >>
           steps:
             # persist size snapshot on S3
             - aws-s3/copy:
