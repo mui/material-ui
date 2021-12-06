@@ -1,40 +1,40 @@
 # 安装
 
-<p class="description">安装 Material-UI —— 世界上最受欢迎的 React UI 框架。</p>
+<p class="description">安装 MUI —— 世界上最受欢迎的 React UI 框架。</p>
 
-Material-UI 可以通过 [npm 包](https://www.npmjs.com/package/@material-ui/core) 来安装。
+MUI 可以通过 [npm package](https://www.npmjs.com/package/@mui/material) 来安装。
 
 ## npm
 
 若想安装并写入您的 `package.json` 依赖包，请运行以下命令：
 
 ```sh
-// 使用 npm
-npm install @material-ui/core@next @emotion/react @emotion/styled
+// 使用 npm 安装
+npm install @mui/material @emotion/react @emotion/styled
 
-// 使用 yarn
-yarn add @material-ui/core@next @emotion/react @emotion/styled
+// 使用 yarn 安装
+yarn add @mui/material @emotion/react @emotion/styled
 ```
 
 <!-- #react-peer-version -->
 
 请注意，安装依赖于 [react](https://www.npmjs.com/package/react) 的 17.0.0 及以上版本，和 [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 及以上版本。
 
-Or if you want to use `styled-components` as a styling engine:
+或者你想使用 `styled-components` 来作为样式引擎：
 
 ```sh
-// with npm
-npm install @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
+// 使用 npm 安装
+npm install @mui/material @mui/styled-engine-sc styled-components
 
-// with yarn
-yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
+// 使用 yarn 安装
+yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
-> 💡 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+> 💡参考 [Styled Engine 指南](/guides/styled-engine/) 来了解更多配置 `styled-components` 作为样式引擎的更多信息。
 
 ## Roboto 字体
 
-在设计 Material-UI 时我们使用了[Roboto](https://fonts.google.com/specimen/Roboto)字体。 因此，我们推荐您遵循[此说明](/components/typography/#general)来载入字体。 例如，通过 Google Web Fonts 引入：
+MUI 是使用 [Roboto](https://fonts.google.com/specimen/Roboto) 字体来设计的。 因此请务必遵循 [这些说明](/components/typography/#general) 来引入字体。 例如，通过 Google Web Fonts 引入：
 
 ```html
 <link
@@ -43,9 +43,9 @@ yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-compon
 />
 ```
 
-## Font Icons 字体图标
+## 字体图标
 
-To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. 我们提供了安装字体的[一些说明](/components/icons/#font-icons)。 例如，通过 Google Web Fonts 引入：
+To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. 这是如何去做的 [一些说明](/components/icons/#font-icons) 例如，通过 Google Web Fonts 引入：
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -53,40 +53,42 @@ To use the font `Icon` component, you must first add the [Material icons](https:
 
 ## SVG 图标
 
-在 [icons 示例](/components/icons/)中， 您可以发现一些由我们提供的 SVG Material icons。若您想使用这个图标，您必须安装 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) 这个包：
+In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/) you must first install the [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) package:
+
+<!-- #default-branch-switch -->
 
 ```sh
-// 通过 npm
-npm install @material-ui/icons
+// 使用 npm 安装
+npm install @mui/icons-material
 
-// 通过 yarn
-yarn add @material-ui/icons
+// 使用 yarn 安装
+yarn add @mui/icons-material
 ```
 
 ## CDN
 
-如果您已经开始将 Material-UI 融入一些最基本的前端基础架构，您的原型开发就如虎添翼。
+You can start using MUI with minimal Front-end infrastructure, which is great for prototyping.
 
 我们提供了两个通用模块定义（**UMD**）的文件：
 
-- 您可以在开发环境调试：https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
-- 也可放心地在生产环境使用: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
+- 您可以在开发环境调试：https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
+- 也可放心地在生产环境使用: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
 
-通过[此 CDN 示例](https://github.com/mui-org/material-ui/tree/master/examples/cdn)，您可以快速上手。
+您可以按照[此CDN示例](https://github.com/mui-org/material-ui/tree/master/examples/cdn)快速开始。
 
 尽管我们**不赞成**在**生产环境**中使用这种方式 —— 无论实际使用哪些组件，客户端必须下载整个库，而这将会影响到整体性能和带宽利用率。
 
-⚠️带有 `latest` 标签的 UMD 会指向我们最新版本的库。 这个指向是**不稳定的**，它会随着我们发布的新版本而改变。 您应该考虑使用一个具体的版本，如 [v5.0.0](https://unpkg.com/@mui/material@5.0.0/umd/material-ui.development.js)。
+⚠️ UMD 链接使用 `latest` 标签指向最新版本的库。 这个指向是**不稳定的**，它随着我们发布的新版本而改变。 You should consider pointing to a specific version, such as [v5.0.0](https://unpkg.com/@mui/material@5.0.0/umd/material-ui.development.js).
 
 ## 设计资源
 
 <a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
 <a href="https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-adobe-xd.svg" alt="adobe-xd" /></a>
-<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
+<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="草图" /></a>
 
 A set of reusable components for design tools is available, designed to match the React components and to help you craft great products:
 
-- [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma)：大型 UI 套件，包含 600 多个手工制作的 Material-UI 组件。
-- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd)：大型 UI 套件，包含六百多个手工制作的 Material-UI 组件。
-- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch)：大型 UI 套件，包含 600 多个手工制作的 Material-UI 符号。
-- [Framer](https://packages.framer.com/package/material-ui/material-ui)：Material-UI 组件的小型 UI 套件
+- [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma): A large UI kit with over 600 handcrafted MUI components.
+- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd): A large UI kit with over 600 handcrafted MUI components.
+- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch): A large UI kit with over 600 handcrafted MUI symbols.
+- [UXPin](https://github.com/uxpin-merge/material-ui-5-merge): A large UI kit of MUI components. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.

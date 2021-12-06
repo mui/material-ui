@@ -10,9 +10,9 @@ githubLabel: 'component: TrapFocus'
 
 TrapFocus é um componente que gerencia o foco para seus descendentes. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open.
 
-When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> or <kbd><kbd  class="key">Shift</kbd>+<kbd class="key">Tab</kbd></kbd> will rotate focus within the inner focusable elements of the component.
+When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> or <kbd><kbd class="key">Shift</kbd>+<kbd class="key">Tab</kbd></kbd> will rotate focus within the inner focusable elements of the component.
 
-[A paleta](/system/palette/) com funções de estilo.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 > ⚠️ O componente é experimental e instável.
 
@@ -22,12 +22,12 @@ When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> 
 
 ## Unstyled
 
-- 📦 [2.0 kB gzipped](https://bundlephobia.com/package/@material-ui/unstyled@next)
+- 📦 [2.0 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
 As the component does not have any styles, it also comes with the unstyled package.
 
 ```js
-import TrapFocus from '@material-ui/unstyled/Unstable_TrapFocus';
+import TrapFocus from '@mui/base/Unstable_TrapFocus';
 ```
 
 ## Desabilitar o forçar foco

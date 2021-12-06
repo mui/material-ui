@@ -28,7 +28,7 @@ O botão de ação flutuante pode exibir ações relacionadas.
 
 Você pode fornecer um ícone alternativo para os estados de aberto e fechado usando as propriedades `icon` e `openIcon` do componente `SpeedDialIcon`.
 
-Os SpeedDialActions podem exibir dicas de forma fixadas para que os usuários não precisem manter as ações pressionadas para ver a dica nos dispositivos de toque.
+{{"demo": "pages/components/speed-dial/ControlledOpenSpeedDial.js"}}
 
 ## Ícone de fechamento customizado
 

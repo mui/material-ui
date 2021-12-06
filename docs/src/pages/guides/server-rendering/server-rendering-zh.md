@@ -1,12 +1,12 @@
-# 服务端渲染
+# Server rendering
 
 <p class="description">服务器端呈现的最常见用例是在用户（或搜索引擎爬虫）首次请求您的应用时处理初次渲染。</p>
 
 当服务器收到请求时，它会将所需的组件呈现为 HTML 字符串，然后将其作为响应发送给客户端。 从那时起，客户端将接管渲染的职责。
 
-## 在服务器端的 Material-UI
+## MUI on the server
 
-Material-UI 最初设计受到了在服务器端渲染的约束，但是您可以完全负责它的正确整合。 为页面提供所需的 CSS 是至关重要的，否则页面只会渲染 HTML 而等待客户端注入 CSS，从而导致浏览器样式闪烁（FOUC）。 若想将样式注入客户端，我们需要：
+MUI was designed from the ground-up with the constraint of rendering on the server, but it's up to you to make sure it's correctly integrated. 为页面提供所需的 CSS 是至关重要的，否则页面只会渲染 HTML 而等待客户端注入 CSS，从而导致浏览器样式闪烁（FOUC）。 若想将样式注入客户端，我们需要：
 
 1. Create a fresh, new [`emotion cache`](https://emotion.sh/docs/@emotion/cache) instance on every request.
 2. 用服务端收集器渲染 React 树组件。
@@ -26,10 +26,10 @@ On the client-side, the CSS will be injected a second time before removing the s
 `theme.js`
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import red from '@material-ui/core/colors/red';
+import { createTheme } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
 
-// 创建一个主题的实例。
+// Create a theme instance.
 const theme = createTheme({
   palette: {
     primary: {
@@ -82,17 +82,15 @@ When rendering, we will wrap `App`, the root component, inside a [`CacheProvider
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
 
-Material-UI is using emotion as its default styled engine. We need to extract the styles from the emotion instance. For this, we need to share the same cache configuration for both the client and server:
+MUI is using emotion as its default styled engine. We need to extract the styles from the emotion instance. For this, we need to share the same cache configuration for both the client and server:
 
-`getCache.js`
+`createEmotionCache.js`
 
 ```js
 import createCache from '@emotion/cache';
 
-export default function getCache() {
-  const cache = createCache({ key: 'css' });
-  cache.compat = true;
-  return cache;
+export default function createEmotionCache() {
+  return createCache({ key: 'css' });
 }
 ```
 
@@ -104,19 +102,20 @@ With this we are creating new emotion cache instance and using this to extract t
 import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
 import theme from './theme';
-import getCache from './getCache';
+import createEmotionCache from './createEmotionCache';
 
 function handleRender(req, res) {
-  const cache = getCache();
+  const cache = createEmotionCache();
   const { extractCriticalToChunks, constructStyleTagsFromChunks } =
     createEmotionServer(cache);
 
-  // 将组件渲染成字符串。
+  // Render the component to a string.
   const html = ReactDOMServer.renderToString(
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
@@ -178,16 +177,18 @@ The client-side is straightforward. All we need to do is use the same cache conf
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
 import App from './App';
 import theme from './theme';
-import getCache from './getCache';
+import createEmotionCache from './createEmotionCache';
+
+const cache = createEmotionCache();
 
 function Main() {
   return (
-    <CacheProvider value={getCache}>
+    <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />

@@ -74,7 +74,7 @@ import { StylesProvider } from '@mui/styles';
 
 ⚠️ Using global class names provide more power but comes with responsibility. We encourage patterns that increase your custom style isolation.
 
-- **Pseudo-classes.** A pseudo-class is a keyword added to a selector that specifies a special state of the selected element. The native elements support a wide range of pseudo-classes, the most popular ones being: `:focus`, `:hover`, `:active`. Sometimes, MUI can't use a pseudo-class as the state doesn't exist in the platform, e.g. the selected state of a menu item. MUI implements support of eight different [custom pseudo-classes](/customization/components/#pseudo-classes). It's important to understand that you need to increase the specificity when using a pseudo-class. For instance:
+- **Pseudo-classes.** A pseudo-class is a keyword added to a selector that specifies a special state of the selected element. The native elements support a wide range of pseudo-classes, the most popular ones being: `:focus`, `:hover`, `:active`. Sometimes, MUI can't use a pseudo-class as the state doesn't exist in the platform, e.g. the selected state of a menu item. MUI implements support of eight different [custom pseudo-classes](/customization/how-to-customize/#state-classes). It's important to understand that you need to increase the specificity when using a pseudo-class. For instance:
 
 ```css
 .MenuItem {

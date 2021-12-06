@@ -27,3 +27,5 @@ githubLabel: 'component: Paper'
 The elevation can be used to establish a hierachy between other content. In practical terms, the elevation controls the size of the shadow applied to the surface. In dark mode, raising the elevation also makes the surface lighter.
 
 {{"demo": "pages/components/paper/Elevation.js", "bg": "inline"}}
+
+The change of shade in dark mode is done by applying a semi-transparent gradient to the `background-image` property. This can lead to confusion when overriding the styles of `Paper`, as setting just the `background-color` property will not affect the elevation-related shading. To ignore the shading and set the background color that is not affected by elevation in dark mode, override the `background` property (or both `background-color` and `background-image`).
