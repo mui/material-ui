@@ -97,7 +97,7 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 </ScopedCssBaseline>
 ```
 
-### 文字铸排
+### Typography
 
 - 在 `<html>` 里面不会声明基础的 font-size，但是我们假设是 16px (浏览器的默认设置)。 您可以在 [主题文档](/customization/typography/#typography-html-font-size) 页面中了解更多有关更改 `<html>` 默认字体大小的影响 。
 - 在 `theme.typography.body1` 元素上设置 `<body>` 样式。
