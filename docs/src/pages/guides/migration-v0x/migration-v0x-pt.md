@@ -6,58 +6,58 @@
 
 ### Woah - a API é diferente! Does that mean 1.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
 
-A resposta é não. I'm glad you asked! The core concepts haven't changed. Você vai notar que a API oferece mais flexibilidade, mas isso tem um custo – componentes de nível inferior que abstraem menos complexidade.
+I'm glad you asked! A resposta é não. The core concepts haven't changed. Você vai notar que a API oferece mais flexibilidade, mas isso tem um custo – componentes de nível inferior que abstraem menos complexidade.
 
 ### O que motivou uma mudança tão grande?
 
-Material-UI foi iniciado [4 anos atrás](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). O ecossistema evoluiu muito desde então, também aprendemos muito. [@nathanmarks](https://github.com/nathanmarks/) iniciou uma tarefa ambiciosa, reconstruindo o Material-UI do **zero**, aproveitando esse conhecimento para resolver problemas de longa data. Para citar algumas das principais mudanças:
+MUI was started [4 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). O ecossistema evoluiu muito desde então, também aprendemos muito. [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding MUI from the **ground-up** taking advantage of this knowledge to address long-standing issues. Para citar algumas das principais mudanças:
 
-- New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
+- Nova solução de estilo usando CSS-in-JS (melhor poder de [customização](/customization/how-to-customize/), melhor desempenho)
 - Novo tratamento de tema (aninhamento, auto-suporte, etc.)
-- Documentação rápida e brilhante graças a [Next.js](https://github.com/vercel/next.js)
+- Blazing fast documentation thanks to [Next.js](https://github.com/vercel/next.js)
 - Melhor [cobertura de teste](/guides/testing/) (99%+, executado em todos os principais navegadores, [testes de regressão visual](https://www.argos-ci.com/mui-org/material-ui))
 - Suporte completo [a renderização do lado do servidor](/guides/server-rendering/)
 - Vasta gama de [navegadores suportados](/getting-started/supported-platforms/)
 
 ### Onde devo começar a migração?
 
-1. Comece instalando a versão v1.x do Material-UI ao lado da versão v0.x.
+1. Start by installing the v1.x version of MUI along side the v0.x version.
 
 utilizando o yarn:
 
 ```sh
 yarn add material-ui
-  yarn add @material-ui/core
+yarn add @mui/material
 ```
 
 Ou utilizando npm:
 
 ```sh
 npm install material-ui
-  npm install @material-ui/core
+npm install @mui/material
 ```
 
 então
 
 ```js
 import FlatButton from 'material-ui/FlatButton'; // v0.x
-  import Button from '@material-ui/core/Button'; // v1.x
+import Button from '@mui/material/Button'; // v1.x
 ```
 
-2. Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) em seu projeto.
+2. Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) em seu projeto.
 3. `MuiThemeProvider` é opcional para v1.x., mas se você tem um tema customizado, você é livre para usar as versões v0.x e v1.x do componente, ao mesmo tempo, como neste exemplo:
 
 ```jsx
 import * as React from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
+import { MuiThemeProvider, createMuiTheme } from '@mui/material/styles'; // v1.x
 import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const theme = createMuiTheme({
-  /* tema para v1.x */
+  /* theme for v1.x */
 });
 const themeV0 = getMuiTheme({
-  /* tema para v0.x */
+  /* theme for v0.x */
 });
 
 function App() {
@@ -77,19 +77,19 @@ export default App;
 
 ### Autocompletar
 
-Material-UI, não fornece uma API de alto nível para resolver este problema. Recomendamos que você explore [as soluções que a comunidade construiu](/components/autocomplete/).
+MUI doesn't provide a high-level API for solving this problem. Recomendamos que você explore [as soluções que a comunidade construiu](/components/autocomplete/).
 
 Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) em seu projeto.
 
 ### Ícone Svg
 
-Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) em seu projeto.
+Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) em seu projeto.
 
 Caminho de atualização do RaisedButton:
 
 ```diff
 -import AddIcon from 'material-ui/svg-icons/Add';
-+import AddIcon from '@material-ui/icons/Add';
++import AddIcon from '@mui/icons-material/Add';
 
 <AddIcon />
 ```
@@ -98,7 +98,7 @@ Caminho de atualização do RaisedButton:
 
 ```diff
 -import FlatButton from 'material-ui/FlatButton';
-+import Button from '@material-ui/core/Button';
++import Button from '@mui/material/Button';
 
 -<FlatButton />
 +<Button />
@@ -110,7 +110,7 @@ Caminho de atualização do RaisedButton:
 
 ```diff
 -import RaisedButton from 'material-ui/RaisedButton';
-+import Button from '@material-ui/core/Button';
++import Button from '@mui/material/Button';
 
 -<RaisedButton />
 +<Button variant="contained" />
@@ -120,7 +120,7 @@ Caminho de atualização do RaisedButton:
 
 ```diff
 -import Subheader from 'material-ui/Subheader';
-+import ListSubheader from '@material-ui/core/ListSubheader';
++import ListSubheader from '@mui/material/ListSubheader';
 
 -<Subheader>Sub Heading</Subheader>
 +<ListSubheader>Sub Heading</ListSubheader>
@@ -130,10 +130,9 @@ Caminho de atualização do RaisedButton:
 
 ```diff
 -import Toggle from 'material-ui/Toggle';
-+import Switch from '@material-ui/core/Switch';
++import Switch from '@mui/material/Switch';
 
 -<Toggle
-
 -  toggled={this.state.checkedA}
 -  onToggle={this.handleToggle}
 -/>
@@ -147,7 +146,7 @@ Caminho de atualização do RaisedButton:
 
 ```diff
 -import MenuItem from 'material-ui/MenuItem';
-+import MenuItem from '@material-ui/core/MenuItem';
++import MenuItem from '@mui/material/MenuItem';
 
 -<MenuItem primaryText="Profile" />
 +<MenuItem>Profile</MenuItem>
@@ -157,7 +156,7 @@ Caminho de atualização do RaisedButton:
 
 ```diff
 -import FontIcon from 'material-ui/FontIcon';
-+import Icon from '@material-ui/core/Icon';
++import Icon from '@mui/material/Icon';
 
 -<FontIcon>home</FontIcon>
 +<Icon>home</Icon>
@@ -167,7 +166,7 @@ Caminho de atualização do RaisedButton:
 
 ```diff
 -import CircularProgress from 'material-ui/CircularProgress';
-+import CircularProgress from '@material-ui/core/CircularProgress';
++import CircularProgress from '@mui/material/CircularProgress';
 
 -<CircularProgress mode="indeterminate" />
 +<CircularProgress variant="indeterminate" />
@@ -177,7 +176,7 @@ Caminho de atualização do RaisedButton:
 
 ```diff
 -import DropDownMenu from 'material-ui/DropDownMenu';
-+import Select from '@material-ui/core/Select';
++import Select from '@mui/material/Select';
 
 -<DropDownMenu></DropDownMenu>
 +<Select value={this.state.value}></Select>

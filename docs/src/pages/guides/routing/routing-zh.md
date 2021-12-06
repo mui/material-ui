@@ -14,7 +14,7 @@ You can also make a button perform navigation actions. If your component is exte
 
 ## Global theme Link
 
-In real-life applications, using a native `<a>` element is rarely enough. You can improve the user experience by using an enhanced Link component systematically. The theme of Material-UI allows configuring this component once. For instance, with react-router:
+In real-life applications, using a native `<a>` element is rarely enough. You can improve the user experience by using an enhanced Link component systematically. The theme of MUI allows configuring this component once. For instance, with react-router:
 
 ```jsx
 const LinkBehavior = React.forwardRef<
@@ -22,7 +22,7 @@ const LinkBehavior = React.forwardRef<
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
-  // Map href (Material-UI) -> to (react-router)
+  // Map href (MUI) -> to (react-router)
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 
@@ -48,21 +48,29 @@ const theme = createTheme({
 
 ## `component` 属性
 
-You can achieve the integration with third-party routing libraries with the `component` prop. You can learn more about this prop in the [composition guide](/guides/composition/#component-prop).
+You can achieve the integration with third-party routing libraries with the `component` prop. You can learn more about this prop in the [**composition guide**](/guides/composition/#component-prop).
+
+### React Link（链接）组件
 
 Here are a few demos with [react-router](https://github.com/remix-run/react-router). You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
-### Link
-
 {{"demo": "pages/guides/routing/LinkRouter.js"}}
+
+### Button 按钮
+
+{{"demo": "pages/guides/routing/ButtonRouter.js"}}
+
+**Note**: The button base component adds the `role="button"` attribute when it identifies the intent to render a button without a native `<button>` element. This can create issues when rendering a link. If you are not using one of the `href`, `to`, or `component="a"` props, you need to override the `role` attribute. The above demo achieves this by setting `role={undefined}` **after** the spread props.
+
+```jsx
+const LinkBehavior = React.forwardRef((props, ref) => (
+  <RouterLink ref={ref} to="/" {...props} role={undefined} />
+));
+```
 
 ### Tabs 选项卡
 
 {{"demo": "pages/guides/routing/TabsRouter.js", "defaultCodeOpen": false}}
-
-### Button
-
-{{"demo": "pages/guides/routing/ButtonRouter.js"}}
 
 ### Lists（列表）
 
@@ -72,12 +80,12 @@ Here are a few demos with [react-router](https://github.com/remix-run/react-rout
 
 ### Next.js
 
-Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with Material-UI.
+Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with MUI.
 
 - The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component. This component is unstyled and only responsible for handling the navigation. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component.
 
   ```tsx
-  import Button from '@material-ui/core/Button';
+  import Button from '@mui/material/Button';
   import { NextLinkComposed } from '../src/Link';
 
   export default function Index() {
@@ -95,7 +103,7 @@ Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next
   }
   ```
 
-- The second version of the adapter is the `Link` component. This component is styled. It leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
+- The second version of the adapter is the `Link` component. This component is styled. It leverages the [link component of MUI](https://mui.com/components/links/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';

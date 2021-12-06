@@ -14,7 +14,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 简单的工具提示
+## Basic tooltip
 
 {{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
@@ -24,7 +24,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## 自定义文字提示
+## Customization 个性化
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
@@ -38,7 +38,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 ## 自定义子元素
 
-文字提示组件需要将 DOM 事件监听器应用到其子元素当中。 如果子元素是自定义的 React 组件，你需要确保它能够将其属性传播到底部的 DOM 元素。
+文字提示组件需要将 DOM 事件监听器应用到其子元素当中。 If the child is a custom React element, you need to make sure that it spreads its props to the underlying DOM element.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -59,35 +59,37 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 你可以定义各种类型的事件来触发显示工具提示组件。
 
+The touch action requires a long press due to the `enterTouchDelay` prop being set to `700`ms by default.
+
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## 可控的工具提示
+## 受控的文字提示
 
-使用 `open`， `onOpen` 和 `onClose` 这些属性，您可以控制工具提示的行为。
+You can use the `open`, `onOpen` and `onClose` props to control the behavior of the tooltip.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
 ## 变量宽度
 
-为了保证可阅读性，`工具提示组件` 默认将较长的文字折行。
+`Tooltip` 为了保证较好的阅读性，会自动将较长的文字折行。
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
 ## 交互式
 
-工具提示组件默认是可交互的（遵循 [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)）。 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 你可以通过 `disableInteractive` 来禁止交互（但是这将无法达到 AA 级所需的标准）。
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
 {{"demo": "pages/components/tooltips/NonInteractiveTooltips.js"}}
 
 ## 禁用元素
 
-默认情况下，被禁用的元素（如 `<Button>`）不会触发用户交互行为，因此 hover 等普通的事件不会激活`工具提示`的显示。 若想容纳已禁用的元素激活工具提示，请添加一个简单的包装元素，如 `span`。
+默认情况下，`<Button>`等disabled的元素不会触发用户交互，因此`Tooltip`不会在hover等正常事件上激活显示。 若想容纳已禁用的元素激活工具提示，请添加一个简单的包装元素，如 `span`。
 
 > ⚠️  为了在 Safari 中正常显示，在文字提示的包装组件中，您至少需要一个 display 为 block 或 flex 的元素。
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-> 如果你没有包装从 `ButtonBase` 继承的 Material-UI 组件，譬如一个原生的 `<button>` 元素，当禁用元素的时候，你应该将 _pointer-events: none;_ 这个CSS 属性添加到您的元素中：
+> If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
 
 ```jsx
 <Tooltip title="您没有足够的操作权限">
@@ -107,21 +109,21 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 ## 跟踪光标
 
-你可以通过设置 `followCursor={true}` 使工具提示组件跟随光标。
+You can enable the tooltip to follow the cursor by setting `followCursor={true}`.
 
 {{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
 
 ## 虚拟元素
 
-如果你需要实现一个自定义的布局，那么你可以使用 `anchorEl` 属性： `anchorEl` 属性的值可以是一个假（fake） DOM 元素的引用。 你需要创建一个类似 [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/) 的对象。
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. 你需要创建一个类似 [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/) 的对象。
 
 {{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 
 ## 显示和隐藏组件
 
-一般情况下，当用户的鼠标悬停在元素上时，工具提示会立即显示，而用户的鼠标离开当前元素时，它则会立即隐藏。 可以通过 `enterDelay` 和 `leaveDelay` 属性来控制显示及隐藏文字提示的延迟，如上面的"受控的文字提示"部分的例子所示。
+当用户的鼠标悬浮在该元素时工具提示会立即显示，并且当用户鼠标离开时立即隐藏。 A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props, as shown in the Controlled Tooltips demo above.
 
-在移动设备上使用时，用户长按元素就会显示出文字提示，并且持续 1500ms 之后就会自动隐藏。 您可以使用 `disableTouchListener` 属性禁用此功能。
+在移动设备上使用时，用户长按元素就会显示出文字提示，并且持续 1500ms 之后就会自动隐藏。 You can disable this feature with the `disableTouchListener` prop.
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}
 
@@ -129,12 +131,12 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
 
-默认情况下，工具提示组件只会标注其子元素。 这与 `title` 明显不同，后者可以标注 **或** 描述它的子代，这取决于子代是否已经有标签。 例如，在：
+By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. For example, in:
 
 ```html
 <button title="some more information">一个按钮</button>
 ```
 
-`title` 可以作为一种无障碍描述。 你可以通过设置 `describeChild` 来让你的工具提示组件具有无障碍描述的功能。 请注意，如果工具提示组件提供了唯一的视觉标签，那么你就不应该使用 `describeChild`。 否则，子元素将不会存在可访问的名称，而工具提示将违反 WCAG 2.1 [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html)。
+the `title` acts as an accessible description. If you want the tooltip to act as an accessible description you can pass `describeChild`. Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
 
 {{"demo": "pages/components/tooltips/AccessibilityTooltips.js"}}

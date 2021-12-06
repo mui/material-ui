@@ -25,7 +25,7 @@ materialDesign: https://material.io/components/lists
 </ListItemButton>
 ```
 
-You can find a [demo with React Router following this section](/guides/routing/#list) of the documentation.
+你可以从这里查看 [React Router与文档此部分结合使用的相关样例](/guides/routing/#list)。
 
 ## 嵌套列表
 
@@ -47,7 +47,7 @@ You can find a [demo with React Router following this section](/guides/routing/#
 
 ## 对齐列表项
 
-若想显示 3 行或者更多行时，你应该改变列表项的对齐方式，将 `alignItems` 属性值设置为 "flex-start"。
+When displaying three lines or more, the avatar is not aligned at the top. You should set the `alignItems="flex-start"` prop to align the avatar at the top, following the Material Design guidelines:
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 
@@ -97,12 +97,10 @@ When rendering a list within a component that defines its own gutters, `ListItem
 
 我们鼓励尽可能使用 [react-window](https://github.com/bvaughn/react-window)。 如果这个库不包括你的用例，你应该考虑使用 [react-virtualized](https://github.com/bvaughn/react-virtualized)，然后使用 [react-virtuoso](https://github.com/petyosi/react-virtuoso)等替代品。
 
-## Customized List
+## Customization 个性化
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/lists/CustomizedList.js"}}
 
-## Customization 个性化
-
-🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/list-item/)。
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item/).

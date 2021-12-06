@@ -119,14 +119,14 @@
 ## API
 
 ```js
-import { display } from '@material-ui/system';
+import { display } from '@mui/system';
 ```
 
-| 导入名称           | 属性             | CSS 属性          | Theme key |
-|:-------------- |:-------------- |:--------------- |:--------- |
-| `displayPrint` | `displayPrint` | `display`       | none      |
-| `displayRaw`   | `display`      | `display`       | none      |
-| `overflow`     | `overflow`     | `overflow`      | none      |
-| `textOverflow` | `textOverflow` | `text-overflow` | none      |
-| `visibility`   | `visibility`   | `visibility`    | none      |
-| `whiteSpace`   | `whiteSpace`   | `white-space`   | none      |
+| 导入名称              | 属性                | CSS 属性            | Theme key |
+|:----------------- |:----------------- |:----------------- |:--------- |
+| `displayPrint`    | `displayPrint`    | `display`         | none      |
+| `displayRaw`      | `display`         | `display`         | none      |
+| `溢出（Overflow）`    | `溢出（Overflow）`    | `溢出（Overflow）`    | none      |
+| `textOverflow`    | `textOverflow`    | `text-overflow`   | none      |
+| `可见性（Visibility）` | `可见性（Visibility）` | `可见性（Visibility）` | none      |
+| `whiteSpace`      | `whiteSpace`      | `white-space`     | none      |

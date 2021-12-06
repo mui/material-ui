@@ -1,6 +1,6 @@
 ---
 title: React Skeleton（骨架屏）组件
-components: Skeleton
+components: Skeleton 骨架屏
 githubLabel: 'component: Skeleton'
 ---
 

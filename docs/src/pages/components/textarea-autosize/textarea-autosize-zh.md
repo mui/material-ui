@@ -25,3 +25,13 @@ githubLabel: 'component: TextareaAutosize'
 ## 最大高度
 
 {{"demo": "pages/components/textarea-autosize/MaxHeightTextarea.js"}}
+
+## 素颜模式
+
+- 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
+
+As the component does not have any styles, it also comes with the unstyled package.
+
+```js
+import TextareaAutosize from '@mui/base/TextareaAutosize';
+```

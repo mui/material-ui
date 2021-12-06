@@ -2,13 +2,15 @@
 
 <p class="description">API 解锁了各种情况下断点的使用。</p>
 
-为了获得最佳的用户体验，在不同的断点下，material design 的接口需要适应它们的布局。 Material-UI 使用了原先 [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) 的 **简化** 实现。
+为了获得最佳的用户体验，在不同的断点下，material design 的接口需要适应它们的布局。 MUI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
 The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) component.
 
 ## 默认的断点
 
-每个断点（一个键）匹配了一个*固定*的屏幕宽度（一个值）：
+每个断点（一个键）匹配一个_固定_的屏幕宽度（一个值）：
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 - ** xs， ** 超小：0px
 - ** sm， **小：600px
@@ -60,9 +62,11 @@ const styles = (theme) => ({
 
 您可以选择在 theme 中的 `theme.breakpoints` 部分定义项目的断点。
 
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
 - [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values)：默认为 [以上值](#default-breakpoints)。 键值（key）为屏幕的名字（screen names），而值（values）是该断点应开始的最小宽度。
-- `theme.breakpoints.unit`：默认为 `px`。 这个用于断点值的单位。
-- `theme.breakpoints.step`：默认为 5 (`0.05px`)。 这个增量用于实现专用的断点。
+- `theme.breakpoints.unit`: Default to `'px'`. 这个用于断点值的单位。
+- `theme.breakpoints.step`: Default to `5`. The increment divided by 100 used to implement exclusive breakpoints. For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
 
 如果您需要更改断点的默认值，则需要提供所有的断点值：
 
@@ -100,9 +104,9 @@ const theme = createTheme({
 <!-- Tested with packages/mui-material/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
 ```ts
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface BreakpointOverrides {
-    xs: false; // 移除 `xs` 断点
+    xs: false; // removes the `xs` breakpoint
     sm: false;
     md: false;
     lg: false;
@@ -118,6 +122,8 @@ declare module '@material-ui/core/styles' {
 ## API
 
 ### `theme.breakpoints.up(key) => media query`
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 #### 参数
 
@@ -144,6 +150,8 @@ const styles = (theme) => ({
 
 ### `theme.breakpoints.down(key) => media query`
 
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
 #### 参数
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
@@ -168,6 +176,8 @@ const styles = (theme) => ({
 ```
 
 ### `theme.breakpoints.only(key) => media query`
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 #### 参数
 
@@ -194,6 +204,8 @@ const styles = (theme) => ({
 ```
 
 ### `theme.breakpoints.between(start, end) => media query`
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 #### 参数
 

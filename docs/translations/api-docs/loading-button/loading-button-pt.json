@@ -7,7 +7,8 @@
     "loading": "If <code>true</code>, the loading indicator is shown.",
     "loadingIndicator": "Element placed before the children if the button is in loading state.",
     "loadingPosition": "The loading indicator can be positioned on the start, end, or the center of the button.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details."
+    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
+    "variant": "A variante a usar."
   },
   "classDescriptions": {
     "root": {
@@ -79,12 +80,12 @@
       "conditions": "<code>disableElevation={true}</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "o elemento raiz ButtonBase",
       "conditions": "o botão está focado no teclado"
     },
     "disabled": {
-      "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "<code>disabled={true}</code>"
     },
@@ -161,26 +162,26 @@
     "startIcon": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "the startIcon element",
-      "conditions": "supplied"
+      "conditions": "fornecido"
     },
     "endIcon": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "the endIcon element",
-      "conditions": "supplied"
+      "conditions": "fornecido"
     },
     "iconSizeSmall": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "the icon element",
+      "nodeName": "o elemento ícone",
       "conditions": "supplied and <code>size=\"small\"</code>"
     },
     "iconSizeMedium": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "the icon element",
+      "nodeName": "o elemento ícone",
       "conditions": "supplied and <code>size=\"medium\"</code>"
     },
     "iconSizeLarge": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "the icon element",
+      "nodeName": "o elemento ícone",
       "conditions": "supplied and <code>size=\"large\"</code>"
     },
     "loading": {

@@ -57,11 +57,11 @@ Os formulários de diálogo permitem que usuários preencham campos dentro de um
 
 {{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Diálogos customizados
+## Customização
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
-O diálogo tem um botão de fechar para facilitar a utilização.
+The dialog has a close button added to aid usability.
 
 {{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
@@ -71,7 +71,7 @@ O diálogo tem um botão de fechar para facilitar a utilização.
 
 ## Tamanhos opcionais
 
-Você pode definir uma largura máxima usando um enumerador na propriedade `maxWidth` combinando com a propriedade booleana `fullWidth`. Quando a propriedade `fullWidth` for verdadeira, o diálogo será adaptado com base no valor definido em `maxWidth`.
+Você pode definir uma largura máxima usando um enumerador na propriedade `maxWidth` combinando com a propriedade booleana `fullWidth`. Quando a propriedade `fullWidth` for verdadeira, a caixa de diálogo será adaptada com base no valor definido em `maxWidth`.
 
 {{"demo": "pages/components/dialogs/MaxWidthDialog.js"}}
 
@@ -80,13 +80,13 @@ Você pode definir uma largura máxima usando um enumerador na propriedade `maxW
 Você pode fazer um diálogo totalmente responsivo usando [`useMediaQuery`](/components/use-media-query/#usemediaquery).
 
 ```jsx
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-  return <Dialog fullScreen={fullScreen} />
+  return <Dialog fullScreen={fullScreen} />;
 }
 ```
 
@@ -102,7 +102,7 @@ Tocar em "Cancelar" em um diálogo de confirmação ou pressionar Voltar, cancel
 
 ## Diálogo arrastável
 
-Você pode criar um diálogo arrastável usando [react-draggable](https://github.com/react-grid-layout/react-draggable). Para fazer isso, você deve passar o componente importado `Draggable` como `PaperComponent` do componente `Dialog`. Isso fará com que todo o diálogo seja arrastável.
+You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable). Para fazer isso, você deve passar o componente importado `Draggable` como `PaperComponent` do componente `Dialog`. Isso fará com que todo o diálogo seja arrastável.
 
 {{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
