@@ -60,7 +60,7 @@ interface ReactApi extends ReactDocgenApi {
   styles: Styles;
 }
 
-const cssComponents = ['Box', 'Grid', 'Typography'];
+const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
 
 function writePrettifiedFile(
   filename: string,
