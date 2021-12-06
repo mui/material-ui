@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, screen } from 'test/utils';
 import Alert, { alertClasses as classes } from '@mui/material/Alert';
 import Paper, { paperClasses } from '@mui/material/Paper';
 
@@ -19,20 +19,20 @@ describe('<Alert />', () => {
   }));
 
   describe('prop: square', () => {
-    it('adds rounded corners when we disable square', () => {
-      const { getByTestId } = render(
-        <Alert data-testid="root" square={false}>
+    it('should have rounded corners by default', () => {
+       render(<Alert data-testid="root">Hello World</Alert>);
+
+      expect(screen.getByTestId('root')).to.have.class(paperClasses.rounded);
+    });
+
+    it('should disable rounded corners with square prop', () => {
+       render(
+        <Alert data-testid="root" square>
           Hello World
         </Alert>,
       );
 
-      expect(getByTestId('root')).to.have.class(paperClasses.rounded);
-    });
-
-    it('should disable rounded corners by default', () => {
-      const { getByTestId } = render(<Alert data-testid="root">Hello World</Alert>);
-
-      expect(getByTestId('root')).not.to.have.class(paperClasses.rounded);
+      expect(screen.getByTestId('root')).not.to.have.class(paperClasses.rounded);
     });
   });
 });

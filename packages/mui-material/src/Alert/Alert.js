@@ -146,7 +146,6 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   return (
     <AlertRoot
       role={role}
-      square
       elevation={0}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
