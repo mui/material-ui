@@ -11,6 +11,8 @@ export default function useQueryParameterState(
   name: string,
   initialValue = '',
 ): [string, (newValue: string) => void] {
+  const initialValueRef = React.useRef(initialValue);
+
   const router = useRouter();
 
   const queryParamValue = router.query[name];
@@ -22,7 +24,7 @@ export default function useQueryParameterState(
     () =>
       debounce((newValue = '') => {
         const query = new URLSearchParams(window.location.search);
-        if (newValue) {
+        if (newValue && newValue !== initialValueRef.current) {
           query.set(name, newValue);
         } else {
           query.delete(name);
@@ -46,16 +48,6 @@ export default function useQueryParameterState(
       }, 220),
     [name, router],
   );
-
-  const isFirstRender = React.useRef(true);
-  React.useEffect(() => {
-    if (isFirstRender.current && urlValue !== state) {
-      // This syncs the initial value to the url
-      setUrlValue(state);
-    }
-
-    isFirstRender.current = false;
-  }, [state, urlValue, setUrlValue]);
 
   const setUserState = React.useCallback(
     (newValue: string) => {
