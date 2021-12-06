@@ -56,7 +56,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 
 ### Docs
 
-- &#8203;<!-- 34 --> [docs] Fix link in TypeScript doc page (#30044) @genzyy
+- &#8203;<!-- 34 -->[docs] Fix link in TypeScript doc page (#30044) @genzyy
 - &#8203;<!-- 26 -->[docs] Remove the 'WIP' icon from the 'Group & Pivot' page title (#30077) @flaviendelangle
 - &#8203;<!-- 25 -->[docs] Add warning that `@mui/styled-engine-sc` does not work in SSR (#30026) @mnajdova
 - &#8203;<!-- 24 -->[docs] Add section for CSS specificity in the migration guide (#30008) @hbjORbj
