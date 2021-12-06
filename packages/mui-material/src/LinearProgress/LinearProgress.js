@@ -187,16 +187,16 @@ const LinearProgressBar1 = styled('span', {
     left: 0,
     bottom: 0,
     top: 0,
-    transition: 'transform 0.2s linear',
+    transition: 'transform 0.2s ease',
     transformOrigin: 'left',
     backgroundColor:
       ownerState.color === 'inherit' ? 'currentColor' : theme.palette[ownerState.color].main,
     ...(ownerState.variant === 'determinate' && {
-      transition: `transform .${TRANSITION_DURATION}s linear`,
+      transition: `transform .${TRANSITION_DURATION}s ease`,
     }),
     ...(ownerState.variant === 'buffer' && {
       zIndex: 1,
-      transition: `transform .${TRANSITION_DURATION}s linear`,
+      transition: `transform .${TRANSITION_DURATION}s ease`,
     }),
   }),
   ({ ownerState }) =>
@@ -228,7 +228,7 @@ const LinearProgressBar2 = styled('span', {
     left: 0,
     bottom: 0,
     top: 0,
-    transition: 'transform 0.2s linear',
+    transition: 'transform 0.2s ease',
     transformOrigin: 'left',
     ...(ownerState.variant !== 'buffer' && {
       backgroundColor:
@@ -239,7 +239,7 @@ const LinearProgressBar2 = styled('span', {
     }),
     ...(ownerState.variant === 'buffer' && {
       backgroundColor: getColorShade(theme, ownerState.color),
-      transition: `transform .${TRANSITION_DURATION}s linear`,
+      transition: `transform .${TRANSITION_DURATION}s ease`,
     }),
   }),
   ({ ownerState }) =>
