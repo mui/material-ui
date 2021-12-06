@@ -68,6 +68,7 @@ export default function useQueryParameterState(
     }
 
     if (router.isReady) {
+      isInitialized.current = true;
       setState(urlValue || initialValue);
     }
   }, [router, urlValue, initialValue]);
