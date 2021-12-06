@@ -449,6 +449,7 @@ export default function SearchIcons() {
   const [keys, setKeys] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [selectedIcon, setSelectedIcon] = React.useState(null);
+  const [query, setQuery] = React.useState('');
 
   const handleOpenClick = React.useCallback((event) => {
     setSelectedIcon(allIconsMap[event.currentTarget.getAttribute('title')]);
@@ -459,7 +460,7 @@ export default function SearchIcons() {
     setOpen(false);
   }, []);
 
-  const handleChange = React.useMemo(
+  const updateSearchResults = React.useMemo(
     () =>
       debounce((value) => {
         if (value === '') {
@@ -483,11 +484,17 @@ export default function SearchIcons() {
     [],
   );
 
+  const handleQueryChange = React.useCallback(
+    (event) => setQuery(event.target.value),
+    [],
+  );
+
   React.useEffect(() => {
+    updateSearchResults(query);
     return () => {
-      handleChange.cancel();
+      updateSearchResults.cancel();
     };
-  }, [handleChange]);
+  }, [query, updateSearchResults]);
 
   const icons = React.useMemo(
     () =>
@@ -529,9 +536,8 @@ export default function SearchIcons() {
           </IconButton>
           <Input
             autoFocus
-            onChange={(event) => {
-              handleChange(event.target.value);
-            }}
+            value={query}
+            onChange={handleQueryChange}
             placeholder="Search icons…"
             inputProps={{ 'aria-label': 'search icons' }}
           />
