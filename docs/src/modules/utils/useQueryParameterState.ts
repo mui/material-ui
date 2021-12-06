@@ -18,6 +18,8 @@ export default function useQueryParameterState(
   const router = useRouter();
 
   const queryParamValue = router.query[name];
+  // eslint-disable-next-line no-console
+  console.log(router.query, typeof window === 'undefined' ? null : window.location.search);
   const urlValue = Array.isArray(queryParamValue) ? queryParamValue[0] : queryParamValue;
 
   const [state, setState] = React.useState(urlValue || initialValue);
