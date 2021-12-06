@@ -2,7 +2,7 @@ import * as React from 'react';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import Box from '@mui/joy/Box';
 import { styled } from '@mui/joy/styles';
-import { Button, Typography, FormLabel, Select, Tabs } from 'docs/src/joy/components';
+import { Button, Typography, FormLabel, Select, Tabs, FlashCode } from 'docs/src/joy/components';
 import { KeyboardArrowDownRounded } from 'docs/src/joy/icons';
 import {
   nodeMap,
@@ -82,6 +82,28 @@ const ColorButton = styled('button', {
   },
 ]);
 
+const FlashingCode = ({
+  startLine,
+  flashing,
+}: {
+  startLine?: number;
+  flashing: boolean | number;
+}) => {
+  const [transparent, setTransparent] = React.useState(true);
+  React.useEffect(() => {
+    setTransparent(false);
+    const timeout = setTimeout(() => {
+      setTransparent(true);
+    }, 300);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [flashing]);
+  return (
+    <FlashCode startLine={startLine} lineHeight="19px" sx={{ opacity: transparent ? 0 : 1 }} />
+  );
+};
+
 export default function JoyDemo() {
   const variantOptions = ['text', 'outlined', 'light', 'contained'];
   const colorOptions = ['primary', 'neutral', 'danger', 'info', 'success', 'warning'] as const;
@@ -90,6 +112,7 @@ export default function JoyDemo() {
   const elevationOptions = ['none', 'xs', 'sm', 'md', 'lg', 'xl'];
 
   const [open, setOpen] = React.useState(false);
+  const [flash, setFlash] = React.useState<Record<string, number>>({});
 
   const { nodeData, hoveredId, selectedId, hoverNode, selectNode, leaveNode, updateNode } =
     useDemoController({
@@ -145,6 +168,10 @@ export default function JoyDemo() {
             id={field}
             value={nodeData[selectedId]?.[field] || 'none'}
             onChange={(event) => {
+              setFlash((currentFlash) => ({
+                ...currentFlash,
+                [selectedId]: (currentFlash[selectedId] ?? 0) + 1,
+              }));
               updateNode(selectedId, {
                 [field]: event.target.value,
               });
@@ -168,6 +195,7 @@ export default function JoyDemo() {
         </Box>
       </React.Fragment>
     ) : null;
+
   return (
     <DemoContext.Provider
       value={{
@@ -267,6 +295,12 @@ export default function JoyDemo() {
                 updateNode('Tab3', {
                   color: 'context',
                 });
+                setFlash((currentFlash) => ({
+                  ...currentFlash,
+                  Tab1: currentFlash.Tab1 + 1,
+                  Tab2: currentFlash.Tab2 + 1,
+                  Tab3: currentFlash.Tab3 + 1,
+                }));
               }}
             >
               Try it out!
@@ -310,6 +344,10 @@ export default function JoyDemo() {
                 selected={color === nodeData[selectedId]?.color}
                 value={`var(--joy-palette-${color}-500)`}
                 onClick={() => {
+                  setFlash((currentFlash) => ({
+                    ...currentFlash,
+                    [selectedId]: (currentFlash[selectedId] ?? 0) + 1,
+                  }));
                   updateNode(selectedId, {
                     color,
                   });
@@ -328,11 +366,20 @@ export default function JoyDemo() {
             borderColor: 'neutral.outlinedBorder',
             gridRowStart: 2,
             minHeight: 130,
-            fontSize: { xs: '0.75rem', md: '0.825rem' },
             bgcolor: 'primary.900',
-
+            position: 'relative',
             '& pre': {
               margin: 0,
+              lineHeight: '19px',
+              fontSize: '13px',
+              '& *': {
+                fontSize: '13px',
+                lineHeight: '19px',
+              },
+            },
+            '& code[class*="language-"]': {
+              fontSize: '13px',
+              lineHeight: '19px',
             },
           }}
         >
@@ -352,6 +399,18 @@ export default function JoyDemo() {
   </Tab>
 </Tabs>`}
           />
+          <Box
+            sx={{
+              position: 'absolute',
+              inset: '1rem',
+              pointerEvents: 'none',
+            }}
+          >
+            <FlashingCode flashing={flash.Tabs} />
+            <FlashingCode startLine={1} flashing={flash.Tab1} />
+            <FlashingCode startLine={4} flashing={flash.Tab2} />
+            <FlashingCode startLine={7} flashing={flash.Tab3} />
+          </Box>
         </Box>
       </Box>
     </DemoContext.Provider>

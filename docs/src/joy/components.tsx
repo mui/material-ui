@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
 import {
   useColorScheme,
@@ -19,7 +20,7 @@ interface DemoProps {
   elevation?: keyof Elevation;
 }
 
-const shouldForwardProp = (prop: string) =>
+const shouldForwardProp = (prop: string | number | symbol) =>
   prop !== 'variant' &&
   prop !== 'elevation' &&
   prop !== 'square' &&
@@ -28,6 +29,25 @@ const shouldForwardProp = (prop: string) =>
   prop !== 'size' &&
   prop !== 'sx' &&
   prop !== 'as';
+
+export const FlashCode = styled('div', {
+  shouldForwardProp: (prop) =>
+    shouldForwardProp(prop) && prop !== 'endLine' && prop !== 'startLine' && prop !== 'lineHeight',
+})<{ endLine?: number; startLine?: number; lineHeight?: number | string }>(
+  ({ theme, startLine = 0, endLine = startLine, lineHeight = '0.75rem' }) => ({
+    borderRadius: 2,
+    pointerEvents: 'initial',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: `calc(${lineHeight} * ${startLine})`,
+    height: `calc(${lineHeight} * ${endLine - startLine + 1})`,
+    transition: '0.3s',
+    backgroundColor: alpha(theme.palette.primary[400], 0.2),
+    border: '1px solid',
+    borderColor: theme.vars.palette.primary.outlinedBorder,
+  }),
+);
 
 export const Anchor = styled('a', { shouldForwardProp })<{
   level?: keyof TypographySystem;

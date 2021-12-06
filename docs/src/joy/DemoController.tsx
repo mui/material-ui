@@ -92,7 +92,7 @@ export const useDemoController = (defaultSelectedNode: Record<string, DemoProps>
     () =>
       debounce((id: string | null) => {
         setHoveredId(id);
-      }, 80),
+      }, 40),
     [],
   );
 
