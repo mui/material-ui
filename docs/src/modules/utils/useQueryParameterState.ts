@@ -18,8 +18,7 @@ export default function useQueryParameterState(
   const router = useRouter();
 
   const queryParamValue = router.query[name];
-  // eslint-disable-next-line no-console
-  console.log(router.query, typeof window === 'undefined' ? null : window.location.search);
+
   const urlValue = Array.isArray(queryParamValue) ? queryParamValue[0] : queryParamValue;
 
   const [state, setState] = React.useState(urlValue || initialValue);
@@ -60,6 +59,18 @@ export default function useQueryParameterState(
     },
     [setUrlValue],
   );
+
+  // Make sure to initialize the state when route params are only available client-side
+  const isInitialized = React.useRef(false);
+  React.useEffect(() => {
+    if (isInitialized.current) {
+      return;
+    }
+
+    if (router.isReady) {
+      setState(urlValue || initialValue);
+    }
+  }, [router, urlValue, initialValue]);
 
   return [state, setUserState];
 }
