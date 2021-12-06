@@ -20,13 +20,13 @@ describe('<Alert />', () => {
 
   describe('prop: square', () => {
     it('should have rounded corners by default', () => {
-       render(<Alert data-testid="root">Hello World</Alert>);
+      render(<Alert data-testid="root">Hello World</Alert>);
 
       expect(screen.getByTestId('root')).to.have.class(paperClasses.rounded);
     });
 
     it('should disable rounded corners with square prop', () => {
-       render(
+      render(
         <Alert data-testid="root" square>
           Hello World
         </Alert>,
