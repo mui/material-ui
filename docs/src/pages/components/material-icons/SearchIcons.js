@@ -46,6 +46,7 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
 import * as mui from '@mui/icons-material';
+import { useRouter } from 'next/router';
 import synonyms from './synonyms';
 
 // const mui = {
@@ -444,21 +445,90 @@ const allIcons = Object.keys(mui)
     return icon;
   });
 
-export default function SearchIcons() {
-  const [theme, setTheme] = React.useState('Filled');
-  const [keys, setKeys] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
-  const [selectedIcon, setSelectedIcon] = React.useState(null);
-  const [query, setQuery] = React.useState('');
+function useQueryParameterState(name, initialValue = '') {
+  const router = useRouter();
 
-  const handleOpenClick = React.useCallback((event) => {
-    setSelectedIcon(allIconsMap[event.currentTarget.getAttribute('title')]);
-    setOpen(true);
-  }, []);
+  const getUrlValue = React.useCallback(() => {
+    return router.query[name];
+  }, [router, name]);
+
+  const [state, setState] = React.useState(getUrlValue() || initialValue);
+
+  const setUrlValue = React.useMemo(
+    () =>
+      debounce((newValue = '') => {
+        const query = new URLSearchParams(window.location.search);
+        if (newValue) {
+          query.set(name, newValue);
+        } else {
+          query.delete(name);
+        }
+        const newSearch = query.toString();
+        if (window.location.search !== newSearch) {
+          router.replace(
+            {
+              pathname: router.pathname,
+              // hash: window.location.hash,
+              search: newSearch,
+            },
+            undefined,
+            {
+              scroll: false,
+              shallow: true,
+            },
+          );
+        }
+      }, 220),
+    [name, router],
+  );
+
+  const isFirstRender = React.useRef(true);
+  React.useEffect(() => {
+    const urlValue = getUrlValue();
+
+    if (isFirstRender.current && urlValue !== state) {
+      // This syncs the initial value to the url
+      setUrlValue(state);
+    }
+
+    isFirstRender.current = false;
+  }, [state, getUrlValue, setUrlValue]);
+
+  const setUserState = React.useCallback(
+    (newValue) => {
+      setUrlValue(newValue);
+      setState(newValue);
+    },
+    [setUrlValue],
+  );
+
+  return [state, setUserState];
+}
+
+function useLatest(value) {
+  const latest = React.useRef(value);
+  if (value !== undefined) {
+    latest.current = value;
+  }
+  return latest.current;
+}
+
+export default function SearchIcons() {
+  const [keys, setKeys] = React.useState(null);
+  const [theme, setTheme] = useQueryParameterState('theme', 'Filled');
+  const [selectedIcon, setSelectedIcon] = useQueryParameterState('selected', '');
+  const [query, setQuery] = useQueryParameterState('query', '');
+
+  const handleOpenClick = React.useCallback(
+    (event) => {
+      setSelectedIcon(event.currentTarget.getAttribute('title'));
+    },
+    [setSelectedIcon],
+  );
 
   const handleClose = React.useCallback(() => {
-    setOpen(false);
-  }, []);
+    setSelectedIcon('');
+  }, [setSelectedIcon]);
 
   const updateSearchResults = React.useMemo(
     () =>
@@ -486,7 +556,7 @@ export default function SearchIcons() {
 
   const handleQueryChange = React.useCallback(
     (event) => setQuery(event.target.value),
-    [],
+    [setQuery],
   );
 
   React.useEffect(() => {
@@ -503,6 +573,8 @@ export default function SearchIcons() {
       ),
     [theme, keys],
   );
+
+  const dialogSelectedIcon = useLatest(allIconsMap[selectedIcon]);
 
   return (
     <Grid container sx={{ minHeight: 500 }}>
@@ -546,8 +618,8 @@ export default function SearchIcons() {
         <Icons icons={icons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails
-        open={open}
-        selectedIcon={selectedIcon}
+        open={!!selectedIcon}
+        selectedIcon={dialogSelectedIcon}
         handleClose={handleClose}
       />
     </Grid>
