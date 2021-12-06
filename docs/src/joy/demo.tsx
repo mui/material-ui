@@ -218,7 +218,9 @@ export default function JoyDemo() {
               </option>
             ))}
           </Select>
-          <KeyboardArrowDownRounded sx={{ position: 'absolute', top: 8, right: 8 }} />
+          <KeyboardArrowDownRounded
+            sx={{ position: 'absolute', top: 8, right: 8, pointerEvents: 'none' }}
+          />
         </Box>
       </React.Fragment>
     ) : null;
