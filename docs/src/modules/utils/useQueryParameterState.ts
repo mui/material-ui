@@ -67,13 +67,11 @@ export default function useQueryParameterState(
       return;
     }
 
-    if (router.isReady) {
-      isInitialized.current = true;
-      // eslint-disable-next-line no-console
-      console.log(urlValue, router.query, window.location.search);
-      setState(urlValue || initialValue);
-    }
-  }, [name, router, urlValue, initialValue]);
+    isInitialized.current = true;
+    const query = new URLSearchParams(window.location.search);
+    const value = query.get(name);
+    setState(value || initialValue);
+  }, [name, initialValue]);
 
   return [state, setUserState];
 }
