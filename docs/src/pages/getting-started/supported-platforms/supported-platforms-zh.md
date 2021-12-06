@@ -1,26 +1,26 @@
-# 支持的平台
+# Supported platforms
 
-<p class="description">了解更多Material-UI支持的从最新版到旧版的平台。</p>
+<p class="description">Learn about the platforms, from modern to old, that are supported by MUI.</p>
 
 ## 浏览器
 
-Material-UI 支持所有主流浏览器和平台的最新稳定版本。 您不需要提供任何 JavaScript polyfill， 鉴于它在内部管理了不支持的浏览器的功能并且将其隔离。
+MUI supports the latest, stable releases of all major browsers and platforms. 您不需要提供任何 JavaScript polyfill， 鉴于它在内部管理了不支持的浏览器的功能并且将其隔离。
 
 <!-- #stable-snapshot -->
 
 | Edge  | Firefox | Chrome | Safari (macOS) | Safari (iOS) | IE                   |
 |:----- |:------- |:------ |:-------------- |:------------ |:-------------------- |
-| >= 85 | >= 78   | >= 84  | >= 13          | >= 12.1      | 11 (partial support) |
+| >= 91 | >= 78   | >= 90  | >= 14          | >= 12.5      | 11 (partial support) |
 
 <!-- #default-branch-switch -->
 
-An extensive list can be found in our [.browserlistrc](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L12-L27) (check the `stable` entry).
+An extensive list can be found in our [.browserlistrc](https://github.com/mui-org/material-ui/blob/master/.browserslistrc#L12-L27) (check the `stable` entry).
 
-因为 Googlebot 使用了Web rendering service - WRS （网络渲染服务）对页面进行索引，所以Material-UI能提供对它的支持非常重要。 [WRS 定期更新它使用的渲染引擎](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html)。 您可以依赖 Material-UI 组件的渲染，并不会出现重大的问题。
+Because Googlebot uses a web rendering service (WRS) to index the page content, it's critical that MUI supports it. [WRS 定期更新它使用的渲染引擎](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html)。 You can expect MUI's components to render without major issues.
 
 ### IE 11
 
-Material-UI provides **partial** supports for IE 11. Be aware of the following:
+MUI provides **partial** supports for IE 11. Be aware of the following:
 
 - Some of the components have no support. For instance, the new components, the data grid, the date picker.
 - Some of the components have degraded support. For instance, the outlined input border radius is missing, the combobox doesn't remove diacritics, the circular progress animation is wobbling.
@@ -36,7 +36,7 @@ v6 will completely remove the support of IE 11.
 
 <!-- #stable-snapshot -->
 
-Material-UI supports [Node.js](https://github.com/nodejs/node) starting with version 12.17 (or 12.0 with `--experimental-modules` enabled) for server-side rendering. Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) are supported.
+MUI supports [Node.js](https://github.com/nodejs/node) starting with version 12.17 (or 12.0 with `--experimental-modules` enabled) for server-side rendering. This aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode.
 
 ### CSS 前缀
 
@@ -48,8 +48,8 @@ Material-UI supports [Node.js](https://github.com/nodejs/node) starting with ver
 
 <!-- #react-peer-version -->
 
-Material-UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). 我们同时提供了向后兼容的 [版本](https://material-ui.com/versions/)。
+MUI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). 我们同时提供了向后兼容的 [版本](https://mui.com/versions/)。
 
 ## TypeScript
 
-Material-UI requires a minimum version of TypeScript 3.5.
+MUI requires a minimum version of TypeScript 3.5. This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old.

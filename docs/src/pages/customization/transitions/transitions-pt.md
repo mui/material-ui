@@ -1,6 +1,6 @@
 # Transições
 
-<p class="description">A chave do tema permite que você customize as durações e atenuações das várias transições usadas entre componentes do Material-UI, e oferece um utilitário para criar transições customizadas.</p>
+<p class="description">The theme key enables you to customize the durations and easings of the various transitions used across MUI components, and offers a utility for creating custom transitions.</p>
 
 ## API
 
@@ -9,7 +9,7 @@
 #### Argumentos
 
 1. `props` (_string_ | _string[]_): Defaults to `['all']`. Fornece uma propriedade CSS, ou uma lista de propriedades CSS que devem ser transicionadas.
-2. `options` (_object_ [optional]):
+2. `options` (_object_ [opcional]):
 
 - `options.duration` (_string_ | _number_ [optional]): Defaults to `theme.transitions.duration.standard`. Fornece a duração da transição.
 - `options.easing` (_string_ [opcional]): Padrão `theme.transitions.easing.easeInOut`. Fornece a atenuação para a transição.
@@ -87,4 +87,4 @@ const theme = createTheme({
 
 ## Referências
 
-Confira a página de [Transições](/components/transitions/) para explorar os componentes de transição que estão incluídos com o Material-UI.
+Check out the [Transitions](/components/transitions/) page to explore the transition components that are included with MUI.

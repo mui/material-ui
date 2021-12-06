@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
-import ButtonBase from '@mui/material/ButtonBase';
+import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 
 describe('<Button />', () => {
   const { render, renderToString } = createRenderer();
@@ -371,5 +372,43 @@ describe('<Button />', () => {
     const { container } = render(<Button disabled classes={{ disabled: disabledClassName }} />);
 
     expect(container.querySelector('button')).to.have.class(disabledClassName);
+  });
+
+  it("should disable ripple when MuiButtonBase has disableRipple in theme's defaultProps", () => {
+    const theme = createTheme({
+      components: {
+        MuiButtonBase: {
+          defaultProps: {
+            disableRipple: true,
+          },
+        },
+      },
+    });
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Button>Disabled ripple</Button>
+      </ThemeProvider>,
+    );
+    expect(container.firstChild.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
+  });
+
+  it("should disable ripple when MuiButtonBase has disableRipple in theme's defaultProps but override on the individual Buttons if provided", () => {
+    const theme = createTheme({
+      components: {
+        MuiButtonBase: {
+          defaultProps: {
+            disableRipple: true,
+          },
+        },
+      },
+    });
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Button disableRipple={false}>Enabled ripple</Button>
+        <Button>Disabled ripple 1</Button>
+        <Button>Disabled ripple 2</Button>
+      </ThemeProvider>,
+    );
+    expect(container.querySelectorAll(`.${touchRippleClasses.root}`)).to.have.length(1);
   });
 });

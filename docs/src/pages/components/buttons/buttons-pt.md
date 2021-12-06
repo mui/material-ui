@@ -1,6 +1,6 @@
 ---
 title: Componente React para Botão
-components: Button, IconButton, ButtonBase
+components: Button, IconButton, ButtonBase, LoadingButton, ButtonUnstyled
 materialDesign: https://material.io/components/buttons
 githubLabel: 'component: Button'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
@@ -12,7 +12,6 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 [Botões](https://material.io/design/components/buttons.html) comunicam ações que os usuários podem realizar. Eles são normalmente colocados em toda a interface do usuário, em lugares como:
 
-- Caixa de diálogo
 - Janelas modais
 - Formulários
 - Cartões
@@ -20,19 +19,19 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic Button
+## Basic button
 
-The `Button` comes with three variants: text (default), contained, and outlined.
+O `Botão` vem com três variantes: texto (padrão), contido e delineado.
 
 {{"demo": "pages/components/buttons/BasicButtons.js"}}
 
-### Botões de texto
+### Text button
 
 [Text buttons](https://material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located: in dialogs, in cards. Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
-### Botões contidos
+### Contained button
 
 [Botões Contidos](https://material.io/design/components/buttons.html#contained-button) tem alta ênfase, distinguem-se pelo uso de elevação e preenchimento. Eles contém as principais ações da sua aplicação.
 
@@ -42,7 +41,7 @@ Você pode remover a elevação com a propriedade `disableElevation`.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-### Botões delineados
+### Outlined button
 
 [Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app.
 
@@ -64,7 +63,7 @@ Note que a documentação [evita](/guides/api/#native-properties) mencionar as p
 
 {{"demo": "pages/components/buttons/ColorButtons.js"}}
 
-In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
+Além de usar as cores de botão padrão, você pode adicionar outras personalizadas ou desativar as que não forem necessárias. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
 
 ## Tamanhos
 
@@ -96,25 +95,31 @@ For larger or smaller icon buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/IconButtonSizes.js"}}
 
-## Botões customizados
+### Colors
+
+Use a propriedade `color` para aplicar uma paleta de cores ao componente.
+
+{{"demo": "pages/components/buttons/IconButtonColors.js"}}
+
+## Customização
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/button/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button/).
 
-## Botões de progresso
+## Loading button
 
-The loading buttons can show loading state and disable interactions.
+Os botões de carregamento podem mostrar estado de carregamento e desativar as interações.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
-Aqui está um [exemplo de integração com react-router](/guides/composition/#button).
+Alterne o interruptor de carregamento para ver a transição entre os diferentes estados.
 
-O componente ButtonBase define `pointer-events: none;` ao desabilitar os botões, o que previne que o cursor desabilitado seja exibido.
+{{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
-## Botões complexos
+## Complex button
 
 Os botões de texto, botões contidos, botões de ação flutuante e botões de ícone são construídos com base no mesmo componente: O componente `ButtonBase`. Você pode usar esse componente para construir interações diferentes.
 
@@ -122,7 +127,7 @@ Os botões de texto, botões contidos, botões de ação flutuante e botões de 
 
 ## Biblioteca de roteamento de terceiros
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. Here is a [more detailed guide](/guides/routing/#button).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. Aqui está um [guia mais detalhado](/guides/routing/#button).
 
 ## Limitações
 
@@ -158,3 +163,41 @@ Então:
 ```
 
 Isso tem a vantagem de suportar qualquer elemento, por exemplo, um elemento de link `<a>`.
+
+## Unstyled
+
+The button also comes with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+
+### Unstyled component
+
+```js
+import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+```
+
+{{"demo": "pages/components/buttons/UnstyledButtonsSimple.js"}}
+
+#### Customizing the root element
+
+By default, the `ButtonUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
+
+{{"demo": "pages/components/buttons/UnstyledButtonsSpan.js"}}
+
+Compare the attributes on the span with the button from the previous demo.
+
+#### Complex customization
+
+You are not limited to using HTML elements for the button structure. SVG elements, even with complex structure, are equally acceptable.
+
+{{"demo": "pages/components/buttons/UnstyledButtonCustom.js"}}
+
+### useButton hook
+
+```js
+import { useButton } from '@mui/base/ButtonUnstyled';
+```
+
+If you need to use Button's functionality in another component, you can use the `useButton` hook. It returns props to be placed on a custom button element and fields representing the internal state of the button.
+
+The `useButton` hook requires the ref of the element it'll be used on. Additionally, you need to provide the `component` prop (unless you intend to use the plain `button`).
+
+{{"demo": "pages/components/buttons/UseButton.js"}}

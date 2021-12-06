@@ -5,7 +5,7 @@ githubLabel: 'component: CssBaseline'
 
 # CSS Baseline 基线
 
-<p class="description">Material-UI 提供了一个 CssBaseline 组件，用于启动一个优雅、一致且简单的基线。</p>
+<p class="description">MUI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -15,13 +15,13 @@ githubLabel: 'component: CssBaseline'
 
 ```jsx
 import * as React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from '@mui/material/CssBaseline';
 
 export default function MyApp() {
   return (
     <React.Fragment>
       <CssBaseline />
-      {/*其他代码 */}
+      {/* The rest of your application */}
     </React.Fragment>
   );
 }
@@ -29,17 +29,17 @@ export default function MyApp() {
 
 ## 作用于子组件
 
-然而，您可能会逐步将一个网站迁移到 Material-UI，若选择全局重置，那可能不是一个妥善的选项。 通过使用 `ScopedCsseline` 组件，是有可能将基线只应用于子组件。
+However, you might be progressively migrating a website to MUI, using a global reset might not be an option. 通过使用 `ScopedCsseline` 组件，是有可能将基线只应用于子组件。
 
 ```jsx
 import * as React from 'react';
-import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 import MyApp from './MyApp';
 
 export default function MyApp() {
   return (
     <ScopedCssBaseline>
-      {/* 其他代码 */}
+      {/* The rest of your application */}
       <MyApp />
     </ScopedCssBaseline>
   );
@@ -55,7 +55,8 @@ export default function MyApp() {
 我们更新了 `<html>` 和 `<body>` 元素以提供更好的页面范围的默认值。 具体来说：
 
 - 所有浏览器中的边距将会被删除。
-- Material Design 的背景颜色会默认地被应用。 它在标准设备上使用的是 [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) ，而打印设备上使用的是白色背景。
+- 默认使用Material Design的背景颜色。 它在标准设备上使用的是 [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) ，而打印设备上使用的是白色背景。
+- If `enableColorScheme` is provided to `CssBaseline`, native components color will be set by applying [`color-scheme`](https://web.dev/color-scheme/) on `<html>`. The value used is provided by the theme property `theme.palette.mode`.
 
 ### 布局
 
@@ -63,11 +64,12 @@ export default function MyApp() {
 
 ### 滚动条
 
+> This API is deprecated, consider using [color-scheme](#color-scheme) instead.
+
 The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
 
 ```jsx
-import darkScrollbar from '@material-ui/core/darkScrollbar';
-
+import darkScrollbar from '@mui/material/darkScrollbar';
 const theme = createTheme({
   components: {
     MuiCssBaseline: {
@@ -79,7 +81,21 @@ const theme = createTheme({
 });
 ```
 
-This website uses `darkScrollbar` when dark mode is enabled. Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
+Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
+
+### Color scheme
+
+This API is introduced in @mui/material (v5.1.0) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` CSS property. To enable it, you can set `enableColorScheme=true` as follows:
+
+```jsx
+<CssBaseline enableColorScheme />
+
+// or
+
+<ScopedCssBaseline enableColorScheme >
+  {/* The rest of your application using color-scheme*/}
+</ScopedCssBaseline>
+```
 
 ### 文字铸排
 

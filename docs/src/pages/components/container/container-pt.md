@@ -10,7 +10,7 @@ githubLabel: 'component: Container'
 
 Enquanto os containers podem ser aninhados, a maioria dos leiautes não necessitam de um container aninhado.
 
-[A paleta](/system/palette/) com funções de estilo.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Fluído
 

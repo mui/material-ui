@@ -2,64 +2,64 @@
 
 <p class="description">Sim, v4 foi lançada!</p>
 
-Procurando pelos documentos da v3? [Encontre-os aqui](https://material-ui.com/versions/).
+Procurando pelos documentos da v3? You can [find the latest version here](https://mui.com/versions/).
 
 > Este documento está em constante evolução. Você atualizou seu site e encontrou algo que não é abordado aqui? [Adicione suas alterações no GitHub](https://github.com/mui-org/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md).
 
 ## Introdução
 
-Esta é uma referência para atualizar seu site de Material-UI v3 para v4. Embora haja muita coisa coberta por aqui, você provavelmente não precisará fazer tudo no seu site. Faremos o nosso melhor para manter as coisas fáceis de seguir e tão sequenciais quanto possível, para que você possa rapidamente agitar na v4!
+This is a reference for upgrading your site from MUI v3 to v4. Embora haja muita coisa coberta por aqui, você provavelmente não precisará fazer tudo no seu site. Faremos o nosso melhor para manter as coisas fáceis de seguir e tão sequenciais quanto possível, para que você possa rapidamente agitar na v4!
 
 ## Por que você deve migrar
 
-Esta página de documentação cobre o *como* migrar da v3 para a v4. O *porque* é abordado na [postagem no blog do Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+Esta página de documentação cobre o **como** migrar da v3 para a v4. O **porque** é abordado na [postagem no blog do Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
 ## Atualizando suas dependências
 
 A primeira coisa que você precisa fazer é atualizar suas dependências.
 
-### Atualize a versão do Material-UI
+### Update MUI version
 
-Você precisa atualizar seu `package.json` para usar a versão mais recente do Material-UI.
+You need to update your `package.json` to use the latest version of MUI.
 
 ```json
 "dependencies": {
-  "@material-ui/core": "^4.0.0"
+  "@mui/material": "^4.0.0"
 }
 ```
 
 Ou execute
 
 ```sh
-npm install @material-ui/core
+npm install @mui/material
 
-ou
+or
 
-yarn add @material-ui/core
+yarn add @mui/material
 ```
 
 ### Atualize a versão do React
 
 A versão miníma necessária do React foi incrementada de `react@^16.3.0` para `react@^16.8.0`. Isso nos permite a utilizar [Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html) (não usamos mais a API class).
 
-### Atualize a versão do Material-UI Styles
+### Update MUI Styles version
 
-Se você estava usando anteriormente `@material-ui/styles` com a versão 3, precisa atualizar o `package.json` para usar a última versão de Material-UI Styles.
+If you were previously using `@mui/styles` with v3 you need to update your `package.json` to use the latest version of MUI Styles.
 
 ```json
 "dependencies": {
-  "@material-ui/styles": "^4.0.0"
+  "@mui/styles": "^4.0.0"
 }
 ```
 
 Ou execute
 
 ```sh
-npm install @material-ui/styles
+npm install @mui/styles
 
-ou
+or
 
-yarn add @material-ui/styles
+yarn add @mui/styles
 ```
 
 ## Tratamento de alterações recentes
@@ -70,7 +70,7 @@ yarn add @material-ui/styles
 
 ### Estilos
 
-- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com a v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
+- ⚠️ MUI depends on JSS v10. JSS v10 não é compatível com a v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
 - Remova a primeira opção de argumento do `withTheme()`. (O primeiro argumento é um espaço reservado para uma opção futura potencial que nunca existiu.)
 
   Corresponde à [emotion API](https://emotion.sh/docs/introduction) e [styled-components API](https://www.styled-components.com).
@@ -83,8 +83,8 @@ yarn add @material-ui/styles
 - Renomeie `convertHexToRGB` para `hexToRgb`.
 
   ```diff
-  -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
-  +import { hexToRgb } from '@material-ui/core/styles';
+  -import { convertHexToRgb } from '@mui/material/styles/colorManipulator';
+  +import { hexToRgb } from '@mui/material/styles';
   ```
 
 - Escopo da [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Você deve aplicar as seguintes alterações na sua base de código. Ele ajuda a isolar a lógica da animação:
@@ -138,7 +138,7 @@ yarn add @material-ui/styles
 
   Dica: você pode fornecer mais de 1 argumento:`theme.spacing (1, 2) // = '8px 16px'` *.
 
-  Você pode usar o \[auxiliar de migração\] (https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) em seu projeto para tornar isso mais suave.
+  You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
 
 ### Leiaute
 
@@ -153,13 +153,13 @@ yarn add @material-ui/styles
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
 
-  Indo além, você pode usar o tema para implementar [uma função de transformação de espaçamento de grade customizada](https://material-ui.com/system/spacing/#transformation).
+  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://mui.com/system/spacing/#transformation).
 
-- Você pode remover com segurança a próxima variante da criação de temas:
+- [Container] Moved from `@mui/lab` to `@mui/material`.
 
   ```diff
-  -import Container from '@material-ui/lab/Container';
-  +import Container from '@material-ui/core/Container';
+  -import Container from '@mui/lab/Container';
+  +import Container from '@mui/material/Container';
   ```
 
 ### TypeScript
@@ -196,16 +196,16 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
   ```
 
   ```diff
-  -import Button from '@material-ui/core/Button';
+  -import Button from '@mui/material/Button';
   -<Button variant="fab" />
-  +import Fab from '@material-ui/core/Fab';
+  +import Fab from '@mui/material/Fab';
   +<Fab />
   ```
 
   ```diff
-  -import Button from '@material-ui/core/Button';
+  -import Button from '@mui/material/Button';
   -<Button variant="extendedFab" />
-  +import Fab from '@material-ui/core/Fab';
+  +import Fab from '@mui/material/Fab';
   +<Fab variant="extended" />
   ```
 
@@ -290,11 +290,11 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 ### Slider
 
-- [Slider] Mova de `@material-ui/lab` para `@material-ui/core`.
+- [Slider] Move from `@mui/lab` to `@mui/material`.
 
   ```diff
-  -import Slider from '@material-ui/lab/Slider'
-  +import Slider from '@material-ui/core/Slider'
+  -import Slider from '@mui/lab/Slider'
+  +import Slider from '@mui/material/Slider'
   ```
 
 ### Interruptor
@@ -356,7 +356,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 - [TablePagination] O componente já não tenta corrigir as combinações de propriedades inválidas (`page`, `count`, `rowsPerPage`). Em vez disso, emite um aviso.
 
-### Campo de texto
+### TextField
 
 - [InputLabel] Você deve conseguir sobrescrever todos os estilos do componente FormLabel usando a API CSS do componente InputLabel. A propriedade `FormLabelClasses` foi removida.
 
@@ -379,7 +379,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 - [InputBase] Remova a classe `inputType` do `InputBase`.
 
-### Dica
+### Tooltip
 
 - [Tooltip] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 - [Tooltip] Aparece somente após o foco ser "focus-visible" em vez de qualquer foco.
@@ -414,7 +414,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 ### UMD
 
-- Essa alteração facilita o uso de Material-UI com uma CDN:
+- This change eases the use of MUI with a CDN:
 
   ```diff
   const {

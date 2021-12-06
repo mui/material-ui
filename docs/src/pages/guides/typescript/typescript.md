@@ -4,7 +4,9 @@
 
 ## Minimum configuration
 
-MUI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) example.
+<!-- #default-branch-switch -->
+
+MUI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example.
 
 For types to work, you should have at the minimum the following options enabled
 in your `tsconfig.json`:
@@ -39,7 +41,7 @@ type in those cases for [the same reasons `event.target` is not generic in React
 
 The demos include typed variants that use type casting. It is an acceptable tradeoff
 because the types are all located in a single file and are very basic. You have to decide for yourself
-if the same tradeoff is acceptable for you. The library types are be strict
+if the same tradeoff is acceptable for you. The library types are strict
 by default and loose via opt-in.
 
 ## Customization of `Theme`
