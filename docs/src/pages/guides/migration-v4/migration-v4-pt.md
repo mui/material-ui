@@ -24,6 +24,7 @@ To get the benefits of bug fixes and a lot of improvements such as the new styli
 - [Handling Breaking Changes](#handling-breaking-changes)
 - [Migrate theme's `styleOverrides` to emotion](#migrate-themes-styleoverrides-to-emotion)
 - [Migrate from JSS](#migrate-from-jss)
+- [CSS specificity](#css-specificity)
 - [Resolução de problemas](#troubleshooting)
 
 > 💡 Aim to create small commits on any changes to help the migration go more smoothly. If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: `[Migration] Summary of your issue`.
@@ -2535,6 +2536,39 @@ npm uninstall @mui/styles
 
 // or with `yarn`
 yarn remove @mui/styles
+```
+
+## CSS Specificity
+
+If you want to apply styles to components by importing a css file, you need to bump up specificity in order to always select the correct component. Consider the following example.
+
+```js
+import './style.css';
+import Chip from '@mui/material/Chip';
+
+const ChipWithGreenIcon = () => (
+  <Chip
+    classes={{ deleteIcon: 'green' }}
+    label="delete icon is green"
+    onDelete={() => {}}
+  />
+);
+```
+
+In this example, in order to correctly apply a particular style to the delete icon of `Chip`, you need to bump the specificity as shown below:
+
+```css
+.MuiChip-root .green {
+  color: green;
+}
+```
+
+The following will not correctly apply the style to the delete icon:
+
+```css
+.green {
+  color: green;
+}
 ```
 
 ## Resolução de problemas
