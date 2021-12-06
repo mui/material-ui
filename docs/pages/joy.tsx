@@ -113,7 +113,9 @@ const EmailSubscribe = () => {
   );
 };
 
-const ButtonLink = styled(Button)<Omit<JSX.IntrinsicElements['a'], 'ref'>>({});
+const ButtonLink = styled(Button)<Omit<JSX.IntrinsicElements['a'], 'ref'>>({
+  textDecoration: 'none',
+});
 
 export default function Joy() {
   const trigger = useScrollTrigger({
@@ -330,9 +332,16 @@ export default function Joy() {
               customization easier. And now, we&apos;ll be exploring them further in a brand new,
               open-source, design system.
             </Typography>
-            <Button variant="outlined" size="large">
+            <ButtonLink
+              as="a"
+              href="https://github.com/mui-org/material-ui/discussions/29024"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outlined"
+              size="large"
+            >
               Check the available RFCs
-            </Button>
+            </ButtonLink>
           </Grid>
         </Grid>
       </Container>
