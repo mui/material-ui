@@ -645,6 +645,7 @@ jobs:
             npm pack
             mv mui-material-0.0.0-canary.${CIRCLE_SHA1}.tgz ../../../mui-material.tgz
       - when:
+          condition: true
           # don't run on PRs
           # condition:
           #   not:
@@ -674,6 +675,7 @@ jobs:
           path: size-snapshot.json
           destination: size-snapshot.json
       - when:
+          condition: true
           # don't run on PRs
           # condition:
           #   not:
