@@ -10,7 +10,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 
 - ✨ We have introduced a new unstyled component: the TablePagination (#29759) @mnajdova
 
-  <a href="https://mui.com/components/tables/#unstyled-table"><img width="825" alt="unstyled table" src="https://prnt.sc/2201sak"></a>
+  <a href="https://mui.com/components/tables/#unstyled-table"><img width="800" alt="unstyled table" src="https://user-images.githubusercontent.com/4512430/144862194-584356ef-7d9d-462c-a631-186a7e716193.png"></a>
 
   You can follow our progress at https://github.com/mui-org/material-ui/issues/27170.
 
