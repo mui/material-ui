@@ -97,7 +97,7 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 </ScopedCssBaseline>
 ```
 
-### Tipografia
+### Typography
 
 - Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). Você pode aprender mais sobre as implicações da mudança do padrão de tamanho da fonte do `<html>` na página de [documentação do tema](/customization/typography/#typography-html-font-size).
 - Define o estilo `theme.typography.body1` no elemento `<body>`.
