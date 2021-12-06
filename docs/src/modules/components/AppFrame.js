@@ -35,8 +35,17 @@ const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
 export function NextNProgressBar() {
   const router = useRouter();
   React.useEffect(() => {
-    const nProgressStart = () => NProgress.start();
-    const nProgressDone = () => NProgress.done();
+    const nProgressStart = (url, { shallow }) => {
+      if (!shallow) {
+        NProgress.start();
+      }
+    };
+
+    const nProgressDone = (url, { shallow }) => {
+      if (!shallow) {
+        NProgress.done();
+      }
+    };
 
     router.events.on('routeChangeStart', nProgressStart);
     router.events.on('routeChangeComplete', nProgressDone);
