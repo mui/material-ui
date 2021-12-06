@@ -6,7 +6,7 @@
 
 _Dec 6, 2021_
 
-A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 25 contributors who made this release possible. Here are some highlights ✨:
 
 - ✨ We have introduced a new unstyled component in `@mui/base`: `TablePagination` (#29759) @mnajdova
 
@@ -25,6 +25,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - &#8203;<!-- 31 -->[AvatarGroup] Allow specifying total number of avatars (#29898) @eduardomcv
 - &#8203;<!-- 29 -->[Button] Fix regression from context API (#29982) @siriwatknp
 - &#8203;<!-- 13 -->[Grid] Fix generated classes for `spacing` prop when the value is object (#29880) @jayeclark
+- &#8203;<!-- 10 -->[Select] Should not crash when an empty array is passed with `multiple` enabled (#29957) @Domino987
 
 ### `@mui/system@5.2.3`
 
@@ -60,6 +61,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - &#8203;<!-- 26 -->[docs] Remove the 'WIP' icon from the 'Group & Pivot' page title (#30077) @flaviendelangle
 - &#8203;<!-- 25 -->[docs] Add warning that `@mui/styled-engine-sc` does not work in SSR (#30026) @mnajdova
 - &#8203;<!-- 24 -->[docs] Add section for CSS specificity in the migration guide (#30008) @hbjORbj
+- &#8203;<!-- 28 -->[docs] Clarify comment in migration doc (#30076) @hbjORbj
 - &#8203;<!-- 23 -->[docs] Sync translations with Crowdin (#30041) @l10nbot
 - &#8203;<!-- 22 -->[docs] Explain how Paper changes shade in dark mode (#30003) @michaldudak
 - &#8203;<!-- 21 -->[docs] Update nextjs-typescript-example (#29974) @huydhoang
@@ -77,9 +79,10 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 
 ### Core
 
+- &#8203;<!-- 31 -->[core] Batch small changes (#30042) @oliviertassinari
 - &#8203;<!-- 28 -->[core] Transition to a new StackOverflow tag (#29967) @oliviertassinari
 
-All contributors of this release in alphabetical order: @chao813, @daniel-sachs, @danilo-leal, @eduardomcv, @flaviendelangle, @fourjr, @genzyy, @hbjORbj, @huydhoang, @jayeclark, @jonathanrtuck, @kkorach, @l10nbot, @mbrookes, @MichaelDeBoey, @michaldudak, @mnajdova, @oliviertassinari, @ronwarner, @Semigradsky, @siriwatknp, @tasugi, @ThewBear, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @chao813, @daniel-sachs, @danilo-leal, @Domino987, @eduardomcv, @flaviendelangle, @fourjr, @genzyy, @hbjORbj, @huydhoang, @jayeclark, @jonathanrtuck, @kkorach, @l10nbot, @mbrookes, @MichaelDeBoey, @michaldudak, @mnajdova, @oliviertassinari, @ronwarner, @Semigradsky, @siriwatknp, @tasugi, @ThewBear, @ZeeshanTamboli
 
 ## 5.2.2
 
