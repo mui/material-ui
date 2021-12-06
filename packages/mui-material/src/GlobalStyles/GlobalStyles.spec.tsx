@@ -1,3 +1,4 @@
+import * as React from 'react';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
 function TestThemeType() {
