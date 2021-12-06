@@ -24,6 +24,7 @@
 - [处理重大变更](#handling-breaking-changes)
 - [将theme的 `styleOverrides`迁移至emotion](#migrate-themes-styleoverrides-to-emotion)
 - [从 JSS 迁移](#migrate-from-jss)
+- [CSS 特性](#css-specificity)
 - [故障排除（Troubleshooting）](#troubleshooting)
 
 > 💡 目标是创建最小的更改，使迁移更顺利。 如果您遇到任何问题，请查看 [疑难解答](#troubleshooting) 章节。 对于其它没有在此文档描述的错误，请以此格式`[Migration] Summary of your issue`[创建问题](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml)。
@@ -1768,9 +1769,9 @@ declare module '@mui/styles' {
   +<Select onChange={(event: Event, value: unknown) => {}} />
   ```
 
-  This was necessary to prevent overriding of `event.target` of the events that caused the change.
+  这对于防止覆盖导致更改的事件的 `event.target` 是必要的。
 
-### Skeleton
+### Skeleton 骨架屏
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
@@ -1781,7 +1782,7 @@ declare module '@mui/styles' {
   >   +import Skeleton from '@mui/material/Skeleton';
   > ```
 
-- Rename `circle` to `circular` and `rect` to `rectangular` for consistency:
+- 为保持一致性，我们将 `circle` 重命名为 `circular`，`rect` 重命名为 `rectangular`。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1796,16 +1797,16 @@ declare module '@mui/styles' {
 
 ### Slider 滑块控件
 
-- The `event` in `onChange` is now a synthetic, native `Event`, not a React event.
+- `onchange` 中的 `event` 现在是一个合成事件，原生 `Event` 不是一个React事件。
 
   ```diff
   -<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   +<Slider onChange={(event: Event, value: unknown) => {}} />
   ```
 
-  This was necessary to prevent overriding of `event.target` of the events that caused the change.
+  这对于防止覆盖导致更改的事件的 `event.target` 是必要的。
 
-- The `ValueLabelComponent` and `ThumbComponent` prop is now part of the `components` prop.
+- `ValueLabelComponent` 和 `ThumbComponent` 属性现在是 `components` 属性的一部分。
 
   ```diff
    <Slider
@@ -1818,13 +1819,13 @@ declare module '@mui/styles' {
    />
   ```
 
-- Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](/components/slider/). <a href="/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
+- 重构CSS 以匹配最新的 [Material Design 指引](https://material.io/components/sliders) 并使自定义风格更加直观。 [查看文档](/components/slider/)。 <a href="/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
 
-  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/components/slider/#sizes).
+  您可以降低滑块的密度，使用 [`size="small"` 属性](/components/slider/#sizes) 使效果更接近v4。
 
-### Snackbar（消息条）
+### Snackbar 消息条
 
-- The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. 您可以用以下方法恢复到以前的行为：
+- 现在在大屏幕上的消息条通知会在左下角显示。 这更符合 Gmail、Google Keep、material.io 等应用的行为。 您可以用以下方法恢复到以前的行为：
 
   ```diff
   -<Snackbar />
@@ -1854,7 +1855,7 @@ declare module '@mui/styles' {
   >    >
   > ```
 
-### SpeedDial
+### SpeedDial 快速拨号
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
@@ -1871,7 +1872,7 @@ declare module '@mui/styles' {
 
 ### Stepper 步骤条组件
 
-- The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
+- 根组件（Paper）已经被 div 所取代。 Stepper 不再有立体效果，也不再继承 Paper 的属性。 这个改动是为了鼓励开发者进行组合使用。
 
   ```diff
   +<Paper square elevation={2}>
@@ -1884,7 +1885,7 @@ declare module '@mui/styles' {
   +<Paper>
   ```
 
-- Remove the built-in 24px padding.
+- 移除内置的24px填充。
 
   ```diff
   -<Stepper>
@@ -1895,9 +1896,9 @@ declare module '@mui/styles' {
    </Stepper>
   ```
 
-### SvgIcon（Svg 图标）
+### SvgIcon Svg图标
 
-- 为了一致性，`fontSize` 的默认值已从 `default` 更改为 `medium`。 In the unlikey event that you were using the value `default`, the prop can be removed:
+- 为了一致性，`fontSize` 的默认值已从 `default` 更改为 `medium`。 如果您使用的值为 `default`, 那么这个属性可以被删除：
 
   ```diff
   -<SvgIcon fontSize="default">
@@ -1908,7 +1909,7 @@ declare module '@mui/styles' {
 
 ### Switch 开关
 
-- Deprecate the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
+- 弃用了 `onChange` 的第二个参数。 您可以通过访问 `event.target.check` 退出选定的状态。
 
   ```diff
   function MySwitch() {
@@ -1921,7 +1922,7 @@ declare module '@mui/styles' {
   }
   ```
 
-- The switch color prop is now "primary" by default. 若要继续使用“secondary”颜色，您必须明确指定 `secondary`。 This brings the switch closer to the Material Design guidelines.
+- 现在开关颜色属性的默认值为"primary"。 若要继续使用“secondary”颜色，您必须明确指定 `secondary`。 这使开关更接近于Material Design准则。
 
   ```diff
   -<Switch />
@@ -1941,7 +1942,7 @@ declare module '@mui/styles' {
 
 ### Table 表格
 
-- Rename the `default` value of the `padding` prop to `normal`.
+- 将 `padding` 属性的 `default` 重命名为 `normal`。
 
   ```diff
   -<Table padding="default" />
@@ -1950,9 +1951,9 @@ declare module '@mui/styles' {
   +<TableCell padding="normal" />
   ```
 
-### TablePagination
+### TablePagination 表格分页
 
-- The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
+- 如果你需要自定义表格分页的操作标签（actions labels），那么就必须使用 `getItemAriaLabel` 属性。 这是为了与 `Pagination` 组件保持一致。
 
   ```diff
    <TablePagination
@@ -1961,7 +1962,7 @@ declare module '@mui/styles' {
   +  getItemAriaLabel={…}
   ```
 
-- Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
+- 为保持 API 一致性，我们将 `onChangeRowsPerPage` 重命名为 `onRowsPerPageChange`，`onChangePage` 重命名为 `onPageChange`。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -1973,7 +1974,7 @@ declare module '@mui/styles' {
   >   +  onPageChange={()=>{}}
   > ```
 
-- Separate classes for different table pagination labels. This allows simpler customizations.
+- 将不同表格分页标签的类分开。 这使得自定义更简单。
 
   ```diff
    <TablePagination
@@ -1982,7 +1983,7 @@ declare module '@mui/styles' {
    />
   ```
 
-- Move the custom class on `input` to `select`. The `input` key is being applied on another element.
+- 将 `input` 上的自定义类移动到 `select`。 `input` 键正在应用于另一个元素。
 
   ```diff
    <TablePagination
@@ -1993,7 +1994,7 @@ declare module '@mui/styles' {
 
 ### Tabs 选项卡
 
-- Change the default `indicatorColor` and `textColor` prop values to "primary". This is done to match the most common use cases with Material Design.
+- `indicatorColor` 和 `textColor` 属性的默认值更改为"primary"。 这样做是为了匹配 Material Design 的最常用法。
 
   ```diff
   -<Tabs />
@@ -2007,10 +2008,10 @@ declare module '@mui/styles' {
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
 
-- The API that controls the scroll buttons has been split it in two props.
+- 控制滚动按钮的 API 现已将其分成两个属性。
 
-  - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
-  - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hide the scroll buttons on mobile.
+  - `scrollButtons` 属性根据可用空间来控制滚动按钮何时显示。
+  - `allowScrollButtonsMobile` 属性将会移除系统针对隐藏移动端的滚动按钮的 CSS 媒体查询。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -2023,11 +2024,11 @@ declare module '@mui/styles' {
   >   +<Tabs scrollButtons={false} />
   > ```
 
-### Tab
+### Tab 标签
 
-- Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://material.io/components/tabs#specs)
-- Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://material.io/components/tabs#specs)
-- 包裹子元素的`span`已经被删除。 `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26926).
+- 根据 [material-design 规格](https://material.io/components/tabs#specs)，标签的 `minWidth` 从 `72px` 更改为 `90px` (没有媒体查询)
+- 根据 [material-design 规格](https://material.io/components/tabs#specs)，标签的 `maxWidth` 从 `264px` 改为 `360px`。
+- 包裹子元素的`span`已经被删除。 `wrapper`类名称同样被删除。 更多关于 [此更改](https://github.com/mui-org/material-ui/pull/26926) 的详细信息。
 
   ```diff
    <button class="MuiTab-root">
@@ -2038,7 +2039,7 @@ declare module '@mui/styles' {
    </button>
   ```
 
-### TextField
+### TextField 文本字段
 
 - 将variant的默认值从 `standard` 更改为 `outlined`。 Standard 已从Material设计准则中删除。
 
@@ -2051,7 +2052,7 @@ declare module '@mui/styles' {
   >   +<TextField value="Outlined" />
   > ```
 
-- Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
+- 为保持与 HTML 属性的一致性，我们将 `rowsMax` 属性重命名为 `maxRows`。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -2060,7 +2061,7 @@ declare module '@mui/styles' {
   >   +<TextField maxRows={6}>
   > ```
 
-- Better isolate the fixed textarea height behavior to the dynamic one. You need to use the `minRows` prop in the following case:
+- 最佳实践是将固定文本区域高度行为与动态文本区域高度行为分开。 要达到此效果，你需要像下面的示例一样使用 `minRows` 属性：
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -2069,7 +2070,7 @@ declare module '@mui/styles' {
   >   +<TextField minRows={2} maxRows={5} />
   > ```
 
-- Change ref forwarding expectations on custom `inputComponent`. The component should forward the `ref` prop instead of the `inputRef` prop.
+- 改变自定义 `inputComponent` 组件的的 ref 转发期望值。 该组件应该转发 `ref` 属性，而不是 `inputRef` 属性。
 
   ```diff
   -function NumberFormatCustom(props) {
@@ -2087,14 +2088,14 @@ declare module '@mui/styles' {
   +     getInputRef={ref}
   ```
 
-- Rename `marginDense` and `inputMarginDense` classes to `sizeSmall` and `inputSizeSmall` to match the prop.
+- 为了匹配属性，我们将 `marginDense` 和 `inputMarginDense` 类名重命名为 `sizeSmall` 和 `inputSizeSmall`。
 
   ```diff
   -<Input margin="dense" />
   +<Input size="small" />
   ```
 
-- Set the InputAdornment `position` prop to `start` or `end`. Use `start` if used as the value of the `startAdornment` prop. Use `end` if used as the value of the `endAdornment` prop.
+- 将 InputAdornment 的 `position` 属性设置为 `start` 或 `end`。 如果作为 `startAdornment` 属性的值则使用 `start`。 如果作为 `endAdornment` 属性的值则使用 `end`。
 
   ```diff
   -<TextField startAdornment={<InputAdornment>kg</InputAdornment>} />
@@ -2103,9 +2104,9 @@ declare module '@mui/styles' {
   +<TextField endAdornment={<InputAdornment position="end">kg</InputAdornment>} />
   ```
 
-### TextareaAutosize
+### TextareaAutosize 自适应文本框
 
-- Remove the `rows` prop, use the `minRows` prop instead. This change aims to clarify the behavior of the prop.
+- 我们移除了 `rows` 属性，你需要使用 `minRows` 属性来代替它。 这一变化旨在明确该属性的行为。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -2114,7 +2115,7 @@ declare module '@mui/styles' {
   >   +<TextareaAutosize minRows={2} />
   > ```
 
-- Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
+- 为保持与 HTML 属性的一致性，我们将 `rowsMax` 属性重命名为 `maxRows`。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -2123,7 +2124,7 @@ declare module '@mui/styles' {
   >   +<TextareAutosize maxRows={6}>
   > ```
 
-- Rename `rowsMin` prop with `minRows` for consistency with HTML attributes.
+- 为保持与 HTML 属性的一致性，我们将 `rowsMin` 属性重命名为 `minRows`。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -2132,7 +2133,7 @@ declare module '@mui/styles' {
   >   +<TextareAutosize minRows={1}>
   > ```
 
-### ToggleButton
+### ToggleButton 切换按钮
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
@@ -2145,7 +2146,7 @@ declare module '@mui/styles' {
   >   +import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
   > ```
 
-- 包裹子元素的`span`已经被删除。 `label`类名称同样被删除。 More details about [this change](https://github.com/mui-org/material-ui/pull/27111).
+- 包裹子元素的`span`已经被删除。 `label`类名称同样被删除。 更多关于 [此更改](https://github.com/mui-org/material-ui/pull/27111) 的详细信息。
 
   ```diff
    <button class="MuiToggleButton-root">
@@ -2155,24 +2156,24 @@ declare module '@mui/styles' {
    </button>
   ```
 
-### Tooltip
+### Tooltip 工具提示
 
-- Tooltips are now interactive by default.
+- 现在工具提示组件默认是可交互的：
 
-  The previous default behavior failed [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus). To reflect the new default value, the prop was renamed to `disableInteractive`. If you want to restore the old behavior (thus not reaching level AA), you can apply the following diff:
+  该组件之前的默认行为不遵循 [success criterion 1.4.3 ("hoverable") in WCAG 2.1](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)。 为了反映新的默认值，该属性被重命名为 `disableInteractive`。 如果你想回滚到旧的行为（但是这无法达到 AA 级），你可以应用下面的差异：
 
   ```diff
   -<Tooltip>
   +<Tooltip disableInteractive>
 
-  # Interactive tooltips no longer need the `interactive` prop.
+  # 交互式的工具提示组件不再需要 `interactive` 属性。
   -<Tooltip interactive>
   +<Tooltip>
   ```
 
-### Typography
+### Typography 文子铸排
 
-- Remove the `srOnly` variant. You can use the `visuallyHidden` utility in conjunction with the `sx` prop instead.
+- 删除 variant 的 `srOnly`。 您可以将 `visuallyHidden` 工具集与 `sx` 属性结合使用。
 
   ```diff
   +import { visuallyHidden } from '@mui/utils';
@@ -2181,7 +2182,7 @@ declare module '@mui/styles' {
   +<span style={visuallyHidden}>Create a user</span>
   ```
 
-- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. 例如
+- 下面的 `classes` 和样式替代键已被删除：“colorInherit”、“colorPrimary”、“colorSecondary”、“colorTextPrimary”、“colorTextSecondary”、“colororError”、“displayInline”和“displayBlock”。 现在这些属性被视为系统的一部分，而不是在 `Typography` 组件本身。 如果您仍然想要为他们添加样式覆盖，您可以使用 `theme.components.MuiTypography.variants` 选项。 例如
 
   ```diff
   const theme = createTheme({
@@ -2203,14 +2204,14 @@ declare module '@mui/styles' {
   });
   ```
 
-### 主题
+### Theme 主题
 
-- The default background color is now `#fff` in light mode and `#121212` in dark mode. This matches the Material Design guidelines.
-- Breakpoints are now treated as values instead of [ranges](https://v4.mui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above. `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive). When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up.
+- 默认背景颜色现在是浅色模式下的 `#fff` ，以及在深色模式下的 `#1212`。 这符合Material Design准则。
+- 断点现在被当作值而不是 [范围](https://v4.mui.com/customization/breakpoints/#default-breakpoints)。 `down(key)` 的行为被更改，以定义一个在相应断点 (独占) 定义的值下面的媒体查询， 而不是上面的断点。 `between(start, end)` 也被更新，以定义介质查询开始(包含) 到结束(排除) 之间的值。 使用 `down()` 断点工具集时，您需要将断点更新为上一步。 当使用  `between(start, end)` 时，结束断点也应向上一步更新。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
 
-  Here are some examples of the changes required:
+  以下是所需更改的一些例子：
 
   ```diff
   -theme.breakpoints.down('sm') // '@media (max-width:959.95px)' - [0, sm + 1) => [0, md)
@@ -2227,14 +2228,14 @@ declare module '@mui/styles' {
   +theme.breakpoints.up('sm') // '@media (min-width:600px)'
   ```
 
-  The same should be done when using the `Hidden` component:
+  使用 `Hidden` 组件时也应该这样做：
 
   ```diff
   -<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
   +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
   ```
 
-- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
+- 默认断点被更改以更好地匹配常用情况。 这也更加符合Material Design准则。 [阅读更多关于更改](https://github.com/mui-org/material-ui/issues/21902)
 
   ```diff
   {
@@ -2249,7 +2250,7 @@ declare module '@mui/styles' {
   }
   ```
 
-  If you prefer the old breakpoint values, use the snippet below.
+  如果你喜欢旧的断点值，请使用下面的代码段。
 
   ```js
   import { createTheme } from '@mui/material/styles';
@@ -2267,7 +2268,7 @@ declare module '@mui/styles' {
   });
   ```
 
-* The `theme.breakpoints.width` utility was removed because it's redundant. Use `theme.breakpoints.values` to get the same values.
+* `theme.breakpoints.width` 工具集因为多余而被删除。 使用 `theme.breakpoints.values` 获取相同的值。
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -2276,14 +2277,14 @@ declare module '@mui/styles' {
   >   +theme.breakpoints.values.md
   > ```
 
-* The signature of `theme.palette.augmentColor` helper has changed:
+* `theme.platette.aupmentColor` 辅助方法的签名已经改变：
 
   ```diff
   -theme.palette.augmentColor(red);
   +theme.palette.augmentColor({ color: red, name: 'brand' });
   ```
 
-* The `theme.typography.round` helper was removed because it was no longer used. If you need it, use the function below:
+* `theme.typography.round` 辅助方法因为不再使用而被移除。 如果你需要它，请使用下面的函数：
 
   > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。 
   > 
@@ -2295,7 +2296,7 @@ declare module '@mui/styles' {
 
 ### `@mui/types`
 
-- Rename the exported `Omit` type in `@mui/types`. The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
+- 重命名导出的 `Omit` 类型为 `@mui/types`。 该模块现在叫做 `DistributiveOmit`。 更改会消除内置的 `Omit` 辅助方法在 TypeScript v3.5中引入的混乱。 内置的 `Omit`虽然类似，但是non-distributive。 这就导致应用于联合类型时的差异。 [查看此StackOverflow 答案以了解更多详情](https://stackoverflow.com/a/57103940/1009797)。
 
   ```diff
   -import { Omit } from '@mui/types';
@@ -2304,9 +2305,9 @@ declare module '@mui/styles' {
 
 ## 将theme的 `styleOverrides`迁移至emotion
 
-Although your style overrides defined in the theme may partially work, there is an important difference on how the nested elements are styled. The `$` syntax used with JSS will not work with Emotion. You need to replace those selectors with a valid class selector.
+虽然您在主题中定义的样式覆盖可能会部分工作，但嵌套元素的样式渲染有重要的不同。 JSS 使用的 `$` 语法将无法与Emotion兼容。 您需要用一个有效的类选择器替换那些选择器。
 
-### Replace state class names
+### 替换状态类名称
 
 ```diff
 const theme = createTheme({
@@ -2325,7 +2326,7 @@ const theme = createTheme({
 });
 ```
 
-### Replace nested classes selectors with global class names
+### 用全局类名称替换嵌套类选择器
 
 ```diff
 const theme = createTheme({
@@ -2344,7 +2345,7 @@ const theme = createTheme({
 });
 ```
 
-> Note: For each component we export a `[component]Classes` constant that contains all nested classes for that component. You can rely on this instead of hardcoding the classes.
+> 注意：对于每个组件我们导出一个包含该组件所有嵌套类的 `[component]类` 常数。 您可以依靠这个而不是硬编码类。
 
 ```diff
 +import { outlinedInputClasses } from '@mui/material/OutlinedInput';
@@ -2365,23 +2366,23 @@ const theme = createTheme({
 });
 ```
 
-Take a look at the whole [list of global state classnames](/customization/how-to-customize/#state-classes) available.
+查看可用的[全局状态类名称](/customization/how-to-customize/#state-classes)列表。
 
 ## 从 JSS 迁移
 
-This is the last step in the migration process to remove `@mui/styles` package from your codebase. We can use one of these two options, by order of preference:
+这是迁移过程中的最后一步，从您的codebase中删除 `@mui/styles` 包。 我们可以按照优先顺序使用这两个选项之一：
 
-### 1. Use `styled` or `sx` API
+### 1. 使用 `styled` 或 `sx` API
 
 #### Codemod
 
-We provide [a codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
+我们提供一个 [codemod](https://github.com/mui-org/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-styled) 来帮助将 JSS 样式迁移到 `styled` API。 但是这个方法 **会增加 CSS 的特异性**。
 
 ```sh
 npx @mui/codemod v5.0.0/jss-to-styled <path>
 ```
 
-**Example transformation**:
+**转换示例**:
 
 ```diff
  import Typography from '@mui/material/Typography';
@@ -2430,7 +2431,7 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
    return (
 -    <div className={classes.root}>
 +    <Root className={classes.root}>
-       {/* The benefit of this approach is that the code inside Root stays the same. */}
+       {/* 这种方法的好处是 Root 中的代码保持不变。 */}
        <Typography className={classes.content}>...</Typography>
        <Button className={classes.cta}>Go</Button>
 -    </div>
@@ -2439,9 +2440,9 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
  }
 ```
 
-> 💡 You should run this codemod per small chunk of files and then check the changes because in some cases you might need to adjust the code after the transformation (this codemod won't cover all of the cases).
+> 💡 你应该按照文件的小块运行这个codemod，然后检查更改，因为在某些情况下，你可能需要在转换后调整代码(这个codemod不会涵盖所有案例)。
 
-We recommend `sx` API over `styled` when you have to create responsive styles or needs minor CSS overrides. [Read more about `sx`](/system/the-sx-prop/#main-content).
+当您必须创建响应式样式或需要较小的 CSS 覆盖时，我们更推荐 `sx` API 而非 `styled`。 [阅读更多关于 `sx`](/system/the-sx-prop/#main-content)。
 
 ```diff
  import Chip from '@mui/material/Chip';
@@ -2474,9 +2475,9 @@ We recommend `sx` API over `styled` when you have to create responsive styles or
  }
 ```
 
-#### Manual
+#### 手动
 
-In some cases, you might want to create multiple styled components in a file instead of increasing CSS specificity. for example:
+在某些情况下，您可能想要在文件中创建多个样式组件，而不是提高CSS的针对性。 例如:
 
 ```diff
 -import makeStyles from '@mui/styles/makeStyles';
@@ -2519,30 +2520,63 @@ In some cases, you might want to create multiple styled components in a file ins
  }
 ```
 
-> **Note:** [https://siriwatk.dev/tool/jss-to-styled](https://siriwatk.dev/tool/jss-to-styled) is a tool that helps converting JSS to multiple styled components without increasing CSS specificity. (This tool is **not maintained** by MUI)
+> **注意：** [https://siriwatk.dev/tool/jssto-stypled](https://siriwatk.dev/tool/jss-to-styled) 是一个有助于将 JS转换成多种样式组件而不增加CSS 针对性的工具。 （这个工具**不是**由MUI维护）
 
-### 2. Use [tss-react](https://github.com/garronej/tss-react)
+### 2. 使用 [tss-react](https://github.com/garronej/tss-react)
 
-The API is similar to JSS `makeStyles` but works with emotion.
+这个API 与 JSS `makeStyles` 相似，但是能够与Emotion协同工作。
 
   <!-- Add material-ui component migration example -->
 
-> **Note:** this library is **not maintained** by MUI. If you have any issue regarding to it, please open an issue in [tss-react repository](https://github.com/garronej/tss-react/issues/new).
+> **注意：**这个库**不是由MUI维护**。 如果您对此有任何问题，请在 [tss-react repository](https://github.com/garronej/tss-react/issues/new) 中创建一个问题。
 
-💡 Once you migrate all of the styling, remove unnecessary `@mui/styles` by
+💡 一旦你迁移所有样式, 删除不必要的 `@mui/styles`
 
 ```sh
 npm uninstall @mui/styles
 
-// or with `yarn`
+// 或使用 `yarn`
 yarn remove @mui/styles
+```
+
+## CSS 特性
+
+如果您想要通过导入CSS 文件对组件应用样式， 您需要提高特异性才能选择正确的组件。 请考虑下面的示例：
+
+```js
+import './style.css';
+import Chip from '@mui/material/Chip';
+
+const ChipWithGreenIcon = () => (
+  <Chip
+    classes={{ deleteIcon: 'green' }}
+    label="delete icon is green"
+    onDelete={() => {}}
+  />
+);
+```
+
+在这个示例中，为了正确地将特定样式应用于删除 `Chip`的图标， 您需要跳转如下所示的特性：
+
+```css
+.MuiChip-root .green {
+  color: green;
+}
+```
+
+以下示例不能正确地将样式应用于删除图标：
+
+```css
+.green {
+  color: green;
+}
 ```
 
 ## 故障排除（Troubleshooting）
 
-### Storybook emotion with v5
+### v5中的 Storybook emotion
 
-If your project uses Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of emotion.
+如果你的项目使用 Storybook v6.x，你需要更新 `.storybook/main.js` webpack 配置来使用最新版本的Emotion。
 
 ```js
 // .storybook/main.js
@@ -2567,7 +2601,7 @@ module.exports = {
 };
 ```
 
-and update `.storybook/preview.js` (otherwise, the "Docs" tab in storybook will display empty page)
+并更新 `.storybook/preview.js` (否则storybook中的“Docs”选项卡将显示空页面)
 
 ```js
 // .storybook/preview.js
@@ -2575,7 +2609,7 @@ and update `.storybook/preview.js` (otherwise, the "Docs" tab in storybook will 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { ThemeProvider as Emotion10ThemeProvider } from 'emotion-theming';
 
-const defaultTheme = createTheme(); // or your custom theme
+const defaultTheme = createTheme(); // 或您的自定义主题
 
 const withThemeProvider = (Story, context) => {
   return (
@@ -2589,10 +2623,10 @@ const withThemeProvider = (Story, context) => {
 
 export const decorators = [withThemeProvider];
 
-// ...other storybook exports
+// ...其它 storybook 导出
 ```
 
-**Tested versions**
+**测试版**
 
 ```json
 {
@@ -2604,35 +2638,35 @@ export const decorators = [withThemeProvider];
 }
 ```
 
-> Note: This setup is a workaround and might not work in all cases.
+> 注意：这个设置可能无法在所有情况下工作。
 
-For more details, checkout these issues on GitHub.
+欲了解更多详情，请在 GitHub 上查看这些问题。
 
 - https://github.com/storybookjs/storybook/issues/16099
 - https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133
 
 ### Cannot read property `scrollTop` of null
 
-This error comes from `Fade`, `Grow`, `Slide`, `Zoom` components due to missing DOM Node.
+这个错误来自 `Fade`, `Grow`, `Slide`, `Zoom` 组件，因为缺少DOM节点。
 
-You need to make sure that the children forward ref to DOM for custom component.
+你需要确保在使用自定义组件时，子节点将引用转发到 DOM。
 
 ```jsx
-// Ex. 1 ✅ html tag works since it is a DOM
+// 案例1 ✅ html 标签可以正常工作因为它是一个DOM
 <Fade in>
   <div>
     <CustomComponent />
   </div>
 </Fade>
 
-// Ex. 2 ❌ This will cause error. don't use Fragment as a child
+// 案例2 ❌ 这将导致错误。 不要使用Fragment作为子节点
 <Fade in>
   <React.Fragment>
     <CustomComponent />
   </React.Fragment>
 </Fade>;
 
-// Ex. 3 ❌ This will cause error because `CustomComponent` does not forward ref to DOM
+// 案例3 ❌ 这将导致错误因为`CustomComponent` 没有向DOM传递引用
 function CustomComponent() {
   return <div>...</div>;
 }
@@ -2643,7 +2677,7 @@ function CustomComponent() {
 ```
 
 ```js
-// ✅ Fixed by using `React.forwardRef` and pass to DOM.
+// ✅ 使用 `React.forwardRef` 向DOM传递引用修复此错误。
 const CustomComponent = React.forwardRef(function CustomComponent(props, ref) {
   return (
     <div ref={ref}>
@@ -2657,29 +2691,29 @@ const CustomComponent = React.forwardRef(function CustomComponent(props, ref) {
 </Fade>
 ```
 
-For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/27154) on GitHub.
+欲了解更多详情，请在 GitHub 上查看 [此问题](https://github.com/mui-org/material-ui/issues/27154)。
 
 ### [Types] Property "palette", "spacing" does not exist on type 'DefaultTheme'
 
-Since `makeStyles` is now exported from `@mui/styles` package which does not know about `Theme` in the core package. To fix this, you need to augment the `DefaultTheme` (empty object) in `@mui/styles` with `Theme` from the core. [Read more about module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
+因为 `makeStyles` 现在从 `@mui/styles` 软件包导出，这导致其无法知道core package中的 `Theme`。 要解决这个问题，您需要通过`@mui/styles`引用核心包的`theme`声明 `DefaultTheme` (空对象) 。 [阅读更多关于模块增强](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
 
-**TypeScript Project**
+**TypeScript 项目**
 
-Put this snippet to your theme file:
+将此代码片段放入您的主题文件：
 
 ```ts
-// it could be your App.tsx file or theme file that is included in your tsconfig.json
+// 它可能是您的 App.tsx 文件或包含tsconfig.json的theme中
 import { Theme } from '@mui/material/styles';
 
 declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface (remove this line if you don't have the rule enabled)
-  interface DefaultTheme extends Theme {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface (如果你没有启用规则则删除此行)
+interface DefaultTheme extends Theme {}
 }
 ```
 
-**Javascript Project**
+**Javascript 项目**
 
-If your IDE (ex. VSCode) is able to infer types from `d.ts` file, create `index.d.ts` in your `src` folder with this snippet:
+如果您的 IDE (例如VSCode) 能够从 `d.ts` 文件推断类型，请在您的 `src` 文件夹中使用此代码片段创建 `index.d.ts`：
 
 ```js
 // index.d.ts
@@ -2692,15 +2726,15 @@ declare module "@mui/private-theming" {
 
 ### [Jest] SyntaxError: Unexpected token 'export'
 
-`@mui/material/colors/red` is considered private since v1.0.0. You should replace the import, [more details about this error](https://github.com/mui-org/material-ui/issues/27296).
+`@mui/material/colors/red` 从v1.0.0.0开始被认为是私有的。 您应该替换导入方式， [更多关于此错误的详细信息](https://github.com/mui-org/material-ui/issues/27296)。
 
-You can use this codemod (**recommended**) to fix all the import in your project:
+您可以使用此codemod (**推荐**)来修复您项目中的所有导入：
 
 ```sh
 npx @mui/codemod v5.0.0/optimal-imports <path>
 ```
 
-or fix it manually like this:
+或像这样手动修复它：
 
 ```diff
 -import red from '@mui/material/colors/red';
@@ -2709,7 +2743,7 @@ or fix it manually like this:
 
 ### makeStyles - TypeError: Cannot read property 'drawer' of undefined
 
-This error occurs when calling `useStyles` (result of `makeStyles`) or `withStyles` outside of `<ThemeProvider>` scope like this:
+这个错误发生在 `<ThemeProvider>` 范围外调用`useStyles` ( `makeStyles`的返回值) 或 `withStyles` 时，像这样：
 
 ```js
 import * as React from 'react';
@@ -2729,7 +2763,7 @@ const useStyles = makeStyles((theme) => ({
 const theme = createTheme();
 
 function App() {
-  const classes = useStyles(); // ❌ called outside of ThemeProvider
+  const classes = useStyles(); // ❌在ThemeProvider以外调用
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -2741,13 +2775,13 @@ function App() {
 export default App;
 ```
 
-You can fix by moving `useStyles` inside another component so that it is called under `<ThemeProvider>`.
+您可以通过移动 `useStyles` 到另一个组件内来修复它，这样它就可以在 `<ThemeProvider>` 内调用。
 
 ```js
 // ...imports
 
 function AppContent(props) {
-  const classes = useStyles(); // ✅ This is safe because it is called inside ThemeProvider
+  const classes = useStyles(); // ✅ 这样做是正确的的，因为它在 ThemeProvider组件内调用
   return <Card className={classes.root}>...</Card>;
 }
 
@@ -2765,29 +2799,29 @@ export default App;
 
 ### TypeError: Cannot read properties of undefined (reading 'pxToRem')
 
-The root cause of this error comes from accessing empty theme. Make sure that you have follow these checklist:
+这个错误的根源来自访问到空主题。 请确保您已经遵循这些检查步骤：
 
-- `styled` should only be imported from `@mui/material/styles` (If you are not using standalone `@mui/system`)
+- `styled` 只能从 `@mui/material/styles` (如果您没有独立使用 `@mui/system` )中导入
 
   ```js
   import { styled } from '@mui/material/styles';
   ```
 
-- Make sure that no `useStyles` is called outside of `<ThemeProvider>`. If you have, consider fixing it like [this suggestion](#makestyles-typeerror-cannot-read-property-drawer-of-undefined)
+- 请确保不在 `<ThemeProvider>` 之外调用 `useStyles` 。 如果您有，请考虑[像这样](#makestyles-typeerror-cannot-read-property-drawer-of-undefined)修复它。
 
-For more details, [checkout this issue](https://github.com/mui-org/material-ui/issues/28496)
+欲了解更多详情，[请查看这个问题](https://github.com/mui-org/material-ui/issues/28496)
 
 ### Styles broken after migrating to v5
 
-There are two reasons why the styles of the components may be broken after you finished with all the steps in the previous sections.
+在你完成前面章节中的所有步骤后，有两个原因可能导致组件的样式可能会被破坏。
 
-First, check if you have configured the `StyledEngineProvider` correct as shown in the [Style library](#style-library) section.
+首先，检查您是否将 `StyledEngineProvider`配置正确，如在 [Style library](#style-library) 章节所示。
 
-If the `StyledEngineProvider` is already used at the top of your application and the styles are still broken, it may be the case that you still have `@material-ui/core` in your application. It may be coming from some of the dependencies that you have, that still depend on `@material-ui/core` (v4).
+如果您的应用程序顶部已经使用了 `StyledEngineProvider` 并且样式仍然损坏， 您的应用程序中可能仍然有 `@material-ui/core`。 它可能来自您所拥有的一些依赖关系，这仍然取决于 `@material-ui/core` (v4)。
 
-The easiest way to check this is to run `npm ls @material-ui/core` (or `yarn why @material-ui/core`) which will give you the necessary information.
+检查这一点的最简单方式是运行 `npm ls @material-ui/core` (或 `yarn why @material-ui/core`)，这将为您提供必要的信息。
 
-Here is one example:
+下面是一个示例：
 
 ```sh
 $ npm ls @material-ui/core
@@ -2796,4 +2830,4 @@ project@0.1.0 /path/to/project
   └── @material-ui/core@4.12.3
 ```
 
-You can notice based on the output above that `@material-ui/core` is a dependency of `@mui/x-data-grid`. In this specific example, you need to bump the version of `@mui/x-data-grid` to [version 5](https://www.npmjs.com/package/@mui/x-data-grid) so that it depends on `@mui/material` instead.
+您可以根据以上输出注意到 `@material-ui/core` 是 `@mui/x-data-grid` 的一个依赖项。 在这个具体的例子中， 你需要将 `@mui/x-data-grid` 到 [版本 5](https://www.npmjs.com/package/@mui/x-data-grid)，以将依赖项转换为 `@mui/materials`。
