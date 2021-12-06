@@ -492,7 +492,7 @@ The `@mui/styles` package is no longer part of `@mui/material/styles`. If you ar
 > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
 ```ts
-// in your theme file that you call `createTheme()`
+// in the file where you are creating the theme (invoking the function `createTheme()`)
 import { Theme } from '@mui/material/styles';
 
 declare module '@mui/styles' {
