@@ -6,6 +6,7 @@ const path = require('path');
 const fetch = require('node-fetch');
 const lodash = require('lodash');
 
+const artifactServerLegacy = 'https://s3.eu-central-1.amazonaws.com/mui-org-material-ui';
 const artifactServer = 'https://s3.eu-central-1.amazonaws.com/mui-org-ci';
 
 async function loadCurrentSnapshot() {
@@ -13,17 +14,34 @@ async function loadCurrentSnapshot() {
 }
 
 /**
+ * @param {string} bucket - the bucket url to load from
  * @param {string} commitId - the sha of a commit
  * @param {string} ref - the branch containing that commit
  */
-async function loadSnapshot(commitId, ref) {
+async function loadSnapshotFromBucket(bucket, commitId, ref) {
   if (ref === undefined) {
     throw new TypeError(
       `Need a ref for that commit. Did you mean \`loadSnapshot(commitId, 'master')\`?`,
     );
   }
-  const response = await fetch(`${artifactServer}/artifacts/${ref}/${commitId}/size-snapshot.json`);
+  const url = `${bucket}/artifacts/${ref}/${commitId}/size-snapshot.json`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch "${url}", HTTP ${response.status}`);
+  }
   return response.json();
+}
+
+/**
+ * @param {string} commitId - the sha of a commit
+ * @param {string} ref - the branch containing that commit
+ */
+async function loadSnapshot(commitId, ref) {
+  try {
+    return await loadSnapshotFromBucket(artifactServer, commitId, ref);
+  } catch (err) {
+    return loadSnapshotFromBucket(artifactServerLegacy, commitId, ref);
+  }
 }
 
 const nullSnapshot = { parsed: 0, gzip: 0 };
