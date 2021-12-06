@@ -1,4 +1,4 @@
-# Tipografia
+# Typography
 
 <p class="description">Documentação e exemplos de texto, utilizações comuns para controlar o alinhamento, quebra, peso e muito mais.</p>
 
