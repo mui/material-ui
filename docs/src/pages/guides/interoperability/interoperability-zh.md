@@ -283,7 +283,6 @@ By default, MUI components come with emotion as their style engine. If, however,
 
 - [Create React App with styled-components](https://github.com/mui-org/material-ui/tree/HEAD/examples/create-react-app-with-styled-components)
 - [Create React App with styled-components and typescript](https://github.com/mui-org/material-ui/tree/HEAD/examples/create-react-app-with-styled-components-typescript)
-- [Next.js app with styled-components and TypeScript](https://github.com/mui-org/material-ui/blob/HEAD/examples/nextjs-with-styled-components-typescript)
 
 Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
 
