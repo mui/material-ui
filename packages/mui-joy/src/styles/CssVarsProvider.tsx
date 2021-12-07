@@ -4,15 +4,15 @@ import {
   SpacingOptions,
 } from '@mui/system';
 import defaultTheme, {
-  ThemeScales,
   lightColorSystem,
   darkColorSystem,
-  TypographySystem,
   Focus,
+  ThemeScales,
 } from './defaultTheme';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Variants } from './types/variants';
 import { ColorSystem } from './types/colorSystem';
+import { TypographySystem } from './types/typography';
 import { Components } from './components';
 
 type PartialDeep<T> = {
