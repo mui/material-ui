@@ -39,21 +39,21 @@ function handleClick4(event: React.MouseEvent<HTMLDivElement>) {}
 // @ts-expect-error no `super` size
 <Button size="super">Button</Button>;
 
-<Button roundness="xs">Button</Button>;
-<Button roundness="sm">Button</Button>;
-<Button roundness="md">Button</Button>;
-<Button roundness="lg">Button</Button>;
-<Button roundness="xl">Button</Button>;
-// @ts-expect-error no `xxxxl` roundness
-<Button roundness="xxxxl">Button</Button>;
+<Button radius="xs">Button</Button>;
+<Button radius="sm">Button</Button>;
+<Button radius="md">Button</Button>;
+<Button radius="lg">Button</Button>;
+<Button radius="xl">Button</Button>;
+// @ts-expect-error no `xxxxl` radius
+<Button radius="xxxxl">Button</Button>;
 
-<Button elevation="xs">Button</Button>;
-<Button elevation="sm">Button</Button>;
-<Button elevation="md">Button</Button>;
-<Button elevation="lg">Button</Button>;
-<Button elevation="xl">Button</Button>;
-// @ts-expect-error no `xxxxl` elevation
-<Button elevation="xxxxl">Button</Button>;
+<Button shadow="xs">Button</Button>;
+<Button shadow="sm">Button</Button>;
+<Button shadow="md">Button</Button>;
+<Button shadow="lg">Button</Button>;
+<Button shadow="xl">Button</Button>;
+// @ts-expect-error no `xxxxl` shadow
+<Button shadow="xxxxl">Button</Button>;
 
 <Button component="a" href="/" />;
 <Button component={NextLink} href="/" />;
