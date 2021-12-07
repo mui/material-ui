@@ -1,4 +1,4 @@
-export * from './borderRadius';
+export * from './radius';
 export * from './colorScheme';
 export * from './colorSystem';
 export * from './elevation';

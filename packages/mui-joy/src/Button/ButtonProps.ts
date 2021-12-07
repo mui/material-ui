@@ -6,7 +6,7 @@ import {
   OverrideProps,
 } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp, ElevationProp, RoundnessProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp, ElevationProp, RadiusProp } from '../styles/types';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -58,9 +58,9 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     fullWidth?: boolean;
     /**
      * The border-radius of the component.
-     * @default 'default'
+     * @default 'sm'
      */
-    roundness?: RoundnessProp;
+    radius?: RadiusProp;
     /**
      * The size of the component.
      */
@@ -75,7 +75,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * The variant to use.
-     * @default 'text'
+     * @default 'contained'
      */
     variant?: OverridableStringUnion<VariantProp, ButtonPropsVariantOverrides>;
   };

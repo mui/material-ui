@@ -23,7 +23,7 @@ import {
 } from './variantUtils';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { Elevation } from './types/elevation';
-import { BorderRadius } from './types/borderRadius';
+import { Radius } from './types/radius';
 import {
   FontFamily,
   FontSize,
@@ -88,7 +88,7 @@ type BaseDesignTokens = {
     background: Pick<PaletteBackground, 'default' | 'level1' | 'level2' | 'level3'>;
     focusVisible: Palette['focusVisible'];
   };
-  borderRadius: Pick<BorderRadius, 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
+  radius: Pick<Radius, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   elevationRing: CSSProperties['boxShadow'];
   elevationChannel: string;
   elevation: Pick<Elevation, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
@@ -196,8 +196,7 @@ export const darkColorSystem: BaseColorSystem = {
  */
 const baseDesignTokens: BaseDesignTokens = {
   ...lightColorSystem,
-  borderRadius: {
-    default: '8px',
+  radius: {
     xs: '4px',
     sm: '8px',
     md: '12px',
@@ -382,7 +381,7 @@ const internalDefaultTheme: BaseDesignTokens & {
 // ==============================================
 
 export interface ThemeScales {
-  borderRadius: BorderRadius;
+  radius: Radius;
   elevation: Elevation;
   fontFamily: FontFamily;
   fontSize: FontSize;

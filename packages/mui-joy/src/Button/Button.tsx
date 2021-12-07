@@ -18,7 +18,7 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
     size,
     variant,
     elevation,
-    roundness,
+    radius,
   } = ownerState;
 
   const slots = {
@@ -31,7 +31,7 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
       elevation && `elevation${capitalize(elevation)}`,
-      roundness && `roundness${capitalize(roundness)}`,
+      radius && `radius${capitalize(radius)}`,
     ],
   };
 
@@ -56,7 +56,7 @@ const ButtonRoot = styled('button', {
       styles[`color${capitalize(ownerState.color)}`],
       ownerState.size && styles[`size${capitalize(ownerState.size)}`],
       ownerState.elevation && styles[`elevation${capitalize(ownerState.elevation)}`],
-      ownerState.roundness && styles[`roundness${capitalize(ownerState.roundness)}`],
+      ownerState.radius && styles[`radius${capitalize(ownerState.radius)}`],
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
@@ -65,7 +65,7 @@ const ButtonRoot = styled('button', {
     {
       padding: '0.25rem 1.5rem',
       minHeight: '40px',
-      borderRadius: theme.vars.borderRadius[ownerState.roundness!],
+      borderRadius: theme.vars.radius[ownerState.radius!],
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -133,7 +133,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     component = 'button',
     color = 'primary',
     variant = 'contained',
-    roundness = 'default',
+    radius = 'sm',
     elevation,
     size,
     fullWidth = false,
@@ -168,7 +168,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     color,
     fullWidth,
     variant,
-    roundness,
+    radius,
     elevation,
     size,
     focusVisible,
@@ -237,7 +237,7 @@ Button.propTypes /* remove-proptypes */ = {
    * The border-radius of the component.
    * @default 'default'
    */
-  roundness: PropTypes.oneOf(['default', 'lg', 'md', 'sm', 'xl', 'xs']),
+  radius: PropTypes.oneOf(['default', 'lg', 'md', 'sm', 'xl', 'xs']),
   /**
    * The size of the component.
    */

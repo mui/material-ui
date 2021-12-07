@@ -82,9 +82,9 @@ describe('Joy <Button />', () => {
   });
 
   it('should render a rounded button', () => {
-    const { getByRole } = render(<Button roundness="sm">Hello World</Button>);
+    const { getByRole } = render(<Button radius="sm">Hello World</Button>);
     const button = getByRole('button');
 
-    expect(button).to.have.class(classes.roundnessSm);
+    expect(button).to.have.class(classes.radiusSm);
   });
 });

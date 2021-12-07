@@ -2,8 +2,7 @@ import * as CSS from 'csstype';
 
 type CSSProperties = CSS.Properties<number | string>;
 
-export interface BorderRadius {
-  default: CSSProperties['borderRadius'];
+export interface Radius {
   xs: CSSProperties['borderRadius'];
   sm: CSSProperties['borderRadius'];
   md: CSSProperties['borderRadius'];
@@ -11,4 +10,4 @@ export interface BorderRadius {
   xl: CSSProperties['borderRadius'];
 }
 
-export type RoundnessProp = keyof BorderRadius;
+export type RadiusProp = keyof Radius;

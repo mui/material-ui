@@ -37,16 +37,16 @@ export interface ButtonClasses {
   focusVisible: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
-  /** Styles applied to the root element if `roundness="xs"`. */
-  roundnessXs: string;
-  /** Styles applied to the root element if `roundness="sm"`. */
-  roundnessSm: string;
-  /** Styles applied to the root element if `roundness="md"`. */
-  roundnessMd: string;
-  /** Styles applied to the root element if `roundness="lg"`. */
-  roundnessLg: string;
-  /** Styles applied to the root element if `roundness="xl"`. */
-  roundnessXl: string;
+  /** Styles applied to the root element if `radius="xs"`. */
+  radiusXs: string;
+  /** Styles applied to the root element if `radius="sm"`. */
+  radiusSm: string;
+  /** Styles applied to the root element if `radius="md"`. */
+  radiusMd: string;
+  /** Styles applied to the root element if `radius="lg"`. */
+  radiusLg: string;
+  /** Styles applied to the root element if `radius="xl"`. */
+  radiusXl: string;
   /** Styles applied to the root element if `size="small"`. */
   sizeSmall: string;
   /** Styles applied to the root element if `size="large"`. */
@@ -80,11 +80,11 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'variantContained',
   'focusVisible',
   'disabled',
-  'roundnessXs',
-  'roundnessSm',
-  'roundnessMd',
-  'roundnessLg',
-  'roundnessXl',
+  'radiusXs',
+  'radiusSm',
+  'radiusMd',
+  'radiusLg',
+  'radiusXl',
   'sizeSmall',
   'sizeLarge',
   'fullWidth',

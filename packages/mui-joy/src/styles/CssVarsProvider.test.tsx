@@ -370,7 +370,7 @@ describe('[Joy] CssVarsProvider', () => {
         const theme = useTheme();
         return (
           <div>
-            <div data-testid="border-radius">{JSON.stringify(theme.vars.borderRadius)}</div>
+            <div data-testid="radius">{JSON.stringify(theme.vars.radius)}</div>
           </div>
         );
       };
@@ -381,14 +381,13 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('border-radius').textContent).to.equal(
+      expect(screen.getByTestId('radius').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-borderRadius-default)',
-          xs: 'var(--joy-borderRadius-xs)',
-          sm: 'var(--joy-borderRadius-sm)',
-          md: 'var(--joy-borderRadius-md)',
-          lg: 'var(--joy-borderRadius-lg)',
-          xl: 'var(--joy-borderRadius-xl)',
+          xs: 'var(--joy-radius-xs)',
+          sm: 'var(--joy-radius-sm)',
+          md: 'var(--joy-radius-md)',
+          lg: 'var(--joy-radius-lg)',
+          xl: 'var(--joy-radius-xl)',
         }),
       );
     });
