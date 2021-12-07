@@ -17,7 +17,7 @@ There are many ways to support MUI:
   - 查看和评论一些现有的 [pull requests](https://github.com/mui-org/material-ui/pulls) 和 [issues](https://github.com/mui-org/material-ui/issues)。
   - 帮助我们 [翻译](https://translate.mui.com) 文档。
   - [改进我们的文档](https://github.com/mui-org/material-ui/tree/next/docs)，修复错误，或者通过 [拉取请求](https://github.com/mui-org/material-ui/pulls) 来添加功能。
-- **在 [OpenCollective](https://opencollective.com/material-ui)**上资助我们。 If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the MUI home page.
+- **Support us financially on [OpenCollective](https://opencollective.com/mui)**. If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the MUI home page.
 
 ## 为什么我的组件在生产构造中没有正确地渲染？
 
@@ -181,7 +181,7 @@ If you are using webpack, you can change the way it will [resolve](https://webpa
 
 ### 与 Lerna 一起使用
 
-One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. 您可以尝试使用 --hoist 标识运行引导的选项。
+One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. 您可以尝试使用 --hoist 标识运行引导的选项。
 
 ```sh
 lerna bootstrap --hoist
