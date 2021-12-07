@@ -474,7 +474,7 @@ export default function GlobalCssPriority() {
 > ✅ 这在 [preset-safe codemod](#preset-safe) 中已经解决。
 
 ```ts
-// 在您的主题文件中调用 `createTheme()`
+// in the file where you are creating the theme (invoking the function `createTheme()`)
 import { Theme } from '@mui/material/styles';
 
 declare module '@mui/styles' {
