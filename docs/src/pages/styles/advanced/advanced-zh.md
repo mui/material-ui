@@ -382,7 +382,7 @@ There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-m
 
 <!-- #default-branch-switch -->
 
-请参考 [Gatsby 项目案例](https://github.com/mui-org/material-ui/blob/master/examples/gatsby)以了解最新的使用方法。
+Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
@@ -390,7 +390,7 @@ There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-m
 
 <!-- #default-branch-switch -->
 
-请参考[示例项目](https://github.com/mui-org/material-ui/blob/master/examples/nextjs)以获取最新的使用方法。
+Refer to [this example project](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
 
 ## 类名（Class names）
 
