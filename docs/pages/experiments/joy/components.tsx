@@ -104,8 +104,8 @@ export default function JoyComponents() {
     variant: ['text', 'outlined', 'light', 'contained'],
     size: ['small', undefined, 'large'],
     color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
-    roundness: ['xs', 'sm', 'md', 'lg', 'xl'],
-    elevation: ['xs', 'sm', 'md', 'lg', 'xl'],
+    radius: ['xs', 'sm', 'md', 'lg', 'xl'],
+    shadow: ['xs', 'sm', 'md', 'lg', 'xl'],
   } as const;
   return (
     <CssVarsProvider>
