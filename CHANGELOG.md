@@ -1,5 +1,89 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.2.3
+
+<!-- generated comparing v5.2.2..master -->
+
+_Dec 6, 2021_
+
+A big thanks to the 25 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ We have introduced a new unstyled component in `@mui/base`: `TablePagination` (#29759) @mnajdova
+
+  <a href="https://mui.com/components/tables/#unstyled-table"><img width="800" alt="unstyled table" src="https://user-images.githubusercontent.com/4512430/144862194-584356ef-7d9d-462c-a631-186a7e716193.png"></a>
+
+  You can follow our progress with unstyled components at https://github.com/mui-org/material-ui/issues/27170.
+
+- 🎉 We have added an example of how to use MUI with [Remix](https://remix.run/) (#29952) @mnajdova
+
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.2.3`
+
+- &#8203;<!-- 33 -->[Accordion] Add a test for handling `square` prop (#29972) @daniel-sachs
+- &#8203;<!-- 32 -->[Alert] Fix `square` Paper prop (#30027) @ZeeshanTamboli
+- &#8203;<!-- 31 -->[AvatarGroup] Allow specifying total number of avatars (#29898) @eduardomcv
+- &#8203;<!-- 29 -->[Button] Fix regression from context API (#29982) @siriwatknp
+- &#8203;<!-- 13 -->[Grid] Fix generated classes for `spacing` prop when the value is object (#29880) @jayeclark
+- &#8203;<!-- 10 -->[Select] Should not crash when an empty array is passed with `multiple` enabled (#29957) @Domino987
+
+### `@mui/system@5.2.3`
+
+- &#8203;<!-- 06 -->[system] Fix return type of `createBox` (#29989) @mnajdova
+- &#8203;<!-- 05 -->[system] Support boolean values in typescript for the `sx` prop when used as array (#29911) @tasugi
+
+### `@mui/utils@5.2.3`
+
+- &#8203;<!-- 03 -->[utils] Add typings for `@mui-material/styles/cssUtils` (#29621) @Semigradsky
+
+### `@mui/icons-material@5.2.1`
+
+- &#8203;<!-- 12 -->[icons] Consolidate ignored icons into one list (#29843) @chao813
+
+### `@mui/base@5.0.0-alpha.59`
+
+- &#8203;<!-- 30 -->[base] Fix missing ClickAwayListener barrel index export (#30000) @oliviertassinari
+- &#8203;<!-- 04 -->[TablePaginationUnstyled] Introduce new component (#29759) @mnajdova
+
+### `@mui/lab@5.0.0-alpha.59`
+
+- &#8203;<!-- 27 -->[DateRangePicker] Fix `DateRangePickerDayProps` interface (#29067) @jonathanrtuck
+- &#8203;<!-- 10 -->[Pickers] Remove propagation of custom props to the `MonthPicker` component's DOM element (#30021) @ZeeshanTamboli
+- &#8203;<!-- 08 -->[StaticDatePicker] Add className and slot to PickerStaticWrapper (#29619) @kkorach
+
+### `@mui/joy@5.0.0-alpha.5`
+
+- &#8203;<!-- 11 -->[Joy] Theme setup (#29846) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 34 -->[docs] Fix link in TypeScript doc page (#30044) @genzyy
+- &#8203;<!-- 26 -->[docs] Remove the 'WIP' icon from the 'Group & Pivot' page title (#30077) @flaviendelangle
+- &#8203;<!-- 25 -->[docs] Add warning that `@mui/styled-engine-sc` does not work in SSR (#30026) @mnajdova
+- &#8203;<!-- 24 -->[docs] Add section for CSS specificity in the migration guide (#30008) @hbjORbj
+- &#8203;<!-- 28 -->[docs] Clarify comment in migration doc (#30076) @hbjORbj
+- &#8203;<!-- 23 -->[docs] Sync translations with Crowdin (#30041) @l10nbot
+- &#8203;<!-- 22 -->[docs] Explain how Paper changes shade in dark mode (#30003) @michaldudak
+- &#8203;<!-- 21 -->[docs] Update nextjs-typescript-example (#29974) @huydhoang
+- &#8203;<!-- 20 -->[docs] Add missing global state classes to API docs generator (#29945) @michaldudak
+- &#8203;<!-- 19 -->[docs] Fix benchmarks folder link (#29981) @fourjr
+- &#8203;<!-- 18 -->[docs] Improve wording in StackOverflow section of support page (#29956) @ronwarner
+- &#8203;<!-- 17 -->[docs] Remove Black Friday sale notification (#29936) @mbrookes
+- &#8203;<!-- 16 -->[examples] Fix typos in the Remix example (#30071) @MichaelDeBoey
+- &#8203;<!-- 15 -->[examples] Add Remix example (#29952) @mnajdova
+- &#8203;<!-- 14 -->[examples] Fix lint issue for displayName missing in the Next.js examples (#29985) @ZeeshanTamboli
+- &#8203;<!-- 09 -->[Stack] Document system props in Stack API (#30069) @ThewBear
+- &#8203;<!-- 07 -->[survey] Add a banner and card for promoting the 2021 survey (#29950) @danilo-leal
+- &#8203;<!-- 02 -->[website] Correct the Careers page description (#30073) @michaldudak
+- &#8203;<!-- 01 -->[website] Fix 301 links (#30040) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 31 -->[core] Batch small changes (#30042) @oliviertassinari
+- &#8203;<!-- 28 -->[core] Transition to a new StackOverflow tag (#29967) @oliviertassinari
+
+All contributors of this release in alphabetical order: @chao813, @daniel-sachs, @danilo-leal, @Domino987, @eduardomcv, @flaviendelangle, @fourjr, @genzyy, @hbjORbj, @huydhoang, @jayeclark, @jonathanrtuck, @kkorach, @l10nbot, @mbrookes, @MichaelDeBoey, @michaldudak, @mnajdova, @oliviertassinari, @ronwarner, @Semigradsky, @siriwatknp, @tasugi, @ThewBear, @ZeeshanTamboli
+
 ## 5.2.2
 
 <!-- generated comparing v5.2.1..master -->

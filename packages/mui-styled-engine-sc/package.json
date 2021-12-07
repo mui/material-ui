@@ -23,7 +23,7 @@
   "homepage": "https://mui.com/guides/styled-engine/",
   "funding": {
     "type": "opencollective",
-    "url": "https://opencollective.com/material-ui"
+    "url": "https://opencollective.com/mui"
   },
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",
