@@ -14,9 +14,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Nota:** Os acordeões não estão mais documentados nas [diretrizes do Material Design](https://material.io/), mas o Material-UI continuará a suportá-los. Anteriormente, ele era formalmente conhecido como "painel de expansão".
+> **Nota:** Os acordeões não estão mais documentados nas [diretrizes do Material Design](https://material.io/), mas MUI continuará a suportá-los. Anteriormente, ele era formalmente conhecido como "painel de expansão".
 
-## Painel de Expansão Simples
+## Acordeão básico
 
 {{"demo": "pages/components/accordion/BasicAccordion.js", "bg": true}}
 
@@ -26,7 +26,7 @@ Estenda o comportamento padrão para criar um acordeão customizado com o compon
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## Painéis de Expansão Customizados
+## Customização
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 

@@ -1,6 +1,6 @@
-# Componentes Suportados
+# Componentes suportados
 
-<p class="description">A seguir, uma lista de componentes e recursos do Material Design. Aqueles atualmente suportados pelo Material-UI são destacados com ✓.</p>
+<p class="description">A seguir, uma lista de componentes e recursos do Material Design. Aqueles atualmente suportados por MUI são destacados com ✓.</p>
 
 Nós trabalhamos para seguir as orientações sempre que possível (aplicando senso comum onde as diretrizes contradizem - uma ocorrência mais comum do que se poderia esperar), não esperamos suportar cada componente, ou cada característica de cada componente, mas sim fornecer elementos base que permitem que os desenvolvedores criem interfaces e experiências de usuário atraentes.
 
@@ -27,9 +27,9 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
 - **[Cartões](https://material.io/design/components/cards.html) ✓**
 - **[Chips](https://material.io/design/components/chips.html) ✓**
   - **[Input](https://material.io/design/components/chips.html#input-chips) ✓**
-  - [Choice](https://material.io/design/components/chips.html#choice-chips)
-  - [Filter](https://material.io/design/components/chips.html#filter-chips)
-  - [Action](https://material.io/design/components/chips.html#action-chips)
+  - [Choice](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
+  - [Filter](https://material.io/design/components/chips.html#choice-chips)
+  - [Action](https://material.io/design/components/chips.html#filter-chips)
 - **[Tabelas de dados](https://material.io/design/components/data-tables.html) ✓**
   - **Ordenável ✓**
   - **Selecionável ✓**
@@ -44,9 +44,9 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Middle](https://material.io/design/components/dividers.html#types) ✓**
   - **[Subheader](https://material.io/design/components/dividers.html#types) ✓**
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)********
+- ****[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)**
 - **[Listas](https://material.io/design/components/lists.html) ✓**
-  - [Tipos:](https://material.io/design/components/lists.html#types)
+  - [Tipos:](https://material.io/design/components/chips.html#action-chips)
     - **Linha única ✓**
     - **Duas linhas ✓**
     - Três linhas
@@ -60,8 +60,8 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
     - Reorder
 - **[Menus](https://material.io/design/components/menus.html) ✓**
   - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Pode ser composto)
-    - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
-  - [Menus suspensos expostos](https://material.io/design/components/menus.html#exposed-dropdown-menu)
+    - [Cascade](https://material.io/design/components/lists.html#types)
+  - [Menus suspensos expostos](https://material.io/design/components/menus.html#dropdown-menu)
     - **Text field dropdown menu ✓** (Select)
     - Menu suspenso editável
   - **Contextual ✓**
@@ -80,7 +80,7 @@ Se você deseja adicionar suporte a um componente ou recurso não destacado aqui
 - **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*)
   - **[Lista](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - **[Grade](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
-  - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
+  - [Menu](https://material.io/design/components/menus.html#exposed-dropdown-menu)
 - **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*)
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**

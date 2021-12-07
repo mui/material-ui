@@ -62,7 +62,7 @@ You can learn more about this prop in the [**composition guide**](/guides/compos
 
 ### Link
 
-Here are a few demos with [react-router](https://github.com/ReactTraining/react-router).
+Here are a few demos with [react-router](https://github.com/remix-run/react-router).
 You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
 {{"demo": "pages/guides/routing/LinkRouter.js"}}

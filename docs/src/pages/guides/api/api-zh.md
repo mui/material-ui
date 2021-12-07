@@ -1,6 +1,6 @@
 # API 的设计方法
 
-<p class="description">我们在如何使用 Material-UI 方面学到了很多相关的只是，而通过 v1 版本的重写，我们能够彻底重新考虑组件的 API。</p>
+<p class="description">We have learned a great deal regarding how MUI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 
 > API 设计的难点在于你可以让一些复杂的东西看起来简单，也可能把简单的东西搞得复杂。
 
@@ -12,8 +12,8 @@
 
 您可能已经注意到 API 中有关封装组件的一些不一致。 为了给予一些透明度，我们在设计 API 时一直使用以下的规则：
 
-1. 使用`children`属性是使用React进行合成的惯用方法。
-2. 有时我们只需要有限的子组件封装，例如，当我们不需要允许子组件的顺序排列的时候。 在这种情况下，提供显式属性可以使实现更简单，更高效; 例如，`Tab`采用`icon`和`label`属性。
+1. Using the `children` prop is the idiomatic way to do composition with React.
+2. 有时我们只需要有限的子组件封装，例如，当我们不需要允许子组件的顺序排列的时候。 In this case, providing explicit props makes the implementation simpler and more performant; for example, the `Tab` takes an `icon` and a `label` prop.
 3. API 的一致性至关重要。
 
 ## 规则
@@ -34,19 +34,19 @@
 
 ### 原生属性
 
-我们避免记录 DOM 支持的那些原生属性，如[`className`](/customization/how-to-customize/#overriding-styles-with-class-names)。
+We avoid documenting native properties supported by the DOM like [`className`](/customization/how-to-customize/#overriding-styles-with-class-names).
 
 ### CSS classes
 
-为了自定义样式，所有组件都接受 [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) 属性。 The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
+为了自定义样式，所有组件都接受 [`classes`](/customization/how-to-customize/#overriding-styles-with-class-names) 属性。 The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
 
 - 应用于根元素的类始终称为 `root`。
 - 所有默认样式都分组在单个类中。
 - 应用于非根元素的类则以元素的名称为前缀，例如， Dialog 组件中的 `paperWidthXs`。
-- 由布尔属性应用的variants **不是** 前缀，例如 `rounded` 类由 `rounded` 属性应用
-- 由 enum 属性应用的variants ** 是 ** 前缀, 例如 `colorPrimary` 类 应用的 `color = "primary"` 属性。
-- Variant具有 ** 一个特定级别 **。 `color`和`variant`属性被视为variant。 样式特异性越低，它就越容易被覆盖。
-- 我们增加了变体修饰符（variant modifier）的特异性。 我们已经 ** 必须这样做 ** 为伪类 (`:hover`, `:focus` 等)。 以更多模板为代价，它才会开放更多的控制权。 我们也希望，它也能更加直观。
+- The variants applied by a boolean prop **aren't** prefixed, e.g. the `rounded` class applied by the `rounded` prop.
+- The variants applied by an enum prop **are** prefixed, e.g. the `colorPrimary` class applied by the `color="primary"` prop.
+- 一个变体（variant）具有** 一个级别的特异性**。 The `color` and `variant` props are considered a variant. 样式特异性越低，它就越容易被覆盖。
+- 我们增加了变体修饰符（variant modifier）的特异性。 对于伪类（pseudo-classes）（`:hover `，`:focus ` 等），我们**必须这样做**。 以更多模板为代价，它才会开放更多的控制权。 我们也希望，它也能更加直观。
 
 ```js
 const styles = {
@@ -65,18 +65,22 @@ const styles = {
 一个组件内的嵌套组件具有：
 
 - 它们自己的扁平化属性（当这些属性是顶层组件抽象的关键时），例如 `Input` 组件的 `id` 属性。
-- 当用户可能需要调整内部render方法的子组件时，他们自己的`xxxProps`属性，例如，在内部使用`input`的组件上公开`inputProps`和`InputProps`属性。
-- 他们自己的`xxxComponent`属性，用于执行组件注入。
+- their own `xxxProps` prop when users might need to tweak the internal render method's sub-components, for instance, exposing the `inputProps` and `InputProps` props on components that use `Input` internally.
+- their own `xxxComponent` prop for performing component injection.
 - 当您可能需要执行命令性操作时，例如，公开 `inputRef` 属性以访问 `input` 组件上的原生`input`，您就可以使用它们自己的 `xxxRef` 属性。 这有助于回答 [“我如何访问DOM元素？”](/getting-started/faq/#how-can-i-access-the-dom-element)。
 
 ### 属性名称
 
-应根据 ** 默认值 ** 选择布尔属性的名称。 例如，若提供了一个输入框元素的 `disabled` 属性，则默认值为 `true`。 此选项允许简写的表示：
+The name of a boolean prop should be chosen based on the **default value**. This choice allows:
 
-```diff
--<Input enabled={false} />
-+<Input disabled />
-```
+- the shorthand notation. For example, the `disabled` attribute on an input element, if supplied, defaults to `true`:
+
+  ```jsx
+  <Input enabled={false} /> ❌
+  <Input disabled /> ✅
+  ```
+
+- developers to know what the default value is from the name of the boolean prop. It's always the opposite.
 
 ### 受控的组件
 
@@ -84,9 +88,9 @@ const styles = {
 
 ### boolean vs. enum
 
-为组件的变体设计API有两种选择：使用* boolean*; 或者使用* enum *。 比如说，我们选取了一个有着不同类型的按钮组件。 每个选项都有其优缺点：
+当设计组件的变体的 API 时，有两种选择：使用一个 _boolean_；或者使用一个_enum_。 比如说，我们选取了一个有着不同类型的按钮组件。 每个选项都有其优缺点：
 
-- 选项 1 * 布尔值(boolean) *:
+- 选项 1 _布尔值（boolean）_：
 
   ```tsx
   type Props = {
@@ -97,7 +101,7 @@ const styles = {
 
   该 API 启用了简写的表示法：`<Button>`，`<Button contained />`，`<Button fab />`。
 
-- 选项2 *枚举(enum)*
+- 选项 2 _枚举（enum）_：
 
   ```tsx
   type Props = {
@@ -105,14 +109,14 @@ const styles = {
   };
   ```
 
-  这个 API 会更加详细：`<Button>`，`<Button variant="contained">`， `<Button variant="fab">`。
+  这个API更详细： `<Button>`,`<Button variant="contained">`,`<Button variant="fab">`。
 
   However, it prevents an invalid combination from being used, bounds the number of props exposed, and can easily support new values in the future.
 
-Material-UI 组件根据以下规则将两种方法结合使用：
+The MUI components use a combination of the two approaches according to the following rules:
 
 - 当需要 **2** 个可能的值时，我们使用 _boolean_。
-- 当需要 **> 2** 个可能的值时，或者如果将来有可能需要更多的可能值时，就会使用 _enum_。
+- An _enum_ is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.
 
 若回到之前的按钮组件示例；因为它需要 3 个可能的值，所以我们使用了 _enum_。
 

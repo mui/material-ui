@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
+import { spy, stub } from 'sinon';
 import {
   describeConformance,
   ErrorBoundary,
@@ -19,18 +19,7 @@ import Divider from '@mui/material/Divider';
 import classes from './selectClasses';
 
 describe('<Select />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   describeConformance(<Select value="" />, () => ({
     classes,
@@ -602,15 +591,11 @@ describe('<Select />', () => {
       );
 
       fireEvent.mouseDown(getByRole('button'));
-      act(() => {
-        clock.tick(99);
-      });
+      clock.tick(99);
 
       expect(onEntered.callCount).to.equal(0);
 
-      act(() => {
-        clock.tick(1);
-      });
+      clock.tick(1);
 
       expect(onEntered.callCount).to.equal(1);
     });
@@ -735,9 +720,7 @@ describe('<Select />', () => {
       // It's desired that this fails one day. The additional tick required to remove
       // this from the DOM is not a feature
       expect(getByRole('listbox', { hidden: true })).toBeInaccessible();
-      act(() => {
-        clock.tick(0);
-      });
+      clock.tick(0);
 
       expect(queryByRole('listbox', { hidden: true })).to.equal(null);
     });
@@ -820,6 +803,34 @@ describe('<Select />', () => {
       expect(options[0]).to.have.attribute('aria-selected', 'true');
       expect(options[1]).not.to.have.attribute('aria-selected', 'true');
       expect(options[2]).to.have.attribute('aria-selected', 'true');
+    });
+
+    it('should serialize multiple select display value', () => {
+      const { getByRole } = render(
+        <Select multiple value={[10, 20, 30]}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>
+            <strong>Twenty</strong>
+          </MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      expect(getByRole('button')).to.have.text('Ten, Twenty, Thirty');
+    });
+
+    it('should not throw an error for an empty multiple list', () => {
+      const { getByRole } = render(
+        <Select multiple value={[]}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>
+            <strong>Twenty</strong>
+          </MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+      // A zero-width string is added for empty values
+      expect(getByRole('button')).to.have.text('\u200B');
     });
 
     it('selects value based on their stringified equality when theyre not objects', () => {

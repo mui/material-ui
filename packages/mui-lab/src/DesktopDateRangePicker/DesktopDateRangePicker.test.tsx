@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { act, describeConformance, screen, fireEvent, userEvent } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
@@ -21,14 +21,7 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
 );
 
 describe('<DesktopDateRangePicker />', () => {
-  let clock: SinonFakeTimers;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-  const { render } = createPickerRenderer();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   describeConformance(
     <DesktopDateRangePicker

@@ -1,6 +1,6 @@
 # 过渡动画
 
-<p class="description">主题键使您能够自定义使用跨 Material-UI 组件的各种过渡动画的时长和缓动效果，并且它也提供了一个用于创建自定义过渡动画的工具集。</p>
+<p class="description">The theme key enables you to customize the durations and easings of the various transitions used across MUI components, and offers a utility for creating custom transitions.</p>
 
 ## API
 
@@ -18,7 +18,7 @@
 
 #### 返回结果
 
-`
+`transition`：CSS 的过渡动画（transition ）值，它包含了所有需要应用其过渡动画的 CSS 属性，也包含了所定义的持续时间、缓动效果和作用延迟。
 
 使用 <code>theme.transitions.create()</code> 助手来为你的 UI 元素创建一致的过渡动画。</p>
 
@@ -88,4 +88,4 @@ const theme = createTheme({
 
 ## 参考
 
-你可以通过提供一个自定义的 CSS <code>transition-timing-function</code> 值来改变部分或全部的缓动值，或者提供你自己的缓动值。
+Check out the [Transitions](/components/transitions/) page to explore the transition components that are included with MUI.

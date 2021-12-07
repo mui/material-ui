@@ -11,6 +11,7 @@ import Testimonials from 'docs/src/components/home/Testimonials';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import References, { DESIGNKITS_CUSTOMERS } from 'docs/src/components/home/References';
+import SurveyBanner from 'docs/src/components/home/SurveyBanner';
 
 export default function DesignKits() {
   return (
@@ -20,6 +21,7 @@ export default function DesignKits() {
         description="Pick your favorite design tool to enjoy and use MUI components. Boost consistency and facilitate communication when working with developers."
         card="/static/social-previews/designkits-preview.jpg"
       />
+      <SurveyBanner />
       <AppHeader />
       <main>
         <DesignKitHero />

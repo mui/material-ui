@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers, SinonFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import TextField from '@mui/material/TextField';
-import { act, fireEvent, screen } from 'test/utils';
+import { fireEvent, screen } from 'test/utils';
 import PickersDay from '@mui/lab/PickersDay';
 import CalendarPickerSkeleton from '@mui/lab/CalendarPickerSkeleton';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
@@ -14,14 +14,7 @@ import {
 } from '../internal/pickers/test-utils';
 
 describe('<MobileDatePicker />', () => {
-  let clock: SinonFakeTimers;
-  beforeEach(() => {
-    clock = useFakeTimers(new Date());
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-  const { render } = createPickerRenderer();
+  const { clock, render } = createPickerRenderer({ clock: 'fake', clockConfig: new Date() });
 
   it('Accepts date on `OK` button click', () => {
     const onChangeMock = spy();
@@ -291,9 +284,7 @@ describe('<MobileDatePicker />', () => {
     );
     const start = adapterToUse.date();
     fireEvent.click(screen.getByRole('textbox'));
-    act(() => {
-      clock.tick(10);
-    });
+    clock.tick(10);
     fireEvent.click(screen.getByText(/today/i));
 
     expect(onCloseMock.callCount).to.equal(1);

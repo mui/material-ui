@@ -84,6 +84,27 @@ describe('cssVarsParser', () => {
       );
       expect(result).to.deep.equal({});
     });
+
+    it('skip the paths if `shouldSkipPaths` return true', () => {
+      const result: Record<string, string> = {};
+      walkObjectDeep<string>(
+        {
+          lv1: {
+            lv2: 'test',
+          },
+          vars: {
+            lv2: 'skip',
+          },
+        },
+        (keys, value) => {
+          result[keys.join('-')] = value;
+        },
+        (keys) => keys[0] === 'vars',
+      );
+      expect(result).to.deep.equal({
+        'lv1-lv2': 'test',
+      });
+    });
   });
 
   describe('css', () => {
@@ -185,11 +206,35 @@ describe('cssVarsParser', () => {
       });
     });
 
-    describe('value starts with `var`', () => {
+    describe('variable reference with `var()`', () => {
+      it('use prefix if provided', () => {
+        const theme = {
+          bg: 'var(--palette-neutral-50)',
+          text: {
+            heading: 'var(--palette-primary-500, var(--palette-neutral-500))',
+          },
+        };
+        const { css } = cssVarsParser(theme, {
+          prefix: 'foo-bar',
+        });
+        expect(theme).to.deep.equal({
+          bg: 'var(--foo-bar-palette-neutral-50)',
+          text: {
+            heading: 'var(--foo-bar-palette-primary-500, var(--foo-bar-palette-neutral-500))',
+          },
+        });
+        expect(css).to.deep.equal({
+          '--foo-bar-bg': 'var(--foo-bar-palette-neutral-50)',
+          '--foo-bar-text-heading':
+            'var(--foo-bar-palette-primary-500, var(--foo-bar-palette-neutral-500))',
+        });
+      });
+
       it('replace value starts with `var` if basePrefix, prefix are different', () => {
         const theme = {
+          bg: 'var(--joy-palette-neutral-50)',
           text: {
-            heading: 'var(--joy-palette-primary-500)',
+            heading: 'var(--joy-palette-primary-500, var(--joy-palette-neutral-500))',
           },
         };
         const { css } = cssVarsParser(theme, {
@@ -197,17 +242,21 @@ describe('cssVarsParser', () => {
           prefix: 'custom',
         });
         expect(theme).to.deep.equal({
+          bg: 'var(--custom-palette-neutral-50)',
           text: {
-            heading: 'var(--custom-palette-primary-500)',
+            heading: 'var(--custom-palette-primary-500, var(--custom-palette-neutral-500))',
           },
         });
         expect(css).to.deep.equal({
-          '--custom-text-heading': 'var(--custom-palette-primary-500)',
+          '--custom-bg': 'var(--custom-palette-neutral-50)',
+          '--custom-text-heading':
+            'var(--custom-palette-primary-500, var(--custom-palette-neutral-500))',
         });
       });
 
       it('basePrefix in the value is removed if prefix is ""', () => {
         const theme = {
+          bg: 'var(--joy-palette-neutral-50, var(--joy-colors-white))',
           text: {
             heading: 'var(--joy-palette-primary-500)',
           },
@@ -217,11 +266,13 @@ describe('cssVarsParser', () => {
           prefix: '',
         });
         expect(theme).to.deep.equal({
+          bg: 'var(--palette-neutral-50, var(--colors-white))',
           text: {
             heading: 'var(--palette-primary-500)',
           },
         });
         expect(css).to.deep.equal({
+          '--bg': 'var(--palette-neutral-50, var(--colors-white))',
           '--text-heading': 'var(--palette-primary-500)',
         });
       });

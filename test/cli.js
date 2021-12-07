@@ -39,6 +39,9 @@ async function run(argv) {
   if (argv.bail) {
     args.push('--bail');
   }
+  if (argv.debug || argv.inspecting) {
+    args.push('--timeout 0');
+  }
   if (argv.debug) {
     args.push('--inspect-brk');
   }
@@ -84,6 +87,16 @@ yargs
         .option('bail', {
           alias: 'b',
           description: 'Stop on first error.',
+          type: 'boolean',
+        })
+        .option('debug', {
+          alias: 'd',
+          description:
+            'Allows attaching a debugger and waits for the debugger to start code execution.',
+          type: 'boolean',
+        })
+        .option('inspecting', {
+          description: 'In case you expect to hit breakpoints that may interrupt a test.',
           type: 'boolean',
         })
         .option('production', {

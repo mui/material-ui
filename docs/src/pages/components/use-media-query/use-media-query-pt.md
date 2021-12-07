@@ -14,7 +14,7 @@ Algumas das principais características:
 - 📦 [1 kB gzipped](/size-snapshot).
 - 🤖 Suporta a renderização do lado do servidor.
 
-[A paleta](/system/palette/) com funções de estilo.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Consulta de mídia simples
 
@@ -24,13 +24,13 @@ Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. A stri
 
 ⚠️ Você não pode usar `'print'` devido a limitação de navegadores, por exemplo, este bug presente no [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
-## Usando auxiliares de ponto de quebra do Material-UI
+## Using MUI's breakpoint helpers
 
-Você pode usar os [auxiliares de ponto de quebra](/customization/breakpoints/) do Material-UI da seguinte maneira:
+You can use MUI's [breakpoint helpers](/customization/breakpoints/) as follows:
 
 ```jsx
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
@@ -45,10 +45,10 @@ function MyComponent() {
 Como alternativa, você pode usar uma função de retorno, aceitando o tema como um primeiro argumento:
 
 ```jsx
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function MyComponent() {
-  const matches = useMediaQuery(theme => theme.breakpoints.up('sm'));
+  const matches = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   return <span>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>;
 }
@@ -66,7 +66,7 @@ Você pode usar [json2mq](https://github.com/akiran/json2mq) para gerar uma stri
 
 Você precisa de uma implementação de [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) em seu ambiente de teste.
 
-Por exemplo, [jsdom não suporta ainda](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). Você deve usar um polyfill para isso. É recomendável usar [css-mediaquery](https://github.com/ericf/css-mediaquery) para emular.
+Por exemplo, [jsdom não suporta ainda](https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom). Você deve usar um polyfill para isso. É recomendável usar [css-mediaquery](https://github.com/ericf/css-mediaquery) para emular.
 
 ```js
 import mediaQuery from 'css-mediaquery';
@@ -133,13 +133,13 @@ Por exemplo, no lado do servidor:
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
-  const ssrMatchMedia = query => ({
+  const ssrMatchMedia = (query) => ({
     matches: mediaQuery.match(query, {
-      // O CSS estimado pelo navegador.
+      // The estimated CSS width of the browser.
       width: deviceType === 'mobile' ? '0px' : '1024px',
     }),
   });
@@ -158,8 +158,6 @@ function handleRender(req, res) {
   );
 
   // …
-}
-}
 }
 }
 }
@@ -182,11 +180,11 @@ O componente de ordem superior `withWidth()` injeta a largura da tela da página
 #### Argumentos
 
 1. `query` (_string_ | _func_): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
-2. `options` (_object_ [optional]):
+2. `options` (_object_ [opcional]):
 
 - `options.defaultMatches` (_bool_ [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. O valor padrão é `false`.
 - `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. Isso pode ser usado para manipular uma janela iframe com conteúdo.
-- `options.noSsr` (_bool_ [optional]): Defaults to `false`. Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esta opção para `true` se você estiver fazendo renderização **somente no lado cliente**.
+- `options.noSsr` (_bool_ [opcional]): Padrão `false`. Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esta opção para `true` se você estiver fazendo renderização **somente no lado cliente**.
 - `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
 Nota: Você pode alterar as opções padrão usando [`default props`](/customization/theme-components/#default-props), este recurso pertence ao tema através da chave `MuiUseMediaQuery`.
@@ -199,7 +197,7 @@ Nota: Você pode alterar as opções padrão usando [`default props`](/customiza
 
 ```jsx
 import * as React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function SimpleMediaQuery() {
   const matches = useMediaQuery('(min-width:600px)');

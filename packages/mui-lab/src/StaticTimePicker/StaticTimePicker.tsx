@@ -2,7 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { BaseTimePickerProps, useTimePickerDefaultizedProps } from '../TimePicker/shared';
 import TimePickerToolbar from '../TimePicker/TimePickerToolbar';
-import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
+import PickerStaticWrapper, {
+  PickerStaticWrapperProps,
+} from '../internal/pickers/wrappers/PickerStaticWrapper';
 import Picker from '../internal/pickers/Picker/Picker';
 import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { useTimeValidation } from '../internal/pickers/hooks/useValidation';
@@ -20,7 +22,7 @@ export interface StaticTimePickerProps<TDate = unknown> extends BaseTimePickerPr
    * Force static wrapper inner components to be rendered in mobile or desktop mode.
    * @default 'mobile'
    */
-  displayStaticWrapperAs?: StaticWrapperProps['displayStaticWrapperAs'];
+  displayStaticWrapperAs?: PickerStaticWrapperProps['displayStaticWrapperAs'];
 }
 
 type StaticTimePickerComponent = (<TDate>(
@@ -60,7 +62,7 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
   const DateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
-    <StaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
+    <PickerStaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
       {/* @ts-ignore time picker has no component slot for the calendar header */}
       <Picker
         {...pickerProps}
@@ -69,7 +71,7 @@ const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
         DateInputProps={DateInputProps}
         {...other}
       />
-    </StaticWrapper>
+    </PickerStaticWrapper>
   );
 }) as StaticTimePickerComponent;
 

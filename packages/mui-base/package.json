@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-alpha.55",
+  "version": "5.0.0-alpha.59",
   "private": false,
   "author": "MUI Team",
   "description": "Unstyled React components with which to implement custom design systems.",
@@ -22,6 +22,10 @@
     "url": "https://github.com/mui-org/material-ui/issues"
   },
   "homepage": "https://mui.com/customization/unstyled-components/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui"
+  },
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
     "build:legacy": "node ../../scripts/build legacy",
@@ -49,7 +53,7 @@
   "dependencies": {
     "@babel/runtime": "^7.16.3",
     "@emotion/is-prop-valid": "^1.1.1",
-    "@mui/utils": "^5.1.1",
+    "@mui/utils": "^5.2.3",
     "@popperjs/core": "^2.4.4",
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",

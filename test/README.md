@@ -11,7 +11,7 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 
 ## Tools we use
 
-- [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro)
+- [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/)
 - [Chai](https://www.chaijs.com/)
 - [Sinon](https://sinonjs.org/)
 - [Mocha](https://mochajs.org/)
@@ -20,11 +20,20 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 - [jsdom](https://github.com/jsdom/jsdom)
 - [enzyme](https://airbnb.io/enzyme/) (old tests only)
 
-## Writing Tests
+## Writing tests
 
-For all unit tests, please use the return value from `test/utils/createClientRender`.
+For all unit tests, please use the return value from `test/utils/createRenderer`.
 It prepares the test suite and returns a function with the same interface as
 [`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
+
+````js
+describe('test suite', () => {
+  const { render } = createRenderer()
+
+  test('first', () => {
+    render(<input />);
+  });
+})
 
 For new tests please use `expect` from the BDD testing approach. Prefer to use as expressive [matchers](https://www.chaijs.com/api/bdd/) as possible. This keeps
 the tests readable, and, more importantly, the message if they fail as descriptive as possible.
@@ -76,7 +85,7 @@ function SomeComponent({ variant }) {
 expect(() => {
   render(<SomeComponent variant="unexpected" />);
 }).toErrorDev(["That variant doesn't make sense.", '`variant` is deprecated.']);
-```
+````
 
 ```js
 function SomeComponent({ variant }) {
@@ -102,6 +111,14 @@ MUI uses a wide range of tests approach as each of them comes with a different
 trade-off, mainly completeness vs. speed.
 
 ### React API level
+
+#### Debugging tests
+
+If you want to debug tests with the e.g. Chrome inspector (chrome://inspect) you can run `yarn t <testFilePattern> --debug`.
+Note that the test will not get executed until you start code execution in the inspector.
+
+We have a dedicated task to use VSCode's integrated debugger to debug the currently opened test file.
+Open the test you want to run and press F5 (launch "Test Current File").
 
 #### Run the core mocha unit/integration test suite.
 

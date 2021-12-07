@@ -135,7 +135,7 @@ Below is an example using the [`InputBase`](/api/input-base/) component, inspire
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field/).
 
 ## `useFormControl`
 
@@ -285,7 +285,8 @@ In order for the text field to be accessible, **the input should be linked to th
 </div>
 ```
 
-- If you are using the `TextField` component, you just have to provide a unique `id`.
+- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side.
+  Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
 - If you are composing the component:
 
 ```jsx
@@ -301,7 +302,7 @@ In order for the text field to be accessible, **the input should be linked to th
 For more advanced use cases, you might be able to take advantage of:
 
 - [react-hook-form](https://react-hook-form.com/): React hook for form validation.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using MUI with [formik](https://jaredpalmer.com/formik).
+- [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
 
