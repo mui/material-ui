@@ -176,6 +176,12 @@ export default function Joy() {
           display: '"PlusJakartaSans-ExtraBold", var(--joy-fontFamily-fallback)',
         },
         typography: {
+          h1: {
+            fontSize: 'clamp(2rem, 1.5455rem + 1.9394vw, 3rem)',
+          },
+          h2: {
+            fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
+          },
           body2: {
             lineHeight: 'var(--joy-lineHeight-sm)',
           },
@@ -260,7 +266,7 @@ export default function Joy() {
           <ColorSchemePicker />
         </Container>
       </Header>
-      <Container sx={{ mt: 14, maxWidth: { xl: 1536 } }}>
+      <Container sx={{ py: 14, pb: { xs: 6, sm: 10, md: 14 }, maxWidth: { xl: 1536 } }}>
         <Box
           sx={{
             display: 'flex',
@@ -308,11 +314,11 @@ export default function Joy() {
       </Container>
 
       {/* Demo API consistency */}
-      <Container maxWidth="md" sx={{ mt: 24 }}>
+      <Container maxWidth="md" sx={{ py: { xs: 6, sm: 10, md: 14 } }}>
         <JoyDemo />
       </Container>
 
-      <Container sx={{ my: 24, maxWidth: { xl: 1536 } }}>
+      <Container sx={{ py: { xs: 6, sm: 10, md: 14 }, maxWidth: { xl: 1536 } }}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Typography level="h2">
@@ -345,7 +351,7 @@ export default function Joy() {
           </Grid>
         </Grid>
       </Container>
-      <Container sx={{ my: 24, maxWidth: { xl: 1536 } }}>
+      <Container sx={{ py: { xs: 6, sm: 10, md: 14 }, maxWidth: { xl: 1536 } }}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Typography level="h2" sx={{ mb: 3 }}>
@@ -364,7 +370,13 @@ export default function Joy() {
                 <Sparkles />
               </IconWrapper>
               <Box sx={{ mb: 4 }}>
-                <Typography level="h4" sx={{ mb: 1 }}>
+                <Typography
+                  sx={{
+                    fontSize: 'var(--joy-fontSize-lg)',
+                    fontWeight: 'var(--joy-fontWeight-md)',
+                    mb: 1,
+                  }}
+                >
                   A new and great design out of the box
                 </Typography>
                 <Typography sx={{ maxWidth: 700 }}>
@@ -380,7 +392,13 @@ export default function Joy() {
                 <Hammer />
               </IconWrapper>
               <Box sx={{ mb: 4 }}>
-                <Typography level="h4" sx={{ mb: 1 }}>
+                <Typography
+                  sx={{
+                    fontSize: 'var(--joy-fontSize-lg)',
+                    fontWeight: 'var(--joy-fontWeight-md)',
+                    mb: 1,
+                  }}
+                >
                   Customization tools to make it look your own
                 </Typography>
                 <Typography sx={{ maxWidth: 700 }}>
@@ -395,7 +413,13 @@ export default function Joy() {
                 <Flask />
               </IconWrapper>
               <Box sx={{ mb: 4 }}>
-                <Typography level="h4" sx={{ mb: 1 }}>
+                <Typography
+                  sx={{
+                    fontSize: 'var(--joy-fontSize-lg)',
+                    fontWeight: 'var(--joy-fontWeight-md)',
+                    mb: 1,
+                  }}
+                >
                   A laboratory for experimenting
                 </Typography>
                 <Typography sx={{ maxWidth: 700 }}>
