@@ -121,7 +121,7 @@ export default function JoyComponents() {
             >
               <Typography sx={{ textDecoration: 'underline' }}>{propName}</Typography>
               {propValue.map((value) => (
-                <Box>
+                <Box key={value}>
                   <Button {...{ [propName]: value }}>Button</Button>
                   <Typography level="body3" sx={{ textAlign: 'center', mt: '4px' }}>
                     {value || 'default'}
