@@ -1,6 +1,6 @@
 import * as React from 'react';
-import debounce from 'lodash/debounce';
 import { useRouter } from 'next/router';
+import { debounce } from '@mui/material/utils';
 
 /**
  * Similar to `React.useState`, but it syncs back the current state to a query
@@ -50,6 +50,13 @@ export default function useQueryParameterState(
         }
       }, 220),
     [name, router],
+  );
+
+  React.useEffect(
+    () => () => {
+      setUrlValue.clear();
+    },
+    [setUrlValue],
   );
 
   const setUserState = React.useCallback(
