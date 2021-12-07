@@ -2,12 +2,12 @@ import * as CSS from 'csstype';
 import { createTheme as systemCreateTheme, Breakpoints, Spacing, CSSObject } from '@mui/system';
 import colors from '../colors';
 import {
+  ColorPaletteProp,
   ColorSystem,
   Palette,
   PaletteText,
   PaletteRange,
   PaletteBackground,
-  ColorPaletteProp,
 } from './types/colorSystem';
 import { Variants, DefaultVariantKey, DefaultContextualOverrides } from './types/variants';
 import {
@@ -104,18 +104,6 @@ export interface TypographySystem {
   body3: CSSObject;
 }
 
-// ---------------------------------------------------------------
-
-export interface ThemeScales {
-  borderRadius: BorderRadius;
-  elevation: Elevation;
-  fontFamily: FontFamily;
-  fontSize: FontSize;
-  fontWeight: FontWeight;
-  lineHeight: LineHeight;
-  letterSpacing: LetterSpacing;
-}
-
 /**
  * ==============================================
  * Internal type for definfing default Joy theme.
@@ -170,7 +158,6 @@ type BaseJoyTokens = {
   elevationRing: CSSProperties['boxShadow'];
   elevationChannel: string;
   elevation: Pick<Elevation, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-  focus: Pick<Focus, 'default'>;
   fontSize: Pick<
     FontSize,
     'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2' | 'xl3' | 'xl4' | 'xl5' | 'xl6'
@@ -179,18 +166,11 @@ type BaseJoyTokens = {
   fontWeight: Pick<FontWeight, 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   lineHeight: Pick<LineHeight, 'default' | 'sm' | 'md' | 'lg'>;
   letterSpacing: Pick<LetterSpacing, 'default' | 'sm' | 'md' | 'lg'>;
-  typography: Pick<
-    TypographySystem,
-    'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'body3'
-  >;
-  variants: Pick<Variants, DefaultVariantKey> &
-    Record<DefaultContextualOverrides, Record<Exclude<ColorPaletteProp, 'context'>, CSSObject>>;
 };
 
-export const lightColorSystem: Pick<
-  BaseJoyTokens,
-  'palette' | 'elevationRing' | 'elevationChannel'
-> = {
+type BaseJoyColorSystem = Pick<BaseJoyTokens, 'palette' | 'elevationRing' | 'elevationChannel'>;
+
+export const lightColorSystem: BaseJoyColorSystem = {
   palette: {
     primary: {
       ...colors.purple,
@@ -233,10 +213,7 @@ export const lightColorSystem: Pick<
   elevationChannel: '187 187 187',
 };
 
-export const darkColorSystem: Pick<
-  BaseJoyTokens,
-  'palette' | 'elevationRing' | 'elevationChannel'
-> = {
+export const darkColorSystem: BaseJoyColorSystem = {
   palette: {
     primary: {
       ...colors.purple,
@@ -279,10 +256,7 @@ export const darkColorSystem: Pick<
   elevationChannel: '0 0 0',
 };
 
-/**
- * Base Joy design tokens
- * Any value with `var(--joy-*)` can be used. 'joy-' will be replaced by the application prefix if provided.
- */
+// Any value with `var(--joy-*)` can be used. 'joy-' will be replaced by the application prefix if provided.
 const joyDesignTokens: BaseJoyTokens = {
   ...lightColorSystem,
   borderRadius: {
@@ -299,12 +273,6 @@ const joyDesignTokens: BaseJoyTokens = {
     md: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px rgba(var(--joy-elevationChannel) / 0.12), 1.1px 2.8px 3.9px -0.4px rgba(var(--joy-elevationChannel) / 0.17), 2.4px 6.1px 8.6px -0.8px rgba(var(--joy-elevationChannel) / 0.23), 5.3px 13.3px 18.8px -1.2px rgba(var(--joy-elevationChannel) / 0.29)',
     lg: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px rgba(var(--joy-elevationChannel) / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(var(--joy-elevationChannel) / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(var(--joy-elevationChannel) / 0.16), 4.8px 12px 17px -0.5px rgba(var(--joy-elevationChannel) / 0.19), 7px 17.5px 24.7px -0.7px rgba(var(--joy-elevationChannel) / 0.21)',
     xl: 'var(--joy-elevationRing), 0.3px 0.8px 1.1px rgba(var(--joy-elevationChannel) / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(var(--joy-elevationChannel) / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(var(--joy-elevationChannel) / 0.16), 4.8px 12px 17px -0.5px rgba(var(--joy-elevationChannel) / 0.19), 7px 17.5px 24.7px -0.7px rgba(var(--joy-elevationChannel) / 0.21), 10.2px 25.5px 36px -0.9px rgba(var(--joy-elevationChannel) / 0.24), 14.8px 36.8px 52.1px -1.1px rgba(var(--joy-elevationChannel) / 0.27), 21px 52.3px 74px -1.2px rgba(var(--joy-elevationChannel) / 0.29)',
-  },
-  focus: {
-    default: {
-      outline: '4px solid',
-      outlineColor: 'var(--joy-palette-focusVisible)',
-    },
   },
   fontSize: {
     default: '1rem',
@@ -345,6 +313,36 @@ const joyDesignTokens: BaseJoyTokens = {
     sm: '-0.01em',
     md: '0.083em',
     lg: '0.125em',
+  },
+};
+
+const defaultSystemTheme = systemCreateTheme();
+
+// Internal usage for providing type safe.
+// Module augmentation in this repo has no impact.
+const internalDefaultTheme: BaseJoyTokens & {
+  colorSchemes: Record<DefaultColorScheme, BaseJoyColorSystem>;
+  focus: Pick<Focus, 'default'>;
+  typography: Pick<
+    TypographySystem,
+    'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'body3'
+  >;
+  variants: Pick<Variants, DefaultVariantKey> &
+    Record<DefaultContextualOverrides, Record<Exclude<ColorPaletteProp, 'context'>, CSSObject>>;
+  vars: BaseJoyTokens & BaseJoyColorSystem;
+  spacing: Spacing;
+  breakpoints: Breakpoints;
+} = {
+  ...joyDesignTokens,
+  colorSchemes: {
+    light: lightColorSystem,
+    dark: darkColorSystem,
+  },
+  focus: {
+    default: {
+      outline: '4px solid',
+      outlineColor: 'var(--joy-palette-focusVisible)',
+    },
   },
   typography: {
     h1: {
@@ -420,6 +418,7 @@ const joyDesignTokens: BaseJoyTokens = {
       color: 'var(--joy-palette-text-tertiary)',
     },
   },
+  vars: joyDesignTokens,
   variants: {
     text: createVariant('text'),
     textHover: createVariant('textHover'),
@@ -439,9 +438,21 @@ const joyDesignTokens: BaseJoyTokens = {
     containedDisabled: createVariant('containedDisabled'),
     containedOverrides: createVariant('containedOverrides'),
   },
+  breakpoints: defaultSystemTheme.breakpoints,
+  spacing: defaultSystemTheme.spacing,
 };
 
-// ---------------------------------------------------------------
+// ==============================================
+
+export interface ThemeScales {
+  borderRadius: BorderRadius;
+  elevation: Elevation;
+  fontFamily: FontFamily;
+  fontSize: FontSize;
+  fontWeight: FontWeight;
+  lineHeight: LineHeight;
+  letterSpacing: LetterSpacing;
+}
 
 export interface JoyTheme<ApplicationColorScheme extends string = ExtendedColorScheme>
   extends ThemeScales,
@@ -456,17 +467,6 @@ export interface JoyTheme<ApplicationColorScheme extends string = ExtendedColorS
   components?: Components;
 }
 
-const defaultSystemTheme = systemCreateTheme();
-
-const defaultTheme = {
-  ...joyDesignTokens,
-  colorSchemes: {
-    light: lightColorSystem,
-    dark: darkColorSystem,
-  },
-  vars: joyDesignTokens,
-  breakpoints: defaultSystemTheme.breakpoints,
-  spacing: defaultSystemTheme.spacing,
-} as JoyTheme<never>;
+const defaultTheme = internalDefaultTheme as unknown as JoyTheme;
 
 export default defaultTheme;
