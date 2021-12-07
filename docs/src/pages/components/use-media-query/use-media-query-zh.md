@@ -16,7 +16,7 @@ githubLabel: 'hook: useMediaQuery'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## 简单的媒体查询
+## Basic media query
 
 你应该将媒体查询提供给 hook 作为第一个参数。 媒体查询的字符串可以是任何有效的 CSS 媒体查询，例如 [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference)。
 
@@ -24,13 +24,13 @@ githubLabel: 'hook: useMediaQuery'
 
 ⚠️  由于每个浏览器的限制，你不能使用 `'print'`，例如 [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398) 上的这个问题。
 
-## 使用 Material-UI 的断点辅助功能
+## Using MUI's breakpoint helpers
 
-按照如下所示的例子，你可以这样使用 Material-UI 的 [断点辅助功能](/customization/breakpoints/) ：
+You can use MUI's [breakpoint helpers](/customization/breakpoints/) as follows:
 
 ```jsx
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
@@ -45,7 +45,7 @@ function MyComponent() {
 或者你也可以使用一个回调函数，其第一个参数是 theme：
 
 ```jsx
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function MyComponent() {
   const matches = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -66,7 +66,7 @@ function MyComponent() {
 
 你需要在测试环境中实现 [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia)。
 
-例如：[暂时还不支持 jsdom](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html)。 所以你应来兼容（polyfill）它。 我们推荐使用 [css-mediaquery](https://github.com/ericf/css-mediaquery) 来创造一个模拟环境从而达到兼容的目的。
+例如：[暂时还不支持 jsdom](https://jestjs.io/docs/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom)。 所以你应来兼容（polyfill）它。 我们推荐使用 [css-mediaquery](https://github.com/ericf/css-mediaquery) 来创造一个模拟环境从而达到兼容的目的。
 
 ```js
 import mediaQuery from 'css-mediaquery';
@@ -135,13 +135,13 @@ const theme = createTheme({
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
   const ssrMatchMedia = (query) => ({
     matches: mediaQuery.match(query, {
-      // 浏览器的 CSS 宽度预计值
+      // The estimated CSS width of the browser.
       width: deviceType === 'mobile' ? '0px' : '1024px',
     }),
   });
@@ -186,7 +186,7 @@ function handleRender(req, res) {
 
 - `options.defaultMatches` (_bool_ [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. 默认值为 `false`。
 - `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. 用其您可以处理一个 iframe 内容窗口。
-- `options.noSsr` (_bool_ [optional]): Defaults to `false`. 要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
+- `options.noSsr` (_bool_ [optional])：默认为 `false`。 要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
 - `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
 注意：你可以使用主题的 [`默认属性`](/customization/theme-components/#default-props) 功能和 `MuiUseMediaQuery` 键（key）来更改默认的选项。
@@ -199,7 +199,7 @@ function handleRender(req, res) {
 
 ```jsx
 import * as React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function SimpleMediaQuery() {
   const matches = useMediaQuery('(min-width:600px)');

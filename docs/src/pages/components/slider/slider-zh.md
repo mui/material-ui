@@ -78,7 +78,7 @@ In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/ColorSlider.js"}}
 
-## 自定义滑块
+## Customization 个性化
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
@@ -122,16 +122,16 @@ In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
-## Unstyled
+## 素颜模式
 
 <!-- #default-branch-switch -->
 
-- 📦 [5.6kB 已压缩的包](https://bundlephobia.com/package/@material-ui/unstyled@next)
+- 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+The slider also comes with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
 
 ```js
-import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
+import SliderUnstyled from '@mui/base/SliderUnstyled';
 ```
 
 {{"demo": "pages/components/slider/UnstyledSlider.js"}}

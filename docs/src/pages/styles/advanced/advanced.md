@@ -396,7 +396,7 @@ Refer to the plugin's page for setup and usage instructions.
 
 <!-- #default-branch-switch -->
 
-Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
@@ -404,7 +404,7 @@ You need to have a custom `pages/_document.js`, then copy [this logic](https://g
 
 <!-- #default-branch-switch -->
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
 
 ## Class names
 
@@ -478,7 +478,7 @@ Using `withStyles` in TypeScript can be a little tricky, but there are some util
 
 ### Using `createStyles` to defeat type widening
 
-A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/literal-type-widening-in-typescript), which causes this example not to work as expected:
 
 ```ts
 const styles = {

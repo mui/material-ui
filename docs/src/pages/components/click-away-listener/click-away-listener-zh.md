@@ -34,3 +34,13 @@ githubLabel: 'component: ClickAwayListener'
 {{"demo": "pages/components/click-away-listener/LeadingClickAway.js"}}
 
 > ⚠️ 在此模式下，仅有文档对象滚动条上的交互被忽略。
+
+## 素颜模式
+
+- 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
+
+As the component does not have any styles, it also comes with the unstyled package.
+
+```js
+import ClickAwayListener from '@mui/base/ClickAwayListener';
+```

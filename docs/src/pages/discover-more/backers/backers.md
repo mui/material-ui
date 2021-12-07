@@ -29,7 +29,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="spicefactory" href="https://spicefactory.co/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/13365608?s=96" srcset="https://avatars.githubusercontent.com/u/13365608?s=192 2x" alt="Next gen digital product studio." loading="lazy" /></a>
 </p>
 
-via [OpenCollective](https://opencollective.com/material-ui)
+via [OpenCollective](https://opencollective.com/mui)
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="textemall" href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/callemall/a6946da/logo/96.png" srcset="https://images.opencollective.com/callemall/a6946da/logo/192.png 2x" alt="call-em-all" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
@@ -51,10 +51,10 @@ Gold Sponsors are those who have pledged \$500/month or more to MUI.
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
-via [OpenCollective](https://opencollective.com/material-ui)
+via [OpenCollective](https://opencollective.com/mui)
 
 <p style="overflow: auto;">
-  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/silver-sponsor.svg?avatarHeight=70&width=600">Silver Sponsors</object>
+  <object type="image/svg+xml" data="https://opencollective.com/mui/tiers/silver-sponsor.svg?avatarHeight=70&width=600">Silver Sponsors</object>
 </p>
 
 Silver Sponsors are those who have pledged $250/month to $500/month to MUI.
@@ -63,20 +63,20 @@ Silver Sponsors are those who have pledged $250/month to $500/month to MUI.
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
-via [OpenCollective](https://opencollective.com/material-ui)
+via [OpenCollective](https://opencollective.com/mui)
 
 <p style="overflow: auto;">
-  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/bronze-sponsor.svg?avatarHeight=60&width=600">Bronze Sponsors</object>
+  <object type="image/svg+xml" data="https://opencollective.com/mui/tiers/bronze-sponsor.svg?avatarHeight=60&width=600">Bronze Sponsors</object>
 </p>
 
 Bronze Sponsors are those who have pledged $100/month to $250/month to MUI.
 
 ### Backers
 
-via [OpenCollective](https://opencollective.com/material-ui)
+via [OpenCollective](https://opencollective.com/mui)
 
 <p style="overflow: auto;">
-  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/backer.svg?avatarHeight=50&width=600">Backers</object>
+  <object type="image/svg+xml" data="https://opencollective.com/mui/tiers/backer.svg?avatarHeight=50&width=600">Backers</object>
 </p>
 
 ## FAQ

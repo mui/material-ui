@@ -39,7 +39,7 @@ Exemplo de um cartão usando uma imagem para reforçar o conteúdo.
 
 {{"demo": "pages/components/cards/MediaCard.js", "bg": true}}
 
-Por padrão, nós usamos a combinação de um elemento `<div>` e uma *imagem de fundo* para exibir a mídia. Isto pode ser problemático em algumas situações. Por exemplo, você pode querer exibir um vídeo ou uma imagem responsiva. Use a propriedade `component` para estas situações:
+Por padrão, nós usamos uma combinação de um elemento `&lt;div&gt;` e um *background image* para exibir o componente media. Isto pode ser problemático em algumas situações. Por exemplo, você pode querer exibir um vídeo ou uma imagem responsiva. Use a propriedade `component` para estes casos de uso:
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
@@ -63,6 +63,4 @@ Aqui está um exemplo de um controle de mídia com cartão.
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
 
-## Customização
-
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/components/card/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card/).
