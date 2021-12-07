@@ -75,10 +75,10 @@ describe('Joy <Button />', () => {
   });
 
   it('should render an elevated button', () => {
-    const { getByRole } = render(<Button elevation="xs">Hello World</Button>);
+    const { getByRole } = render(<Button shadow="xs">Hello World</Button>);
     const button = getByRole('button');
 
-    expect(button).to.have.class(classes.elevationXs);
+    expect(button).to.have.class(classes.shadowXs);
   });
 
   it('should render a rounded button', () => {

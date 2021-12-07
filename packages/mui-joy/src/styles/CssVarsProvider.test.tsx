@@ -392,13 +392,13 @@ describe('[Joy] CssVarsProvider', () => {
       );
     });
 
-    it('elevation ring & channel', () => {
+    it('shadow ring & channel', () => {
       const Vars = () => {
         const theme = useTheme();
         return (
           <div>
-            <div data-testid="elevation-ring">{theme.vars.elevationRing}</div>
-            <div data-testid="elevation-channel">{theme.vars.elevationChannel}</div>
+            <div data-testid="shadow-ring">{theme.vars.shadowRing}</div>
+            <div data-testid="shadow-channel">{theme.vars.shadowChannel}</div>
           </div>
         );
       };
@@ -409,10 +409,8 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('elevation-ring').textContent).to.equal('var(--joy-elevationRing)');
-      expect(screen.getByTestId('elevation-channel').textContent).to.equal(
-        'var(--joy-elevationChannel)',
-      );
+      expect(screen.getByTestId('shadow-ring').textContent).to.equal('var(--joy-shadowRing)');
+      expect(screen.getByTestId('shadow-channel').textContent).to.equal('var(--joy-shadowChannel)');
     });
   });
 

@@ -15,16 +15,16 @@ export interface ButtonClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `elevation="xs"`. */
-  elevationXs: string;
-  /** Styles applied to the root element if `elevation="sm"`. */
-  elevationSm: string;
-  /** Styles applied to the root element if `elevation="md"`. */
-  elevationMd: string;
-  /** Styles applied to the root element if `elevation="lg"`. */
-  elevationLg: string;
-  /** Styles applied to the root element if `elevation="xl"`. */
-  elevationXl: string;
+  /** Styles applied to the root element if `shadow="xs"`. */
+  shadowXs: string;
+  /** Styles applied to the root element if `shadow="sm"`. */
+  shadowSm: string;
+  /** Styles applied to the root element if `shadow="md"`. */
+  shadowMd: string;
+  /** Styles applied to the root element if `shadow="lg"`. */
+  shadowLg: string;
+  /** Styles applied to the root element if `shadow="xl"`. */
+  shadowXl: string;
   /** Styles applied to the root element if `variant="text"`. */
   variantText: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -69,11 +69,11 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
-  'elevationXs',
-  'elevationSm',
-  'elevationMd',
-  'elevationLg',
-  'elevationXl',
+  'shadowXs',
+  'shadowSm',
+  'shadowMd',
+  'shadowLg',
+  'shadowXl',
   'variantText',
   'variantOutlined',
   'variantLight',

@@ -2,7 +2,7 @@ import * as CSS from 'csstype';
 
 type CSSProperties = CSS.Properties<number | string>;
 
-export interface Elevation {
+export interface Shadow {
   xs: CSSProperties['boxShadow'];
   sm: CSSProperties['boxShadow'];
   md: CSSProperties['boxShadow'];
@@ -10,4 +10,4 @@ export interface Elevation {
   xl: CSSProperties['boxShadow'];
 }
 
-export type ElevationProp = keyof Elevation;
+export type ShadowProp = keyof Shadow;

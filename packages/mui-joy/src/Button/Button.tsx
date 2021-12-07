@@ -17,7 +17,7 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
     fullWidth,
     size,
     variant,
-    elevation,
+    shadow,
     radius,
   } = ownerState;
 
@@ -30,7 +30,7 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
-      elevation && `elevation${capitalize(elevation)}`,
+      shadow && `shadow${capitalize(shadow)}`,
       radius && `radius${capitalize(radius)}`,
     ],
   };
@@ -55,7 +55,7 @@ const ButtonRoot = styled('button', {
       styles[`variant${capitalize(ownerState.variant)}`],
       styles[`color${capitalize(ownerState.color)}`],
       ownerState.size && styles[`size${capitalize(ownerState.size)}`],
-      ownerState.elevation && styles[`elevation${capitalize(ownerState.elevation)}`],
+      ownerState.shadow && styles[`shadow${capitalize(ownerState.shadow)}`],
       ownerState.radius && styles[`radius${capitalize(ownerState.radius)}`],
       ownerState.fullWidth && styles.fullWidth,
     ];
@@ -77,8 +77,8 @@ const ButtonRoot = styled('button', {
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...theme.typography.body1,
       fontWeight: theme.vars.fontWeight.md,
-      ...(ownerState.elevation && {
-        boxShadow: theme.vars.elevation[ownerState.elevation],
+      ...(ownerState.shadow && {
+        boxShadow: theme.vars.shadow[ownerState.shadow],
       }),
       ...(ownerState.size === 'small' && {
         padding: '0.25rem 1rem',
@@ -134,7 +134,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     color = 'primary',
     variant = 'contained',
     radius = 'sm',
-    elevation,
+    shadow,
     size,
     fullWidth = false,
     ...other
@@ -169,7 +169,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     fullWidth,
     variant,
     radius,
-    elevation,
+    shadow,
     size,
     focusVisible,
   };
@@ -227,7 +227,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * The intensity of the shadow.
    */
-  elevation: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
+  shadow: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
   /**
    * If `true`, the button will take up the full width of its container.
    * @default false
