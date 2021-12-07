@@ -2,6 +2,7 @@ import * as React from 'react';
 import NextLink from 'next/link';
 import CONFIG from 'docs/src/config';
 import ROUTES from 'docs/src/route';
+import TabsUnstyled from '@mui/base/TabsUnstyled';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
@@ -21,6 +22,11 @@ import {
   ColorSchemePicker,
   IconWrapper,
   Anchor,
+  Switch,
+  TabsList,
+  Tab,
+  List,
+  ListItem,
 } from 'docs/src/joy/components';
 import {
   Github,
@@ -30,6 +36,10 @@ import {
   Sparkles,
   Hammer,
   CheckCircleOutline,
+  Apps,
+  Notifications,
+  Shield,
+  Person,
 } from 'docs/src/joy/icons';
 import JoyDemo from 'docs/src/joy/demo';
 import useEmailSubscribe from 'docs/src/modules/utils/useEmailSubscribe';
@@ -48,6 +58,7 @@ declare module '@mui/joy/styles' {
 
   interface PaletteBackground {
     translucent1: string;
+    translucent2: string;
   }
 }
 
@@ -146,6 +157,7 @@ export default function Joy() {
               },
               background: {
                 translucent1: 'rgba(255, 255, 255, 0.6)',
+                translucent2: 'rgba(0, 0, 0, 0.12)',
               },
             },
           },
@@ -168,6 +180,7 @@ export default function Joy() {
               },
               background: {
                 translucent1: 'rgba(0, 0, 0, 0.6)',
+                translucent2: 'rgba(255, 255, 255, 0.12)',
               },
             },
           },
@@ -286,7 +299,7 @@ export default function Joy() {
               a beautiful and opinionated default theme, you&apos;ll be able to develop React UIs
               faster while looking great.
             </Typography>
-            <Typography sx={{ mb: 3 }}>
+            <Typography sx={{ mb: 3, color: 'text.secondary' }}>
               Development still in early stage. Subscribe to the newsletter for updates
             </Typography>
             <EmailSubscribe />
@@ -300,15 +313,48 @@ export default function Joy() {
               px: { xs: 2, sm: 3, lg: 0 },
               overflowX: { xs: 'auto', lg: 'initial' },
               py: 3,
+              scrollSnapType: 'inline mandatory',
+              scrollPaddingLeft: { xs: '16px', sm: '24px' },
               '::-webkit-scrollbar': {
                 display: 'none',
               },
+              '@media (prefers-reduced-motion: no-preference)': {
+                scrollBehavior: 'smooth',
+              },
             }}
           >
-            <Widget label="Tabs" />
-            <Widget label="Menu" />
-            <Widget label="Switch" />
-            <Widget label="Button" />
+            <Widget label="Tabs">
+              <TabsUnstyled defaultValue={0}>
+                <TabsList>
+                  <Tab>All</Tab>
+                  <Tab>Missed</Tab>
+                </TabsList>
+              </TabsUnstyled>
+            </Widget>
+            <Widget label="List">
+              <List elevation="lg" roundness="md" sx={{ p: '0.25rem' }}>
+                <ListItem variant="light">
+                  <Notifications fontSize="lg" sx={{ color: 'text.tertiary' }} /> Notifications
+                </ListItem>
+                <ListItem>
+                  <Shield fontSize="lg" sx={{ color: 'text.tertiary' }} /> Security
+                </ListItem>
+                <ListItem>
+                  <Person fontSize="lg" sx={{ color: 'text.tertiary' }} />
+                  Profile
+                </ListItem>
+              </List>
+            </Widget>
+            <Widget label="Switch">
+              <Switch defaultChecked />
+              <Switch />
+            </Widget>
+            <Widget label="Button">
+              <Button variant="text" elevation="sm" sx={{ bgcolor: 'background.default' }}>
+                <Apps sx={{ ml: -1, mr: 1 }} />
+                Button
+              </Button>
+            </Widget>
           </Box>
         </Box>
       </Container>

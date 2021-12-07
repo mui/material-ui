@@ -1,4 +1,10 @@
 import * as React from 'react';
+import SwitchUnstyled, {
+  switchUnstyledClasses,
+  SwitchUnstyledProps,
+} from '@mui/base/SwitchUnstyled';
+import TabsListUnstyled from '@mui/base/TabsListUnstyled';
+import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/joy/Box';
 import {
@@ -29,6 +35,110 @@ const shouldForwardProp = (prop: string | number | symbol) =>
   prop !== 'size' &&
   prop !== 'sx' &&
   prop !== 'as';
+
+export const Tab = styled(TabUnstyled)<DemoProps>(({ theme, color = 'primary' }) => [
+  {
+    padding: '0.25rem 1.5rem',
+    border: 0,
+    cursor: 'pointer',
+    borderRadius: theme.borderRadius.md,
+    '&:focus-visible': theme.focus.default,
+    minWidth: 80,
+  },
+  theme.typography.body1,
+  {
+    fontWeight: theme.vars.fontWeight.md,
+    ...theme.variants.text.neutral,
+    [`&.${tabUnstyledClasses.selected}`]: {
+      ...theme.variants.light[color],
+    },
+  },
+]);
+
+export const TabsList = styled(TabsListUnstyled)(({ theme }) => [
+  {
+    padding: '0.25rem',
+    gap: '0.25rem',
+    borderRadius: theme.borderRadius.default,
+    display: 'flex',
+  },
+  theme.variants.text.neutral,
+  {
+    backgroundColor: `var(--joy-variant-textBg, var(--joy-palette-background-default))`,
+  },
+]);
+
+const SwitchRoot = styled('span')(({ theme }) => ({
+  '--joy-Switch-track-radius': theme.vars.borderRadius.lg,
+  '--joy-Switch-track-width': '48px',
+  '--joy-Switch-track-height': '24px',
+  '--joy-Switch-thumb-size': '16px',
+  '--joy-Switch-thumb-radius': 'calc(var(--joy-Switch-track-radius) - 2px)',
+  '--joy-Switch-thumb-width': 'var(--joy-Switch-thumb-size)',
+  '--joy-Switch-thumb-offset':
+    'max((var(--joy-Switch-track-height) - var(--joy-Switch-thumb-size)) / 2, 0px)',
+  display: 'inline-block',
+  width: 'var(--joy-Switch-track-width)',
+  borderRadius: 'var(--joy-Switch-track-radius)',
+  position: 'relative',
+  padding:
+    'calc((var(--joy-Switch-thumb-size) / 2) - (var(--joy-Switch-track-height) / 2)) calc(-1 * var(--joy-Switch-thumb-offset))',
+  color: theme.vars.palette.neutral.containedBg,
+  '&:hover': {
+    color: theme.vars.palette.neutral.containedBg,
+  },
+  [`&.${switchUnstyledClasses.checked}`]: {
+    color: theme.vars.palette.primary.containedBg,
+    '&:hover': {
+      color: theme.vars.palette.primary.containedHoverBg,
+    },
+  },
+  [`&.${switchUnstyledClasses.disabled}`]: {
+    pointerEvents: 'none',
+    cursor: 'default',
+    opacity: 0.6,
+  },
+  [`&.${switchUnstyledClasses.focusVisible}`]: theme.focus.default,
+  [`& .${switchUnstyledClasses.input}`]: {
+    margin: 0,
+    height: '100%',
+    width: '100%',
+    opacity: 0,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    cursor: 'pointer',
+  },
+  [`& .${switchUnstyledClasses.track}`]: {
+    position: 'relative',
+    color: 'inherit',
+    height: 'var(--joy-Switch-track-height)',
+    width: 'var(--joy-Switch-track-width)',
+    display: 'block',
+    backgroundColor: 'currentColor',
+    borderRadius: 'var(--joy-Switch-track-radius)',
+  },
+  [`& .${switchUnstyledClasses.thumb}`]: {
+    transition: 'left 0.2s',
+    position: 'absolute',
+    top: '50%',
+    left: 'calc(50% - var(--joy-Switch-track-width) / 2 + var(--joy-Switch-thumb-width) / 2 + var(--joy-Switch-thumb-offset))',
+    transform: 'translate(-50%, -50%)',
+    width: 'var(--joy-Switch-thumb-width)',
+    height: 'var(--joy-Switch-thumb-size)',
+    borderRadius: 'var(--joy-Switch-thumb-radius)',
+    backgroundColor: '#fff',
+  },
+  [`&.${switchUnstyledClasses.checked} > .${switchUnstyledClasses.thumb}`]: {
+    left: 'calc(50% + var(--joy-Switch-track-width) / 2 - var(--joy-Switch-thumb-width) / 2 - var(--joy-Switch-thumb-offset))',
+  },
+}));
+
+export const Switch = (props: SwitchUnstyledProps) => {
+  return <SwitchUnstyled component={SwitchRoot} {...props} />;
+};
 
 export const FlashCode = styled('div', {
   shouldForwardProp: (prop) =>
@@ -136,8 +246,28 @@ export const List = styled('ul', {
     },
   },
   theme.variants[variant]?.[color],
+  (variant === 'text' || variant === 'outlined') && {
+    backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-background-default))`,
+  },
   variant === 'contained' && theme.variants.containedOverrides?.[color],
 ]);
+
+export const ListItem = styled('li', { shouldForwardProp })<DemoProps>(
+  ({ theme, variant = 'text', color = 'neutral' }) => [
+    {
+      display: 'flex',
+      alignItems: 'center',
+      padding: '0.25rem 1rem',
+      gap: '1rem',
+      borderRadius: theme.vars.borderRadius.sm,
+    },
+    theme.typography.body1,
+    theme.variants[variant]?.[color],
+    (variant === 'text' || variant === 'outlined') && {
+      backgroundColor: `var(--joy-variant-${variant}Bg, var(--joy-palette-background-default))`,
+    },
+  ],
+);
 
 export const ListItemButton = styled('button', {
   shouldForwardProp,
@@ -234,7 +364,7 @@ export const Input = styled('input', {
         opacity: 0.4,
       },
       ...((variant === 'text' || variant === 'outlined') && {
-        backgroundColor: `var(--joy-variant-${variant}Bg, ${theme.vars.palette.background.level1})`,
+        backgroundColor: `var(--joy-variant-${variant}Bg, ${theme.vars.palette.background.default})`,
       }),
       ...(elevation && {
         boxShadow: theme.vars.elevation[elevation],
@@ -343,6 +473,8 @@ export const Widget = ({ children, label }: React.PropsWithChildren<{ label: str
         flexDirection: 'column',
         borderRadius: 'var(--joy-borderRadius-md)',
         boxShadow: 'var(--joy-elevation-md)',
+        scrollSnapAlign: 'start',
+        bgcolor: 'background.translucent2',
       }}
     >
       <Box
@@ -351,6 +483,7 @@ export const Widget = ({ children, label }: React.PropsWithChildren<{ label: str
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          gap: 2,
         }}
       >
         {children}
