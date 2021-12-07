@@ -38,7 +38,7 @@ function style(options) {
 
     const propValue = props[prop];
     let theme = props.theme;
-    if (themeKey === 'palette' && props.theme.vars) {
+    if (themeKey === 'palette' && props.theme?.vars) {
       theme = props.theme.vars;
     }
     const themeMapping = getPath(theme, themeKey) || {};
