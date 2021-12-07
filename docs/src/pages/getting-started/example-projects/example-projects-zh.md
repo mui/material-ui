@@ -17,7 +17,7 @@
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
 
-Create React App 是一个很棒的学习 React 的项目。 请看一下这些[可用的替代方案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) ，看看哪个项目最符合您的需求。
+Create React App 是一个很棒的学习 React 的项目。 Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
 
 此文档站点的源代码也包含在存储库中。 这是一个稍微复杂一点的项目。 请查看 [`/ docs`](https://github.com/mui-org/material-ui/tree/master/docs) 文件夹以获取创建项目的说明。
 
@@ -27,7 +27,7 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 
 ### 免费的资源
 
-- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/graphql-starter):
+- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/relay-starter-kit):
 
   - ![stars](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
   - GraphQL API project using code-first design (TypeScript, OAuth, GraphQL.js, Knex, Cloud SQL)
