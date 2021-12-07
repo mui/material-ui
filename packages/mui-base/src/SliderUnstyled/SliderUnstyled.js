@@ -11,6 +11,7 @@ import {
   unstable_useControlled as useControlled,
   visuallyHidden,
 } from '@mui/utils';
+import appendOwnerState from '../utils/appendOwnerState';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
@@ -188,7 +189,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     'aria-labelledby': ariaLabelledby,
     'aria-valuetext': ariaValuetext,
     className,
-    component = 'span',
+    component,
     classes: classesProp,
     defaultValue,
     disableSwap = false,
@@ -586,27 +587,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     ...axisProps[axis].leap(trackLeap),
   };
 
-  const Root = components.Root || component;
-  const rootProps = componentsProps.root || {};
-
-  const Rail = components.Rail || 'span';
-  const railProps = componentsProps.rail || {};
-
-  const Track = components.Track || 'span';
-  const trackProps = componentsProps.track || {};
-
-  const Thumb = components.Thumb || 'span';
-  const thumbProps = componentsProps.thumb || {};
-
-  const ValueLabel = components.ValueLabel || SliderValueLabelUnstyled;
-  const valueLabelProps = componentsProps.valueLabel || {};
-
-  const Mark = components.Mark || 'span';
-  const markProps = componentsProps.mark || {};
-
-  const MarkLabel = components.MarkLabel || 'span';
-  const markLabelProps = componentsProps.markLabel || {};
-
   // all props with defaults
   // consider extracting to hook an reusing the lint rule for the varints
   const ownerState = {
@@ -626,6 +606,27 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     valueLabelFormat,
   };
 
+  const Root = component ?? components.Root ?? 'span';
+  const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
+
+  const Rail = components.Rail ?? 'span';
+  const railProps = appendOwnerState(Rail, componentsProps.rail, ownerState);
+
+  const Track = components.Track ?? 'span';
+  const trackProps = appendOwnerState(Track, componentsProps.track, ownerState);
+
+  const Thumb = components.Thumb ?? 'span';
+  const thumbProps = componentsProps.thumb || {};
+
+  const ValueLabel = components.ValueLabel ?? SliderValueLabelUnstyled;
+  const valueLabelProps = appendOwnerState(ValueLabel, componentsProps.valueLabel, ownerState);
+
+  const Mark = components.Mark ?? 'span';
+  const markProps = appendOwnerState(Mark, componentsProps.mark, ownerState);
+
+  const MarkLabel = components.MarkLabel ?? 'span';
+  const markLabelProps = appendOwnerState(MarkLabel, componentsProps.markLabel, ownerState);
+
   const classes = useUtilityClasses(ownerState);
 
   return (
@@ -635,23 +636,13 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       {...rootProps}
       {...(!isHostComponent(Root) && {
         as: component,
-        ownerState: { ...ownerState, ...rootProps.ownerState },
       })}
       {...other}
       className={clsx(classes.root, rootProps.className, className)}
     >
-      <Rail
-        {...railProps}
-        {...(!isHostComponent(Rail) && {
-          ownerState: { ...ownerState, ...railProps.ownerState },
-        })}
-        className={clsx(classes.rail, railProps.className)}
-      />
+      <Rail {...railProps} className={clsx(classes.rail, railProps.className)} />
       <Track
         {...trackProps}
-        {...(!isHostComponent(Track) && {
-          ownerState: { ...ownerState, ...trackProps.ownerState },
-        })}
         className={clsx(classes.track, trackProps.className)}
         style={{ ...trackStyle, ...trackProps.style }}
       />
@@ -680,7 +671,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               data-index={index}
               {...markProps}
               {...(!isHostComponent(Mark) && {
-                ownerState: { ...ownerState, ...markProps.ownerState },
                 markActive,
               })}
               style={{ ...style, ...markProps.style }}
@@ -694,12 +684,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 data-index={index}
                 {...markLabelProps}
                 {...(!isHostComponent(MarkLabel) && {
-                  ownerState: {
-                    ...ownerState,
-                    ...markLabelProps.ownerState,
-                  },
+                  markLabelActive: markActive,
                 })}
-                markLabelActive={markActive}
                 style={{ ...style, ...markLabelProps.style }}
                 className={clsx(classes.markLabel, markLabelProps.className, {
                   [classes.markLabelActive]: markActive,
@@ -720,21 +706,19 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         return (
           <React.Fragment key={index}>
             <ValueLabelComponent
-              valueLabelFormat={valueLabelFormat}
-              valueLabelDisplay={valueLabelDisplay}
-              value={
-                typeof valueLabelFormat === 'function'
-                  ? valueLabelFormat(scale(value), index)
-                  : valueLabelFormat
-              }
-              index={index}
-              open={open === index || active === index || valueLabelDisplay === 'on'}
-              disabled={disabled}
+              {...(!isHostComponent(ValueLabelComponent) && {
+                valueLabelFormat,
+                valueLabelDisplay,
+                value:
+                  typeof valueLabelFormat === 'function'
+                    ? valueLabelFormat(scale(value), index)
+                    : valueLabelFormat,
+                index,
+                open: open === index || active === index || valueLabelDisplay === 'on',
+                disabled,
+              })}
               {...valueLabelProps}
               className={clsx(classes.valueLabel, valueLabelProps.className)}
-              {...(!isHostComponent(ValueLabel) && {
-                ownerState: { ...ownerState, ...valueLabelProps.ownerState },
-              })}
             >
               <Thumb
                 data-index={index}

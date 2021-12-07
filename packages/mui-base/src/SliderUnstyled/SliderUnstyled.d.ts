@@ -55,12 +55,12 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      * @default {}
      */
     componentsProps?: {
-      root?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
-      track?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
-      rail?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
-      thumb?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
-      mark?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
-      markLabel?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
+      root?: React.ComponentPropsWithRef<'span'> & SliderUnstyledComponentsPropsOverrides;
+      track?: React.ComponentPropsWithRef<'span'> & SliderUnstyledComponentsPropsOverrides;
+      rail?: React.ComponentPropsWithRef<'span'> & SliderUnstyledComponentsPropsOverrides;
+      thumb?: React.ComponentPropsWithRef<'span'> & SliderUnstyledComponentsPropsOverrides;
+      mark?: React.ComponentPropsWithRef<'span'> & SliderUnstyledComponentsPropsOverrides;
+      markLabel?: React.ComponentPropsWithRef<'span'> & SliderUnstyledComponentsPropsOverrides;
       valueLabel?: React.ComponentPropsWithRef<typeof SliderValueLabelUnstyled> &
         SliderUnstyledComponentsPropsOverrides;
     };

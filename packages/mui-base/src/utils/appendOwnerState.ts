@@ -12,12 +12,14 @@ export default function appendOwnerState(
   existingProps: Record<string, any> = {},
   ownerState: object,
 ) {
+  const { ownerState: existingPropsOwnerState, ...otherExistingProps } = existingProps;
+
   if (isHostComponent(elementType)) {
-    return existingProps;
+    return otherExistingProps;
   }
 
   return {
     ...existingProps,
-    ownerState: { ...existingProps.ownerState, ...ownerState },
+    ownerState: { ...existingPropsOwnerState, ...ownerState },
   };
 }

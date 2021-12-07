@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { generateUtilityClasses, isHostComponent } from '@mui/base';
+import { generateUtilityClasses } from '@mui/base';
 import SliderUnstyled, {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
@@ -417,10 +417,6 @@ const extendUtilityClasses = (ownerState) => {
   };
 };
 
-const shouldSpreadOwnerState = (Component) => {
-  return !Component || !isHostComponent(Component);
-};
-
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
 
@@ -457,27 +453,19 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         ...componentsProps,
         root: {
           ...componentsProps.root,
-          ...(shouldSpreadOwnerState(components.Root) && {
-            ownerState: { ...componentsProps.root?.ownerState, color, size },
-          }),
+          ownerState: { ...componentsProps.root?.ownerState, color, size },
         },
         thumb: {
           ...componentsProps.thumb,
-          ...(shouldSpreadOwnerState(components.Thumb) && {
-            ownerState: { ...componentsProps.thumb?.ownerState, color, size },
-          }),
+          ownerState: { ...componentsProps.thumb?.ownerState, color, size },
         },
         track: {
           ...componentsProps.track,
-          ...(shouldSpreadOwnerState(components.Track) && {
-            ownerState: { ...componentsProps.track?.ownerState, color, size },
-          }),
+          ownerState: { ...componentsProps.track?.ownerState, color, size },
         },
         valueLabel: {
           ...componentsProps.valueLabel,
-          ...(shouldSpreadOwnerState(components.ValueLabel) && {
-            ownerState: { ...componentsProps.valueLabel?.ownerState, color, size },
-          }),
+          ownerState: { ...componentsProps.valueLabel?.ownerState, color, size },
         },
       }}
       classes={classes}
