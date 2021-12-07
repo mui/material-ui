@@ -225,26 +225,26 @@ Button.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The intensity of the shadow.
-   */
-  shadow: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
-  /**
    * If `true`, the button will take up the full width of its container.
    * @default false
    */
   fullWidth: PropTypes.bool,
   /**
    * The border-radius of the component.
-   * @default 'default'
+   * @default 'sm'
    */
-  radius: PropTypes.oneOf(['default', 'lg', 'md', 'sm', 'xl', 'xs']),
+  radius: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
+  /**
+   * The intensity of the shadow.
+   */
+  shadow: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
   /**
    * The size of the component.
    */
   size: PropTypes.oneOf(['small', 'large']),
   /**
    * The variant to use.
-   * @default 'text'
+   * @default 'contained'
    */
   variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
 } as any;
