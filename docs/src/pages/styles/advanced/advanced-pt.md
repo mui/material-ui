@@ -387,7 +387,7 @@ There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-m
 
 <!-- #default-branch-switch -->
 
-Consulte [este exemplo de projeto Gatsby](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) para um exemplo de como usar atualizado.
+Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
@@ -395,7 +395,7 @@ Você precisa ter um `pages/_document.js` customizado, então copie [esta lógic
 
 <!-- #default-branch-switch -->
 
-Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/master/examples/nextjs).
+Refer to [this example project](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
 
 ## Nomes de classes
 
