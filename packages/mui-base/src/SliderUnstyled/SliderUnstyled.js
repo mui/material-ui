@@ -7,7 +7,9 @@ import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
-import useSlider, { Identity, valueToPercent } from './useSlider';
+import useSlider, { valueToPercent } from './useSlider';
+
+const Identity = (x) => x;
 
 const useUtilityClasses = (ownerState) => {
   const { disabled, dragging, marked, orientation, track, classes } = ownerState;
