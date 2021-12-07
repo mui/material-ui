@@ -13,6 +13,8 @@ StackOverflow is also visited from time to time by the maintainers of MUI.
 
 [Post a question](https://stackoverflow.com/questions/tagged/mui)
 
+> 💡 **Tip**: If you're using an old MUI version and go to StackOverflow for support on it, you may find answers with links that redirect you to content that doesn't exist anymore on the latest version. So, to easily access any previous version, just add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+
 ### GitHub
 
 MUI uses GitHub issues as a bug and feature request tracker.
