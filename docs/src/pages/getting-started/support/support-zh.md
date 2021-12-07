@@ -32,7 +32,7 @@ MUI uses GitHub issues as a bug and feature request tracker. 如果你认为发�
 
 请订阅我们的博客来了解我们库的开发的最新情况。
 
-[阅读最新的博文](https://medium.com/material-ui/)
+[阅读最新的博文](https://medium.com/material-ui)
 
 ### 资源 📖
 
