@@ -184,7 +184,7 @@ export const darkColorSystem: BaseColorSystem = {
       level2: 'var(--joy-palette-neutral-700)',
       level3: 'var(--joy-palette-neutral-600)',
     },
-    focusVisible: 'var(--joy-palette-primary-400)',
+    focusVisible: 'var(--joy-palette-primary-500)',
   },
   shadowRing: '0 0 #000',
   shadowChannel: '0 0 0',
