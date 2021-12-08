@@ -35,7 +35,7 @@ const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
 
 const nProgressStart = debounce(() => {
   NProgress.start();
-}, 300);
+}, 200);
 
 const nProgressDone = () => {
   nProgressStart.clear();
