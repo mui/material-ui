@@ -62,7 +62,7 @@ async function getWebpackEntries() {
     const componentName = path.basename(path.dirname(componentPath));
 
     return {
-      id: componentName,
+      id: `@mui/material-next/${componentName}`,
       path: path.relative(workspaceRoot, path.dirname(componentPath)),
     };
   });
@@ -73,7 +73,7 @@ async function getWebpackEntries() {
       const componentName = path.basename(path.dirname(componentPath));
 
       return {
-        id: componentName,
+        id: `@mui/joy/${componentName}`,
         path: path.relative(workspaceRoot, path.dirname(componentPath)),
       };
     },
