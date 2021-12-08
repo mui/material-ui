@@ -102,24 +102,26 @@ const ColorSchemePicker = () => {
 export default function JoyComponents() {
   const buttonProps = {
     variant: ['text', 'outlined', 'light', 'contained'],
-    size: ['small', undefined, 'large'],
     color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
+    size: ['small', undefined, 'large'],
     radius: ['xs', 'sm', 'md', 'lg', 'xl'],
     shadow: ['xs', 'sm', 'md', 'lg', 'xl'],
   } as const;
   return (
     <CssVarsProvider>
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
-        <Box sx={{ px: 3 }}>
+        <Box sx={{ px: 3, pb: 4 }}>
           <ColorSchemePicker />
         </Box>
-        {/* <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
           {Object.entries(buttonProps).map(([propName, propValue]) => (
             <Box
               key={propName}
               sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 2, alignItems: 'center' }}
             >
-              <Typography sx={{ textDecoration: 'underline' }}>{propName}</Typography>
+              <Typography level="body2" sx={{ fontWeight: 'bold' }}>
+                {propName}
+              </Typography>
               {propValue.map((value) => (
                 <Box key={value}>
                   <Button {...{ [propName]: value }}>Button</Button>
@@ -130,7 +132,8 @@ export default function JoyComponents() {
               ))}
             </Box>
           ))}
-        </Box> */}
+        </Box>
+        {/* Danilo's not smart iteration below 😅 */}
         <Box sx={{ display: 'flex', py: 16 }}>
           <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
             <Button variant="contained" color="primary">
