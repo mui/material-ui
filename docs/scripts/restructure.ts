@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import prettier from 'prettier';
 import pages from 'docs/src/pages';
+import { refactorMarkdownContent } from './restructureUtils';
 
 const workspaceRoot = path.resolve(__dirname, '../../');
 const prettierConfigPath = path.join(workspaceRoot, 'prettier.config.js');
@@ -132,19 +133,22 @@ function run() {
       // copy material related pages to `docs/pages/material/*`
 
       pathnames.forEach((pathname) => {
-        const dir = readdirDeep(path.resolve(`docs/pages${pathname}`));
-        dir.forEach((filePath) => {
+        const dataDir = readdirDeep(path.resolve(`docs/src/pages${pathname}`));
+        dataDir.forEach((filePath) => {
+          if (filePath.match(/^.*\.(ts|js|tsx|md)$/)) {
+            let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
+            data = refactorMarkdownContent(data, pathnames);
+            fs.writeFileSync(filePath.replace('src/pages', 'products/material'), data); // (A)
+          }
+        });
+
+        const pagesDir = readdirDeep(path.resolve(`docs/pages${pathname}`));
+        pagesDir.forEach((filePath) => {
           // pathname could be a directory
           if (filePath.match(/^.*\.(ts|js|tsx|md)$/)) {
-            const newPath = filePath.replace('docs/pages', 'docs/pages/material');
-            fs.copyFile(filePath, newPath, (err) => {
-              if (err) {
-                console.error(filePath, err);
-              } else {
-                // eslint-disable-next-line no-console
-                console.info('File copied to', newPath);
-              }
-            });
+            let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
+            data = data.replace('/src/pages/', '/products/material/'); // point to data path (A) in new directory
+            fs.writeFileSync(filePath.replace('docs/pages', 'docs/pages/material'), data);
           }
         });
       });
