@@ -133,7 +133,7 @@ export default function JoyComponents() {
             </Box>
           ))}
         </Box>
-        {/* Danilo's not smart iteration below 😅 */}
+        {/* Danilo's not smart iteration below 😅 - wanted to see each color with every variant. */}
         <Box sx={{ display: 'flex', py: 16 }}>
           <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
             <Button variant="contained" color="primary">
