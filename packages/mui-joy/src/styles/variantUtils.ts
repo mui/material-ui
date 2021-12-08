@@ -38,7 +38,7 @@ export const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
 
   outlinedColor: `var(--joy-palette-${color}-200)`,
   outlinedBorder: `var(--joy-palette-${color}-600)`,
-  outlinedHoverBg: `var(--joy-palette-${color}-800)`,
+  outlinedHoverBg: `var(--joy-palette-${color}-900)`,
   outlinedHoverBorder: `var(--joy-palette-${color}-700)`,
   outlinedActiveBg: `var(--joy-palette-${color}-900)`,
   outlinedDisabledColor: `var(--joy-palette-${color}-800)`,

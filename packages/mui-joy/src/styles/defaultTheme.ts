@@ -119,7 +119,7 @@ export const lightColorSystem: BaseColorSystem = {
       ...createLightModeVariantVariables('danger'),
     },
     info: {
-      ...colors.blue,
+      ...colors.teal,
       ...createLightModeVariantVariables('info'),
     },
     success: {
@@ -162,7 +162,7 @@ export const darkColorSystem: BaseColorSystem = {
       ...createDarkModeVariantVariables('danger'),
     },
     info: {
-      ...colors.blue,
+      ...colors.teal,
       ...createDarkModeVariantVariables('info'),
     },
     success: {

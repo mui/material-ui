@@ -278,6 +278,68 @@ export default function JoyComponents() {
             <Box
               sx={{
                 width: '50px',
+                backgroundColor: 'var(--joy-palette-info-50)',
+              }}
+            />
+            <Box
+              sx={{
+                width: '50px',
+                backgroundColor: 'var(--joy-palette-info-100)',
+              }}
+            />
+            <Box
+              sx={{
+                width: '50px',
+                backgroundColor: 'var(--joy-palette-info-200)',
+              }}
+            />
+            <Box
+              sx={{
+                width: '50px',
+                backgroundColor: 'var(--joy-palette-info-300)',
+              }}
+            />
+            <Box
+              sx={{
+                width: '50px',
+                backgroundColor: 'var(--joy-palette-info-400)',
+              }}
+            />
+            <Box
+              sx={{
+                width: '50px',
+                backgroundColor: 'var(--joy-palette-info-500)',
+              }}
+            />
+            <Box
+              sx={{
+                width: '50px',
+                backgroundColor: 'var(--joy-palette-info-600)',
+              }}
+            />
+            <Box
+              sx={{
+                width: '50px',
+                backgroundColor: 'var(--joy-palette-info-700)',
+              }}
+            />
+            <Box
+              sx={{
+                width: '50px',
+                backgroundColor: 'var(--joy-palette-info-800)',
+              }}
+            />
+            <Box
+              sx={{
+                width: '50px',
+                backgroundColor: 'var(--joy-palette-info-900)',
+              }}
+            />
+          </Box>
+          <Box sx={{ width: '100px', display: 'grid' }}>
+            <Box
+              sx={{
+                width: '50px',
                 backgroundColor: 'var(--joy-palette-neutral-50)',
               }}
             />
