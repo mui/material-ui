@@ -27,6 +27,7 @@ CSS media queries 是一种做出响应式的用户界面的特有方法。 而 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
 - [theme.breakpoints.only(key)](#theme-breakpoints-only-key-media-query)
+- [theme.breakpoints.not(key)](#theme-breakpoints-not-key-media-query)
 - [theme.breakpoints.between(start, end)](#theme-breakpoints-between-start-end-media-query)
 
 在下面的演示中，我们根据屏幕宽度来更改背景颜色 (红色、蓝色和绿色)。
@@ -203,6 +204,34 @@ const styles = (theme) => ({
 });
 ```
 
+### `theme.breakpoints.not(key) => media query`
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
+#### 参数
+
+1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
+
+#### 返回结果
+
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths stopping at the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive).
+
+#### 例子
+
+```js
+const styles = (theme) => ({
+  root: {
+    backgroundColor: 'blue',
+    // Match [xs, md) and [md + 1, ∞)
+    //       [xs, md) and [lg, ∞)
+    //       [0px, 900px) and [1200px, ∞)
+    [theme.breakpoints.not('md')]: {
+      backgroundColor: 'red',
+    },
+  },
+});
+```
+
 ### `theme.breakpoints.between(start, end) => media query`
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
@@ -214,7 +243,7 @@ const styles = (theme) => ({
 
 #### 返回结果
 
-`media query`：一个媒体查询字符串，适用于大多数的样式解决方案，它匹配的屏幕宽度大于第一个参数（包括）中断点键给出的屏幕尺寸，小于第二个参数（不包括）中断点键给出的屏幕尺寸。
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument (inclusive) and less than the screen size given by the breakpoint key in the second argument (exclusive).
 
 #### 例子
 
@@ -233,4 +262,4 @@ const styles = (theme) => ({
 
 ## 默认值
 
-您可以使用 [主题资源管理器（theme explorer）](/customization/default-theme/?expand-path=$.breakpoints) 或通过打开此页面上的开发工具控制台（dev tools console）（`window.theme.breakpoints`）来探索断点的一些默认值。
+You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expand-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).
