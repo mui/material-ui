@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
 import { HTMLElementType, refType } from '@mui/utils';
 import { Direction, useThemeWithoutDefault as useTheme } from '@mui/system';
+import useThemeProps from '../styles/useThemeProps';
 
 export type PopperProps = Omit<PopperUnstyledProps, 'direction'>;
 
@@ -19,10 +20,11 @@ export type PopperProps = Omit<PopperUnstyledProps, 'direction'>;
  * - [Popper API](https://mui.com/api/popper/)
  */
 const Popper = React.forwardRef(function Popper(
-  props: PopperProps,
+  inProps: PopperProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const theme = useTheme<{ direction?: Direction }>();
+  const props = useThemeProps({ props: inProps, name: 'MuiPopper' });
   return <PopperUnstyled direction={theme?.direction} {...props} ref={ref} />;
 });
 
