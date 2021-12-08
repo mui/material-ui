@@ -138,9 +138,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     <Root
       {...getRootProps()}
       {...rootProps}
-      {...(!isHostComponent(Root) && {
-        as: component,
-      })}
       {...other}
       className={clsx(classes.root, rootProps.className, className)}
     >

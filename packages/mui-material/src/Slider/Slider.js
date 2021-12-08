@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { generateUtilityClasses } from '@mui/base';
+import { generateUtilityClasses, isHostComponent } from '@mui/base';
 import SliderUnstyled, {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
@@ -417,6 +417,10 @@ const extendUtilityClasses = (ownerState) => {
   };
 };
 
+const shouldSpreadAdditionalProps = (Component) => {
+  return !Component || !isHostComponent(Component);
+};
+
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
 
@@ -424,6 +428,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const isRtl = theme.direction === 'rtl';
 
   const {
+    component = 'span',
     components = {},
     componentsProps = {},
     color = 'primary',
@@ -453,19 +458,28 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         ...componentsProps,
         root: {
           ...componentsProps.root,
-          ownerState: { ...componentsProps.root?.ownerState, color, size },
+          ...(shouldSpreadAdditionalProps(components.Root) && {
+            as: component,
+            ownerState: { ...componentsProps.root?.ownerState, color, size },
+          }),
         },
         thumb: {
           ...componentsProps.thumb,
-          ownerState: { ...componentsProps.thumb?.ownerState, color, size },
+          ...(shouldSpreadAdditionalProps(components.Thumb) && {
+            ownerState: { ...componentsProps.thumb?.ownerState, color, size },
+          }),
         },
         track: {
           ...componentsProps.track,
-          ownerState: { ...componentsProps.track?.ownerState, color, size },
+          ...(shouldSpreadAdditionalProps(components.Track) && {
+            ownerState: { ...componentsProps.track?.ownerState, color, size },
+          }),
         },
         valueLabel: {
           ...componentsProps.valueLabel,
-          ownerState: { ...componentsProps.valueLabel?.ownerState, color, size },
+          ...(shouldSpreadAdditionalProps(components.ValueLabel) && {
+            ownerState: { ...componentsProps.valueLabel?.ownerState, color, size },
+          }),
         },
       }}
       classes={classes}
