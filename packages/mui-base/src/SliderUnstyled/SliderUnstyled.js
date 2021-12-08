@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, visuallyHidden } from '@mui/utils';
+import { chainPropTypes } from '@mui/utils';
 import appendOwnerState from '../utils/appendOwnerState';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
@@ -78,6 +78,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   // consider extracting to hook an reusing the lint rule for the varints
   const ownerState = {
     ...props,
+    mark: marksProp,
     classes: classesProp,
     disabled,
     isRtl,
@@ -240,6 +241,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   ...thumbProps.style,
                 }}
               >
+                {/* eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
                 <input
                   {...getHiddenInputProps()}
                   data-index={index}

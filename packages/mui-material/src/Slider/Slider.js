@@ -428,6 +428,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const isRtl = theme.direction === 'rtl';
 
   const {
+    // eslint-disable-next-line react/prop-types
     component = 'span',
     components = {},
     componentsProps = {},

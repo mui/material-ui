@@ -8,9 +8,35 @@ import {
   unstable_useControlled as useControlled,
   visuallyHidden,
 } from '@mui/utils';
-import { SliderUnstyledProps, Mark } from './SliderUnstyled';
 
-interface UseSliderProps extends SliderUnstyledProps {}
+interface Mark {
+  value: number;
+  label?: React.ReactNode;
+}
+
+export interface UseSliderProps {
+  ref: React.Ref<any>;
+  'aria-labelledby'?: string;
+  componentsProps?: {
+    track?: { style?: React.CSSProperties };
+  };
+  defaultValue?: number | number[];
+  disabled?: boolean;
+  disableSwap?: boolean;
+  isRtl?: boolean;
+  marks?: boolean | Mark[];
+  max?: number;
+  min?: number;
+  name?: string;
+  onChange?: (event: Event, value: number | number[], activeThumb: number) => void;
+  onMouseDown?: (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
+  onChangeCommitted?: (event: React.SyntheticEvent | Event, value: number | number[]) => void;
+  orientation?: 'horizontal' | 'vertical';
+  scale?: (value: number) => number;
+  step?: number | null;
+  tabIndex?: number;
+  value?: number | number[];
+}
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
@@ -172,16 +198,10 @@ function doesSupportTouchActionNone() {
 export default function useSlider(props: UseSliderProps) {
   const {
     ref,
-    'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledby,
-    'aria-valuetext': ariaValuetext,
-    className,
-    classes: classesProp,
     defaultValue,
     disableSwap = false,
     disabled = false,
-    getAriaLabel,
-    getAriaValueText,
     marks: marksProp = false,
     max = 100,
     min = 0,
@@ -193,14 +213,9 @@ export default function useSlider(props: UseSliderProps) {
     scale = Identity,
     step = 1,
     tabIndex,
-    track = 'normal',
     value: valueProp,
-    valueLabelDisplay = 'off',
-    valueLabelFormat = Identity,
     isRtl = false,
-    components = {},
     componentsProps = {},
-    ...other
   } = props;
 
   const touchId = React.useRef<number>();
@@ -222,7 +237,7 @@ export default function useSlider(props: UseSliderProps) {
     onChange &&
     ((
       event: Event | React.SyntheticEvent,
-      value: SliderUnstyledProps['value'],
+      value: number | number[],
       thumbIndex: number,
     ) => {
       // Redefine target to allow name and value to be read.
