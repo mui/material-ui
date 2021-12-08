@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import {
   refactorMarkdownContent,
+  refactorJsonContent,
   getNewDataLocation,
   getNewPageLocation,
 } from './restructureUtils';
@@ -52,6 +53,24 @@ describe('restructure utils', () => {
           '/discover-more',
         ]),
       ).to.equal(content);
+    });
+  });
+
+  describe('refactorJsonContent', () => {
+    it('add prefix to demos value', () => {
+      expect(
+        refactorJsonContent(
+          `"demos": "<ul><li><a href=\\"/components/cards/\\">Cards</a></li></ul>"`,
+        ),
+      ).to.equal(
+        `"demos": "<ul><li><a href=\\"/material/components/cards/\\">Cards</a></li></ul>"`,
+      );
+    });
+
+    it('add prefix to pathname value', () => {
+      expect(
+        refactorJsonContent(`"inheritance": { "component": "Paper", "pathname": "/api/paper/" },`),
+      ).to.equal(`"inheritance": { "component": "Paper", "pathname": "/material/api/paper/" },`);
     });
   });
 

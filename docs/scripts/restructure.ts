@@ -4,6 +4,7 @@ import prettier from 'prettier';
 import pages from 'docs/src/pages';
 import {
   refactorMarkdownContent,
+  refactorJsonContent,
   getNewDataLocation,
   getNewPageLocation,
 } from './restructureUtils';
@@ -161,7 +162,15 @@ function run() {
           // pathname could be a directory
           if (info) {
             let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
-            data = data.replace('/src/pages/', '/products/material/'); // point to data path (A) in new directory
+
+            if (filePath.endsWith('.json')) {
+              data = refactorJsonContent(data);
+            }
+
+            if (filePath.endsWith('.js')) {
+              data = data.replace('/src/pages/', '/products/material/'); // point to data path (A) in new directory
+            }
+
             fs.mkdirSync(info.directory, { recursive: true });
             fs.writeFileSync(info.path, data);
           }

@@ -9,6 +9,18 @@ export const refactorMarkdownContent = (content: string, pathnames: string[] = [
   return result;
 };
 
+export const refactorJsonContent = (content: string) => {
+  let result = content;
+
+  // i. add prefix to "demos" key
+  result = result.replace(/href=\\"\/components/g, 'href=\\"/material/components');
+
+  // ii. add prefix to "pathname" value
+  result = result.replace(/"pathname": "\/api/g, '"pathname": "/material/api');
+
+  return result;
+};
+
 export const getNewDataLocation = (
   filePath: string,
 ): { directory: string; path: string } | null => {
