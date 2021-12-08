@@ -99,7 +99,6 @@ const readdirDeep = (directory: string, pathsProp: string[] = []) => {
     const itemPath = path.resolve(directory, item);
 
     if (fs.statSync(itemPath).isDirectory()) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       readdirDeep(itemPath, paths);
     }
 
