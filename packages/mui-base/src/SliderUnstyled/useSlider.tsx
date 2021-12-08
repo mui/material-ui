@@ -235,11 +235,7 @@ export default function useSlider(props: UseSliderProps) {
 
   const handleChange =
     onChange &&
-    ((
-      event: Event | React.SyntheticEvent,
-      value: number | number[],
-      thumbIndex: number,
-    ) => {
+    ((event: Event | React.SyntheticEvent, value: number | number[], thumbIndex: number) => {
       // Redefine target to allow name and value to be read.
       // This allows seamless integration with the most popular form libraries.
       // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
