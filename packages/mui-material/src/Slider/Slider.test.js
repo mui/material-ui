@@ -1189,9 +1189,7 @@ describe('<Slider />', () => {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const { container } = render(
-        <Slider defaultValue={0} />,
-      );
+      const { container } = render(<Slider defaultValue={0} />);
       stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         left: 0,
