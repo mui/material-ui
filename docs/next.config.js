@@ -185,12 +185,13 @@ module.exports = {
           return;
         }
         if (!page.children) {
-          map[`${prefix}${page.pathname.replace(/^\/api-docs\/(.*)/, '/api/$1')}`] = {
-            page: page.pathname,
-            query: {
-              userLanguage,
-            },
-          };
+          map[`${prefix}${page.pathname.replace(/^(\/material)?\/api-docs\/(.*)/, '$1/api/$2')}`] =
+            {
+              page: page.pathname,
+              query: {
+                userLanguage,
+              },
+            };
           return;
         }
 
