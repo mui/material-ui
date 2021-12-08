@@ -235,6 +235,16 @@ Support for non-ref-forwarding class components in the `component` prop or as im
 Otherwise check out the [Caveat with refs](/guides/composition/#caveat-with-refs) section in the composition guide to find out how to migrate.
 This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
+### Ref type specificity
+
+In order to pass a `ref` to a component without any typescript error, you should use a specific element type.
+Here is an example:
+
+```diff
+- const cardComponentRef = React.useRef<HTMLElement>(null);
++ const cardComponentRef = React.useRef<HTMLDivElement>(null);
+```
+
 ### Style library
 
 The style library used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the **top of your component tree**.
