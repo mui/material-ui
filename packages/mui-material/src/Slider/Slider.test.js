@@ -1184,7 +1184,7 @@ describe('<Slider />', () => {
     });
   });
 
-  describe('state: focusVisible', function test() {
+  describe('state: focusVisible', function testFocusVisible() {
     it('should not set focusVisible when using mouse', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
