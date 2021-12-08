@@ -9,7 +9,6 @@ import Link from 'docs/src/modules/components/Link';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
-import BuildCircleOutlinedIcon from '@mui/icons-material/BuildCircleOutlined';
 import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
@@ -117,6 +116,14 @@ const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
 const ItemButton = styled(Item, {
   shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon',
 })(({ depth, hasIcon, theme }) => {
+  let marginTop;
+  if (depth === 0) {
+    marginTop = 12;
+  } else if (depth > 1) {
+    marginTop = -4 * (depth - 3);
+  } else {
+    marginTop = 12;
+  }
   return {
     color: (() => {
       if (depth >= 1) {
@@ -131,7 +138,7 @@ const ItemButton = styled(Item, {
     textTransform: depth === 0 ? 'none' : 'uppercase',
     letterSpacing: depth === 0 ? null : '.1rem',
     fontWeight: depth === 0 ? 500 : 700,
-    marginTop: depth === 0 ? 12 : depth > 1 ? (depth - 3) * -4 : 12,
+    marginTop,
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
       color: (() => {
