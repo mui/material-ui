@@ -12,31 +12,31 @@ githubLabel: 'component: ButtonGroup'
 
 ## Grupo de botões básico
 
-The buttons can be grouped by wrapping them with the `ButtonGroup` component. They need to be immediate children.
+Os botões podem ser agrupados envolvendo-os com o componente `ButtonGroup`. Eles precisam ser filhos imediatos.
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
-## Button variants
+## Variantes de botão
 
-All the standard button variants are supported.
+Todas as variantes padrão de botões são suportadas.
 
 {{"demo": "pages/components/button-group/VariantButtonGroup.js"}}
 
 ## Tamanhos e cores
 
-The `size` and `color` props can be used to control the appearance of the button group.
+As propriedades `size` e `color` podem ser usadas para controlar a aparência do grupo de botões.
 
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
 ## Grupo vertical
 
-The button group can be displayed vertically using the `orientation` prop.
+O grupo de botões pode ser exibido verticalmente usando a propriedade `orientation`.
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 
 ## Botão dividido
 
-`ButtonGroup` também pode ser usado para criar um botão dividido. The dropdown can change the button action (as in this example) or be used to immediately trigger a related action.
+`ButtonGroup` também pode ser usado para criar um botão dividido. A lista suspensa pode alterar a ação do botão (como neste exemplo) ou ser usada para acionar imediatamente uma ação relacionada.
 
 {{"demo": "pages/components/button-group/SplitButton.js"}}
 

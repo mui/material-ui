@@ -1,22 +1,22 @@
 # Theming 主题
 
-<p class="description">定制属于你自己的 Material-UI 主题。 你可以改变颜色、文字铸排等等。</p>
+<p class="description">Customize MUI with your theme. 你可以改变颜色、文字铸排等等。</p>
 
 主题可以指定组件的配色、平面的明暗、阴影的深浅、墨水元素的合适的不透明度等等。
 
-样式可让您为应用程序应用一致的音调。 它可以让你 **自定义所有的设计方面** 项目，以满足您的企业或品牌的特定需求。
+Themes let you apply a consistent tone to your app. It allows you to **customize all design aspects** of your project in order to meet the specific needs of your business or brand.
 
 为了提高应用程序之间的一致性，你可以在明暗主题类型中选择。 默认情况下，组件会使用浅色的主题样式。
 
 ## ThemeProvider
 
-如果你想要使用自定义的主题，那么需要使用 `MuiThemeProvider` 组件将样式注入到你的应用中。 但是，这是可选的；因为 Material-UI 组件带有默认主题。
+如果你想要使用自定义的主题，那么需要使用 `MuiThemeProvider` 组件将样式注入到你的应用中。 However, this is optional; MUI components come with a default theme.
 
-`ThemeProvider` 依赖于 [React 的上下文（context）功能](https://reactjs.org/docs/context.html)来将主题传递给下级组件，所以你需要确保 `ThemeProvider` 是你试图自定义组件的父级组件。 您可以在 [API 章节](/styles/api/#themeprovider)中了解有关此内容的更多信息 。
+`ThemeProvider` 依赖于 [React 的上下文（context）功能](https://reactjs.org/docs/context.html)来将主题传递给下级组件，所以你需要确保 `ThemeProvider` 是你试图自定义组件的父级组件。 您可以在 [API 章节](#themeprovider)中了解有关此内容的更多信息 。
 
 ## 主题配置变量
 
-更改主题配置变量是将 Material-UI 与您的需求相匹配的最有效方法。 以下各节涵盖了一些最重要的主题变量：
+Changing the theme configuration variables is the most effective way to match MUI to your needs. 以下各节涵盖了一些最重要的主题变量：
 
 - [`.调色板`](/customization/palette/)
 - [`.typography`](/customization/typography/)
@@ -30,7 +30,7 @@
 
 ### 自定义变量
 
-当 Material-UI 的主题与[样式解决方案（styling solution）](/styles/basics/)或[任何其他解决方案](/guides/interoperability/#themeprovider)一起使用时，若您将额外的变量添加到主题中，这样就能便于在任何地方使用它们。 就像这样：
+When using MUI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. 就像这样：
 
 ```jsx
 const theme = createTheme({
@@ -40,10 +40,10 @@ const theme = createTheme({
 });
 ```
 
-如果您使用的是 TypeScript，您还需要使用 [module augmentation](/guides/typescript/#customization-of-theme) 来让主题接受上述值。
+如果您使用的是 TypeScript，您还需要使用 [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) 来让主题接受上述值。
 
 ```tsx
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Theme {
     status: {
       danger: string;
@@ -60,7 +60,7 @@ declare module '@material-ui/core/styles' {
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
-## 访问一个组件中的主题
+## Theme builder
 
 <video autoPlay muted loop width="320">
   <source src="/static/studies.mp4" type="video/mp4" >
@@ -68,8 +68,7 @@ declare module '@material-ui/core/styles' {
 
 你 [可以访问](/styles/advanced/#accessing-the-theme-in-a-component) React 组件内部的主题变量。
 
-- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/)：一个帮助设计和定制 Material-UI 组件库主题的工具。 包括基本的网站模板，并且展示各种组件及其受主题影响的方式。
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/)：使用 Material Design 颜色工具来创建 Material-UI 主题的在线工具。
+- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. 包括基本的网站模板，并且展示各种组件及其受主题影响的方式。
 - [Material palette generator](https://material.io/inline-tools/color/)：它可用于通过您输入的任何颜色生成一系列的调色板。
 
 ## 访问一个组件中的主题
@@ -86,23 +85,25 @@ declare module '@material-ui/core/styles' {
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
-**关于性能的一个说明**
-
-嵌套 `ThemeProvider` 组件的性能和 JSS 幕后的工作是息息相关的。 需要理解的要点是，注入的 CSS 是用下面的元组(tuple) `(styles, theme)` 缓存的。
-
-- `theme`: 如果你在每次渲染时都提供了一个新的主题，一个新的 CSS 对象将会被生成并注入。 为了界面的一致性和性能，最好能渲染数量有限的主题对象。
-- `样式`：样式对象越大，需要的运算就越多。
-
 ## API
 
 ### `createTheme(options, ...args) => theme`
 
-通过接收的选项生成一个主题基础。
+根据接收的选项生成样式。 Then, pass it as a prop to [`ThemeProvider`](#themeprovider).
 
 #### 参数
 
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
+
+> Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+
+```js
+import { deepmerge } from '@mui/utils';
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme(deepmerge(options1, options2));
+```
 
 #### 返回结果
 
@@ -111,9 +112,8 @@ declare module '@material-ui/core/styles' {
 #### 例子
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+import { createTheme } from '@mui/material/styles';
+import { green, purple } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
@@ -122,6 +122,58 @@ const theme = createTheme({
     },
     secondary: {
       main: green[500],
+    },
+  },
+});
+```
+
+#### Theme composition: using theme options to define other options
+
+When the value for a theme option is dependent on another theme option, you should compose the theme in steps.
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0052cc',
+    },
+    secondary: {
+      main: '#edf2ff',
+    },
+  },
+});
+
+theme = createTheme(theme, {
+  palette: {
+    info: {
+      main: theme.palette.secondary.main,
+    },
+  },
+});
+```
+
+Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options (example above) or to override the design of specific components (example below).
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+let theme = createTheme({
+  shape: {
+    borderRadius: 4,
+  },
+});
+
+theme = createTheme(theme, {
+  components: {
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          // apply theme's border-radius instead of component's default
+          borderRadius: theme.shape.borderRadius,
+        },
+      },
     },
   },
 });
@@ -148,7 +200,7 @@ const theme = createTheme({
 #### 例子
 
 ```js
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -171,12 +223,12 @@ theme = responsiveFontSizes(theme);
 
 #### 返回结果
 
-`theme` (_object_): A complete, ready to use theme object.
+`theme` (_object_): A complete, ready-to-use theme object.
 
 #### 例子
 
 ```js
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
 
 const theme = unstable_createMuiStrictModeTheme();
 
@@ -189,4 +241,38 @@ function App() {
     </React.StrictMode>
   );
 }
+```
+
+### `ThemeProvider`
+
+This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. 最好在**您的组件树的根目录**中使用它。
+
+#### 属性
+
+| 名称                 | 类型                                       | 描述                                                                                                                                                                      |
+|:------------------ |:---------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;\* | node                                     | 您的组件树。                                                                                                                                                                  |
+| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. 您可以提供一个能够扩展外层主题的函数。 |
+
+#### 例子
+
+```jsx
+import * as React from 'react';
+import ReactDOM from 'react-dom';
+import { red } from '@mui/material/colors';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: red[500],
+    },
+  },
+});
+
+function App() {
+  return <ThemeProvider theme={theme}>...</ThemeProvider>;
+}
+
+ReactDOM.render(<App />, document.querySelector('#app'));
 ```

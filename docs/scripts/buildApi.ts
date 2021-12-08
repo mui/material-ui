@@ -60,7 +60,7 @@ interface ReactApi extends ReactDocgenApi {
   styles: Styles;
 }
 
-const cssComponents = ['Box', 'Grid', 'Typography'];
+const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
 
 function writePrettifiedFile(
   filename: string,
@@ -113,7 +113,7 @@ function getInheritance(
 
   switch (inheritedComponentName) {
     case 'Transition':
-      pathname = 'https://reactcommunity.org/react-transition-group/transition#Transition-props';
+      pathname = 'http://reactcommunity.org/react-transition-group/transition/#Transition-props';
       break;
 
     default:

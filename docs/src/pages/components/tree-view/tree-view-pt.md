@@ -3,7 +3,7 @@ title: Componente React de Visualização em Árvore
 components: TreeView, TreeItem
 githubLabel: 'component: TreeView'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
-packageName: '@material-ui/lab'
+packageName: '@mui/lab'
 ---
 
 # Visualização em árvore
@@ -62,7 +62,7 @@ Ou aumentando a largura do indicador de estado:
 
 {{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
 
-## Visualização em árvore customizada
+## Customização
 
 ### Ícones customizados, borda e animação
 
