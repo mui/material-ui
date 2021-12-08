@@ -368,6 +368,9 @@ export interface Components {
     styleOverrides?: ComponentsOverrides['MuiPaper'];
     variants?: ComponentsVariants['MuiPaper'];
   };
+  MuiPopper?: {
+    defaultProps?: ComponentsProps['MuiPopper'];
+  };
   MuiPopover?: {
     defaultProps?: ComponentsProps['MuiPopover'];
     styleOverrides?: ComponentsOverrides['MuiPopover'];
