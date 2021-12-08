@@ -1,4 +1,3 @@
-import { OverrideProps } from '@mui/types';
 import { SelectOption } from './useSelectProps';
 
 export interface SelectUnstyledComponentsPropsOverrides {}
@@ -107,7 +106,12 @@ export interface MultiSelectUnstyledOwnProps<TValue> extends SelectUnstyledCommo
 
 export type SelectUnstyledOwnProps<TValue> =
   | (SingleSelectUnstyledOwnProps<TValue> & { multiple?: false })
-  | (MultiSelectUnstyledOwnProps<TValue> & { multiple: true });
+  | (MultiSelectUnstyledOwnProps<TValue> & {
+      /**
+       * If `true`, it will be possible to select multiple values.
+       */
+      multiple: true;
+    });
 
 export interface SelectUnstyledOwnerState {
   active: boolean;
@@ -116,21 +120,6 @@ export interface SelectUnstyledOwnerState {
   focusVisible: boolean;
 }
 
-type SelectUnstyledProps<
-  TValue,
-  D extends React.ElementType = SelectUnstyledTypeMap<TValue>['defaultComponent'],
-  P = {},
-> = OverrideProps<SelectUnstyledTypeMap<TValue, P, D>, D> & {
-  /**
-   * The component used for the Button slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Button`. If both are provided, the `component` is used.
-   */
-  component?: D;
-};
-export interface SelectUnstyledTypeMap<TValue, P = {}, D extends React.ElementType = 'ul'> {
-  props: P & SelectUnstyledOwnProps<TValue>;
-  defaultComponent: D;
-}
+type SelectUnstyledProps<TValue> = SelectUnstyledOwnProps<TValue>;
 
 export default SelectUnstyledProps;
