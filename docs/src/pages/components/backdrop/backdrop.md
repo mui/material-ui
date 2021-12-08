@@ -23,5 +23,5 @@ The backdrop also comes with the unstyled package.
 It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import Backdrop from '@mui/base/Backdrop';
+import BackdropUnstyled from '@mui/base/BackdropUnstyled';
 ```
