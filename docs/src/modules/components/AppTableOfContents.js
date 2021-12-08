@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import NoSsr from '@mui/material/NoSsr';
 import ROUTES from 'docs/src/route';
 
 const Nav = styled('nav')(({ theme }) => {
