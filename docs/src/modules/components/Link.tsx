@@ -92,8 +92,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     userLanguage !== 'en' &&
     pathname &&
     pathname.indexOf('/') === 0 &&
-    pathname.indexOf('/blog') !== 0 &&
-    !pathname.startsWith(`/${userLanguage}/`)
+    pathname.indexOf('/blog') !== 0
   ) {
     linkAs = `/${userLanguage}${linkAs}`;
   }
