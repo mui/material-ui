@@ -1,6 +1,6 @@
 # Da direita para a esquerda
 
-<p class="description">Idiomas da direita para esquerda como árabe, persa ou hebraico são suportados. Para alterar a direção dos componentes de Material-UI, você deve seguir as etapas a seguir.</p>
+<p class="description">Idiomas direita-para-esquerda como árabe, persa ou hebraico são suportados. To change the direction of MUI components you must follow the following steps.</p>
 
 ## Passos
 
@@ -38,48 +38,27 @@ const theme = createTheme({
 
 ### 3. Instale o plugin rtl
 
-Você precisa deste plugin JSS para inverter os estilos: [jss-rtl](https://github.com/alitaheri/jss-rtl).
+When using either `emotion` or `styled-components`, you need [`stylis-plugin-rtl`](https://github.com/styled-components/stylis-plugin-rtl) to flip the styles.
+
+```sh
+npm install stylis stylis-plugin-rtl
+```
+
+> **Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as a [styled engine](/guides/styled-engine/), make sure to install the correct version.
+
+In case you are using `jss` (up to v4) or with the legacy `@mui/styles` package, you need [`jss-rtl`](https://github.com/alitaheri/jss-rtl) to flip the styles.
 
 ```sh
 npm install jss-rtl
 ```
 
-Se você estiver usando `emotion` ou `styled-components`, você precisa deste plugin de estilo para inverter os estilos: [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl).
+Having installed the plugin in your project, MUI components still require it to be loaded by the style engine instance that you use. Find bellow guides on how you can load it.
 
-```sh
-npm install stylis-plugin-rtl
-```
+### 4. Carregando o plugin rtl
 
-**Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version.
+#### 4.1 emotion
 
-Tendo instalado o plugin em seu projeto, os componentes do Material-UI ainda exigem que ele seja carregado pela instância do motor de estilo que você usa. Encontre guias abaixo de como você pode carregá-lo.
-
-### 3. Carregando o plugin rtl
-
-#### 3.1 JSS
-
-Tendo instalado o plugin em seu projeto, os componentes de Material-UI ainda exigem que ele seja carregado pela instância do jss, conforme descrito abaixo. Internamente, withStyles está usando este plugin JSS quando `direção: 'rtl'` está definido no tema. Vá para o [README do plugin](https://github.com/alitaheri/jss-rtl) para aprender mais sobre isso.
-
-Depois de criar uma nova instância do JSS com o plugin, você precisará disponibilizá-la para todos os componentes na árvore de componentes. O componente [`StylesProvider`](/styles/api/#stylesprovider) permite isso:
-
-```jsx
-import { create } from 'jss';
-import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
-
-// Configure JSS
-const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
-});
-
-function RTL(props) {
-  return <StylesProvider jss={jss}>{props.children}</StylesProvider>;
-}
-```
-
-#### 3.2 emotion
-
-Depois de criar uma nova instância do JSS com o plugin, você precisará disponibilizá-la para todos os componentes na árvore de componentes. O componente [`StylesProvider`](/styles/api/#stylesprovider) permite isso:
+If you use emotion as your style engine, you should create new cache instance that uses the `stylis-plugin-rtl` and provide that on the top of your application tree. The [CacheProvider](https://emotion.sh/docs/cache-provider) component enables this:
 
 ```jsx
 import rtlPlugin from 'stylis-plugin-rtl';
@@ -97,9 +76,9 @@ function RTL(props) {
 }
 ```
 
-#### 3.3 styled-components
+#### 4.2 styled-components
 
-Se você usar `styled-components` como seu motor de estilo, você pode usar o [StyleSheetManager](https://styled-components.com/docs/api#stylesheetmanager) e fornecer a propriedade stylis-plugin-rtl como um item da propriedade `stylisPlugins`:
+If you use `styled-components` as your style engine, you can use the [StyleSheetManager](https://styled-components.com/docs/api#stylesheetmanager) and provide the stylis-plugin-rtl as an item in the `stylisPlugins` property:
 
 ```jsx
 import { StyleSheetManager } from 'styled-components';
@@ -114,6 +93,27 @@ function RTL(props) {
 }
 ```
 
+#### 4.3 JSS
+
+After installing the plugin in your project, you need to configure the JSS instance to load it. The next step is to make the new JSS instance available to all the components in the component tree. O componente [`StylesProvider`](/styles/api/#stylesprovider) permite isso:
+
+```jsx
+import { create } from 'jss';
+import rtl from 'jss-rtl';
+import { StylesProvider, jssPreset } from '@mui/styles';
+
+// Configure JSS
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+function RTL(props) {
+  return <StylesProvider jss={jss}>{props.children}</StylesProvider>;
+}
+```
+
+For more information on the plugin, head to the [plugin README](https://github.com/alitaheri/jss-rtl). **Note**: Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme.
+
 ## Demonstração
 
 _Use o botão de alternância de direção no canto superior direito para inverter toda a documentação_
@@ -122,18 +122,38 @@ _Use o botão de alternância de direção no canto superior direito para invert
 
 ## Optando pela transformação do rtl
 
+### emotion & styled-components
+
+You have to use the template literal syntax and add the `/* @noflip */` directive before the rule or property for which you want to disable right-to-left styles.
+
+```jsx
+const AffectedText = styled('div')`
+  text-align: left;
+`;
+
+const UnaffectedText = styled('div')`
+  /* @noflip */
+  text-align: left;
+`;
+```
+
+{{"demo": "pages/guides/right-to-left/RtlOptOutStylis.js", "hideToolbar": true}}
+
 ### JSS
 
 Se você quiser evitar que um conjunto de regras específico seja afetado pela transformação `rtl`, você pode adicionar `flip: false` no inicio.
 
-_Use o botão de alternância de direção no canto superior direito para ver o efeito._
-
-{{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}
-
-### emotion & styled-components
-
-Você precisa a sintaxe de template literal e adicionar a diretiva `/* @noflip */` antes da regra ou propriedade para a qual você deseja desativar os estilos da direita para a esquerda.
-
-_Use o botão de alternância de direção no canto superior direito para ver o efeito._
-
-{{"demo": "pages/guides/right-to-left/RtlOptOutStylis.js", "hideEditButton": true}}
+```jsx
+const useStyles = makeStyles(
+  (theme) => ({
+    affected: {
+      textAlign: 'right',
+    },
+    unaffected: {
+      flip: false,
+      textAlign: 'right',
+    },
+  }),
+  { defaultTheme },
+);
+```

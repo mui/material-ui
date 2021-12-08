@@ -3,8 +3,9 @@ import * as React from 'react';
 import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
-  MemoryRouter as Router,
+  MemoryRouter,
 } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom/server';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 
@@ -13,6 +14,15 @@ const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
     <RouterLink ref={ref} to="/getting-started/installation/" {...props} />
   ),
 );
+
+function Router(props: { children?: React.ReactNode }) {
+  const { children } = props;
+  if (typeof window === 'undefined') {
+    return <StaticRouter location="/">{children}</StaticRouter>;
+  }
+
+  return <MemoryRouter>{children}</MemoryRouter>;
+}
 
 export default function LinkRouter() {
   return (

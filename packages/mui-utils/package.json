@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "5.2.0",
+  "version": "5.2.3",
   "private": false,
   "author": "MUI Team",
   "description": "Utility functions for React components.",
@@ -21,6 +21,10 @@
     "url": "https://github.com/mui-org/material-ui/issues"
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/mui-utils",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui"
+  },
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files && yarn build:types",
     "build:legacy": "node ../../scripts/build legacy",

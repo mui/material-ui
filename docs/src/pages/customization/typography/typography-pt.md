@@ -54,8 +54,8 @@ const theme = createTheme({
           font-style: normal;
           font-display: swap;
           font-weight: 400;
-          src: "local('Raleway'), local('Raleway-Regular'), url(${RalewayWoff2}) format('woff2')";
-          unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+          src: local('Raleway'), local('Raleway-Regular'), url(${RalewayWoff2}) format('woff2');
+          unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
         }
       `,
     },
@@ -77,13 +77,13 @@ return (
 );
 ```
 
-Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previosly defined `@font-face` declarations won't be replaced.
+Observe que se você deseja adicionar declarações `@font-face` adicionais, você precisa usar a sintaxe de string do modelo CSS para adicionar substituições de estilo, de modo que as declarações `@font-face` previamente definidas não serão substituídas.
 
 ## Tamanho da fonte
 
-Material-UI usa a unidade `rem` para o tamanho da fonte. O tamanho da fonte padrão do elemento `<html>` do navegador é `16px`, mas os navegadores têm a opção de alterar esse valor, a unidade `rem` nos permite acomodar as configurações do usuário, resultando em um melhor suporte de acessibilidade. Os usuários alteram as configurações de tamanho da fonte por vários motivos, desde problemas de visão, até a escolha de configurações ideais para dispositivos que podem ser muito diferentes em tamanho e distância de visualização.
+MUI uses `rem` units for the font size. O tamanho da fonte padrão do elemento `<html>` do navegador é `16px`, mas os navegadores têm a opção de alterar esse valor, a unidade `rem` nos permite acomodar as configurações do usuário, resultando em um melhor suporte de acessibilidade. Os usuários alteram as configurações de tamanho da fonte por vários motivos, desde problemas de visão, até a escolha de configurações ideais para dispositivos que podem ser muito diferentes em tamanho e distância de visualização.
 
-Para alterar o tamanho da fonte do Material-UI, você pode definir a propriedade `fontSize`. O valor padrão é `14px`.
+To change the font-size of MUI you can provide a `fontSize` property. O valor padrão é `14px`.
 
 ```js
 const theme = createTheme({
@@ -97,9 +97,14 @@ const theme = createTheme({
 
 O tamanho da fonte computada pelo navegador segue esta equação matemática:
 
-<img src="/static/images/font-size.png" alt="cálculo do tamanho da fonte" style="width: 458px;" />
+<div class="only-light-mode">
+  <img alt="font size calculation" style="width: 458px;" src="/static/images/font-size.svg" />
+</div>
+<div class="only-dark-mode">
+  <img alt="font size calculation" style="width: 458px;" src="/static/images/font-size-dark.svg" />
+</div>
 
-<!-- https://latex.codecogs.com/png.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
+<!-- https://latex.codecogs.com/svg.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
 
 ### Tamanhos de fonte responsivo
 
@@ -125,10 +130,10 @@ Para automatizar estas configurações, você pode usar a função auxiliar [`re
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-Você pode ver isso em ação no exemplo abaixo. Adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+Você pode ver isso em ação no exemplo abaixo. Ajuste o tamanho da janela do navegador e observe como o tamanho da fonte muda à medida que a largura cruza os diferentes [pontos de quebra](/customization/breakpoints/):
 
 ```js
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -146,12 +151,12 @@ Você pode querer alterar o tamanho da fonte padrão do elemento `<html>`. Por e
 
 > ⚠️ Alterar o tamanho da fonte pode prejudicar a acessibilidade ♿️. A maioria dos navegadores concordou com o tamanho padrão de 16 pixels, mas o usuário pode alterá-lo. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
-Uma propriedade de tema `htmlFontSize` é fornecida para estas situações, que informa ao Material-UI qual é o tamanho da fonte no elemento `<html>`. Isso é usado para ajustar o valor `rem`, para que o tamanho da fonte calculado sempre corresponda à especificação.
+The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. Isso é usado para ajustar o valor `rem`, para que o tamanho da fonte calculado sempre corresponda à especificação.
 
 ```js
 const theme = createTheme({
   typography: {
-    // Tell Material-UI what's the font-size on the html element is.
+    // Tell MUI what's the font-size on the html element is.
     htmlFontSize: 10,
   },
 });
@@ -159,7 +164,7 @@ const theme = createTheme({
 
 ```css
 html {
-  font-size: 62.5%; /* 62.5% of 16px = 10px */
+  font-size: 62.5%; /* 62.5% de 16px = 10px */
 }
 ```
 
@@ -227,12 +232,12 @@ const theme = createTheme({
 
 > If you aren't using TypeScript you should skip this step.
 
-You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
+Você precisa ter certeza de que as tipagens para as variantes da propriedade `typography` e a `variant` `Typography`'s reflete o novo conjunto de variantes.
 
 <!-- Tested with packages/mui-material/test/typescript/augmentation/typographyVariants.spec.ts -->
 
 ```ts
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface TypographyVariants {
     poster: React.CSSProperties;
   }
@@ -244,7 +249,7 @@ declare module '@material-ui/core/styles' {
 }
 
 // Update the Typography's variant prop options
-declare module '@material-ui/core/Typography' {
+declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     poster: true;
     h3: false;

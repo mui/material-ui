@@ -15,20 +15,20 @@ You can use it, but you don't have to, since MUI is also [interoperable with](/g
 
 ## Why use MUI's styling solution?
 
-In previous versions, MUI has used [Less](http://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited.
+In previous versions, MUI has used [Less](https://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited.
 [A _CSS-in-JS_ solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations,
 and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 
-MUI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
+MUI's styling solution is inspired by many other styling libraries such as [styled-components](https://styled-components.com/) and [emotion](https://emotion.sh/).
 
-- 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
+- 💅 You can expect [the same advantages](https://styled-components.com/docs/basics#motivation) as styled-components.
 
 <!-- #default-branch-switch -->
 
-- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles).
+- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/tree/master/benchmark/server#material-uistyles).
 - 🧩 It's extensible via a [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 - ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core – a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
-- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@mui/styles); and no bundle size increase if used alongside MUI.
+- 📦 Less than [15 KB gzipped](https://bundlephobia.com/package/@mui/styles); and no bundle size increase if used alongside MUI.
 
 ## Installation
 
@@ -192,7 +192,7 @@ This button component has a `color` prop that changes its color:
 
 ### Adapting the hook API
 
-{{"demo": "pages/styles/basics/AdaptingHook.js", "react":"next"}}
+{{"demo": "pages/styles/basics/AdaptingHook.js"}}
 
 ### Adapting the styled components API
 

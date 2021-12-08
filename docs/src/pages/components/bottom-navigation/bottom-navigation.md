@@ -35,4 +35,4 @@ This demo keeps bottom navigation fixed to the bottom, no matter the amount of c
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The `BottomNavigationAction` component provides the `component` prop to handle this use case.
-Here is a [more detailed guide](/guides/routing).
+Here is a [more detailed guide](/guides/routing/).

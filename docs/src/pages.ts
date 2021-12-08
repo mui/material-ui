@@ -172,7 +172,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/components/data-grid/localization' },
           { pathname: '/components/data-grid/virtualization' },
           { pathname: '/components/data-grid/accessibility' },
-          { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
+          { pathname: '/components/data-grid/group-pivot', title: 'Group & Pivot' },
         ],
       },
       {

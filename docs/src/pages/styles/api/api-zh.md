@@ -1,28 +1,32 @@
+- - -
+title: Styles API
+- - -
+
 # API
 
-<p class="description">@material-ui/core/styles 的 API 参考文档。</p>
+<p class="description">The API reference of @mui/styles.</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
-一个返回 [ 类名称生成器函数 ](https://cssinjs.org/jss-api/#generate-your-class-names) 的函数。
+返回 [ 类名称生成器函数 ](https://cssinjs.org/jss-api/#generate-your-class-names) 的函数。
 
 ### 参数
 
 1. `options` (_object_ [optional]):
 
-   - `options.disableGlobal` (_bool_ [optional]): Defaults to `false`. 阻止生成确定性的类名。
+   - `options.disableGlobal` (_bool_ [optional])：默认值是 `false`。 阻止生成确定性的类名。
    - `options.seed` (*string* [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 字符串用来在生产中对类名称加上前缀。
    - `options.seed` (_string_ [optional])：初始值为 `''`. 用于唯一标识生成器的字符串。 用于唯一标识生成器的字符串。 在同一个文档中使用多个生成器时，它可用于避免类名冲突。
 
 ### 返回结果
 
-`类名生成器`：应该将生成器提供给 JSS。
+`类名生成器`：应该将生成器提供给JSS。
 
 ### 例子
 
 ```jsx
 import * as React from 'react';
-import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
+import { StylesProvider, createGenerateClassName } from '@mui/styles';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'c',
@@ -35,7 +39,7 @@ export default function App() {
 
 ## `createStyles(styles) => styles`
 
-在运行的时候，这个函数并没有真正“做任何事”，它一个只是认证函数。 它的唯一目的是，当向 `Theme` 的 `makeStyles`/`withStyles` 功能提供样式的规则时， 可以阻止 **TypeScript** 的类型扩展。
+这个函数在运行时并没有真正“做任何事”，它只是身份 函数。 它的唯一目的是，当向 `Theme` 的 `makeStyles`/`withStyles` 功能提供样式的规则时， 可以阻止 **TypeScript** 的类型扩展。
 
 ### 参数
 
@@ -48,20 +52,26 @@ export default function App() {
 ### 例子
 
 ```jsx
-import { createStyles, makeStyles } from '@material-ui/styles';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@mui/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    backgroundColor: theme.palette.red,
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      backgroundColor: theme.palette.red,
+    },
+  }),
+);
 
 const theme = createTheme();
 
-export default function MyComponent {
+export default function MyComponent() {
   const classes = useStyles();
-  return <ThemeProvider theme={theme}><div className={classes.root} /></ThemeProvider>;
+  return (
+    <ThemeProvider theme={theme}>
+      <div className={classes.root} />
+    </ThemeProvider>
+  );
 }
 ```
 
@@ -71,7 +81,7 @@ export default function MyComponent {
 
 ### 参数
 
-1. `styles`(* Function | Object *): 生成样式或样式对象的函数。 它将被链接到组件中。 若您需要访问主题，请使用函数签名（function signature）。 它是提供的第一个参数。
+1. ` styles `(_ Function | Object _): 生成样式或样式对象的函数。 它将被链接到组件中。 若您需要访问主题，请使用函数签名（function signature）。 它是提供的第一个参数。
 2. `options` (_object_ [optional]):
 
 - `options.defaultTheme`（*object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
@@ -81,13 +91,13 @@ export default function MyComponent {
 
 ### 返回结果
 
-`hook` ： 一个 hook。 该 hook 可以在一个功能组件中使用。 文档通常会调用这个回调 hook `useStyles`。 它接受一个参数：在样式表中用于 “插值（interpolation）”的属性。
+`hook` ： 一个钩子。 该钩子可以用在功能组件中。 文档通常会调用这个回调 hook `useStyles`。 It accepts one argument: the props that will be used for "interpolation" in the style sheet.
 
 ### 例子
 
 ```jsx
 import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -108,7 +118,7 @@ export default function MyComponent(props) {
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@mui/styles';
 
 const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
@@ -154,11 +164,11 @@ const response = `
 ### 参数
 
 1. `Component` ：将被包装的组件。
-2. `styles`(* Function | Object *): 生成样式或样式对象的函数。 它将被链接到组件中。 若您需要访问主题，请使用函数签名（function signature）。 它作为第一个参数的属性给出。
+2. ` styles `(_ Function | Object _): 生成样式或样式对象的函数。 它将被链接到组件中。 若您需要访问主题，请使用函数签名（function signature）。 它作为第一个参数的属性给出。
 3. `options` (_object_ [optional]):
 
 - `options.defaultTheme`（*object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.withTheme` (_bool_ [optional]): Defaults to `false`. 将 `theme` 对象作为属性提供给组件。
+- `options.withTheme` (_bool_ [optional])：默认值是 `false`。 将 `theme` 对象作为属性提供给组件。
 - `options.name` (*string* [optional]): 样式表的名称。 适合调试。 如果未提供该值，它将尝试回退到组件的名称。
 - `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
@@ -171,8 +181,8 @@ const response = `
 
 ```jsx
 import * as React from 'react';
-import { styled, ThemeProvider } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core/styles';
+import { styled, ThemeProvider } from '@mui/styles';
+import { createTheme } from '@mui/material/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -197,9 +207,9 @@ export default function StyledComponents() {
 
 ## `StylesProvider`
 
-此组件允许您调整样式方案的行为。 多亏了 context，选项可以在 React 树下层使用。
+此组件允许您更改样式解决方案的行为。 多亏了 context，选项可以在 React 树下层使用。
 
-最好在**您的组件树的根目录**中使用它。
+It should preferably be used at **the root of your component tree**.
 
 ### 属性
 
@@ -208,7 +218,7 @@ export default function StyledComponents() {
 | children&nbsp;\* | node   |       | 您的组件树。                                                                                                                               |
 | disableGeneration  | bool   | false | 使用此选项，你可以禁用样式表的生成。 当在服务端的 HTML 之外渲染步骤中遍历 React  树的时候，这个属性卓有成效。 举个例子，若你正在使用 react-apillo 来提取服务端接口发出的所有查询（queries）。 使用这个属性可以大大加快遍历的速度。 |
 | generateClassName  | func   |       | JSS 的类名生成器。                                                                                                                          |
-| injectFirst        | bool   | false | 默认情况下，在页面中注入的 style会被插入到 `<head>` 元素的最后。 因此，相比其他样式表单，它们能够表现地更为具体。 如果您想要覆盖 Material-UI 的样式，请设置此属性。                              |
+| injectFirst        | bool   | false | 默认情况下，在页面中注入的 style会被插入到 `<head>` 元素的最后。 因此，相比其他样式表单，它们能够表现地更为具体。 If you want to override MUI's styles, set this prop.         |
 | jss                | object |       | JSS 的实例。                                                                                                                             |
 
 ### 例子
@@ -216,7 +226,7 @@ export default function StyledComponents() {
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@mui/styles';
 
 function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
@@ -227,7 +237,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## `ThemeProvider`
 
-该组件使用了 `theme` 属性，并通过上下文的方式使其在 React 树下可用。 它最好应在**组件树的根目录中使用** 。
+This component takes a `theme` prop, and makes it available down the React tree thanks to the context. It should preferably be used at **the root of your component tree**.
 
 ### 属性
 
@@ -241,7 +251,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 const theme = {};
 
@@ -254,7 +264,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## `useTheme() => theme`
 
-此 hook 返回了一个 `theme` 对象，你可以在函数组件中使用它。
+该钩子返回`theme`对象因此可以在函数组件中使用。
 
 ### 返回结果
 
@@ -264,7 +274,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ```jsx
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
@@ -275,21 +285,21 @@ export default function MyComponent() {
 
 ## `withStyles(styles, [options]) => higher-order component`
 
-链路的样式表有分量利用**higher-order component**的模式。 它不会修改传递给它的组件；相反，它返回一个具有`classes`属性的新组件。 这个 `classes` 对象包含了在 DOM 中注入的类名（class names ）。
+Link a style sheet with a component using the **higher-order component** pattern. It does not modify the component passed to it; instead, it returns a new component with a `classes` prop. 这个`classes`对象包含DOM中注入的class名称。
 
-你可能会注意到一些有趣的细节：
+一些可能有趣的实现细节：
 
-- 它添加了一个 `classes` 属性，因此您可以从外部覆盖注入的类名。
+- It adds a `classes` prop so you can override the injected class names from the outside.
 - 它将 refs 转发给内部的组件。
 - 它 **不会** 拷贝静态文件。 For instance, it can be used to define a `getInitialProps()` static method (next.js).
 
 ### 参数
 
-1. `styles`(* Function | Object *): 生成样式或样式对象的函数。 它将被链接到组件中。 若您需要访问主题，请使用函数签名（function signature）。 它是提供的第一个参数。
+1. ` styles `(_ Function | Object _): 生成样式或样式对象的函数。 它将被链接到组件中。 若您需要访问主题，请使用函数签名（function signature）。 它是提供的第一个参数。
 2. `options` (_object_ [optional]):
 
 - `options.defaultTheme`（*object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.withTheme` (_bool_ [optional]): Defaults to `false`. 将 `theme` 对象作为属性提供给组件。
+- `options.withTheme` (_bool_ [optional])：默认值是 `false`。 将 `theme` 对象作为属性提供给组件。
 - `options.name` (*string* [optional]): 样式表的名称。 适合调试。 如果未提供该值，它将尝试回退到组件的名称。
 - `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 当设置为 `null`，它依据 `theme.direction` 而定。
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
@@ -302,7 +312,7 @@ export default function MyComponent() {
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 
 const styles = {
   root: {
@@ -317,11 +327,11 @@ function MyComponent(props) {
 export default withStyles(styles)(MyComponent);
 ```
 
-此外，您还也可以这样使用 [ decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators)：
+此外, 还可以像这样使用 [修饰器](https://babeljs.io/docs/en/babel-plugin-proposal-decorators):
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 
 const styles = {
   root: {
@@ -341,7 +351,7 @@ export default MyComponent;
 
 ## `withTheme(Component) => Component`
 
-提供 `theme` 对象作为输入组件的属性，因此可以在 render 方法中使用 。
+Provide the `theme` object as a prop of the input component so it can be used in the render method.
 
 ### 参数
 
@@ -355,7 +365,7 @@ export default MyComponent;
 
 ```jsx
 import * as React from 'react';
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@mui/styles';
 
 function MyComponent(props) {
   return <div>{props.theme.direction}</div>;

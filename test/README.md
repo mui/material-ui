@@ -11,7 +11,7 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 
 ## Tools we use
 
-- [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro)
+- [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/)
 - [Chai](https://www.chaijs.com/)
 - [Sinon](https://sinonjs.org/)
 - [Mocha](https://mochajs.org/)
@@ -20,7 +20,7 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 - [jsdom](https://github.com/jsdom/jsdom)
 - [enzyme](https://airbnb.io/enzyme/) (old tests only)
 
-## Writing Tests
+## Writing tests
 
 For all unit tests, please use the return value from `test/utils/createRenderer`.
 It prepares the test suite and returns a function with the same interface as

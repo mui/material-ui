@@ -10,7 +10,31 @@ import Divider from '@mui/material/Divider';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import Typography from '@mui/material/Typography';
-import { Link as RouterLink, Route, MemoryRouter } from 'react-router-dom';
+import {
+  Link as RouterLink,
+  Route,
+  Routes,
+  MemoryRouter,
+  useLocation,
+} from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom/server';
+
+function Router(props) {
+  const { children } = props;
+  if (typeof window === 'undefined') {
+    return <StaticRouter location="/drafts">{children}</StaticRouter>;
+  }
+
+  return (
+    <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+      {children}
+    </MemoryRouter>
+  );
+}
+
+Router.propTypes = {
+  children: PropTypes.node,
+};
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
@@ -39,17 +63,23 @@ ListItemLink.propTypes = {
   to: PropTypes.string.isRequired,
 };
 
+function Content() {
+  const location = useLocation();
+  return (
+    <Typography variant="body2" sx={{ pb: 2 }} color="text.secondary">
+      Current route: {location.pathname}
+    </Typography>
+  );
+}
+
 export default function ListRouter() {
   return (
-    <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+    <Router>
       <Box sx={{ width: 360 }}>
-        <Route>
-          {({ location }) => (
-            <Typography variant="body2" sx={{ pb: 2 }} color="text.secondary">
-              Current route: {location.pathname}
-            </Typography>
-          )}
-        </Route>
+        <Routes>
+          <Route path="*" element={<Content />} />
+        </Routes>
+
         <Paper elevation={0}>
           <List aria-label="main mailbox folders">
             <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
@@ -62,6 +92,6 @@ export default function ListRouter() {
           </List>
         </Paper>
       </Box>
-    </MemoryRouter>
+    </Router>
   );
 }
