@@ -6,7 +6,7 @@ export { default } from './SelectUnstyled';
 export { default as selectUnstyledClasses } from './selectUnstyledClasses';
 export * from './selectUnstyledClasses';
 
-export { default as SelectUnstyledProps } from './SelectUnstyledProps';
+export type { default as SelectUnstyledProps } from './SelectUnstyledProps';
 export * from './SelectUnstyledProps';
 
 export { default as useSelect } from './useSelect';
