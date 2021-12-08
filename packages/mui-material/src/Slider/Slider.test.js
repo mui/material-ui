@@ -1183,4 +1183,30 @@ describe('<Slider />', () => {
       expect(thumb).to.have.class(classes.thumbSizeSmall);
     });
   });
+
+  describe('state: focusVisible', function test() {
+    it.only('should not set focusVisible when using mouse', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const { container } = render(
+        <Slider defaultValue={0} />,
+      );
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        left: 0,
+      }));
+
+      fireEvent.mouseDown(container.firstChild, {
+        buttons: 1,
+        clientX: 10,
+      });
+      fireEvent.mouseUp(container.firstChild, {
+        buttons: 1,
+        clientX: 10,
+      });
+
+      expect(document.querySelector(`.Mui-focusVisible`)).to.equal(null);
+    });
+  });
 });

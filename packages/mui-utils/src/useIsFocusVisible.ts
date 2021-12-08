@@ -101,14 +101,6 @@ export function teardown(doc: Document): void {
 
 function isFocusVisible(event: React.FocusEvent): boolean {
   const { target } = event;
-  try {
-    return target.matches(':focus-visible');
-  } catch (error) {
-    // Browsers not implementing :focus-visible will throw a SyntaxError.
-    // We use our own heuristic for those browsers.
-    // Rethrow might be better if it's not the expected error but do we really
-    // want to crash if focus-visible malfunctioned?
-  }
 
   // No need for validFocusTarget check. The user does that by attaching it to
   // focusable events only.
@@ -160,7 +152,7 @@ export default function useIsFocusVisible(): UseIsFocusVisibleResult {
   }
 
   /**
-   * Should be called if a blur event is fired
+   * Should be called if a focus event is fired
    */
   function handleFocusVisible(event: React.FocusEvent) {
     if (isFocusVisible(event)) {
