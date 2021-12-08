@@ -13,7 +13,7 @@ import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { useRouter } from 'next/router';
-import pages, { materialPages, systemPages } from 'docs/src/pages';
+import pages from 'docs/src/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
@@ -198,13 +198,9 @@ function AppWrapper(props) {
     }
   }, []);
 
+  // eslint-disable will be removed once docs restructure is done
+  // eslint-disable-next-line prefer-const
   let productPages = pages;
-  if (router.asPath.startsWith('/material')) {
-    productPages = materialPages;
-  }
-  if (router.asPath.startsWith('/system')) {
-    productPages = systemPages;
-  }
 
   const activePage = findActivePage(productPages, router.pathname);
 
