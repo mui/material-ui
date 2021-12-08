@@ -164,7 +164,7 @@ export function resolveBreakpointValues({
       return acc;
     }
 
-    if (breakpointValues[breakpoint]) {
+    if (breakpointValues[breakpoint] !== undefined && breakpointValues[breakpoint] !== null) {
       acc[breakpoint] = breakpointValues[breakpoint];
       previous = breakpoint;
     } else {
