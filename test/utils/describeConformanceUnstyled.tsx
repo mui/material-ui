@@ -42,7 +42,7 @@ interface WithClassName {
 
 interface WithCustomProp {
   fooBar: string;
-  role: string
+  role: string;
 }
 
 interface WithOwnerState {
