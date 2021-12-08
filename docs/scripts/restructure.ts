@@ -2,7 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import prettier from 'prettier';
 import pages from 'docs/src/pages';
-import { refactorMarkdownContent } from './restructureUtils';
+import {
+  refactorMarkdownContent,
+  getNewDataLocation,
+  getNewPageLocation,
+} from './restructureUtils';
 
 const workspaceRoot = path.resolve(__dirname, '../../');
 const prettierConfigPath = path.join(workspaceRoot, 'prettier.config.js');
@@ -133,22 +137,33 @@ function run() {
       // copy material related pages to `docs/pages/material/*`
 
       pathnames.forEach((pathname) => {
-        const dataDir = readdirDeep(path.resolve(`docs/src/pages${pathname}`));
-        dataDir.forEach((filePath) => {
-          if (filePath.match(/^.*\.(ts|js|tsx|md)$/)) {
-            let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
-            data = refactorMarkdownContent(data, pathnames);
-            fs.writeFileSync(filePath.replace('src/pages', 'products/material'), data); // (A)
-          }
-        });
+        if (pathname !== '/api-docs') {
+          // clone js/md data to new location
+          const dataDir = readdirDeep(path.resolve(`docs/src/pages${pathname}`));
+          dataDir.forEach((filePath) => {
+            const info = getNewDataLocation(filePath);
+            // pathname could be a directory
+            if (info) {
+              let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
+              if (filePath.endsWith('.md')) {
+                data = refactorMarkdownContent(data, pathnames);
+              }
+              fs.mkdirSync(info.directory, { recursive: true });
+              fs.writeFileSync(info.path, data); // (A)
+            }
+          });
+        }
 
+        // clone pages to new location
         const pagesDir = readdirDeep(path.resolve(`docs/pages${pathname}`));
         pagesDir.forEach((filePath) => {
+          const info = getNewPageLocation(filePath);
           // pathname could be a directory
-          if (filePath.match(/^.*\.(ts|js|tsx|md)$/)) {
+          if (info) {
             let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
             data = data.replace('/src/pages/', '/products/material/'); // point to data path (A) in new directory
-            fs.writeFileSync(filePath.replace('docs/pages', 'docs/pages/material'), data);
+            fs.mkdirSync(info.directory, { recursive: true });
+            fs.writeFileSync(info.path, data);
           }
         });
       });
