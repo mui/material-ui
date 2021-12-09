@@ -31,10 +31,6 @@ function getOffset(val) {
 
 export function generateGrid({ theme, ownerState }) {
   let size;
-  const breakpointBase = theme.breakpoints.keys.reduce((breakpoints, breakpoint) => {
-    breakpoints[breakpoint] = true;
-    return breakpoints;
-  }, {});
 
   return theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
     // Use side effect over immutability for better performance.
@@ -63,13 +59,14 @@ export function generateGrid({ theme, ownerState }) {
       const columnsBreakpointValues = resolveBreakpointValues({
         values: ownerState.columns,
         breakpoints: theme.breakpoints.values,
-        base: breakpointBase,
       });
-
       const columnValue =
         typeof columnsBreakpointValues === 'object'
           ? columnsBreakpointValues[breakpoint]
           : columnsBreakpointValues;
+      if (columnValue === undefined || columnValue === null) {
+        return globalStyles;
+      }
       // Keep 7 significant numbers.
       const width = `${Math.round((size / columnValue) * 10e7) / 10e5}%`;
       let more = {};

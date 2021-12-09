@@ -332,16 +332,6 @@ describe('<Grid />', () => {
           flexGrow: 0,
           maxWidth: '8.333333%',
         },
-        [`@media (min-width:${defaultTheme.breakpoints.values.lg}px)`]: {
-          flexBasis: '8.333333%',
-          flexGrow: 0,
-          maxWidth: '8.333333%',
-        },
-        [`@media (min-width:${defaultTheme.breakpoints.values.xl}px)`]: {
-          flexBasis: '8.333333%',
-          flexGrow: 0,
-          maxWidth: '8.333333%',
-        },
       });
     });
   });
