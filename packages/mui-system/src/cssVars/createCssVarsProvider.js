@@ -66,7 +66,7 @@ export default function createCssVarsProvider(options) {
 
     const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = clonedBaseTheme;
     const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp;
-    const hasMounted = React.useRef(null);
+    const hasMounted = React.useRef(false);
 
     // eslint-disable-next-line prefer-const
     let { components = {}, ...mergedTheme } = deepmerge(restBaseTheme, restThemeProp);
@@ -194,6 +194,9 @@ export default function createCssVarsProvider(options) {
 
     React.useEffect(() => {
       hasMounted.current = true;
+      return () => {
+        hasMounted.current = false;
+      };
     }, []);
 
     return (
