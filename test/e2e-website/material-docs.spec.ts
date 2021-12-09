@@ -5,6 +5,14 @@ import { TestFixture } from './config';
 
 const test = base.extend<TestFixture>({});
 
+test.beforeEach(async ({ materialUrlPrefix }) => {
+  test.skip(
+    // @ts-ignore
+    !!materialUrlPrefix && !FEATURE_TOGGLE.enable_product_scope,
+    "Migration haven't started yet",
+  );
+});
+
 test.describe.parallel('Material docs', () => {
   test('should have correct link with hash in the TOC', async ({ page, materialUrlPrefix }) => {
     await page.goto(`${materialUrlPrefix}/getting-started/installation/`);
