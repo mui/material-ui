@@ -66,7 +66,7 @@ describe('<LoadingButton />', () => {
     });
   });
 
-  it('should be able to derive defaultProps from MuiButton', () => {
+  it('should be able to derive variant defaultProp from MuiButton', () => {
     const theme = createTheme({
       components: {
         MuiButton: {
