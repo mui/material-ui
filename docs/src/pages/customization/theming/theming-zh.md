@@ -30,7 +30,7 @@ Changing the theme configuration variables is the most effective way to match MU
 
 ### 自定义变量
 
-When using MUI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. 就像这样：
+When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. 就像这样：
 
 ```jsx
 const theme = createTheme({
