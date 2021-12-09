@@ -35,9 +35,11 @@ export function generateGrid({ theme, ownerState }) {
   return theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
     // Use side effect over immutability for better performance.
     let styles = {};
-
     if (ownerState[breakpoint]) {
       size = ownerState[breakpoint];
+    }
+    if (!size && ownerState.item) {
+      return globalStyles;
     }
 
     if (size === true) {
