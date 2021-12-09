@@ -38,7 +38,7 @@ export function generateGrid({ theme, ownerState }) {
     if (ownerState[breakpoint]) {
       size = ownerState[breakpoint];
     }
-    if (!size && ownerState.item) {
+    if (!size) {
       return globalStyles;
     }
 
