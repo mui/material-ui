@@ -60,6 +60,7 @@ export function generateGrid({ theme, ownerState }) {
         values: ownerState.columns,
         breakpoints: theme.breakpoints.values,
       });
+
       const columnValue =
         typeof columnsBreakpointValues === 'object'
           ? columnsBreakpointValues[breakpoint]
