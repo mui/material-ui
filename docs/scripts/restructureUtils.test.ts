@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {
-  refactorMarkdownContent,
+  markdown,
   refactorJsonContent,
   getNewDataLocation,
   getNewPageLocation,
@@ -10,26 +10,30 @@ describe('restructure utils', () => {
   describe('refactorMarkdownContent', () => {
     it('replace demo to relative path', () => {
       expect(
-        refactorMarkdownContent(
+        markdown.removeDemoRelativePath(
           `{{"demo": "pages/components/accordion/BasicAccordion.js", "bg": true}}`,
         ),
       ).to.equal(`{{"demo": "BasicAccordion.js", "bg": true}}`);
+
+      expect(
+        markdown.removeDemoRelativePath(
+          `{{"demo": "pages/system/grid/GridTemplateColumns.js", "bg": true}}`,
+        ),
+      ).to.equal(`{{"demo": "GridTemplateColumns.js", "bg": true}}`);
     });
 
     it('add material prefix to related links', () => {
       expect(
-        refactorMarkdownContent(
+        markdown.addMaterialPrefixToLinks(
           `You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).`,
-          ['/customization'],
         ),
       ).to.equal(
         `You can learn more about this in the [overrides documentation page](/material/customization/how-to-customize/).`,
       );
 
       expect(
-        refactorMarkdownContent(
+        markdown.addMaterialPrefixToLinks(
           `You can learn more about this in the [overrides documentation page](/guides/how-to-customize/).`,
-          ['/guides'],
         ),
       ).to.equal(
         `You can learn more about this in the [overrides documentation page](/material/guides/how-to-customize/).`,
@@ -38,13 +42,14 @@ describe('restructure utils', () => {
 
     it('add product: material to frontmatter', () => {
       expect(
-        refactorMarkdownContent(
+        markdown.addProductFrontmatter(
           `
 ---
 title: React Avatar component
 components: Avatar, AvatarGroup, Badge
 githubLabel: 'component: Avatar'
 ---`,
+          'material',
         ),
       ).to.equal(`
 ---
@@ -57,21 +62,12 @@ githubLabel: 'component: Avatar'
 
     it('does not replace http: links', () => {
       const content = `> **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel".`;
-      expect(refactorMarkdownContent(content)).to.equal(content);
+      expect(markdown.addMaterialPrefixToLinks(content)).to.equal(content);
     });
 
     it('does not prefix system | styles links', () => {
       const content = `It's similar to the \`row-gap\` and \`column-gap\` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap). When using MUI's theme with the [styling solution](/styles/basics/)`;
-      expect(
-        refactorMarkdownContent(content, [
-          '/getting-started',
-          '/components',
-          '/api-docs',
-          '/customization',
-          '/guides',
-          '/discover-more',
-        ]),
-      ).to.equal(content);
+      expect(markdown.addMaterialPrefixToLinks(content)).to.equal(content);
     });
   });
 
@@ -95,10 +91,20 @@ githubLabel: 'component: Avatar'
 
   it('getNewDataLocation', () => {
     expect(
-      getNewDataLocation('material-ui/docs/src/pages/getting-started/installation/installation.md'),
+      getNewDataLocation(
+        'material-ui/docs/src/pages/getting-started/installation/installation.md',
+        'material',
+      ),
     ).to.deep.equal({
       directory: 'material-ui/docs/products/material/getting-started/installation',
       path: 'material-ui/docs/products/material/getting-started/installation/installation.md',
+    });
+
+    expect(
+      getNewDataLocation('material-ui/docs/src/pages/system/advanced/advanced.md', 'system'),
+    ).to.deep.equal({
+      directory: 'material-ui/docs/products/system/advanced',
+      path: 'material-ui/docs/products/system/advanced/advanced.md',
     });
   });
 

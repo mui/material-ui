@@ -3,10 +3,11 @@ import path from 'path';
 import prettier from 'prettier';
 import pages from 'docs/src/pages';
 import {
-  refactorMarkdownContent,
   refactorJsonContent,
   getNewDataLocation,
   getNewPageLocation,
+  productPathnames,
+  markdown,
 } from './restructureUtils';
 
 const workspaceRoot = path.resolve(__dirname, '../../');
@@ -53,8 +54,8 @@ export default pages
   `;
 
   // create new folder and add prettified file.
-  fs.mkdirSync(`${workspaceRoot}/docs/src/data`, { recursive: true });
-  writePrettifiedFile(`${workspaceRoot}/docs/src/data/${product}Pages.ts`, source);
+  fs.mkdirSync(`${workspaceRoot}/docs/products/${product}`, { recursive: true });
+  writePrettifiedFile(`${workspaceRoot}/docs/products/${product}/pages.ts`, source);
 };
 
 const appendSource = (target: string, template: string, source: string) => {
@@ -73,7 +74,7 @@ const updateAppToUseProductPagesData = (product: string) => {
   appSource = appendSource(
     appSource,
     `import pages from 'docs/src/pages';`,
-    `import ${product}Pages from 'docs/src/data/${product}Pages';`,
+    `import ${product}Pages from 'docs/products/${product}/pages';`,
   );
   appSource = appendSource(
     appSource,
@@ -83,19 +84,6 @@ const updateAppToUseProductPagesData = (product: string) => {
     }`,
   );
   writePrettifiedFile(appPath, appSource);
-};
-
-const productPathnames = {
-  material: [
-    '/getting-started',
-    '/components',
-    '/api-docs',
-    '/customization',
-    '/guides',
-    '/discover-more',
-  ],
-  system: ['/system'],
-  styles: ['/styles'],
 };
 
 const readdirDeep = (directory: string, pathsProp: string[] = []) => {
@@ -120,7 +108,7 @@ function run() {
    * also prefix all pathnames with `/$product/` by using Regexp replace
    */
   (['styles', 'system', 'material'] as const).forEach((product) => {
-    const pathnames = productPathnames[product];
+    const pathnames = productPathnames[product] as unknown as string[];
     const productPages = pages.filter((item) => pathnames.includes(item.pathname));
 
     let arraySource = JSON.stringify(productPages);
@@ -134,30 +122,32 @@ function run() {
     // update _app.js to use product pages
     updateAppToUseProductPagesData(product);
 
-    if (product === 'material') {
-      // copy material related pages to `docs/pages/material/*`
-
-      pathnames.forEach((pathname) => {
-        if (pathname !== '/api-docs') {
-          // clone js/md data to new location
-          const dataDir = readdirDeep(path.resolve(`docs/src/pages${pathname}`));
-          dataDir.forEach((filePath) => {
-            const info = getNewDataLocation(filePath);
-            // pathname could be a directory
-            if (info) {
-              let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
-              if (filePath.endsWith('.md')) {
-                data = refactorMarkdownContent(data, pathnames);
+    pathnames.forEach((pathname) => {
+      if (pathname !== '/api-docs') {
+        // clone js/md data to new location
+        const dataDir = readdirDeep(path.resolve(`docs/src/pages${pathname}`));
+        dataDir.forEach((filePath) => {
+          const info = getNewDataLocation(filePath, product);
+          // pathname could be a directory
+          if (info) {
+            let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
+            if (filePath.endsWith('.md')) {
+              data = markdown.removeDemoRelativePath(data);
+              data = markdown.addMaterialPrefixToLinks(data);
+              if (product === 'material') {
+                data = markdown.addProductFrontmatter(data, 'material');
               }
-              fs.mkdirSync(info.directory, { recursive: true });
-              fs.writeFileSync(info.path, data); // (A)
             }
-          });
-        }
+            fs.mkdirSync(info.directory, { recursive: true });
+            fs.writeFileSync(info.path, data); // (A)
+          }
+        });
+      }
 
-        // clone pages to new location
-        const pagesDir = readdirDeep(path.resolve(`docs/pages${pathname}`));
-        pagesDir.forEach((filePath) => {
+      const pagesDir = readdirDeep(path.resolve(`docs/pages${pathname}`));
+      pagesDir.forEach((filePath) => {
+        if (product === 'material') {
+          // clone pages to new location
           const info = getNewPageLocation(filePath);
           // pathname could be a directory
           if (info) {
@@ -168,15 +158,21 @@ function run() {
             }
 
             if (filePath.endsWith('.js')) {
-              data = data.replace('/src/pages/', '/products/material/'); // point to data path (A) in new directory
+              data = data.replace('/src/pages/', `/products/${product}/`); // point to data path (A) in new directory
             }
 
             fs.mkdirSync(info.directory, { recursive: true });
             fs.writeFileSync(info.path, data);
           }
-        });
+        } else {
+          let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
+          if (filePath.endsWith('.js')) {
+            data = data.replace('/src/pages/', `/products/`); // point to data path (A) in new directory
+          }
+          fs.writeFileSync(filePath, data);
+        }
       });
-    }
+    });
   });
 }
 

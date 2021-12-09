@@ -1,16 +1,27 @@
-export const refactorMarkdownContent = (content: string, pathnames: string[] = []) => {
-  // i. update demo to use relative path
-  let result = content.replace(/"pages\/components\/[/\-a-zA-Z]*\/([a-zA-Z]*\.js)"/gm, `"$1"`);
+export const productPathnames = {
+  material: [
+    '/getting-started',
+    '/components',
+    '/api-docs',
+    '/customization',
+    '/guides',
+    '/discover-more',
+  ],
+  system: ['/system'],
+  styles: ['/styles'],
+} as const;
 
-  // ii. update links to have prefix
-  pathnames.forEach((path) => {
-    result = result.replace(new RegExp(`\\(${path}`, 'g'), `(/material${path}`);
-  });
-
-  // iii. add product: material to frontmatter
-  result = result.replace('---', '---\nproduct: material');
-
-  return result;
+export const markdown = {
+  removeDemoRelativePath: (content: string) =>
+    content.replace(/"pages\/[/\-a-zA-Z]*\/([a-zA-Z]*\.js)"/gm, `"$1"`),
+  addMaterialPrefixToLinks: (content: string) => {
+    productPathnames.material.forEach((path) => {
+      content = content.replace(new RegExp(`\\(${path}`, 'g'), `(/material${path}`);
+    });
+    return content;
+  },
+  addProductFrontmatter: (content: string, product: string) =>
+    content.replace('---', `---\nproduct: ${product}`),
 };
 
 export const refactorJsonContent = (content: string) => {
@@ -27,14 +38,21 @@ export const refactorJsonContent = (content: string) => {
 
 export const getNewDataLocation = (
   filePath: string,
+  product: string,
 ): { directory: string; path: string } | null => {
   const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json)$/);
   if (!match) {
     return null;
   }
   return {
-    directory: match[1].replace('src/pages', 'products/material'),
-    path: filePath.replace('src/pages', 'products/material'),
+    directory: match[1].replace(
+      'src/pages',
+      product === 'material' ? `products/${product}` : 'products',
+    ),
+    path: filePath.replace(
+      'src/pages',
+      product === 'material' ? `products/${product}` : 'products',
+    ),
   };
 };
 
