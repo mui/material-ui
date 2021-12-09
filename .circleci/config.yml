@@ -652,17 +652,16 @@ jobs:
                 # "^pull/\d+" is not valid YAML
                 # "^pull/\\d+" matches neither 'pull/1' nor 'main'
                 # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-                pattern: "^pull/.+$"
+                pattern: '^pull/.+$'
                 value: << pipeline.git.branch >>
           steps:
             # Upload distributables to S3
             - aws-s3/copy:
-                arguments: --acl public-read
-                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS_TMP
                 aws-region: AWS_REGION_ARTIFACTS
-                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS_TMP
                 from: mui-material.tgz
-                to: s3://mui-org-material-ui/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
+                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
       - store_artifacts:
           path: mui-material.tgz
           destination: mui-material.tgz
@@ -681,25 +680,25 @@ jobs:
                 # "^pull/\d+" is not valid YAML
                 # "^pull/\\d+" matches neither 'pull/1' nor 'main'
                 # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-                pattern: "^pull/.+$"
+                pattern: '^pull/.+$'
                 value: << pipeline.git.branch >>
           steps:
             # persist size snapshot on S3
             - aws-s3/copy:
-                arguments: --acl public-read --content-type application/json
-                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                arguments: --content-type application/json
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS_TMP
                 aws-region: AWS_REGION_ARTIFACTS
-                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS_TMP
                 from: size-snapshot.json
-                to: s3://mui-org-material-ui/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
+                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
             # symlink size-snapshot to latest
             - aws-s3/copy:
-                arguments: --acl public-read --content-type application/json
-                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
+                arguments: --content-type application/json
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS_TMP
                 aws-region: AWS_REGION_ARTIFACTS
-                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS_TMP
                 from: size-snapshot.json
-                to: s3://mui-org-material-ui/artifacts/$CIRCLE_BRANCH/latest/
+                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/latest/
       - run:
           name: run danger on PRs
           command: yarn danger ci
