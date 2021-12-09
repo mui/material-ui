@@ -308,7 +308,7 @@ describe('<Grid />', () => {
   });
 
   describe('prop: columns', () => {
-    it('should generate responsive grid', () => {
+    it('should generate responsive grid when grid item misses breakpoints of its container', () => {
       const theme = createTheme();
       expect(
         generateGrid({
