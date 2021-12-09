@@ -36,6 +36,25 @@ describe('restructure utils', () => {
       );
     });
 
+    it('add product: material to frontmatter', () => {
+      expect(
+        refactorMarkdownContent(
+          `
+---
+title: React Avatar component
+components: Avatar, AvatarGroup, Badge
+githubLabel: 'component: Avatar'
+---`,
+        ),
+      ).to.equal(`
+---
+product: material
+title: React Avatar component
+components: Avatar, AvatarGroup, Badge
+githubLabel: 'component: Avatar'
+---`);
+    });
+
     it('does not replace http: links', () => {
       const content = `> **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel".`;
       expect(refactorMarkdownContent(content)).to.equal(content);

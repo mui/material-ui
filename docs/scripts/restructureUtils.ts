@@ -6,6 +6,10 @@ export const refactorMarkdownContent = (content: string, pathnames: string[] = [
   pathnames.forEach((path) => {
     result = result.replace(new RegExp(`\\(${path}`, 'g'), `(/material${path}`);
   });
+
+  // iii. add product: material to frontmatter
+  result = result.replace('---', '---\nproduct: material');
+
   return result;
 };
 
