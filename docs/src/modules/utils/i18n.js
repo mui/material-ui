@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import * as React from 'react';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 function mapTranslations(req) {
   const translations = {};
@@ -63,13 +63,12 @@ const warnedOnce = {};
 
 export function useTranslate() {
   const userLanguage = useUserLanguage();
-  const router = useRouter();
 
   return React.useMemo(
     () =>
       function translate(key, options = {}) {
         function prefixMaterial(translation) {
-          if (typeof translation === 'string' && (router.asPath || '').startsWith('/material')) {
+          if (typeof translation === 'string' && FEATURE_TOGGLE.enable_product_scope) {
             let prefixed = translation;
             [
               '/getting-started',
@@ -110,6 +109,6 @@ export function useTranslate() {
 
         return prefixMaterial(translation);
       },
-    [userLanguage, router.asPath],
+    [userLanguage],
   );
 }
