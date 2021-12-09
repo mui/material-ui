@@ -33,7 +33,7 @@ You can check out the [default theme section](/customization/default-theme/) to 
 
 ### Custom variables
 
-When using MUI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
+When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
 ```jsx
