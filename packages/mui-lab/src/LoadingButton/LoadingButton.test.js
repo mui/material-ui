@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { createRenderer, describeConformance, screen } from 'test/utils';
 import { expect } from 'chai';
-import Button from '@mui/material/Button';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Button, { buttonClasses } from '@mui/material/Button';
 import LoadingButton, { loadingButtonClasses as classes } from '@mui/lab/LoadingButton';
 
 describe('<LoadingButton />', () => {
@@ -63,5 +64,25 @@ describe('<LoadingButton />', () => {
 
       expect(screen.getByRole('button')).to.have.text('loading...Test');
     });
+  });
+
+  it('should be able to derive defaultProps from MuiButton', () => {
+    const theme = createTheme({
+      components: {
+        MuiButton: {
+          defaultProps: {
+            variant: 'contained',
+          },
+        },
+      },
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <LoadingButton />
+      </ThemeProvider>,
+    );
+
+    expect(screen.getByRole('button')).to.have.class(buttonClasses.contained);
   });
 });
