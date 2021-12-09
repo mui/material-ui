@@ -22,5 +22,20 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       - run: yarn install
-      - name: Test localhost
+      - name: Run Playwright tests
         run: yarn test:e2e-website:local
+  preview:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    if: github.event.deployment_status.state == 'success'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'yarn'
+      - run: yarn install
+      - name: Run Playwright tests
+        run: yarn test:e2e-website:prod
+        env:
+          PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
