@@ -167,7 +167,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * Useful when you want to reference a custom `component` and have `SvgIcon` pass that
    * `component`'s viewBox to the root node.
    * If `true`, the root node will inherit the custom `component`'s viewBox and the `viewBox`
-   * prop below is ignored.
+   * prop will be ignored.
    * @default false
    */
   inheritViewBox: PropTypes.bool,
