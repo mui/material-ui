@@ -155,20 +155,15 @@ export function resolveBreakpointValues({
 
   return keys.reduce((acc, breakpoint, i) => {
     if (Array.isArray(breakpointValues)) {
-      if (breakpointValues[i]) {
-        acc[breakpoint] = breakpointValues[i];
-        previous = i;
-      } else {
-        acc[breakpoint] = breakpointValues[previous];
-      }
-      return acc;
-    }
-
-    if (breakpointValues[breakpoint] !== undefined && breakpointValues[breakpoint] !== null) {
-      acc[breakpoint] = breakpointValues[breakpoint];
-      previous = breakpoint;
+      acc[breakpoint] =
+        breakpointValues[i] != null ? breakpointValues[i] : breakpointValues[previous];
+      previous = i;
     } else {
-      acc[breakpoint] = breakpointValues[previous] || breakpointValues;
+      acc[breakpoint] =
+        breakpointValues[breakpoint] != null
+          ? breakpointValues[breakpoint]
+          : breakpointValues[previous] || breakpointValues;
+      previous = breakpoint;
     }
     return acc;
   }, {});
