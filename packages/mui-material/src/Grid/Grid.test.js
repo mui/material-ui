@@ -314,23 +314,49 @@ describe('<Grid />', () => {
         generateGrid({
           ownerState: {
             columns: { xs: 4, sm: 8, md: 12 },
-            xs: 1,
+            xs: 2,
+            item: true,
           },
           theme,
         }),
       ).to.deep.equal({
-        flexBasis: '25%',
+        flexBasis: '50%',
         flexGrow: 0,
-        maxWidth: '25%',
+        maxWidth: '50%',
         [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
-          flexBasis: '12.5%',
+          flexBasis: '25%',
           flexGrow: 0,
-          maxWidth: '12.5%',
+          maxWidth: '25%',
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
-          flexBasis: '8.333333%',
+          flexBasis: '16.666667%',
           flexGrow: 0,
-          maxWidth: '8.333333%',
+          maxWidth: '16.666667%',
+        },
+      });
+    });
+
+    it('should generate responsive grid when grid item misses breakpoints of its container and breakpoint starts from the middle', () => {
+      const theme = createTheme();
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: { sm: 8, md: 12 },
+            sm: 4,
+            item: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          flexBasis: '33.333333%',
+          flexGrow: 0,
+          maxWidth: '33.333333%',
         },
       });
     });
