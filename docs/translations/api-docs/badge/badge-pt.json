@@ -6,6 +6,7 @@
     "children": "The badge will be added relative to this node.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
     "color": "A cor do componente. Ela da suporte para as cores do tema que fazem sentido para este componente.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "components": "The components used for each slot inside the Badge. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside the Badge.",
     "invisible": "If <code>true</code>, the badge is invisible.",
@@ -13,8 +14,7 @@
     "overlap": "Wrapped shape the badge should overlap.",
     "showZero": "Controls whether the badge is hidden when <code>badgeContent</code> is zero.",
     "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
-    "variant": "A variante a usar.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component."
+    "variant": "A variante a usar."
   },
   "classDescriptions": {
     "root": {
