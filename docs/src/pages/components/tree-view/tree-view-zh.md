@@ -64,7 +64,7 @@ const data = {
 
 {{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
 
-## Customization 个性化
+## 个性化
 
 ### 自定义的图标，边框和动画
 
