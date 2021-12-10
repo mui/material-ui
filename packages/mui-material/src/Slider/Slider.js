@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { generateUtilityClasses, isHostComponent } from '@mui/base';
+import { generateUtilityClasses } from '@mui/base';
 import SliderUnstyled, {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
@@ -12,6 +12,7 @@ import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
+import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 
 export const sliderClasses = {
@@ -415,10 +416,6 @@ const extendUtilityClasses = (ownerState) => {
       size && classes[`thumbSize${capitalize(size)}`],
     ),
   };
-};
-
-const shouldSpreadAdditionalProps = (Component) => {
-  return !Component || !isHostComponent(Component);
 };
 
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
