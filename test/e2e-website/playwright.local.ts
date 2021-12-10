@@ -3,6 +3,7 @@ import sharedConfig from './config';
 
 const config: PlaywrightTestConfig = {
   ...sharedConfig,
+  timeout: 5 * 60 * 1000, // 5 minutes
   webServer: {
     command: 'yarn docs:dev',
     port: 3000,
