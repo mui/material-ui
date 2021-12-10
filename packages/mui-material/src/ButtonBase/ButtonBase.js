@@ -242,7 +242,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     ) {
       event.preventDefault();
       if (onClick) {
-        onClick(event);
+        buttonRef.current.click();
       }
     }
   });
@@ -274,7 +274,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       event.key === ' ' &&
       !event.defaultPrevented
     ) {
-      onClick(event);
+      buttonRef.current.click();
     }
   });
 
