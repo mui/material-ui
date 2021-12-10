@@ -1,0 +1,14 @@
+{
+  "props": {
+    "multiple": { "type": { "name": "bool" } },
+    "value": { "type": { "name": "union", "description": "any<br>&#124;&nbsp;array" } }
+  },
+  "name": "SelectUnstyled",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-base/src/SelectUnstyled/SelectUnstyled.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/selects/\">Selects</a></li></ul>",
+  "cssComponent": false
+}

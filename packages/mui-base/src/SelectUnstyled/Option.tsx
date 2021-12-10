@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface OptionProps<TValue> {
   /**
    * The value of the option.
@@ -12,6 +14,9 @@ export interface OptionProps<TValue> {
 
 type OptionType = <TValue extends {}>(props: OptionProps<TValue>) => React.ReactElement | null;
 
+/**
+ * @ignore - internal component.
+ */
 const Option: OptionType = function Option() {
   return null;
 };

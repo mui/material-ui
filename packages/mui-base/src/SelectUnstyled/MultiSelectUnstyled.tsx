@@ -4,7 +4,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
 } from '@mui/utils';
-import { SelectUnstyledOwnerState, MultiSelectUnstyledOwnProps } from './SelectUnstyledProps';
+import { SelectUnstyledOwnerState, MultiSelectUnstyledProps } from './SelectUnstyledProps';
 import {
   flattenOptionGroups,
   getOptionsFromChildren,
@@ -21,10 +21,10 @@ function defaultRenderMultipleValues<TValue extends {}>(selectedOptions: SelectO
 }
 
 /**
- * @ignore Internal component
+ * @ignore - internal component.
  */
 const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue extends {}>(
-  props: MultiSelectUnstyledOwnProps<TValue>,
+  props: MultiSelectUnstyledProps<TValue>,
   ref: React.ForwardedRef<any>,
 ) {
   const {
@@ -184,8 +184,8 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
       </PopperUnstyled>
     </React.Fragment>
   );
-}) as <TValue>(
-  props: MultiSelectUnstyledOwnProps<TValue> & Pick<React.ComponentPropsWithRef<'ul'>, 'ref'>,
-) => React.ReactElement;
+});
 
-export default MultiSelectUnstyled;
+export default MultiSelectUnstyled; /* as <TValue>(
+  props: MultiSelectUnstyledProps<TValue> & Pick<React.ComponentPropsWithRef<'ul'>, 'ref'>,
+) => React.ReactElement;*/

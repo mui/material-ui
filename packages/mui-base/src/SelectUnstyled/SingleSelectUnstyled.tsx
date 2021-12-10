@@ -21,7 +21,7 @@ function defaultRenderSingleValue<TValue extends {}>(selectedOption: SelectOptio
 }
 
 /**
- * @ignore Internal component
+ * @ignore - internal component.
  */
 const SingleSelectUnstyled = React.forwardRef(function SingleSelectUnstyled<TValue extends {}>(
   props: SingleSelectUnstyledOwnProps<TValue>,

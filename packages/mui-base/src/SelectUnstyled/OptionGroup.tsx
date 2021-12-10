@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface OptionGroupProps {
   /**
    * The human-readable description of the group.
@@ -12,6 +14,9 @@ export interface OptionGroupProps {
 
 type OptionGroupType = (props: OptionGroupProps) => React.ReactElement | null;
 
+/**
+ * @ignore - internal component.
+ */
 const OptionGroup: OptionGroupType = function OptionGroup() {
   return null;
 };

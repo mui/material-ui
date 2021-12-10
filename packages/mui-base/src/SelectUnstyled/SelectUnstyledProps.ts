@@ -121,5 +121,6 @@ export interface SelectUnstyledOwnerState {
 }
 
 type SelectUnstyledProps<TValue> = SelectUnstyledOwnProps<TValue>;
+export type MultiSelectUnstyledProps<TValue> = MultiSelectUnstyledOwnProps<TValue>;
 
 export default SelectUnstyledProps;

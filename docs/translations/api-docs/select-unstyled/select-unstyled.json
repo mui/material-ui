@@ -1,0 +1,8 @@
+{
+  "componentDescription": "The foundation for building custom-styled select components.",
+  "propDescriptions": {
+    "multiple": "If <code>true</code>, it will be possible to select multiple values.",
+    "value": "The selected value. Set to <code>null</code> to deselect all options."
+  },
+  "classDescriptions": {}
+}
