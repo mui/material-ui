@@ -54,8 +54,9 @@ const NavItem = styled(Link, {
     color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
     '&:hover': {
       borderLeftColor:
-        theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.grey[600],
-      color: theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.grey[600],
+        theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.primary[400],
+      color:
+        theme.palette.mode === 'light' ? theme.palette.primary[600] : theme.palette.primary[400],
     },
   };
 
