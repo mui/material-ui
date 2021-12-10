@@ -70,10 +70,10 @@ const ItemLink = styled(Item, {
     '&.app-drawer-active': {
       // color: theme.palette.primary.main,
       color:
-        theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[500],
+        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
       backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.primary[50],
-      fontWeight: 700,
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
+      fontWeight: 600,
       '&:hover': {
         backgroundColor: alpha(
           theme.palette.primary.main,
@@ -96,7 +96,7 @@ const ItemLink = styled(Item, {
       paddingLeft: 2,
     }),
     ...(depth === 0 && {
-      fontSize: theme.typography.pxToRem(14.5),
+      fontSize: theme.typography.pxToRem(14),
       color: theme.palette.text.primary,
     }),
   };
@@ -118,35 +118,30 @@ const ItemButton = styled(Item, {
 })(({ depth, hasIcon, theme }) => {
   let marginTop;
   if (depth === 0) {
-    marginTop = 12;
+    marginTop = 5;
   } else if (depth > 1) {
     marginTop = -4 * (depth - 3);
   } else {
-    marginTop = 12;
+    marginTop = 10;
   }
   return {
     color: (() => {
       if (depth >= 1) {
-        if (theme.palette.mode === 'dark') {
-          return alpha(theme.palette.grey[500], 0.5);
-        }
         return theme.palette.grey[600];
       }
       return theme.palette.text.primary;
     })(),
-    fontSize: theme.typography.pxToRem(depth === 0 ? 14.5 : 11),
+    fontSize: theme.typography.pxToRem(depth === 0 ? 14 : 11),
     textTransform: depth === 0 ? 'none' : 'uppercase',
-    letterSpacing: depth === 0 ? null : '.1rem',
+    letterSpacing: depth === 0 ? null : '.08rem',
     fontWeight: depth === 0 ? 500 : 700,
+    marginBottom: depth === 0 ? '5px' : null,
     marginTop,
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
       color: (() => {
         if (depth === 0) {
           return '';
-        }
-        if (theme.palette.mode === 'dark') {
-          return alpha(theme.palette.grey[500], 0.5);
         }
         return theme.palette.grey[600];
       })(),

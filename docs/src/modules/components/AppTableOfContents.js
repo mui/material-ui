@@ -29,11 +29,13 @@ const Nav = styled('nav')(({ theme }) => {
 const NavLabel = styled(Typography)(({ theme }) => {
   return {
     marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(1),
     paddingLeft: theme.spacing(1.5),
-    fontSize: theme.typography.pxToRem(12),
+    fontSize: theme.typography.pxToRem(11),
     fontWeight: theme.typography.fontWeightBold,
-    color:
-      theme.palette.mode === 'dark' ? alpha(theme.palette.grey[500], 0.5) : theme.palette.grey[500],
+    textTransform: 'uppercase',
+    letterSpacing: '.08rem',
+    color: theme.palette.grey[600],
   };
 });
 
@@ -54,19 +56,18 @@ const NavItem = styled(Link, {
 
   return {
     fontSize: theme.typography.pxToRem(13),
-    padding: theme.spacing(0, 1, 0, secondary ? 3 : '10px'),
+    padding: theme.spacing(0, 1, 0, secondary ? 2.5 : '10px'),
     margin: theme.spacing(0.5, 0, 1, 0),
-    borderLeft: `2px solid transparent`,
+    borderLeft: `1px solid transparent`,
     boxSizing: 'border-box',
     fontWeight: theme.typography.fontWeightMedium,
     '&:hover': {
       borderLeftColor:
-        theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[700],
-      color:
-        theme.palette.mode === 'light' ? theme.palette.primary[500] : theme.palette.primary[400],
+        theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+      color: theme.palette.text.secondary,
     },
     ...(!active && {
-      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.text.primary,
     }),
     // TODO: We probably want `aria-current="location"` instead.
     // If so, are we sure "current" and "active" states should have the same styles?

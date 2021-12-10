@@ -62,7 +62,8 @@ const ToolbarIE11 = styled('div')({ display: 'flex' });
 
 const ToolbarDiv = styled('div')(({ theme }) => {
   return {
-    ...theme.mixins.toolbar,
+    paddingTop: theme.spacing(1.6),
+    paddingBottom: theme.spacing(1.6),
     paddingLeft: theme.spacing(3),
     display: 'flex',
     flexGrow: 1,
@@ -173,7 +174,7 @@ function AppNavDrawer(props) {
           <ToolbarDiv>
             <NextLink href="/" passHref onClick={onClose}>
               <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0, mr: 2 }}>
-                <SvgMuiLogo width={32} />
+                <SvgMuiLogo width={30} />
               </Box>
             </NextLink>
             {process.env.LIB_VERSION ? (
@@ -187,7 +188,7 @@ function AppNavDrawer(props) {
                   endIcon={<ArrowDropDownRoundedIcon fontSize="small" />}
                   sx={{
                     border: (theme) =>
-                      `1px solid  ${
+                      `1px solid ${
                         theme.palette.mode === 'dark'
                           ? theme.palette.primaryDark[600]
                           : theme.palette.grey[200]
@@ -197,6 +198,16 @@ function AppNavDrawer(props) {
                         ? theme.palette.primary[300]
                         : theme.palette.primary[500],
                     mr: 2,
+                    '&:hover': {
+                      borderColor: (theme) =>
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primaryDark[500]
+                          : theme.palette.grey[300],
+                      background: (theme) =>
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.primaryDark[700], 0.4)
+                          : theme.palette.grey[50],
+                    },
                   }}
                 >
                   {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
@@ -226,6 +237,7 @@ function AppNavDrawer(props) {
                         fontWeight: 500,
                         '&.Mui-selected': {
                           color: 'primary.main',
+                          fontWeight: 600,
                         },
                       },
                     },
@@ -259,7 +271,6 @@ function AppNavDrawer(props) {
         </ToolbarIE11>
         <Divider />
         <DiamondSponsors spot="drawer" />
-        <Divider />
         {navItems}
         <Box sx={{ height: 40 }} />
       </React.Fragment>

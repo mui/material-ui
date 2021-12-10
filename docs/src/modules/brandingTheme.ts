@@ -72,15 +72,15 @@ export const blueDark = {
 };
 const grey = {
   50: '#F3F6F9',
-  100: '#EAEEF3',
-  200: '#E5E8EC',
-  300: '#D7DCE1',
-  400: '#BFC7CF',
-  500: '#AAB4BE',
-  600: '#7F8E9D',
-  700: '#46505A', // contrast 8.21:1
-  800: '#2F3A45', // contrast 11.58:1
-  900: '#20262D',
+  100: '#e7ebf0',
+  200: '#e0e3e7',
+  300: '#cdd2d7',
+  400: '#b2bac2',
+  500: '#a0aab4',
+  600: '#6f7e8c',
+  700: '#3e5060', // contrast 8.21:1
+  800: '#2d3843', // contrast 11.58:1
+  900: '#1a2027',
 };
 
 const systemFont = [
@@ -134,7 +134,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       ...(mode === 'dark' && {
         text: {
           primary: '#fff',
-          secondary: grey[500],
+          secondary: grey[400],
         },
       }),
       grey,
