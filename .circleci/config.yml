@@ -657,9 +657,9 @@ jobs:
           steps:
             # Upload distributables to S3
             - aws-s3/copy:
-                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS_TMP
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
                 aws-region: AWS_REGION_ARTIFACTS
-                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS_TMP
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: mui-material.tgz
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
       - store_artifacts:
@@ -686,17 +686,17 @@ jobs:
             # persist size snapshot on S3
             - aws-s3/copy:
                 arguments: --content-type application/json
-                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS_TMP
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
                 aws-region: AWS_REGION_ARTIFACTS
-                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS_TMP
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: size-snapshot.json
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
             # symlink size-snapshot to latest
             - aws-s3/copy:
                 arguments: --content-type application/json
-                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS_TMP
+                aws-access-key-id: AWS_ACCESS_KEY_ID_ARTIFACTS
                 aws-region: AWS_REGION_ARTIFACTS
-                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS_TMP
+                aws-secret-access-key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 from: size-snapshot.json
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/latest/
       - run:
