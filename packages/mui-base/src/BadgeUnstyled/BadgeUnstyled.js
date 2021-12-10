@@ -2,8 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize, usePreviousProps } from '@mui/utils';
-import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
+import appendOwnerState from '../utils/appendOwnerState';
 import { getBadgeUtilityClass } from './badgeUnstyledClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -32,7 +32,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     },
     classes: classesProp,
     badgeContent: badgeContentProp,
-    component = 'span',
+    component,
     children,
     className,
     components = {},
@@ -91,33 +91,21 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = components.Root || component;
-  const rootProps = componentsProps.root || {};
+  const Root = component || components.Root || 'span';
+  const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
 
   const Badge = components.Badge || 'span';
-  const badgeProps = componentsProps.badge || {};
+  const badgeProps = appendOwnerState(Badge, componentsProps.badge, ownerState);
 
   return (
     <Root
       {...rootProps}
-      {...(!isHostComponent(Root) && {
-        as: component,
-        ownerState: { ...ownerState, ...rootProps.ownerState },
-        theme,
-      })}
       ref={ref}
       {...other}
       className={clsx(classes.root, rootProps.className, className)}
     >
       {children}
-      <Badge
-        {...badgeProps}
-        {...(!isHostComponent(Badge) && {
-          ownerState: { ...ownerState, ...badgeProps.ownerState },
-          theme,
-        })}
-        className={clsx(classes.badge, badgeProps.className)}
-      >
+      <Badge {...badgeProps} className={clsx(classes.badge, badgeProps.className)}>
         {displayValue}
       </Badge>
     </Root>

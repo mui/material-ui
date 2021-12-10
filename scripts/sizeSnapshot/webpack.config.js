@@ -62,7 +62,7 @@ async function getWebpackEntries() {
     const componentName = path.basename(path.dirname(componentPath));
 
     return {
-      name: componentName,
+      id: `@mui/material-next/${componentName}`,
       path: path.relative(workspaceRoot, path.dirname(componentPath)),
     };
   });
@@ -73,7 +73,7 @@ async function getWebpackEntries() {
       const componentName = path.basename(path.dirname(componentPath));
 
       return {
-        name: componentName,
+        id: `@mui/joy/${componentName}`,
         path: path.relative(workspaceRoot, path.dirname(componentPath)),
       };
     },
@@ -153,12 +153,12 @@ async function getWebpackEntries() {
       path: path.join(path.relative(workspaceRoot, materialPackagePath), 'legacy/index.js'),
     },
     {
-      name: '@mui/material-next',
+      id: '@mui/material-next',
       path: path.join(path.relative(workspaceRoot, materialNextPackagePath), 'index.js'),
     },
     ...materialNextComponents,
     {
-      name: '@mui/joy',
+      id: '@mui/joy',
       path: path.join(path.relative(workspaceRoot, joyPackagePath), 'index.js'),
     },
     ...joyComponents,
