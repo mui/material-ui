@@ -3,12 +3,38 @@ import clsx from 'clsx';
 import { styled } from '@mui/system';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 
+const blue = {
+  50: '#F0F7FF',
+  100: '#C2E0FF',
+  200: '#A5D8FF',
+  300: '#66B2FF',
+  400: '#3399FF',
+  main: '#007FFF', // contrast 3.83:1
+  500: '#007FFF',
+  600: '#0072E5',
+  700: '#0059B2',
+  800: '#004C99',
+  900: '#003A75',
+};
+const grey = {
+  50: '#F3F6F9',
+  100: '#EAEEF3',
+  200: '#E5E8EC',
+  300: '#D7DCE1',
+  400: '#BFC7CF',
+  500: '#AAB4BE',
+  600: '#7F8E9D',
+  700: '#46505A', // contrast 8.21:1
+  800: '#2F3A45', // contrast 11.58:1
+  900: '#20262D',
+};
+
 const SwitchRoot = styled('span')`
   display: inline-block;
   position: relative;
-  width: 62px;
-  height: 34px;
-  padding: 7px;
+  width: 64px;
+  height: 36px;
+  padding: 8px;
 `;
 
 const SwitchInput = styled('input')`
@@ -27,12 +53,12 @@ const SwitchThumb = styled('span')(
   ({ theme }) => `
   position: absolute;
   display: block;
-  background-color: ${theme.palette.mode === 'dark' ? '#003892' : '#001e3c'};
-  width: 32px;
-  height: 32px;
-  border-radius: 16px;
-  top: 1px;
-  left: 7px;
+  background-color: ${blue[700]};
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  top: 2px;
+  left: 4px;
   transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:before {
@@ -50,7 +76,7 @@ const SwitchThumb = styled('span')(
   }
 
   &.checked {
-    transform: translateX(16px);
+    transform: translateX(24px);
     
     &:before {
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
@@ -63,8 +89,8 @@ const SwitchThumb = styled('span')(
 
 const SwitchTrack = styled('span')(
   ({ theme }) => `
-  background-color: ${theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be'};
-  border-radius: 10px;
+  background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[400]};
+  border-radius: 4px;
   width: 100%;
   height: 100%;
   display: block;
