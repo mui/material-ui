@@ -8,7 +8,6 @@ import {
   unstable_useControlled as useControlled,
   visuallyHidden,
 } from '@mui/utils';
-import extractEventHandlers from '../utils/extractEventHandlers';
 
 interface Mark {
   value: number;
