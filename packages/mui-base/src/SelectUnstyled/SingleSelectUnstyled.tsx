@@ -4,7 +4,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
 } from '@mui/utils';
-import { SelectUnstyledOwnerState, SingleSelectUnstyledOwnProps } from './SelectUnstyledProps';
+import { SingleSelectUnstyledOwnerState, SingleSelectUnstyledProps } from './SelectUnstyledProps';
 import {
   flattenOptionGroups,
   getOptionsFromChildren,
@@ -24,13 +24,14 @@ function defaultRenderSingleValue<TValue extends {}>(selectedOption: SelectOptio
  * @ignore - internal component.
  */
 const SingleSelectUnstyled = React.forwardRef(function SingleSelectUnstyled<TValue extends {}>(
-  props: SingleSelectUnstyledOwnProps<TValue>,
+  props: SingleSelectUnstyledProps<TValue>,
   ref: React.ForwardedRef<any>,
 ) {
   const {
     autoFocus,
     children,
     className,
+    component,
     components = {},
     componentsProps = {},
     defaultValue,
@@ -60,7 +61,7 @@ const SingleSelectUnstyled = React.forwardRef(function SingleSelectUnstyled<TVal
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
 
-  const Button = components.Button ?? 'button';
+  const Button = component ?? components.Root ?? 'button';
   const ListboxRoot = components.ListboxRoot ?? 'ul';
   const ListboxOption = components.ListboxOption ?? 'li';
   const ListboxOptionGroupRoot = components.ListboxOptionGroupRoot ?? 'li';
@@ -116,11 +117,15 @@ const SingleSelectUnstyled = React.forwardRef(function SingleSelectUnstyled<TVal
     value: valueProp,
   });
 
-  const ownerState: SelectUnstyledOwnerState = {
+  const ownerState: SingleSelectUnstyledOwnerState<TValue> = {
+    ...props,
     active: buttonActive,
+    defaultListboxOpen,
     disabled,
-    open: listboxOpen,
     focusVisible: buttonFocusVisible,
+    open: listboxOpen,
+    renderValue,
+    value: value as TValue | null,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -133,9 +138,9 @@ const SingleSelectUnstyled = React.forwardRef(function SingleSelectUnstyled<TVal
     Button,
     {
       ...other,
-      ...componentsProps.button,
+      ...componentsProps.root,
       ...getButtonProps(),
-      className: clsx(className, componentsProps.button?.className, classes.button),
+      className: clsx(className, componentsProps.root?.className, classes.button),
     },
     ownerState,
   );
@@ -183,7 +188,7 @@ const SingleSelectUnstyled = React.forwardRef(function SingleSelectUnstyled<TVal
     </React.Fragment>
   );
 }) as <TValue>(
-  props: SingleSelectUnstyledOwnProps<TValue> & Pick<React.ComponentPropsWithRef<'ul'>, 'ref'>,
+  props: SingleSelectUnstyledProps<TValue> & Pick<React.ComponentPropsWithRef<'ul'>, 'ref'>,
 ) => React.ReactElement;
 
 export default SingleSelectUnstyled;

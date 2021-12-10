@@ -4,7 +4,10 @@ import composeClasses from '../composeClasses';
 import { OptionProps } from './Option';
 import { OptionGroupProps } from './OptionGroup';
 import selectUnstyledClasses, { getSelectUnstyledUtilityClass } from './selectUnstyledClasses';
-import { SelectUnstyledOwnerState, SelectUnstyledOwnProps } from './SelectUnstyledProps';
+import SelectUnstyledProps, {
+  SingleSelectUnstyledOwnerState,
+  MultiSelectUnstyledOwnerState,
+} from './SelectUnstyledProps';
 import { isOptionGroup, SelectChild, SelectOption, SelectOptionGroup } from './useSelectProps';
 import { appendOwnerState } from '../utils';
 import { OptionState } from '../ListboxUnstyled';
@@ -68,7 +71,9 @@ export function getOptionsFromChildren<TValue>(
   return selectChildren ?? [];
 }
 
-export function useUtilityClasses(ownerState: SelectUnstyledOwnerState) {
+export function useUtilityClasses(
+  ownerState: SingleSelectUnstyledOwnerState<any> | MultiSelectUnstyledOwnerState<any>,
+) {
   const { active, disabled, open, focusVisible } = ownerState;
 
   const slots = {
@@ -108,17 +113,17 @@ export function flattenOptionGroups<TValue>(
 }
 
 interface RenderOptionParameters<TValue> {
-  option: SelectChild<TValue>;
-  itemIndex: number;
-  getOptionState: (optionIndex: number) => OptionState<SelectOption<TValue>>;
+  componentsProps: Required<SelectUnstyledProps<TValue>>['componentsProps'];
   getOptionProps: (optionIndex: number) => Record<string, any>;
-  componentsProps: Required<SelectUnstyledOwnProps<TValue>>['componentsProps'];
+  getOptionState: (optionIndex: number) => OptionState<SelectOption<TValue>>;
+  itemIndex: number;
   listboxOption: React.ElementType;
-  listboxOptionGroupRoot: React.ElementType;
   listboxOptionGroupHeader: React.ElementType;
   listboxOptionGroupOptions: React.ElementType;
-  ownerState: SelectUnstyledOwnerState;
+  listboxOptionGroupRoot: React.ElementType;
+  option: SelectChild<TValue>;
   optionClassName: string;
+  ownerState: SingleSelectUnstyledOwnerState<TValue> | MultiSelectUnstyledOwnerState<TValue>;
 }
 
 type RenderGroupParameters<TValue> = RenderOptionParameters<TValue> & {

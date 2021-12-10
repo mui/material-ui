@@ -10,13 +10,14 @@ interface SelectUnstyledCommonProps {
   autoFocus?: boolean;
   children?: React.ReactNode;
   className?: string;
+  component?: React.ElementType;
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
   components?: {
-    Button?: React.ElementType;
+    Root?: React.ElementType;
     ListboxRoot?: React.ElementType;
     ListboxOption?: React.ElementType;
     ListboxOptionGroupRoot?: React.ElementType;
@@ -28,7 +29,7 @@ interface SelectUnstyledCommonProps {
    * @default {}
    */
   componentsProps?: {
-    button?: React.ComponentPropsWithRef<'button'> & SelectUnstyledComponentsPropsOverrides;
+    root?: React.ComponentPropsWithRef<'button'> & SelectUnstyledComponentsPropsOverrides;
     listboxRoot?: React.ComponentPropsWithRef<'ul'> & SelectUnstyledComponentsPropsOverrides;
     listboxOption?: React.ComponentPropsWithRef<'li'> & SelectUnstyledComponentsPropsOverrides;
     listboxOptionGroupRoot?: React.ComponentPropsWithRef<'li'> &
@@ -64,7 +65,7 @@ interface SelectUnstyledCommonProps {
   onListboxOpenChange?: (isOpen: boolean) => void;
 }
 
-export interface SingleSelectUnstyledOwnProps<TValue> extends SelectUnstyledCommonProps {
+export interface SingleSelectUnstyledProps<TValue> extends SelectUnstyledCommonProps {
   /**
    * The default selected value. Use when the component is not controlled.
    */
@@ -84,7 +85,7 @@ export interface SingleSelectUnstyledOwnProps<TValue> extends SelectUnstyledComm
   value?: TValue | null;
 }
 
-export interface MultiSelectUnstyledOwnProps<TValue> extends SelectUnstyledCommonProps {
+export interface MultiSelectUnstyledProps<TValue> extends SelectUnstyledCommonProps {
   /**
    * The default selected values. Use when the component is not controlled.
    */
@@ -104,23 +105,27 @@ export interface MultiSelectUnstyledOwnProps<TValue> extends SelectUnstyledCommo
   value?: TValue[];
 }
 
-export type SelectUnstyledOwnProps<TValue> =
-  | (SingleSelectUnstyledOwnProps<TValue> & { multiple?: false })
-  | (MultiSelectUnstyledOwnProps<TValue> & {
+type SelectUnstyledProps<TValue> =
+  | (SingleSelectUnstyledProps<TValue> & { multiple?: false })
+  | (MultiSelectUnstyledProps<TValue> & {
       /**
        * If `true`, it will be possible to select multiple values.
        */
       multiple: true;
     });
 
-export interface SelectUnstyledOwnerState {
+export interface SingleSelectUnstyledOwnerState<TValue> extends SingleSelectUnstyledProps<TValue> {
   active: boolean;
   disabled: boolean;
   open: boolean;
   focusVisible: boolean;
 }
 
-type SelectUnstyledProps<TValue> = SelectUnstyledOwnProps<TValue>;
-export type MultiSelectUnstyledProps<TValue> = MultiSelectUnstyledOwnProps<TValue>;
+export interface MultiSelectUnstyledOwnerState<TValue> extends MultiSelectUnstyledProps<TValue> {
+  active: boolean;
+  disabled: boolean;
+  open: boolean;
+  focusVisible: boolean;
+}
 
 export default SelectUnstyledProps;

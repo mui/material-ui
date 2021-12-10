@@ -4,7 +4,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
 } from '@mui/utils';
-import { SelectUnstyledOwnerState, MultiSelectUnstyledProps } from './SelectUnstyledProps';
+import { MultiSelectUnstyledOwnerState, MultiSelectUnstyledProps } from './SelectUnstyledProps';
 import {
   flattenOptionGroups,
   getOptionsFromChildren,
@@ -31,6 +31,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     autoFocus,
     children,
     className,
+    component,
     components = {},
     componentsProps = {},
     defaultListboxOpen = false,
@@ -60,7 +61,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
 
-  const Button = components.Button ?? 'button';
+  const Button = component ?? components.Root ?? 'button';
   const ListboxRoot = components.ListboxRoot ?? 'ul';
   const ListboxOption = components.ListboxOption ?? 'li';
   const ListboxOptionGroupRoot = components.ListboxOptionGroupRoot ?? 'li';
@@ -115,11 +116,15 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     value: valueProp,
   });
 
-  const ownerState: SelectUnstyledOwnerState = {
+  const ownerState: MultiSelectUnstyledOwnerState<TValue> = {
+    ...props,
     active: buttonActive,
+    defaultListboxOpen,
     disabled,
-    open: listboxOpen,
     focusVisible: buttonFocusVisible,
+    open: listboxOpen,
+    renderValue,
+    value: value as TValue[],
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -135,9 +140,9 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     Button,
     {
       ...other,
-      ...componentsProps.button,
+      ...componentsProps.root,
       ...getButtonProps(),
-      className: clsx(className, componentsProps.button?.className, classes.button),
+      className: clsx(className, componentsProps.root?.className, classes.button),
     },
     ownerState,
   );
@@ -186,6 +191,6 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   );
 });
 
-export default MultiSelectUnstyled; /* as <TValue>(
+export default MultiSelectUnstyled as <TValue>(
   props: MultiSelectUnstyledProps<TValue> & Pick<React.ComponentPropsWithRef<'ul'>, 'ref'>,
-) => React.ReactElement;*/
+) => React.ReactElement;

@@ -15,7 +15,21 @@ describe('SelectUnstyled', () => {
     testComponentPropWith: 'span',
     muiName: 'MuiSelect',
     slots: {
-      button: {
+      root: {
+        expectedClassName: selectUnstyledClasses.button,
+      },
+    },
+  }));
+
+  describeConformanceUnstyled(<SelectUnstyled multiple />, () => ({
+    inheritComponent: 'button',
+    render,
+    mount,
+    refInstanceof: window.HTMLButtonElement,
+    testComponentPropWith: 'span',
+    muiName: 'MuiSelect',
+    slots: {
+      root: {
         expectedClassName: selectUnstyledClasses.button,
       },
     },
