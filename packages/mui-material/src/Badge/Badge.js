@@ -193,9 +193,14 @@ const BadgeBadge = styled('span', {
   }),
 }));
 
+const shouldSpreadAdditionalProps = (Slot) => {
+  return !Slot || !isHostComponent(Slot);
+};
+
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
   const {
+    component = 'span',
     components = {},
     componentsProps = {},
     color: colorProp = 'default',
@@ -239,13 +244,14 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
       componentsProps={{
         root: {
           ...componentsProps.root,
-          ...((!components.Root || !isHostComponent(components.Root)) && {
+          ...(shouldSpreadAdditionalProps(components.Root) && {
+            as: component,
             ownerState: { ...componentsProps.root?.ownerState, color },
           }),
         },
         badge: {
           ...componentsProps.badge,
-          ...((!components.Thumb || !isHostComponent(components.Thumb)) && {
+          ...(shouldSpreadAdditionalProps(components.Badge) && {
             ownerState: { ...componentsProps.badge?.ownerState, color },
           }),
         },
@@ -292,6 +298,11 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.
