@@ -161,7 +161,7 @@ export function renderOption<TValue extends {}>(parameters: RenderOptionParamete
   const optionProps = appendOwnerState(
     ListboxOption,
     {
-      ...componentsProps.listboxRoot,
+      ...componentsProps.listboxOption,
       ...getOptionProps(option.index),
       className: optionClasses,
     },
@@ -212,7 +212,7 @@ function renderGroup<TValue>(parameters: RenderGroupParameters<TValue>) {
   const headerProps = appendOwnerState(
     ListboxOptionGroupHeader,
     {
-      ...componentsProps.listboxOptionGroupRoot,
+      ...componentsProps.listboxOptionGroupHeader,
       className: headerClasses,
     },
     { ...ownerState, ...group },
@@ -221,7 +221,7 @@ function renderGroup<TValue>(parameters: RenderGroupParameters<TValue>) {
   const optionsProps = appendOwnerState(
     ListboxOptionGroupOptions,
     {
-      ...componentsProps.listboxOptionGroupRoot,
+      ...componentsProps.listboxOptionGroupOptions,
       className: optionsClasses,
     },
     { ...ownerState, ...group },
