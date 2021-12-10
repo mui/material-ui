@@ -52,7 +52,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 `TextField` wrapper 组件是一个完整的表单控件，它包括了标签，输入和帮助文本。 您可以在 [在此章节中](/components/text-fields/#select) 查看使用 select 模式的示例。
 
-## Customization 个性化
+## 个性化
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
