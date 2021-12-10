@@ -35,7 +35,7 @@ In the following examples, we are using two string separators and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Customization 个性化
+## 个性化
 
 以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
