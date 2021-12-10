@@ -72,7 +72,7 @@ It's possible to render any date & time picker inline. 这将启用自定义弹�
 
 {{"demo": "pages/components/date-time-picker/StaticDateTimePickerDemo.js", "bg": true}}
 
-## Customization 个性化
+## 个性化
 
 以下是一些高度定制的日期 & 时间选择器的例子：
 
