@@ -113,8 +113,6 @@ test.describe.parallel('Material docs', () => {
 
       await page.keyboard.press('Meta+k');
 
-      await page.locator('input#docsearch-input').waitFor({ state: 'visible' });
-
       await page.type('input#docsearch-input', 'card', { delay: 100 });
 
       const anchor = await page.locator('.DocSearch-Hits a:has-text("Card")');
@@ -126,8 +124,6 @@ test.describe.parallel('Material docs', () => {
       await page.goto('/getting-started/installation/');
 
       await page.keyboard.press('Meta+k');
-
-      await page.locator('input#docsearch-input').waitFor({ state: 'visible' });
 
       await page.type('input#docsearch-input', 'card api', { delay: 100 });
 
