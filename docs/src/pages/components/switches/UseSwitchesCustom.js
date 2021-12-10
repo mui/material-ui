@@ -4,29 +4,11 @@ import { styled } from '@mui/system';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 
 const blue = {
-  50: '#F0F7FF',
-  100: '#C2E0FF',
-  200: '#A5D8FF',
-  300: '#66B2FF',
-  400: '#3399FF',
-  main: '#007FFF', // contrast 3.83:1
-  500: '#007FFF',
-  600: '#0072E5',
   700: '#0059B2',
-  800: '#004C99',
-  900: '#003A75',
 };
 const grey = {
-  50: '#F3F6F9',
-  100: '#EAEEF3',
-  200: '#E5E8EC',
-  300: '#D7DCE1',
   400: '#BFC7CF',
-  500: '#AAB4BE',
-  600: '#7F8E9D',
-  700: '#46505A', // contrast 8.21:1
-  800: '#2F3A45', // contrast 11.58:1
-  900: '#20262D',
+  800: '#2F3A45',
 };
 
 const SwitchRoot = styled('span')`
