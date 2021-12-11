@@ -20,7 +20,7 @@ The [usage page](/getting-started/usage/#quick-start) contains a small MUI examp
 
 When first learning MUI, you might find third-party blog posts, books and video courses more helpful than the official documentation. 以下是一些推荐资源，其中一些是免费的。
 
-### 免费的资源
+### Free
 
 - **Introduction to MUI**: a series of videos covering all the important MUI components.
   - 📹 [视频](https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr)
@@ -36,7 +36,7 @@ When first learning MUI, you might find third-party blog posts, books and video 
 - **Elegant UX in React with MUI**: a blog post covering some important MUI concepts.
   - 📝 [博文](https://alligator.io/react/material-ui/)
 
-### 付费的资源
+### Paid
 
 - **Implement high fidelity designs**：在设计与开发之间架起一座桥梁。 Break down detailed designs and bring them to life with MUI and React.
 
