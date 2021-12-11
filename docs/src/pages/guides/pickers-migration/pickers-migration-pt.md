@@ -6,7 +6,7 @@
 
 Este guia é uma visão geral dos conceitos principais que foram alterados de seletores na v3.2.10.
 
-## Instalação
+## Installation
 
 You need to install the `@mui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above.
 
