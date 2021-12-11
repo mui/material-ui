@@ -10,15 +10,15 @@ githubLabel: 'component: Stack'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## 使用
+## Usage
 
 `Stack` 关注一维布局，而 [Grid](/components/grid/) 处理二维布局。 默认方向是垂直堆叠子项的 `列`。
 
 {{"demo": "pages/components/stack/BasicStack.js", "bg": true}}
 
-要控制子组件之间的空间，请使用 `spacing` 属性。 间距值可以是任何数字，包括小数（浮点数）和任何字符串（文字）。 该属性借助 [`theme.spaming()`](/customization/spacing/) 被转换为 CSS 属性。
+To control space between children, use the `spacing` prop. 间距值可以是任何数字，包括小数（浮点数）和任何字符串（文字）。 The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
 
-## 方向
+## Direction
 
 默认情况下， `Stack` 将项目垂直安排在 `column` 中。 然而， `direction` prop 也可以用来将项目水平定位在 `row` 中。
 
@@ -30,19 +30,19 @@ githubLabel: 'component: Stack'
 
 {{"demo": "pages/components/stack/DividerStack.js", "bg": true}}
 
-## 响应式的值
+## Responsive values
 
 您可以根据活动断点切换 `direction` 或 `spacing` 值。
 
 {{"demo": "pages/components/stack/ResponsiveStack.js", "bg": true}}
 
-## 交互式
+## Interactive
 
-下面是一个交互式的演示，你也可以探索不同设置下的视觉结果：
+Below is an interactive demo that lets you explore the visual results of the different settings:
 
 {{"demo": "pages/components/stack/InteractiveStack.js", "hideToolbar": true, "bg": true}}
 
-## 系统属性
+## System props
 
 作为一个 CSS 实用组件, `Stack` 支持所有 [`system`](/system/properties/) 属性。 您可以直接在组件上使用它们作为props。 例如，顶边距：
 
