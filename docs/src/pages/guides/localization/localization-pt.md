@@ -26,7 +26,7 @@ const theme = createTheme(
 </ThemeProvider>;
 ```
 
-### Exemplo
+### Example
 
 {{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
 
