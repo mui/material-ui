@@ -26,7 +26,7 @@ function App() {
 
 This can be helpful for creating components to toggle language settings in the live application.
 
-### 2. 主题
+### 2. Theme
 
 在您自定义的主题中设置方向：
 
@@ -36,7 +36,7 @@ const theme = createTheme({
 });
 ```
 
-### 3。 安装 rtl 插件
+### 3. 安装 rtl 插件
 
 When using either `emotion` or `styled-components`, you need [`stylis-plugin-rtl`](https://github.com/styled-components/stylis-plugin-rtl) to flip the styles.
 
@@ -54,7 +54,7 @@ npm install jss-rtl
 
 Having installed the plugin in your project, MUI components still require it to be loaded by the style engine instance that you use. Find bellow guides on how you can load it.
 
-### 4、 加载 rtl 插件
+### 4. 加载 rtl 插件
 
 #### 4.1 emotion
 
@@ -114,7 +114,7 @@ function RTL(props) {
 
 For more information on the plugin, head to the [plugin README](https://github.com/alitaheri/jss-rtl). **Note**: Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme.
 
-## 演示
+## Demo
 
 _请使用右上角的方向切换按钮来翻转整个文档。_
 
