@@ -20,10 +20,10 @@
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "viewTransitionContainer": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the transition group element"
     }
   }
