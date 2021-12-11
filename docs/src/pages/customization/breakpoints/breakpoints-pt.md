@@ -100,7 +100,7 @@ const theme = createTheme({
 });
 ```
 
-Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 <!-- Tested with packages/mui-material/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
@@ -126,15 +126,15 @@ declare module '@mui/material/styles' {
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Argumentos
+#### Arguments
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### Retornos
+#### Returns
 
 `media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela maior que, e incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
-#### Exemplos
+#### Examples
 
 ```js
 const styles = (theme) => ({
@@ -153,15 +153,15 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Argumentos
+#### Arguments
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### Retornos
+#### Returns
 
 `media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela menor que, e incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
-#### Exemplos
+#### Examples
 
 ```js
 const styles = (theme) => ({
@@ -180,15 +180,15 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Argumentos
+#### Arguments
 
 1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Retornos
+#### Returns
 
 `media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
-#### Exemplos
+#### Examples
 
 ```js
 const styles = (theme) => ({
@@ -208,15 +208,15 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Argumentos
+#### Arguments
 
 1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Retornos
+#### Returns
 
 `media query`: A media query string ready to be used with most styling solutions, which matches screen widths stopping at the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive).
 
-#### Exemplos
+#### Examples
 
 ```js
 const styles = (theme) => ({
@@ -236,16 +236,16 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Argumentos
+#### Arguments
 
 1. `start` (_string_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 2. `end` (_string_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### Retornos
+#### Returns
 
 `media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument (inclusive) and less than the screen size given by the breakpoint key in the second argument (exclusive).
 
-#### Exemplos
+#### Examples
 
 ```js
 const styles = (theme) => ({
