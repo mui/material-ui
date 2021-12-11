@@ -104,6 +104,6 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 - 您可以通过设置 `theme.typography.fontWeightBold` 来设置 `<b>` 和 `<strong>` 元素的 font-weight。
 - 启用自定义字体平滑功能可以更好地显示 Roboto 字体。
 
-## 个性化
+## Customization
 
 前往文档中的 [全局自定义](/customization/how-to-customize/#5-global-css-override) 部分来改变这些组件的输出。
