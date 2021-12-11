@@ -29,13 +29,13 @@ Multiple selection allows for logically-grouped options, like bold, italic, and 
 
 {{"demo": "pages/components/toggle-button/ToggleButtonsMultiple.js"}}
 
-## Tamanho
+## Size
 
 For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
-## Cor
+## Color
 
 {{"demo": "pages/components/toggle-button/ColorToggleButton.js"}}
 
@@ -69,19 +69,19 @@ const handleDevices = (event, newDevices) => {
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
-## Customização
+## Customization
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 
-## Acessibilidade
+## Accessibility
 
 ### ARIA
 
 - ToggleButtonGroup possui `role="group"`. Você deve fornecer um rótulo acessível com `aria-label="label"`, `aria-labelledby="id"` ou `<label>`.
 - ToggleButton define `aria-pressed="<bool>"` de acordo com o estado do botão. Você deve rotular cada botão com `aria-label`.
 
-### Teclado
+### Keyboard
 
 At present, toggle buttons are in DOM order. Navigate between them with the tab key. The button behavior follows standard keyboard semantics.
