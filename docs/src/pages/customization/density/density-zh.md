@@ -14,7 +14,7 @@
 
 以下组件有一些能够达到较大密度的属性：
 
-- [Button 按钮](/api/button/)
+- [Button](/api/button/)
 - [Fab](/api/fab/)
 - [FilledInput](/api/filled-input/)
 - [FormControl](/api/form-control/)
@@ -24,7 +24,7 @@
 - [InputLabel](/api/input-label/)
 - [ListItem](/api/list-item/)
 - [OutlinedInput](/api/outlined-input/)
-- [Table 表格](/api/table/)
+- [Table](/api/table/)
 - [TextField](/api/text-field/)
 - [Toolbar](/api/toolbar/)
 
