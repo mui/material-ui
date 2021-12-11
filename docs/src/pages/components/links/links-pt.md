@@ -38,7 +38,7 @@ Quando você usa `target="_blank"` com Links, é [recomendado](https://developer
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. O componente `Link` fornece uma propriedade para lidar com este caso: `component`. Aqui está um [guia mais detalhado](/guides/routing/#link).
 
-## Acessibilidade
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
 
