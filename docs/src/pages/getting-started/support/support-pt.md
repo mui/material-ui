@@ -38,9 +38,9 @@ Mantenha-se atualizado com o desenvolvimento da biblioteca seguindo o blog.
 
 ### Recursos 📖
 
-Novo em MUI? É fácil de aprender, se você souber por onde começar!
+New to MUI? It's easy to learn if you know where to start!
 
-[Aprenda MUI](/getting-started/learn/)
+[Learn MUI](/getting-started/learn/)
 
 ### Twitter
 
