@@ -22,7 +22,7 @@ githubLabel: 'component: TransferList'
 
 {{"demo": "pages/components/transfer-list/SelectAllTransferList.js", "bg": true}}
 
-## 设计局限
+## Limitations
 
 The component comes with a couple of limitations:
 
