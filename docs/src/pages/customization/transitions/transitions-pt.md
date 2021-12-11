@@ -1,4 +1,4 @@
-# Transições
+# Transitions
 
 <p class="description">The theme key enables you to customize the durations and easings of the various transitions used across MUI components, and offers a utility for creating custom transitions.</p>
 
@@ -6,16 +6,16 @@
 
 ### `theme.transitions.create(props, options) => transition`
 
-#### Argumentos
+#### Arguments
 
 1. `props` (_string_ | _string[]_): Defaults to `['all']`. Fornece uma propriedade CSS, ou uma lista de propriedades CSS que devem ser transicionadas.
-2. `options` (_object_ [opcional]):
+2. `options` (_object_ [optional]):
 
 - `options.duration` (_string_ | _number_ [optional]): Defaults to `theme.transitions.duration.standard`. Fornece a duração da transição.
 - `options.easing` (_string_ [opcional]): Padrão `theme.transitions.easing.easeInOut`. Fornece a atenuação para a transição.
 - `options.delay` (_string_ | _number_ [optional]): Defaults to `0`. Fornece o atraso para a transição.
 
-#### Retornos
+#### Returns
 
 `transition`: Um valor CSS de transição, que compõe todas as propriedades CSS que devem ser transitadas juntamente com duração, atenuação e atraso definidos.
 
@@ -25,17 +25,17 @@ Use o utilitário <code>theme.transitions.create()</code> para criar transiçõe
 theme.transitions.create(['background-color', 'transform']);
 ```
 
-#### Exemplo
+#### Example
 
 {{"demo": "pages/customization/transitions/TransitionHover.js", "defaultCodeOpen": false}}
 
 ### `theme.transitions.getAutoHeightDuration(height) => duration`
 
-#### Argumentos
+#### Arguments
 
 1. `height` (_number_): The height of the component.
 
-#### Retornos
+#### Returns
 
 `duration`: A duração calculada baseada na altura.
 
