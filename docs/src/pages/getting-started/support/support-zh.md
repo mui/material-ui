@@ -38,7 +38,7 @@ MUI uses GitHub issues as a bug and feature request tracker. 如果你认为发�
 
 ### 资源 📖
 
-New to MUI? 如果你知道从哪里开始，就很容易学会！
+New to MUI? It's easy to learn if you know where to start!
 
 [Learn MUI](/getting-started/learn/)
 
