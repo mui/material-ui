@@ -2,7 +2,7 @@
 
 <p class="description">借助一整套的响应式 flex 的小方法，实现快速地管理布局，对齐，网格栏的大小，导航，组件等等。</p>
 
-若你对 **flexbox 不太熟悉**，我们建议你阅读 [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) 手册。
+If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
 
 ## 父元素的属性
 
@@ -158,7 +158,7 @@ on MDN.
 import { flexbox } from '@mui/system';
 ```
 
-| 导入名称             | 属性               | CSS 属性            | Theme key |
+| Import name      | Prop             | CSS property      | Theme key |
 |:---------------- |:---------------- |:----------------- |:--------- |
 | `flexDirection`  | `flexDirection`  | `flex-direction`  | none      |
 | `flexWrap`       | `flexWrap`       | `flex-wrap`       | none      |
