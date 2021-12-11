@@ -266,13 +266,13 @@ function handleRender(req, res) {
 
 您会遇到客户端和服务端之间存在类名不匹配的情况。 可能在第一次请求时会出现这种情况。 另一个征兆是，在初始页面加载和下载客户端脚本之间，样式会发生变化。
 
-#### 要运行的操作
+#### Action to Take
 
-类名值依赖于 [类名生成器](/styles/advanced/#class-names) 的概念。 整个页面需要用 **一个类名生成器** 来渲染。 这个生成器需要在服务端和客户端上的行为一致。 就像这样：
+类名值依赖于 [类名生成器](/styles/advanced/#class-names) 的概念。 整个页面需要用 **一个类名生成器** 来渲染。 这个生成器需要在服务端和客户端上的行为一致。 For instance:
 
 - 您需要为每个请求提供一个新的类名生成器。 但是您不应该在不同的请求之间共享 `createGenerateClassName()`：
 
-  修复示例：
+  Example of fix:
 
   ```diff
   -  // 创建一个新的类名生成器。
@@ -284,7 +284,7 @@ function handleRender(req, res) {
 
     //…
 
-    // 将组件渲染为字符串。
+    // Render the component to a string.
     const html = ReactDOMServer.renderToString(
   ```
 
