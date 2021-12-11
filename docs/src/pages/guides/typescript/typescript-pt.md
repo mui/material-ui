@@ -31,7 +31,7 @@ No entanto, esse tipo não pode ser verificado em tempo de compilação em situa
 
 As demonstrações incluem variantes tipadas que usam conversão de tipo. É uma troca aceitável porque os tipos estão todos localizados em um único arquivo e são muito básicos. Você tem que decidir por si mesmo se a mesma troca é aceitável para você. The library types are strict by default and loose via opt-in.
 
-## Customização de tema
+## Customization of `Theme`
 
 Moved to [/customization/theming/#custom-variables](/customization/theming/#custom-variables).
 
