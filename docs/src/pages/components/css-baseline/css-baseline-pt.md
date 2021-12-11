@@ -97,13 +97,13 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 </ScopedCssBaseline>
 ```
 
-### Tipografia
+### Typography
 
 - Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). Você pode aprender mais sobre as implicações da mudança do padrão de tamanho da fonte do `<html>` na página de [documentação do tema](/customization/typography/#typography-html-font-size).
 - Define o estilo `theme.typography.body1` no elemento `<body>`.
 - Define o font-weight para `theme.typography.fontWeightBold` em elementos `<b>` e `<strong>`.
 - Uma customização da suavização da fonte (font-smoothing) é ativada para melhor exibição da fonte Roboto.
 
-## Customização
+## Customization
 
 Vá até a seção de [customização global](/customization/how-to-customize/#5-global-css-override) da documentação para alterar o comportamento desses componentes.

@@ -48,7 +48,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
-## Spacing 间距
+## Spacing
 
 要控制子组件之间的空间，请使用 `spacing` 属性。 间距值可以是任何数字（包括浮点数）和字符串。 该属性借助 [`theme.spaming()`](/customization/spacing/) 被转换为 CSS 属性。
 
@@ -60,7 +60,7 @@ The `rowSpacing` and `columnSpacing` props allow for specifying the row and colu
 
 {{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
 
-## 响应式的值
+## Responsive values
 
 You can switch the props' value based on the active breakpoint. For instance, we can implement the ["recommended"](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
 
@@ -83,9 +83,9 @@ Responsive values is supported by:
 > > </Grid>
 > ```
 
-## 交互式
+## Interactive
 
-下面是一个交互式的演示，你也可以探索不同设置下的视觉结果：
+Below is an interactive demo that lets you explore the visual results of the different settings:
 
 {{"demo": "pages/components/grid/InteractiveGrid.js", "hideToolbar": true, "bg": true}}
 
@@ -125,13 +125,13 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 If you need to do such, remove one of the props.
 
-## Columns 列
+## Columns
 
 You can change the default number of columns (12) with the `columns` prop.
 
 {{"demo": "pages/components/grid/ColumnsGrid.js", "bg": true}}
 
-## 设计局限
+## Limitations
 
 ### 负边距
 
@@ -167,7 +167,7 @@ The `Grid` component is using CSS flexbox internally. But as seen below, you can
 
 {{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}
 
-## 系统属性
+## System props
 
 As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding:
 

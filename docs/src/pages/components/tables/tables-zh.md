@@ -46,9 +46,9 @@ The [`DataGrid` component](/components/data-grid/) is designed for use-cases tha
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## Customization 个性化
+## Customization
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -107,7 +107,7 @@ Here is an example of a table with scrollable rows and fixed column headers. It 
 
 ## 大型列表渲染（Virtualized Table）
 
-以下例子展示了将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `Table` 组件一起使用的方法。 它渲染了200多行，并且可以轻松的延展到更多行。 可视化优化了整体的性能。
+以下例子展示了将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `Table` 组件一起使用的方法。 It renders 200 rows and can easily handle more. Virtualization helps with performance issues.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
@@ -117,7 +117,7 @@ If you would like to use an unstyled Table, you can use the primitive elements a
 
 {{"demo": "pages/components/tables/TableUnstyled.js"}}
 
-## 无障碍设计
+## Accessibility
 
 (WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
 

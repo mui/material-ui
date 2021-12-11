@@ -12,6 +12,8 @@ For crowdsourced answers from expert MUI developers in our community. StackOverf
 
 [发布一个问题](https://stackoverflow.com/questions/tagged/mui)
 
+> 💡 **Tip**: If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+
 ### GitHub
 
 MUI uses GitHub issues as a bug and feature request tracker. 如果你认为发现了一个 bug，或有一个新功能的想法，在您提交之前，请先确保它没有被 [报告过或解决过](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)。  您可以搜索已有的 Issues 或者 Pull Requests，这样可以知晓是否有人已报告过类似的问题。
@@ -32,11 +34,11 @@ MUI uses GitHub issues as a bug and feature request tracker. 如果你认为发�
 
 请订阅我们的博客来了解我们库的开发的最新情况。
 
-[阅读最新的博文](https://medium.com/material-ui/)
+[阅读最新的博文](https://medium.com/material-ui)
 
 ### 资源 📖
 
-New to MUI? 如果你知道从哪里开始，就很容易学会！
+New to MUI? It's easy to learn if you know where to start!
 
 [Learn MUI](/getting-started/learn/)
 

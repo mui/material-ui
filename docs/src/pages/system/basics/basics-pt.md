@@ -6,13 +6,13 @@ MUI comes with dozens of **ready-to-use** components in the core. Esses componen
 
 O **sistema** permite que você crie rapidamente componentes de UI customizados utilizando os valores definidos no seu tema.
 
-## Demonstração
+## Demo
 
 _(Redimensione a janela para ver os pontos de quebra responsivos)_
 
 {{"demo": "pages/system/basics/Demo.js", "bg": true, "defaultCodeOpen": true}}
 
-## Instalação
+## Installation
 
 <!-- #default-branch-switch -->
 
@@ -24,7 +24,7 @@ npm install @mui/system @emotion/react @emotion/styled
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
-Ou se você quiser utilizar `styled-components` como um motor de estilização:
+Or if you want to use `styled-components` as a styling engine:
 
 <!-- #default-branch-switch -->
 
@@ -205,7 +205,7 @@ Having the system under one prop (`sx`) helps to differentiate props defined for
 
 Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _props_ for the above reason. These components are designed to solve CSS problems, they are CSS component utilities.
 
-## Uso
+## Usage
 
 ### Tokens de design no tema
 
@@ -298,7 +298,7 @@ Você pode ignorar pontos de quebra usando o valor como `null`:
 <Box sx={{ width: [null, null, 300] }}>Este box tem uma largura responsiva.</Box>
 ```
 
-### Pontos de quebra customizados
+### Custom breakpoints
 
 Você também pode especificar seus próprios pontos de quebras customizados, e usá-los como chaves ao definir o objeto de pontos de quebra. Aqui esta um exemplo de como o fazer.
 

@@ -33,11 +33,11 @@ Because the scope of problems MUI solves is bound, we try to play nicely with ot
 - [MUI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs): VSCode extension providing codemods.
 - [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): ESLint plugin to detect unused styling classes with `@mui/styles`.
 
-## Components 组件
+## Components
 
 This is a collection of third-party projects that extend MUI.
 
-### 布局
+### Layout
 
 - [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs/).
 
@@ -74,7 +74,7 @@ This is a collection of third-party projects that extend MUI.
 
 - [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/): Charts for MUI that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more ([paid license](https://js.devexpress.com/licensing/)).
 
-### Dialog 对话框
+### Dialog
 
 - [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm)：您无需编写模板代码，就可以轻松使用确认对话框功能来简化用户的确认操作。
 
@@ -90,7 +90,7 @@ This is a collection of third-party projects that extend MUI.
 
 - [components-extra](https://github.com/alexandre-lelain/components-extra): Provides a set of "molecule" components built on top of MUI, such as a Footer, a CookiesBanner, a BackToTop button, and other highly customizable complex elements, to help devs build the macro parts of their UI very quickly. Those components are often duplicated across sites. This library solves this exact problem.
 
-## Theming 主题
+## Theming
 
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your MUI applications by just selecting the colors and having a live preview.
-- [Material palette generator](https://material.io/inline-tools/color/)：它可用于通过您输入的任何颜色生成一系列的调色板。
+- [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.

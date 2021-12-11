@@ -94,9 +94,9 @@ Note that this table only lists custom properties, all other regular CSS propert
 
 Let's take one row from [the table above](#properties-reference-table), for example:
 
-| Chave(s) do sistema  | Propriedade CSS/propriedades | Função de estilo do sistema   | Mapeamento no tema                                                            |
-|:-------------------- |:---------------------------- |:----------------------------- |:----------------------------------------------------------------------------- |
-| `mb`, `marginBottom` | `margin-bottom`              | [`spacing`](/system/spacing/) | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
+| System key(s)        | CSS property/properties | System style function         | Theme mapping                                                                 |
+|:-------------------- |:----------------------- |:----------------------------- |:----------------------------------------------------------------------------- |
+| `mb`, `marginBottom` | `margin-bottom`         | [`spacing`](/system/spacing/) | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
 
 <br />
 

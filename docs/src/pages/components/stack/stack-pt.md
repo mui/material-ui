@@ -10,15 +10,15 @@ githubLabel: 'component: Stack'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Uso
+## Usage
 
 `Stack` is concerned with one-dimensional layouts, while [Grid](/components/grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
 
 {{"demo": "pages/components/stack/BasicStack.js", "bg": true}}
 
-Para controlar o espaço entre os filhos, use a prop ` spacing ` The spacing value can be any number, including decimals and any string. As props são convertidas em css usando o auxiliar  [`theme.spacing()`](/customization/spacing/)
+To control space between children, use the `spacing` prop. The spacing value can be any number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
 
-## Direção
+## Direction
 
 By default, `Stack` arranges items vertically in a `column`. However, the `direction` prop can be used to position items horizontally in a `row` as well.
 
@@ -30,21 +30,21 @@ Use the `divider` prop to insert an element between each child. This works parti
 
 {{"demo": "pages/components/stack/DividerStack.js", "bg": true}}
 
-## Valores responsivos
+## Responsive values
 
 You can switch the `direction` or `spacing` values based on the active breakpoint.
 
 {{"demo": "pages/components/stack/ResponsiveStack.js", "bg": true}}
 
-## Interativo
+## Interactive
 
-Abaixo está uma demonstração interativa que permite explorar os resultados visuais das diferentes configurações:
+Below is an interactive demo that lets you explore the visual results of the different settings:
 
 {{"demo": "pages/components/stack/InteractiveStack.js", "hideToolbar": true, "bg": true}}
 
-## Propriedades do sistema
+## System props
 
-As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. Você pode usá-los como "props" diretamente no componente. Por exemplo, uma margem do topo:
+As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. Você pode usá-los como "props" diretamente no componente. For instance, a margin-top:
 
 ```jsx
 <Stack mt={2}>

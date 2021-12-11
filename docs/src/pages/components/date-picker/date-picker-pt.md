@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/date-pickers
 
 <p class="description">Seletores de data permitem que o usuário selecione uma data.</p>
 
-Seletores de data permitem que o usuário selecione uma data. Seletores de data são exibidos com:
+Date pickers let the user select a date. Seletores de data são exibidos com:
 
 - Diálogos em dispositivos móveis
 - Menu suspenso com campo de texto em desktop
@@ -47,24 +47,24 @@ It's possible to render any date picker without the modal/popover and text field
 
 {{"demo": "pages/components/date-picker/StaticDatePickerDemo.js", "bg": true}}
 
-## Responsividade
+## Responsiveness
 
 O componente seletor de data é projetado e otimizado para o dispositivo em que ele é executado.
 
 - The `MobileDatePicker` component works best for touch devices and small screens.
 - The `DesktopDatePicker` component works best for mouse devices and large screens.
 
-By default, the `DatePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. Isto pode ser customizado com a propriedade `desktopModeMediaQuery`.
+By default, the `DatePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-picker/ResponsiveDatePickers.js"}}
 
-## Propriedades de formulário
+## Form props
 
 The date picker component can be disabled or read-only.
 
 {{"demo": "pages/components/date-picker/FormPropsDatePickers.js"}}
 
-## Localização
+## Localization
 
 Use `LocalizationProvider` para alterar a date-engine de localização que é usada para renderizar o seletor de data. Aqui esta um exemplo de alteração da localidade com o adaptador `date-fns`:
 
@@ -112,7 +112,7 @@ Os dias exibidos são customizados com uma função na propriedade `renderDay`. 
 
 {{"demo": "pages/components/date-picker/ServerRequestDatePicker.js"}}
 
-## Texto auxiliar
+## Helper text
 
 Você pode mostrar um texto de ajuda com o formato de data aceito.
 

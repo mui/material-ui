@@ -2,7 +2,7 @@
 
 <p class="description">Adicione ou remova sombras dos elementos usando os utilitários box-shadow.</p>
 
-## Exemplo
+## Example
 
 Os utilitários permitem que você controle a profundidade ou distância relativa entre duas superfícies ao longo do eixo z. Por padrão, há 25 níveis de elevação.
 
@@ -36,6 +36,6 @@ Os utilitários permitem que você controle a profundidade ou distância relativ
 import { shadows } from '@mui/system';
 ```
 
-| Nome da importação | Propriedade | Propriedade CSS | Chave do tema |
-|:------------------ |:----------- |:--------------- |:------------- |
-| `boxShadow`        | `boxShadow` | `box-shadow`    | `shadows`     |
+| Import name | Prop        | CSS property | Theme key |
+|:----------- |:----------- |:------------ |:--------- |
+| `boxShadow` | `boxShadow` | `box-shadow` | `shadows` |

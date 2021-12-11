@@ -1,21 +1,21 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "icon": "The icon to display.",
     "openIcon": "The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes."
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "icon": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the icon component"
     },
     "iconOpen": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",
       "conditions": "<code>open={true}</code>"
     },
@@ -25,12 +25,12 @@
       "conditions": "an <code>openIcon</code> is provided and if <code>open={true}</code>"
     },
     "openIcon": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the `openIcon`",
       "conditions": "fornecido"
     },
     "openIconOpen": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the `openIcon`",
       "conditions": "provided and if <code>open={true}</code>"
     }

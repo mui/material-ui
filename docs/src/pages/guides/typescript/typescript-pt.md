@@ -4,7 +4,9 @@
 
 ## Minimum configuration
 
-MUI requires a minimum version of TypeScript 3.5. Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript).
+<!-- #default-branch-switch -->
+
+MUI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example.
 
 For types to work, you should have at the minimum the following options enabled in your `tsconfig.json`:
 
@@ -27,9 +29,9 @@ Muitos componentes preocupados com a entrada do usuário oferecem uma propriedad
 
 No entanto, esse tipo não pode ser verificado em tempo de compilação em situações em que depende de nós filhos do componente, por exemplo, para `Select` ou `RadioGroup`. Isso significa que a opção mais segura é tipando como `unknown` e deixar que o desenvolvedor decida como deseja restringir esse tipo. Não oferecemos a possibilidade de usar um tipo genérico nesses casos, devido [as mesmas razões que `event.target` não é genérico no React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
 
-As demonstrações incluem variantes tipadas que usam conversão de tipo. É uma troca aceitável porque os tipos estão todos localizados em um único arquivo e são muito básicos. Você tem que decidir por si mesmo se a mesma troca é aceitável para você. A biblioteca de tipos são strict por padrão e loose por meio de opt-in.
+As demonstrações incluem variantes tipadas que usam conversão de tipo. É uma troca aceitável porque os tipos estão todos localizados em um único arquivo e são muito básicos. Você tem que decidir por si mesmo se a mesma troca é aceitável para você. The library types are strict by default and loose via opt-in.
 
-## Customização de tema
+## Customization of `Theme`
 
 Moved to [/customization/theming/#custom-variables](/customization/theming/#custom-variables).
 

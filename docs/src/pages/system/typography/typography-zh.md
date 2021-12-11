@@ -34,7 +34,7 @@
 <Box sx={{ fontWeight: 'bold' }}>…
 ```
 
-## 字体大小（Font size）
+## Font size
 
 {{"demo": "pages/system/typography/FontSize.js", "defaultCodeOpen": false}}
 
@@ -87,7 +87,7 @@
 import { typography } from '@mui/system';
 ```
 
-| 导入名称            | 属性              | CSS 属性                                                                                       | Theme key                                                              |
+| Import name     | Prop            | CSS property                                                                                 | Theme key                                                              |
 |:--------------- |:--------------- |:-------------------------------------------------------------------------------------------- |:---------------------------------------------------------------------- |
 | `typography`    | `typography`    | `font-family`, `font-weight`, `font-size`, `line-height`, `letter-spacing`, `text-transform` | [`typography`](/customization/default-theme/?expand-path=$.typography) |
 | `fontFamily`    | `fontFamily`    | `font-family`                                                                                | [`typography`](/customization/default-theme/?expand-path=$.typography) |

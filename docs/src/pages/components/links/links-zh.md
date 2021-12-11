@@ -1,5 +1,5 @@
 ---
-components: React Link（链接）组件
+components: Link
 githubLabel: 'component: Link'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 ---
@@ -38,7 +38,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 Here is a [more detailed guide](/guides/routing/#link).
 
-## 无障碍设计
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
 

@@ -62,7 +62,7 @@ Ou aumentando a largura do indicador de estado:
 
 {{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
 
-## Customização
+## Customization
 
 ### Ícones customizados, borda e animação
 
@@ -91,12 +91,12 @@ Se é verdadeira:
 
 - As teclas de setas focarão em itens desabilitados.
 - Digitar o primeiro caractere do rótulo de um item desabilitado focará no item.
-- Interação do mouse ou teclado não irá expandir/recolher itens desabilitados.
-- Interação do mouse ou teclado não selecionará itens desabilitados.
+- Mouse or keyboard interaction will not expand/collapse disabled items.
+- Mouse or keyboard interaction will not select disabled items.
 - Shift + teclas de setas não irão pular itens desabilitados, mas o item desabilitado não será selecionado.
 - Foco programático focará itens desabilitados.
 
-## Acessibilidade
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
 

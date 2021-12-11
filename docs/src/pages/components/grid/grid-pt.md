@@ -50,7 +50,7 @@ Aqui por exemplo `xs={12} sm={6}` define que o componente ocupará metade da lar
 
 
 
-## Espaçamento
+## Spacing
 
 Para controlar o espaço entre os filhos, use a prop ` spacing ` O valor do espaçamento pode ser qualquer numero positivo, incluindo decimais e até strings (cadeia de caracteres) As props são convertidas em css usando o auxiliar  [`theme.spacing()`](/customization/spacing/) 
 
@@ -66,7 +66,7 @@ The `rowSpacing` and `columnSpacing` props allow for specifying the row and colu
 
 
 
-## Valores responsivos
+## Responsive values
 
 You can switch the props' value based on the active breakpoint. For instance, we can implement the ["recommended"](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
 
@@ -93,9 +93,9 @@ Responsive values is supported by:
 
 
 
-## Interativo
+## Interactive
 
-Abaixo está uma demonstração interativa que permite explorar os resultados visuais das diferentes configurações:
+Below is an interactive demo that lets you explore the visual results of the different settings:
 
 {{"demo": "pages/components/grid/InteractiveGrid.js", "hideToolbar": true, "bg": true}}
 
@@ -150,7 +150,7 @@ If you need to do such, remove one of the props.
 
 
 
-## Colunas
+## Columns
 
 You can change the default number of columns (12) with the `columns` prop.
 
@@ -158,7 +158,7 @@ You can change the default number of columns (12) with the `columns` prop.
 
 
 
-## Limitações
+## Limitations
 
 
 
@@ -210,9 +210,9 @@ The `Grid` component is using CSS flexbox internally. But as seen below, you can
 
 
 
-## Propriedades do sistema
+## System props
 
-As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. Você pode usá-los como "props" diretamente no componente. For instance, a padding:
+As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding:
 
 
 

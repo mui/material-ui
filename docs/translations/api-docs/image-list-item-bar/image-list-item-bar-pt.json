@@ -3,65 +3,65 @@
   "propDescriptions": {
     "actionIcon": "An IconButton element to be used as secondary action target (primary action target is the item itself).",
     "actionPosition": "Position of secondary action IconButton.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "position": "Position of the title bar.",
     "subtitle": "String or element serving as subtitle (support text).",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "title": "Title to be displayed."
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "positionBottom": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>position=\"bottom\"</code>"
     },
     "positionTop": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>position=\"top\"</code>"
     },
     "positionBelow": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>position=\"below\"</code>"
     },
     "titleWrap": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the title and subtitle container element"
     },
     "titleWrapBelow": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the title and subtitle container element",
       "conditions": "<code>position=\"below\"</code>"
     },
     "titleWrapActionPosLeft": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the container element",
       "conditions": "<code>actionPosition=\"left\"</code>"
     },
     "titleWrapActionPosRight": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the container element",
       "conditions": "<code>actionPosition=\"right\"</code>"
     },
     "title": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the title container element"
     },
     "subtitle": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the subtitle container element"
     },
     "actionIcon": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the actionIcon",
-      "conditions": "fornecido"
+      "conditions": "supplied"
     },
     "actionIconActionPosLeft": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the actionIcon",
       "conditions": "<code>actionPosition=\"left\"</code>"
     }

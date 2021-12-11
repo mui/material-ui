@@ -128,7 +128,7 @@ import { Button, TextField } from '@mui/material';
 
   `yarn add -D babel-plugin-direct-import`
 
-  在您的项目根目录创建一个 `.babelrc.js` 文件：
+  Create a `.babelrc.js` file in the root directory of your project:
 
   ```js
   const plugins = [
