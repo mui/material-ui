@@ -104,6 +104,6 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 - Define o font-weight para `theme.typography.fontWeightBold` em elementos `<b>` e `<strong>`.
 - Uma customização da suavização da fonte (font-smoothing) é ativada para melhor exibição da fonte Roboto.
 
-## Customização
+## Customization
 
 Vá até a seção de [customização global](/customization/how-to-customize/#5-global-css-override) da documentação para alterar o comportamento desses componentes.
