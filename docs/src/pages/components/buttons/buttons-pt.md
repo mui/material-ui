@@ -37,7 +37,7 @@ O `Botão` vem com três variantes: texto (padrão), contido e delineado.
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
-Você pode remover a elevação com a propriedade `disableElevation`.
+You can remove the elevation with the `disableElevation` prop.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
@@ -59,13 +59,13 @@ Todos os componentes aceitam um método manipulador `onClick` que é aplicado ao
 
 Note que a documentação [evita](/guides/api/#native-properties) mencionar as propriedades nativas (existem várias) na seção de API dos componentes.
 
-## Cor
+## Color
 
 {{"demo": "pages/components/buttons/ColorButtons.js"}}
 
 Além de usar as cores de botão padrão, você pode adicionar outras personalizadas ou desativar as que não forem necessárias. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
 
-## Tamanhos
+## Sizes
 
 For larger or smaller buttons, use the `size` prop.
 
@@ -89,7 +89,7 @@ Botões de ícones são comumente encontrados em barras de aplicativos e barras 
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-### Tamanhos
+### Sizes
 
 For larger or smaller icon buttons, use the `size` prop.
 
@@ -101,9 +101,9 @@ Use a propriedade `color` para aplicar uma paleta de cores ao componente.
 
 {{"demo": "pages/components/buttons/IconButtonColors.js"}}
 
-## Customização
+## Customization
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
@@ -125,11 +125,11 @@ Os botões de texto, botões contidos, botões de ação flutuante e botões de 
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
-## Biblioteca de roteamento de terceiros
+## Third-party routing library
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. Aqui está um [guia mais detalhado](/guides/routing/#button).
 
-## Limitações
+## Limitations
 
 ### Propriedade CSS Cursor not-allowed
 
@@ -166,7 +166,7 @@ Isso tem a vantagem de suportar qualquer elemento, por exemplo, um elemento de l
 
 ## Unstyled
 
-The button also comes with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+The button also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ### Componente sem estilo
 
