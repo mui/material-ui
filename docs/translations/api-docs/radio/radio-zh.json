@@ -5,7 +5,7 @@
     "checkedIcon": "The icon to display when the component is checked.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
-    "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.",
     "icon": "The icon to display when the component is unchecked.",
     "id": "The id of the <code>input</code> element.",
