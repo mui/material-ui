@@ -6,13 +6,13 @@ MUI核心配备了几十个**可随时使用**的组件。 这些组件是一个
 
 **系统**让你可以利用主题中所定义的值来快速构建自定义 UI 组件。
 
-## 演示
+## Demo
 
 _（调整窗口大小以查看响应的断点）_
 
 {{"demo": "pages/system/basics/Demo.js", "bg": true, "defaultCodeOpen": true}}
 
-## 安装
+## Installation
 
 <!-- #default-branch-switch -->
 
@@ -24,7 +24,7 @@ npm install @mui/system @emotion/react @emotion/styled
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
-或者你想使用 `styled-components` 来作为样式引擎：
+Or if you want to use `styled-components` as a styling engine:
 
 <!-- #default-branch-switch -->
 
@@ -205,7 +205,7 @@ _Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/mast
 
 只有 `Box`, `Stack`, `类型`, 和 `格子` 组件接受系统属性为 _props_ 基于上述理由。 这些组件旨在解决CSS 问题，它们是 CSS 组件实用工具。
 
-## 使用
+## Usage
 
 ### 主题中的设计标记
 
@@ -299,7 +299,7 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 
 ```
 
-### 自定义断点
+### Custom breakpoints
 
 你也可以指定自定义断点，并在定义断点对象时将其作为键。 下面是一个如何操作的例子。
 
@@ -368,11 +368,11 @@ declare module '@mui/material/styles' {
 
 所有核心MUI组件将支持 `sx` prop。
 
-### 2. Box 分组
+### 2. Box
 
 [`Box`](/components/box/) 是一个轻量级组件，它可以以工具集的方式通过包装其他组件来达到访问其 `sx` 属性的目的。 默认情况下将渲染一个 `<div>` 元素。
 
-### 3。 自定义组件
+### 3. 自定义组件
 
 除了MUI组件外，您也可以将 `sx` prop添加到您的自定义组件。 使用 `风格的` 实用程序来自 `@mui/material/styles`
 
@@ -382,6 +382,6 @@ import { styled } from '@mui/material/styles';
 const Div = styled('div')``;
 ```
 
-### 4、 使用 babel 插件的任何元素
+### 4. 使用 babel 插件的任何元素
 
 等待开发 [#23220](https://github.com/mui-org/material-ui/issues/23220)。
