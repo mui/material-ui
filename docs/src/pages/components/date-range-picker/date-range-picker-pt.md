@@ -16,11 +16,11 @@ Os seletores de intervalo de datas permitem que o usuário selecione um interval
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Requisitos
+## Requirements
 
-Este componente depende da biblioteca de gerenciamento de datas da sua escolha. Ele suporta [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) e qualquer outra biblioteca através da interface publica `dateAdapter`.
+This component relies on the date management library of your choice. It supports [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) and any other library via a public `dateAdapter` interface.
 
-Por favor, instale qualquer uma destas bibliotecas e configure corretamente o mecanismo de data encapsulando na raiz dos componentes (ou o nível mais alto que você deseja que os seletores estejam disponíveis) com `LocalizationProvider`:
+Please install any of these libraries and set up the right date engine by wrapping your root (or the highest level you wish the pickers to be available) with `LocalizationProvider`:
 
 ```jsx
 // or @mui/lab/dateAdapter/{dayjs,luxon,moment} or any valid date-io adapter
@@ -34,30 +34,30 @@ function App() {
 }
 ```
 
-## Utilização Básica
+## Basic usage
 
 Note que você pode passar quase qualquer propriedade de [DatePicker](/api/date-picker/).
 
 {{"demo": "pages/components/date-range-picker/BasicDateRangePicker.js"}}
 
-## Modo estático
+## Static mode
 
 É possível renderizar qualquer seletor em linha. Isto permitirá construir contêineres customizados de popover/modal.
 
 {{"demo": "pages/components/date-range-picker/StaticDateRangePickerDemo.js", "bg": true}}
 
-## Responsividade
+## Responsiveness
 
 O componente de seletor de intervalo de data é projetado e otimizado para o dispositivo em que ele é executado.
 
 - The `MobileDateRangePicker` component works best for touch devices and small screens.
 - The `DesktopDateRangePicker` component works best for mouse devices and large screens.
 
-By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. Isto pode ser customizado com a propriedade `desktopModeMediaQuery`.
+By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-range-picker/ResponsiveDateRangePicker.js"}}
 
-## Propriedades de formulário
+## Form props
 
 The date range picker component can be disabled or read-only.
 
@@ -75,14 +75,14 @@ Desabilitar datas se comporta da mesma forma que `DatePicker`.
 
 {{"demo": "pages/components/date-range-picker/MinMaxDateRangePicker.js"}}
 
-## Componente de entrada customizado
+## Custom input component
 
 É possível customizar o componente de entrada renderizado com a propriedade `renderInput`. Para o `DateRangePicker` ele recebe **2** parâmetros– para o campo inicial e final, respectivamente. Se você precisar renderizar campos de entrada customizados, certifique-se de encaminhar `ref` e `inputProps` corretamente para os componentes de entrada.
 
 {{"demo": "pages/components/date-range-picker/CustomDateRangeInputs.js"}}
 
-## Renderização customizada do dia
+## Customized day rendering
 
-Os dias exibidos são customizados com uma função na propriedade `renderDay`. You can take advantage of the internal [DateRangePickerDay](/api/date-range-picker-day/) component.
+The displayed days are customizable with the `renderDay` function prop. You can take advantage of the internal [DateRangePickerDay](/api/date-range-picker-day/) component.
 
 {{"demo": "pages/components/date-range-picker/CustomDateRangePickerDay.js"}}
