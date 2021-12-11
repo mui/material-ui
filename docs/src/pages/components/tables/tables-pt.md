@@ -46,9 +46,9 @@ A tabela recebeu uma largura fixa para demonstrar a rolagem horizontal. Para imp
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## Customização
+## Customization
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -107,7 +107,7 @@ Um exemplo simples com abrangência de linhas & colunas.
 
 ## Tabela Virtualizada
 
-No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://github.com/bvaughn/react-virtualized) com o componente `Table`. Ela renderiza 200 linhas e pode facilmente lidar com mais. A virtualização ajuda a lidar com problemas de desempenho.
+No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://github.com/bvaughn/react-virtualized) com o componente `Table`. It renders 200 rows and can easily handle more. Virtualization helps with performance issues.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
@@ -117,7 +117,7 @@ If you would like to use an unstyled Table, you can use the primitive elements a
 
 {{"demo": "pages/components/tables/TableUnstyled.js"}}
 
-## Acessibilidade
+## Accessibility
 
 (WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
 
