@@ -1,4 +1,4 @@
-# Components 组件
+# Components
 
 <p class="description">主题的 `components` 键允许你自定义组件，而无需将其包裹在另一个组件中。 你可以更改样式、默认属性等等其他东西。</p>
 
