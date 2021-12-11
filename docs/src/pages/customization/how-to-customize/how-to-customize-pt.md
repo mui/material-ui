@@ -20,7 +20,7 @@ Pode ser necessário alterar o estilo de um componente em alguma implementação
 
 ### Use the `sx` prop
 
-The easiest way to add style overrides for a one-off situation is to use the [`sx` prop](/system/basics/#the-sx-prop) available on all MUI components. Aqui está um exemplo:
+The easiest way to add style overrides for a one-off situation is to use the [`sx` prop](/system/basics/#the-sx-prop) available on all MUI components. Here is an example:
 
 {{"demo": "pages/customization/how-to-customize/SxProp.js"}}
 
@@ -164,17 +164,17 @@ const StyledSlider = styled(Slider, {
 
 {{"demo": "pages/customization/how-to-customize/DynamicCSSVariables.js"}}
 
-### Aninhamento de tema
+### Theme nesting
 
 {{"demo": "pages/customization/how-to-customize/DynamicThemeNesting.js"}}
 
-## 4. Variação do tema global
+## 4. Global theme variation
 
 In order to promote consistency between components, and manage the user interface appearance as a whole, MUI provides a mechanism to apply global changes.
 
 Please take a look at the theme's [global overrides page](/customization/theme-components/) for more details.
 
-## 5. Sobrescrita do CSS Global
+## 5. Global CSS override
 
 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
 
