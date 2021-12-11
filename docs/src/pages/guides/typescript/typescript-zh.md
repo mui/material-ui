@@ -31,7 +31,7 @@ For types to work, you should have at the minimum the following options enabled 
 
 这些演示包括使用类型转换的类型变量。 鉴于所有的类型都位于一个文件中，并且都是非常基本的，这样的折衷可以接受。 您必须自行决定是否能够接受同样的折衷。 The library types are strict by default and loose via opt-in.
 
-## 定制的`主题`
+## Customization of `Theme`
 
 Moved to [/customization/theming/#custom-variables](/customization/theming/#custom-variables).
 
