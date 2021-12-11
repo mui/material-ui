@@ -23,9 +23,9 @@ MUI's styling solution is inspired by many other styling libraries such as [styl
 - ⚡️它使用 [JSS](https://github.com/cssinjs/jss) 为其核心 —— 一个 [高性能的](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript 到 CSS 的编译器，它在运行时和服务器端编译。
 - 📦 Less than [15 KB gzipped](https://bundlephobia.com/package/@mui/styles); and no bundle size increase if used alongside MUI.
 
-## 安装
+## Installation
 
-若想安装并写入您的 `package.json` 依赖包，请运行以下命令：
+To install and save in your `package.json` dependencies, run:
 
 <!-- #default-branch-switch -->
 
