@@ -29,6 +29,7 @@ import { TimePickerProps } from '../TimePicker';
 import { TreeItemProps } from '../TreeItem';
 import { TreeViewProps } from '../TreeView';
 import { YearPickerProps } from '../YearPicker';
+import { PickerStaticWrapperProps } from '../internal/pickers/wrappers/PickerStaticWrapper';
 
 export interface LabComponentsPropsList {
   MuiAvatarGroup: AvatarGroupProps;
@@ -46,6 +47,7 @@ export interface LabComponentsPropsList {
   MuiMobileTimePicker: MobileTimePickerProps;
   MuiMonthPicker: MonthPickerProps<unknown>;
   MuiPickersDay: PickersDayProps<unknown>;
+  MuiPickerStaticWrapper: PickerStaticWrapperProps;
   MuiStaticDatePicker: StaticDatePickerProps;
   MuiStaticDateTimePicker: StaticDateTimePickerProps;
   MuiStaticTimePicker: StaticTimePickerProps;
