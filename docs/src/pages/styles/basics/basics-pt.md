@@ -23,9 +23,9 @@ MUI's styling solution is inspired by many other styling libraries such as [styl
 - ⚡️Ela usa [JSS](https://github.com/cssinjs/jss) em seu núcleo – um [alto desempenho](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript para o compilador CSS, que funciona em tempo de execução e no lado do servidor.
 - 📦 Less than [15 KB gzipped](https://bundlephobia.com/package/@mui/styles); and no bundle size increase if used alongside MUI.
 
-## Instalação
+## Installation
 
-Para instalar e salvar em suas dependências do `package.json`, execute:
+To install and save in your `package.json` dependencies, run:
 
 <!-- #default-branch-switch -->
 
