@@ -8,7 +8,7 @@ This API is introduced in `@mui/material` (v5.0.5) as a replacement of deprecate
 
 ## Global classname prefix
 
-By default, MUI generates a global classname for each component slot. Por exemplo:
+By default, MUI generates a global classname for each component slot. For example:
 
 ```js
 import Button from '@mui/material/Button';
