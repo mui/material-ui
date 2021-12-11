@@ -3,7 +3,7 @@
   "propDescriptions": {
     "ActionsComponent": "The component used for displaying the actions. Either a string to use a HTML element or a component.",
     "backIconButtonProps": "Props applied to the back arrow <a href=\"/api/icon-button/\"><code>IconButton</code></a> component.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "count": "The total number of rows.<br>To enable server side pagination for an unknown number of items, provide -1.",
     "getItemAriaLabel": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"/guides/localization/\">translations</a>.<br><br><strong>Signature:</strong><br><code>function(type: string) =&gt; string</code><br><em>type:</em> The link or button type to format (&#39;first&#39; | &#39;last&#39; | &#39;next&#39; | &#39;previous&#39;).",
@@ -18,50 +18,50 @@
     "SelectProps": "Props applied to the rows per page <a href=\"/api/select/\"><code>Select</code></a> element.",
     "showFirstButton": "If <code>true</code>, show the first-page button.",
     "showLastButton": "If <code>true</code>, show the last-page button.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes."
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "toolbar": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Toolbar component"
     },
     "spacer": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the spacer element"
     },
     "selectLabel": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the select label Typography element"
     },
     "selectRoot": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Select component `root` element"
     },
     "select": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Select component `select` class"
     },
     "selectIcon": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Select component `icon` class"
     },
     "input": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Select component `root` element"
     },
     "menuItem": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the MenuItem component"
     },
     "displayedRows": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the displayed rows Typography element"
     },
     "actions": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the internal `TablePaginationActions` component"
     }
   }
