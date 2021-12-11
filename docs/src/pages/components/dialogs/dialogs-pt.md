@@ -57,9 +57,9 @@ Os formulários de diálogo permitem que usuários preencham campos dentro de um
 
 {{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Customização
+## Customization
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 The dialog has a close button added to aid usability.
 
@@ -121,10 +121,10 @@ Experimente a demonstração abaixo para ver o que queremos dizer:
 
 Veja a seção [Performance Modal](/components/modal/#performance).
 
-## Limitações
+## Limitations
 
 Siga a [seção de limitações do Modal](/components/modal/#limitations).
 
-## Acessibilidade
+## Accessibility
 
 Siga a [seção de acessibilidade do Modal](/components/modal/#accessibility).
