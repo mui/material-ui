@@ -94,9 +94,9 @@
 
 Let's take one row from [the table above](#properties-reference-table), for example:
 
-| 系统键                  | CSS 属性          | 系统样式函数                        | 主题映射                                                                          |
-|:-------------------- |:--------------- |:----------------------------- |:----------------------------------------------------------------------------- |
-| `mb`, `marginBottom` | `margin-bottom` | [`spacing`](/system/spacing/) | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
+| System key(s)        | CSS property/properties | System style function         | Theme mapping                                                                 |
+|:-------------------- |:----------------------- |:----------------------------- |:----------------------------------------------------------------------------- |
+| `mb`, `marginBottom` | `margin-bottom`         | [`spacing`](/system/spacing/) | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
 
 <br />
 
