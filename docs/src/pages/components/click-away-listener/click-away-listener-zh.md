@@ -13,7 +13,7 @@ githubLabel: 'component: ClickAwayListener'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## 示例
+## Example
 
 例如，当用户在点击页面除菜单外的任何一处，您可能想隐藏一个下拉的菜单：
 
@@ -35,7 +35,7 @@ githubLabel: 'component: ClickAwayListener'
 
 > ⚠️ 在此模式下，仅有文档对象滚动条上的交互被忽略。
 
-## 素颜模式
+## Unstyled
 
 - 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
