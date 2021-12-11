@@ -28,6 +28,7 @@ export interface LabComponentNameToClassKey {
   MuiLoadingButton: LoadingButtonClassKey;
   MuiMonthPicker: MonthPickerClassKey;
   MuiPickersDay: PickersDayClassKey;
+  MuiPickerStaticWrapper: PickerStaticWrapperClassKey;
   MuiTabList: TabListClassKey;
   MuiTabPanel: TabPanelClassKey;
   MuiTimeline: TimelineClassKey;
@@ -40,7 +41,6 @@ export interface LabComponentNameToClassKey {
   MuiTreeItem: TreeItemClassKey;
   MuiTreeView: TreeViewClassKey;
   MuiYearPicker: YearPickerClassKey;
-  MuiPickerStaticWrapper: PickerStaticWrapperClassKey;
 }
 
 declare module '@mui/material/styles' {
