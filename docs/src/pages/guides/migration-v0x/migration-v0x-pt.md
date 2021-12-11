@@ -75,7 +75,7 @@ export default App;
 
 ## Componentes
 
-### Autocompletar
+### Autocomplete
 
 MUI doesn't provide a high-level API for solving this problem. Recomendamos que você explore [as soluções que a comunidade construiu](/components/autocomplete/).
 
@@ -83,7 +83,7 @@ Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/m
 
 ### Ícone Svg
 
-Execute [o auxiliar de migração](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) em seu projeto.
+Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) on your project.
 
 Caminho de atualização do RaisedButton:
 
