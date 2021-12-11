@@ -4,11 +4,11 @@
 
 If you're looking for the v4 docs, you can [find the latest version here](https://mui.com/versions/).
 
-## Introdução
+## Introduction
 
 This is a reference for upgrading your site from MUI Core v4 to v5. Embora haja muita coisa coberta aqui, você provavelmente não precisará fazer tudo no seu site. Faremos o nosso melhor para manter as coisas fáceis de seguir e o mais sequenciais possível, para que você possa começar a usar a v5 rapidamente!
 
-## Por que você deve migrar
+## Why you should migrate
 
 To get the benefits of bug fixes and a lot of improvements such as the new styling engine. This documentation page covers the **how** of migrating from v4 to v5. The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 
@@ -25,7 +25,7 @@ To get the benefits of bug fixes and a lot of improvements such as the new styli
 - [Migrate theme's `styleOverrides` to emotion](#migrate-themes-styleoverrides-to-emotion)
 - [Migrate from JSS](#migrate-from-jss)
 - [CSS specificity](#css-specificity)
-- [Resolução de problemas](#troubleshooting)
+- [Troubleshooting](#troubleshooting)
 
 > 💡 Aim to create small commits on any changes to help the migration go more smoothly. If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other errors not described there, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: `[Migration] Summary of your issue`.
 
@@ -197,7 +197,7 @@ For more details, checkout [link-underline-hover codemod](https://github.com/mui
 
 Once you have completed the codemod step, try running your application again. At this point, it should be running without error. Otherwise check out the [Troubleshooting](#troubleshooting) section. Next step, handling breaking changes in each component.
 
-## Tratamento de alterações recentes
+## Handling breaking changes
 
 ### Supported browsers and node versions
 
@@ -226,7 +226,7 @@ The style library used by default in v5 is [`emotion`](https://github.com/emotio
 
 > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
-Aqui está um exemplo:
+Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -246,7 +246,7 @@ export default function GlobalCssPriority() {
 > 
 > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
-Aqui está um exemplo:
+Here is an example:
 
 ```diff
  import * as React from 'react';
@@ -428,7 +428,7 @@ The following changes are supported by the adapter:
    });
   ```
 
-### Estilos
+### Styles
 
 - Renamed `fade` to `alpha` to better describe its functionality. The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
 
@@ -716,7 +716,7 @@ The `GitHub` icon was reduced in size from 24px to 22px wide to match the other 
 
 We have a [dedicated page](/guides/pickers-migration/) for migrating `@material-ui/pickers` to v5
 
-### Sistema
+### System
 
 - The following system functions (and properties) were renamed because they are considered deprecated CSS:
 
@@ -748,7 +748,7 @@ We have a [dedicated page](/guides/pickers-migration/) for migrating `@material-
 
   > Note that the system grid function wasn't documented in v4.
 
-### Componentes do core
+### Core components
 
 As the core components use emotion as their style engine, the props used by emotion are not intercepted. The prop `as` in the following code snippet will not be propagated to `SomeOtherComponent`.
 
@@ -765,7 +765,7 @@ As the core components use emotion as their style engine, the props used by emot
   <AppBar enableColorOnDark />
   ```
 
-### Alerta
+### Alert
 
 - Move the component from the lab to the core. The component is now stable.
 
@@ -778,7 +778,7 @@ As the core components use emotion as their style engine, the props used by emot
   >   +import AlertTitle from '@mui/material/AlertTitle';
   > ```
 
-### Autocompletar
+### Autocomplete
 
 - Move the component from the lab to the core. The component is now stable.
 
@@ -874,7 +874,7 @@ As the core components use emotion as their style engine, the props used by emot
   >   +import AvatarGroup from '@mui/material/AvatarGroup';
   > ```
 
-### Emblema
+### Badge
 
 - Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency.
 
@@ -1037,7 +1037,7 @@ As the core components use emotion as their style engine, the props used by emot
   +<Chip>
   ```
 
-### Caixa de seleção
+### Checkbox
 
 - The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
 
@@ -1123,7 +1123,7 @@ As the core components use emotion as their style engine, the props used by emot
   });
   ```
 
-### Diálogo
+### Dialog
 
 - The onE\* transition props were removed. Use TransitionProps instead.
 
@@ -1208,7 +1208,7 @@ As the core components use emotion as their style engine, the props used by emot
   }
   ```
 
-### Painel de expansão
+### ExpansionPanel
 
 - Rename the `ExpansionPanel` components to `Accordion` to use a more common naming convention:
 
@@ -1419,7 +1419,7 @@ As the core components use emotion as their style engine, the props used by emot
   +return hidden ? null : <Paper />;
   ```
 
-### Ícone
+### Icon
 
 - The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikely event that you were using the value `default`, the prop can be removed:
 
@@ -1589,7 +1589,7 @@ As the core components use emotion as their style engine, the props used by emot
   });
   ```
 
-### Paginação
+### Pagination
 
 - Move the component from the lab to the core. The component is now stable.
 
@@ -1671,7 +1671,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
-### Botões de opção
+### Radio
 
 - The radio color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the radio closer to the Material Design guidelines.
 
@@ -1734,7 +1734,7 @@ As the core components use emotion as their style engine, the props used by emot
   >   +<Button ref={ref} />
   > ```
 
-### Seleção
+### Select
 
 - Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
 
@@ -1869,7 +1869,7 @@ As the core components use emotion as their style engine, the props used by emot
   >   +import SpeedDialIcon from '@mui/material/SpeedDialIcon';
   > ```
 
-### Assistente
+### Stepper
 
 - The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
 
@@ -1906,7 +1906,7 @@ As the core components use emotion as their style engine, the props used by emot
    </SvgIcon>
   ```
 
-### Interruptor
+### Switch
 
 - Deprecate the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
 
@@ -1939,7 +1939,7 @@ As the core components use emotion as their style engine, the props used by emot
   +    <span class="MuiSwitch-input PrivateSwitchBase-input">
   ```
 
-### Tabela
+### Table
 
 - Rename the `default` value of the `padding` prop to `normal`.
 
@@ -1991,7 +1991,7 @@ As the core components use emotion as their style engine, the props used by emot
    />
   ```
 
-### Abas
+### Tabs
 
 - Change the default `indicatorColor` and `textColor` prop values to "primary". This is done to match the most common use cases with Material Design.
 
@@ -2203,7 +2203,7 @@ As the core components use emotion as their style engine, the props used by emot
   });
   ```
 
-### Tema
+### Theme
 
 - The default background color is now `#fff` in light mode and `#121212` in dark mode. This matches the Material Design guidelines.
 - Breakpoints are now treated as values instead of [ranges](https://v4.mui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above. `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive). When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up.
@@ -2571,7 +2571,7 @@ The following will not correctly apply the style to the delete icon:
 }
 ```
 
-## Resolução de problemas
+## Troubleshooting
 
 ### Storybook emotion with v5
 
