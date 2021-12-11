@@ -5,7 +5,7 @@ githubLabel: 'components: SvgIcon'
 materialDesign: https://material.io/design/iconography/system-icons.html
 ---
 
-# Icons 图标
+# Icons
 
 <p class="description">Guidance and suggestions for using icons with MUI.</p>
 
@@ -19,9 +19,9 @@ MUI provides icons support in three ways:
 
 Google has created over 1,900 official Material icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@mui/icons-material` package. 您可以 [搜索完整的图标列表](/components/material-icons/)。
 
-### 安装
+### Installation
 
-请在您的项目目录中用以下方式安装依赖包：
+Install the package in your project directory with:
 
 ```sh
 // 使用 npm 安装
@@ -36,10 +36,10 @@ These components use the MUI `SvgIcon` component to render the SVG path for each
 If you aren't already using MUI in your project, you can add it with:
 
 ```sh
-// 用 npm 安装
+// with npm
 npm install @mui/material
 
-// 用 yarn 安装
+// with yarn
 yarn add @mui/material
 ```
 
@@ -74,9 +74,9 @@ yarn add @mui/material
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
-### 测试
+### Testing
 
-For testing purposes, each icon exposed from `@mui/icons-material` has a `data-testid` attribute with the name of the icon. 就像这样：
+For testing purposes, each icon exposed from `@mui/icons-material` has a `data-testid` attribute with the name of the icon. For instance:
 
 ```jsx
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -106,15 +106,15 @@ function HomeIcon(props) {
 }
 ```
 
-### Color 颜色
+### Color
 
 {{"demo": "pages/components/icons/SvgIconsColor.js"}}
 
-### Size 大小
+### Size
 
 {{"demo": "pages/components/icons/SvgIconsSize.js"}}
 
-### 组件属性
+### Component prop
 
 即使图标以 `.svg` 的格式保存，你依然可以使用 `SvgIcon` 来包装它。 [svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. 譬如，使用 webpack ：
 
@@ -271,7 +271,7 @@ const theme = createTheme({
 
 更多详情，请查阅 [为什么 GitHub 将 font icons 迁移到 SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/)。
 
-## 无障碍设计
+## Accessibility
 
 图标可以传达各种有意义的信息，所以确保它们在适当的地方可以被无障碍访问是很重要的。 下面是两个你需要考虑到的用例：
 
