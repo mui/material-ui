@@ -2,19 +2,19 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": "The avatars to stack.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "max": "Max avatars to show before +x.",
     "spacing": "Spacing between avatars.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "total": "The total number of avatars. Used for calculating the number of extra avatars.",
-    "variant": "A variante a usar."
+    "variant": "The variant to use."
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "avatar": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the avatar elements"
     }
   }
