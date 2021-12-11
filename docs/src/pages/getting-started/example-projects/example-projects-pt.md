@@ -1,4 +1,4 @@
-# Projetos de exemplo
+# Example projects
 
 <p class="description">Uma seleção de projetos de exemplo para começar.</p>
 
@@ -29,7 +29,7 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
 
 - [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/relay-starter-kit):
 
-  - ![estrelas](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
+  - ![stars](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
   - GraphQL API project using code-first design (TypeScript, OAuth, GraphQL.js, Knex, Cloud SQL)
   - Web application project pre-configured with Webpack v5, TypeScript, React, Relay, Material UI
   - Serverless deployment: `api` -> Cloud Functions, `web` -> Cloudflare Workers
@@ -38,7 +38,7 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
 
 - [React Most Wanted](https://github.com/TarikHuber/react-most-wanted):
 
-  - ![estrelas](https://img.shields.io/github/stars/TarikHuber/react-most-wanted.svg?style=social&label=Star)
+  - ![stars](https://img.shields.io/github/stars/TarikHuber/react-most-wanted.svg?style=social&label=Star)
   - Criado com o Create React App
   - Script customizado de Create React App para iniciar um novo projeto com somente um único comando CLI
   - Construído para Firebase incluindo autenticação usando a oficial Firebase Web Auth UI
@@ -48,8 +48,8 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
 
 - [React SaaS Template](https://github.com/dunky11/react-saas-template):
 
-  - ![estrelas](https://img.shields.io/github/stars/dunky11/react-saas-template.svg?style=social&label=Star)
-  - Criado com o Create React App
+  - ![stars](https://img.shields.io/github/stars/dunky11/react-saas-template.svg?style=social&label=Star)
+  - Created with Create React App
   - Apresentando uma página inicial, um blog, uma área para login/registro e um painel de administração
   - Totalmente roteado usando react-router
   - De forma tardia, carrega componentes para aumentar o desempenho
@@ -57,15 +57,15 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
 
 - [Material Sense](https://github.com/alexanmtz/material-sense):
 
-  - ![estrelas](https://img.shields.io/github/stars/alexanmtz/material-sense.svg?style=social&label=Star)
+  - ![stars](https://img.shields.io/github/stars/alexanmtz/material-sense.svg?style=social&label=Star)
   - Gráfico usando recharts
   - React Router incluído com um exemplo de navegação
   - Um contêiner docker com um servidor Nginx para compilação de produção
-  - Criado com o Create React App
+  - Created with Create React App
 
 - [RMUIF](https://github.com/phoqe/rmuif):
 
-  - ![estrelas](https://img.shields.io/github/stars/rmuif/web.svg?style=social&label=Star)
+  - ![stars](https://img.shields.io/github/stars/rmuif/web.svg?style=social&label=Star)
   - Bootstrapped com Create React App, as mesmas ferramentas de trabalho de get-go
   - Construído sobre o Firebase com todos os seus produtos para a web incluído
   - Roteamento robusto com React Router, incluindo rotas protegidas e manipulação de erros
