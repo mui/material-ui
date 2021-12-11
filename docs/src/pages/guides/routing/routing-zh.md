@@ -56,7 +56,7 @@ Here are a few demos with [react-router](https://github.com/remix-run/react-rout
 
 {{"demo": "pages/guides/routing/LinkRouter.js"}}
 
-### Button 按钮
+### Button
 
 {{"demo": "pages/guides/routing/ButtonRouter.js"}}
 
@@ -68,11 +68,11 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 ));
 ```
 
-### Tabs 选项卡
+### Tabs
 
 {{"demo": "pages/guides/routing/TabsRouter.js", "defaultCodeOpen": false}}
 
-### Lists（列表）
+### List
 
 {{"demo": "pages/guides/routing/ListRouter.js"}}
 
