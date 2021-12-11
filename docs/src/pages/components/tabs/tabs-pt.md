@@ -88,9 +88,9 @@ Botões de rolagem da esquerda e direita nunca serão apresentados com `scrollBu
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
-## Customização
+## Customization
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 
@@ -124,11 +124,11 @@ By default, the icon is positioned at the `top` of a tab. Other supported positi
 
 {{"demo": "pages/components/tabs/IconPositionTabs.js"}}
 
-## Biblioteca de roteamento de terceiros
+## Third-party routing library
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Aqui está um [guia mais detalhado](/guides/routing/#tabs).
 
-## Acessibilidade
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
 
@@ -163,9 +163,9 @@ As duas demonstrações seguintes diferem apenas no seu comportamento de navega�
 
 ## Unstyled
 
-The Tabs also come with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+The Tabs also come with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
-### Componente sem estilo
+### Unstyled component
 
 ```js
 import TabsUnstyled from '@mui/base/TabsUnstyled';
@@ -176,7 +176,7 @@ import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 
 {{"demo": "pages/components/tabs/UnstyledTabsBasic.js"}}
 
-#### Customizando o elemento raiz
+#### Customizing the root element
 
 By default, the `TabUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `TabUnstyled` will take care of adding accessibility attributes.
 
