@@ -6,7 +6,7 @@
 
 本指南概述了自选择器 v3.2.10 版本依赖所改变的核心内容。
 
-## 安装
+## Installation
 
 You need to install the `@mui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above.
 
