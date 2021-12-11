@@ -265,13 +265,13 @@ function handleRender(req, res) {
 
 Há uma incompatibilidade de nome de classe entre o cliente e o servidor. Pode funcionar para a primeira requisição. Outro sintoma é que o estilo muda entre o carregamento inicial da página e o download dos scripts do cliente.
 
-#### Ação a tomar
+#### Action to Take
 
-O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). Este gerador precisa se comportar de forma idêntica no servidor e no cliente. Por exemplo:
+O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). Este gerador precisa se comportar de forma idêntica no servidor e no cliente. For instance:
 
 - Você precisa fornecer um novo gerador de nome de classe para cada requisição. Mas você não deve compartilhar um `createGenerateClassName()` entre diferentes requisições:
 
-  exemplo de correção:
+  Example of fix:
 
   ```diff
   - // Crie um novo gerador de nome de classe.
@@ -286,7 +286,7 @@ function handleRender(req, res) {
 
   // Renderize o componente para uma string.
 
-    // Renderize o componente para uma string.
+    // Render the component to a string.
     const html = ReactDOMServer.renderToString(
   ```
 
