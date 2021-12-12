@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Switch from '@mui/material/Switch';
 import Paper from '@mui/material/Paper';
@@ -11,7 +12,7 @@ const icon = (
       <Box
         component="polygon"
         sx={{
-          fill: (theme) => theme.palette.common.white,
+          fill: (theme: Theme) => theme.palette.common.white,
           stroke: (theme) => theme.palette.divider,
           strokeWidth: 1,
         }}

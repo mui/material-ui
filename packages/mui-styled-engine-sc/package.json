@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "5.0.3",
+  "version": "5.1.0",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
@@ -8,7 +8,7 @@
   "keywords": [
     "react",
     "react-component",
-    "material-ui",
+    "mui",
     "styled-components"
   ],
   "repository": {
@@ -23,7 +23,7 @@
   "homepage": "https://mui.com/guides/styled-engine/",
   "funding": {
     "type": "opencollective",
-    "url": "https://opencollective.com/material-ui"
+    "url": "https://opencollective.com/mui"
   },
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",

@@ -94,7 +94,7 @@
       "trackFalse": "MuiSlider-trackFalse",
       "trackInverted": "MuiSlider-trackInverted",
       "thumb": "MuiSlider-thumb",
-      "active": "MuiSlider-active",
+      "active": "Mui-active",
       "focusVisible": "Mui-focusVisible",
       "valueLabel": "MuiSlider-valueLabel",
       "valueLabelOpen": "MuiSlider-valueLabelOpen",
@@ -109,7 +109,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/mui-core/src/SliderUnstyled/SliderUnstyled.js",
+  "filename": "/packages/mui-base/src/SliderUnstyled/SliderUnstyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/slider/\">Slider</a></li></ul>",
   "cssComponent": false

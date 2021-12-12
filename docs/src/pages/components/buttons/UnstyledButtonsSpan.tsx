@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import ButtonUnstyled, {
   ButtonUnstyledProps,
   buttonUnstyledClasses,
-} from '@mui/core/ButtonUnstyled';
+} from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 
 const CustomButtonRoot = styled('span')`

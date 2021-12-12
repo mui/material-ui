@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { click, mouseDown, mouseUp } from './fireDiscreteEvent';
-import { act, fireEvent } from './createClientRender';
+import { act, fireEvent } from './createRenderer';
 
 export function touch(target: Element): void {
   fireEvent.touchStart(target);

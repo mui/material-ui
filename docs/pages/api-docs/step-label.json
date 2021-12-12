@@ -8,7 +8,12 @@
     "optional": { "type": { "name": "node" } },
     "StepIconComponent": { "type": { "name": "elementType" } },
     "StepIconProps": { "type": { "name": "object" } },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "StepLabel",
   "styles": {
@@ -25,7 +30,12 @@
       "alternativeLabel",
       "labelContainer"
     ],
-    "globalClasses": { "error": "Mui-error", "disabled": "Mui-disabled" },
+    "globalClasses": {
+      "active": "Mui-active",
+      "completed": "Mui-completed",
+      "error": "Mui-error",
+      "disabled": "Mui-disabled"
+    },
     "name": "MuiStepLabel"
   },
   "spread": true,

@@ -121,7 +121,7 @@ You can learn more about this in the [overrides documentation page](/customizati
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button/).
 
 ## Loading button
 
@@ -187,7 +187,7 @@ The button also comes with an unstyled version. It's ideal for doing heavy custo
 ### Unstyled component
 
 ```js
-import ButtonUnstyled from '@mui/core/ButtonUnstyled';
+import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 ```
 
 {{"demo": "pages/components/buttons/UnstyledButtonsSimple.js"}}
@@ -212,7 +212,7 @@ SVG elements, even with complex structure, are equally acceptable.
 ### useButton hook
 
 ```js
-import { useButton } from '@mui/core/ButtonUnstyled';
+import { useButton } from '@mui/base/ButtonUnstyled';
 ```
 
 If you need to use Button's functionality in another component, you can use the `useButton` hook.

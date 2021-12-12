@@ -17,7 +17,7 @@ A set of reusable components for design tools is available, designed to match th
 - [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-figma): A large UI kit with over 600 handcrafted MUI components.
 - [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-adobe-xd): A large UI kit with over 600 handcrafted MUI components.
 - [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch): A large UI kit with over 600 handcrafted MUI symbols.
-- [Framer](https://packages.framer.com/package/material-ui/material-ui): A small free UI kit of MUI components.
+- [UXPin](https://github.com/uxpin-merge/material-ui-5-merge): A large UI kit of MUI components. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.
 
 ## Images and illustrations
 
@@ -41,7 +41,7 @@ This is a collection of third-party projects that extend MUI.
 
 ### Layout
 
-- [@mui-treasury/layout](https://mui-treasury.com/layout): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs).
+- [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs/).
 
 ### Notification
 
@@ -54,7 +54,7 @@ This is a collection of third-party projects that extend MUI.
 ### Form
 
 - [react-hook-form](https://react-hook-form.com/): React hook for form validation.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui): Bindings for using MUI with [formik](https://jaredpalmer.com/formik).
+- [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
 - [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using MUI with [UI Schema](https://github.com/ui-schema/ui-schema), JSON Schema compatible
@@ -94,6 +94,5 @@ This is a collection of third-party projects that extend MUI.
 
 ## Theming
 
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): An online tool for creating MUI themes via Material Design Color Tool.
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your MUI applications by just selecting the colors and having a live preview.
 - [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.

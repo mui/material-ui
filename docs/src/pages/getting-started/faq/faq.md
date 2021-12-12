@@ -12,14 +12,14 @@ There are many ways to support MUI:
   Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
-  [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
+  [StackOverflow](https://stackoverflow.com/questions/tagged/mui).
 - **Make changes happen**.
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
   - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
   - Help [translate](https://translate.mui.com) the documentation.
   - [Improve our documentation](https://github.com/mui-org/material-ui/tree/next/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
-- **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**.
+- **Support us financially on [OpenCollective](https://opencollective.com/mui)**.
   If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective.
   All funds donated are managed transparently, and Sponsors receive recognition in the README and on the MUI home page.
 
@@ -203,7 +203,7 @@ If you are using webpack, you can change the way it will [resolve](https://webpa
 
 ### Usage with Lerna
 
-One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
+One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
 
 ```sh
 lerna bootstrap --hoist
@@ -443,3 +443,7 @@ return (
   />
 );
 ```
+
+## I cannot use components as selectors in the styled() utility. What should I do?
+
+If you are getting the error: `TypeError: Cannot convert a Symbol value to a string`, take a look at the [styled()](/system/styled/#how-to-use-components-selector-api) docs page for instructions on how you can fix this.

@@ -66,6 +66,55 @@ authors: ['foo', 'bar']
         authors: ['foo', 'bar'],
       });
     });
+
+    it('should work with authors broken in two lines', () => {
+      expect(
+        getHeaders(`
+---
+title: React Alert component
+components: Alert, AlertTitle
+githubLabel: 'component: Alert'
+packageName: '@mui/lab'
+waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
+authors:
+  ['foo', 'bar']
+---
+`),
+      ).to.deep.equal({
+        components: ['Alert', 'AlertTitle'],
+        githubLabel: 'component: Alert',
+        packageName: '@mui/lab',
+        title: 'React Alert component',
+        waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
+        authors: ['foo', 'bar'],
+      });
+    });
+
+    it('should work with one author per line', () => {
+      expect(
+        getHeaders(`
+---
+title: React Alert component
+components: Alert, AlertTitle
+githubLabel: 'component: Alert'
+packageName: '@mui/lab'
+waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
+authors:
+  [
+    'foo',
+    'bar',
+  ]
+---
+    `),
+      ).to.deep.equal({
+        components: ['Alert', 'AlertTitle'],
+        githubLabel: 'component: Alert',
+        packageName: '@mui/lab',
+        title: 'React Alert component',
+        waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
+        authors: ['foo', 'bar'],
+      });
+    });
   });
 
   describe('getContents', () => {

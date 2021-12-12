@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '@mui/material/styles';
+import { Theme } from '../styles';
 import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListItemClasses } from './listItemClasses';
 
 export interface ListItemComponentsPropsOverrides {}
 
-interface ListItemBaseProps {
+export interface ListItemBaseProps {
   /**
    * Defines the `align-items` style property.
    * @default 'center'

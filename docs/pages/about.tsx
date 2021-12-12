@@ -28,6 +28,7 @@ import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
 import BrandingProvider from 'docs/src/BrandingProvider';
+import SurveyBanner from 'docs/src/components/home/SurveyBanner';
 
 interface Profile {
   /**
@@ -42,7 +43,7 @@ interface Profile {
   /**
    * Where are you from?
    */
-  country: string; // https://www.countryflags.io/
+  country: string; // https://flagpedia.net/download/api
   /**
    * Lives in
    */
@@ -86,7 +87,13 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
                 src: `${props.src}?s=70`,
                 srcSet: `${props.src}?s=140 2x`,
               })}
-              sx={{ width: 70, height: 70, bgcolor: 'primaryDark.800', borderRadius: 1 }}
+              sx={{
+                width: 70,
+                height: 70,
+                backgroundColor: (theme) =>
+                  theme.palette.mode === 'dark' ? 'primary.700' : 'primary.100',
+                borderRadius: 1,
+              }}
             />
             <Box
               sx={{
@@ -98,24 +105,17 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
                 width: 24,
                 height: 24,
                 border: '2px solid #fff',
+                backgroundColor: '#fff',
                 borderRadius: 40,
                 overflow: 'hidden',
-                '& > img': {
-                  width: 32,
-                  height: 32,
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  transform: 'translate(-6px, -6px)',
-                },
+                display: 'flex',
+                justifyContent: 'center',
               }}
             >
               <img
                 loading="lazy"
-                width="32"
-                height="32"
-                src={`https://www.countryflags.io/${props.country}/flat/32.png`}
-                srcSet={`https://www.countryflags.io/${props.country}/flat/64.png 2x`}
+                height="20"
+                src={`https://flagcdn.com/${props.country}.svg`}
                 alt=""
               />
             </Box>
@@ -195,7 +195,7 @@ const Widget = ({
 
 const teamMembers: Array<Profile> = [
   {
-    src: '/static/branding/about/olivier.jpg',
+    src: '/static/branding/about/olivier.png',
     name: 'Olivier Tassinari',
     title: 'Co-founder',
     location: 'Paris, France',
@@ -206,7 +206,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Matt Brookes',
-    src: '/static/branding/about/matt.jpg',
+    src: '/static/branding/about/matt.png',
     title: 'Co-founder',
     location: 'London, UK',
     country: 'gb',
@@ -216,7 +216,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Sebastian Silbermann',
-    src: '/static/branding/about/sebastian.jpg',
+    src: '/static/branding/about/sebastian.png',
     title: 'Core components team',
     location: 'Dresden, Germany',
     country: 'de',
@@ -226,7 +226,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Marija Najdova',
-    src: '/static/branding/about/marija.jpg',
+    src: '/static/branding/about/marija.png',
     title: 'Core components team',
     location: 'Skopje, North Macedonia',
     country: 'mk',
@@ -236,7 +236,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Danail Hadjiatanasov',
-    src: '/static/branding/about/danail.jpg',
+    src: '/static/branding/about/danail.png',
     title: 'Advanced components team',
     location: 'Amsterdam, Netherlands',
     country: 'nl',
@@ -246,7 +246,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Matheus Wichman',
-    src: '/static/branding/about/matheus.jpg',
+    src: '/static/branding/about/matheus.png',
     title: 'Advanced components team',
     location: 'Esteio, Brazil',
     country: 'br',
@@ -255,7 +255,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Michał Dudak',
-    src: '/static/branding/about/michal.jpg',
+    src: '/static/branding/about/michal.png',
     title: 'Core components team',
     location: 'Silesia, Poland',
     country: 'pl',
@@ -265,7 +265,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Siriwat Kunaporn',
-    src: '/static/branding/about/siriwat.jpg',
+    src: '/static/branding/about/siriwat.png',
     title: 'Core components team',
     location: 'Bangkok, Thailand',
     country: 'th',
@@ -275,7 +275,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Danilo Leal',
-    src: '/static/branding/about/danilo.jpg',
+    src: '/static/branding/about/danilo.png',
     title: 'Design Lead',
     location: 'São Paulo, Brazil',
     country: 'br',
@@ -285,7 +285,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Flavien Delangle',
-    src: '/static/branding/about/flavien.jpg',
+    src: '/static/branding/about/flavien.png',
     title: 'Advanced components team',
     location: 'Lille, France',
     about: 'Love cycling 🚴‍♂️ and reading 📚',
@@ -294,7 +294,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Benny Joo',
-    src: '/static/branding/about/benny.jpg',
+    src: '/static/branding/about/benny.png',
     title: 'Core components team',
     location: 'London, UK',
     country: 'kr',
@@ -302,7 +302,7 @@ const teamMembers: Array<Profile> = [
     github: 'hbjORbj',
   },
   {
-    src: '/static/branding/about/alexandre.jpg',
+    src: '/static/branding/about/alexandre.png',
     name: 'Alexandre Fauquette',
     title: 'Advanced components team',
     location: 'Nancy, France',
@@ -310,6 +310,34 @@ const teamMembers: Array<Profile> = [
     about: 'Love hacking and cycling 🚴‍♂️',
     twitter: 'AleFauquette',
     github: 'alexfauquette',
+  },
+  {
+    src: '/static/branding/about/bharat.png',
+    name: 'Bharat Kashyap',
+    title: 'Studio team',
+    location: 'New Delhi, India',
+    country: 'in',
+    about: 'Trains 🚅 , architecture 🏛️ , and psychology 🧠 ',
+    twitter: 'bharattttttt',
+    github: 'bharatkashyap',
+  },
+  {
+    src: '/static/branding/about/jan.png',
+    name: 'Jan Potoms',
+    title: 'Studio team',
+    location: 'Brussels, Belgium',
+    country: 'be',
+    about: 'Always curious, I enjoy cinema, and hiking',
+    github: 'janpot',
+  },
+  {
+    src: '/static/branding/about/prakhar.png',
+    name: 'Prakhar Gupta',
+    title: 'Studio team',
+    location: 'New Delhi, India',
+    country: 'in',
+    about: 'Into sports and hiking!',
+    twitter: 'gprakhar123',
   },
 ];
 
@@ -674,10 +702,7 @@ function AboutContent() {
                 </li>
                 <li>
                   Answer questions on{' '}
-                  <Link href="https://stackoverflow.com/questions/tagged/material-ui">
-                    StackOverflow
-                  </Link>
-                  .
+                  <Link href="https://stackoverflow.com/questions/tagged/mui">StackOverflow</Link>.
                 </li>
               </Box>
               <Link href="https://github.com/mui-org/material-ui" variant="body2">
@@ -688,7 +713,7 @@ function AboutContent() {
           <Grid item xs={12} sm={6} md={4}>
             <Widget
               icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />}
-              title="Suport us financially"
+              title="Support us financially"
             >
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 If you use MUI in a commercial project and would like to support its continued
@@ -699,7 +724,7 @@ function AboutContent() {
                 All funds donated are managed transparently, and Sponsors receive recognition in the
                 README and on the MUI home page.
               </Typography>
-              <Link href="https://opencollective.com/material-ui" variant="body2">
+              <Link href="https://opencollective.com/mui" variant="body2">
                 See Open Collective{' '}
                 <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
               </Link>
@@ -720,6 +745,7 @@ export default function About() {
         title="About us - MUI"
         description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
       />
+      <SurveyBanner />
       <AppHeader />
       <main>
         <AboutContent />

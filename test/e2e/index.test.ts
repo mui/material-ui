@@ -61,7 +61,7 @@ async function attemptGoto(page: playwright.Page, url: string): Promise<boolean>
 }
 
 describe('e2e', () => {
-  const baseUrl = 'http://localhost:5000';
+  const baseUrl = 'http://localhost:3000';
   let browser: playwright.Browser;
   let page: playwright.Page;
   const screen: PlaywrightScreen = {

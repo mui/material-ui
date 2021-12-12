@@ -63,7 +63,7 @@ const StoreTemplateLink = React.forwardRef<
   return (
     <Anchor
       ref={ref}
-      aria-label="Goto MUI store"
+      aria-label="Go to MUI Store"
       href={linkMapping[brand]}
       target="_blank"
       {...props}

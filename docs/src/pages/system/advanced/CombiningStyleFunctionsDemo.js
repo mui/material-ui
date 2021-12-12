@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { palette, spacing } from '@mui/system';
-import NoSsr from '@mui/core/NoSsr';
+import NoSsr from '@mui/base/NoSsr';
 
 const Div = styled.div`
   ${palette}

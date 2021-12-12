@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NoSsr from '@mui/core/NoSsr';
+import NoSsr from '@mui/base/NoSsr';
 import Slider from '@mui/material/Slider';
 
 const data = {

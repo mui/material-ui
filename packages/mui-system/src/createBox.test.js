@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import { createBox, ThemeProvider } from '@mui/system';
 
 describe('createBox', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should work', () => {
     const Box = createBox();
@@ -29,5 +29,29 @@ describe('createBox', () => {
       </ThemeProvider>,
     );
     expect(container.firstChild).toHaveComputedStyle({ color: 'rgb(0, 255, 0)' });
+  });
+
+  it('able to customize default className', () => {
+    const Box = createBox({ defaultClassName: 'FooBarBox' });
+
+    const { container } = render(<Box />);
+    expect(container.firstChild).to.have.class('FooBarBox');
+  });
+
+  it('use generateClassName if provided', () => {
+    const Box = createBox({ generateClassName: () => 'CustomBox-root' });
+
+    const { container } = render(<Box />);
+    expect(container.firstChild).to.have.class('CustomBox-root');
+  });
+
+  it('generateClassName should receive defaultClassName if provided', () => {
+    const Box = createBox({
+      defaultClassName: 'FooBarBox',
+      generateClassName: (name) => name.replace('FooBar', ''),
+    });
+
+    const { container } = render(<Box />);
+    expect(container.firstChild).to.have.class('Box');
   });
 });

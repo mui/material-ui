@@ -10,7 +10,7 @@ export type GridSpacing = number | string;
 
 export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
-export type GridSize = 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export type GridSize = 'auto' | number;
 
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
@@ -52,14 +52,22 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       item?: boolean;
       /**
-       * Defines the number of grids the component is going to use.
-       * It's applied for the `lg` breakpoint and wider screens if not overridden.
+       * If a number, it sets the number of columns the grid item uses.
+       * It can't be greater than the total number of columns of the container (12 by default).
+       * If 'auto', the grid item's width matches its content.
+       * If false, the prop is ignored.
+       * If true, the grid item's width grows to use the space available in the grid container.
+       * The value is applied for the `lg` breakpoint and wider screens if not overridden.
        * @default false
        */
       lg?: boolean | GridSize;
       /**
-       * Defines the number of grids the component is going to use.
-       * It's applied for the `md` breakpoint and wider screens if not overridden.
+       * If a number, it sets the number of columns the grid item uses.
+       * It can't be greater than the total number of columns of the container (12 by default).
+       * If 'auto', the grid item's width matches its content.
+       * If false, the prop is ignored.
+       * If true, the grid item's width grows to use the space available in the grid container.
+       * The value is applied for the `md` breakpoint and wider screens if not overridden.
        * @default false
        */
       md?: boolean | GridSize;
@@ -69,8 +77,12 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       rowSpacing?: ResponsiveStyleValue<GridSpacing>;
       /**
-       * Defines the number of grids the component is going to use.
-       * It's applied for the `sm` breakpoint and wider screens if not overridden.
+       * If a number, it sets the number of columns the grid item uses.
+       * It can't be greater than the total number of columns of the container (12 by default).
+       * If 'auto', the grid item's width matches its content.
+       * If false, the prop is ignored.
+       * If true, the grid item's width grows to use the space available in the grid container.
+       * The value is applied for the `sm` breakpoint and wider screens if not overridden.
        * @default false
        */
       sm?: boolean | GridSize;
@@ -91,14 +103,22 @@ export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       wrap?: GridWrap;
       /**
-       * Defines the number of grids the component is going to use.
-       * It's applied for the `xl` breakpoint and wider screens.
+       * If a number, it sets the number of columns the grid item uses.
+       * It can't be greater than the total number of columns of the container (12 by default).
+       * If 'auto', the grid item's width matches its content.
+       * If false, the prop is ignored.
+       * If true, the grid item's width grows to use the space available in the grid container.
+       * The value is applied for the `xl` breakpoint and wider screens if not overridden.
        * @default false
        */
       xl?: boolean | GridSize;
       /**
-       * Defines the number of grids the component is going to use.
-       * It's applied for all the screen sizes with the lowest priority.
+       * If a number, it sets the number of columns the grid item uses.
+       * It can't be greater than the total number of columns of the container (12 by default).
+       * If 'auto', the grid item's width matches its content.
+       * If false, the prop is ignored.
+       * If true, the grid item's width grows to use the space available in the grid container.
+       * The value is applied for all the screen sizes with the lowest priority.
        * @default false
        */
       xs?: boolean | GridSize;

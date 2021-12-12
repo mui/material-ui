@@ -61,7 +61,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/mui-core/src/BadgeUnstyled/BadgeUnstyled.js",
+  "filename": "/packages/mui-base/src/BadgeUnstyled/BadgeUnstyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/badges/\">Badges</a></li></ul>",
   "cssComponent": false

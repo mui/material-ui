@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Typography, { typographyClasses } from '@mui/material/Typography';
 import ListItemText, { listItemTextClasses as classes } from '@mui/material/ListItemText';
 
 describe('<ListItemText />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<ListItemText>Conformance?</ListItemText>, () => ({
     classes,

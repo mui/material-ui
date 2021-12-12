@@ -25,6 +25,14 @@ export type IconImageProps = {
     | 'boeing'
     | 'siemens'
     | 'deloitte'
+    | 'apple'
+    | 'twitter'
+    | 'salesforce'
+    | 'verizon'
+    | 'atandt'
+    | 'patreon'
+    | 'ebay'
+    | 'samsung'
     | 'volvo';
   sx?: SxProps<Theme>;
   ref?: React.Ref<HTMLImageElement>;
@@ -33,7 +41,8 @@ export type IconImageProps = {
 
 const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 
-export default function IconImage({ name, title, ...props }: IconImageProps) {
+export default function IconImage(props: IconImageProps) {
+  const { name, title, ...other } = props;
   const theme = useTheme();
   let width = '';
   let height = '';
@@ -66,7 +75,15 @@ export default function IconImage({ name, title, ...props }: IconImageProps) {
       'boeing',
       'siemens',
       'deloitte',
+      'apple',
+      'twitter',
+      'salesforce',
       'volvo',
+      'verizon',
+      'atandt',
+      'patreon',
+      'ebay',
+      'samsung',
     ].indexOf(name) !== -1
   ) {
     category = 'companies/';
@@ -78,7 +95,7 @@ export default function IconImage({ name, title, ...props }: IconImageProps) {
       loading="lazy"
       width={width}
       height={height}
-      {...props}
+      {...other}
     />
   );
   if (!title) {

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import TabPanel, { tabPanelClasses as classes } from '@mui/lab/TabPanel';
 import TabContext from '../TabContext';
 
 describe('<TabPanel />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<TabPanel value="0" />, () => ({
     classes,

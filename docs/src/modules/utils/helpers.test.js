@@ -19,7 +19,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
-import SliderUnstyled from '@mui/core/SliderUnstyled';
+import SliderUnstyled from '@mui/base/SliderUnstyled';
 import FooBar, { Qux } from '@foo-bar/bip';
 const styles = theme => ({
   container: {
@@ -37,7 +37,7 @@ const styles = theme => ({
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@mui/material': 'latest',
-      '@mui/core': 'latest',
+      '@mui/base': 'latest',
       'prop-types': 'latest',
     });
   });
@@ -101,7 +101,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@mui/material': 'latest',
-      '@mui/core': 'latest',
+      '@mui/base': 'latest',
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
       '@types/react-dom': 'latest',
@@ -149,9 +149,9 @@ import lab from '@mui/lab';
 
   it('can use codesandbox deploys if a commit is given', () => {
     const source = `
-import * as Core from '@mui/material';
-import * as Unstyled from '@mui/core';
-import * as Icons from '@mui/icons-material';
+import * as Material from '@mui/material';
+import * as Base from '@mui/base';
+import * as IconsMaterial from '@mui/icons-material';
 import * as Lab from '@mui/lab';
 import * as Styles from '@mui/styles';
 import * as System from '@mui/system';
@@ -172,7 +172,7 @@ import * as Utils from '@mui/utils';
       '@mui/styles': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/styles',
       '@mui/system': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/system',
       '@mui/utils': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/utils',
-      '@mui/core': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/core',
+      '@mui/base': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/base',
     });
   });
 

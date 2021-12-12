@@ -1,13 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { internal_resolveProps as resolveProps } from '@mui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, classes } = ownerState;
@@ -278,11 +280,15 @@ const ButtonEndIcon = styled('span', {
 }));
 
 const Button = React.forwardRef(function Button(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiButton' });
+  // props priority: `inProps` > `contextProps` > `themeDefaultProps`
+  const contextProps = React.useContext(ButtonGroupContext);
+  const resolvedProps = resolveProps(contextProps, inProps);
+  const props = useThemeProps({ props: resolvedProps, name: 'MuiButton' });
   const {
     children,
     color = 'primary',
     component = 'button',
+    className,
     disabled = false,
     disableElevation = false,
     disableFocusRipple = false,
@@ -326,6 +332,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       ownerState={ownerState}
+      className={clsx(className, contextProps.className)}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
@@ -355,6 +362,10 @@ Button.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
@@ -425,7 +436,11 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * @ignore
    */

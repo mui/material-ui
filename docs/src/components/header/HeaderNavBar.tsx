@@ -290,7 +290,7 @@ export default function HeaderNavBar() {
                           role="menuitem"
                           href={ROUTES.productDesignKits}
                           icon={<IconImage name="product-designkits" />}
-                          name="Design Kits"
+                          name="Design kits"
                           description="Our components available in your favorite design tool."
                           onKeyDown={handleKeyDown}
                         />

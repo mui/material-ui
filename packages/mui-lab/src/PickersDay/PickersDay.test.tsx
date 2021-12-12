@@ -3,10 +3,14 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, fireEvent, screen } from 'test/utils';
 import PickersDay, { pickersDayClasses as classes } from '@mui/lab/PickersDay';
-import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
+import {
+  adapterToUse,
+  wrapPickerMount,
+  createPickerRenderer,
+} from '../internal/pickers/test-utils';
 
 describe('<PickersDay />', () => {
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   describeConformance(
     <PickersDay

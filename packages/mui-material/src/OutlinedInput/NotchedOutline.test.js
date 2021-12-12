@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import NotchedOutline from './NotchedOutline';
 
 describe('<NotchedOutline />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   const defaultProps = {
     notched: true,

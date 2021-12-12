@@ -2,7 +2,7 @@
 
 <p class="description">使用 box-shadow 工具集为元素添加或删除阴影。</p>
 
-## 示例
+## Example
 
 该工具可以让你控制两平面之间沿 z 轴方向的相对深度，或者说距离。 默认情况下的高度为25。
 
@@ -17,20 +17,14 @@
 <Box sx={{ boxShadow: 1 }}>…
 <Box sx={{ boxShadow: 2 }}>…
 <Box sx={{ boxShadow: 3 }}>…
-<Box sx={{ boxShadow: 1 }}>…
-<Box sx={{ boxShadow: 2 }}>…
-<Box sx={{ boxShadow: 3 }}>…
-<Box sx={{ boxShadow: 1 }}>…
-<Box sx={{ boxShadow: 2 }}>…
-<Box sx={{ boxShadow: 3 }}>…
 ```
 
 ## API
 
 ```js
-import { shadows } from '@material-ui/system';
+import { shadows } from '@mui/system';
 ```
 
-| 导入名称        | 属性          | CSS 属性       | Theme key |
+| Import name | Prop        | CSS property | Theme key |
 |:----------- |:----------- |:------------ |:--------- |
 | `boxShadow` | `boxShadow` | `box-shadow` | `shadows` |

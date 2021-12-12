@@ -114,7 +114,7 @@ function getDefaultValuesFromProps(properties, documentation, importer) {
 
   // Sometimes we list props in .propTypes even though they're implemented by another component
   // These props are spread so they won't appear in the component implementation.
-  Object.entries(documentedProps).forEach(([propName, propDescriptor]) => {
+  Object.entries(documentedProps || []).forEach(([propName, propDescriptor]) => {
     if (propDescriptor.description === undefined) {
       // private props have no propsType validator and therefore
       // not description.

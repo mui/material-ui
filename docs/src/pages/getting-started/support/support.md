@@ -6,14 +6,16 @@
 
 The community is your first stop for questions and advice about the framework. Welcome to the community!
 
-### StackOverflow <img src="/static/images/logos/stackoverflow.svg" width="24" height="24" alt="StackOverflow logo" loading="lazy" />
+### StackOverflow
 
 For crowdsourced answers from expert MUI developers in our community.
-StackOverflow is also frequented, from time to time, by the maintainers of MUI.
+StackOverflow is also visited from time to time by the maintainers of MUI.
 
-[Post a question](https://stackoverflow.com/questions/tagged/material-ui)
+[Post a question](https://stackoverflow.com/questions/tagged/mui)
 
-### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
+> 💡 **Tip**: If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+
+### GitHub
 
 MUI uses GitHub issues as a bug and feature request tracker.
 If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
@@ -34,7 +36,7 @@ If you think you have found a bug, or have a new feature idea, please start by m
 
 Stay up to date with the development of the library by following the blog.
 
-[Read the latest posts](https://medium.com/material-ui/)
+[Read the latest posts](https://medium.com/material-ui)
 
 ### Resources 📖
 
@@ -42,7 +44,7 @@ New to MUI? It's easy to learn if you know where to start!
 
 [Learn MUI](/getting-started/learn/)
 
-### Twitter <img src="/static/images/logos/twitter.svg" width="24" height="24" alt="Twitter logo" loading="lazy" />
+### Twitter
 
 Receive the latest news on MUI.
 
@@ -82,7 +84,7 @@ however no SLAs are provided.
 
 The Premium plan goes one step further by providing SLAs on the quality of the support.
 
-### Tidelift subscription <img src="/static/images/logos/tidelift.svg" width="24" height="24" alt="Tidelift logo" loading="lazy" />
+### Tidelift subscription
 
 MUI and the maintainers of thousands of other packages are working with Tidelift to deliver one enterprise subscription that covers all of the open-source you use.
 

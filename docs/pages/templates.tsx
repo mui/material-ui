@@ -9,6 +9,8 @@ import TemplateDemo from 'docs/src/components/productTemplate/TemplateDemo';
 import Testimonials from 'docs/src/components/home/Testimonials';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import BrandingProvider from 'docs/src/BrandingProvider';
+import References, { TEMPLATES_CUSTOMERS } from 'docs/src/components/home/References';
+import SurveyBanner from 'docs/src/components/home/SurveyBanner';
 
 export default function Templates() {
   return (
@@ -18,9 +20,11 @@ export default function Templates() {
         description="A collection of 4.5 average rating templates, selected and curated by MUI's team of maintainers to get your projects up and running today."
         card="/static/social-previews/templates-preview.jpg"
       />
+      <SurveyBanner />
       <AppHeader />
       <main>
         <TemplateHero />
+        <References companies={TEMPLATES_CUSTOMERS} />
         <ValueProposition />
         <TemplateDemo />
         <Testimonials />

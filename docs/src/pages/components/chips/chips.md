@@ -32,19 +32,19 @@ You can use the following actions.
 
 ### Clickable
 
-{{"demo": "pages/components/chips/ClickeableChips.js"}}
+{{"demo": "pages/components/chips/ClickableChips.js"}}
 
 ### Deletable
 
-{{"demo": "pages/components/chips/DeleteableChips.js"}}
+{{"demo": "pages/components/chips/DeletableChips.js"}}
 
 ### Clickable and deletable
 
-{{"demo": "pages/components/chips/ClickeableAndDeleteableChips.js"}}
+{{"demo": "pages/components/chips/ClickableAndDeletableChips.js"}}
 
 ### Clickable link
 
-{{"demo": "pages/components/chips/ClickeableLinkChips.js"}}
+{{"demo": "pages/components/chips/ClickableLinkChips.js"}}
 
 ### Custom delete icon
 

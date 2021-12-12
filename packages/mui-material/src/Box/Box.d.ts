@@ -20,7 +20,15 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * API:
  *
- * - [Box API](https://mui.com/api/box/)
+ * - [Box API](https://mui.com/components/box/#api)
+ * NOTE - As a CSS utility component, Box also supports all system props.
+ * You can use them as props directly on the component.
+ * Props use same syntax as `sx`. Not all props are listed in the API section.
+ *
+ * Example:
+ *
+ * // For instance, a Box with margin-top:
+ * <Box mt={2}>
  */
 declare const Box: OverridableComponent<BoxTypeMap>;
 
@@ -37,6 +45,14 @@ export type BoxProps<
  *
  * API:
  *
- * - [Box API](https://mui.com/api/box/)
+ * - [Box API](https://mui.com/components/box/#api)
+ * NOTE - As a CSS utility component, Box also supports all system props.
+ * You can use them as props directly on the component.
+ * Props use same syntax as `sx`. Not all props are listed in the API section.
+ *
+ * Example:
+ *
+ * // For instance, a Box with margin-top:
+ * <Box mt={2}>
  */
 export default Box;

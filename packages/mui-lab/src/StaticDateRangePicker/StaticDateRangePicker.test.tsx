@@ -1,11 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { isWeekend } from 'date-fns';
-import { useFakeTimers } from 'sinon';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
 import { describeConformance, screen } from 'test/utils';
-import { wrapPickerMount, createPickerRender, adapterToUse } from '../internal/pickers/test-utils';
+import {
+  wrapPickerMount,
+  createPickerRenderer,
+  adapterToUse,
+} from '../internal/pickers/test-utils';
 
 const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextFieldProps) => (
   <React.Fragment>
@@ -15,15 +18,7 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
 );
 
 describe('<StaticDateRangePicker />', () => {
-  let clock: ReturnType<typeof useFakeTimers>;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const render = createPickerRender();
+  const { render } = createPickerRenderer({ clock: 'fake' });
 
   describeConformance(
     <StaticDateRangePicker

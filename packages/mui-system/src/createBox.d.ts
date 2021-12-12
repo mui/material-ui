@@ -1,3 +1,7 @@
-import * as React from 'react';
+import Box from './Box';
 
-export default function createBox(options?: { defaultTheme: object }): React.ElementType;
+export default function createBox(options?: {
+  defaultTheme: object;
+  defaultClassName?: string;
+  generateClassName?: (componentName: string) => string;
+}): typeof Box;

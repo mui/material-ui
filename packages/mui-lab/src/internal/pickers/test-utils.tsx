@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { parseISO } from 'date-fns';
-import { createClientRender, fireEvent, screen } from 'test/utils';
+import { createRenderer, fireEvent, screen } from 'test/utils';
 import { TransitionProps } from '@mui/material/transitions';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -40,7 +40,9 @@ export const FakeTransitionComponent = React.forwardRef<HTMLDivElement, Transiti
   },
 );
 
-interface PickerRenderOptions {
+type CreateRenderOptions = import('test/utils').CreateRendererOptions;
+
+interface CreatePickerRendererOptions extends CreateRenderOptions {
   // object for date-fns, string for other adapters
   locale?: string | object;
 }
@@ -50,11 +52,11 @@ export function wrapPickerMount(mount: (node: React.ReactNode) => import('enzyme
     mount(<LocalizationProvider dateAdapter={AdapterClassToUse}>{node}</LocalizationProvider>);
 }
 
-export function createPickerRender({
+export function createPickerRenderer({
   locale,
-  ...renderOptions
-}: PickerRenderOptions & import('test/utils').RenderOptions = {}) {
-  const clientRender = createClientRender(renderOptions);
+  ...createRendererOptions
+}: CreatePickerRendererOptions = {}) {
+  const { clock, render: clientRender } = createRenderer(createRendererOptions);
 
   function Wrapper({ children }: { children?: React.ReactNode }) {
     return (
@@ -64,10 +66,15 @@ export function createPickerRender({
     );
   }
 
-  return (
-    node: React.ReactElement,
-    options?: Omit<import('test/utils').RenderOptions, 'wrapper'>,
-  ) => clientRender(node, { ...options, wrapper: Wrapper });
+  return {
+    clock,
+    render(
+      node: React.ReactElement,
+      options?: Omit<import('test/utils').RenderOptions, 'wrapper'>,
+    ) {
+      return clientRender(node, { ...options, wrapper: Wrapper });
+    },
+  };
 }
 
 export function openMobilePicker() {

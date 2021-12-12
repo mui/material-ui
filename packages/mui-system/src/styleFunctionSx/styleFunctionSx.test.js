@@ -112,6 +112,16 @@ describe('styleFunctionSx', () => {
         },
       });
     });
+
+    it('allow values to be `null` or `undefined`', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: { typography: null, m: 0, p: null, transform: null },
+      });
+      expect(result).to.deep.equal({
+        margin: '0px',
+      });
+    });
   });
 
   it('resolves non system CSS properties if specified', () => {
@@ -307,6 +317,77 @@ describe('styleFunctionSx', () => {
         fontWeight: 400,
         lineHeight: 1.5,
       });
+    });
+  });
+
+  describe('`sx` of array type', () => {
+    it('resolves system props', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: [
+          {
+            bgcolor: 'background.paper',
+            boxShadow: 1,
+            borderRadius: 1,
+            p: 2,
+            minWidth: 300,
+          },
+          {
+            bgcolor: 'primary.main',
+          },
+        ],
+      });
+      expect(result).to.deep.equal([
+        {
+          backgroundColor: 'background.paper',
+          borderRadius: 4,
+          boxShadow: 1,
+          minWidth: 300,
+          padding: '20px',
+        },
+        {
+          backgroundColor: 'rgb(0, 0, 255)',
+        },
+      ]);
+    });
+
+    it('works with function inside array', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: [
+          { bgcolor: 'primary.main' },
+          (t) => ({
+            borderRadius: t.spacing(1),
+          }),
+        ],
+      });
+
+      expect(result).to.deep.equal([
+        { backgroundColor: 'rgb(0, 0, 255)' },
+        { borderRadius: '10px' },
+      ]);
+    });
+
+    it('works with media query syntax', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: [{ border: [1, 2, 3, 4, 5] }, { m: [1, 2, 3], p: [5, 6, 7] }],
+      });
+
+      expect(result).to.deep.equal([
+        {
+          '@media (min-width:0px)': { border: '1px solid' },
+          '@media (min-width:600px)': { border: '2px solid' },
+          '@media (min-width:960px)': { border: '3px solid' },
+          '@media (min-width:1280px)': { border: '4px solid' },
+          '@media (min-width:1920px)': { border: '5px solid' },
+        },
+        {
+          '@media (min-width:0px)': { padding: '50px', margin: '10px' },
+          '@media (min-width:600px)': { padding: '60px', margin: '20px' },
+          '@media (min-width:960px)': { padding: '70px', margin: '30px' },
+        },
+      ]);
     });
   });
 });

@@ -9,12 +9,17 @@
     },
     "hideSortIcon": { "type": { "name": "bool" } },
     "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDownwardIcon" },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } }
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
   },
   "name": "TableSortLabel",
   "styles": {
     "classes": ["root", "active", "icon", "iconDirectionDesc", "iconDirectionAsc"],
-    "globalClasses": {},
+    "globalClasses": { "active": "Mui-active" },
     "name": "MuiTableSortLabel"
   },
   "spread": true,

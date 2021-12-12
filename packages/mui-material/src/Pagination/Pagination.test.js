@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createClientRender } from 'test/utils';
+import { describeConformance, createRenderer } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Pagination, { paginationClasses as classes } from '@mui/material/Pagination';
 import { paginationItemClasses } from '@mui/material/PaginationItem';
 
 describe('<Pagination />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Pagination />, () => ({
     classes,

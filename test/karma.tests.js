@@ -35,7 +35,7 @@ styledEngineSCContext.keys().forEach(styledEngineSCContext);
 const systemContext = require.context('../packages/mui-system/src/', true, /\.test\.(js|ts|tsx)$/);
 systemContext.keys().forEach(systemContext);
 
-const coreContext = require.context('../packages/mui-core/src/', true, /\.test\.(js|ts|tsx)$/);
+const coreContext = require.context('../packages/mui-base/src/', true, /\.test\.(js|ts|tsx)$/);
 coreContext.keys().forEach(coreContext);
 
 const utilsContext = require.context('../packages/mui-utils/src/', true, /\.test\.(js|ts|tsx)$/);

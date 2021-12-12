@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createClientRender, screen } from 'test/utils';
+import { describeConformance, createRenderer, screen } from 'test/utils';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses as classes,
 } from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 
 describe('<ToggleButtonGroup />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<ToggleButtonGroup />, () => ({
     classes,

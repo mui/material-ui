@@ -17,7 +17,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/mui-core/src/ButtonUnstyled/ButtonUnstyled.tsx",
+  "filename": "/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
   "cssComponent": false

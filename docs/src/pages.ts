@@ -172,7 +172,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/components/data-grid/localization' },
           { pathname: '/components/data-grid/virtualization' },
           { pathname: '/components/data-grid/accessibility' },
-          { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
+          { pathname: '/components/data-grid/group-pivot', title: 'Group & Pivot' },
         ],
       },
       {
@@ -226,7 +226,10 @@ const pages: readonly MuiPage[] = [
             title: 'GridPrintExportOptions',
           },
         ].map((page) => {
-          return { ...page, linkProps: { as: page.pathname.replace(/^\/api-docs/, '/api') } };
+          return {
+            ...page,
+            linkProps: { linkAs: `${page.pathname.replace(/^\/api-docs/, '/api')}/` },
+          };
         }),
       },
     ]
@@ -234,7 +237,10 @@ const pages: readonly MuiPage[] = [
         a.pathname.replace('/api-docs/', '').localeCompare(b.pathname.replace('/api-docs/', '')),
       )
       .map((page) => {
-        return { ...page, linkProps: { as: page.pathname.replace(/^\/api-docs/, '/api') } };
+        return {
+          ...page,
+          linkProps: { linkAs: `${page.pathname.replace(/^\/api-docs/, '/api')}/` },
+        };
       }),
   },
   {

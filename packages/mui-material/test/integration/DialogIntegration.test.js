@@ -2,10 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
-import { createClientRender, screen } from 'test/utils';
+import { createRenderer, screen } from 'test/utils';
 
 describe('<Dialog /> integration', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('is automatically labelled by its DialogTitle', () => {
     render(

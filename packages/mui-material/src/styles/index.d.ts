@@ -55,6 +55,9 @@ export {
   lighten,
   ColorFormat,
   ColorObject,
+  StyledEngineProvider,
+  SxProps,
+  experimental_sx,
 } from '@mui/system';
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
@@ -69,7 +72,7 @@ export { ComponentsProps, ComponentsPropsList } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides, ComponentNameToClassKey } from './overrides';
 export { Components } from './components';
-export { StyledEngineProvider } from '@mui/system';
+export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 

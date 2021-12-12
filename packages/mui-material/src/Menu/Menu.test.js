@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { spy, useFakeTimers } from 'sinon';
+import { spy } from 'sinon';
 import { expect } from 'chai';
 import {
-  createClientRender,
+  createRenderer,
   describeConformance,
   screen,
   fireEvent,
@@ -12,18 +12,7 @@ import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
 
 describe('<Menu />', () => {
-  /**
-   * @type {ReturnType<typeof useFakeTimers>}
-   */
-  let clock;
-  beforeEach(() => {
-    clock = useFakeTimers();
-  });
-  afterEach(() => {
-    clock.restore();
-  });
-
-  const render = createClientRender();
+  const { render } = createRenderer({ clock: 'fake' });
 
   describeConformance(<Menu anchorEl={() => document.createElement('div')} open />, () => ({
     classes,

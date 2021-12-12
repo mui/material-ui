@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import HiddenJs from './HiddenJs';
 
 describe('<HiddenJs />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   function resolvePropName(upDownOnly, breakpoint) {
     if (upDownOnly === 'only') {

@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, screen } from 'test/utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material/ButtonGroup';
-import Button from '@mui/material/Button';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Button, { buttonClasses } from '@mui/material/Button';
+import ButtonGroupContext from './ButtonGroupContext';
 
 describe('<ButtonGroup />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <ButtonGroup>
@@ -147,5 +149,64 @@ describe('<ButtonGroup />', () => {
     const button = getByRole('button');
     expect(buttonGroup).to.have.class(classes.fullWidth);
     expect(button).to.have.class('MuiButton-fullWidth');
+  });
+
+  it('classes.grouped should be merged with Button className', () => {
+    render(
+      <ButtonGroup>
+        <Button className="foo-bar">Hello World</Button>
+      </ButtonGroup>,
+    );
+    expect(screen.getByRole('button')).to.have.class(classes.grouped);
+    expect(screen.getByRole('button')).to.have.class('foo-bar');
+  });
+
+  it('should forward the context to children', () => {
+    let context;
+    render(
+      <ButtonGroup size="large" variant="contained">
+        <ButtonGroupContext.Consumer>
+          {(value) => {
+            context = value;
+          }}
+        </ButtonGroupContext.Consumer>
+      </ButtonGroup>,
+    );
+    expect(context.variant).to.equal('contained');
+    expect(context.size).to.equal('large');
+    expect(context.fullWidth).to.equal(false);
+    expect(context.disableRipple).to.equal(false);
+    expect(context.disableFocusRipple).to.equal(false);
+    expect(context.disableElevation).to.equal(false);
+    expect(context.disabled).to.equal(false);
+    expect(context.color).to.equal('primary');
+  });
+
+  describe('theme default props on Button', () => {
+    it('should override default variant prop', () => {
+      render(
+        <ThemeProvider
+          theme={createTheme({
+            components: {
+              MuiButton: {
+                defaultProps: {
+                  color: 'primary',
+                  size: 'medium',
+                  variant: 'contained',
+                },
+              },
+            },
+          })}
+        >
+          <ButtonGroup variant="outlined" size="small" color="secondary">
+            <Button>Hello World</Button>
+          </ButtonGroup>
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByRole('button')).to.have.class(buttonClasses.outlined);
+      expect(screen.getByRole('button')).to.have.class(buttonClasses.sizeSmall);
+      expect(screen.getByRole('button')).to.have.class(buttonClasses.outlinedSecondary);
+    });
   });
 });

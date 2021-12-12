@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Typography from '@mui/material/Typography';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
@@ -9,7 +9,7 @@ import TimelineOppositeContent, {
 } from '@mui/lab/TimelineOppositeContent';
 
 describe('<TimelineOppositeContent />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<TimelineOppositeContent />, () => ({
     classes,

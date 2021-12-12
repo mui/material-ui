@@ -515,6 +515,11 @@ export function getThemedComponents(theme: Theme) {
           },
         },
       },
+      MuiCssBaseline: {
+        defaultProps: {
+          enableColorScheme: true,
+        },
+      },
     },
   };
 }

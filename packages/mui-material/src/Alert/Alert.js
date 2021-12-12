@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { darken, lighten } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -47,7 +47,6 @@ const AlertRoot = styled(Paper, {
 
   return {
     ...theme.typography.body2,
-    borderRadius: theme.shape.borderRadius,
     backgroundColor: 'transparent',
     display: 'flex',
     padding: '6px 16px',
@@ -147,7 +146,6 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   return (
     <AlertRoot
       role={role}
-      square
       elevation={0}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
@@ -252,7 +250,11 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
   /**
    * The variant to use.
    * @default 'standard'

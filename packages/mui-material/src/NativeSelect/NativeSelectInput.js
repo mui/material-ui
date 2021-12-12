@@ -2,16 +2,16 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import capitalize from '../utils/capitalize';
 import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, variant, disabled, open } = ownerState;
+  const { classes, variant, disabled, multiple, open } = ownerState;
 
   const slots = {
-    select: ['select', variant, disabled && 'disabled'],
+    select: ['select', variant, disabled && 'disabled', multiple && 'multiple'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
   };
 
@@ -73,7 +73,11 @@ const NativeSelectSelect = styled('select', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [styles.select, styles[ownerState.variant]];
+    return [
+      styles.select,
+      styles[ownerState.variant],
+      { [`&.${nativeSelectClasses.multiple}`]: styles.multiple },
+    ];
   },
 })(nativeSelectSelectStyles);
 

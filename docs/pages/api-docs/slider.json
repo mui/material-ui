@@ -50,7 +50,12 @@
       "default": "'medium'"
     },
     "step": { "type": { "name": "number" }, "default": "1" },
-    "sx": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
     "tabIndex": { "type": { "name": "number" } },
     "track": {
       "type": {
@@ -101,7 +106,11 @@
       "thumbColorSecondary",
       "thumbSizeSmall"
     ],
-    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
+    "globalClasses": {
+      "disabled": "Mui-disabled",
+      "active": "Mui-active",
+      "focusVisible": "Mui-focusVisible"
+    },
     "name": "MuiSlider"
   },
   "spread": true,

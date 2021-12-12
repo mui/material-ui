@@ -22,29 +22,29 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 ## 标签
 
-You can provide a label to the `Checkbox` thanks to the `FormControlLabel` component.
+使用 `FormControlLabel` 组件，您可以为 `Checkbox`设置一个标签。
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## Size 大小
+## Size
 
-Use the `size` prop or customize the font size of the svg icons to change the size of the checkboxes.
+使用 `size` 属性或调整svg 图标的字体大小以更改复选框的大小。
 
 {{"demo": "pages/components/checkboxes/SizeCheckboxes.js"}}
 
-## Color 颜色
+## Color
 
 {{"demo": "pages/components/checkboxes/ColorCheckboxes.js"}}
 
-## Icon
+## 图标
 
-{{"demo": "pages/components/checkboxes/IconCheckboxes.js"}}
+{{"demo": "pages/components/checkboxes/Iconcheckboxes.js"}}
 
 ## Controlled
 
-You can control the checkbox with the `checked` and `onChange` props:
+您可以使用 `checked` 和 `onChange` 属性控制复选框：
 
-{{"demo": "pages/components/checkboxes/ControlledCheckbox.js"}}
+{{"demo": "pages/components/checkboxes/ControledCheckbox.js"}}
 
 ## 不确定的状态
 
@@ -66,20 +66,20 @@ You can control the checkbox with the `checked` and `onChange` props:
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
-## 自定义的多选框
+## Customization
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
 
-🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/checkbox)。
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox/).
 
 ## 什么时候使用
 
 - [多选框 对比 单选按钮（Radio Buttons）](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 - [多选框 对比 Switches（开关控件）](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
-## 无障碍设计
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
 

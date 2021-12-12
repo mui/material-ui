@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import FilledInput, { filledInputClasses as classes } from '@mui/material/FilledInput';
 import InputBase from '@mui/material/InputBase';
 
 describe('<FilledInput />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<FilledInput open />, () => ({
     classes,

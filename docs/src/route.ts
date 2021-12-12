@@ -14,7 +14,7 @@ const ROUTES = {
   customization: '/customization/how-to-customize/',
   theming: '/customization/theming/',
   documentation: '/getting-started/usage/',
-  dataGridDocs: '/components/data-grid/getting-started/',
+  communityHelp: '/getting-started/support/#community-help-free',
   blog: 'https://medium.com/material-ui',
   showcase: '/discover-more/showcase',
   roadmap: 'https://github.com/mui-org/material-ui-x/projects/1',
@@ -23,7 +23,9 @@ const ROUTES = {
   support: '/getting-started/support/#professional-support-premium',
   goldSponsor: '/discover-more/backers/#gold/',
   store: 'https://material-ui.com/store/',
-  dataGridFeatures: '/components/data-grid/getting-started/#feature-comparison',
+  dataGridDocs: '/components/data-grid/getting-started/',
+  dataGridFeatures: '/components/data-grid/#features',
+  dataGridFeaturesComparison: '/components/data-grid/getting-started/#feature-comparison',
   storePopular: 'https://material-ui.com/store/#populars',
   storeDesign: 'https://material-ui.com/store/#design',
   storeFigma: 'https://material-ui.com/store/items/figma-react/',
@@ -37,6 +39,8 @@ const ROUTES = {
   storeTemplateWebbee: 'https://material-ui.com/store/items/webbee-landing-page/',
   storeTheFront: 'https://material-ui.com/store/items/the-front-landing-page/',
   storeFlexy: 'https://material-ui.com/store/items/flexy-react-admin-dashboard/',
+  survey2021Website: 'https://mui-org.typeform.com/2021-dev-survey#source=website',
+  survey2021Docs: 'https://mui-org.typeform.com/2021-dev-survey#source=docs',
 };
 
 export default ROUTES;

@@ -65,7 +65,7 @@ export default function AppFooter() {
               <Link href={ROUTES.productCore}>MUI Core</Link>
               <Link href={ROUTES.productAdvanced}>MUI X</Link>
               <Link href={ROUTES.productTemplates}>Templates</Link>
-              <Link href={ROUTES.productDesignKits}>Design Kits</Link>
+              <Link href={ROUTES.productDesignKits}>Design kits</Link>
             </Box>
           ) : (
             <Box sx={{ display: { xs: 'none', md: 'block' } }} />
@@ -151,7 +151,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://stackoverflow.com/questions/tagged/material-ui"
+              href="https://stackoverflow.com/questions/tagged/mui"
               aria-label="Stack Overflow"
               title="Stack Overflow"
               size="small"
@@ -171,7 +171,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener noreferrer"
-              href="https://www.linkedin.com/company/material-ui/"
+              href="https://www.linkedin.com/company/mui/"
               aria-label="linkedin"
               title="LinkedIn"
               size="small"
