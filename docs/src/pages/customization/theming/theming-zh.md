@@ -66,7 +66,7 @@ declare module '@mui/material/styles' {
   <source src="/static/studies.mp4" type="video/mp4" >
 </video>
 
-你 [可以访问](/styles/advanced/#accessing-the-theme-in-a-component) React 组件内部的主题变量。
+The community has built great tools to build a theme:
 
 - [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. 包括基本的网站模板，并且展示各种组件及其受主题影响的方式。
 - [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
@@ -208,7 +208,7 @@ theme = responsiveFontSizes(theme);
 
 ### `unstable_createMuiStrictModeTheme(options, ...args) => theme`
 
-使用 `unstable_createMuiStrictModeTheme` 会限制某些组件的使用。
+**WARNING**: Do not use this method in production.
 
 生成一个减少 [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html) 内的警告数量的主题，类似于 `Warning: findDOMNode is deprecated in StrictMode`。
 
