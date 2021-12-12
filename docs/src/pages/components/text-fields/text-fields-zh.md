@@ -197,7 +197,7 @@ type="number" 的输入存在潜在的可用性问题。
 
 {{"demo": "pages/components/text-fields/HelperTextMisaligned.js"}}
 
-您可以使用 `error` 属性来切换错误的状态，同时也可以使用 `helperText` 属性来给用户提供错误的提示信息。
+This can be fixed by passing a space character to the `helperText` prop:
 
 {{"demo": "pages/components/text-fields/HelperTextAligned.js"}}
 
