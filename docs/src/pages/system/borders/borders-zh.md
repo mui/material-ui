@@ -12,11 +12,7 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 
 ```jsx
 <Box sx={{ border: 1 }}>…
-<Box border={0}>…
 <Box sx={{ borderTop: 1 }}>…
-<Box borderRight={0}>…
-<Box borderBottom={0}>…
-<Box borderLeft={0}>…
 <Box sx={{ borderRight: 1 }}>…
 <Box sx={{ borderBottom: 1 }}>…
 <Box sx={{ borderLeft: 1 }}>…
@@ -27,31 +23,11 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 {{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box border={0}>…
 <Box sx={{ border: 0 }}>…
-<Box borderRight={0}>…
-<Box borderBottom={0}>…
-<Box borderLeft={0}>…
-<Box border={0}>…
 <Box sx={{ borderTop: 0 }}>…
-<Box borderRight={0}>…
-<Box borderBottom={0}>…
-<Box borderLeft={0}>…
-<Box border={0}>…
 <Box sx={{ borderRight: 0 }}>…
-<Box borderRight={0}>…
-<Box borderBottom={0}>…
-<Box borderLeft={0}>…
-<Box border={0}>…
 <Box sx={{ borderBottom: 0 }}>…
-<Box borderRight={0}>…
-<Box borderBottom={0}>…
-<Box borderLeft={0}>…
-<Box border={0}>…
 <Box sx={{ borderLeft: 0 }}>…
-<Box borderRight={0}>…
-<Box borderBottom={0}>…
-<Box borderLeft={0}>…
 ```
 
 ## 边框颜色
@@ -100,11 +76,7 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 <Box borderRadius={16}>…
 <Box borderRadius="borderRadius">…
 <Box borderRadius={16}>…
-<Box sx={{ borderRadius: 1 }}>…
-<Box borderRadius="borderRadius">…
-<Box borderRadius={16}>…
-<Box borderRadius="borderRadius">…
-<Box borderRadius={16}>… // theme.shape.borderRadius * 1
+<Box sx={{ borderRadius: 1 }}>… // theme.shape.borderRadius * 1
 <Box sx={{ borderRadius: 16 }}>…
 ```
 
