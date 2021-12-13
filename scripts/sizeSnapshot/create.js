@@ -3,6 +3,7 @@ const lodash = require('lodash');
 const path = require('path');
 const yargs = require('yargs');
 const Piscina = require('piscina');
+const os = require('os');
 const { getWebpackEntries } = require('./webpack.config');
 
 const workspaceRoot = path.join(__dirname, '../../');
@@ -35,7 +36,7 @@ async function getRollupSize(snapshotPath) {
 async function getWebpackSizes(webpackEnvironment) {
   const worker = new Piscina({
     filename: require.resolve('./worker'),
-    maxThreads: 10,
+    maxThreads: os.cpus().length,
   });
   await fse.mkdirp(path.join(__dirname, 'build'));
 
