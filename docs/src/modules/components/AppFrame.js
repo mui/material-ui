@@ -28,23 +28,42 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import LanguageIcon from '@mui/icons-material/Translate';
+import { debounce } from '@mui/material/utils';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
 
+const nProgressStart = debounce(() => {
+  NProgress.start();
+}, 200);
+
+const nProgressDone = () => {
+  nProgressStart.clear();
+  NProgress.done();
+};
+
 export function NextNProgressBar() {
   const router = useRouter();
   React.useEffect(() => {
-    const nProgressStart = () => NProgress.start();
-    const nProgressDone = () => NProgress.done();
+    const handleRouteChangeStart = (url, { shallow }) => {
+      if (!shallow) {
+        nProgressStart();
+      }
+    };
 
-    router.events.on('routeChangeStart', nProgressStart);
-    router.events.on('routeChangeComplete', nProgressDone);
-    router.events.on('routeChangeError', nProgressDone);
+    const handleRouteChangeDone = (url, { shallow }) => {
+      if (!shallow) {
+        nProgressDone();
+      }
+    };
+
+    router.events.on('routeChangeStart', handleRouteChangeStart);
+    router.events.on('routeChangeComplete', handleRouteChangeDone);
+    router.events.on('routeChangeError', handleRouteChangeDone);
     return () => {
-      router.events.off('routeChangeStart', nProgressStart);
-      router.events.off('routeChangeComplete', nProgressDone);
-      router.events.off('routeChangeError', nProgressDone);
+      router.events.off('routeChangeStart', handleRouteChangeStart);
+      router.events.off('routeChangeComplete', handleRouteChangeDone);
+      router.events.off('routeChangeError', handleRouteChangeDone);
     };
   }, [router]);
 
