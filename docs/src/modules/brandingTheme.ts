@@ -47,12 +47,12 @@ const defaultTheme = createTheme();
 const blue = {
   50: '#F0F7FF',
   100: '#C2E0FF',
-  200: '#A5D8FF',
+  200: '#99ccf3',
   300: '#66B2FF',
   400: '#3399FF',
-  main: '#007FFF', // contrast 3.83:1
+  main: '#007FFF',
   500: '#007FFF',
-  600: '#0072E5',
+  600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
   700: '#0059B2',
   800: '#004C99',
   900: '#003A75',
@@ -74,7 +74,7 @@ const grey = {
   50: '#F3F6F9',
   100: '#E7EBF0',
   200: '#E0E3E7',
-  300: '#CDD2D7',
+  300: '#CDD2D7', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
   400: '#B2BAC2', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
   500: '#A0AAB4', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
   600: '#6F7E8C', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
@@ -215,27 +215,32 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
         fontWeight: 800,
         lineHeight: 44 / 36,
-        color: mode === 'dark' ? grey[200] : blueDark[700],
+        color: mode === 'dark' ? grey[100] : blueDark[700],
       },
       h3: {
+        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(36),
         lineHeight: 44 / 36,
-        letterSpacing: 0,
+        letterSpacing: 0.2,
       },
       h4: {
+        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(28),
         lineHeight: 42 / 28,
-        letterSpacing: 0,
+        letterSpacing: 0.2,
       },
       h5: {
+        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(24),
         lineHeight: 36 / 24,
-        letterSpacing: 0,
+        letterSpacing: 0.2,
+        color: mode === 'dark' ? blue[300] : blue.main,
       },
       h6: {
+        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(20),
         lineHeight: 30 / 20,
-        letterSpacing: 0,
+        letterSpacing: 0.2,
       },
       button: {
         textTransform: 'initial',

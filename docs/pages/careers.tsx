@@ -418,7 +418,7 @@ function CareersContent() {
             const roles = category.roles;
             return (
               <React.Fragment>
-                <Typography component="h3" variant="h5" color="primary" fontWeight="extraBold">
+                <Typography component="h3" variant="h5" fontWeight="extraBold">
                   {category.title}
                 </Typography>
                 {roles.length > 0 ? (
@@ -464,7 +464,7 @@ function CareersContent() {
                 const roles = category.roles;
                 return (
                   <React.Fragment>
-                    <Typography component="h3" variant="h5" color="primary" fontWeight="extraBold">
+                    <Typography component="h3" variant="h5" fontWeight="extraBold">
                       {category.title}
                     </Typography>
                     {roles.length > 0 ? (
