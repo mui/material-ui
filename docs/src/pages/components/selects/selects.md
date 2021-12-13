@@ -145,3 +145,67 @@ For a [native select](#native-select), you should mention a label by giving the 
   <option value="20">Twenty</option>
 </NativeSelect>
 ```
+
+## Unstyled
+
+The Select also comes with an unstyled version.
+It's ideal for doing heavy customizations and minimizing bundle size.
+
+### Unstyled component
+
+```jsx
+import SelectUnstyled from '@mui/base/SelectUnstyled';
+```
+
+#### Basic usage
+
+{{"demo": "pages/components/selects/UnstyledSelectSimple.js"}}
+
+#### Controlled select
+
+The SelectUnstyled can be used as either uncontrolled (as shown in the demo above) or controlled component.
+
+{{"demo": "pages/components/selects/UnstyledSelectControlled.js"}}
+
+#### Usage with object values
+
+The unstyled select may be used with non-string values.
+
+{{"demo": "pages/components/selects/UnstyledSelectObjectValues.js"}}
+
+#### Customizing the selected value appearance
+
+It is possible to customize the selected value display by providing a function to the `renderValue` prop.
+The element returned by this function will be rendered inside the select's button.
+
+{{"demo": "pages/components/selects/UnstyledSelectCustomRenderValue.js"}}
+
+#### Customizing the options' appearance
+
+Options don't have to be plain strings.
+You can include custom elements to be rendered inside the listbox.
+
+{{"demo": "pages/components/selects/UnstyledSelectRichOptions.js"}}
+
+#### Grouping
+
+Options can be grouped, similarly to the how the native `select` element works.
+Unlike the native `select`, however, the groups can be nested.
+
+Place the `Option` components inside `OptionGroup` to achieve this.
+
+{{"demo": "pages/components/selects/UnstyledSelectGrouping.js"}}
+
+#### Multiselect
+
+Setting the `multiple` prop allows to select more than one value at a time.
+
+{{"demo": "pages/components/selects/UnstyledSelectMultiple.js"}}
+
+### useSelect hook
+
+```js
+import { useSelect } from '@mui/base/SelectUnstyled';
+```
+
+If you need to use Select's functionality in another component, you can use the `useSelect` hook.

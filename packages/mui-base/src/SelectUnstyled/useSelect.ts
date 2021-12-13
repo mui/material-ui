@@ -55,6 +55,10 @@ export default function useSelect<TValue>(props: UseSelectProps<TValue>) {
     }
   };
 
+  const handleListboxBlur = () => {
+    onOpenChange?.(false);
+  };
+
   const listboxReducer: ListboxReducer<SelectOption<TValue>> = (state, action) => {
     const newState = defaultListboxReducer(state, action);
 
@@ -149,6 +153,7 @@ export default function useSelect<TValue>(props: UseSelectProps<TValue>) {
       return {
         ...getButtonProps({
           ...otherHandlers,
+          // Make arrow keys work even when the listbox isn't open:
           onKeyDown: getListboxProps({ onKeyDown: handleButtonKeyDown }).onKeyDown,
         }),
         'aria-expanded': open,
@@ -157,9 +162,7 @@ export default function useSelect<TValue>(props: UseSelectProps<TValue>) {
     },
     getListboxProps: () =>
       getListboxProps({
-        onBlur: () => {
-          onOpenChange?.(false);
-        },
+        onBlur: handleListboxBlur,
         onKeyDown: handleListboxKeyDown,
       }),
     getOptionProps,

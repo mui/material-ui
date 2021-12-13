@@ -1,0 +1,10 @@
+<CustomSelect value={character} onChange={setCharacter}>
+  {characters.map((c) => (
+    <Option key={c.name} value={c}>
+      {c.name}
+    </Option>
+  ))}
+</CustomSelect>
+
+<p>Selected character:</p>
+<pre>{JSON.stringify(character, null, 2)}</pre>

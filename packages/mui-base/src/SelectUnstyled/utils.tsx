@@ -135,6 +135,7 @@ export function renderOption<TValue extends {}>(parameters: RenderOptionParamete
     option,
     getOptionState,
     getOptionProps,
+    itemIndex,
     listboxOption: ListboxOption,
     componentsProps,
     ownerState,
@@ -169,7 +170,7 @@ export function renderOption<TValue extends {}>(parameters: RenderOptionParamete
   );
 
   return (
-    <ListboxOption key={option.value.toString()} {...optionProps}>
+    <ListboxOption key={itemIndex} {...optionProps}>
       {option.label}
     </ListboxOption>
   );
