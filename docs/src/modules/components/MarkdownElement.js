@@ -68,7 +68,7 @@ const Root = styled('div')(({ theme }) => ({
     fontFamily: `"PlusJakartaSans-Bold", ${theme.typography.fontFamilySystem}`,
     fontWeight: 700,
     margin: '40px 0 10px',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : blueDark[700],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : blueDark[800],
   },
   '& h3': {
     ...theme.typography.h6,
@@ -187,12 +187,12 @@ const Root = styled('div')(({ theme }) => ({
     borderColor:
       theme.palette.mode === 'dark'
         ? // Support Material design theme
-          theme.palette.warning[900] ?? theme.palette.warning.dark
-        : theme.palette.warning[400] ?? theme.palette.warning.light,
+          theme.palette.warning[600] ?? theme.palette.warning.dark
+        : theme.palette.warning[300] ?? theme.palette.warning.light,
     backgroundColor:
       theme.palette.mode === 'dark'
         ? // Support Material design theme
-          alpha(theme.palette.warning[800] ?? theme.palette.warning.dark, 0.09)
+          alpha(theme.palette.warning[900], 0.2) ?? alpha(theme.palette.warning.dark, 0.09)
         : theme.palette.warning[50] ?? theme.palette.warning.light,
     padding: '10px 20px',
     margin: '20px 0',

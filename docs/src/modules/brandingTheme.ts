@@ -172,16 +172,16 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       },
       warning: {
         50: '#FFF9EB',
-        100: '#FFF4DB',
-        200: '#FFEDC2',
-        300: '#FFE4A3',
-        400: '#FFD980',
-        500: '#FCC419',
-        600: '#FAB005',
-        main: '#F1A204', // does not pass constrast ratio
-        700: '#F1A204',
-        800: '#DB9A00',
-        900: '#8F6400',
+        100: '#FFF3C1',
+        200: '#FFECA1',
+        300: '#FFDC48', // vs blueDark900: WCAG 10.4 AAA, APCA 72 Ok for text
+        400: '#F4C000', // vs blueDark900: WCAG 6.4 AA normal, APCA 48 Only large text
+        500: '#DEA500', // vs blueDark900: WCAG 8 AAA normal, APCA 58 Only large text
+        600: '#D18E00', // vs blueDark900: WCAG 6.4 AA normal, APCA 48 Only large text
+        main: '#AB6800',
+        700: '#AB6800', // vs white bg: WCAG 4.4 AA large, APCA 71 Ok for text
+        800: '#8C5800', // vs white bg: WCAG 5.9 AAA large, APCA 80 Best for text
+        900: '#5A3600', // vs white bg: WCAG 10.7 AAA, APCA 95 Best for text
       },
     },
     shape: {
@@ -233,14 +233,12 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(24),
         lineHeight: 36 / 24,
-        letterSpacing: 0.2,
+        letterSpacing: 0.1,
         color: mode === 'dark' ? blue[300] : blue.main,
       },
       h6: {
-        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(20),
         lineHeight: 30 / 20,
-        letterSpacing: 0.2,
       },
       button: {
         textTransform: 'initial',
