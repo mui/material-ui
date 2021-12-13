@@ -18,14 +18,14 @@ MUI's styling solution is inspired by many other styling libraries such as [styl
 
 <!-- #default-branch-switch -->
 
-- 🚀 Ela é [super rápida](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles).
+- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/tree/master/benchmark/server#material-uistyles).
 - 🧩 É extensível através de uma API de [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md).
 - ⚡️Ela usa [JSS](https://github.com/cssinjs/jss) em seu núcleo – um [alto desempenho](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript para o compilador CSS, que funciona em tempo de execução e no lado do servidor.
 - 📦 Less than [15 KB gzipped](https://bundlephobia.com/package/@mui/styles); and no bundle size increase if used alongside MUI.
 
-## Instalação
+## Installation
 
-Para instalar e salvar em suas dependências do `package.json`, execute:
+To install and save in your `package.json` dependencies, run:
 
 <!-- #default-branch-switch -->
 
@@ -178,7 +178,7 @@ Este componente botão tem uma propriedade de cor que modifica sua cor:
 
 ### Adaptando a hook API
 
-{{"demo": "pages/styles/basics/AdaptingHook.js", "react":"next"}}
+{{"demo": "pages/styles/basics/AdaptingHook.js"}}
 
 ### Adaptando a styled components API
 

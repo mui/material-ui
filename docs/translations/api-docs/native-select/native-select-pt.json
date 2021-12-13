@@ -2,40 +2,40 @@
   "componentDescription": "An alternative to `<Select native />` with a much smaller bundle size footprint.",
   "propDescriptions": {
     "children": "The option elements to populate the select with. Can be some <code>&lt;option&gt;</code> elements.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "IconComponent": "The icon that displays the arrow.",
     "input": "An <code>Input</code> element; does not have to be a material-ui specific <code>Input</code>.",
     "inputProps": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attributes\">Attributes</a> applied to the <code>select</code> element.",
     "onChange": "Callback fired when a menu item is selected.<br><br><strong>Signature:</strong><br><code>function(event: React.ChangeEvent&lt;HTMLSelectElement&gt;) =&gt; void</code><br><em>event:</em> The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string).",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "The <code>input</code> value. The DOM API casts this to a string.",
-    "variant": "A variante a usar."
+    "variant": "The variant to use."
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "select": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the select component `select` class"
     },
     "multiple": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the select component",
       "conditions": "<code>multiple={true}</code>"
     },
     "filled": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the select component",
       "conditions": "<code>variant=\"filled\"</code>"
     },
     "outlined": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the select component",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
     "standard": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the select component",
       "conditions": "<code>variant=\"standard\"</code>"
     },
@@ -44,31 +44,31 @@
       "nodeName": "the select component `disabled` class"
     },
     "icon": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the icon component"
     },
     "iconOpen": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",
       "conditions": "the popup is open"
     },
     "iconFilled": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",
       "conditions": "<code>variant=\"filled\"</code>"
     },
     "iconOutlined": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
     "iconStandard": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",
       "conditions": "<code>variant=\"standard\"</code>"
     },
     "nativeInput": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the underlying native input component"
     }
   }

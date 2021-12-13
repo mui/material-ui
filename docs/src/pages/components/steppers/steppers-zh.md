@@ -56,7 +56,7 @@ Non-linear steppers allow the user to enter a multi-step flow at any point.
 
 ### 自定义水平步骤条
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
@@ -66,7 +66,7 @@ Non-linear steppers allow the user to enter a multi-step flow at any point.
 
 {{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
-### 性能
+### Performance
 
 步骤内容将在关闭时自动卸载。 若您需要提供内容给搜索引擎，亦或是在您的模态框内渲染复杂的组件树，同时还要达到最佳的优化性能，您一般需要以下代码来装载模态框：
 
@@ -98,7 +98,7 @@ Non-linear steppers allow the user to enter a multi-step flow at any point.
 
 {{"demo": "pages/components/steppers/DotsMobileStepper.js", "bg": true}}
 
-### Progress 进度条组件
+### Progress
 
 当有许多步骤时，或者如果在此过程中需要插入步骤（基于对早期步骤的响应），请使用进度条。
 

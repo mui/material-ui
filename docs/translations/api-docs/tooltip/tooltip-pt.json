@@ -3,7 +3,7 @@
   "propDescriptions": {
     "arrow": "If <code>true</code>, adds an arrow to the tooltip.",
     "children": "Tooltip reference element.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "components": "The components used for each slot inside the Tooltip. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside the Tooltip. Note that <code>componentsProps.popper</code> prop values win over <code>PopperProps</code> and <code>componentsProps.transition</code> prop values win over <code>TransitionProps</code> if both are applied.",
     "describeChild": "Set to <code>true</code> if the <code>title</code> acts as an accessible description. By default the <code>title</code> acts as an accessible label for the child.",
@@ -24,66 +24,66 @@
     "placement": "Tooltip placement.",
     "PopperComponent": "The component used for the popper.",
     "PopperProps": "Props applied to the <a href=\"/api/popper/\"><code>Popper</code></a> element.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "title": "Tooltip title. Zero-length titles string are never displayed.",
-    "TransitionComponent": "O componente usado para a transição. <a href=\"/components/transitions/#transitioncomponent-prop\">Siga este guia</a> para saber mais sobre os requisitos para este componente.",
+    "TransitionComponent": "The component used for the transition. <a href=\"/components/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
     "popper": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Popper component"
     },
     "popperInteractive": {
-      "description": "Estilos aplicados em {{nodeName}} a menos que {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the Popper component",
       "conditions": "<code>disableInteractive={true}</code>"
     },
     "popperArrow": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Popper component",
       "conditions": "<code>arrow={true}</code>"
     },
     "popperClose": {
-      "description": "Estilos aplicados em {{nodeName}} a menos que {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the Popper component",
       "conditions": "the tooltip is open"
     },
     "tooltip": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the tooltip (label wrapper) element"
     },
     "tooltipArrow": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>arrow={true}</code>"
     },
     "arrow": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the arrow element"
     },
     "touch": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tooltip (label wrapper) element",
       "conditions": "the tooltip is opened by touch"
     },
     "tooltipPlacementLeft": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>placement</code> contains \"left\""
     },
     "tooltipPlacementRight": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>placement</code> contains \"right\""
     },
     "tooltipPlacementTop": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>placement</code> contains \"top\""
     },
     "tooltipPlacementBottom": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>placement</code> contains \"bottom\""
     }

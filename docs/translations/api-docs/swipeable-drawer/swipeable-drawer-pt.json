@@ -1,7 +1,7 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "O conteúdo do componente.",
+    "children": "The content of the component.",
     "disableBackdropTransition": "Disable the backdrop transition. This can improve the FPS on low-end devices.",
     "disableDiscovery": "If <code>true</code>, touching the screen near the edge of the drawer will not slide in the drawer a bit to promote accidental discovery of the swipe gesture.",
     "disableSwipeToOpen": "If <code>true</code>, swipe to open is disabled. This is useful in browsers where swiping triggers navigation actions. Swipe to open is disabled on iOS browsers by default.",

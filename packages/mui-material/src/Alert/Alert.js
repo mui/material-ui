@@ -47,7 +47,6 @@ const AlertRoot = styled(Paper, {
 
   return {
     ...theme.typography.body2,
-    borderRadius: theme.shape.borderRadius,
     backgroundColor: 'transparent',
     display: 'flex',
     padding: '6px 16px',
@@ -147,7 +146,6 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   return (
     <AlertRoot
       role={role}
-      square
       elevation={0}
       ownerState={ownerState}
       className={clsx(classes.root, className)}

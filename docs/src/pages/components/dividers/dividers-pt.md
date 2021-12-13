@@ -1,6 +1,6 @@
 ---
 title: Componente React Divisor
-components: Divisor
+components: Divider
 githubLabel: 'component: Divider'
 materialDesign: https://material.io/components/dividers
 ---

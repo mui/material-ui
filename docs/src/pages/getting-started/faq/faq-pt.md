@@ -17,7 +17,7 @@ There are many ways to support MUI:
   - Revise e comente em [pull requests](https://github.com/mui-org/material-ui/pulls) e [issues](https://github.com/mui-org/material-ui/issues) existentes.
   - Ajude a [traduzir](https://translate.mui.com) a documentação.
   - [Aprimore nossa documentação](https://github.com/mui-org/material-ui/tree/master/docs), corrija bugs, ou adicione recursos [enviando um pull request](https://github.com/mui-org/material-ui/pulls).
-- **Apoie-nos financeiramente no [OpenCollective](https://opencollective.com/material-ui)**. If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the MUI home page.
+- **Support us financially on [OpenCollective](https://opencollective.com/mui)**. If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the MUI home page.
 
 ## Por que meus componentes não estão renderizando corretamente em compilações de produção?
 
@@ -178,7 +178,7 @@ If you are using webpack, you can change the way it will [resolve](https://webpa
 
 ### Uso com Lerna
 
-One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. Tente executar a opção de auto inicialização com o parâmetro --hoist.
+One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. Tente executar a opção de auto inicialização com o parâmetro --hoist.
 
 ```sh
 lerna bootstrap --hoist
@@ -265,13 +265,13 @@ function handleRender(req, res) {
 
 Há uma incompatibilidade de nome de classe entre o cliente e o servidor. Pode funcionar para a primeira requisição. Outro sintoma é que o estilo muda entre o carregamento inicial da página e o download dos scripts do cliente.
 
-#### Ação a tomar
+#### Action to Take
 
-O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). Este gerador precisa se comportar de forma idêntica no servidor e no cliente. Por exemplo:
+O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). Este gerador precisa se comportar de forma idêntica no servidor e no cliente. For instance:
 
 - Você precisa fornecer um novo gerador de nome de classe para cada requisição. Mas você não deve compartilhar um `createGenerateClassName()` entre diferentes requisições:
 
-  exemplo de correção:
+  Example of fix:
 
   ```diff
   - // Crie um novo gerador de nome de classe.
@@ -286,7 +286,7 @@ function handleRender(req, res) {
 
   // Renderize o componente para uma string.
 
-    // Renderize o componente para uma string.
+    // Render the component to a string.
     const html = ReactDOMServer.renderToString(
   ```
 

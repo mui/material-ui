@@ -122,7 +122,7 @@ I'm so excited at the idea we are making it stable, but rest assured, it's just 
 MUI is an MIT-licensed open source project. It's an independent project with ongoing development helped by the support of these awesome [backers](/discover-more/backers/). If you'd like to join them, please consider:
 
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
-- [Become a backer or sponsor on OpenCollective](https://opencollective.com/material-ui).
+- [Become a backer or sponsor on OpenCollective](https://opencollective.com/mui).
 
 ![Our gold sponsors](https://cdn-images-1.medium.com/max/2000/1*fx_BaOxYY0ZJo3n9iXI1Jg.png)<p class="blog-description">Our gold sponsors</p>
 

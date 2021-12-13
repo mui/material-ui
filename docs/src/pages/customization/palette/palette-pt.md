@@ -15,7 +15,7 @@ O tema expõe as seguintes cores da paleta (acessível sob `theme.palette`.):
 
 Se você quiser aprender mais sobre cor, você pode conferir [a seção de cores](/customization/color/).
 
-## Valores padrão
+## Default values
 
 Você pode explorar os valores padrão da paleta usando [o explorador de tema](/customization/default-theme/?expand-path=$.palette) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.palette`).
 
@@ -23,7 +23,7 @@ Você pode explorar os valores padrão da paleta usando [o explorador de tema](/
 
 A paleta padrão usa as sombras prefixadas com `A` (`A200`, etc.) para a intenção secundária, e as cores não pré-fixadas para as outras intenções.
 
-## Customização
+## Customization
 
 Você pode sobrescrever os valores padrão da paleta incluindo um objeto de paleta como parte do seu tema. Se algum dos seguintes:
 
@@ -112,7 +112,7 @@ Um valor mais alto para "tonalOffset" fará valores calculados para "light" mais
 
 Observe que "contrastThreshold" segue uma curva não linear.
 
-### Exemplo
+### Example
 
 {{"demo": "pages/customization/palette/Palette.js", "defaultCodeOpen": true}}
 
@@ -175,7 +175,7 @@ declare module '@mui/material/styles' {
 
 {{"demo": "pages/customization/palette/CustomColor.js"}}
 
-## Escolhendo cores
+## Picking colors
 
 Precisa de inspiração? A equipe do Material Design construiu uma [ferramenta de configuração de paleta](/customization/color/#picking-colors) para te ajudar.
 

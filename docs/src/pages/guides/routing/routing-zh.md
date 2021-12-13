@@ -50,13 +50,13 @@ const theme = createTheme({
 
 You can achieve the integration with third-party routing libraries with the `component` prop. You can learn more about this prop in the [**composition guide**](/guides/composition/#component-prop).
 
-### React Link（链接）组件
+### Link
 
 Here are a few demos with [react-router](https://github.com/remix-run/react-router). You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
 {{"demo": "pages/guides/routing/LinkRouter.js"}}
 
-### Button 按钮
+### Button
 
 {{"demo": "pages/guides/routing/ButtonRouter.js"}}
 
@@ -68,11 +68,11 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 ));
 ```
 
-### Tabs 选项卡
+### Tabs
 
 {{"demo": "pages/guides/routing/TabsRouter.js", "defaultCodeOpen": false}}
 
-### Lists（列表）
+### List
 
 {{"demo": "pages/guides/routing/ListRouter.js"}}
 

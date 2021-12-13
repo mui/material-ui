@@ -24,9 +24,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## Customization 个性化
+## Customization
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
@@ -75,7 +75,7 @@ You can use the `open`, `onOpen` and `onClose` props to control the behavior of 
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
-## 交互式
+## Interactive
 
 Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
@@ -101,9 +101,9 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 </Tooltip>
 ```
 
-## 过渡动画
+## Transitions
 
-使用不同的过渡动画。
+Use a different transition.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
@@ -113,9 +113,9 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 {{"demo": "pages/components/tooltips/FollowCursorTooltips.js"}}
 
-## 虚拟元素
+## Virtual element
 
-In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. 你需要创建一个类似 [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/) 的对象。
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 {{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 
@@ -127,7 +127,7 @@ In the event you need to implement a custom placement, you can use the `anchorEl
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}
 
-## 无障碍设计
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
 

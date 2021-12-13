@@ -27,6 +27,5 @@ export type TransitionKeys =
   | TransitionHandlerKeys;
 export interface TransitionProps
   extends TransitionActions,
-    Partial<Pick<_TransitionProps & EasingProps, TransitionKeys>> {
-  style?: React.CSSProperties;
-}
+    Partial<Pick<_TransitionProps & EasingProps, TransitionKeys>>,
+    React.HTMLAttributes<HTMLElement> {}

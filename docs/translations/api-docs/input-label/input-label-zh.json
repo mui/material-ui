@@ -5,7 +5,7 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
     "disableAnimation": "If <code>true</code>, the transition animation is disabled.",
-    "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "error": "If <code>true</code>, the label is displayed in an error state.",
     "focused": "If <code>true</code>, the <code>input</code> of this label is focused.",
     "margin": "If <code>dense</code>, will adjust vertical spacing. This is normally obtained via context from FormControl.",

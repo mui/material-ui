@@ -1,8 +1,8 @@
-# Paleta
+# Palette
 
 <p class="description">Transmitir significado através da cor com um punhado de classes de utilitário de cor. Inclui suporte para links de estilo com estados de foco também.</p>
 
-## Cor
+## Color
 
 {{"demo": "pages/system/palette/Color.js", "defaultCodeOpen": false}}
 
@@ -304,7 +304,7 @@
 import { palette } from '@mui/system';
 ```
 
-| Nome da importação | Propriedade | Propriedade CSS   | Chave do tema                                                    |
-|:------------------ |:----------- |:----------------- |:---------------------------------------------------------------- |
-| `color`            | `color`     | `color`           | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `bgcolor`          | `bgcolor`   | `backgroundColor` | [`palette`](/customization/default-theme/?expand-path=$.palette) |
+| Import name | Prop      | CSS property      | Theme key                                                        |
+|:----------- |:--------- |:----------------- |:---------------------------------------------------------------- |
+| `color`     | `color`   | `color`           | [`palette`](/customization/default-theme/?expand-path=$.palette) |
+| `bgcolor`   | `bgcolor` | `backgroundColor` | [`palette`](/customization/default-theme/?expand-path=$.palette) |

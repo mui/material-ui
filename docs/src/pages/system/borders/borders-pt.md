@@ -138,7 +138,7 @@ Use border utilities to add or remove an element's borders. Escolha para todas a
 import { borders } from '@mui/system';
 ```
 
-| Nome da importação  | Propriedade         | Propriedade CSS       | Chave do tema                                                    |
+| Import name         | Propriedade         | Propriedade CSS       | Chave do tema                                                    |
 |:------------------- |:------------------- |:--------------------- |:---------------------------------------------------------------- |
 | `border`            | `border`            | `border`              | `borders`                                                        |
 | `borderTop`         | `borderTop`         | `border-top`          | `borders`                                                        |

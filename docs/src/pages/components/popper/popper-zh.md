@@ -24,7 +24,7 @@ githubLabel: 'component: Popper'
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 
-## 过渡动画
+## Transitions
 
 通过渲染附属的子元素和一个过渡组件，您可以给弹出提示组件的打开/关闭状态加上动画效果。 此组件应遵守以下条件：
 
@@ -56,7 +56,7 @@ Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring
 
 {{"demo": "pages/components/popper/VirtualElementPopper.js"}}
 
-## 补充项目
+## Complementary projects
 
 对于更高级的用例，您可以利用：
 
@@ -66,7 +66,7 @@ Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring
 
 {{"demo": "pages/components/popper/PopperPopupState.js"}}
 
-## 素颜模式
+## Unstyled
 
 The @mui/base package contain an unstyled version of Popper - PopperUnstyled. It does not have a dependency on @mui/material. The only difference between Popper and PopperUnstyled is the support for theming. Popper can read the `direction` field from the current theme, while PopperUnstyled accepts the `direction` prop instead.
 

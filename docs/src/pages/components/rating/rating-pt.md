@@ -27,15 +27,15 @@ Você pode exibir um rótulo ao passar o mouse para ajudar os usuários a escolh
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
-## Tamanhos
+## Sizes
 
 Para avaliações maiores ou menores use a propriedade `size`.
 
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
-## Customização
+## Customization
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/rating/CustomizedRating.js"}}
 
@@ -45,11 +45,11 @@ The rating is implemented with a radio group, set `highlightSelectedOnly` to res
 
 {{"demo": "pages/components/rating/RadioGroupRating.js"}}
 
-## Acessibilidade
+## Accessibility
 
 ([WAI tutorial](https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating))
 
-A acessibilidade neste componente conta com:
+The accessibility of this component relies on:
 
 - Um grupo de botões de opção com seus campos visualmente ocultos. Ele contém seis botões de opção, um para cada estrela e outro para 0 estrelas, que é marcado por padrão. Certifique-se de fornecer um valor para a propriedade `name` que é exclusivo para o formulário pai.
 - Rótulos para os botões de opção que contém o texto atual (“1 Estrela”, “2 Estrelas”, …). Certifique-se de fornecer uma função adequada para a propriedade `getLabelText` quando a página estiver em um idioma diferente de inglês. You can use the [included locales](https://mui.com/guides/localization/), or provide your own.
@@ -61,7 +61,7 @@ A acessibilidade neste componente conta com:
 
 A avaliação de somente leitura tem uma regra de "img" e um aria-label que descreve a avaliação exibida.
 
-### Teclado
+### Keyboard
 
 Devido ao componente avaliação usar botões de opção, a interação do teclado segue o comportamento nativo do navegador. A tecla tab irá focar a avaliação atual e as teclas do cursor controlam a avaliação selecionada.
 

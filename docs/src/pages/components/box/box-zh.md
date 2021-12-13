@@ -11,11 +11,11 @@ The Box component packages [all the style functions](/system/basics/#all-inclusi
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## 示例
+## Example
 
 查看[调色板](/system/palette/)样式功能。
 
-## `sx` 属性
+## The `sx` prop
 
 所有系统属性都可以通过 [`sx` 属性获得](/system/basics/#the-sx-prop)。 此外，`sx` 属性允许您指定您可能需要的任何其他 CSS 样式。 下面是一个如何使用的示例：
 
@@ -53,7 +53,7 @@ For non-MUI components, use the `component` prop.
 import Box from '@mui/material/Box';
 ```
 
-| 名称                                       | 类型                                                                                                                            | 默认值                                     | 描述                                         |
+| 名称                                       | 类型                                                                                                                            | 默认值                                     | Description                                |
 |:---------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:------------------------------------------ |
 | <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                                 |                                         | Box 渲染函数或者返回节点。                            |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | component 用于根节点。 可以是一个使用 DOM 元素或者一个组件的字符串。 |

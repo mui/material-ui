@@ -1,6 +1,6 @@
 ---
 title: React Masonry component
-components: Masonry 瀑布流
+components: Masonry
 githubLabel: 'component: Masonry'
 ---
 
@@ -24,7 +24,7 @@ This example demonstrates the use of `Masonry` for images. `Masonry` orders its 
 
 {{"demo": "pages/components/masonry/ImageMasonry.js", "bg": true}}
 
-## Columns 列
+## Columns
 
 This example demonstrates the use of the `columns` to configure the number of columns of a `Masonry`.
 
@@ -34,7 +34,7 @@ This example demonstrates the use of the `columns` to configure the number of co
 
 {{"demo": "pages/components/masonry/ResponsiveColumns.js", "bg": true}}
 
-## Spacing 间距
+## Spacing
 
 This example demonstrates the use of the `spacing` to configure the spacing between items. It is important to note that the value provided to the `spacing` prop is multiplied by the theme's spacing field.
 
@@ -44,7 +44,7 @@ This example demonstrates the use of the `spacing` to configure the spacing betw
 
 {{"demo": "pages/components/masonry/ResponsiveSpacing.js", "bg": true}}
 
-## 服务端渲染
+## Server-side rendering
 
 This example demonstrates the use of the `defaultHeight`, `defaultColumns` and `defaultSpacing`, which are used to support server-side rendering.
 

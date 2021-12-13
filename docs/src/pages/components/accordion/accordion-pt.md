@@ -26,9 +26,9 @@ Estenda o comportamento padrão para criar um acordeão customizado com o compon
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## Customização
+## Customization
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
@@ -42,7 +42,7 @@ O conteúdo dos acordeões é montado por padrão, mesmo que o acordeão não es
 
 Como acontece com qualquer otimização de desempenho, isso não é uma bala de prata. Certifique-se de identificar gargalos primeiro e, em seguida, experimente essas estratégias de otimização.
 
-## Acessibilidade
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 

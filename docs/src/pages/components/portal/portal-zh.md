@@ -12,7 +12,7 @@ githubLabel: 'component: Portal'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## 示例
+## Example
 
 {{"demo": "pages/components/portal/SimplePortal.js"}}
 
@@ -20,7 +20,7 @@ githubLabel: 'component: Portal'
 
 React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染的 [`createPortal()`](https://reactjs.org/docs/portals.html) API。 您必须等到客户端的注水渲染（hydration）之后才能见到子节点。
 
-## 素颜模式
+## Unstyled
 
 - 📦 [970 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 

@@ -1,4 +1,4 @@
-# Tipografia
+# Typography
 
 <p class="description">O tema fornece um conjunto de tipos de tamanhos que funcionam bem juntos e também com a grade de leiaute.</p>
 
@@ -172,7 +172,7 @@ _Você precisa aplicar o CSS acima no elemento html desta página para ver a dem
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
-## Variantes
+## Variants
 
 O objeto de tipografia vem com [13 variantes](/components/typography/#component) por padrão:
 
@@ -268,6 +268,6 @@ declare module '@mui/material/Typography' {
 <Typography variant="h3">h3</Typography>;
 ```
 
-## Valores padrão
+## Default values
 
 Você pode explorar os valores padrão da tipografia usando [o explorador de tema](/customization/default-theme/?expand-path=$.typography) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.typography`).

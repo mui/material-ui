@@ -90,7 +90,7 @@ describe('MyTests', () => {
 
 ## 仅在客户端渲染
 
-要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要**客户端渲染**，那么你可以设置 `noSsr` 选项为 `true`。
+要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 This double pass rendering cycle comes with a drawback. It's slower. 如果你只需要**客户端渲染**，那么你可以设置 `noSsr` 选项为 `true`。
 
 ```js
 const matches = useMediaQuery('(min-width:600px)', { noSsr: true });
@@ -110,7 +110,7 @@ const theme = createTheme({
 });
 ```
 
-## 服务端渲染
+## Server-side rendering
 
 > ⚠️ 从根本上来看，服务端渲染和客户端的媒体查询是矛盾的。 所以你需要在其中取舍。 支持只能是部分的。
 
@@ -179,23 +179,23 @@ function handleRender(req, res) {
 
 ### `useMediaQuery(query, [options]) => matches`
 
-#### 参数
+#### Arguments
 
 1. `query` (_string_ | _func_): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
 2. `options` (_object_ [optional]):
 
 - `options.defaultMatches` (_bool_ [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. 默认值为 `false`。
 - `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. 用其您可以处理一个 iframe 内容窗口。
-- `options.noSsr` (_bool_ [optional])：默认为 `false`。 要和服务器进行同步使用（hydration），hook 需要渲染两次。 第一次使用 `false` 表示服务端的值，第二次使用已解析的值。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
+- `options.noSsr` (_bool_ [optional])：默认为 `false`。 To perform the server-side hydration, the hook needs to render twice. A first time with `false`, the value of the server, and a second time with the resolved value. 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
 - `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
 注意：你可以使用主题的 [`默认属性`](/customization/theme-components/#default-props) 功能和 `MuiUseMediaQuery` 键（key）来更改默认的选项。
 
-#### 返回结果
+#### Returns
 
 `matches`：如果文档当前能够匹配这个媒体查询，Matches 则为 `true` ，否则为 `false` 。
 
-#### 例子
+#### Examples
 
 ```jsx
 import * as React from 'react';

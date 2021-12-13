@@ -1,25 +1,25 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "O conteúdo do componente.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "children": "The content of the component.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "image": "Image to be displayed as a background image. Either <code>image</code> or <code>src</code> prop must be specified. Note that caller must specify height otherwise the image will not be visible.",
     "src": "An alias for <code>image</code> property. Available only with media components. Media components: <code>video</code>, <code>audio</code>, <code>picture</code>, <code>iframe</code>, <code>img</code>.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes."
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "media": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>component=\"video, audio, picture, iframe, or img\"</code>"
     },
     "img": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>component=\"picture or img\"</code>"
     }
   }

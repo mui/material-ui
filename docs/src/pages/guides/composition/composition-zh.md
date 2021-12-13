@@ -1,4 +1,4 @@
-# 封装
+# Composition
 
 <p class="description">MUI tries to make composition as easy as possible.</p>
 

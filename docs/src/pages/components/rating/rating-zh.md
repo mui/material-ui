@@ -1,6 +1,6 @@
 ---
 title: React Rating（评分）组件
-components: Rating 评分
+components: Rating
 githubLabel: 'component: Rating'
 waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 ---
@@ -28,15 +28,15 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
-## 尺寸
+## Sizes
 
 你可以使用 `size` 属性来更改评分组件大小。
 
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
-## Customization 个性化
+## Customization
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/rating/CustomizedRating.js"}}
 
@@ -46,11 +46,11 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 {{"demo": "pages/components/rating/RadioGroupRating.js"}}
 
-## 无障碍设计
+## Accessibility
 
 ([WAI 教程](https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating))
 
-这个组件的可访问性依赖于：
+The accessibility of this component relies on:
 
 - 一个单选框组，其字段在视觉上是隐藏的。 它包含六个单选按钮，一组用于每颗星星的选择，另一组代表默认选中的 0 颗星。 请确保为 `name` 属性提供一个对父表单唯一的值。
 - 包含实际文字的单选按钮的标签（“一颗星”，“两颗星”，...）。 当页面的语言不是英语时，请确保为 `getLabelText` 属性提供一个合适的函数。 You can use the [included locales](https://mui.com/guides/localization/), or provide your own.
@@ -62,7 +62,7 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 只读评分有一个 "img" 的角色（role），以及一个描述显示评分的 aria-label。
 
-### 键盘输入
+### Keyboard
 
 由于评分组件是由单选按钮组成的，所以键盘交互遵循本地浏览器行为。 Tab 键将聚焦当前的评分，光标键可以控制所选的评分。
 

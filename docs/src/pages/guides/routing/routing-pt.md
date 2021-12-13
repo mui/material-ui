@@ -68,11 +68,11 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 ));
 ```
 
-### Abas
+### Tabs
 
 {{"demo": "pages/guides/routing/TabsRouter.js", "defaultCodeOpen": false}}
 
-### Lista
+### List
 
 {{"demo": "pages/guides/routing/ListRouter.js"}}
 
