@@ -34,8 +34,6 @@ const StyledInputElement = styled('input')`
 
   &:focus {
     outline: 2px solid ${blue[200]};
-    width: 320px;
-    transition: width 150ms ease-out;
   }
 `;
 
