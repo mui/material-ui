@@ -31,8 +31,7 @@ const SwitchInput = styled('input')`
   cursor: pointer;
 `;
 
-const SwitchThumb = styled('span')(
-  ({ theme }) => `
+const SwitchThumb = styled('span')`
   position: absolute;
   display: block;
   background-color: ${blue[700]};
@@ -67,7 +66,7 @@ const SwitchThumb = styled('span')(
     }
   }
 `,
-);
+;
 
 const SwitchTrack = styled('span')(
   ({ theme }) => `
