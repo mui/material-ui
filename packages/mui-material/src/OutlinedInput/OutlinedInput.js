@@ -143,7 +143,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
             label && fcs.required ? (
               <React.Fragment>
                 {label}
-                {'\u00a0*'}
+                &nbsp;{'*'}
               </React.Fragment>
             ) : (
               label

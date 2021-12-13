@@ -36,7 +36,7 @@ describe('<OutlinedInput />', () => {
       />,
     );
     const notchOutlined = container.querySelector('.notched-outlined legend');
-    expect(notchOutlined).to.have.text('label\u00a0*');
+    expect(notchOutlined).to.have.text('label\xa0*');
   });
 
   it('should forward classes to InputBase', () => {
