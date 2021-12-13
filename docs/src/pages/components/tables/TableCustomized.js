@@ -23,32 +23,25 @@ const rows = [
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
 const blue = {
-  50: '#F0F7FF',
-  100: '#C2E0FF',
   200: '#A5D8FF',
-  300: '#66B2FF',
   400: '#3399FF',
-  main: '#007FFF', // contrast 3.83:1
-  500: '#007FFF',
-  600: '#0072E5',
-  700: '#0059B2',
-  800: '#004C99',
-  900: '#003A75',
-};
-const grey = {
-  50: '#F3F6F9',
-  100: '#EAEEF3',
-  200: '#E5E8EC',
-  300: '#D7DCE1',
-  400: '#BFC7CF',
-  500: '#AAB4BE',
-  600: '#7F8E9D',
-  700: '#46505A', // contrast 8.21:1
-  800: '#2F3A45', // contrast 11.58:1
-  900: '#20262D',
 };
 
-const Root = styled('div')`
+const grey = {
+  50: '#F3F6F9',
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7',
+  400: '#B2BAC2',
+  500: '#A0AAB4',
+  600: '#6F7E8C',
+  700: '#3E5060',
+  800: '#2D3843',
+  900: '#1A2027',
+};
+
+const Root = styled('div')(
+  ({ theme }) => `
   table {
     font-family: IBM Plex Sans, sans-serif;
     font-size: 0.875rem;
@@ -58,25 +51,55 @@ const Root = styled('div')`
 
   td,
   th {
-    border: 1px solid ${grey[100]};
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     text-align: left;
-    padding: 5px;
-    &:hover {
-      background-color: ${grey[50]};
-    }
+    padding: 6px;
   }
 
   th {
-    background-color: ${grey[100]};
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
   }
-`;
-const CustomTablePagination = styled(TablePaginationUnstyled)`
+  `,
+);
+
+const CustomTablePagination = styled(TablePaginationUnstyled)(
+  ({ theme }) => `
   & .MuiTablePaginationUnstyled-toolbar {
     display: flex;
     gap: 10px;
     align-items: center;
   }
-`;
+  & .MuiTablePaginationUnstyled-select {
+    padding: 4px;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+    border-radius: 50px;
+    background-color: transparent;
+    &:hover {
+      background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    }
+    &:focus {
+      outline: 1px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+    }
+  }
+  & .MuiTablePaginationUnstyled-actions {
+    padding: 4px;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+    border-radius: 50px;
+  }
+  & .MuiTablePaginationUnstyled-actions > button {
+    margin: 0 4px;
+    border: transparent;
+    border-radius: 2px;
+    background-color: transparent;
+    &:hover {
+      background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    }
+    &:focus {
+      outline: 1px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+    }
+  }
+  `,
+);
 
 export default function UnstyledTable() {
   const [page, setPage] = React.useState(0);
