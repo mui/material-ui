@@ -151,6 +151,8 @@ async function reportBundleSize() {
   } else {
     markdown(`[No bundle size changes](${detailedComparisonUrl})`);
   }
+
+  throw new Error('KABOOM!');
 }
 
 async function run() {
