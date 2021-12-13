@@ -1,6 +1,6 @@
 # Localization 本地化
 
-<p class="description">本地化（也称为“i10n”），是将一个产品或者一些内容适应到特定的地区或市场的过程。</p>
+<p class="description">本地化（也称为“l10n”），是将一个产品或者一些内容适应到特定的地区或市场的过程。</p>
 
 The default locale of MUI is English (United States). 如果您想使用其他语言环境，您可以遵循以下的说明。
 
