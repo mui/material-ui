@@ -237,12 +237,22 @@ This change affects almost all components where you're using the `component` pro
 
 ### Ref type specificity
 
-In order to pass a `ref` to a component without any typescript error, you should use a specific element type.
+For some components, you may get a type error when passing `ref`. In order to avoid the error, you should use a specific element type. For instance, `Card` does not accept the type of `ref` to be `HTMLElement`.
+
 Here is an example:
 
 ```diff
+import * as React from 'react';
+import Card from '@mui/material/Card';
+
+export default function CardWithSpecificRefType() {
 - const cardComponentRef = React.useRef<HTMLElement>(null);
 + const cardComponentRef = React.useRef<HTMLDivElement>(null);
+
+  return (
+    <Card ref={cardComponentRef}></Card>
+  );
+}
 ```
 
 ### Style library
