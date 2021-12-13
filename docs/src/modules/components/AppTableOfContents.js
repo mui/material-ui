@@ -70,13 +70,12 @@ const NavItem = styled(Link, {
     '&:hover': {
       borderLeftColor:
         theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
-      color: theme.palette.text.secondary,
+      color: theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[200],
     },
     ...(!active && {
       color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.text.primary,
     }),
     // TODO: We probably want `aria-current="location"` instead.
-    // If so, are we sure "current" and "active" states should have the same styles?
     ...(active && activeStyles),
     '&:active': activeStyles,
   };
