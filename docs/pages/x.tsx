@@ -11,6 +11,7 @@ import XRoadmap from 'docs/src/components/productX/XRoadmap';
 import References, { ADVANCED_CUSTOMERS } from 'docs/src/components/home/References';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import XPlans from 'docs/src/components/productX/XPlans';
+import WebsiteBanner from 'docs/src/components/home/WebsiteBanner';
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         card="/static/social-previews/x-preview.jpg"
       />
       <CssBaseline />
+      <WebsiteBanner />
       <AppHeader />
       <main>
         <XHero />

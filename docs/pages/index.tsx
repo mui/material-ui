@@ -14,6 +14,7 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import NewsletterToast from 'docs/src/components/home/NewsletterToast';
+import WebsiteBanner from 'docs/src/components/home/WebsiteBanner';
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       <NoSsr>
         <NewsletterToast />
       </NoSsr>
+      <WebsiteBanner />
       <AppHeader />
       <main>
         <Hero />

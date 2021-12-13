@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 export default function WebsiteBanner(props) {
-  return (
+  return props.content ? (
     <Box
       sx={{
         p: 1.5,
@@ -26,5 +26,5 @@ export default function WebsiteBanner(props) {
         {props.content}
       </Typography>
     </Box>
-  );
+  ) : null;
 }

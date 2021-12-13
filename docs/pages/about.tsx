@@ -28,6 +28,7 @@ import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
 import BrandingProvider from 'docs/src/BrandingProvider';
+import WebsiteBanner from 'docs/src/components/home/WebsiteBanner';
 
 interface Profile {
   /**
@@ -744,6 +745,7 @@ export default function About() {
         title="About us - MUI"
         description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
       />
+      <WebsiteBanner />
       <AppHeader />
       <main>
         <AboutContent />
