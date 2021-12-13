@@ -65,12 +65,15 @@ const Root = styled('div')(
 const CustomTablePagination = styled(TablePaginationUnstyled)(
   ({ theme }) => `
   & .MuiTablePaginationUnstyled-toolbar {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+    display: block;
+    @media (min-width: 768px) {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
   }
   & .MuiTablePaginationUnstyled-select {
-    padding: 4px;
+    padding: 2px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     border-radius: 50px;
     background-color: transparent;
@@ -82,12 +85,13 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
     }
   }
   & .MuiTablePaginationUnstyled-actions {
-    padding: 4px;
+    padding: 2px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     border-radius: 50px;
+    text-align: center;
   }
   & .MuiTablePaginationUnstyled-actions > button {
-    margin: 0 4px;
+    margin: 0 8px;
     border: transparent;
     border-radius: 2px;
     background-color: transparent;
@@ -120,7 +124,7 @@ export default function UnstyledTable() {
 
   return (
     <Root>
-      <table style={{ minWidth: 500 }} aria-label="custom pagination table">
+      <table style={{ minWidth: 250 }} aria-label="custom pagination table">
         <thead>
           <tr>
             <th>Dessert</th>
@@ -135,10 +139,10 @@ export default function UnstyledTable() {
           ).map((row) => (
             <tr key={row.name}>
               <td>{row.name}</td>
-              <td style={{ width: 160 }} align="right">
+              <td style={{ width: 120 }} align="right">
                 {row.calories}
               </td>
-              <td style={{ width: 160 }} align="right">
+              <td style={{ width: 120 }} align="right">
                 {row.fat}
               </td>
             </tr>

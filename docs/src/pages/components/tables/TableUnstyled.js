@@ -42,10 +42,12 @@ const Root = styled('div')`
 `;
 const CustomTablePagination = styled(TablePaginationUnstyled)`
   & .MuiTablePaginationUnstyled-toolbar {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
+    display: block;
+    @media (min-width: 768px) {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
 `;
 
 export default function UnstyledTable() {
@@ -67,7 +69,7 @@ export default function UnstyledTable() {
 
   return (
     <Root>
-      <table style={{ minWidth: 500 }} aria-label="custom pagination table">
+      <table style={{ minWidth: 200 }} aria-label="custom pagination table">
         <thead>
           <tr>
             <th>Dessert</th>
