@@ -29,14 +29,15 @@ async function getRollupSize(snapshotPath) {
     normalizeRollupSnapshot(snapshot),
   ]);
 }
-
+// eslint-disable-next-line no-console
+console.log('cpus:', os.cpus().length);
 /**
  * creates size snapshot for every bundle that built with webpack
  */
 async function getWebpackSizes(webpackEnvironment) {
   const worker = new Piscina({
     filename: require.resolve('./worker'),
-    maxThreads: os.cpus().length,
+    maxThreads: 10,
   });
   await fse.mkdirp(path.join(__dirname, 'build'));
 
