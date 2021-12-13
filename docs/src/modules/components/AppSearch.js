@@ -11,7 +11,6 @@ import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import SearchIcon from '@mui/icons-material/Search';
-import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';

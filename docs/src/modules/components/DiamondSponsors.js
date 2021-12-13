@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { useTheme, styled, alpha } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
@@ -28,7 +27,7 @@ export default function DiamondSponsors(props) {
         size="small"
         sx={{
           fontSize: theme.typography.pxToRem(12.5),
-          color: (theme) =>
+          color:
             theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
           mb: 1,
         }}
