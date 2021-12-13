@@ -896,12 +896,6 @@ describe('<Select />', () => {
         expect(errors).to.have.length(1);
         expect(errors[0].toString()).to.include('MUI: The `value` prop must be an array');
       });
-
-      it('should not crash with `value` passed', () => {
-        expect(() => {
-          render(<Select multiple value={['foo']} />);
-        }).not.to.throw();
-      });
     });
 
     describe('prop: onChange', () => {
