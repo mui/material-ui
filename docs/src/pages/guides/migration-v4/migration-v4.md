@@ -27,6 +27,7 @@ The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 - [Handling Breaking Changes](#handling-breaking-changes)
 - [Migrate theme's `styleOverrides` to emotion](#migrate-themes-styleoverrides-to-emotion)
 - [Migrate from JSS](#migrate-from-jss)
+- [CSS specificity](#css-specificity)
 - [Troubleshooting](#troubleshooting)
 
 > 💡 Aim to create small commits on any changes to help the migration go more smoothly.
@@ -61,7 +62,7 @@ const theme = createMuiTheme();
 
 const useStyles = makeStyles((theme) => {
   root: {
-    // some css that access to theme
+    // some CSS that access to theme
   }
 });
 
@@ -491,7 +492,7 @@ The `@mui/styles` package is no longer part of `@mui/material/styles`. If you ar
 > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
 ```ts
-// in your theme file that you call `createTheme()`
+// in the file where you are creating the theme (invoking the function `createTheme()`)
 import { Theme } from '@mui/material/styles';
 
 declare module '@mui/styles' {
@@ -1417,7 +1418,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### Hidden
 
-- This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query) hook.
+- This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query/) hook.
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, further fixes are required.
 
@@ -2589,6 +2590,39 @@ npm uninstall @mui/styles
 
 // or with `yarn`
 yarn remove @mui/styles
+```
+
+## CSS Specificity
+
+If you want to apply styles to components by importing a css file, you need to bump up specificity in order to always select the correct component. Consider the following example.
+
+```js
+import './style.css';
+import Chip from '@mui/material/Chip';
+
+const ChipWithGreenIcon = () => (
+  <Chip
+    classes={{ deleteIcon: 'green' }}
+    label="delete icon is green"
+    onDelete={() => {}}
+  />
+);
+```
+
+In this example, in order to correctly apply a particular style to the delete icon of `Chip`, you need to bump the specificity as shown below:
+
+```css
+.MuiChip-root .green {
+  color: green;
+}
+```
+
+The following will not correctly apply the style to the delete icon:
+
+```css
+.green {
+  color: green;
+}
 ```
 
 ## Troubleshooting

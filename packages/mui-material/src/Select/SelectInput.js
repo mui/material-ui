@@ -417,7 +417,21 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   }
 
   if (computeDisplay) {
-    display = multiple ? displayMultiple.join(', ') : displaySingle;
+    if (multiple) {
+      if (displayMultiple.length === 0) {
+        display = null;
+      } else {
+        display = displayMultiple.reduce((output, child, index) => {
+          output.push(child);
+          if (index < displayMultiple.length - 1) {
+            output.push(', ');
+          }
+          return output;
+        }, []);
+      }
+    } else {
+      display = displaySingle;
+    }
   }
 
   // Avoid performing a layout computation in the render method.

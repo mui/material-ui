@@ -43,6 +43,22 @@ const authors = {
     name: 'Danilo Leal',
     github: 'danilo-leal',
   },
+  m4theushw: {
+    name: 'Matheus Wichman',
+    github: 'm4theushw',
+  },
+  flaviendelangle: {
+    name: 'Flavien Delangle',
+    github: 'flaviendelangle',
+  },
+  DanailH: {
+    name: 'Danail Hadjiatanasov',
+    github: 'DanailH',
+  },
+  alexfauquette: {
+    name: 'Alexandre Fauquette',
+    github: 'alexfauquette',
+  },
 };
 
 const styles = (theme) => ({
@@ -151,6 +167,7 @@ function TopLayoutBlog(props) {
                   <div key={author} className="author">
                     <Avatar
                       sx={{ width: 32, height: 32 }}
+                      alt=""
                       src={`https://github.com/${authors[author].github}.png`}
                     />
                     <Typography variant="body2">{authors[author].name}</Typography>

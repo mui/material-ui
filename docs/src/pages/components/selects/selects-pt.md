@@ -12,7 +12,7 @@ githubLabel: 'component: Select'
 
 ## Seleção Simples
 
-Os menus são posicionados sobre seus elementos emissores, de modo que o item de menu atualmente selecionado apareça na parte superior do elemento emissor.
+Menus are positioned under their emitting elements, unless they are close to the bottom of the viewport.
 
 O componente `Select` é pensado para ser intercambiável com um elemento nativo `<select>`.
 
@@ -20,11 +20,11 @@ O componente `Select` é pensado para ser intercambiável com um elemento nativo
 
 O componente `Select` é pensado para ser intercambiável com um elemento nativo `<select>`.
 
-Se você estiver procurando por recursos mais avançados, como combobox, seleção múltipla, autocompletar, uso assíncrono ou com suporte de adição, vá para o [ componente `Autocomplete`](/components/autocomplete/). A ideia dessa ferramenta é ser uma versão melhorada das bibliotecas "react-select" e "downshift".
+Se você estiver procurando por recursos mais avançados, como combobox, seleção múltipla, autocompletar, uso assíncrono ou com suporte de adição, vá para o [ componente `Autocomplete`](/components/autocomplete/). It's meant to be an improved version of the "react-select" and "downshift" packages.
 
 ## Propriedades
 
-O componente seleção é implementado como um elemento `<input>` personalizado do [InputBase](/api/input-base/). It extends the [text field components](/components/text-fields) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected. Ele compartilha os mesmos estilos e muitas das mesmas propriedades. Consulte a página da API do respectivo componente para obter detalhes.
+O componente seleção é implementado como um elemento `<input>` personalizado do [InputBase](/api/input-base/). It extends the [text field components](/components/text-fields/) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected. Ele compartilha os mesmos estilos e muitas das mesmas propriedades. Consulte a página da API do respectivo componente para obter detalhes.
 
 ### Filled and standard variants
 
@@ -52,15 +52,15 @@ Como a experiência do usuário pode ser melhorada em dispositivos móveis usand
 
 O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. Você pode encontrar um exemplo de seleção [nesta seção](/components/text-fields/#select).
 
-## Seleções customizadas
+## Customization
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 O primeiro passo é estilizar o componente `InputBase`. Uma vez estilizado, você pode usá-lo diretamente como um campo de texto ou fornecê-lo à propriedade `input` da seleção para ter um campo `select`. Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/select).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select/).
 
 ## Seleção Aberta Controlada
 
@@ -68,7 +68,7 @@ O componente `Select` pode lidar com múltiplas seleções. O componente `Select
 
 Como na seleção única, você pode extrair o novo valor acessando `event.target.value` na chamada `onChange`. É sempre uma matriz.
 
-### Padrão
+### Default
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
@@ -104,7 +104,7 @@ Exiba categorias com o componente `ListSubheader` ou com o elemento nativo `<opt
 
 {{"demo": "pages/components/selects/GroupedSelect.js"}}
 
-## Acessibilidade
+## Accessibility
 
 Para rotular corretamente seu campo  `Select` você precisa de um elemento extra com um `id` que contenha o rótulo desejado. Esse `id` precisa coincidir com o `labelId` do `Select`, por exemplo.
 

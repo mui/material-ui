@@ -2,7 +2,7 @@
 title: React Date Picker（日期选择器）组件
 components: CalendarPicker, CalendarPickerSkeleton, DatePicker, DesktopDatePicker, MobileDatePicker, MonthPicker, PickersDay, StaticDatePicker, YearPicker
 githubLabel: 'component: DatePicker'
-packageName: '@material-ui/lab'
+packageName: '@mui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/date-pickers
 
 <p class="description">日期选择器可以让用户选择日期。</p>
 
-日期选择器可以让用户选择日期。 该组件的显示方式如下：
+Date pickers let the user select a date. 该组件的显示方式如下：
 
 - 手机端的对话框
 - 桌面端输入框的下拉列表中
@@ -24,9 +24,9 @@ materialDesign: https://material.io/components/date-pickers
 请安装这些库中的任何一个，并使用 `LocalizationProvider` 来包裹到你的 root（或者包裹到该选择器你想要应用的最高位置）来设置正确的日期引擎。
 
 ```jsx
-// 或者使用 @material-ui/lab/Adapter{DayJS,Luxon,Moment} 或者使用任何可适用的 date-io 适配器
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+// or @mui/lab/Adapter{Dayjs,Luxon,Moment} or any valid date-io adapter
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 function App() {
   return (
@@ -47,24 +47,24 @@ It's possible to render any date picker without the modal/popover and text field
 
 {{"demo": "pages/components/date-picker/StaticDatePickerDemo.js", "bg": true}}
 
-## 响应式
+## Responsiveness
 
 日期选择器组件是为它所运行的设备而设计和优化的。
 
 - The `MobileDatePicker` component works best for touch devices and small screens.
 - The `DesktopDatePicker` component works best for mouse devices and large screens.
 
-By default, the `DatePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
+By default, the `DatePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-picker/ResponsiveDatePickers.js"}}
 
-## Form props 表单的属性
+## Form props
 
 The date picker component can be disabled or read-only.
 
 {{"demo": "pages/components/date-picker/FormPropsDatePickers.js"}}
 
-## Localization 本地化
+## Localization
 
 你可以使用 `LocalizationProvider` 来改变用于渲染日期选择的 date-engine（日期引擎）本地化设置。 下面是一个更改 `date-fns` 适配器本地化设置的示例：
 
@@ -111,3 +111,9 @@ You can customize the rendering of the input with the `renderInput` prop. 请确
 有些时候可能有在日历中显示额外信息的需求。 下面是一个使用 `onMonthChange`、`loading` 和 `renderDay` 属性来预取并显示服务器端数据的例子。
 
 {{"demo": "pages/components/date-picker/ServerRequestDatePicker.js"}}
+
+## Helper text
+
+You can show a helper text with the date format accepted.
+
+{{"demo": "pages/components/date-picker/HelperText.js"}}

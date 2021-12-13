@@ -1,7 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useThemeProps } from '@mui/material/styles';
-import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
+import PickerStaticWrapper, {
+  PickerStaticWrapperProps,
+} from '../internal/pickers/wrappers/PickerStaticWrapper';
 import { useDefaultDates, useUtils } from '../internal/pickers/hooks/useUtils';
 import { RangeInput, DateRange } from '../DateRangePicker/RangeTypes';
 import {
@@ -73,7 +75,7 @@ export interface StaticDateRangePickerProps<TDate = unknown>
    * Force static wrapper inner components to be rendered in mobile or desktop mode.
    * @default 'mobile'
    */
-  displayStaticWrapperAs?: StaticWrapperProps['displayStaticWrapperAs'];
+  displayStaticWrapperAs?: PickerStaticWrapperProps['displayStaticWrapperAs'];
 }
 
 type StaticDateRangePickerComponent = (<TDate>(
@@ -151,7 +153,7 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
   };
 
   return (
-    <StaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
+    <PickerStaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
       <DateRangePickerView<any>
         open={wrapperProps.open}
         DateInputProps={DateInputProps}
@@ -163,7 +165,7 @@ const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TD
         {...pickerProps}
         {...restProps}
       />
-    </StaticWrapper>
+    </PickerStaticWrapper>
   );
 }) as StaticDateRangePickerComponent;
 

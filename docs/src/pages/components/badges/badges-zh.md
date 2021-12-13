@@ -16,9 +16,15 @@ githubLabel: 'component: Badge'
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
-## 自定义徽章
+## Color
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Use `color` prop to apply theme palette to component.
+
+{{"demo": "pages/components/badges/ColorBadge.js"}}
+
+## Customization
+
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -34,7 +40,7 @@ githubLabel: 'component: Badge'
 
 ## 最大值
 
-您可以使用 `max` 属性来限制徽章组件内容的最大值。
+您可以使用 `max` 属性来限制徽章内容的最大值。
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
@@ -46,7 +52,7 @@ githubLabel: 'component: Badge'
 
 ## 徽章组件的 overlap 属性
 
-你可以使用 `overlap` 属性来将徽章组件放置到到封装的元素一个相对位置的角落。
+您可以使用 `overlap` 这个属性，在封装的元素相对的一角来显示徽章组件。
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
@@ -58,16 +64,16 @@ githubLabel: 'component: Badge'
 
 ## Unstyled
 
-The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+Badge组件还有一个无样式的版本。 It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
+import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 ```
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}
 
-## 无障碍设计
+## Accessibility
 
-You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
+如果您不能依靠徽章的内容来正确地声明。 那您应该提供一个完整的描述，例如， 使用 `aria-label`：
 
 {{"demo": "pages/components/badges/AccessibleBadges.js"}}

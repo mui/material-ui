@@ -503,7 +503,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
@@ -531,7 +531,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

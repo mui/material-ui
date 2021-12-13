@@ -186,7 +186,7 @@ Pros:
 
 - 📚 It allows a lot of flexibility in the API. The `sx` prop supports a superset of CSS. There is **no need to learn CSS twice**. You are set once you have learn the standardized CSS syntax, it's safe, it hasn't changed for a decade. Then, you can **optionally** learn the shorthands if you value the save of time they bring.
 - 📦 Auto-purge. Only the used CSS on the page is sent to the client. The initial bundle size cost is **fixed**. It's not growing with the number of used CSS properties.
-  You pay the cost of [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) and [@mui/system](https://bundlephobia.com/result?p=@mui/system). It cost around ~15 kB gzipped.
+  You pay the cost of [@emotion/react](https://bundlephobia.com/package/@emotion/react) and [@mui/system](https://bundlephobia.com/package/@mui/system). It cost around ~15 kB gzipped.
   If you are already using the core components, it comes with no extra overhead.
 
 Cons:
@@ -200,9 +200,11 @@ Cons:
   | c. Render 1,000 styled components | `<StyledDiv>`         | 160ms           |
   | d. Render 1,000 Box               | `<Box sx={…}>`        | 370ms           |
 
-  _Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) for a reproduction of these metrics._
+<!-- #default-branch-switch -->
 
-  We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
+_Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
+
+We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
 
 ### API tradeoff
 

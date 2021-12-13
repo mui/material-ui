@@ -1,6 +1,6 @@
 ---
 title: React Popper（弹出提示）组件
-components: Popper
+components: Popper, PopperUnstyled
 githubLabel: 'component: Popper'
 ---
 
@@ -24,7 +24,7 @@ githubLabel: 'component: Popper'
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 
-## 过渡动画
+## Transitions
 
 通过渲染附属的子元素和一个过渡组件，您可以给弹出提示组件的打开/关闭状态加上动画效果。 此组件应遵守以下条件：
 
@@ -36,7 +36,7 @@ githubLabel: 'component: Popper'
 
 {{"demo": "pages/components/popper/TransitionsPopper.js"}}
 
-或者，您也可以使用 [react-spring](https://github.com/react-spring/react-spring)。
+Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring).
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 
@@ -56,7 +56,7 @@ githubLabel: 'component: Popper'
 
 {{"demo": "pages/components/popper/VirtualElementPopper.js"}}
 
-## 补充项目
+## Complementary projects
 
 对于更高级的用例，您可以利用：
 
@@ -65,3 +65,11 @@ githubLabel: 'component: Popper'
 在大多数情况下，这个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 可以处理弹出提示组件 的 state。
 
 {{"demo": "pages/components/popper/PopperPopupState.js"}}
+
+## Unstyled
+
+The @mui/base package contain an unstyled version of Popper - PopperUnstyled. It does not have a dependency on @mui/material. The only difference between Popper and PopperUnstyled is the support for theming. Popper can read the `direction` field from the current theme, while PopperUnstyled accepts the `direction` prop instead.
+
+```js
+import Popper from '@mui/base/PopperUnstyled';
+```

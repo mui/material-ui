@@ -22,7 +22,7 @@ githubLabel: 'component: Avatar'
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
-You can use different background colors for the avatar. The following demo generates the color based on the name of the person.
+您可以为头像使用不同的背景颜色。 下面的演示根据人的姓名生成颜色。
 
 {{"demo": "pages/components/avatars/BackgroundLetterAvatars.js"}}
 
@@ -38,7 +38,7 @@ You can use different background colors for the avatar. The following demo gener
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
 
-## 变体
+## Variants
 
 如果你需要矩形或圆角的头像组件，请使用 `variant`属性。
 
@@ -54,11 +54,17 @@ You can use different background colors for the avatar. The following demo gener
 
 {{"demo": "pages/components/avatars/FallbackAvatars.js"}}
 
-## 分组
+## Grouped
 
-`AvatarGroup` 通过堆栈的方式渲染其子元素。
+`AvatarGroup` renders its children as a stack. Use the `max` prop to limit the number of avatars.
 
 {{"demo": "pages/components/avatars/GroupAvatars.js"}}
+
+### Total avatars
+
+If you need to control the total number of avatars not shown, you can use the `total` prop.
+
+{{"demo": "pages/components/avatars/TotalAvatars.js"}}
 
 ## 带有徽章的组件
 

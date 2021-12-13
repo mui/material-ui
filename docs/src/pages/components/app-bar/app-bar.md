@@ -19,21 +19,25 @@ It can transform into a contextual action bar or be used as a navbar.
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
-## App Bar with a primary search field
-
-A primary searchbar.
-
-{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
-
 ## App Bar with menu
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
+
+## App Bar with responsive menu
+
+{{"demo": "pages/components/app-bar/ResponsiveAppBar.js", "bg": true}}
 
 ## App Bar with search field
 
 A side searchbar.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
+
+## App Bar with a primary search field
+
+A primary searchbar.
+
+{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
 ## Dense (desktop only)
 

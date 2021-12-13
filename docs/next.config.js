@@ -27,7 +27,7 @@ module.exports = {
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // Motivated by https://github.com/zeit/next.js/issues/7687
+    // Motivated by https://github.com/vercel/next.js/issues/7687
     ignoreDevErrors: true,
     ignoreBuildErrors: true,
   },

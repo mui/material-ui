@@ -805,6 +805,32 @@ describe('<Select />', () => {
       expect(options[2]).to.have.attribute('aria-selected', 'true');
     });
 
+    it('should serialize multiple select display value', () => {
+      const { getByRole } = render(
+        <Select multiple value={[10, 20, 30]}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>
+            <strong>Twenty</strong>
+          </MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      expect(getByRole('button')).to.have.text('Ten, Twenty, Thirty');
+    });
+
+    it('should not throw an error if `value` is an empty array', () => {
+      expect(() => {
+        render(<Select multiple value={[]} />);
+      }).not.to.throw();
+    });
+
+    it('should not throw an error if `value` is not an empty array', () => {
+      expect(() => {
+        render(<Select multiple value={['foo']} />);
+      }).not.to.throw();
+    });
+
     it('selects value based on their stringified equality when theyre not objects', () => {
       const { getAllByRole } = render(
         <Select multiple open value={['10', '20']}>

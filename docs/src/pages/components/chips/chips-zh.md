@@ -11,7 +11,7 @@ materialDesign: https://material.io/components/chips
 
 纸片组件允许用户输入信息、进行选择、过滤内容或触发动作。
 
-在这里，虽然我们将纸片组件归类为一个独立的组件，但更常见的作法是用在表单中作为输入框，因此本篇演示的内容并不会在上下文中显示。
+While included here as a standalone component, the most common use will be in some form of input, so some of the behavior demonstrated here is not shown in context.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -28,21 +28,21 @@ You can use the following actions.
 - Chips with the `onClick` prop defined change appearance on focus, hover, and click.
 - Chips with the `onDelete` prop defined will display a delete icon which changes appearance on hover.
 
-### Clickeable
+### Clickable
 
-{{"demo": "pages/components/chips/ClickeableChips.js"}}
+{{"demo": "pages/components/chips/ClickableChips.js"}}
 
-### Deleteable
+### Deletable
 
-{{"demo": "pages/components/chips/DeleteableChips.js"}}
+{{"demo": "pages/components/chips/DeletableChips.js"}}
 
-### Clickeable and deleteable
+### Clickable and deletable
 
-{{"demo": "pages/components/chips/ClickeableAndDeleteableChips.js"}}
+{{"demo": "pages/components/chips/ClickableAndDeletableChips.js"}}
 
-### Clickeable link
+### Clickable link
 
-{{"demo": "pages/components/chips/ClickeableLinkChips.js"}}
+{{"demo": "pages/components/chips/ClickableLinkChips.js"}}
 
 ### Custom delete icon
 
@@ -50,9 +50,9 @@ You can use the following actions.
 
 ## Chip adornments
 
-You can add ornaments to the beginning of the component.
+您可以在组件的开头添加修饰。
 
-Use the `avatar` prop to added a avatar or use the `icon` prop to added a icon.
+使用`avatar`属性来添加一个头像，或是使用`icon`属性添加一个图标。
 
 ### Avatar chip
 
@@ -64,7 +64,7 @@ Use the `avatar` prop to added a avatar or use the `icon` prop to added a icon.
 
 ## Color chip
 
-You can use the `color` prop to define a primary or secondary color.
+You can use the `color` prop to define a color from theme palette.
 
 {{"demo": "pages/components/chips/ColorChips.js"}}
 
@@ -84,6 +84,6 @@ An example of rendering multiple chips from an array of values. 删除一个纸�
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
-## 无障碍设计
+## Accessibility
 
 如果 Chip 是可删除或可点击的，它则应该是一个安装标签顺序排列的按钮。 当纸片被聚焦时（例如在制表符时），释放（`keyup` 事件） `Backspace` 或 `Delete` 将调用 `onDelete` 处理程序，从而通过释放 `Escape` 来模糊纸片组件。
