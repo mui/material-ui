@@ -4,38 +4,46 @@ import { styled } from '@mui/system';
 
 const blue = {
   200: '#80BFFF',
+  400: '#3399FF',
 };
 
 const grey = {
   50: '#F3F6F9',
-  100: '#EAEEF3',
-  300: '#D7DCE1',
-  400: '#BFC7CF',
-  900: '#20262D',
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7',
+  400: '#B2BAC2',
+  500: '#A0AAB4',
+  600: '#6F7E8C',
+  700: '#3E5060',
+  800: '#2D3843',
+  900: '#1A2027',
 };
 
-const StyledInputElement = styled('input')`
-  width: 300px;
+const StyledInputElement = styled('input')(
+  ({ theme }) => `
+  width: 320px;
   font-size: 0.875rem;
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
   line-height: 1.5;
-  color: ${grey[900]};
-  background: ${grey[50]};
-  border: 1px solid ${grey[300]};
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
   border-radius: 8px;
   padding: 12px 12px;
-  transition: width 150ms ease;
+  transition: all 150ms ease;
 
   &:hover {
-    background: ${grey[100]};
-    border-color: ${grey[400]};
+    background: ${theme.palette.mode === 'dark' ? null : grey[100]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[400]};
   }
 
   &:focus {
-    outline: 2px solid ${blue[200]};
+    outline: 2px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
   }
-`;
+`,
+);
 
 const CustomInput = React.forwardRef(function CustomInput(props, ref) {
   const { getRootProps, getInputProps } = useInput(props, ref);
@@ -48,5 +56,7 @@ const CustomInput = React.forwardRef(function CustomInput(props, ref) {
 });
 
 export default function UseInput() {
-  return <CustomInput aria-label="Demo input" placeholder="Type something..." />;
+  return (
+    <CustomInput aria-label="Demo input" placeholder="Type something here..." />
+  );
 }
