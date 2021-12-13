@@ -48,6 +48,7 @@ const CustomTablePagination = styled(TablePaginationUnstyled)`
       gap: 10px;
       align-items: center;
     }
+  }
 `;
 
 export default function UnstyledTable() {
