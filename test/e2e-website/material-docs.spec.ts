@@ -1,13 +1,12 @@
 import { test as base, expect } from '@playwright/test';
 import kebabCase from 'lodash/kebabCase';
 import FEATURE_TOGGLE from '../../docs/src/featureToggle';
-import { TestFixture } from './config';
+import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});
 
 test.beforeEach(async ({ materialUrlPrefix }) => {
   test.skip(
-    // @ts-ignore
     !!materialUrlPrefix && !FEATURE_TOGGLE.enable_product_scope,
     "Migration haven't started yet",
   );

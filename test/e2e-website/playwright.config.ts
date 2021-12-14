@@ -3,8 +3,9 @@ import { PlaywrightTestConfig } from '@playwright/test';
 export type TestFixture = { materialUrlPrefix: string };
 
 const config: PlaywrightTestConfig<TestFixture> = {
-  workers: 4,
-  retries: 3,
+  use: {
+    baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL || 'https://mui.com',
+  },
   projects: [
     {
       name: 'current',
