@@ -34,6 +34,8 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 {{"demo": "pages/components/selects/SelectLabels.js"}}
 
+> ⚠ Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
+
 ### 自动宽度
 
 {{"demo": "pages/components/selects/SelectAutoWidth.js"}}
