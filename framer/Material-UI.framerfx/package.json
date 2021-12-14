@@ -3,7 +3,7 @@
   "private": true,
   "author": "MUI Team",
   "description": "MUI Framer components",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "license": "MIT",
   "homepage": "https://mui.com/",
   "repository": {
@@ -15,8 +15,8 @@
     "url": "https://github.com/mui-org/material-ui/issues"
   },
   "dependencies": {
-    "@mui/icons-material": "^5.2.1",
-    "@mui/material": "^5.2.3",
+    "@mui/icons-material": "^5.2.4",
+    "@mui/material": "^5.2.4",
     "@mui/utils": "^5.2.3",
     "lodash": "^4.17.21"
   },

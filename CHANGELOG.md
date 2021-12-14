@@ -1,5 +1,77 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.2.4
+
+<!-- generated comparing v5.2.3..master -->
+
+_Dec 14, 2021_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ Add `not` operator to `theme.breakpoints` (#29311) @Philipp000
+
+  ```js
+  const styles = (theme) => ({
+    root: {
+      backgroundColor: 'blue',
+      // Match [xs, md) and [md + 1, ∞)
+      //       [xs, md) and [lg, ∞)
+      //       [0px, 900px) and [1200px, ∞)
+      [theme.breakpoints.not('md')]: {
+        backgroundColor: 'red',
+      },
+    },
+  });
+  ```
+
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@mui/material@5.2.4`
+
+- &#8203;<!-- 14 -->[esm] Correct a styles imports (#29976) @Janpot
+- &#8203;<!-- 12 -->[GlobalStyles] Fix `theme` type (#30072) @mnajdova
+- &#8203;<!-- 11 -->[Grid] Fix grid items to respond to the container's responsive columns (#29715) @kkorach
+- &#8203;<!-- 04 -->[TextField] Fix missing space before asterisk in `OutlinedInput`'s label (#29630) @alisasanib
+- &#8203;<!-- 03 -->[Transition] Allow any valid HTML attribute to be passed (#29888) @Janpot
+- &#8203;<!-- 02 -->[types] Fix discrepancy between core and system `ThemeOptions` (#30095) @fmeum
+- &#8203;<!-- 09 -->[InputBase] Add prop for disabling global styles (#29213) @bryan-hunter
+- &#8203;<!-- 08 -->[Select] Improve multiple logic (#30135) @ladygo93
+
+### `@mui/system@5.2.4`
+
+- &#8203;<!-- 06 -->[system] Don't transition when re-appearing (#30108) @eps1lon
+- &#8203;<!-- 05 -->[system] Add `not` operator to `breakpoints` (#29311) @Philipp000
+
+### `@mui/base@5.0.0-alpha.60`
+
+- &#8203;<!-- 25 -->[BadgeUnstyled] Make it conformant with other base components (#30141) @mnajdova
+
+### `@mui/icons-material@5.2.4`
+
+- &#8203;<!-- 10 -->[icons] Correct location of icon download folder (#29839) @yaboi
+
+### Docs
+
+- &#8203;<!-- 22 -->[docs] Explain the use of Select's label in FormControl (#30189) @michaldudak
+- &#8203;<!-- 21 -->[docs] Don't run nprogress on shallow routing (#30087) @Janpot
+- &#8203;<!-- 20 -->[docs] Add Data Driven Forms to related projects (#30078) @rvsia
+- &#8203;<!-- 19 -->[docs] Sync translations with Crowdin (#30067) @l10nbot
+- &#8203;<!-- 18 -->[docs] Fix link on "Custom variables" section in the Theming page #30100 @danilo-leal
+- &#8203;<!-- 17 -->[docs] Fix justifyContent option in the Grid interactive demo (#30117) @danilo-leal
+- &#8203;<!-- 16 -->[docs] Add tip to help access the docs of a previous version when finding answers in StackOverflow (#30101) @danilo-leal
+- &#8203;<!-- 15 -->[docs] Fix import example inside Unstyled Backdrop section (#30098) @TheodosiouTh
+- &#8203;<!-- 01 -->[website] Column pinning and Tree data are out (#30136) @oliviertassinari
+- &#8203;<!-- 07 -->[survey] Remove survey promotion items (#30122) @danilo-leal
+
+### Core
+
+- &#8203;<!-- 23 -->[core] Fix link to Open Collective @oliviertassinari
+- &#8203;<!-- 26 -->[core] Update snapshots and s3 fallback (#30134) @Janpot
+- &#8203;<!-- 24 -->[ci] Update CI bucket (#30080) @Janpot
+- &#8203;<!-- 13 -->[fix] size:snapshot for mui-material-next and mui-joy components (#30106) @Janpot
+
+All contributors of this release in alphabetical order: @alisasanib, @bryan-hunter, @danilo-leal, @eps1lon, @fmeum, @Janpot, @kkorach, @l10nbot, @ladygo93, @michaldudak, @mnajdova, @oliviertassinari, @Philipp000, @rvsia, @TheodosiouTh, @yaboi
+
 ## 5.2.3
 
 <!-- generated comparing v5.2.2..master -->
