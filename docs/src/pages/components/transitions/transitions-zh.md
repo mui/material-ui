@@ -4,7 +4,7 @@ components: Collapse, Fade, Grow, Slide, Zoom
 githubLabel: 'component: Transition'
 ---
 
-# 过渡动画
+# Transitions
 
 <p class="description">过渡动画有利于增强 UI 的表现力并且让人更易于使用。</p>
 
@@ -83,7 +83,7 @@ export default Main() {
 
 ## TransitionGroup
 
-To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition/-group) component from _react-transition-group_. As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
+To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition-group/) component from _react-transition-group_. As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
 
 {{"demo": "pages/components/transitions/TransitionGroupExample.js"}}
 
@@ -91,14 +91,14 @@ To animate a component when it is mounted or unmounted, you can use the [`Transi
 
 Some MUI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition. 您可以使用上述的任何组件或者是您自己的组件。 它应遵守以下条件：
 
-- 接受一个 `in` 属性。 这对应于打开/关闭的状态。
-- 当进入过渡时调用 `onEnter` 回调属性。
-- 当退出过渡完成后应该调用 `onExited` 回调属性。 这两个回调属性保证了当在一个关闭的状态并展示完过渡动画时，才会移除子内容。
+- 接受一个 `in` 属性。 This corresponds to the open/close state.
+- Call the `onEnter` callback prop when the enter transition starts.
+- Call the `onExited` callback prop when the exit transition is completed. 这两个回调属性保证了当在一个关闭的状态并展示完过渡动画时，才会移除子内容。
 
 For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition/). You can also visit the dedicated sections of some of the components:
 
-- [Modal 模态框组件](/components/modal/#transitions)
-- [Dialog 对话框](/components/dialogs/#transitions)
-- [Popper 弹出提示](/components/popper/#transitions)
-- [Snackbar（消息条）](/components/snackbars/#transitions)
+- [Modal](/components/modal/#transitions)
+- [Dialog](/components/dialogs/#transitions)
+- [Popper](/components/popper/#transitions)
+- [Snackbar](/components/snackbars/#transitions)
 - [Tooltip](/components/tooltips/#transitions)

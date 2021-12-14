@@ -16,7 +16,7 @@ githubLabel: 'component: Paper'
 
 {{"demo": "pages/components/paper/SimplePaper.js", "bg": true}}
 
-## 变体
+## Variants
 
 如果你想要一个轮廓的曲面，你可以使用 `variant` 属性。
 

@@ -20,7 +20,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
-## 尺寸
+## Sizes
 
 For smaller slider, use the prop `size="small"`.
 
@@ -74,13 +74,13 @@ In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/InputSlider.js"}}
 
-## Color 颜色
+## Color
 
 {{"demo": "pages/components/slider/ColorSlider.js"}}
 
-## Customization 个性化
+## Customization
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here are some examples of customizing the component. 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
@@ -122,13 +122,13 @@ In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
-## 素颜模式
+## Unstyled
 
 <!-- #default-branch-switch -->
 
 - 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-The slider also comes with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
+The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import SliderUnstyled from '@mui/base/SliderUnstyled';
@@ -136,7 +136,7 @@ import SliderUnstyled from '@mui/base/SliderUnstyled';
 
 {{"demo": "pages/components/slider/UnstyledSlider.js"}}
 
-## 无障碍设计
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
@@ -145,7 +145,7 @@ import SliderUnstyled from '@mui/base/SliderUnstyled';
 - 每个滑块都带有一个方便用户的标签（`aria-label`、`aria-labelledby` 或 `getAriaLabel` 属性）。
 - 每一个滑块的当前值都有一个方便用户阅读的文字。 如果值与标签的语义相匹配的话，则不需要此操作。 你可以通过`getAriaValueText` 或者 `aria-valuetext` 属性来更改名字。
 
-## 设计局限
+## Limitations
 
 ### IE 11
 

@@ -2,31 +2,31 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": "In most cases will simply be a string containing a title for the label.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "componentsProps": "The props used for each slot inside.",
     "error": "If <code>true</code>, the step is marked as failed.",
     "icon": "Override the default label of the step icon.",
     "optional": "The optional node to display.",
     "StepIconComponent": "The component to render in place of the <a href=\"/api/step-icon/\"><code>StepIcon</code></a>.",
     "StepIconProps": "Props applied to the <a href=\"/api/step-icon/\"><code>StepIcon</code></a> element.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes."
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "horizontal": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>orientation=\"horizontal\"</code>"
     },
     "vertical": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     },
     "label": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the label element that wraps `children`"
     },
     "active": {
@@ -50,7 +50,7 @@
       "conditions": "<code>disabled={true}</code>"
     },
     "iconContainer": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the `icon` container element"
     },
     "alternativeLabel": {
@@ -59,7 +59,7 @@
       "conditions": "<code>alternativeLabel={true}</code>"
     },
     "labelContainer": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the container element which wraps label and `optional`"
     }
   }

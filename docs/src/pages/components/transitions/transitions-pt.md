@@ -4,7 +4,7 @@ components: Collapse, Fade, Grow, Slide, Zoom
 githubLabel: 'component: Transition'
 ---
 
-# Transições
+# Transitions
 
 <p class="description">Transições ajudam a deixar a interface expressiva e fácil de usar.</p>
 
@@ -83,7 +83,7 @@ export default Main() {
 
 ## TransitionGroup
 
-To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition/-group) component from _react-transition-group_. As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
+To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](http://reactcommunity.org/react-transition-group/transition-group/) component from _react-transition-group_. As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
 
 {{"demo": "pages/components/transitions/TransitionGroupExample.js"}}
 
@@ -91,14 +91,14 @@ To animate a component when it is mounted or unmounted, you can use the [`Transi
 
 Some MUI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition. Você pode usar qualquer um dos componentes acima ou seu próprio componente. Ele deve respeitar as seguintes condições:
 
-- Aceitar uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
-- Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
-- Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. Esses dois callbacks permitem desmontar os elementos filhos quando em estado fechado e totalmente transitados.
+- Aceitar uma propriedade `in`. This corresponds to the open/close state.
+- Call the `onEnter` callback prop when the enter transition starts.
+- Call the `onExited` callback prop when the exit transition is completed. Esses dois callbacks permitem desmontar os elementos filhos quando em estado fechado e totalmente transitados.
 
 For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition/). You can also visit the dedicated sections of some of the components:
 
 - [Modal](/components/modal/#transitions)
-- [Diálogo](/components/dialogs/#transitions)
+- [Dialog](/components/dialogs/#transitions)
 - [Popper](/components/popper/#transitions)
 - [Snackbar](/components/snackbars/#transitions)
 - [Tooltip](/components/tooltips/#transitions)

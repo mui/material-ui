@@ -17,7 +17,7 @@ There are many ways to support MUI:
   - 查看和评论一些现有的 [pull requests](https://github.com/mui-org/material-ui/pulls) 和 [issues](https://github.com/mui-org/material-ui/issues)。
   - 帮助我们 [翻译](https://translate.mui.com) 文档。
   - [改进我们的文档](https://github.com/mui-org/material-ui/tree/next/docs)，修复错误，或者通过 [拉取请求](https://github.com/mui-org/material-ui/pulls) 来添加功能。
-- **在 [OpenCollective](https://opencollective.com/material-ui)**上资助我们。 If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the MUI home page.
+- **Support us financially on [OpenCollective](https://opencollective.com/mui)**. If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the MUI home page.
 
 ## 为什么我的组件在生产构造中没有正确地渲染？
 
@@ -181,7 +181,7 @@ If you are using webpack, you can change the way it will [resolve](https://webpa
 
 ### 与 Lerna 一起使用
 
-One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. 您可以尝试使用 --hoist 标识运行引导的选项。
+One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. 您可以尝试使用 --hoist 标识运行引导的选项。
 
 ```sh
 lerna bootstrap --hoist
@@ -266,13 +266,13 @@ function handleRender(req, res) {
 
 您会遇到客户端和服务端之间存在类名不匹配的情况。 可能在第一次请求时会出现这种情况。 另一个征兆是，在初始页面加载和下载客户端脚本之间，样式会发生变化。
 
-#### 要运行的操作
+#### Action to Take
 
-类名值依赖于 [类名生成器](/styles/advanced/#class-names) 的概念。 整个页面需要用 **一个类名生成器** 来渲染。 这个生成器需要在服务端和客户端上的行为一致。 就像这样：
+类名值依赖于 [类名生成器](/styles/advanced/#class-names) 的概念。 整个页面需要用 **一个类名生成器** 来渲染。 这个生成器需要在服务端和客户端上的行为一致。 For instance:
 
 - 您需要为每个请求提供一个新的类名生成器。 但是您不应该在不同的请求之间共享 `createGenerateClassName()`：
 
-  修复示例：
+  Example of fix:
 
   ```diff
   -  // 创建一个新的类名生成器。
@@ -284,7 +284,7 @@ function handleRender(req, res) {
 
     //…
 
-    // 将组件渲染为字符串。
+    // Render the component to a string.
     const html = ReactDOMServer.renderToString(
   ```
 

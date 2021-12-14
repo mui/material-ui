@@ -39,13 +39,13 @@ The `error` prop toggles the error state. The `helperText` prop can then be used
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
-## Select 选择属性
+## Select
 
 使用 `select` 属性的时候，您可以在文本框内插入一个 [Select](/components/selects/) 组件。
 
 {{"demo": "pages/components/text-fields/SelectTextFields.js"}}
 
-## Icons 图标
+## Icons
 
 我们提供了在文本框内展示图标的不同的方式。
 
@@ -57,7 +57,7 @@ The `error` prop toggles the error state. The `helperText` prop can then be used
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
-## 尺寸
+## Sizes
 
 想要使用外观看起来比较小的输入框吗？ 试着使用 `size` 属性吧。
 
@@ -73,7 +73,7 @@ The `margin` prop can be used to alter the vertical spacing of the text field. U
 
 {{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
 
-## 全宽
+## Full width
 
 我们提供了`fullWidth` 属性，使用它的时候，输入框会占据整个容器的宽度。
 
@@ -85,7 +85,7 @@ The `margin` prop can be used to alter the vertical spacing of the text field. U
 
 {{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
-## Components 组件
+## Components
 
 `TextField` 是由一些较小的组件组成的 ( [`FormControl`](/api/form-control/)， [`Input`](/api/input/)， [`FilledInput`](/api/filled-input/)， [`InputLabel`](/api/input-label/)， [`OutlinedInput`](/api/outlined-input/)， and [`FormHelperText`](/api/form-helper-text/) ) ，而你可以直接使用这些小的组件，来自定制你的表单域输入框。
 
@@ -93,19 +93,19 @@ The `margin` prop can be used to alter the vertical spacing of the text field. U
 
 {{"demo": "pages/components/text-fields/ComposedTextField.js"}}
 
-## Inputs 输入框
+## Inputs
 
 {{"demo": "pages/components/text-fields/Inputs.js"}}
 
-## Color 颜色
+## Color
 
 当使用 `color` 属性时，聚焦文本框时的高亮颜色会被改变。
 
 {{"demo": "pages/components/text-fields/ColorTextFields.js"}}
 
-## Customization 个性化
+## Customization
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -125,7 +125,7 @@ For advanced customization use cases, a `useFormControl()` hook is exposed. This
 import { useFormControl } from '@mui/material/FormControl';
 ```
 
-**返回结果**
+**Returns**
 
 `value` (_object_):
 
@@ -146,11 +146,11 @@ import { useFormControl } from '@mui/material/FormControl';
 - `value.onEmpty` (_func_): Should be called when the input is emptied
 - `value.onFilled` (_func_): Should be called when the input is filled
 
-**示例**
+**Example**
 
 {{"demo": "pages/components/text-fields/UseFormControl.js"}}
 
-## 设计局限
+## Limitations
 
 ### 缩放
 
@@ -164,7 +164,7 @@ import { useFormControl } from '@mui/material/FormControl';
 <TextField InputLabelProps={{ shrink: true }} />
 ```
 
-或
+or
 
 ```jsx
 <InputLabel shrink>计数</InputLabel>
@@ -245,7 +245,7 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 />;
 ```
 
-## 无障碍设计
+## Accessibility
 
 为了确保您的文本框可提供无障碍访问，**输入框必须和标签以及帮助文本连在一起调用**。 而且，深层的 DOM 节点应该遵循这个结构。
 
@@ -268,7 +268,7 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 </FormControl>
 ```
 
-## 补充项目
+## Complementary projects
 
 For more advanced use cases, you might be able to take advantage of:
 
@@ -277,7 +277,7 @@ For more advanced use cases, you might be able to take advantage of:
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
 
-## 素颜模式
+## Unstyled
 
 For advanced customization scenarios, you can use the unstyled primitives.
 

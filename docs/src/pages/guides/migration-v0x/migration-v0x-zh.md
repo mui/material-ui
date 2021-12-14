@@ -75,7 +75,7 @@ export default App;
 
 ## Components 组件
 
-### Autocomplete 自动补全组件
+### Autocomplete
 
 MUI doesn't provide a high-level API for solving this problem. 我们鼓励您去探索 [React 社区提供的解决方案](/components/autocomplete/) 。
 
@@ -83,7 +83,7 @@ MUI doesn't provide a high-level API for solving this problem. 我们鼓励您�
 
 ### Svg Icon（Svg图标）
 
-在您的项目上运行 [迁移帮助程序](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod)。
+Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod) on your project.
 
 这将应用如下更改：
 

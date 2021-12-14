@@ -62,9 +62,9 @@ A principal responsabilidade do componente `MenuList` é manipular o foco.
 
 {{"demo": "pages/components/menus/AccountMenu.js"}}
 
-## Customização
+## Customization
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
@@ -78,7 +78,7 @@ Se a altura de um menu impede que todos os itens de menu sejam exibidos, o menu 
 
 {{"demo": "pages/components/menus/LongMenu.js"}}
 
-## Limitações
+## Limitations
 
 Existe [um problema com flexbox](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) que impede `text-overflow: ellipsis` de funcionar em um leiaute flexível. Você pode usar o componente `Typography` com `noWrap` para solucionar esse problema:
 
@@ -96,9 +96,9 @@ Aqui está um exemplo de um menu de contexto. (Clique com o botão direito para 
 
 {{"demo": "pages/components/menus/ContextMenu.js"}}
 
-## Projetos Complementares
+## Complementary projects
 
-Para situações de uso mais avançadas, você pode tirar proveito com:
+For more advanced use cases you might be able to take advantage of:
 
 ### PopupState helper
 

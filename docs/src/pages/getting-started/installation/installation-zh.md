@@ -1,4 +1,4 @@
-# 安装
+# Installation
 
 <p class="description">安装 MUI —— 世界上最受欢迎的 React UI 框架。</p>
 
@@ -34,7 +34,7 @@ yarn add @mui/material @mui/styled-engine-sc styled-components
 
 ## Roboto 字体
 
-MUI 是使用 [Roboto](https://fonts.google.com/specimen/Roboto) 字体来设计的。 因此请务必遵循 [这些说明](/components/typography/#general) 来引入字体。 例如，通过 Google Web Fonts 引入：
+MUI 是使用 [Roboto](https://fonts.google.com/specimen/Roboto) 字体来设计的。 因此请务必遵循 [这些说明](/components/typography/#general) 来引入字体。 For instance, via Google Web Fonts:
 
 ```html
 <link
@@ -48,7 +48,10 @@ MUI 是使用 [Roboto](https://fonts.google.com/specimen/Roboto) 字体来设计
 To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. 这是如何去做的 [一些说明](/components/icons/#font-icons) 例如，通过 Google Web Fonts 引入：
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
 ```
 
 ## SVG 图标
@@ -80,11 +83,11 @@ You can start using MUI with minimal Front-end infrastructure, which is great fo
 
 ⚠️ UMD 链接使用 `latest` 标签指向最新版本的库。 这个指向是**不稳定的**，它随着我们发布的新版本而改变。 You should consider pointing to a specific version, such as [v5.0.0](https://unpkg.com/@mui/material@5.0.0/umd/material-ui.development.js).
 
-## 设计资源
+## Design resources
 
 <a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
 <a href="https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-adobe-xd.svg" alt="adobe-xd" /></a>
-<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="草图" /></a>
+<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
 
 A set of reusable components for design tools is available, designed to match the React components and to help you craft great products:
 

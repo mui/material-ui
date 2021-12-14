@@ -28,19 +28,19 @@ Você pode usar as seguintes ações.
 - Chips com a propriedade `onClick` definida, mudará a aparência com foco, ao passar por cima e com clique.
 - Chips com a propriedade `onDelete` definida irá exibir um ícone de remoção, no qual modificará a aparência ao passar por cima.
 
-### Clickable
+### Clicável
 
 {{"demo": "pages/components/chips/ClickableChips.js"}}
 
-### Deletable
+### Deletável
 
 {{"demo": "pages/components/chips/DeletableChips.js"}}
 
-### Clickable and deletable
+### Clicável e deletável
 
 {{"demo": "pages/components/chips/ClickableAndDeletableChips.js"}}
 
-### Clickable link
+### Link clicável
 
 {{"demo": "pages/components/chips/ClickableLinkChips.js"}}
 
@@ -84,6 +84,6 @@ An example of rendering multiple chips from an array of values. Deletando um chi
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
-## Acessibilidade
+## Accessibility
 
 Se o Chip é deletável ou clicável, então é como um botão na ordem da tabulação. Quando o Chip está focado (ex. quando tabulando) pressionando (evento `keyup`) `Backspace` ou `Delete` irá chamar o evento manipulador `onDelete`, enquanto liberando com a tecla `Escape` irá tirar o foco do Chip.

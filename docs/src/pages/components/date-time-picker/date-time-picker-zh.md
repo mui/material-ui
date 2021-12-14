@@ -16,11 +16,11 @@ materialDesign: https://material.io/components/date-pickers
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 要求
+## Requirements
 
-该组件依赖于你所使用的日期管理库。 它支持 [date-fns](https://date-fns.org/)，[luxon](https://moment.github.io/luxon/)，[dayjs](https://github.com/iamkun/dayjs)，[moment](https://momentjs.com/) 以及其他任何使用公共 `dateAdapter` 接口的库。
+This component relies on the date management library of your choice. It supports [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) and any other library via a public `dateAdapter` interface.
 
-请安装这些库中的任何一个，并使用 `LocalizationProvider` 来包裹到你的 root（或者包裹到该选择器你想要应用的最高位置）来设置正确的日期引擎。
+Please install any of these libraries and set up the right date engine by wrapping your root (or the highest level you wish the pickers to be available) with `LocalizationProvider`:
 
 ```jsx
 // or @mui/lab/Adapter{Dayjs,Luxon,Moment} or any valid date-io adapter
@@ -34,7 +34,7 @@ function App() {
 }
 ```
 
-## 基本用法
+## Basic usage
 
 需要先选择日期在选择时间。 有 4 个步骤可供选择（年、日期、小时和分钟），所以需要用标签来直观地区分日期/时间步骤。
 
@@ -51,7 +51,7 @@ By default, the `DateTimePicker` component renders the desktop version if the me
 
 {{"demo": "pages/components/date-time-picker/ResponsiveDateTimePickers.js"}}
 
-## Form props 表单的属性
+## Form props
 
 The date time picker component can be disabled or read-only.
 
@@ -66,13 +66,13 @@ The date time picker component can be disabled or read-only.
 
 {{"demo": "pages/components/date-time-picker/DateTimeValidation.js"}}
 
-## 静态模式
+## Static mode
 
-It's possible to render any date & time picker inline. 这将启用自定义弹出提示/模态框的容器。
+It's possible to render any date & time picker inline. This will enable building custom popover/modal containers.
 
 {{"demo": "pages/components/date-time-picker/StaticDateTimePickerDemo.js", "bg": true}}
 
-## Customization 个性化
+## Customization
 
 以下是一些高度定制的日期 & 时间选择器的例子：
 

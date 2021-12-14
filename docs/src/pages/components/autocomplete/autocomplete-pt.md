@@ -188,7 +188,7 @@ Você pode usar a propriedade `limitTags` para limitrar o número de opções ex
 
 ## Tamanhos
 
-Gosta mais de campos de texto menores? Use a propriedade `size`.
+Fancy smaller inputs? Use the `size` prop.
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
@@ -224,7 +224,7 @@ import { createFilterOptions } from '@mui/material/Autocomplete';
 
 ### `createFilterOptions(config) => filterOptions`
 
-#### Argumentos
+#### Arguments
 
 1. `config` (_object_ [opcional]):
 
@@ -235,7 +235,7 @@ import { createFilterOptions } from '@mui/material/Autocomplete';
 - `config.stringify` (*func* [opcional]): Controla a forma como a opção é convertida em texto, dessa forma pode ser comparada com qualquer fragmento de texto.
 - `config.trim` (_bool_ [opcional]): Padrão `false`. Remover espaços ao fim.
 
-#### Retornos
+#### Returns
 
 `filterOptions`: o método de filtro retornado pode ser fornecido diretamente para a propriedade `filterOptions` do componente `Autocomplete` ou para o parâmetro de mesmo nome no hook.
 
@@ -252,9 +252,9 @@ const filterOptions = createFilterOptions({
 
 {{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
 
-### Avançado
+### Advanced
 
-Para mecanismos de filtragem mais ricos, como correspondência difusa, recomenda-se explorar o [match-sorter](https://github.com/kentcdodds/match-sorter). Por exemplo:
+Para mecanismos de filtragem mais ricos, como correspondência difusa, recomenda-se explorar o [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
 
 ```jsx
 import { matchSorter } from 'match-sorter';
@@ -286,7 +286,7 @@ Se você deseja evitar o comportamento padrão do teclado, você pode definir a 
 />
 ```
 
-## Limitações
+## Limitations
 
 ### autocomplete/autofill
 
@@ -319,7 +319,7 @@ VoiceOver no Safari do iOS não suporta o atributo `aria-owns` muito bem. Você 
 
 Se você fornecer um componente customizado na propriedade `ListboxComponent`, você precisará certificar-se de que o contêiner de scroll esteja com o atributo `role` definido como `listbox`. Isto garante o comportamento correto do scroll, por exemplo, quando utilizar o teclado para navegar.
 
-## Acessibilidade
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 

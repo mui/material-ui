@@ -26,7 +26,7 @@
     "PopperProps": "Props applied to the <a href=\"/api/popper/\"><code>Popper</code></a> element.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "title": "Tooltip title. Zero-length titles string are never displayed.",
-    "TransitionComponent": "用于过渡的组件。 <a href=\"/components/transitions/#transitioncomponent-prop\">Follow this guide</a> 了解更多关于此组件的要求。",
+    "TransitionComponent": "The component used for the transition. <a href=\"/components/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
   },
   "classDescriptions": {

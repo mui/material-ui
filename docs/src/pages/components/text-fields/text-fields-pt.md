@@ -41,13 +41,13 @@ You can use the <code>minRows` and `maxRows` props to bound it.
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
-## Seleção
+## Select
 
 A propriedade `select` faz com que o campo de texto use internamente um componente [Select](/components/selects/).
 
 {{"demo": "pages/components/text-fields/SelectTextFields.js"}}
 
-## Ícones
+## Icons
 
 Há muitas formas de incluir um ícone com um campo de texto.
 
@@ -59,7 +59,7 @@ A forma principal é utilizando um componente `InputAdornment`. This can be used
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
-## Tamanhos
+## Sizes
 
 Gosta mais de campos de texto menores? Use a propriedade `size`.
 
@@ -75,7 +75,7 @@ The `margin` prop can be used to alter the vertical spacing of the text field. U
 
 {{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
 
-## Largura total
+## Full width
 
 A propriedade `fullWidth` pode ser usada para fazer com que o campo ocupe a largura total de seu contêiner.
 
@@ -87,7 +87,7 @@ O componente pode ser controlado ou não controlado.
 
 {{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
-## Componentes
+## Components
 
 O componente `TextField` é composto por componentes menores ([`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), e [`FormHelperText`](/api/form-helper-text/)) que você pode aproveitar diretamente para customizar significativamente os campos do seu formulário.
 
@@ -95,19 +95,19 @@ Você também pode ter notado que algumas propriedades de campo nativas do HTML 
 
 {{"demo": "pages/components/text-fields/ComposedTextField.js"}}
 
-## Campos
+## Inputs
 
 {{"demo": "pages/components/text-fields/Inputs.js"}}
 
-## Cor
+## Color
 
 A propriedade `color` altera a cor do destaque do campo de texto quando focado.
 
 {{"demo": "pages/components/text-fields/ColorTextFields.js"}}
 
-## Customização
+## Customization
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -127,7 +127,7 @@ For advanced customization use cases, a `useFormControl()` hook is exposed. This
 import { useFormControl } from '@mui/material/FormControl';
 ```
 
-**Retornos**
+**Returns**
 
 `value` (_object_):
 
@@ -148,11 +148,11 @@ import { useFormControl } from '@mui/material/FormControl';
 - `value.onEmpty` (_func_): Should be called when the input is emptied
 - `value.onFilled` (_func_): Should be called when the input is filled
 
-**Exemplo**
+**Example**
 
 {{"demo": "pages/components/text-fields/UseFormControl.js"}}
 
-## Limitações
+## Limitations
 
 ### Shrink
 
@@ -166,7 +166,7 @@ Para contornar o problema, você pode forçar o "shrink" do rótulo.
 <TextField InputLabelProps={{ shrink: true }} />
 ```
 
-ou
+or
 
 ```jsx
 <InputLabel shrink>Contagem</InputLabel>
@@ -247,7 +247,7 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 />;
 ```
 
-## Acessibilidade
+## Accessibility
 
 Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao rótulo e ao texto auxiliar**. Os nós DOM subjacentes devem ter essa estrutura:
 
@@ -270,11 +270,11 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao r
 </div>
 ```
 
-## Projetos Complementares
+## Complementary projects
 
 For more advanced use cases, you might be able to take advantage of:
 
-- [react-hook-form](https://react-hook-form.com/): React hook para validação de formulários.
+- [react-hook-form](https://react-hook-form.com/): React hook for form validation.
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).

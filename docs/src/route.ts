@@ -39,8 +39,6 @@ const ROUTES = {
   storeTemplateWebbee: 'https://material-ui.com/store/items/webbee-landing-page/',
   storeTheFront: 'https://material-ui.com/store/items/the-front-landing-page/',
   storeFlexy: 'https://material-ui.com/store/items/flexy-react-admin-dashboard/',
-  survey2021Website: 'https://mui-org.typeform.com/2021-dev-survey#source=website',
-  survey2021Docs: 'https://mui-org.typeform.com/2021-dev-survey#source=docs',
 };
 
 export default ROUTES;

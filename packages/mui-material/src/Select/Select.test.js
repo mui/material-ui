@@ -819,18 +819,16 @@ describe('<Select />', () => {
       expect(getByRole('button')).to.have.text('Ten, Twenty, Thirty');
     });
 
-    it('should not throw an error for an empty multiple list', () => {
-      const { getByRole } = render(
-        <Select multiple value={[]}>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>
-            <strong>Twenty</strong>
-          </MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>,
-      );
-      // A zero-width string is added for empty values
-      expect(getByRole('button')).to.have.text('\u200B');
+    it('should not throw an error if `value` is an empty array', () => {
+      expect(() => {
+        render(<Select multiple value={[]} />);
+      }).not.to.throw();
+    });
+
+    it('should not throw an error if `value` is not an empty array', () => {
+      expect(() => {
+        render(<Select multiple value={['foo']} />);
+      }).not.to.throw();
     });
 
     it('selects value based on their stringified equality when theyre not objects', () => {

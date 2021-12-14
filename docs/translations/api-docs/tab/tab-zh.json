@@ -3,7 +3,7 @@
   "propDescriptions": {
     "children": "This prop isn&#39;t supported. Use the <code>component</code> prop if you need to change the children structure.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>.Mui-focusVisible</code> class.",
     "icon": "The icon to display.",

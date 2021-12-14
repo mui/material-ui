@@ -24,9 +24,9 @@ O `Tooltip` tem 12 **posicionamentos** para ser escolhido. They don't have direc
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## Customização
+## Customization
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
@@ -75,7 +75,7 @@ A dica (`Tooltip`) quebra o texto longo por padrão para torná-lo legível.
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
-## Interativo
+## Interactive
 
 Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
@@ -101,9 +101,9 @@ Por padrão os elementos desativados como `<button>` não disparam interações 
 </Tooltip>
 ```
 
-## Transições
+## Transitions
 
-Use uma transição diferente.
+Use a different transition.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
@@ -115,7 +115,7 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 ## Elemento virtual
 
-In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. Você precisa criar um objeto com a estrutura definida como  [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 {{"demo": "pages/components/tooltips/AnchorElTooltips.js"}}
 
@@ -127,7 +127,7 @@ No celular, a dica é exibida quando o usuário pressiona longamente o elemento 
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}
 
-## Acessibilidade
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
 

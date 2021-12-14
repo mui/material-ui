@@ -11,11 +11,11 @@ The Box component packages [all the style functions](/system/basics/#all-inclusi
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Exemplo
+## Example
 
 [A paleta](/system/palette/) com funções de estilo.
 
-## A propriedade `sx`
+## The `sx` prop
 
 Todas as propriedades do sistema estão disponíveis através da [propriedade `sx`](/system/basics/#the-sx-prop). Além disso, a propriedade `sx` permite você especificar quaisquer outras regras CSS que precisar. Aqui está um exemplo de como usá-la:
 
@@ -53,7 +53,7 @@ For non-MUI components, use the `component` prop.
 import Box from '@mui/material/Box';
 ```
 
-| Nome                                     | Tipo                                                                                                                          | Padrão                                  | Descrição                                                                               |
+| Nome                                     | Tipo                                                                                                                          | Padrão                                  | Description                                                                             |
 |:---------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:--------------------------------------------------------------------------------------- |
 | <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                                 |                                         | Função de renderização do Box ou nó.                                                    |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | O componente usado como nó raiz. Ou uma string para usar um elemento DOM ou componente. |

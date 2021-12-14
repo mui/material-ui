@@ -5,7 +5,7 @@
     "color": "The active color.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "components": "The components used for first, last, next &amp; previous item type",
-    "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "page": "The current page number.",
     "selected": "If <code>true</code> the pagination item is selected.",
     "shape": "The shape of the pagination item.",

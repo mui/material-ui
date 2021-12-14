@@ -1,4 +1,4 @@
-# Composição
+# Composition
 
 <p class="description">MUI tries to make composition as easy as possible.</p>
 
@@ -147,8 +147,8 @@ function ThirdPartyComponent({ prop1 } : { prop1: string }) {
   return <div />
 }
 // ...
-function ThirdPartyComponent({ prop1 } : { prop1: string }) {
-  return <div />
+function ThirdPartyComponent({ prop1 }: { prop1: string }) {
+  return <div />;
 }
 // ...
 ```

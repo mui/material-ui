@@ -38,12 +38,12 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 
 ## 发布时间表
 
-| 日期         | 版本     | 状态  |
-|:---------- |:------ |:--- |
-| 2018 年 5 月 | v1.0.0 | 已发布 |
-| 2018 年 9 月 | v3.0.0 | 已发布 |
-| 2019 年 5 月 | v4.0.0 | 已发布 |
-| 2021 年 9 月 | v5.0.0 | 已发布 |
+| 日期         | 版本     | 状态       |
+|:---------- |:------ |:-------- |
+| 2018 年 5 月 | v1.0.0 | 已发布      |
+| 2018 年 9 月 | v3.0.0 | Released |
+| 2019 年 5 月 | v4.0.0 | Released |
+| 2021 年 9 月 | v5.0.0 | Released |
 
 查看 [里程碑](https://github.com/mui-org/material-ui/milestones) 可以得到一个更详细的总览。
 

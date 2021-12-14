@@ -10,7 +10,7 @@
 - [CSS Modules](#css-modules)
 - [Emotion](#css-modules)
 
-## 纯 CSS
+## Plain CSS
 
 没有什么特别花哨的，只是纯 CSS。
 
@@ -79,7 +79,7 @@ const cache = createCache({
 export default function PlainCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {这里编写你的组件树。 现在您可以覆盖 Material-UI 的样式。 */}
+      {这里编写你的组件树。 Now you can override MUI's styles. */}
     </CacheProvider>
   );
 }
@@ -167,11 +167,11 @@ export default function PlainCssSliderDeep2() {
 }
 ```
 
-## 全局 CSS
+## Global CSS
 
 明确向提组件提供类名是不是太大费周章了？ [您可以定位到由 Material-UI 生成的类名](/styles/advanced/#with-material-ui-core)。
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/global-classnames-dho8k)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/global-classnames-dho8k)
 
 **GlobalCssSlider.css**
 
@@ -197,9 +197,9 @@ export default function GlobalCssSlider() {
 }
 ```
 
-### CSS 注入顺序⚠️
+### CSS injection order ⚠️
 
-**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives MUI precedence over your custom styles. 如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 Here's a demo of how it can be done in MUI:
+**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives MUI precedence over your custom styles. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done in MUI:
 
 ```jsx
 import * as React from 'react';
@@ -208,13 +208,13 @@ import { StyledEngineProvider } from '@mui/material/styles';
 export default function GlobalCssPriority() {
   return (
     <StyledEngineProvider injectFirst>
-      {/* 您的组件树。 现在您可以覆盖 Material-UI 的样式。 */}
+      {/* Your component tree. Now you can override MUI's styles. */}
     </StyledEngineProvider>
   );
 }
 ```
 
-**注意：** 如果您使用的是 emotion 并且在您的程序中自定义了缓存，那么这将会覆盖 MUI 的缓存。 为了使注入顺序仍然正确，您需要添加前缀选项。 下面是一个示例：
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -229,7 +229,7 @@ const cache = createCache({
 export default function GlobalCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* 这里编写你的组件树。 现在您可以覆盖 Material-UI 的样式。 */}
+      {/* 这里编写你的组件树。 Now you can override MUI's styles. */}
     </CacheProvider>
   );
 }
@@ -237,9 +237,9 @@ export default function GlobalCssPriority() {
 
 **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@mui/styled-engine-sc` package.
 
-### 更深层的元素
+### Deeper elements
 
-如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 In MUI, all child elements have an increased specificity of 2: `.parent .child {}`. 所以在编写覆盖样式的时候，你也需要这样做。
+If you attempt to style the Slider, you will likely need to affect some of the Slider's child elements, for example the thumb. In MUI, all child elements have an increased specificity of 2: `.parent .child {}`. When writing overrides, you need to do the same.
 
 以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
 
@@ -281,9 +281,10 @@ export default function GlobalCssSliderDeep() {
 
 By default, MUI components come with emotion as their style engine. If, however, you would like to use `styled-components`, you can configure your app by following the [styled engine guide](/guides/styled-engine/#how-to-switch-to-styled-components) or starting with one of the example projects:
 
-- [Create React App with styled-components](https://github.com/mui-org/material-ui/tree/HEAD/examples/create-react-app-with-styled-components)
-- [Create React App with styled-components and typescript](https://github.com/mui-org/material-ui/tree/HEAD/examples/create-react-app-with-styled-components-typescript)
-- [Next.js app with styled-components and TypeScript](https://github.com/mui-org/material-ui/blob/HEAD/examples/nextjs-with-styled-components-typescript)
+<!-- #default-branch-switch -->
+
+- [Create React App with styled-components](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components)
+- [Create React App with styled-components and typescript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
 
 Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
 
@@ -291,7 +292,7 @@ After the style engine is configured properly, you can use the [`styled()`](/sys
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-interoperability-w9z9d)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/styled-components-interoperability-w9z9d)
 
 ```jsx
 import * as React from 'react';
@@ -311,15 +312,15 @@ export default function StyledComponents() {
 }
 ```
 
-### 更深层的元素
+### Deeper elements
 
-如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 In MUI, all child elements have an increased specificity of 2: `.parent .child {}`. 所以在编写覆盖样式的时候，你也需要这样做。
+If you attempt to style the Slider, you will likely need to affect some of the Slider's child elements, for example the thumb. In MUI, all child elements have an increased specificity of 2: `.parent .child {}`. When writing overrides, you need to do the same.
 
-以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
+The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "defaultCodeOpen": true}}
 
-上面的演示依赖于 [默认的` className `值](/styles/advanced/#with-material-ui-core)，但是你也可以使用 `componentsProps` API 来提供你自己的类名。
+The above demo relies on the [default `className` values](/styles/advanced/#with-material-ui-core), but you can provide your own class name with the `componentsProps` API.
 
 ```jsx
 import * as React from 'react';
@@ -350,7 +351,7 @@ export default function StyledComponentsDeep2() {
 }
 ```
 
-### 主题
+### Theme
 
 By using the MUI theme provider, the theme will be available in the theme context of the styled engine too (emotion or styled-components, depending on your configuration).
 
@@ -403,7 +404,7 @@ const StyledTooltip = styled(({ className, ...props }) => (
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/css-modules-nuyg8)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/css-modules-nuyg8)
 
 **CssModulesSlider.module.css**
 
@@ -435,9 +436,9 @@ export default function CssModulesSlider() {
 }
 ```
 
-### CSS 注入顺序⚠️
+### CSS injection order ⚠️
 
-**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives MUI precedence over your custom styles. 如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 Here's a demo of how it can be done in MUI:
+**Note:** Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives MUI precedence over your custom styles. To remove the need for **!important**, you need to change the CSS injection order. Here's a demo of how it can be done in MUI:
 
 ```jsx
 import * as React from 'react';
@@ -446,13 +447,13 @@ import { StyledEngineProvider } from '@mui/material/styles';
 export default function GlobalCssPriority() {
   return (
     <StyledEngineProvider injectFirst>
-      {/* 您的组件树。 现在您可以覆盖 Material-UI 的样式。 */}
+      {/* Your component tree. Now you can override MUI's styles. */}
     </StyledEngineProvider>
   );
 }
 ```
 
-**注意：** 如果您使用的是 emotion 并且在您的程序中自定义了缓存，那么这将会覆盖 MUI 的缓存。 为了使注入顺序仍然正确，您需要添加前缀选项。 下面是一个示例：
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -467,7 +468,7 @@ const cache = createCache({
 export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* 这里编写你的组件 现在您可以覆盖 Material-UI 的样式。 */}
+      {/* 这里编写你的组件 Now you can override MUI's styles. */}
     </CacheProvider>
   );
 }
@@ -475,11 +476,11 @@ export default function CssModulesPriority() {
 
 **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@mui/styled-engine-sc` package.
 
-### 更深层的元素
+### Deeper elements
 
-如果你试图自定义滑块的样式，那么很可能会影响到滑块的一些子元素，例如滚动条的箭头（thumb）。 In MUI, all child elements have an increased specificity of 2: `.parent .child {}`. 所以在编写覆盖样式的时候，你也需要这样做。
+If you attempt to style the Slider, you will likely need to affect some of the Slider's child elements, for example the thumb. In MUI, all child elements have an increased specificity of 2: `.parent .child {}`. When writing overrides, you need to do the same.
 
-以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
+The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
 {{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideToolbar": true}}
 
@@ -517,7 +518,7 @@ export default function CssModulesSliderDeep1() {
 }
 ```
 
-上面的演示依赖于 [默认的` className `值](/styles/advanced/#with-material-ui-core)，但是你也可以使用 `componentsProps` API 来提供你自己的类名。
+The above demo relies on the [default `className` values](/styles/advanced/#with-material-ui-core), but you can provide your own class name with the `componentsProps` API.
 
 **CssModulesSliderDeep2.module.css**
 
@@ -567,10 +568,10 @@ Emotion's **css()** method works seamlessly with MUI.
 
 {{"demo": "pages/guides/interoperability/EmotionCSS.js", "defaultCodeOpen": true}}
 
-### 主题
+### Theme
 
 它会像 styled components 一样起作用。 您可以 [使用相同的指南](/guides/interoperability/#styled-components) 。
 
 ### `styled()` API
 
-它会像 styled components 一样起作用。 您可以 [使用相同的指南](/guides/interoperability/#styled-components) 。
+It works exactly like styled components. You can [use the same guide](/guides/interoperability/#styled-components).

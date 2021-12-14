@@ -14,13 +14,13 @@ components: GlobalStyles
 1. [全局化主题变体](#4-global-theme-variation)
 1. [全局 CSS 覆盖](#5-global-css-override)
 
-## 1. 一次性定制
+## 1. One-off customization
 
 您可能需要为实现特定的组件而更改样式，以下有几种解决方案：
 
 ### 使用 `sx` 属性
 
-The easiest way to add style overrides for a one-off situation is to use the [`sx` prop](/system/basics/#the-sx-prop) available on all MUI components. 下面是一个示例：
+The easiest way to add style overrides for a one-off situation is to use the [`sx` prop](/system/basics/#the-sx-prop) available on all MUI components. Here is an example:
 
 {{"demo": "pages/customization/how-to-customize/SxProp.js"}}
 
@@ -121,7 +121,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 }
 ```
 
-## 2. 可重复使用的样式覆盖
+## 2. Reusable style overrides
 
 If you find that you need the same overrides in multiple places across your application, you can use the [`styled()`](/system/styled/) utility to create a reusable component:
 
@@ -129,7 +129,7 @@ If you find that you need the same overrides in multiple places across your appl
 
 With it, you have access to all of a component's props to dynamically style the component.
 
-## 3。 动态变体
+## 3。 Dynamic variation
 
 In the previous section, we learned how to override the style of a MUI component. 现在，让我们看看我们如何使动态地应用这个覆盖。 Here are four alternatives; each has its pros and cons.
 
@@ -164,17 +164,17 @@ const StyledSlider = styled(Slider, {
 
 {{"demo": "pages/customization/how-to-customize/DynamicCSSVariables.js"}}
 
-### 覆盖主题
+### Theme nesting
 
 {{"demo": "pages/customization/how-to-customize/DynamicThemeNesting.js"}}
 
-## 4、 全局化主题变体
+## 4、 Global theme variation
 
 In order to promote consistency between components, and manage the user interface appearance as a whole, MUI provides a mechanism to apply global changes.
 
 Please take a look at the theme's [global overrides page](/customization/theme-components/) for more details.
 
-## 5、 全局 CSS 覆盖
+## 5、 Global CSS override
 
 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
 

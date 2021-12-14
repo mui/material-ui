@@ -1,7 +1,7 @@
 ---
 title: React Hidden（隐藏）组件
 description: The Hidden component is deprecated, check out the migration guide for more details.
-components: Hidden 隐藏组件
+components: Hidden
 githubLabel: 'component: Hidden'
 ---
 

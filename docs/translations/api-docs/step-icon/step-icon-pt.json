@@ -2,33 +2,33 @@
   "componentDescription": "",
   "propDescriptions": {
     "active": "Whether this step is active.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "completed": "Mark the step as completed. Is passed to child components.",
     "error": "If <code>true</code>, the step is marked as failed.",
     "icon": "The label displayed in the step icon.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes."
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "text": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the SVG text element"
     },
     "active": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>active={true}</code>"
     },
     "completed": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>completed={true}</code>"
     },
     "error": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>error={true}</code>"
     }
   }
