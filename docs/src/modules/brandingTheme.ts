@@ -114,7 +114,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
           main: blue[400],
         }),
       },
-      divider: mode === 'dark' ? blueDark[700] : grey[200],
+      divider: mode === 'dark' ? blueDark[700] : grey[100],
       primaryDark: blueDark,
       mode,
       ...(mode === 'dark' && {

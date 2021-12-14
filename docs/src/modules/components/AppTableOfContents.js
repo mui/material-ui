@@ -10,10 +10,10 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Nav = styled('nav')(({ theme }) => {
   return {
-    top: 70,
+    top: 60,
     // Fix IE11 position sticky issue.
-    marginTop: 70,
-    width: 210,
+    marginTop: 60,
+    width: 240,
     flexShrink: 0,
     position: 'sticky',
     height: 'calc(100vh - 70px)',
@@ -70,7 +70,7 @@ const NavItem = styled(Link, {
     '&:hover': {
       borderLeftColor:
         theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
-      color: theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[200],
+      color: theme.palette.mode === 'light' ? theme.palette.grey[600] : theme.palette.grey[200],
     },
     ...(!active && {
       color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.text.primary,

@@ -46,7 +46,7 @@ const Item = styled(function Item({ component: Component = 'div', ...props }) {
     duration: theme.transitions.duration.shortest,
   }),
   '&:hover': {
-    color: theme.palette.text.primary,
+    color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
     backgroundColor:
       theme.palette.mode === 'dark'
         ? alpha(theme.palette.primaryDark[700], 0.4)
@@ -74,6 +74,7 @@ const ItemLink = styled(Item, {
       backgroundColor:
         theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
       fontWeight: 600,
+      letterSpacing: 0.25,
       '&:hover': {
         backgroundColor: alpha(
           theme.palette.primary.main,
@@ -196,17 +197,12 @@ export default function AppNavDrawerItem(props) {
     <Box
       component="span"
       sx={{
-        '& svg': { fontSize: (theme) => theme.typography.pxToRem(16) },
+        '& svg': { fontSize: (theme) => theme.typography.pxToRem(16.5) },
         display: 'flex',
         alignItems: 'center',
         height: '100%',
         marginRight: 1.5,
         p: 0.5,
-        backgroundColor: 'transparent',
-        borderRadius: '8px',
-        border: 1,
-        borderColor: (theme) =>
-          theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200],
       }}
     >
       <IconComponent {...iconProps} />
