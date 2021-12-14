@@ -128,7 +128,7 @@ export default function MiniDrawer() {
         <Divider />
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItemButton key={text} sx={{ justifyContent: 'center' }}>
+            <ListItemButton key={text} sx={{ minHeight: 48 }}>
               <ListItemIcon
                 sx={{
                   minWidth: open ? 48 : 0,
@@ -143,7 +143,7 @@ export default function MiniDrawer() {
         <Divider />
         <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItemButton key={text} sx={{ justifyContent: 'center' }}>
+            <ListItemButton key={text} sx={{ minHeight: 48 }}>
               <ListItemIcon
                 sx={{
                   minWidth: open ? 48 : 0,
