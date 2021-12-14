@@ -265,7 +265,7 @@ jobs:
             git add -f packages/mui-material/build || echo '/material declarations do not exist'
             git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            yarn lerna run --parallel build:types
+            yarn lerna run --stream build:types
             git --no-pager diff
 
       - run:
@@ -315,7 +315,7 @@ jobs:
             git add -f packages/mui-material/build || echo '/core declarations do not exist'
             git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            yarn lerna run --parallel build:types
+            yarn lerna run --stream build:types
             git --no-pager diff
 
       - run:
