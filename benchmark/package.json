@@ -1,6 +1,6 @@
 {
   "name": "benchmark",
-  "version": "5.0.2",
+  "version": "5.0.0",
   "private": true,
   "scripts": {
     "browser": "yarn webpack --config browser/webpack.config.js && node browser/scripts/benchmark.js",
@@ -14,9 +14,9 @@
     "@chakra-ui/system": "^1.8.3",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
-    "@mui/material": "^5.2.3",
+    "@mui/material": "^5.2.4",
     "@mui/styles": "^5.2.3",
-    "@mui/system": "^5.2.3",
+    "@mui/system": "^5.2.4",
     "@styled-system/css": "^5.1.5",
     "benchmark": "^2.1.4",
     "playwright": "^1.17.1",
