@@ -30,7 +30,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 14 -->[esm] Correct a styles imports (#29976) @Janpot
 - &#8203;<!-- 12 -->[GlobalStyles] Fix `theme` type (#30072) @mnajdova
-- &#8203;<!-- 11 -->[Grid] Fix grid items to respond to the container's responsive columns  (#29715) @kkorach
+- &#8203;<!-- 11 -->[Grid] Fix grid items to respond to the container's responsive columns (#29715) @kkorach
 - &#8203;<!-- 04 -->[TextField] Fix missing space before asterisk in `OutlinedInput`'s label (#29630) @alisasanib
 - &#8203;<!-- 03 -->[Transition] Allow any valid HTML attribute to be passed (#29888) @Janpot
 - &#8203;<!-- 02 -->[types] Fix discrepancy between core and system `ThemeOptions` (#30095) @fmeum
