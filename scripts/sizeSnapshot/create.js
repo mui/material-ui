@@ -6,6 +6,8 @@ const Piscina = require('piscina');
 const os = require('os');
 const { getWebpackEntries } = require('./webpack.config');
 
+const MAX_CONCURRENCY = Math.min(4, os.cpus().length);
+
 const workspaceRoot = path.join(__dirname, '../../');
 const snapshotDestPath = path.join(workspaceRoot, 'size-snapshot.json');
 
@@ -29,26 +31,25 @@ async function getRollupSize(snapshotPath) {
     normalizeRollupSnapshot(snapshot),
   ]);
 }
-// eslint-disable-next-line no-console
-console.log('cpus:', os.cpus().length);
+
 /**
  * creates size snapshot for every bundle that built with webpack
  */
 async function getWebpackSizes(webpackEnvironment) {
   const worker = new Piscina({
     filename: require.resolve('./worker'),
-    maxThreads: 10,
+    maxThreads: MAX_CONCURRENCY,
   });
   await fse.mkdirp(path.join(__dirname, 'build'));
 
   const entries = await getWebpackEntries();
-  const sizePromises = [];
-  for (let index = 0; index < entries.length; index += 1) {
-    const entry = entries[index];
-    sizePromises.push(worker.run({ entry, webpackEnvironment, index }));
-  }
 
-  const sizeArrays = await Promise.all(sizePromises);
+  const sizeArrays = await Promise.all(
+    entries.map((entry, index) =>
+      worker.run({ entry, webpackEnvironment, index, total: entries.length }),
+    ),
+  );
+
   return sizeArrays.flat();
 }
 

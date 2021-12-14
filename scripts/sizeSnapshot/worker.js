@@ -4,13 +4,13 @@ const { createWebpackConfig } = require('./webpack.config');
 
 const webpack = promisify(webpackCallbackBased);
 
-async function getSizes({ entry, webpackEnvironment, index }) {
+async function getSizes({ entry, webpackEnvironment, index, total }) {
   const sizes = [];
 
   const configuration = createWebpackConfig(entry, webpackEnvironment);
 
   // eslint-disable-next-line no-console -- process monitoring
-  console.log(`Compiling ${index}: "${Object.keys(configuration.entry)}"`);
+  console.log(`Compiling ${index}/${total}: "${Object.keys(configuration.entry)}"`);
 
   const webpackStats = await webpack(configuration);
 
