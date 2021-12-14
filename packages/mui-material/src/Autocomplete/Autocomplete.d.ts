@@ -210,7 +210,7 @@ export interface AutocompleteProps<
    * @returns {ReactNode}
    */
   renderOption?: (
-    props: React.HTMLAttributes<HTMLLIElement>,
+    props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLLIElement>, HTMLLIElement>,
     option: T,
     state: AutocompleteRenderOptionState,
   ) => React.ReactNode;
