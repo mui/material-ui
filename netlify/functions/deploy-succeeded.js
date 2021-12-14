@@ -27,7 +27,8 @@ exports.handler = async (event) => {
       'Circle-Token': process.env.CIRCLE_CI_TOKEN,
     },
     body: JSON.stringify({
-      branch: payload.branch,
+      // For PR, /head is needed. https://support.circleci.com/hc/en-us/articles/360049841151
+      branch: payload.branch.startsWith('pull') ? `${payload.branch}/head` : payload.branch,
       parameters: {
         // the parameters defined in .circleci/config.yml
         workflow: 'e2e-website', // name of the workflow
