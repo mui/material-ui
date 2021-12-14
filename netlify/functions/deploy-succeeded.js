@@ -29,8 +29,9 @@ exports.handler = async (event) => {
     body: JSON.stringify({
       branch: payload.branch,
       parameters: {
-        workflow: 'e2e-website', // name of the workflow defined in .circleci/config.yml
-        PLAYWRIGHT_TEST_BASE_URL: payload.deploy_ssl_url, // deploy preview url
+        // the parameters defined in .circleci/config.yml
+        workflow: 'e2e-website', // name of the workflow
+        'e2e-base-url': payload.deploy_ssl_url, // deploy preview url
       },
     }),
   });
