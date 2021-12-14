@@ -6,15 +6,15 @@ const fetch = require('node-fetch');
  */
 exports.handler = async (event) => {
   const { payload } = JSON.parse(event.body);
-  const repo = payload.commit_url.match(/github\.com\/(.*)\/commit/);
+  const repo = payload.review_url.match(/github\.com\/(.*)\/pull\/(.*)/);
   if (!repo) {
-    throw new Error(`No repo found at commit_url: ${payload.commit_url}`);
+    throw new Error(`No repo found at review_url: ${payload.review_url}`);
   }
 
   // eslint-disable-next-line no-console
   console.info(`repo:`, repo[1]);
   // eslint-disable-next-line no-console
-  console.info(`branch:`, payload.branch);
+  console.info(`PR:`, repo[2]);
   // eslint-disable-next-line no-console
   console.info(`url:`, payload.deploy_ssl_url);
 
@@ -28,7 +28,7 @@ exports.handler = async (event) => {
     },
     body: JSON.stringify({
       // For PR, /head is needed. https://support.circleci.com/hc/en-us/articles/360049841151
-      branch: payload.branch.startsWith('pull') ? `${payload.branch}/head` : payload.branch,
+      branch: `pull/${repo[2]}/head`,
       parameters: {
         // the parameters defined in .circleci/config.yml
         workflow: 'e2e-website', // name of the workflow
