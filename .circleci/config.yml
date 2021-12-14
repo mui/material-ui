@@ -30,6 +30,10 @@ defaults: &defaults
       description: A particular type of tests that should be run
       type: string
       default: undefined
+    e2e-base-url:
+      description: The base url for running end-to-end test
+      type: string
+      default: << pipeline.parameters.e2e-base-url >>
   environment:
     # Keep in sync with "Save playwright cache"
     PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
