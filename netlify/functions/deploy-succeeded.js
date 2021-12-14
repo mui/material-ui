@@ -14,7 +14,7 @@ exports.handler = async (event) => {
   // eslint-disable-next-line no-console
   console.info(`repo:`, repo[1]);
   // eslint-disable-next-line no-console
-  console.info(`brand:`, payload.branch);
+  console.info(`branch:`, payload.branch);
   // eslint-disable-next-line no-console
   console.info(`url:`, payload.deploy_ssl_url);
 
