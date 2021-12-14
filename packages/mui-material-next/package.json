@@ -73,7 +73,7 @@
     "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
-    "@mui/material": "^5.2.3"
+    "@mui/material": "^5.2.4"
   },
   "sideEffects": false,
   "publishConfig": {
