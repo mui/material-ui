@@ -88,9 +88,9 @@ Fixed tabs should be used with a limited number of tabs, and when a consistent p
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
-## Customization 个性化
+## Customization
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 
@@ -124,11 +124,11 @@ By default, the icon is positioned at the `top` of a tab. Other supported positi
 
 {{"demo": "pages/components/tabs/IconPositionTabs.js"}}
 
-## Third-party routing library（第三方路由库）
+## Third-party routing library
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
 
-## 无障碍设计
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
 
@@ -161,9 +161,9 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 {{"demo": "pages/components/tabs/AccessibleTabs2.js", "defaultCodeOpen": false}}
 
-## 素颜模式
+## Unstyled
 
-The Tabs also come with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
+The Tabs also come with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ### Unstyled component
 

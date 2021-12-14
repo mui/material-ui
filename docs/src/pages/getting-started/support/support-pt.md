@@ -12,6 +12,8 @@ For crowdsourced answers from expert MUI developers in our community. StackOverf
 
 [Poste uma pergunta](https://stackoverflow.com/questions/tagged/mui)
 
+> 💡 **Tip**: If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+
 ### GitHub
 
 MUI uses GitHub issues as a bug and feature request tracker. Se você acha que encontrou um bug ou tem uma nova idéia de recurso, comece certificando-se de que ele ainda não foi [relatado ou corrigido](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). Você pode pesquisar nas issues existentes e pull requests para ver se alguém relatou algo semelhante ao seu.
@@ -32,13 +34,13 @@ MUI uses GitHub issues as a bug and feature request tracker. Se você acha que e
 
 Mantenha-se atualizado com o desenvolvimento da biblioteca seguindo o blog.
 
-[Leia as últimas postagens](https://medium.com/material-ui/)
+[Leia as últimas postagens](https://medium.com/material-ui)
 
 ### Recursos 📖
 
-Novo em MUI? É fácil de aprender, se você souber por onde começar!
+New to MUI? It's easy to learn if you know where to start!
 
-[Aprenda MUI](/getting-started/learn/)
+[Learn MUI](/getting-started/learn/)
 
 ### Twitter
 

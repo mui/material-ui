@@ -52,7 +52,7 @@ If you were previously using `@mui/styles` with v3 you need to update your `pack
 }
 ```
 
-Ou execute
+Or run
 
 ```sh
 npm install @mui/styles
@@ -73,7 +73,7 @@ yarn add @mui/styles
 - ⚠️ MUI depends on JSS v10. JSS v10 não é compatível com a v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
 - Remova a primeira opção de argumento do `withTheme()`. (O primeiro argumento é um espaço reservado para uma opção futura potencial que nunca existiu.)
 
-  Corresponde à [emotion API](https://emotion.sh/docs/introduction) e [styled-components API](https://www.styled-components.com).
+  It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://styled-components.com).
 
   ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
@@ -105,7 +105,7 @@ yarn add @mui/styles
     },
   ```
 
-### Tema
+### Theme
 
 - O método`theme.palette.augmentColor ()`não produz mais um efeito colateral em sua cor de entrada. Para usá-lo corretamente, agora você precisa usar o valor retornado.
 
@@ -140,7 +140,7 @@ yarn add @mui/styles
 
   You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
 
-### Leiaute
+### Layout
 
 - [Grid] Para suportar valores de espaçamento arbitrários e para remover a necessidade de contar mentalmente por 8, estamos mudando a API de espaçamento:
 
@@ -213,7 +213,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
   Isso também se aplica a `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` bem como `ListItem` se a propriedade `button` for `true`.
 
-### Cartão
+### Card
 
 - [CardActions] Renomeie a propriedade `disableActionSpacing` para `disableSpacing`.
 - [CardActions] Remova a classe CSS `disableActionSpacing`.
@@ -223,14 +223,14 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 - [ClickAwayListener] Esconda propriedades react-event-listener.
 
-### Diálogo
+### Dialog
 
 - [DialogActions] Renomeie a propriedade `disableActionSpacing` para `disableSpacing`.
 - [DialogActions] Renomeie a classe CSS `action` para `spacing`.
 - [DialogContentText] Use a variante de tipografia `body1` em vez de `subtitle1`.
 - [Dialog] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
 
-### Divisor
+### Divider
 
 - [Divider] Remova a propriedade obsoleta `inset`.
 
@@ -282,11 +282,11 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 ### Portal
 
-- [Portal] O elemento filho precisa ser capaz de lidar com ref, quando a propriedade `disablePortal` é usada. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [Portal] O elemento filho precisa ser capaz de lidar com ref, quando a propriedade `disablePortal` é usada. The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 
 ### Slide
 
-- [Slide] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [Slide] O elemento filho precisa ser capaz de lidar com ref. The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 
 ### Slider
 
@@ -297,7 +297,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
   +import Slider from '@mui/material/Slider'
   ```
 
-### Interruptor
+### Switch
 
 - [Switch] Refatore a implementação para torná-la mais fácil de sobrescrever os estilos. Renomeie os nomes das classes para corresponder ao texto da especificação:
 
@@ -324,7 +324,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
   +<AddIcon htmlColor="#fff" />
   ```
 
-### Abas
+### Tabs
 
 - [Tab] Remova as chaves de classe `labelContainer`, `label` e `labelWrapped` para simplificar. Isso nos permitiu remover 2 elementos DOM intermediários. Você deve conseguir mover os estilos customizados para chave de classe `root`.
 
@@ -337,7 +337,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
   +<Tabs variant="scrollable" />
   ```
 
-### Tabela
+### Table
 
 - [TableCell] Remova a propriedade descontinuada `numeric`:
 
@@ -381,10 +381,10 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 ### Tooltip
 
-- [Tooltip] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [Tooltip] O elemento filho precisa ser capaz de lidar com ref. The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 - [Tooltip] Aparece somente após o foco ser "focus-visible" em vez de qualquer foco.
 
-### Tipografia
+### Typography
 
 - [Typography] Remova as variantes de tipografia descontinuadas. Você pode atualizar executando as seguintes substituições:
   - display4 => h1

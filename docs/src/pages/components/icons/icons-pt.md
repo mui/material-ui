@@ -5,7 +5,7 @@ githubLabel: 'components: SvgIcon'
 materialDesign: https://material.io/design/iconography/system-icons.html
 ---
 
-# Ícones
+# Icons
 
 <p class="description">Guidance and suggestions for using icons with MUI.</p>
 
@@ -19,9 +19,9 @@ MUI provides icons support in three ways:
 
 Google has created over 1,900 official Material icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@mui/icons-material` package. Você pode [pesquisar na lista completa destes ícones](/components/material-icons/).
 
-### Instalação
+### Installation
 
-Instale o pacote no diretório do seu projeto com:
+Install the package in your project directory with:
 
 ```sh
 // usando npm
@@ -36,10 +36,10 @@ These components use the MUI `SvgIcon` component to render the SVG path for each
 If you aren't already using MUI in your project, you can add it with:
 
 ```sh
-// usando npm
+// with npm
 npm install @mui/material
 
-// usando yarn
+// with yarn
 yarn add @mui/material
 ```
 
@@ -74,9 +74,9 @@ Cada ícone Material também tem um "tema": Filled (padrão), Outlined, Rounded,
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
-### Testando
+### Testing
 
-For testing purposes, each icon exposed from `@mui/icons-material` has a `data-testid` attribute with the name of the icon. Por exemplo:
+For testing purposes, each icon exposed from `@mui/icons-material` has a `data-testid` attribute with the name of the icon. For instance:
 
 ```jsx
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -106,15 +106,15 @@ function HomeIcon(props) {
 }
 ```
 
-### Cor
+### Color
 
 {{"demo": "pages/components/icons/SvgIconsColor.js"}}
 
-### Tamanho
+### Size
 
 {{"demo": "pages/components/icons/SvgIconsSize.js"}}
 
-### Propriedade Componente
+### Component prop
 
 Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes estejam salvos no formato `.svg`. [svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. Por exemplo, com webpack:
 
@@ -238,7 +238,7 @@ Então, você pode usar a fonte de dois tons diretamente:
 <Icon>add_circle</Icon>
 ```
 
-### Fonte Awesome
+### Font Awesome
 
 [Fonte Awesome](https://fontawesome.com/icons) pode ser usada com o componente `Icon` da seguinte forma:
 
@@ -271,7 +271,7 @@ Ambas as abordagens funcionam bem, no entanto, existem algumas diferenças sutis
 
 Para maiores detalhes, dê uma olhada no [porque o GitHub migrou ícones de fonte para ícones SVG](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
 
-## Acessibilidade
+## Accessibility
 
 Ícones podem transmitir todos os tipos de informações significativas, então é importante garantir que eles estejam apropriadamente acessíveis. Há dois casos de uso que você deve considerar:
 

@@ -1,41 +1,41 @@
 ---
-title: React Box（分组）组件
+title: React Box component
 githubLabel: 'component: Box'
 ---
 
-# Box 分组
+# Box
 
-<p class="description">对于大多数 CSS 实用程序来说，Box 组件能够作为一个包装组件来使用。</p>
+<p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
 
 The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## 示例
+## Example
 
-查看[调色板](/system/palette/)样式功能。
+[The palette](/system/palette/) style function.
 
-## `sx` 属性
+## The `sx` prop
 
-所有系统属性都可以通过 [`sx` 属性获得](/system/basics/#the-sx-prop)。 此外，`sx` 属性允许您指定您可能需要的任何其他 CSS 样式。 下面是一个如何使用的示例：
+All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop). In addition, the `sx` prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it:
 
 {{"demo": "pages/system/box/BoxSx.js", "defaultCodeOpen": true }}
 
 ## Overriding MUI components
 
-Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默认情况下为 `<div>`，并可以通过 `组件` 的属性进行更改。 假设反之你想使用一个 `<span>`：
+The Box component wraps your component. 它创建了一个新的 DOM 元素，默认情况下为 `<div>`，并可以通过 `组件` 的属性进行更改。 Let's say you want to use a `<span>` instead:
 
 {{"demo": "pages/system/box/BoxComponent.js", "defaultCodeOpen": true }}
 
-当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
+This works great when the changes can be isolated to a new DOM element. For instance, you can change the margin this way.
 
-但是，有时您必须针对到底层的 DOM 元素。 比如，你要修改按钮的边框 但是按钮组件已经定义自己的样式。 所以使用 CSS 继承是于事无补的。 想要解决这个问题，可以将[`sx`](/system/basics/#the-sx-prop)作为MUI组件的props使用
+However, sometimes you have to target the underlying DOM element. As an example, you may want to change the border of the Button. The Button component defines its own styles. CSS inheritance doesn't help. To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a MUI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
--  <Button>保存</Button>
+-  <Button>Save</Button>
 -</Box>
-+<Button sx={{ border: '1px dashed grey' }}>保存</Button>
++<Button sx={{ border: '1px dashed grey' }}>Save</Button>
 ```
 
 For non-MUI components, use the `component` prop.
@@ -53,13 +53,13 @@ For non-MUI components, use the `component` prop.
 import Box from '@mui/material/Box';
 ```
 
-| 名称                                       | 类型                                                                                                                            | 默认值                                     | 描述                                         |
-|:---------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:------------------------------------------ |
-| <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                                 |                                         | Box 渲染函数或者返回节点。                            |
-| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | component 用于根节点。 可以是一个使用 DOM 元素或者一个组件的字符串。 |
-| <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | 接受所有系统属性，以及任何有效的 CSS 属性。                   |
+| Name                                     | Type                                                                                                                          | Default                                 | Description                                                                                |
+|:---------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:------------------------------------------------------------------------------------------ |
+| <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                                 |                                         | Box render function or node.                                                               |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                                         | <span class="prop-default">{}</span>    | Accepts all system properties, as well as any valid CSS properties.                        |
 
-## 系统属性
+## System props
 
 As a CSS utility component, the `Box` also supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
 

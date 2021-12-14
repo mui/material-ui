@@ -62,9 +62,9 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 {{"demo": "pages/components/menus/AccountMenu.js"}}
 
-## Customization 个性化
+## Customization
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
@@ -78,7 +78,7 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 {{"demo": "pages/components/menus/LongMenu.js"}}
 
-## 设计局限
+## Limitations
 
 有 [一个 flexbox 的错误](https://bugs.chromium.org/p/chromium/issues/detail?id=327437)，在 flexbox 的布局中，无法正常使用 `text-overflow: ellipsis`。 您可以使用 `Typography` 组件和 `noWrap` 来解决此问题：
 
@@ -96,9 +96,9 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 {{"demo": "pages/components/menus/ContextMenu.js"}}
 
-## 补充项目
+## Complementary projects
 
-对于更高级的用例，您可以利用：
+For more advanced use cases you might be able to take advantage of:
 
 ### PopupState helper
 

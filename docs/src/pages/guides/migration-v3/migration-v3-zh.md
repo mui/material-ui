@@ -52,7 +52,7 @@ If you were previously using `@mui/styles` with v3 you need to update your `pack
 }
 ```
 
-或者运行
+Or run
 
 ```sh
 npm install @mui/styles
@@ -73,7 +73,7 @@ yarn add @mui/styles
 - ⚠️ MUI depends on JSS v10. JSS v10 版本与 v9 版本不向后兼容。 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
 - 请移除 `withTheme()` 中的第一个可选的参数。 （第一个参数是为从未出现的可能的未来选项的一个占位符。）
 
-  它与 [emotion 的 API](https://emotion.sh/docs/introduction) 以及 [styled-components 的 API ](https://www.styled-components.com) 相匹配。
+  It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://styled-components.com).
 
   ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
@@ -105,7 +105,7 @@ yarn add @mui/styles
     },
   ```
 
-### 主题
+### Theme
 
 - `theme.palette.augmentColor()` 方法不再对输入框的颜色产生副作用。 若想要正确地使用它，您必须使用其返回值。
 
@@ -140,7 +140,7 @@ yarn add @mui/styles
 
   You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/mui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
 
-### 布局
+### Layout
 
 - [Grid] 为了支持任意的间距值，并且移除每次心算都需要数8，我们改变了间距的 API：
 
@@ -181,7 +181,7 @@ function MySelect({ children }) {
 
 我们在 [TypeScript 指南中](/guides/typescript/#handling-value-and-event-handlers)更详细地解释了此变更。
 
-### Button 按钮
+### Button
 
 - [Button] 删除不推荐使用的按钮变体（flat，raised 和 fab）：
 
@@ -213,7 +213,7 @@ function MySelect({ children }) {
 
   当 `button` 属性设置为 true 时，这也适用于 `BottomNavigationAction`，`Button`，`CardActionArea`，`Checkbox`，`ExpansionPanelSummary`，`Fab`，`IconButton`，`MenuItem`，`Radio`，`StepButton`，`Tab`，`TableSortLabel` 以及 `ListItem`。
 
-### Card 卡片
+### Card
 
 - [CardActions] 将 `disableActionSpacing` 属性重命名为 `disableSpacing`。
 - [CardActions] 移除 CSS类中的 `disableActionSpacing`。
@@ -223,7 +223,7 @@ function MySelect({ children }) {
 
 - [ClickAwayListener] 隐藏 react-event-listener 的属性。
 
-### Dialog 对话框
+### Dialog
 
 - [DialogActions] 将 `disableActionSpacing` 属性重命名为 `disableSpacing`。
 - [DialogActions] 将CSS类 `action` 重命名为 `spacing`。
@@ -260,7 +260,7 @@ function MySelect({ children }) {
 
 - [MenuItem] 删除 MenuItem 的固定高度。 浏览器将会自行根据间距和行高来计算高度。
 
-### Modal 模态框组件
+### Modal
 
 - [Modal] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
@@ -282,13 +282,13 @@ function MySelect({ children }) {
 
 ### Portal
 
-- [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+- [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 
-### Slide 滑动
+### Slide
 
-- [Slide] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+- [Slide] 子组件能够接受一个 ref。 The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 
-### Slider 滑块控件
+### Slider
 
 - [Slider] Move from `@mui/lab` to `@mui/material`.
 
@@ -297,7 +297,7 @@ function MySelect({ children }) {
   +import Slider from '@mui/material/Slider'
   ```
 
-### Switch 开关
+### Switch
 
 - [Switch] 重新编写实施的代码能够更容易覆盖样式表。 请重命名类的名字以匹配规范的用词：
 
@@ -308,14 +308,14 @@ function MySelect({ children }) {
   +track
   ```
 
-### Snackbar（消息条）
+### Snackbar
 
 - [Snackbar] 匹配新的规范。
 
   - 更改尺寸。
   - 将默认的过渡动画从 `Slide` 改成 `Grow`。
 
-### SvgIcon（Svg 图标）
+### SvgIcon
 
 - [SvgIcon] Rename nativeColor -> htmlColor. React solved the same problem with the `for` HTML attribute, they have decided to call the prop `htmlFor`. 此变化的原因大同小异。
 
@@ -324,7 +324,7 @@ function MySelect({ children }) {
   +<AddIcon htmlColor="#fff" />
   ```
 
-### Tabs 选项卡
+### Tabs
 
 - [Tab] 为了简单起见，删除了` labelContainer `，`label` 和 `labelWrapped` 等类的 key。 这使得我们可以移走两个中间的 DOM 元素。 您应该可以将自定义的样式移到`根元素`的类的键上。
 
@@ -337,7 +337,7 @@ function MySelect({ children }) {
   +<Tabs variant="scrollable" />
   ```
 
-### Table 表格
+### Table
 
 - [TableCell] 移除了弃用的 `numeric` 属性：
 
@@ -381,10 +381,10 @@ function MySelect({ children }) {
 
 ### Tooltip
 
-- [Tooltip] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+- [Tooltip] 子组件能够接受一个 ref。 The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 - [Tooltip] 相比以前任何聚焦都会出现，现在只会在 focus-visible 聚焦的时候出现。
 
-### 文字铸排
+### Typography
 
 - [Typography] 移除了各种弃用的铸排变体。 您可以通过执行以下的替换来升级：
   - display4 => h1

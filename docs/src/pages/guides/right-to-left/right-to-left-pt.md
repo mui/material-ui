@@ -1,6 +1,6 @@
 # Da direita para a esquerda
 
-<p class="description">Idiomas direita-para-esquerda como árabe, persa ou hebraico são suportados. To change the direction of MUI components you must follow the following steps.</p>
+<p class="description">Right-to-left languages such as Arabic, Persian, or Hebrew are supported. To change the direction of MUI components you must follow the following steps.</p>
 
 ## Passos
 
@@ -26,7 +26,7 @@ function App() {
 
 This can be helpful for creating components to toggle language settings in the live application.
 
-### 2. Tema
+### 2. Theme
 
 Defina a direção no seu tema customizado:
 
@@ -114,7 +114,7 @@ function RTL(props) {
 
 For more information on the plugin, head to the [plugin README](https://github.com/alitaheri/jss-rtl). **Note**: Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme.
 
-## Demonstração
+## Demo
 
 _Use o botão de alternância de direção no canto superior direito para inverter toda a documentação_
 

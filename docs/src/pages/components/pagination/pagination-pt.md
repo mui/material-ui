@@ -74,7 +74,7 @@ Para a paginação de um conjunto grande de dados tabulares, você deve usar o c
 
 Você pode aprender mais sobre este caso de uso na [seção de tabela](/components/tables/#custom-pagination-options) da documentação.
 
-## Acessibilidade
+## Accessibility
 
 ### ARIA
 

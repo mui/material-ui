@@ -57,9 +57,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 {{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Customization 个性化
+## Customization
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 The dialog has a close button added to aid usability.
 
@@ -117,14 +117,14 @@ You can create a draggable dialog by using [react-draggable](https://github.com/
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## 性能
+## Performance
 
 参考[对话框性能部分](/components/modal/#performance)。
 
-## 设计局限
+## Limitations
 
 参考[对话框性能部分](/components/modal/#limitations)。
 
-## 无障碍设计
+## Accessibility
 
 参考[模态框无障碍设计部分](/components/modal/#accessibility)。

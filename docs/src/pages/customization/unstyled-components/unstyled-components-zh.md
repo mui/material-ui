@@ -93,7 +93,7 @@ Let's take a [SwitchUnstyled](/api/switch-unstyled/) as an example. It has three
 
 The components you pass in the `components` prop receive the `ownerState` prop from the top-level component (host). By convention, it contains all props passed to the host, merged with its rendering "state".
 
-例如:
+For example:
 
 ```jsx
 <SwitchUnstyled components={{ Thumb: MyCustomThumb }} data-foo="42" />

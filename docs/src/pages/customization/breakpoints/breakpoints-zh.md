@@ -27,6 +27,7 @@ CSS media queries 是一种做出响应式的用户界面的特有方法。 而 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
 - [theme.breakpoints.only(key)](#theme-breakpoints-only-key-media-query)
+- [theme.breakpoints.not(key)](#theme-breakpoints-not-key-media-query)
 - [theme.breakpoints.between(start, end)](#theme-breakpoints-between-start-end-media-query)
 
 在下面的演示中，我们根据屏幕宽度来更改背景颜色 (红色、蓝色和绿色)。
@@ -99,7 +100,7 @@ const theme = createTheme({
 });
 ```
 
-如果您使用的是 TypeScript，您还需要使用 [module augmentation](/guides/typescript/#customization-of-theme) 来让主题接受上述值。
+If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 <!-- Tested with packages/mui-material/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
@@ -125,15 +126,15 @@ declare module '@mui/material/styles' {
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### 参数
+#### Arguments
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### 返回结果
+#### Returns
 
 `media query`：一个媒体查询字符串，适用于大多数的样式解决方案，它匹配的屏幕宽度大于（包含）断点键给出的屏幕尺寸。
 
-#### 例子
+#### Examples
 
 ```js
 const styles = (theme) => ({
@@ -152,15 +153,15 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### 参数
+#### Arguments
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### 返回结果
+#### Returns
 
 `media query`：一个媒体查询字符串，适用于大多数的样式解决方案，它匹配的屏幕宽度小于（不包含）断点键给出的屏幕尺寸。
 
-#### 例子
+#### Examples
 
 ```js
 const styles = (theme) => ({
@@ -179,15 +180,15 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### 参数
+#### Arguments
 
 1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
 
-#### 返回结果
+#### Returns
 
 `media query`：一个媒体查询字符串，适用于大多数的样式解决方案，它会匹配屏幕宽度，并包括断点键给出的屏幕尺寸。
 
-#### 例子
+#### Examples
 
 ```js
 const styles = (theme) => ({
@@ -203,20 +204,48 @@ const styles = (theme) => ({
 });
 ```
 
+### `theme.breakpoints.not(key) => media query`
+
+<!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
+
+#### Arguments
+
+1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
+
+#### Returns
+
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths stopping at the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive).
+
+#### Examples
+
+```js
+const styles = (theme) => ({
+  root: {
+    backgroundColor: 'blue',
+    // Match [xs, md) and [md + 1, ∞)
+    //       [xs, md) and [lg, ∞)
+    //       [0px, 900px) and [1200px, ∞)
+    [theme.breakpoints.not('md')]: {
+      backgroundColor: 'red',
+    },
+  },
+});
+```
+
 ### `theme.breakpoints.between(start, end) => media query`
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### 参数
+#### Arguments
 
 1. `start` (_string_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 2. `end` (_string_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### 返回结果
+#### Returns
 
-`media query`：一个媒体查询字符串，适用于大多数的样式解决方案，它匹配的屏幕宽度大于第一个参数（包括）中断点键给出的屏幕尺寸，小于第二个参数（不包括）中断点键给出的屏幕尺寸。
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument (inclusive) and less than the screen size given by the breakpoint key in the second argument (exclusive).
 
-#### 例子
+#### Examples
 
 ```js
 const styles = (theme) => ({
@@ -233,4 +262,4 @@ const styles = (theme) => ({
 
 ## 默认值
 
-您可以使用 [主题资源管理器（theme explorer）](/customization/default-theme/?expand-path=$.breakpoints) 或通过打开此页面上的开发工具控制台（dev tools console）（`window.theme.breakpoints`）来探索断点的一些默认值。
+You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expand-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).

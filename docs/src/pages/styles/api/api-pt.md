@@ -10,19 +10,19 @@ title: Styles API
 
 Uma função que retorna [uma função geradora de nome de classe](https://cssinjs.org/jss-api/#generate-your-class-names).
 
-### Argumentos
+### Arguments
 
-1. `options` (_object_ [opcional]):
+1. `options` (_object_ [optional]):
 
    - `options.disableGlobal` (_bool_ [opcional]): Padrão `false`. Desabilita a geração de nomes de classes determinísticas.
    - `options.productionPrefix` (*string* [opcional]): Padrão `'jss'`. A string usada para prefixar os nomes de classes em produção.
    - `options.seed` (*string* [opcional]): Padrão `''`. A string usada unicamente para identificar o gerador. Ela pode ser usada para evitar colisões de nomes de classes ao usar vários geradores no mesmo documento.
 
-### Retornos
+### Returns
 
 `class name generator`: O gerador que deve ser fornecido ao JSS.
 
-### Exemplos
+### Examples
 
 ```jsx
 import * as React from 'react';
@@ -41,15 +41,15 @@ export default function App() {
 
 Esta função realmente não "faz nada" em tempo de execução, é apenas uma função de identidade. Sua única finalidade é lidar com a ampliação de tipos do **TypeScript**, ao fornecer regras de estilo para `makeStyles`/`withStyles` que são uma função do `tema`.
 
-### Argumentos
+### Arguments
 
 1. `styles` (_object_): A styles object.
 
-### Retornos
+### Returns
 
 `styles`: Um objeto de estilos.
 
-### Exemplos
+### Examples
 
 ```jsx
 import { createStyles, makeStyles } from '@mui/styles';
@@ -79,21 +79,21 @@ export default function MyComponent() {
 
 Vincula uma folha de estilo a um componente de função usando o padrão **hook**.
 
-### Argumentos
+### Arguments
 
 1. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
-2. `options` (_object_ [opcional]):
+2. `options` (_object_ [optional]):
 
 - `options.defaultTheme` (*object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
 - `options.name` (*string* [opcional]): O nome da folha de estilo. Útil para depuração.
 - `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
 - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
-### Retornos
+### Returns
 
 `hook`: Um hook. Este hook pode ser usado em uma função que retorna o componente. A documentação geralmente chama esse hook retornado de `useStyles`. It accepts one argument: the props that will be used for "interpolation" in the style sheet.
 
-### Exemplos
+### Examples
 
 ```jsx
 import * as React from 'react';
@@ -155,29 +155,29 @@ O método retorna os estilos coletados.
 
 O método é uma alternativa para `.toString()` quando você esta renderizando a página inteira com React.
 
-⚠️ Você deve chamar `.collect()` antes de usar este método.
+⚠️ You must call `.collect()` before using this method.
 
 ## `styled(Component)(styles, [options]) => Component`
 
 Vincula uma folha de estilos, com uma função de componente, usando o padrão de **componentes estilizados (styled components)**.
 
-### Argumentos
+### Arguments
 
 1. `Component`: O componente que será manipulado.
-2. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como propriedade do primeiro argumento.
-3. `options` (_object_ [opcional]):
+2. `styles` (_Function | Object_): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. É fornecido como propriedade do primeiro argumento.
+3. `options` (_object_ [optional]):
 
-- `options.defaultTheme` (*object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
+- `options.defaultTheme` (_object_ [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
 - `options.withTheme` (_bool_ [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
-- `options.name` (*string* [opcional]): O nome da folha de estilo. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
-- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
-- As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
+- `options.name` (_string_ [optional]): The name of the style sheet. Useful for debugging. Se o valor não for fornecido, ele tentará usar o nome do componente.
+- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+- The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
-### Retornos
+### Returns
 
-`Component`: O novo componente criado.
+`Component`: The new component created.
 
-### Exemplos
+### Examples
 
 ```jsx
 import * as React from 'react';
@@ -211,17 +211,17 @@ Este componente permite que você altere o comportamento da solução de estilo.
 
 It should preferably be used at **the root of your component tree**.
 
-### Propriedades
+### Props
 
-| Nome              | Tipo   | Padrão | Descrição                                                                                                                                                                                                                                                                                                                                               |
-|:----------------- |:------ |:------ |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| children&nbsp;*   | node   |        | Sua árvore de componentes.                                                                                                                                                                                                                                                                                                                              |
-| disableGeneration | bool   | false  | Você pode desabilitar a geração dos estilos com esta opção. Pode ser útil ao percorrer a árvore React fora da etapa de renderização de HTML no servidor. Digamos que você esteja usando react-apollo para extrair todas as consultas feitas pela interface do lado do servidor. Você pode acelerar significativamente a varredura com essa propriedade. |
-| generateClassName | func   |        | Gerador de nome de classes do JSS.                                                                                                                                                                                                                                                                                                                      |
-| injectFirst       | bool   | false  | Por padrão, os estilos são injetados por último no elemento `<head>` da página. Como resultado, eles ganham mais especificidade do que qualquer outra folha de estilo. If you want to override MUI's styles, set this prop.                                                                                                                       |
-| jss               | object |        | Instância do JSS.                                                                                                                                                                                                                                                                                                                                       |
+| Name              | Type   | Default | Description                                                                                                                                                                                                                                                                                                                                             |
+|:----------------- |:------ |:------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;*   | node   |         | Sua árvore de componentes.                                                                                                                                                                                                                                                                                                                              |
+| disableGeneration | bool   | false   | Você pode desabilitar a geração dos estilos com esta opção. Pode ser útil ao percorrer a árvore React fora da etapa de renderização de HTML no servidor. Digamos que você esteja usando react-apollo para extrair todas as consultas feitas pela interface do lado do servidor. Você pode acelerar significativamente a varredura com essa propriedade. |
+| generateClassName | func   |         | Gerador de nome de classes do JSS.                                                                                                                                                                                                                                                                                                                      |
+| injectFirst       | bool   | false   | Por padrão, os estilos são injetados por último no elemento `<head>` da página. Como resultado, eles ganham mais especificidade do que qualquer outra folha de estilo. If you want to override MUI's styles, set this prop.                                                                                                                       |
+| jss               | object |         | Instância do JSS.                                                                                                                                                                                                                                                                                                                                       |
 
-### Exemplos
+### Examples
 
 ```jsx
 import * as React from 'react';
@@ -239,14 +239,14 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 This component takes a `theme` prop, and makes it available down the React tree thanks to the context. It should preferably be used at **the root of your component tree**.
 
-### Propriedades
+### Props
 
-| Nome            | Tipo                                     | Padrão | Descrição                                                                     |
-|:--------------- |:---------------------------------------- |:------ |:----------------------------------------------------------------------------- |
-| children&nbsp;* | node                                     |        | Sua árvore de componentes.                                                    |
-| theme&nbsp;*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |        | Um objeto de tema. Você pode utilizar uma função para receber o tema externo. |
+| Name               | Type                                     | Default | Description                                                                   |
+|:------------------ |:---------------------------------------- |:------- |:----------------------------------------------------------------------------- |
+| children&nbsp;\* | node                                     |         | Your component tree.                                                          |
+| theme&nbsp;*       | union:&nbsp;object&nbsp;&#124;&nbsp;func |         | Um objeto de tema. Você pode utilizar uma função para receber o tema externo. |
 
-### Exemplos
+### Examples
 
 ```jsx
 import * as React from 'react';
@@ -266,11 +266,11 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 Este hook retorna o objeto `theme`, para que possa ser usado dentro de um componente retornado por função.
 
-### Retornos
+### Returns
 
 `theme`: O objeto de tema previamente injetado no contexto.
 
-### Exemplos
+### Examples
 
 ```jsx
 import * as React from 'react';
@@ -293,22 +293,22 @@ Alguns detalhes de implementação que podem ser interessantes para estar ciente
 - Ela encaminha refs para o componente interno.
 - Ele **não** faz copia sobre estáticos. For instance, it can be used to define a `getInitialProps()` static method (next.js).
 
-### Argumentos
+### Arguments
 
-1. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
-2. `options` (_object_ [opcional]):
+1. `styles` (_Function | Object_): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
+2. `options` (_object_ [optional]):
 
-- `options.defaultTheme` (*object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
-- `options.withTheme` (_bool_ [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
-- `options.name` (*string* [opcional]): O nome da folha de estilo. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
-- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
-- As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
+- `options.defaultTheme` (_object_ [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
+- `options.withTheme` (_bool_ [opcional]): Padrão `false`. Provide the `theme` object to the component as a prop.
+- `options.name` (_string_ [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+- `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+- The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
-### Retornos
+### Returns
 
 `higher-order component`: Deve ser usado para encapsular o componente.
 
-### Exemplos
+### Examples
 
 ```jsx
 import * as React from 'react';
@@ -353,15 +353,15 @@ export default MyComponent;
 
 Provide the `theme` object as a prop of the input component so it can be used in the render method.
 
-### Argumentos
+### Arguments
 
-1. `Component`: O componente que será manipulado.
+1. `Component`: The component that will be wrapped.
 
-### Retornos
+### Returns
 
-`Component`: O novo componente criado. Encaminha refs para o componente interno.
+`Component`: The new component created. Encaminha refs para o componente interno.
 
-### Exemplos
+### Examples
 
 ```jsx
 import * as React from 'react';

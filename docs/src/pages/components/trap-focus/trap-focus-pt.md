@@ -16,7 +16,7 @@ When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> 
 
 > ⚠️ O componente é experimental e instável.
 
-## Exemplo
+## Example
 
 {{"demo": "pages/components/trap-focus/BasicTrapFocus.js"}}
 

@@ -1,4 +1,4 @@
-# 文字铸排
+# Typography
 
 <p class="description">主题会提供一套能够一起协调工作的类型大小，也提供了布局网格。</p>
 
@@ -172,7 +172,7 @@ _您需要在此页面的 html 元素上应用上述的 CSS 才能看到以下�
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
-## 变体
+## Variants
 
 默认情况下，typography object 为带有 [13 种变体](/components/typography/#component) ：
 
@@ -210,9 +210,9 @@ const theme = createTheme({
 
 {{"demo": "pages/customization/typography/TypographyVariants.js"}}
 
-## 添加 & 禁用变体
+## Adding & disabling variants
 
-除了使用默认的排版变体外，你还可以添加自定义的排版，或者禁用任何你不需要的排版。 Here is what you need to do:
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. Here is what you need to do:
 
 **Step 1. Step 1. Step 1. Update the theme's typography object**
 
@@ -268,6 +268,6 @@ declare module '@mui/material/Typography' {
 <Typography variant="h3">h3</Typography>;
 ```
 
-## 默认值
+## Default values
 
 您可以使用 [主题探索功能](/customization/default-theme/?expand-path=$.typography) ，或者在此页面上打开 dev 工具控制（`window.theme.typogry`）来查看 typography 的默认值。

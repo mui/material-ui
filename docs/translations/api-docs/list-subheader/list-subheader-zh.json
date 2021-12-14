@@ -26,7 +26,7 @@
     },
     "gutters": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
-      "nodeName": "内部的`组件`元素",
+      "nodeName": "the inner `component` element",
       "conditions": "<code>disableGutters={true}</code>"
     },
     "inset": {

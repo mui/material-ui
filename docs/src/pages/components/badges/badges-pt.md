@@ -16,15 +16,15 @@ Exemplos de emblemas contendo texto, usando cores primárias e secundárias. O e
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
-## Cor
+## Color
 
 Use `color` prop to apply theme palette to component.
 
 {{"demo": "pages/components/badges/ColorBadge.js"}}
 
-## Customização
+## Customization
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -64,7 +64,7 @@ Você pode usar a propriedade `anchorOrigin` para mover o emblema para qualquer 
 
 ## Unstyled
 
-O badge também vem com uma versão sem estilo. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+O badge também vem com uma versão sem estilo. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import BadgeUnstyled from '@mui/base/BadgeUnstyled';
@@ -72,7 +72,7 @@ import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}
 
-## Acessibilidade
+## Accessibility
 
 Você não pode confiar que o conteúdo do badge seja anunciado corretamente. Você deve fornecer uma descrição completa, por exemplo, com `aria-label`:
 

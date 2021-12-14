@@ -26,21 +26,21 @@ You can provide a label to the `Checkbox` thanks to the `FormControlLabel` compo
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## Tamanho
+## Size
 
 Use the `size` prop or customize the font size of the svg icons to change the size of the checkboxes.
 
 {{"demo": "pages/components/checkboxes/SizeCheckboxes.js"}}
 
-## Cor
+## Color
 
 {{"demo": "pages/components/checkboxes/ColorCheckboxes.js"}}
 
-## Icon
+## Ícone
 
 {{"demo": "pages/components/checkboxes/IconCheckboxes.js"}}
 
-## Controlled
+## Controlado
 
 Você pode controlar a checkbox com as opções `checked` e `onChange`:
 
@@ -66,9 +66,9 @@ Você pode alterar o posicionamento do rótulo:
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
-## Customização
+## Customization
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
 
@@ -79,7 +79,7 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 - [Caixas de Seleção vs. Botões de Opção](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 - [Caixas de Seleção vs. Interruptores](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
-## Acessibilidade
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
 

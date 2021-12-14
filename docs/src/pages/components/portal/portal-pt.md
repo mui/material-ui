@@ -12,7 +12,7 @@ O filho do componente portal será adicionado ao `container` especificado. O com
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Exemplo
+## Example
 
 {{"demo": "pages/components/portal/SimplePortal.js"}}
 

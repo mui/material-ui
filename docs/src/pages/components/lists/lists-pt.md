@@ -53,7 +53,7 @@ When displaying three lines or more, the avatar is not aligned at the top. You s
 
 ## Controles de Lista
 
-### Caixa de seleção
+### Checkbox
 
 Uma caixa de seleção pode ser uma ação primária ou uma ação secundária.
 
@@ -97,9 +97,9 @@ No exemplo a seguir, nós demonstramos como usar a biblioteca [react-window](htt
 
 O uso da biblioteca [react-window](https://github.com/bvaughn/react-window), quando possível, é recomendado. Se no seu caso esta biblioteca não resolver, você deve considerar o uso de [react-virtualized](https://github.com/bvaughn/react-virtualized), e em seguida, como alternativa [react-virtuoso](https://github.com/petyosi/react-virtuoso).
 
-## Customização
+## Customization
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here are some examples of customizing the component. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/lists/CustomizedList.js"}}
 

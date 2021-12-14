@@ -26,9 +26,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## Customization 个性化
+## Customization
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
@@ -42,7 +42,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 不过对所有情况下的性能优化，这并不是灵丹妙药。 请您务必先确定性能的瓶颈所在，再考虑这些优化策略。
 
-## 无障碍设计
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 

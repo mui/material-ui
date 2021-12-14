@@ -1,60 +1,60 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "O conteúdo do componente.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "children": "The content of the component.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the button when it is in an active state.",
-    "disabled": "Se <code>true</code>, o componente está desabilitado.",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>.Mui-focusVisible</code> class.",
-    "fullWidth": "Se <code>true</code>, o botão ocupará toda a largura de seu contêiner.",
+    "fullWidth": "If <code>true</code>, the button will take up the full width of its container.",
     "selected": "If <code>true</code>, the button is rendered in an active state.",
     "size": "The size of the component. The prop defaults to the value inherited from the parent ToggleButtonGroup component.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "The value to associate with the button when selected in a ToggleButtonGroup."
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "selected": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     },
     "standard": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>color=\"standard\"</code>"
     },
     "primary": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "secondary": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
     "sizeSmall": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "sizeMedium": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"medium\"</code>"
     },
     "sizeLarge": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"large\"</code>"
     }
   }
