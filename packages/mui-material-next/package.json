@@ -72,6 +72,9 @@
     "react-is": "^17.0.2",
     "react-transition-group": "^4.4.2"
   },
+  "devDependencies": {
+    "@mui/material": "^5.2.3"
+  },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"

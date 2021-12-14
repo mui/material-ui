@@ -83,6 +83,7 @@
     "rifm": "^0.12.1"
   },
   "devDependencies": {
+    "@mui/material": "^5.2.3",
     "@mui/types": "^7.1.0",
     "@types/luxon": "^2.0.7",
     "date-fns": "^2.27.0",
