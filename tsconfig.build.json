@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "references": [
+    { "path": "./packages/mui-base/tsconfig.build.json" },
+    { "path": "./packages/mui-joy/tsconfig.build.json" },
+    { "path": "./packages/mui-lab/tsconfig.build.json" },
+    { "path": "./packages/mui-material/tsconfig.build.json" },
+    { "path": "./packages/mui-material-next/tsconfig.build.json" },
+    { "path": "./packages/mui-system/tsconfig.build.json" },
+    { "path": "./packages/mui-utils/tsconfig.build.json" }
+  ],
+  "files": []
+}

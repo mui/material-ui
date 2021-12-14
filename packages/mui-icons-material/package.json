@@ -28,7 +28,7 @@
     "url": "https://opencollective.com/mui"
   },
   "scripts": {
-    "build": "shx cp -r lib/ build/ && yarn build:typings && yarn build:copy-files",
+    "build": "shx cp -r lib/ build/ && yarn build:typings",
     "build:lib": "yarn build:node && yarn build:stable",
     "build:lib:clean": "rimraf lib/ && yarn build:lib",
     "build:legacy": "echo 'Skip legacy build'",

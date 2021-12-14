@@ -26,7 +26,7 @@
     "url": "https://opencollective.com/mui"
   },
   "scripts": {
-    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files && yarn build:types",
+    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable",
     "build:legacy": "node ../../scripts/build legacy",
     "build:modern": "node ../../scripts/build modern",
     "build:node": "node ../../scripts/build node",
