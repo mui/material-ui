@@ -29,71 +29,80 @@ function getOffset(val) {
   return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
 }
 
-function generateGrid(globalStyles, theme, breakpoint, ownerState) {
-  const size = ownerState[breakpoint];
+export function generateGrid({ theme, ownerState }) {
+  let size;
 
-  if (!size) {
-    return;
-  }
-
-  let styles = {};
-
-  if (size === true) {
-    // For the auto layouting
-    styles = {
-      flexBasis: 0,
-      flexGrow: 1,
-      maxWidth: '100%',
-    };
-  } else if (size === 'auto') {
-    styles = {
-      flexBasis: 'auto',
-      flexGrow: 0,
-      flexShrink: 0,
-      maxWidth: 'none',
-      width: 'auto',
-    };
-  } else {
-    const columnsBreakpointValues = resolveBreakpointValues({
-      values: ownerState.columns,
-      breakpoints: theme.breakpoints.values,
-    });
-
-    const columnValue =
-      typeof columnsBreakpointValues === 'object'
-        ? columnsBreakpointValues[breakpoint]
-        : columnsBreakpointValues;
-    // Keep 7 significant numbers.
-    const width = `${Math.round((size / columnValue) * 10e7) / 10e5}%`;
-    let more = {};
-
-    if (ownerState.container && ownerState.item && ownerState.columnSpacing !== 0) {
-      const themeSpacing = theme.spacing(ownerState.columnSpacing);
-      if (themeSpacing !== '0px') {
-        const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
-        more = {
-          flexBasis: fullWidth,
-          maxWidth: fullWidth,
-        };
-      }
+  return theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
+    // Use side effect over immutability for better performance.
+    let styles = {};
+    if (ownerState[breakpoint]) {
+      size = ownerState[breakpoint];
+    }
+    if (!size) {
+      return globalStyles;
     }
 
-    // Close to the bootstrap implementation:
-    // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
-    styles = {
-      flexBasis: width,
-      flexGrow: 0,
-      maxWidth: width,
-      ...more,
-    };
-  }
+    if (size === true) {
+      // For the auto layouting
+      styles = {
+        flexBasis: 0,
+        flexGrow: 1,
+        maxWidth: '100%',
+      };
+    } else if (size === 'auto') {
+      styles = {
+        flexBasis: 'auto',
+        flexGrow: 0,
+        flexShrink: 0,
+        maxWidth: 'none',
+        width: 'auto',
+      };
+    } else {
+      const columnsBreakpointValues = resolveBreakpointValues({
+        values: ownerState.columns,
+        breakpoints: theme.breakpoints.values,
+      });
 
-  // No need for a media query for the first size.
-  if (theme.breakpoints.values[breakpoint] === 0) {
-    Object.assign(globalStyles, styles);
-  } else {
-    globalStyles[theme.breakpoints.up(breakpoint)] = styles;
-  }
+      const columnValue =
+        typeof columnsBreakpointValues === 'object'
+          ? columnsBreakpointValues[breakpoint]
+          : columnsBreakpointValues;
+      if (columnValue === undefined || columnValue === null) {
+        return globalStyles;
+      }
+      // Keep 7 significant numbers.
+      const width = `${Math.round((size / columnValue) * 10e7) / 10e5}%`;
+      let more = {};
+
+      if (ownerState.container && ownerState.item && ownerState.columnSpacing !== 0) {
+        const themeSpacing = theme.spacing(ownerState.columnSpacing);
+        if (themeSpacing !== '0px') {
+          const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
+          more = {
+            flexBasis: fullWidth,
+            maxWidth: fullWidth,
+          };
+        }
+      }
+
+      // Close to the bootstrap implementation:
+      // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
+      styles = {
+        flexBasis: width,
+        flexGrow: 0,
+        maxWidth: width,
+        ...more,
+      };
+    }
+
+    // No need for a media query for the first size.
+    if (theme.breakpoints.values[breakpoint] === 0) {
+      Object.assign(globalStyles, styles);
+    } else {
+      globalStyles[theme.breakpoints.up(breakpoint)] = styles;
+    }
+    return globalStyles;
+  }, {});
 }
 
 export function generateDirection({ theme, ownerState }) {
@@ -251,12 +260,7 @@ const GridRoot = styled('div', {
   generateDirection,
   generateRowGap,
   generateColumnGap,
-  ({ theme, ownerState }) =>
-    theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
-      // Use side effect over immutability for better performance.
-      generateGrid(globalStyles, theme, breakpoint, ownerState);
-      return globalStyles;
-    }, {}),
+  generateGrid,
 );
 
 const useUtilityClasses = (ownerState) => {
