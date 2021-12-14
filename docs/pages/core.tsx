@@ -10,7 +10,7 @@ import CoreStyling from 'docs/src/components/productCore/CoreStyling';
 import CoreHeroEnd from 'docs/src/components/productCore/CoreHeroEnd';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import WebsiteBanner from 'docs/src/components/home/WebsiteBanner';
+import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 export default function Home() {
   return (
@@ -21,7 +21,7 @@ export default function Home() {
         card="/static/social-previews/core-preview.jpg"
       />
       <CssBaseline />
-      <WebsiteBanner />
+      <AppHeaderBanner />
       <AppHeader />
       <main>
         <CoreHero />
