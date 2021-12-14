@@ -6,7 +6,7 @@ const Piscina = require('piscina');
 const os = require('os');
 const { getWebpackEntries } = require('./webpack.config');
 
-const MAX_CONCURRENCY = Math.min(4, os.cpus().length);
+const MAX_CONCURRENCY = Math.min(8, os.cpus().length);
 
 const workspaceRoot = path.join(__dirname, '../../');
 const snapshotDestPath = path.join(workspaceRoot, 'size-snapshot.json');
