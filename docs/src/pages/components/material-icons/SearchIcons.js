@@ -49,6 +49,8 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 import * as mui from '@mui/icons-material';
 import synonyms from './synonyms';
 
+const UPDATE_SEARCH_INDEX_WAIT_MS = 220;
+
 // const mui = {
 //   ExitToApp,
 //   ExitToAppOutlined,
@@ -493,7 +495,7 @@ export default function SearchIcons() {
             }
           });
         }
-      }, 220),
+      }, UPDATE_SEARCH_INDEX_WAIT_MS),
     [],
   );
 

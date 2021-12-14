@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import { debounce } from '@mui/material/utils';
 
+const QUERY_UPDATE_WAIT_MS = 220;
+
 /**
  * Similar to `React.useState`, but it syncs back the current state to a query
  * parameter in the url, therefore it only supports strings. Wrap the result with
@@ -48,7 +50,7 @@ export default function useQueryParameterState(
             },
           );
         }
-      }, 220),
+      }, QUERY_UPDATE_WAIT_MS),
     [name, router],
   );
 
