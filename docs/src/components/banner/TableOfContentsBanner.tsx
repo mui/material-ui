@@ -38,13 +38,7 @@ export default function TableOfContentsBanner() {
         Fix me!
         <br />
       </Typography>
-      <Typography
-        component="span"
-        variant="body2"
-        fontWeight="medium"
-        sx={{ color: 'primary.50' }}
-        // eslint-disable-next-line material-ui/no-hardcoded-labels
-      >
+      <Typography component="span" variant="body2" fontWeight="medium" sx={{ color: 'primary.50' }}>
         Fix me!
         <br />
       </Typography>
@@ -59,7 +53,6 @@ export default function TableOfContentsBanner() {
           borderTop: 1,
           borderColor: 'primary.400',
         }}
-        // eslint-disable-next-line material-ui/no-hardcoded-labels
       >
         Fix me!
       </Typography>
