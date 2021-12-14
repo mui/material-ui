@@ -638,7 +638,7 @@ jobs:
           name: build @mui packages
           command: |
             yarn lerna run --ignore @mui/icons-material --parallel --scope "@mui/*" build
-            yarn lerna run --ignore @mui/icons-material --parallel --scope "@mui/*" build:types
+            yarn build:types
             yarn lerna run --ignore @mui/icons-material --parallel --scope "@mui/*" build:copy-files
       - run:
           name: create @mui/material canary distributable
