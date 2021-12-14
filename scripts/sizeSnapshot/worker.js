@@ -10,7 +10,7 @@ async function getSizes({ entry, webpackEnvironment, index, total }) {
   const configuration = createWebpackConfig(entry, webpackEnvironment);
 
   // eslint-disable-next-line no-console -- process monitoring
-  console.log(`Compiling ${index}/${total}: "${Object.keys(configuration.entry)}"`);
+  console.log(`Compiling ${index + 1}/${total}: "${Object.keys(configuration.entry)}"`);
 
   const webpackStats = await webpack(configuration);
 
