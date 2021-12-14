@@ -8,10 +8,5 @@
   {
     "id": 53,
     "text": "You can <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MaterialUI\">follow us on Twitter</a> to receive exclusive tips and updates about MUI and the React ecosystem."
-  },
-  {
-    "id": 55,
-    "title": "2021 MUI developer survey",
-    "text": "Help shape the future of MUI! 🚀<br />Please take a few minutes to complete the <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://mui-org.typeform.com/2021-dev-survey\">2021 MUI developer survey</a>."
   }
 ]

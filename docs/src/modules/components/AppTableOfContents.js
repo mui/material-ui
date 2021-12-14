@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import NoSsr from '@mui/material/NoSsr';
-import ROUTES from 'docs/src/route';
+import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
 const Nav = styled('nav')(({ theme }) => {
   return {
@@ -211,64 +211,7 @@ export default function AppTableOfContents(props) {
   return (
     <Nav aria-label={t('pageTOC')}>
       <NoSsr>
-        <Link
-          href={ROUTES.survey2021Docs}
-          target="_blank"
-          data-ga-event-category="survey-2021"
-          data-ga-event-action="click"
-          data-ga-event-label="table-contents"
-          sx={(theme) => ({
-            mb: 2,
-            p: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'start',
-            background:
-              theme.palette.mode === 'dark'
-                ? `linear-gradient(90deg, ${theme.palette.primary[900]}, ${theme.palette.primary[600]} 120%)`
-                : `linear-gradient(-90deg, ${theme.palette.primary[700]}, ${theme.palette.primary[500]} 120%)`,
-            borderRadius: 1,
-            transitionProperty: 'all',
-            transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
-            transitionDuration: '200ms',
-            '&:hover, &:focus-visible': {
-              boxShadow:
-                theme.palette.mode === 'dark'
-                  ? '1px 1px 20px 0 rgb(2 2 2 / 50%)'
-                  : '1px 1px 20px 0 rgb(90 105 120 / 30%)',
-            },
-          })}
-        >
-          <Typography component="span" variant="body1" fontWeight="bold" sx={{ color: '#fff' }}>
-            2021 MUI&nbsp;&nbsp;🚀
-            <br />
-          </Typography>
-          <Typography
-            component="span"
-            variant="body2"
-            fontWeight="medium"
-            sx={{ color: 'primary.50' }}
-            // eslint-disable-next-line material-ui/no-hardcoded-labels
-          >
-            Developer survey
-            <br />
-          </Typography>
-          <Typography
-            component="span"
-            variant="caption"
-            fontWeight="normal"
-            sx={{
-              mt: 1,
-              pt: 1,
-              color: 'primary.50',
-              borderTop: 1,
-              borderColor: 'primary.400',
-            }}
-            // eslint-disable-next-line material-ui/no-hardcoded-labels
-          >
-            Help us shape the future of MUI! &#8594;
-          </Typography>
-        </Link>
+        <TableOfContentsBanner />
       </NoSsr>
       {toc.length > 0 ? (
         <React.Fragment>

@@ -23,6 +23,7 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
 import ROUTES from 'docs/src/route';
+import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 interface RoleProps {
   description: string;
@@ -529,6 +530,7 @@ export default function Careers() {
         title="Careers - MUI"
         description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
       />
+      <AppHeaderBanner />
       <AppHeader />
       <main>
         <CareersContent />
