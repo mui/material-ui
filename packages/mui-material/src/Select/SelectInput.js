@@ -170,10 +170,26 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     [value],
   );
 
-  // resize menu on automatic toggle
+  // Resize menu on `defaultOpen` automatic toggle.
   React.useEffect(() => {
+    if (displayNode && defaultOpen) {
+      // Revert `defaultOpen` prop effect if the `displayNode` is not visible on mount.
+      const { top, left, right, bottom } = displayNode.getBoundingClientRect();
+      if (
+        !(
+          top >= 0 &&
+          left >= 0 &&
+          right <= (window.innerWidth || document.documentElement.clientWidth) &&
+          bottom <= (window.innerHeight || document.documentElement.clientHeight)
+        )
+      ) {
+        setOpenState(false);
+        return;
+      }
+    }
     if (defaultOpen && openState && displayNode && !isOpenControlled) {
       setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
+      displayRef.current.focus();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayNode, autoWidth]);
@@ -597,6 +613,7 @@ SelectInput.propTypes = {
   className: PropTypes.string,
   /**
    * If `true`, the component is toggled on mount. Use when the component open state is not controlled.
+   * This will only work if the select component is visible on mount.
    * You can only use it when the `native` prop is `false` (default).
    */
   defaultOpen: PropTypes.bool,

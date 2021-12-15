@@ -105,9 +105,11 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 ## Open automatically
 
-You can make the select menu open automatically on mount through the `defaultOpen` prop
+You can make the select menu open automatically on mount through the `defaultOpen` prop.
 
 {{"demo": "pages/components/selects/DefaultOpen.js"}}
+
+> ⚠ Note that this will only work if the component is visible on mount. Reset the above demo to see how this works.
 
 ## With a dialog
 

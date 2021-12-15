@@ -21,6 +21,7 @@ export default function SelectOtherProps() {
       <FormControl sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-dog-label">Dog</InputLabel>
         <Select
+          defaultOpen
           labelId="demo-simple-select-dog-label"
           id="demo-simple-select-dog"
           value={dog}

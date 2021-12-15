@@ -31,6 +31,7 @@ export interface SelectProps<T = unknown>
   classes?: Partial<SelectClasses>;
   /**
    * If `true`, the component is toggled on mount. Use when the component open state is not controlled.
+   * This will only work if the select component is visible on mount.
    * You can only use it when the `native` prop is `false` (default).
    * @default false
    */
