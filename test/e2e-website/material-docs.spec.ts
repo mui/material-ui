@@ -1,6 +1,6 @@
 import { test as base, expect } from '@playwright/test';
 import kebabCase from 'lodash/kebabCase';
-import FEATURE_TOGGLE from '../../docs/src/featureToggle';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});
@@ -112,7 +112,7 @@ test.describe.parallel('Material docs', () => {
 
       await page.keyboard.press('Meta+k');
 
-      await page.type('input#docsearch-input', 'card', { delay: 100 });
+      await page.type('input#docsearch-input', 'card', { delay: 50 });
 
       const anchor = await page.locator('.DocSearch-Hits a:has-text("Card")');
 
@@ -124,7 +124,7 @@ test.describe.parallel('Material docs', () => {
 
       await page.keyboard.press('Meta+k');
 
-      await page.type('input#docsearch-input', 'card api', { delay: 100 });
+      await page.type('input#docsearch-input', 'card api', { delay: 50 });
 
       const anchor = await page.locator('.DocSearch-Hits a:has-text("Card API")');
 
