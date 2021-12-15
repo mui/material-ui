@@ -103,9 +103,7 @@ export default function JoyComponents() {
   const buttonProps = {
     variant: ['text', 'outlined', 'light', 'contained'],
     color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
-    size: ['small', undefined, 'large'],
-    radius: ['xs', 'sm', 'md', 'lg', 'xl'],
-    shadow: ['xs', 'sm', 'md', 'lg', 'xl'],
+    size: ['sm', 'md', 'lg'],
   } as const;
   return (
     <CssVarsProvider>

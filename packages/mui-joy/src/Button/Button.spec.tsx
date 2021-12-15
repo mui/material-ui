@@ -34,34 +34,31 @@ function handleClick4(event: React.MouseEvent<HTMLDivElement>) {}
 // @ts-expect-error no `black` color
 <Button color="black">Button</Button>;
 
-<Button size="small">Button</Button>;
-<Button size="large">Button</Button>;
+<Button size="sm">Button</Button>;
+<Button size="lg">Button</Button>;
 // @ts-expect-error no `super` size
 <Button size="super">Button</Button>;
-
-<Button radius="xs">Button</Button>;
-<Button radius="sm">Button</Button>;
-<Button radius="md">Button</Button>;
-<Button radius="lg">Button</Button>;
-<Button radius="xl">Button</Button>;
-// @ts-expect-error no `xxxxl` radius
-<Button radius="xxxxl">Button</Button>;
-
-<Button shadow="xs">Button</Button>;
-<Button shadow="sm">Button</Button>;
-<Button shadow="md">Button</Button>;
-<Button shadow="lg">Button</Button>;
-<Button shadow="xl">Button</Button>;
-// @ts-expect-error no `xxxxl` shadow
-<Button shadow="xxxxl">Button</Button>;
 
 <Button component="a" href="/" />;
 <Button component={NextLink} href="/" />;
 <Button component={MuiLink} href="/" />;
 
-function CustomLink({ children, ...props }: React.PropsWithChildren<JSX.IntrinsicElements['a']>) {
-  return <a {...props}>{children}</a>;
+function CustomLink({
+  children,
+  to,
+  ...props
+}: React.PropsWithChildren<{ to: string } & Omit<JSX.IntrinsicElements['a'], 'href'>>) {
+  return (
+    <a href={to} {...props}>
+      {children}
+    </a>
+  );
 }
-<Button component={CustomLink} href="/" />;
+
+// @ts-expect-error missing `to`
+<Button component={CustomLink} />;
+
+// @ts-expect-error href is not allowed
+<Button component={CustomLink} to="/" href="/" />;
 
 <Button sx={{ borderRadius: 0 }}>Button</Button>;

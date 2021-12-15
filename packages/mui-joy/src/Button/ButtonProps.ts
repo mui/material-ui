@@ -6,7 +6,7 @@ import {
   OverrideProps,
 } from '@mui/types';
 import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp, ShadowProp, RadiusProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp } from '../styles/types';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -28,20 +28,10 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, ButtonPropsColorOverrides>;
     /**
-     * The component used for the Root slot.
-     * Either a string to use a HTML element or a component.
-     * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-     */
-    component?: React.ElementType;
-    /**
      * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
-    /**
-     * The intensity of the shadow.
-     */
-    shadow?: ShadowProp;
     /**
      * This prop can help identify which element has keyboard focus.
      * The class name will be applied when the element gains the focus through keyboard interaction.
@@ -57,14 +47,9 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     fullWidth?: boolean;
     /**
-     * The border-radius of the component.
-     * @default 'sm'
-     */
-    radius?: RadiusProp;
-    /**
      * The size of the component.
      */
-    size?: OverridableStringUnion<'small' | 'large', ButtonPropsSizeOverrides>;
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', ButtonPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -89,7 +74,9 @@ export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
 
 export type ButtonProps<
   D extends React.ElementType = ButtonTypeMap['defaultComponent'],
-  P = {},
+  P = {
+    component?: React.ElementType;
+  },
 > = OverrideProps<ButtonTypeMap<P, D>, D>;
 
 export type ExtendButton<M extends OverridableTypeMap> = ((

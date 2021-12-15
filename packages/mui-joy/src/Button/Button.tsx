@@ -9,17 +9,8 @@ import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
 const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
-  const {
-    color,
-    disabled,
-    focusVisible,
-    focusVisibleClassName,
-    fullWidth,
-    size,
-    variant,
-    shadow,
-    radius,
-  } = ownerState;
+  const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
+    ownerState;
 
   const slots = {
     root: [
@@ -30,8 +21,6 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
-      shadow && `shadow${capitalize(shadow)}`,
-      radius && `radius${capitalize(radius)}`,
     ],
   };
 
@@ -65,7 +54,7 @@ const ButtonRoot = styled('button', {
     {
       padding: '0.25rem 1.5rem',
       minHeight: '40px',
-      borderRadius: theme.vars.radius[ownerState.radius!],
+      borderRadius: theme.vars.radius.sm,
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -77,16 +66,13 @@ const ButtonRoot = styled('button', {
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...theme.typography.body1,
       fontWeight: theme.vars.fontWeight.md,
-      ...(ownerState.shadow && {
-        boxShadow: theme.vars.shadow[ownerState.shadow],
-      }),
-      ...(ownerState.size === 'small' && {
+      ...(ownerState.size === 'sm' && {
         padding: '0.25rem 1rem',
         minHeight: '32px',
         ...theme.typography.body2,
         fontWeight: theme.vars.fontWeight.md,
       }),
-      ...(ownerState.size === 'large' && {
+      ...(ownerState.size === 'lg' && {
         padding: '0.25rem 2rem',
         minHeight: '48px',
         ...theme.typography.h6,
@@ -104,27 +90,11 @@ const ButtonRoot = styled('button', {
   ];
 });
 
-ButtonRoot.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  ownerState: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  theme: PropTypes.object,
-} as any;
-
 const Button = React.forwardRef(function Button(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiButton' });
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+    props: inProps,
+    name: 'MuiButton',
+  });
 
   const {
     children,
@@ -133,9 +103,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     component = 'button',
     color = 'primary',
     variant = 'contained',
-    radius = 'sm',
-    shadow,
-    size,
+    size = 'md',
     fullWidth = false,
     ...other
   } = props;
@@ -168,8 +136,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     color,
     fullWidth,
     variant,
-    radius,
-    shadow,
     size,
     focusVisible,
   };
@@ -219,9 +185,8 @@ Button.propTypes /* remove-proptypes */ = {
    */
   color: PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
-   * The component used for the Root slot.
+   * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
   component: PropTypes.elementType,
   /**
@@ -230,18 +195,9 @@ Button.propTypes /* remove-proptypes */ = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * The border-radius of the component.
-   * @default 'sm'
-   */
-  radius: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
-  /**
-   * The intensity of the shadow.
-   */
-  shadow: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']),
-  /**
    * The size of the component.
    */
-  size: PropTypes.oneOf(['small', 'large']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
    * The variant to use.
    * @default 'contained'
