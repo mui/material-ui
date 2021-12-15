@@ -44,7 +44,7 @@ const ColorSchemePicker = () => {
         display: 'inline-flex',
         alignItems: 'center',
         border: '1px solid',
-        borderRadius: '24px',
+        borderRadius: theme.vars.radius.md,
         ...theme.variants.outlined.neutral,
       })}
     >
@@ -53,7 +53,7 @@ const ColorSchemePicker = () => {
           return (
             <Button
               key={modeId}
-              size="small"
+              size="sm"
               variant={mode === modeId ? 'contained' : 'text'}
               onClick={() => {
                 setMode(modeId);
