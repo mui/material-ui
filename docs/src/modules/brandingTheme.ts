@@ -47,7 +47,7 @@ const defaultTheme = createTheme();
 const blue = {
   50: '#F0F7FF',
   100: '#C2E0FF',
-  200: '#99ccf3',
+  200: '#99CCF3',
   300: '#66B2FF',
   400: '#3399FF',
   main: '#007FFF',
