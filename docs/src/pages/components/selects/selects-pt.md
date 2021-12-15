@@ -92,12 +92,6 @@ Como na seleção única, você pode extrair o novo valor acessando `event.targe
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## Abrir automaticamente
-
-É possível fazer com que a seleção abra automaticamente ao ser montada por meio da propriedade `defaultOpen`.
-
-{{"demo": "pages/components/selects.DefaultOpen.js"}}
-
 ## Com um diálogo
 
 While it's discouraged by the Material Design guidelines, you can use a select inside a dialog.

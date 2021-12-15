@@ -1,7 +1,7 @@
-import * as React from "react";
-import { SxProps } from "@mui/system";
-import { Theme } from "..";
-import { MenuProps } from "../Menu";
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '..';
+import { MenuProps } from '../Menu';
 
 /**
  * The change can be caused by different kind of events.
@@ -15,12 +15,11 @@ export type SelectChangeEvent<T = string> =
 export interface SelectInputProps<T = unknown> {
   autoFocus?: boolean;
   autoWidth: boolean;
+  defaultOpen?: boolean;
   disabled?: boolean;
   IconComponent?: React.ElementType;
   inputRef?: (
-    ref:
-      | HTMLSelectElement
-      | { node: HTMLInputElement; value: SelectInputProps<T>["value"] }
+    ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps<T>['value'] },
   ) => void;
   MenuProps?: Partial<MenuProps>;
   multiple: boolean;
@@ -32,14 +31,13 @@ export interface SelectInputProps<T = unknown> {
   onFocus?: React.FocusEventHandler<any>;
   onOpen?: (event: React.SyntheticEvent) => void;
   open?: boolean;
-  defaultOpen?: boolean;
   readOnly?: boolean;
-  renderValue?: (value: SelectInputProps<T>["value"]) => React.ReactNode;
+  renderValue?: (value: SelectInputProps<T>['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
   sx?: SxProps<Theme>;
   tabIndex?: number;
   value?: T;
-  variant?: "standard" | "outlined" | "filled";
+  variant?: 'standard' | 'outlined' | 'filled';
 }
 
 declare const SelectInput: React.JSXElementConstructor<SelectInputProps>;

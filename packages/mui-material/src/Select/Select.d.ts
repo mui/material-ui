@@ -30,6 +30,12 @@ export interface SelectProps<T = unknown>
    */
   classes?: Partial<SelectClasses>;
   /**
+   * If `true`, the component is toggled on mount. Use when the component open state is not controlled.
+   * You can only use it when the `native` prop is `false` (default).
+   * @default false
+   */
+  defaultOpen?: boolean;
+  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue?: T;
@@ -113,12 +119,6 @@ export interface SelectProps<T = unknown>
    * You can only use it when the `native` prop is `false` (default).
    */
   open?: boolean;
-  /**
-   * If `true`, the component is toggled on mount.
-   * You can only use it when the `native` prop is `false` (default).
-   * @default false
-   */
-  defaultOpen?: boolean;
   /**
    * Render the selected value.
    * You can only use it when the `native` prop is `false` (default).

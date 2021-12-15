@@ -92,12 +92,6 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## 自动打开
-
-You can make the select menu open automatically on mount through the `defaultOpen` prop
-
-{{"demo": "pages/components/selects/DefaultOpen.js"}}
-
 ## 与对话框组件（Dialog）一起使用
 
 While it's discouraged by the Material Design guidelines, you can use a select inside a dialog.
