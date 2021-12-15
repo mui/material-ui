@@ -1,62 +1,62 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import clsx from "clsx";
-import { deepmerge } from "@mui/utils";
-import { unstable_composeClasses as composeClasses } from "@mui/core";
-import SelectInput from "./SelectInput";
-import formControlState from "@mui/material/FormControl/formControlState";
-import useFormControl from "@mui/material/FormControl/useFormControl";
-import ArrowDropDownIcon from "@mui/material/internal/svg-icons/ArrowDropDown";
-import Input from "@mui/material/Input";
-import NativeSelectInput from "@mui/material/NativeSelect/NativeSelectInput";
-import FilledInput from "@mui/material/FilledInput";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import useThemeProps from "@mui/material/styles/useThemeProps";
-import useForkRef from "@mui/material/utils/useForkRef";
-import { getSelectUtilityClasses } from "./selectClasses";
-import { jsx as _jsx } from "react/jsx-runtime";
-import _extends from "@babel/runtime/helpers/esm/extends";
-import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import { deepmerge } from '@mui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
+import SelectInput from './SelectInput';
+import formControlState from '@mui/material/FormControl/formControlState';
+import useFormControl from '@mui/material/FormControl/useFormControl';
+import ArrowDropDownIcon from '@mui/material/internal/svg-icons/ArrowDropDown';
+import Input from '@mui/material/Input';
+import NativeSelectInput from '@mui/material/NativeSelect/NativeSelectInput';
+import FilledInput from '@mui/material/FilledInput';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import useThemeProps from '@mui/material/styles/useThemeProps';
+import useForkRef from '@mui/material/utils/useForkRef';
+import { getSelectUtilityClasses } from './selectClasses';
+import { jsx as _jsx } from 'react/jsx-runtime';
+import _extends from '@babel/runtime/helpers/esm/extends';
+import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
 
 var _Input, _FilledInput;
 
 const _excluded = [
-    "autoWidth",
-    "children",
-    "classes",
-    "className",
-    "displayEmpty",
-    "IconComponent",
-    "id",
-    "input",
-    "inputProps",
-    "label",
-    "labelId",
-    "MenuProps",
-    "multiple",
-    "native",
-    "onClose",
-    "onOpen",
-    "open",
-    "defaultOpen",
-    "renderValue",
-    "SelectDisplayProps",
-    "variant"
+    'autoWidth',
+    'children',
+    'classes',
+    'className',
+    'displayEmpty',
+    'IconComponent',
+    'id',
+    'input',
+    'inputProps',
+    'label',
+    'labelId',
+    'MenuProps',
+    'multiple',
+    'native',
+    'onClose',
+    'onOpen',
+    'open',
+    'defaultOpen',
+    'renderValue',
+    'SelectDisplayProps',
+    'variant',
   ],
-  _excluded2 = ["root"];
+  _excluded2 = ['root'];
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
   const slots = {
-    root: ["root"]
+    root: ['root'],
   };
   return composeClasses(slots, getSelectUtilityClasses, classes);
 };
 
 const Select = /*#__PURE__*/ React.forwardRef(function Select(inProps, ref) {
   const props = useThemeProps({
-    name: "MuiSelect",
-    props: inProps
+    name: 'MuiSelect',
+    props: inProps,
   });
 
   const {
@@ -77,10 +77,10 @@ const Select = /*#__PURE__*/ React.forwardRef(function Select(inProps, ref) {
       onClose,
       onOpen,
       open,
-      defaultOpen,
+      defaultOpen = false,
       renderValue,
       SelectDisplayProps,
-      variant: variantProps = "outlined"
+      variant: variantProps = 'outlined',
     } = props,
     other = _objectWithoutPropertiesLoose(props, _excluded);
 
@@ -89,7 +89,7 @@ const Select = /*#__PURE__*/ React.forwardRef(function Select(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ["variant"]
+    states: ['variant'],
   });
   const variant = fcs.variant || variantProps;
   const InputComponent =
@@ -97,14 +97,13 @@ const Select = /*#__PURE__*/ React.forwardRef(function Select(inProps, ref) {
     {
       standard: _Input || (_Input = /*#__PURE__*/ _jsx(Input, {})),
       outlined: /*#__PURE__*/ _jsx(OutlinedInput, {
-        label: label
+        label: label,
       }),
-      filled:
-        _FilledInput || (_FilledInput = /*#__PURE__*/ _jsx(FilledInput, {}))
+      filled: _FilledInput || (_FilledInput = /*#__PURE__*/ _jsx(FilledInput, {})),
     }[variant];
 
   const ownerState = _extends({}, props, {
-    classes: classesProp
+    classes: classesProp,
   });
 
   const classes = useUtilityClasses(ownerState);
@@ -126,11 +125,11 @@ const Select = /*#__PURE__*/ React.forwardRef(function Select(inProps, ref) {
             variant,
             type: undefined,
             // We render a select. We can ignore the type provided by the `Input`.
-            multiple
+            multiple,
           },
           native
             ? {
-                id
+                id,
               }
             : {
                 autoWidth,
@@ -144,34 +143,32 @@ const Select = /*#__PURE__*/ React.forwardRef(function Select(inProps, ref) {
                 renderValue,
                 SelectDisplayProps: _extends(
                   {
-                    id
+                    id,
                   },
-                  SelectDisplayProps
-                )
+                  SelectDisplayProps,
+                ),
               },
           inputProps,
           {
-            classes: inputProps
-              ? deepmerge(otherClasses, inputProps.classes)
-              : otherClasses
+            classes: inputProps ? deepmerge(otherClasses, inputProps.classes) : otherClasses,
           },
-          input ? input.props.inputProps : {}
-        )
+          input ? input.props.inputProps : {},
+        ),
       },
-      multiple && native && variant === "outlined"
+      multiple && native && variant === 'outlined'
         ? {
-            notched: true
+            notched: true,
           }
         : {},
       {
         ref: inputComponentRef,
-        className: clsx(classes.root, InputComponent.props.className, className)
+        className: clsx(classes.root, InputComponent.props.className, className),
       },
-      other
-    )
+      other,
+    ),
   );
 });
-process.env.NODE_ENV !== "production"
+process.env.NODE_ENV !== 'production'
   ? (Select.propTypes =
       /* remove-proptypes */
       {
@@ -343,8 +340,8 @@ process.env.NODE_ENV !== "production"
          * The variant to use.
          * @default 'outlined'
          */
-        variant: PropTypes.oneOf(["filled", "outlined", "standard"])
+        variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
       })
   : void 0;
-Select.muiName = "Select";
+Select.muiName = 'Select';
 export default Select;

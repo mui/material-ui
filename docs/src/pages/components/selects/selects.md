@@ -103,6 +103,12 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
+## Open automatically
+
+You can make the select menu open automatically on mount through the `defaultOpen` prop
+
+{{"demo": "pages/components/selects/DefaultOpen.js"}}
+
 ## With a dialog
 
 While it's discouraged by the Material Design guidelines, you can use a select inside a dialog.

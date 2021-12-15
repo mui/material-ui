@@ -1,114 +1,113 @@
-import * as React from "react";
-import { isFragment } from "react-is";
-import PropTypes from "prop-types";
-import clsx from "clsx";
-import { unstable_composeClasses as composeClasses } from "@mui/core";
-import { refType } from "@mui/utils";
-import ownerDocument from "@mui/utils/ownerDocument";
-import capitalize from "@mui/utils/capitalize";
-import Menu from "@mui/material/Menu/Menu";
+import * as React from 'react';
+import { isFragment } from 'react-is';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { refType } from '@mui/utils';
+import ownerDocument from '@mui/utils/ownerDocument';
+import capitalize from '@mui/utils/capitalize';
+import Menu from '@mui/material/Menu/Menu';
 import {
   nativeSelectSelectStyles,
-  nativeSelectIconStyles
-} from "@mui/material/NativeSelect/NativeSelectInput";
-import { isFilled } from "@mui/material/InputBase/utils";
-import styled, { slotShouldForwardProp } from "@mui/material/styles/styled";
-import useForkRef from "@mui/utils/useForkRef";
-import useControlled from "@mui/utils/useControlled";
-import selectClasses, { getSelectUtilityClasses } from "./selectClasses";
-import { jsx as _jsx } from "react/jsx-runtime";
-import { jsxs as _jsxs } from "react/jsx-runtime";
-import _extends from "@babel/runtime/helpers/esm/extends";
-import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/esm/objectWithoutPropertiesLoose";
-import { formatMuiErrorMessage as _formatMuiErrorMessage } from "@mui/utils";
+  nativeSelectIconStyles,
+} from '@mui/material/NativeSelect/NativeSelectInput';
+import { isFilled } from '@mui/material/InputBase/utils';
+import styled, { slotShouldForwardProp } from '@mui/material/styles/styled';
+import useForkRef from '@mui/utils/useForkRef';
+import useControlled from '@mui/utils/useControlled';
+import selectClasses, { getSelectUtilityClasses } from './selectClasses';
+import { jsx as _jsx } from 'react/jsx-runtime';
+import { jsxs as _jsxs } from 'react/jsx-runtime';
+import _extends from '@babel/runtime/helpers/esm/extends';
+import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
+import { formatMuiErrorMessage as _formatMuiErrorMessage } from '@mui/utils';
 const _excluded = [
-  "aria-describedby",
-  "aria-label",
-  "autoFocus",
-  "autoWidth",
-  "children",
-  "className",
-  "defaultValue",
-  "disabled",
-  "displayEmpty",
-  "IconComponent",
-  "inputRef",
-  "labelId",
-  "MenuProps",
-  "multiple",
-  "name",
-  "onBlur",
-  "onChange",
-  "onClose",
-  "onFocus",
-  "onOpen",
-  "open",
-  "defaultOpen",
-  "readOnly",
-  "renderValue",
-  "SelectDisplayProps",
-  "tabIndex",
-  "type",
-  "value",
-  "variant"
+  'aria-describedby',
+  'aria-label',
+  'autoFocus',
+  'autoWidth',
+  'children',
+  'className',
+  'defaultValue',
+  'disabled',
+  'displayEmpty',
+  'IconComponent',
+  'inputRef',
+  'labelId',
+  'MenuProps',
+  'multiple',
+  'name',
+  'onBlur',
+  'onChange',
+  'onClose',
+  'onFocus',
+  'onOpen',
+  'open',
+  'defaultOpen',
+  'readOnly',
+  'renderValue',
+  'SelectDisplayProps',
+  'tabIndex',
+  'type',
+  'value',
+  'variant',
 ];
-const SelectSelect = styled("div", {
-  name: "MuiSelect",
-  slot: "Select",
+const SelectSelect = styled('div', {
+  name: 'MuiSelect',
+  slot: 'Select',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
     return [
       // Win specificity over the input base
       {
-        [`&.${selectClasses.select}`]: styles.select
+        [`&.${selectClasses.select}`]: styles.select,
       },
       {
-        [`&.${selectClasses.select}`]: styles[ownerState.variant]
-      }
+        [`&.${selectClasses.select}`]: styles[ownerState.variant],
+      },
     ];
-  }
+  },
 })(nativeSelectSelectStyles, {
   // Win specificity over the input base
   [`&.${selectClasses.select}`]: {
-    height: "auto",
+    height: 'auto',
     // Resets for multiple select with chips
-    minHeight: "1.4375em",
+    minHeight: '1.4375em',
     // Required for select\text-field height consistency
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-    overflow: "hidden"
-  }
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+  },
 });
-const SelectIcon = styled("svg", {
-  name: "MuiSelect",
-  slot: "Icon",
+const SelectIcon = styled('svg', {
+  name: 'MuiSelect',
+  slot: 'Icon',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
     return [
       styles.icon,
       ownerState.variant && styles[`icon${capitalize(ownerState.variant)}`],
-      ownerState.open && styles.iconOpen
+      ownerState.open && styles.iconOpen,
     ];
-  }
+  },
 })(nativeSelectIconStyles);
-const SelectNativeInput = styled("input", {
-  shouldForwardProp: (prop) =>
-    slotShouldForwardProp(prop) && prop !== "classes",
-  name: "MuiSelect",
-  slot: "NativeInput",
-  overridesResolver: (props, styles) => styles.nativeInput
+const SelectNativeInput = styled('input', {
+  shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',
+  name: 'MuiSelect',
+  slot: 'NativeInput',
+  overridesResolver: (props, styles) => styles.nativeInput,
 })({
   bottom: 0,
   left: 0,
-  position: "absolute",
+  position: 'absolute',
   opacity: 0,
-  pointerEvents: "none",
-  width: "100%",
-  boxSizing: "border-box"
+  pointerEvents: 'none',
+  width: '100%',
+  boxSizing: 'border-box',
 });
 
 function areEqualValues(a, b) {
-  if (typeof b === "object" && b !== null) {
+  if (typeof b === 'object' && b !== null) {
     return a === b;
   } // The value could be a number, the DOM will stringify it anyway.
 
@@ -116,20 +115,15 @@ function areEqualValues(a, b) {
 }
 
 function isEmpty(display) {
-  return display == null || (typeof display === "string" && !display.trim());
+  return display == null || (typeof display === 'string' && !display.trim());
 }
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, disabled, open } = ownerState;
   const slots = {
-    select: ["select", variant, disabled && "disabled"],
-    icon: [
-      "icon",
-      `icon${capitalize(variant)}`,
-      open && "iconOpen",
-      disabled && "disabled"
-    ],
-    nativeInput: ["nativeInput"]
+    select: ['select', variant, disabled && 'disabled'],
+    icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
+    nativeInput: ['nativeInput'],
   };
   return composeClasses(slots, getSelectUtilityClasses, classes);
 };
@@ -137,13 +131,10 @@ const useUtilityClasses = (ownerState) => {
  * @ignore - internal component.
  */
 
-const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
-  props,
-  ref
-) {
+const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(props, ref) {
   const {
-      "aria-describedby": ariaDescribedby,
-      "aria-label": ariaLabel,
+      'aria-describedby': ariaDescribedby,
+      'aria-label': ariaLabel,
       autoFocus,
       autoWidth,
       children,
@@ -169,19 +160,19 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
       SelectDisplayProps = {},
       tabIndex: tabIndexProp,
       value: valueProp,
-      variant = "standard"
+      variant = 'standard',
     } = props,
     other = _objectWithoutPropertiesLoose(props, _excluded);
 
   const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
-    name: "Select"
+    name: 'Select',
   });
   const [openState, setOpenState] = useControlled({
     controlled: openProp,
     default: defaultOpen,
-    name: "Select"
+    name: 'Select',
   });
   const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
@@ -203,15 +194,15 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
         displayRef.current.focus();
       },
       node: inputRef.current,
-      value
+      value,
     }),
-    [value]
+    [value],
   );
   // resize menu on automatic toggle
   React.useEffect(() => {
     if (defaultOpen && openState && displayNode && !isOpenControlled)
       setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
-  }, [defaultOpen, openState, displayNode, isOpenControlled, autoWidth]);
+  }, [defaultOpen, openState, displayNode, autoWidth]);
   React.useEffect(() => {
     if (autoFocus) {
       displayRef.current.focus();
@@ -227,9 +218,9 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
         }
       };
 
-      label.addEventListener("click", handler);
+      label.addEventListener('click', handler);
       return () => {
-        label.removeEventListener("click", handler);
+        label.removeEventListener('click', handler);
       };
     }
 
@@ -269,9 +260,7 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
   const childrenArray = React.Children.toArray(children); // Support autofill.
 
   const handleChange = (event) => {
-    const index = childrenArray
-      .map((child) => child.props.value)
-      .indexOf(event.target.value);
+    const index = childrenArray.map((child) => child.props.value).indexOf(event.target.value);
 
     if (index === -1) {
       return;
@@ -288,7 +277,7 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
   const handleItemClick = (child) => (event) => {
     let newValue; // We use the tabindex attribute to signal the available options.
 
-    if (!event.currentTarget.hasAttribute("tabindex")) {
+    if (!event.currentTarget.hasAttribute('tabindex')) {
       return;
     }
 
@@ -318,16 +307,13 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
         // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
         // Clone the event to not override `target` of the original event.
         const nativeEvent = event.nativeEvent || event;
-        const clonedEvent = new nativeEvent.constructor(
-          nativeEvent.type,
-          nativeEvent
-        );
-        Object.defineProperty(clonedEvent, "target", {
+        const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+        Object.defineProperty(clonedEvent, 'target', {
           writable: true,
           value: {
             value: newValue,
-            name
-          }
+            name,
+          },
         });
         onChange(clonedEvent, child);
       }
@@ -341,11 +327,11 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
   const handleKeyDown = (event) => {
     if (!readOnly) {
       const validKeys = [
-        " ",
-        "ArrowUp",
-        "ArrowDown", // The native select doesn't respond to enter on MacOS, but it's recommended by
+        ' ',
+        'ArrowUp',
+        'ArrowDown', // The native select doesn't respond to enter on MacOS, but it's recommended by
         // https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-collapsible.html
-        "Enter"
+        'Enter',
       ];
 
       if (validKeys.indexOf(event.key) !== -1) {
@@ -355,25 +341,24 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
     }
   };
 
-  const open =
-    displayNode !== null && (isOpenControlled ? openProp : openState);
+  const open = displayNode !== null && (isOpenControlled ? openProp : openState);
 
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
     if (!open && onBlur) {
       // Preact support, target is read only property on a native event.
-      Object.defineProperty(event, "target", {
+      Object.defineProperty(event, 'target', {
         writable: true,
         value: {
           value,
-          name
-        }
+          name,
+        },
       });
       onBlur(event);
     }
   };
 
-  delete other["aria-invalid"];
+  delete other['aria-invalid'];
   let display;
   let displaySingle;
   const displayMultiple = [];
@@ -382,7 +367,7 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
 
   if (
     isFilled({
-      value
+      value,
     }) ||
     displayEmpty
   ) {
@@ -398,13 +383,13 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
       return null;
     }
 
-    if (process.env.NODE_ENV !== "production") {
+    if (process.env.NODE_ENV !== 'production') {
       if (isFragment(child)) {
         console.error(
           [
             "MUI: The Select component doesn't accept a Fragment as a child.",
-            "Consider providing an array instead."
-          ].join("\n")
+            'Consider providing an array instead.',
+          ].join('\n'),
         );
       }
     }
@@ -414,9 +399,9 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
     if (multiple) {
       if (!Array.isArray(value)) {
         throw new Error(
-          process.env.NODE_ENV !== "production"
+          process.env.NODE_ENV !== 'production'
             ? `MUI: The \`value\` prop must be an array when using the \`Select\` component with \`multiple\`.`
-            : _formatMuiErrorMessage(2)
+            : _formatMuiErrorMessage(2),
         );
       }
 
@@ -438,10 +423,10 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
     }
 
     return /*#__PURE__*/ React.cloneElement(child, {
-      "aria-selected": selected ? "true" : undefined,
+      'aria-selected': selected ? 'true' : undefined,
       onClick: handleItemClick(child),
       onKeyUp: (event) => {
-        if (event.key === " ") {
+        if (event.key === ' ') {
           // otherwise our MenuItems dispatches a click event
           // it's not behavior of the native <option> and causes
           // the select to close immediately since we open on space keydown
@@ -452,39 +437,39 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
           child.props.onKeyUp(event);
         }
       },
-      role: "option",
+      role: 'option',
       selected,
       value: undefined,
       // The value is most likely not a valid HTML attribute.
-      "data-value": child.props.value // Instead, we provide it as a data attribute.
+      'data-value': child.props.value, // Instead, we provide it as a data attribute.
     });
   });
 
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
-      if (!foundMatch && !multiple && value !== "") {
+      if (!foundMatch && !multiple && value !== '') {
         const values = childrenArray.map((child) => child.props.value);
         console.warn(
           [
             `MUI: You have provided an out-of-range value \`${value}\` for the select ${
-              name ? `(name="${name}") ` : ""
+              name ? `(name="${name}") ` : ''
             }component.`,
             "Consider providing a value that matches one of the available options or ''.",
             `The available values are ${
               values
                 .filter((x) => x != null)
                 .map((x) => `\`${x}\``)
-                .join(", ") || '""'
-            }.`
-          ].join("\n")
+                .join(', ') || '""'
+            }.`,
+          ].join('\n'),
         );
       }
     }, [foundMatch, childrenArray, multiple, name, value]);
   }
 
   if (computeDisplay) {
-    display = multiple ? displayMultiple.join(", ") : displaySingle;
+    display = multiple ? displayMultiple.join(', ') : displaySingle;
   } // Avoid performing a layout computation in the render method.
 
   let menuMinWidth = menuMinWidthState;
@@ -495,20 +480,18 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
 
   let tabIndex;
 
-  if (typeof tabIndexProp !== "undefined") {
+  if (typeof tabIndexProp !== 'undefined') {
     tabIndex = tabIndexProp;
   } else {
     tabIndex = disabled ? null : 0;
   }
 
-  const buttonId =
-    SelectDisplayProps.id ||
-    (name ? `mui-component-select-${name}` : undefined);
+  const buttonId = SelectDisplayProps.id || (name ? `mui-component-select-${name}` : undefined);
 
   const ownerState = _extends({}, props, {
     variant,
     value,
-    open
+    open,
   });
 
   const classes = useUtilityClasses(ownerState);
@@ -520,118 +503,113 @@ const SelectInput = /*#__PURE__*/ React.forwardRef(function SelectInput(
           {
             ref: handleDisplayRef,
             tabIndex: tabIndex,
-            role: "button",
-            "aria-disabled": disabled ? "true" : undefined,
-            "aria-expanded": open ? "true" : "false",
-            "aria-haspopup": "listbox",
-            "aria-label": ariaLabel,
-            "aria-labelledby":
-              [labelId, buttonId].filter(Boolean).join(" ") || undefined,
-            "aria-describedby": ariaDescribedby,
+            role: 'button',
+            'aria-disabled': disabled ? 'true' : undefined,
+            'aria-expanded': open ? 'true' : 'false',
+            'aria-haspopup': 'listbox',
+            'aria-label': ariaLabel,
+            'aria-labelledby': [labelId, buttonId].filter(Boolean).join(' ') || undefined,
+            'aria-describedby': ariaDescribedby,
             onKeyDown: handleKeyDown,
             onMouseDown: disabled || readOnly ? null : handleMouseDown,
             onBlur: handleBlur,
-            onFocus: onFocus
+            onFocus: onFocus,
           },
           SelectDisplayProps,
           {
             ownerState: ownerState,
-            className: clsx(
-              classes.select,
-              className,
-              SelectDisplayProps.className
-            ), // The id is required for proper a11y
+            className: clsx(classes.select, className, SelectDisplayProps.className), // The id is required for proper a11y
             id: buttonId,
             children: isEmpty(display)
               ? /*#__PURE__*/
                 // notranslate needed while Google Translate will not fix zero-width space issue
                 // eslint-disable-next-line react/no-danger
-                _jsx("span", {
-                  className: "notranslate",
+                _jsx('span', {
+                  className: 'notranslate',
                   dangerouslySetInnerHTML: {
-                    __html: "&#8203;"
-                  }
+                    __html: '&#8203;',
+                  },
                 })
-              : display
-          }
-        )
+              : display,
+          },
+        ),
       ),
       /*#__PURE__*/ _jsx(
         SelectNativeInput,
         _extends(
           {
-            value: Array.isArray(value) ? value.join(",") : value,
+            value: Array.isArray(value) ? value.join(',') : value,
             name: name,
             ref: inputRef,
-            "aria-hidden": true,
+            'aria-hidden': true,
             onChange: handleChange,
             tabIndex: -1,
             disabled: disabled,
             className: classes.nativeInput,
             autoFocus: autoFocus,
-            ownerState: ownerState
+            ownerState: ownerState,
           },
-          other
-        )
+          other,
+        ),
       ),
       /*#__PURE__*/ _jsx(SelectIcon, {
         as: IconComponent,
         className: classes.icon,
-        ownerState: ownerState
+        ownerState: ownerState,
       }),
       /*#__PURE__*/ _jsx(
         Menu,
         _extends(
           {
-            id: `menu-${name || ""}`,
+            id: `menu-${name || ''}`,
             anchorEl: displayNode,
             open: open,
             onClose: handleClose,
             anchorOrigin: {
-              vertical: "bottom",
-              horizontal: "center"
+              vertical: 'bottom',
+              horizontal: 'center',
             },
             transformOrigin: {
-              vertical: "top",
-              horizontal: "center"
-            }
+              vertical: 'top',
+              horizontal: 'center',
+            },
           },
           MenuProps,
           {
             MenuListProps: _extends(
               {
-                "aria-labelledby": labelId,
-                role: "listbox",
-                disableListWrap: true
+                'aria-labelledby': labelId,
+                role: 'listbox',
+                disableListWrap: true,
               },
-              MenuProps.MenuListProps
+              MenuProps.MenuListProps,
             ),
             PaperProps: _extends({}, MenuProps.PaperProps, {
               style: _extends(
                 {
-                  minWidth: menuMinWidth
+                  minWidth: menuMinWidth,
                 },
-                MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null
-              )
+                MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null,
+              ),
             }),
-            children: items
-          }
-        )
-      )
-    ]
+            children: items,
+          },
+        ),
+      ),
+    ],
   });
 });
-process.env.NODE_ENV !== "production"
+process.env.NODE_ENV !== 'production'
   ? (SelectInput.propTypes = {
       /**
        * @ignore
        */
-      "aria-describedby": PropTypes.string,
+      'aria-describedby': PropTypes.string,
 
       /**
        * @ignore
        */
-      "aria-label": PropTypes.string,
+      'aria-label': PropTypes.string,
 
       /**
        * @ignore
@@ -789,7 +767,7 @@ process.env.NODE_ENV !== "production"
       /**
        * The variant to use.
        */
-      variant: PropTypes.oneOf(["standard", "outlined", "filled"])
+      variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
     })
   : void 0;
 export default SelectInput;
