@@ -155,7 +155,7 @@ export default function createCssVarsProvider(options) {
       }
     }, [colorScheme, attribute]);
 
-    React.useEffect(() => {
+    React.useLayoutEffect(() => {
       if (!mode || !enableColorScheme) {
         return undefined;
       }
