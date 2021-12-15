@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Masonry, { masonryClasses as classes } from '@mui/lab/Masonry';
 import { expect } from 'chai';
 import { createTheme } from '@mui/material/styles';
 import { getStyle, parseToNumber } from './Masonry';
 
 describe('<Masonry />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <Masonry>
@@ -28,29 +28,58 @@ describe('<Masonry />', () => {
 
   describe('render', () => {
     it('should render with correct default styles', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
+      const width = 400;
       const columns = 4;
       const spacing = 1;
       const { getByTestId } = render(
-        <Masonry data-testid="container">
-          <div data-testid="child" />
-        </Masonry>,
+        <div style={{ width: `${width}px` }}>
+          <Masonry data-testid="container">
+            <div data-testid="child" />
+          </Masonry>
+        </div>,
       );
       expect(getByTestId('container')).toHaveComputedStyle({
-        width: '100%',
+        width: `${width}px`,
         display: 'flex',
-        flexFlow: 'column wrap',
+        flexDirection: 'column',
+        flexWrap: 'wrap',
         alignContent: 'space-between',
         boxSizing: 'border-box',
-        margin: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
+        marginTop: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
+        marginRight: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
+        marginBottom: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
+        marginLeft: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
       });
       expect(getByTestId('child')).toHaveComputedStyle({
         boxSizing: 'border-box',
-        margin: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
-        width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing)})`,
+        marginTop: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+        marginRight: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+        marginBottom: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+        marginLeft: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+        width: `${width / columns - parseToNumber(theme.spacing(spacing))}px`,
       });
+    });
+
+    it('should throw console error when children are empty', function test() {
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(
+        'Warning: Failed prop type: The prop `children` is marked as required in `ForwardRef(Masonry)`, but its value is `undefined`.',
+      );
+    });
+
+    it('should not throw type error when children are empty', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(
+        'Warning: Failed prop type: The prop `children` is marked as required in `ForwardRef(Masonry)`, but its value is `undefined`.',
+      );
+      expect(() => render(<Masonry columns={3} spacing={1} />)).not.to.throw(new TypeError());
     });
   });
 

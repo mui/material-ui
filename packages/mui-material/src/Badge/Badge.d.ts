@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { ExtendBadgeUnstyledTypeMap, BadgeUnstyledTypeMap } from '@mui/core/BadgeUnstyled';
+import { ExtendBadgeUnstyledTypeMap, BadgeUnstyledTypeMap } from '@mui/base/BadgeUnstyled';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 

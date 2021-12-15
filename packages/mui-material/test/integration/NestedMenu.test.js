@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, within } from 'test/utils';
+import { createRenderer, within } from 'test/utils';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -47,7 +47,7 @@ function NestedMenu(props) {
 }
 
 describe('<NestedMenu> integration', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should not be open', () => {
     const { queryAllByRole } = render(<NestedMenu />);

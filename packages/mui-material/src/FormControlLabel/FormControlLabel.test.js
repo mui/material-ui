@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import FormControlLabel, {
   formControlLabelClasses as classes,
 } from '@mui/material/FormControlLabel';
@@ -9,7 +9,7 @@ import FormControl from '@mui/material/FormControl';
 import Typography from '@mui/material/Typography';
 
 describe('<FormControlLabel />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<FormControlLabel label="Pizza" control={<Checkbox />} />, () => ({
     classes,

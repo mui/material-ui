@@ -12,7 +12,7 @@ import {
   AutocompleteInputChangeReason,
   createFilterOptions,
   UseAutocompleteProps,
-} from '@mui/core';
+} from '@mui/base';
 import { AutocompleteClasses } from './autocompleteClasses';
 
 export {

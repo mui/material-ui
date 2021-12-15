@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import ThemeProvider from '@mui/private-theming/ThemeProvider';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import makeStyles from '../makeStyles';
 
 describe('ThemeProvider', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('does not allow setting mui.nested manually', () => {
     const useStyles = makeStyles({ root: {} }, { name: 'MuiTest' });

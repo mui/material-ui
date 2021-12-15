@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import OutlinedInput, { outlinedInputClasses as classes } from '@mui/material/OutlinedInput';
 import InputBase from '@mui/material/InputBase';
 
 describe('<OutlinedInput />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<OutlinedInput />, () => ({
     classes,
@@ -25,6 +25,18 @@ describe('<OutlinedInput />', () => {
     );
 
     expect(container.querySelector('.notched-outlined')).not.to.equal(null);
+  });
+
+  it('should set correct label prop on outline', () => {
+    const { container } = render(
+      <OutlinedInput
+        classes={{ notchedOutline: 'notched-outlined' }}
+        label={<div data-testid="label">label</div>}
+        required
+      />,
+    );
+    const notchOutlined = container.querySelector('.notched-outlined legend');
+    expect(notchOutlined).to.have.text('label\xa0*');
   });
 
   it('should forward classes to InputBase', () => {

@@ -12,6 +12,12 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
      * Override or extend the styles applied to the component.
      */
     classes?: Partial<ScopedCssBaselineClasses>;
+    /**
+     * Enable `color-scheme` CSS property to use `theme.palette.mode`.
+     * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+     * For browser support, check out https://caniuse.com/?search=color-scheme
+     */
+    enableColorScheme?: boolean;
   };
   defaultComponent: D;
 }

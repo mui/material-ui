@@ -5,7 +5,7 @@ import { elementTypeAcceptingRef } from '@mui/utils';
 import Collapse from '@mui/material/Collapse';
 import { alpha, styled, useThemeProps } from '@mui/material/styles';
 import { ownerDocument, useForkRef, unsupportedProp } from '@mui/material/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import TreeViewContext from '../TreeView/TreeViewContext';
 import { DescendantProvider, useDescendant } from '../TreeView/descendants';
 import TreeItemContent from './TreeItemContent';
@@ -403,7 +403,7 @@ TreeItem.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
@@ -415,7 +415,7 @@ TreeItem.propTypes /* remove-proptypes */ = {
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Box from '@mui/material/Box';
 
 describe('<Box />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Box />, () => ({
     render,

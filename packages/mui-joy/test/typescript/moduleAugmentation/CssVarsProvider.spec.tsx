@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { CssVarsProvider, JoyTheme } from '@mui/joy/styles';
+import { CssVarsProvider } from '@mui/joy/styles';
 
 // override theme
 <CssVarsProvider
   theme={{
     fontFamily: {
-      sans: '"Rubik", sans-serif',
+      default: '"Rubik", sans-serif',
     },
     // @ts-expect-error 'color' does not exist in JoyTheme
     color: {},
@@ -28,7 +28,7 @@ declare module '@mui/joy/styles' {
 
 // extends ColorSystems
 declare module '@mui/joy/styles' {
-  interface ColorSystems {
+  interface ColorSystem {
     bgcolor: string;
   }
 }
@@ -70,8 +70,8 @@ declare module '@mui/joy/styles' {
 
 // extends TypographySystems
 declare module '@mui/joy/styles' {
-  interface TypographySystems {
-    ads: (vars: JoyTheme['vars']) => React.CSSProperties;
+  interface TypographySystem {
+    ads: React.CSSProperties;
   }
 }
 
@@ -80,7 +80,7 @@ declare module '@mui/joy/styles' {
     colorSchemes: {
       light: {
         palette: {
-          brand: {
+          primary: {
             1000: '',
           },
           neutral: {
@@ -106,11 +106,11 @@ declare module '@mui/joy/styles' {
       xxxs: '',
     },
     typography: {
-      ads: (vars) => ({
-        fontFamily: vars.fontFamily.secondary,
-        fontSie: '',
+      ads: {
+        fontFamily: 'var(--joy-fontFamily-secondary)',
+        fontSize: '1rem',
         lineHeight: 1,
-      }),
+      },
     },
   }}
 />;

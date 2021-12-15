@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
-import { refType } from '@mui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { refType, unstable_useId as useId } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Input from '../Input';
@@ -82,7 +82,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     FormHelperTextProps,
     fullWidth = false,
     helperText,
-    id,
+    id: idOverride,
     InputLabelProps,
     inputProps,
     InputProps,
@@ -135,15 +135,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
       InputMore.notched = InputLabelProps.shrink;
     }
-    if (label) {
-      const displayRequired = InputLabelProps?.required ?? required;
-      InputMore.label = (
-        <React.Fragment>
-          {label}
-          {displayRequired && '\u00a0*'}
-        </React.Fragment>
-      );
-    }
+    InputMore.label = label;
   }
   if (select) {
     // unset defaults from textbox inputs
@@ -153,6 +145,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     InputMore['aria-describedby'] = undefined;
   }
 
+  const id = useId(idOverride);
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
   const inputLabelId = label && id ? `${id}-label` : undefined;
   const InputComponent = variantComponent[variant];
@@ -387,7 +380,7 @@ TextField.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

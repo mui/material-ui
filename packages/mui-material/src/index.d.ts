@@ -74,7 +74,7 @@ export * from './styles';
 
 export * from './utils';
 
-export * from '@mui/core';
+export * from '@mui/base';
 
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
@@ -172,6 +172,9 @@ export * from './Container';
 export { default as CssBaseline } from './CssBaseline';
 export * from './CssBaseline';
 
+/**
+ * @deprecated use color-scheme in CssBaseline or ScopedCssBaseline to modify scrollbar color
+ */
 export { default as darkScrollbar } from './darkScrollbar';
 export * from './darkScrollbar';
 

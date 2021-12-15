@@ -1122,7 +1122,7 @@ Replace every occurrence of `material-ui` related package with the new package n
 +"@mui/material": "next",
 +"@mui/icons-material": "next",
 +"@mui/lab": "next",
-+"@mui/core": "next",
++"@mui/base": "next",
 +"@mui/styled-engine-sc": "next",
 ```
 

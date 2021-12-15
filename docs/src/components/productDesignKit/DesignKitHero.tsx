@@ -31,7 +31,7 @@ export default function TemplateHero() {
               '& > *': { mr: 1, width: 28, height: 28 },
             }}
           >
-            <IconImage name="product-designkits" /> Design Kits
+            <IconImage name="product-designkits" /> Design kits
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             MUI in your favorite

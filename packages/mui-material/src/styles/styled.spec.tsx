@@ -37,3 +37,19 @@ const Container = styled('div')<{ $heightLimit: boolean }>`
       height: 10vh;
     `}
 `;
+
+// https://github.com/mui-org/material-ui/issues/28844
+interface PropsFooVariant {
+  variant: 'foo';
+}
+interface PropsBarVariant {
+  variant: 'bar';
+}
+const Component = (props: PropsFooVariant | PropsBarVariant) => <div />;
+const StyledComponent = styled(Component)(({ theme }) => ({}));
+const rendered = (
+  <React.Fragment>
+    <StyledComponent variant="foo" />
+    <StyledComponent variant="bar" />
+  </React.Fragment>
+);

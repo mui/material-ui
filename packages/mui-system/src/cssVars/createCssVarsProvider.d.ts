@@ -1,9 +1,6 @@
 import * as React from 'react';
-import { Result, Mode } from './useCurrentColorScheme';
-
-type RequiredDeep<T> = {
-  [K in keyof T]-?: RequiredDeep<T[K]>;
-};
+import getInitColorSchemeScript from './getInitColorSchemeScript';
+import { Mode, Result } from './useCurrentColorScheme';
 
 export type BuildCssVarsTheme<ThemeInput> = ThemeInput extends {
   colorSchemes: Record<string, infer ColorSystems>;
@@ -25,7 +22,16 @@ type DecideTheme<
   ApplicationTheme extends { colorSchemes: Record<ApplicationColorScheme, any> },
   ApplicationColorScheme extends string | never,
 > = [ApplicationColorScheme] extends [never]
-  ? { theme?: DesignSystemTheme }
+  ? {
+      theme?: Omit<DesignSystemTheme, 'colorSchemes'> & {
+        colorSchemes?: Partial<
+          Record<
+            DesignSystemColorScheme,
+            DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
+          >
+        >;
+      };
+    }
   : {
       theme: Omit<ApplicationTheme, 'colorSchemes'> & {
         colorSchemes: Partial<
@@ -34,9 +40,7 @@ type DecideTheme<
             DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
           >
         > &
-          RequiredDeep<
-            Record<ApplicationColorScheme, ApplicationTheme['colorSchemes'][ApplicationColorScheme]>
-          >;
+          Record<ApplicationColorScheme, ApplicationTheme['colorSchemes'][ApplicationColorScheme]>;
       };
     };
 
@@ -55,7 +59,13 @@ export default function createCssVarsProvider<
   } = never,
   ApplicationColorScheme extends string = never,
 >(options: {
+  /**
+   * Design system default theme
+   */
   theme: DesignSystemThemeInput;
+  /**
+   * Design system default color scheme
+   */
   defaultColorScheme:
     | DesignSystemColorScheme
     | { light: DesignSystemColorScheme; dark: DesignSystemColorScheme };
@@ -65,10 +75,28 @@ export default function createCssVarsProvider<
    */
   defaultMode?: Mode;
   /**
+   * Disable CSS transitions when switching between modes or color schemes
+   * @default false
+   */
+  disableTransitionOnChange?: boolean;
+  /**
+   * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
+   * @default true
+   */
+  enableColorScheme?: boolean;
+  /**
    * CSS variable prefix
    * @default ''
    */
   prefix?: string;
+  /**
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
+   */
+  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
 }): {
   CssVarsProvider: (
     props: React.PropsWithChildren<
@@ -110,7 +138,7 @@ export default function createCssVarsProvider<
     >,
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<DesignSystemColorScheme | ApplicationColorScheme>;
-  getInitColorSchemeScript: () => React.ReactElement;
+  getInitColorSchemeScript: typeof getInitColorSchemeScript;
 };
 
 // disable automatic export

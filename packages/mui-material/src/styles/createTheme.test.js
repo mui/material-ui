@@ -1,8 +1,13 @@
+import * as React from 'react';
 import { expect } from 'chai';
-import createTheme from './createTheme';
-import { deepOrange, green } from '../colors';
+import { createRenderer } from 'test/utils';
+import Button from '@mui/material/Button';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { deepOrange, green } from '@mui/material/colors';
 
 describe('createTheme', () => {
+  const { render } = createRenderer();
+
   it('should have a palette', () => {
     const theme = createTheme();
     expect(typeof createTheme).to.equal('function');
@@ -126,5 +131,34 @@ describe('createTheme', () => {
     const theme = createTheme({ custom: { foo: 'I am foo' } }, { custom: { bar: 'I am bar' } });
     expect(theme.custom.foo).to.equal('I am foo');
     expect(theme.custom.bar).to.equal('I am bar');
+  });
+
+  it('allows callbacks using theme in variants', () => {
+    const theme = createTheme({
+      typography: {
+        fontFamily: 'cursive',
+      },
+      components: {
+        MuiButton: {
+          variants: [
+            {
+              props: {}, // match any props combination
+              style: ({ theme: t }) => {
+                return {
+                  fontFamily: t.typography.fontFamily,
+                };
+              },
+            },
+          ],
+        },
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Button />
+      </ThemeProvider>,
+    );
+    expect(container.firstChild).toHaveComputedStyle({ fontFamily: 'cursive' });
   });
 });

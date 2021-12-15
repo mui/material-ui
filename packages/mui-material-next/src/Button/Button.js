@@ -7,8 +7,8 @@ import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import { useButton } from '@mui/core/ButtonUnstyled';
-import composeClasses from '@mui/core/composeClasses';
+import { useButton } from '@mui/base/ButtonUnstyled';
+import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
 import styled, { rootShouldForwardProp } from '@mui/material/styles/styled';
 import useTouchRipple from '@mui/material/useTouchRipple';
@@ -629,7 +629,7 @@ Button.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

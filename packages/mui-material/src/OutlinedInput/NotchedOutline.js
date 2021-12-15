@@ -20,6 +20,7 @@ const NotchedOutlineRoot = styled('fieldset')({
 });
 
 const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ ownerState, theme }) => ({
+  float: 'unset', // Fix conflict with bootstrap
   ...(ownerState.label === undefined && {
     padding: 0,
     lineHeight: '11px', // sync with `height` in `legend` styles
@@ -29,8 +30,8 @@ const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ ownerState, t
     }),
   }),
   ...(ownerState.label !== undefined && {
-    display: 'block',
-    width: 'auto',
+    display: 'block', // Fix conflict with normalize.css and sanitize.css
+    width: 'auto', // Fix conflict with bootstrap
     padding: 0,
     height: 11, // sync with `lineHeight` in `legend` styles
     fontSize: '0.75em',

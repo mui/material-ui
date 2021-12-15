@@ -1,8 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
 import NotchedOutline from './NotchedOutline';
+import useFormControl from '../FormControl/useFormControl';
+import formControlState from '../FormControl/formControlState';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
 import InputBase, {
@@ -124,13 +126,29 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
 
   const classes = useUtilityClasses(props);
 
+  const muiFormControl = useFormControl();
+  const fcs = formControlState({
+    props,
+    muiFormControl,
+    states: ['required'],
+  });
+
   return (
     <InputBase
       components={{ Root: OutlinedInputRoot, Input: OutlinedInputInput, ...components }}
       renderSuffix={(state) => (
         <NotchedOutlineRoot
           className={classes.notchedOutline}
-          label={label}
+          label={
+            label && fcs.required ? (
+              <React.Fragment>
+                {label}
+                &nbsp;{'*'}
+              </React.Fragment>
+            ) : (
+              label
+            )
+          }
           notched={
             typeof notched !== 'undefined'
               ? notched
@@ -295,7 +313,7 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

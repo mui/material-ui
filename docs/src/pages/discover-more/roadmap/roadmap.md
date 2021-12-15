@@ -21,7 +21,7 @@ Here are the top priorities:
 - **Better customization.** 💅 We want to make component customization intuitive, no matter if you are using global CSS or styled-components:
 - **Better documentation.** 📚 No solution is complete without great documentation.
 - **Performance.** 🚀 React abstraction has a cost. The more components you render, the slower your page will be. You will notice stark differences when rendering a large table or list.
-- **Bundle size.** 📦 You can follow our progress [with bundlephobia.com report](https://bundlephobia.com/result?p=@mui/material). Please pay special attention to the cost of the individual modules under "Exports Analysis".
+- **Bundle size.** 📦 You can follow our progress [with bundlephobia.com report](https://bundlephobia.com/package/@mui/material). Please pay special attention to the cost of the individual modules under "Exports Analysis".
 - **TypeScript.** 📏 We are continuously improving the definitions. The codebase is mostly written in JavaScript with manually authored `.d.ts` definitions. While we do not plan a migration effort as a standalone effort, new modules are written in TypeScript.
 - **Accessibility.** ♿️ We have relatively [few accessibility issues](https://darekkay.com/blog/accessible-ui-frameworks/), but we are eager to address them all. We would appreciate the help of accessibility experts.
 
@@ -34,6 +34,9 @@ Our GitHub project's roadmap is where you can learn about what features we're wo
 - [MUI X](https://github.com/mui-org/material-ui-x/projects/1).
   This repository focuses on providing advanced React components.
   Some of the features are MIT licensed, others are available under a commercial license.
+- [MUI Design kits](https://github.com/mui-org/mui-design-kits/projects/1)
+  This repository focuses on providing the components for designers on Figma and other design tools.
+  It's a great place to leave feedback, feature requests, and ask questions.
 
 ## New components
 

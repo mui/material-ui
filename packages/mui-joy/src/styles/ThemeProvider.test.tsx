@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createRenderer } from 'test/utils';
 import { ThemeProvider, useTheme } from '@mui/joy/styles';
 import defaultTheme from './defaultTheme';
 
 describe('[Joy] ThemeProvider', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
   it('can render component without ThemeProvider', () => {
     const Text = () => {
       const theme = useTheme();

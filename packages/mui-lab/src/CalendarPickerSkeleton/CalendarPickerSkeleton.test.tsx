@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import CalendarPickerSkeleton, {
   calendarPickerSkeletonClasses as classes,
 } from '@mui/lab/CalendarPickerSkeleton';
 
 describe('<CalendarPickerSkeleton />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<CalendarPickerSkeleton />, () => ({
     classes,

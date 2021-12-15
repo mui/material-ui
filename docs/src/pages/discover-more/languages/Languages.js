@@ -22,7 +22,7 @@ export default function Languages() {
                 <Link
                   variant="body2"
                   color="secondary"
-                  data-no-link="true"
+                  data-no-markdown-link="true"
                   href={language.code === 'en' ? '/' : `/${language.code}/`}
                 >
                   Documentation

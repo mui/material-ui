@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { fireEvent, createClientRender } from 'test/utils';
+import { fireEvent, createRenderer } from 'test/utils';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 
 describe('<BreadcrumbCollapsed />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   it('should render an icon', () => {
     const { container } = render(<BreadcrumbCollapsed />);

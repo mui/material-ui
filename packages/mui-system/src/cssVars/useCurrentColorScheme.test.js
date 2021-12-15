@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createClientRender, fireEvent, act, screen } from 'test/utils';
+import { createRenderer, fireEvent, act, screen } from 'test/utils';
 import {
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
@@ -9,7 +9,7 @@ import {
 import useCurrentColorScheme, { getColorScheme } from './useCurrentColorScheme';
 
 describe('useCurrentColorScheme', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
   let originalMatchmedia;
   let originalAddEventListener;
   let storage = {};

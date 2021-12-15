@@ -106,7 +106,7 @@ However, you need to apply the two following steps correctly.
 
 Pick one of the following plugins:
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration:
+- [babel-plugin-import](https://github.com/umijs/babel-plugin-import) with the following configuration:
 
   `yarn add -D babel-plugin-import`
 
@@ -209,10 +209,11 @@ Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.ali
 {
   resolve: {
     alias: {
-      '@mui/core$': '@mui/core/legacy',
-      '@mui/material$': '@mui/material/legacy',
-      '@mui/styled-engine$': '@mui/styled-engine/legacy',
-      '@mui/system$': '@mui/system/legacy',
+      '@mui/base': '@mui/base/legacy',
+      '@mui/lab': '@mui/lab/legacy',
+      '@mui/material': '@mui/material/legacy',
+      '@mui/styled-engine': '@mui/styled-engine/legacy',
+      '@mui/system': '@mui/system/legacy',
     }
   }
 }

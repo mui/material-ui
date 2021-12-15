@@ -244,9 +244,15 @@ If `bar: true`, the `color: red; backgroundColor: yellow;` is applied when hover
 />
 ```
 
+## Passing `sx` prop
+
+If you want to receive `sx` prop from your component and pass it down to MUI's component, we recommend this approach:
+
+{{"demo": "pages/system/the-sx-prop/PassingSxProp.js", "bg": true, "defaultCodeOpen": true}}
+
 ## TypeScript usage
 
-A frequent source of confusion with the `sx` prop is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+A frequent source of confusion with the `sx` prop is TypeScript's [type widening](https://mariusschulz.com/blog/literal-type-widening-in-typescript), which causes this example not to work as expected:
 
 ```ts
 const style = {

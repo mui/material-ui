@@ -2,7 +2,7 @@ import * as React from 'react';
 import ButtonUnstyled, {
   ButtonUnstyledProps,
   buttonUnstyledClasses,
-} from '@mui/core/ButtonUnstyled';
+} from '@mui/base/ButtonUnstyled';
 import { styled, Theme } from '@mui/system';
 
 const ButtonRoot = React.forwardRef(function ButtonRoot(

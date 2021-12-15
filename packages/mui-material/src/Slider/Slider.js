@@ -2,12 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { generateUtilityClasses, isHostComponent } from '@mui/core';
+import { generateUtilityClasses, isHostComponent } from '@mui/base';
 import SliderUnstyled, {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
   getSliderUtilityClass,
-} from '@mui/core/SliderUnstyled';
+} from '@mui/base/SliderUnstyled';
 import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
@@ -668,7 +668,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

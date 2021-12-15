@@ -17,7 +17,7 @@ MUI provides icons support in three ways:
 
 ## Material icons
 
-Google has created over 1,700 official Material icons, each in five different "themes" (see below).
+Google has created over 1,900 official Material icons, each in five different "themes" (see below).
 For each SVG icon, we export the respective React component from the `@mui/icons-material` package.
 You can [search the full list of these icons](/components/material-icons/).
 
@@ -121,7 +121,7 @@ function HomeIcon(props) {
 ### Component prop
 
 You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format.
-[svgr](https://github.com/smooth-code/svgr) has loaders to import SVG files and use them as React components. For example, with webpack:
+[svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. For example, with webpack:
 
 ```jsx
 // webpack.config.js
@@ -344,4 +344,4 @@ import { visuallyHidden } from '@mui/utils';
 
 #### Reference
 
-- https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/
+- https://www.tpgi.com/using-aria-enhance-svg-accessibility/

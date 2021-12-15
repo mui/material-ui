@@ -7,7 +7,7 @@ import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@mui/core';
+} from '@mui/base';
 import PickersMonth from './PickersMonth';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
 import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
@@ -77,6 +77,7 @@ const MonthPickerRoot = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
   alignContent: 'stretch',
+  margin: '0 4px',
 });
 
 const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
@@ -216,7 +217,7 @@ MonthPicker.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

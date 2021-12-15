@@ -229,7 +229,7 @@ function ApiDocs(props) {
     ...componentDescriptionToc,
     componentStyles.name && createTocEntry('component-name'),
     createTocEntry('props'),
-    componentStyles.classes && createTocEntry('css'),
+    componentStyles.classes.length > 0 && createTocEntry('css'),
     createTocEntry('demos'),
   ].filter(Boolean);
 

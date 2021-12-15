@@ -1,4 +1,4 @@
-import { generateUtilityClasses, generateUtilityClass } from '@mui/core';
+import { generateUtilityClasses, generateUtilityClass } from '@mui/base';
 
 export interface InputClasses {
   /** Styles applied to the root element. */

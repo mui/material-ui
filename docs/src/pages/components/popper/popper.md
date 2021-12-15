@@ -1,6 +1,6 @@
 ---
 title: React Popper component
-components: Popper
+components: Popper, PopperUnstyled
 githubLabel: 'component: Popper'
 ---
 
@@ -41,7 +41,7 @@ Popper has built-in support for [react-transition-group](https://github.com/reac
 
 {{"demo": "pages/components/popper/TransitionsPopper.js"}}
 
-Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
+Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring).
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 
@@ -75,8 +75,11 @@ state for you in most cases.
 
 ## Unstyled
 
-As the component does not have any styles, it also comes with the unstyled package.
+The @mui/base package contain an unstyled version of Popper - PopperUnstyled.
+It does not have a dependency on @mui/material.
+The only difference between Popper and PopperUnstyled is the support for theming.
+Popper can read the `direction` field from the current theme, while PopperUnstyled accepts the `direction` prop instead.
 
 ```js
-import Popper from '@mui/core/Popper';
+import Popper from '@mui/base/PopperUnstyled';
 ```

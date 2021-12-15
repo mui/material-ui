@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Box from '@mui/material/Box';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
 
 describe('<Box />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Box />, () => ({
     render,

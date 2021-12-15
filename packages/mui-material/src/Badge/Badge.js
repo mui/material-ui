@@ -2,8 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { usePreviousProps } from '@mui/utils';
-import { generateUtilityClasses, isHostComponent } from '@mui/core';
-import BadgeUnstyled, { badgeUnstyledClasses, getBadgeUtilityClass } from '@mui/core/BadgeUnstyled';
+import { generateUtilityClasses, isHostComponent } from '@mui/base';
+import BadgeUnstyled, { badgeUnstyledClasses, getBadgeUtilityClass } from '@mui/base/BadgeUnstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
@@ -193,9 +193,14 @@ const BadgeBadge = styled('span', {
   }),
 }));
 
+const shouldSpreadAdditionalProps = (Slot) => {
+  return !Slot || !isHostComponent(Slot);
+};
+
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
   const {
+    component = 'span',
     components = {},
     componentsProps = {},
     color: colorProp = 'default',
@@ -239,13 +244,14 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
       componentsProps={{
         root: {
           ...componentsProps.root,
-          ...((!components.Root || !isHostComponent(components.Root)) && {
+          ...(shouldSpreadAdditionalProps(components.Root) && {
+            as: component,
             ownerState: { ...componentsProps.root?.ownerState, color },
           }),
         },
         badge: {
           ...componentsProps.badge,
-          ...((!components.Thumb || !isHostComponent(components.Thumb)) && {
+          ...(shouldSpreadAdditionalProps(components.Badge) && {
             ownerState: { ...componentsProps.badge?.ownerState, color },
           }),
         },
@@ -293,6 +299,11 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.
    * @default {}
@@ -329,7 +340,7 @@ Badge.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

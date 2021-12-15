@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Step, { StepProps, stepClasses } from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
@@ -8,7 +8,7 @@ import StepContent, { stepContentClasses } from '@mui/material/StepContent';
 import Stepper, { stepperClasses as classes } from '@mui/material/Stepper';
 
 describe('<Stepper />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(
     <Stepper>

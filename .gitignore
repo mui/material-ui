@@ -2,7 +2,8 @@
 # However, in order to prevent issues, they are ignored here.
 .DS_STORE
 .idea
-.vscode
+.vscode/*
+!.vscode/launch.json
 *.log
 *.tsbuildinfo
 /.eslintcache
@@ -11,6 +12,7 @@
 /coverage
 /docs/.env.local
 /docs/export
+/docs/pages/playground.tsx
 /examples/**/.cache
 /packages/mui-codemod/lib
 /packages/mui-envinfo/*.tgz

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NProgress from 'nprogress';
 import { withStyles } from '@mui/styles';
 import { createTheme } from '@mui/material/styles';
-import NoSsr from '@mui/core/NoSsr';
+import NoSsr from '@mui/base/NoSsr';
 import { exactProp } from '@mui/utils';
 
 NProgress.configure({

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { useSwitch, UseSwitchProps } from '@mui/core/SwitchUnstyled';
+import { useSwitch, UseSwitchProps } from '@mui/base/SwitchUnstyled';
 import { styled } from '@mui/system';
 
 const BasicSwitchRoot = styled('span')`

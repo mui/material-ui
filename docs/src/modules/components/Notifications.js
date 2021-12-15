@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Popper from '@mui/material/Popper';
 import Grow from '@mui/material/Grow';
 import MuiPaper from '@mui/material/Paper';
-import ClickAwayListener from '@mui/core/ClickAwayListener';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import MuiList from '@mui/material/List';
 import MuiListItem from '@mui/material/ListItem';
 import MuiDivider from '@mui/material/Divider';

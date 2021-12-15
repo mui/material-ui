@@ -3,10 +3,14 @@ import { describeConformance } from 'test/utils';
 import DateRangePickerDay, {
   dateRangePickerDayClasses as classes,
 } from '@mui/lab/DateRangePickerDay';
-import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
+import {
+  adapterToUse,
+  wrapPickerMount,
+  createPickerRenderer,
+} from '../internal/pickers/test-utils';
 
 describe('<DateRangePickerDay />', () => {
-  const render = createPickerRender();
+  const { render } = createPickerRenderer();
 
   describeConformance(
     <DateRangePickerDay

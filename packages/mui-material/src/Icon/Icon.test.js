@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import Icon, { iconClasses as classes } from '@mui/material/Icon';
 
 describe('<Icon />', () => {
-  const render = createClientRender();
+  const { render } = createRenderer();
 
   describeConformance(<Icon>account_circle</Icon>, () => ({
     classes,

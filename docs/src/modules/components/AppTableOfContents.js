@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
 const Nav = styled('nav')(({ theme }) => {
   return {
@@ -196,7 +198,7 @@ export default function AppTableOfContents(props) {
   const itemLink = (item, secondary) => (
     <NavItem
       display="block"
-      href={`${activePage.linkProps?.as ?? activePage.pathname}#${item.hash}`}
+      href={`${activePage.linkProps?.linkAs ?? activePage.pathname}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       active={activeState === item.hash}
@@ -208,6 +210,9 @@ export default function AppTableOfContents(props) {
 
   return (
     <Nav aria-label={t('pageTOC')}>
+      <NoSsr>
+        <TableOfContentsBanner />
+      </NoSsr>
       {toc.length > 0 ? (
         <React.Fragment>
           <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>

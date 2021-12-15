@@ -73,7 +73,7 @@ async function run(context) {
       'styles',
       'system',
       'types',
-      'core',
+      'base',
       'utils',
     ].map(async (muiPackageName) => {
       // clean coyp

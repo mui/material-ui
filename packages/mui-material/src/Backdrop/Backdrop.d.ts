@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { ExtendBackdropUnstyledTypeMap, BackdropUnstyledTypeMap } from '@mui/core/BackdropUnstyled';
+import { ExtendBackdropUnstyledTypeMap, BackdropUnstyledTypeMap } from '@mui/base/BackdropUnstyled';
 import { FadeProps } from '../Fade';
 import { TransitionProps } from '../transitions/transition';
 import { Theme } from '../styles';

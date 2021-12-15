@@ -7,7 +7,7 @@ import {
   unstable_composeClasses as composeClasses,
   isHostComponent,
   TextareaAutosize,
-} from '@mui/core';
+} from '@mui/base';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
@@ -210,7 +210,6 @@ export const InputBaseComponent = styled('input', {
     ...(ownerState.type === 'search' && {
       // Improve type search style.
       MozAppearance: 'textfield',
-      WebkitAppearance: 'textfield',
     }),
   };
 });
@@ -241,6 +240,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     componentsProps = {},
     defaultValue,
     disabled,
+    disableInjectingGlobalStyles,
     endAdornment,
     error,
     fullWidth = false,
@@ -492,7 +492,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   return (
     <React.Fragment>
-      {inputGlobalStyles}
+      {!disableInjectingGlobalStyles && inputGlobalStyles}
       <Root
         {...rootProps}
         {...(!isHostComponent(Root) && {
@@ -606,6 +606,12 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, GlobalStyles for the auto-fill keyframes will not be injected/removed on mount/unmount. Make sure to inject them at the top of your application.
+   * This option is intended to help with boosting the initial rendering performance if you are loading a big amount of Input components at once.
+   * @default false
+   */
+  disableInjectingGlobalStyles: PropTypes.bool,
   /**
    * End `InputAdornment` for this component.
    */
@@ -728,7 +734,7 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

@@ -26,7 +26,7 @@ You can use different background colors for the avatar. The following demo gener
 
 {{"demo": "pages/components/avatars/BackgroundLetterAvatars.js"}}
 
-## Tamanhos
+## Sizes
 
 Você pode alterar o tamanho do avatar com as propriedades CSS  `height` e `width`.
 
@@ -38,7 +38,7 @@ Avatares com ícones são criados passando o ícone como `children`.
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
 
-## Variantes
+## Variants
 
 Se você precisa de avatares com cantos quadrados ou arredondados, use a propriedade `variant`.
 
@@ -54,11 +54,17 @@ Se houver um erro ao carregar a imagem do avatar, o componente escolhe uma alter
 
 {{"demo": "pages/components/avatars/FallbackAvatars.js"}}
 
-## Agrupamento
+## Grouped
 
-`AvatarGroup` renderiza seus componentes children como uma pilha.
+`AvatarGroup` renders its children as a stack. Use the `max` prop to limit the number of avatars.
 
 {{"demo": "pages/components/avatars/GroupAvatars.js"}}
+
+### Total avatars
+
+If you need to control the total number of avatars not shown, you can use the `total` prop.
+
+{{"demo": "pages/components/avatars/TotalAvatars.js"}}
 
 ## Com emblema
 
