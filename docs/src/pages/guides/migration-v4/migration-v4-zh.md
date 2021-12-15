@@ -1364,7 +1364,7 @@ declare module '@mui/styles' {
 - 将栅格列表`cellHeight` 属性重命名为 `rowHeight`。
 - 添加 `variant` 属性到栅格列表中。
 - 我们将 GridListItemBar 的 `actionPosition` 属性重命名为 `position`。 (也要注意相关的类名变化)。
-- 使用 CSS object-fit。 如果要兼容 IE11，那么你可以使用 polyfill 来转换它，例如 https://www.npmjs.com/package/object-fit-images，或者继续使用 v4 组件。
+- 使用 CSS object-fit。 如果要兼容 IE11，那么你可以使用 polyfill 来转换它，例如 https://www.npmjs.com/package/object-fit-images, 或者继续使用 v4 组件。
 
   ```diff
   -import GridList from '@mui/material/GridList';
