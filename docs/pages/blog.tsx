@@ -69,7 +69,11 @@ const PostPreview = (props: BlogPost) => {
           }}
         >
           {props.authors.map((author) => (
-            <Avatar key={author} alt="" src={`https://github.com/${authors[author].github}.png`} />
+            <Avatar
+              key={author}
+              alt=""
+              src={`https://github.com/${authors[author as keyof typeof authors].github}.png`}
+            />
           ))}
         </AvatarGroup>
       )}
