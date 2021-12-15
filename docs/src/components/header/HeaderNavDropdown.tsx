@@ -193,6 +193,11 @@ export default function HeaderNavDropdown() {
                 </Anchor>
               </li>
               <li>
+                <Anchor href={ROUTES.blog} as={Link} noLinkStyle>
+                  Blog
+                </Anchor>
+              </li>
+              <li>
                 <Anchor href={ROUTES.about} as={Link} noLinkStyle>
                   About us
                 </Anchor>

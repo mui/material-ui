@@ -15,7 +15,7 @@ const ROUTES = {
   theming: '/customization/theming/',
   documentation: '/getting-started/usage/',
   communityHelp: '/getting-started/support/#community-help-free',
-  blog: 'https://medium.com/material-ui',
+  blog: '/blog/',
   showcase: '/discover-more/showcase',
   roadmap: 'https://github.com/mui-org/material-ui-x/projects/1',
   languages: '/discover-more/languages',
