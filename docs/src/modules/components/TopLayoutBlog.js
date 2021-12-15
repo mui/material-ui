@@ -13,8 +13,9 @@ import Avatar from '@mui/material/Avatar';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import { exactProp } from '@mui/utils';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import ROUTES from 'docs/src/route';
 
-const authors = {
+export const authors = {
   oliviertassinari: {
     name: 'Olivier Tassinari',
     github: 'oliviertassinari',
@@ -140,7 +141,7 @@ function TopLayoutBlog(props) {
       <div className={classes.root}>
         <AppContainer component="main" className={classes.container}>
           <Link
-            href="https://medium.com/material-ui"
+            href={ROUTES.blog}
             rel="nofollow"
             color="text.secondary"
             variant="body2"
