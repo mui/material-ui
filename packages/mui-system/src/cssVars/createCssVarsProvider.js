@@ -13,6 +13,9 @@ import getInitColorSchemeScript, {
 } from './getInitColorSchemeScript';
 import useCurrentColorScheme from './useCurrentColorScheme';
 
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
 export const DISABLE_CSS_TRANSITION =
   '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
 
@@ -155,7 +158,7 @@ export default function createCssVarsProvider(options) {
       }
     }, [colorScheme, attribute]);
 
-    React.useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       if (!mode || !enableColorScheme) {
         return undefined;
       }
