@@ -1,16 +1,16 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
-import { InputProps } from '../Input';
-import { MenuProps } from '../Menu';
-import { SelectChangeEvent, SelectInputProps } from './SelectInput';
-import { SelectClasses } from './selectClasses';
+import * as React from "react";
+import { SxProps } from "@mui/system";
+import { InternalStandardProps as StandardProps, Theme } from "..";
+import { InputProps } from "../Input";
+import { MenuProps } from "../Menu";
+import { SelectChangeEvent, SelectInputProps } from "./SelectInput";
+import { SelectClasses } from "./selectClasses";
 
 export { SelectChangeEvent };
 
 export interface SelectProps<T = unknown>
-  extends StandardProps<InputProps, 'value' | 'onChange'>,
-    Pick<SelectInputProps<T>, 'onChange'> {
+  extends StandardProps<InputProps, "value" | "onChange">,
+    Pick<SelectInputProps<T>, "onChange"> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -61,7 +61,7 @@ export interface SelectProps<T = unknown>
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
    * When `native` is `true`, the attributes are applied on the `select` element.
    */
-  inputProps?: InputProps['inputProps'];
+  inputProps?: InputProps["inputProps"];
   /**
    * See [OutlinedInput#label](/api/outlined-input/#props)
    */
@@ -93,7 +93,7 @@ export interface SelectProps<T = unknown>
    * **Warning**: This is a generic event not a change event unless the change event is caused by browser autofill.
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
-  onChange?: SelectInputProps<T>['onChange'];
+  onChange?: SelectInputProps<T>["onChange"];
   /**
    * Callback fired when the component requests to be closed.
    * Use in controlled mode (see open).
@@ -113,6 +113,11 @@ export interface SelectProps<T = unknown>
    * You can only use it when the `native` prop is `false` (default).
    */
   open?: boolean;
+  /**
+   * If `true`, the component is toggled on mount.
+   * You can only use it when the `native` prop is `false` (default).
+   */
+  defaultOpen?: boolean;
   /**
    * Render the selected value.
    * You can only use it when the `native` prop is `false` (default).
@@ -141,7 +146,7 @@ export interface SelectProps<T = unknown>
    * The variant to use.
    * @default 'outlined'
    */
-  variant?: 'standard' | 'outlined' | 'filled';
+  variant?: "standard" | "outlined" | "filled";
 }
 
 /**
@@ -155,6 +160,8 @@ export interface SelectProps<T = unknown>
  * - [Select API](https://mui.com/api/select/)
  * - inherits [OutlinedInput API](https://mui.com/api/outlined-input/)
  */
-declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & { muiName: string };
+declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & {
+  muiName: string;
+};
 
 export default Select;
