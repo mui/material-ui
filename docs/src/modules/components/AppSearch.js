@@ -297,6 +297,14 @@ export default function AppSearch() {
                   parseUrl.href = item.url;
                 }
 
+                // TODO: remove this logic once the migration to new structure is done.
+                if (router.asPath.startsWith('/material')) {
+                  parseUrl.href = parseUrl.href.replace(
+                    /(?<!material\/)(getting-started|components|api|customization|guides|discover-more)(\/[^/]+\/)/,
+                    `material/$1$2`,
+                  );
+                }
+
                 const { canonicalAs, canonicalPathname } = pathnameToLanguage(
                   `${parseUrl.pathname}${parseUrl.hash}`,
                 );
