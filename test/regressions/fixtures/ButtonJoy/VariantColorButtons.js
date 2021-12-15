@@ -10,7 +10,7 @@ export default function VariantColorJoy() {
         {['text', 'outlined', 'light', 'contained'].map((variant) => {
           return ['primary', 'neutral', 'danger', 'info', 'success', 'warning'].map((color) => (
             <Button key={`${variant}-${color}`} variant={variant} color={color}>
-              Button
+              {color}
             </Button>
           ));
         })}
