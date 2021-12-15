@@ -15,6 +15,10 @@ parameters:
     description: The name of the workflow to run
     type: string
     default: pipeline
+  e2e-base-url:
+    description: The base url for running end-to-end test
+    type: string
+    default: ''
 
 defaults: &defaults
   parameters:
@@ -26,6 +30,10 @@ defaults: &defaults
       description: A particular type of tests that should be run
       type: string
       default: undefined
+    e2e-base-url:
+      description: The base url for running end-to-end test
+      type: string
+      default: << pipeline.parameters.e2e-base-url >>
   environment:
     # Keep in sync with "Save playwright cache"
     PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
@@ -373,6 +381,21 @@ jobs:
       - run:
           name: Test umd release
           command: yarn test:umd
+  test_e2e_website:
+    <<: *defaults
+    docker:
+      - image: mcr.microsoft.com/playwright@sha256:f08e263c95e83334104e6e2fee047ad92062a03af6ae94c0f8686ba2b3014823
+        environment:
+          NODE_ENV: development # Needed if playwright is in `devDependencies`
+    steps:
+      - checkout
+      - install_js:
+          browsers: true
+      - run:
+          name: yarn test:e2e-website
+          command: yarn test:e2e-website
+          environment:
+            PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
   test_profile:
     <<: *defaults
     docker:
@@ -750,6 +773,15 @@ workflows:
       - test_bundle_size_monitor:
           requires:
             - checkout
+  e2e-website:
+    when:
+      equal: [e2e-website, << pipeline.parameters.workflow >>]
+    jobs:
+      - checkout
+      - test_e2e_website:
+          requires:
+            - checkout
+
   bundling:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
