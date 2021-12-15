@@ -44,15 +44,13 @@ const ButtonRoot = styled('button', {
       styles[`variant${capitalize(ownerState.variant)}`],
       styles[`color${capitalize(ownerState.color)}`],
       ownerState.size && styles[`size${capitalize(ownerState.size)}`],
-      ownerState.shadow && styles[`shadow${capitalize(ownerState.shadow)}`],
-      ownerState.radius && styles[`radius${capitalize(ownerState.radius)}`],
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   return [
     {
-      padding: '0.25rem 1.5rem',
+      padding: '0.25rem 1.5rem', // the padding-top, bottom act as a minimum spacing between content and root element
       minHeight: '40px',
       borderRadius: theme.vars.radius.sm,
       border: 'none',
@@ -62,18 +60,21 @@ const ButtonRoot = styled('button', {
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
+      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
       transition:
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...theme.typography.body1,
       fontWeight: theme.vars.fontWeight.md,
       ...(ownerState.size === 'sm' && {
-        padding: '0.25rem 1rem',
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
         minHeight: '32px',
         ...theme.typography.body2,
         fontWeight: theme.vars.fontWeight.md,
       }),
       ...(ownerState.size === 'lg' && {
-        padding: '0.25rem 2rem',
+        paddingLeft: '2rem',
+        paddingRight: '2rem',
         minHeight: '48px',
         ...theme.typography.h6,
         fontWeight: theme.vars.fontWeight.md,
