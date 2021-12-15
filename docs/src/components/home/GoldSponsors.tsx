@@ -41,13 +41,6 @@ const GOLDs = [
     href: 'https://spicefactory.co/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: '/static/sponsors/elevator-logo.png',
-    srcSet: '/static/sponsors/elevator-logo-2x.png 2x',
-    name: 'Elevator',
-    description: 'The dopest new hip hop, upcoming artists, music.',
-    href: 'https://www.elevatormag.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: 'https://images.opencollective.com/movavi-software/a1d0167/logo/40.png',
     srcSet: 'https://images.opencollective.com/movavi-software/a1d0167/logo/80.png 2x',
     name: 'Movavi',
