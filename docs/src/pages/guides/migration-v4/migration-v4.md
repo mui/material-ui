@@ -265,23 +265,21 @@ The list of components that expect a specific element type is as follows:
 
 ##### `@mui/material`
 
-- [Accordion](/components/accordion)
-- [Alert](/components/alert)
-- [Avatar](/components/avatar)
-- [ButtonGroup](/components/button-group)
-- [Card](/components/card)
-- [Dialog](/components/dialog)
-- [ImageList](/components/image-list)
-- [List](/components/list)
-- [Tab](/components/tabs)
-- [Tabs](/components/tabs)
-- [ToggleButton](/components/toggle-button)
+- [Accordion](/components/accordion) - `HTMLDivElement`
+- [Alert](/components/alert) - `HTMLDivElement`
+- [Avatar](/components/avatar) - `HTMLDivElement`
+- [ButtonGroup](/components/button-group) - `HTMLDivElement`
+- [Card](/components/card) - `HTMLDivElement`
+- [Dialog](/components/dialog) - `HTMLDivElement`
+- [ImageList](/components/image-list) - `HTMLUListElement`
+- [List](/components/list) - `HTMLUListElement`
+- [Tab](/components/tabs) - `HTMLDivElement`
+- [Tabs](/components/tabs) - `HTMLDivElement`
+- [ToggleButton](/components/toggle-button) - `HTMLButtonElement`
 
 ##### `@mui/lab`
 
-- [TabPanel](/components/tabs)
-- [Timeline](/components/timeline)
-- [TreeItem](/components/tree-view)
+- [Timeline](/components/timeline) - `HTMLUListElement`
 
 ### Style library
 
