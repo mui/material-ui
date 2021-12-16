@@ -40,7 +40,7 @@
 | `gridTemplateRows`    | `grid-template-rows`                                                                         | [`gridTemplateRows`](/system/grid/#grid-template-rows)       | none                                                                                    |
 | `gridTemplateAreas`   | `grid-template-areas`                                                                        | [`gridTemplateAreas`](/system/grid/#grid-template-areas)     | none                                                                                    |
 | `gridArea`            | `grid-area`                                                                                  | [`gridArea`](/system/grid/#grid-area)                        | none                                                                                    |
-| `bgcolor`             | `background-color`                                                                           | [`bgcolor`](/system/palette/#background-color)               | [`theme.palette[value]`](/customization/default-theme/?expand-path=$.palette)           |
+| `bgcolor`             | `backgroundColor`                                                                            | [`bgcolor`](/system/palette/#background-color)               | [`theme.palette[value]`](/customization/default-theme/?expand-path=$.palette)           |
 | `color`               | `color`                                                                                      | [`color`](/system/palette/#color)                            | [`theme.palette[value]`](/customization/default-theme/?expand-path=$.palette)           |
 | `bottom`              | `bottom`                                                                                     | [`bottom`](/system/positions/)                               | none                                                                                    |
 | `left`                | `left`                                                                                       | [`left`](/system/positions/)                                 | none                                                                                    |
@@ -94,15 +94,15 @@
 
 Let's take one row from [the table above](#properties-reference-table), for example:
 
-| System key(s)        | CSS property/properties | System style function         | Theme mapping                                                                 |
-|:-------------------- |:----------------------- |:----------------------------- |:----------------------------------------------------------------------------- |
-| `mb`, `marginBottom` | `margin-bottom`         | [`spacing`](/system/spacing/) | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
+| 系统键                  | CSS 属性          | 系统样式函数                        | 主题映射                                                                          |
+|:-------------------- |:--------------- |:----------------------------- |:----------------------------------------------------------------------------- |
+| `mb`, `marginBottom` | `margin-bottom` | [`spacing`](/system/spacing/) | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
 
 <br />
 
 and detail each column:
 
-- **System keys**. The column lists the key(s) by which you can use this property with the `sx` prop (or as a system function).
+- **System keys**. **System keys**. The column lists the key(s) by which you can use this property with the `sx` prop (or as a system function).
 
   ```jsx
   <Button sx={{ mb: 3 }}>
@@ -112,7 +112,7 @@ and detail each column:
   <Box marginBottom={3}>
   ```
 
-- **CSS properties**. The column describes which CSS property will be generated when this system property is used.
+- **CSS properties**. **CSS properties**. The column describes which CSS property will be generated when this system property is used.
 
   ```css
   .my-class {
@@ -120,9 +120,9 @@ and detail each column:
   }
   ```
 
-- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@mui/system`. 你可以在 [进阶页面](/system/advanced/#using-standalone-system-utilities) 上看到使用样式函数的例子。 The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
+- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. 函数可以从 `@material-ui/system` 导入。 The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@mui/system`. 你可以在 [进阶页面](/system/advanced/#using-standalone-system-utilities) 上看到使用样式函数的例子。 The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
 
-- **Theme mapping**. Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.
+- **Theme mapping**. **Theme mapping**. Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.
 
 让我们看看一个例子：
 
