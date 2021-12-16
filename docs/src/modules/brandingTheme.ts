@@ -466,12 +466,21 @@ export function getThemedComponents(theme: Theme) {
                 ? theme.palette.primaryDark[500]
                 : theme.palette.grey[200],
             '&.Mui-selected': {
-              borderColor: `${theme.palette.primary[500]} !important`,
               color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? `${theme.palette.primary[700]} !important`
+                  : `${theme.palette.primary[500]} !important`,
               backgroundColor:
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primary[800]
+                  ? theme.palette.primaryDark[700]
                   : theme.palette.primary[50],
+              '&:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.primary[100],
+              },
             },
           },
         },
