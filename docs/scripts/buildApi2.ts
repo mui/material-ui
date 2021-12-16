@@ -27,7 +27,13 @@ import parseStyles, { Styles } from 'docs/src/modules/utils/parseStyles';
 import generateUtilityClass from '@mui/base/generateUtilityClass';
 import * as ttp from 'typescript-to-proptypes';
 import { getLineFeed } from './helpers';
-import { findComponentDemos, getApiUrl, getComponentUrl, getMuiName } from './buildApiUtils';
+import {
+  findComponentDemos,
+  getApiUrl,
+  getComponentUrl,
+  getMuiName,
+  getProductName,
+} from './buildApiUtils';
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
@@ -48,6 +54,11 @@ interface ReactApi extends ReactDocgenApi {
    * @example 'Accordion'
    */
   name: string;
+  /**
+   * The product of this component.
+   * @example 'material'
+   */
+  product: string;
   description: string;
   spread: boolean | undefined;
   /**
@@ -55,6 +66,18 @@ interface ReactApi extends ReactDocgenApi {
    */
   src: string;
   styles: Styles;
+  propsTable: _.Dictionary<{
+    default: string | undefined;
+    required: boolean | undefined;
+    type: { name: string | undefined; description: string | undefined };
+    deprecated: true | undefined;
+    deprecationInfo: string | undefined;
+  }>;
+  translations: {
+    componentDescription: string;
+    propDescriptions: { [key: string]: string | undefined };
+    classDescriptions: { [key: string]: { description: string; conditions?: string } };
+  };
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
@@ -216,7 +239,7 @@ async function annotateComponentDefinition(api: ReactApi) {
     '',
   );
 
-  markdownLines.push('API:', '', `- [${api.name} API](${HOST}/api/${kebabCase(api.name)}/)`);
+  markdownLines.push('API:', '', `- [${api.name} API](${HOST}${api.apiUrl}/)`);
   if (api.inheritance !== null) {
     markdownLines.push(`- inherits ${inheritanceAPILink}`);
   }
@@ -282,11 +305,9 @@ function toGithubPath(filepath: string): string {
   return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }
 
-const generateTranslationsApiJson = (componentName: string, componentApi: object) => {
-  const apiDocsTranslationPath = path.resolve(
-    apiDocsTranslationsDirectory,
-    kebabCase(componentName),
-  );
+const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
+  const componentName = reactApi.name;
+  const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(componentName));
   function resolveApiDocsTranslationsComponentLanguagePath(language: typeof LANGUAGES[0]): string {
     const languageSuffix = language === 'en' ? '' : `-${language}`;
 
@@ -300,7 +321,7 @@ const generateTranslationsApiJson = (componentName: string, componentApi: object
 
   writePrettifiedFile(
     resolveApiDocsTranslationsComponentLanguagePath('en'),
-    JSON.stringify(componentApi),
+    JSON.stringify(reactApi.translations),
   );
 
   LANGUAGES.forEach((language) => {
@@ -308,7 +329,7 @@ const generateTranslationsApiJson = (componentName: string, componentApi: object
       try {
         writePrettifiedFile(
           resolveApiDocsTranslationsComponentLanguagePath(language),
-          JSON.stringify(componentApi),
+          JSON.stringify(reactApi.translations),
           undefined,
           { flag: 'wx' },
         );
@@ -319,14 +340,14 @@ const generateTranslationsApiJson = (componentName: string, componentApi: object
   });
 };
 
-const generateApiPage = (outputDirectory: string, reactApi: ReactApi, componentProps: object) => {
+const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
   const pageContent = {
     // Sorted by required DESC, name ASC
     props: _.fromPairs(
-      Object.entries(componentProps).sort(([aName, aData], [bName, bData]) => {
+      Object.entries(reactApi.propsTable).sort(([aName, aData], [bName, bData]) => {
         if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
           return aName.localeCompare(bName);
         }
@@ -389,24 +410,43 @@ Page.getInitialProps = () => {
   );
 };
 
-const getComponentData = (reactApi: ReactDocgenApi) => {
-  const componentApi: {
-    componentDescription: string;
-    propDescriptions: { [key: string]: string | undefined };
-    classDescriptions: { [key: string]: { description: string; conditions?: string } };
-  } = {
+const attachTranslations = (reactApi: ReactApi) => {
+  const translations: ReactApi['translations'] = {
     componentDescription: reactApi.description,
     propDescriptions: {},
     classDescriptions: {},
   };
+  Object.entries(reactApi.props!).forEach(([propName, propDescriptor]) => {
+    let prop: DescribeablePropDescriptor | null;
+    try {
+      prop = createDescribeableProp(propDescriptor, propName);
+    } catch (error) {
+      prop = null;
+    }
+    if (prop) {
+      let description = generatePropDescription(prop, propName);
+      description = renderMarkdownInline(description);
+
+      if (propName === 'classes') {
+        description += ' See <a href="#css">CSS API</a> below for more details.';
+      } else if (propName === 'sx') {
+        description += ' See the <a href="/system/the-sx-prop/">`sx` page</a> for more details.';
+      }
+      translations.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
+    }
+  });
+
+  /**
+   * CSS class descriptiohs.
+   */
+  translations.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
+
+  reactApi.translations = translations;
+};
+
+const attachPropsTable = (reactApi: ReactApi) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
-  const componentProps = _.fromPairs<{
-    default: string | undefined;
-    required: boolean | undefined;
-    type: { name: string | undefined; description: string | undefined };
-    deprecated: true | undefined;
-    deprecationInfo: string | undefined;
-  }>(
+  const componentProps: ReactApi['propsTable'] = _.fromPairs(
     Object.entries(reactApi.props!).map(([propName, propDescriptor]) => {
       let prop: DescribeablePropDescriptor | null;
       try {
@@ -419,16 +459,6 @@ const getComponentData = (reactApi: ReactDocgenApi) => {
         // have to delete `componentProps.undefined` later
         return [] as any;
       }
-
-      let description = generatePropDescription(prop, propName);
-      description = renderMarkdownInline(description);
-
-      if (propName === 'classes') {
-        description += ' See <a href="#css">CSS API</a> below for more details.';
-      } else if (propName === 'sx') {
-        description += ' See the <a href="/system/the-sx-prop/">`sx` page</a> for more details.';
-      }
-      componentApi.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
 
       // Only keep `default` for bool props if it isn't 'false'.
       let defaultValue: string | undefined;
@@ -480,7 +510,7 @@ const getComponentData = (reactApi: ReactDocgenApi) => {
   // created by returning the `[]` entry
   delete componentProps.undefined;
 
-  return { componentProps, componentApi };
+  reactApi.propsTable = componentProps;
 };
 
 const parseFile = (filename: string) => {
@@ -535,10 +565,11 @@ const SETTINGS = [
     input: {
       libDirectory: path.join(process.cwd(), 'packages/mui-material/src'),
       pageDirectory: path.join(process.cwd(), 'docs/pages/material'),
-      markdownDirectory: path.join(process.cwd(), 'docs/products/material/components'),
+      markdownDirectory: path.join(process.cwd(), 'docs/products/material'),
     },
     output: {
       pagesDirectory: path.join(process.cwd(), 'docs/pages/material/api-docs'),
+      apiTranslationsDirectory: path.join(process.cwd(), 'docs/translations/api-docs'),
       apiManifestPath: path.join(process.cwd(), 'docs/products/material/pagesApi.js'),
     },
   },
@@ -553,10 +584,11 @@ async function run(argv: { grep?: string }) {
        */
       const componentDirectories = [setting.input.libDirectory];
       const apiPagesManifestPath = setting.output.apiManifestPath;
-      const outputDirectory = setting.output.pagesDirectory;
+      const pagesDirectory = setting.output.pagesDirectory;
+      const apiTranslationsDirectory = setting.output.apiTranslationsDirectory;
       const grep = argv.grep == null ? null : new RegExp(argv.grep);
 
-      mkdirSync(outputDirectory, { mode: 0o777, recursive: true });
+      mkdirSync(pagesDirectory, { mode: 0o777, recursive: true });
 
       /**
        * pageMarkdown: Array<{ components: string[]; filename: string; pathname: string }>
@@ -639,6 +671,7 @@ async function run(argv: { grep?: string }) {
           }
           reactApi.filename = filename;
           reactApi.name = name;
+          reactApi.product = getProductName(filename);
           reactApi.apiUrl = getApiUrl(filename);
           reactApi.EOL = EOL;
           reactApi.demos = findComponentDemos(name, pagesMarkdown);
@@ -662,7 +695,7 @@ async function run(argv: { grep?: string }) {
               pathname:
                 inheritedComponentName === 'Transition'
                   ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-                  : `/api/${kebabCase(inheritedComponentName)}/`,
+                  : `/${reactApi.product}/api/${kebabCase(inheritedComponentName)}/`,
             };
           } else {
             reactApi.inheritance = null;
@@ -681,17 +714,13 @@ async function run(argv: { grep?: string }) {
             reactApi.styles.globalClasses[key] = globalClass;
           });
 
-          const { componentApi, componentProps } = getComponentData(reactApi);
+          attachPropsTable(reactApi);
 
-          /**
-           * CSS class descriptiohs.
-           */
-          componentApi.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
+          attachTranslations(reactApi);
 
-          generateTranslationsApiJson(reactApi.name, componentApi);
+          generateApiTranslations(apiTranslationsDirectory, reactApi);
 
-          // docs/pages/component-name.json
-          generateApiPage(outputDirectory, reactApi, componentProps);
+          generateApiPage(pagesDirectory, reactApi);
 
           // eslint-disable-next-line no-console
           console.log('Built API docs for', reactApi.name);
@@ -718,7 +747,8 @@ async function run(argv: { grep?: string }) {
         process.exit(1);
       }
 
-      const [{ children: apiPages }] = findPages({ front: true }, setting.input.pageDirectory);
+      const pages = findPages({ front: true }, setting.input.pageDirectory);
+      const apiPages = pages.find(({ pathname }) => pathname.indexOf('api') !== -1)?.children;
       if (apiPages === undefined) {
         throw new TypeError('Unable to find pages under /api');
       }

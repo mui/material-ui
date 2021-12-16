@@ -18,12 +18,12 @@ describe('buildApiUtils', () => {
   it('getApiUrl correctly', () => {
     expect(
       getApiUrl(
-        `/Users/siriwatknp/Personal-Repos/material-ui/docs/products/material/components/menus/menus.md`,
+        `/Users/siriwatknp/Personal-Repos/material-ui/packages/mui-material/src/Switch/Switch.js`,
       ),
-    ).to.equal(`/material/api/menus`);
+    ).to.equal(`/material/api/switch`);
     expect(
       getApiUrl(
-        `/Users/siriwatknp/Personal-Repos/material-ui/docs/products/base/components/button-unstyled/button-unstyled.md`,
+        `/Users/siriwatknp/Personal-Repos/material-ui/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx`,
       ),
     ).to.equal(`/base/api/button-unstyled`);
   });
