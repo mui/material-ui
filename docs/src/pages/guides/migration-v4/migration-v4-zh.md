@@ -4,11 +4,11 @@
 
 如果你在寻找v4版本的文档，可以在这里 [查看最近版本](https://mui.com/versions/)。
 
-## Introduction
+## 简介
 
 这是一个将您的网站从MUI core v4版本升级到v5版本的参考。 您可能不需要将本篇文章涵盖的所有内容运用到你的站点上。 我们将尽最大努力使文档易于理解，并尽可能有序地向您介绍，以便您可以快速上手 v5！
 
-## Why you should migrate
+## 为什么您需要迁移呢
 
 能够获得对之前版本bug的修复，并增加了很多改进：如使用了新的样式引擎。 这个文档包含 **如何**将v4版本迁移到v5版。 关于迁移的**原因**，我们 [发布了一篇博客](/blog/mui-core-v5/)来详细解说。
 
@@ -129,7 +129,7 @@ yarn add @emotion/react @emotion/styled
 
 我们准备了一些codemods，提高您的迁移体验。
 
-### preset-safe
+### 升级 Material-UI 的版本
 
 这个codemods包含了大部分的有助于迁移的转换器。 （**这个codemod在每个目录下仅应当应用一次**）
 
@@ -197,7 +197,7 @@ npx @mui/codemod v5.0.0/link-underline-hover <path>
 
 一旦您完成了codemod步骤，请尝试再次运行您的应用程序。 此刻，您的程序应该可以运行并没有报错。 否则查看 [故障排除](#troubleshooting)章节。 下一步，处理各组件中不兼容的改动。
 
-## Handling breaking changes
+## 变更
 
 ### 支持的浏览器和node版本
 
@@ -236,7 +236,7 @@ export default function GlobalCssPriority() {
   return (
     {/* 在JSS前注入emotion */}
     <StyledEngineProvider injectFirst>
-      {/* 您的组件树 Now you can override MUI's styles. */}
+      {/* 您的组件树 现在你可以覆盖 Material-UI 的样式。 */}
     </StyledEngineProvider>
   );
 }
@@ -429,7 +429,7 @@ Here is an example:
    });
   ```
 
-### Styles
+### Styles（样式表单）
 
 - 为更好地描述功能，我们将 `fade` 重命名为 `alpha`。 当输入颜色已经有一个 alpha 值时，以前的名称会导致混乱。 **overrides** 助手覆盖了颜色的 alpha 值。
 
@@ -686,7 +686,7 @@ declare module '@mui/styles' {
   >    }
   > ```
 
-- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
+- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component. Refs are now automatically forwarded to the inner component.
 
   ```diff
   import * as React from 'react';
@@ -717,7 +717,7 @@ declare module '@mui/styles' {
 
 我们有一个 [专用页面](/guides/pickers-migration/) 用于迁移 `@material-ui/pickers` 到 v5
 
-### System
+### Avatar 头像组件
 
 - 以下系统函数(和属性)因被视为废弃的CSS而更名：
 
@@ -766,7 +766,7 @@ declare module '@mui/styles' {
   <AppBar enableColorOnDark />
   ```
 
-### Alert
+### Box 分组
 
 - 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
@@ -781,7 +781,7 @@ declare module '@mui/styles' {
 
 ### Autocomplete
 
-- Move the component from the lab to the core. The component is now stable.
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
@@ -931,7 +931,7 @@ declare module '@mui/styles' {
    </button>
   ```
 
-### Box
+### Checkbox 选择框
 
 - `borderRadius` 系统属性值转换已被更改。 如果它收到一个数字，它就会将这个值与 `theme.shape.borderRadius` 的值相乘。 使用一个字符串来提供一个显式的 `px` 值。
 
@@ -1038,7 +1038,7 @@ declare module '@mui/styles' {
   +<Chip>
   ```
 
-### Checkbox
+### ExpansionPanel（扩展面板）
 
 - 组件不再有 `.MuiIconButtonroot` 和 `.MuiIconButton-label` 类名，以 `.MuiButtonBase-root` 代替。
 
@@ -1250,7 +1250,7 @@ declare module '@mui/styles' {
   >   +</Accordion>
   > ```
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- TypeScript：`onChange` 中的 `event` 的类型不再是 `React.ChangeEvent`，而是`React.SyntheticEvent`。
 
   ```diff
   -<Accordion onChange={(event: React.ChangeEvent<{}>, expanded: boolean) => {}} />
@@ -1470,7 +1470,7 @@ declare module '@mui/styles' {
 
 ### Menu 菜单
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- onE\* 过渡属性已被删除。 请使用 TransitionProps 来代替它。
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
@@ -1590,9 +1590,9 @@ declare module '@mui/styles' {
   });
   ```
 
-### Pagination
+### Snackbar（消息条）
 
-- Move the component from the lab to the core. The component is now stable.
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
@@ -1618,7 +1618,7 @@ declare module '@mui/styles' {
 
 ### Popover 弹出框
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- onE\* 过渡属性已被删除。 请使用 TransitionProps 来代替它。
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
@@ -1670,7 +1670,7 @@ declare module '@mui/styles' {
 
 ### Portal 传送门
 
-- Remove `onRendered` prop. Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
+- 移除 `onRendered` 属性。 具体迁移方法根据你的使用情况而定，你可以在子元素上使用 [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs)，也可以在子组件中使用 effect 钩子。
 
 ### Radio 单选框
 
@@ -1693,7 +1693,7 @@ declare module '@mui/styles' {
 
 ### Rating 评分
 
-- Move the component from the lab to the core. The component is now stable.
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
@@ -1737,7 +1737,7 @@ declare module '@mui/styles' {
 
 ### Select 选择器
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines. 如果您正在使用表单控制组件构建该选择器。 您只需要更新 `FormControl`，选择器继承其上下文中的变量。
+- 将默认的变量从 `standard` 更改为 `outlined`。 Standard has been removed from the Material Design guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context. 如果您正在使用表单控制组件构建该选择器。 您只需要更新 `FormControl`，选择器继承其上下文中的变量。
 
   > ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod. 
   > 
@@ -1755,7 +1755,7 @@ declare module '@mui/styles' {
   +<Select variant="outlined" label="Gender" />
   ```
 
-- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
+- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
 
   ```diff
   -<Select classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
@@ -1773,7 +1773,7 @@ declare module '@mui/styles' {
 
 ### Skeleton 骨架屏
 
-- Move the component from the lab to the core. The component is now stable.
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
@@ -1825,14 +1825,14 @@ declare module '@mui/styles' {
 
 ### Snackbar 消息条
 
-- 现在在大屏幕上的消息条通知会在左下角显示。 这更符合 Gmail、Google Keep、material.io 等应用的行为。 You can restore the previous behavior with:
+- 现在在大屏幕上的消息条通知会在左下角显示。 这更符合 Gmail、Google Keep、material.io 等应用的行为。 你可以用以下方法恢复到以前的行为：
 
   ```diff
   -<Snackbar />
   +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
   ```
 
-- The onE\* transition props were removed. Use TransitionProps instead.
+- onE\* 过渡属性已被删除。 请使用 TransitionProps 来代替它。
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
@@ -1857,7 +1857,7 @@ declare module '@mui/styles' {
 
 ### SpeedDial 快速拨号
 
-- Move the component from the lab to the core. The component is now stable.
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
@@ -1870,7 +1870,7 @@ declare module '@mui/styles' {
   >   +import SpeedDialIcon from '@mui/material/SpeedDialIcon';
   > ```
 
-### Stepper
+### Stepper 步骤条组件
 
 - 根组件（Paper）已经被 div 所取代。 Stepper 不再有立体效果，也不再继承 Paper 的属性。 这个改动是为了鼓励开发者进行组合使用。
 
@@ -1907,7 +1907,7 @@ declare module '@mui/styles' {
    </SvgIcon>
   ```
 
-### Switch
+### ToggleButton 切换按钮
 
 - 弃用了 `onChange` 的第二个参数。 您可以通过访问 `event.target.check` 退出选定的状态。
 
@@ -1992,7 +1992,7 @@ declare module '@mui/styles' {
    />
   ```
 
-### Tabs
+### Tabs 选项卡
 
 - `indicatorColor` 和 `textColor` 属性的默认值更改为"primary"。 这样做是为了匹配 Material Design 的最常用法。
 
@@ -2041,7 +2041,7 @@ declare module '@mui/styles' {
 
 ### TextField 文本字段
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines.
+- 将默认的变量从 `standard` 更改为 `outlined`。 Standard has been removed from the Material Design guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
 
   > ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod. 
   > 
@@ -2115,7 +2115,7 @@ declare module '@mui/styles' {
   >   +<TextareaAutosize minRows={2} />
   > ```
 
-- Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
+- 为保持与 HTML 属性的一致性，我们将 `rowsMax` 属性重命名为 `maxRows`。
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
@@ -2135,7 +2135,7 @@ declare module '@mui/styles' {
 
 ### ToggleButton 切换按钮
 
-- Move the component from the lab to the core. The component is now stable.
+- 该组件已从实验室包移动到核心包。 现在这个组件处于稳定版本。
 
   > ✅ This is handled in the [preset-safe codemod](#preset-safe). 
   > 
