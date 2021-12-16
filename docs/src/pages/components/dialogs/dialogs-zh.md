@@ -16,7 +16,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic dialog
+## 简单的对话框
 
 简单对话框可以提供有关列表的额外信息与操作。 例如，它们可以显示头像，图标，纯文本或具体动作(例如添加帐户)。
 
@@ -41,7 +41,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 如果需要加上标题请:
 
 - 使用明确的问题或声明，并在内容区域对其做出解释，例如：“是否要清除 USB 上的内容？”。
-- 避免使用道歉、模棱两可的内容或者问题，例如”警告！“或者”你确定吗？“
+- 避免使用道歉、模棱两可的内容或者问题，例如”警告！ “或者”你确定吗？ “
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -57,11 +57,11 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 {{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Customization
+## 自定义对话框
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
-The dialog has a close button added to aid usability.
+该对话框加上了一个关闭按钮来辅助可用性。
 
 {{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
@@ -80,7 +80,7 @@ The dialog has a close button added to aid usability.
 您可以使用[`useMediaQuery`](/components/use-media-query/#usemediaquery)来实现一个全屏显示的对话框。
 
 ```jsx
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
@@ -117,14 +117,14 @@ You can create a draggable dialog by using [react-draggable](https://github.com/
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## Performance
+## 性能
 
 参考[对话框性能部分](/components/modal/#performance)。
 
-## Limitations
+## 设计局限
 
 参考[对话框性能部分](/components/modal/#limitations)。
 
-## Accessibility
+## 无障碍设计
 
 参考[模态框无障碍设计部分](/components/modal/#accessibility)。
