@@ -132,10 +132,18 @@ const Root = styled('div')(({ theme }) => ({
       },
     },
   },
+  '& h1 code': {
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
+  },
   '& h2 code': {
-    fontSize: theme.typography.pxToRem(27),
-    fontWeight: theme.fontWeightBold,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : blueDark[700],
+    fontSize: theme.typography.pxToRem(24),
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
+  },
+  '& h3 code': {
+    fontSize: theme.typography.pxToRem(18),
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
   },
   '& table': {
     // Trade display table for scroll overflow
