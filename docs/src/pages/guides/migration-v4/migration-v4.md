@@ -237,23 +237,51 @@ This change affects almost all components where you're using the `component` pro
 
 ### Ref type specificity
 
-For some components, you may get a type error when passing `ref`. In order to avoid the error, you should use a specific element type. For instance, `Card` does not accept the type of `ref` to be `HTMLElement`.
+For some components, you may get a type error when passing `ref`. In order to avoid the error, you should use a specific element type. For example, `Card` expects the type of `ref` to be `HTMLDivElement`, and `ListItem` expects its `ref` type to be `HTMLLIElement`.
 
 Here is an example:
 
 ```diff
 import * as React from 'react';
 import Card from '@mui/material/Card';
+import ListItem from '@mui/material/ListItem';
 
-export default function CardWithSpecificRefType() {
-- const cardComponentRef = React.useRef<HTMLElement>(null);
-+ const cardComponentRef = React.useRef<HTMLDivElement>(null);
+export default function SpecificRefType() {
+- const cardRef = React.useRef<HTMLElement>(null);
++ const cardRef = React.useRef<HTMLDivElement>(null);
 
+- const listItemRef = React.useRef<HTMLElement>(null);
++ const listItemRef = React.useRef<HTMLLIElement>(null);
   return (
-    <Card ref={cardComponentRef}></Card>
+    <div>
+      <Card ref={cardRef}></Card>
+      <ListItem ref={listItemRef}></ListItem>
+    </div>
   );
 }
 ```
+
+The list of components that expect a specific element type is as follows:
+
+##### `@mui/material`
+
+- Accordion
+- Alert
+- Avatar
+- ButtonGroup
+- Card
+- Dialog
+- ImageList
+- List
+- Tabs
+- Tab
+- ToggleButton
+
+##### `@mui/lab`
+
+- TabPanel
+- Timeline
+- TreeItem
 
 ### Style library
 
