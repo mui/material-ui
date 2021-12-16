@@ -12,7 +12,7 @@ githubLabel: 'component: Portal'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Example
+## 示例
 
 {{"demo": "pages/components/portal/SimplePortal.js"}}
 
