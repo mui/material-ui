@@ -16,7 +16,7 @@ When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> 
 
 > 该组件处于试验阶段，是不稳定的。
 
-## Example
+## 示例
 
 {{"demo": "pages/components/trap-focus/BasicTrapFocus.js"}}
 
