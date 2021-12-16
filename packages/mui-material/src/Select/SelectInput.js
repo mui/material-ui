@@ -240,6 +240,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     // Hijack the default focus behavior.
     event.preventDefault();
     displayRef.current.focus();
+
     update(true, event);
   };
 
@@ -302,10 +303,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
         Object.defineProperty(clonedEvent, 'target', {
           writable: true,
-          value: {
-            value: newValue,
-            name,
-          },
+          value: { value: newValue, name },
         });
         onChange(clonedEvent, child);
       }
@@ -334,19 +332,13 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const open = displayNode !== null && (isOpenControlled ? openProp : openState);
+  const open = displayNode !== null && openState;
 
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
     if (!open && onBlur) {
       // Preact support, target is read only property on a native event.
-      Object.defineProperty(event, 'target', {
-        writable: true,
-        value: {
-          value,
-          name,
-        },
-      });
+      Object.defineProperty(event, 'target', { writable: true, value: { value, name } });
       onBlur(event);
     }
   };
@@ -360,12 +352,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   let foundMatch = false;
 
   // No need to display any value if the field is empty.
-  if (
-    isFilled({
-      value,
-    }) ||
-    displayEmpty
-  ) {
+  if (isFilled({ value }) || displayEmpty) {
     if (renderValue) {
       display = renderValue(value);
     } else {
@@ -501,6 +488,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+
   return (
     <React.Fragment>
       <SelectSelect
@@ -579,6 +567,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     </React.Fragment>
   );
 });
+
 SelectInput.propTypes = {
   /**
    * @ignore

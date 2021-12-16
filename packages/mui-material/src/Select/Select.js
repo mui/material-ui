@@ -20,7 +20,6 @@ const useUtilityClasses = (ownerState) => {
 
 const Select = React.forwardRef(function Select(inProps, ref) {
   const props = useThemeProps({ name: 'MuiSelect', props: inProps });
-
   const {
     autoWidth = false,
     children,
@@ -66,10 +65,10 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     }[variant];
 
   const ownerState = { ...props, classes: classesProp };
-
   const classes = useUtilityClasses(ownerState);
 
   const inputComponentRef = useForkRef(ref, InputComponent.ref);
+
   return React.cloneElement(InputComponent, {
     // Most of the logic is implemented in `SelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.

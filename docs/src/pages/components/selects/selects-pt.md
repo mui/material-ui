@@ -106,7 +106,7 @@ Exiba categorias com o componente `ListSubheader` ou com o elemento nativo `<opt
 
 ## Accessibility
 
-Para rotular corretamente seu campo `Select` você precisa de um elemento extra com um `id` que contenha o rótulo desejado. Esse `id` precisa coincidir com o `labelId` do `Select`, por exemplo.
+Para rotular corretamente seu campo  `Select` você precisa de um elemento extra com um `id` que contenha o rótulo desejado. Esse `id` precisa coincidir com o `labelId` do `Select`, por exemplo.
 
 ```jsx
 <InputLabel id="label">Age</InputLabel>
