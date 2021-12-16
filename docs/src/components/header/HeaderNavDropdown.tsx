@@ -82,9 +82,9 @@ export default function HeaderNavDropdown() {
           p: '6.5px',
           borderRadius: 1,
           border: '1px solid',
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'transparent'),
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
-          '& svg': { width: 18, height: 18 },
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'transparent'),
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
+          '& svg': { width: 20, height: 20 },
           '&:focus': {
             boxShadow: (theme) =>
               `0 0 0 1px ${

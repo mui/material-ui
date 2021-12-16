@@ -134,7 +134,7 @@ const StyledAppBar = styled(AppBar, {
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
     '& .MuiIconButton-root': {
       border: `1px solid ${
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200]
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]
       }`,
       borderRadius: theme.shape.borderRadius,
       color:
@@ -142,7 +142,7 @@ const StyledAppBar = styled(AppBar, {
       // background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
       '&:hover': {
         borderColor:
-          theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[300],
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[300],
         background:
           theme.palette.mode === 'dark'
             ? alpha(theme.palette.primaryDark[700], 0.4)

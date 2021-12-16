@@ -48,7 +48,7 @@ export default function DiamondSponsors(props) {
             justifyContent: 'center',
             border: `1px solid ${
               theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[600]
+                ? theme.palette.primaryDark[700]
                 : theme.palette.grey[200]
             }`,
             borderRadius: 1,
@@ -56,7 +56,7 @@ export default function DiamondSponsors(props) {
             '&:hover': {
               borderColor:
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[500]
+                  ? theme.palette.primaryDark[600]
                   : theme.palette.grey[300],
               background:
                 theme.palette.mode === 'dark'

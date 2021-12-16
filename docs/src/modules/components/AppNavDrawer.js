@@ -190,7 +190,7 @@ function AppNavDrawer(props) {
                     border: (theme) =>
                       `1px solid ${
                         theme.palette.mode === 'dark'
-                          ? theme.palette.primaryDark[600]
+                          ? theme.palette.primaryDark[700]
                           : theme.palette.grey[200]
                       }`,
                     color: (theme) =>
@@ -201,7 +201,7 @@ function AppNavDrawer(props) {
                     '&:hover': {
                       borderColor: (theme) =>
                         theme.palette.mode === 'dark'
-                          ? theme.palette.primaryDark[500]
+                          ? theme.palette.primaryDark[600]
                           : theme.palette.grey[300],
                       background: (theme) =>
                         theme.palette.mode === 'dark'
