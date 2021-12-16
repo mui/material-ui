@@ -237,26 +237,26 @@ function AppNavDrawer(props) {
                         fontSize: (theme) => theme.typography.pxToRem(14),
                         fontWeight: 500,
                         '&:hover': {
-                          color:
+                          color: (theme) =>
                             theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
-                          backgroundColor:
+                          backgroundColor: (theme) =>
                             theme.palette.mode === 'dark'
                               ? alpha(theme.palette.primaryDark[700], 0.4)
                               : theme.palette.grey[50],
                         },
                         '&:focus': {
-                          backgroundColor:
+                          backgroundColor: (theme) =>
                             theme.palette.mode === 'dark'
                               ? alpha(theme.palette.primaryDark[700], 0.4)
                               : theme.palette.grey[50],
                         },
                         '&.Mui-selected': {
                           fontWeight: 500,
-                          color:
+                          color: (theme) =>
                             theme.palette.mode === 'dark'
                               ? theme.palette.primary[300]
                               : theme.palette.primary[600],
-                          backgroundColor:
+                          backgroundColor: (theme) =>
                             theme.palette.mode === 'dark'
                               ? theme.palette.primaryDark[700]
                               : alpha(theme.palette.primary[100], 0.6),
