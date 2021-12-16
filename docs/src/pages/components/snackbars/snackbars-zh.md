@@ -26,9 +26,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 {{"demo": "pages/components/snackbars/SimpleSnackbar.js"}}
 
-## Customization
+## 自定义的消息条
 
-你可以参考以下一些例子来自定义组件。 You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
@@ -44,7 +44,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 {{"demo": "pages/components/snackbars/LongTextSnackbar.js"}}
 
-## Transitions
+## 过渡动画
 
 ### 连续的消息条
 
@@ -58,7 +58,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 {{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
-### Change transition
+### 更改过渡动画
 
 [Grow](/components/transitions/#grow) 是默认的过渡动画，但你可以使用不同的过渡动画。
 
@@ -82,11 +82,11 @@ export default function MyComponent() {
 }
 ```
 
-Other examples:
+对于更高级的用例，您可以利用：
 
 {{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
 
-## Complementary projects
+## 补充项目
 
 For more advanced use cases you might be able to take advantage of:
 
@@ -98,7 +98,7 @@ For more advanced use cases you might be able to take advantage of:
 
 {{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
 
-## Accessibility
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
 
