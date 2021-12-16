@@ -2,13 +2,13 @@
 
 <p class="description">借助 TypeScript，你可以为 JavaScript 添加静态类型，从而提高代码质量及开发者的工作效率。</p>
 
-## Minimum configuration
+## `withStyles` 的使用
 
 <!-- #default-branch-switch -->
 
-MUI requires a minimum version of TypeScript 3.5. 请查看一下 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) 的例子。
+Material-UI requires a minimum version of TypeScript 3.5. 请查看一下 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) 的例子。
 
-For types to work, you should have at the minimum the following options enabled in your `tsconfig.json`:
+请查看 [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript) 的例子。
 
 ```json
 {
@@ -21,7 +21,7 @@ For types to work, you should have at the minimum the following options enabled 
 }
 ```
 
-对每个发布在 `@types/` 命名空间下的类型声明包，同样需要启用严格模式（strict mode）。 使用不太严格的 `tsconfig.json` 或省略某些库可能会带来一些错误。 To get the best type experience with the types we recommend setting `"strict": true`.
+对每个发布在 `@types/` 命名空间下的类型声明包，同样需要启用严格模式（strict mode）。 使用不太严格的 `tsconfig.json` 或省略某些库可能会带来一些错误。 若您想获得最佳类型（type）的体验，我们建议设置 `"strict": true` 。
 
 ## 处理`值`和事件处理器
 
@@ -31,10 +31,10 @@ For types to work, you should have at the minimum the following options enabled 
 
 这些演示包括使用类型转换的类型变量。 鉴于所有的类型都位于一个文件中，并且都是非常基本的，这样的折衷可以接受。 您必须自行决定是否能够接受同样的折衷。 The library types are strict by default and loose via opt-in.
 
-## Customization of `Theme`
+## `component` 属性的用法
 
 Moved to [/customization/theming/#custom-variables](/customization/theming/#custom-variables).
 
 ## `component` 属性的用法
 
-Moved to [/guides/composition/#with-typescript](/guides/composition/#with-typescript).
+然而，如果您尝试根据主题来构建样式，那么类型扩展会再次显示其不怎么雅观的部分：
