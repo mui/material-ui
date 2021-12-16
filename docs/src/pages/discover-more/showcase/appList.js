@@ -648,27 +648,11 @@ const appList = [
     dateAdded: '2020-08-31',
   },
   {
-    title: 'LightyearVPN',
-    description: 'LightyearVPN is a simple to use, fast and secure VPN software.',
-    image: 'lightyearvpn.jpg',
-    link: 'https://lightyearvpn.com',
-    similarWebVisits: 534,
-    dateAdded: '2020-09-11',
-  },
-  {
     title: 'buybags',
     description: 'buybags is a fashion shopping aggregator in Germany.',
     image: 'buybags.jpg',
     link: 'https://www.buybags.de/',
     dateAdded: '2020-10-08',
-  },
-  {
-    title: 'TCES PAL',
-    description:
-      "Roster and guild management tool for Tom Clancy's Elite Squad game.",
-    image: 'tcespal.jpg',
-    link: 'https://tcespal.com',
-    dateAdded: '2021-02-06',
   },
   {
     title: 'Atomic CRM',
