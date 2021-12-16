@@ -201,7 +201,22 @@ DocSearcHit.propTypes = {
   hit: PropTypes.object.isRequired,
 };
 
-export default function AppSearch() {
+/* This is JS file , For TS, use below */
+// interface AppSearchProps {
+//   isOpen?: boolean;
+//   initialQuery?: string;
+// }
+// export default function AppSearch(props: AppSearchProps) {
+
+/**
+ * App Search Popup Component
+ * @param {{initialQuery:string=,isOpen:boolean=}=} props
+ */
+export default function AppSearch(props) {
+  AppSearch.propTypes = {
+    initialQuery: PropTypes.string,
+    isOpen: PropTypes.bool,
+  };
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
@@ -210,8 +225,8 @@ export default function AppSearch() {
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const searchButtonRef = React.useRef(null);
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [initialQuery, setInitialQuery] = React.useState(undefined);
+  const [isOpen, setIsOpen] = React.useState(props.isOpen ?? false);
+  const [initialQuery, setInitialQuery] = React.useState(props.initialQuery ?? undefined);
   const facetFilterLanguage =
     LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
   const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
