@@ -10,9 +10,9 @@ githubLabel: 'component: Portal'
 
 O filho do componente portal será adicionado ao `container` especificado. O componente é usado internamente pelos componentes [`Modal`](/components/modal/) e [`Popper`](/components/popper/).
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
-## Example
+## Exemplo
 
 {{"demo": "pages/components/portal/SimplePortal.js"}}
 
