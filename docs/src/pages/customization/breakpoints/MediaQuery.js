@@ -19,7 +19,7 @@ const Root = styled('div')(({ theme }) => ({
 export default function MediaQuery() {
   return (
     <Root>
-      <Typography>down(sm): red</Typography>
+      <Typography>down(md): red</Typography>
       <Typography>up(md): blue</Typography>
       <Typography>up(lg): green</Typography>
     </Root>
