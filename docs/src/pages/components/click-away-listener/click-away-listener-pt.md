@@ -11,9 +11,9 @@ githubLabel: 'component: ClickAwayListener'
 - 📦 [1.5 kB gzipped](/size-snapshot).
 - ⚛️ Suporte para portais
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
-## Example
+## Exemplo
 
 Por exemplo, se você precisar ocultar um menu quando as pessoas clicarem em qualquer outro lugar da sua página:
 
