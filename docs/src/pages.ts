@@ -3,6 +3,13 @@ import type { MuiPage, OrderedMuiPage } from 'docs/src/MuiPage';
 
 const pages: readonly MuiPage[] = [
   {
+    title: 'Search',
+    pathname: '/search',
+    icon: 'SearchIcon',
+    ordered: false, //  Hide in left drawer ?
+    // ASK: import SearchIcon from '@mui/icons-material/Search';
+  },
+  {
     pathname: '/getting-started',
     icon: 'DescriptionIcon',
     children: [
