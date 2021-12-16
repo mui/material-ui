@@ -14,6 +14,9 @@ import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { useRouter } from 'next/router';
 import pages from 'docs/src/pages';
+import materialPages from 'docs/products/material/pages';
+import systemPages from 'docs/products/system/pages';
+import stylesPages from 'docs/products/styles/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
@@ -201,6 +204,15 @@ function AppWrapper(props) {
   // eslint-disable will be removed once docs restructure is done
   // eslint-disable-next-line prefer-const
   let productPages = pages;
+  if (router.asPath.startsWith('/material')) {
+    productPages = materialPages;
+  }
+  if (router.asPath.startsWith('/system')) {
+    productPages = systemPages;
+  }
+  if (router.asPath.startsWith('/styles')) {
+    productPages = stylesPages;
+  }
 
   const activePage = findActivePage(productPages, router.pathname);
 
