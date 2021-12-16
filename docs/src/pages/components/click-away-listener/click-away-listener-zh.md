@@ -13,7 +13,7 @@ githubLabel: 'component: ClickAwayListener'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Example
+## 示例
 
 例如，当用户在点击页面除菜单外的任何一处，您可能想隐藏一个下拉的菜单：
 
