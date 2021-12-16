@@ -15,7 +15,7 @@ Esse componente pode ser útil em várias situações:
 - Sob carga de servidor muito pesada, você pode ativar a degradação do serviço.
 - Melhorar o tempo de interação apenas renderizando o que é importante (com a propriedade `defer`).
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
 ## Client-side deferring
 
