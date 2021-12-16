@@ -210,7 +210,7 @@ DocSearcHit.propTypes = {
 
 /**
  * App Search Popup Component
- * @param {{initialQuery:string=,isOpen:boolean=}=} props
+ * @param {{initialQuery:string=,isOpen:boolean=}|{}} props
  */
 export default function AppSearch(props) {
   AppSearch.propTypes = {
