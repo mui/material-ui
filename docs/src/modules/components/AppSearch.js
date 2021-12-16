@@ -271,8 +271,8 @@ export default function AppSearch(props) {
   React.useEffect(() => {
     const addStartScreen = () => {
       const dropDown = document.querySelector('.DocSearch-Dropdown');
-      const isExisting = document.querySelector('.DocSearch-NewStartScreen');
-      if (dropDown && !isExisting) {
+      const newStartScreen = document.querySelector('.DocSearch-NewStartScreen');
+      if (dropDown && !newStartScreen) {
         dropDown.insertAdjacentHTML(
           'beforeend',
           ReactDOMServer.renderToStaticMarkup(<NewStartScreen />),
@@ -286,6 +286,11 @@ export default function AppSearch(props) {
       if (modal) {
         modal.style.opacity = 1;
         addStartScreen();
+        // User searching with URL query, hide start screen.
+        if (isOpen && props.initialQuery !== '') {
+          // TODO: This might cause a flicker. But we always want a "NewStartScreen"
+          document.querySelector('.DocSearch-NewStartScreen').style.display = 'none';
+        }
       }
       if (searchInput) {
         const handleInput = (event) => {
@@ -301,7 +306,7 @@ export default function AppSearch(props) {
       }
     }
     return () => {};
-  }, [isOpen]);
+  }, [isOpen, props.initialQuery]);
 
   const search = `${t('algoliaSearch')}…`;
 
