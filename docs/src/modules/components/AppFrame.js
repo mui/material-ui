@@ -65,7 +65,11 @@ export function NextNProgressBar() {
 }
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
-export function DeferredAppSearch() {
+/**
+ * Deferred App Search Popup Component
+ * @param {{initialQuery:string=,isOpen:boolean=}|{}} props
+ */
+export function DeferredAppSearch(props) {
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
     setMounted(true);
@@ -76,8 +80,7 @@ export function DeferredAppSearch() {
       {/* Suspense isn't supported for SSR yet */}
       {mounted ? (
         <React.Suspense fallback={<Box sx={{ minWidth: { sm: 200 } }} />}>
-          <AppSearch />
-        </React.Suspense>
+          <AppSearch {...{ props }} />        </React.Suspense>
       ) : (
         <Box sx={{ minWidth: { sm: 200 } }} />
       )}
