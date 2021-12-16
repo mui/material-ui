@@ -265,23 +265,23 @@ The list of components that expect a specific element type is as follows:
 
 ##### `@mui/material`
 
-- Accordion
-- Alert
-- Avatar
-- ButtonGroup
-- Card
-- Dialog
-- ImageList
-- List
-- Tabs
-- Tab
-- ToggleButton
+- [Accordion](https://mui.com/components/accordion)
+- [Alert](https://mui.com/components/alert)
+- [Avatar](https://mui.com/components/avatar)
+- [ButtonGroup](https://mui.com/components/button-group)
+- [Card](https://mui.com/components/card)
+- [Dialog](https://mui.com/components/dialog)
+- [ImageList](https://mui.com/components/image-list)
+- [List](https://mui.com/components/list)
+- [Tab](https://mui.com/components/tabs)
+- [Tabs](https://mui.com/components/tabs)
+- [ToggleButton](https://mui.com/components/toggle-button)
 
 ##### `@mui/lab`
 
-- TabPanel
-- Timeline
-- TreeItem
+- [TabPanel](https://mui.com/components/tabs)
+- [Timeline](https://mui.com/components/timeline)
+- [TreeItem](https://mui.com/components/tree-view)
 
 ### Style library
 
