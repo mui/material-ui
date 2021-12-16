@@ -92,7 +92,7 @@ const ItemLink = styled(Item, {
         ),
       },
     },
-    paddingLeft: 42 + (depth > 2 ? (depth - 2) * 10 : 0),
+    paddingLeft: 31 + (depth > 2 ? (depth - 2) * 10 : 0),
     ...(hasIcon && {
       paddingLeft: 2,
     }),
@@ -151,7 +151,7 @@ const ItemButton = styled(Item, {
     [`&:hover ${ItemButtonIcon}`]: {
       color: theme.palette.text.primary,
     },
-    paddingLeft: 42 + (depth > 1 ? (depth - 3) * -10 : 0),
+    paddingLeft: 31 + (depth > 1 ? (depth - 3) * -10 : 0),
     ...(hasIcon && {
       paddingLeft: 2,
     }),
@@ -202,7 +202,7 @@ export default function AppNavDrawerItem(props) {
         alignItems: 'center',
         height: '100%',
         marginRight: 1.5,
-        p: 0.5,
+        py: 0.5,
       }}
     >
       <IconComponent {...iconProps} />
