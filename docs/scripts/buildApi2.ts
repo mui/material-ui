@@ -26,7 +26,7 @@ import generatePropDescription from 'docs/src/modules/utils/generatePropDescript
 import parseStyles, { Styles } from 'docs/src/modules/utils/parseStyles';
 import generateUtilityClass from '@mui/base/generateUtilityClass';
 import * as ttp from 'typescript-to-proptypes';
-import { getLineFeed, getUnstyledFilename } from './helpers';
+import { getLineFeed } from './helpers';
 import { findComponentDemos, getApiUrl, getComponentUrl, getMuiName } from './buildApiUtils';
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
@@ -407,11 +407,7 @@ const getComponentData = (reactApi: ReactDocgenApi) => {
     deprecated: true | undefined;
     deprecationInfo: string | undefined;
   }>(
-    Object.entries(reactApi.props!).map((entry) => {
-      const [propName, propDescriptor] = entry as [
-        string,
-        { description: string; type: { name: string }; jsdocDefaultValue?: { value?: string } },
-      ];
+    Object.entries(reactApi.props!).map(([propName, propDescriptor]) => {
       let prop: DescribeablePropDescriptor | null;
       try {
         prop = createDescribeableProp(propDescriptor, propName);
