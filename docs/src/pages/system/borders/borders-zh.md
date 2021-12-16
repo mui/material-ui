@@ -4,7 +4,7 @@
 
 ## 边框
 
-Use border utilities to add or remove an element's borders. 选择所有边框或一次选择一个。
+Use border utilities to add or remove an element's borders. 选择所有边框或一次选择一个。 选择所有边框或一次选择一个。
 
 ### 添加
 
@@ -12,6 +12,14 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 
 ```jsx
 <Box sx={{ border: 1 }}>…
+<Box border={0}>…
+<Box sx={{ borderTop: 1 }}>…
+<Box borderRight={0}>…
+<Box borderBottom={0}>…
+<Box borderLeft={0}>…
+<Box sx={{ borderRight: 1 }}>…
+<Box sx={{ borderBottom: 1 }}>…
+<Box sx={{ borderLeft: 1 }}>…
 <Box sx={{ borderTop: 1 }}>…
 <Box sx={{ borderRight: 1 }}>…
 <Box sx={{ borderBottom: 1 }}>…
@@ -26,7 +34,23 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 <Box sx={{ border: 0 }}>…
 <Box sx={{ borderTop: 0 }}>…
 <Box sx={{ borderRight: 0 }}>…
-<Box sx={{ borderBottom: 0 }}>…
+<Box sx={{ border: 1 }}>…
+<Box border={0}>…
+<Box sx={{ borderTop: 1 }}>…
+<Box borderRight={0}>…
+<Box borderBottom={0}>…
+<Box borderLeft={0}>…
+<Box sx={{ borderRight: 1 }}>…
+<Box sx={{ borderBottom: 1 }}>…
+<Box sx={{ borderLeft: 1 }}>…
+<Box border={0}>…
+<Box sx={{ borderTop: 1 }}>…
+<Box borderRight={0}>…
+<Box borderBottom={0}>…
+<Box borderLeft={0}>…
+<Box sx={{ borderRight: 1 }}>…
+<Box sx={{ borderBottom: 1 }}>…
+<Box sx={{ borderLeft: 1 }}>…
 <Box sx={{ borderLeft: 0 }}>…
 ```
 
@@ -35,6 +59,26 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 {{"demo": "pages/system/borders/BorderColor.js", "defaultCodeOpen": false}}
 
 ```jsx
+<Box sx={{ borderColor: 'primary.main' }}>…
+<Box borderColor="secondary.main">…
+<Box borderColor="error.main">…
+<Box borderColor="grey.500">…
+<Box borderColor="text.primary">…
+<Box sx={{ borderColor: 'secondary.main' }}>…
+<Box borderColor="secondary.main">…
+<Box borderColor="error.main">…
+<Box borderColor="grey.500">…
+<Box borderColor="text.primary">…
+<Box sx={{ borderColor: 'error.main' }}>…
+<Box borderColor="secondary.main">…
+<Box borderColor="error.main">…
+<Box borderColor="grey.500">…
+<Box borderColor="text.primary">…
+<Box sx={{ borderColor: 'grey.500' }}>…
+<Box borderColor="secondary.main">…
+<Box borderColor="error.main">…
+<Box borderColor="grey.500">…
+<Box borderColor="text.primary">…
 <Box sx={{ borderColor: 'primary.main' }}>…
 <Box borderColor="secondary.main">…
 <Box borderColor="error.main">…
@@ -83,10 +127,10 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 ## API
 
 ```js
-import { borders } from '@mui/system';
+import { borders } from '@material-ui/system';
 ```
 
-| Import name         | 属性                  | CSS 属性                | Theme key                                                        |
+| 导入名称                | 属性                  | CSS 属性                | Theme key                                                        |
 |:------------------- |:------------------- |:--------------------- |:---------------------------------------------------------------- |
 | `border`            | `border`            | `border`              | `borders`                                                        |
 | `borderTop`         | `borderTop`         | `border-top`          | `borders`                                                        |
