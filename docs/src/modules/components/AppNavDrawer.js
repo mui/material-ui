@@ -221,7 +221,8 @@ function AppNavDrawer(props) {
                     variant: 'outlined',
                     sx: {
                       mt: 0.5,
-                      minWidth: 160,
+                      minWidth: 180,
+                      backgroundImage: 'none',
                       borderColor: (theme) =>
                         theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
                       bgcolor: (theme) =>
@@ -229,15 +230,36 @@ function AppNavDrawer(props) {
                       boxShadow: (theme) =>
                         `0px 4px 20px ${
                           theme.palette.mode === 'dark'
-                            ? alpha(theme.palette.background.paper, 0.72)
+                            ? 'rgba(0, 0, 0, 0.5)'
                             : 'rgba(170, 180, 190, 0.3)'
                         }`,
                       '& .MuiMenuItem-root': {
                         fontSize: (theme) => theme.typography.pxToRem(14),
                         fontWeight: 500,
+                        '&:hover': {
+                          color:
+                            theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
+                          backgroundColor:
+                            theme.palette.mode === 'dark'
+                              ? alpha(theme.palette.primaryDark[700], 0.4)
+                              : theme.palette.grey[50],
+                        },
+                        '&:focus': {
+                          backgroundColor:
+                            theme.palette.mode === 'dark'
+                              ? alpha(theme.palette.primaryDark[700], 0.4)
+                              : theme.palette.grey[50],
+                        },
                         '&.Mui-selected': {
-                          color: 'primary.main',
-                          fontWeight: 600,
+                          fontWeight: 500,
+                          color:
+                            theme.palette.mode === 'dark'
+                              ? theme.palette.primary[300]
+                              : theme.palette.primary[600],
+                          backgroundColor:
+                            theme.palette.mode === 'dark'
+                              ? theme.palette.primaryDark[700]
+                              : alpha(theme.palette.primary[100], 0.6),
                         },
                       },
                     },
