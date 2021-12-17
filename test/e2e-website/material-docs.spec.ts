@@ -107,8 +107,13 @@ test.describe.parallel('Material docs', () => {
   });
 
   test.describe.parallel('Search', () => {
-    test('should have correct link when searching component', async ({ page }) => {
-      await page.goto('/getting-started/installation/');
+    test('should have correct link when searching component', async ({
+      page,
+      materialUrlPrefix,
+    }) => {
+      await page.goto(`${materialUrlPrefix}/getting-started/installation/`);
+
+      await page.waitForLoadState('networkidle'); // wait for docsearch
 
       await page.keyboard.press('Meta+k');
 
@@ -116,11 +121,16 @@ test.describe.parallel('Material docs', () => {
 
       const anchor = await page.locator('.DocSearch-Hits a:has-text("Card")');
 
-      await expect(anchor.first()).toHaveAttribute('href', '/components/cards/#main-content');
+      await expect(anchor.first()).toHaveAttribute(
+        'href',
+        `${materialUrlPrefix}/components/cards/#main-content`,
+      );
     });
 
-    test('should have correct link when searching API', async ({ page }) => {
-      await page.goto('/getting-started/installation/');
+    test('should have correct link when searching API', async ({ page, materialUrlPrefix }) => {
+      await page.goto(`${materialUrlPrefix}/getting-started/installation/`);
+
+      await page.waitForLoadState('networkidle'); // wait for docsearch
 
       await page.keyboard.press('Meta+k');
 
@@ -128,7 +138,10 @@ test.describe.parallel('Material docs', () => {
 
       const anchor = await page.locator('.DocSearch-Hits a:has-text("Card API")');
 
-      await expect(anchor.first()).toHaveAttribute('href', '/api/card/#main-content');
+      await expect(anchor.first()).toHaveAttribute(
+        'href',
+        `${materialUrlPrefix}/api/card/#main-content`,
+      );
     });
   });
 });
