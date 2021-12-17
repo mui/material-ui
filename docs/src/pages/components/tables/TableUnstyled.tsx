@@ -43,6 +43,7 @@ const Root = styled('div')`
 const CustomTablePagination = styled(TablePaginationUnstyled)`
   & .MuiTablePaginationUnstyled-toolbar {
     display: block;
+
     @media (min-width: 768px) {
       display: flex;
       gap: 10px;
