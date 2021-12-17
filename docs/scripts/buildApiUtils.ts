@@ -1,13 +1,6 @@
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 
-export const getProductName = (filename: string) => {
-  const normalized = filename.replace(new RegExp(`\\${path.sep}`, 'g'), '/');
-  const packageMatch = normalized.match(/packages\/([^/]+)\//);
-  const packageName = packageMatch?.[1] ?? '';
-  return packageName.replace('mui-', '');
-};
-
 export function findComponentDemos(
   componentName: string,
   pagesMarkdown: ReadonlyArray<{ pathname: string; components: readonly string[] }>,
