@@ -675,7 +675,7 @@ const POST_MIGRATION_SETTINGS: Settings[] = [
   },
 ];
 
-const ACTIVE_SETTINGS = POST_MIGRATION_SETTINGS;
+const ACTIVE_SETTINGS = BEFORE_MIGRATION_SETTINGS;
 
 async function run(argv: { grep?: string }) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
