@@ -30,7 +30,7 @@ Você pode conferir a [seção de tema padrão](/customization/default-theme/) p
 
 ### Variáveis customizáveis
 
-When using MUI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Por exemplo:
+When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
 
 ```jsx
 const theme = createTheme({
@@ -69,7 +69,7 @@ declare module '@mui/material/styles' {
 Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
 
 - [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Inclui modelos de site básicos para mostrar vários componentes e como eles são afetados pelo tema
-- [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.
+- [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
 
 ## Acessando o tema em um componente
 
@@ -81,7 +81,7 @@ Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as va
 
 {{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
-O tema interno **sobrescreverá** o tema externo. Você pode estender o tema externo fornecendo uma função:
+The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
@@ -91,7 +91,7 @@ O tema interno **sobrescreverá** o tema externo. Você pode estender o tema ext
 
 Gere uma base de temas sobre as opções recebidas. Then, pass it as a prop to [`ThemeProvider`](#themeprovider).
 
-#### Argumentos
+#### Arguments
 
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
@@ -105,11 +105,11 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme(deepmerge(options1, options2));
 ```
 
-#### Retornos
+#### Returns
 
 `theme` (_object_): A complete, ready-to-use theme object.
 
-#### Exemplos
+#### Examples
 
 ```js
 import { createTheme } from '@mui/material/styles';
@@ -183,21 +183,21 @@ theme = createTheme(theme, {
 
 Gera configurações de tipografia responsivas com base nas opções recebidas.
 
-#### Argumentos
+#### Arguments
 
 1. `theme` (_object_): The theme object to enhance.
-2. `options` (_object_ [opcional]):
+2. `options` (_object_ [optional]):
 
 - `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
 - `disableAlign` (_bool_ [optional]): Default to `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
 - `factor` (_number_ [optional]): Default to `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
 - `variants` (_array\<string\>_ [optional]): Default to all. As variantes de tipografia para manipular.
 
-#### Retornos
+#### Returns
 
 `theme` (_object_): The new theme with a responsive typography.
 
-#### Exemplos
+#### Examples
 
 ```js
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
@@ -212,20 +212,20 @@ Usando `unstable_createMuiStrictModeTheme` restringe o uso de alguns de nossos c
 
 Gera um tema que reduz a quantidade de avisos dentro de [`React.StrictMode`](https://pt-br.reactjs.org/docs/strict-mode.html) como por exemplo, `Warning: findDOMNode is deprecated in StrictMode`.
 
-#### Requisitos
+#### Requirements
 
 Atualmente `unstable_createMuiStrictModeTheme` não adiciona requisitos adicionais.
 
-#### Argumentos
+#### Arguments
 
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
-#### Retornos
+#### Returns
 
 `theme` (_object_): A complete, ready-to-use theme object.
 
-#### Exemplos
+#### Examples
 
 ```js
 import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
@@ -247,14 +247,14 @@ function App() {
 
 This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
 
-#### Propriedades
+#### Props
 
-| Nome            | Tipo                                     | Descrição                                                                                                                                                                                                      |
-|:--------------- |:---------------------------------------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| children&nbsp;* | node                                     | Sua árvore de componentes.                                                                                                                                                                                     |
-| theme&nbsp;*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. Você pode utilizar uma função para receber o tema externo. |
+| Name               | Type                                     | Description                                                                                                                                                                                               |
+|:------------------ |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;\* | node                                     | Your component tree.                                                                                                                                                                                      |
+| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
 
-#### Exemplos
+#### Examples
 
 ```jsx
 import * as React from 'react';

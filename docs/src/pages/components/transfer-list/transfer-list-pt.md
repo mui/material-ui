@@ -22,7 +22,7 @@ Este exemplo troca os botões "mover todos" por uma caixa de seleção para "sel
 
 {{"demo": "pages/components/transfer-list/SelectAllTransferList.js", "bg": true}}
 
-## Limitações
+## Limitations
 
 The component comes with a couple of limitations:
 

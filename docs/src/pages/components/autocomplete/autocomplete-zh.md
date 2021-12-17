@@ -72,7 +72,7 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 {{"demo": "pages/components/autocomplete/ControllableStates.js"}}
 
-## Free solo
+## 任意输入
 
 当将 `freeSolo` 设置为 true 时，用户可以文本框中输入任意值。
 
@@ -82,12 +82,12 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
-### Creatable （可创造性）
+### 自由创造
 
 如果您打算将此模块用于类似 [组合框](#combo-box) 的体验（一个选择控件元素的增强版），我们则建议如下的设置：
 
-- `selectOnFocus` to help the user clear the selected value.
-- `clearOnBlur` to help the user enter a new value.
+- `selectOnFocus` 可以帮助用户清除所选定的值。
+- `clearOnBlur` 可以帮助用户输入一个新值。
 - `handleHomeEndKeys` 使用<kbd class="key">Home</kbd> 和 <kbd class="key">End</kbd> 键在弹出窗口内移动焦点。
 - 最后一个选项，例如 `加上 "你的搜索结果"`。
 
@@ -103,19 +103,19 @@ const options = ['The Godfather', 'Pulp Fiction'];
 
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
-## 失效的选项
+## 禁用选项
 
 {{"demo": "pages/components/autocomplete/DisabledOptions.js"}}
 
 ## `useAutocomplete`
 
-For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 自动完成组件是建立在这个钩子上。
+对于需要高级自定义的场景，无头的 `useAutocomplete()` hook 将会被暴露出来。 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 自动完成组件是建立在这个钩子上。
 
 ```tsx
 import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 ```
 
-The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
+为了方便使用以及兼容性，`useAutocomplete` hook 也可以从 @mui/material 导出。
 
 ```tsx
 import useAutocomplete from '@mui/material/useAutocomplete';
@@ -129,18 +129,18 @@ import useAutocomplete from '@mui/material/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-Head to the [customization](#customization) section for an example with the `Autocomplete` component instead of the hook.
+前往 [自定义](#customization) 章节，来查看如何使用 `自从完成` 组件来代替该 hook。
 
 ## 异步请求
 
-The component supports two different asynchronous use-cases:
+该组件支持两种不同的异步用例：
 
 - [打开时加载](#load-on-open)：它将等待用户与组件进行交互以加载选项。
 - [当你键入内容时进行搜索](#search-as-you-type)：每一次键入都会提交一个新的请求。
 
 ### 打开时加载
 
-It displays a progress state as long as the network request is pending.
+只要正在处理网络请求，它就会显示一个进度状态。
 
 {{"demo": "pages/components/autocomplete/Asynchronous.js"}}
 
@@ -164,7 +164,7 @@ It displays a progress state as long as the network request is pending.
 
 > ⚠️在你开始使用 Google Maps JavaScript API 之前，你必须注册并且创建一个可支付的账户。
 
-## 多个值
+## 多个输入值
 
 当然您也可以将其作为标签，这样用户就可以输入更多的值。
 
@@ -176,7 +176,7 @@ It displays a progress state as long as the network request is pending.
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
-### Checkboxes 复选框
+### 复选框
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
@@ -188,11 +188,11 @@ It displays a progress state as long as the network request is pending.
 
 ## 尺寸
 
-想要使用外观看起来比较小的输入框吗？ 试着使用 `size` 属性吧。
+Fancy smaller inputs? Use the `size` prop.
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## Customization 个性化
+## 个性化
 
 ### 自定义输入
 
@@ -224,7 +224,7 @@ import { createFilterOptions } from '@mui/material/Autocomplete';
 
 ### `createFilterOptions(config) => filterOptions`
 
-#### 参数
+#### Arguments
 
 1. `config` (_object_ [optional]):
 
@@ -235,7 +235,7 @@ import { createFilterOptions } from '@mui/material/Autocomplete';
 - `config.stringify` (*func* [optional]): 控制如何将一个选项转换成一个字符串，这样，选项就能够和输入文本的片段相匹配。
 - `config.trim` (_bool_ [optional])：默认为 `false`。 删除尾随空格。
 
-#### 返回结果
+#### Returns
 
 `filterOptions`：返回的 filter（过滤）方法可以直接提供给带有 `filterOptions` 属性的 `Autocomplete` 组件，或者和 hooks 同名的参数。
 
@@ -252,9 +252,9 @@ const filterOptions = createFilterOptions({
 
 {{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
 
-### Advanced 进阶
+### 进阶使用
 
-对于更复杂的过滤机制，譬如模糊匹配（fuzzy matching），我们推荐您看一下 [match-sorter](https://github.com/kentcdodds/match-sorter)。 就像这样：
+对于更复杂的过滤机制，譬如模糊匹配（fuzzy matching），我们推荐您看一下 [match-sorter](https://github.com/kentcdodds/match-sorter)。 For instance:
 
 ```jsx
 import { matchSorter } from 'match-sorter';
@@ -286,7 +286,7 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 />
 ```
 
-## 设计局限
+## Limitations
 
 ### autocomplete/autofill
 
@@ -309,7 +309,7 @@ In addition to remembering past entered values, the browser might also propose *
   />
   ```
 
-Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.
+请阅读 [这篇 MDN 指南](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) 来寻求更多解决方案。
 
 ### iOS VoiceOver 辅助功能
 
@@ -319,7 +319,7 @@ iOS Safari 中的 VoiceOver 对 `aria-owns` 属性的支持并不是很到位。
 
 若你提供一共自定义的 `ListboxComponent` 属性，请保证需要滚动功能的容器将 `role` 属性设置为 `listbox`。 这能保证滚动功能在一些情况下，例如当用键盘切换的时候，仍然能够正常显示。
 
-## 无障碍设计
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 

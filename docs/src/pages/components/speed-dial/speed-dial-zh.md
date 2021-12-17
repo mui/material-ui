@@ -20,7 +20,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 {{"demo": "pages/components/speed-dial/BasicSpeedDial.js"}}
 
-## 练习
+## Playground
 
 {{"demo": "pages/components/speed-dial/PlaygroundSpeedDial.js"}}
 
@@ -44,7 +44,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 {{"demo": "pages/components/speed-dial/SpeedDialTooltipOpen.js"}}
 
-## 无障碍设计
+## Accessibility
 
 ### ARIA
 
@@ -59,7 +59,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 - 快速拨号操作容器根据方向设置了 `role="menu"` 和 `aria-orientation`。
 - 快速拨号操作具有 `role="menuitem"` 和引用相关工具提示的 `aria-describedby` 属性。
 
-### 键盘输入
+### Keyboard
 
 - 对焦时打开快速拨号组件。
 - 空格键和回车键将会触发所选的快速拨号动作，并且切换快速拨号组件的打开状态。

@@ -5,7 +5,7 @@ githubLabel: 'component: Switch'
 materialDesign: 'https://material.io/components/selection-controls#switches'
 ---
 
-# Interruptor
+# Switch
 
 <p class="description">Interruptores alternam o estado de uma única configuração ligado ou desligado.</p>
 
@@ -17,19 +17,19 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 {{"demo": "pages/components/switches/BasicSwitches.js"}}
 
-## Caixas de seleção com FormGroup
+## Label
 
 Você pode fornecer um rótulo para o `Switch` graças ao componente `FormControlLabel`.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
 
-## Tamanho
+## Size
 
 Use a propriedade `size` para alterar o tamanho do interruptor.
 
 {{"demo": "pages/components/switches/SwitchesSize.js"}}
 
-## Cor
+## Color
 
 {{"demo": "pages/components/switches/ColorSwitches.js"}}
 
@@ -45,9 +45,9 @@ Você pode controlar o interruptor com as propriedades `checked` e `onChange`:
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
-## Customização
+## Customization
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
@@ -55,7 +55,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 ## Unstyled
 
-The switch also comes with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+The switch also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```jsx
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
@@ -83,21 +83,21 @@ import { useSwitch } from '@mui/base/SwitchUnstyled';
 
 {{"demo": "pages/components/switches/UseSwitchesCustom.js"}}
 
-## Posicionamento do rótulo
+## Label placement
 
-Você pode alterar o posicionamento do rótulo:
+You can change the placement of the label:
 
 {{"demo": "pages/components/switches/FormControlLabelPosition.js"}}
 
-## Quando usar
+## When to use
 
-- [Caixas de Seleção vs. Interruptores](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+- [Checkboxes vs. Switches](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
-## Acessibilidade
+## Accessibility
 
 - Ele irá renderizar um elemento com a regra de `checkbox` e não `switch`, pois esta regra não é amplamente suportada ainda. Por favor, teste primeiro se a tecnologia assistiva do seu público-alvo suporta essa regra corretamente. Em seguida, você pode alterar a regra com `<Switch inputProps={{ role: 'switch' }}>`
-- Todos os controles de formulário devem ter rótulos, e isso inclui os botões de opção, caixas de seleção e interruptores. Na maioria dos casos, isso é feito usando o elemento `<label>` ([FormControlLabel](/api/form-control-label/)).
-- Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (e.g.`aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
+- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+- When a label can't be used, it's necessary to add an attribute directly to the input component. In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` prop.
 
 ```jsx
 <Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} />

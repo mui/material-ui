@@ -15,7 +15,7 @@
 
 如果想要了解更多关于色彩的知识，您可以查看 [色彩章节](/customization/color/)。
 
-## 默认值
+## Default values
 
 通过[主题资源管理器](/customization/default-theme/?expand-path=$.palette)或通过打开此页面上的开发工具控制台（dev tools console）（`window.theme.palette`），您可以浏览调色板的默认值。
 
@@ -23,7 +23,7 @@
 
 默认调色板使用前缀为 `A`（`A200` 等）的深度作为辅助调色，其他调色使用无前缀的阴影。
 
-## Customization 个性化
+## Customization
 
 您可以通过将一个调色板对象（palette object）作为主题的一部分来覆盖默认的调色板值。 如果存在以下任何情况：
 
@@ -114,7 +114,7 @@ type PaletteTonalOffset =
 
 请注意，“对比度阈值（contrastThreshold）” 遵循的是一条非线性曲线。
 
-### 示例
+### Example
 
 {{"demo": "pages/customization/palette/Palette.js", "defaultCodeOpen": true}}
 
@@ -177,7 +177,7 @@ declare module '@mui/material/styles' {
 
 {{"demo": "pages/customization/palette/CustomColor.js"}}
 
-## 选取颜色
+## Picking colors
 
 需要灵感吗？ Material Design 团队已经建立了一个[调色板配置工具](/customization/color/#picking-colors)来帮助您选择颜色。
 

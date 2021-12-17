@@ -6,7 +6,7 @@
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component.",
     "defaultValue": "The default value. Use when the component is not controlled.",
-    "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "error": "If <code>true</code>, the label is displayed in an error state.",
     "FormHelperTextProps": "Props applied to the <a href=\"/api/form-helper-text/\"><code>FormHelperText</code></a> element.",
     "fullWidth": "If <code>true</code>, the input will take up the full width of its container.",

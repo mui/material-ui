@@ -114,7 +114,7 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 import { borders } from '@mui/system';
 ```
 
-| 导入名称                | 属性                  | CSS 属性                | Theme key                                                        |
+| Import name         | 属性                  | CSS 属性                | Theme key                                                        |
 |:------------------- |:------------------- |:--------------------- |:---------------------------------------------------------------- |
 | `border`            | `border`            | `border`              | `borders`                                                        |
 | `borderTop`         | `borderTop`         | `border-top`          | `borders`                                                        |

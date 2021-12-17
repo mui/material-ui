@@ -4,7 +4,7 @@
     "BackdropComponent": "A backdrop component. This prop enables custom backdrop rendering.",
     "BackdropProps": "Props applied to the <a href=\"/api/backdrop/\"><code>Backdrop</code></a> element.",
     "children": "A single child content element.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "closeAfterTransition": "When set to true the Modal waits until a nested Transition is completed before closing.",
     "components": "The components used for each slot inside the Modal. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside the Modal.",
@@ -20,16 +20,16 @@
     "onBackdropClick": "Callback fired when the backdrop is clicked.",
     "onClose": "Callback fired when the component requests to be closed. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>.<br><br><strong>Signature:</strong><br><code>function(event: object, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>reason:</em> Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>.",
     "open": "If <code>true</code>, the component is shown.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component."
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "hidden": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "the <code>Modal</code> has exited"
     }
   }

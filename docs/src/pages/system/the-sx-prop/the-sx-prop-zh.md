@@ -1,10 +1,10 @@
-# `sx` 属性
+# The `sx` prop
 
 <p class="description">`sx`属性可以用来自定义组件样式</p>
 
 The property is a superset of CSS that packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`. 你可以在它的prop上设置任何可用的css。
 
-## 示例
+## Example
 
 {{"demo": "pages/system/the-sx-prop/Example.js", "bg": true, "defaultCodeOpen": true}}
 
@@ -12,7 +12,7 @@ The property is a superset of CSS that packages [all the style functions](/syste
 
 ## 主题相关属性
 
-### Borders 边框
+### Borders
 
 The `border` property can receive only a number as a value. It creates a solid black border using the number as the width.
 
@@ -37,7 +37,7 @@ The `border` property can receive only a number as a value. It creates a solid b
 
 _Head to the [borders page](/system/borders/) for more details._
 
-### Display 显示
+### Display
 
 ` displayPrint`参数允许你设置` display`样式，但仅在打印设备上生效。
 
@@ -58,7 +58,7 @@ The grid CSS properties `gap`, `rowGap` and `columnGap` multiply the values they
 
 _Head to the [grid page](/system/grid/) for more details._
 
-### Palette 调色板
+### Palette
 
 The `color` and `backgroundColor` properties can receive a string, which represents the path in the `theme.palette`.
 
@@ -76,7 +76,7 @@ The `backgroundColor` property is also available trough its alias `bgcolor`.
 
 _Head to the [palette page](/system/palette/) for more details._
 
-### 位置
+### Positions
 
 The `zIndex` property maps its value to the `theme.zIndex` value.
 
@@ -87,7 +87,7 @@ The `zIndex` property maps its value to the `theme.zIndex` value.
 
 _Head to the [positions page](/system/positions/) for more details._
 
-### 阴影
+### Shadows
 
 The `boxShadow` property maps its value to the `theme.shadows` value.
 
@@ -98,7 +98,7 @@ The `boxShadow` property maps its value to the `theme.shadows` value.
 
 _Head to the [shadows page](/system/shadows/) for more details._
 
-### Sizing 大小
+### Sizing
 
 The sizing properties: `width`, `height`, `minHeight`, `maxHeight`, `minWidth` and `maxWidth` are using the following custom transform function for the value:
 
@@ -117,7 +117,7 @@ If the value is between [0, 1], it's converted to percent. Otherwise, it is dire
 
 _Head to the [sizing page](/system/sizing/) for more details._
 
-### Spacing 间距
+### Spacing
 
 The spacing properties: `margin`, `padding` and the corresponding longhand properties multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
 
@@ -128,7 +128,7 @@ The spacing properties: `margin`, `padding` and the corresponding longhand prope
 
 The following aliases are available for the spacing properties:
 
-| 属性   | CSS 属性                          |
+| Prop | CSS property                    |
 |:---- |:------------------------------- |
 | `m`  | `margin`                        |
 | `mt` | `margin-top`                    |
@@ -147,7 +147,7 @@ The following aliases are available for the spacing properties:
 
 _Head to the [spacing page](/system/spacing/) for more details._
 
-### 文字铸排
+### Typography
 
 The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their value to the `theme.typography` value.
 
@@ -172,7 +172,7 @@ There is additional `typography` prop available, which sets all values defined i
 
 _Head to the [typography page](/system/typography/) for more details._
 
-## 响应式的值
+## Responsive values
 
 All properties as part of the `sx` prop also have a support for defining different values for specific breakpoints. For more details on this, take a look at the [Responsive values section](/system/basics/#responsive-values).
 
@@ -299,6 +299,6 @@ import { Theme } from '@mui/material/styles';
 
 > Let us know or [submit a PR](https://github.com/mui-org/material-ui/pulls) if you have a proper way to fix this issue. 🙏
 
-## 性能
+## Performance
 
 If you are interested in the performance tradeoff, you can find more details [here](/system/basics/#performance-tradeoff).

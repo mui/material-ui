@@ -1,10 +1,10 @@
-# A propriedade `sx`
+# The `sx` prop
 
 <p class="description">A propriedade `sx` é um atalho para definir o estilo personalizado com acesso ao tema.</p>
 
 The property is a superset of CSS that packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`. Você pode especificar qualquer CSS válido usando este propriedade.
 
-## Exemplo
+## Example
 
 {{"demo": "pages/system/the-sx-prop/Example.js", "bg": true, "defaultCodeOpen": true}}
 
@@ -12,7 +12,7 @@ No exemplo acima, você pode notar que alguns dos valores não são propriedades
 
 ## Theme aware properties
 
-### Bordas
+### Borders
 
 The `border` property can receive only a number as a value. It creates a solid black border using the number as the width.
 
@@ -37,7 +37,7 @@ As propriedades `borderRadius` multiplicam o valor recebido pelo valor `theme.sh
 
 _Head to the [borders page](/system/borders/) for more details._
 
-### Exibição
+### Display
 
 A propriedade `displayPrint` permite que você especifique o valor de `display`, que será aplicado somente para impressão.
 
@@ -58,7 +58,7 @@ The grid CSS properties `gap`, `rowGap` and `columnGap` multiply the values they
 
 _Head to the [grid page](/system/grid/) for more details._
 
-### Paleta
+### Palette
 
 As propriedades `color` e `backgroundColor` podem receber uma string, que representa o caminho no `theme.palette`.
 
@@ -76,7 +76,7 @@ The `backgroundColor` property is also available trough its alias `bgcolor`.
 
 _Head to the [palette page](/system/palette/) for more details._
 
-### Posições
+### Positions
 
 The `zIndex` property maps its value to the `theme.zIndex` value.
 
@@ -87,7 +87,7 @@ The `zIndex` property maps its value to the `theme.zIndex` value.
 
 _Head to the [positions page](/system/positions/) for more details._
 
-### Sombras
+### Shadows
 
 The `boxShadow` property maps its value to the `theme.shadows` value.
 
@@ -98,7 +98,7 @@ The `boxShadow` property maps its value to the `theme.shadows` value.
 
 _Head to the [shadows page](/system/shadows/) for more details._
 
-### Dimensionando
+### Sizing
 
 As propriedades de dimensionamento: `with`, `height`, `minHeight`, `maxHeight`, `minWidth` e `maxWidth` estão usando a seguinte função de transformação personalizada para o valor:
 
@@ -117,7 +117,7 @@ If the value is between [0, 1], it's converted to percent. Otherwise, it is dire
 
 _Head to the [sizing page](/system/sizing/) for more details._
 
-### Espaçamento
+### Spacing
 
 The spacing properties: `margin`, `padding` and the corresponding longhand properties multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
 
@@ -128,26 +128,26 @@ The spacing properties: `margin`, `padding` and the corresponding longhand prope
 
 The following aliases are available for the spacing properties:
 
-| Propriedade | Propriedade CSS                 |
-|:----------- |:------------------------------- |
-| `m`         | `margin`                        |
-| `mt`        | `margin-top`                    |
-| `mr`        | `margin-right`                  |
-| `mb`        | `margin-bottom`                 |
-| `ml`        | `margin-left`                   |
-| `mx`        | `margin-left`, `margin-right`   |
-| `my`        | `margin-top`, `margin-bottom`   |
-| `p`         | `padding`                       |
-| `pt`        | `padding-top`                   |
-| `pr`        | `padding-right`                 |
-| `pb`        | `padding-bottom`                |
-| `pl`        | `padding-left`                  |
-| `px`        | `padding-left`, `padding-right` |
-| `py`        | `padding-top`, `padding-bottom` |
+| Prop | CSS property                    |
+|:---- |:------------------------------- |
+| `m`  | `margin`                        |
+| `mt` | `margin-top`                    |
+| `mr` | `margin-right`                  |
+| `mb` | `margin-bottom`                 |
+| `ml` | `margin-left`                   |
+| `mx` | `margin-left`, `margin-right`   |
+| `my` | `margin-top`, `margin-bottom`   |
+| `p`  | `padding`                       |
+| `pt` | `padding-top`                   |
+| `pr` | `padding-right`                 |
+| `pb` | `padding-bottom`                |
+| `pl` | `padding-left`                  |
+| `px` | `padding-left`, `padding-right` |
+| `py` | `padding-top`, `padding-bottom` |
 
 _Head to the [spacing page](/system/spacing/) for more details._
 
-### Tipografia
+### Typography
 
 The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their value to the `theme.typography` value.
 
@@ -172,7 +172,7 @@ There is additional `typography` prop available, which sets all values defined i
 
 _Head to the [typography page](/system/typography/) for more details._
 
-## Valores responsivos
+## Responsive values
 
 All properties as part of the `sx` prop also have a support for defining different values for specific breakpoints. For more details on this, take a look at the [Responsive values section](/system/basics/#responsive-values).
 

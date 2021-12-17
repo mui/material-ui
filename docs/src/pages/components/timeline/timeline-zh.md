@@ -9,7 +9,7 @@ packageName: '@mui/lab'
 
 <p class="description">时间轴组件按时间顺序来展示了一系列的事件。</p>
 
-**注意：** 警告提示不属于 [Material Design 指南](https://material.io/) 中的一部分，但是 MUI 仍然会继续支持该组件。
+**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but MUI supports it.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -31,13 +31,13 @@ packageName: '@mui/lab'
 
 {{"demo": "pages/components/timeline/AlternateTimeline.js"}}
 
-## Color 颜色
+## Color
 
 The `TimelineDot` can appear in different colors from theme palette.
 
 {{"demo": "pages/components/timeline/ColorsTimeline.js"}}
 
-## 描边
+## Outlined
 
 {{"demo": "pages/components/timeline/OutlinedTimeline.js"}}
 
@@ -47,8 +47,8 @@ The `TimelineDot` can appear in different colors from theme palette.
 
 {{"demo": "pages/components/timeline/OppositeContentTimeline.js"}}
 
-## Customization 个性化
+## Customization
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/timeline/CustomizedTimeline.js"}}

@@ -1,4 +1,4 @@
-# Color 颜色
+# Color
 
 <p class="description">颜色承载了不同的寓意。 Out of the box you get access to all colors in the Material Design guidelines.</p>
 
@@ -12,7 +12,7 @@ Material Design 团队也搭建了一个非常棒的调色板配置工具： [ma
 
 <a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336
 " target="_blank" rel="noopener nofollow">
-  <img src="/static/images/color/colorTool.png" alt="官方的色彩工具" style="width: 574px" />
+  <img src="/static/images/color/colorTool.png" alt="Official color tool" style="width: 574px" />
 </a>
 
 <br />
@@ -41,7 +41,7 @@ const theme = createTheme({
 });
 ```
 
-### 练习
+### Playground
 
 To test a [material.io/design/color](https://material.io/design/color/) color scheme with the MUI documentation, simply select colors using the palette and sliders below. 另外，您也可以在主要（Primary）和次要（Secondary）文本字段中输入十六进制（hex）值。
 
@@ -71,7 +71,7 @@ If you are using the default primary and / or secondary shades then by providing
 
 ### 社区提供的一些工具
 
-- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. 包括基本的网站模板，并且展示各种组件及其受主题影响的方式。
+- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Includes basic site templates to show various components and how they are affected by the theme
 - [Material palette generator](https://material.io/inline-tools/color/)：它可用于通过您输入的任何颜色生成一系列的调色板。
 
 ## 2014 Material Design 调色板
@@ -95,7 +95,7 @@ const color = red[500];
 
 {{"demo": "pages/customization/color/Color.js", "hideToolbar": true, "bg": "inline"}}
 
-### 例子
+### Examples
 
 例如：您可以参考互补的主色和重点色，像 "red 500" 和 "purple A200" 这样的：
 

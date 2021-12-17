@@ -128,7 +128,7 @@ Escolha um dos seguintes plugins:
 
   `yarn add -D babel-plugin-direct-import`
 
-  Crie um arquivo `.babelrc.js` no diretório raiz do seu projeto:
+  Create a `.babelrc.js` file in the root directory of your project:
 
   ```js
   const plugins = [

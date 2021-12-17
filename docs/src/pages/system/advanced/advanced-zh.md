@@ -1,4 +1,4 @@
-# Advanced 进阶
+# Advanced
 
 <p class="description">在这里，你可以找到如何在你的自定义组件中使用系统（system）的例子。
 </p>

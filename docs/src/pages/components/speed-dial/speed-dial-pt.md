@@ -20,7 +20,7 @@ O botão de ação flutuante pode exibir ações relacionadas.
 
 {{"demo": "pages/components/speed-dial/BasicSpeedDial.js"}}
 
-## Área de exemplos
+## Playground
 
 {{"demo": "pages/components/speed-dial/PlaygroundSpeedDial.js"}}
 
@@ -44,7 +44,7 @@ A dica é ativada aqui em todos os dispositivos para fins de demonstração, mas
 
 {{"demo": "pages/components/speed-dial/SpeedDialTooltipOpen.js"}}
 
-## Acessibilidade
+## Accessibility
 
 ### ARIA
 
@@ -59,7 +59,7 @@ A dica é ativada aqui em todos os dispositivos para fins de demonstração, mas
 - As ações de acesso rápido tem `role="menu"` e `aria-direction` definidos de acordo com a direção.
 - As ações de acesso rápido tem `role="menuitem"`, e um atributo `aria-describedby` que faz referência à dica associada.
 
-### Teclado
+### Keyboard
 
 - O acesso rápido abre ao receber foco.
 - As teclas de Espaço e Enter ativam a ação selecionado no acesso rápido, e alteram o estado de aberto do acesso rápido.

@@ -33,11 +33,11 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 - [MUI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs): VSCode extension providing codemods.
 - [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): ESLint plugin to detect unused styling classes with `@mui/styles`.
 
-## Componentes
+## Components
 
 This is a collection of third-party projects that extend MUI.
 
-### Leiaute
+### Layout
 
 - [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs/).
 
@@ -74,7 +74,7 @@ This is a collection of third-party projects that extend MUI.
 
 - [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/): Charts for MUI that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more ([paid license](https://js.devexpress.com/licensing/)).
 
-### Diálogo
+### Dialog
 
 - [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm): Fornece diálogos de confirmação fáceis de usar para simplificar as ações de confirmação do usuário sem escrever código boilerplate.
 
@@ -90,7 +90,7 @@ This is a collection of third-party projects that extend MUI.
 
 - [components-extra](https://github.com/alexandre-lelain/components-extra): Provides a set of "molecule" components built on top of MUI, such as a Footer, a CookiesBanner, a BackToTop button, and other highly customizable complex elements, to help devs build the macro parts of their UI very quickly. Those components are often duplicated across sites. This library solves this exact problem.
 
-## Temas
+## Theming
 
 - [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your MUI applications by just selecting the colors and having a live preview.
-- [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.
+- [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.

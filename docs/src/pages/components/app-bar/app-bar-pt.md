@@ -19,31 +19,31 @@ Ela pode se transformar em uma barra de ações contextual ou ser utilizada como
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
-## App Bar with menu
+## Barra do site com menu
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
-## App Bar with responsive menu
+## Barra do site com menu responsivo
 
 {{"demo": "pages/components/app-bar/ResponsiveAppBar.js", "bg": true}}
 
 ## Barra de Aplicativos com campo de busca
 
-A side searchbar.
+Uma barra de pesquisa lateral
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
 
-## App Bar with a primary search field
+## Barra do site com um campo de busca principal
 
-A primary searchbar.
+Uma barra de pesquisa primária
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
-## Dense (desktop only)
+## Densa (apenas para desktop)
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
-## Prominent
+## Proeminente
 
 A prominent app bar.
 

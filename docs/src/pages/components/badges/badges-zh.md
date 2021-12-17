@@ -16,15 +16,15 @@ githubLabel: 'component: Badge'
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
-## Color 颜色
+## Color
 
 Use `color` prop to apply theme palette to component.
 
 {{"demo": "pages/components/badges/ColorBadge.js"}}
 
-## Customization 个性化
+## Customization
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -62,9 +62,9 @@ Use `color` prop to apply theme palette to component.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
 
-## 素颜模式
+## Unstyled
 
-Badge组件还有一个无样式的版本。 在需要进行大量自定义样式时，它可以更好的控制住包的大小
+Badge组件还有一个无样式的版本。 It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import BadgeUnstyled from '@mui/base/BadgeUnstyled';
@@ -72,7 +72,7 @@ import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}
 
-## 无障碍设计
+## Accessibility
 
 如果您不能依靠徽章的内容来正确地声明。 那您应该提供一个完整的描述，例如， 使用 `aria-label`：
 

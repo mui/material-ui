@@ -23,7 +23,7 @@ O componente renderiza o conteúdo de seu `children` sobre um componente backdro
 
 Se você está criando um diálogo modal, você provavelmente quer usar o componente [Dialog](/components/dialogs/) em vez de diretamente um Modal. Modal é uma estrutura de baixo-nível que é aproveitada pelos seguintes componentes:
 
-- [Diálogo](/components/dialogs/)
+- [Dialog](/components/dialogs/)
 - [Drawer](/components/drawers/)
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
@@ -38,7 +38,7 @@ Você pode desativar o contorno (muitas vezes azul ou ouro) com a propriedade CS
 
 - 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-The modal also comes with an unstyled version. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import ModalUnstyled from '@mui/base/ModalUnstyled';
@@ -52,14 +52,14 @@ Modals can be nested, for example a select within a dialog, but stacking of more
 
 {{"demo": "pages/components/modal/NestedModal.js"}}
 
-## Transições
+## Transitions
 
-O estado de aberto/fechado do modal pode ser animado com um componente de transição. Este componente deve respeitar as seguintes condições:
+O estado de aberto/fechado do modal pode ser animado com um componente de transição. This component should respect the following conditions:
 
 - Seja um filho direto descendente do modal.
 - Tenha uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
-- Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
-- Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. Esses dois callbacks permitem que o modal desmonte o conteúdo filho quando fechado e seja totalmente transitado.
+- Call the `onEnter` callback prop when the enter transition starts.
+- Call the `onExited` callback prop when the exit transition is completed. Esses dois callbacks permitem que o modal desmonte o conteúdo filho quando fechado e seja totalmente transitado.
 
 O modal possui suporte interno para [react-transition-group](https://github.com/reactjs/react-transition-group).
 
@@ -83,11 +83,11 @@ As with any performance optimization, this is not a silver bullet. Be sure to id
 
 ## Modal do lado do servidor
 
-React [não suporta](https://github.com/facebook/react/issues/13097) a API [`createPortal()`](https://pt-br.reactjs.org/docs/portals.html) no servidor. Para exibir o modal, você precisa desativar o recurso portal com a propriedade `disablePortal`:
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. Para exibir o modal, você precisa desativar o recurso portal com a propriedade `disablePortal`:
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 
-## Limitações
+## Limitations
 
 ### Captura do foco
 
@@ -99,7 +99,7 @@ This is done for accessibility purposes. However, it might create issues. No cas
 <Modal disableEnforceFocus />
 ```
 
-## Acessibilidade
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 

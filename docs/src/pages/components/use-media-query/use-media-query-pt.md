@@ -88,7 +88,7 @@ describe('MeusTestes', () => {
 
 ## Renderização somente do lado do cliente
 
-Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir a opção `noSsr` para `true` se você estiver fazendo renderização **somente no lado cliente**.
+Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. This double pass rendering cycle comes with a drawback. It's slower. Você pode definir a opção `noSsr` para `true` se você estiver fazendo renderização **somente no lado cliente**.
 
 ```js
 const matches = useMediaQuery('(min-width:600px)', { noSsr: true });
@@ -108,7 +108,7 @@ const theme = createTheme({
 });
 ```
 
-## Renderização do lado servidor
+## Server-side rendering
 
 > ⚠️ Renderização do lado servidor e consultas de mídia do lado cliente são fundamentalmente conflitantes. Esteja ciente da escolha. O suporte só pode ser parcial.
 
@@ -177,23 +177,23 @@ O componente de ordem superior `withWidth()` injeta a largura da tela da página
 
 ### `useMediaQuery(query, [options]) => matches`
 
-#### Argumentos
+#### Arguments
 
 1. `query` (_string_ | _func_): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
-2. `options` (_object_ [opcional]):
+2. `options` (_object_ [optional]):
 
 - `options.defaultMatches` (_bool_ [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. O valor padrão é `false`.
 - `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. Isso pode ser usado para manipular uma janela iframe com conteúdo.
-- `options.noSsr` (_bool_ [opcional]): Padrão `false`. Para executar a hidratação no lado do servidor, o hook precisa renderizar duas vezes. Uma primeira vez com `false`, o valor do servidor e uma segunda vez com o valor resolvido. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esta opção para `true` se você estiver fazendo renderização **somente no lado cliente**.
+- `options.noSsr` (_bool_ [opcional]): Padrão `false`. To perform the server-side hydration, the hook needs to render twice. A first time with `false`, the value of the server, and a second time with the resolved value. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esta opção para `true` se você estiver fazendo renderização **somente no lado cliente**.
 - `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
 Nota: Você pode alterar as opções padrão usando [`default props`](/customization/theme-components/#default-props), este recurso pertence ao tema através da chave `MuiUseMediaQuery`.
 
-#### Retornos
+#### Returns
 
 `matches`: Matches é `true` se o documento coincidir com a consulta de mídia, e `false` quando isso não ocorrer.
 
-#### Exemplos
+#### Examples
 
 ```jsx
 import * as React from 'react';

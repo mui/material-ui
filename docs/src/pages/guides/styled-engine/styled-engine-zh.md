@@ -6,6 +6,8 @@ The default style library used for generating CSS styles for MUI components is [
 
 ## How to switch to styled-components
 
+> ❗ **Warning**: Using `styled-components` as an engine at this moment is not working when used in a SSR projects. The reason is that the `babel-plugin-styled-components` is not picking up correctly the usages of the `styled()` utility inside the `@mui` packages. For more details, take a look at this [issue](https://github.com/mui-org/material-ui/issues/29742). We strongly recommend using `emotion` for SSR projects.
+
 If you already have [styled-components](https://github.com/styled-components/styled-components) installed, it's possible to use it exclusively. There are currently two packages available to choose from:
 
 - `@mui/styled-engine` - a thin wrapper around [emotion's `styled()`](https://emotion.sh/docs/styled) API, with the addition of few other required utilities, such as the `<GlobalStyles />` component, the `css` and `keyframe` helpers, etc. This is the default.
@@ -96,7 +98,6 @@ You can use these `styled-component` examples as a reference:
 
 - [create-react-app](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components)
 - [create-react-app with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
-- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs-with-styled-components-typescript)
 - [and many others](https://github.com/mui-org/material-ui/tree/master/examples)
 
 > **Note**: `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself. See the [Installation guide](/getting-started/installation/) for more info.
