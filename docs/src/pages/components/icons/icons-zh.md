@@ -33,14 +33,14 @@ yarn add @mui/icons-material
 
 这些组件使用 Material-UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@mui/material` 具有对等依赖性。
 
-如果你的项目中还没有使用 Material-UI，那么你可以用以下方法添加它：
+如果你的项目中还没有使用 MUI，那么你可以用以下方法添加它：
 
 ```sh
-// 用 npm 安装
-npm install @material-ui/core@next
+// 使用 npm 安装
+npm install @mui/material
 
-// 用 yarn 安装
-yarn add @material-ui/core@next
+// 使用 yarn 安装
+yarn add @mui/material
 ```
 
 ### 使用
@@ -50,14 +50,14 @@ yarn add @material-ui/core@next
 - 方法 1:
 
   ```jsx
-  import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-  import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
+  import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+  import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
   ```
 
 - 方法 2:
 
   ```jsx
-  import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+  import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
 对于捆绑包的大小来说，最安全的是方案 1，但有些开发者更喜欢方案 2。 在使用第二个方法之前，请确保您遵循 [最小化捆绑包大小指南](/guides/minimizing-bundle-size/#option-2)。
@@ -79,7 +79,7 @@ yarn add @material-ui/core@next
 出于测试目的，每个从 `@material-ui/icons` 暴露的图标都有一个 `data-testid` 属性，这其中包含了图标的名称。 就像这样：
 
 ```jsx
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@mui/icons-material/Delete';
 ```
 
 一旦挂载后，它就具有以下属性：
@@ -204,13 +204,13 @@ import Icon from '@material-ui/core/Icon';
 对于其他字体，你可以使用 `baseClassName` 属性来自定义基线类名。 例如，你可以使用 Material Design 显示 two-tone 图标：
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <link
   rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone"
-  // 引入 MD 的 two tones 变体                                   ^^^^^^^^
-/>
+  // Import the two tones MD variant                           ^^^^^^^^
+/>;
 ```
 
 {{"demo": "pages/components/icons/TwoToneIcons.js"}}
