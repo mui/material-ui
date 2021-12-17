@@ -6,7 +6,7 @@ MUI Base provides a set of components without any styles.
 These can be used to implement a custom design system that is not based on Material Design.
 
 So far, just a few components have been created,
-but we intend to focus on the @mui/base package extensively in the upcoming months.
+but we intend to focus on the `@mui/base` package extensively in the upcoming months.
 
 ## Use cases
 
