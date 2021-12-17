@@ -99,12 +99,11 @@ export default function AppHeader() {
                     : theme.palette.grey[300],
               },
               '&:focus': {
-                boxShadow: (theme) =>
-                  `0 0 0 1px ${
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[600]
-                      : theme.palette.grey[200]
-                  }`,
+                boxShadow: `0 0 0 1px ${
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.grey[200]
+                }`,
               },
             }}
           >

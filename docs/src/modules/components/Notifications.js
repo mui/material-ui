@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import NotificationsNoneRoundedIcon from '@mui/icons-material/NotificationsNoneRounded';
 import Tooltip from '@mui/material/Tooltip';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -16,10 +16,10 @@ import MuiDivider from '@mui/material/Divider';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
-const Paper = styled(MuiPaper)(({ theme }) => ({
+const Paper = styled(MuiPaper)({
   transformOrigin: 'top right',
   backgroundImage: 'none',
-}));
+});
 const List = styled(MuiList)(({ theme }) => ({
   width: theme.spacing(40),
   maxHeight: theme.spacing(40),
