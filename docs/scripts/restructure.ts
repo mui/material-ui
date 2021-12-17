@@ -74,11 +74,7 @@ const updateAppToUseProductPagesData = (product: string) => {
   appSource = appendSource(
     appSource,
     `import pages from 'docs/src/pages';`,
-<<<<<<< HEAD
-    `import ${product}Pages from 'docs/products/${product}/pages';`,
-=======
     `import ${product}Pages from 'docs/data/${product}/pages';`,
->>>>>>> ff92a78e5f542189a8071972b507e89308da2dd5
   );
   appSource = appendSource(
     appSource,
