@@ -376,6 +376,33 @@ export function getThemedComponents(theme: Theme) {
           },
         },
       },
+      MuiChip: {
+        styleOverrides: {
+          outlined: {
+            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.grey[900],
+            backgroundColor: 'transparent',
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[600]
+                : theme.palette.grey[300],
+          },
+          filled: {
+            fontWeight: 500,
+            border: '1px solid transparent',
+            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
+            backgroundColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[500]
+                : theme.palette.primary[100],
+            '&:hover': {
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[600]
+                  : theme.palette.primary[200],
+            },
+          },
+        },
+      },
       MuiListItemButton: {
         styleOverrides: {
           root: {

@@ -2,9 +2,12 @@ import * as React from 'react';
 import { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { getAllBlogPosts, BlogPost } from 'docs/lib/sourcing';
+import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import Section from 'docs/src/layouts/Section';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
@@ -18,6 +21,7 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 import GradientText from 'docs/src/components/typography/GradientText';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import { authors } from 'docs/src/modules/components/TopLayoutBlog';
+import HeroEnd from 'docs/src/components/home/HeroEnd';
 
 export const getStaticProps = async () => {
   const allBlogPosts = getAllBlogPosts();
@@ -32,7 +36,7 @@ const PostPreview = (props: BlogPost) => {
   return (
     <React.Fragment>
       {props.tags && (
-        <Box sx={{ display: 'flex', gap: 1, mb: 1 }}>
+        <Box sx={{ display: 'flex', gap: 1, mb: 4 }}>
           {props.tags.map((tag) => (
             <Chip
               key={tag}
@@ -53,7 +57,7 @@ const PostPreview = (props: BlogPost) => {
           ))}
         </Box>
       )}
-      <Typography fontWeight="bold" fontSize="1.125rem">
+      <Typography fontWeight="bold" variant="subtitle1" sx={{ mb: 0.5 }}>
         {props.title}
       </Typography>
       <Typography color="text.secondary" sx={{ mb: 'auto' }}>
@@ -62,10 +66,28 @@ const PostPreview = (props: BlogPost) => {
       {props.authors && (
         <AvatarGroup
           sx={{
-            mt: 1,
-            mb: 0.5,
+            mt: 2,
+            mb: 1,
             alignSelf: 'flex-start',
-            '& > div': { width: '28px', height: '28px', border: 2, borderColor: '#fff' },
+            '& .MuiAvatar-circular': {
+              width: '28px',
+              height: '28px',
+              border: 3,
+              borderColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[800]
+                  : theme.palette.grey[200],
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[300],
+              color: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[100]
+                  : theme.palette.grey[800],
+              fontSize: (theme) => theme.typography.pxToRem(13),
+              fontWeight: 500,
+            },
           }}
         >
           {props.authors.map((author) => (
@@ -79,10 +101,9 @@ const PostPreview = (props: BlogPost) => {
       )}
       <Box
         sx={{
-          display: 'flex',
+          display: { sm: 'block', md: 'flex' },
           justifyContent: 'space-between',
-          alignItems: 'center',
-          gap: 1,
+          alignItems: 'end',
         }}
       >
         <Box>
@@ -93,20 +114,31 @@ const PostPreview = (props: BlogPost) => {
             </Typography>
           )}
           {props.date && (
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="caption" fontWeight="400" color="text.secondary">
               {new Date(props.date).toDateString()}
             </Typography>
           )}
         </Box>
-        <Link
+        <Button
+          component="a"
           href={`/blog/${props.slug}`}
-          color="primary"
-          fontWeight="bold"
-          sx={{ display: 'inline-flex', alignItems: 'center', flexShrink: 0 }}
+          target="_blank"
+          rel="noopener nofollow"
+          endIcon={<KeyboardArrowRightRounded fontSize="small" />}
+          sx={{
+            p: { xs: 0, sm: 0.5 },
+            mt: { xs: 1, sm: 0 },
+            fontWeight: 700,
+            fontSize: (theme) => theme.typography.pxToRem(14),
+            color: (theme) =>
+              theme.palette.mode === 'dark'
+                ? theme.palette.primary[300]
+                : theme.palette.primary[600],
+            '& svg': { ml: -0.5, mt: 0.1 },
+          }}
         >
           Read more
-          <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '2px' }} />
-        </Link>
+        </Button>
       </Box>
     </React.Fragment>
   );
@@ -162,11 +194,11 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             color="primary.600"
             fontWeight="bold"
             textAlign="center"
-            sx={{ mb: 1 }}
+            sx={{ mb: 0.5 }}
           >
             Blog
           </Typography>
-          <Typography component="h1" variant="h2" textAlign="center" sx={{ mb: 4 }}>
+          <Typography component="h1" variant="h2" textAlign="center" sx={{ mb: { xs: 4, md: 10 } }}>
             The <GradientText>latest</GradientText> about MUI
           </Typography>
           <Box
@@ -177,24 +209,15 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             }}
           >
             {[firstPost, secondPost].map((post) => (
-              <Box
+              <Paper
+                component={Link}
                 key={post.slug}
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'initial',
-                  p: 2,
-                  border: 1,
-                  borderRadius: 1,
-                  borderColor: (theme) =>
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[700]
-                      : theme.palette.grey[200],
-                  background: (theme) =>
-                    theme.palette.mode === 'dark'
-                      ? `linear-gradient(180deg, ${theme.palette.primaryDark[900]} 0%, #001E3C 100%)`
-                      : '#fff',
-                }}
+                href="/blog/"
+                target="_blank"
+                rel="noreferrer noopener"
+                noLinkStyle
+                variant="outlined"
+                sx={{ p: 2, display: 'flex', flexDirection: 'column', alignItems: 'initial' }}
               >
                 {post.image && (
                   <Box
@@ -210,67 +233,88 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                   />
                 )}
                 <PostPreview {...post} />
-              </Box>
+              </Paper>
             ))}
           </Box>
-          <Box
-            sx={{
-              mt: 4,
-              display: 'grid',
-              gridTemplateColumns: { md: '1fr 380px' },
-              columnGap: 7,
-            }}
-          >
-            <Typography variant="h2" sx={{ mb: 2 }}>
-              All posts
-            </Typography>
-            <Box sx={{ gridRow: 'span 2' }}>
-              <Paper variant="outlined" sx={{ p: 2 }}>
-                <Typography color="text.secondary" fontWeight="500" sx={{ mb: 2 }}>
-                  Filter by tags
-                </Typography>
-                <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                  {TAGS.map((tag) => (
-                    <Chip
-                      key={tag}
-                      variant={selectedTags[tag] ? 'filled' : 'outlined'}
-                      label={tag}
-                      onClick={() =>
-                        router.push(
-                          {
-                            query: {
-                              ...router.query,
-                              tags: (selectedTags[tag] ? removeTag(tag) : appendTag(tag)).join(','),
-                            },
+        </Section>
+        <Container
+          sx={{
+            mt: 2,
+            display: 'grid',
+            gridTemplateColumns: { md: '1fr 380px' },
+            columnGap: 8,
+          }}
+        >
+          <Typography variant="h5" fontWeight="700" sx={{ mb: { xs: 1, sm: 2 } }}>
+            All posts
+          </Typography>
+          <Box sx={{ gridRow: 'span 2' }}>
+            <Box
+              sx={{
+                position: 'sticky',
+                top: 100,
+                alignSelf: 'start',
+                mb: { xs: 0, sm: 8 },
+                p: 2,
+                borderRadius: 1,
+                border: '1px solid',
+                background: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.primaryDark[700], 0.2)
+                    : 'rgba(255, 255, 255, 0.2)',
+                borderColor: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[200],
+              }}
+            >
+              <Typography color="text.primary" fontWeight="500" sx={{ mb: 2 }}>
+                Filter by tags
+              </Typography>
+              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                {TAGS.map((tag) => (
+                  <Chip
+                    key={tag}
+                    variant={selectedTags[tag] ? 'filled' : 'outlined'}
+                    label={tag}
+                    size="small"
+                    sx={{ py: 1.2 }}
+                    onClick={() =>
+                      router.push(
+                        {
+                          query: {
+                            ...router.query,
+                            tags: (selectedTags[tag] ? removeTag(tag) : appendTag(tag)).join(','),
                           },
-                          undefined,
-                          { shallow: true },
-                        )
-                      }
-                    />
-                  ))}
-                </Box>
-              </Paper>
-            </Box>
-            <Box>
-              {otherPosts
-                .filter(
-                  (post) =>
-                    !Object.keys(selectedTags).length ||
-                    (post.tags || []).some((tag) => Object.keys(selectedTags).includes(tag)),
-                )
-                .map((post, index) => (
-                  <React.Fragment key={post.slug}>
-                    <Box sx={{ py: 2, display: 'flex', flexDirection: 'column' }}>
-                      <PostPreview {...post} />
-                    </Box>
-                    {index !== otherPosts.length - 1 && <Divider />}
-                  </React.Fragment>
+                        },
+                        undefined,
+                        { shallow: true },
+                      )
+                    }
+                  />
                 ))}
+              </Box>
             </Box>
           </Box>
-        </Section>
+          <Box>
+            {otherPosts
+              .filter(
+                (post) =>
+                  !Object.keys(selectedTags).length ||
+                  (post.tags || []).some((tag) => Object.keys(selectedTags).includes(tag)),
+              )
+              .map((post, index) => (
+                <React.Fragment key={post.slug}>
+                  <Box sx={{ py: 3, display: 'flex', flexDirection: 'column' }}>
+                    <PostPreview {...post} />
+                  </Box>
+                  {index !== otherPosts.length - 1 && <Divider />}
+                </React.Fragment>
+              ))}
+          </Box>
+        </Container>
       </main>
+      <HeroEnd />
       <Divider />
       <AppFooter />
     </BrandingProvider>
