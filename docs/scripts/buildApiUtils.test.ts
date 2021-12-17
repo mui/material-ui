@@ -1,31 +1,37 @@
 import { expect } from 'chai';
-import { getComponentUrl, getApiUrl, findComponentDemos, getMuiName } from './buildApiUtils';
+import { getPathInfo, getPathInfoNew, findComponentDemos, getMuiName } from './buildApiUtils';
 
 describe('buildApiUtils', () => {
-  it('getProductUrl correctly', () => {
-    expect(
-      getComponentUrl(
-        `/Users/siriwatknp/Personal-Repos/material-ui/docs/products/material/components/menus/menus.md`,
-      ),
-    ).to.equal(`/material/components/menus`);
-    expect(
-      getComponentUrl(
-        `/Users/siriwatknp/Personal-Repos/material-ui/docs/products/base/components/button-unstyled/button-unstyled.md`,
-      ),
-    ).to.equal(`/base/components/button-unstyled`);
+  describe('getPathInfo', () => {
+    it('return correct demo url', () => {
+      const info = getPathInfo(
+        `/Users/siriwatknp/Personal-Repos/material-ui/docs/src/pages/components/menus/menus.md`,
+      );
+      expect(info.demoUrl).to.equal(`/components/menus`);
+    });
+
+    it('return correct api url', () => {
+      const info = getPathInfo(
+        `/Users/siriwatknp/Personal-Repos/material-ui/packages/mui-material/src/Switch/Switch.js`,
+      );
+      expect(info.apiUrl).to.equal(`/api/switch`);
+    });
   });
 
-  it('getApiUrl correctly', () => {
-    expect(
-      getApiUrl(
-        `/Users/siriwatknp/Personal-Repos/material-ui/packages/mui-material/src/Switch/Switch.js`,
-      ),
-    ).to.equal(`/material/api/switch`);
-    expect(
-      getApiUrl(
+  describe('getPathInfo [product scope structure]', () => {
+    it('return correct demo url', () => {
+      const info = getPathInfoNew(
+        `/Users/siriwatknp/Personal-Repos/material-ui/docs/products/material/components/menus/menus.md`,
+      );
+      expect(info.demoUrl).to.equal(`/material/components/menus`);
+    });
+
+    it('return correct api url', () => {
+      const info = getPathInfoNew(
         `/Users/siriwatknp/Personal-Repos/material-ui/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx`,
-      ),
-    ).to.equal(`/base/api/button-unstyled`);
+      );
+      expect(info.apiUrl).to.equal(`/base/api/button-unstyled`);
+    });
   });
 
   it('findComponentDemos return matched component', () => {

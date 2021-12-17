@@ -26,14 +26,8 @@ import generatePropDescription from 'docs/src/modules/utils/generatePropDescript
 import parseStyles, { Styles } from 'docs/src/modules/utils/parseStyles';
 import generateUtilityClass from '@mui/base/generateUtilityClass';
 import * as ttp from 'typescript-to-proptypes';
-import { getLineFeed } from './helpers';
-import {
-  findComponentDemos,
-  getApiUrl,
-  getComponentUrl,
-  getMuiName,
-  getProductName,
-} from './buildApiUtils';
+import { getLineFeed, getUnstyledFilename } from './helpers';
+import { findComponentDemos, getMuiName, getPathInfo } from './buildApiUtils';
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
@@ -54,11 +48,6 @@ interface ReactApi extends ReactDocgenApi {
    * @example 'Accordion'
    */
   name: string;
-  /**
-   * The product of this component.
-   * @example 'material'
-   */
-  product: string;
   description: string;
   spread: boolean | undefined;
   /**
@@ -563,16 +552,39 @@ async function removeOutdatedApiDocsTranslations(components: readonly ReactApi[]
 const SETTINGS = [
   {
     input: {
-      libDirectory: path.join(process.cwd(), 'packages/mui-material/src'),
-      pageDirectory: path.join(process.cwd(), 'docs/pages/material'),
-      markdownDirectory: path.join(process.cwd(), 'docs/products/material'),
+      libDirectory: [
+        path.join(process.cwd(), 'packages/mui-base/src'),
+        path.join(process.cwd(), 'packages/mui-material/src'),
+        path.join(process.cwd(), 'packages/mui-lab/src'),
+      ],
+      pageDirectory: path.join(process.cwd(), 'docs/pages'),
+      markdownDirectory: path.join(process.cwd(), 'docs/src/pages'),
     },
     output: {
-      pagesDirectory: path.join(process.cwd(), 'docs/pages/material/api-docs'),
+      pagesDirectory: path.join(process.cwd(), 'docs/pages/api-docs'),
       apiTranslationsDirectory: path.join(process.cwd(), 'docs/translations/api-docs'),
-      apiManifestPath: path.join(process.cwd(), 'docs/products/material/pagesApi.js'),
+      apiManifestPath: path.join(process.cwd(), 'docs/src/pagesApi.js'),
     },
+    getPathInfo,
   },
+  // For new structure:
+  // {
+  //   input: {
+  //     libDirectory: [
+  //       path.join(process.cwd(), 'packages/mui-base/src'),
+  //       path.join(process.cwd(), 'packages/mui-material/src'),
+  //       path.join(process.cwd(), 'packages/mui-lab/src'),
+  //     ],
+  //     pageDirectory: path.join(process.cwd(), 'docs/pages/material'),
+  //     markdownDirectory: path.join(process.cwd(), 'docs/products'),
+  //   },
+  //   output: {
+  //     pagesDirectory: path.join(process.cwd(), 'docs/pages/material/api-docs'),
+  //     apiTranslationsDirectory: path.join(process.cwd(), 'docs/translations/api-docs'),
+  //     apiManifestPath: path.join(process.cwd(), 'docs/products/material/pagesApi.js'),
+  //   },
+  //   getPathInfo,
+  // },
 ];
 
 async function run(argv: { grep?: string }) {
@@ -582,7 +594,7 @@ async function run(argv: { grep?: string }) {
       /**
        * @type {string[]}
        */
-      const componentDirectories = [setting.input.libDirectory];
+      const componentDirectories = setting.input.libDirectory;
       const apiPagesManifestPath = setting.output.apiManifestPath;
       const pagesDirectory = setting.output.pagesDirectory;
       const apiTranslationsDirectory = setting.output.apiTranslationsDirectory;
@@ -605,7 +617,7 @@ async function run(argv: { grep?: string }) {
           const markdownSource = readFileSync(markdown.filename, 'utf8');
           return {
             ...markdown,
-            pathname: getComponentUrl(markdown.filename),
+            pathname: setting.getPathInfo(markdown.filename).demoUrl,
             components: getHeaders(markdownSource).components,
           };
         })
@@ -649,6 +661,7 @@ async function run(argv: { grep?: string }) {
       const componentBuilds = components.map(async (component) => {
         try {
           const { filename } = component;
+          const pathInfo = setting.getPathInfo(filename);
           const { shouldSkip, name, spread, EOL, inheritedComponent } = parseFile(filename);
 
           if (shouldSkip) {
@@ -662,6 +675,44 @@ async function run(argv: { grep?: string }) {
             { filename },
           );
 
+          // === Handle unstyled component ===
+          const unstyledFileName = getUnstyledFilename(filename);
+          let unstyledSrc;
+
+          // Try to get data for the unstyled component
+          try {
+            unstyledSrc = readFileSync(unstyledFileName, 'utf8');
+          } catch (err) {
+            // Unstyled component does not exist
+          }
+
+          if (unstyledSrc) {
+            const unstyledReactAPI = docgenParse(
+              unstyledSrc,
+              null,
+              defaultHandlers.concat(muiDefaultPropsHandler),
+              {
+                filename: unstyledFileName,
+              },
+            );
+
+            Object.keys(unstyledReactAPI.props).forEach((prop) => {
+              if (
+                unstyledReactAPI.props[prop].defaultValue &&
+                reactApi.props &&
+                (!reactApi.props[prop] || !reactApi.props[prop].defaultValue)
+              ) {
+                if (reactApi.props[prop]) {
+                  reactApi.props[prop].defaultValue = unstyledReactAPI.props[prop].defaultValue;
+                  reactApi.props[prop].jsdocDefaultValue =
+                    unstyledReactAPI.props[prop].jsdocDefaultValue;
+                } else {
+                  reactApi.props[prop] = unstyledReactAPI.props[prop];
+                }
+              }
+            });
+          } // ================================
+
           // Ignore what we might have generated in `annotateComponentDefinition`
           const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
           if (annotatedDescriptionMatch !== null) {
@@ -671,8 +722,7 @@ async function run(argv: { grep?: string }) {
           }
           reactApi.filename = filename;
           reactApi.name = name;
-          reactApi.product = getProductName(filename);
-          reactApi.apiUrl = getApiUrl(filename);
+          reactApi.apiUrl = pathInfo.apiUrl;
           reactApi.EOL = EOL;
           reactApi.demos = findComponentDemos(name, pagesMarkdown);
           if (reactApi.demos.length === 0) {
@@ -695,7 +745,7 @@ async function run(argv: { grep?: string }) {
               pathname:
                 inheritedComponentName === 'Transition'
                   ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-                  : `/${reactApi.product}/api/${kebabCase(inheritedComponentName)}/`,
+                  : `${pathInfo.productUrlPrefix}/api/${kebabCase(inheritedComponentName)}/`,
             };
           } else {
             reactApi.inheritance = null;
