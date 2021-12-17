@@ -95,7 +95,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const {
     axisProps,
     getRootProps,
-    getTrackProps,
     getHiddenInputProps,
     open,
     active,
@@ -150,7 +149,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     >
       <Rail {...railProps} className={clsx(classes.rail, railProps.className)} />
       <Track
-        {...getTrackProps()}
         {...trackProps}
         className={clsx(classes.track, trackProps.className)}
         style={{ trackStyle, ...trackProps.style }}

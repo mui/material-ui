@@ -42,7 +42,7 @@ interface WithClassName {
 
 interface WithCustomProp {
   fooBar: string;
-  role: string;
+  lang: string;
 }
 
 interface WithOwnerState {
@@ -75,14 +75,14 @@ function testPropForwarding(
 
   it('forwards custom props to the root element if a component is provided', () => {
     const CustomRoot = React.forwardRef(
-      ({ fooBar, role }: WithCustomProp, ref: React.ForwardedRef<any>) => {
+      ({ fooBar, lang }: WithCustomProp, ref: React.ForwardedRef<any>) => {
         // @ts-ignore
-        return <Element ref={ref} data-foobar={fooBar} role={role} />;
+        return <Element ref={ref} data-foobar={fooBar} lang={lang} />;
       },
     );
 
     const otherProps = {
-      role: 'button',
+      lang: 'fr',
       fooBar: randomStringValue(),
     };
 
@@ -90,13 +90,13 @@ function testPropForwarding(
       React.cloneElement(element, { components: { Root: CustomRoot }, ...otherProps }),
     );
 
-    expect(container.firstChild).to.have.attribute('role', otherProps.role.toString());
+    expect(container.firstChild).to.have.attribute('lang', otherProps.lang);
     expect(container.firstChild).to.have.attribute('data-foobar', otherProps.fooBar);
   });
 
   it('does forward standard props to the root element if an intrinsic element is provided', () => {
     const otherProps = {
-      role: 'button',
+      lang: 'fr',
       'data-foobar': randomStringValue(),
     };
 
@@ -104,7 +104,7 @@ function testPropForwarding(
       React.cloneElement(element, { components: { Root: Element }, ...otherProps }),
     );
 
-    expect(container.firstChild).to.have.attribute('role', otherProps.role);
+    expect(container.firstChild).to.have.attribute('lang', otherProps.lang);
     expect(container.firstChild).to.have.attribute('data-foobar', otherProps['data-foobar']);
   });
 }
