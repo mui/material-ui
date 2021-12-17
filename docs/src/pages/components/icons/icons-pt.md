@@ -50,14 +50,14 @@ Importe ícones usando uma destas duas opções:
 - Opção 1:
 
   ```jsx
-  import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-  import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
+  import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+  import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
   ```
 
 - Opção 2:
 
   ```jsx
-  import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+  import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
 O mais seguro para o tamanho do pacote é a opção 1, mas alguns desenvolvedores preferem a opção 2. Certifique-se de seguir o guia [minimizando o tamanho do pacote](/guides/minimizing-bundle-size/#option-2) antes de usar a segunda abordagem.
@@ -79,7 +79,7 @@ Cada ícone Material também tem um "tema": Filled (padrão), Outlined, Rounded,
 Para fins de teste, cada ícone exposto do `@material-ui/icons` tem um atributo `data-testid` com o nome do ícone. Por exemplo:
 
 ```jsx
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@mui/icons-material/Delete';
 ```
 
 tem o seguinte atributo assim que montado:
