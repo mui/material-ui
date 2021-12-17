@@ -79,12 +79,6 @@ via [OpenCollective](https://opencollective.com/mui)
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="topaussiecasinos.com" href="https://topaussiecasinos.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/aussiecasinohex/923df37/logo/192.png" alt="Aussie Gambling Guide" loading="lazy" /></a>
 </p>
 
-Direct
-
-<p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="elevator" href="https://www.elevatormag.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://mui.com/static/sponsors/elevator.png" alt="elevator" title="The dopest new hip hop, upcoming artists, music news, culture, and style" height="57" width="191" loading="lazy"></a>
-</p>
-
 Gold Sponsors are those who have pledged \$500/month or more to MUI.
 
 ### There is more!

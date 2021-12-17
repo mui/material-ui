@@ -96,15 +96,15 @@ githubLabel: 'component: Avatar'
         'material',
       ),
     ).to.deep.equal({
-      directory: 'material-ui/docs/products/material/getting-started/installation',
-      path: 'material-ui/docs/products/material/getting-started/installation/installation.md',
+      directory: 'material-ui/docs/data/material/getting-started/installation',
+      path: 'material-ui/docs/data/material/getting-started/installation/installation.md',
     });
 
     expect(
       getNewDataLocation('material-ui/docs/src/pages/system/advanced/advanced.md', 'system'),
     ).to.deep.equal({
-      directory: 'material-ui/docs/products/system/advanced',
-      path: 'material-ui/docs/products/system/advanced/advanced.md',
+      directory: 'material-ui/docs/data/system/advanced',
+      path: 'material-ui/docs/data/system/advanced/advanced.md',
     });
   });
 

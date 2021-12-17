@@ -54,8 +54,8 @@ export default pages
   `;
 
   // create new folder and add prettified file.
-  fs.mkdirSync(`${workspaceRoot}/docs/products/${product}`, { recursive: true });
-  writePrettifiedFile(`${workspaceRoot}/docs/products/${product}/pages.ts`, source);
+  fs.mkdirSync(`${workspaceRoot}/docs/data/${product}`, { recursive: true });
+  writePrettifiedFile(`${workspaceRoot}/docs/data/${product}/pages.ts`, source);
 };
 
 const appendSource = (target: string, template: string, source: string) => {
@@ -74,7 +74,11 @@ const updateAppToUseProductPagesData = (product: string) => {
   appSource = appendSource(
     appSource,
     `import pages from 'docs/src/pages';`,
+<<<<<<< HEAD
     `import ${product}Pages from 'docs/products/${product}/pages';`,
+=======
+    `import ${product}Pages from 'docs/data/${product}/pages';`,
+>>>>>>> ff92a78e5f542189a8071972b507e89308da2dd5
   );
   appSource = appendSource(
     appSource,
