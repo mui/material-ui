@@ -612,12 +612,6 @@ export default function useSlider(props: UseSliderProps) {
 
   const trackOffset = valueToPercent(range ? values[0] : min, min, max);
   const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
-  const trackStyle = {
-    // @ts-ignore
-    ...axisProps[axis].offset(trackOffset),
-    // @ts-ignore
-    ...axisProps[axis].leap(trackLeap),
-  };
 
   const getRootProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
     const ownEventHandlers = {
@@ -631,12 +625,6 @@ export default function useSlider(props: UseSliderProps) {
     return {
       ref: handleRef,
       ...mergedEventHandlers,
-    };
-  };
-
-  const getTrackProps = () => {
-    return {
-      style: { ...trackStyle, ...componentsProps.track?.style },
     };
   };
 
@@ -679,7 +667,6 @@ export default function useSlider(props: UseSliderProps) {
     axis,
     axisProps,
     getRootProps,
-    getTrackProps,
     getHiddenInputProps,
     dragging,
     marks,
@@ -688,7 +675,9 @@ export default function useSlider(props: UseSliderProps) {
     handleMouseOver,
     handleMouseLeave,
     focusVisible,
-    range,
     open,
+    range,
+    trackOffset,
+    trackLeap,
   };
 }

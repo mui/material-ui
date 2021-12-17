@@ -107,6 +107,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     dragging,
     marks,
     values,
+    trackOffset,
+    trackLeap,
   } = useSlider({ ...ownerState, ref });
 
   ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
@@ -120,9 +122,13 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   const Track = components.Track ?? 'span';
   const trackProps = appendOwnerState(Track, componentsProps.track, ownerState);
+  const trackStyle = {
+    ...axisProps[axis].offset(trackOffset),
+    ...axisProps[axis].leap(trackLeap),
+  };
 
   const Thumb = components.Thumb ?? 'span';
-  const thumbProps = componentsProps.thumb || {};
+  const thumbProps = appendOwnerState(Thumb, componentsProps.thumb, ownerState);
 
   const ValueLabel = components.ValueLabel ?? SliderValueLabelUnstyled;
   const valueLabelProps = appendOwnerState(ValueLabel, componentsProps.valueLabel, ownerState);
@@ -147,7 +153,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         {...getTrackProps()}
         {...trackProps}
         className={clsx(classes.track, trackProps.className)}
-        style={{ ...getTrackProps().style, ...trackProps.style }}
+        style={{ trackStyle, ...trackProps.style }}
       />
       {marks.map((mark, index) => {
         const percent = valueToPercent(mark.value, min, max);
