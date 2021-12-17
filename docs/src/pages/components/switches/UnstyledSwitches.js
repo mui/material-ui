@@ -8,6 +8,7 @@ const blue = {
 
 const grey = {
   400: '#BFC7CF',
+  500: '#AAB4BE',
 };
 
 const Root = styled('span')`

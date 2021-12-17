@@ -6,6 +6,7 @@ import { useSwitch } from '@mui/base/SwitchUnstyled';
 const blue = {
   700: '#0059B2',
 };
+
 const grey = {
   400: '#BFC7CF',
   800: '#2F3A45',

@@ -9,6 +9,7 @@ const blue = {
 
 const grey = {
   400: '#BFC7CF',
+  500: '#AAB4BE',
 };
 
 const BasicSwitchRoot = styled('span')`

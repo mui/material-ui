@@ -22,25 +22,48 @@ const rows = [
   createData('Oreo', 437, 18.0),
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
-const Root = styled('div')`
+const blue = {
+  200: '#A5D8FF',
+  400: '#3399FF',
+};
+
+const grey = {
+  50: '#F3F6F9',
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7',
+  400: '#B2BAC2',
+  500: '#A0AAB4',
+  600: '#6F7E8C',
+  700: '#3E5060',
+  800: '#2D3843',
+  900: '#1A2027',
+};
+
+const Root = styled('div')(
+  ({ theme }) => `
   table {
-    font-family: arial, sans-serif;
+    font-family: IBM Plex Sans, sans-serif;
+    font-size: 0.875rem;
     border-collapse: collapse;
     width: 100%;
   }
 
   td,
   th {
-    border: 1px solid #ddd;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     text-align: left;
-    padding: 8px;
+    padding: 6px;
   }
 
   th {
-    background-color: #ddd;
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
   }
-`;
-const CustomTablePagination = styled(TablePaginationUnstyled)`
+  `,
+);
+
+const CustomTablePagination = styled(TablePaginationUnstyled)(
+  ({ theme }) => `
   & .MuiTablePaginationUnstyled-toolbar {
     display: block;
     @media (min-width: 768px) {
@@ -49,7 +72,38 @@ const CustomTablePagination = styled(TablePaginationUnstyled)`
       align-items: center;
     }
   }
-`;
+  & .MuiTablePaginationUnstyled-select {
+    padding: 2px;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+    border-radius: 50px;
+    background-color: transparent;
+    &:hover {
+      background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    }
+    &:focus {
+      outline: 1px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+    }
+  }
+  & .MuiTablePaginationUnstyled-actions {
+    padding: 2px;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+    border-radius: 50px;
+    text-align: center;
+  }
+  & .MuiTablePaginationUnstyled-actions > button {
+    margin: 0 8px;
+    border: transparent;
+    border-radius: 2px;
+    background-color: transparent;
+    &:hover {
+      background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    }
+    &:focus {
+      outline: 1px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+    }
+  }
+  `,
+);
 
 export default function UnstyledTable() {
   const [page, setPage] = React.useState(0);
@@ -75,7 +129,7 @@ export default function UnstyledTable() {
 
   return (
     <Root>
-      <table style={{ minWidth: 200 }} aria-label="custom pagination table">
+      <table style={{ minWidth: 250 }} aria-label="custom pagination table">
         <thead>
           <tr>
             <th>Dessert</th>
@@ -90,14 +144,15 @@ export default function UnstyledTable() {
           ).map((row) => (
             <tr key={row.name}>
               <td>{row.name}</td>
-              <td style={{ width: 160 }} align="right">
+              <td style={{ width: 120 }} align="right">
                 {row.calories}
               </td>
-              <td style={{ width: 160 }} align="right">
+              <td style={{ width: 120 }} align="right">
                 {row.fat}
               </td>
             </tr>
           ))}
+
           {emptyRows > 0 && (
             <tr style={{ height: 41 * emptyRows }}>
               <td colSpan={3} />
