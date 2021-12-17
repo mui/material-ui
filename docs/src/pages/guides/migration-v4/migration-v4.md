@@ -235,6 +235,52 @@ Support for non-ref-forwarding class components in the `component` prop or as im
 Otherwise check out the [Caveat with refs](/guides/composition/#caveat-with-refs) section in the composition guide to find out how to migrate.
 This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
+### Ref type specificity
+
+For some components, you may get a type error when passing `ref`. In order to avoid the error, you should use a specific element type. For example, `Card` expects the type of `ref` to be `HTMLDivElement`, and `ListItem` expects its `ref` type to be `HTMLLIElement`.
+
+Here is an example:
+
+```diff
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import ListItem from '@mui/material/ListItem';
+
+export default function SpecificRefType() {
+- const cardRef = React.useRef<HTMLElement>(null);
++ const cardRef = React.useRef<HTMLDivElement>(null);
+
+- const listItemRef = React.useRef<HTMLElement>(null);
++ const listItemRef = React.useRef<HTMLLIElement>(null);
+  return (
+    <div>
+      <Card ref={cardRef}></Card>
+      <ListItem ref={listItemRef}></ListItem>
+    </div>
+  );
+}
+```
+
+The list of components that expect a specific element type is as follows:
+
+##### `@mui/material`
+
+- [Accordion](/components/accordion) - `HTMLDivElement`
+- [Alert](/components/alert) - `HTMLDivElement`
+- [Avatar](/components/avatar) - `HTMLDivElement`
+- [ButtonGroup](/components/button-group) - `HTMLDivElement`
+- [Card](/components/card) - `HTMLDivElement`
+- [Dialog](/components/dialog) - `HTMLDivElement`
+- [ImageList](/components/image-list) - `HTMLUListElement`
+- [List](/components/list) - `HTMLUListElement`
+- [Tab](/components/tabs) - `HTMLDivElement`
+- [Tabs](/components/tabs) - `HTMLDivElement`
+- [ToggleButton](/components/toggle-button) - `HTMLButtonElement`
+
+##### `@mui/lab`
+
+- [Timeline](/components/timeline) - `HTMLUListElement`
+
 ### Style library
 
 The style library used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the **top of your component tree**.
