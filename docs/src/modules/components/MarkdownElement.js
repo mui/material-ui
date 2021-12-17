@@ -177,8 +177,8 @@ const Root = styled('div')(({ theme }) => ({
   '& td': {
     ...theme.typography.body2,
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 20,
-    color: theme.palette.text.primary,
+    padding: 16,
+    color: theme.palette.text.secondary,
   },
   '& td code': {
     lineHeight: 1.6,
@@ -189,7 +189,7 @@ const Root = styled('div')(({ theme }) => ({
     color: theme.palette.text.primary,
     whiteSpace: 'pre',
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 20,
+    padding: 16,
   },
   '& blockquote': {
     borderRadius: theme.shape.borderRadius,
@@ -203,7 +203,7 @@ const Root = styled('div')(({ theme }) => ({
     backgroundColor:
       theme.palette.mode === 'dark'
         ? // Support Material design theme
-          alpha(theme.palette.warning[900], 0.3) ?? alpha(theme.palette.warning.dark, 0.09)
+          alpha(theme.palette.warning[900], 0.2) ?? alpha(theme.palette.warning.dark, 0.09)
         : theme.palette.warning[50] ?? theme.palette.warning.light,
     padding: '10px 20px',
     margin: '20px 0',
