@@ -1987,7 +1987,7 @@ export const nbNO: Localization = {
   `${from}–${to} av ${count !== -1 ? count : `mer enn ${to}`}`,
     }},
     MuiRating: { defaultProps: {
-      getLabelText: value => `${value} Star${value !== 1 ? 's' : ''}`,
+      getLabelText: value => `${value} Stjerne${value !== 1 ? 'r' : ''}`,
       emptyLabelText: 'Tom',
     }},
     MuiAutocomplete: { defaultProps: {
