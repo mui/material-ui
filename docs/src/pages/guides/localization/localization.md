@@ -63,6 +63,7 @@ const theme = createTheme(
 | Khmer                   | kh-KH               | `khKH`      |
 | Kazakh                  | kz-KZ               | `kzKZ`      |
 | Korean                  | ko-KR               | `koKR`      |
+| Norwegian (bokmål)      | nb-NO               | `nbNO`      |
 | Persian                 | fa-IR               | `faIR`      |
 | Polish                  | pl-PL               | `plPL`      |
 | Portuguese              | pt-PT               | `ptPT`      |
