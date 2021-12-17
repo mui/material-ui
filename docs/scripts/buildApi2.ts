@@ -675,241 +675,246 @@ const POST_MIGRATION_SETTINGS: Settings[] = [
   },
 ];
 
+const ACTIVE_SETTINGS = POST_MIGRATION_SETTINGS;
+
 async function run(argv: { grep?: string }) {
-  await Promise.allSettled(
-    POST_MIGRATION_SETTINGS.map(async (setting) => {
-      const workspaceRoot = path.resolve(__dirname, '../../');
-      /**
-       * @type {string[]}
-       */
-      const componentDirectories = setting.input.libDirectory;
-      const apiPagesManifestPath = setting.output.apiManifestPath;
-      const pagesDirectory = setting.output.pagesDirectory;
-      const apiTranslationsDirectory = setting.output.apiTranslationsDirectory;
-      const grep = argv.grep == null ? null : new RegExp(argv.grep);
+  const grep = argv.grep == null ? null : new RegExp(argv.grep);
+  let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
+  await ACTIVE_SETTINGS.reduce(async (resolvedPromise, setting) => {
+    const workspaceRoot = path.resolve(__dirname, '../../');
+    /**
+     * @type {string[]}
+     */
+    const componentDirectories = setting.input.libDirectory;
+    const apiPagesManifestPath = setting.output.apiManifestPath;
+    const pagesDirectory = setting.output.pagesDirectory;
+    const apiTranslationsDirectory = setting.output.apiTranslationsDirectory;
 
-      mkdirSync(pagesDirectory, { mode: 0o777, recursive: true });
-      const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];
-      if (manifestDir) {
-        mkdirSync(manifestDir, { recursive: true });
-      }
+    mkdirSync(pagesDirectory, { mode: 0o777, recursive: true });
+    const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];
+    if (manifestDir) {
+      mkdirSync(manifestDir, { recursive: true });
+    }
 
-      /**
-       * pageMarkdown: Array<{ components: string[]; filename: string; pathname: string }>
-       *
-       * e.g.:
-       * [{
-       *   pathname: '/components/accordion',
-       *   filename: '/Users/user/Projects/material-ui/docs/src/pages/components/badges/accordion-ja.md',
-       *   components: [ 'Accordion', 'AccordionActions', 'AccordionDetails', 'AccordionSummary' ]
-       * }, ...]
-       */
-      const pagesMarkdown = findPagesMarkdown(setting.input.markdownDirectory)
-        .map((markdown) => {
-          const markdownSource = readFileSync(markdown.filename, 'utf8');
-          return {
-            ...markdown,
-            pathname: setting.getPathInfo(markdown.filename).demoUrl,
-            components: getHeaders(markdownSource).components,
-          };
-        })
-        .filter((markdown) => markdown.components.length > 0);
+    /**
+     * pageMarkdown: Array<{ components: string[]; filename: string; pathname: string }>
+     *
+     * e.g.:
+     * [{
+     *   pathname: '/components/accordion',
+     *   filename: '/Users/user/Projects/material-ui/docs/src/pages/components/badges/accordion-ja.md',
+     *   components: [ 'Accordion', 'AccordionActions', 'AccordionDetails', 'AccordionSummary' ]
+     * }, ...]
+     */
+    const pagesMarkdown = findPagesMarkdown(setting.input.markdownDirectory)
+      .map((markdown) => {
+        const markdownSource = readFileSync(markdown.filename, 'utf8');
+        return {
+          ...markdown,
+          pathname: setting.getPathInfo(markdown.filename).demoUrl,
+          components: getHeaders(markdownSource).components,
+        };
+      })
+      .filter((markdown) => markdown.components.length > 0);
 
-      /**
-       * components: Array<{ filename: string }>
-       * e.g.
-       * [{ filename: '/Users/user/Projects/material-ui/packages/mui-material/src/Accordion/Accordion.js'}, ...]
-       */
-      const components = componentDirectories
-        .reduce((directories, componentDirectory) => {
-          return directories.concat(findComponents(componentDirectory));
-        }, [] as ReadonlyArray<{ filename: string }>)
-        .filter((component) => {
-          if (component.filename.includes('ThemeProvider')) {
-            return false;
-          }
-          if (grep === null) {
-            return true;
-          }
-          return grep.test(component.filename);
-        });
+    /**
+     * components: Array<{ filename: string }>
+     * e.g.
+     * [{ filename: '/Users/user/Projects/material-ui/packages/mui-material/src/Accordion/Accordion.js'}, ...]
+     */
+    const components = componentDirectories
+      .reduce((directories, componentDirectory) => {
+        return directories.concat(findComponents(componentDirectory));
+      }, [] as ReadonlyArray<{ filename: string }>)
+      .filter((component) => {
+        if (component.filename.includes('ThemeProvider')) {
+          return false;
+        }
+        if (grep === null) {
+          return true;
+        }
+        return grep.test(component.filename);
+      });
 
-      const tsconfig = ttp.loadConfig(path.resolve(workspaceRoot, './tsconfig.json'));
-      const program = ttp.createTSProgram(
-        components.map((component) => {
-          if (component.filename.endsWith('.tsx')) {
-            return component.filename;
-          }
-          if (component.filename.endsWith('.js')) {
-            return component.filename.replace(/\.js$/, '.d.ts');
-          }
-          throw new TypeError(
-            `Unexpected component filename '${component.filename}'. Expected either a .tsx or .js file.`,
-          );
-        }),
-        tsconfig,
-      );
+    const tsconfig = ttp.loadConfig(path.resolve(workspaceRoot, './tsconfig.json'));
+    const program = ttp.createTSProgram(
+      components.map((component) => {
+        if (component.filename.endsWith('.tsx')) {
+          return component.filename;
+        }
+        if (component.filename.endsWith('.js')) {
+          return component.filename.replace(/\.js$/, '.d.ts');
+        }
+        throw new TypeError(
+          `Unexpected component filename '${component.filename}'. Expected either a .tsx or .js file.`,
+        );
+      }),
+      tsconfig,
+    );
 
-      const componentBuilds = components.map(async (component) => {
+    const componentBuilds = components.map(async (component) => {
+      try {
+        const { filename } = component;
+        const pathInfo = setting.getPathInfo(filename);
+        const { shouldSkip, name, spread, EOL, inheritedComponent } = parseFile(filename);
+
+        if (shouldSkip) {
+          return null;
+        }
+
+        const reactApi: ReactApi = docgenParse(
+          readFileSync(filename, 'utf8'),
+          null,
+          defaultHandlers.concat(muiDefaultPropsHandler),
+          { filename },
+        );
+
+        // === Handle unstyled component ===
+        const unstyledFileName = getUnstyledFilename(filename);
+        let unstyledSrc;
+
+        // Try to get data for the unstyled component
         try {
-          const { filename } = component;
-          const pathInfo = setting.getPathInfo(filename);
-          const { shouldSkip, name, spread, EOL, inheritedComponent } = parseFile(filename);
+          unstyledSrc = readFileSync(unstyledFileName, 'utf8');
+        } catch (err) {
+          // Unstyled component does not exist
+        }
 
-          if (shouldSkip) {
-            return null;
-          }
-
-          const reactApi: ReactApi = docgenParse(
-            readFileSync(filename, 'utf8'),
+        if (unstyledSrc) {
+          const unstyledReactAPI = docgenParse(
+            unstyledSrc,
             null,
             defaultHandlers.concat(muiDefaultPropsHandler),
-            { filename },
+            {
+              filename: unstyledFileName,
+            },
           );
 
-          // === Handle unstyled component ===
-          const unstyledFileName = getUnstyledFilename(filename);
-          let unstyledSrc;
-
-          // Try to get data for the unstyled component
-          try {
-            unstyledSrc = readFileSync(unstyledFileName, 'utf8');
-          } catch (err) {
-            // Unstyled component does not exist
-          }
-
-          if (unstyledSrc) {
-            const unstyledReactAPI = docgenParse(
-              unstyledSrc,
-              null,
-              defaultHandlers.concat(muiDefaultPropsHandler),
-              {
-                filename: unstyledFileName,
-              },
-            );
-
-            Object.keys(unstyledReactAPI.props).forEach((prop) => {
-              if (
-                unstyledReactAPI.props[prop].defaultValue &&
-                reactApi.props &&
-                (!reactApi.props[prop] || !reactApi.props[prop].defaultValue)
-              ) {
-                if (reactApi.props[prop]) {
-                  reactApi.props[prop].defaultValue = unstyledReactAPI.props[prop].defaultValue;
-                  reactApi.props[prop].jsdocDefaultValue =
-                    unstyledReactAPI.props[prop].jsdocDefaultValue;
-                } else {
-                  reactApi.props[prop] = unstyledReactAPI.props[prop];
-                }
+          Object.keys(unstyledReactAPI.props).forEach((prop) => {
+            if (
+              unstyledReactAPI.props[prop].defaultValue &&
+              reactApi.props &&
+              (!reactApi.props[prop] || !reactApi.props[prop].defaultValue)
+            ) {
+              if (reactApi.props[prop]) {
+                reactApi.props[prop].defaultValue = unstyledReactAPI.props[prop].defaultValue;
+                reactApi.props[prop].jsdocDefaultValue =
+                  unstyledReactAPI.props[prop].jsdocDefaultValue;
+              } else {
+                reactApi.props[prop] = unstyledReactAPI.props[prop];
               }
-            });
-          } // ================================
-
-          // Ignore what we might have generated in `annotateComponentDefinition`
-          const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
-          if (annotatedDescriptionMatch !== null) {
-            reactApi.description = reactApi.description
-              .slice(0, annotatedDescriptionMatch.index)
-              .trim();
-          }
-          reactApi.filename = filename;
-          reactApi.name = name;
-          reactApi.apiUrl = pathInfo.apiUrl;
-          reactApi.EOL = EOL;
-          reactApi.demos = findComponentDemos(name, pagesMarkdown);
-          if (reactApi.demos.length === 0) {
-            throw new Error(
-              'Unable to find demos. \n' +
-                `Be sure to include \`components: ${reactApi.name}\` in the markdown pages where the \`${reactApi.name}\` component is relevant. ` +
-                'Every public component should have a demo. ',
-            );
-          }
-
-          const testInfo = await parseTest(filename);
-          // no Object.assign to visually check for collisions
-          reactApi.forwardsRefTo = testInfo.forwardsRefTo;
-          reactApi.spread = testInfo.spread ?? spread;
-
-          const inheritedComponentName = testInfo.inheritComponent || inheritedComponent;
-          if (inheritedComponentName) {
-            reactApi.inheritance = {
-              component: inheritedComponentName,
-              pathname:
-                inheritedComponentName === 'Transition'
-                  ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-                  : `${pathInfo.productUrlPrefix}/api/${kebabCase(inheritedComponentName)}/`,
-            };
-          } else {
-            reactApi.inheritance = null;
-          }
-
-          reactApi.styles = await parseStyles(reactApi, program);
-
-          if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
-            reactApi.styles.name = getMuiName(reactApi.name);
-          }
-          reactApi.styles.classes.forEach((key) => {
-            const globalClass = generateUtilityClass(
-              reactApi.styles.name || getMuiName(reactApi.name),
-              key,
-            );
-            reactApi.styles.globalClasses[key] = globalClass;
+            }
           });
+        } // ================================
 
-          attachPropsTable(reactApi);
-
-          attachTranslations(reactApi);
-
-          generateApiTranslations(apiTranslationsDirectory, reactApi);
-
-          generateApiPage(pagesDirectory, reactApi);
-
-          // eslint-disable-next-line no-console
-          console.log('Built API docs for', reactApi.name);
-
-          await annotateComponentDefinition(reactApi);
-
-          return reactApi;
-        } catch (error: any) {
-          error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
-          throw error;
+        // Ignore what we might have generated in `annotateComponentDefinition`
+        const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
+        if (annotatedDescriptionMatch !== null) {
+          reactApi.description = reactApi.description
+            .slice(0, annotatedDescriptionMatch.index)
+            .trim();
         }
+        reactApi.filename = filename;
+        reactApi.name = name;
+        reactApi.apiUrl = pathInfo.apiUrl;
+        reactApi.EOL = EOL;
+        reactApi.demos = findComponentDemos(name, pagesMarkdown);
+        if (reactApi.demos.length === 0) {
+          throw new Error(
+            'Unable to find demos. \n' +
+              `Be sure to include \`components: ${reactApi.name}\` in the markdown pages where the \`${reactApi.name}\` component is relevant. ` +
+              'Every public component should have a demo. ',
+          );
+        }
+
+        const testInfo = await parseTest(filename);
+        // no Object.assign to visually check for collisions
+        reactApi.forwardsRefTo = testInfo.forwardsRefTo;
+        reactApi.spread = testInfo.spread ?? spread;
+
+        const inheritedComponentName = testInfo.inheritComponent || inheritedComponent;
+        if (inheritedComponentName) {
+          reactApi.inheritance = {
+            component: inheritedComponentName,
+            pathname:
+              inheritedComponentName === 'Transition'
+                ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
+                : `${pathInfo.productUrlPrefix}/api/${kebabCase(inheritedComponentName)}/`,
+          };
+        } else {
+          reactApi.inheritance = null;
+        }
+
+        reactApi.styles = await parseStyles(reactApi, program);
+
+        if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
+          reactApi.styles.name = getMuiName(reactApi.name);
+        }
+        reactApi.styles.classes.forEach((key) => {
+          const globalClass = generateUtilityClass(
+            reactApi.styles.name || getMuiName(reactApi.name),
+            key,
+          );
+          reactApi.styles.globalClasses[key] = globalClass;
+        });
+
+        attachPropsTable(reactApi);
+
+        attachTranslations(reactApi);
+
+        generateApiTranslations(apiTranslationsDirectory, reactApi);
+
+        generateApiPage(pagesDirectory, reactApi);
+
+        // eslint-disable-next-line no-console
+        console.log('Built API docs for', reactApi.name);
+
+        await annotateComponentDefinition(reactApi);
+
+        return reactApi;
+      } catch (error: any) {
+        error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
+        throw error;
+      }
+    });
+
+    const builds = await Promise.allSettled(componentBuilds);
+
+    const fails = builds.filter(
+      (promise): promise is PromiseRejectedResult => promise.status === 'rejected',
+    );
+
+    fails.forEach((build) => {
+      console.error(build.reason);
+    });
+    if (fails.length > 0) {
+      process.exit(1);
+    }
+
+    allBuilds = [...allBuilds, ...builds];
+
+    const pages = findPages({ front: true }, setting.input.pageDirectory);
+    const apiPages = pages.find(({ pathname }) => pathname.indexOf('api') !== -1)?.children;
+    if (apiPages === undefined) {
+      throw new TypeError('Unable to find pages under /api');
+    }
+
+    const source = `module.exports = ${JSON.stringify(apiPages)}`;
+    writePrettifiedFile(apiPagesManifestPath, source);
+
+    await resolvedPromise;
+  }, Promise.resolve());
+
+  if (grep === null) {
+    const componentApis = allBuilds
+      .filter((build): build is PromiseFulfilledResult<ReactApi> => {
+        return build.status === 'fulfilled' && build.value !== null;
+      })
+      .map((build) => {
+        return build.value;
       });
-
-      const builds = await Promise.allSettled(componentBuilds);
-
-      const fails = builds.filter(
-        (promise): promise is PromiseRejectedResult => promise.status === 'rejected',
-      );
-
-      fails.forEach((build) => {
-        console.error(build.reason);
-      });
-      if (fails.length > 0) {
-        process.exit(1);
-      }
-
-      const pages = findPages({ front: true }, setting.input.pageDirectory);
-      const apiPages = pages.find(({ pathname }) => pathname.indexOf('api') !== -1)?.children;
-      if (apiPages === undefined) {
-        throw new TypeError('Unable to find pages under /api');
-      }
-
-      const source = `module.exports = ${JSON.stringify(apiPages)}`;
-      writePrettifiedFile(apiPagesManifestPath, source);
-
-      if (grep === null) {
-        const componentApis = builds
-          .filter((build): build is PromiseFulfilledResult<ReactApi> => {
-            return build.status === 'fulfilled' && build.value !== null;
-          })
-          .map((build) => {
-            return build.value;
-          });
-        await removeOutdatedApiDocsTranslations(componentApis);
-      }
-    }),
-  );
+    await removeOutdatedApiDocsTranslations(componentApis);
+  }
 }
 
 yargs

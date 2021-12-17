@@ -91,7 +91,7 @@ export function parseFromProgram(
 
   const checker = program.getTypeChecker();
   const sourceFile = program.getSourceFile(filePath);
-  const reactComponentName = filePath.match(/.*\/([^/.]+)/)?.[1];
+  const reactComponentName = filePath.match(/.*\/([^/]+)/)?.[1];
 
   const programNode = t.createProgram();
   const reactImports: string[] = [];
