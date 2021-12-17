@@ -27,7 +27,13 @@ import parseStyles, { Styles } from 'docs/src/modules/utils/parseStyles';
 import generateUtilityClass from '@mui/base/generateUtilityClass';
 import * as ttp from 'typescript-to-proptypes';
 import { getLineFeed, getUnstyledFilename } from './helpers';
-import { findComponentDemos, getMuiName, getPathInfo } from './buildApiUtils';
+import {
+  findComponentDemos,
+  getMuiName,
+  getGeneralPathInfo,
+  getMaterialPathInfo,
+  getBasePathInfo,
+} from './buildApiUtils';
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
@@ -536,7 +542,6 @@ async function removeOutdatedApiDocsTranslations(components: readonly ReactApi[]
     }),
   );
 
-  // outdatedComponentDirectories = currentComponentDirectories.difference(componentDirectories)
   const outdatedComponentDirectories = new Set(componentDirectories);
   currentComponentDirectories.forEach((componentDirectory) => {
     outdatedComponentDirectories.delete(componentDirectory);
@@ -549,7 +554,43 @@ async function removeOutdatedApiDocsTranslations(components: readonly ReactApi[]
   );
 }
 
-const SETTINGS = [
+interface Settings {
+  input: {
+    /**
+     * Component directories to be used to generate API
+     */
+    libDirectory: string[];
+    /**
+     * The directory to get api pathnames to generate pagesApi
+     */
+    pageDirectory: string;
+    /**
+     * The directory that contains markdown files to be used to find demos
+     * related to the processed component
+     */
+    markdownDirectory: string;
+  };
+  output: {
+    /**
+     * API page + json content output directory
+     */
+    pagesDirectory: string;
+    /**
+     * translations output directory
+     */
+    apiTranslationsDirectory: string;
+    /**
+     * The output path of `pagesApi` generated from `input.pageDirectory`
+     */
+    apiManifestPath: string;
+  };
+  getPathInfo: (filename: string) => { productUrlPrefix: string; apiUrl: string; demoUrl: string };
+}
+
+/**
+ * This is the refactored version of the current API building process, nothing's changed.
+ */
+const BEFORE_MIGRATION_SETTINGS: Settings[] = [
   {
     input: {
       libDirectory: [
@@ -565,31 +606,78 @@ const SETTINGS = [
       apiTranslationsDirectory: path.join(process.cwd(), 'docs/translations/api-docs'),
       apiManifestPath: path.join(process.cwd(), 'docs/src/pagesApi.js'),
     },
-    getPathInfo,
+    getPathInfo: getGeneralPathInfo,
   },
-  // For new structure:
-  // {
-  //   input: {
-  //     libDirectory: [
-  //       path.join(process.cwd(), 'packages/mui-base/src'),
-  //       path.join(process.cwd(), 'packages/mui-material/src'),
-  //       path.join(process.cwd(), 'packages/mui-lab/src'),
-  //     ],
-  //     pageDirectory: path.join(process.cwd(), 'docs/pages/material'),
-  //     markdownDirectory: path.join(process.cwd(), 'docs/products'),
-  //   },
-  //   output: {
-  //     pagesDirectory: path.join(process.cwd(), 'docs/pages/material/api-docs'),
-  //     apiTranslationsDirectory: path.join(process.cwd(), 'docs/translations/api-docs'),
-  //     apiManifestPath: path.join(process.cwd(), 'docs/products/material/pagesApi.js'),
-  //   },
-  //   getPathInfo,
-  // },
+];
+
+/**
+ * Once the preparation is done (as described in https://github.com/mui-org/material-ui/issues/30091), swithc to this settings.
+ * It will generate API for the current & `/material` paths, then set the redirect to link `/api/*` to `/material/api/*`
+ * At this point, `mui-base` content is still live in with `mui-material`.
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const MIGRATION_SETTINGS: Settings[] = [
+  ...BEFORE_MIGRATION_SETTINGS,
+  {
+    input: {
+      libDirectory: [
+        path.join(process.cwd(), 'packages/mui-base/src'),
+        path.join(process.cwd(), 'packages/mui-material/src'),
+        path.join(process.cwd(), 'packages/mui-lab/src'),
+      ],
+      pageDirectory: path.join(process.cwd(), 'docs/pages/material'),
+      markdownDirectory: path.join(process.cwd(), 'docs/products'),
+    },
+    output: {
+      pagesDirectory: path.join(process.cwd(), 'docs/pages/material/api-docs'),
+      apiTranslationsDirectory: path.join(process.cwd(), 'docs/translations/api-docs'),
+      apiManifestPath: path.join(process.cwd(), 'docs/products/material/pagesApi.js'),
+    },
+    getPathInfo: getMaterialPathInfo,
+  },
+];
+
+/**
+ * Once redirects are stable
+ * - Create `mui-base` content in `docs/pages/base/*` and switch to this settings.
+ * - Remove old content directories, eg. `docs/pages/components/*`, ...etc
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const POST_MIGRATION_SETTINGS: Settings[] = [
+  {
+    input: {
+      libDirectory: [
+        path.join(process.cwd(), 'packages/mui-material/src'),
+        path.join(process.cwd(), 'packages/mui-lab/src'),
+      ],
+      pageDirectory: path.join(process.cwd(), 'docs/pages/material'),
+      markdownDirectory: path.join(process.cwd(), 'docs/products'),
+    },
+    output: {
+      pagesDirectory: path.join(process.cwd(), 'docs/pages/material/api-docs'),
+      apiTranslationsDirectory: path.join(process.cwd(), 'docs/translations/api-docs'),
+      apiManifestPath: path.join(process.cwd(), 'docs/products/material/pagesApi.js'),
+    },
+    getPathInfo: getMaterialPathInfo,
+  },
+  {
+    input: {
+      libDirectory: [path.join(process.cwd(), 'packages/mui-base/src')],
+      pageDirectory: path.join(process.cwd(), 'docs/pages/base'),
+      markdownDirectory: path.join(process.cwd(), 'docs/products'),
+    },
+    output: {
+      pagesDirectory: path.join(process.cwd(), 'docs/pages/base/api-docs'),
+      apiTranslationsDirectory: path.join(process.cwd(), 'docs/translations/api-docs'),
+      apiManifestPath: path.join(process.cwd(), 'docs/products/base/pagesApi.js'),
+    },
+    getPathInfo: getBasePathInfo,
+  },
 ];
 
 async function run(argv: { grep?: string }) {
   await Promise.allSettled(
-    SETTINGS.map(async (setting) => {
+    POST_MIGRATION_SETTINGS.map(async (setting) => {
       const workspaceRoot = path.resolve(__dirname, '../../');
       /**
        * @type {string[]}
@@ -601,6 +689,10 @@ async function run(argv: { grep?: string }) {
       const grep = argv.grep == null ? null : new RegExp(argv.grep);
 
       mkdirSync(pagesDirectory, { mode: 0o777, recursive: true });
+      const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];
+      if (manifestDir) {
+        mkdirSync(manifestDir, { recursive: true });
+      }
 
       /**
        * pageMarkdown: Array<{ components: string[]; filename: string; pathname: string }>
