@@ -1,9 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_capitalize as capitalize, usePreviousProps } from '@mui/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '../composeClasses';
 import appendOwnerState from '../utils/appendOwnerState';
+import useBadge from './useBadge';
 import { getBadgeUtilityClass } from './badgeUnstyledClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -42,35 +43,11 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     overlap: overlapProp = 'rectangular',
     showZero = false,
     variant: variantProp = 'standard',
-    /* eslint-disable react/prop-types */
-    theme,
     ...other
   } = props;
 
-  const prevProps = usePreviousProps({
-    anchorOrigin: anchorOriginProp,
-    badgeContent: badgeContentProp,
-    max: maxProp,
-    overlap: overlapProp,
-    variant: variantProp,
-  });
-
-  let invisible = invisibleProp;
-
-  if (
-    invisibleProp == null &&
-    ((badgeContentProp === 0 && !showZero) || (badgeContentProp == null && variantProp !== 'dot'))
-  ) {
-    invisible = true;
-  }
-
-  const {
-    anchorOrigin = anchorOriginProp,
-    badgeContent,
-    max = maxProp,
-    overlap = overlapProp,
-    variant = variantProp,
-  } = invisible ? prevProps : props;
+  const { anchorOrigin, badgeContent, max, overlap, variant, displayValue, invisible } =
+    useBadge(props);
 
   const ownerState = {
     ...props,
@@ -82,12 +59,6 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     overlap,
     variant,
   };
-
-  let displayValue = '';
-
-  if (variant !== 'dot') {
-    displayValue = badgeContent > max ? `${max}+` : badgeContent;
-  }
 
   const classes = useUtilityClasses(ownerState);
 
