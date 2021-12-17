@@ -584,7 +584,8 @@ interface Settings {
      */
     apiManifestPath: string;
   };
-  getPathInfo: (filename: string) => { productUrlPrefix: string; apiUrl: string; demoUrl: string };
+  productUrlPrefix: string;
+  getPathInfo: (filename: string) => { apiUrl: string; demoUrl: string };
 }
 
 /**
@@ -606,6 +607,7 @@ const BEFORE_MIGRATION_SETTINGS: Settings[] = [
       apiTranslationsDirectory: path.join(process.cwd(), 'docs/translations/api-docs'),
       apiManifestPath: path.join(process.cwd(), 'docs/src/pagesApi.js'),
     },
+    productUrlPrefix: '',
     getPathInfo: getGeneralPathInfo,
   },
 ];
@@ -633,6 +635,7 @@ const MIGRATION_SETTINGS: Settings[] = [
       apiTranslationsDirectory: path.join(process.cwd(), 'docs/translations/api-docs'),
       apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
     },
+    productUrlPrefix: '/material',
     getPathInfo: getMaterialPathInfo,
   },
 ];
@@ -658,6 +661,7 @@ const POST_MIGRATION_SETTINGS: Settings[] = [
       apiTranslationsDirectory: path.join(process.cwd(), 'docs/translations/api-docs'),
       apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
     },
+    productUrlPrefix: '/material',
     getPathInfo: getMaterialPathInfo,
   },
   {
@@ -671,6 +675,7 @@ const POST_MIGRATION_SETTINGS: Settings[] = [
       apiTranslationsDirectory: path.join(process.cwd(), 'docs/translations/api-docs'),
       apiManifestPath: path.join(process.cwd(), 'docs/data/base/pagesApi.js'),
     },
+    productUrlPrefix: '/base',
     getPathInfo: getBasePathInfo,
   },
 ];
@@ -839,7 +844,7 @@ async function run(argv: { grep?: string }) {
             pathname:
               inheritedComponentName === 'Transition'
                 ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-                : `${pathInfo.productUrlPrefix}/api/${kebabCase(inheritedComponentName)}/`,
+                : `${setting.productUrlPrefix}/api/${kebabCase(inheritedComponentName)}/`,
           };
         } else {
           reactApi.inheritance = null;

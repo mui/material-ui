@@ -29,7 +29,6 @@ export const getGeneralPathInfo = (filename: string) => {
   filename = filename.replace(new RegExp(`\\${path.sep}`, 'g'), '/');
   const componentName = filename.match(/.*\/([^/]+)\.(tsx|js)/)?.[1];
   return {
-    productUrlPrefix: '',
     apiUrl: `/api/${kebabCase(componentName)}`,
     demoUrl: filename.replace(/^.*\/pages/, '').replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
   };
@@ -39,7 +38,6 @@ export const getMaterialPathInfo = (filename: string) => {
   filename = filename.replace(new RegExp(`\\${path.sep}`, 'g'), '/');
   const componentName = filename.match(/.*\/([^/]+)\.(tsx|js)/)?.[1];
   return {
-    productUrlPrefix: `/material`,
     apiUrl: `/material/api/${kebabCase(componentName)}`,
     demoUrl: filename.replace(/^.*\/products/, '').replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
   };
@@ -49,7 +47,6 @@ export const getBasePathInfo = (filename: string) => {
   filename = filename.replace(new RegExp(`\\${path.sep}`, 'g'), '/');
   const componentName = filename.match(/.*\/([^/]+)\.(tsx|js)/)?.[1];
   return {
-    productUrlPrefix: `/base`,
     apiUrl: `/base/api/${kebabCase(componentName)}`,
     demoUrl: filename.replace(/^.*\/products/, '').replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
   };
