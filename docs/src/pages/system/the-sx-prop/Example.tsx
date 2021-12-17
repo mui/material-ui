@@ -49,6 +49,7 @@ export default function Example() {
         <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 14 }}>
           vs. last week
         </Box>
+      </Box>
     </ThemeProvider>
   );
 }
