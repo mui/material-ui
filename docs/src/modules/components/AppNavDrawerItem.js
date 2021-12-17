@@ -74,7 +74,6 @@ const ItemLink = styled(Item, {
       backgroundColor:
         theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
       fontWeight: 500,
-      letterSpacing: 0.25,
       '&:hover': {
         backgroundColor: alpha(
           theme.palette.primary.main,
