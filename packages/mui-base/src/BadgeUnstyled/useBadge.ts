@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { usePreviousProps } from '@mui/utils';
-import { BadgeUnstyledProps } from './BadgeUnstyled';
+import BadgeUnstyledProps from './BadgeUnstyledProps';
 
 export interface UseBadgeProps {
   anchorOrigin: BadgeUnstyledProps['anchorOrigin'];

@@ -46,8 +46,13 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     ...other
   } = props;
 
-  const { anchorOrigin, badgeContent, max, overlap, variant, displayValue, invisible } =
-    useBadge(props);
+  const { anchorOrigin, badgeContent, max, overlap, variant, displayValue, invisible } = useBadge({
+    ...props,
+    anchorOrigin: anchorOriginProp,
+    max: maxProp,
+    overlap: overlapProp,
+    variant: variantProp,
+  });
 
   const ownerState = {
     ...props,
@@ -58,6 +63,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     max,
     overlap,
     variant,
+    showZero,
   };
 
   const classes = useUtilityClasses(ownerState);
