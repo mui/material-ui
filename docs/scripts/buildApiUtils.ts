@@ -20,13 +20,17 @@ export function getMuiName(name: string) {
   return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
 }
 
+function normalizeFilePath(filename: string) {
+  return filename.replace(new RegExp(`\\${path.sep}`, 'g'), '/');
+}
+
 /**
  * Provide information from the filename, can be component or markdown. (will be removed once migration is done)
  * component example: /Users/siriwatknp/Personal-Repos/material-ui/packages/mui-material/src/Button/Button.js
  * markdown example: /Users/siriwatknp/Personal-Repos/material-ui/docs/src/pages/components/buttons/buttons.md
  */
 export const getGeneralPathInfo = (filename: string) => {
-  filename = filename.replace(new RegExp(`\\${path.sep}`, 'g'), '/');
+  filename = normalizeFilePath(filename);
   const componentName = filename.match(/.*\/([^/]+)\.(tsx|js)/)?.[1];
   return {
     apiUrl: `/api/${kebabCase(componentName)}`,
@@ -35,19 +39,19 @@ export const getGeneralPathInfo = (filename: string) => {
 };
 
 export const getMaterialPathInfo = (filename: string) => {
-  filename = filename.replace(new RegExp(`\\${path.sep}`, 'g'), '/');
+  filename = normalizeFilePath(filename);
   const componentName = filename.match(/.*\/([^/]+)\.(tsx|js)/)?.[1];
   return {
     apiUrl: `/material/api/${kebabCase(componentName)}`,
-    demoUrl: filename.replace(/^.*\/products/, '').replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
+    demoUrl: filename.replace(/^.*\/data/, '').replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
   };
 };
 
 export const getBasePathInfo = (filename: string) => {
-  filename = filename.replace(new RegExp(`\\${path.sep}`, 'g'), '/');
+  filename = normalizeFilePath(filename);
   const componentName = filename.match(/.*\/([^/]+)\.(tsx|js)/)?.[1];
   return {
     apiUrl: `/base/api/${kebabCase(componentName)}`,
-    demoUrl: filename.replace(/^.*\/products/, '').replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
+    demoUrl: filename.replace(/^.*\/data/, '').replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
   };
 };
