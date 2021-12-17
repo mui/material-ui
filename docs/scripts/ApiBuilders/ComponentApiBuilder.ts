@@ -513,6 +513,13 @@ const attachPropsTable = (reactApi: ReactApi) => {
   reactApi.propsTable = componentProps;
 };
 
+/**
+ * - Build react component (specified filename) api by lookup at its definition (.d.ts or ts)
+ *   and then generate the API page + json data
+ * - Generate the translations
+ * - Add the comment in the component filename with its demo & API urls (including the inherited component).
+ *   this process is done by sourcing markdown files and filter matched `components` in the frontmatter
+ */
 const generateComponentApi = async (
   filename: string,
   options: {
