@@ -39,7 +39,7 @@ const SwitchThumb = styled('span')`
   width: 30px;
   height: 30px;
   border-radius: 8px;
-  top: 2px;
+  top: 3px;
   left: 4px;
   transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
