@@ -151,7 +151,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       <Track
         {...trackProps}
         className={clsx(classes.track, trackProps.className)}
-        style={{ trackStyle, ...trackProps.style }}
+        style={{ ...trackStyle, ...trackProps.style }}
       />
       {marks.map((mark, index) => {
         const percent = valueToPercent(mark.value, min, max);
