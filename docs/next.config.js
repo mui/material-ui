@@ -185,13 +185,15 @@ module.exports = {
           return;
         }
         if (!page.children) {
-          map[`${prefix}${page.pathname.replace(/^(\/material)?\/api-docs\/(.*)/, '$1/api/$2')}`] =
-            {
-              page: page.pathname,
-              query: {
-                userLanguage,
-              },
-            };
+          // map api-docs to api
+          // i: /api-docs/* > /api/* (old structure)
+          // ii: /*/api-docs/* > /*/api/* (for new structure)
+          map[`${prefix}${page.pathname.replace(/^(\/[^/]+)?\/api-docs\/(.*)/, '$1/api/$2')}`] = {
+            page: page.pathname,
+            query: {
+              userLanguage,
+            },
+          };
           return;
         }
 

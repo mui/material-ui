@@ -45,14 +45,8 @@ export const getNewDataLocation = (
     return null;
   }
   return {
-    directory: match[1].replace(
-      'src/pages',
-      product === 'material' ? `products/${product}` : 'products',
-    ),
-    path: filePath.replace(
-      'src/pages',
-      product === 'material' ? `products/${product}` : 'products',
-    ),
+    directory: match[1].replace('src/pages', product === 'material' ? `data/${product}` : 'data'),
+    path: filePath.replace('src/pages', product === 'material' ? `data/${product}` : 'data'),
   };
 };
 
