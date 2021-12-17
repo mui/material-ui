@@ -8,6 +8,7 @@ import {
   unstable_useControlled as useControlled,
   visuallyHidden,
 } from '@mui/utils';
+import SliderUnstyledProps from './SliderUnstyledProps';
 
 interface Mark {
   value: number;
@@ -16,26 +17,23 @@ interface Mark {
 
 export interface UseSliderProps {
   ref: React.Ref<any>;
-  'aria-labelledby'?: string;
-  componentsProps?: {
-    track?: { style?: React.CSSProperties };
-  };
-  defaultValue?: number | number[];
-  disabled?: boolean;
-  disableSwap?: boolean;
-  isRtl?: boolean;
-  marks?: boolean | Mark[];
-  max?: number;
-  min?: number;
-  name?: string;
-  onChange?: (event: Event, value: number | number[], activeThumb: number) => void;
-  onMouseDown?: (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
-  onChangeCommitted?: (event: React.SyntheticEvent | Event, value: number | number[]) => void;
-  orientation?: 'horizontal' | 'vertical';
-  scale?: (value: number) => number;
-  step?: number | null;
-  tabIndex?: number;
-  value?: number | number[];
+  'aria-labelledby'?: SliderUnstyledProps['aria-labelledby'];
+  defaultValue?: SliderUnstyledProps['defaultValue'];
+  disabled?: SliderUnstyledProps['disabled'];
+  disableSwap?: SliderUnstyledProps['disableSwap'];
+  isRtl?: SliderUnstyledProps['isRtl'];
+  marks?: SliderUnstyledProps['marks'];
+  max?: SliderUnstyledProps['max'];
+  min?: SliderUnstyledProps['min'];
+  name?: SliderUnstyledProps['name'];
+  onChange?: SliderUnstyledProps['onChange'];
+  onMouseDown?: SliderUnstyledProps['onMouseDown'];
+  onChangeCommitted?: SliderUnstyledProps['onChangeCommitted'];
+  orientation?: SliderUnstyledProps['orientation'];
+  scale?: SliderUnstyledProps['scale'];
+  step?: SliderUnstyledProps['step'];
+  tabIndex?: SliderUnstyledProps['tabIndex'];
+  value?: SliderUnstyledProps['value'];
 }
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
@@ -215,7 +213,6 @@ export default function useSlider(props: UseSliderProps) {
     tabIndex,
     value: valueProp,
     isRtl = false,
-    componentsProps = {},
   } = props;
 
   const touchId = React.useRef<number>();
