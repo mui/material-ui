@@ -12,9 +12,9 @@ import Section from 'docs/src/layouts/Section';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import Pagination from '@mui/material/Pagination';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Chip from '@mui/material/Chip';
-import Link from 'docs/src/modules/components/Link';
 import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -24,11 +24,9 @@ import { authors } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 
 export const getStaticProps = async () => {
-  const allBlogPosts = getAllBlogPosts();
+  const data = getAllBlogPosts();
   return {
-    props: {
-      allBlogPosts,
-    },
+    props: data,
   };
 };
 
@@ -36,7 +34,7 @@ const PostPreview = (props: BlogPost) => {
   return (
     <React.Fragment>
       {props.tags && (
-        <Box sx={{ display: 'flex', gap: 1, mb: 4 }}>
+        <Box sx={{ display: 'flex', gap: 1, mb: 1 }}>
           {props.tags.map((tag) => (
             <Chip
               key={tag}
@@ -122,8 +120,6 @@ const PostPreview = (props: BlogPost) => {
         <Button
           component="a"
           href={`/blog/${props.slug}`}
-          target="_blank"
-          rel="noopener nofollow"
           endIcon={<KeyboardArrowRightRounded fontSize="small" />}
           sx={{
             p: { xs: 0, sm: 0.5 },
@@ -144,22 +140,21 @@ const PostPreview = (props: BlogPost) => {
   );
 };
 
-const TAGS = [
-  'News',
-  'Material Design',
-  'Components',
-  'Accessibility',
-  'How to guides',
-  'System',
-  'New Joiners',
-  'Developer survey',
-];
-
 export default function Blog(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const PAGE_SIZE = 5;
   const router = useRouter();
+  const [page, setPage] = React.useState(0);
   const [selectedTags, setSelectedTags] = React.useState<Record<string, boolean>>({});
-  const { allBlogPosts } = props;
+  const { allBlogPosts, allTags, tagInfo } = props;
   const [firstPost, secondPost, ...otherPosts] = allBlogPosts.filter((post) => !!post.title);
+  const filteredPosts = otherPosts.filter(
+    (post) =>
+      !Object.keys(selectedTags).length ||
+      (post.tags || []).some((tag) => Object.keys(selectedTags).includes(tag)),
+  );
+  const pageStart = page * PAGE_SIZE;
+  const totalPage = Math.ceil(filteredPosts.length / PAGE_SIZE);
+  const displayedPosts = filteredPosts.slice(pageStart, pageStart + PAGE_SIZE);
   const getTags = React.useCallback(() => {
     const { tags = '' } = router.query;
     return (typeof tags === 'string' ? tags.split(',') : tags || [])
@@ -167,12 +162,19 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       .filter((tag) => !!tag);
   }, [router.query]);
   React.useEffect(() => {
+    const postList = document.getElementById('post-list');
+    if (postList) {
+      postList.scrollIntoView();
+    }
+  }, [router.query, page]);
+  React.useEffect(() => {
     const arrayTags = getTags();
     const finalTags: Record<string, boolean> = {};
     arrayTags.forEach((tag) => {
       finalTags[tag] = true;
     });
     setSelectedTags(finalTags);
+    setPage(0);
   }, [getTags]);
   const appendTag = (tag: string) => {
     return [...getTags(), tag];
@@ -210,12 +212,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
           >
             {[firstPost, secondPost].map((post) => (
               <Paper
-                component={Link}
                 key={post.slug}
-                href="/blog/"
-                target="_blank"
-                rel="noreferrer noopener"
-                noLinkStyle
                 variant="outlined"
                 sx={{ p: 2, display: 'flex', flexDirection: 'column', alignItems: 'initial' }}
               >
@@ -238,6 +235,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
           </Box>
         </Section>
         <Container
+          id="post-list"
           sx={{
             mt: 2,
             display: 'grid',
@@ -272,45 +270,72 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 Filter by tags
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                {TAGS.map((tag) => (
-                  <Chip
-                    key={tag}
-                    variant={selectedTags[tag] ? 'filled' : 'outlined'}
-                    label={tag}
-                    size="small"
-                    sx={{ py: 1.2 }}
-                    onClick={() =>
-                      router.push(
-                        {
-                          query: {
-                            ...router.query,
-                            tags: (selectedTags[tag] ? removeTag(tag) : appendTag(tag)).join(','),
+                {allTags.map((tag) => {
+                  const selected = !!selectedTags[tag];
+                  return (
+                    <Chip
+                      key={tag}
+                      variant={selected ? 'filled' : 'outlined'}
+                      label={
+                        <React.Fragment>
+                          {tag}{' '}
+                          <Typography
+                            component="span"
+                            sx={(theme) => ({
+                              borderRadius: 1,
+                              bgcolor: selected ? 'primary.50' : 'grey.300',
+                              px: 0.5,
+                              mr: -0.25,
+                              fontSize: '0.75rem',
+                              fontWeight: 500,
+                              ...(theme.palette.mode === 'dark' && {
+                                bgcolor: 'primaryDark.600',
+                              }),
+                            })}
+                          >
+                            {tagInfo[tag]}
+                          </Typography>
+                        </React.Fragment>
+                      }
+                      size="small"
+                      sx={{ py: 1.2 }}
+                      onClick={() => {
+                        router.push(
+                          {
+                            query: {
+                              ...router.query,
+                              tags: (selected ? removeTag(tag) : appendTag(tag)).join(','),
+                            },
                           },
-                        },
-                        undefined,
-                        { shallow: true },
-                      )
-                    }
-                  />
-                ))}
+                          undefined,
+                          { shallow: true },
+                        );
+                      }}
+                    />
+                  );
+                })}
               </Box>
             </Box>
           </Box>
           <Box>
-            {otherPosts
-              .filter(
-                (post) =>
-                  !Object.keys(selectedTags).length ||
-                  (post.tags || []).some((tag) => Object.keys(selectedTags).includes(tag)),
-              )
-              .map((post, index) => (
-                <React.Fragment key={post.slug}>
-                  <Box sx={{ py: 3, display: 'flex', flexDirection: 'column' }}>
-                    <PostPreview {...post} />
-                  </Box>
-                  {index !== otherPosts.length - 1 && <Divider />}
-                </React.Fragment>
-              ))}
+            {displayedPosts.map((post, index) => (
+              <React.Fragment key={post.slug}>
+                <Box sx={{ py: 3, display: 'flex', flexDirection: 'column' }}>
+                  <PostPreview {...post} />
+                </Box>
+                {index !== displayedPosts.length - 1 && <Divider />}
+              </React.Fragment>
+            ))}
+            <Pagination
+              page={page + 1}
+              count={totalPage}
+              variant="outlined"
+              shape="rounded"
+              onChange={(_, value) => {
+                setPage(value - 1);
+              }}
+              sx={{ mt: 2, mb: 10 }}
+            />
           </Box>
         </Container>
       </main>

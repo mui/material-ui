@@ -4,7 +4,7 @@ import { getHeaders } from '@mui/markdown';
 
 const blogDir = path.join(process.cwd(), 'pages/blog');
 
-export const getBlogFilenames = (ext = '.md') => {
+export const getBlogFilePaths = (ext = '.md') => {
   return fs.readdirSync(blogDir).filter((file) => file.endsWith(ext));
 };
 
@@ -18,9 +18,9 @@ export interface BlogPost {
   date?: string;
 }
 
-export const getBlogPost = (filename: string): BlogPost => {
-  const slug = filename.replace(/\.md$/, '');
-  const content = fs.readFileSync(path.join(blogDir, filename), 'utf-8');
+export const getBlogPost = (filePath: string): BlogPost => {
+  const slug = filePath.replace(/\.md$/, '');
+  const content = fs.readFileSync(path.join(blogDir, filePath), 'utf-8');
 
   const headers = getHeaders(content) as unknown as BlogPost;
 
@@ -31,10 +31,10 @@ export const getBlogPost = (filename: string): BlogPost => {
 };
 
 export const getAllBlogPosts = () => {
-  const filenames = getBlogFilenames();
-  const posts = filenames
+  const filePaths = getBlogFilePaths();
+  const allBlogPosts = filePaths
     .map((name) => getBlogPost(name))
-    // sort posts by date in descending order
+    // sort allBlogPosts by date in descending order
     .sort((post1, post2) => {
       if (post1.date && post2.date) {
         return new Date(post1.date) > new Date(post2.date) ? -1 : 1;
@@ -44,5 +44,11 @@ export const getAllBlogPosts = () => {
       }
       return -1;
     });
-  return posts;
+  const tagInfo: Record<string, number | undefined> = {};
+  allBlogPosts.forEach((post) => {
+    (post.tags || []).forEach((tag) => {
+      tagInfo[tag] = (tagInfo[tag] || 0) + 1;
+    });
+  });
+  return { allBlogPosts, allTags: Object.keys(tagInfo), tagInfo };
 };
