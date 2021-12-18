@@ -8,7 +8,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 # Accordion 扩展面板
 
-<p class="description">扩展面板包含了流程的创建和元素的轻量编辑。</p>
+<p class="description">The accordion component allows the user to show and hide sections of related content on a page.</p>
 
 扩展面板是一个轻量级容器，既可以单独使用，也可以和卡片这样更大的平面相结合。
 
