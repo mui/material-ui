@@ -8,7 +8,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#accordion
 
 # Accordion
 
-<p class="description">Accordions contain creation flows and allow lightweight editing of an element.</p>
+<p class="description">The accordion component allows the user to show and hide sections of related content on a page.</p>
 
 An accordion is a lightweight container that may either be used standalone, or be connected to a larger surface, such as a card.
 
