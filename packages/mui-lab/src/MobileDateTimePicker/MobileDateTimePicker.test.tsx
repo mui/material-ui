@@ -141,6 +141,20 @@ describe('<MobileDateTimePicker />', () => {
     expect(screen.getByMuiTest('datetimepicker-toolbar-day')).to.have.text('Nov 20');
   });
 
+  it('prop `showToolbar` – renders toolbar in MobileDateTimePicker', () => {
+    render(
+      <MobileDateTimePicker
+        open
+        showToolbar
+        onChange={() => {}}
+        value={adapterToUse.date('2021-11-20T10:01:22.000')}
+        renderInput={(params) => <TextField {...params} />}
+      />,
+    );
+
+    expect(screen.getByMuiTest('picker-toolbar')).toBeVisible();
+  });
+
   it('can render seconds on view', () => {
     render(
       <MobileDateTimePicker
