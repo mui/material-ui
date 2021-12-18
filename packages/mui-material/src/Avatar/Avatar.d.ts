@@ -28,7 +28,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * It can be used to listen for the loading error event.
      */
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement> & {
-      sx: SxProps<Theme>;
+      sx?: SxProps<Theme>;
     };
     /**
      * The `sizes` attribute for the `img` element.
