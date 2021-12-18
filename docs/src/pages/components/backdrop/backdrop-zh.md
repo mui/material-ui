@@ -18,7 +18,7 @@ githubLabel: '组件：背景暗化'
 
 ## 素颜模式
 
-蒙版组件也有一个无样式的版本。 The backdrop also comes with the unstyled package. It's ideal for doing heavy customizations and minimizing bundle size.
+The backdrop also comes with the Base package. The backdrop also comes with the unstyled package. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import BackdropUnstyled from '@mui/base/BackdropUnstyled';
