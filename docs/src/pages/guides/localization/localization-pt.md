@@ -46,37 +46,38 @@ const theme = createTheme(
 | Chinês (Simplificado)   | zh-CN                     | `zhCN`             |
 | Chinese (Taiwan)        | zh-TW                     | `zhTW`             |
 | Tcheco                  | cs-CZ                     | `csCZ`             |
-| Holandês                | nl-NL                     | `nlNL`             |
-| Inglês (Estados Unidos) | en-US                     | `enUS`             |
-| Estoniano               | et-EE                     | `etEE`             |
-| Finlandês               | fi-FI                     | `fiFI`             |
-| Francês                 | fr-FR                     | `frFR`             |
-| Alemão                  | de-DE                     | `deDE`             |
+| Danish                  | da-DK                     | `daDK`             |
+| Dutch                   | nl-NL                     | `nlNL`             |
+| English (United States) | en-US                     | `enUS`             |
+| Estonian                | et-EE                     | `etEE`             |
+| Finnish                 | fi-FI                     | `fiFI`             |
+| French                  | fr-FR                     | `frFR`             |
+| German                  | de-DE                     | `deDE`             |
 | Greek                   | el-GR                     | `elGR`             |
-| Hebraico                | he-IL                     | `heIL`             |
+| Hebrew                  | he-IL                     | `heIL`             |
 | Hindi                   | hi-IN                     | `hiIN`             |
-| Húngaro                 | hu-HU                     | `huHU`             |
-| Islandês                | is-IS                     | `isIS`             |
-| Indonésio               | id-ID                     | `idID`             |
-| Italiano                | it-IT                     | `itIT`             |
-| Japonês                 | ja-JP                     | `jaJP`             |
+| Hungarian               | hu-HU                     | `huHU`             |
+| Icelandic               | is-IS                     | `isIS`             |
+| Indonesian              | id-ID                     | `idID`             |
+| Italian                 | it-IT                     | `itIT`             |
+| Japanese                | ja-JP                     | `jaJP`             |
 | Khmer                   | kh-KH                     | `khKH`             |
 | Kazakh                  | kz-KZ                     | `kzKZ`             |
-| Coreano                 | ko-KR                     | `koKR`             |
-| Persa                   | fa-IR                     | `faIR`             |
-| Polonês                 | pl-PL                     | `plPL`             |
-| Português (Europeu)     | pt-PT                     | `ptPT`             |
-| Português (Brasil)      | pt-BR                     | `ptBR`             |
-| Romeno                  | ro-RO                     | `roRO`             |
-| Russo                   | ru-RU                     | `ruRU`             |
+| Korean                  | ko-KR                     | `koKR`             |
+| Persian                 | fa-IR                     | `faIR`             |
+| Polish                  | pl-PL                     | `plPL`             |
+| Portuguese              | pt-PT                     | `ptPT`             |
+| Portuguese (Brazil)     | pt-BR                     | `ptBR`             |
+| Romanian                | ro-RO                     | `roRO`             |
+| Russian                 | ru-RU                     | `ruRU`             |
 | Sinhalese               | si-LK                     | `siLK`             |
-| Eslovaco                | sk-SK                     | `skSK`             |
-| Espanhol                | es-ES                     | `esES`             |
-| Sueco                   | sv-SE                     | `svSE`             |
+| Slovak                  | sk-SK                     | `skSK`             |
+| Spanish                 | es-ES                     | `esES`             |
+| Swedish                 | sv-SE                     | `svSE`             |
 | Thai                    | th-TH                     | `thTH`             |
-| Turco                   | tr-TR                     | `trTR`             |
-| Ucraniano               | uk-UA                     | `ukUA`             |
-| Vietnamita              | vi-VN                     | `viVN`             |
+| Turkish                 | tr-TR                     | `trTR`             |
+| Ukrainian               | uk-UA                     | `ukUA`             |
+| Vietnamese              | vi-VN                     | `viVN`             |
 
 <!-- #default-branch-switch -->
 
