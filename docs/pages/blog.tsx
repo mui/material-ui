@@ -176,11 +176,17 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
     setSelectedTags(finalTags);
     setPage(0);
   }, [getTags]);
-  const appendTag = (tag: string) => {
-    return [...getTags(), tag];
-  };
   const removeTag = (tag: string) => {
-    return getTags().filter((value) => value !== tag);
+    router.push(
+      {
+        query: {
+          ...router.query,
+          tags: getTags().filter((value) => value !== tag),
+        },
+      },
+      undefined,
+      { shallow: true },
+    );
   };
   return (
     <BrandingProvider>
@@ -267,7 +273,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               }}
             >
               <Typography color="text.primary" fontWeight="500" sx={{ mb: 2 }}>
-                Filter by tags
+                Filter by tag
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                 {allTags.map((tag) => {
@@ -276,40 +282,56 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                     <Chip
                       key={tag}
                       variant={selected ? 'filled' : 'outlined'}
-                      label={
-                        <React.Fragment>
-                          {tag}{' '}
-                          <Typography
-                            component="span"
-                            sx={(theme) => ({
-                              borderRadius: 1,
-                              bgcolor: selected ? 'primary.50' : 'grey.300',
-                              px: 0.5,
-                              mr: -0.25,
-                              fontSize: '0.75rem',
-                              fontWeight: 500,
-                              ...(theme.palette.mode === 'dark' && {
-                                bgcolor: 'primaryDark.600',
-                              }),
-                            })}
-                          >
-                            {tagInfo[tag]}
-                          </Typography>
-                        </React.Fragment>
-                      }
-                      size="small"
-                      sx={{ py: 1.2 }}
-                      onClick={() => {
-                        router.push(
-                          {
-                            query: {
-                              ...router.query,
-                              tags: (selected ? removeTag(tag) : appendTag(tag)).join(','),
+                      {...(selected
+                        ? {
+                            label: tag,
+                            onDelete: () => removeTag(tag),
+                          }
+                        : {
+                            label: (
+                              <React.Fragment>
+                                {tag}{' '}
+                                <Typography
+                                  component="span"
+                                  sx={(theme) => ({
+                                    borderRadius: 1,
+                                    bgcolor: selected ? 'primary.50' : 'grey.300',
+                                    px: 0.5,
+                                    mr: -0.25,
+                                    fontSize: '0.75rem',
+                                    fontWeight: 500,
+                                    ...(theme.palette.mode === 'dark' && {
+                                      bgcolor: 'primaryDark.600',
+                                    }),
+                                  })}
+                                >
+                                  {tagInfo[tag]}
+                                </Typography>
+                              </React.Fragment>
+                            ),
+                            onClick: () => {
+                              router.push(
+                                {
+                                  query: {
+                                    ...router.query,
+                                    tags: tag,
+                                  },
+                                },
+                                undefined,
+                                { shallow: true },
+                              );
                             },
-                          },
-                          undefined,
-                          { shallow: true },
-                        );
+                          })}
+                      size="small"
+                      sx={{
+                        py: 1.2,
+                        '&:hover': {
+                          bgcolor: 'primary.100',
+                        },
+                        '& .MuiChip-deleteIcon': {
+                          color: 'primary.700',
+                          '&:hover': { color: 'primary.700' },
+                        },
                       }}
                     />
                   );
