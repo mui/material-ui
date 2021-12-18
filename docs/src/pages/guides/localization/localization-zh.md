@@ -32,51 +32,52 @@ const theme = createTheme(
 
 ### 支持的地区
 
-| 地区                  | BCP 47 语言标签 | 导入名称   |
-|:------------------- |:----------- |:------ |
-| Amharic             | am-ET       | `amET` |
-| Arabic (Egypt)      | ar-EG       | `arEG` |
-| Arabic (Sudan)      | ar-SD       | `arSD` |
-| 亚美尼亚语               | hy-AM       | `hyAM` |
-| 阿塞拜疆语               | az-AZ       | `azAZ` |
-| Bangla              | bn-BD       | `bnBD` |
-| 保加利亚语               | bg-BG       | `bgBG` |
-| 加泰罗尼亚语              | ca-ES       | `caES` |
-| Chinese (Hong Kong) | zh-HK       | `zhHK` |
-| 简体中文                | zh-CN       | `zhCN` |
-| Chinese (Taiwan)    | zh-TW       | `zhTW` |
-| 捷克语                 | cs-CZ       | `csCZ` |
-| 荷兰语                 | nl-NL       | `nlNL` |
-| 英语（美式）              | en-US       | `enUS` |
-| 爱沙尼亚语               | et-EE       | `etEE` |
-| 芬兰语                 | fi-FI       | `fiFI` |
-| 法语                  | fr-FR       | `frFR` |
-| 德语                  | de-DE       | `deDE` |
-| Greek               | el-GR       | `elGR` |
-| 希伯来语                | he-IL       | `heIL` |
-| 印地语                 | hi-IN       | `hiIN` |
-| 匈牙利语                | hu-HU       | `huHU` |
-| 冰岛语                 | is-IS       | `isIS` |
-| 印度尼西亚语              | id-ID       | `idID` |
-| 意大利语                | it-IT       | `itIT` |
-| 日语                  | ja-JP       | `jaJP` |
-| Khmer               | kh-KH       | `khKH` |
-| Kazakh              | kz-KZ       | `kzKZ` |
-| 韩语/朝鲜语              | ko-KR       | `koKR` |
-| 波斯语                 | fa-IR       | `faIR` |
-| 波兰语                 | pl-PL       | `plPL` |
-| 葡萄牙语                | pt-PT       | `ptPT` |
-| 葡萄牙语（巴西）            | pt-BR       | `ptBR` |
-| 罗马尼亚语               | ro-RO       | `roRO` |
-| 俄罗斯语                | ru-RU       | `ruRU` |
-| Sinhalese           | si-LK       | `siLK` |
-| 斯洛伐克语               | sk-SK       | `skSK` |
-| 西班牙语                | es-ES       | `esES` |
-| 瑞典语                 | sv-SE       | `svSE` |
-| Thai                | th-TH       | `thTH` |
-| 土耳其语                | tr-TR       | `trTR` |
-| 乌克兰语                | uk-UA       | `ukUA` |
-| 越南语                 | vi-VN       | `viVN` |
+| 地区                      | BCP 47 语言标签 | 导入名称   |
+|:----------------------- |:----------- |:------ |
+| Amharic                 | am-ET       | `amET` |
+| Arabic (Egypt)          | ar-EG       | `arEG` |
+| Arabic (Sudan)          | ar-SD       | `arSD` |
+| 亚美尼亚语                   | hy-AM       | `hyAM` |
+| 阿塞拜疆语                   | az-AZ       | `azAZ` |
+| Bangla                  | bn-BD       | `bnBD` |
+| 保加利亚语                   | bg-BG       | `bgBG` |
+| 加泰罗尼亚语                  | ca-ES       | `caES` |
+| Chinese (Hong Kong)     | zh-HK       | `zhHK` |
+| 简体中文                    | zh-CN       | `zhCN` |
+| Chinese (Taiwan)        | zh-TW       | `zhTW` |
+| 捷克语                     | cs-CZ       | `csCZ` |
+| Danish                  | da-DK       | `daDK` |
+| Dutch                   | nl-NL       | `nlNL` |
+| English (United States) | en-US       | `enUS` |
+| Estonian                | et-EE       | `etEE` |
+| Finnish                 | fi-FI       | `fiFI` |
+| French                  | fr-FR       | `frFR` |
+| German                  | de-DE       | `deDE` |
+| Greek                   | el-GR       | `elGR` |
+| Hebrew                  | he-IL       | `heIL` |
+| Hindi                   | hi-IN       | `hiIN` |
+| Hungarian               | hu-HU       | `huHU` |
+| Icelandic               | is-IS       | `isIS` |
+| Indonesian              | id-ID       | `idID` |
+| Italian                 | it-IT       | `itIT` |
+| Japanese                | ja-JP       | `jaJP` |
+| Khmer                   | kh-KH       | `khKH` |
+| Kazakh                  | kz-KZ       | `kzKZ` |
+| Korean                  | ko-KR       | `koKR` |
+| Persian                 | fa-IR       | `faIR` |
+| Polish                  | pl-PL       | `plPL` |
+| Portuguese              | pt-PT       | `ptPT` |
+| Portuguese (Brazil)     | pt-BR       | `ptBR` |
+| Romanian                | ro-RO       | `roRO` |
+| Russian                 | ru-RU       | `ruRU` |
+| Sinhalese               | si-LK       | `siLK` |
+| Slovak                  | sk-SK       | `skSK` |
+| Spanish                 | es-ES       | `esES` |
+| Swedish                 | sv-SE       | `svSE` |
+| Thai                    | th-TH       | `thTH` |
+| Turkish                 | tr-TR       | `trTR` |
+| Ukrainian               | uk-UA       | `ukUA` |
+| Vietnamese              | vi-VN       | `viVN` |
 
 <!-- #default-branch-switch -->
 
