@@ -36,7 +36,7 @@ As last year, we again calculated the [Net Promoter Score](https://en.wikipedia.
 
 <img src="/static/blog/2020-survey/3.jpg" style="width: 512px; margin-top: 32px; margin-bottom: 16px;" alt="Word cloud of who would benefit most" />
 
-<p class="blog-description">This word cloud was generated with <a href="https://wordclouds.com">wordclouds.com</a>.</p>
+<p class="blog-description">This word cloud was generated with wordclouds.com.</p>
 
 Developers are again at the center of our universe 🙂 (And "people" and "teams" in general, of course!) This is understandable, given the [job role demographic](#8-which-of-the-following-best-describes-your-current-job-role)
 of the majority of respondents. We will push hard on making the experience for you even better over the next year.
