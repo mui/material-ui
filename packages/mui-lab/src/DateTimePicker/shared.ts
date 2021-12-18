@@ -108,7 +108,7 @@ export function useDateTimePickerDefaultizedProps<Props extends BaseDateTimePick
       ampm: willUseAmPm,
       ampmInClock: true,
       orientation,
-      showToolbar: true,
+      showToolbar: false,
       allowSameDateSelection: true,
       minDate: minDateTime ?? minDate,
       minTime: minDateTime ?? minTime,
