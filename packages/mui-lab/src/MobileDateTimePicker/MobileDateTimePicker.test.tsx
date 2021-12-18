@@ -51,6 +51,7 @@ describe('<MobileDateTimePicker />', () => {
             setDate(newDate);
             onChangeMock(newDate);
           }}
+          showToolbar
           renderInput={(params) => <TextField autoFocus {...params} />}
         />
       );
@@ -128,6 +129,7 @@ describe('<MobileDateTimePicker />', () => {
         renderInput={(params) => <TextField {...params} />}
         onChange={() => {}}
         open
+        showToolbar
         value={adapterToUse.date('2021-11-20T10:01:22.000')}
       />,
     );
@@ -145,6 +147,7 @@ describe('<MobileDateTimePicker />', () => {
         renderInput={(params) => <TextField {...params} />}
         onChange={() => {}}
         open
+        showToolbar
         views={['seconds']}
         value={adapterToUse.date('2021-11-20T10:01:22.000')}
       />,

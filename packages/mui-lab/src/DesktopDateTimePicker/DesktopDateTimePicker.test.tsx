@@ -89,6 +89,7 @@ describe('<DesktopDateTimePicker />', () => {
         renderInput={(params) => <TextField {...params} />}
         value={null}
         open
+        showToolbar
         onClose={handleClose}
       />,
     );
