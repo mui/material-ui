@@ -109,11 +109,11 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     disableWindowBlurListener = false,
     message,
     onClose,
-    onEnter,
+    onEnter: onEnterProp,
     onEntered,
     onEntering,
     onExit,
-    onExited,
+    onExited: onExitedProp,
     onExiting,
     onMouseEnter,
     onMouseLeave,
@@ -124,7 +124,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
       enter: duration.enteringScreen,
       exit: duration.leavingScreen,
     },
-    TransitionProps,
+    TransitionProps: { onEnter, onExited, ...TransitionProps } = {},
     ...other
   } = props;
 
@@ -192,11 +192,19 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     }
   };
 
-  const handleExited = () => {
+  const handleExited = (element) => {
+    if (onExitedProp) {
+      onExitedProp(element);
+    }
+
     setExited(true);
   };
 
-  const handleEnter = () => {
+  const handleEnter = (element, isAppearing) => {
+    if (onEnterProp) {
+      onEnterProp(element, isAppearing);
+    }
+
     setExited(false);
   };
 
