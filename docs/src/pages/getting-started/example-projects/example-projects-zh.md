@@ -63,7 +63,7 @@ Create React App 是一个很棒的学习 React 的项目。 Have a look at [the
   - 一个在生产环境下使用的带有 Nginx 服务器的 docker container（docker 容器)。
   - 使用 Create React App 创建
 
-- [RMUIF](https://github.com/phoqe/rmuif):
+- [RMUIF](https://github.com/rmuif/web):
 
   - ![stars](https://img.shields.io/github/stars/rmuif/web.svg?style=social&label=Star)
   - 使用 Create React App 创建，也是可以开箱即用
