@@ -198,7 +198,7 @@ export default function AppTableOfContents(props) {
   const itemLink = (item, secondary) => (
     <NavItem
       display="block"
-      href={`${activePage.linkProps?.linkAs ?? activePage.pathname}#${item.hash}`}
+      href={`${activePage?.linkProps?.linkAs ?? activePage?.pathname}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       active={activeState === item.hash}

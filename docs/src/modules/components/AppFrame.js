@@ -16,10 +16,12 @@ import NoSsr from '@mui/material/NoSsr';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
+import Apps from '@mui/icons-material/Apps';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import NProgressBar from '@mui/docs/NProgressBar';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
+import AppProductsDrawer from 'docs/src/modules/components/AppProductsDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
@@ -29,6 +31,7 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import LanguageIcon from '@mui/icons-material/Translate';
 import { debounce } from '@mui/material/utils';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
@@ -206,24 +209,18 @@ function AppFrame(props) {
   };
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const handleNavDrawerOpen = () => {
-    setMobileOpen(true);
-  };
-  const handleNavDrawerClose = React.useCallback(() => {
-    setMobileOpen(false);
-  }, []);
-
   const [settingsOpen, setSettingsOpen] = React.useState(false);
-  const handleSettingsDrawerOpen = () => {
-    setSettingsOpen(true);
-  };
-  const handleSettingsDrawerClose = React.useCallback(() => {
-    setSettingsOpen(false);
-  }, []);
+  const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
 
   const router = useRouter();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
   const { activePage } = React.useContext(PageContext);
+
+  const isProductScoped =
+    router.asPath.startsWith('/material') ||
+    router.asPath.startsWith('/system') ||
+    router.asPath.startsWith('/styles') ||
+    router.asPath.startsWith('/base');
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
@@ -251,12 +248,22 @@ function AppFrame(props) {
             color="inherit"
             aria-label={t('appFrame.openDrawer')}
             disablePermanent={disablePermanent}
-            onClick={handleNavDrawerOpen}
+            onClick={() => setMobileOpen(true)}
+            sx={{ py: '0.375rem' }}
           >
             <MenuIcon />
           </NavIconButton>
           <GrowingDiv />
-          <Stack direction="row" spacing={2} sx={{ '& > button': { width: 42 } }}>
+          <Stack direction="row" spacing={1} sx={{ '& > button': { width: 42 } }}>
+            {isProductScoped && FEATURE_TOGGLE.enable_product_scope && (
+              <IconButton
+                color="inherit"
+                onClick={() => setProductsDrawerOpen(true)}
+                sx={{ display: { md: 'none' } }}
+              >
+                <Apps fontSize="small" />
+              </IconButton>
+            )}
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
@@ -282,7 +289,7 @@ function AppFrame(props) {
               </IconButton>
             </Tooltip>
             <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
+              <IconButton color="inherit" onClick={() => setSettingsOpen(true)} sx={{ px: '10px' }}>
                 <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
@@ -333,12 +340,13 @@ function AppFrame(props) {
       </StyledAppBar>
       <StyledAppNavDrawer
         disablePermanent={disablePermanent}
-        onClose={handleNavDrawerClose}
-        onOpen={handleNavDrawerOpen}
+        onClose={() => setMobileOpen(false)}
+        onOpen={() => setMobileOpen(true)}
         mobileOpen={mobileOpen}
       />
       {children}
-      <AppSettingsDrawer onClose={handleSettingsDrawerClose} open={settingsOpen} />
+      <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
+      <AppProductsDrawer onClose={() => setProductsDrawerOpen(false)} open={productsDrawerOpen} />
     </RootDiv>
   );
 }

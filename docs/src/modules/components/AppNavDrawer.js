@@ -1,18 +1,22 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { styled, alpha } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import IconImage from 'docs/src/components/icon/IconImage';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
@@ -20,8 +24,54 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
+import Apps from '@mui/icons-material/Apps';
+import AppProductsDrawer from 'docs/src/modules/components/AppProductsDrawer';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const savedScrollTop = {};
+
+const ProductIdentifier = ({ name, icon, metadata, versionSelector }) => (
+  <Box sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
+    <Box
+      sx={{
+        '& circle': {
+          fill: (theme) =>
+            theme.palette.mode === 'dark'
+              ? theme.palette.primaryDark[700]
+              : theme.palette.grey[100],
+        },
+      }}
+    >
+      {icon}
+    </Box>
+    <Box>
+      <Typography
+        fontSize="0.75rem"
+        lineHeight={1.43}
+        fontWeight="500"
+        color="primary.main"
+        // eslint-disable-next-line material-ui/no-hardcoded-labels
+      >
+        {metadata}
+      </Typography>
+      <Typography
+        fontWeight="bold"
+        lineHeight={1.2}
+        // eslint-disable-next-line material-ui/no-hardcoded-labels
+      >
+        {name}
+      </Typography>
+    </Box>
+    <Box sx={{ flexGrow: 1 }} />
+    {versionSelector}
+  </Box>
+);
+ProductIdentifier.propTypes = {
+  icon: PropTypes.element,
+  metadata: PropTypes.string,
+  name: PropTypes.string,
+  versionSelector: PropTypes.element,
+};
 
 function PersistScroll(props) {
   const { slot, children, enabled } = props;
@@ -64,6 +114,7 @@ const ToolbarDiv = styled('div')(({ theme }) => {
   return {
     ...theme.mixins.toolbar,
     paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(2),
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'row',
@@ -158,7 +209,9 @@ const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigato
 function AppNavDrawer(props) {
   const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePage, pages } = React.useContext(PageContext);
+  const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
   const userLanguage = useUserLanguage();
   const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
   const t = useTranslate();
@@ -167,104 +220,170 @@ function AppNavDrawer(props) {
   const drawer = React.useMemo(() => {
     const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
 
+    const renderCoreVersion = () => (
+      <React.Fragment>
+        <Button
+          onClick={(event) => {
+            setAnchorEl(event.currentTarget);
+          }}
+          size="small"
+          variant="outlined"
+          endIcon={<ArrowDropDownRoundedIcon fontSize="small" />}
+          sx={{
+            border: (theme) =>
+              `1px solid  ${
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[600]
+                  : theme.palette.grey[200]
+              }`,
+            color: (theme) =>
+              theme.palette.mode === 'dark'
+                ? theme.palette.primary[300]
+                : theme.palette.primary[500],
+          }}
+        >
+          {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
+          {`v${process.env.LIB_VERSION}`}
+        </Button>
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={() => setAnchorEl(null)}
+          PaperProps={{
+            variant: 'outlined',
+            sx: {
+              mt: 0.5,
+              minWidth: 160,
+              borderColor: (theme) =>
+                theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+              bgcolor: (theme) =>
+                theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
+              boxShadow: (theme) =>
+                `0px 4px 20px ${
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.background.paper, 0.72)
+                    : 'rgba(170, 180, 190, 0.3)'
+                }`,
+              '& .MuiMenuItem-root': {
+                fontSize: (theme) => theme.typography.pxToRem(14),
+                fontWeight: 500,
+                '&.Mui-selected': {
+                  color: 'primary.main',
+                },
+              },
+            },
+          }}
+        >
+          <MenuItem selected onClick={() => setAnchorEl(null)}>
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
+            {`v${process.env.LIB_VERSION}`} <DoneRounded sx={{ fontSize: 16, ml: 0.25 }} />
+          </MenuItem>
+          <MenuItem component="a" href={`https://v4.mui.com${languagePrefix}/`} onClick={onClose}>
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
+            {`v4`}
+          </MenuItem>
+          <Divider />
+          <MenuItem
+            component="a"
+            href={`https://mui.com${languagePrefix}/versions/`}
+            onClick={onClose}
+          >
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
+            {`View all versions`}
+          </MenuItem>
+        </Menu>
+      </React.Fragment>
+    );
+
+    const isProductScoped =
+      router.asPath.startsWith('/material') ||
+      router.asPath.startsWith('/system') ||
+      router.asPath.startsWith('/styles') ||
+      router.asPath.startsWith('/base');
+
     return (
       <React.Fragment>
         <ToolbarIE11>
           <ToolbarDiv>
             <NextLink href="/" passHref onClick={onClose}>
-              <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0, mr: 2 }}>
+              <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0 }}>
                 <SvgMuiLogo width={32} />
               </Box>
             </NextLink>
-            {process.env.LIB_VERSION ? (
-              <React.Fragment>
-                <Button
-                  onClick={(event) => {
-                    setAnchorEl(event.currentTarget);
-                  }}
-                  size="small"
-                  variant="outlined"
-                  endIcon={<ArrowDropDownRoundedIcon fontSize="small" />}
-                  sx={{
-                    border: (theme) =>
-                      `1px solid  ${
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.primaryDark[600]
-                          : theme.palette.grey[200]
-                      }`,
-                    color: (theme) =>
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primary[300]
-                        : theme.palette.primary[500],
-                    mr: 2,
-                  }}
-                >
-                  {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
-                  {`v${process.env.LIB_VERSION}`}
-                </Button>
-                <Menu
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={() => setAnchorEl(null)}
-                  PaperProps={{
-                    variant: 'outlined',
-                    sx: {
-                      mt: 0.5,
-                      minWidth: 160,
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                      bgcolor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-                      boxShadow: (theme) =>
-                        `0px 4px 20px ${
-                          theme.palette.mode === 'dark'
-                            ? alpha(theme.palette.background.paper, 0.72)
-                            : 'rgba(170, 180, 190, 0.3)'
-                        }`,
-                      '& .MuiMenuItem-root': {
-                        fontSize: (theme) => theme.typography.pxToRem(14),
-                        fontWeight: 500,
-                        '&.Mui-selected': {
-                          color: 'primary.main',
-                        },
-                      },
-                    },
-                  }}
-                >
-                  <MenuItem selected onClick={() => setAnchorEl(null)}>
-                    {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
-                    {`v${process.env.LIB_VERSION}`} <DoneRounded sx={{ fontSize: 16, ml: 0.25 }} />
-                  </MenuItem>
-                  <MenuItem
-                    component="a"
-                    href={`https://v4.mui.com${languagePrefix}/`}
-                    onClick={onClose}
-                  >
-                    {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
-                    {`v4`}
-                  </MenuItem>
-                  <Divider />
-                  <MenuItem
-                    component="a"
-                    href={`https://mui.com${languagePrefix}/versions/`}
-                    onClick={onClose}
-                  >
-                    {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
-                    {`View all versions`}
-                  </MenuItem>
-                </Menu>
-              </React.Fragment>
-            ) : null}
+            {process.env.LIB_VERSION && FEATURE_TOGGLE.enable_product_scope ? (
+              <IconButton
+                onClick={() => setProductsDrawerOpen(true)}
+                sx={(theme) => ({
+                  border: `1px solid ${
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[600]
+                      : theme.palette.grey[200]
+                  }`,
+                  borderRadius: 1,
+                  color: theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
+                  background:
+                    theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
+                  py: '0.375rem',
+                })}
+              >
+                <Apps />
+              </IconButton>
+            ) : (
+              renderCoreVersion()
+            )}
           </ToolbarDiv>
         </ToolbarIE11>
         <Divider />
+        {FEATURE_TOGGLE.enable_product_scope && (
+          <React.Fragment>
+            {router.asPath.startsWith('/material/') && (
+              <ProductIdentifier
+                icon={<IconImage name="product-core" />}
+                name="Material"
+                metadata="MUI Core"
+                versionSelector={renderCoreVersion()}
+              />
+            )}
+            {router.asPath.startsWith('/system/') && (
+              <ProductIdentifier
+                icon={<IconImage name="product-core" />}
+                name="System"
+                metadata="MUI Core"
+                versionSelector={renderCoreVersion()}
+              />
+            )}
+            {router.asPath.startsWith('/styles/') && (
+              <ProductIdentifier
+                icon={<IconImage name="product-core" />}
+                name="Styles (legacy)"
+                metadata="MUI Core"
+                versionSelector={renderCoreVersion()}
+              />
+            )}
+            {router.asPath.startsWith('/base/') && (
+              <ProductIdentifier
+                icon={<IconImage name="product-core" />}
+                name="Base"
+                metadata="MUI Core"
+              />
+            )}
+            {router.asPath.startsWith('/x/data-grid/') && (
+              <ProductIdentifier
+                icon={<IconImage name="product-x" />}
+                name="Data Grid"
+                metadata="MUI Core"
+              />
+            )}
+          </React.Fragment>
+        )}
+        {isProductScoped && FEATURE_TOGGLE.enable_product_scope && <Divider />}
         <DiamondSponsors spot="drawer" />
         <Divider />
         {navItems}
         <Box sx={{ height: 40 }} />
       </React.Fragment>
     );
-  }, [activePage, pages, onClose, languagePrefix, t, anchorEl, setAnchorEl]);
+  }, [activePage, pages, onClose, languagePrefix, t, anchorEl, setAnchorEl, router.asPath]);
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>
@@ -309,6 +428,7 @@ function AppNavDrawer(props) {
           </PersistScroll>
         </StyledDrawer>
       )}
+      <AppProductsDrawer open={productsDrawerOpen} onClose={() => setProductsDrawerOpen(false)} />
     </nav>
   );
 }
