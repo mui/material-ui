@@ -10,6 +10,7 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -326,23 +327,25 @@ function AppNavDrawer(props) {
               </Box>
             </NextLink>
             {process.env.LIB_VERSION && FEATURE_TOGGLE.enable_product_scope ? (
-              <IconButton
-                onClick={() => setProductsDrawerOpen(true)}
-                sx={(theme) => ({
-                  border: `1px solid ${
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[600]
-                      : theme.palette.grey[200]
-                  }`,
-                  borderRadius: 1,
-                  color: theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
-                  background:
-                    theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
-                  py: '0.375rem',
-                })}
-              >
-                <Apps />
-              </IconButton>
+              <Tooltip title="MUI products" enterDelay={300}>
+                <IconButton
+                  onClick={() => setProductsDrawerOpen(true)}
+                  sx={(theme) => ({
+                    border: `1px solid ${
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primaryDark[600]
+                        : theme.palette.grey[200]
+                    }`,
+                    borderRadius: 1,
+                    color: theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
+                    background:
+                      theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
+                    py: '0.375rem',
+                  })}
+                >
+                  <Apps />
+                </IconButton>
+              </Tooltip>
             ) : (
               renderVersionSelector([
                 { text: `v${process.env.LIB_VERSION}`, current: true },

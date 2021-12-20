@@ -257,13 +257,15 @@ function AppFrame(props) {
           <GrowingDiv />
           <Stack direction="row" spacing={1} sx={{ '& > button': { width: 42 } }}>
             {isProductScoped && FEATURE_TOGGLE.enable_product_scope && (
-              <IconButton
-                color="inherit"
-                onClick={() => setProductsDrawerOpen(true)}
-                sx={{ display: { md: 'none' } }}
-              >
-                <Apps fontSize="small" />
-              </IconButton>
+              <Tooltip title="MUI products" enterDelay={300}>
+                <IconButton
+                  color="inherit"
+                  onClick={() => setProductsDrawerOpen(true)}
+                  sx={{ display: { md: 'none' } }}
+                >
+                  <Apps fontSize="small" />
+                </IconButton>
+              </Tooltip>
             )}
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
