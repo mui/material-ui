@@ -191,6 +191,10 @@ const ButtonRoot = styled(ButtonBase, {
       color: 'inherit',
       borderColor: 'currentColor',
     }),
+    ...(ownerState.size === 'small' && {
+      // Specific fix for this issue: https://github.com/mui-org/material-ui/issues/29965
+      lineHeight: 1.5,
+    }),
     ...(ownerState.size === 'small' &&
       ownerState.variant === 'text' && {
         padding: '4px 5px',
