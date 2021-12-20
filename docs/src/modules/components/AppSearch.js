@@ -5,12 +5,12 @@ import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
-import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
-import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
+import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import SearchIcon from '@mui/icons-material/Search';
-import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
@@ -21,39 +21,43 @@ import { useRouter } from 'next/router';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
-    minHeight: 33,
+    minHeight: 35,
     display: 'flex',
     alignItems: 'center',
     paddingLeft: theme.spacing(1),
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
       padding: 0,
-      minWidth: 33,
+      minWidth: 35,
       justifyContent: 'center',
       '& > *:not(.MuiSvgIcon-root)': {
         display: 'none',
       },
     },
     [theme.breakpoints.up('sm')]: {
-      minWidth: 210,
+      minWidth: 200,
     },
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
     backgroundColor:
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.grey[50],
-    '&:hover': {
-      backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
-    },
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : theme.palette.grey[50],
     color: theme.palette.text.secondary,
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: theme.typography.pxToRem(14),
     border: `1px solid ${
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200]
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]
     }`,
     borderRadius: 10,
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
+    '&:hover': {
+      background:
+        theme.palette.mode === 'dark'
+          ? alpha(theme.palette.primaryDark[700], 0.4)
+          : alpha(theme.palette.grey[100], 0.7),
+      borderColor:
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[300],
+    },
   };
 });
 
@@ -66,14 +70,14 @@ const SearchLabel = styled('span')(({ theme }) => {
 
 const Shortcut = styled('div')(({ theme }) => {
   return {
-    fontSize: theme.typography.pxToRem(13),
+    fontSize: theme.typography.pxToRem(12),
     fontWeight: 700,
     lineHeight: '21px',
     marginLeft: theme.spacing(0.5),
     border: `1px solid ${
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.grey[200]
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200]
     }`,
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
     padding: theme.spacing(0, 0.7),
     borderRadius: 5,
   };
@@ -84,7 +88,7 @@ const NewStartScreen = () => {
     {
       category: {
         name: 'Getting started',
-        icon: <ArticleOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        icon: <ArticleRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
         { name: 'Installation', href: '/getting-started/installation/' },
@@ -95,7 +99,7 @@ const NewStartScreen = () => {
     {
       category: {
         name: 'Popular searches',
-        icon: <ToggleOffOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
         { name: 'Material Icons', href: '/components/material-icons/' },
@@ -106,7 +110,7 @@ const NewStartScreen = () => {
     {
       category: {
         name: 'Customization',
-        icon: <CreateOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        icon: <EditRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
         { name: 'How To Customize', href: '/customization/how-to-customize/' },
@@ -117,7 +121,7 @@ const NewStartScreen = () => {
     {
       category: {
         name: 'System',
-        icon: <BuildOutlinedIcon className="DocSearch-NewStartScreenTitleIcon" />,
+        icon: <HandymanRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
         { name: 'Basics', href: '/system/basics/' },
@@ -174,7 +178,7 @@ export default function AppSearch() {
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
   );
-  const FADE_DURATION = 120; // ms
+  const FADE_DURATION = 100; // ms
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const searchButtonRef = React.useRef(null);
@@ -265,7 +269,9 @@ export default function AppSearch() {
           fontSize="small"
           sx={{
             color: (theme) =>
-              theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[500],
+              theme.palette.mode === 'dark'
+                ? theme.palette.primary[300]
+                : theme.palette.primary[500],
           }}
         />
         <SearchLabel>{search}</SearchLabel>
@@ -356,18 +362,17 @@ export default function AppSearch() {
               backgroundColor:
                 theme.palette.mode === 'dark'
                   ? alpha(theme.palette.grey[900], 0.7)
-                  : alpha(theme.palette.grey[900], 0.2),
-              backdropFilter: 'blur(2px)',
+                  : alpha(theme.palette.grey[600], 0.2),
+              backdropFilter: 'blur(4px)',
             },
             '& .DocSearch-StartScreen': {
               display: 'none',
             },
             '& .DocSearch-NewStartScreen': {
-              width: '100%',
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
               gap: theme.spacing(2),
-              padding: theme.spacing(2, 2, 4),
+              padding: theme.spacing(2, 1),
             },
             '& .DocSearch-NewStartScreenCategory': {
               display: 'flex',
@@ -376,8 +381,8 @@ export default function AppSearch() {
             '& .DocSearch-NewStartScreenTitle': {
               display: 'flex',
               alignItems: 'center',
-              padding: theme.spacing(2, 1),
-              fontSize: theme.typography.pxToRem(13),
+              padding: theme.spacing(1, 1),
+              fontSize: theme.typography.pxToRem(14),
               color: theme.palette.text.secondary,
             },
             '& .DocSearch-NewStartScreenTitleIcon': {
@@ -385,15 +390,15 @@ export default function AppSearch() {
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[300]
                   : theme.palette.primary[500],
-              marginRight: theme.spacing(1),
-              fontSize: theme.typography.pxToRem(18),
+              marginRight: theme.spacing(1.5),
+              fontSize: theme.typography.pxToRem(16),
             },
             '& .DocSearch-NewStartScreenItem': {
               display: 'flex',
               alignItems: 'center',
               cursor: 'pointer',
               width: '100%',
-              padding: theme.spacing(0.5, 1),
+              padding: theme.spacing(0.5, 4.6),
               color:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[300]
@@ -412,6 +417,7 @@ export default function AppSearch() {
               fontSize: theme.typography.pxToRem(16),
             },
             '& .DocSearch-Modal': {
+              maxWidth: '700px',
               boxShadow: `0px 4px 20px ${
                 theme.palette.mode === 'dark'
                   ? alpha(theme.palette.background.paper, 0.7)
@@ -463,9 +469,10 @@ export default function AppSearch() {
                   : theme.palette.grey[300],
               '&::before': {
                 content: '"esc"',
-                fontSize: theme.typography.pxToRem(13),
+                fontSize: theme.typography.pxToRem(12),
+                letterSpacing: '.08rem',
                 fontWeight: 700,
-                color: theme.palette.grey[600],
+                color: theme.palette.text.secondary,
               },
             },
             '& .DocSearch-Dropdown': {
@@ -545,7 +552,7 @@ export default function AppSearch() {
               color: `${
                 theme.palette.mode === 'dark'
                   ? theme.palette.primary[400]
-                  : theme.palette.primary[600]
+                  : theme.palette.primary[500]
               }`,
             },
             '& .DocSearch-Footer': {

@@ -51,46 +51,48 @@ const Root = styled('div')(({ theme }) => ({
   },
   '& h1': {
     ...theme.typography.h3,
-    fontSize: theme.typography.pxToRem(40),
+    fontSize: theme.typography.pxToRem(36),
     fontFamily: `"PlusJakartaSans-ExtraBold", ${theme.typography.fontFamilySystem}`,
-    margin: '16px 0',
+    margin: '10px 0',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[900],
     fontWeight: 800,
   },
   '& .description': {
-    ...theme.typography.h6,
+    ...theme.typography.subtitle1,
     fontWeight: 400,
     margin: '0 0 40px',
   },
   '& h2': {
     ...theme.typography.h5,
-    fontSize: theme.typography.pxToRem(30),
-    fontFamily: `"PlusJakartaSans-Bold", ${theme.typography.fontFamilySystem}`,
+    fontFamily: theme.typography.fontFamilySystem,
     fontWeight: 700,
-    margin: '40px 0 10px',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : blueDark[700],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
+    margin: '40px 0 8px',
   },
   '& h3': {
     ...theme.typography.h6,
-    margin: '20px 0 10px',
-    fontFamily: `"PlusJakartaSans-Bold", ${theme.typography.fontFamilySystem}`,
+    fontFamily: theme.typography.fontFamilySystem,
     fontWeight: 700,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
+    margin: '28px 0 8px',
   },
   '& h4': {
-    ...theme.typography.h6,
-    margin: '10px 0 16px',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
+    ...theme.typography.subtitle1,
+    fontFamily: theme.typography.fontFamilySystem,
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+    margin: '24px 0 8px',
   },
   '& h5': {
     ...theme.typography.subtitle2,
-    margin: '10px 0 16px',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+    margin: '20px 0 8px',
   },
   '& p, & ul, & ol': {
     marginTop: 0,
     marginBottom: 16,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[900],
   },
   '& ul': {
     ...(theme.direction === 'rtl' && {
@@ -130,10 +132,18 @@ const Root = styled('div')(({ theme }) => ({
       },
     },
   },
+  '& h1 code': {
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
+  },
   '& h2 code': {
-    fontSize: theme.typography.pxToRem(27),
-    fontWeight: theme.fontWeightBold,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : blueDark[700],
+    fontSize: theme.typography.pxToRem(24),
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
+  },
+  '& h3 code': {
+    fontSize: theme.typography.pxToRem(18),
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
   },
   '& table': {
     // Trade display table for scroll overflow
@@ -167,8 +177,8 @@ const Root = styled('div')(({ theme }) => ({
   '& td': {
     ...theme.typography.body2,
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 20,
-    color: theme.palette.text.primary,
+    padding: 16,
+    color: theme.palette.text.secondary,
   },
   '& td code': {
     lineHeight: 1.6,
@@ -179,20 +189,21 @@ const Root = styled('div')(({ theme }) => ({
     color: theme.palette.text.primary,
     whiteSpace: 'pre',
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 20,
+    padding: 16,
   },
   '& blockquote': {
     borderRadius: theme.shape.borderRadius,
     border: '1px solid',
+    borderLeft: '8px solid',
     borderColor:
       theme.palette.mode === 'dark'
         ? // Support Material design theme
-          theme.palette.warning[900] ?? theme.palette.warning.dark
-        : theme.palette.warning[400] ?? theme.palette.warning.light,
+          theme.palette.warning[500] ?? theme.palette.warning.dark
+        : theme.palette.warning[300] ?? theme.palette.warning.light,
     backgroundColor:
       theme.palette.mode === 'dark'
         ? // Support Material design theme
-          alpha(theme.palette.warning[800] ?? theme.palette.warning.dark, 0.09)
+          alpha(theme.palette.warning[900], 0.2) ?? alpha(theme.palette.warning.dark, 0.09)
         : theme.palette.warning[50] ?? theme.palette.warning.light,
     padding: '10px 20px',
     margin: '20px 0',

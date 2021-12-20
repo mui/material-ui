@@ -1,34 +1,33 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import { alpha, styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import ButtonBase from '@mui/material/ButtonBase';
 import Link from 'docs/src/modules/components/Link';
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
-import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
+import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
-import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
-import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import BookOutlined from '@mui/icons-material/BookOutlined';
-import ChromeReaderModeOutlined from '@mui/icons-material/ChromeReaderModeOutlined';
+import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
+import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import BookRoundedIcon from '@mui/icons-material/BookRounded';
+import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRounded';
 
 const iconsMap = {
-  DescriptionIcon: ArticleOutlinedIcon,
-  ToggleOnIcon: ToggleOffOutlinedIcon,
+  DescriptionIcon: ArticleRoundedIcon,
+  ToggleOnIcon: ToggleOffRoundedIcon,
   CodeIcon: CodeRoundedIcon,
-  BuildIcon: BuildOutlinedIcon,
-  CreateIcon: CreateOutlinedIcon,
-  VisibilityIcon: VisibilityOutlinedIcon,
-  StyleIcon: ColorLensOutlinedIcon,
-  AddIcon: AddCircleOutlineOutlinedIcon,
-  BookIcon: BookOutlined,
-  ReaderIcon: ChromeReaderModeOutlined,
+  BuildIcon: HandymanRoundedIcon,
+  CreateIcon: EditRoundedIcon,
+  VisibilityIcon: VisibilityRoundedIcon,
+  StyleIcon: InvertColorsRoundedIcon,
+  AddIcon: AddCircleRoundedIcon,
+  BookIcon: BookRoundedIcon,
+  ReaderIcon: ChromeReaderModeRoundedIcon,
 };
 
 const Item = styled(function Item({ component: Component = 'div', ...props }) {
@@ -47,7 +46,7 @@ const Item = styled(function Item({ component: Component = 'div', ...props }) {
     duration: theme.transitions.duration.shortest,
   }),
   '&:hover': {
-    color: theme.palette.text.primary,
+    color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
     backgroundColor:
       theme.palette.mode === 'dark'
         ? alpha(theme.palette.primaryDark[700], 0.4)
@@ -57,8 +56,8 @@ const Item = styled(function Item({ component: Component = 'div', ...props }) {
     backgroundColor: theme.palette.action.focus,
   },
   [theme.breakpoints.up('md')]: {
-    paddingTop: 5,
-    paddingBottom: 5,
+    paddingTop: 3,
+    paddingBottom: 3,
   },
 }));
 
@@ -66,15 +65,15 @@ const ItemLink = styled(Item, {
   shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon',
 })(({ theme, hasIcon, depth }) => {
   return {
-    fontSize: theme.typography.pxToRem(13.5),
+    fontSize: theme.typography.pxToRem(14),
     color: theme.palette.text.secondary,
     '&.app-drawer-active': {
       // color: theme.palette.primary.main,
       color:
-        theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[500],
+        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
       backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.primary[50],
-      fontWeight: 700,
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
+      fontWeight: 500,
       '&:hover': {
         backgroundColor: alpha(
           theme.palette.primary.main,
@@ -92,12 +91,12 @@ const ItemLink = styled(Item, {
         ),
       },
     },
-    paddingLeft: 36 + (depth > 2 ? (depth - 2) * 10 : 0),
+    paddingLeft: 31 + (depth > 2 ? (depth - 2) * 10 : 0),
     ...(hasIcon && {
       paddingLeft: 2,
     }),
     ...(depth === 0 && {
-      fontSize: theme.typography.pxToRem(14.5),
+      fontSize: theme.typography.pxToRem(14),
       color: theme.palette.text.primary,
     }),
   };
@@ -117,27 +116,32 @@ const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
 const ItemButton = styled(Item, {
   shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon',
 })(({ depth, hasIcon, theme }) => {
+  let marginTop;
+  if (depth === 0) {
+    marginTop = 5;
+  } else if (depth > 1) {
+    marginTop = -4 * (depth - 3);
+  } else {
+    marginTop = 10;
+  }
   return {
     color: (() => {
       if (depth >= 1) {
-        if (theme.palette.mode === 'dark') {
-          return alpha(theme.palette.grey[500], 0.5);
-        }
         return theme.palette.grey[600];
       }
       return theme.palette.text.primary;
     })(),
-    fontSize: theme.typography.pxToRem(depth === 0 ? 14.5 : 12),
+    fontSize: theme.typography.pxToRem(depth === 0 ? 14 : 11),
+    textTransform: depth === 0 ? 'none' : 'uppercase',
+    letterSpacing: depth === 0 ? null : '.08rem',
     fontWeight: depth === 0 ? 500 : 700,
-    margin: depth === 0 ? theme.spacing(0.5, 0) : '8px 0 4px',
+    marginBottom: depth === 0 ? '5px' : null,
+    marginTop,
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
       color: (() => {
         if (depth === 0) {
           return '';
-        }
-        if (theme.palette.mode === 'dark') {
-          return alpha(theme.palette.grey[500], 0.5);
         }
         return theme.palette.grey[600];
       })(),
@@ -146,7 +150,7 @@ const ItemButton = styled(Item, {
     [`&:hover ${ItemButtonIcon}`]: {
       color: theme.palette.text.primary,
     },
-    paddingLeft: 36,
+    paddingLeft: 31 + (depth > 1 ? (depth - 3) * -10 : 0),
     ...(hasIcon && {
       paddingLeft: 2,
     }),
@@ -192,28 +196,17 @@ export default function AppNavDrawerItem(props) {
     <Box
       component="span"
       sx={{
-        '& svg': { fontSize: (theme) => theme.typography.pxToRem(14) },
+        '& svg': { fontSize: (theme) => theme.typography.pxToRem(16.5) },
         display: 'flex',
         alignItems: 'center',
         height: '100%',
         marginRight: 1.5,
-        p: 0.5,
-        borderRadius: '5px',
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'dark'
-            ? theme.palette.primaryDark[700]
-            : theme.palette.primary[50],
+        py: 0.5,
       }}
     >
       <IconComponent {...iconProps} />
     </Box>
   ) : null;
-
-  const divider = depth === 0 && (
-    <li>
-      <Divider sx={{ my: 1.2 }} />
-    </li>
-  );
 
   if (href) {
     return (
@@ -233,7 +226,6 @@ export default function AppNavDrawerItem(props) {
             {title}
           </ItemLink>
         </StyledLi>
-        {divider}
       </React.Fragment>
     );
   }
@@ -261,7 +253,6 @@ export default function AppNavDrawerItem(props) {
           children
         )}
       </StyledLi>
-      {divider}
     </React.Fragment>
   );
 }

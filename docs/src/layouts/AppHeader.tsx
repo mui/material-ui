@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -33,6 +33,7 @@ const Header = styled('header')(({ theme }) => ({
 }));
 
 export default function AppHeader() {
+  const theme = useTheme();
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState<string | null>(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -83,19 +84,26 @@ export default function AppHeader() {
               mr: 1,
               borderRadius: 1,
               border: '1px solid',
-              color: (theme) => (theme.palette.mode === 'dark' ? 'grey.100' : 'primary.main'),
-              bgcolor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.800' : 'transparent',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200',
-              '& svg': { width: 18, height: 18 },
+              color: theme.palette.mode === 'dark' ? 'primary.300' : 'primary.main',
+              bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.900' : 'transparent',
+              borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+              '& svg': { width: 20, height: 20 },
+              '&:hover': {
+                background:
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.primaryDark[700], 0.4)
+                    : alpha(theme.palette.grey[100], 0.7),
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.grey[300],
+              },
               '&:focus': {
-                boxShadow: (theme) =>
-                  `0 0 0 1px ${
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[600]
-                      : theme.palette.grey[200]
-                  }`,
+                boxShadow: `0 0 0 1px ${
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.grey[200]
+                }`,
               },
             }}
           >
