@@ -64,13 +64,22 @@ const Root = styled('div')(
 
 const CustomTablePagination = styled(TablePaginationUnstyled)(
   ({ theme }) => `
+  & .MuiTablePaginationUnstyled-spacer {
+    display: none;
+  }
   & .MuiTablePaginationUnstyled-toolbar {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
     @media (min-width: 768px) {
-      display: flex;
-      gap: 10px;
+      flex-direction: row;
       align-items: center;
     }
+  }
+  & .MuiTablePaginationUnstyled-selectLabel {
+    margin: 0;
   }
   & .MuiTablePaginationUnstyled-select {
     padding: 2px;
@@ -82,6 +91,13 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
     }
     &:focus {
       outline: 1px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+    }
+  }
+  & .MuiTablePaginationUnstyled-displayedRows {
+    margin: 0;
+
+    @media (min-width: 768px) {
+      margin-left: auto;
     }
   }
   & .MuiTablePaginationUnstyled-actions {
@@ -123,8 +139,8 @@ export default function UnstyledTable() {
   };
 
   return (
-    <Root>
-      <table style={{ minWidth: 250 }} aria-label="custom pagination table">
+    <Root sx={{ width: 500, maxWidth: '100%' }}>
+      <table aria-label="custom pagination table">
         <thead>
           <tr>
             <th>Dessert</th>
