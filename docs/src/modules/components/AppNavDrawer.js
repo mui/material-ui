@@ -45,20 +45,10 @@ const ProductIdentifier = ({ name, icon, metadata, versionSelector }) => (
       {icon}
     </Box>
     <Box>
-      <Typography
-        fontSize="0.75rem"
-        lineHeight={1.43}
-        fontWeight="500"
-        color="primary.main"
-        // eslint-disable-next-line material-ui/no-hardcoded-labels
-      >
+      <Typography fontSize="0.75rem" lineHeight={1.43} fontWeight="500" color="primary.main">
         {metadata}
       </Typography>
-      <Typography
-        fontWeight="bold"
-        lineHeight={1.2}
-        // eslint-disable-next-line material-ui/no-hardcoded-labels
-      >
+      <Typography fontWeight="bold" lineHeight={1.2}>
         {name}
       </Typography>
     </Box>
