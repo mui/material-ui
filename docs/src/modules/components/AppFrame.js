@@ -124,7 +124,9 @@ const StyledAppBar = styled(AppBar, {
     backdropFilter: 'blur(20px)',
     borderStyle: 'solid',
     borderColor:
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.primary[100], 0.08)
+        : theme.palette.grey[100],
     borderWidth: 0,
     borderBottomWidth: 'thin',
     background:

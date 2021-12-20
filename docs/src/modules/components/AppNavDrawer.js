@@ -291,7 +291,14 @@ function AppNavDrawer(props) {
             ) : null}
           </ToolbarDiv>
         </ToolbarIE11>
-        <Divider />
+        <Divider
+          sx={{
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primary[100], 0.08)
+                : theme.palette.grey[100],
+          }}
+        />
         <DiamondSponsors spot="drawer" />
         {navItems}
         <Box sx={{ height: 40 }} />
@@ -333,6 +340,10 @@ function AppNavDrawer(props) {
             sx: {
               background: (theme) =>
                 theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
+              borderColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primary[100], 0.08)
+                  : theme.palette.grey[100],
             },
           }}
           open
