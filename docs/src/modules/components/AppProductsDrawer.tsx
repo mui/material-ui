@@ -112,7 +112,11 @@ export default function AppProductsDrawer(props: DrawerProps) {
           Products
         </Typography>{' '}
         <Box sx={{ my: -1, alignSelf: 'center' }}>
-          <IconButton size="small" onClick={(event) => props.onClose?.(event, 'backdropClick')}>
+          <IconButton
+            aria-label="Close drawer"
+            size="small"
+            onClick={(event) => props.onClose?.(event, 'backdropClick')}
+          >
             <Close />
           </IconButton>
         </Box>
