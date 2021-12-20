@@ -35,6 +35,10 @@ export default function EditPage(props) {
         fontSize: theme.typography.pxToRem(12.5),
         color:
           theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+        '& svg': {
+          width: 14,
+          height: 14,
+        },
       }}
     >
       {t('editPage')}

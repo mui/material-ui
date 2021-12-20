@@ -33,6 +33,9 @@ export default function DiamondSponsors(props) {
           color:
             theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
           mb: 1,
+          '& svg': {
+            ml: -0.5,
+          },
         }}
       >
         {t('diamondSponsors')}
