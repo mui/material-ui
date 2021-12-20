@@ -203,7 +203,7 @@ const Root = styled('div')(({ theme }) => ({
     backgroundColor:
       theme.palette.mode === 'dark'
         ? // Support Material design theme
-          alpha(theme.palette.warning[900], 0.2) ?? alpha(theme.palette.warning.dark, 0.09)
+          alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.2)
         : theme.palette.warning[50] ?? theme.palette.warning.light,
     padding: '10px 20px',
     margin: '20px 0',
