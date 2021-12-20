@@ -14,7 +14,6 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 ### `@mui/material@5.2.5`
 
-- &#8203;<!-- 22 -->[Badge] Add tests for `anchorOrigin` prop (#30147) @daniel-sachs
 - &#8203;<!-- 08 -->[l10n] Add Danish (da-DK) locale (#29485) @mikk5829
 - &#8203;<!-- 07 -->[LoadingButton] Label progressbar by the LoadingButton (#30002) @eps1lon
 - &#8203;<!-- 04 -->[Tabs] Remove unnecessary `Partial<>` type around TabIndicatorProps type (#30254) @ZeeshanTamboli
@@ -30,6 +29,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 ### Docs
 
 - &#8203;<!-- 24 -->[docs] Run JS compiler on markdown output (#29732) @Janpot
+- &#8203;<!-- 22 -->[Badge] Add tests for `anchorOrigin` prop (#30147) @daniel-sachs
 - &#8203;<!-- 18 -->[docs] Add cssmodule injection order comments to Nextjs example (#30213) @ShuPink
 - &#8203;<!-- 17 -->[docs] Remove extra word in Select component code example comments (#30281) @KThompso
 - &#8203;<!-- 16 -->[docs] Improve the description of the Accordion (#30253) @jamesmelzer
