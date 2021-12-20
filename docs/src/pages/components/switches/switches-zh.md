@@ -57,6 +57,8 @@ You can control the switch with the `checked` and `onChange` props:
 
 The switch also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
+### Unstyled component
+
 ```jsx
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 ```
