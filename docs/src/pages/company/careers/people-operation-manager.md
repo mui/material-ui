@@ -64,6 +64,8 @@ You are curious, you enjoy taking risks, and learning.
 
 ### What would be nice if you had, but isn't required
 
+- Basic knowledge of web development.
+
 ## Compensation
 
 Competitive compensation depending on the profile and location.

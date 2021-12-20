@@ -418,7 +418,7 @@ function CareersContent() {
           <Typography variant="h2" sx={{ my: 1 }} id="open-roles">
             Open roles (8)
           </Typography>
-          <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
+          <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 500 }}>
             The company is bootstrapped (up to now). It was incorporated in mid-2019 and yet growing
             fast (x2-3 YoY). We doubled the team in 2020 (6), accelerated in 2021 (16), and are on
             track to triple it in 2022 (40). We&apos;re looking for help keep growing in the
