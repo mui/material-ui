@@ -7,7 +7,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#breadcrumb
 
 # Breadcrumbs
 
-<p class="description">Breadcrumbs allow users to make selections from a range of values.</p>
+<p class="description">Breadcrumbs display and enable navigation up the application's hierarchy.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
