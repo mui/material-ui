@@ -217,6 +217,7 @@ function AppFrame(props) {
   const { activePage } = React.useContext(PageContext);
 
   const isProductScoped =
+    router.asPath.startsWith('/x') ||
     router.asPath.startsWith('/material') ||
     router.asPath.startsWith('/system') ||
     router.asPath.startsWith('/styles') ||

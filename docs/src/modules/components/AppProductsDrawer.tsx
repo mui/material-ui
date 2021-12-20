@@ -153,7 +153,7 @@ export default function AppProductsDrawer(props: DrawerProps) {
             description="Advanced and powerful components for complex use-cases."
           />
           <LinksWrapper>
-            <Link href={ROUTES.dataGridDocs}>
+            <Link href={`/x/data-grid/getting-started/`}>
               Data Grid <KeyboardArrowRight fontSize="small" />
             </Link>
           </LinksWrapper>
