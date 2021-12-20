@@ -14,43 +14,43 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 ### `@mui/material@5.2.5`
 
-- &#8203;<!-- 08 -->[l10n] Add Danish (da-DK) locale (#29485) @mikk5829
-- &#8203;<!-- 07 -->[LoadingButton] Label progressbar by the LoadingButton (#30002) @eps1lon
-- &#8203;<!-- 04 -->[Tabs] Remove unnecessary `Partial<>` type around TabIndicatorProps type (#30254) @ZeeshanTamboli
+- [l10n] Add Danish (da-DK) locale (#29485) @mikk5829
+- [LoadingButton] Label progressbar by the LoadingButton (#30002) @eps1lon
+- [Tabs] Remove unnecessary `Partial<>` type around TabIndicatorProps type (#30254) @ZeeshanTamboli
 
 ### `@mui/system@5.2.5`
 
-- &#8203;<!-- 05 -->[system] Use `useEnhancedEffect` to prevent flicker (#30216) @hbjORbj
+- [system] Use `useEnhancedEffect` to prevent flicker (#30216) @hbjORbj
 
 ### `@mui/lab@5.0.0-alpha.61`
 
-- &#8203;<!-- 06 -->[pickers] Fix the wrong MuiClockPicker's ArrowSwitcher slot name (#30226) @rejetto
+- [pickers] Fix the wrong MuiClockPicker's ArrowSwitcher slot name (#30226) @rejetto
 
 ### Docs
 
-- &#8203;<!-- 24 -->[docs] Run JS compiler on markdown output (#29732) @Janpot
-- &#8203;<!-- 22 -->[Badge] Add tests for `anchorOrigin` prop (#30147) @daniel-sachs
-- &#8203;<!-- 18 -->[docs] Add cssmodule injection order comments to Nextjs example (#30213) @ShuPink
-- &#8203;<!-- 17 -->[docs] Remove extra word in Select component code example comments (#30281) @KThompso
-- &#8203;<!-- 16 -->[docs] Improve the description of the Accordion (#30253) @jamesmelzer
-- &#8203;<!-- 15 -->[docs] Heading capitalization convention @oliviertassinari
-- &#8203;<!-- 14 -->[docs] Rename remaining 'unstyled' references to 'base' (#30206) @michaldudak
-- &#8203;<!-- 13 -->[docs] Add to migration doc about ref type specificity (#30114) @hbjORbj
-- &#8203;<!-- 12 -->[docs] Add script to clone pages (#30107) @siriwatknp
-- &#8203;<!-- 11 -->[docs] Correct colors in breakpoints documentation (#30219) @michaldudak
-- &#8203;<!-- 09 -->[docs] Sync icon search UI state with the url (#30075) @Janpot
-- &#8203;<!-- 02 -->[website] Remove expired gold sponsor (#30222) @oliviertassinari
-- &#8203;<!-- 01 -->[website] Remove broken showcase links (#30217) @mnajdova
+- [docs] Run JS compiler on markdown output (#29732) @Janpot
+- [Badge] Add tests for `anchorOrigin` prop (#30147) @daniel-sachs
+- [docs] Add cssmodule injection order comments to Nextjs example (#30213) @ShuPink
+- [docs] Remove extra word in Select component code example comments (#30281) @KThompso
+- [docs] Improve the description of the Accordion (#30253) @jamesmelzer
+- [docs] Heading capitalization convention @oliviertassinari
+- [docs] Rename remaining 'unstyled' references to 'base' (#30206) @michaldudak
+- [docs] Add to migration doc about ref type specificity (#30114) @hbjORbj
+- [docs] Add script to clone pages (#30107) @siriwatknp
+- [docs] Correct colors in breakpoints documentation (#30219) @michaldudak
+- [docs] Sync icon search UI state with the url (#30075) @Janpot
+- [website] Remove expired gold sponsor (#30222) @oliviertassinari
+- [website] Remove broken showcase links (#30217) @mnajdova
 
 ### Core
 
-- &#8203;<!-- 25 -->[test] Reduce bundle size comparison memory consumption (#30195) @Janpot
-- &#8203;<!-- 23 -->[core] make snapshot comparison more resilient (#30183) @Janpot
-- &#8203;<!-- 21 -->[core] update formatted ts demo to support new structure (#30248) @siriwatknp
-- &#8203;<!-- 20 -->[core] cache dependencies in github actions (#30211) @siriwatknp
-- &#8203;<!-- 19 -->[core] fix root package version (#30204) @siriwatknp
-- &#8203;<!-- 10 -->[core] Fail the build when the dangerjs script errors (#30186) @Janpot
-- &#8203;<!-- 03 -->[test] Add E2E website tests (#30128) @siriwatknp
+- [test] Reduce bundle size comparison memory consumption (#30195) @Janpot
+- [core] make snapshot comparison more resilient (#30183) @Janpot
+- [core] update formatted ts demo to support new structure (#30248) @siriwatknp
+- [core] cache dependencies in github actions (#30211) @siriwatknp
+- [core] fix root package version (#30204) @siriwatknp
+- [core] Fail the build when the dangerjs script errors (#30186) @Janpot
+- [test] Add E2E website tests (#30128) @siriwatknp
 
 All contributors of this release in alphabetical order: @daniel-sachs, @eps1lon, @hbjORbj, @jamesmelzer, @Janpot, @KThompso, @michaldudak, @mikk5829, @mnajdova, @oliviertassinarinari, @rejetto, @ShuPink, @siriwatknp, @ZeeshanTamboli
 
