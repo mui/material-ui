@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-alpha.60",
+  "version": "5.0.0-alpha.61",
   "private": false,
   "author": "MUI Team",
   "description": "Unstyled React components with which to implement custom design systems.",
