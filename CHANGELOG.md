@@ -6,10 +6,11 @@
 
 _Dec 20, 2021_
 
-A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
 
 - 🛠 This release mostly improves what's behind the scenes: infrastructure and tests
-- 📝 Danish (da-DK) locale was added (#29485) @mikk5829
+- 📓 Danish (da-DK) locale was added (#29485) @mikk5829
+- 🖌 Polished the design of Base components (#30149) and the docs in general (#29994) @danilo-leal
 - 📚 Many additions and improvements to the documentation were made
 
 ### `@mui/material@5.2.5`
@@ -39,6 +40,9 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [docs] Add script to clone pages (#30107) @siriwatknp
 - [docs] Correct colors in breakpoints documentation (#30219) @michaldudak
 - [docs] Sync icon search UI state with the url (#30075) @Janpot
+- [docs] Base components demos design polish (#30149) @danilo-leal
+- [docs] General documentation polish (#29994) @danilo-leal
+- [examples] Fix typo in the remix example's README (#30289) @lemol
 - [website] Remove expired gold sponsor (#30222) @oliviertassinari
 - [website] Remove broken showcase links (#30217) @mnajdova
 
@@ -52,7 +56,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [core] Fail the build when the dangerjs script errors (#30186) @Janpot
 - [test] Add E2E website tests (#30128) @siriwatknp
 
-All contributors of this release in alphabetical order: @daniel-sachs, @eps1lon, @hbjORbj, @jamesmelzer, @Janpot, @KThompso, @michaldudak, @mikk5829, @mnajdova, @oliviertassinarinari, @rejetto, @ShuPink, @siriwatknp, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @daniel-sachs, @danilo-leal, @eps1lon, @hbjORbj, @jamesmelzer, @Janpot, @KThompso, @lemol, @michaldudak, @mikk5829, @mnajdova, @oliviertassinari, @rejetto, @ShuPink, @siriwatknp, @ZeeshanTamboli
 
 ## 5.2.4
 
