@@ -29,8 +29,8 @@ function getOffset(val) {
   return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
 }
 function getHalfOffSet(val) {
-  const parse = parseFloat(val) / 2;
-  return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
+  const parse = parseFloat(val);
+  return `${parse / 2}${String(val).replace(String(parse), '') || 'px'}`;
 }
 
 export function generateGrid({ theme, ownerState }) {
