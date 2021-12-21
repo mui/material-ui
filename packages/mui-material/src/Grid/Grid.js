@@ -28,7 +28,7 @@ function getOffset(val) {
   const parse = parseFloat(val);
   return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
 }
-function getHalfOffSet() {
+function getHalfOffSet(val) {
   const parse = parseFloat(val) / 2;
   return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
 }
