@@ -174,7 +174,7 @@ const SingleSelectUnstyled = React.forwardRef(function SingleSelectUnstyled<TVal
       <Button {...buttonProps}>{renderValue(selectedOptions as any)}</Button>
       <PopperUnstyled
         open={listboxOpen}
-        anchorEl={buttonRef.current}
+        anchorEl={buttonRef.current ?? undefined}
         placement="bottom-start"
         disablePortal
         role={undefined}
