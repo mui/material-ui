@@ -37,11 +37,6 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'spa
       badge?: React.HTMLAttributes<HTMLSpanElement> & BadgeUnstyledComponentsPropsOverrides;
     };
     /**
-     * Wrapped shape the badge should overlap.
-     * @default 'rectangular'
-     */
-    overlap?: 'rectangular' | 'circular';
-    /**
      * The content rendered within the badge.
      */
     badgeContent?: React.ReactNode;

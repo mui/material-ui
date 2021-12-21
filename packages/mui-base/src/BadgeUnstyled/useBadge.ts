@@ -7,7 +7,6 @@ export interface UseBadgeProps {
   badgeContent: BadgeUnstyledProps['badgeContent'];
   invisible: BadgeUnstyledProps['invisible'];
   max: BadgeUnstyledProps['max'];
-  overlap: BadgeUnstyledProps['overlap'];
   showZero: BadgeUnstyledProps['showZero'];
   variant: BadgeUnstyledProps['variant'];
 }
@@ -21,7 +20,6 @@ export default function useBadge(props: UseBadgeProps) {
     badgeContent: badgeContentProp,
     invisible: invisibleProp,
     max: maxProp = 99,
-    overlap: overlapProp = 'rectangular',
     showZero = false,
     variant: variantProp = 'standard',
   } = props;
@@ -30,7 +28,6 @@ export default function useBadge(props: UseBadgeProps) {
     anchorOrigin: anchorOriginProp,
     badgeContent: badgeContentProp,
     max: maxProp,
-    overlap: overlapProp,
     variant: variantProp,
   });
 
@@ -47,7 +44,6 @@ export default function useBadge(props: UseBadgeProps) {
     anchorOrigin = anchorOriginProp,
     badgeContent,
     max = maxProp,
-    overlap = overlapProp,
     variant = variantProp,
   } = invisible ? prevProps : props;
 
@@ -62,7 +58,6 @@ export default function useBadge(props: UseBadgeProps) {
     badgeContent,
     invisible,
     max,
-    overlap,
     variant,
     displayValue,
   };
