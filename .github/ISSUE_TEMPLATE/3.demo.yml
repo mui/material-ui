@@ -14,6 +14,11 @@ body:
     attributes:
       label: Url to the demo (automated)
       description: Please do not edit this field.
+  - type: input
+    id: issue_demo_name
+    attributes:
+      label: Name of the demo (automated)
+      description: Please do not edit this field.
   - type: textarea
     id: issue_steps
     attributes:
