@@ -267,7 +267,12 @@ function prepareMarkdown(config) {
 ## API
 
 ${headers.components
-  .map((component) => `- [\`<${component} />\`](/api/${kebabCase(component)}/)`)
+  .map(
+    (component) =>
+      `- [\`<${component} />\`](${headers.product ? `/${headers.product}` : ''}/api/${kebabCase(
+        component,
+      )}/)`,
+  )
   .join('\n')}
   `);
       }

@@ -6,7 +6,7 @@ import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
 
-const primary = {
+const blue = {
   50: '#F0F7FF',
   100: '#C2E0FF',
   200: '#80BFFF',
@@ -20,52 +20,55 @@ const primary = {
 };
 
 const Tab = styled(TabUnstyled)`
-  color: ${primary[100]};
+  font-family: IBM Plex Sans, sans-serif;
+  color: white;
   cursor: pointer;
-  font-size: 1rem;
-  background: ${primary[500]};
-  padding: 15px 20px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  background-color: transparent;
+  width: 100%;
+  padding: 12px 16px;
+  margin: 6px 6px;
   border: none;
+  border-radius: 5px;
   display: flex;
-
-  &.Mui-selected {
-    color: #fff;
-    font-weight: bold;
-  }
+  justify-content: center;
 
   &:hover {
-    color: #fff;
+    background-color: ${blue[400]};
   }
 
   &.${buttonUnstyledClasses.focusVisible} {
     color: #fff;
     outline: none;
-    background-color: ${primary[600]};
-    border-bottom: 2px solid ${primary[600]};
+    background-color: ${blue[200]};
   }
 
   &.${tabUnstyledClasses.selected} {
-    border-bottom: 2px solid #fff;
+    background-color: ${blue[50]};
+    color: ${blue[600]};
   }
 
   &.${buttonUnstyledClasses.disabled} {
     opacity: 0.5;
     cursor: not-allowed;
-    box-shadow: 0 0 0 0 rgba(0, 127, 255, 0);
   }
 `;
 
 const TabPanel = styled(TabPanelUnstyled)`
   width: 100%;
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
 `;
 
 const TabsList = styled(TabsListUnstyled)`
-  background-color: ${primary[500]};
+  min-width: 320px;
+  background-color: ${blue[500]};
   border-radius: 8px;
-  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.05), 0 10px 10px rgba(0, 0, 0, 0.02);
-  padding: 0 10px 0 10px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   align-content: space-between;
 `;
 

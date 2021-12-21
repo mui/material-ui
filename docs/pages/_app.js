@@ -198,7 +198,11 @@ function AppWrapper(props) {
     }
   }, []);
 
-  const activePage = findActivePage(pages, router.pathname);
+  // eslint-disable will be removed once docs restructure is done
+  // eslint-disable-next-line prefer-const
+  let productPages = pages;
+
+  const activePage = findActivePage(productPages, router.pathname);
 
   let fonts = [];
   if (router.pathname.match(/onepirate/)) {
@@ -216,7 +220,7 @@ function AppWrapper(props) {
       </NextHead>
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
         <CodeVariantProvider>
-          <PageContext.Provider value={{ activePage, pages }}>
+          <PageContext.Provider value={{ activePage, pages: productPages }}>
             <ThemeProvider>
               <DocsStyledEngineProvider cacheLtr={emotionCache}>
                 {children}

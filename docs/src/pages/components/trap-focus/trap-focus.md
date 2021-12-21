@@ -25,7 +25,7 @@ When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> 
 
 - 📦 [2.0 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-As the component does not have any styles, it also comes with the unstyled package.
+As the component does not have any styles, it also comes with the Base package.
 
 ```js
 import TrapFocus from '@mui/base/Unstable_TrapFocus';
