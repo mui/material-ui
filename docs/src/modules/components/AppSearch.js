@@ -306,10 +306,12 @@ export default function AppSearch() {
 
                 // TODO: remove this logic once the migration to new structure is done.
                 if (FEATURE_TOGGLE.enable_product_scope) {
-                  parseUrl.href = parseUrl.href.replace(
-                    /(?<!material\/)(getting-started|components|api|customization|guides|discover-more)(\/[^/]+\/)/,
-                    `material/$1$2`,
-                  );
+                  if (!parseUrl.href.startsWith('material/')) {
+                    parseUrl.href = parseUrl.href.replace(
+                      /(getting-started|components|api|customization|guides|discover-more)(\/[^/]+\/)/,
+                      `material/$1$2`,
+                    );
+                  }
                 }
 
                 const { canonicalAs, canonicalPathname } = pathnameToLanguage(
