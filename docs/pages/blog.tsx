@@ -6,7 +6,6 @@ import { alpha } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Section from 'docs/src/layouts/Section';
 import Divider from '@mui/material/Divider';
@@ -22,6 +21,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import { authors } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
+import Link from 'docs/src/modules/components/Link';
 
 export const getStaticProps = async () => {
   const data = getAllBlogPosts();
@@ -55,7 +55,18 @@ const PostPreview = (props: BlogPost) => {
           ))}
         </Box>
       )}
-      <Typography fontWeight="bold" variant="subtitle1" sx={{ mb: 0.5 }}>
+      <Typography
+        aria-describedby={`describe-${props.slug}`}
+        component={Link}
+        href={`/blog/${props.slug}`}
+        fontWeight="bold"
+        variant="subtitle1"
+        color="text.primary"
+        sx={{
+          mb: 0.5,
+          '&:before': { content: '""', display: 'block', position: 'absolute', inset: 0 },
+        }}
+      >
         {props.title}
       </Typography>
       <Typography color="text.secondary" sx={{ mb: 'auto' }}>
@@ -104,7 +115,7 @@ const PostPreview = (props: BlogPost) => {
           alignItems: 'end',
         }}
       >
-        <Box>
+        <Box sx={{ position: 'relative' }}>
           {props.authors && (
             <Typography variant="body2" fontWeight="500">
               {props.authors.slice(0, 2).join(', ')}
@@ -117,11 +128,12 @@ const PostPreview = (props: BlogPost) => {
             </Typography>
           )}
         </Box>
-        <Button
-          component="a"
-          href={`/blog/${props.slug}`}
-          endIcon={<KeyboardArrowRightRounded fontSize="small" />}
+        <Typography
+          aria-hidden="true"
+          id={`describe-${props.slug}`}
           sx={{
+            display: 'flex',
+            alignItems: 'center',
             p: { xs: 0, sm: 0.5 },
             mt: { xs: 1, sm: 0 },
             fontWeight: 700,
@@ -130,11 +142,10 @@ const PostPreview = (props: BlogPost) => {
               theme.palette.mode === 'dark'
                 ? theme.palette.primary[300]
                 : theme.palette.primary[600],
-            '& svg': { ml: -0.5, mt: 0.1 },
           }}
         >
-          Read more
-        </Button>
+          Read more <KeyboardArrowRightRounded fontSize="small" />
+        </Typography>
       </Box>
     </React.Fragment>
   );
@@ -161,12 +172,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       .map((str) => str.trim())
       .filter((tag) => !!tag);
   }, [router.query]);
-  React.useEffect(() => {
-    const postList = document.getElementById('post-list');
-    if (postList) {
-      postList.scrollIntoView();
-    }
-  }, [router.query, page]);
+
   React.useEffect(() => {
     const arrayTags = getTags();
     const finalTags: Record<string, boolean> = {};
@@ -176,6 +182,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
     setSelectedTags(finalTags);
     setPage(0);
   }, [getTags]);
+
   const removeTag = (tag: string) => {
     router.push(
       {
@@ -210,6 +217,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             The <GradientText>latest</GradientText> about MUI
           </Typography>
           <Box
+            component="ul"
             sx={{
               display: 'grid',
               gap: 2,
@@ -219,8 +227,23 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             {[firstPost, secondPost].map((post) => (
               <Paper
                 key={post.slug}
+                component="li"
                 variant="outlined"
-                sx={{ p: 2, display: 'flex', flexDirection: 'column', alignItems: 'initial' }}
+                sx={(theme) => ({
+                  p: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  position: 'relative',
+                  '&:hover, &:focus-within': {
+                    bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.600' : 'primary.50',
+                    borderColor: 'primary.300',
+                  },
+                  '&:focus-within': {
+                    '& a': {
+                      outline: 'none',
+                    },
+                  },
+                })}
               >
                 {post.image && (
                   <Box
@@ -249,7 +272,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             columnGap: 8,
           }}
         >
-          <Typography variant="h5" fontWeight="700" sx={{ mb: { xs: 1, sm: 2 } }}>
+          <Typography component="h2" variant="h5" fontWeight="700" sx={{ mb: { xs: 1, sm: 2 } }}>
             All posts
           </Typography>
           <Box sx={{ gridRow: 'span 2' }}>
@@ -285,7 +308,13 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                       {...(selected
                         ? {
                             label: tag,
-                            onDelete: () => removeTag(tag),
+                            onDelete: () => {
+                              const postList = document.getElementById('post-list');
+                              if (postList) {
+                                postList.scrollIntoView();
+                              }
+                              removeTag(tag);
+                            },
                           }
                         : {
                             label: (
@@ -310,6 +339,10 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                               </React.Fragment>
                             ),
                             onClick: () => {
+                              const postList = document.getElementById('post-list');
+                              if (postList) {
+                                postList.scrollIntoView();
+                              }
                               router.push(
                                 {
                                   query: {
@@ -340,14 +373,31 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             </Box>
           </Box>
           <Box>
-            {displayedPosts.map((post, index) => (
-              <React.Fragment key={post.slug}>
-                <Box sx={{ py: 3, display: 'flex', flexDirection: 'column' }}>
+            <Box component="ul" sx={{ p: 0, m: 0 }}>
+              {displayedPosts.map((post) => (
+                <Box
+                  component="li"
+                  key={post.slug}
+                  sx={() => ({
+                    py: 3,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'relative',
+                    '&:not(:last-of-type)': {
+                      borderBottom: '1px solid',
+                      borderColor: 'divider',
+                    },
+                    '&:hover, &:focus-within': {
+                      '& a': {
+                        textDecoration: 'underline',
+                      },
+                    },
+                  })}
+                >
                   <PostPreview {...post} />
                 </Box>
-                {index !== displayedPosts.length - 1 && <Divider />}
-              </React.Fragment>
-            ))}
+              ))}
+            </Box>
             <Pagination
               page={page + 1}
               count={totalPage}
@@ -355,6 +405,10 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               shape="rounded"
               onChange={(_, value) => {
                 setPage(value - 1);
+                const postList = document.getElementById('post-list');
+                if (postList) {
+                  postList.scrollIntoView();
+                }
               }}
               sx={{ mt: 2, mb: 10 }}
             />
