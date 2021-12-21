@@ -28,6 +28,10 @@ function getOffset(val) {
   const parse = parseFloat(val);
   return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
 }
+function getHalfOffSet() {
+  const parse = parseFloat(val) / 2;
+  return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
+}
 
 export function generateGrid({ theme, ownerState }) {
   let size;
@@ -141,9 +145,11 @@ export function generateRowGap({ theme, ownerState }) {
 
       if (themeSpacing !== '0px') {
         return {
-          marginTop: `-${getOffset(themeSpacing)}`,
+          marginTop: `-${getHalfOffSet(themeSpacing)}`,
+          marginBottom: `-${getHalfOffSet(themeSpacing)}`,
           [`& > .${gridClasses.item}`]: {
-            paddingTop: getOffset(themeSpacing),
+            paddingTop: getHalfOffSet(themeSpacing),
+            paddingBottom: getHalfOffSet(themeSpacing)
           },
         };
       }
@@ -170,9 +176,11 @@ export function generateColumnGap({ theme, ownerState }) {
       if (themeSpacing !== '0px') {
         return {
           width: `calc(100% + ${getOffset(themeSpacing)})`,
-          marginLeft: `-${getOffset(themeSpacing)}`,
+          marginLeft: `-${getHalfOffSet(themeSpacing)}`,
+          marginRight: `-${getHalfOffSet(themeSpacing)}`,
           [`& > .${gridClasses.item}`]: {
-            paddingLeft: getOffset(themeSpacing),
+            paddingLeft: getHalfOffSet(themeSpacing),
+            paddingRight: getHalfOffSet(themeSpacing),
           },
         };
       }
