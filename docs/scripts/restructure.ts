@@ -158,7 +158,7 @@ function run() {
             }
 
             if (filePath.endsWith('.js')) {
-              data = data.replace('/src/pages/', `/products/${product}/`); // point to data path (A) in new directory
+              data = data.replace('/src/pages/', `/data/${product}/`); // point to data path (A) in new directory
             }
 
             fs.mkdirSync(info.directory, { recursive: true });
@@ -167,7 +167,7 @@ function run() {
         } else {
           let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
           if (filePath.endsWith('.js')) {
-            data = data.replace('/src/pages/', `/products/`); // point to data path (A) in new directory
+            data = data.replace('/src/pages/', `/data/`); // point to data path (A) in new directory
           }
           fs.writeFileSync(filePath, data);
         }
