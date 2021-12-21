@@ -13,7 +13,7 @@ materialDesign: https://material.io/components/bottom-navigation
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Bottom Navigation 底部导航栏
+## Bottom Navigation
 
 当只有**三个**导航项时，导航栏会始终显示图标和文本标签。
 
@@ -31,6 +31,6 @@ materialDesign: https://material.io/components/bottom-navigation
 
 {{"demo": "pages/components/bottom-navigation/FixedBottomNavigation.js", "bg": true, "iframe": true, "maxWidth": 600}}
 
-## Third-party routing library（第三方路由库）
+## Third-party routing library
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `BottomNavigationAction` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/).

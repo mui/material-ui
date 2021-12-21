@@ -3,7 +3,7 @@
   "propDescriptions": {
     "children": "The content of the component.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "loading": "If <code>true</code>, the loading indicator is shown.",
     "loadingIndicator": "Element placed before the children if the button is in loading state.",
     "loadingPosition": "The loading indicator can be positioned on the start, end, or the center of the button.",

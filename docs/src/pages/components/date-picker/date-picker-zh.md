@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/date-pickers
 
 <p class="description">日期选择器可以让用户选择日期。</p>
 
-日期选择器可以让用户选择日期。 该组件的显示方式如下：
+Date pickers let the user select a date. 该组件的显示方式如下：
 
 - 手机端的对话框
 - 桌面端输入框的下拉列表中
@@ -47,24 +47,24 @@ It's possible to render any date picker without the modal/popover and text field
 
 {{"demo": "pages/components/date-picker/StaticDatePickerDemo.js", "bg": true}}
 
-## 响应式
+## Responsiveness
 
 日期选择器组件是为它所运行的设备而设计和优化的。
 
 - The `MobileDatePicker` component works best for touch devices and small screens.
 - The `DesktopDatePicker` component works best for mouse devices and large screens.
 
-By default, the `DatePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
+By default, the `DatePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-picker/ResponsiveDatePickers.js"}}
 
-## Form props 表单的属性
+## Form props
 
 The date picker component can be disabled or read-only.
 
 {{"demo": "pages/components/date-picker/FormPropsDatePickers.js"}}
 
-## Localization 本地化
+## Localization
 
 你可以使用 `LocalizationProvider` 来改变用于渲染日期选择的 date-engine（日期引擎）本地化设置。 下面是一个更改 `date-fns` 适配器本地化设置的示例：
 
@@ -112,7 +112,7 @@ You can customize the rendering of the input with the `renderInput` prop. 请确
 
 {{"demo": "pages/components/date-picker/ServerRequestDatePicker.js"}}
 
-## 辅助文本
+## Helper text
 
 You can show a helper text with the date format accepted.
 

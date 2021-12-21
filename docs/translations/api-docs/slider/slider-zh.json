@@ -9,7 +9,7 @@
     "components": "The components used for each slot inside the Slider. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside the Slider.",
     "defaultValue": "The default value. Use when the component is not controlled.",
-    "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "disableSwap": "If <code>true</code>, the active thumb doesn&#39;t swap when moving pointer over a thumb while dragging another thumb.",
     "getAriaLabel": "Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider. This is important for screen reader users.<br><br><strong>Signature:</strong><br><code>function(index: number) =&gt; string</code><br><em>index:</em> The thumb label&#39;s index to format.",
     "getAriaValueText": "Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider. This is important for screen reader users.<br><br><strong>Signature:</strong><br><code>function(value: number, index: number) =&gt; string</code><br><em>value:</em> The thumb label&#39;s value to format.<br><em>index:</em> The thumb label&#39;s index to format.",

@@ -13,7 +13,7 @@ githubLabel: 'component: ClickAwayListener'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Exemplo
+## Example
 
 Por exemplo, se você precisar ocultar um menu quando as pessoas clicarem em qualquer outro lugar da sua página:
 

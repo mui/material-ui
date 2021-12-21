@@ -147,11 +147,11 @@ export default function XRoadmap() {
                       </Box>
                       <b>Data Grid</b>
                       {bullet}
-                      <b>Tree data</b>
-                      {bullet}
                       <b>Grouping</b>
                       {bullet}
-                      <b>Column pinning</b>
+                      <b>Aggregation</b>
+                      {bullet}
+                      <b>Pivoting</b>
                       {bullet}
                       <Link href={ROUTES.dataGridFeaturesComparison} sx={{ color: 'primary.300' }}>
                         And more!

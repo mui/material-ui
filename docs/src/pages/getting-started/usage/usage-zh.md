@@ -1,4 +1,4 @@
-# 使用
+# Usage
 
 <p class="description">Get started with React and MUI in no time.</p>
 

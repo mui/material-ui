@@ -1,6 +1,6 @@
 # API 的设计方法
 
-<p class="description">We have learned a great deal regarding how MUI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
+<p class="description">我们在如何使用 Material-UI 方面学到了很多相关的知识，而通过 v1 版本的重写，我们能够彻底重新考虑组件的 API。</p>
 
 > API 设计的难点在于你可以让一些复杂的东西看起来简单，也可能把简单的东西搞得复杂。
 
@@ -12,8 +12,8 @@
 
 您可能已经注意到 API 中有关封装组件的一些不一致。 为了给予一些透明度，我们在设计 API 时一直使用以下的规则：
 
-1. Using the `children` prop is the idiomatic way to do composition with React.
-2. 有时我们只需要有限的子组件封装，例如，当我们不需要允许子组件的顺序排列的时候。 In this case, providing explicit props makes the implementation simpler and more performant; for example, the `Tab` takes an `icon` and a `label` prop.
+1. 使用`children`属性是使用React进行合成的惯用方法。
+2. 有时我们只需要有限的子组件封装，例如，当我们不需要允许子组件的顺序排列的时候。 在这种情况下，提供显式属性可以使实现更简单，更高效; 例如，`Tab`采用`icon`和`label`属性。
 3. API 的一致性至关重要。
 
 ## 规则
@@ -34,18 +34,18 @@
 
 ### 原生属性
 
-We avoid documenting native properties supported by the DOM like [`className`](/customization/how-to-customize/#overriding-styles-with-class-names).
+我们避免记录 DOM 支持的那些原生属性，如[`className`](/customization/how-to-customize/#overriding-styles-with-class-names)。
 
 ### CSS classes
 
-为了自定义样式，所有组件都接受 [`classes`](/customization/how-to-customize/#overriding-styles-with-class-names) 属性。 The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
+为了自定义样式，所有组件都接受 [`classes`](/customization/how-to-customize/#overriding-styles-with-class-names) 属性。 类设计兼顾两个约束： 使类结构尽可能简单，同时足以实现 Material Design 指南。
 
 - 应用于根元素的类始终称为 `root`。
 - 所有默认样式都分组在单个类中。
 - 应用于非根元素的类则以元素的名称为前缀，例如， Dialog 组件中的 `paperWidthXs`。
-- The variants applied by a boolean prop **aren't** prefixed, e.g. the `rounded` class applied by the `rounded` prop.
-- The variants applied by an enum prop **are** prefixed, e.g. the `colorPrimary` class applied by the `color="primary"` prop.
-- 一个变体（variant）具有** 一个级别的特异性**。 The `color` and `variant` props are considered a variant. 样式特异性越低，它就越容易被覆盖。
+- 由布尔属性赋值的variants **不添加** 前缀，例如 `rounded` 类由 `rounded` 属性赋值。
+- 由枚举属性赋值的variants**添加**前缀，例如，`colorPrimary` 类使用 `color="primary"` 属性赋值。
+- 一个变体（variant）具有** 一个级别的特异性**。 `color`和`variant`属性被视为variant。 样式特异性越低，它就越容易被覆盖。
 - 我们增加了变体修饰符（variant modifier）的特异性。 对于伪类（pseudo-classes）（`:hover `，`:focus ` 等），我们**必须这样做**。 以更多模板为代价，它才会开放更多的控制权。 我们也希望，它也能更加直观。
 
 ```js

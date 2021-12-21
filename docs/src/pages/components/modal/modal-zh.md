@@ -23,8 +23,8 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 当你创建一个模态对话框时，使用[对话框（Dialog）](/components/dialogs/)组件比直接使用模态框更佳。 以下的组件将将模态框作为一个低级别的组件运用：
 
-- [Dialog 对话框](/components/dialogs/)
-- [Drawer（抽屉）](/components/drawers/)
+- [Dialog](/components/dialogs/)
+- [Drawer](/components/drawers/)
 - [Menu](/components/menus/)
 - [弹出框 (Popover)](/components/popover/)
 
@@ -34,11 +34,11 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 请注意，您可以通过 `outline: 0` 属性来禁用模态框的边缘（通常为蓝色或金色）。
 
-## 素颜模式
+## Unstyled
 
 - 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-The modal also comes with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
+The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import ModalUnstyled from '@mui/base/ModalUnstyled';
@@ -52,14 +52,14 @@ Modals can be nested, for example a select within a dialog, but stacking of more
 
 {{"demo": "pages/components/modal/NestedModal.js"}}
 
-## 过渡动画
+## Transitions
 
-通过使用一个过渡组件，您可以给模态框的打开/关闭状态加上动画效果。 此组件应遵守以下条件：
+通过使用一个过渡组件，您可以给模态框的打开/关闭状态加上动画效果。 This component should respect the following conditions:
 
 - 作为模态框的直接子元素。
 - 有一个 `in` 属性。 这对应于打开/关闭的状态。
-- 当进入过渡时调用 `onEnter` 回调属性。
-- 当退出过渡完成后应该调用 `onExited` 回调属性。 这两个回调属性保证了模态框在关闭并展示完过渡动画时，将会移除子内容。
+- Call the `onEnter` callback prop when the enter transition starts.
+- Call the `onExited` callback prop when the exit transition is completed. 这两个回调属性保证了模态框在关闭并展示完过渡动画时，将会移除子内容。
 
 模态框已经内嵌支持  [react-transition-group](https://github.com/reactjs/react-transition-group)。
 
@@ -69,7 +69,7 @@ Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
-## 性能
+## Performance
 
 模态的内容在关闭时是不被加载的。 如果你需要将内容提供给搜索引擎或在你的模态框中渲染昂贵的组件树，同时还要优化交互响应能力，那么你可以启用 `keepMounted` 属性来改变这一默认行为：
 
@@ -83,11 +83,11 @@ As with any performance optimization, this is not a silver bullet. Be sure to id
 
 ## 服务端渲染的模态框
 
-React [不支持](https://github.com/facebook/react/issues/13097)服务端渲染的 [`createPortal()`](https://reactjs.org/docs/portals.html) API。 若您想显示模态框，则需要通过 `disablePortal`  这个属性来禁用 protal 功能：
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. 若您想显示模态框，则需要通过 `disablePortal`  这个属性来禁用 protal 功能：
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 
-## 设计局限
+## Limitations
 
 ### 焦点陷阱
 
@@ -99,7 +99,7 @@ This is done for accessibility purposes. However, it might create issues. 如果
 <Modal disableEnforceFocus />
 ```
 
-## 无障碍设计
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 

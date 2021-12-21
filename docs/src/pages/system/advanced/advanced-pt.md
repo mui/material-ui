@@ -1,4 +1,4 @@
-# Avançado
+# Advanced
 
 <p class="description">Aqui você pode encontrar exemplos de como você pode usar o sistema em seus componentes customizados.</p>
 

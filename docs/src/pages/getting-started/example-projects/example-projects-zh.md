@@ -17,7 +17,7 @@
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
 
-Create React App 是一个很棒的学习 React 的项目。 请看一下这些[可用的替代方案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) ，看看哪个项目最符合您的需求。
+Create React App 是一个很棒的学习 React 的项目。 Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
 
 此文档站点的源代码也包含在存储库中。 这是一个稍微复杂一点的项目。 请查看 [`/ docs`](https://github.com/mui-org/material-ui/tree/master/docs) 文件夹以获取创建项目的说明。
 
@@ -27,7 +27,7 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 
 ### 免费的资源
 
-- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/graphql-starter):
+- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/relay-starter-kit):
 
   - ![stars](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
   - GraphQL API project using code-first design (TypeScript, OAuth, GraphQL.js, Knex, Cloud SQL)
@@ -49,7 +49,7 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 - [React SaaS 模板](https://github.com/dunky11/react-saas-template)：
 
   - ![stars](https://img.shields.io/github/stars/dunky11/react-saas-template.svg?style=social&label=Star)
-  - 使用 Create React App 创建
+  - Created with Create React App
   - 特征是一个登录页面，博客，一个登录和注册的区块，以及一个管理员控制界面
   - 完全使用 react-router 来路由
   - 延迟加载组件以提高性能
@@ -61,7 +61,7 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
   - 使用 recharts 的图表
   - 运用 React Router 的一个导航示例
   - 一个在生产环境下使用的带有 Nginx 服务器的 docker container（docker 容器)。
-  - 使用 Create React App 创建
+  - Created with Create React App
 
 - [RMUIF](https://github.com/phoqe/rmuif):
 
@@ -77,7 +77,7 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 - [ScaffoldHub](https://scaffoldhub.io/?partner=1):
 
   - 使用此在线工具构建您的完整应用程序
-  - Choose your framework and library (React & MUI!)
+  - 选择您的框架和库（React & Material UI!）
   - 选择您的数据库（SQL，MongoDB 或 Firestree）
   - 用直观的 GUI 模拟你的数据库和应用程序
   - 生成您的应用程序，包括一个完整的 scaffolded 后台
@@ -85,5 +85,5 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 
 - [Divjoy](https://divjoy.com?via=material-ui):
 
-  - Create your MUI app in minutes.
-  - You'll get a nice template, authentication, database integration, subscription payments, and more.
+  - 在几分钟内创建您的 MUI 应用程序。
+  - 您将获得一个好模板、认证模块、数据库整合、订阅付款等等。

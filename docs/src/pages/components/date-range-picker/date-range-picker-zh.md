@@ -17,11 +17,11 @@ materialDesign: https://material.io/components/date-pickers
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 要求
+## Requirements
 
-该组件依赖于你所使用的日期管理库。 它支持 [date-fns](https://date-fns.org/)，[luxon](https://moment.github.io/luxon/)，[dayjs](https://github.com/iamkun/dayjs)，[moment](https://momentjs.com/) 以及其他任何使用公共 `dateAdapter` 接口的库。
+This component relies on the date management library of your choice. It supports [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) and any other library via a public `dateAdapter` interface.
 
-请安装这些库中的任何一个，并使用 `LocalizationProvider` 来包裹到你的 root（或者包裹到该选择器你想要应用的最高位置）来设置正确的日期引擎。
+Please install any of these libraries and set up the right date engine by wrapping your root (or the highest level you wish the pickers to be available) with `LocalizationProvider`:
 
 ```jsx
 // or @mui/lab/dateAdapter/{dayjs,luxon,moment} or any valid date-io adapter
@@ -35,30 +35,30 @@ function App() {
 }
 ```
 
-## 基本用法
+## Basic usage
 
 请注意，你可以从 [DatePicker](/api/date-picker/) 中传递几乎任何的属性。
 
 {{"demo": "pages/components/date-range-picker/BasicDateRangePicker.js"}}
 
-## 静态模式
+## Static mode
 
 可以将任何选择器内嵌渲染。 这将启用自定义弹出提示/模态框的容器。
 
 {{"demo": "pages/components/date-range-picker/StaticDateRangePickerDemo.js", "bg": true}}
 
-## 响应式
+## Responsiveness
 
 日期范围选择器组件是针对运行它的设备进行设计并优化的。
 
 - The `MobileDateRangePicker` component works best for touch devices and small screens.
 - The `DesktopDateRangePicker` component works best for mouse devices and large screens.
 
-By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
+By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-range-picker/ResponsiveDateRangePicker.js"}}
 
-## Form props 表单的属性
+## Form props
 
 The date range picker component can be disabled or read-only.
 
@@ -76,14 +76,14 @@ The date range picker component can be disabled or read-only.
 
 {{"demo": "pages/components/date-range-picker/MinMaxDateRangePicker.js"}}
 
-## 自定义输入组件
+## Custom input component
 
 你可以使用 `renderInput` 属性来渲染自定义的输入。 对于 `DateRangePicker`，它需要**两个**参数 – 分别是开始和结束输入。 如果你需要渲染自定义的输入，请确保将 `ref` 和 `inputProps` 都正确地传入到输入组件中。
 
 {{"demo": "pages/components/date-range-picker/CustomDateRangeInputs.js"}}
 
-## 自定义日期渲染
+## Customized day rendering
 
-你可以通过 `renderDay` 函数属性来自定义所显示的日期。 You can take advantage of the internal [DateRangePickerDay](/api/date-range-picker-day/) component.
+The displayed days are customizable with the `renderDay` function prop. You can take advantage of the internal [DateRangePickerDay](/api/date-range-picker-day/) component.
 
 {{"demo": "pages/components/date-range-picker/CustomDateRangePickerDay.js"}}

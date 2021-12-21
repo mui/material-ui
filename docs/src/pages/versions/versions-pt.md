@@ -41,9 +41,9 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 | Data             | Versão | Situação |
 |:---------------- |:------ |:-------- |
 | Maio de 2018     | v1.0.0 | Lançada  |
-| Setembro de 2018 | v3.0.0 | Lançada  |
-| Maio de 2019     | v4.0.0 | Lançada  |
-| Setembro de 2021 | v5.0.0 | Lançada  |
+| Setembro de 2018 | v3.0.0 | Released |
+| Maio de 2019     | v4.0.0 | Released |
+| Setembro de 2021 | v5.0.0 | Released |
 
 Você pode seguir os [milestones](https://github.com/mui-org/material-ui/milestones) para uma visão geral mais detalhada.
 

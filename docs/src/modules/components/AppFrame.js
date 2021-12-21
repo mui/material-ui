@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiLink from '@mui/material/Link';
@@ -28,23 +28,42 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import LanguageIcon from '@mui/icons-material/Translate';
+import { debounce } from '@mui/material/utils';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
 
+const nProgressStart = debounce(() => {
+  NProgress.start();
+}, 200);
+
+const nProgressDone = () => {
+  nProgressStart.clear();
+  NProgress.done();
+};
+
 export function NextNProgressBar() {
   const router = useRouter();
   React.useEffect(() => {
-    const nProgressStart = () => NProgress.start();
-    const nProgressDone = () => NProgress.done();
+    const handleRouteChangeStart = (url, { shallow }) => {
+      if (!shallow) {
+        nProgressStart();
+      }
+    };
 
-    router.events.on('routeChangeStart', nProgressStart);
-    router.events.on('routeChangeComplete', nProgressDone);
-    router.events.on('routeChangeError', nProgressDone);
+    const handleRouteChangeDone = (url, { shallow }) => {
+      if (!shallow) {
+        nProgressDone();
+      }
+    };
+
+    router.events.on('routeChangeStart', handleRouteChangeStart);
+    router.events.on('routeChangeComplete', handleRouteChangeDone);
+    router.events.on('routeChangeError', handleRouteChangeDone);
     return () => {
-      router.events.off('routeChangeStart', nProgressStart);
-      router.events.off('routeChangeComplete', nProgressDone);
-      router.events.off('routeChangeError', nProgressDone);
+      router.events.off('routeChangeStart', handleRouteChangeStart);
+      router.events.off('routeChangeComplete', handleRouteChangeDone);
+      router.events.off('routeChangeError', handleRouteChangeDone);
     };
   }, [router]);
 
@@ -110,7 +129,7 @@ const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
 })(({ disablePermanent, theme }) => {
   return {
-    padding: '0 2px',
+    padding: '5px 0px 5px 8px',
     transition: theme.transitions.create('width'),
     ...(disablePermanent && {
       boxShadow: 'none',
@@ -121,20 +140,35 @@ const StyledAppBar = styled(AppBar, {
       },
     }),
     boxShadow: 'none',
+    backdropFilter: 'blur(20px)',
     borderStyle: 'solid',
     borderColor:
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.primary[100], 0.08)
+        : theme.palette.grey[100],
     borderWidth: 0,
     borderBottomWidth: 'thin',
-    background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
+    background:
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.primaryDark[900], 0.7)
+        : 'rgba(255,255,255,0.7)',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
     '& .MuiIconButton-root': {
       border: `1px solid ${
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200]
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]
       }`,
       borderRadius: theme.shape.borderRadius,
-      color: theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
-      background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
+      color:
+        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+      // background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
+      '&:hover': {
+        borderColor:
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[300],
+        background:
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primaryDark[700], 0.4)
+            : theme.palette.grey[50],
+      },
     },
   };
 });
@@ -226,7 +260,7 @@ function AppFrame(props) {
       </SkipLink>
       <MarkdownLinks />
       <StyledAppBar disablePermanent={disablePermanent}>
-        <Toolbar>
+        <Toolbar variant="dense">
           <NavIconButton
             edge="start"
             color="inherit"
@@ -234,10 +268,10 @@ function AppFrame(props) {
             disablePermanent={disablePermanent}
             onClick={handleNavDrawerOpen}
           >
-            <MenuIcon />
+            <MenuIcon fontSize="small" />
           </NavIconButton>
           <GrowingDiv />
-          <Stack direction="row" spacing={2} sx={{ '& > button': { width: 42 } }}>
+          <Stack direction="row" spacing={1.5} sx={{ '& > button': { width: 38 } }}>
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
@@ -246,7 +280,7 @@ function AppFrame(props) {
                 href={process.env.SOURCE_CODE_REPO}
                 data-ga-event-category="header"
                 data-ga-event-action="github"
-                sx={{ px: '10px' }}
+                sx={{ px: '8px' }}
               >
                 <GitHubIcon fontSize="small" />
               </IconButton>
@@ -256,14 +290,14 @@ function AppFrame(props) {
               <IconButton
                 {...languageButtonProps}
                 sx={{
-                  px: '10px',
+                  px: '8px',
                 }}
               >
                 <LanguageIcon fontSize="small" />
               </IconButton>
             </Tooltip>
             <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
+              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '8px' }}>
                 <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
@@ -273,6 +307,53 @@ function AppFrame(props) {
                 anchorEl={languageMenu}
                 open={Boolean(languageMenu)}
                 onClose={handleLanguageMenuClose}
+                PaperProps={{
+                  variant: 'outlined',
+                  sx: {
+                    mt: 0.5,
+                    minWidth: 180,
+                    backgroundImage: 'none',
+                    borderColor: (theme) =>
+                      theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+                    bgcolor: (theme) =>
+                      theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
+                    boxShadow: (theme) =>
+                      `0px 4px 20px ${
+                        theme.palette.mode === 'dark'
+                          ? 'rgba(0, 0, 0, 0.5)'
+                          : 'rgba(170, 180, 190, 0.3)'
+                      }`,
+                    '& .MuiMenuItem-root': {
+                      fontSize: (theme) => theme.typography.pxToRem(14),
+                      fontWeight: 500,
+                      '&:hover': {
+                        color: (theme) =>
+                          theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
+                        backgroundColor: (theme) =>
+                          theme.palette.mode === 'dark'
+                            ? alpha(theme.palette.primaryDark[700], 0.4)
+                            : theme.palette.grey[50],
+                      },
+                      '&:focus': {
+                        backgroundColor: (theme) =>
+                          theme.palette.mode === 'dark'
+                            ? alpha(theme.palette.primaryDark[700], 0.4)
+                            : theme.palette.grey[50],
+                      },
+                      '&.Mui-selected': {
+                        fontWeight: 500,
+                        color: (theme) =>
+                          theme.palette.mode === 'dark'
+                            ? theme.palette.primary[300]
+                            : theme.palette.primary[600],
+                        backgroundColor: (theme) =>
+                          theme.palette.mode === 'dark'
+                            ? theme.palette.primaryDark[700]
+                            : alpha(theme.palette.primary[100], 0.6),
+                      },
+                    },
+                  },
+                }}
               >
                 {LANGUAGES_LABEL.map((language) => (
                   <MenuItem

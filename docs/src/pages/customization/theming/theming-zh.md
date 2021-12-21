@@ -30,7 +30,7 @@ Changing the theme configuration variables is the most effective way to match MU
 
 ### 自定义变量
 
-When using MUI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. 就像这样：
+When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
 
 ```jsx
 const theme = createTheme({
@@ -69,7 +69,7 @@ declare module '@mui/material/styles' {
 你 [可以访问](/styles/advanced/#accessing-the-theme-in-a-component) React 组件内部的主题变量。
 
 - [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. 包括基本的网站模板，并且展示各种组件及其受主题影响的方式。
-- [Material palette generator](https://material.io/inline-tools/color/)：它可用于通过您输入的任何颜色生成一系列的调色板。
+- [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
 
 ## 访问一个组件中的主题
 
@@ -81,7 +81,7 @@ declare module '@mui/material/styles' {
 
 {{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
-内部主题将 **覆盖** 外部主题。 你可以提供一个函数来扩展外层主题：
+The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
@@ -91,7 +91,7 @@ declare module '@mui/material/styles' {
 
 根据接收的选项生成样式。 Then, pass it as a prop to [`ThemeProvider`](#themeprovider).
 
-#### 参数
+#### Arguments
 
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
@@ -105,11 +105,11 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme(deepmerge(options1, options2));
 ```
 
-#### 返回结果
+#### Returns
 
 `theme` (_object_): A complete, ready-to-use theme object.
 
-#### 例子
+#### Examples
 
 ```js
 import { createTheme } from '@mui/material/styles';
@@ -183,7 +183,7 @@ theme = createTheme(theme, {
 
 根据接收到的选项生成响应式的文字铸排设置。
 
-#### 参数
+#### Arguments
 
 1. `theme` (_object_): The theme object to enhance.
 2. `options` (_object_ [optional]):
@@ -193,11 +193,11 @@ theme = createTheme(theme, {
 - `factor` (_number_ [optional]): Default to `2`. 此值决定了字体大小调整的强度。 值越高的话，在较小的屏幕上字体大小之间的差异就越小。 值越低的话，在较小屏幕上的字体就越大。 该值必须大于1。
 - `variants` (_array\<string\>_ [optional]): Default to all. 需要处理的文字变体。
 
-#### 返回结果
+#### Returns
 
 `theme` (_object_): The new theme with a responsive typography.
 
-#### 例子
+#### Examples
 
 ```js
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
@@ -212,20 +212,20 @@ theme = responsiveFontSizes(theme);
 
 生成一个减少 [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html) 内的警告数量的主题，类似于 `Warning: findDOMNode is deprecated in StrictMode`。
 
-#### 要求
+#### Requirements
 
 目前 `unstable_createMuiStrictModeTheme` 没有添加额外的要求。
 
-#### 参数
+#### Arguments
 
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
-#### 返回结果
+#### Returns
 
 `theme` (_object_): A complete, ready-to-use theme object.
 
-#### 例子
+#### Examples
 
 ```js
 import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
@@ -247,14 +247,14 @@ function App() {
 
 This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. 最好在**您的组件树的根目录**中使用它。
 
-#### 属性
+#### Props
 
-| 名称                 | 类型                                       | 描述                                                                                                                                                                      |
-|:------------------ |:---------------------------------------- |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| children&nbsp;\* | node                                     | 您的组件树。                                                                                                                                                                  |
-| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. 您可以提供一个能够扩展外层主题的函数。 |
+| Name               | Type                                     | Description                                                                                                                                                                                               |
+|:------------------ |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;\* | node                                     | Your component tree.                                                                                                                                                                                      |
+| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
 
-#### 例子
+#### Examples
 
 ```jsx
 import * as React from 'react';

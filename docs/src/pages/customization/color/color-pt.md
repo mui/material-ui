@@ -1,4 +1,4 @@
-# Cor
+# Color
 
 <p class="description">Transmita significado através da cor. Out of the box you get access to all colors in the Material Design guidelines.</p>
 
@@ -11,7 +11,7 @@ O [sistema de cores](https://material.io/design/color/) do Material Design pode 
 A equipe do Material Design também criou uma ferramenta de configuração de paleta incrível: [material.io/resources/color/](https://material.io/resources/color/). Isso pode ajudar você a criar uma paleta de cores para sua UI, bem como medir o nível de acessibilidade de qualquer combinação de cores.
 
 <a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
-  <img src="/static/images/color/colorTool.png" alt="Ferramenta oficial de cores" style="width: 574px" />
+  <img src="/static/images/color/colorTool.png" alt="Official color tool" style="width: 574px" />
 </a>
 
 <br />
@@ -40,7 +40,7 @@ const theme = createTheme({
 });
 ```
 
-### Área de exemplos
+### Playground
 
 To test a [material.io/design/color](https://material.io/design/color/) color scheme with the MUI documentation, simply select colors using the palette and sliders below. Como alternativa, você pode inserir valores hexadecimais nos campos de texto Primary e Secondary.
 
@@ -70,7 +70,7 @@ If you are using the default primary and / or secondary shades then by providing
 
 ### Ferramentas da comunidade
 
-- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Inclui modelos de site básicos para mostrar vários componentes e como eles são afetados pelo tema
+- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Includes basic site templates to show various components and how they are affected by the theme
 - [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.
 
 ## Paletas de cores Material Design 2014
@@ -94,7 +94,7 @@ const color = red[500];
 
 {{"demo": "pages/customization/color/Color.js", "hideToolbar": true, "bg": "inline"}}
 
-### Exemplos
+### Examples
 
 Por exemplo, você pode se referir a cores complementares primárias e de destaque, "vermelho 500" e "roxo A200" assim:
 

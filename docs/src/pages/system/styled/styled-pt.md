@@ -2,7 +2,7 @@
 
 <p class="description">Utilidade para criar componentes estilizados.</p>
 
-## Introdução
+## Introduction
 
 All the MUI components are styled with this `styled()` utility. This utility is built on top of the `styled()` module of [`@mui/styled-engine`](/guides/styled-engine/) and provides additional features.
 
@@ -23,13 +23,13 @@ The utility can be used as a replacement for emotion's or styled-components' sty
 
 ### `styled(Component, [options])(styles) => Component`
 
-#### Argumentos
+#### Arguments
 
-1. `Component`: O componente que será manipulado.
-2. `options` (_object_ [opcional]):
+1. `Component`: The component that will be wrapped.
+2. `options` (_object_ [optional]):
 
    - `options.shouldForwardProp` (_`(prop: string) => bool`_ [optional]): Indicates whether the `prop` should be forwarded to the `Component`.
-   - `options.label` (_string_ [optional]): The suffix of the style sheet. Útil para depuração.
+   - `options.label` (_string_ [optional]): The suffix of the style sheet. Useful for debugging.
    - `options.name` (_string_ [optional]): The key used under `theme.components` for specifying `styleOverrides` and `variants`. Also used for generating the `label`.
    - `options.slot` (_string_ [optional]): If `Root`, it automatically applies the theme's `styleOverrides` & `variants`.
    - `options.overridesResolver` (_(props: object, styles: Record<string, styles>) => styles_ [optional]): Function that returns styles based on the props and the `theme.components[name].styleOverrides` object.
@@ -37,11 +37,11 @@ The utility can be used as a replacement for emotion's or styled-components' sty
    - `options.skipSx` (_bool_ [optional]): Disables the `sx` prop on the component.
    - The other keys are forwarded to the `options` argument of emotion's [`styled([Component], [options])`](https://emotion.sh/docs/styled).
 
-#### Retornos
+#### Returns
 
 `Component`: O novo componente criado.
 
-## Utilização Básica
+## Basic usage
 
 {{"demo": "pages/system/styled/BasicUsage.js", "defaultCodeOpen": true}}
 
@@ -49,7 +49,7 @@ The utility can be used as a replacement for emotion's or styled-components' sty
 
 {{"demo": "pages/system/styled/ThemeUsage.js", "defaultCodeOpen": true}}
 
-## Componentes customizados
+## Custom components
 
 This example demonstrates how you can use the `styled` API to create custom components, with the same capabilities as the core components:
 

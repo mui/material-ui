@@ -9,6 +9,7 @@
     "componentsProps": "The props used for each slot inside the Input.",
     "defaultValue": "The default value. Use when the component is not controlled.",
     "disabled": "If <code>true</code>, the component is disabled. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+    "disableInjectingGlobalStyles": "If <code>true</code>, GlobalStyles for the auto-fill keyframes will not be injected/removed on mount/unmount. Make sure to inject them at the top of your application. This option is intended to help with boosting the initial rendering performance if you are loading a big amount of Input components at once.",
     "endAdornment": "End <code>InputAdornment</code> for this component.",
     "error": "If <code>true</code>, the <code>input</code> will indicate an error. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
     "fullWidth": "If <code>true</code>, the <code>input</code> will take up the full width of its container.",

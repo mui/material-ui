@@ -4,12 +4,12 @@
     "aria-label": "The label of the slider.",
     "aria-labelledby": "The id of the element containing a label for the slider.",
     "aria-valuetext": "A string value that provides a user-friendly name for the current value of the slider.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
-    "color": "A cor do componente. Ela da suporte para as cores do tema que fazem sentido para este componente.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component.",
     "components": "The components used for each slot inside the Slider. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside the Slider.",
     "defaultValue": "The default value. Use when the component is not controlled.",
-    "disabled": "Se <code>true</code>, o componente está desabilitado.",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "disableSwap": "If <code>true</code>, the active thumb doesn&#39;t swap when moving pointer over a thumb while dragging another thumb.",
     "getAriaLabel": "Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider. This is important for screen reader users.<br><br><strong>Signature:</strong><br><code>function(index: number) =&gt; string</code><br><em>index:</em> The thumb label&#39;s index to format.",
     "getAriaValueText": "Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider. This is important for screen reader users.<br><br><strong>Signature:</strong><br><code>function(value: number, index: number) =&gt; string</code><br><em>value:</em> The thumb label&#39;s value to format.<br><em>index:</em> The thumb label&#39;s index to format.",
@@ -24,7 +24,7 @@
     "scale": "A transformation function, to change the scale of the slider.",
     "size": "The size of the slider.",
     "step": "The granularity with which the slider can step through values. (A &quot;discrete&quot; slider.) The <code>min</code> prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.<br>When step is <code>null</code>, the thumb can only be slid onto marks provided with the <code>marks</code> prop.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "tabIndex": "Tab index attribute of the hidden <code>input</code> element.",
     "track": "The track presentation:<br>- <code>normal</code> the track will render a bar representing the slider value. - <code>inverted</code> the track will render a bar representing the remaining slider value. - <code>false</code> the track will render without a bar.",
     "value": "The value of the slider. For ranged sliders, provide an array with two values.",
@@ -38,12 +38,12 @@
     },
     "marked": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>marks</code> is provided with at least one label"
     },
     "vertical": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     },
     "disabled": {
@@ -66,12 +66,12 @@
     },
     "trackFalse": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>track={false}</code>"
     },
     "trackInverted": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>track=\"inverted\"</code>"
     },
     "thumb": {
@@ -86,7 +86,7 @@
     "focusVisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
-      "conditions": "teclado focado"
+      "conditions": "keyboard focused"
     },
     "valueLabel": {
       "description": "Class name applied to {{nodeName}}.",
@@ -125,17 +125,17 @@
     },
     "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSecondary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
     "sizeSmall": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "thumbColorPrimary": {

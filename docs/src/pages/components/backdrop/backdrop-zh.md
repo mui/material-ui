@@ -21,5 +21,5 @@ githubLabel: '组件：背景暗化'
 蒙版组件也有一个无样式的版本。 在需要进行大量自定义样式时，它可以更好的控制住包的大小
 
 ```js
-import Backdrop from '@mui/base/Backdrop';
+import BackdropUnstyled from '@mui/base/BackdropUnstyled';
 ```

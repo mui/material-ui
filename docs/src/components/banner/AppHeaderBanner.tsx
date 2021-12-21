@@ -3,9 +3,10 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
-export default function SurveyBanner() {
-  return (
+export default function AppHeaderBanner() {
+  return FEATURE_TOGGLE.enable_website_banner ? (
     <Box
       sx={{
         p: 1.5,
@@ -25,19 +26,18 @@ export default function SurveyBanner() {
           color: '#fff',
         }}
       >
-        Help shape the future of MUI! &nbsp;🚀 &nbsp;&nbsp;&nbsp;Please take a few minutes to
-        complete the{' '}
+        Fix me! &nbsp;
         <Link
-          href={ROUTES.survey2021Website}
+          href={ROUTES.home} // Fix me!
           target="_blank"
-          data-ga-event-category="survey-2021"
+          data-ga-event-category="$event-category" // Fix me!
           data-ga-event-action="click"
           data-ga-event-label="header"
           sx={{ color: '#fff', textDecoration: 'underline' }}
         >
-          2021 MUI developer survey &#8594;
+          Fix me!
         </Link>
       </Typography>
     </Box>
-  );
+  ) : null;
 }

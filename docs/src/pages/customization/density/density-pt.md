@@ -24,7 +24,7 @@ Os seguintes componentes possuem propriedades que aplicam maior densidade:
 - [InputLabel](/api/input-label/)
 - [ListItem](/api/list-item/)
 - [OutlinedInput](/api/outlined-input/)
-- [Tabela](/api/table/)
+- [Table](/api/table/)
 - [TextField](/api/text-field/)
 - [Toolbar](/api/toolbar/)
 

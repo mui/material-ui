@@ -9,7 +9,7 @@ packageName: '@mui/lab'
 
 <p class="description">A linha do tempo exibe uma lista de eventos em ordem cronológica.</p>
 
-**Nota:** Este componente não está documentado nas [diretrizes do Material Design](https://material.io/), mas MUI o suporta.
+**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but MUI supports it.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -31,13 +31,13 @@ A linha do tempo pode exibir os eventos alternando os lados.
 
 {{"demo": "pages/components/timeline/AlternateTimeline.js"}}
 
-## Cor
+## Color
 
 The `TimelineDot` can appear in different colors from theme palette.
 
 {{"demo": "pages/components/timeline/ColorsTimeline.js"}}
 
-## Delineado
+## Outlined
 
 {{"demo": "pages/components/timeline/OutlinedTimeline.js"}}
 
@@ -47,8 +47,8 @@ A linha do tempo pode exibir conteúdo nos lados opostos.
 
 {{"demo": "pages/components/timeline/OppositeContentTimeline.js"}}
 
-## Customização
+## Customization
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/timeline/CustomizedTimeline.js"}}
