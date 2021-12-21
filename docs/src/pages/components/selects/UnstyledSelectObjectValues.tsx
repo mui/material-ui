@@ -1,6 +1,7 @@
 import * as React from 'react';
-import SelectUnstyled, {
-  SelectUnstyledProps,
+import {
+  SingleSelectUnstyled,
+  SingleSelectUnstyledProps,
   Option,
   selectUnstyledClasses,
 } from '@mui/base/SelectUnstyled';
@@ -80,14 +81,14 @@ const StyledOption = styled('li')`
   }
 `;
 
-function CustomSelect<TValue extends {}>(props: SelectUnstyledProps<TValue>) {
+function CustomSelect<TValue extends {}>(props: SingleSelectUnstyledProps<TValue>) {
   const components = {
     Root: StyledButton,
     ListboxRoot: StyledListbox,
     ListboxOption: StyledOption,
   };
 
-  return <SelectUnstyled<TValue> {...props} components={components} />;
+  return <SingleSelectUnstyled<TValue> {...props} components={components} />;
 }
 
 interface Character {
