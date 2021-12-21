@@ -92,9 +92,20 @@ const NewStartScreen = () => {
         icon: <ArticleRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Installation', href: '/getting-started/installation/' },
-        { name: 'Usage', href: '/getting-started/usage/' },
-        { name: 'Learn', href: '/getting-started/learn/' },
+        {
+          name: 'Installation',
+          href: `${
+            FEATURE_TOGGLE.enable_product_scope ? '/material' : ''
+          }/getting-started/installation/`,
+        },
+        {
+          name: 'Usage',
+          href: `${FEATURE_TOGGLE.enable_product_scope ? '/material' : ''}/getting-started/usage/`,
+        },
+        {
+          name: 'Learn',
+          href: `${FEATURE_TOGGLE.enable_product_scope ? '/material' : ''}/getting-started/learn/`,
+        },
       ],
     },
     {
@@ -103,9 +114,20 @@ const NewStartScreen = () => {
         icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Material Icons', href: '/components/material-icons/' },
-        { name: 'Text Fields', href: '/components/text-fields/' },
-        { name: 'Button', href: '/components/buttons/' },
+        {
+          name: 'Material Icons',
+          href: `${
+            FEATURE_TOGGLE.enable_product_scope ? '/material' : ''
+          }/components/material-icons/`,
+        },
+        {
+          name: 'Text Fields',
+          href: `${FEATURE_TOGGLE.enable_product_scope ? '/material' : ''}/components/text-fields/`,
+        },
+        {
+          name: 'Button',
+          href: `${FEATURE_TOGGLE.enable_product_scope ? '/material' : ''}/components/buttons/`,
+        },
       ],
     },
     {
@@ -114,9 +136,22 @@ const NewStartScreen = () => {
         icon: <EditRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'How To Customize', href: '/customization/how-to-customize/' },
-        { name: 'Theming', href: '/customization/theming/' },
-        { name: 'Default Theme', href: '/customization/default-theme/' },
+        {
+          name: 'How To Customize',
+          href: `${
+            FEATURE_TOGGLE.enable_product_scope ? '/material' : ''
+          }/customization/how-to-customize/`,
+        },
+        {
+          name: 'Theming',
+          href: `${FEATURE_TOGGLE.enable_product_scope ? '/material' : ''}/customization/theming/`,
+        },
+        {
+          name: 'Default Theme',
+          href: `${
+            FEATURE_TOGGLE.enable_product_scope ? '/material' : ''
+          }/customization/default-theme/`,
+        },
       ],
     },
     {
