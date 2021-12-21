@@ -18,6 +18,7 @@ import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useRouter } from 'next/router';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -304,7 +305,7 @@ export default function AppSearch() {
                 }
 
                 // TODO: remove this logic once the migration to new structure is done.
-                if (router.asPath.startsWith('/material')) {
+                if (FEATURE_TOGGLE.enable_product_scope) {
                   parseUrl.href = parseUrl.href.replace(
                     /(?<!material\/)(getting-started|components|api|customization|guides|discover-more)(\/[^/]+\/)/,
                     `material/$1$2`,
