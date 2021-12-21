@@ -56,18 +56,23 @@ const PostPreview = (props: BlogPost) => {
         </Box>
       )}
       <Typography
-        aria-describedby={`describe-${props.slug}`}
-        component={Link}
-        href={`/blog/${props.slug}`}
+        component="h2"
         fontWeight="bold"
         variant="subtitle1"
-        color="text.primary"
         sx={{
           mb: 0.5,
-          '&:before': { content: '""', display: 'block', position: 'absolute', inset: 0 },
         }}
       >
-        {props.title}
+        <Link
+          aria-describedby={`describe-${props.slug}`}
+          href={`/blog/${props.slug}`}
+          sx={{
+            color: 'text.primary',
+            '&:before': { content: '""', display: 'block', position: 'absolute', inset: 0 },
+          }}
+        >
+          {props.title}
+        </Link>
       </Typography>
       <Typography color="text.secondary" sx={{ mb: 'auto' }}>
         {props.description}
