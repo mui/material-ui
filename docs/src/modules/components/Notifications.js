@@ -18,6 +18,7 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Paper = styled(MuiPaper)({
   transformOrigin: 'top right',
+  backgroundImage: 'none',
 });
 const List = styled(MuiList)(({ theme }) => ({
   width: theme.spacing(40),
@@ -172,7 +173,20 @@ export default function Notifications() {
             }}
           >
             <Grow in={open} {...TransitionProps}>
-              <Paper>
+              <Paper
+                sx={{
+                  mt: 0.5,
+                  border: '1px solid',
+                  borderColor: (theme) =>
+                    theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+                  boxShadow: (theme) =>
+                    `0px 4px 20px ${
+                      theme.palette.mode === 'dark'
+                        ? 'rgba(0, 0, 0, 0.5)'
+                        : 'rgba(170, 180, 190, 0.3)'
+                    }`,
+                }}
+              >
                 <List>
                   {messageList ? (
                     messageList.map((message, index) => (

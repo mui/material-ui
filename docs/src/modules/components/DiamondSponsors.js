@@ -1,13 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
-import Link from 'docs/src/modules/components/Link';
-import Typography from '@mui/material/Typography';
-import { useTheme, styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import { useTheme, styled, alpha } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 
 const Root = styled('div')(({ theme }) => ({
-  margin: theme.spacing(2, 2),
+  margin: theme.spacing(1, 2, 3),
   '& img': {
     display: 'inline-block',
   },
@@ -20,9 +20,26 @@ export default function DiamondSponsors(props) {
 
   return (
     <Root>
-      <Typography variant="caption" color="primary.main" display="block" sx={{ mb: 2 }}>
-        <Link href="/discover-more/backers/#diamond">{t('diamondSponsors')}</Link>
-      </Typography>
+      <Button
+        component="a"
+        href="/discover-more/backers/#diamond"
+        target="_blank"
+        rel="noopener nofollow"
+        size="small"
+        endIcon={<KeyboardArrowRightRoundedIcon />}
+        sx={{
+          fontSize: theme.typography.pxToRem(12.5),
+          fontWeight: 500,
+          color:
+            theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+          mb: 1,
+          '& svg': {
+            ml: -0.5,
+          },
+        }}
+      >
+        {t('diamondSponsors')}
+      </Button>
       <Stack
         spacing={1.5}
         sx={{
@@ -32,15 +49,22 @@ export default function DiamondSponsors(props) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            border: `1px solid ${theme.palette.divider}`,
+            border: `1px solid ${
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[700]
+                : theme.palette.grey[200]
+            }`,
             borderRadius: 1,
             transition: theme.transitions.create(['color', 'border-color']),
             '&:hover': {
-              borderColor: 'currentColor',
-              color:
+              borderColor:
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primary[500],
+                  ? theme.palette.primaryDark[600]
+                  : theme.palette.grey[300],
+              background:
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primaryDark[700], 0.4)
+                  : theme.palette.grey[50],
             },
           },
         }}

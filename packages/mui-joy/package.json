@@ -1,6 +1,6 @@
 {
   "name": "@mui/joy",
-  "version": "5.0.0-alpha.6",
+  "version": "5.0.0-alpha.7",
   "private": false,
   "author": "MUI Team",
   "description": "Joy design system — React components",
@@ -57,8 +57,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@mui/base": "5.0.0-alpha.60",
-    "@mui/system": "^5.2.4",
+    "@mui/base": "5.0.0-alpha.61",
+    "@mui/system": "^5.2.5",
     "@mui/types": "^7.1.0",
     "@mui/utils": "^5.2.3",
     "clsx": "^1.1.1",
