@@ -6,7 +6,6 @@ import defaultTheme from '@mui/material/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
 import { generateGrid, generateRowGap, generateColumnGap, generateDirection } from './Grid';
 
-// eslint-disable-next-line mocha/no-exclusive-tests
 describe('<Grid />', () => {
   const { render } = createRenderer();
 
