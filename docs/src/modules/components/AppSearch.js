@@ -18,7 +18,6 @@ import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useRouter } from 'next/router';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -309,7 +308,7 @@ export default function AppSearch() {
 
                 // TODO: remove this logic as soon as we migrate to the new structure
                 // This logic covers use during the ~60 minutes that it takes Algolia to run a crawl and update its index.
-                if (FEATURE_TOGGLE.enable_product_scope && router.asPath.startsWith('/material')) {
+                if (router.asPath.startsWith('/material')) {
                   pathname = pathname.replace(
                     /^\/(getting-started|components|api|customization|guides|discover-more)(\/[^/]+\/)/,
                     `material/$1$2`,
