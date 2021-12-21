@@ -13729,10 +13729,10 @@ react-imask@^6.2.2:
     imask "^6.2.0"
     prop-types "^15.7.2"
 
-react-intersection-observer@^8.33.0:
-  version "8.33.0"
-  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.33.0.tgz#e1ba72c9b28f1a02143870265f77d84aac450dbd"
-  integrity sha512-slsqrtsUhHT01aySxAcY0JcjLRdVJOwatKeyk5r4IQ9c8SU+x1mKr1kPxwElYHRCIbHS7t2KD15/4/FzNJGUNg==
+react-intersection-observer@^8.33.1:
+  version "8.33.1"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.33.1.tgz#8e6442cac7052ed63056e191b7539e423e7d5c64"
+  integrity sha512-3v+qaJvp3D1MlGHyM+KISVg/CMhPiOlO6FgPHcluqHkx4YFCLuyXNlQ/LE6UkbODXlQcLOppfX6UMxCEkUhDLw==
 
 react-is@17.0.2, react-is@^16.10.2, "react-is@^16.12.0 || ^17.0.0", react-is@^16.13.1, react-is@^16.7.0, react-is@^16.8.1, react-is@^17.0.0, react-is@^17.0.1, react-is@^17.0.2:
   version "17.0.2"
