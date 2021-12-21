@@ -29,7 +29,9 @@ export default function Playground() {
         {...defaultProps}
         id="clear-on-escape"
         clearOnEscape
-        renderInput={(params) => <TextField {...params} label="clearOnEscape" variant="standard" />}
+        renderInput={(params) => (
+          <TextField {...params} label="clearOnEscape" variant="standard" />
+        )}
       />
       <Autocomplete
         {...defaultProps}
@@ -50,7 +52,9 @@ export default function Playground() {
       <Autocomplete
         {...flatProps}
         id="flat-demo"
-        renderInput={(params) => <TextField {...params} label="flat" variant="standard" />}
+        renderInput={(params) => (
+          <TextField {...params} label="flat" variant="standard" />
+        )}
       />
       <Autocomplete
         {...defaultProps}
@@ -59,14 +63,18 @@ export default function Playground() {
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
-        renderInput={(params) => <TextField {...params} label="controlled" variant="standard" />}
+        renderInput={(params) => (
+          <TextField {...params} label="controlled" variant="standard" />
+        )}
       />
       <Autocomplete
         {...defaultProps}
         id="auto-complete"
         autoComplete
         includeInputInList
-        renderInput={(params) => <TextField {...params} label="autoComplete" variant="standard" />}
+        renderInput={(params) => (
+          <TextField {...params} label="autoComplete" variant="standard" />
+        )}
       />
       <Autocomplete
         {...defaultProps}
@@ -80,49 +88,65 @@ export default function Playground() {
         {...defaultProps}
         id="open-on-focus"
         openOnFocus
-        renderInput={(params) => <TextField {...params} label="openOnFocus" variant="standard" />}
+        renderInput={(params) => (
+          <TextField {...params} label="openOnFocus" variant="standard" />
+        )}
       />
       <Autocomplete
         {...defaultProps}
         id="auto-highlight"
         autoHighlight
-        renderInput={(params) => <TextField {...params} label="autoHighlight" variant="standard" />}
+        renderInput={(params) => (
+          <TextField {...params} label="autoHighlight" variant="standard" />
+        )}
       />
       <Autocomplete
         {...defaultProps}
         id="auto-select"
         autoSelect
-        renderInput={(params) => <TextField {...params} label="autoSelect" variant="standard" />}
+        renderInput={(params) => (
+          <TextField {...params} label="autoSelect" variant="standard" />
+        )}
       />
       <Autocomplete
         {...defaultProps}
         id="disabled"
         disabled
-        renderInput={(params) => <TextField {...params} label="disabled" variant="standard" />}
+        renderInput={(params) => (
+          <TextField {...params} label="disabled" variant="standard" />
+        )}
       />
       <Autocomplete
         {...defaultProps}
         id="disable-portal"
         disablePortal
-        renderInput={(params) => <TextField {...params} label="disablePortal" variant="standard" />}
+        renderInput={(params) => (
+          <TextField {...params} label="disablePortal" variant="standard" />
+        )}
       />
       <Autocomplete
         {...defaultProps}
         id="blur-on-select"
         blurOnSelect
-        renderInput={(params) => <TextField {...params} label="blurOnSelect" variant="standard" />}
+        renderInput={(params) => (
+          <TextField {...params} label="blurOnSelect" variant="standard" />
+        )}
       />
       <Autocomplete
         {...defaultProps}
         id="clear-on-blur"
         clearOnBlur
-        renderInput={(params) => <TextField {...params} label="clearOnBlur" variant="standard" />}
+        renderInput={(params) => (
+          <TextField {...params} label="clearOnBlur" variant="standard" />
+        )}
       />
       <Autocomplete
         {...defaultProps}
         id="select-on-focus"
         selectOnFocus
-        renderInput={(params) => <TextField {...params} label="selectOnFocus" variant="standard" />}
+        renderInput={(params) => (
+          <TextField {...params} label="selectOnFocus" variant="standard" />
+        )}
       />
     </Stack>
   );

@@ -25,12 +25,18 @@ const CustomButtonRoot = styled(ButtonRoot)(
   ({ theme }) => `
   overflow: visible;
   cursor: pointer;
-  --main-color: ${theme.palette.mode === 'light' ? 'rgb(25,118,210)' : 'rgb(144,202,249)'};
+  --main-color: ${
+    theme.palette.mode === 'light' ? 'rgb(25,118,210)' : 'rgb(144,202,249)'
+  };
   --hover-color: ${
-    theme.palette.mode === 'light' ? 'rgba(25,118,210,0.04)' : 'rgba(144,202,249,0.08)'
+    theme.palette.mode === 'light'
+      ? 'rgba(25,118,210,0.04)'
+      : 'rgba(144,202,249,0.08)'
   };
   --active-color: ${
-    theme.palette.mode === 'light' ? 'rgba(25,118,210,0.12)' : 'rgba(144,202,249,0.24)'
+    theme.palette.mode === 'light'
+      ? 'rgba(25,118,210,0.12)'
+      : 'rgba(144,202,249,0.24)'
   };
 
   & polygon {

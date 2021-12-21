@@ -32,7 +32,9 @@ export default function ClickAway() {
           Open menu dropdown
         </button>
         {open ? (
-          <Box sx={styles}>Click me, I will stay visible until you click outside.</Box>
+          <Box sx={styles}>
+            Click me, I will stay visible until you click outside.
+          </Box>
         ) : null}
       </Box>
     </ClickAwayListener>

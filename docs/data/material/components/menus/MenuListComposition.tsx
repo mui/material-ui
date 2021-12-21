@@ -17,7 +17,10 @@ export default function MenuListComposition() {
   };
 
   const handleClose = (event: Event | React.SyntheticEvent) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
+    if (
+      anchorRef.current &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
       return;
     }
 
@@ -75,7 +78,8 @@ export default function MenuListComposition() {
             <Grow
               {...TransitionProps}
               style={{
-                transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom',
+                transformOrigin:
+                  placement === 'bottom-start' ? 'left top' : 'left bottom',
               }}
             >
               <Paper>

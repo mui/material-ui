@@ -15,7 +15,11 @@ export default function ToggleButtonsMultiple() {
   };
 
   return (
-    <ToggleButtonGroup value={formats} onChange={handleFormat} aria-label="text formatting">
+    <ToggleButtonGroup
+      value={formats}
+      onChange={handleFormat}
+      aria-label="text formatting"
+    >
       <ToggleButton value="bold" aria-label="bold">
         <FormatBoldIcon />
       </ToggleButton>

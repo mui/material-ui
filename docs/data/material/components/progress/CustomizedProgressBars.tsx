@@ -26,7 +26,8 @@ function FacebookCircularProgress(props: CircularProgressProps) {
       <CircularProgress
         variant="determinate"
         sx={{
-          color: (theme) => theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+          color: (theme) =>
+            theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
         }}
         size={40}
         thickness={4}

@@ -201,7 +201,8 @@ export default function ScrollPlayground() {
               Toggle Popper
             </Button>
             <Typography sx={{ mt: 2, maxWidth: 300 }}>
-              Scroll around this container to experiment with flip and preventOverflow modifiers.
+              Scroll around this container to experiment with flip and
+              preventOverflow modifiers.
             </Typography>
             <Popper
               id={id}
@@ -241,11 +242,15 @@ export default function ScrollPlayground() {
               ]}
             >
               <div>
-                {arrow ? <Arrow ref={setArrowRef} className="MuiPopper-arrow" /> : null}
+                {arrow ? (
+                  <Arrow ref={setArrowRef} className="MuiPopper-arrow" />
+                ) : null}
                 <Paper sx={{ maxWidth: 400, overflow: 'auto' }}>
                   <DialogTitle>{"Use Google's location service?"}</DialogTitle>
                   <DialogContent>
-                    <DialogContentText>Let Google help apps determine location.</DialogContentText>
+                    <DialogContentText>
+                      Let Google help apps determine location.
+                    </DialogContentText>
                   </DialogContent>
                   <DialogActions>
                     <Button onClick={handleClickButton}>Disagree</Button>
@@ -397,7 +402,8 @@ export default function ScrollPlayground() {
                 SelectProps={{
                   native: true,
                   inputProps: {
-                    'aria-labelledby': 'scroll-playground-prevent-overflow-root-boundary',
+                    'aria-labelledby':
+                      'scroll-playground-prevent-overflow-root-boundary',
                   },
                 }}
                 value={preventOverflow.rootBoundary}

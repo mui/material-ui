@@ -61,13 +61,22 @@ function Demo() {
         {item(theme.palette.action.hover, 'palette.action.hover')}
         {item(theme.palette.action.selected, 'palette.action.selected')}
         {item(theme.palette.action.disabled, 'palette.action.disabled')}
-        {item(theme.palette.action.disabledBackground, 'palette.action.disabledBackground', true)}
+        {item(
+          theme.palette.action.disabledBackground,
+          'palette.action.disabledBackground',
+          true,
+        )}
       </Grid>
       <Typography gutterBottom sx={{ mt: 3 }}>
         Background
       </Typography>
       <Grid container spacing={1}>
-        {item(theme.palette.background.default, 'palette.background.default', false, true)}
+        {item(
+          theme.palette.background.default,
+          'palette.background.default',
+          false,
+          true,
+        )}
         {item(theme.palette.background.paper, 'palette.background.paper')}
       </Grid>
       <Typography gutterBottom sx={{ mt: 3 }}>

@@ -10,7 +10,9 @@ interface DivProps {
 
 const theme = createTheme();
 
-const Div = styled('div')<DivProps>(unstable_styleFunctionSx as InterpolationFunction<DivProps>);
+const Div = styled('div')<DivProps>(
+  unstable_styleFunctionSx as InterpolationFunction<DivProps>,
+);
 
 export default function StyleFunctionSxDemo() {
   return (

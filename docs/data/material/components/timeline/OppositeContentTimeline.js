@@ -12,7 +12,9 @@ export default function OppositeContentTimeline() {
     <React.Fragment>
       <Timeline position="alternate">
         <TimelineItem>
-          <TimelineOppositeContent color="text.secondary">09:30 am</TimelineOppositeContent>
+          <TimelineOppositeContent color="text.secondary">
+            09:30 am
+          </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
@@ -20,7 +22,9 @@ export default function OppositeContentTimeline() {
           <TimelineContent>Eat</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent color="text.secondary">10:00 am</TimelineOppositeContent>
+          <TimelineOppositeContent color="text.secondary">
+            10:00 am
+          </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
@@ -28,7 +32,9 @@ export default function OppositeContentTimeline() {
           <TimelineContent>Code</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent color="text.secondary">12:00 am</TimelineOppositeContent>
+          <TimelineOppositeContent color="text.secondary">
+            12:00 am
+          </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
@@ -36,7 +42,9 @@ export default function OppositeContentTimeline() {
           <TimelineContent>Sleep</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent color="text.secondary">9:00 am</TimelineOppositeContent>
+          <TimelineOppositeContent color="text.secondary">
+            9:00 am
+          </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />

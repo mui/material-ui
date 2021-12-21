@@ -41,7 +41,12 @@ export default function CircularIntegration() {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Box sx={{ m: 1, position: 'relative' }}>
-        <Fab aria-label="save" color="primary" sx={buttonSx} onClick={handleButtonClick}>
+        <Fab
+          aria-label="save"
+          color="primary"
+          sx={buttonSx}
+          onClick={handleButtonClick}
+        >
           {success ? <CheckIcon /> : <SaveIcon />}
         </Fab>
         {loading && (
@@ -58,7 +63,12 @@ export default function CircularIntegration() {
         )}
       </Box>
       <Box sx={{ m: 1, position: 'relative' }}>
-        <Button variant="contained" sx={buttonSx} disabled={loading} onClick={handleButtonClick}>
+        <Button
+          variant="contained"
+          sx={buttonSx}
+          disabled={loading}
+          onClick={handleButtonClick}
+        >
           Accept terms
         </Button>
         {loading && (

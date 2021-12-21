@@ -30,7 +30,11 @@ export default function Tags() {
         defaultValue={[top100Films[13]]}
         filterSelectedOptions
         renderInput={(params) => (
-          <TextField {...params} label="filterSelectedOptions" placeholder="Favorites" />
+          <TextField
+            {...params}
+            label="filterSelectedOptions"
+            placeholder="Favorites"
+          />
         )}
       />
       <Autocomplete
@@ -45,7 +49,12 @@ export default function Tags() {
           ))
         }
         renderInput={(params) => (
-          <TextField {...params} variant="filled" label="freeSolo" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="filled"
+            label="freeSolo"
+            placeholder="Favorites"
+          />
         )}
       />
     </Stack>

@@ -17,8 +17,17 @@ export default function StateTextFields() {
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-name" label="Name" value={name} onChange={handleChange} />
-      <TextField id="outlined-uncontrolled" label="Uncontrolled" defaultValue="foo" />
+      <TextField
+        id="outlined-name"
+        label="Name"
+        value={name}
+        onChange={handleChange}
+      />
+      <TextField
+        id="outlined-uncontrolled"
+        label="Uncontrolled"
+        defaultValue="foo"
+      />
     </Box>
   );
 }

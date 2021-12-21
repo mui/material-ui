@@ -8,7 +8,9 @@ function RedBar() {
       sx={{
         height: 20,
         backgroundColor: (theme) =>
-          theme.palette.mode === 'light' ? 'rgba(255, 0, 0, 0.1)' : 'rgb(255 132 132 / 25%)',
+          theme.palette.mode === 'light'
+            ? 'rgba(255, 0, 0, 0.1)'
+            : 'rgb(255 132 132 / 25%)',
       }}
     />
   );

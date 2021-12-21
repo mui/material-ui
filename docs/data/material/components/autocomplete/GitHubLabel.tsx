@@ -33,7 +33,9 @@ const StyledAutocompletePopper = styled('div')(({ theme }) => ({
       minHeight: 'auto',
       alignItems: 'flex-start',
       padding: 8,
-      borderBottom: `1px solid  ${theme.palette.mode === 'light' ? ' #eaecef' : '#30363d'}`,
+      borderBottom: `1px solid  ${
+        theme.palette.mode === 'light' ? ' #eaecef' : '#30363d'
+      }`,
       '&[aria-selected="true"]': {
         backgroundColor: 'transparent',
       },
@@ -68,7 +70,9 @@ const StyledPopper = styled(Popper)(({ theme }) => ({
 const StyledInput = styled(InputBase)(({ theme }) => ({
   padding: 10,
   width: '100%',
-  borderBottom: `1px solid ${theme.palette.mode === 'light' ? '#eaecef' : '#30363d'}`,
+  borderBottom: `1px solid ${
+    theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
+  }`,
   '& input': {
     borderRadius: 4,
     backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#0d1117',
@@ -78,7 +82,9 @@ const StyledInput = styled(InputBase)(({ theme }) => ({
     fontSize: 14,
     '&:focus': {
       boxShadow: `0px 0px 0px 3px ${
-        theme.palette.mode === 'light' ? 'rgba(3, 102, 214, 0.3)' : 'rgb(12, 45, 107)'
+        theme.palette.mode === 'light'
+          ? 'rgba(3, 102, 214, 0.3)'
+          : 'rgb(12, 45, 107)'
       }`,
       borderColor: theme.palette.mode === 'light' ? '#0366d6' : '#388bfd',
     },
@@ -158,7 +164,9 @@ export default function GitHubLabel() {
           <div>
             <Box
               sx={{
-                borderBottom: `1px solid ${theme.palette.mode === 'light' ? '#eaecef' : '#30363d'}`,
+                borderBottom: `1px solid ${
+                  theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
+                }`,
                 padding: '8px 10px',
                 fontWeight: 600,
               }}
@@ -168,7 +176,10 @@ export default function GitHubLabel() {
             <Autocomplete
               open
               multiple
-              onClose={(event: React.ChangeEvent<{}>, reason: AutocompleteCloseReason) => {
+              onClose={(
+                event: React.ChangeEvent<{}>,
+                reason: AutocompleteCloseReason,
+              ) => {
                 if (reason === 'escape') {
                   handleClose();
                 }
@@ -213,7 +224,8 @@ export default function GitHubLabel() {
                     sx={{
                       flexGrow: 1,
                       '& span': {
-                        color: theme.palette.mode === 'light' ? '#586069' : '#8b949e',
+                        color:
+                          theme.palette.mode === 'light' ? '#586069' : '#8b949e',
                       },
                     }}
                   >

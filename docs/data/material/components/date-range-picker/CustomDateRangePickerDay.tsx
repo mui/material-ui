@@ -6,7 +6,9 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { DateRange } from '@mui/lab/DateRangePicker';
 import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
-import MuiDateRangePickerDay, { DateRangePickerDayProps } from '@mui/lab/DateRangePickerDay';
+import MuiDateRangePickerDay, {
+  DateRangePickerDayProps,
+} from '@mui/lab/DateRangePickerDay';
 
 const DateRangePickerDay = styled(MuiDateRangePickerDay)(
   ({ theme, isHighlighting, isStartOfHighlighting, isEndOfHighlighting }) => ({

@@ -38,7 +38,11 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     fontSize: 16,
     width: 'auto',
     padding: '10px 12px',
-    transition: theme.transitions.create(['border-color', 'background-color', 'box-shadow']),
+    transition: theme.transitions.create([
+      'border-color',
+      'background-color',
+      'box-shadow',
+    ]),
     // Use the system font instead of the default Roboto font.
     fontFamily: [
       '-apple-system',
@@ -67,7 +71,11 @@ const RedditTextField = styled((props) => (
     overflow: 'hidden',
     borderRadius: 4,
     backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
-    transition: theme.transitions.create(['border-color', 'background-color', 'box-shadow']),
+    transition: theme.transitions.create([
+      'border-color',
+      'background-color',
+      'box-shadow',
+    ]),
     '&:hover': {
       backgroundColor: 'transparent',
     },

@@ -104,7 +104,8 @@ export default function Showcase() {
                 src={`/static/images/showcase/${app.image}`}
                 sx={{
                   minHeight: 200,
-                  color: (theme) => (theme.palette.mode === 'dark' ? 'grey.900' : 'grey.100'),
+                  color: (theme) =>
+                    theme.palette.mode === 'dark' ? 'grey.900' : 'grey.100',
                   bgcolor: 'currentColor',
                 }}
                 title={app.title}

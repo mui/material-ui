@@ -8,7 +8,9 @@ import MobileTimePicker from '@mui/lab/MobileTimePicker';
 import DesktopTimePicker from '@mui/lab/DesktopTimePicker';
 
 export default function ResponsiveTimePickers() {
-  const [value, setValue] = React.useState<Date | null>(new Date('2018-01-01T00:00:00.000Z'));
+  const [value, setValue] = React.useState<Date | null>(
+    new Date('2018-01-01T00:00:00.000Z'),
+  );
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>

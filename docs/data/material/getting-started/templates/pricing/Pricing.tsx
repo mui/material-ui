@@ -32,7 +32,12 @@ const tiers = [
   {
     title: 'Free',
     price: '0',
-    description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
+    description: [
+      '10 users included',
+      '2 GB of storage',
+      'Help center access',
+      'Email support',
+    ],
     buttonText: 'Sign up for free',
     buttonVariant: 'outlined',
   },
@@ -69,7 +74,13 @@ const footers = [
   },
   {
     title: 'Features',
-    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+    description: [
+      'Cool stuff',
+      'Random feature',
+      'Team feature',
+      'Developer stuff',
+      'Another one',
+    ],
   },
   {
     title: 'Resources',
@@ -97,13 +108,28 @@ function PricingContent() {
             Company name
           </Typography>
           <nav>
-            <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
+            <Link
+              variant="button"
+              color="text.primary"
+              href="#"
+              sx={{ my: 1, mx: 1.5 }}
+            >
               Features
             </Link>
-            <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
+            <Link
+              variant="button"
+              color="text.primary"
+              href="#"
+              sx={{ my: 1, mx: 1.5 }}
+            >
               Enterprise
             </Link>
-            <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
+            <Link
+              variant="button"
+              color="text.primary"
+              href="#"
+              sx={{ my: 1, mx: 1.5 }}
+            >
               Support
             </Link>
           </nav>
@@ -114,12 +140,19 @@ function PricingContent() {
       </AppBar>
       {/* Hero unit */}
       <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
-        <Typography component="h1" variant="h2" align="center" color="text.primary" gutterBottom>
+        <Typography
+          component="h1"
+          variant="h2"
+          align="center"
+          color="text.primary"
+          gutterBottom
+        >
           Pricing
         </Typography>
         <Typography variant="h5" align="center" color="text.secondary" component="p">
-          Quickly build an effective pricing table for your potential customers with this layout.
-          It&apos;s built with default MUI components with little customization.
+          Quickly build an effective pricing table for your potential customers with
+          this layout. It&apos;s built with default MUI components with little
+          customization.
         </Typography>
       </Container>
       {/* End hero unit */}
@@ -127,7 +160,13 @@ function PricingContent() {
         <Grid container spacing={5} alignItems="flex-end">
           {tiers.map((tier) => (
             // Enterprise card is full width at sm breakpoint
-            <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
+            <Grid
+              item
+              key={tier.title}
+              xs={12}
+              sm={tier.title === 'Enterprise' ? 12 : 6}
+              md={4}
+            >
               <Card>
                 <CardHeader
                   title={tier.title}
@@ -162,14 +201,22 @@ function PricingContent() {
                   </Box>
                   <ul>
                     {tier.description.map((line) => (
-                      <Typography component="li" variant="subtitle1" align="center" key={line}>
+                      <Typography
+                        component="li"
+                        variant="subtitle1"
+                        align="center"
+                        key={line}
+                      >
                         {line}
                       </Typography>
                     ))}
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant as 'outlined' | 'contained'}>
+                  <Button
+                    fullWidth
+                    variant={tier.buttonVariant as 'outlined' | 'contained'}
+                  >
                     {tier.buttonText}
                   </Button>
                 </CardActions>

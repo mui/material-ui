@@ -34,7 +34,10 @@ const CustomContentRoot = styled('div')(({ theme }) => ({
       backgroundColor: theme.palette.action.focus,
     },
     '&.Mui-selected &': {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity,
+      ),
     },
     '&.Mui-selected:hover &': {
       backgroundColor: alpha(
@@ -43,7 +46,10 @@ const CustomContentRoot = styled('div')(({ theme }) => ({
       ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity,
+        ),
       },
     },
     '&.Mui-selected.Mui-focused &': {
@@ -56,7 +62,15 @@ const CustomContentRoot = styled('div')(({ theme }) => ({
 }));
 
 const CustomContent = React.forwardRef(function CustomContent(props, ref) {
-  const { className, classes, label, nodeId, icon: iconProp, expansionIcon, displayIcon } = props;
+  const {
+    className,
+    classes,
+    label,
+    nodeId,
+    icon: iconProp,
+    expansionIcon,
+    displayIcon,
+  } = props;
 
   const {
     disabled,
@@ -131,7 +145,9 @@ CustomContent.propTypes = {
   nodeId: PropTypes.string.isRequired,
 };
 
-const CustomTreeItem = (props) => <TreeItem ContentComponent={CustomContent} {...props} />;
+const CustomTreeItem = (props) => (
+  <TreeItem ContentComponent={CustomContent} {...props} />
+);
 
 export default function BarTreeView() {
   return (

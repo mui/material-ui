@@ -13,7 +13,12 @@ export default function TextFieldSizes() {
       autoComplete="off"
     >
       <div>
-        <TextField label="Size" id="outlined-size-small" defaultValue="Small" size="small" />
+        <TextField
+          label="Size"
+          id="outlined-size-small"
+          defaultValue="Small"
+          size="small"
+        />
         <TextField label="Size" id="outlined-size-normal" defaultValue="Normal" />
       </div>
       <div>
@@ -24,7 +29,12 @@ export default function TextFieldSizes() {
           variant="filled"
           size="small"
         />
-        <TextField label="Size" id="filled-size-normal" defaultValue="Normal" variant="filled" />
+        <TextField
+          label="Size"
+          id="filled-size-normal"
+          defaultValue="Normal"
+          variant="filled"
+        />
       </div>
       <div>
         <TextField

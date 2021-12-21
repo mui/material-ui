@@ -39,7 +39,11 @@ export default function CustomizedTimeline() {
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
-        <TimelineOppositeContent sx={{ m: 'auto 0' }} variant="body2" color="text.secondary">
+        <TimelineOppositeContent
+          sx={{ m: 'auto 0' }}
+          variant="body2"
+          color="text.secondary"
+        >
           10:00 am
         </TimelineOppositeContent>
         <TimelineSeparator>

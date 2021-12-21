@@ -3,7 +3,12 @@ import Typography, { TypographyProps } from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Grid from '@mui/material/Grid';
 
-const variants = ['h1', 'h3', 'body1', 'caption'] as readonly TypographyProps['variant'][];
+const variants = [
+  'h1',
+  'h3',
+  'body1',
+  'caption',
+] as readonly TypographyProps['variant'][];
 
 function TypographyDemo(props: { loading?: boolean }) {
   const { loading = false } = props;

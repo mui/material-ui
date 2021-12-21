@@ -302,7 +302,11 @@ const DialogDetails = React.memo(function DialogDetails(props) {
               language="js"
             />
           </Tooltip>
-          <ImportLink color="text.secondary" href="/components/icons/" variant="caption">
+          <ImportLink
+            color="text.secondary"
+            href="/components/icons/"
+            variant="caption"
+          >
             {t('searchIcons.learnMore')}
           </ImportLink>
           <DialogContent>
@@ -316,7 +320,10 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                 <Grid container alignItems="flex-end" justifyContent="center">
                   <Grid item>
                     <Tooltip title="fontSize small">
-                      <FontSizeComponent as={selectedIcon.Component} fontSize="small" />
+                      <FontSizeComponent
+                        as={selectedIcon.Component}
+                        fontSize="small"
+                      />
                     </Tooltip>
                   </Grid>
                   <Grid item>
@@ -326,19 +333,28 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                   </Grid>
                   <Grid item>
                     <Tooltip title="fontSize large">
-                      <FontSizeComponent as={selectedIcon.Component} fontSize="large" />
+                      <FontSizeComponent
+                        as={selectedIcon.Component}
+                        fontSize="large"
+                      />
                     </Tooltip>
                   </Grid>
                 </Grid>
                 <Grid container justifyContent="center">
-                  <ContextComponent component={selectedIcon.Component} contextColor="primary" />
+                  <ContextComponent
+                    component={selectedIcon.Component}
+                    contextColor="primary"
+                  />
                   <ContextComponent
                     component={selectedIcon.Component}
                     contextColor="primaryInverse"
                   />
                 </Grid>
                 <Grid container justifyContent="center">
-                  <ContextComponent component={selectedIcon.Component} contextColor="textPrimary" />
+                  <ContextComponent
+                    component={selectedIcon.Component}
+                    contextColor="textPrimary"
+                  />
                   <ContextComponent
                     component={selectedIcon.Component}
                     contextColor="textPrimaryInverse"
@@ -498,28 +514,32 @@ export default function SearchIcons() {
     [theme, keys],
   );
 
-  const dialogSelectedIcon = useLatest(selectedIcon ? allIconsMap[selectedIcon] : null);
+  const dialogSelectedIcon = useLatest(
+    selectedIcon ? allIconsMap[selectedIcon] : null,
+  );
 
   return (
     <Grid container sx={{ minHeight: 500 }}>
       <Grid item xs={12} sm={3}>
         <Form>
           <RadioGroup>
-            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map((currentTheme) => {
-              return (
-                <FormControlLabel
-                  key={currentTheme}
-                  control={
-                    <Radio
-                      checked={theme === currentTheme}
-                      onChange={() => setTheme(currentTheme)}
-                      value={currentTheme}
-                    />
-                  }
-                  label={currentTheme}
-                />
-              );
-            })}
+            {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
+              (currentTheme) => {
+                return (
+                  <FormControlLabel
+                    key={currentTheme}
+                    control={
+                      <Radio
+                        checked={theme === currentTheme}
+                        onChange={() => setTheme(currentTheme)}
+                        value={currentTheme}
+                      />
+                    }
+                    label={currentTheme}
+                  />
+                );
+              },
+            )}
           </RadioGroup>
         </Form>
       </Grid>

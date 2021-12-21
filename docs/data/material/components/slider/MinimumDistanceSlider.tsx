@@ -11,7 +11,11 @@ const minDistance = 10;
 export default function MinimumDistanceSlider() {
   const [value1, setValue1] = React.useState<number[]>([20, 37]);
 
-  const handleChange1 = (event: Event, newValue: number | number[], activeThumb: number) => {
+  const handleChange1 = (
+    event: Event,
+    newValue: number | number[],
+    activeThumb: number,
+  ) => {
     if (!Array.isArray(newValue)) {
       return;
     }
@@ -25,7 +29,11 @@ export default function MinimumDistanceSlider() {
 
   const [value2, setValue2] = React.useState<number[]>([20, 37]);
 
-  const handleChange2 = (event: Event, newValue: number | number[], activeThumb: number) => {
+  const handleChange2 = (
+    event: Event,
+    newValue: number | number[],
+    activeThumb: number,
+  ) => {
     if (!Array.isArray(newValue)) {
       return;
     }

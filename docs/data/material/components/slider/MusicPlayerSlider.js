@@ -28,7 +28,8 @@ const WallPaper = styled('div')({
     position: 'absolute',
     top: '-40%',
     right: '-50%',
-    background: 'radial-gradient(at center center, rgb(62, 79, 249) 0%, rgba(62, 79, 249, 0) 64%)',
+    background:
+      'radial-gradient(at center center, rgb(62, 79, 249) 0%, rgba(62, 79, 249, 0) 64%)',
   },
   '&:after': {
     content: '""',
@@ -51,7 +52,8 @@ const Widget = styled('div')(({ theme }) => ({
   margin: 'auto',
   position: 'relative',
   zIndex: 1,
-  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
+  backgroundColor:
+    theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.4)',
   backdropFilter: 'blur(40px)',
 }));
 
@@ -130,7 +132,9 @@ export default function MusicPlayerSlider() {
               },
               '&:hover, &.Mui-focusVisible': {
                 boxShadow: `0px 0px 0px 8px ${
-                  theme.palette.mode === 'dark' ? 'rgb(255 255 255 / 16%)' : 'rgb(0 0 0 / 16%)'
+                  theme.palette.mode === 'dark'
+                    ? 'rgb(255 255 255 / 16%)'
+                    : 'rgb(0 0 0 / 16%)'
                 }`,
               },
               '&.Mui-active': {
@@ -165,9 +169,15 @@ export default function MusicPlayerSlider() {
           <IconButton aria-label="previous song">
             <FastRewindRounded fontSize="large" htmlColor={mainIconColor} />
           </IconButton>
-          <IconButton aria-label={paused ? 'play' : 'pause'} onClick={() => setPaused(!paused)}>
+          <IconButton
+            aria-label={paused ? 'play' : 'pause'}
+            onClick={() => setPaused(!paused)}
+          >
             {paused ? (
-              <PlayArrowRounded sx={{ fontSize: '3rem' }} htmlColor={mainIconColor} />
+              <PlayArrowRounded
+                sx={{ fontSize: '3rem' }}
+                htmlColor={mainIconColor}
+              />
             ) : (
               <PauseRounded sx={{ fontSize: '3rem' }} htmlColor={mainIconColor} />
             )}

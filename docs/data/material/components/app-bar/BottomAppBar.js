@@ -89,11 +89,15 @@ export default function BottomAppBar() {
           {messages.map(({ id, primary, secondary, person }) => (
             <React.Fragment key={id}>
               {id === 1 && (
-                <ListSubheader sx={{ bgcolor: 'background.paper' }}>Today</ListSubheader>
+                <ListSubheader sx={{ bgcolor: 'background.paper' }}>
+                  Today
+                </ListSubheader>
               )}
 
               {id === 3 && (
-                <ListSubheader sx={{ bgcolor: 'background.paper' }}>Yesterday</ListSubheader>
+                <ListSubheader sx={{ bgcolor: 'background.paper' }}>
+                  Yesterday
+                </ListSubheader>
               )}
 
               <ListItem button>

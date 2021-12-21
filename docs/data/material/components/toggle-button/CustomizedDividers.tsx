@@ -34,11 +34,17 @@ export default function CustomizedDividers() {
   const [alignment, setAlignment] = React.useState('left');
   const [formats, setFormats] = React.useState(() => ['italic']);
 
-  const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
+  const handleFormat = (
+    event: React.MouseEvent<HTMLElement>,
+    newFormats: string[],
+  ) => {
     setFormats(newFormats);
   };
 
-  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string) => {
+  const handleAlignment = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string,
+  ) => {
     setAlignment(newAlignment);
   };
 

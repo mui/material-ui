@@ -8,7 +8,9 @@ import DesktopDateTimePicker from '@mui/lab/DesktopDateTimePicker';
 import Stack from '@mui/material/Stack';
 
 export default function ResponsiveDateTimePickers() {
-  const [value, setValue] = React.useState<Date | null>(new Date('2018-01-01T00:00:00.000Z'));
+  const [value, setValue] = React.useState<Date | null>(
+    new Date('2018-01-01T00:00:00.000Z'),
+  );
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>

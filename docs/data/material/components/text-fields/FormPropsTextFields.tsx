@@ -13,8 +13,18 @@ export default function FormPropsTextFields() {
       autoComplete="off"
     >
       <div>
-        <TextField required id="outlined-required" label="Required" defaultValue="Hello World" />
-        <TextField disabled id="outlined-disabled" label="Disabled" defaultValue="Hello World" />
+        <TextField
+          required
+          id="outlined-required"
+          label="Required"
+          defaultValue="Hello World"
+        />
+        <TextField
+          disabled
+          id="outlined-disabled"
+          label="Disabled"
+          defaultValue="Hello World"
+        />
         <TextField
           id="outlined-password-input"
           label="Password"
@@ -85,7 +95,12 @@ export default function FormPropsTextFields() {
           }}
           variant="filled"
         />
-        <TextField id="filled-search" label="Search field" type="search" variant="filled" />
+        <TextField
+          id="filled-search"
+          label="Search field"
+          type="search"
+          variant="filled"
+        />
         <TextField
           id="filled-helperText"
           label="Helper text"
@@ -134,7 +149,12 @@ export default function FormPropsTextFields() {
           }}
           variant="standard"
         />
-        <TextField id="standard-search" label="Search field" type="search" variant="standard" />
+        <TextField
+          id="standard-search"
+          label="Search field"
+          type="search"
+          variant="standard"
+        />
         <TextField
           id="standard-helperText"
           label="Helper text"

@@ -9,7 +9,13 @@ import ListItemText from '@mui/material/ListItemText';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { TransitionGroup } from 'react-transition-group';
 
-const FRUITS = ['🍏 Apple', '🍌 Banana', '🍍 Pineapple', '🥥 Coconut', '🍉 Watermelon'];
+const FRUITS = [
+  '🍏 Apple',
+  '🍌 Banana',
+  '🍍 Pineapple',
+  '🥥 Coconut',
+  '🍉 Watermelon',
+];
 
 interface RenderItemOptions {
   item: string;
@@ -66,7 +72,9 @@ export default function TransitionGroupExample() {
         <List>
           <TransitionGroup>
             {fruitsInBasket.map((item) => (
-              <Collapse key={item}>{renderItem({ item, handleRemoveFruit })}</Collapse>
+              <Collapse key={item}>
+                {renderItem({ item, handleRemoveFruit })}
+              </Collapse>
             ))}
           </TransitionGroup>
         </List>

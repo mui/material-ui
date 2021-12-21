@@ -12,49 +12,47 @@ interface CustomProps {
   name: string;
 }
 
-const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(function TextMaskCustom(
-  props,
-  ref,
-) {
-  const { onChange, ...other } = props;
-  return (
-    <IMaskInput
-      {...other}
-      mask="(#00) 000-0000"
-      definitions={{
-        '#': /[1-9]/,
-      }}
-      inputRef={ref}
-      onAccept={(value: any) => onChange({ target: { name: props.name, value } })}
-      overwrite
-    />
-  );
-});
+const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(
+  function TextMaskCustom(props, ref) {
+    const { onChange, ...other } = props;
+    return (
+      <IMaskInput
+        {...other}
+        mask="(#00) 000-0000"
+        definitions={{
+          '#': /[1-9]/,
+        }}
+        inputRef={ref}
+        onAccept={(value: any) => onChange({ target: { name: props.name, value } })}
+        overwrite
+      />
+    );
+  },
+);
 
-const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(function NumberFormatCustom(
-  props,
-  ref,
-) {
-  const { onChange, ...other } = props;
+const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
+  function NumberFormatCustom(props, ref) {
+    const { onChange, ...other } = props;
 
-  return (
-    <NumberFormat
-      {...other}
-      getInputRef={ref}
-      onValueChange={(values) => {
-        onChange({
-          target: {
-            name: props.name,
-            value: values.value,
-          },
-        });
-      }}
-      thousandSeparator
-      isNumericString
-      prefix="$"
-    />
-  );
-});
+    return (
+      <NumberFormat
+        {...other}
+        getInputRef={ref}
+        onValueChange={(values) => {
+          onChange({
+            target: {
+              name: props.name,
+              value: values.value,
+            },
+          });
+        }}
+        thousandSeparator
+        isNumericString
+        prefix="$"
+      />
+    );
+  },
+);
 
 interface State {
   textmask: string;

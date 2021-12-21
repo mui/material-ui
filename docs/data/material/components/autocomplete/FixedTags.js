@@ -30,7 +30,9 @@ export default function FixedTags() {
         ))
       }
       style={{ width: 500 }}
-      renderInput={(params) => <TextField {...params} label="Fixed tag" placeholder="Favorites" />}
+      renderInput={(params) => (
+        <TextField {...params} label="Fixed tag" placeholder="Favorites" />
+      )}
     />
   );
 }

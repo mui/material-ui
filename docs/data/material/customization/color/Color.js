@@ -44,7 +44,9 @@ const ColorValue = styled('span', { name: 'ColorValue' })(({ theme }) => ({
   fontWeight: 'inherit',
 }));
 
-const ColorBlock = styled('li', { name: 'ColorBlock' })(({ theme }) => theme.typography.body2);
+const ColorBlock = styled('li', { name: 'ColorBlock' })(
+  ({ theme }) => theme.typography.body2,
+);
 
 function getColorBlock(theme, colorName, colorValue, colorTitle) {
   const bgColor = colors[colorName][colorValue];
@@ -88,9 +90,13 @@ function getColorBlock(theme, colorName, colorValue, colorTitle) {
 
 function getColorGroup(options) {
   const { theme, color, showAltPalette } = options;
-  const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
+  const cssColor = color
+    .replace(' ', '')
+    .replace(color.charAt(0), color.charAt(0).toLowerCase());
   let colorsList = [];
-  colorsList = mainPalette.map((mainValue) => getColorBlock(theme, cssColor, mainValue));
+  colorsList = mainPalette.map((mainValue) =>
+    getColorBlock(theme, cssColor, mainValue),
+  );
 
   if (showAltPalette) {
     altPalette.forEach((altValue) => {

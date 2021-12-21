@@ -115,7 +115,10 @@ const pages = [
           { pathname: '/material/components/portal' },
           { pathname: '/material/components/textarea-autosize' },
           { pathname: '/material/components/transitions' },
-          { pathname: '/material/components/use-media-query', title: 'useMediaQuery' },
+          {
+            pathname: '/material/components/use-media-query',
+            title: 'useMediaQuery',
+          },
         ],
       },
       {
@@ -144,14 +147,20 @@ const pages = [
           { pathname: '/material/components/data-grid/localization' },
           { pathname: '/material/components/data-grid/virtualization' },
           { pathname: '/material/components/data-grid/accessibility' },
-          { pathname: '/material/components/data-grid/group-pivot', title: 'Group & Pivot' },
+          {
+            pathname: '/material/components/data-grid/group-pivot',
+            title: 'Group & Pivot',
+          },
         ],
       },
       {
         pathname: '/material/components',
         subheader: '/material/components/lab',
         children: [
-          { pathname: '/material/components/about-the-lab', title: 'About the lab 🧪' },
+          {
+            pathname: '/material/components/about-the-lab',
+            title: 'About the lab 🧪',
+          },
           {
             pathname: '/material/components',
             subheader: '/material/components/lab-pickers',
@@ -196,27 +205,42 @@ const pages = [
         pathname: '/material/api-docs/accordion-summary',
         linkProps: { linkAs: '/material/api/accordion-summary/' },
       },
-      { pathname: '/material/api-docs/alert', linkProps: { linkAs: '/material/api/alert/' } },
+      {
+        pathname: '/material/api-docs/alert',
+        linkProps: { linkAs: '/material/api/alert/' },
+      },
       {
         pathname: '/material/api-docs/alert-title',
         linkProps: { linkAs: '/material/api/alert-title/' },
       },
-      { pathname: '/material/api-docs/app-bar', linkProps: { linkAs: '/material/api/app-bar/' } },
+      {
+        pathname: '/material/api-docs/app-bar',
+        linkProps: { linkAs: '/material/api/app-bar/' },
+      },
       {
         pathname: '/material/api-docs/autocomplete',
         linkProps: { linkAs: '/material/api/autocomplete/' },
       },
-      { pathname: '/material/api-docs/avatar', linkProps: { linkAs: '/material/api/avatar/' } },
+      {
+        pathname: '/material/api-docs/avatar',
+        linkProps: { linkAs: '/material/api/avatar/' },
+      },
       {
         pathname: '/material/api-docs/avatar-group',
         linkProps: { linkAs: '/material/api/avatar-group/' },
       },
-      { pathname: '/material/api-docs/backdrop', linkProps: { linkAs: '/material/api/backdrop/' } },
+      {
+        pathname: '/material/api-docs/backdrop',
+        linkProps: { linkAs: '/material/api/backdrop/' },
+      },
       {
         pathname: '/material/api-docs/backdrop-unstyled',
         linkProps: { linkAs: '/material/api/backdrop-unstyled/' },
       },
-      { pathname: '/material/api-docs/badge', linkProps: { linkAs: '/material/api/badge/' } },
+      {
+        pathname: '/material/api-docs/badge',
+        linkProps: { linkAs: '/material/api/badge/' },
+      },
       {
         pathname: '/material/api-docs/badge-unstyled',
         linkProps: { linkAs: '/material/api/badge-unstyled/' },
@@ -233,7 +257,10 @@ const pages = [
         pathname: '/material/api-docs/breadcrumbs',
         linkProps: { linkAs: '/material/api/breadcrumbs/' },
       },
-      { pathname: '/material/api-docs/button', linkProps: { linkAs: '/material/api/button/' } },
+      {
+        pathname: '/material/api-docs/button',
+        linkProps: { linkAs: '/material/api/button/' },
+      },
       {
         pathname: '/material/api-docs/button-base',
         linkProps: { linkAs: '/material/api/button-base/' },
@@ -254,7 +281,10 @@ const pages = [
         pathname: '/material/api-docs/calendar-picker-skeleton',
         linkProps: { linkAs: '/material/api/calendar-picker-skeleton/' },
       },
-      { pathname: '/material/api-docs/card', linkProps: { linkAs: '/material/api/card/' } },
+      {
+        pathname: '/material/api-docs/card',
+        linkProps: { linkAs: '/material/api/card/' },
+      },
       {
         pathname: '/material/api-docs/card-action-area',
         linkProps: { linkAs: '/material/api/card-action-area/' },
@@ -275,8 +305,14 @@ const pages = [
         pathname: '/material/api-docs/card-media',
         linkProps: { linkAs: '/material/api/card-media/' },
       },
-      { pathname: '/material/api-docs/checkbox', linkProps: { linkAs: '/material/api/checkbox/' } },
-      { pathname: '/material/api-docs/chip', linkProps: { linkAs: '/material/api/chip/' } },
+      {
+        pathname: '/material/api-docs/checkbox',
+        linkProps: { linkAs: '/material/api/checkbox/' },
+      },
+      {
+        pathname: '/material/api-docs/chip',
+        linkProps: { linkAs: '/material/api/chip/' },
+      },
       {
         pathname: '/material/api-docs/circular-progress',
         linkProps: { linkAs: '/material/api/circular-progress/' },
@@ -289,7 +325,10 @@ const pages = [
         pathname: '/material/api-docs/clock-picker',
         linkProps: { linkAs: '/material/api/clock-picker/' },
       },
-      { pathname: '/material/api-docs/collapse', linkProps: { linkAs: '/material/api/collapse/' } },
+      {
+        pathname: '/material/api-docs/collapse',
+        linkProps: { linkAs: '/material/api/collapse/' },
+      },
       {
         pathname: '/material/api-docs/container',
         linkProps: { linkAs: '/material/api/container/' },
@@ -340,12 +379,16 @@ const pages = [
           {
             pathname: '/material/api-docs/data-grid/grid-csv-export-options',
             title: 'GridCSVExportOptions',
-            linkProps: { linkAs: '/material/api/data-grid/grid-csv-export-options/' },
+            linkProps: {
+              linkAs: '/material/api/data-grid/grid-csv-export-options/',
+            },
           },
           {
             pathname: '/material/api-docs/data-grid/grid-print-export-options',
             title: 'GridPrintExportOptions',
-            linkProps: { linkAs: '/material/api/data-grid/grid-print-export-options/' },
+            linkProps: {
+              linkAs: '/material/api/data-grid/grid-print-export-options/',
+            },
           },
         ],
         linkProps: { linkAs: '/material/api/data-grid/' },
@@ -382,7 +425,10 @@ const pages = [
         pathname: '/material/api-docs/desktop-time-picker',
         linkProps: { linkAs: '/material/api/desktop-time-picker/' },
       },
-      { pathname: '/material/api-docs/dialog', linkProps: { linkAs: '/material/api/dialog/' } },
+      {
+        pathname: '/material/api-docs/dialog',
+        linkProps: { linkAs: '/material/api/dialog/' },
+      },
       {
         pathname: '/material/api-docs/dialog-actions',
         linkProps: { linkAs: '/material/api/dialog-actions/' },
@@ -399,10 +445,22 @@ const pages = [
         pathname: '/material/api-docs/dialog-title',
         linkProps: { linkAs: '/material/api/dialog-title/' },
       },
-      { pathname: '/material/api-docs/divider', linkProps: { linkAs: '/material/api/divider/' } },
-      { pathname: '/material/api-docs/drawer', linkProps: { linkAs: '/material/api/drawer/' } },
-      { pathname: '/material/api-docs/fab', linkProps: { linkAs: '/material/api/fab/' } },
-      { pathname: '/material/api-docs/fade', linkProps: { linkAs: '/material/api/fade/' } },
+      {
+        pathname: '/material/api-docs/divider',
+        linkProps: { linkAs: '/material/api/divider/' },
+      },
+      {
+        pathname: '/material/api-docs/drawer',
+        linkProps: { linkAs: '/material/api/drawer/' },
+      },
+      {
+        pathname: '/material/api-docs/fab',
+        linkProps: { linkAs: '/material/api/fab/' },
+      },
+      {
+        pathname: '/material/api-docs/fade',
+        linkProps: { linkAs: '/material/api/fade/' },
+      },
       {
         pathname: '/material/api-docs/filled-input',
         linkProps: { linkAs: '/material/api/filled-input/' },
@@ -435,10 +493,22 @@ const pages = [
         pathname: '/material/api-docs/global-styles',
         linkProps: { linkAs: '/material/api/global-styles/' },
       },
-      { pathname: '/material/api-docs/grid', linkProps: { linkAs: '/material/api/grid/' } },
-      { pathname: '/material/api-docs/grow', linkProps: { linkAs: '/material/api/grow/' } },
-      { pathname: '/material/api-docs/hidden', linkProps: { linkAs: '/material/api/hidden/' } },
-      { pathname: '/material/api-docs/icon', linkProps: { linkAs: '/material/api/icon/' } },
+      {
+        pathname: '/material/api-docs/grid',
+        linkProps: { linkAs: '/material/api/grid/' },
+      },
+      {
+        pathname: '/material/api-docs/grow',
+        linkProps: { linkAs: '/material/api/grow/' },
+      },
+      {
+        pathname: '/material/api-docs/hidden',
+        linkProps: { linkAs: '/material/api/hidden/' },
+      },
+      {
+        pathname: '/material/api-docs/icon',
+        linkProps: { linkAs: '/material/api/icon/' },
+      },
       {
         pathname: '/material/api-docs/icon-button',
         linkProps: { linkAs: '/material/api/icon-button/' },
@@ -455,7 +525,10 @@ const pages = [
         pathname: '/material/api-docs/image-list-item-bar',
         linkProps: { linkAs: '/material/api/image-list-item-bar/' },
       },
-      { pathname: '/material/api-docs/input', linkProps: { linkAs: '/material/api/input/' } },
+      {
+        pathname: '/material/api-docs/input',
+        linkProps: { linkAs: '/material/api/input/' },
+      },
       {
         pathname: '/material/api-docs/input-adornment',
         linkProps: { linkAs: '/material/api/input-adornment/' },
@@ -476,8 +549,14 @@ const pages = [
         pathname: '/material/api-docs/linear-progress',
         linkProps: { linkAs: '/material/api/linear-progress/' },
       },
-      { pathname: '/material/api-docs/link', linkProps: { linkAs: '/material/api/link/' } },
-      { pathname: '/material/api-docs/list', linkProps: { linkAs: '/material/api/list/' } },
+      {
+        pathname: '/material/api-docs/link',
+        linkProps: { linkAs: '/material/api/link/' },
+      },
+      {
+        pathname: '/material/api-docs/list',
+        linkProps: { linkAs: '/material/api/list/' },
+      },
       {
         pathname: '/material/api-docs/list-item',
         linkProps: { linkAs: '/material/api/list-item/' },
@@ -510,8 +589,14 @@ const pages = [
         pathname: '/material/api-docs/loading-button',
         linkProps: { linkAs: '/material/api/loading-button/' },
       },
-      { pathname: '/material/api-docs/masonry', linkProps: { linkAs: '/material/api/masonry/' } },
-      { pathname: '/material/api-docs/menu', linkProps: { linkAs: '/material/api/menu/' } },
+      {
+        pathname: '/material/api-docs/masonry',
+        linkProps: { linkAs: '/material/api/masonry/' },
+      },
+      {
+        pathname: '/material/api-docs/menu',
+        linkProps: { linkAs: '/material/api/menu/' },
+      },
       {
         pathname: '/material/api-docs/menu-item',
         linkProps: { linkAs: '/material/api/menu-item/' },
@@ -540,7 +625,10 @@ const pages = [
         pathname: '/material/api-docs/mobile-time-picker',
         linkProps: { linkAs: '/material/api/mobile-time-picker/' },
       },
-      { pathname: '/material/api-docs/modal', linkProps: { linkAs: '/material/api/modal/' } },
+      {
+        pathname: '/material/api-docs/modal',
+        linkProps: { linkAs: '/material/api/modal/' },
+      },
       {
         pathname: '/material/api-docs/modal-unstyled',
         linkProps: { linkAs: '/material/api/modal-unstyled/' },
@@ -553,7 +641,10 @@ const pages = [
         pathname: '/material/api-docs/native-select',
         linkProps: { linkAs: '/material/api/native-select/' },
       },
-      { pathname: '/material/api-docs/no-ssr', linkProps: { linkAs: '/material/api/no-ssr/' } },
+      {
+        pathname: '/material/api-docs/no-ssr',
+        linkProps: { linkAs: '/material/api/no-ssr/' },
+      },
       {
         pathname: '/material/api-docs/outlined-input',
         linkProps: { linkAs: '/material/api/outlined-input/' },
@@ -566,37 +657,70 @@ const pages = [
         pathname: '/material/api-docs/pagination-item',
         linkProps: { linkAs: '/material/api/pagination-item/' },
       },
-      { pathname: '/material/api-docs/paper', linkProps: { linkAs: '/material/api/paper/' } },
+      {
+        pathname: '/material/api-docs/paper',
+        linkProps: { linkAs: '/material/api/paper/' },
+      },
       {
         pathname: '/material/api-docs/pickers-day',
         linkProps: { linkAs: '/material/api/pickers-day/' },
       },
-      { pathname: '/material/api-docs/popover', linkProps: { linkAs: '/material/api/popover/' } },
-      { pathname: '/material/api-docs/popper', linkProps: { linkAs: '/material/api/popper/' } },
+      {
+        pathname: '/material/api-docs/popover',
+        linkProps: { linkAs: '/material/api/popover/' },
+      },
+      {
+        pathname: '/material/api-docs/popper',
+        linkProps: { linkAs: '/material/api/popper/' },
+      },
       {
         pathname: '/material/api-docs/popper-unstyled',
         linkProps: { linkAs: '/material/api/popper-unstyled/' },
       },
-      { pathname: '/material/api-docs/portal', linkProps: { linkAs: '/material/api/portal/' } },
-      { pathname: '/material/api-docs/radio', linkProps: { linkAs: '/material/api/radio/' } },
+      {
+        pathname: '/material/api-docs/portal',
+        linkProps: { linkAs: '/material/api/portal/' },
+      },
+      {
+        pathname: '/material/api-docs/radio',
+        linkProps: { linkAs: '/material/api/radio/' },
+      },
       {
         pathname: '/material/api-docs/radio-group',
         linkProps: { linkAs: '/material/api/radio-group/' },
       },
-      { pathname: '/material/api-docs/rating', linkProps: { linkAs: '/material/api/rating/' } },
+      {
+        pathname: '/material/api-docs/rating',
+        linkProps: { linkAs: '/material/api/rating/' },
+      },
       {
         pathname: '/material/api-docs/scoped-css-baseline',
         linkProps: { linkAs: '/material/api/scoped-css-baseline/' },
       },
-      { pathname: '/material/api-docs/select', linkProps: { linkAs: '/material/api/select/' } },
-      { pathname: '/material/api-docs/skeleton', linkProps: { linkAs: '/material/api/skeleton/' } },
-      { pathname: '/material/api-docs/slide', linkProps: { linkAs: '/material/api/slide/' } },
-      { pathname: '/material/api-docs/slider', linkProps: { linkAs: '/material/api/slider/' } },
+      {
+        pathname: '/material/api-docs/select',
+        linkProps: { linkAs: '/material/api/select/' },
+      },
+      {
+        pathname: '/material/api-docs/skeleton',
+        linkProps: { linkAs: '/material/api/skeleton/' },
+      },
+      {
+        pathname: '/material/api-docs/slide',
+        linkProps: { linkAs: '/material/api/slide/' },
+      },
+      {
+        pathname: '/material/api-docs/slider',
+        linkProps: { linkAs: '/material/api/slider/' },
+      },
       {
         pathname: '/material/api-docs/slider-unstyled',
         linkProps: { linkAs: '/material/api/slider-unstyled/' },
       },
-      { pathname: '/material/api-docs/snackbar', linkProps: { linkAs: '/material/api/snackbar/' } },
+      {
+        pathname: '/material/api-docs/snackbar',
+        linkProps: { linkAs: '/material/api/snackbar/' },
+      },
       {
         pathname: '/material/api-docs/snackbar-content',
         linkProps: { linkAs: '/material/api/snackbar-content/' },
@@ -613,7 +737,10 @@ const pages = [
         pathname: '/material/api-docs/speed-dial-icon',
         linkProps: { linkAs: '/material/api/speed-dial-icon/' },
       },
-      { pathname: '/material/api-docs/stack', linkProps: { linkAs: '/material/api/stack/' } },
+      {
+        pathname: '/material/api-docs/stack',
+        linkProps: { linkAs: '/material/api/stack/' },
+      },
       {
         pathname: '/material/api-docs/static-date-picker',
         linkProps: { linkAs: '/material/api/static-date-picker/' },
@@ -630,7 +757,10 @@ const pages = [
         pathname: '/material/api-docs/static-time-picker',
         linkProps: { linkAs: '/material/api/static-time-picker/' },
       },
-      { pathname: '/material/api-docs/step', linkProps: { linkAs: '/material/api/step/' } },
+      {
+        pathname: '/material/api-docs/step',
+        linkProps: { linkAs: '/material/api/step/' },
+      },
       {
         pathname: '/material/api-docs/step-button',
         linkProps: { linkAs: '/material/api/step-button/' },
@@ -651,23 +781,38 @@ const pages = [
         pathname: '/material/api-docs/step-label',
         linkProps: { linkAs: '/material/api/step-label/' },
       },
-      { pathname: '/material/api-docs/stepper', linkProps: { linkAs: '/material/api/stepper/' } },
-      { pathname: '/material/api-docs/svg-icon', linkProps: { linkAs: '/material/api/svg-icon/' } },
+      {
+        pathname: '/material/api-docs/stepper',
+        linkProps: { linkAs: '/material/api/stepper/' },
+      },
+      {
+        pathname: '/material/api-docs/svg-icon',
+        linkProps: { linkAs: '/material/api/svg-icon/' },
+      },
       {
         pathname: '/material/api-docs/swipeable-drawer',
         linkProps: { linkAs: '/material/api/swipeable-drawer/' },
       },
-      { pathname: '/material/api-docs/switch', linkProps: { linkAs: '/material/api/switch/' } },
+      {
+        pathname: '/material/api-docs/switch',
+        linkProps: { linkAs: '/material/api/switch/' },
+      },
       {
         pathname: '/material/api-docs/switch-unstyled',
         linkProps: { linkAs: '/material/api/switch-unstyled/' },
       },
-      { pathname: '/material/api-docs/tab', linkProps: { linkAs: '/material/api/tab/' } },
+      {
+        pathname: '/material/api-docs/tab',
+        linkProps: { linkAs: '/material/api/tab/' },
+      },
       {
         pathname: '/material/api-docs/tab-context',
         linkProps: { linkAs: '/material/api/tab-context/' },
       },
-      { pathname: '/material/api-docs/tab-list', linkProps: { linkAs: '/material/api/tab-list/' } },
+      {
+        pathname: '/material/api-docs/tab-list',
+        linkProps: { linkAs: '/material/api/tab-list/' },
+      },
       {
         pathname: '/material/api-docs/tab-panel',
         linkProps: { linkAs: '/material/api/tab-panel/' },
@@ -684,7 +829,10 @@ const pages = [
         pathname: '/material/api-docs/tab-unstyled',
         linkProps: { linkAs: '/material/api/tab-unstyled/' },
       },
-      { pathname: '/material/api-docs/table', linkProps: { linkAs: '/material/api/table/' } },
+      {
+        pathname: '/material/api-docs/table',
+        linkProps: { linkAs: '/material/api/table/' },
+      },
       {
         pathname: '/material/api-docs/table-body',
         linkProps: { linkAs: '/material/api/table-body/' },
@@ -721,7 +869,10 @@ const pages = [
         pathname: '/material/api-docs/table-sort-label',
         linkProps: { linkAs: '/material/api/table-sort-label/' },
       },
-      { pathname: '/material/api-docs/tabs', linkProps: { linkAs: '/material/api/tabs/' } },
+      {
+        pathname: '/material/api-docs/tabs',
+        linkProps: { linkAs: '/material/api/tabs/' },
+      },
       {
         pathname: '/material/api-docs/tabs-list-unstyled',
         linkProps: { linkAs: '/material/api/tabs-list-unstyled/' },
@@ -742,7 +893,10 @@ const pages = [
         pathname: '/material/api-docs/time-picker',
         linkProps: { linkAs: '/material/api/time-picker/' },
       },
-      { pathname: '/material/api-docs/timeline', linkProps: { linkAs: '/material/api/timeline/' } },
+      {
+        pathname: '/material/api-docs/timeline',
+        linkProps: { linkAs: '/material/api/timeline/' },
+      },
       {
         pathname: '/material/api-docs/timeline-connector',
         linkProps: { linkAs: '/material/api/timeline-connector/' },
@@ -775,8 +929,14 @@ const pages = [
         pathname: '/material/api-docs/toggle-button-group',
         linkProps: { linkAs: '/material/api/toggle-button-group/' },
       },
-      { pathname: '/material/api-docs/toolbar', linkProps: { linkAs: '/material/api/toolbar/' } },
-      { pathname: '/material/api-docs/tooltip', linkProps: { linkAs: '/material/api/tooltip/' } },
+      {
+        pathname: '/material/api-docs/toolbar',
+        linkProps: { linkAs: '/material/api/toolbar/' },
+      },
+      {
+        pathname: '/material/api-docs/tooltip',
+        linkProps: { linkAs: '/material/api/tooltip/' },
+      },
       {
         pathname: '/material/api-docs/tree-item',
         linkProps: { linkAs: '/material/api/tree-item/' },
@@ -797,7 +957,10 @@ const pages = [
         pathname: '/material/api-docs/year-picker',
         linkProps: { linkAs: '/material/api/year-picker/' },
       },
-      { pathname: '/material/api-docs/zoom', linkProps: { linkAs: '/material/api/zoom/' } },
+      {
+        pathname: '/material/api-docs/zoom',
+        linkProps: { linkAs: '/material/api/zoom/' },
+      },
     ],
   },
   {
@@ -817,8 +980,14 @@ const pages = [
           { pathname: '/material/customization/density' },
           { pathname: '/material/customization/z-index', title: 'z-index' },
           { pathname: '/material/customization/transitions' },
-          { pathname: '/material/customization/theme-components', title: 'Components' },
-          { pathname: '/material/customization/default-theme', title: 'Default Theme' },
+          {
+            pathname: '/material/customization/theme-components',
+            title: 'Components',
+          },
+          {
+            pathname: '/material/customization/default-theme',
+            title: 'Default Theme',
+          },
         ],
       },
       { pathname: '/material/customization/how-to-customize' },
@@ -832,10 +1001,19 @@ const pages = [
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/material/guides/api', title: 'API Design Approach' },
-      { pathname: '/material/guides/classname-generator', title: 'ClassName Generator' },
-      { pathname: '/material/guides/understand-mui-packages', title: 'Understand MUI packages' },
+      {
+        pathname: '/material/guides/classname-generator',
+        title: 'ClassName Generator',
+      },
+      {
+        pathname: '/material/guides/understand-mui-packages',
+        title: 'Understand MUI packages',
+      },
       { pathname: '/material/guides/typescript', title: 'TypeScript' },
-      { pathname: '/material/guides/interoperability', title: 'Style Library Interoperability' },
+      {
+        pathname: '/material/guides/interoperability',
+        title: 'Style Library Interoperability',
+      },
       { pathname: '/material/guides/styled-engine' },
       { pathname: '/material/guides/minimizing-bundle-size' },
       { pathname: '/material/guides/composition' },
@@ -851,7 +1029,10 @@ const pages = [
       { pathname: '/guides/migration-v0x', title: 'Migration From v0.x' },
       { pathname: '/material/guides/testing' },
       { pathname: '/material/guides/localization' },
-      { pathname: '/material/guides/content-security-policy', title: 'Content Security Policy' },
+      {
+        pathname: '/material/guides/content-security-policy',
+        title: 'Content Security Policy',
+      },
       { pathname: '/material/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/material/guides/flow' },
     ],

@@ -11,7 +11,9 @@ import Stack from '@mui/material/Stack';
 
 export default function CustomDateTimePicker() {
   const [clearedDate, setClearedDate] = React.useState<Date | null>(null);
-  const [value, setValue] = React.useState<Date | null>(new Date('2019-01-01T18:54'));
+  const [value, setValue] = React.useState<Date | null>(
+    new Date('2019-01-01T18:54'),
+  );
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -36,7 +38,9 @@ export default function CustomDateTimePicker() {
           rightArrowButtonText="Open next month"
           minTime={new Date(0, 0, 0, 9)}
           maxTime={new Date(0, 0, 0, 20)}
-          renderInput={(params) => <TextField {...params} helperText="Hardcoded helper text" />}
+          renderInput={(params) => (
+            <TextField {...params} helperText="Hardcoded helper text" />
+          )}
         />
         <MobileDateTimePicker
           value={value}
@@ -54,7 +58,9 @@ export default function CustomDateTimePicker() {
           clearable
           value={clearedDate}
           onChange={(newValue) => setClearedDate(newValue)}
-          renderInput={(params) => <TextField {...params} helperText="Clear Initial State" />}
+          renderInput={(params) => (
+            <TextField {...params} helperText="Clear Initial State" />
+          )}
         />
       </Stack>
     </LocalizationProvider>

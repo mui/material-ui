@@ -76,7 +76,11 @@ export default function MultipleSelectChip() {
           MenuProps={MenuProps}
         >
           {names.map((name) => (
-            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
+            <MenuItem
+              key={name}
+              value={name}
+              style={getStyles(name, personName, theme)}
+            >
               {name}
             </MenuItem>
           ))}

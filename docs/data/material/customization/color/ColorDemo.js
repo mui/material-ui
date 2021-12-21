@@ -39,10 +39,18 @@ function ColorDemo(props) {
   return (
     <Box sx={{ position: 'relative', overflow: 'hidden' }}>
       <Box sx={{ position: 'relative', height: 390, bgcolor: 'background.paper' }}>
-        <Box sx={{ width: '100%', height: 24 }} style={{ backgroundColor: primary.dark }} />
+        <Box
+          sx={{ width: '100%', height: 24 }}
+          style={{ backgroundColor: primary.dark }}
+        />
         <AppBar position="static" style={{ backgroundColor: primary.main }}>
           <Toolbar style={{ color: primary.contrastText }}>
-            <IconButton edge="start" sx={{ mr: '20px' }} color="inherit" aria-label="menu">
+            <IconButton
+              edge="start"
+              sx={{ mr: '20px' }}
+              color="inherit"
+              aria-label="menu"
+            >
               <MenuIcon />
             </IconButton>
             <Typography component="div" variant="h6" color="inherit">

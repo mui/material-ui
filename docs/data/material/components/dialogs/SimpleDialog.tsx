@@ -80,7 +80,11 @@ export default function SimpleDialogDemo() {
       <Button variant="outlined" onClick={handleClickOpen}>
         Open simple dialog
       </Button>
-      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+      <SimpleDialog
+        selectedValue={selectedValue}
+        open={open}
+        onClose={handleClose}
+      />
     </div>
   );
 }

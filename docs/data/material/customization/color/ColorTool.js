@@ -38,7 +38,22 @@ const hues = [
   'deepOrange',
 ];
 
-const shades = [900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 'A700', 'A400', 'A200', 'A100'];
+const shades = [
+  900,
+  800,
+  700,
+  600,
+  500,
+  400,
+  300,
+  200,
+  100,
+  50,
+  'A700',
+  'A400',
+  'A200',
+  'A100',
+];
 
 const TooltipRadio = React.forwardRef(function TooltipRadio(props, ref) {
   const {
@@ -83,7 +98,8 @@ function ColorTool() {
   });
 
   const handleChangeColor = (name) => (event) => {
-    const isRgb = (string) => /rgb\([0-9]{1,3}\s*,\s*[0-9]{1,3}\s*,\s*[0-9]{1,3}\)/i.test(string);
+    const isRgb = (string) =>
+      /rgb\([0-9]{1,3}\s*,\s*[0-9]{1,3}\s*,\s*[0-9]{1,3}\)/i.test(string);
 
     const isHex = (string) => /^#?([0-9a-f]{3})$|^#?([0-9a-f]){6}$/i.test(string);
 
@@ -148,7 +164,9 @@ function ColorTool() {
       payload: { paletteColors },
     });
 
-    document.cookie = `paletteColors=${JSON.stringify(paletteColors)};path=/;max-age=31536000`;
+    document.cookie = `paletteColors=${JSON.stringify(
+      paletteColors,
+    )};path=/;max-age=31536000`;
   };
 
   const handleResetDocsColors = () => {
@@ -202,7 +220,12 @@ function ColorTool() {
         <Typography component="label" gutterBottom htmlFor={intent} variant="h6">
           {capitalize(intent)}
         </Typography>
-        <Input id={intent} value={intentInput} onChange={handleChangeColor(intent)} fullWidth />
+        <Input
+          id={intent}
+          value={intentInput}
+          onChange={handleChangeColor(intent)}
+          fullWidth
+        />
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 2, mb: 2 }}>
           <Typography id={`${intent}ShadeSliderLabel`}>Shade:</Typography>
           <Slider
@@ -219,7 +242,9 @@ function ColorTool() {
         <Box sx={{ width: 192 }}>
           {hues.map((hue) => {
             const shade =
-              intent === 'primary' ? shades[state.primaryShade] : shades[state.secondaryShade];
+              intent === 'primary'
+                ? shades[state.primaryShade]
+                : shades[state.secondaryShade];
             const backgroundColor = colors[hue][shade];
 
             return (
@@ -231,7 +256,12 @@ function ColorTool() {
                   onChange={handleChangeHue(intent)}
                   value={hue}
                   name={intent}
-                  icon={<Box sx={{ width: 48, height: 48 }} style={{ backgroundColor }} />}
+                  icon={
+                    <Box
+                      sx={{ width: 48, height: 48 }}
+                      style={{ backgroundColor }}
+                    />
+                  }
                   checkedIcon={
                     <Box
                       sx={{

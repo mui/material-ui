@@ -38,12 +38,23 @@ function Media(props: MediaProps) {
         }
         title={
           loading ? (
-            <Skeleton animation="wave" height={10} width="80%" style={{ marginBottom: 6 }} />
+            <Skeleton
+              animation="wave"
+              height={10}
+              width="80%"
+              style={{ marginBottom: 6 }}
+            />
           ) : (
             'Ted'
           )
         }
-        subheader={loading ? <Skeleton animation="wave" height={10} width="40%" /> : '5 hours ago'}
+        subheader={
+          loading ? (
+            <Skeleton animation="wave" height={10} width="40%" />
+          ) : (
+            '5 hours ago'
+          )
+        }
       />
       {loading ? (
         <Skeleton sx={{ height: 190 }} animation="wave" variant="rectangular" />

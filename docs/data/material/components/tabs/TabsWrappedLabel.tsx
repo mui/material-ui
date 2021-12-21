@@ -12,7 +12,11 @@ export default function TabsWrappedLabel() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Tabs value={value} onChange={handleChange} aria-label="wrapped label tabs example">
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="wrapped label tabs example"
+      >
         <Tab
           value="one"
           label="New Arrivals in the Longest Text of Nonfiction that should appear in the next line"

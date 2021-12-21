@@ -13,7 +13,12 @@ export default function ValidationTextFields() {
       autoComplete="off"
     >
       <div>
-        <TextField error id="outlined-error" label="Error" defaultValue="Hello World" />
+        <TextField
+          error
+          id="outlined-error"
+          label="Error"
+          defaultValue="Hello World"
+        />
         <TextField
           error
           id="outlined-error-helper-text"

@@ -46,7 +46,9 @@ const StyledInputElement = styled('input')(
 );
 
 const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  return <InputUnstyled components={{ Input: StyledInputElement }} {...props} ref={ref} />;
+  return (
+    <InputUnstyled components={{ Input: StyledInputElement }} {...props} ref={ref} />
+  );
 });
 
 export default function UnstyledInput() {

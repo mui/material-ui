@@ -152,7 +152,8 @@ const appList = [
   },
   {
     title: 'EQ3',
-    description: 'Modern Furniture & Accessories, designed in Canada, for everyday living.',
+    description:
+      'Modern Furniture & Accessories, designed in Canada, for everyday living.',
     image: 'eq3.jpg',
     link: 'https://www.eq3.com/ca/en/',
     similarWebVisits: 256,
@@ -250,7 +251,8 @@ const appList = [
   },
   {
     title: 'LessWrong',
-    description: 'LessWrong is a community blog devoted to the art of human rationality.',
+    description:
+      'LessWrong is a community blog devoted to the art of human rationality.',
     image: 'lesswrong.jpg',
     link: 'https://www.lesswrong.com/',
     similarWebVisits: 774,
@@ -384,14 +386,16 @@ const appList = [
   },
   {
     title: 'Rare Bits',
-    description: 'Rare Bits is a marketplace where users can buy, sell and discover crypto assets.',
+    description:
+      'Rare Bits is a marketplace where users can buy, sell and discover crypto assets.',
     image: 'rarebits.jpg',
     link: 'https://rarebits.io/',
     dateAdded: '2019-01-01',
   },
   {
     title: 'Roast',
-    description: 'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
+    description:
+      'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
     image: 'roast.jpg',
     link: 'https://www.roast.io/',
     dateAdded: '2019-01-01',
@@ -462,7 +466,8 @@ const appList = [
   },
   {
     title: 'SlidesUp',
-    description: 'SlidesUp is a platform to help conference organizers plan their events.',
+    description:
+      'SlidesUp is a platform to help conference organizers plan their events.',
     image: 'slidesup.jpg',
     link: 'https://slidesup.com/',
     dateAdded: '2018-01-03',
@@ -563,7 +568,8 @@ const appList = [
   {
     title: 'Tree',
     description:
-      'An open source top 100 documentaries (personal opinion) app ' + 'with React Hooks and MUI.',
+      'An open source top 100 documentaries (personal opinion) app ' +
+      'with React Hooks and MUI.',
     link: 'https://tree.valleyease.me/',
     image: 'tree.jpg',
     source: 'https://github.com/ValleyZw/tree',
@@ -602,7 +608,8 @@ const appList = [
   },
   {
     title: 'TradeNBA',
-    description: 'NBA trade machine and social analysis tools for the basketball community.',
+    description:
+      'NBA trade machine and social analysis tools for the basketball community.',
     image: 'tradenba.jpg',
     link: 'https://tradenba.com/',
     similarWebVisits: 160,
@@ -610,7 +617,8 @@ const appList = [
   },
   {
     title: 'CinemaPlus',
-    description: 'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
+    description:
+      'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
     image: 'cinemaplus.jpg',
     link: 'https://elcinema.herokuapp.com/',
     similarWebVisits: 100,
@@ -631,7 +639,8 @@ const appList = [
   },
   {
     title: 'Backstage',
-    description: 'Backstage is an open platform by Spotify for building developer portals.',
+    description:
+      'Backstage is an open platform by Spotify for building developer portals.',
     image: 'backstage.jpg',
     link: 'https://backstage.io',
     source: 'https://github.com/backstage/backstage',

@@ -10,7 +10,13 @@ import Divider from '@mui/material/Divider';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import Typography from '@mui/material/Typography';
-import { Link as RouterLink, Route, Routes, MemoryRouter, useLocation } from 'react-router-dom';
+import {
+  Link as RouterLink,
+  Route,
+  Routes,
+  MemoryRouter,
+  useLocation,
+} from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
 
 function Router(props) {

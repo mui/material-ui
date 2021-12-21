@@ -40,7 +40,10 @@ export default function RtlOptOut() {
   return (
     <React.Fragment>
       <div>
-        <FormControlLabel control={<Switch checked={rtl} onChange={handleChage} />} label="RTL" />
+        <FormControlLabel
+          control={<Switch checked={rtl} onChange={handleChage} />}
+          label="RTL"
+        />
       </div>
       <CacheProvider value={rtl ? rtlCache : ltrCache}>
         <Root {...(rtl ? { dir: 'rtl' } : {})}>

@@ -42,7 +42,12 @@ export default function MaxWidthDialog() {
       <Button variant="outlined" onClick={handleClickOpen}>
         Open max-width dialog
       </Button>
-      <Dialog fullWidth={fullWidth} maxWidth={maxWidth} open={open} onClose={handleClose}>
+      <Dialog
+        fullWidth={fullWidth}
+        maxWidth={maxWidth}
+        open={open}
+        onClose={handleClose}
+      >
         <DialogTitle>Optional sizes</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -80,7 +85,9 @@ export default function MaxWidthDialog() {
             </FormControl>
             <FormControlLabel
               sx={{ mt: 1 }}
-              control={<Switch checked={fullWidth} onChange={handleFullWidthChange} />}
+              control={
+                <Switch checked={fullWidth} onChange={handleFullWidthChange} />
+              }
               label="Full width"
             />
           </Box>

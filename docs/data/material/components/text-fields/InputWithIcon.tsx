@@ -11,7 +11,9 @@ export default function InputWithIcon() {
   return (
     <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <FormControl variant="standard">
-        <InputLabel htmlFor="input-with-icon-adornment">With a start adornment</InputLabel>
+        <InputLabel htmlFor="input-with-icon-adornment">
+          With a start adornment
+        </InputLabel>
         <Input
           id="input-with-icon-adornment"
           startAdornment={

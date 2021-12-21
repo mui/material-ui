@@ -10,8 +10,18 @@ export default function FormControlLabelPlacement() {
     <FormControl component="fieldset">
       <FormLabel component="legend">labelPlacement</FormLabel>
       <RadioGroup row aria-label="position" name="position" defaultValue="top">
-        <FormControlLabel value="top" control={<Radio />} label="Top" labelPlacement="top" />
-        <FormControlLabel value="start" control={<Radio />} label="Start" labelPlacement="start" />
+        <FormControlLabel
+          value="top"
+          control={<Radio />}
+          label="Top"
+          labelPlacement="top"
+        />
+        <FormControlLabel
+          value="start"
+          control={<Radio />}
+          label="Start"
+          labelPlacement="start"
+        />
         <FormControlLabel
           value="bottom"
           control={<Radio />}
