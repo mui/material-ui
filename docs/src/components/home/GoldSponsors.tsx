@@ -34,11 +34,11 @@ const GOLDs = [
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://avatars.githubusercontent.com/u/13365608?s=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/13365608?s=80 2x',
-    name: 'Spice Factory',
-    description: 'Next gen digital product studio.',
-    href: 'https://spicefactory.co/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    src: 'https://images.opencollective.com/laststance/daffd6c/logo/40.png',
+    srcSet: 'https://images.opencollective.com/laststance/daffd6c/logo/80.png 2x',
+    name: 'Laststance',
+    description: 'Organization for OSS activity based on Tokyo.',
+    href: 'https://laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/movavi-software/a1d0167/logo/40.png',
@@ -48,11 +48,11 @@ const GOLDs = [
     href: 'https://www.movavi.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: '/static/sponsors/hoodie-bees.png',
-    srcSet: '/static/sponsors/hoodie-bees-2x.png',
-    name: 'Hoodie Bees',
-    description: 'Horse community.',
-    href: 'https://www.hoodiebees.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
+    srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
+    name: 'TopAussieCasinos.com',
+    description: 'Aussie Gambling Guide.',
+    href: 'https://topaussiecasinos.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/40.png',
@@ -60,13 +60,6 @@ const GOLDs = [
     name: 'SunmatoSoft',
     description: 'We help companies to digitalize their businesses.',
     href: 'https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
-    srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
-    name: 'TopAussieCasinos.com',
-    description: 'Aussie Gambling Guide.',
-    href: 'https://topaussiecasinos.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
 
@@ -93,7 +86,7 @@ export default function GoldSponsors() {
           Gold
         </Typography>
       </Box>
-      <Grid container spacing={{ xs: 2, md: 4 }}>
+      <Grid container spacing={{ xs: 2, md: 3 }}>
         {GOLDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
             <SponsorCard inView={inView} item={item} />
