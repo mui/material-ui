@@ -203,7 +203,7 @@ const POST_MIGRATION_SETTINGS: Settings[] = [
   // add other products, eg. joy, data-grid, ...etc
 ];
 
-const ACTIVE_SETTINGS = BEFORE_MIGRATION_SETTINGS;
+const ACTIVE_SETTINGS = MIGRATION_SETTINGS;
 
 async function run(argv: { grep?: string }) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
