@@ -137,12 +137,12 @@ export interface PopoverActions {
  *
  * Demos:
  *
- * - [Menus](https://mui.com/components/menus/)
- * - [Popover](https://mui.com/components/popover/)
+ * - [Menus](https://mui.com/material/components/menus/)
+ * - [Popover](https://mui.com/material/components/popover/)
  *
  * API:
  *
- * - [Popover API](https://mui.com/api/popover/)
- * - inherits [Modal API](https://mui.com/api/modal/)
+ * - [Popover API](https://mui.com/material/api/popover/)
+ * - inherits [Modal API](https://mui.com/material/api/modal/)
  */
 export default function Popover(props: PopoverProps): JSX.Element;

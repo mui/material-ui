@@ -54,12 +54,12 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
  *
  * Demos:
  *
- * - [Menus](https://mui.com/components/menus/)
+ * - [Menus](https://mui.com/material/components/menus/)
  *
  * API:
  *
- * - [MenuItem API](https://mui.com/api/menu-item/)
- * - inherits [ButtonBase API](https://mui.com/api/button-base/)
+ * - [MenuItem API](https://mui.com/material/api/menu-item/)
+ * - inherits [ButtonBase API](https://mui.com/material/api/button-base/)
  */
 declare const MenuItem: ExtendButtonBase<MenuItemTypeMap>;
 

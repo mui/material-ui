@@ -45,12 +45,12 @@ export interface PaperTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Cards](https://mui.com/components/cards/)
- * - [Paper](https://mui.com/components/paper/)
+ * - [Cards](https://mui.com/material/components/cards/)
+ * - [Paper](https://mui.com/material/components/paper/)
  *
  * API:
  *
- * - [Paper API](https://mui.com/api/paper/)
+ * - [Paper API](https://mui.com/material/api/paper/)
  */
 declare const Paper: OverridableComponent<PaperTypeMap>;
 

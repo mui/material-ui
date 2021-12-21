@@ -259,13 +259,13 @@ export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | Out
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/components/autocomplete/)
- * - [Pickers](https://mui.com/components/pickers/)
- * - [Text Fields](https://mui.com/components/text-fields/)
+ * - [Autocomplete](https://mui.com/material/components/autocomplete/)
+ * - [Pickers](https://mui.com/material/components/pickers/)
+ * - [Text Fields](https://mui.com/material/components/text-fields/)
  *
  * API:
  *
- * - [TextField API](https://mui.com/api/text-field/)
- * - inherits [FormControl API](https://mui.com/api/form-control/)
+ * - [TextField API](https://mui.com/material/api/text-field/)
+ * - inherits [FormControl API](https://mui.com/material/api/form-control/)
  */
 export default function TextField(props: TextFieldProps): JSX.Element;

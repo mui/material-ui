@@ -83,11 +83,11 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
  *
  * Demos:
  *
- * - [Button Group](https://mui.com/components/button-group/)
+ * - [Button Group](https://mui.com/material/components/button-group/)
  *
  * API:
  *
- * - [ButtonGroup API](https://mui.com/api/button-group/)
+ * - [ButtonGroup API](https://mui.com/material/api/button-group/)
  */
 declare const ButtonGroup: OverridableComponent<ButtonGroupTypeMap>;
 

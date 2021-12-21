@@ -20,12 +20,12 @@ export interface TabListTypeMap<
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/components/tabs/)
+ * - [Tabs](https://mui.com/material/components/tabs/)
  *
  * API:
  *
- * - [TabList API](https://mui.com/api/tab-list/)
- * - inherits [Tabs API](https://mui.com/api/tabs/)
+ * - [TabList API](https://mui.com/material/api/tab-list/)
+ * - inherits [Tabs API](https://mui.com/material/api/tabs/)
  */
 declare const TabList: OverridableComponent<TabListTypeMap>;
 

@@ -19,11 +19,11 @@ export interface TabContextProps {
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/components/tabs/)
+ * - [Tabs](https://mui.com/material/components/tabs/)
  *
  * API:
  *
- * - [TabContext API](https://mui.com/api/tab-context/)
+ * - [TabContext API](https://mui.com/material/api/tab-context/)
  */
 export default function TabContext(props: TabContextProps): JSX.Element;
 export function useTabContext(): TabContextValue | null;

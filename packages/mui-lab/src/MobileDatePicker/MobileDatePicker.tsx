@@ -28,11 +28,11 @@ type MobileDatePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Picker](https://mui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/material/components/date-picker/)
  *
  * API:
  *
- * - [MobileDatePicker API](https://mui.com/api/mobile-date-picker/)
+ * - [MobileDatePicker API](https://mui.com/material/api/mobile-date-picker/)
  */
 const MobileDatePicker = React.forwardRef(function MobileDatePicker<TDate>(
   inProps: MobileDatePickerProps<TDate>,

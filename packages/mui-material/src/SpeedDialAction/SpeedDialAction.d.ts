@@ -53,11 +53,11 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
  *
  * Demos:
  *
- * - [Speed Dial](https://mui.com/components/speed-dial/)
+ * - [Speed Dial](https://mui.com/material/components/speed-dial/)
  *
  * API:
  *
- * - [SpeedDialAction API](https://mui.com/api/speed-dial-action/)
- * - inherits [Tooltip API](https://mui.com/api/tooltip/)
+ * - [SpeedDialAction API](https://mui.com/material/api/speed-dial-action/)
+ * - inherits [Tooltip API](https://mui.com/material/api/tooltip/)
  */
 export default function SpeedDialAction(props: SpeedDialActionProps): JSX.Element;

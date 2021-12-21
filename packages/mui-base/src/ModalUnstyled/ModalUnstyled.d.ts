@@ -152,11 +152,11 @@ export type ExtendModalUnstyled<M extends OverridableTypeMap> = OverridableCompo
  *
  * Demos:
  *
- * - [Modal](https://mui.com/components/modal/)
+ * - [Modal](https://mui.com/material/components/modal/)
  *
  * API:
  *
- * - [ModalUnstyled API](https://mui.com/api/modal-unstyled/)
+ * - [ModalUnstyled API](https://mui.com/material/api/modal-unstyled/)
  */
 declare const ModalUnstyled: OverridableComponent<ModalUnstyledTypeMap>;
 

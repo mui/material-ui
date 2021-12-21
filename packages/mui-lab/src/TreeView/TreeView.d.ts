@@ -135,10 +135,10 @@ export type TreeViewProps = SingleSelectTreeViewProps | MultiSelectTreeViewProps
  *
  * Demos:
  *
- * - [Tree View](https://mui.com/components/tree-view/)
+ * - [Tree View](https://mui.com/material/components/tree-view/)
  *
  * API:
  *
- * - [TreeView API](https://mui.com/api/tree-view/)
+ * - [TreeView API](https://mui.com/material/api/tree-view/)
  */
 export default function TreeView(props: TreeViewProps): JSX.Element;

@@ -63,12 +63,12 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
  *
  * Demos:
  *
- * - [Dividers](https://mui.com/components/dividers/)
- * - [Lists](https://mui.com/components/lists/)
+ * - [Dividers](https://mui.com/material/components/dividers/)
+ * - [Lists](https://mui.com/material/components/lists/)
  *
  * API:
  *
- * - [Divider API](https://mui.com/api/divider/)
+ * - [Divider API](https://mui.com/material/api/divider/)
  */
 declare const Divider: OverridableComponent<DividerTypeMap>;
 

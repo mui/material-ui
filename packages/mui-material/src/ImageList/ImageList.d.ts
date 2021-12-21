@@ -51,11 +51,11 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  *
  * Demos:
  *
- * - [Image List](https://mui.com/components/image-list/)
+ * - [Image List](https://mui.com/material/components/image-list/)
  *
  * API:
  *
- * - [ImageList API](https://mui.com/api/image-list/)
+ * - [ImageList API](https://mui.com/material/api/image-list/)
  */
 declare const ImageList: OverridableComponent<ImageListTypeMap>;
 

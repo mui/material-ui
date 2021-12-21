@@ -227,11 +227,11 @@ MonthPicker.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Date Picker](https://mui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/material/components/date-picker/)
  *
  * API:
  *
- * - [MonthPicker API](https://mui.com/api/month-picker/)
+ * - [MonthPicker API](https://mui.com/material/api/month-picker/)
  */
 export default MonthPicker as <TDate>(
   props: MonthPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,

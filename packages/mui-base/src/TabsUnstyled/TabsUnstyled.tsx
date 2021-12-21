@@ -23,11 +23,11 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/components/tabs/)
+ * - [Tabs](https://mui.com/material/components/tabs/)
  *
  * API:
  *
- * - [TabsUnstyled API](https://mui.com/api/tabs-unstyled/)
+ * - [TabsUnstyled API](https://mui.com/material/api/tabs-unstyled/)
  */
 const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) => {
   const {

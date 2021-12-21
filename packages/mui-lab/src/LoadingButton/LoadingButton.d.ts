@@ -58,12 +58,12 @@ export type LoadingButtonTypeMap<
  *
  * Demos:
  *
- * - [Buttons](https://mui.com/components/buttons/)
+ * - [Buttons](https://mui.com/material/components/buttons/)
  *
  * API:
  *
- * - [LoadingButton API](https://mui.com/api/loading-button/)
- * - inherits [Button API](https://mui.com/api/button/)
+ * - [LoadingButton API](https://mui.com/material/api/loading-button/)
+ * - inherits [Button API](https://mui.com/material/api/button/)
  */
 declare const LoadingButton: ExtendButton<LoadingButtonTypeMap>;
 

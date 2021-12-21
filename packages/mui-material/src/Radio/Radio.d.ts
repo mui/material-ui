@@ -53,11 +53,11 @@ export interface RadioProps
  *
  * Demos:
  *
- * - [Radio Buttons](https://mui.com/components/radio-buttons/)
+ * - [Radio Buttons](https://mui.com/material/components/radio-buttons/)
  *
  * API:
  *
- * - [Radio API](https://mui.com/api/radio/)
- * - inherits [ButtonBase API](https://mui.com/api/button-base/)
+ * - [Radio API](https://mui.com/material/api/radio/)
+ * - inherits [ButtonBase API](https://mui.com/material/api/button-base/)
  */
 export default function Radio(props: RadioProps): JSX.Element;

@@ -75,12 +75,12 @@ export interface FormControlLabelProps
  *
  * Demos:
  *
- * - [Checkboxes](https://mui.com/components/checkboxes/)
- * - [Radio Buttons](https://mui.com/components/radio-buttons/)
- * - [Switches](https://mui.com/components/switches/)
+ * - [Checkboxes](https://mui.com/material/components/checkboxes/)
+ * - [Radio Buttons](https://mui.com/material/components/radio-buttons/)
+ * - [Switches](https://mui.com/material/components/switches/)
  *
  * API:
  *
- * - [FormControlLabel API](https://mui.com/api/form-control-label/)
+ * - [FormControlLabel API](https://mui.com/material/api/form-control-label/)
  */
 export default function FormControlLabel(props: FormControlLabelProps): JSX.Element;

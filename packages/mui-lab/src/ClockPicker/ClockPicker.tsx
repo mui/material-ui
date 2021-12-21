@@ -542,10 +542,10 @@ ClockPicker.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Time Picker](https://mui.com/components/time-picker/)
+ * - [Time Picker](https://mui.com/material/components/time-picker/)
  *
  * API:
  *
- * - [ClockPicker API](https://mui.com/api/clock-picker/)
+ * - [ClockPicker API](https://mui.com/material/api/clock-picker/)
  */
 export default ClockPicker as <TDate>(props: ClockPickerProps<TDate>) => JSX.Element;

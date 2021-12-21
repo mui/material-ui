@@ -55,10 +55,10 @@ export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
  *
  * Demos:
  *
- * - [Steppers](https://mui.com/components/steppers/)
+ * - [Steppers](https://mui.com/material/components/steppers/)
  *
  * API:
  *
- * - [Stepper API](https://mui.com/api/stepper/)
+ * - [Stepper API](https://mui.com/material/api/stepper/)
  */
 export default function Stepper(props: StepperProps): JSX.Element;

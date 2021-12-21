@@ -39,12 +39,12 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
  *
  * Demos:
  *
- * - [Popover](https://mui.com/components/popover/)
- * - [Transitions](https://mui.com/components/transitions/)
+ * - [Popover](https://mui.com/material/components/popover/)
+ * - [Transitions](https://mui.com/material/components/transitions/)
  *
  * API:
  *
- * - [Grow API](https://mui.com/api/grow/)
+ * - [Grow API](https://mui.com/material/api/grow/)
  * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
 export default function Grow(props: GrowProps): JSX.Element;

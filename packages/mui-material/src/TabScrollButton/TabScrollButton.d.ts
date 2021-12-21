@@ -34,10 +34,10 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/components/tabs/)
+ * - [Tabs](https://mui.com/material/components/tabs/)
  *
  * API:
  *
- * - [TabScrollButton API](https://mui.com/api/tab-scroll-button/)
+ * - [TabScrollButton API](https://mui.com/material/api/tab-scroll-button/)
  */
 export default function TabScrollButton(props: TabScrollButtonProps): JSX.Element;

@@ -25,11 +25,11 @@ export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'>
  *
  * Demos:
  *
- * - [Cards](https://mui.com/components/cards/)
+ * - [Cards](https://mui.com/material/components/cards/)
  *
  * API:
  *
- * - [CardContent API](https://mui.com/api/card-content/)
+ * - [CardContent API](https://mui.com/material/api/card-content/)
  */
 declare const CardContent: OverridableComponent<CardContentTypeMap>;
 

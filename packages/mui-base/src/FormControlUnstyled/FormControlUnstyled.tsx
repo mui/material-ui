@@ -52,11 +52,11 @@ export type FormControlUnstyledOwnerState = Omit<
  *
  * Demos:
  *
- * - [Text Fields](https://mui.com/components/text-fields/)
+ * - [Text Fields](https://mui.com/material/components/text-fields/)
  *
  * API:
  *
- * - [FormControlUnstyled API](https://mui.com/api/form-control-unstyled/)
+ * - [FormControlUnstyled API](https://mui.com/material/api/form-control-unstyled/)
  */
 const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
   D extends React.ElementType = FormControlUnstyledTypeMap['defaultComponent'],

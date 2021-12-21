@@ -86,11 +86,11 @@ type MobileDateRangePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Range Picker](https://mui.com/components/date-range-picker/)
+ * - [Date Range Picker](https://mui.com/material/components/date-range-picker/)
  *
  * API:
  *
- * - [MobileDateRangePicker API](https://mui.com/api/mobile-date-range-picker/)
+ * - [MobileDateRangePicker API](https://mui.com/material/api/mobile-date-range-picker/)
  */
 const MobileDateRangePicker = React.forwardRef(function MobileDateRangePicker<TDate>(
   inProps: MobileDateRangePickerProps<TDate>,

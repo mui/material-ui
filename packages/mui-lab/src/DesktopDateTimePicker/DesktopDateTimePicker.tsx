@@ -31,11 +31,11 @@ type DesktopDateTimePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Time Picker](https://mui.com/components/date-time-picker/)
+ * - [Date Time Picker](https://mui.com/material/components/date-time-picker/)
  *
  * API:
  *
- * - [DesktopDateTimePicker API](https://mui.com/api/desktop-date-time-picker/)
+ * - [DesktopDateTimePicker API](https://mui.com/material/api/desktop-date-time-picker/)
  */
 const DesktopDateTimePicker = React.forwardRef(function DesktopDateTimePicker<TDate>(
   inProps: DesktopDateTimePickerProps<TDate>,

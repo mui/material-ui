@@ -118,10 +118,10 @@ export interface RatingProps
  *
  * Demos:
  *
- * - [Rating](https://mui.com/components/rating/)
+ * - [Rating](https://mui.com/material/components/rating/)
  *
  * API:
  *
- * - [Rating API](https://mui.com/api/rating/)
+ * - [Rating API](https://mui.com/material/api/rating/)
  */
 export default function Rating(props: RatingProps): JSX.Element;

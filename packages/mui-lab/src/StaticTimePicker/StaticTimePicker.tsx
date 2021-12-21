@@ -33,11 +33,11 @@ type StaticTimePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Time Picker](https://mui.com/components/time-picker/)
+ * - [Time Picker](https://mui.com/material/components/time-picker/)
  *
  * API:
  *
- * - [StaticTimePicker API](https://mui.com/api/static-time-picker/)
+ * - [StaticTimePicker API](https://mui.com/material/api/static-time-picker/)
  */
 const StaticTimePicker = React.forwardRef(function StaticTimePicker<TDate>(
   inProps: StaticTimePickerProps<TDate>,

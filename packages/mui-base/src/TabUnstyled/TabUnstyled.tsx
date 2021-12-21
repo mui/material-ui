@@ -22,11 +22,11 @@ const useUtilityClasses = (ownerState: { selected: boolean; disabled: boolean })
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/components/tabs/)
+ * - [Tabs](https://mui.com/material/components/tabs/)
  *
  * API:
  *
- * - [TabUnstyled API](https://mui.com/api/tab-unstyled/)
+ * - [TabUnstyled API](https://mui.com/material/api/tab-unstyled/)
  */
 const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnstyled(props, ref) {
   const {

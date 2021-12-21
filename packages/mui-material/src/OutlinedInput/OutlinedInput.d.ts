@@ -28,12 +28,12 @@ export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
  *
  * Demos:
  *
- * - [Text Fields](https://mui.com/components/text-fields/)
+ * - [Text Fields](https://mui.com/material/components/text-fields/)
  *
  * API:
  *
- * - [OutlinedInput API](https://mui.com/api/outlined-input/)
- * - inherits [InputBase API](https://mui.com/api/input-base/)
+ * - [OutlinedInput API](https://mui.com/material/api/outlined-input/)
+ * - inherits [InputBase API](https://mui.com/material/api/input-base/)
  */
 declare const OutlinedInput: ((props: OutlinedInputProps) => JSX.Element) & { muiName: string };
 

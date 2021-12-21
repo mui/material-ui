@@ -67,11 +67,11 @@ export interface CardHeaderTypeMap<
  *
  * Demos:
  *
- * - [Cards](https://mui.com/components/cards/)
+ * - [Cards](https://mui.com/material/components/cards/)
  *
  * API:
  *
- * - [CardHeader API](https://mui.com/api/card-header/)
+ * - [CardHeader API](https://mui.com/material/api/card-header/)
  */
 declare const CardHeader: OverridableCardHeader;
 

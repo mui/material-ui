@@ -92,10 +92,10 @@ export interface PopperUnstyledProps
  *
  * Demos:
  *
- * - [Popper](https://mui.com/components/popper/)
+ * - [Popper](https://mui.com/material/components/popper/)
  *
  * API:
  *
- * - [PopperUnstyled API](https://mui.com/api/popper-unstyled/)
+ * - [PopperUnstyled API](https://mui.com/material/api/popper-unstyled/)
  */
 export default function PopperUnstyled(props: PopperUnstyledProps): JSX.Element;

@@ -28,11 +28,11 @@ type MobileTimePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Time Picker](https://mui.com/components/time-picker/)
+ * - [Time Picker](https://mui.com/material/components/time-picker/)
  *
  * API:
  *
- * - [MobileTimePicker API](https://mui.com/api/mobile-time-picker/)
+ * - [MobileTimePicker API](https://mui.com/material/api/mobile-time-picker/)
  */
 const MobileTimePicker = React.forwardRef(function MobileTimePicker<TDate>(
   inProps: MobileTimePickerProps<TDate>,

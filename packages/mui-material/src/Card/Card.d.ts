@@ -32,12 +32,12 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Cards](https://mui.com/components/cards/)
+ * - [Cards](https://mui.com/material/components/cards/)
  *
  * API:
  *
- * - [Card API](https://mui.com/api/card/)
- * - inherits [Paper API](https://mui.com/api/paper/)
+ * - [Card API](https://mui.com/material/api/card/)
+ * - inherits [Paper API](https://mui.com/material/api/paper/)
  */
 
 declare const Card: OverridableComponent<CardTypeMap>;

@@ -24,12 +24,12 @@ type DateTimePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Time Picker](https://mui.com/components/date-time-picker/)
- * - [Pickers](https://mui.com/components/pickers/)
+ * - [Date Time Picker](https://mui.com/material/components/date-time-picker/)
+ * - [Pickers](https://mui.com/material/components/pickers/)
  *
  * API:
  *
- * - [DateTimePicker API](https://mui.com/api/date-time-picker/)
+ * - [DateTimePicker API](https://mui.com/material/api/date-time-picker/)
  */
 const DateTimePicker = React.forwardRef(function DateTimePicker<TDate>(
   inProps: DateTimePickerProps<TDate>,

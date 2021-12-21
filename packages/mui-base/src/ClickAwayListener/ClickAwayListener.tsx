@@ -58,12 +58,12 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click Away Listener](https://mui.com/components/click-away-listener/)
- * - [Menus](https://mui.com/components/menus/)
+ * - [Click Away Listener](https://mui.com/material/components/click-away-listener/)
+ * - [Menus](https://mui.com/material/components/menus/)
  *
  * API:
  *
- * - [ClickAwayListener API](https://mui.com/api/click-away-listener/)
+ * - [ClickAwayListener API](https://mui.com/material/api/click-away-listener/)
  */
 function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
   const {

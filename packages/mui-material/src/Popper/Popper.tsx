@@ -10,13 +10,13 @@ export type PopperProps = Omit<PopperUnstyledProps, 'direction'>;
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/components/autocomplete/)
- * - [Menus](https://mui.com/components/menus/)
- * - [Popper](https://mui.com/components/popper/)
+ * - [Autocomplete](https://mui.com/material/components/autocomplete/)
+ * - [Menus](https://mui.com/material/components/menus/)
+ * - [Popper](https://mui.com/material/components/popper/)
  *
  * API:
  *
- * - [Popper API](https://mui.com/api/popper/)
+ * - [Popper API](https://mui.com/material/api/popper/)
  */
 const Popper = React.forwardRef(function Popper(
   props: PopperProps,

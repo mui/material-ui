@@ -33,11 +33,11 @@ type StaticDatePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Picker](https://mui.com/components/date-picker/)
+ * - [Date Picker](https://mui.com/material/components/date-picker/)
  *
  * API:
  *
- * - [StaticDatePicker API](https://mui.com/api/static-date-picker/)
+ * - [StaticDatePicker API](https://mui.com/material/api/static-date-picker/)
  */
 const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
   inProps: StaticDatePickerProps<TDate>,

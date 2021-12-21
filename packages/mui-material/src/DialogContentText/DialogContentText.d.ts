@@ -26,12 +26,12 @@ export interface DialogContentTextTypeMap<
  *
  * Demos:
  *
- * - [Dialogs](https://mui.com/components/dialogs/)
+ * - [Dialogs](https://mui.com/material/components/dialogs/)
  *
  * API:
  *
- * - [DialogContentText API](https://mui.com/api/dialog-content-text/)
- * - inherits [Typography API](https://mui.com/api/typography/)
+ * - [DialogContentText API](https://mui.com/material/api/dialog-content-text/)
+ * - inherits [Typography API](https://mui.com/material/api/typography/)
  */
 declare const DialogContentText: OverridableComponent<DialogContentTextTypeMap>;
 

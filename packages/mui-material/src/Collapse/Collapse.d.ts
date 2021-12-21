@@ -59,13 +59,13 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
  *
  * Demos:
  *
- * - [Cards](https://mui.com/components/cards/)
- * - [Lists](https://mui.com/components/lists/)
- * - [Transitions](https://mui.com/components/transitions/)
+ * - [Cards](https://mui.com/material/components/cards/)
+ * - [Lists](https://mui.com/material/components/lists/)
+ * - [Transitions](https://mui.com/material/components/transitions/)
  *
  * API:
  *
- * - [Collapse API](https://mui.com/api/collapse/)
+ * - [Collapse API](https://mui.com/material/api/collapse/)
  * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
 

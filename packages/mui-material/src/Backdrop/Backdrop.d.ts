@@ -43,12 +43,12 @@ export type BackdropClassKey = keyof NonNullable<BackdropTypeMap['props']['class
  *
  * Demos:
  *
- * - [Backdrop](https://mui.com/components/backdrop/)
+ * - [Backdrop](https://mui.com/material/components/backdrop/)
  *
  * API:
  *
- * - [Backdrop API](https://mui.com/api/backdrop/)
- * - inherits [Fade API](https://mui.com/api/fade/)
+ * - [Backdrop API](https://mui.com/material/api/backdrop/)
+ * - inherits [Fade API](https://mui.com/material/api/fade/)
  */
 
 declare const Backdrop: OverridableComponent<BackdropTypeMap>;

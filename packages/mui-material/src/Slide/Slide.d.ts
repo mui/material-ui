@@ -53,12 +53,12 @@ export interface SlideProps extends TransitionProps {
  *
  * Demos:
  *
- * - [Dialogs](https://mui.com/components/dialogs/)
- * - [Transitions](https://mui.com/components/transitions/)
+ * - [Dialogs](https://mui.com/material/components/dialogs/)
+ * - [Transitions](https://mui.com/material/components/transitions/)
  *
  * API:
  *
- * - [Slide API](https://mui.com/api/slide/)
+ * - [Slide API](https://mui.com/material/api/slide/)
  * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
 export default function Slide(props: SlideProps): JSX.Element;

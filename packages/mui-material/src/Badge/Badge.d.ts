@@ -63,13 +63,13 @@ export type BadgeClassKey = keyof NonNullable<BadgeTypeMap['props']['classes']>;
  *
  * Demos:
  *
- * - [Avatars](https://mui.com/components/avatars/)
- * - [Badges](https://mui.com/components/badges/)
+ * - [Avatars](https://mui.com/material/components/avatars/)
+ * - [Badges](https://mui.com/material/components/badges/)
  *
  * API:
  *
- * - [Badge API](https://mui.com/api/badge/)
- * - inherits [BadgeUnstyled API](https://mui.com/api/badge-unstyled/)
+ * - [Badge API](https://mui.com/material/api/badge/)
+ * - inherits [BadgeUnstyled API](https://mui.com/material/api/badge-unstyled/)
  */
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 

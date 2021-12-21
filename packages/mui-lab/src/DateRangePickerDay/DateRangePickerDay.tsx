@@ -360,11 +360,11 @@ DateRangePickerDay.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Date Range Picker](https://mui.com/components/date-range-picker/)
+ * - [Date Range Picker](https://mui.com/material/components/date-range-picker/)
  *
  * API:
  *
- * - [DateRangePickerDay API](https://mui.com/api/date-range-picker-day/)
+ * - [DateRangePickerDay API](https://mui.com/material/api/date-range-picker-day/)
  */
 export default React.memo(DateRangePickerDay, (prevProps, nextProps) => {
   return (

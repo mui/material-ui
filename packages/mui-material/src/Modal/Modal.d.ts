@@ -53,11 +53,11 @@ export type ModalClassKey = keyof NonNullable<ModalTypeMap['props']['classes']>;
  *
  * Demos:
  *
- * - [Modal](https://mui.com/components/modal/)
+ * - [Modal](https://mui.com/material/components/modal/)
  *
  * API:
  *
- * - [Modal API](https://mui.com/api/modal/)
+ * - [Modal API](https://mui.com/material/api/modal/)
  */
 declare const Modal: ExtendModalUnstyled<ModalTypeMap>;
 

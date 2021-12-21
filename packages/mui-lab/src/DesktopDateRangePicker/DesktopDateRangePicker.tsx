@@ -87,11 +87,11 @@ type DesktopDateRangePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Range Picker](https://mui.com/components/date-range-picker/)
+ * - [Date Range Picker](https://mui.com/material/components/date-range-picker/)
  *
  * API:
  *
- * - [DesktopDateRangePicker API](https://mui.com/api/desktop-date-range-picker/)
+ * - [DesktopDateRangePicker API](https://mui.com/material/api/desktop-date-range-picker/)
  */
 const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<TDate>(
   inProps: DesktopDateRangePickerProps<TDate>,

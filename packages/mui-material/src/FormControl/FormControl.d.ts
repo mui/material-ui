@@ -106,14 +106,14 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  *
  * Demos:
  *
- * - [Checkboxes](https://mui.com/components/checkboxes/)
- * - [Radio Buttons](https://mui.com/components/radio-buttons/)
- * - [Switches](https://mui.com/components/switches/)
- * - [Text Fields](https://mui.com/components/text-fields/)
+ * - [Checkboxes](https://mui.com/material/components/checkboxes/)
+ * - [Radio Buttons](https://mui.com/material/components/radio-buttons/)
+ * - [Switches](https://mui.com/material/components/switches/)
+ * - [Text Fields](https://mui.com/material/components/text-fields/)
  *
  * API:
  *
- * - [FormControl API](https://mui.com/api/form-control/)
+ * - [FormControl API](https://mui.com/material/api/form-control/)
  */
 declare const FormControl: OverridableComponent<FormControlTypeMap>;
 

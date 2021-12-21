@@ -74,10 +74,10 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
  *
  * Demos:
  *
- * - [Drawers](https://mui.com/components/drawers/)
+ * - [Drawers](https://mui.com/material/components/drawers/)
  *
  * API:
  *
- * - [Drawer API](https://mui.com/api/drawer/)
+ * - [Drawer API](https://mui.com/material/api/drawer/)
  */
 export default function Drawer(props: DrawerProps): JSX.Element;

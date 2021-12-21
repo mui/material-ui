@@ -111,12 +111,12 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
  *
  * Demos:
  *
- * - [Lists](https://mui.com/components/lists/)
- * - [Transfer List](https://mui.com/components/transfer-list/)
+ * - [Lists](https://mui.com/material/components/lists/)
+ * - [Transfer List](https://mui.com/material/components/transfer-list/)
  *
  * API:
  *
- * - [ListItem API](https://mui.com/api/list-item/)
+ * - [ListItem API](https://mui.com/material/api/list-item/)
  */
 declare const ListItem: ExtendButtonBase<
   ListItemTypeMap<

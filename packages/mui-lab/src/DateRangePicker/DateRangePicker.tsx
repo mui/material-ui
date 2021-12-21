@@ -81,11 +81,11 @@ type DateRangePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Range Picker](https://mui.com/components/date-range-picker/)
+ * - [Date Range Picker](https://mui.com/material/components/date-range-picker/)
  *
  * API:
  *
- * - [DateRangePicker API](https://mui.com/api/date-range-picker/)
+ * - [DateRangePicker API](https://mui.com/material/api/date-range-picker/)
  */
 const DateRangePicker = React.forwardRef(function DateRangePicker<TDate>(
   inProps: DateRangePickerProps<TDate>,

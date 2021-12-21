@@ -57,12 +57,12 @@ export interface NativeSelectProps
  *
  * Demos:
  *
- * - [Selects](https://mui.com/components/selects/)
+ * - [Selects](https://mui.com/material/components/selects/)
  *
  * API:
  *
- * - [NativeSelect API](https://mui.com/api/native-select/)
- * - inherits [Input API](https://mui.com/api/input/)
+ * - [NativeSelect API](https://mui.com/material/api/native-select/)
+ * - inherits [Input API](https://mui.com/material/api/input/)
  */
 declare const NativeSelect: ((props: NativeSelectProps) => JSX.Element) & { muiName: string };
 

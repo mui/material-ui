@@ -31,11 +31,11 @@ export type RadioGroupClassKey = keyof NonNullable<RadioGroupProps['classes']>;
  *
  * Demos:
  *
- * - [Radio Buttons](https://mui.com/components/radio-buttons/)
+ * - [Radio Buttons](https://mui.com/material/components/radio-buttons/)
  *
  * API:
  *
- * - [RadioGroup API](https://mui.com/api/radio-group/)
- * - inherits [FormGroup API](https://mui.com/api/form-group/)
+ * - [RadioGroup API](https://mui.com/material/api/radio-group/)
+ * - inherits [FormGroup API](https://mui.com/material/api/form-group/)
  */
 export default function RadioGroup(props: RadioGroupProps): JSX.Element;

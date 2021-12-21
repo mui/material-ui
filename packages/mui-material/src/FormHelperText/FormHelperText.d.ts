@@ -56,11 +56,11 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
  *
  * Demos:
  *
- * - [Text Fields](https://mui.com/components/text-fields/)
+ * - [Text Fields](https://mui.com/material/components/text-fields/)
  *
  * API:
  *
- * - [FormHelperText API](https://mui.com/api/form-helper-text/)
+ * - [FormHelperText API](https://mui.com/material/api/form-helper-text/)
  */
 declare const FormHelperText: OverridableComponent<FormHelperTextTypeMap>;
 

@@ -40,11 +40,11 @@ export interface ZoomProps extends TransitionProps {
  *
  * Demos:
  *
- * - [Transitions](https://mui.com/components/transitions/)
+ * - [Transitions](https://mui.com/material/components/transitions/)
  *
  * API:
  *
- * - [Zoom API](https://mui.com/api/zoom/)
+ * - [Zoom API](https://mui.com/material/api/zoom/)
  * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
 export default function Zoom(props: ZoomProps): JSX.Element;

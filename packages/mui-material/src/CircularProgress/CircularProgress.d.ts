@@ -65,10 +65,10 @@ export interface CircularProgressProps
  *
  * Demos:
  *
- * - [Progress](https://mui.com/components/progress/)
+ * - [Progress](https://mui.com/material/components/progress/)
  *
  * API:
  *
- * - [CircularProgress API](https://mui.com/api/circular-progress/)
+ * - [CircularProgress API](https://mui.com/material/api/circular-progress/)
  */
 export default function CircularProgress(props: CircularProgressProps): JSX.Element;

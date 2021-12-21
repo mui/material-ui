@@ -24,12 +24,12 @@ type TimePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Pickers](https://mui.com/components/pickers/)
- * - [Time Picker](https://mui.com/components/time-picker/)
+ * - [Pickers](https://mui.com/material/components/pickers/)
+ * - [Time Picker](https://mui.com/material/components/time-picker/)
  *
  * API:
  *
- * - [TimePicker API](https://mui.com/api/time-picker/)
+ * - [TimePicker API](https://mui.com/material/api/time-picker/)
  */
 const TimePicker = React.forwardRef(function TimePicker<TDate>(
   inProps: TimePickerProps<TDate>,

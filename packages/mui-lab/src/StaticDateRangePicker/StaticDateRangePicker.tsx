@@ -86,11 +86,11 @@ type StaticDateRangePickerComponent = (<TDate>(
  *
  * Demos:
  *
- * - [Date Range Picker](https://mui.com/components/date-range-picker/)
+ * - [Date Range Picker](https://mui.com/material/components/date-range-picker/)
  *
  * API:
  *
- * - [StaticDateRangePicker API](https://mui.com/api/static-date-range-picker/)
+ * - [StaticDateRangePicker API](https://mui.com/material/api/static-date-range-picker/)
  */
 const StaticDateRangePicker = React.forwardRef(function StaticDateRangePicker<TDate>(
   inProps: StaticDateRangePickerProps<TDate>,

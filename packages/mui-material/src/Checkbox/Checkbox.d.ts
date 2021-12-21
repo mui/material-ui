@@ -102,12 +102,12 @@ export interface CheckboxProps
  *
  * Demos:
  *
- * - [Checkboxes](https://mui.com/components/checkboxes/)
- * - [Transfer List](https://mui.com/components/transfer-list/)
+ * - [Checkboxes](https://mui.com/material/components/checkboxes/)
+ * - [Transfer List](https://mui.com/material/components/transfer-list/)
  *
  * API:
  *
- * - [Checkbox API](https://mui.com/api/checkbox/)
- * - inherits [ButtonBase API](https://mui.com/api/button-base/)
+ * - [Checkbox API](https://mui.com/material/api/checkbox/)
+ * - inherits [ButtonBase API](https://mui.com/material/api/button-base/)
  */
 export default function Checkbox(props: CheckboxProps): JSX.Element;

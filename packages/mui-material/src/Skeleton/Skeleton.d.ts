@@ -53,11 +53,11 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
  *
  * Demos:
  *
- * - [Skeleton](https://mui.com/components/skeleton/)
+ * - [Skeleton](https://mui.com/material/components/skeleton/)
  *
  * API:
  *
- * - [Skeleton API](https://mui.com/api/skeleton/)
+ * - [Skeleton API](https://mui.com/material/api/skeleton/)
  */
 declare const Skeleton: OverridableComponent<SkeletonTypeMap>;
 

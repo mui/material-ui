@@ -30,10 +30,10 @@ export interface NoSsrProps {
  *
  * Demos:
  *
- * - [No Ssr](https://mui.com/components/no-ssr/)
+ * - [No Ssr](https://mui.com/material/components/no-ssr/)
  *
  * API:
  *
- * - [NoSsr API](https://mui.com/api/no-ssr/)
+ * - [NoSsr API](https://mui.com/material/api/no-ssr/)
  */
 export default function NoSsr(props: NoSsrProps): JSX.Element;
