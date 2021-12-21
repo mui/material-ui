@@ -19,7 +19,7 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import GradientText from 'docs/src/components/typography/GradientText';
 import BrandingProvider from 'docs/src/BrandingProvider';
-import { authors } from 'docs/src/modules/components/TopLayoutBlog';
+import { authors as AUTHORS } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import Link from 'docs/src/modules/components/Link';
 
@@ -104,12 +104,8 @@ const PostPreview = (props: BlogPost) => {
             },
           }}
         >
-          {props.authors.map((author) => (
-            <Avatar
-              key={author}
-              alt=""
-              src={`https://github.com/${authors[author as keyof typeof authors].github}.png`}
-            />
+          {(props.authors as Array<keyof typeof AUTHORS>).map((author) => (
+            <Avatar key={author} alt="" src={AUTHORS[author]?.avatar} />
           ))}
         </AvatarGroup>
       )}

@@ -142,7 +142,9 @@ function TopLayoutBlog(props) {
         <AppContainer component="main" className={classes.container}>
           <Link
             href={ROUTES.blog}
-            rel="nofollow"
+            {...(ROUTES.blog.startsWith('http') && {
+              rel: 'nofollow',
+            })}
             color="text.secondary"
             variant="body2"
             className={classes.back}

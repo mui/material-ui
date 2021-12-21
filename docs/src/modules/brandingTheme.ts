@@ -398,11 +398,13 @@ export function getThemedComponents(theme: Theme) {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[500]
                 : theme.palette.primary[100],
-            '&:hover': {
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[600]
-                  : theme.palette.primary[200],
+            '&.MuiChip-clickable': {
+              '&:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.primary[200],
+              },
             },
           },
         },
