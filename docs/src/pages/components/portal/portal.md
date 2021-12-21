@@ -26,7 +26,7 @@ You have to wait for the client-side hydration to see the children.
 
 - 📦 [970 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-As the component does not have any styles, it also comes with the unstyled package.
+As the component does not have any styles, it also comes with the Base package.
 
 ```js
 import Portal from '@mui/base/Portal';

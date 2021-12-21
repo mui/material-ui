@@ -4,7 +4,7 @@
     "BackdropComponent": "A backdrop component. This prop enables custom backdrop rendering.",
     "BackdropProps": "Props applied to the <a href=\"/api/backdrop-unstyled/\"><code>BackdropUnstyled</code></a> element.",
     "children": "A single child content element.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "closeAfterTransition": "When set to true the Modal waits until a nested Transition is completed before closing.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "components": "The components used for each slot inside the Modal. Either a string to use a HTML element or a component.",
@@ -24,11 +24,11 @@
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "hidden": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "the <code>Modal</code> has exited"
     }
   }

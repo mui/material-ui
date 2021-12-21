@@ -34,7 +34,7 @@ so we know they love us really. 😘
 
 ### 2. Who do you think would most benefit from MUI?
 
-This word cloud was generated with [wordclouds.com](https://wordclouds.com).
+This word cloud was generated with wordclouds.com.
 
 <img src="/static/blog/2019-survey/2.png" style="display: block; margin: 0 auto;" alt="Word cloud of who would benefit most" />
 

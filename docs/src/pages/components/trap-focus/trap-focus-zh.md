@@ -16,11 +16,11 @@ When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> 
 
 > 该组件处于试验阶段，是不稳定的。
 
-## 示例
+## Example
 
 {{"demo": "pages/components/trap-focus/BasicTrapFocus.js"}}
 
-## 素颜模式
+## Unstyled
 
 - 📦 [2.0 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 

@@ -24,7 +24,7 @@ Algumas características importantes do componente `Popper`:
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 
-## Transições
+## Transitions
 
 O estado de aberto/fechado do popper pode ser animado com uma propriedade de renderização do elemento filho e um componente de transição. Este componente deve respeitar as seguintes condições:
 
@@ -56,7 +56,7 @@ Selecione parte do texto para ver o popper:
 
 {{"demo": "pages/components/popper/VirtualElementPopper.js"}}
 
-## Projetos Complementares
+## Complementary projects
 
 Para situações de uso mais avançadas, você pode tirar proveito com:
 

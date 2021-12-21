@@ -1,4 +1,4 @@
-# Testando
+# Testing
 
 <p class="description">Escreva testes para evitar regressões e ter uma boa qualidade de código.</p>
 

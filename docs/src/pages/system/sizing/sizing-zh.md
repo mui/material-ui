@@ -100,7 +100,7 @@ The max-width property allows setting a constraint on your breakpoints. In this 
 import { sizing } from '@mui/system';
 ```
 
-| 导入名称        | 属性          | CSS 属性       | Theme key                                                                                    |
+| Import name | Prop        | CSS property | Theme key                                                                                    |
 |:----------- |:----------- |:------------ |:-------------------------------------------------------------------------------------------- |
 | `width`     | `width`     | `width`      | none                                                                                         |
 | `maxWidth`  | `maxWidth`  | `max-width`  | [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) |

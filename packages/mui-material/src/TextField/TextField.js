@@ -135,15 +135,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
       InputMore.notched = InputLabelProps.shrink;
     }
-    if (label) {
-      const displayRequired = InputLabelProps?.required ?? required;
-      InputMore.label = (
-        <React.Fragment>
-          {label}
-          {displayRequired && '\u00a0*'}
-        </React.Fragment>
-      );
-    }
+    InputMore.label = label;
   }
   if (select) {
     // unset defaults from textbox inputs

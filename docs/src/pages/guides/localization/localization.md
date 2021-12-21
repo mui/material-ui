@@ -46,6 +46,7 @@ const theme = createTheme(
 | Chinese (Simplified)    | zh-CN               | `zhCN`      |
 | Chinese (Taiwan)        | zh-TW               | `zhTW`      |
 | Czech                   | cs-CZ               | `csCZ`      |
+| Danish                  | da-DK               | `daDK`      |
 | Dutch                   | nl-NL               | `nlNL`      |
 | English (United States) | en-US               | `enUS`      |
 | Estonian                | et-EE               | `etEE`      |

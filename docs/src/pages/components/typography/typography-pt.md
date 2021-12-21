@@ -1,11 +1,11 @@
 ---
 title: Componente React de Tipografia
-components: Tipografia
+components: Typography
 githubLabel: 'component: Typography'
 materialDesign: https://material.io/design/typography/the-type-system.html
 ---
 
-# Tipografia
+# Typography
 
 <p class="description">Use a tipografia para apresentar seu design e conteúdo da forma mais clara e eficiente possível.</p>
 
@@ -98,15 +98,15 @@ const theme = createTheme({
 
 In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
 
-## Propriedades do sistema
+## System props
 
-As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. Você pode usá-los como propriedades diretamente no componente. Por exemplo, uma margem do topo:
+As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
 
 ```jsx
 <Typography mt={2}>
 ```
 
-## Acessibilidade
+## Accessibility
 
 Alguns fatores chave a seguir para uma tipografia acessível:
 

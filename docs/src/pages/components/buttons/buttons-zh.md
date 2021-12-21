@@ -37,7 +37,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
-你也可以使用属性 `disableElevation` 属性来消除实心按钮的立体效果。
+You can remove the elevation with the `disableElevation` prop.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
@@ -65,13 +65,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 请注意，文档里组件的 API 部分 [避免](/guides/api/#native-properties) 提到原生的属性（还是有很多）。
 
-## Color 颜色
+## Color
 
 {{"demo": "pages/components/buttons/ColorButtons.js"}}
 
 In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
 
-## 尺寸
+## Sizes
 
 For larger or smaller buttons, use the `size` prop.
 
@@ -95,7 +95,7 @@ For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-### 尺寸
+### Sizes
 
 如果需要更大或者更小的图标按钮，请使用`size`属性。
 
@@ -107,9 +107,9 @@ For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/IconButtonColors.js"}}
 
-## Customization 个性化
+## Customization
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
@@ -131,11 +131,11 @@ Toggle the loading switch to see the transition between the different states.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
-## Third-party routing library（第三方路由库）
+## Third-party routing library
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. `ButtonBase` 组件提供了 `component` 属性来处理此用例。 Here is a [more detailed guide](/guides/routing/#button).
 
-## 设计局限
+## Limitations
 
 ### Cursor 鼠标悬浮的禁用
 
@@ -169,9 +169,9 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 这个方法能支持任何元素，例如，一个 `<a>` 元素。
 
-## 素颜模式
+## Unstyled
 
-The button also comes with an unstyled version. 在需要进行大量自定义样式时，它可以更好的控制住包的大小
+The button also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ### Unstyled component
 

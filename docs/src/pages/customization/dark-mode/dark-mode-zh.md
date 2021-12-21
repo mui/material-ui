@@ -1,4 +1,4 @@
-# 暗色模式
+# Dark mode
 
 <p class="description">MUI comes with two palette modes: light (the default) and dark.</p>
 
@@ -20,7 +20,7 @@ While it's only a single value change, the `createTheme` helper modifies several
 
 ## Dark mode with custom palette
 
-The easiest way of how you can implement your custom palette that depends on mode is to have a dedicated function that will return the palette based on the mode. 例如:
+The easiest way of how you can implement your custom palette that depends on mode is to have a dedicated function that will return the palette based on the mode. For example:
 
 ```ts
 const getDesignTokens = (mode: PaletteMode) => ({

@@ -56,7 +56,7 @@ Os rótulos podem ser colocados abaixo do ícone da etapa, definindo a proprieda
 
 ### Não Linear - Rótulo Alternativo
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
@@ -98,7 +98,7 @@ Use pontos quando o número de etapas for pequeno.
 
 {{"demo": "pages/components/steppers/DotsMobileStepper.js", "bg": true}}
 
-### Progresso
+### Progress
 
 Use uma barra de progresso quando houver muitas etapas, ou se houver etapas que precisem ser inseridas durante o processo (com base nas respostas de etapas anteriores).
 

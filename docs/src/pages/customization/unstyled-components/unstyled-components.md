@@ -2,15 +2,15 @@
 
 <p class="description">Implementing a custom design system using MUI.</p>
 
-MUI unstyled provides a set of components without any styles.
+MUI Base provides a set of components without any styles.
 These can be used to implement a custom design system that is not based on Material Design.
 
 So far, just a few components have been created,
-but we intend to focus on the unstyled package extensively in the upcoming months.
+but we intend to focus on the `@mui/base` package extensively in the upcoming months.
 
 ## Use cases
 
-Is the unstyled package good for you?
+Is the Base package good for you?
 
 If you:
 
@@ -30,7 +30,7 @@ then you may be better off using the `@mui/material` package and [customizing it
 
 ## Components vs. hooks
 
-The unstyled package has two kinds of building blocks:
+The Base package has two kinds of building blocks:
 
 - unstyled components
 - hooks

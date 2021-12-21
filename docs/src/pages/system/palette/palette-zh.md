@@ -1,8 +1,8 @@
-# Palette 调色板
+# Palette
 
 <p class="description">通过一些实用的颜色程序类的颜色传达意义。 这也包括了支持带悬停状态（hover states）的样式链接。</p>
 
-## Color 颜色
+## Color
 
 {{"demo": "pages/system/palette/Color.js", "defaultCodeOpen": false}}
 
@@ -48,7 +48,7 @@
 import { palette } from '@mui/system';
 ```
 
-| 导入名称      | 属性        | CSS 属性            | Theme key                                                        |
-|:--------- |:--------- |:----------------- |:---------------------------------------------------------------- |
-| `color`   | `color`   | `color`           | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `bgcolor` | `bgcolor` | `backgroundColor` | [`palette`](/customization/default-theme/?expand-path=$.palette) |
+| Import name | Prop      | CSS property      | Theme key                                                        |
+|:----------- |:--------- |:----------------- |:---------------------------------------------------------------- |
+| `color`     | `color`   | `color`           | [`palette`](/customization/default-theme/?expand-path=$.palette) |
+| `bgcolor`   | `bgcolor` | `backgroundColor` | [`palette`](/customization/default-theme/?expand-path=$.palette) |

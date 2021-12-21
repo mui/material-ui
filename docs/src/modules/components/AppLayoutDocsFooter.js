@@ -40,7 +40,7 @@ const PaginationDiv = styled('div')(({ theme }) => {
 const PageLinkButton = styled(Button)(({ theme }) => {
   return {
     textTransform: 'none',
-    fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: 500,
     color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
   };
 });

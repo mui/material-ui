@@ -1,4 +1,4 @@
-# Componentes
+# Components
 
 <p class="description">The theme's `components` key allows you to customize a component without wrapping it in another component. You can change the styles, the default props, and more.</p>
 
@@ -42,6 +42,7 @@ const theme = createTheme({
         // The props to change the default for.
         disableRipple: true, // No more ripple!
       },
+    },
   },
 });
 ```

@@ -22,7 +22,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-### 方向
+### Direction
 
 要使按钮水平布局，需要将 `row` 属性设置为：
 
@@ -40,17 +40,17 @@ You can control the radio with the `value` and `onChange` props:
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
 
-## Size 大小
+## Size
 
 Use the `size` prop or customize the font size of the svg icons to change the size of the radios.
 
 {{"demo": "pages/components/radio-buttons/SizeRadioButtons.js"}}
 
-## Color 颜色
+## Color
 
 {{"demo": "pages/components/radio-buttons/ColorRadioButtons.js"}}
 
-## 标签放置
+## Label placement
 
 你可以用 `FormControlLabel` 组件的 `labelPlacement` 属性来改变标签的位置。
 
@@ -62,9 +62,9 @@ Use the `size` prop or customize the font size of the svg icons to change the si
 
 {{"demo": "pages/components/radio-buttons/ErrorRadios.js"}}
 
-## Customization 个性化
+## Customization
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
@@ -78,7 +78,7 @@ Use the `size` prop or customize the font size of the svg icons to change the si
 import { useRadioGroup } from '@mui/material/RadioGroup';
 ```
 
-#### 返回结果
+#### Returns
 
 `value` (_object_):
 
@@ -86,20 +86,20 @@ import { useRadioGroup } from '@mui/material/RadioGroup';
 - `value.onChange` (_func_ [optional])：选择单选按钮时触发的回调。
 - `value.value` (_any_ [optional])：所被选定的单选框的值。
 
-#### 示例
+#### Example
 
 {{"demo": "pages/components/radio-buttons/UseRadioGroup.js"}}
 
-## 什么时候使用
+## When to use
 
-- [多选框 对比 单选按钮（Radio Buttons）](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
-## 无障碍设计
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
 
-- 所有表单控件都应该带有标签，而这包括了单选按钮，复选框和开关。 在大多数情况下，这是通过使用一个 `<label>` 元素（[FormControlLabel](/api/form-control-label/)）实现的。
-- 如果无法使用标签，您则必须在输入组件中直接添加属性。 在这种情况下，您可以经由 `inputProps` 属性，来附着一些额外的属性（例如 `arial-label`，`aria-labelledby`，`title`）。
+- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+- When a label can't be used, it's necessary to add an attribute directly to the input component. 在这种情况下，您可以经由 `inputProps` 属性，来附着一些额外的属性（例如 `arial-label`，`aria-labelledby`，`title`）。
 
 ```jsx
 <Radio

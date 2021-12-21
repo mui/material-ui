@@ -16,11 +16,11 @@ Note que este componente é cobinação dos componentes [DatePicker](/components
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Requisitos
+## Requirements
 
-Este componente depende da biblioteca de gerenciamento de datas da sua escolha. Ele suporta [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) e qualquer outra biblioteca através da interface publica `dateAdapter`.
+This component relies on the date management library of your choice. It supports [date-fns](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs), [moment](https://momentjs.com/) and any other library via a public `dateAdapter` interface.
 
-Por favor, instale qualquer uma destas bibliotecas e configure corretamente o mecanismo de data encapsulando na raiz dos componentes (ou o nível mais alto que você deseja que os seletores estejam disponíveis) com `LocalizationProvider`:
+Please install any of these libraries and set up the right date engine by wrapping your root (or the highest level you wish the pickers to be available) with `LocalizationProvider`:
 
 ```jsx
 // or @mui/lab/Adapter{Dayjs,Luxon,Moment} or any valid date-io adapter
@@ -34,7 +34,7 @@ function App() {
 }
 ```
 
-## Utilização Básica
+## Basic usage
 
 Permite escolher a data e hora. Existem 4 etapas disponíveis (ano, data, hora e minuto), então as abas são necessárias para distinguir visualmente os passos de data/hora.
 
@@ -51,7 +51,7 @@ By default, the `DateTimePicker` component renders the desktop version if the me
 
 {{"demo": "pages/components/date-time-picker/ResponsiveDateTimePickers.js"}}
 
-## Propriedades de formulário
+## Form props
 
 The date time picker component can be disabled or read-only.
 
@@ -66,13 +66,13 @@ The date time picker component can be disabled or read-only.
 
 {{"demo": "pages/components/date-time-picker/DateTimeValidation.js"}}
 
-## Modo estático
+## Static mode
 
-It's possible to render any date & time picker inline. Isto permitirá construir contêineres customizados de popover/modal.
+It's possible to render any date & time picker inline. This will enable building custom popover/modal containers.
 
 {{"demo": "pages/components/date-time-picker/StaticDateTimePickerDemo.js", "bg": true}}
 
-## Customização
+## Customization
 
 Aqui estão alguns exemplos de seletores de data & hora fortemente customizados:
 

@@ -2,8 +2,8 @@
   "componentDescription": "The props of the [Modal](/api/modal/) component are available\nwhen `variant=\"temporary\"` is set.",
   "propDescriptions": {
     "anchor": "Side from which the drawer will appear.",
-    "children": "O conteúdo do componente.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "children": "The content of the component.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "elevation": "The elevation of the drawer.",
     "hideBackdrop": "If <code>true</code>, the backdrop is not rendered.",
     "ModalProps": "Props applied to the <a href=\"/api/modal/\"><code>Modal</code></a> element.",
@@ -11,65 +11,65 @@
     "open": "If <code>true</code>, the component is shown.",
     "PaperProps": "Props applied to the <a href=\"/api/paper/\"><code>Paper</code></a> element.",
     "SlideProps": "Props applied to the <a href=\"/api/slide/\"><code>Slide</code></a> element.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.",
-    "variant": "A variante a usar."
+    "variant": "The variant to use."
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "docked": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>variant=\"permanent or persistent\"</code>"
     },
     "paper": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Paper component"
     },
     "paperAnchorLeft": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"left\"</code>"
     },
     "paperAnchorRight": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"right\"</code>"
     },
     "paperAnchorTop": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"top\"</code>"
     },
     "paperAnchorBottom": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"bottom\"</code>"
     },
     "paperAnchorDockedLeft": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"left\"</code> and <code>variant</code> is not \"temporary\""
     },
     "paperAnchorDockedTop": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"top\"</code> and <code>variant</code> is not \"temporary\""
     },
     "paperAnchorDockedRight": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"right\"</code> and <code>variant</code> is not \"temporary\""
     },
     "paperAnchorDockedBottom": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"bottom\"</code> and <code>variant</code> is not \"temporary\""
     },
     "modal": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Modal component"
     }
   }

@@ -126,6 +126,10 @@ If you would like to use an unstyled Table, you can use the primitive elements a
 
 {{"demo": "pages/components/tables/TableUnstyled.js"}}
 
+#### Customized look and feel
+
+{{"demo": "pages/components/tables/TableCustomized.js"}}
+
 ## Accessibility
 
 (WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)

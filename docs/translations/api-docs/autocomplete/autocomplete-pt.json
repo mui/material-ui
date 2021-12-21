@@ -6,7 +6,7 @@
     "autoSelect": "If <code>true</code>, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.",
     "blurOnSelect": "Control if the input should be blurred when an option is selected:<br>- <code>false</code> the input is not blurred. - <code>true</code> the input is always blurred. - <code>touch</code> the input is blurred after a touch event. - <code>mouse</code> the input is blurred after a mouse event.",
     "ChipProps": "Props applied to the <a href=\"/api/chip/\"><code>Chip</code></a> element.",
-    "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "clearIcon": "The icon to display in place of the default clear icon.",
     "clearOnBlur": "If <code>true</code>, the input&#39;s text is cleared on blur if no value is selected.<br>Set to <code>true</code> if you want to help the user enter a new value. Set to <code>false</code> if you want to help the user resume his search.",
     "clearOnEscape": "If <code>true</code>, clear all values when the user presses escape and the popup is closed.",
@@ -16,7 +16,7 @@
     "defaultValue": "The default value. Use when the component is not controlled.",
     "disableClearable": "If <code>true</code>, the input can&#39;t be cleared.",
     "disableCloseOnSelect": "If <code>true</code>, the popup won&#39;t close when a value is selected.",
-    "disabled": "Se <code>true</code>, o componente está desabilitado.",
+    "disabled": "If <code>true</code>, the component is disabled.",
     "disabledItemsFocusable": "If <code>true</code>, will allow focus on disabled items.",
     "disableListWrap": "If <code>true</code>, the list box in the popup will not wrap focus.",
     "disablePortal": "If <code>true</code>, the <code>Popper</code> content will be under the DOM hierarchy of the parent component.",
@@ -59,35 +59,35 @@
     "renderTags": "Render the selected value.<br><br><strong>Signature:</strong><br><code>function(value: Array&lt;T&gt;, getTagProps: function) =&gt; ReactNode</code><br><em>value:</em> The <code>value</code> provided to the component.<br><em>getTagProps:</em> A tag props getter.",
     "selectOnFocus": "If <code>true</code>, the input&#39;s text is selected on focus. It helps the user clear the selected value.",
     "size": "The size of the component.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the <code>isOptionEqualToValue</code> prop."
   },
   "classDescriptions": {
     "root": {
-      "description": "Estilos aplicados ao elemento raiz."
+      "description": "Styles applied to the root element."
     },
     "fullWidth": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>fullWidth={true}</code>"
     },
     "focused": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "o elemento raiz",
+      "nodeName": "the root element",
       "conditions": "focused"
     },
     "tag": {
-      "description": "Estilos aplicados para {{nodeName}}, {{conditions}}.",
+      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
       "conditions": "e.g. the chips"
     },
     "tagSizeSmall": {
-      "description": "Estilos aplicados para {{nodeName}}, {{conditions}}.",
+      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
       "conditions": "e.g. the chips if <code>size=\"small\"</code>"
     },
     "tagSizeMedium": {
-      "description": "Estilos aplicados para {{nodeName}}, {{conditions}}.",
+      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
       "conditions": "e.g. the chips if <code>size=\"medium\"</code>"
     },
@@ -98,70 +98,70 @@
       "description": "Styles applied when the clear icon is rendered."
     },
     "inputRoot": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Input element"
     },
     "input": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the input element"
     },
     "inputFocused": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
       "conditions": "tag focused"
     },
     "endAdornment": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the endAdornment element"
     },
     "clearIndicator": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the clear indicator"
     },
     "popupIndicator": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the popup indicator"
     },
     "popupIndicatorOpen": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the popup indicator",
       "conditions": "the popup is open"
     },
     "popper": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the popper element"
     },
     "popperDisablePortal": {
-      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the popper element",
       "conditions": "<code>disablePortal={true}</code>"
     },
     "paper": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Paper component"
     },
     "listbox": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the listbox component"
     },
     "loading": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the loading wrapper"
     },
     "noOptions": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the no option wrapper"
     },
     "option": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the option elements"
     },
     "groupLabel": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the group's label elements"
     },
     "groupUl": {
-      "description": "Estilos aplicados a {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the group's ul elements"
     }
   }

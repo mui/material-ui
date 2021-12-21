@@ -74,7 +74,7 @@ import { usePagination } from '@mui/material/Pagination';
 
 您可以在文档的 [表格部分](/components/tables/#custom-pagination-options) 中了解更多关于此用例的信息。
 
-## 无障碍设计
+## Accessibility
 
 ### ARIA
 

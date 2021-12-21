@@ -145,7 +145,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
       if (process.env.NODE_ENV !== 'production') {
         if (minRows || maxRows) {
           console.warn(
-            'Material-UI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
+            'MUI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
           );
         }
       }
