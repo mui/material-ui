@@ -149,7 +149,7 @@ export function generateRowGap({ theme, ownerState }) {
           marginBottom: `-${getHalfOffSet(themeSpacing)}`,
           [`& > .${gridClasses.item}`]: {
             paddingTop: getHalfOffSet(themeSpacing),
-            paddingBottom: getHalfOffSet(themeSpacing)
+            paddingBottom: getHalfOffSet(themeSpacing),
           },
         };
       }
