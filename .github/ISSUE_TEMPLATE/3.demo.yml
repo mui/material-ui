@@ -20,6 +20,7 @@ body:
       label: Steps to reproduce 🕹
       description: |
         What did you do before the demo crashed?
+    validations:
       required: true
   - type: textarea
     id: issue_environment
