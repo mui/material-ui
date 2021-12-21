@@ -29,13 +29,13 @@ export interface CSSOthersObject {
 }
 export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject };
 
-export interface ArrayCSSInterpolation extends Array<CSSInterpolation> { }
+export interface ArrayCSSInterpolation extends Array<CSSInterpolation> {}
 
 export interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation;
 }
 
-export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject { }
+export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
 
 export interface ComponentSelector {
   __emotion_styles: any;
@@ -67,7 +67,7 @@ export interface FunctionInterpolation<Props> {
   (props: Props): Interpolation<Props>;
 }
 
-export interface ArrayInterpolation<Props> extends Array<Interpolation<Props>> { }
+export interface ArrayInterpolation<Props> extends Array<Interpolation<Props>> {}
 
 export type Interpolation<Props> =
   | InterpolationPrimitive
@@ -126,7 +126,7 @@ export interface CreateMUIStyled<MUIStyledCommonProps, MuiStyledOptions, Theme e
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
-    >(
+  >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
   ): CreateStyledComponent<
@@ -153,7 +153,7 @@ export interface CreateMUIStyled<MUIStyledCommonProps, MuiStyledOptions, Theme e
   <
     C extends React.JSXElementConstructor<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
-    >(
+  >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
   ): CreateStyledComponent<Pick<PropsOf<C>, ForwardedProps> & MUIStyledCommonProps, {}, {}, Theme>;
@@ -166,7 +166,7 @@ export interface CreateMUIStyled<MUIStyledCommonProps, MuiStyledOptions, Theme e
   <
     Tag extends keyof JSX.IntrinsicElements,
     ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
-    >(
+  >(
     tag: Tag,
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps> & MuiStyledOptions,
   ): CreateStyledComponent<
