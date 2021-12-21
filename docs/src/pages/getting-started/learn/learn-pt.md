@@ -34,7 +34,7 @@ Ao começar a aprender MUI, você pode encontrar postagens de blogs de terceiros
   - 📝 [A postagem do blog](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [O vídeo](https://www.youtube.com/watch?v=PWadEeOuv5o)
 - **Elegant UX in React with Material-UI**: uma postagem de blog que cobre alguns conceitos importantes de Material-UI.
-  - 📝 [A postagem do blog](https://alligator.io/react/material-ui/)
+  - 📝 [The blog post](https://www.digitalocean.com/community/tutorials/react-material-ui)
 
 ### Pago
 
@@ -45,7 +45,7 @@ Ao começar a aprender MUI, você pode encontrar postagens de blogs de terceiros
 - **Apply Google Material Design**: Este curso ensina os fundamentos do Google Material Design e como desenvolver uma pesquisa e aplicação de reserva de voo de ponta a ponta usando Material-UI e React.
 
   - 📹 [Trailer do Curso](https://www.youtube.com/watch?v=hhZ6yFvCWho)
-  - 💻 [O Curso](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
+  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react/)
 
 - **Cookbook**: Crie aplicativos modernos, implementando os princípios de Material Design no React, usando Material-UI.
   - 📘 [O livro](https://www.amazon.com/gp/product/1789615224/)
