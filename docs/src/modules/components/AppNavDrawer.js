@@ -109,7 +109,8 @@ const ToolbarIE11 = styled('div')({ display: 'flex' });
 
 const ToolbarDiv = styled('div')(({ theme }) => {
   return {
-    ...theme.mixins.toolbar,
+    paddingTop: theme.spacing(1.6),
+    paddingBottom: theme.spacing(1.6),
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(2),
     display: 'flex',
@@ -234,13 +235,23 @@ function AppNavDrawer(props) {
               border: (theme) =>
                 `1px solid  ${
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
+                    ? theme.palette.primaryDark[700]
                     : theme.palette.grey[200]
                 }`,
               color: (theme) =>
                 theme.palette.mode === 'dark'
                   ? theme.palette.primary[300]
                   : theme.palette.primary[500],
+              '&:hover': {
+                borderColor: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.grey[300],
+                background: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.primaryDark[700], 0.4)
+                    : theme.palette.grey[50],
+              },
             }}
           >
             {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
@@ -262,14 +273,36 @@ function AppNavDrawer(props) {
                 boxShadow: (theme) =>
                   `0px 4px 20px ${
                     theme.palette.mode === 'dark'
-                      ? alpha(theme.palette.background.paper, 0.72)
+                      ? 'rgba(0, 0, 0, 0.5)'
                       : 'rgba(170, 180, 190, 0.3)'
                   }`,
                 '& .MuiMenuItem-root': {
                   fontSize: (theme) => theme.typography.pxToRem(14),
                   fontWeight: 500,
+                  '&:hover': {
+                    color: (theme) =>
+                      theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
+                    backgroundColor: (theme) =>
+                      theme.palette.mode === 'dark'
+                        ? alpha(theme.palette.primaryDark[700], 0.4)
+                        : theme.palette.grey[50],
+                  },
+                  '&:focus': {
+                    backgroundColor: (theme) =>
+                      theme.palette.mode === 'dark'
+                        ? alpha(theme.palette.primaryDark[700], 0.4)
+                        : theme.palette.grey[50],
+                  },
                   '&.Mui-selected': {
-                    color: 'primary.main',
+                    fontWeight: 500,
+                    color: (theme) =>
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primary[300]
+                        : theme.palette.primary[600],
+                    backgroundColor: (theme) =>
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primaryDark[700]
+                        : alpha(theme.palette.primary[100], 0.6),
                   },
                 },
               },
@@ -323,7 +356,7 @@ function AppNavDrawer(props) {
           <ToolbarDiv>
             <NextLink href="/" passHref onClick={onClose}>
               <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0 }}>
-                <SvgMuiLogo width={32} />
+                <SvgMuiLogo width={30} />
               </Box>
             </NextLink>
             {process.env.LIB_VERSION && FEATURE_TOGGLE.enable_product_scope ? (
@@ -413,9 +446,17 @@ function AppNavDrawer(props) {
             )}
           </React.Fragment>
         )}
-        {isProductScoped && FEATURE_TOGGLE.enable_product_scope && <Divider />}
+        {isProductScoped && FEATURE_TOGGLE.enable_product_scope && (
+          <Divider
+            sx={{
+              borderColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primary[100], 0.08)
+                  : theme.palette.grey[100],
+            }}
+          />
+        )}
         <DiamondSponsors spot="drawer" />
-        <Divider />
         {navItems}
         <Box sx={{ height: 40 }} />
       </React.Fragment>
@@ -456,6 +497,10 @@ function AppNavDrawer(props) {
             sx: {
               background: (theme) =>
                 theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
+              borderColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primary[100], 0.08)
+                  : theme.palette.grey[100],
             },
           }}
           open

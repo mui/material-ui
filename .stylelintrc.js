@@ -14,5 +14,7 @@ module.exports = {
     'declaration-colon-newline-after': null,
     'value-keyword-case': null,
     'value-list-comma-newline-after': null, // not compatible with prettier
+    'function-parentheses-newline-inside': null, // not compatible with prettier
+    'string-no-newline': null, // not compatible with prettier
   },
 };
