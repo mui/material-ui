@@ -147,8 +147,15 @@ function testComponentsProp(
         [capitalize(slotName)]: slotElement,
       };
 
-      const { container } = render(React.cloneElement(element, { components }));
-      const renderedElement = container.querySelector(slotElement);
+      const componentsProps = {
+        [slotName]: {
+          'data-testid': 'customized',
+        },
+      };
+
+      const { getByTestId } = render(React.cloneElement(element, { components, componentsProps }));
+      const renderedElement = getByTestId('customized');
+      expect(renderedElement.nodeName.toLowerCase()).to.equal(slotElement);
       expect(renderedElement).to.have.class(slotOptions.expectedClassName);
     });
 

@@ -28,18 +28,22 @@ describe('SelectUnstyled', () => {
       },
       listboxRoot: {
         expectedClassName: selectUnstyledClasses.listbox,
+        testWithElement: 'ul',
       },
       listboxOption: {
         expectedClassName: selectUnstyledClasses.option,
+        testWithElement: 'li',
       },
       listboxOptionGroupRoot: {
         expectedClassName: selectUnstyledClasses.groupRoot,
+        testWithElement: 'li',
       },
       listboxOptionGroupHeader: {
         expectedClassName: selectUnstyledClasses.groupHeader,
       },
       listboxOptionGroupOptions: {
         expectedClassName: selectUnstyledClasses.groupOptions,
+        testWithElement: 'ul',
       },
     },
   }));
@@ -65,18 +69,22 @@ describe('SelectUnstyled', () => {
       },
       listboxRoot: {
         expectedClassName: selectUnstyledClasses.listbox,
+        testWithElement: 'ul',
       },
       listboxOption: {
         expectedClassName: selectUnstyledClasses.option,
+        testWithElement: 'li',
       },
       listboxOptionGroupRoot: {
         expectedClassName: selectUnstyledClasses.groupRoot,
+        testWithElement: 'li',
       },
       listboxOptionGroupHeader: {
         expectedClassName: selectUnstyledClasses.groupHeader,
       },
       listboxOptionGroupOptions: {
         expectedClassName: selectUnstyledClasses.groupOptions,
+        testWithElement: 'ul',
       },
     },
   }));

@@ -59,6 +59,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     setGroupedOptions(getOptionsFromChildren(children));
   }, [children]);
 
+  const [buttonDefined, setButtonDefined] = React.useState(false);
   const buttonRef = React.useRef<HTMLElement | null>(null);
 
   const Button = component ?? components.Root ?? 'button';
@@ -68,7 +69,15 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   const ListboxOptionGroupHeader = components.ListboxOptionGroupHeader ?? 'span';
   const ListboxOptionGroupOptions = components.ListboxOptionGroupOptions ?? 'ul';
 
-  const handleButtonRef = useForkRef(ref, buttonRef);
+  const handleButtonRefChange = (element: HTMLElement | null) => {
+    buttonRef.current = element;
+
+    if (element != null) {
+      setButtonDefined(true);
+    }
+  };
+
+  const handleButtonRef = useForkRef(ref, handleButtonRefChange);
 
   const handleListboxRef = (element: HTMLUListElement) => {
     if (element != null) {
@@ -174,19 +183,21 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   return (
     <React.Fragment>
       <Button {...buttonProps}>{renderValue(selectedOptions as any)}</Button>
-      <PopperUnstyled
-        open={listboxOpen}
-        anchorEl={buttonRef.current}
-        placement="bottom-start"
-        disablePortal
-        role={undefined}
-      >
-        <ListboxRoot {...listboxProps}>
-          {groupedOptions.map((option, index) =>
-            renderOption(getRenderOptionParameters(option, index)),
-          )}
-        </ListboxRoot>
-      </PopperUnstyled>
+      {buttonDefined && (
+        <PopperUnstyled
+          open={listboxOpen}
+          anchorEl={buttonRef.current}
+          placement="bottom-start"
+          disablePortal
+          role={undefined}
+        >
+          <ListboxRoot {...listboxProps}>
+            {groupedOptions.map((option, index) =>
+              renderOption(getRenderOptionParameters(option, index)),
+            )}
+          </ListboxRoot>
+        </PopperUnstyled>
+      )}
     </React.Fragment>
   );
 });
