@@ -1,0 +1,31 @@
+name: Demo crashed
+description: A demo has crashed
+labels: [docs, 'status: needs triage']
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please take a moment to look at the [existing issues](https://github.com/mui-org/material-ui/issues) to see whether this has already been reported.
+      options:
+        - label: I have searched for similar issues in this repository and believe that this is not a duplicate.
+          required: true
+  - type: input
+    id: issue_demo_url
+    attributes:
+      label: Url to the demo (automated)
+      description: Please do not edit this field.
+  - type: textarea
+    id: issue_steps
+    attributes:
+      label: Steps to reproduce 🕹
+      description: |
+        What did you do before the demo crashed?
+      required: true
+  - type: textarea
+    id: issue_environment
+    attributes:
+      label: Your environment (automated)
+      description: Please do not edit this field.
+      render: markdown
+    validations:
+      required: true
