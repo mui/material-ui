@@ -1,5 +1,6 @@
 import * as React from 'react';
-import SelectUnstyled, {
+import {
+  SingleSelectUnstyled,
   Option,
   selectUnstyledClasses,
 } from '@mui/base/SelectUnstyled';
@@ -86,7 +87,7 @@ function CustomSelect(props) {
     ListboxOption: StyledOption,
   };
 
-  return <SelectUnstyled {...props} components={components} />;
+  return <SingleSelectUnstyled {...props} components={components} />;
 }
 
 const characters = [
