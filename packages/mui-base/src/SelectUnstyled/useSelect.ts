@@ -41,23 +41,41 @@ export default function useSelect<TValue>(props: UseSelectProps<TValue>) {
     }
   };
 
-  const handleButtonKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter' || event.key === ' ' || (multiple && event.key === 'ArrowDown')) {
-      event.preventDefault();
-      onOpenChange?.(true);
-    }
-  };
+  const createHandleButtonKeyDown =
+    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
+      otherHandlers?.onKeyDown?.(event);
 
-  const handleListboxKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'Escape' && open) {
-      event.preventDefault();
-      onOpenChange?.(false);
-    }
-  };
+      if (event.defaultPrevented) {
+        return;
+      }
 
-  const handleListboxBlur = () => {
-    onOpenChange?.(false);
-  };
+      if (event.key === 'Enter' || event.key === ' ' || (multiple && event.key === 'ArrowDown')) {
+        event.preventDefault();
+        onOpenChange?.(true);
+      }
+    };
+
+  const createHandleListboxKeyDown =
+    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
+      otherHandlers?.onKeyDown?.(event);
+
+      if (event.defaultPrevented) {
+        return;
+      }
+
+      if (event.key === 'Escape' && open) {
+        event.preventDefault();
+        onOpenChange?.(false);
+      }
+    };
+
+  const createHandleListboxBlur =
+    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
+      otherHandlers?.blur?.(event);
+      if (!event.defaultPrevented) {
+        onOpenChange?.(false);
+      }
+    };
 
   const listboxReducer: ListboxReducer<SelectOption<TValue>> = (state, action) => {
     const newState = defaultListboxReducer(state, action);
@@ -154,16 +172,18 @@ export default function useSelect<TValue>(props: UseSelectProps<TValue>) {
         ...getButtonProps({
           ...otherHandlers,
           // Make arrow keys work even when the listbox isn't open:
-          onKeyDown: getListboxProps({ onKeyDown: handleButtonKeyDown }).onKeyDown,
+          onKeyDown: getListboxProps({ onKeyDown: createHandleButtonKeyDown(otherHandlers) })
+            .onKeyDown,
         }),
         'aria-expanded': open,
         'aria-haspopup': 'listbox',
       };
     },
-    getListboxProps: () =>
+    getListboxProps: (otherHandlers?: Record<string, React.EventHandler<any>>) =>
       getListboxProps({
-        onBlur: handleListboxBlur,
-        onKeyDown: handleListboxKeyDown,
+        ...otherHandlers,
+        onBlur: createHandleListboxBlur(otherHandlers),
+        onKeyDown: createHandleListboxKeyDown(otherHandlers),
       }),
     getOptionProps,
     getOptionState,
