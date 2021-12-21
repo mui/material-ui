@@ -32,6 +32,15 @@ describe('<SliderUnstyled />', () => {
       root: {
         expectedClassName: classes.root,
       },
+      thumb: {
+        expectedClassName: classes.thumb,
+      },
+      track: {
+        expectedClassName: classes.track,
+      },
+      rail: {
+        expectedClassName: classes.rail,
+      },
     },
   }));
 

@@ -96,13 +96,12 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     axisProps,
     getRootProps,
     getHiddenInputProps,
+    getThumbProps,
     open,
     active,
     axis,
     range,
     focusVisible,
-    handleMouseOver,
-    handleMouseLeave,
     dragging,
     marks,
     values,
@@ -142,9 +141,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   return (
     <Root
-      {...getRootProps()}
       {...rootProps}
-      {...other}
+      {...getRootProps()}
       className={clsx(classes.root, rootProps.className, className)}
     >
       <Rail {...railProps} className={clsx(classes.rail, railProps.className)} />
@@ -229,9 +227,8 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
             >
               <Thumb
                 data-index={index}
-                onMouseOver={handleMouseOver}
-                onMouseLeave={handleMouseLeave}
                 {...thumbProps}
+                {...getThumbProps()}
                 className={clsx(classes.thumb, thumbProps.className, {
                   [classes.active]: active === index,
                   [classes.focusVisible]: focusVisible === index,

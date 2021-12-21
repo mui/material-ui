@@ -294,13 +294,6 @@ export default function useSlider(props: UseSliderProps) {
       setOpen(-1);
       otherHandlers?.onBlur?.(event);
     };
-  const handleMouseOver = useEventCallback((event: React.MouseEvent) => {
-    const index = Number(event.currentTarget.getAttribute('data-index'));
-    setOpen(index);
-  });
-  const handleMouseLeave = useEventCallback(() => {
-    setOpen(-1);
-  });
 
   useEnhancedEffect(() => {
     if (disabled && sliderRef.current!.contains(document.activeElement)) {
@@ -625,6 +618,38 @@ export default function useSlider(props: UseSliderProps) {
     };
   };
 
+  const createHandleMouseOver =
+    (otherHandlers: Record<string, React.EventHandler<any>>) =>
+    (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+      const index = Number(event.currentTarget.getAttribute('data-index'));
+      setOpen(index);
+
+      otherHandlers.onMouseOver?.(event);
+    };
+
+  const createHandleMouseLeave =
+    (otherHandlers: Record<string, React.EventHandler<any>>) =>
+    (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+      setOpen(-1);
+
+      otherHandlers.onMouseLeave?.(event);
+    };
+
+  const getThumbProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
+    const ownEventHandlers = {
+      onMouseOver: createHandleMouseOver(otherHandlers || {}),
+      onMouseLeave: createHandleMouseLeave(otherHandlers || {}),
+    };
+
+    const mergedEventHandlers: Record<string, React.EventHandler<any>> = {
+      ...otherHandlers,
+      ...ownEventHandlers,
+    };
+    return {
+      ...mergedEventHandlers,
+    };
+  };
+
   const getHiddenInputProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
     const ownEventHandlers = {
       onChange: createHandleHiddenInputChange(otherHandlers || {}),
@@ -665,12 +690,11 @@ export default function useSlider(props: UseSliderProps) {
     axisProps,
     getRootProps,
     getHiddenInputProps,
+    getThumbProps,
     dragging,
     marks,
     values,
     active,
-    handleMouseOver,
-    handleMouseLeave,
     focusVisible,
     open,
     range,
