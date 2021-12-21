@@ -107,12 +107,9 @@ PersistScroll.propTypes = {
 // https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
 const ToolbarIE11 = styled('div')({ display: 'flex' });
 
-const ToolbarDiv = styled('div')(({ theme }) => {
+const ToolbarDiv = styled('div')(() => {
   return {
-    paddingTop: theme.spacing(1.6),
-    paddingBottom: theme.spacing(1.6),
-    paddingLeft: theme.spacing(3),
-    paddingRight: theme.spacing(2),
+    padding: '10px 16px',
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'row',
@@ -373,7 +370,7 @@ function AppNavDrawer(props) {
                     color: theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
                     background:
                       theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
-                    py: '0.375rem',
+                    p: '0.375rem',
                   })}
                 >
                   <Apps />
