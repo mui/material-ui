@@ -25,12 +25,12 @@ const StyledButton = styled('button')`
   &.${selectUnstyledClasses.expanded} {
     border-radius: 0.75em 0.75em 0 0;
 
-    &:after {
+    &::after {
       content: '▴';
     }
   }
 
-  &:after {
+  &::after {
     content: '▾';
     float: right;
   }
