@@ -8,13 +8,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 # Accordion 扩展面板
 
-<p class="description">The accordion component allows the user to show and hide sections of related content on a page.</p>
+<p class="description">扩展面板是一个展示内容文本的组件，用户可以显示/隐藏文本内容。</p>
 
 扩展面板是一个轻量级容器，既可以单独使用，也可以和卡片这样更大的平面相结合。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **注意：** 扩展面板不属于 [Material Design 指南](https://material.io/) 中的一部分，但是 MUI 仍然会继续支持该组件。 它之前被称为 "expansion panel（扩展面板）"。
+> **注意：** 扩展面板将不再记录在 [Material Design 指南中](https://material.io/)，但 Material-UI 将继续支持它。 它之前被称为 "expansion panel（扩展面板）"。
 
 ## 简单的扩展面板
 
@@ -26,9 +26,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## 自定义扩展面板
+## 自定义的扩展面板
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义扩展面板的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多。
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
