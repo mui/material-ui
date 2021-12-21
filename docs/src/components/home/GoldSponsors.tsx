@@ -34,13 +34,6 @@ const GOLDs = [
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://avatars.githubusercontent.com/u/13365608?s=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/13365608?s=80 2x',
-    name: 'Spice Factory',
-    description: 'Next gen digital product studio.',
-    href: 'https://spicefactory.co/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: 'https://images.opencollective.com/laststance/daffd6c/logo/40.png',
     srcSet: 'https://images.opencollective.com/laststance/daffd6c/logo/80.png 2x',
     name: 'Laststance',
@@ -93,7 +86,7 @@ export default function GoldSponsors() {
           Gold
         </Typography>
       </Box>
-      <Grid container spacing={{ xs: 2, md: 4 }}>
+      <Grid container spacing={{ xs: 2, md: 3 }}>
         {GOLDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
             <SponsorCard inView={inView} item={item} />

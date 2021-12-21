@@ -21,29 +21,21 @@ Please contact us at diamond@mui.com to subscribe to this tier.
 
 ### Gold 🏆
 
-via [Patreon](https://www.patreon.com/oliviertassinari)
-
-<p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="tidelift.com" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://github.com/tidelift.png?size=96" srcset="https://github.com/tidelift.png?size=192 2x" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="bit.dev" href="https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://github.com/teambit.png?size=96" srcset="https://github.com/teambit.png?size=192 2x" alt="bit.dev" title="The fastest way to share code" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="spicefactory" href="https://spicefactory.co/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/13365608?s=96" srcset="https://avatars.githubusercontent.com/u/13365608?s=192 2x" alt="spicefactory.co" title="Next gen digital product studio." loading="lazy" /></a>
-</p>
-
-via [OpenCollective](https://opencollective.com/mui)
+via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="tidelift.com" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://github.com/tidelift.png?size=96" srcset="https://github.com/tidelift.png?size=192 2x" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="bit.dev" href="https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://github.com/teambit.png?size=96" srcset="https://github.com/teambit.png?size=192 2x" alt="bit.dev" title="The fastest way to share code" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="text-em-all.com" href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/callemall/09710fe/logo/96.png" srcset="https://images.opencollective.com/callemall/09710fe/logo/192.png 2x" alt="text-em-all.com" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="laststance.com" href="https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/laststance/daffd6c/avatar/96.png" srcset="https://images.opencollective.com/laststance/daffd6c/avatar/192.png 2x" alt="laststance" title="Organization for OSS activity based on Tokyo" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="movavi.com" href="https://www.movavi.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/movavi-software/a1d0167/logo/96.png" srcset="https://images.opencollective.com/movavi-software/a1d0167/logo/192.png 2x" alt="movavi.com" title="Screen recorder for Mac" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="laststance.io" href="https://laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/aussiecasinohex/923df37/logo/96.png" srcset="https://images.opencollective.com/aussiecasinohex/923df37/logo/192.png 2x" alt="Aussie Gambling Guide" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="sunmatosoft" href="https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/sumatosoft_company/0b78570/avatar/96.png" srcset="https://images.opencollective.com/sumatosoft_company/0b78570/avatar/192.png 2x" alt="We help companies to digitalize their businesses" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="laststance.io" href="https://topaussiecasinos.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/aussiecasinohex/923df37/logo/96.png" srcset="https://images.opencollective.com/aussiecasinohex/923df37/logo/192.png 2x" alt="laststance.io" title="Aussie Gambling Guide" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="sunmatosoft" href="https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/sumatosoft_company/0b78570/avatar/96.png" srcset="https://images.opencollective.com/sumatosoft_company/0b78570/avatar/192.png 2x" alt="sumatosoft.com" title="We help companies to digitalize their businesses" loading="lazy" /></a>
 </p>
 
 Gold Sponsors are those who have pledged \$500/month or more to MUI.
 
 ### Silver
-
-via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/mui)
 
@@ -54,8 +46,6 @@ via [OpenCollective](https://opencollective.com/mui)
 Silver Sponsors are those who have pledged $250/month to $500/month to MUI.
 
 ### Bronze
-
-via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/mui)
 
