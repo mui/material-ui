@@ -11,9 +11,7 @@ export default function Highlights() {
       sx={{ width: 300 }}
       options={top100Films}
       getOptionLabel={(option) => option.title}
-      renderInput={(params) => (
-        <TextField {...params} label="Highlights" margin="normal" />
-      )}
+      renderInput={(params) => <TextField {...params} label="Highlights" margin="normal" />}
       renderOption={(props, option, { inputValue }) => {
         const matches = match(option.title, inputValue);
         const parts = parse(option.title, matches);

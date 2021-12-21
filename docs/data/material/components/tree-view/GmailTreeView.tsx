@@ -62,14 +62,7 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
 }));
 
 function StyledTreeItem(props: StyledTreeItemProps) {
-  const {
-    bgColor,
-    color,
-    labelIcon: LabelIcon,
-    labelInfo,
-    labelText,
-    ...other
-  } = props;
+  const { bgColor, color, labelIcon: LabelIcon, labelInfo, labelText, ...other } = props;
 
   return (
     <StyledTreeItemRoot

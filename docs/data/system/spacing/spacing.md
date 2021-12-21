@@ -95,8 +95,8 @@ However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a wid
 import { spacing } from '@mui/system';
 ```
 
-| Import name | Prop | CSS property                    | Theme key                                                        |
-| :---------- | :--- | :------------------------------ | :--------------------------------------------------------------- |
+| Import name | Prop | CSS property                    | Theme key                                                                 |
+| :---------- | :--- | :------------------------------ | :------------------------------------------------------------------------ |
 | `spacing`   | `m`  | `margin`                        | [`spacing`](/material/customization/default-theme/?expand-path=$.spacing) |
 | `spacing`   | `mt` | `margin-top`                    | [`spacing`](/material/customization/default-theme/?expand-path=$.spacing) |
 | `spacing`   | `mr` | `margin-right`                  | [`spacing`](/material/customization/default-theme/?expand-path=$.spacing) |

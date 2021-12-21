@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  Link as RouterLink,
-  LinkProps as RouterLinkProps,
-  MemoryRouter,
-} from 'react-router-dom';
+import { Link as RouterLink, LinkProps as RouterLinkProps, MemoryRouter } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';

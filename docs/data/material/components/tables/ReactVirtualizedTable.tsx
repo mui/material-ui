@@ -4,13 +4,7 @@ import { withStyles, WithStyles } from '@mui/styles';
 import { Theme, createTheme } from '@mui/material/styles';
 import TableCell from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
-import {
-  AutoSizer,
-  Column,
-  Table,
-  TableCellRenderer,
-  TableHeaderProps,
-} from 'react-virtualized';
+import { AutoSizer, Column, Table, TableCellRenderer, TableHeaderProps } from 'react-virtualized';
 
 const styles = (theme: Theme) =>
   ({
@@ -91,21 +85,14 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
         })}
         variant="body"
         style={{ height: rowHeight }}
-        align={
-          (columnIndex != null && columns[columnIndex].numeric) || false
-            ? 'right'
-            : 'left'
-        }
+        align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
       >
         {cellData}
       </TableCell>
     );
   };
 
-  headerRenderer = ({
-    label,
-    columnIndex,
-  }: TableHeaderProps & { columnIndex: number }) => {
+  headerRenderer = ({ label, columnIndex }: TableHeaderProps & { columnIndex: number }) => {
     const { headerHeight, columns, classes } = this.props;
 
     return (

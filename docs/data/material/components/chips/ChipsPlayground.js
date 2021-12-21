@@ -119,74 +119,30 @@ function ChipsPlayground() {
                 value={variant}
                 onChange={handleChange}
               >
-                <FormControlLabel
-                  value="filled"
-                  control={<Radio />}
-                  label="filled"
-                />
-                <FormControlLabel
-                  value="outlined"
-                  control={<Radio />}
-                  label="outlined"
-                />
+                <FormControlLabel value="filled" control={<Radio />} label="filled" />
+                <FormControlLabel value="outlined" control={<Radio />} label="outlined" />
               </RadioGroup>
             </FormControl>
           </Grid>
           <Grid item xs={12} md={6}>
             <FormControl component="fieldset">
               <FormLabel>color</FormLabel>
-              <RadioGroup
-                row
-                name="color"
-                aria-label="color"
-                value={color}
-                onChange={handleChange}
-              >
-                <FormControlLabel
-                  value="default"
-                  control={<Radio />}
-                  label="default"
-                />
-                <FormControlLabel
-                  value="primary"
-                  control={<Radio />}
-                  label="primary"
-                />
-                <FormControlLabel
-                  value="secondary"
-                  control={<Radio />}
-                  label="secondary"
-                />
+              <RadioGroup row name="color" aria-label="color" value={color} onChange={handleChange}>
+                <FormControlLabel value="default" control={<Radio />} label="default" />
+                <FormControlLabel value="primary" control={<Radio />} label="primary" />
+                <FormControlLabel value="secondary" control={<Radio />} label="secondary" />
                 <FormControlLabel value="error" control={<Radio />} label="error" />
                 <FormControlLabel value="info" control={<Radio />} label="info" />
-                <FormControlLabel
-                  value="success"
-                  control={<Radio />}
-                  label="success"
-                />
-                <FormControlLabel
-                  value="warning"
-                  control={<Radio />}
-                  label="warning"
-                />
+                <FormControlLabel value="success" control={<Radio />} label="success" />
+                <FormControlLabel value="warning" control={<Radio />} label="warning" />
               </RadioGroup>
             </FormControl>
           </Grid>
           <Grid item xs={12} md={6}>
             <FormControl component="fieldset">
               <FormLabel>size</FormLabel>
-              <RadioGroup
-                row
-                name="size"
-                aria-label="size"
-                value={size}
-                onChange={handleChange}
-              >
-                <FormControlLabel
-                  value="medium"
-                  control={<Radio />}
-                  label="medium"
-                />
+              <RadioGroup row name="size" aria-label="size" value={size} onChange={handleChange}>
+                <FormControlLabel value="medium" control={<Radio />} label="medium" />
                 <FormControlLabel value="small" control={<Radio />} label="small" />
               </RadioGroup>
             </FormControl>
@@ -194,13 +150,7 @@ function ChipsPlayground() {
           <Grid item xs={12} md={6}>
             <FormControl component="fieldset">
               <FormLabel>icon</FormLabel>
-              <RadioGroup
-                row
-                name="icon"
-                aria-label="icon"
-                value={icon}
-                onChange={handleChange}
-              >
+              <RadioGroup row name="icon" aria-label="icon" value={icon} onChange={handleChange}>
                 <FormControlLabel value="none" control={<Radio />} label="none" />
                 <FormControlLabel value="icon" control={<Radio />} label="icon" />
               </RadioGroup>
@@ -217,11 +167,7 @@ function ChipsPlayground() {
                 onChange={handleChange}
               >
                 <FormControlLabel value="none" control={<Radio />} label="none" />
-                <FormControlLabel
-                  value="letter"
-                  control={<Radio />}
-                  label="letter"
-                />
+                <FormControlLabel value="letter" control={<Radio />} label="letter" />
                 <FormControlLabel value="img" control={<Radio />} label="img" />
               </RadioGroup>
             </FormControl>
@@ -237,16 +183,8 @@ function ChipsPlayground() {
                 onChange={handleChange}
               >
                 <FormControlLabel value="none" control={<Radio />} label="none" />
-                <FormControlLabel
-                  value="default"
-                  control={<Radio />}
-                  label="default"
-                />
-                <FormControlLabel
-                  value="custom"
-                  control={<Radio />}
-                  label="custom"
-                />
+                <FormControlLabel value="default" control={<Radio />} label="default" />
+                <FormControlLabel value="custom" control={<Radio />} label="custom" />
               </RadioGroup>
             </FormControl>
           </Grid>

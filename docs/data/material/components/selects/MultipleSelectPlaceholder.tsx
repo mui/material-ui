@@ -75,11 +75,7 @@ export default function MultipleSelectPlaceholder() {
             <em>Placeholder</em>
           </MenuItem>
           {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
-            >
+            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
               {name}
             </MenuItem>
           ))}

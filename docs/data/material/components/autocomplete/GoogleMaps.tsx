@@ -56,18 +56,9 @@ export default function GoogleMaps() {
 
   const fetch = React.useMemo(
     () =>
-      throttle(
-        (
-          request: { input: string },
-          callback: (results?: readonly PlaceType[]) => void,
-        ) => {
-          (autocompleteService.current as any).getPlacePredictions(
-            request,
-            callback,
-          );
-        },
-        200,
-      ),
+      throttle((request: { input: string }, callback: (results?: readonly PlaceType[]) => void) => {
+        (autocompleteService.current as any).getPlacePredictions(request, callback);
+      }, 200),
     [],
   );
 
@@ -75,9 +66,7 @@ export default function GoogleMaps() {
     let active = true;
 
     if (!autocompleteService.current && (window as any).google) {
-      autocompleteService.current = new (
-        window as any
-      ).google.maps.places.AutocompleteService();
+      autocompleteService.current = new (window as any).google.maps.places.AutocompleteService();
     }
     if (!autocompleteService.current) {
       return undefined;
@@ -113,9 +102,7 @@ export default function GoogleMaps() {
     <Autocomplete
       id="google-map-demo"
       sx={{ width: 300 }}
-      getOptionLabel={(option) =>
-        typeof option === 'string' ? option : option.description
-      }
+      getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
       filterOptions={(x) => x}
       options={options}
       autoComplete
@@ -129,9 +116,7 @@ export default function GoogleMaps() {
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);
       }}
-      renderInput={(params) => (
-        <TextField {...params} label="Add a location" fullWidth />
-      )}
+      renderInput={(params) => <TextField {...params} label="Add a location" fullWidth />}
       renderOption={(props, option) => {
         const matches = option.structured_formatting.main_text_matched_substrings;
         const parts = parse(
@@ -143,10 +128,7 @@ export default function GoogleMaps() {
           <li {...props}>
             <Grid container alignItems="center">
               <Grid item>
-                <Box
-                  component={LocationOnIcon}
-                  sx={{ color: 'text.secondary', mr: 2 }}
-                />
+                <Box component={LocationOnIcon} sx={{ color: 'text.secondary', mr: 2 }} />
               </Grid>
               <Grid item xs>
                 {parts.map((part, index) => (

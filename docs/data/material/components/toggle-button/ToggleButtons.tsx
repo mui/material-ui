@@ -9,10 +9,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 export default function ToggleButtons() {
   const [alignment, setAlignment] = React.useState<string | null>('left');
 
-  const handleAlignment = (
-    event: React.MouseEvent<HTMLElement>,
-    newAlignment: string | null,
-  ) => {
+  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) => {
     setAlignment(newAlignment);
   };
 

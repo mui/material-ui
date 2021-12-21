@@ -103,9 +103,7 @@ export default function HorizontalNonLinearStepper() {
                   </Typography>
                 ) : (
                   <Button onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1
-                      ? 'Finish'
-                      : 'Complete Step'}
+                    {completedSteps() === totalSteps() - 1 ? 'Finish' : 'Complete Step'}
                   </Button>
                 ))}
             </Box>

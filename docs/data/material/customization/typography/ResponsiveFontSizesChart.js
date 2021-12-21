@@ -19,15 +19,7 @@ import {
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
-const colors = [
-  '#443dc2',
-  '#2060df',
-  '#277e91',
-  '#378153',
-  '#4d811d',
-  '#63780d',
-  '#996600',
-];
+const colors = ['#443dc2', '#2060df', '#277e91', '#378153', '#4d811d', '#63780d', '#996600'];
 const variants = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1'];
 
 export default function ResponsiveFontSizes() {

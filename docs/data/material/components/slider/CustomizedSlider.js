@@ -49,8 +49,7 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
     backgroundColor: '#fff',
     boxShadow: iOSBoxShadow,
     '&:focus, &:hover, &.Mui-active': {
-      boxShadow:
-        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
+      boxShadow: '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         boxShadow: iOSBoxShadow,
@@ -178,19 +177,10 @@ export default function CustomizedSlider() {
   return (
     <Box sx={{ width: 320 }}>
       <Typography gutterBottom>iOS</Typography>
-      <IOSSlider
-        aria-label="ios slider"
-        defaultValue={60}
-        marks={marks}
-        valueLabelDisplay="on"
-      />
+      <IOSSlider aria-label="ios slider" defaultValue={60} marks={marks} valueLabelDisplay="on" />
       <Box sx={{ m: 3 }} />
       <Typography gutterBottom>pretto.fr</Typography>
-      <PrettoSlider
-        valueLabelDisplay="auto"
-        aria-label="pretto slider"
-        defaultValue={20}
-      />
+      <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} />
       <Box sx={{ m: 3 }} />
       <Typography gutterBottom>Tooltip value label</Typography>
       <Slider

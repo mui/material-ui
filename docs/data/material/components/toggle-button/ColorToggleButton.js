@@ -10,12 +10,7 @@ export default function ColorToggleButton() {
   };
 
   return (
-    <ToggleButtonGroup
-      color="primary"
-      value={alignment}
-      exclusive
-      onChange={handleChange}
-    >
+    <ToggleButtonGroup color="primary" value={alignment} exclusive onChange={handleChange}>
       <ToggleButton value="web">Web</ToggleButton>
       <ToggleButton value="android">Android</ToggleButton>
       <ToggleButton value="ios">iOS</ToggleButton>

@@ -18,13 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function SSRMasonry() {
   return (
     <Box sx={{ width: 500, minHeight: 393 }}>
-      <Masonry
-        columns={4}
-        spacing={1}
-        defaultHeight={450}
-        defaultColumns={4}
-        defaultSpacing={1}
-      >
+      <Masonry columns={4} spacing={1} defaultHeight={450} defaultColumns={4} defaultSpacing={1}>
         {heights.map((height, index) => (
           <Item key={index} sx={{ height }}>
             {index + 1}

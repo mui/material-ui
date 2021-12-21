@@ -33,9 +33,7 @@ export default function PortalClickAway() {
         </button>
         {open ? (
           <Portal>
-            <Box sx={styles}>
-              Click me, I will stay visible until you click outside.
-            </Box>
+            <Box sx={styles}>Click me, I will stay visible until you click outside.</Box>
           </Portal>
         ) : null}
       </div>

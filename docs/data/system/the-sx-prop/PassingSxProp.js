@@ -21,9 +21,7 @@ const ListHeader = ({ sx = [], children }) => (
 ListHeader.propTypes = {
   children: PropTypes.node,
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-    ),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

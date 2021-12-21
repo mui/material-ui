@@ -58,13 +58,13 @@ Use border utilities to add or remove an element's borders. Choose from all bord
 import { borders } from '@mui/system';
 ```
 
-| Import name         | Prop                | CSS property          | Theme key                                                        |
-| :------------------ | :------------------ | :-------------------- | :--------------------------------------------------------------- |
-| `border`            | `border`            | `border`              | `borders`                                                        |
-| `borderTop`         | `borderTop`         | `border-top`          | `borders`                                                        |
-| `borderLeft`        | `borderLeft`        | `border-left`         | `borders`                                                        |
-| `borderRight`       | `borderRight`       | `border-right`        | `borders`                                                        |
-| `borderBottom`      | `borderBottom`      | `border-bottom`       | `borders`                                                        |
+| Import name         | Prop                | CSS property          | Theme key                                                                 |
+| :------------------ | :------------------ | :-------------------- | :------------------------------------------------------------------------ |
+| `border`            | `border`            | `border`              | `borders`                                                                 |
+| `borderTop`         | `borderTop`         | `border-top`          | `borders`                                                                 |
+| `borderLeft`        | `borderLeft`        | `border-left`         | `borders`                                                                 |
+| `borderRight`       | `borderRight`       | `border-right`        | `borders`                                                                 |
+| `borderBottom`      | `borderBottom`      | `border-bottom`       | `borders`                                                                 |
 | `borderColor`       | `borderColor`       | `border-color`        | [`palette`](/material/customization/default-theme/?expand-path=$.palette) |
 | `borderTopColor`    | `borderTopColor`    | `border-top-color`    | [`palette`](/material/customization/default-theme/?expand-path=$.palette) |
 | `borderRightColor`  | `borderRightColor`  | `border-right-color`  | [`palette`](/material/customization/default-theme/?expand-path=$.palette) |

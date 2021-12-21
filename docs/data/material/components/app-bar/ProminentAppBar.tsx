@@ -44,12 +44,7 @@ export default function ProminentAppBar() {
           <IconButton size="large" aria-label="search" color="inherit">
             <SearchIcon />
           </IconButton>
-          <IconButton
-            size="large"
-            aria-label="display more actions"
-            edge="end"
-            color="inherit"
-          >
+          <IconButton size="large" aria-label="display more actions" edge="end" color="inherit">
             <MoreIcon />
           </IconButton>
         </StyledToolbar>

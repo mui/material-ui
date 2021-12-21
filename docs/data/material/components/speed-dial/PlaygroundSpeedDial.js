@@ -49,9 +49,7 @@ export default function PlaygroundSpeedDial() {
   return (
     <Box sx={{ transform: 'translateZ(0px)', flexGrow: 1 }}>
       <FormControlLabel
-        control={
-          <Switch checked={hidden} onChange={handleHiddenChange} color="primary" />
-        }
+        control={<Switch checked={hidden} onChange={handleHiddenChange} color="primary" />}
         label="Hidden"
       />
       <FormControl component="fieldset" sx={{ mt: 1, display: 'flex' }}>
@@ -77,11 +75,7 @@ export default function PlaygroundSpeedDial() {
           direction={direction}
         >
           {actions.map((action) => (
-            <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-            />
+            <SpeedDialAction key={action.name} icon={action.icon} tooltipTitle={action.name} />
           ))}
         </StyledSpeedDial>
       </Box>

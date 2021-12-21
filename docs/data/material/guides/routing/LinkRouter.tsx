@@ -1,19 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import {
-  Link as RouterLink,
-  LinkProps as RouterLinkProps,
-  MemoryRouter,
-} from 'react-router-dom';
+import { Link as RouterLink, LinkProps as RouterLinkProps, MemoryRouter } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 
-const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
-  (props, ref) => (
-    <RouterLink ref={ref} to="/getting-started/installation/" {...props} />
-  ),
-);
+const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>((props, ref) => (
+  <RouterLink ref={ref} to="/getting-started/installation/" {...props} />
+));
 
 function Router(props: { children?: React.ReactNode }) {
   const { children } = props;

@@ -10,13 +10,7 @@ import Typography from '@mui/material/Typography';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import {
-  Link as RouterLink,
-  Route,
-  Routes,
-  MemoryRouter,
-  useLocation,
-} from 'react-router-dom';
+import { Link as RouterLink, Route, Routes, MemoryRouter, useLocation } from 'react-router-dom';
 
 const breadcrumbNameMap = {
   '/inbox': 'Inbox',

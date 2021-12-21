@@ -22,9 +22,7 @@ export default function BackgroundColor() {
         </Box>
       </Grid>
       <Grid item xs={12} sm={4}>
-        <Box sx={{ bgcolor: 'error.main', color: 'error.contrastText', p: 2 }}>
-          error.main
-        </Box>
+        <Box sx={{ bgcolor: 'error.main', color: 'error.contrastText', p: 2 }}>error.main</Box>
       </Grid>
       <Grid item xs={12} sm={4}>
         <Box sx={{ bgcolor: 'warning.main', color: 'warning.contrastText', p: 2 }}>
@@ -32,9 +30,7 @@ export default function BackgroundColor() {
         </Box>
       </Grid>
       <Grid item xs={12} sm={4}>
-        <Box sx={{ bgcolor: 'info.main', color: 'info.contrastText', p: 2 }}>
-          info.main
-        </Box>
+        <Box sx={{ bgcolor: 'info.main', color: 'info.contrastText', p: 2 }}>info.main</Box>
       </Grid>
       <Grid item xs={12} sm={4}>
         <Box sx={{ bgcolor: 'success.main', color: 'success.contrastText', p: 2 }}>
@@ -42,9 +38,7 @@ export default function BackgroundColor() {
         </Box>
       </Grid>
       <Grid item xs={12} sm={4}>
-        <Box sx={{ bgcolor: 'text.primary', color: 'background.paper', p: 2 }}>
-          text.primary
-        </Box>
+        <Box sx={{ bgcolor: 'text.primary', color: 'background.paper', p: 2 }}>text.primary</Box>
       </Grid>
       <Grid item xs={12} sm={4}>
         <Box sx={{ bgcolor: 'text.secondary', color: 'background.paper', p: 2 }}>
@@ -52,9 +46,7 @@ export default function BackgroundColor() {
         </Box>
       </Grid>
       <Grid item xs={12} sm={4}>
-        <Box sx={{ bgcolor: 'text.disabled', color: 'background.paper', p: 2 }}>
-          text.disabled
-        </Box>
+        <Box sx={{ bgcolor: 'text.disabled', color: 'background.paper', p: 2 }}>text.disabled</Box>
       </Grid>
     </Grid>
   );

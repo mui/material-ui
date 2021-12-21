@@ -8,11 +8,7 @@ export default function SizeCheckboxes() {
     <div>
       <Checkbox {...label} defaultChecked size="small" />
       <Checkbox {...label} defaultChecked />
-      <Checkbox
-        {...label}
-        defaultChecked
-        sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }}
-      />
+      <Checkbox {...label} defaultChecked sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }} />
     </div>
   );
 }

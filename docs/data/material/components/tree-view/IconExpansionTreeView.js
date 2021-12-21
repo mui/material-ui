@@ -8,15 +8,7 @@ import clsx from 'clsx';
 import Typography from '@mui/material/Typography';
 
 const CustomContent = React.forwardRef(function CustomContent(props, ref) {
-  const {
-    classes,
-    className,
-    label,
-    nodeId,
-    icon: iconProp,
-    expansionIcon,
-    displayIcon,
-  } = props;
+  const { classes, className, label, nodeId, icon: iconProp, expansionIcon, displayIcon } = props;
 
   const {
     disabled,
@@ -58,11 +50,7 @@ const CustomContent = React.forwardRef(function CustomContent(props, ref) {
       <div onClick={handleExpansionClick} className={classes.iconContainer}>
         {icon}
       </div>
-      <Typography
-        onClick={handleSelectionClick}
-        component="div"
-        className={classes.label}
-      >
+      <Typography onClick={handleSelectionClick} component="div" className={classes.label}>
         {label}
       </Typography>
     </div>
@@ -100,9 +88,7 @@ CustomContent.propTypes = {
   nodeId: PropTypes.string.isRequired,
 };
 
-const CustomTreeItem = (props) => (
-  <TreeItem ContentComponent={CustomContent} {...props} />
-);
+const CustomTreeItem = (props) => <TreeItem ContentComponent={CustomContent} {...props} />;
 
 export default function IconExpansionTreeView() {
   return (

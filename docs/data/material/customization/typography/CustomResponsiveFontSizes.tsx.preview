@@ -1,0 +1,3 @@
+<ThemeProvider theme={theme}>
+  <Typography variant="h3">Responsive h3</Typography>
+</ThemeProvider>

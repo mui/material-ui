@@ -1,0 +1,13 @@
+<FormGroup>
+  <FormControlLabel
+    control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
+    label="MUI switch"
+  />
+  <FormControlLabel control={<Android12Switch defaultChecked />} label="Android 12" />
+  <FormControlLabel control={<IOSSwitch sx={{ m: 1 }} defaultChecked />} label="iOS style" />
+  <Stack direction="row" spacing={1} alignItems="center">
+    <Typography>Off</Typography>
+    <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
+    <Typography>On</Typography>
+  </Stack>
+</FormGroup>

@@ -13,19 +13,13 @@ export default function ToggleButtonNotEmpty() {
   const [alignment, setAlignment] = React.useState('left');
   const [devices, setDevices] = React.useState(() => ['phone']);
 
-  const handleAlignment = (
-    event: React.MouseEvent<HTMLElement>,
-    newAlignment: string | null,
-  ) => {
+  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
     }
   };
 
-  const handleDevices = (
-    event: React.MouseEvent<HTMLElement>,
-    newDevices: string[],
-  ) => {
+  const handleDevices = (event: React.MouseEvent<HTMLElement>, newDevices: string[]) => {
     if (newDevices.length) {
       setDevices(newDevices);
     }
@@ -50,11 +44,7 @@ export default function ToggleButtonNotEmpty() {
         </ToggleButton>
       </ToggleButtonGroup>
 
-      <ToggleButtonGroup
-        value={devices}
-        onChange={handleDevices}
-        aria-label="device"
-      >
+      <ToggleButtonGroup value={devices} onChange={handleDevices} aria-label="device">
         <ToggleButton value="laptop" aria-label="laptop">
           <LaptopIcon />
         </ToggleButton>

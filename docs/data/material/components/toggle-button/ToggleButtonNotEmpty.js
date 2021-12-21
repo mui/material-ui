@@ -44,11 +44,7 @@ export default function ToggleButtonNotEmpty() {
         </ToggleButton>
       </ToggleButtonGroup>
 
-      <ToggleButtonGroup
-        value={devices}
-        onChange={handleDevices}
-        aria-label="device"
-      >
+      <ToggleButtonGroup value={devices} onChange={handleDevices} aria-label="device">
         <ToggleButton value="laptop" aria-label="laptop">
           <LaptopIcon />
         </ToggleButton>

@@ -24,12 +24,7 @@ export default function FabIntegrationSnackbar() {
       <div>
         <AppBar position="static" color="primary">
           <Toolbar>
-            <IconButton
-              edge="start"
-              sx={{ mr: 2 }}
-              color="inherit"
-              aria-label="menu"
-            >
+            <IconButton edge="start" sx={{ mr: 2 }} color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" component="div">

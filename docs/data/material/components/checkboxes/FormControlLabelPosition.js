@@ -10,12 +10,7 @@ export default function FormControlLabelPosition() {
     <FormControl component="fieldset">
       <FormLabel component="legend">Label placement</FormLabel>
       <FormGroup aria-label="position" row>
-        <FormControlLabel
-          value="top"
-          control={<Checkbox />}
-          label="Top"
-          labelPlacement="top"
-        />
+        <FormControlLabel value="top" control={<Checkbox />} label="Top" labelPlacement="top" />
         <FormControlLabel
           value="start"
           control={<Checkbox />}
@@ -28,12 +23,7 @@ export default function FormControlLabelPosition() {
           label="Bottom"
           labelPlacement="bottom"
         />
-        <FormControlLabel
-          value="end"
-          control={<Checkbox />}
-          label="End"
-          labelPlacement="end"
-        />
+        <FormControlLabel value="end" control={<Checkbox />} label="End" labelPlacement="end" />
       </FormGroup>
     </FormControl>
   );

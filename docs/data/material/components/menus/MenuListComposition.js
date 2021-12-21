@@ -75,8 +75,7 @@ export default function MenuListComposition() {
             <Grow
               {...TransitionProps}
               style={{
-                transformOrigin:
-                  placement === 'bottom-start' ? 'left top' : 'left bottom',
+                transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom',
               }}
             >
               <Paper>

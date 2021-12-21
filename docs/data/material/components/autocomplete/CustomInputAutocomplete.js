@@ -13,8 +13,7 @@ export default function CustomInputAutocomplete() {
           '& input': {
             width: 200,
             bgcolor: 'background.paper',
-            color: (theme) =>
-              theme.palette.getContrastText(theme.palette.background.paper),
+            color: (theme) => theme.palette.getContrastText(theme.palette.background.paper),
           },
         }}
         id="custom-input-demo"

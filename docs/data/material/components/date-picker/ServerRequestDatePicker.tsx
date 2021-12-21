@@ -90,8 +90,7 @@ export default function ServerRequestDatePicker() {
         renderLoading={() => <CalendarPickerSkeleton />}
         renderDay={(day, _value, DayComponentProps) => {
           const isSelected =
-            !DayComponentProps.outsideCurrentMonth &&
-            highlightedDays.indexOf(day.getDate()) > 0;
+            !DayComponentProps.outsideCurrentMonth && highlightedDays.indexOf(day.getDate()) > 0;
 
           return (
             <Badge

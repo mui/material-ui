@@ -67,11 +67,7 @@ export default function MultipleSelect() {
           MenuProps={MenuProps}
         >
           {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
-            >
+            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
               {name}
             </MenuItem>
           ))}

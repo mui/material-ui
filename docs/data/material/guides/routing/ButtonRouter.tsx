@@ -1,15 +1,11 @@
 import * as React from 'react';
-import {
-  Link as RouterLink,
-  LinkProps as RouterLinkProps,
-  MemoryRouter,
-} from 'react-router-dom';
+import { Link as RouterLink, LinkProps as RouterLinkProps, MemoryRouter } from 'react-router-dom';
 import { StaticRouter } from 'react-router-dom/server';
 import Button from '@mui/material/Button';
 
-const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>(
-  (props, ref) => <RouterLink ref={ref} to="/" {...props} role={undefined} />,
-);
+const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>((props, ref) => (
+  <RouterLink ref={ref} to="/" {...props} role={undefined} />
+));
 
 function Router(props: { children?: React.ReactNode }) {
   const { children } = props;

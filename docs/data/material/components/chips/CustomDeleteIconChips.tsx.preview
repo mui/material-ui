@@ -1,0 +1,13 @@
+<Chip
+  label="Custom delete icon"
+  onClick={handleClick}
+  onDelete={handleDelete}
+  deleteIcon={<DoneIcon />}
+/>
+<Chip
+  label="Custom delete icon"
+  onClick={handleClick}
+  onDelete={handleDelete}
+  deleteIcon={<DeleteIcon />}
+  variant="outlined"
+/>

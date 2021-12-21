@@ -8,9 +8,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 function srcset(image: string, width: number, height: number, rows = 1, cols = 1) {
   return {
     src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${width * cols}&h=${
-      height * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
+    srcSet: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format&dpr=2 2x`,
   };
 }
 
@@ -32,11 +30,7 @@ export default function CustomImageList() {
 
         return (
           <ImageListItem key={item.img} cols={cols} rows={rows}>
-            <img
-              {...srcset(item.img, 250, 200, rows, cols)}
-              alt={item.title}
-              loading="lazy"
-            />
+            <img {...srcset(item.img, 250, 200, rows, cols)} alt={item.title} loading="lazy" />
             <ImageListItemBar
               sx={{
                 background:
@@ -46,10 +40,7 @@ export default function CustomImageList() {
               title={item.title}
               position="top"
               actionIcon={
-                <IconButton
-                  sx={{ color: 'white' }}
-                  aria-label={`star ${item.title}`}
-                >
+                <IconButton sx={{ color: 'white' }} aria-label={`star ${item.title}`}>
                   <StarBorderIcon />
                 </IconButton>
               }

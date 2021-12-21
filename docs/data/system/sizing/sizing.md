@@ -62,12 +62,12 @@ In this example, the value resolves to [`theme.breakpoints.values.md`](/material
 import { sizing } from '@mui/system';
 ```
 
-| Import name | Prop        | CSS property | Theme key                                                                                    |
-| :---------- | :---------- | :----------- | :------------------------------------------------------------------------------------------- |
-| `width`     | `width`     | `width`      | none                                                                                         |
+| Import name | Prop        | CSS property | Theme key                                                                                             |
+| :---------- | :---------- | :----------- | :---------------------------------------------------------------------------------------------------- |
+| `width`     | `width`     | `width`      | none                                                                                                  |
 | `maxWidth`  | `maxWidth`  | `max-width`  | [`theme.breakpoints.values`](/material/customization/default-theme/?expand-path=$.breakpoints.values) |
-| `minWidth`  | `minWidth`  | `min-width`  | none                                                                                         |
-| `height`    | `height`    | `height`     | none                                                                                         |
-| `maxHeight` | `maxHeight` | `max-height` | none                                                                                         |
-| `minHeight` | `minHeight` | `min-height` | none                                                                                         |
-| `boxSizing` | `boxSizing` | `box-sizing` | none                                                                                         |
+| `minWidth`  | `minWidth`  | `min-width`  | none                                                                                                  |
+| `height`    | `height`    | `height`     | none                                                                                                  |
+| `maxHeight` | `maxHeight` | `max-height` | none                                                                                                  |
+| `minHeight` | `minHeight` | `min-height` | none                                                                                                  |
+| `boxSizing` | `boxSizing` | `box-sizing` | none                                                                                                  |

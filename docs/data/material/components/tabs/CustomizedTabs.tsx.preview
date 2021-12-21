@@ -1,0 +1,16 @@
+<Box sx={{ bgcolor: '#fff' }}>
+  <AntTabs value={value} onChange={handleChange} aria-label="ant example">
+    <AntTab label="Tab 1" />
+    <AntTab label="Tab 2" />
+    <AntTab label="Tab 3" />
+  </AntTabs>
+  <Box sx={{ p: 3 }} />
+</Box>
+<Box sx={{ bgcolor: '#2e1534' }}>
+  <StyledTabs value={value} onChange={handleChange} aria-label="styled tabs example">
+    <StyledTab label="Workflows" />
+    <StyledTab label="Datasets" />
+    <StyledTab label="Connections" />
+  </StyledTabs>
+  <Box sx={{ p: 3 }} />
+</Box>

@@ -13,12 +13,7 @@ export default function SkeletonColor() {
         justifyContent: 'center',
       }}
     >
-      <Skeleton
-        sx={{ bgcolor: 'grey.900' }}
-        variant="rectangular"
-        width={210}
-        height={118}
-      />
+      <Skeleton sx={{ bgcolor: 'grey.900' }} variant="rectangular" width={210} height={118} />
     </Box>
   );
 }

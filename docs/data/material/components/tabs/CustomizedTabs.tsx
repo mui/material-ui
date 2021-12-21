@@ -11,41 +11,39 @@ const AntTabs = styled(Tabs)({
   },
 });
 
-const AntTab = styled((props: StyledTabProps) => <Tab disableRipple {...props} />)(
-  ({ theme }) => ({
-    textTransform: 'none',
+const AntTab = styled((props: StyledTabProps) => <Tab disableRipple {...props} />)(({ theme }) => ({
+  textTransform: 'none',
+  minWidth: 0,
+  [theme.breakpoints.up('sm')]: {
     minWidth: 0,
-    [theme.breakpoints.up('sm')]: {
-      minWidth: 0,
-    },
-    fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing(1),
-    color: 'rgba(0, 0, 0, 0.85)',
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:hover': {
-      color: '#40a9ff',
-      opacity: 1,
-    },
-    '&.Mui-selected': {
-      color: '#1890ff',
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    '&.Mui-focusVisible': {
-      backgroundColor: '#d1eaff',
-    },
-  }),
-);
+  },
+  fontWeight: theme.typography.fontWeightRegular,
+  marginRight: theme.spacing(1),
+  color: 'rgba(0, 0, 0, 0.85)',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#40a9ff',
+    opacity: 1,
+  },
+  '&.Mui-selected': {
+    color: '#1890ff',
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+  '&.Mui-focusVisible': {
+    backgroundColor: '#d1eaff',
+  },
+}));
 
 interface StyledTabsProps {
   children?: React.ReactNode;
@@ -54,10 +52,7 @@ interface StyledTabsProps {
 }
 
 const StyledTabs = styled((props: StyledTabsProps) => (
-  <Tabs
-    {...props}
-    TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
-  />
+  <Tabs {...props} TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }} />
 ))({
   '& .MuiTabs-indicator': {
     display: 'flex',
@@ -75,21 +70,21 @@ interface StyledTabProps {
   label: string;
 }
 
-const StyledTab = styled((props: StyledTabProps) => (
-  <Tab disableRipple {...props} />
-))(({ theme }) => ({
-  textTransform: 'none',
-  fontWeight: theme.typography.fontWeightRegular,
-  fontSize: theme.typography.pxToRem(15),
-  marginRight: theme.spacing(1),
-  color: 'rgba(255, 255, 255, 0.7)',
-  '&.Mui-selected': {
-    color: '#fff',
-  },
-  '&.Mui-focusVisible': {
-    backgroundColor: 'rgba(100, 95, 228, 0.32)',
-  },
-}));
+const StyledTab = styled((props: StyledTabProps) => <Tab disableRipple {...props} />)(
+  ({ theme }) => ({
+    textTransform: 'none',
+    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: theme.typography.pxToRem(15),
+    marginRight: theme.spacing(1),
+    color: 'rgba(255, 255, 255, 0.7)',
+    '&.Mui-selected': {
+      color: '#fff',
+    },
+    '&.Mui-focusVisible': {
+      backgroundColor: 'rgba(100, 95, 228, 0.32)',
+    },
+  }),
+);
 
 export default function CustomizedTabs() {
   const [value, setValue] = React.useState(0);
@@ -109,11 +104,7 @@ export default function CustomizedTabs() {
         <Box sx={{ p: 3 }} />
       </Box>
       <Box sx={{ bgcolor: '#2e1534' }}>
-        <StyledTabs
-          value={value}
-          onChange={handleChange}
-          aria-label="styled tabs example"
-        >
+        <StyledTabs value={value} onChange={handleChange} aria-label="styled tabs example">
           <StyledTab label="Workflows" />
           <StyledTab label="Datasets" />
           <StyledTab label="Connections" />

@@ -7,9 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {
   const backgroundColor =
-    theme.palette.mode === 'light'
-      ? theme.palette.grey[100]
-      : theme.palette.grey[800];
+    theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[800];
   return {
     backgroundColor,
     height: theme.spacing(3),

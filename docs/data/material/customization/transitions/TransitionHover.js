@@ -1,10 +1,7 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import NoSsr from '@mui/material/NoSsr';
-import {
-  createTheme,
-  ThemeProvider as MuiThemeProvider,
-} from '@mui/material/styles';
+import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import { deepPurple } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
 

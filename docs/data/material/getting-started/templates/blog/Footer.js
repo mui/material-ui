@@ -27,12 +27,7 @@ function Footer(props) {
         <Typography variant="h6" align="center" gutterBottom>
           {title}
         </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        >
+        <Typography variant="subtitle1" align="center" color="text.secondary" component="p">
           {description}
         </Typography>
         <Copyright />

@@ -113,10 +113,7 @@ const IOSSwitch = styled((props: SwitchProps) => (
       border: '6px solid #fff',
     },
     '&.Mui-disabled .MuiSwitch-thumb': {
-      color:
-        theme.palette.mode === 'light'
-          ? theme.palette.grey[100]
-          : theme.palette.grey[600],
+      color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600],
     },
     '&.Mui-disabled + .MuiSwitch-track': {
       opacity: theme.palette.mode === 'light' ? 0.7 : 0.3,
@@ -173,8 +170,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
   '& .MuiSwitch-track': {
     borderRadius: 16 / 2,
     opacity: 1,
-    backgroundColor:
-      theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
+    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
     boxSizing: 'border-box',
   },
 }));
@@ -186,14 +182,8 @@ export default function CustomizedSwitches() {
         control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
         label="MUI switch"
       />
-      <FormControlLabel
-        control={<Android12Switch defaultChecked />}
-        label="Android 12"
-      />
-      <FormControlLabel
-        control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
-        label="iOS style"
-      />
+      <FormControlLabel control={<Android12Switch defaultChecked />} label="Android 12" />
+      <FormControlLabel control={<IOSSwitch sx={{ m: 1 }} defaultChecked />} label="iOS style" />
       <Stack direction="row" spacing={1} alignItems="center">
         <Typography>Off</Typography>
         <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />

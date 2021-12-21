@@ -37,10 +37,7 @@ export default function CustomSeparator() {
       <Breadcrumbs separator="-" aria-label="breadcrumb">
         {breadcrumbs}
       </Breadcrumbs>
-      <Breadcrumbs
-        separator={<NavigateNextIcon fontSize="small" />}
-        aria-label="breadcrumb"
-      >
+      <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
         {breadcrumbs}
       </Breadcrumbs>
     </Stack>

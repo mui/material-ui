@@ -77,12 +77,7 @@ function ConfirmationDialogRaw(props) {
           onChange={handleChange}
         >
           {options.map((option) => (
-            <FormControlLabel
-              value={option}
-              key={option}
-              control={<Radio />}
-              label={option}
-            />
+            <FormControlLabel value={option} key={option} control={<Radio />} label={option} />
           ))}
         </RadioGroup>
       </DialogContent>

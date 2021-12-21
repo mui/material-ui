@@ -14,11 +14,7 @@ export default function ActiveLastBreadcrumb() {
         <Link underline="hover" color="inherit" href="/">
           MUI
         </Link>
-        <Link
-          underline="hover"
-          color="inherit"
-          href="/getting-started/installation/"
-        >
+        <Link underline="hover" color="inherit" href="/getting-started/installation/">
           Core
         </Link>
         <Link

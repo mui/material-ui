@@ -33,10 +33,7 @@ export default function IconBreadcrumbs() {
           <WhatshotIcon sx={{ mr: 0.5 }} fontSize="inherit" />
           Core
         </Link>
-        <Typography
-          sx={{ display: 'flex', alignItems: 'center' }}
-          color="text.primary"
-        >
+        <Typography sx={{ display: 'flex', alignItems: 'center' }} color="text.primary">
           <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
           Breadcrumb
         </Typography>

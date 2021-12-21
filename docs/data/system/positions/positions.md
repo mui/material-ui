@@ -17,11 +17,11 @@
 import { positions } from '@mui/system';
 ```
 
-| Import name | Prop       | CSS property | Theme key                                                      |
-| :---------- | :--------- | :----------- | :------------------------------------------------------------- |
-| `position`  | `position` | `position`   | none                                                           |
+| Import name | Prop       | CSS property | Theme key                                                               |
+| :---------- | :--------- | :----------- | :---------------------------------------------------------------------- |
+| `position`  | `position` | `position`   | none                                                                    |
 | `zIndex`    | `zIndex`   | `z-index`    | [`zIndex`](/material/customization/default-theme/?expand-path=$.zIndex) |
-| `top`       | `top`      | `top`        | none                                                           |
-| `right`     | `right`    | `right`      | none                                                           |
-| `bottom`    | `bottom`   | `bottom`     | none                                                           |
-| `left`      | `left`     | `left`       | none                                                           |
+| `top`       | `top`      | `top`        | none                                                                    |
+| `right`     | `right`    | `right`      | none                                                                    |
+| `bottom`    | `bottom`   | `bottom`     | none                                                                    |
+| `left`      | `left`     | `left`       | none                                                                    |

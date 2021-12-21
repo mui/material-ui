@@ -87,13 +87,13 @@
 import { typography } from '@mui/system';
 ```
 
-| Import name     | Prop            | CSS property                                                                                 | Theme key                                                              |
-| :-------------- | :-------------- | :------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------- |
+| Import name     | Prop            | CSS property                                                                                 | Theme key                                                                       |
+| :-------------- | :-------------- | :------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------ |
 | `typography`    | `typography`    | `font-family`, `font-weight`, `font-size`, `line-height`, `letter-spacing`, `text-transform` | [`typography`](/material/customization/default-theme/?expand-path=$.typography) |
 | `fontFamily`    | `fontFamily`    | `font-family`                                                                                | [`typography`](/material/customization/default-theme/?expand-path=$.typography) |
 | `fontSize`      | `fontSize`      | `font-size`                                                                                  | [`typography`](/material/customization/default-theme/?expand-path=$.typography) |
 | `fontStyle`     | `fontStyle`     | `font-style`                                                                                 | [`typography`](/material/customization/default-theme/?expand-path=$.typography) |
 | `fontWeight`    | `fontWeight`    | `font-weight`                                                                                | [`typography`](/material/customization/default-theme/?expand-path=$.typography) |
-| `letterSpacing` | `letterSpacing` | `letter-spacing`                                                                             | none                                                                   |
-| `lineHeight`    | `lineHeight`    | `line-height`                                                                                | none                                                                   |
-| `textAlign`     | `textAlign`     | `text-align`                                                                                 | none                                                                   |
+| `letterSpacing` | `letterSpacing` | `letter-spacing`                                                                             | none                                                                            |
+| `lineHeight`    | `lineHeight`    | `line-height`                                                                                | none                                                                            |
+| `textAlign`     | `textAlign`     | `text-align`                                                                                 | none                                                                            |

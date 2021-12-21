@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import CircularProgress, {
-  circularProgressClasses,
-} from '@mui/material/CircularProgress';
+import CircularProgress, { circularProgressClasses } from '@mui/material/CircularProgress';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -25,8 +23,7 @@ function FacebookCircularProgress(props) {
       <CircularProgress
         variant="determinate"
         sx={{
-          color: (theme) =>
-            theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+          color: (theme) => theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
         }}
         size={40}
         thickness={4}

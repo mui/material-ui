@@ -39,11 +39,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     fontSize: 16,
     width: 'auto',
     padding: '10px 12px',
-    transition: theme.transitions.create([
-      'border-color',
-      'background-color',
-      'box-shadow',
-    ]),
+    transition: theme.transitions.create(['border-color', 'background-color', 'box-shadow']),
     // Use the system font instead of the default Roboto font.
     fontFamily: [
       '-apple-system',
@@ -65,21 +61,14 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const RedditTextField = styled((props: TextFieldProps) => (
-  <TextField
-    InputProps={{ disableUnderline: true } as Partial<OutlinedInputProps>}
-    {...props}
-  />
+  <TextField InputProps={{ disableUnderline: true } as Partial<OutlinedInputProps>} {...props} />
 ))(({ theme }) => ({
   '& .MuiFilledInput-root': {
     border: '1px solid #e2e2e1',
     overflow: 'hidden',
     borderRadius: 4,
     backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
-    transition: theme.transitions.create([
-      'border-color',
-      'background-color',
-      'box-shadow',
-    ]),
+    transition: theme.transitions.create(['border-color', 'background-color', 'box-shadow']),
     '&:hover': {
       backgroundColor: 'transparent',
     },

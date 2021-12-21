@@ -38,9 +38,7 @@ const Component = React.memo((props: ComponentProps) => {
 
 export default function StressTest() {
   const [backgroundColor, setBackgroundColor] = React.useState('#2196f3');
-  const handleBackgroundColorChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleBackgroundColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBackgroundColor(event.target.value);
   };
 
@@ -57,12 +55,7 @@ export default function StressTest() {
         <fieldset>
           <div>
             <label htmlFor="color">theme color: </label>
-            <input
-              id="color"
-              type="color"
-              onChange={handleColorChange}
-              value={color}
-            />
+            <input id="color" type="color" onChange={handleColorChange} value={color} />
           </div>
           <div>
             <label htmlFor="background-color">background-color property: </label>

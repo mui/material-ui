@@ -11,6 +11,7 @@
 - Use `@mui/system` if you want APIs that enable building your own design system from scratch.
 
 ---
+
 product: material
 
 ## MUI packages

@@ -43,8 +43,7 @@ export default function TransferList() {
     setChecked(newChecked);
   };
 
-  const numberOfChecked = (items: readonly number[]) =>
-    intersection(checked, items).length;
+  const numberOfChecked = (items: readonly number[]) => intersection(checked, items).length;
 
   const handleToggleAll = (items: readonly number[]) => () => {
     if (numberOfChecked(items) === items.length) {
@@ -74,9 +73,7 @@ export default function TransferList() {
           <Checkbox
             onClick={handleToggleAll(items)}
             checked={numberOfChecked(items) === items.length && items.length !== 0}
-            indeterminate={
-              numberOfChecked(items) !== items.length && numberOfChecked(items) !== 0
-            }
+            indeterminate={numberOfChecked(items) !== items.length && numberOfChecked(items) !== 0}
             disabled={items.length === 0}
             inputProps={{
               'aria-label': 'all items selected',
@@ -102,12 +99,7 @@ export default function TransferList() {
           const labelId = `transfer-list-all-item-${value}-label`;
 
           return (
-            <ListItem
-              key={value}
-              role="listitem"
-              button
-              onClick={handleToggle(value)}
-            >
+            <ListItem key={value} role="listitem" button onClick={handleToggle(value)}>
               <ListItemIcon>
                 <Checkbox
                   checked={checked.indexOf(value) !== -1}

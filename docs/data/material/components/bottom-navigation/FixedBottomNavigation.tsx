@@ -16,9 +16,7 @@ import Avatar from '@mui/material/Avatar';
 function refreshMessages(): MessageExample[] {
   const getRandomInt = (max: number) => Math.floor(Math.random() * Math.floor(max));
 
-  return Array.from(new Array(50)).map(
-    () => messageExamples[getRandomInt(messageExamples.length)],
-  );
+  return Array.from(new Array(50)).map(() => messageExamples[getRandomInt(messageExamples.length)]);
 }
 
 export default function FixedBottomNavigation() {

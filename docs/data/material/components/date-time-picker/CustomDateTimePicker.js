@@ -36,9 +36,7 @@ export default function CustomDateTimePicker() {
           rightArrowButtonText="Open next month"
           minTime={new Date(0, 0, 0, 9)}
           maxTime={new Date(0, 0, 0, 20)}
-          renderInput={(params) => (
-            <TextField {...params} helperText="Hardcoded helper text" />
-          )}
+          renderInput={(params) => <TextField {...params} helperText="Hardcoded helper text" />}
         />
         <MobileDateTimePicker
           value={value}
@@ -56,9 +54,7 @@ export default function CustomDateTimePicker() {
           clearable
           value={clearedDate}
           onChange={(newValue) => setClearedDate(newValue)}
-          renderInput={(params) => (
-            <TextField {...params} helperText="Clear Initial State" />
-          )}
+          renderInput={(params) => <TextField {...params} helperText="Clear Initial State" />}
         />
       </Stack>
     </LocalizationProvider>

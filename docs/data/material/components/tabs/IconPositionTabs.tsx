@@ -14,11 +14,7 @@ export default function IconTabs() {
   };
 
   return (
-    <Tabs
-      value={value}
-      onChange={handleChange}
-      aria-label="icon position tabs example"
-    >
+    <Tabs value={value} onChange={handleChange} aria-label="icon position tabs example">
       <Tab icon={<PhoneIcon />} label="top" />
       <Tab icon={<PhoneMissedIcon />} iconPosition="start" label="start" />
       <Tab icon={<FavoriteIcon />} iconPosition="end" label="end" />

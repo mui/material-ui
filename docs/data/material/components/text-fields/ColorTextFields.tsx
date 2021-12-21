@@ -14,12 +14,7 @@ export default function ColorTextFields() {
     >
       <TextField label="Outlined secondary" color="secondary" focused />
       <TextField label="Filled success" variant="filled" color="success" focused />
-      <TextField
-        label="Standard warning"
-        variant="standard"
-        color="warning"
-        focused
-      />
+      <TextField label="Standard warning" variant="standard" color="warning" focused />
     </Box>
   );
 }

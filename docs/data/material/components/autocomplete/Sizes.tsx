@@ -14,12 +14,7 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={top100Films[13]}
         renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="standard"
-            label="Size small"
-            placeholder="Favorites"
-          />
+          <TextField {...params} variant="standard" label="Size small" placeholder="Favorites" />
         )}
       />
       <Autocomplete
@@ -30,12 +25,7 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="standard"
-            label="Size small"
-            placeholder="Favorites"
-          />
+          <TextField {...params} variant="standard" label="Size small" placeholder="Favorites" />
         )}
       />
       <Autocomplete
@@ -76,12 +66,7 @@ export default function Sizes() {
           ))
         }
         renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="filled"
-            label="Size small"
-            placeholder="Favorites"
-          />
+          <TextField {...params} variant="filled" label="Size small" placeholder="Favorites" />
         )}
       />
       <Autocomplete
@@ -102,12 +87,7 @@ export default function Sizes() {
           ))
         }
         renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="filled"
-            label="Size small"
-            placeholder="Favorites"
-          />
+          <TextField {...params} variant="filled" label="Size small" placeholder="Favorites" />
         )}
       />
     </Stack>

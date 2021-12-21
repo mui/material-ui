@@ -2,27 +2,12 @@ import * as React from 'react';
 import TreeView from '@mui/lab/TreeView';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import TreeItem, {
-  TreeItemProps,
-  useTreeItem,
-  TreeItemContentProps,
-} from '@mui/lab/TreeItem';
+import TreeItem, { TreeItemProps, useTreeItem, TreeItemContentProps } from '@mui/lab/TreeItem';
 import clsx from 'clsx';
 import Typography from '@mui/material/Typography';
 
-const CustomContent = React.forwardRef(function CustomContent(
-  props: TreeItemContentProps,
-  ref,
-) {
-  const {
-    classes,
-    className,
-    label,
-    nodeId,
-    icon: iconProp,
-    expansionIcon,
-    displayIcon,
-  } = props;
+const CustomContent = React.forwardRef(function CustomContent(props: TreeItemContentProps, ref) {
+  const { classes, className, label, nodeId, icon: iconProp, expansionIcon, displayIcon } = props;
 
   const {
     disabled,
@@ -40,15 +25,11 @@ const CustomContent = React.forwardRef(function CustomContent(
     preventSelection(event);
   };
 
-  const handleExpansionClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
+  const handleExpansionClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     handleExpansion(event);
   };
 
-  const handleSelectionClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
+  const handleSelectionClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     handleSelection(event);
   };
 
@@ -68,11 +49,7 @@ const CustomContent = React.forwardRef(function CustomContent(
       <div onClick={handleExpansionClick} className={classes.iconContainer}>
         {icon}
       </div>
-      <Typography
-        onClick={handleSelectionClick}
-        component="div"
-        className={classes.label}
-      >
+      <Typography onClick={handleSelectionClick} component="div" className={classes.label}>
         {label}
       </Typography>
     </div>

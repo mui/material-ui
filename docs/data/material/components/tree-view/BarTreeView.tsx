@@ -3,11 +3,7 @@ import { styled, alpha } from '@mui/material/styles';
 import TreeView from '@mui/lab/TreeView';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import TreeItem, {
-  TreeItemProps,
-  useTreeItem,
-  TreeItemContentProps,
-} from '@mui/lab/TreeItem';
+import TreeItem, { TreeItemProps, useTreeItem, TreeItemContentProps } from '@mui/lab/TreeItem';
 import clsx from 'clsx';
 import Typography from '@mui/material/Typography';
 
@@ -37,10 +33,7 @@ const CustomContentRoot = styled('div')(({ theme }) => ({
       backgroundColor: theme.palette.action.focus,
     },
     '&.Mui-selected &': {
-      backgroundColor: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity,
-      ),
+      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     },
     '&.Mui-selected:hover &': {
       backgroundColor: alpha(
@@ -49,10 +42,7 @@ const CustomContentRoot = styled('div')(({ theme }) => ({
       ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity,
-        ),
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       },
     },
     '&.Mui-selected.Mui-focused &': {
@@ -64,19 +54,8 @@ const CustomContentRoot = styled('div')(({ theme }) => ({
   },
 }));
 
-const CustomContent = React.forwardRef(function CustomContent(
-  props: TreeItemContentProps,
-  ref,
-) {
-  const {
-    className,
-    classes,
-    label,
-    nodeId,
-    icon: iconProp,
-    expansionIcon,
-    displayIcon,
-  } = props;
+const CustomContent = React.forwardRef(function CustomContent(props: TreeItemContentProps, ref) {
+  const { className, classes, label, nodeId, icon: iconProp, expansionIcon, displayIcon } = props;
 
   const {
     disabled,

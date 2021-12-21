@@ -14,11 +14,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function DividerStack() {
   return (
     <div>
-      <Stack
-        direction="row"
-        divider={<Divider orientation="vertical" flexItem />}
-        spacing={2}
-      >
+      <Stack direction="row" divider={<Divider orientation="vertical" flexItem />} spacing={2}>
         <Item>Item 1</Item>
         <Item>Item 2</Item>
         <Item>Item 3</Item>

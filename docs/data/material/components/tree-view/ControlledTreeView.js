@@ -19,9 +19,7 @@ export default function ControlledTreeView() {
   };
 
   const handleExpandClick = () => {
-    setExpanded((oldExpanded) =>
-      oldExpanded.length === 0 ? ['1', '5', '6', '7'] : [],
-    );
+    setExpanded((oldExpanded) => (oldExpanded.length === 0 ? ['1', '5', '6', '7'] : []));
   };
 
   const handleSelectClick = () => {
