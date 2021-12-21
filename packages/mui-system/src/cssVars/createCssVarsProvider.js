@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { GlobalStyles } from '@mui/styled-engine';
-import { deepmerge } from '@mui/utils';
+import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import createSpacing from '../createTheme/createSpacing';
 import createBreakpoints from '../createTheme/createBreakpoints';
 import cssVarsParser from './cssVarsParser';
@@ -155,7 +155,7 @@ export default function createCssVarsProvider(options) {
       }
     }, [colorScheme, attribute]);
 
-    React.useEffect(() => {
+    useEnhancedEffect(() => {
       if (!mode || !enableColorScheme) {
         return undefined;
       }

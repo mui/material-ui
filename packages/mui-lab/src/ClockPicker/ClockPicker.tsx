@@ -23,7 +23,7 @@ import { useMeridiemMode } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ClockView } from './shared';
 
 export interface ClockPickerClasses {
-  /** Styles applied to the arrowSwticher element. */
+  /** Styles applied to the arrowSwitcher element. */
   arrowSwitcher: string;
 }
 
@@ -153,7 +153,7 @@ export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate>
 
 const ClockPickerArrowSwitcher = styled(PickersArrowSwitcher, {
   name: 'MuiClockPicker',
-  slot: 'ArrowSwticher',
+  slot: 'ArrowSwitcher',
   overridesResolver: (props, styles) => styles.arrowSwitcher,
 })<{ ownerState: ClockPickerProps<any> }>({
   position: 'absolute',
