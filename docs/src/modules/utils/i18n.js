@@ -67,6 +67,7 @@ export function useTranslate() {
   return React.useMemo(
     () =>
       function translate(key, options = {}) {
+        // TODO: remove this logic once the migration to new structure is done.
         function prefixMaterial(translation) {
           if (typeof translation === 'string' && FEATURE_TOGGLE.enable_product_scope) {
             let prefixed = translation;

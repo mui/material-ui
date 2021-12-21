@@ -306,7 +306,7 @@ export default function AppSearch() {
                   hash = hash.replace('#heading-', '#');
                 }
 
-                // TODO: remove this logic as soon as we migrate to the new structure
+                // TODO: remove this logic once the migration to new structure is done.
                 // This logic covers use during the ~60 minutes that it takes Algolia to run a crawl and update its index.
                 if (router.asPath.startsWith('/material')) {
                   pathname = pathname.replace(
