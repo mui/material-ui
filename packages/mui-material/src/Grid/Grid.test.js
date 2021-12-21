@@ -247,7 +247,7 @@ describe('<Grid />', () => {
         '@media (min-width:0px)': {
           '& > .MuiGrid-item': {
             paddingLeft: '4px',
-            paddingRight: '4px'
+            paddingRight: '4px',
           },
           marginLeft: '-4px',
           marginRight: '-4px',
@@ -306,7 +306,7 @@ describe('<Grid />', () => {
         '@media (min-width:0px)': {
           '& > .MuiGrid-item': {
             paddingLeft: '4px',
-            paddingRight: '4px'
+            paddingRight: '4px',
           },
           marginLeft: '-4px',
           marginRight: '-4px',
@@ -404,14 +404,18 @@ describe('<Grid />', () => {
       );
 
       expect(screen.getByTestId('grid')).toHaveComputedStyle({
-        marginTop: `${-1 * remValue * 0.5}px`, // '-0.5rem'
-        marginLeft: `${-1 * remValue * 0.5}px`, // '-0.5rem'
+        marginTop: `${(-1 / 2) * remValue * 0.5}px`, // '-0.25rem'
+        marginBottom: `${(-1 / 2) * remValue * 0.5}px`, // '-0.25rem'
+        marginLeft: `${(-1 / 2) * remValue * 0.5}px`, // '-0.25rem'
+        marginRight: `${(-1 / 2) * remValue * 0.5}px`, // '-0.25rem'
         width: `${parentWidth + remValue * 0.5}px`, // 'calc(100% + 0.5rem)'
       });
 
       expect(screen.getByTestId('first-custom-theme')).toHaveComputedStyle({
-        paddingTop: `${0.5 * remValue}px`, // 0.5rem
-        paddingLeft: `${0.5 * remValue}px`, // 0.5rem
+        paddingTop: `${(0.5 / 2) * remValue}px`, // '0.25rem'
+        paddingBottom: `${(0.5 / 2) * remValue}px`, // '0.25rem'
+        paddingLeft: `${(0.5 / 2) * remValue}px`, // '0.25rem'
+        paddingRight: `${(0.5 / 2) * remValue}px`, // '0.25rem'
       });
 
       rerender(
@@ -424,14 +428,18 @@ describe('<Grid />', () => {
       );
 
       expect(screen.getByTestId('grid')).toHaveComputedStyle({
-        marginTop: '-16px',
-        marginLeft: '-16px',
+        marginTop: '-8px',
+        marginBottom: '-8px',
+        marginLeft: '-8px',
+        marginRight: '-8px',
         width: `${parentWidth + 16}px`, // 'calc(100% + 16px)'
       });
 
       expect(screen.getByTestId('first-default-theme')).toHaveComputedStyle({
-        paddingTop: '16px',
-        paddingLeft: '16px',
+        paddingTop: '8px',
+        paddingBottom: '8px',
+        paddingLeft: '8px',
+        paddingRight: '8px',
       });
     });
   });
