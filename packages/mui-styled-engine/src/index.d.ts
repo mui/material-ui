@@ -100,7 +100,7 @@ export interface CreateStyledComponent<
     ...styles: Array<
       Interpolation<ComponentProps & SpecificComponentProps & AdditionalProps & { theme: T }>
     >
-  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>
+  ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>;
 
   (
     template: TemplateStringsArray,
