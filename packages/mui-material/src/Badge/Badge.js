@@ -262,6 +262,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 
   return (
     <BadgeUnstyled
+      anchorOrigin={anchorOrigin}
       invisible={invisibleProp}
       badgeContent={badgeContentProp}
       showZero={showZero}
