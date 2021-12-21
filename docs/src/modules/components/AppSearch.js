@@ -307,7 +307,8 @@ export default function AppSearch() {
                 }
 
                 // TODO: remove this logic once the migration to new structure is done.
-                // This logic covers use during the ~60 minutes that it takes Algolia to run a crawl and update its index.
+                // This logic covers us during the ~60 minutes that it takes Algolia to run a crawl and update its index.
+                // It also allows us to have a search bar that works in dev mode while the new structure is not pushed to production.
                 if (router.asPath.startsWith('/material')) {
                   pathname = pathname.replace(
                     /^\/(getting-started|components|api|customization|guides|discover-more)(\/[^/]+\/)/,
