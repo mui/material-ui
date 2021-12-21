@@ -6,6 +6,7 @@ import defaultTheme from '@mui/material/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
 import { generateGrid, generateRowGap, generateColumnGap, generateDirection } from './Grid';
 
+// eslint-disable-next-line mocha/no-exclusive-tests
 describe('<Grid />', () => {
   const { render } = createRenderer();
 
@@ -161,8 +162,10 @@ describe('<Grid />', () => {
       );
       expect(container.firstChild).to.have.class('MuiGrid-spacing-xs-1.5');
       expect(screen.getByTestId('child')).toHaveComputedStyle({
-        paddingTop: '12px',
-        paddingLeft: '12px',
+        paddingTop: '6px',
+        paddingBottom: '6px',
+        paddingLeft: '6px',
+        paddingRight: '6px',
       });
     });
 
@@ -217,15 +220,19 @@ describe('<Grid />', () => {
       ).to.deep.equal({
         '@media (min-width:0px)': {
           '& > .MuiGrid-item': {
-            paddingTop: '8px',
+            paddingTop: '4px',
+            paddingBottom: '4px',
           },
-          marginTop: '-8px',
+          marginTop: '-4px',
+          marginBottom: '-4px',
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
           '& > .MuiGrid-item': {
-            paddingTop: '16px',
+            paddingTop: '8px',
+            paddingBottom: '8px',
           },
-          marginTop: '-16px',
+          marginTop: '-8px',
+          marginBottom: '-8px',
         },
       });
 
@@ -240,16 +247,20 @@ describe('<Grid />', () => {
       ).to.deep.equal({
         '@media (min-width:0px)': {
           '& > .MuiGrid-item': {
-            paddingLeft: '8px',
+            paddingLeft: '4px',
+            paddingRight: '4px'
           },
-          marginLeft: '-8px',
+          marginLeft: '-4px',
+          marginRight: '-4px',
           width: 'calc(100% + 8px)',
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
           '& > .MuiGrid-item': {
-            paddingLeft: '16px',
+            paddingLeft: '8px',
+            paddingRight: '8px',
           },
-          marginLeft: '-16px',
+          marginLeft: '-8px',
+          marginRight: '-8px',
           width: 'calc(100% + 16px)',
         },
       });
@@ -268,15 +279,19 @@ describe('<Grid />', () => {
       ).to.deep.equal({
         '@media (min-width:0px)': {
           '& > .MuiGrid-item': {
-            paddingTop: '8px',
+            paddingTop: '4px',
+            paddingBottom: '4px',
           },
-          marginTop: '-8px',
+          marginTop: '-4px',
+          marginBottom: '-4px',
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
           '& > .MuiGrid-item': {
-            paddingTop: '16px',
+            paddingTop: '8px',
+            paddingBottom: '8px',
           },
-          marginTop: '-16px',
+          marginTop: '-8px',
+          marginBottom: '-8px',
         },
       });
 
@@ -291,16 +306,20 @@ describe('<Grid />', () => {
       ).to.deep.equal({
         '@media (min-width:0px)': {
           '& > .MuiGrid-item': {
-            paddingLeft: '8px',
+            paddingLeft: '4px',
+            paddingRight: '4px'
           },
-          marginLeft: '-8px',
+          marginLeft: '-4px',
+          marginRight: '-4px',
           width: 'calc(100% + 8px)',
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
           '& > .MuiGrid-item': {
-            paddingLeft: '16px',
+            paddingLeft: '8px',
+            paddingRight: '8px',
           },
-          marginLeft: '-16px',
+          marginLeft: '-8px',
+          marginRight: '-8px',
           width: 'calc(100% + 16px)',
         },
       });
