@@ -202,7 +202,6 @@ function AppWrapper(props) {
   }, []);
 
   // eslint-disable will be removed once docs restructure is done
-  // eslint-disable-next-line prefer-const
   let productPages = pages;
   if (router.asPath.startsWith('/material')) {
     productPages = materialPages;

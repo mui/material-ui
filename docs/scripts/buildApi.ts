@@ -140,8 +140,6 @@ const BEFORE_MIGRATION_SETTINGS: Settings[] = [
  * It will generate API for the current & `/material` paths, then set the redirect to link `/api/*` to `/material/api/*`
  * At this point, `mui-base` content is still live in with `mui-material`.
  */
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MIGRATION_SETTINGS: Settings[] = [
   ...BEFORE_MIGRATION_SETTINGS,
   {
