@@ -296,27 +296,27 @@ export default function AppSearch() {
                 // `url` contains the domain
                 // but we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
                 const parseUrl = document.createElement('a');
+                parseUrl.href = item.url;
+
+                let hash = parseUrl.hash;
+                let pathname = parseUrl.pathname;
+
                 if (['lvl2', 'lvl3'].includes(item.type)) {
                   // remove '#heading-' from `href` url so that the link targets <span class="anchor-link"> inside <h2> or <h3>
                   // this will make the title appear under the Header
-                  parseUrl.href = item.url.replace('#heading-', '#');
-                } else {
-                  parseUrl.href = item.url;
+                  hash = hash.replace('#heading-', '#');
                 }
 
-                // TODO: remove this logic once the migration to new structure is done.
-                if (FEATURE_TOGGLE.enable_product_scope) {
-                  if (!parseUrl.href.startsWith('material/')) {
-                    parseUrl.href = parseUrl.href.replace(
-                      /(getting-started|components|api|customization|guides|discover-more)(\/[^/]+\/)/,
-                      `material/$1$2`,
-                    );
-                  }
+                // TODO: remove this logic as soon as we migrate to the new structure
+                // This logic covers use during the ~60 minutes that it takes Algolia to run a crawl and update its index.
+                if (FEATURE_TOGGLE.enable_product_scope && router.asPath.startsWith('/material')) {
+                  pathname = pathname.replace(
+                    /^\/(getting-started|components|api|customization|guides|discover-more)(\/[^/]+\/)/,
+                    `material/$1$2`,
+                  );
                 }
 
-                const { canonicalAs, canonicalPathname } = pathnameToLanguage(
-                  `${parseUrl.pathname}${parseUrl.hash}`,
-                );
+                const { canonicalAs, canonicalPathname } = pathnameToLanguage(`${pathname}${hash}`);
 
                 return {
                   ...item,
