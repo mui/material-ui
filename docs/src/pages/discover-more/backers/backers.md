@@ -118,6 +118,6 @@ CrowdIn allows us to translate the documentation.
 
 BrowserStack allows us to test in real browsers.
 
-[<img loading="lazy" alt="CodeCov" src="https://github.com/codecov.png?size=70" width="35" height="35">](https://codecov.io/)
+[<img loading="lazy" alt="CodeCov" src="https://avatars.githubusercontent.com/u/8226205?s=70" width="35" height="35">](https://codecov.io/)
 
 CodeCov allows us to monitor the test coverage.

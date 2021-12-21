@@ -17,47 +17,47 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 const authors = {
   oliviertassinari: {
     name: 'Olivier Tassinari',
-    github: 'oliviertassinari',
+    avatar: 'https://avatars.githubusercontent.com/u/3165635',
   },
   mbrookes: {
     name: 'Matt Brookes',
-    github: 'mbrookes',
+    avatar: 'https://avatars.githubusercontent.com/u/357702',
   },
   eps1lon: {
     name: 'Sebastian Silbermann',
-    github: 'eps1lon',
+    avatar: 'https://avatars.githubusercontent.com/u/12292047',
   },
   mnajdova: {
     name: 'Marija Najdova',
-    github: 'mnajdova',
+    avatar: 'https://avatars.githubusercontent.com/u/4512430',
   },
   michaldudak: {
     name: 'Michał Dudak',
-    github: 'michaldudak',
+    avatar: 'https://avatars.githubusercontent.com/u/4696105',
   },
   siriwatknp: {
     name: 'Siriwat Kunaporn',
-    github: 'siriwatknp',
+    avatar: 'https://avatars.githubusercontent.com/u/18292247',
   },
   'danilo-leal': {
     name: 'Danilo Leal',
-    github: 'danilo-leal',
+    avatar: 'https://avatars.githubusercontent.com/u/67129314',
   },
   m4theushw: {
     name: 'Matheus Wichman',
-    github: 'm4theushw',
+    avatar: 'https://avatars.githubusercontent.com/u/42154031',
   },
   flaviendelangle: {
     name: 'Flavien Delangle',
-    github: 'flaviendelangle',
+    avatar: 'https://avatars.githubusercontent.com/u/3309670',
   },
   DanailH: {
     name: 'Danail Hadjiatanasov',
-    github: 'DanailH',
+    avatar: 'https://avatars.githubusercontent.com/u/5858539',
   },
   alexfauquette: {
     name: 'Alexandre Fauquette',
-    github: 'alexfauquette',
+    avatar: 'https://avatars.githubusercontent.com/u/45398769',
   },
 };
 
