@@ -34,7 +34,7 @@ When first learning MUI, you might find third-party blog posts, books and video 
   - 📝 [博文](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [视频](https://www.youtube.com/watch?v=PWadEeOuv5o)
 - **Implement high fidelity designs**：一篇博客文章，涵盖了一些重要的 Material-UI 概念。
-  - 📝 [博文](https://alligator.io/react/material-ui/)
+  - 📝 [The blog post](https://www.digitalocean.com/community/tutorials/react-material-ui)
 
 ### 付费的资源
 
@@ -45,7 +45,7 @@ When first learning MUI, you might find third-party blog posts, books and video 
 - **Apply Google Material Design**：本课程教授 Google Material Design 的基础知识，以及如何使用 Material-UI 和 React 开发一个端到端的航班搜索和预订应用。
 
   - 📹 [观看视频的预告片](https://www.youtube.com/watch?v=hhZ6yFvCWho)
-  - 💻 [课程](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
+  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react/)
 
 - **Cookbook**：通过使用 Material-UI 在 React 中实现 Material Design 原则来构建现代应用程序。
   - 📘 [书](https://www.amazon.com/gp/product/1789615224/)
