@@ -19,7 +19,7 @@ body:
     attributes:
       label: Steps to reproduce 🕹
       description: |
-        What did you do before the demo crashed?
+        What did you do right before the demo crashed?
     validations:
       required: true
   - type: textarea
