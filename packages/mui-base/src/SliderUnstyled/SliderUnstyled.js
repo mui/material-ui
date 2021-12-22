@@ -755,8 +755,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 }}
               >
                 <input
-                  tabIndex={tabIndex}
-                  data-index={index}
                   aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
                   aria-labelledby={ariaLabelledby}
                   aria-orientation={orientation}
@@ -766,16 +764,15 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   aria-valuetext={
                     getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
                   }
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  name={name}
-                  type="range"
-                  min={props.min}
-                  max={props.max}
-                  step={props.step}
+                  data-index={index}
                   disabled={disabled}
-                  value={values[index]}
+                  max={props.max}
+                  min={props.min}
+                  name={name}
+                  onBlur={handleBlur}
                   onChange={handleHiddenInputChange}
+                  onFocus={handleFocus}
+                  step={props.step}
                   style={{
                     ...visuallyHidden,
                     direction: isRtl ? 'rtl' : 'ltr',
@@ -783,6 +780,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                     width: '100%',
                     height: '100%',
                   }}
+                  tabIndex={tabIndex}
+                  type="range"
+                  value={values[index]}
                 />
               </Thumb>
             </ValueLabelComponent>
