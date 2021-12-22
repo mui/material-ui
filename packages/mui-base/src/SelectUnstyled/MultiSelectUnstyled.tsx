@@ -133,7 +133,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     focusVisible: buttonFocusVisible,
     open: listboxOpen,
     renderValue,
-    value: value as TValue[],
+    value,
   };
 
   const classes = useUtilityClasses(ownerState);

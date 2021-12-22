@@ -107,7 +107,7 @@ interface UseListboxCommonProps<TOption> {
    */
   disabledItemsFocusable?: boolean;
   /**
-   * A function that generates the id attribute of indivcidual options.
+   * A function that generates the id attribute of individual options.
    */
   optionIdGenerator?: (option: TOption, index: number) => string;
   /**
@@ -119,6 +119,7 @@ interface UseListboxCommonProps<TOption> {
    * Callback fired when the highlighted option changes.
    */
   onHighlightChange?: (option: TOption | null) => void;
+  listboxRef?: React.Ref<Element>;
 }
 
 interface UseSingleSelectListboxProps<TOption> extends UseListboxCommonProps<TOption> {

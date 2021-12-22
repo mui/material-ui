@@ -1,16 +1,52 @@
 import * as React from 'react';
 import { unstable_useControlled as useControlled } from '@mui/utils';
 import { useButton } from '../ButtonUnstyled';
-import { SelectOption, UseSelectProps } from './useSelectProps';
+import {
+  SelectOption,
+  UseSelectMultiProps,
+  UseSelectProps,
+  UseSelectSingleProps,
+} from './useSelectProps';
 import {
   ListboxReducer,
   useListbox,
   defaultListboxReducer,
   ActionTypes,
   UseListboxProps,
+  OptionState,
 } from '../ListboxUnstyled';
 
-export default function useSelect<TValue>(props: UseSelectProps<TValue>) {
+interface UseSingleSelectResult<TValue> {
+  buttonActive: boolean;
+  buttonFocusVisible: boolean;
+  disabled: boolean;
+  getButtonProps: (otherHandlers?: Record<string, React.EventHandler<any>>) => Record<string, any>;
+  getListboxProps: (otherHandlers?: Record<string, React.EventHandler<any>>) => Record<string, any>;
+  getOptionProps: (
+    index: number,
+    otherHandlers?: Record<string, React.EventHandler<any>>,
+  ) => Record<string, any>;
+  getOptionState: (index: number) => OptionState<SelectOption<TValue>>;
+  value: TValue | null;
+}
+
+interface UseMultiSelectResult<TValue> {
+  buttonActive: boolean;
+  buttonFocusVisible: boolean;
+  disabled: boolean;
+  getButtonProps: (otherHandlers?: Record<string, React.EventHandler<any>>) => Record<string, any>;
+  getListboxProps: (otherHandlers?: Record<string, React.EventHandler<any>>) => Record<string, any>;
+  getOptionProps: (
+    index: number,
+    otherHandlers?: Record<string, React.EventHandler<any>>,
+  ) => Record<string, any>;
+  getOptionState: (index: number) => OptionState<SelectOption<TValue>>;
+  value: TValue[];
+}
+
+function useSelect<TValue>(props: UseSelectSingleProps<TValue>): UseSingleSelectResult<TValue>;
+function useSelect<TValue>(props: UseSelectMultiProps<TValue>): UseMultiSelectResult<TValue>;
+function useSelect<TValue>(props: UseSelectProps<TValue>) {
   const {
     buttonComponent,
     buttonRef,
@@ -146,6 +182,7 @@ export default function useSelect<TValue>(props: UseSelectProps<TValue>) {
       id: listboxId,
       isOptionDisabled: (o) => o?.disabled ?? false,
       optionComparer: (o, v) => o?.value === v?.value,
+      listboxRef,
       multiple: false,
       onChange: (option: SelectOption<TValue> | null) => {
         setValue(option?.value ?? null);
@@ -161,7 +198,7 @@ export default function useSelect<TValue>(props: UseSelectProps<TValue>) {
     getRootProps: getListboxProps,
     getOptionProps,
     getOptionState,
-  } = useListbox(useListboxParameters, listboxRef);
+  } = useListbox(useListboxParameters);
 
   return {
     buttonActive,
@@ -176,7 +213,7 @@ export default function useSelect<TValue>(props: UseSelectProps<TValue>) {
             .onKeyDown,
         }),
         'aria-expanded': open,
-        'aria-haspopup': 'listbox',
+        'aria-haspopup': 'listbox' as const,
       };
     },
     getListboxProps: (otherHandlers?: Record<string, React.EventHandler<any>>) =>
@@ -190,3 +227,5 @@ export default function useSelect<TValue>(props: UseSelectProps<TValue>) {
     value,
   };
 }
+
+export default useSelect;

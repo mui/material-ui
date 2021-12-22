@@ -24,7 +24,7 @@ interface UseSelectCommonProps<TValue> {
   buttonRef?: React.Ref<Element>;
   disabled?: boolean;
   listboxId?: string;
-  listboxRef: React.Ref<Element>;
+  listboxRef?: React.Ref<Element>;
   onButtonClick?: React.MouseEventHandler<Element>;
   onOpenChange?: (open: boolean) => void;
   open?: boolean;

@@ -7,10 +7,7 @@ import areArraysEqual from '../utils/areArraysEqual';
 
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 
-export default function useListbox<TOption>(
-  props: UseListboxProps<TOption>,
-  ref: React.Ref<Element>,
-) {
+export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
   const {
     disableListWrap = false,
     disabledItemsFocusable = false,
@@ -20,6 +17,7 @@ export default function useListbox<TOption>(
     isOptionDisabled = () => false,
     optionComparer = defaultOptionComparer,
     stateReducer: externalReducer,
+    listboxRef: externalListboxRef,
   } = props;
 
   function defaultIdGenerator(_: TOption, index: number) {
@@ -37,8 +35,8 @@ export default function useListbox<TOption>(
     optionComparer,
   };
 
-  const listboxRef = React.useRef<Element | null>(null);
-  const handleRef = useForkRef(listboxRef, ref);
+  const listboxRef = React.useRef<HTMLUListElement>(null);
+  const handleRef = useForkRef(externalListboxRef, listboxRef);
 
   const [{ highlightedIndex, selectedValue }, dispatch] = useControllableReducer(
     defaultReducer,

@@ -134,7 +134,7 @@ const SingleSelectUnstyled = React.forwardRef(function SingleSelectUnstyled<TVal
     focusVisible: buttonFocusVisible,
     open: listboxOpen,
     renderValue,
-    value: value as TValue | null,
+    value,
   };
 
   const classes = useUtilityClasses(ownerState);

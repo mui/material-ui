@@ -211,3 +211,6 @@ import { useSelect } from '@mui/base/SelectUnstyled';
 ```
 
 If you need to use Select's functionality in another component, you can use the `useSelect` hook.
+It enables maximal customizability at the cost of being low-level.
+
+{{"demo": "pages/components/selects/UseSelect.js"}}
