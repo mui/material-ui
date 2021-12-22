@@ -208,6 +208,7 @@ async function generateProptypes(
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
 
   const unstyledFile = getUnstyledFilename(tsFile, true);
+  const unstyledPropsFile = unstyledFile.replace('.d.ts', 'Props.ts');
 
   const generatedForTypeScriptFile = sourceFile === tsFile;
   const result = ttp.inject(proptypes, sourceContent, {
@@ -258,7 +259,8 @@ async function generateProptypes(
 
       prop.filenames.forEach((filename) => {
         const isExternal = filename !== tsFile;
-        const implementedByUnstyledVariant = filename === unstyledFile;
+        const implementedByUnstyledVariant =
+          filename === unstyledFile || filename === unstyledPropsFile;
         if (!isExternal || implementedByUnstyledVariant) {
           shouldDocument = true;
         }
