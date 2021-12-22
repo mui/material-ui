@@ -49,6 +49,7 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
       Mark?: React.ElementType;
       MarkLabel?: React.ElementType;
       ValueLabel?: React.ElementType;
+      Input?: React.ElementType;
     };
     /**
      * The props used for each slot inside the Slider.
@@ -63,6 +64,7 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
       markLabel?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
       valueLabel?: React.ComponentPropsWithRef<typeof SliderValueLabelUnstyled> &
         SliderUnstyledComponentsPropsOverrides;
+      input?: React.HTMLAttributes<HTMLInputElement> & SliderUnstyledComponentsPropsOverrides;
     };
     /**
      * The default value. Use when the component is not controlled.

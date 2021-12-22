@@ -607,6 +607,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const MarkLabel = components.MarkLabel || 'span';
   const markLabelProps = componentsProps.markLabel || {};
 
+  const Input = components.Input || 'input';
+  const inputProps = componentsProps.input || {};
+
   // all props with defaults
   // consider extracting to hook an reusing the lint rule for the varints
   const ownerState = {
@@ -754,7 +757,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   ...thumbProps.style,
                 }}
               >
-                <input
+                <Input
+                  tabIndex={tabIndex}
+                  data-index={index}
                   aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
                   aria-labelledby={ariaLabelledby}
                   aria-orientation={orientation}
@@ -764,25 +769,25 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   aria-valuetext={
                     getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
                   }
-                  data-index={index}
-                  disabled={disabled}
-                  max={props.max}
-                  min={props.min}
-                  name={name}
-                  onBlur={handleBlur}
-                  onChange={handleHiddenInputChange}
                   onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  name={name}
+                  type="range"
+                  min={props.min}
+                  max={props.max}
                   step={props.step}
+                  disabled={disabled}
+                  value={values[index]}
+                  onChange={handleHiddenInputChange}
                   style={{
                     ...visuallyHidden,
                     direction: isRtl ? 'rtl' : 'ltr',
                     // So that VoiceOver's focus indicator matches the thumb's dimensions
                     width: '100%',
                     height: '100%',
+                    ...inputProps.style,
                   }}
-                  tabIndex={tabIndex}
-                  type="range"
-                  value={values[index]}
+                  {...inputProps}
                 />
               </Thumb>
             </ValueLabelComponent>
@@ -853,6 +858,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   components: PropTypes.shape({
+    Input: PropTypes.elementType,
     Mark: PropTypes.elementType,
     MarkLabel: PropTypes.elementType,
     Rail: PropTypes.elementType,
