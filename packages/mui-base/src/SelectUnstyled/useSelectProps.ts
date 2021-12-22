@@ -2,7 +2,6 @@ export interface SelectOption<TValue> {
   value: TValue;
   label: React.ReactNode;
   disabled?: boolean;
-  index: number;
 }
 
 export interface SelectOptionGroup<TValue> {

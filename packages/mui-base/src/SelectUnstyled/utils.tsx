@@ -23,16 +23,9 @@ export function areOptionsEqual<TValue>(
   );
 }
 
-export function getOptionsFromChildren<TValue>(
-  children: React.ReactNode,
-  startIndex?: { current: number },
-): SelectChild<TValue>[] {
+export function getOptionsFromChildren<TValue>(children: React.ReactNode): SelectChild<TValue>[] {
   if (children == null) {
     return [];
-  }
-
-  if (startIndex == null) {
-    startIndex = { current: 0 };
   }
 
   const selectChildren: SelectChild<TValue>[] = [];
@@ -44,7 +37,7 @@ export function getOptionsFromChildren<TValue>(
         const element = node as React.ReactElement<OptionGroupProps>;
 
         const group: SelectOptionGroup<TValue> = {
-          options: getOptionsFromChildren<TValue>(nodeChildren, startIndex),
+          options: getOptionsFromChildren<TValue>(nodeChildren),
           label: element.props.label,
           disabled: element.props.disabled ?? false,
         };
@@ -61,10 +54,8 @@ export function getOptionsFromChildren<TValue>(
       value: element.props.value,
       label: element.props.children,
       disabled: element.props.disabled ?? false,
-      index: startIndex!.current,
     };
 
-    startIndex!.current += 1;
     selectChildren.push(option);
   });
 
@@ -114,8 +105,8 @@ export function flattenOptionGroups<TValue>(
 
 interface RenderOptionParameters<TValue> {
   componentsProps: Required<SelectUnstyledProps<TValue>>['componentsProps'];
-  getOptionProps: (optionIndex: number) => Record<string, any>;
-  getOptionState: (optionIndex: number) => OptionState<SelectOption<TValue>>;
+  getOptionProps: (option: SelectOption<TValue>) => Record<string, any>;
+  getOptionState: (option: SelectOption<TValue>) => OptionState<SelectOption<TValue>>;
   itemIndex: number;
   listboxOption: React.ElementType;
   listboxOptionGroupHeader: React.ElementType;
@@ -150,7 +141,7 @@ export function renderOption<TValue extends {}>(parameters: RenderOptionParamete
     });
   }
 
-  const optionState = getOptionState(option.index);
+  const optionState = getOptionState(option);
   const { disabled: optionDisabled, highlighted, selected } = optionState;
   const optionClasses = clsx(optionClassName, [
     componentsProps.listboxOption?.className,
@@ -163,7 +154,7 @@ export function renderOption<TValue extends {}>(parameters: RenderOptionParamete
     ListboxOption,
     {
       ...componentsProps.listboxOption,
-      ...getOptionProps(option.index),
+      ...getOptionProps(option),
       className: optionClasses,
     },
     { ...ownerState, ...optionState },

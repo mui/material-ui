@@ -147,9 +147,9 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     };
   };
 
-  const getOptionState = (index: number) => {
-    const option = options[index];
+  const getOptionState = (option: TOption) => {
     let selected: boolean;
+    const index = options.findIndex((opt) => optionComparer(opt, option));
     if (multiple) {
       selected = ((selectedValue as TOption[]) ?? []).some(
         (value) => value != null && optionComparer(option, value),
@@ -169,14 +169,15 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     } as OptionState<TOption>;
   };
 
-  const getOptionProps = (index: number, other: Record<string, React.EventHandler<any>> = {}) => {
-    const { selected, disabled } = getOptionState(index);
+  const getOptionProps = (option: TOption, other: Record<string, React.EventHandler<any>> = {}) => {
+    const { selected, disabled } = getOptionState(option);
+    const index = options.findIndex((opt) => optionComparer(opt, option));
 
     return {
       'aria-disabled': disabled || undefined,
       'aria-selected': selected,
       'data-option-index': index,
-      id: optionIdGenerator(options[index], index),
+      id: optionIdGenerator(option, index),
       onClick: createHandleOptionClick(index, other),
       role: 'option',
     };

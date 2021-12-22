@@ -16,36 +16,29 @@ import {
   OptionState,
 } from '../ListboxUnstyled';
 
-interface UseSingleSelectResult<TValue> {
+interface UseSelectCommonResult<TValue> {
   buttonActive: boolean;
   buttonFocusVisible: boolean;
   disabled: boolean;
   getButtonProps: (otherHandlers?: Record<string, React.EventHandler<any>>) => Record<string, any>;
   getListboxProps: (otherHandlers?: Record<string, React.EventHandler<any>>) => Record<string, any>;
   getOptionProps: (
-    index: number,
+    option: SelectOption<TValue>,
     otherHandlers?: Record<string, React.EventHandler<any>>,
   ) => Record<string, any>;
-  getOptionState: (index: number) => OptionState<SelectOption<TValue>>;
+  getOptionState: (option: SelectOption<TValue>) => OptionState<SelectOption<TValue>>;
+}
+
+interface UseSelectSingleResult<TValue> extends UseSelectCommonResult<TValue> {
   value: TValue | null;
 }
 
-interface UseMultiSelectResult<TValue> {
-  buttonActive: boolean;
-  buttonFocusVisible: boolean;
-  disabled: boolean;
-  getButtonProps: (otherHandlers?: Record<string, React.EventHandler<any>>) => Record<string, any>;
-  getListboxProps: (otherHandlers?: Record<string, React.EventHandler<any>>) => Record<string, any>;
-  getOptionProps: (
-    index: number,
-    otherHandlers?: Record<string, React.EventHandler<any>>,
-  ) => Record<string, any>;
-  getOptionState: (index: number) => OptionState<SelectOption<TValue>>;
+interface UseSelectMultiResult<TValue> extends UseSelectCommonResult<TValue> {
   value: TValue[];
 }
 
-function useSelect<TValue>(props: UseSelectSingleProps<TValue>): UseSingleSelectResult<TValue>;
-function useSelect<TValue>(props: UseSelectMultiProps<TValue>): UseMultiSelectResult<TValue>;
+function useSelect<TValue>(props: UseSelectSingleProps<TValue>): UseSelectSingleResult<TValue>;
+function useSelect<TValue>(props: UseSelectMultiProps<TValue>): UseSelectMultiResult<TValue>;
 function useSelect<TValue>(props: UseSelectProps<TValue>) {
   const {
     buttonComponent,

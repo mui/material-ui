@@ -1,1 +1,3 @@
-<CustomSelect options={options} />
+<p>
+  Select a color: <CustomSelect options={options} />
+</p>

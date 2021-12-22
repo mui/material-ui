@@ -4,6 +4,8 @@ import { styled } from '@mui/system';
 
 const Root = styled('div')`
   position: relative;
+  display: inline-block;
+  vertical-align: baseline;
 `;
 
 const Toggle = styled('div')`
@@ -18,17 +20,22 @@ const Toggle = styled('div')`
   font-size: 1rem;
   color: #fff;
   cursor: default;
+
+  & .placeholder {
+    opacity: 0.5;
+  }
 `;
 
 const Listbox = styled('ul')`
   background: #eee;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 10px 0 0 0;
   position: absolute;
   height: auto;
   transition: opacity 0.1s ease;
   width: 100%;
+  box-shadow: 0 5px 13px -3px #333;
 
   &.hidden {
     opacity: 0;
@@ -38,6 +45,10 @@ const Listbox = styled('ul')`
 
   & > li {
     padding: 5px;
+
+    &:hover {
+      background: #ccc;
+    }
   }
 `;
 
@@ -60,11 +71,11 @@ function CustomSelect({ options }: Props) {
       onBlur={() => setListboxVisible(false)}
     >
       <Toggle {...getButtonProps()} style={{ '--color': value } as any}>
-        {value}
+        {value ?? <span className="placeholder">nothing selected</span>}
       </Toggle>
       <Listbox {...getListboxProps()} className={listboxVisible ? '' : 'hidden'}>
-        {options.map((option, index) => (
-          <li key={option.value} {...getOptionProps(index)}>
+        {options.map((option) => (
+          <li key={option.value} {...getOptionProps(option)}>
             {option.label}
           </li>
         ))}
@@ -92,5 +103,9 @@ const options = [
 ];
 
 export default function UseSelect() {
-  return <CustomSelect options={options} />;
+  return (
+    <p>
+      Select a color: <CustomSelect options={options} />
+    </p>
+  );
 }
