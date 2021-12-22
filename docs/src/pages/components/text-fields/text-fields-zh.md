@@ -1,6 +1,6 @@
 ---
 title: React Text Field（文本框）组件
-components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
+components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
 githubLabel: 'component: TextField'
 materialDesign: https://material.io/components/text-fields
 ---
@@ -13,7 +13,7 @@ materialDesign: https://material.io/components/text-fields
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic TextField
+## 基础文本框
 
 The `TextField` wrapper component is a complete form control including a label, input, and help text. It comes with three variants: outlined (default), filled, and standard. It comes with three variants: outlined (default), filled, and standard.
 
@@ -35,7 +35,7 @@ The `error` prop toggles the error state. The `error` prop toggles the error sta
 
 ## 多行属性
 
-`multiline` 属性将文本字段转换为 [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) 元素。 除非设置了 `rows` 属性，否则文本字段的高度会动态匹配其内容（使用 [TextareaAutosize](/components/textarea-autosize/) 时）。 You can use the `minRows` and `maxRows` props to bound it.
+`multiline` 属性将文本框转换为 [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) 元素。 除非设置了 `rows` 属性，否则文本框的高度会动态匹配其内容（当你使用 [TextareaAutosize](/components/textarea-autosize/) 属性时）。 You can use the `minRows` and `maxRows` props to bound it.
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
@@ -193,7 +193,7 @@ type="number" 的输入存在潜在的可用性问题。
 
 ### 辅助文本
 
-助手文本属性会影响文本字段的高度。 如果两个文本字段并排放置，一个有辅助文本，另一个没有，那么它们的高度就会不同。 例如:
+助手文本属性会影响文本框的高度。 如果两个文本框并排放置，一个有辅助文本，另一个没有，那么它们的高度就会不同。 例如:
 
 {{"demo": "pages/components/text-fields/HelperTextMisaligned.js"}}
 
