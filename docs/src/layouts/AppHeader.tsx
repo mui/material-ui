@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, alpha, useTheme } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
