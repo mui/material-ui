@@ -374,6 +374,7 @@ export function getThemedComponents(theme: Theme) {
           paper: {
             mt: 0.5,
             minWidth: 160,
+            elevation: 0,
             color: theme.palette.text.secondary,
             backgroundImage: 'none',
             bgColor:
