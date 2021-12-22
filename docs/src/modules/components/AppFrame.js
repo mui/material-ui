@@ -134,7 +134,7 @@ const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
 })(({ disablePermanent, theme }) => {
   return {
-    padding: '4px 0px 4px 8px',
+    padding: '5px 0px 5px 8px',
     transition: theme.transitions.create('width'),
     ...(disablePermanent && {
       boxShadow: 'none',
@@ -158,6 +158,23 @@ const StyledAppBar = styled(AppBar, {
         ? alpha(theme.palette.primaryDark[900], 0.7)
         : 'rgba(255,255,255,0.7)',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
+    '& .MuiIconButton-root': {
+      border: `1px solid ${
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]
+      }`,
+      borderRadius: theme.shape.borderRadius,
+      color:
+        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+      // background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
+      '&:hover': {
+        borderColor:
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[300],
+        background:
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primaryDark[700], 0.4)
+            : theme.palette.grey[50],
+      },
+    },
   };
 });
 
@@ -226,6 +243,7 @@ function AppFrame(props) {
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
   const languageButtonProps = {
+    color: 'inherit',
     onClick: handleLanguageIconClick,
     'aria-owns': languageMenu ? 'language-menu' : undefined,
     'aria-haspopup': 'true',
@@ -266,7 +284,7 @@ function AppFrame(props) {
             {isProductScoped && FEATURE_TOGGLE.enable_product_scope && (
               <Tooltip title="MUI products" enterDelay={300}>
                 <IconButton
-                  color="primary"
+                  color="inherit"
                   onClick={() => setProductsDrawerOpen(true)}
                   sx={{ display: { md: 'none' } }}
                 >
@@ -278,7 +296,7 @@ function AppFrame(props) {
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
                 component="a"
-                color="primary"
+                color="inherit"
                 href={process.env.SOURCE_CODE_REPO}
                 data-ga-event-category="header"
                 data-ga-event-action="github"
@@ -298,7 +316,7 @@ function AppFrame(props) {
               </IconButton>
             </Tooltip>
             <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="primary" onClick={() => setSettingsOpen(true)}>
+              <IconButton color="inherit" onClick={() => setSettingsOpen(true)} sx={{ px: '8px' }}>
                 <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
