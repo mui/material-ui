@@ -283,7 +283,7 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('palette-background').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-palette-background-default)',
+          body: 'var(--joy-palette-background-body)',
           level1: 'var(--joy-palette-background-level1)',
           level2: 'var(--joy-palette-background-level2)',
           level3: 'var(--joy-palette-background-level3)',
@@ -316,7 +316,6 @@ describe('[Joy] CssVarsProvider', () => {
 
       expect(screen.getByTestId('font-size').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-fontSize-default)',
           xs: 'var(--joy-fontSize-xs)',
           sm: 'var(--joy-fontSize-sm)',
           md: 'var(--joy-fontSize-md)',
@@ -331,7 +330,7 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('font-family').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-fontFamily-default)',
+          body: 'var(--joy-fontFamily-body)',
           display: 'var(--joy-fontFamily-display)',
           code: 'var(--joy-fontFamily-code)',
           fallback: 'var(--joy-fontFamily-fallback)',
@@ -339,7 +338,6 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('font-weight').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-fontWeight-default)',
           xs: 'var(--joy-fontWeight-xs)',
           sm: 'var(--joy-fontWeight-sm)',
           md: 'var(--joy-fontWeight-md)',
@@ -349,7 +347,6 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('line-height').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-lineHeight-default)',
           sm: 'var(--joy-lineHeight-sm)',
           md: 'var(--joy-lineHeight-md)',
           lg: 'var(--joy-lineHeight-lg)',
@@ -357,7 +354,6 @@ describe('[Joy] CssVarsProvider', () => {
       );
       expect(screen.getByTestId('letter-spacing').textContent).to.equal(
         JSON.stringify({
-          default: 'var(--joy-letterSpacing-default)',
           sm: 'var(--joy-letterSpacing-sm)',
           md: 'var(--joy-letterSpacing-md)',
           lg: 'var(--joy-letterSpacing-lg)',

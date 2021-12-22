@@ -53,7 +53,7 @@ export interface PaletteText {
 }
 
 export interface PaletteBackground {
-  default: React.CSSProperties['backgroundColor'];
+  body: React.CSSProperties['backgroundColor'];
   level1: React.CSSProperties['backgroundColor'];
   level2: React.CSSProperties['backgroundColor'];
   level3: React.CSSProperties['backgroundColor'];

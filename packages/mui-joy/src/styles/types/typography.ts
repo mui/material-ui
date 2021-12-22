@@ -4,7 +4,6 @@ import { CSSObject } from '@mui/system';
 type CSSProperties = CSS.Properties<number | string>;
 
 export interface FontSize {
-  default: CSSProperties['fontSize'];
   xs: CSSProperties['fontSize'];
   sm: CSSProperties['fontSize'];
   md: CSSProperties['fontSize'];
@@ -18,7 +17,7 @@ export interface FontSize {
 }
 
 export interface FontFamily {
-  default: CSSProperties['fontFamily'];
+  body: CSSProperties['fontFamily'];
   display: CSSProperties['fontFamily'];
   code: CSSProperties['fontFamily'];
   fallback: CSSProperties['fontFamily'];
@@ -26,7 +25,6 @@ export interface FontFamily {
 
 export interface FontWeight {
   // add string to support css variable value.
-  default: CSSProperties['fontWeight'];
   xs: CSSProperties['fontWeight'];
   sm: CSSProperties['fontWeight'];
   md: CSSProperties['fontWeight'];
@@ -35,14 +33,12 @@ export interface FontWeight {
 }
 
 export interface LineHeight {
-  default: CSSProperties['lineHeight'];
   sm: CSSProperties['lineHeight'];
   md: CSSProperties['lineHeight'];
   lg: CSSProperties['lineHeight'];
 }
 
 export interface LetterSpacing {
-  default: CSSProperties['letterSpacing'];
   sm: CSSProperties['letterSpacing'];
   md: CSSProperties['letterSpacing'];
   lg: CSSProperties['letterSpacing'];

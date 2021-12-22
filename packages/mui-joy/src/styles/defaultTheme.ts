@@ -85,7 +85,7 @@ type BaseDesignTokens = {
     success: Pick<PaletteRange, BasePaletteRange>;
     warning: Pick<PaletteRange, BasePaletteRange>;
     text: Pick<PaletteText, 'primary' | 'secondary' | 'tertiary'>;
-    background: Pick<PaletteBackground, 'default' | 'level1' | 'level2' | 'level3'>;
+    background: Pick<PaletteBackground, 'body' | 'level1' | 'level2' | 'level3'>;
     focusVisible: Palette['focusVisible'];
   };
   radius: Pick<Radius, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
@@ -94,12 +94,12 @@ type BaseDesignTokens = {
   shadow: Pick<Shadow, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   fontSize: Pick<
     FontSize,
-    'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2' | 'xl3' | 'xl4' | 'xl5' | 'xl6'
+    'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2' | 'xl3' | 'xl4' | 'xl5' | 'xl6'
   >;
-  fontFamily: Pick<FontFamily, 'default' | 'display' | 'code' | 'fallback'>;
-  fontWeight: Pick<FontWeight, 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
-  lineHeight: Pick<LineHeight, 'default' | 'sm' | 'md' | 'lg'>;
-  letterSpacing: Pick<LetterSpacing, 'default' | 'sm' | 'md' | 'lg'>;
+  fontFamily: Pick<FontFamily, 'body' | 'display' | 'code' | 'fallback'>;
+  fontWeight: Pick<FontWeight, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
+  lineHeight: Pick<LineHeight, 'sm' | 'md' | 'lg'>;
+  letterSpacing: Pick<LetterSpacing, 'sm' | 'md' | 'lg'>;
 };
 
 type BaseColorSystem = Pick<BaseDesignTokens, 'palette' | 'shadowRing' | 'shadowChannel'>;
@@ -136,7 +136,7 @@ export const lightColorSystem: BaseColorSystem = {
       tertiary: 'var(--joy-palette-neutral-500)',
     },
     background: {
-      default: '#fff',
+      body: '#fff',
       level1: 'var(--joy-palette-neutral-50)',
       level2: 'var(--joy-palette-neutral-100)',
       level3: 'var(--joy-palette-neutral-200)',
@@ -179,7 +179,7 @@ export const darkColorSystem: BaseColorSystem = {
       tertiary: 'var(--joy-palette-neutral-400)',
     },
     background: {
-      default: 'var(--joy-palette-neutral-900)',
+      body: 'var(--joy-palette-neutral-900)',
       level1: 'var(--joy-palette-neutral-800)',
       level2: 'var(--joy-palette-neutral-700)',
       level3: 'var(--joy-palette-neutral-600)',
@@ -211,10 +211,9 @@ const baseDesignTokens: BaseDesignTokens = {
     xl: 'var(--joy-shadowRing), 0.3px 0.8px 1.1px rgba(var(--joy-shadowChannel) / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(var(--joy-shadowChannel) / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(var(--joy-shadowChannel) / 0.16), 4.8px 12px 17px -0.5px rgba(var(--joy-shadowChannel) / 0.19), 7px 17.5px 24.7px -0.7px rgba(var(--joy-shadowChannel) / 0.21), 10.2px 25.5px 36px -0.9px rgba(var(--joy-shadowChannel) / 0.24), 14.8px 36.8px 52.1px -1.1px rgba(var(--joy-shadowChannel) / 0.27), 21px 52.3px 74px -1.2px rgba(var(--joy-shadowChannel) / 0.29)',
   },
   fontSize: {
-    default: '1rem',
     xs: '0.75rem',
     sm: '0.875rem',
-    md: '1.125rem',
+    md: '1rem',
     lg: '1.25rem',
     xl: '1.5rem',
     xl2: '1.875rem',
@@ -224,28 +223,25 @@ const baseDesignTokens: BaseDesignTokens = {
     xl6: '4.5rem',
   },
   fontFamily: {
-    default: '"Public Sans", var(--joy-fontFamily-fallback)',
+    body: '"Public Sans", var(--joy-fontFamily-fallback)',
     display: '"Public Sans", var(--joy-fontFamily-fallback)',
     code: 'Source Code Pro,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
     fallback:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   },
   fontWeight: {
-    default: 400,
     xs: 200,
     sm: 300,
-    md: 500,
+    md: 400,
     lg: 700,
     xl: 800,
   },
   lineHeight: {
-    default: 1.5,
     sm: 1.25,
-    md: 1.7,
-    lg: 2,
+    md: 1.5,
+    lg: 1.7,
   },
   letterSpacing: {
-    default: 0,
     sm: '-0.01em',
     md: '0.083em',
     lg: '0.125em',
@@ -298,59 +294,52 @@ const internalDefaultTheme: BaseDesignTokens & {
       color: 'var(--joy-palette-text-primary)',
     },
     h3: {
-      fontFamily: 'var(--joy-fontFamily-default)',
+      fontFamily: 'var(--joy-fontFamily-md)',
       fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl2)',
       lineHeight: 'var(--joy-lineHeight-sm)',
-      letterSpacing: 'var(--joy-letterSpacing-default)',
       color: 'var(--joy-palette-text-primary)',
     },
     h4: {
-      fontFamily: 'var(--joy-fontFamily-default)',
+      fontFamily: 'var(--joy-fontFamily-md)',
       fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl)',
-      lineHeight: 'var(--joy-lineHeight-default)',
-      letterSpacing: 'var(--joy-letterSpacing-default)',
+      lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-primary)',
     },
     h5: {
-      fontFamily: 'var(--joy-fontFamily-default)',
+      fontFamily: 'var(--joy-fontFamily-md)',
       fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-lg)',
-      lineHeight: 'var(--joy-lineHeight-default)',
-      letterSpacing: 'var(--joy-letterSpacing-default)',
+      lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-primary)',
     },
     h6: {
-      fontFamily: 'var(--joy-fontFamily-default)',
+      fontFamily: 'var(--joy-fontFamily-md)',
       fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
-      lineHeight: 'var(--joy-lineHeight-default)',
-      letterSpacing: 'var(--joy-letterSpacing-default)',
+      lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-primary)',
     },
     body1: {
-      fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-default)' as CSSProperties['fontWeight'],
-      fontSize: 'var(--joy-fontSize-default)',
-      lineHeight: 'var(--joy-lineHeight-default)',
-      letterSpacing: 'var(--joy-letterSpacing-default)',
+      fontFamily: 'var(--joy-fontFamily-md)',
+      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
+      fontSize: 'var(--joy-fontSize-md)',
+      lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-primary)',
     },
     body2: {
-      fontFamily: 'var(--joy-fontFamily-default)',
-      fontWeight: 'var(--joy-fontWeight-default)' as CSSProperties['fontWeight'],
+      fontFamily: 'var(--joy-fontFamily-md)',
+      fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-sm)',
       lineHeight: 'var(--joy-lineHeight-md)',
-      letterSpacing: 'var(--joy-letterSpacing-default)',
       color: 'var(--joy-palette-text-secondary)',
     },
     body3: {
-      fontFamily: 'var(--joy-fontFamily-default)',
+      fontFamily: 'var(--joy-fontFamily-md)',
       fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
-      lineHeight: 'var(--joy-lineHeight-default)',
-      letterSpacing: 'var(--joy-letterSpacing-default)',
+      lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-tertiary)',
     },
   },

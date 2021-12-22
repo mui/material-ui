@@ -64,20 +64,17 @@ const ButtonRoot = styled('button', {
       transition:
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...theme.typography.body1,
-      fontWeight: theme.vars.fontWeight.md,
       ...(ownerState.size === 'sm' && {
         paddingLeft: '1rem',
         paddingRight: '1rem',
         minHeight: '32px',
         ...theme.typography.body2,
-        fontWeight: theme.vars.fontWeight.md,
       }),
       ...(ownerState.size === 'lg' && {
         paddingLeft: '2rem',
         paddingRight: '2rem',
         minHeight: '48px',
         ...theme.typography.h6,
-        fontWeight: theme.vars.fontWeight.md,
       }),
       [`&.${buttonClasses.focusVisible}`]: theme.focus.default,
     },
