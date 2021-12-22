@@ -68,7 +68,7 @@ const NavItem = styled(Link, {
     margin: theme.spacing(0.5, 0, 1, 0),
     borderLeft: `1px solid transparent`,
     boxSizing: 'border-box',
-    fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: 500,
     '&:hover': {
       borderLeftColor:
         theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],

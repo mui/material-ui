@@ -185,7 +185,7 @@ const Root = styled('div')(({ theme }) => ({
   },
   '& th': {
     lineHeight: theme.typography.pxToRem(24),
-    fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: 500,
     color: theme.palette.text.primary,
     whiteSpace: 'pre',
     borderBottom: `1px solid ${theme.palette.divider}`,
