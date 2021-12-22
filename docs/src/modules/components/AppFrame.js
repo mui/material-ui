@@ -153,23 +153,6 @@ const StyledAppBar = styled(AppBar, {
         ? alpha(theme.palette.primaryDark[900], 0.7)
         : 'rgba(255,255,255,0.7)',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
-    '& .MuiIconButton-root': {
-      border: `1px solid ${
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]
-      }`,
-      borderRadius: theme.shape.borderRadius,
-      color:
-        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
-      // background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
-      '&:hover': {
-        borderColor:
-          theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[300],
-        background:
-          theme.palette.mode === 'dark'
-            ? alpha(theme.palette.primaryDark[700], 0.4)
-            : theme.palette.grey[50],
-      },
-    },
   };
 });
 
@@ -263,7 +246,7 @@ function AppFrame(props) {
         <Toolbar variant="dense">
           <NavIconButton
             edge="start"
-            color="inherit"
+            color="primary"
             aria-label={t('appFrame.openDrawer')}
             disablePermanent={disablePermanent}
             onClick={handleNavDrawerOpen}
@@ -271,33 +254,27 @@ function AppFrame(props) {
             <MenuIcon fontSize="small" />
           </NavIconButton>
           <GrowingDiv />
-          <Stack direction="row" spacing={1.5} sx={{ '& > button': { width: 38 } }}>
+          <Stack direction="row" spacing={1.2}>
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
                 component="a"
-                color="inherit"
+                color="primary"
                 href={process.env.SOURCE_CODE_REPO}
                 data-ga-event-category="header"
                 data-ga-event-action="github"
-                sx={{ px: '8px' }}
               >
                 <GitHubIcon fontSize="small" />
               </IconButton>
             </Tooltip>
             <Notifications />
             <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
-              <IconButton
-                {...languageButtonProps}
-                sx={{
-                  px: '8px',
-                }}
-              >
+              <IconButton {...languageButtonProps} color="primary">
                 <LanguageIcon fontSize="small" />
               </IconButton>
             </Tooltip>
             <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '8px' }}>
+              <IconButton color="primary" onClick={handleSettingsDrawerOpen} sx={{ px: '8px' }}>
                 <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
