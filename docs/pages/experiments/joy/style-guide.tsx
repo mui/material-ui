@@ -82,7 +82,7 @@ const ColorToken = ({ name, value }: { name: string; value: string }) => {
       <Box
         ref={ref}
         sx={{
-          borderRadius: 'calc(var(--joy-borderRadius-default) / 2)',
+          borderRadius: 'calc(var(--joy-borderRadius-md) / 2)',
           bgcolor: value,
           width: 64,
           height: 64,
@@ -115,7 +115,7 @@ const PaletteTokens = () => {
               <summary
                 style={{
                   marginBottom: '0.5rem',
-                  fontFamily: 'var(--joy-fontFamily-default)',
+                  fontFamily: 'var(--joy-fontFamily-body)',
                   cursor: 'pointer',
                 }}
               >
@@ -174,7 +174,7 @@ export default function JoyStyleGuide() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            bgcolor: 'background.default',
+            bgcolor: 'background.body',
           }}
         >
           <ColorSchemePicker />
