@@ -201,7 +201,7 @@ export default function AppNavDrawerItem(props) {
         alignItems: 'center',
         height: '100%',
         marginRight: 1.5,
-        py: 0.5,
+        py: 0.3,
       }}
     >
       <IconComponent {...iconProps} />

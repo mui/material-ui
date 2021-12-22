@@ -129,7 +129,10 @@ const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
 })(({ disablePermanent, theme }) => {
   return {
-    padding: '5px 0px 5px 8px',
+    padding: theme.spacing(1, 2),
+    '& .MuiToolbar-gutters': {
+      padding: 0,
+    },
     transition: theme.transitions.create('width'),
     ...(disablePermanent && {
       boxShadow: 'none',
@@ -250,11 +253,12 @@ function AppFrame(props) {
             aria-label={t('appFrame.openDrawer')}
             disablePermanent={disablePermanent}
             onClick={handleNavDrawerOpen}
+            sx={{ ml: '1px' }}
           >
             <MenuIcon fontSize="small" />
           </NavIconButton>
           <GrowingDiv />
-          <Stack direction="row" spacing={1.2}>
+          <Stack direction="row" spacing={1.3}>
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
