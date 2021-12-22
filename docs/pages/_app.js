@@ -7,7 +7,6 @@ LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import * as React from 'react';
-import find from 'lodash/find';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
@@ -27,6 +26,7 @@ import {
 } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
+import findActivePage from 'docs/src/modules/utils/findActivePage';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -156,32 +156,6 @@ Tip: you can access the documentation \`theme\` object directly in the console.
     'font-family:monospace;color:#1976d2;font-size:12px;',
   );
 }
-
-function findActivePage(currentPages, pathname) {
-  const activePage = find(currentPages, (page) => {
-    if (page.children) {
-      if (pathname.indexOf(`${page.pathname}/`) === 0) {
-        // Check if one of the children matches (for /components)
-        return findActivePage(page.children, pathname);
-      }
-    }
-
-    // Should be an exact match if no children
-    return pathname === page.pathname;
-  });
-
-  if (!activePage) {
-    return null;
-  }
-
-  // We need to drill down
-  if (activePage.pathname !== pathname) {
-    return findActivePage(activePage.children, pathname);
-  }
-
-  return activePage;
-}
-
 function AppWrapper(props) {
   const { children, emotionCache, pageProps } = props;
 
