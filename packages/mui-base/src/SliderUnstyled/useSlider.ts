@@ -27,7 +27,6 @@ export interface UseSliderProps {
   min?: SliderUnstyledProps['min'];
   name?: SliderUnstyledProps['name'];
   onChange?: SliderUnstyledProps['onChange'];
-  onMouseDown?: SliderUnstyledProps['onMouseDown'];
   onChangeCommitted?: SliderUnstyledProps['onChangeCommitted'];
   orientation?: SliderUnstyledProps['orientation'];
   scale?: SliderUnstyledProps['scale'];
@@ -206,7 +205,6 @@ export default function useSlider(props: UseSliderProps) {
     name,
     onChange,
     onChangeCommitted,
-    onMouseDown,
     orientation = 'horizontal',
     scale = Identity,
     step = 1,
@@ -569,10 +567,6 @@ export default function useSlider(props: UseSliderProps) {
   const createHandleMouseDown =
     (otherHandlers: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
-      if (onMouseDown) {
-        onMouseDown(event);
-      }
-
       // Only handle left clicks
       if (event.button !== 0) {
         return;

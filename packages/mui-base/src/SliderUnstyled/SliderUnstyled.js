@@ -142,7 +142,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   return (
     <Root
       {...rootProps}
-      {...getRootProps()}
+      {...getRootProps({ onMouseDown })}
       className={clsx(classes.root, rootProps.className, className)}
     >
       <Rail {...railProps} className={clsx(classes.rail, railProps.className)} />
