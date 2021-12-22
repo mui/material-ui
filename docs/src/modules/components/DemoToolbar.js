@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import LZString from 'lz-string';
-import { useTheme, styled, alpha } from '@mui/material/styles';
+import { useTheme, styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Fade from '@mui/material/Fade';

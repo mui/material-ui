@@ -31,7 +31,7 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const savedScrollTop = {};
 
-const ProductIdentifier = ({ name, icon, metadata, versionSelector }) => (
+const ProductIdentifier = ({ name, metadata, versionSelector }) => (
   <Box sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 0.8 }}>
     {/* Leaving the product icon not apparent for now just to sleep on it a bit and see how it feels */}
     {/* <Box
@@ -72,7 +72,7 @@ const ProductIdentifier = ({ name, icon, metadata, versionSelector }) => (
   </Box>
 );
 ProductIdentifier.propTypes = {
-  icon: PropTypes.element,
+  // icon: PropTypes.element,
   metadata: PropTypes.string,
   name: PropTypes.string,
   versionSelector: PropTypes.element,
@@ -117,8 +117,8 @@ const ToolbarIE11 = styled('div')({ display: 'flex' });
 
 const ToolbarDiv = styled('div')(({ theme }) => {
   return {
-    paddingTop: theme.spacing(1.6),
-    paddingBottom: theme.spacing(1.6),
+    paddingTop: theme.spacing(1.4),
+    paddingBottom: theme.spacing(1.4),
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(2),
     display: 'flex',
@@ -318,22 +318,8 @@ function AppNavDrawer(props) {
             </NextLink>
             {process.env.LIB_VERSION && FEATURE_TOGGLE.enable_product_scope ? (
               <Tooltip title="MUI products" enterDelay={300}>
-                <IconButton
-                  onClick={() => setProductsDrawerOpen(true)}
-                  sx={(theme) => ({
-                    border: `1px solid ${
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primaryDark[600]
-                        : theme.palette.grey[200]
-                    }`,
-                    borderRadius: 1,
-                    color: theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
-                    background:
-                      theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
-                    py: '0.375rem',
-                  })}
-                >
-                  <Apps />
+                <IconButton onClick={() => setProductsDrawerOpen(true)} color="primary">
+                  <Apps fontSize="small" />
                 </IconButton>
               </Tooltip>
             ) : (

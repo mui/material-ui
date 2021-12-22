@@ -208,7 +208,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
 });
 
 function AppFrame(props) {
-  const { children, onClose, disableDrawer = false } = props;
+  const { children, disableDrawer = false } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
@@ -270,7 +270,7 @@ function AppFrame(props) {
           >
             <MenuIcon fontSize="small" />
           </NavIconButton>
-          <NextLink href="/" passHref onClick={onClose}>
+          <NextLink href="/" passHref>
             <Box
               component="a"
               aria-label={t('goToHome')}

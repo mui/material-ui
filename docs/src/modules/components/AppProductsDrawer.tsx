@@ -59,7 +59,6 @@ const LinksWrapper = styled('div')(
   sx({
     pl: 5.5,
     pt: 1,
-    // gap: 0.5,
     display: 'flex',
     flexDirection: 'column',
     '& > a': {
