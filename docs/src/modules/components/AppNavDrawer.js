@@ -141,7 +141,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => {
 });
 
 const SwipeableDrawerPaperComponent = styled('div')({
-  width: 250,
+  width: 260,
   boxShadow: 'none',
 });
 
