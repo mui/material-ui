@@ -44,7 +44,7 @@ export default function handleRequest(
     stylesHTML = `${stylesHTML}${newStyleTag}`;
   });
 
-  // Add the emotion style tags after the insertino point meta tag
+  // Add the emotion style tags after the insertion point meta tag
   const markup = html.replace(
     /<meta(\s)*name="emotion-insertion-point"(\s)*content="emotion-insertion-point"(\s)*\/>/,
     `<meta name="emotion-insertion-point" content="emotion-insertion-point"/>${stylesHTML}`,
