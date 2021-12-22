@@ -1,6 +1,6 @@
 import { deepmerge } from '@mui/utils';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
-import { createTheme, ThemeOptions, Theme } from '@mui/material/styles';
+import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
 
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
@@ -333,6 +333,37 @@ export function getThemedComponents(theme: Theme) {
               '& .MuiButton-endIcon': {
                 color:
                   theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[700],
+              },
+            },
+          },
+        ],
+      },
+      MuiIconButton: {
+        variants: [
+          {
+            props: { color: 'primary' },
+            style: {
+              height: 36,
+              width: 36,
+              border: `1px solid ${
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[200]
+              }`,
+              borderRadius: theme.shape.borderRadius,
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[300]
+                  : theme.palette.primary[500],
+              '&:hover': {
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.grey[300],
+                background:
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.primaryDark[700], 0.4)
+                    : theme.palette.grey[50],
               },
             },
           },

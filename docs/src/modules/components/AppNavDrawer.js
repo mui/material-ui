@@ -109,9 +109,9 @@ const ToolbarIE11 = styled('div')({ display: 'flex' });
 
 const ToolbarDiv = styled('div')(({ theme }) => {
   return {
-    paddingTop: theme.spacing(1.6),
-    paddingBottom: theme.spacing(1.6),
-    paddingLeft: theme.spacing(3),
+    paddingTop: theme.spacing(1.3),
+    paddingBottom: theme.spacing(1.2),
+    paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     display: 'flex',
     flexGrow: 1,
@@ -361,22 +361,8 @@ function AppNavDrawer(props) {
             </NextLink>
             {process.env.LIB_VERSION && FEATURE_TOGGLE.enable_product_scope ? (
               <Tooltip title="MUI products" enterDelay={300}>
-                <IconButton
-                  onClick={() => setProductsDrawerOpen(true)}
-                  sx={(theme) => ({
-                    border: `1px solid ${
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primaryDark[600]
-                        : theme.palette.grey[200]
-                    }`,
-                    borderRadius: 1,
-                    color: theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
-                    background:
-                      theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
-                    py: '0.375rem',
-                  })}
-                >
-                  <Apps />
+                <IconButton color="primary" onClick={() => setProductsDrawerOpen(true)}>
+                  <Apps fontSize="small" />
                 </IconButton>
               </Tooltip>
             ) : (
