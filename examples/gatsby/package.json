@@ -2,6 +2,10 @@
   "name": "gatsby",
   "version": "5.0.0",
   "private": true,
+  "browserslist": [
+    ">0.25%",
+    "not dead"
+  ],
   "dependencies": {
     "@emotion/react": "latest",
     "@emotion/server": "latest",
