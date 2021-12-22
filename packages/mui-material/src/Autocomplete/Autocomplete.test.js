@@ -502,6 +502,30 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
+    it('should not call onChange function for duplicate values', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          freeSolo
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+
+      fireEvent.change(textbox, { target: { value: 'two' } });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(0);
+
+      fireEvent.change(textbox, { target: { value: 'three' } });
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+    });
+
     it('has no textbox value', () => {
       render(
         <Autocomplete
