@@ -242,7 +242,7 @@ function createRender(context) {
  * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
  */
 function prepareMarkdown(config) {
-  const { pageFilename, translations } = config;
+  const { pageFilename, translations, componentPackageMapping = {} } = config;
 
   const demos = {};
   /**
@@ -267,12 +267,12 @@ function prepareMarkdown(config) {
 ## API
 
 ${headers.components
-  .map(
-    (component) =>
-      `- [\`<${component} />\`](${headers.product ? `/${headers.product}` : ''}/api/${kebabCase(
-        component,
-      )}/)`,
-  )
+  .map((component) => {
+    const componentPkg = componentPackageMapping[headers.product]?.[component];
+    return `- [\`<${component} />\`](${headers.product ? `/${headers.product}` : ''}/api/${
+      componentPkg ? `${componentPkg}/` : ''
+    }${kebabCase(component)}/)`;
+  })
   .join('\n')}
   `);
       }
