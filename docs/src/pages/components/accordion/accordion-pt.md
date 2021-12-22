@@ -8,7 +8,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 # Acordeão
 
-<p class="description">Os acordeões contêm fluxos de criação e permitem a edição simplificada de um elemento.</p>
+<p class="description">The accordion component allows the user to show and hide sections of related content on a page.</p>
 
 [Um painel de expansão](https://material.io/archive/guidelines/components/expansion-panels.html) é um contêiner leve que pode estar sozinho ou conectado em uma superfície maior, como um cartão.
 
@@ -26,9 +26,9 @@ Estenda o comportamento padrão para criar um acordeão customizado com o compon
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## Customization
+## Painéis de Expansão Customizados
 
-Aqui está um exemplo de customização do componente. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
@@ -42,7 +42,7 @@ O conteúdo dos acordeões é montado por padrão, mesmo que o acordeão não es
 
 Como acontece com qualquer otimização de desempenho, isso não é uma bala de prata. Certifique-se de identificar gargalos primeiro e, em seguida, experimente essas estratégias de otimização.
 
-## Accessibility
+## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 

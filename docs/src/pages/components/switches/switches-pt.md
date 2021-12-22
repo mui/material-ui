@@ -1,15 +1,15 @@
 ---
 title: Componente React Interruptor
-components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel, SwitchUnstyled
+components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 githubLabel: 'component: Switch'
 materialDesign: 'https://material.io/components/selection-controls#switches'
 ---
 
-# Switch
+# Interruptor
 
 <p class="description">Interruptores alternam o estado de uma única configuração ligado ou desligado.</p>
 
-[Interruptores](https://material.io/design/components/selection-controls.html#switches) são a forma preferida de ajustes de configuração em mobile. A opção que o interruptor controla, juntamente com o estado atual, deve ser claramente explícita no rótulo em linha correspondente.
+[Interruptores](https://material.io/design/components/selection-controls.html#switches) são a forma preferida de ajustes de configuração em mobile. The option that the switch controls, as well as the state it's in, should be made clear from the corresponding inline label.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -17,19 +17,19 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 {{"demo": "pages/components/switches/BasicSwitches.js"}}
 
-## Label
+## Caixas de seleção com FormGroup
 
 Você pode fornecer um rótulo para o `Switch` graças ao componente `FormControlLabel`.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
 
-## Size
+## Tamanho
 
 Use a propriedade `size` para alterar o tamanho do interruptor.
 
 {{"demo": "pages/components/switches/SwitchesSize.js"}}
 
-## Color
+## Cor
 
 {{"demo": "pages/components/switches/ColorSwitches.js"}}
 
@@ -45,17 +45,19 @@ Você pode controlar o interruptor com as propriedades `checked` e `onChange`:
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
-## Customization
+## Interruptores customizados
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch/).
 
-## Unstyled
+## Posicionamento do rótulo
 
 The switch also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+### Unstyled component
 
 ```jsx
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
@@ -83,22 +85,24 @@ import { useSwitch } from '@mui/base/SwitchUnstyled';
 
 {{"demo": "pages/components/switches/UseSwitchesCustom.js"}}
 
-## Label placement
+## Quando usar
 
-You can change the placement of the label:
+Você pode alterar o posicionamento do rótulo:
 
 {{"demo": "pages/components/switches/FormControlLabelPosition.js"}}
 
-## When to use
+## Acessibilidade
 
-- [Checkboxes vs. Switches](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+- [Caixas de seleção vs. interruptores](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## Accessibility
 
 - Ele irá renderizar um elemento com a regra de `checkbox` e não `switch`, pois esta regra não é amplamente suportada ainda. Por favor, teste primeiro se a tecnologia assistiva do seu público-alvo suporta essa regra corretamente. Em seguida, você pode alterar a regra com `<Switch inputProps={{ role: 'switch' }}>`
-- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
-- When a label can't be used, it's necessary to add an attribute directly to the input component. In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` prop.
+- Todos os controles de formulário devem ter rótulos, e isso inclui os botões de opção, caixas de seleção e interruptores. Na maioria dos casos, isso é feito usando o elemento `<label>` ([FormControlLabel](/api/form-control-label/)).
+- Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (por exemplo, `aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
 
 ```jsx
-<Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} />
+<code><Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} /></code>
 ```
+
+</code>

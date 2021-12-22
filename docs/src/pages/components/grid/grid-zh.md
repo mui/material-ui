@@ -11,7 +11,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 [Grid 栅格组件](https://material.io/design/layout/responsive-layout-grid.html) 能确保不同布局间的视觉层面的舒适感，同时在众多不同设计中保持灵活性。 Material Design 基于 12 列的网格布局来做到 UI 的响应式。
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 > ⚠️ `栅格` 组件不要与承载大量数据的表格（data grid）进行混淆；这个组件更倾向于在布局中使用。 如果需使用承载大量数据的表格，请看这里的 [ `数据表格` 组件](/components/data-grid/)。
 
@@ -36,37 +36,37 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 每一列的宽度是 1 到 12 之间的整数值；这些宽度应用于任何断点，且表明了组件占用多少列。
 
-你可以给定一个断点值来应用于比它更宽的所有其他断点（除非被覆盖，你可以在本页的后半部分了解被覆盖后的行为）。 例如，无论组件的大小如何，`xs={12}` 都会占据整个视口的宽度。
+A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size. 例如，无论组件的大小如何，`xs={12}` 都会占据整个视口的宽度。
 
 {{"demo": "pages/components/grid/BasicGrid.js", "bg": true}}
 
-### Grid with multiple breakpoints
+### 有断点的栅格
 
-组件可能会定义多种宽度，用来根据事先定义的断点（breakpoint）来改变其宽度。 你可以给较大的断点指定宽度值。那么它会覆盖给较小断点指定的宽度值。
+Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints. 你可以给较大的断点指定宽度值。那么它会覆盖给较小断点指定的宽度值。
 
-例如，`xs={12} sm={6}` 表示当视口宽度为 [600 或更多像素](/customization/breakpoints/#default-breakpoints) 时，将组件的大小调整为占据视口宽度的一半（6列）。 对于较小的视口，该组件将填充所有 12 个可用的列。
+For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns. 对于较小的视口，该组件将填充所有 12 个可用的列。
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
-## Spacing
+## Spacing 间距
 
-要控制子组件之间的空间，请使用 `spacing` 属性。 间距值可以是任何数字（包括浮点数）和字符串。 该属性借助 [`theme.spaming()`](/customization/spacing/) 被转换为 CSS 属性。
+To control space between children, use the `spacing` prop. The spacing value can be any positive number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper. 间距值可以是任何数字（包括浮点数）和字符串。 该属性借助 [`theme.spaming()`](/customization/spacing/) 被转换为 CSS 属性。
 
 {{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
 ### 行、列间距
 
-The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently. It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+`rowSpacing` 和 `columnSpacing` 属性允许独立指定行和列间距。 The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently. It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
 
 {{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
 
-## Responsive values
+## 响应式的值
 
-You can switch the props' value based on the active breakpoint. For instance, we can implement the ["recommended"](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
+您可以根据活动的断点切换属性的值。 You can switch the props' value based on the active breakpoint. For instance, we can implement the ["recommended"](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
 
 {{"demo": "pages/components/grid/ResponsiveGrid.js", "bg": true}}
 
-Responsive values is supported by:
+下列属性支持响应式的值：
 
 - `columns`
 - `columnSpacing`
@@ -75,17 +75,17 @@ Responsive values is supported by:
 - `spacing`
 - 系统中的所有[其它属性](#system-props)
 
-> ⚠️ 当使用响应 `column` 属性时，每个网格项目需要其对应的断点。 例如，这种做法行不通。 网格项目丢失了 `md` 的值：
+> ⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint. For instance, this is not working. The grid item misses the value for `md`: 例如，这种做法行不通。 网格项目丢失了 `md` 的值：
 > 
 > ```jsx
 > <Grid container columns={{ xs: 4, md: 12 }}>
->    <Grid item xs={2} />
-> > </Grid>
+>     <Grid item xs={2} />
+> > > </Grid>
 > ```
 
-## Interactive
+## 交互式
 
-Below is an interactive demo that lets you explore the visual results of the different settings:
+下面是一个交互式的演示，你也可以探索不同设置下的视觉结果：
 
 {{"demo": "pages/components/grid/InteractiveGrid.js", "hideToolbar": true, "bg": true}}
 
@@ -95,11 +95,11 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 {{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
-### Variable width content
+### 负边距
 
-Set one of the size breakpoint props to `"auto"` instead of `true` / a `number` to size a column based on the natural width of its content.
+The Auto-layout makes the _items_ equitably share the available space. That also means you can set the width of one _item_ and the others will automatically resize around it.
 
-{{"demo": "pages/components/grid/VariableWidthGrid.js", "bg": true}}
+The `Grid` component is using CSS flexbox internally. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
 
 ## 复杂的栅格
 
@@ -117,25 +117,25 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "pages/components/grid/NestedGrid.js", "bg": true}}
 
-⚠️ Defining an explicit width to a Grid element that is flex container, flex item, and has spacing at the same time lead to unexpected behavior, avoid doing it:
+⚠️给 Flex 容器、Flex 子项以及同时带有间距的 Grid 元素定义一个显式宽度会导致意外的行为，需要避免这样做：
 
 ```jsx
 <Grid spacing={1} container item xs={12}>
 ```
 
-If you need to do such, remove one of the props.
+如果你需要这样做，那么请移出其中的一个属性。
 
-## Columns
+## 列
 
 You can change the default number of columns (12) with the `columns` prop.
 
 {{"demo": "pages/components/grid/ColumnsGrid.js", "bg": true}}
 
-## Limitations
+## 设计局限
 
 ### 负边距
 
-The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
+项目之间的边距以负边距的形式来实现。 这样做的话可能会产生意料之外的结果。 The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, to apply a background color, you need to apply `display: flex;` to the parent.
 
 ### white-space: nowrap;
 
@@ -146,7 +146,7 @@ The spacing between items is implemented with a negative margin. This might lead
   <Typography noWrap>
 ```
 
-为了使项留在容器内，您需要设置 `min-width: 0`。 In practice, you can set the `zeroMinWidth` prop:
+为了使项留在容器内，您需要设置 `min-width: 0`。 在实际操作中，你可以设置 `zeroMinWidth` 属性来实现它：
 
 ```jsx
 <Grid item xs zeroMinWidth>
@@ -157,19 +157,19 @@ The spacing between items is implemented with a negative margin. This might lead
 
 ### direction: column | column-reverse
 
-The `xs`, `sm`, `md`, `lg`, and `xl` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
+`direction="column"` 和 `direction="column-reverse"` 的容器**不支持**和断点有关的 `xs`, `sm`, `md`, `lg`，以及 `xl` 这几个属性。
 
-They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers. If used, these props may have undesirable effects on the height of the `Grid` item elements.
+它们决定在某个断点下组件占几个网格。 They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers. If used, these props may have undesirable effects on the height of the `Grid` item elements. 如果使用这些属性，可能会对 `Grid` 块元素的高度产生副作用。
 
 ## CSS 栅格布局
 
-The `Grid` component is using CSS flexbox internally. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
+The `Grid` component is using CSS flexbox internally. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages. But as seen below, you can easily use [the system](/system/grid/) and CSS Grid to layout your pages.
 
 {{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}
 
 ## System props
 
-As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding:
+As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding: You can use them as props directly on the component. For instance, a padding:
 
 ```jsx
 <Grid item p={2}>

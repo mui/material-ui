@@ -2,14 +2,14 @@
 title: Componente React para Linha do tempo
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
 githubLabel: 'component: Timeline'
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 ---
 
 # Linha do tempo
 
 <p class="description">A linha do tempo exibe uma lista de eventos em ordem cronológica.</p>
 
-**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but MUI supports it.
+**Observação:** Este componente não está documentado nas [diretrizes do Material Design](https://material.io/), mas o Material-UI o suporta.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -31,13 +31,13 @@ A linha do tempo pode exibir os eventos alternando os lados.
 
 {{"demo": "pages/components/timeline/AlternateTimeline.js"}}
 
-## Color
+## Cor
 
-The `TimelineDot` can appear in different colors from theme palette.
+O `TimelineDot` pode aparecer em cores diferentes.
 
 {{"demo": "pages/components/timeline/ColorsTimeline.js"}}
 
-## Outlined
+## Delineado
 
 {{"demo": "pages/components/timeline/OutlinedTimeline.js"}}
 
@@ -47,8 +47,8 @@ A linha do tempo pode exibir conteúdo nos lados opostos.
 
 {{"demo": "pages/components/timeline/OppositeContentTimeline.js"}}
 
-## Customization
+## Linha do tempo customizada
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/timeline/CustomizedTimeline.js"}}

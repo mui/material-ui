@@ -12,15 +12,15 @@ githubLabel: 'component: Select'
 
 ## Seleção Simples
 
-Menus are positioned under their emitting elements, unless they are close to the bottom of the viewport.
+Os menus são posicionados sobre seus elementos emissores, de modo que o item de menu atualmente selecionado apareça na parte superior do elemento emissor.
 
-O componente `Select` é pensado para ser intercambiável com um elemento nativo `<select>`.
+{{"demo": "pages/components/selects/BasicSelect.js"}}
 
 ## Recursos avançados
 
 O componente `Select` é pensado para ser intercambiável com um elemento nativo `<select>`.
 
-Se você estiver procurando por recursos mais avançados, como combobox, seleção múltipla, autocompletar, uso assíncrono ou com suporte de adição, vá para o [ componente `Autocomplete`](/components/autocomplete/). It's meant to be an improved version of the "react-select" and "downshift" packages.
+Se você estiver procurando por recursos mais avançados, como combobox, seleção múltipla, autocompletar, uso assíncrono ou com suporte de adição, vá para o [ componente `Autocomplete`](/components/autocomplete/). A ideia dessa ferramenta é ser uma versão melhorada das bibliotecas "react-select" e "downshift".
 
 ## Propriedades
 
@@ -34,6 +34,8 @@ O componente seleção é implementado como um elemento `<input>` personalizado 
 
 {{"demo": "pages/components/selects/SelectLabels.js"}}
 
+> ⚠ Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
+
 ### Largura automática
 
 {{"demo": "pages/components/selects/SelectAutoWidth.js"}}
@@ -46,15 +48,15 @@ O componente seleção é implementado como um elemento `<input>` personalizado 
 
 Como a experiência do usuário pode ser melhorada em dispositivos móveis usando a seleção nativa da plataforma, permitimos esse padrão.
 
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/select).
+{{"demo": "pages/components/selects/NativeSelect.js"}}
 
 ## TextField
 
 O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. Você pode encontrar um exemplo de seleção [nesta seção](/components/text-fields/#select).
 
-## Customization
+## Seleções customizadas
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 O primeiro passo é estilizar o componente `InputBase`. Uma vez estilizado, você pode usá-lo diretamente como um campo de texto ou fornecê-lo à propriedade `input` da seleção para ter um campo `select`. Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
 
@@ -68,7 +70,7 @@ O componente `Select` pode lidar com múltiplas seleções. O componente `Select
 
 Como na seleção única, você pode extrair o novo valor acessando `event.target.value` na chamada `onChange`. É sempre uma matriz.
 
-### Default
+### Padrão
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
@@ -104,7 +106,7 @@ Exiba categorias com o componente `ListSubheader` ou com o elemento nativo `<opt
 
 {{"demo": "pages/components/selects/GroupedSelect.js"}}
 
-## Accessibility
+## Acessibilidade
 
 Para rotular corretamente seu campo  `Select` você precisa de um elemento extra com um `id` que contenha o rótulo desejado. Esse `id` precisa coincidir com o `labelId` do `Select`, por exemplo.
 

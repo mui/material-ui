@@ -69,15 +69,15 @@ If you would like to remove some of the MUI specific features, you can do it lik
  const StyledComponent = styled('div', {}, {
    name: 'MuiStyled',
    slot: 'Root',
--  overridesResolver: (props, styles) => styles.root, // disables theme.components[name].styleOverrides
-+  skipVariantsResolver: true, // disables theme.components[name].variants
-+  skipSx: true, // disables the sx prop
+-  overridesResolver: (props, styles) => styles.root, // 禁用 theme.components[name].styleOverrides
++  skipVariantsResolver: true, // 禁用 theme.components[name].variants
++  skipSx: true, // 禁用 sx 参数
  });
 ```
 
 ## 创建自定义的 `styled()`工具
 
-If you want to have a different default theme for the `styled()` utility, you can create your own version of it, using the `createStyled()` utility.
+如果你想让你的`styled()`工具使用一个不同的默认主题，你可以用`createStyled()` 工具很轻松的创建一个你自己的版本。
 
 ```js
 import { createStyled, createTheme } from '@mui/system';

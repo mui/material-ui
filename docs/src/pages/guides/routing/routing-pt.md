@@ -4,7 +4,7 @@
 
 ## Componentes de navegação
 
-Existem dois componentes principais disponíveis para realizar navegações. O mais comum é o [`Link`](/components/links/) como seu nome pode sugerir. Ele renderiza um elemento `<a>` nativo e aplica o `href` como um atributo.
+Existem dois componentes principais disponíveis para realizar navegações. It renders a native `<a>` element and applies the `href` as an attribute. The most common one is the [`Link`](/components/links/) as its name might suggest.
 
 {{"demo": "pages/guides/routing/LinkDemo.js"}}
 
@@ -14,7 +14,7 @@ Você também pode fazer com que um botão execute ações de navegação. Se se
 
 ## Global theme Link
 
-Em aplicações da vida real, usar um elemento `<a>` nativo é raramente o suficiente. Você pode melhorar a experiência do usuário usando sistematicamente um componente Link aprimorado. The theme of MUI allows configuring this component once. Por exemplo, com react-router:
+Em aplicações da vida real, usar um elemento `<a>` nativo é raramente o suficiente. Você pode melhorar a experiência do usuário usando sistematicamente um componente Link aprimorado. For instance, with react-router: The theme of Material-UI allows configuring this component once.
 
 ```jsx
 const LinkBehavior = React.forwardRef<
@@ -22,7 +22,7 @@ const LinkBehavior = React.forwardRef<
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
-  // Map href (MUI) -> to (react-router)
+  // Map href (Material-UI) -> to (react-router)
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 
@@ -48,7 +48,7 @@ const theme = createTheme({
 
 ## Propriedade `component`
 
-Você pode conseguir a integração com bibliotecas de roteamento de terceiros com a propriedade `component`. You can learn more about this prop in the [**composition guide**](/guides/composition/#component-prop).
+Você pode conseguir a integração com bibliotecas de roteamento de terceiros com a propriedade `component`. You can learn more about this prop in the [composition guide](/guides/composition/#component-prop).
 
 ### Link
 
@@ -72,7 +72,7 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 {{"demo": "pages/guides/routing/TabsRouter.js", "defaultCodeOpen": false}}
 
-### List
+### Lista
 
 {{"demo": "pages/guides/routing/ListRouter.js"}}
 
@@ -80,12 +80,12 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 ### Next.js
 
-O Next.js tem [um componente Link personalizado](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with MUI.
+O Next.js tem [um componente Link personalizado](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with Material-UI.
 
 - A primeira versão do adaptador é o componente [`NextLinkComposed`](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript/src/Link.tsx) Este componente não tem estilo e é o único responsável pelo manuseio da navegação. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component.
 
   ```tsx
-  import Button from '@mui/material/Button';
+  import Button from '@material-ui/core/Button';
   import { NextLinkComposed } from '../src/Link';
 
   export default function Index() {
@@ -103,7 +103,7 @@ O Next.js tem [um componente Link personalizado](https://nextjs.org/docs/api-ref
   }
   ```
 
-- A segunda versão do adaptador é o componente `Link`. Este componente é estilizado. It leverages the [link component of MUI](https://mui.com/components/links/) with `NextLinkComposed`.
+- A segunda versão do adaptador é o componente `Link`. Este componente é estilizado. It leverages the [link component of Material-UI](https://material-ui.com/components/links/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';

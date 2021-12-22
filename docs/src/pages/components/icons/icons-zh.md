@@ -5,11 +5,11 @@ githubLabel: 'components: SvgIcon'
 materialDesign: https://material.io/design/iconography/system-icons.html
 ---
 
-# Icons
+# Icons 图标
 
-<p class="description">Guidance and suggestions for using icons with MUI.</p>
+<p class="description">我们提供了一些建议和指导，能够帮助您在 Material-UI 中使用图标。</p>
 
-MUI provides icons support in three ways:
+Material-UI 通过以下三种方式来支持图标的使用：
 
 1. 您可以将标准的 [Material Design 图标](#material-icons) 导出为 React 组件 (SVG icons)。
 1. 或者可以将自定义的 SVG 图标通过 [SvgIcon](#svgicon) 组件来包装成一个 React 组件。
@@ -19,9 +19,9 @@ MUI provides icons support in three ways:
 
 Google has created over 1,900 official Material icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@mui/icons-material` package. 您可以 [搜索完整的图标列表](/components/material-icons/)。
 
-### Installation
+### 安装
 
-Install the package in your project directory with:
+请在您的项目目录中用以下方式安装依赖包：
 
 ```sh
 // 使用 npm 安装
@@ -31,15 +31,15 @@ npm install @mui/icons-material
 yarn add @mui/icons-material
 ```
 
-These components use the MUI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
+这些组件使用 Material-UI 的 `SvgIcon` 组件来渲染每个图标的 SVG 路径，因此对 `@mui/material` 具有对等依赖性。
 
-If you aren't already using MUI in your project, you can add it with:
+如果你的项目中还没有使用 MUI，那么你可以用以下方法添加它：
 
 ```sh
-// with npm
+// 使用 npm 安装
 npm install @mui/material
 
-// with yarn
+// 使用 yarn 安装
 yarn add @mui/material
 ```
 
@@ -62,21 +62,21 @@ yarn add @mui/material
 
 对于捆绑包的大小来说，最安全的是方案 1，但有些开发者更喜欢方案 2。 在使用第二个方法之前，请确保您遵循 [最小化捆绑包大小指南](/guides/minimizing-bundle-size/#option-2)。
 
-每个 Material icon 都有一个“主题”：Filled（默认）, Outlined, Rounded, Two-tone, 和 Sharp。 要导入非默认主题的图标组件，请在图标名称后附加主题名称。 For example `@mui/icons-material/Delete` icon with:
+每个 Material icon 都有一个“主题”：Filled（默认）, Outlined, Rounded, Two-tone, 和 Sharp。 要导入非默认主题的图标组件，请在图标名称后附加主题名称。 例如，`@material-ui/icons/Delete` 图标可以：
 
-- Filled theme (default) is exported as `@mui/icons-material/Delete`,
-- Outlined theme is exported as `@mui/icons-material/DeleteOutlined`,
-- Rounded theme is exported as `@mui/icons-material/DeleteRounded`,
-- Twotone theme is exported as `@mui/icons-material/DeleteTwoTone`,
-- Sharp theme is exported as `@mui/icons-material/DeleteSharp`.
+- 导出为 Filled 主题（默认值）：`@material-ui/icons/Delete`，
+- 导出为 Outlined 主题：`@material-ui/icons/DeleteOutlined`，
+- 导出为 Rounded 主题：`@material-ui/icons/DeleteRounded`，
+- 导出为 Twotone 主题：`@material-ui/icons/DeleteTwoTone`，
+- 导出为 Sharp 主题：`@material-ui/icons/DeleteSharp`，
 
-> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。
+> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
-### Testing
+### 测试
 
-For testing purposes, each icon exposed from `@mui/icons-material` has a `data-testid` attribute with the name of the icon. For instance:
+出于测试目的，每个从 `@material-ui/icons` 暴露的图标都有一个 `data-testid` 属性，这其中包含了图标的名称。 就像这样：
 
 ```jsx
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -93,7 +93,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 如果你需要使用自定义的 SVG 图标（而它在 [Material Icons](/components/material-icons/) 中不存在），那么你可以使用 `SvgIcon` 封装。 此组件是原生 `<svg>` 元素的拓展版：
 
 - 它具备一些内置的无障碍设计。
-- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other MUI components that use icons. （使用 `viewBox` 属性，您可以随意自定义）。
+- SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 （使用 `viewBox` 属性，您可以随意自定义）。
 - 默认情况下，此组件会继承当前的颜色。 当然，通过 `color` 这个属性，你可以让图标使用主题里的颜色。
 
 ```jsx
@@ -106,15 +106,15 @@ function HomeIcon(props) {
 }
 ```
 
-### Color
+### Color 颜色
 
 {{"demo": "pages/components/icons/SvgIconsColor.js"}}
 
-### Size
+### Size 大小
 
 {{"demo": "pages/components/icons/SvgIconsSize.js"}}
 
-### Component prop
+### 组件属性
 
 即使图标以 `.svg` 的格式保存，你依然可以使用 `SvgIcon` 来包装它。 [svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. 譬如，使用 webpack ：
 
@@ -179,12 +179,12 @@ FontAwesomeIcon 的 `fullWidth` 属性也可以用来应用近似正确的尺寸
 
 ## Icon (Font icons)
 
-对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 先决条件，你必须要在项目中包含 [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web)。 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
+对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
 
 ```jsx
-import Icon from '@mui/material/Icon';
+import Icon from '@material-ui/core/Icon';
 
-<Icon>star</Icon>;
+<Icon>star</Icon>
 ```
 
 默认情况下，一个图标会继承使用当前的文本颜色。 您也可以选择使用以下任何一个主题颜色属性来设置图标的颜色：`primary`，`secondary`，`action`，`error` 以及 `disabled`。
@@ -225,6 +225,11 @@ const theme = createTheme({
     MuiIcon: {
       defaultProps: {
         // Replace the `material-icons` default value.
+        baseClassName: 'material-icons-two-tone',
+      },
+    },
+  },
+});
         baseClassName: 'material-icons-two-tone',
       },
     },
@@ -271,7 +276,7 @@ const theme = createTheme({
 
 更多详情，请查阅 [为什么 GitHub 将 font icons 迁移到 SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/)。
 
-## Accessibility
+## 无障碍设计
 
 图标可以传达各种有意义的信息，所以确保它们在适当的地方可以被无障碍访问是很重要的。 下面是两个你需要考虑到的用例：
 
@@ -291,10 +296,16 @@ const theme = createTheme({
 对于可聚焦的交互式元素，例如当与图标按钮一起使用时，你可以使用 `aria-label` 属性：
 
 ```jsx
-import IconButton from '@mui/material/IconButton';
-import SvgIcon from '@mui/material/SvgIcon';
+import IconButton from '@material-ui/core/IconButton';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 // ...
+
+<IconButton aria-label="delete">
+  <SvgIcon>
+    <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
+  </SvgIcon>
+</IconButton>;
 
 <IconButton aria-label="delete">
   <SvgIcon>
@@ -311,6 +322,12 @@ import SvgIcon from '@mui/material/SvgIcon';
 import Box from '@mui/material/Box';
 import Icon from '@mui/material/Icon';
 import { visuallyHidden } from '@mui/utils';
+
+// ...
+
+import Box from '@material-ui/core/Box';
+import Icon from '@material-ui/core/Icon';
+import { visuallyHidden } from '@material-ui/utils';
 
 // ...
 
