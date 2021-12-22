@@ -54,7 +54,7 @@ https://mui.com/store/* https://material-ui.com/store/:splat 302!
 # 2019
 /css-in-js/* /styles/:splat 301
 /customization/css-in-js/ /styles/basics/ 301
-/customization/overrides/ /customization/components/ 301
+/customization/overrides/ /customization/how-to-customize/ 301
 /demos/selection-controls/ /components/radio-buttons/ 301
 /demos/* /components/:splat 301
 /getting-started/page-layout-examples/* /getting-started/templates/:splat 301
@@ -82,7 +82,7 @@ https://mui.com/store/* https://material-ui.com/store/:splat 302!
 /api/expansion-panel-details/ /api/accordion-details/ 301
 /api/expansion-panel-summary/ /api/accordion-summary/ 301
 # 2020
-/premium-themes* https://material-ui.com/store/ 301
+/premium-themes* https://mui.com/store/ 301
 /customization/themes/ /customization/theming/ 301
 https://v1-5-0.mui.com/* https://v1.mui.com/:splat 301!
 https://v3-9-0.mui.com/* https://v3.mui.com/:splat 301!
@@ -93,6 +93,7 @@ https://v3-9-0.mui.com/* https://v3.mui.com/:splat 301!
 /customization/components/ /customization/how-to-customize/ 301
 /customization/globals/ /customization/theme-components/ 301
 # 2021
+/api/root-ref/ https://v4.mui.com/api/root-ref/ 301
 /components/slider-styled/ /components/slider/ 301
 /customization/styled/ /system/styled/ 301
 /api/data-grid/x-grid/ /api/data-grid/data-grid-pro/ 301
