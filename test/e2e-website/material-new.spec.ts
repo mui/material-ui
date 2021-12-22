@@ -5,16 +5,13 @@ import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});
 
-test.beforeEach(async ({ materialUrlPrefix }) => {
-  test.skip(
-    !!materialUrlPrefix && !FEATURE_TOGGLE.enable_product_scope,
-    "Migration haven't started yet",
-  );
+test.beforeEach(async ({}) => {
+  test.skip(!FEATURE_TOGGLE.enable_product_scope, "Migration haven't started yet");
 });
 
 test.describe.parallel('Material docs', () => {
-  test('should have correct link with hash in the TOC', async ({ page, materialUrlPrefix }) => {
-    await page.goto(`${materialUrlPrefix}/getting-started/installation/`);
+  test('should have correct link with hash in the TOC', async ({ page }) => {
+    await page.goto(`/material/getting-started/installation/`);
 
     const anchors = page.locator('[aria-label="Page table of contents"] ul a');
 
@@ -24,15 +21,15 @@ test.describe.parallel('Material docs', () => {
       anchorTexts.map((text, index) => {
         return expect(anchors.nth(index)).toHaveAttribute(
           'href',
-          `${materialUrlPrefix}/getting-started/installation/#${kebabCase(text)}`,
+          `/material/getting-started/installation/#${kebabCase(text)}`,
         );
       }),
     );
   });
 
   test.describe.parallel('Demo page', () => {
-    test('should have correct link for API section', async ({ page, materialUrlPrefix }) => {
-      await page.goto(`${materialUrlPrefix}/components/cards/`);
+    test('should have correct link for API section', async ({ page }) => {
+      await page.goto(`/material/react-cards/`);
 
       const anchors = await page.locator('div > h2#heading-api ~ ul a');
 
@@ -42,36 +39,33 @@ test.describe.parallel('Material docs', () => {
         anchorTexts.map((text, index) => {
           return expect(anchors.nth(index)).toHaveAttribute(
             'href',
-            `${materialUrlPrefix}/api/${kebabCase(text)}/`,
+            `/material/api/mui-material/${kebabCase(text)}/`,
           );
         }),
       );
     });
 
-    test('should have correct link for sidebar anchor', async ({ page, materialUrlPrefix }) => {
-      await page.goto(`${materialUrlPrefix}/components/cards/`);
+    test('should have correct link for sidebar anchor', async ({ page }) => {
+      await page.goto(`/material/react-cards/`);
 
       const anchor = await page.locator('nav[aria-label="documentation"] ul a:text-is("Card")');
 
-      await expect(anchor).toHaveAttribute('href', `${materialUrlPrefix}/components/cards/`);
+      await expect(anchor).toHaveAttribute('href', `/material/react-cards/`);
     });
   });
 
   test.describe.parallel('API page', () => {
-    test('should have correct link for sidebar anchor', async ({ page, materialUrlPrefix }) => {
-      await page.goto(`${materialUrlPrefix}/api/card/`);
+    test('should have correct link for sidebar anchor', async ({ page }) => {
+      await page.goto(`/material/api/mui-material/card/`);
 
       const anchor = await page.locator('nav[aria-label="documentation"] ul a:text-is("Card")');
 
       await expect(anchor).toHaveAttribute('app-drawer-active', '');
-      await expect(anchor).toHaveAttribute('href', `${materialUrlPrefix}/api/card/`);
+      await expect(anchor).toHaveAttribute('href', `/material/api/mui-material/card/`);
     });
 
-    test('all the links in the main content should have correct prefix', async ({
-      page,
-      materialUrlPrefix,
-    }) => {
-      await page.goto(`${materialUrlPrefix}/api/card/`);
+    test('all the links in the main content should have correct prefix', async ({ page }) => {
+      await page.goto(`/material/api/mui-material/card/`);
 
       const anchors = await page.locator('div#main-content a');
 
@@ -81,24 +75,25 @@ test.describe.parallel('Material docs', () => {
 
       links.forEach((link) => {
         if (
-          [
-            '/getting-started',
-            '/components',
-            '/api',
-            '/customization',
-            '/guides',
-            '/discover-more',
-          ].some((path) => link.replace(materialUrlPrefix, '').startsWith(path))
+          ['/getting-started', '/customization', '/guides', '/discover-more'].some((path) =>
+            link.includes(path),
+          )
         ) {
-          expect(link.startsWith(materialUrlPrefix)).toBeTruthy();
+          expect(link.startsWith(`/material`)).toBeTruthy();
         }
 
-        if (link.replace(materialUrlPrefix, '').startsWith('/system')) {
+        if (link.startsWith('/material') && link.includes('api')) {
+          expect(link).toMatch(/\/material\/api\/mui-(material|lab)\/.*/);
+        }
+
+        expect(link).not.toMatch(/components/); // there should be no `components` in the url anymore
+
+        if (link.startsWith('/system')) {
           expect(link.startsWith('/system')).toBeTruthy();
           expect(link.match(/\/system{1}/g)).toHaveLength(1); // should not have repeated `/system/system/*`
         }
 
-        if (link.replace(materialUrlPrefix, '').startsWith('/styles')) {
+        if (link.startsWith('/styles')) {
           expect(link.startsWith('/styles')).toBeTruthy();
           expect(link.match(/\/styles{1}/g)).toHaveLength(1); // should not have repeated `/system/system/*`
         }
@@ -107,11 +102,8 @@ test.describe.parallel('Material docs', () => {
   });
 
   test.describe.parallel('Search', () => {
-    test('should have correct link when searching component', async ({
-      page,
-      materialUrlPrefix,
-    }) => {
-      await page.goto(`${materialUrlPrefix}/getting-started/installation/`);
+    test('should have correct link when searching component', async ({ page }) => {
+      await page.goto(`/material/getting-started/installation/`);
 
       await page.waitForLoadState('networkidle'); // wait for docsearch
 
@@ -121,22 +113,11 @@ test.describe.parallel('Material docs', () => {
 
       const anchor = await page.locator('.DocSearch-Hits a:has-text("Card")');
 
-      if (FEATURE_TOGGLE.enable_product_scope && !materialUrlPrefix) {
-        // the old url doc should point to the new location
-        await expect(anchor.first()).toHaveAttribute(
-          'href',
-          `/material/components/cards/#main-content`,
-        );
-      } else {
-        await expect(anchor.first()).toHaveAttribute(
-          'href',
-          `${materialUrlPrefix}/components/cards/#main-content`,
-        );
-      }
+      await expect(anchor.first()).toHaveAttribute('href', `/material/react-cards/#main-content`);
     });
 
-    test('should have correct link when searching API', async ({ page, materialUrlPrefix }) => {
-      await page.goto(`${materialUrlPrefix}/getting-started/installation/`);
+    test('should have correct link when searching API', async ({ page }) => {
+      await page.goto(`/material/getting-started/installation/`);
 
       await page.waitForLoadState('networkidle'); // wait for docsearch
 
@@ -148,7 +129,7 @@ test.describe.parallel('Material docs', () => {
 
       await expect(anchor.first()).toHaveAttribute(
         'href',
-        `${materialUrlPrefix}/api/card/#main-content`,
+        `/material/api/mui-material/card/#main-content`,
       );
     });
   });
