@@ -1,4 +1,4 @@
-# Usage
+# Uso
 
 <p class="description">Comece com React e MUI em pouco tempo.</p>
 

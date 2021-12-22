@@ -51,7 +51,7 @@ Se você estiver em uma área de trabalho, poderá alternar o drawer com o botã
 
 {{"demo": "pages/components/drawers/SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
 
-### Manter montado
+### Navegação em altura total
 
 Para garantir que um drawer temporário não seja desmontado, especifique a propriedade `ModalProps` como:
 

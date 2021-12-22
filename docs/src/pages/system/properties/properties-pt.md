@@ -40,7 +40,7 @@ Note that this table only lists custom properties, all other regular CSS propert
 | `gridTemplateRows`    | `grid-template-rows`                                                                         | [`gridTemplateRows`](/system/grid/#grid-template-rows)       | none                                                                                    |
 | `gridTemplateAreas`   | `grid-template-areas`                                                                        | [`gridTemplateAreas`](/system/grid/#grid-template-areas)     | none                                                                                    |
 | `gridArea`            | `grid-area`                                                                                  | [`gridArea`](/system/grid/#grid-area)                        | none                                                                                    |
-| `bgcolor`             | `background-color`                                                                           | [`bgcolor`](/system/palette/#background-color)               | [`theme.palette[value]`](/customization/default-theme/?expand-path=$.palette)           |
+| `bgcolor`             | `backgroundColor`                                                                            | [`bgcolor`](/system/palette/#background-color)               | [`theme.palette[value]`](/customization/default-theme/?expand-path=$.palette)           |
 | `color`               | `color`                                                                                      | [`color`](/system/palette/#color)                            | [`theme.palette[value]`](/customization/default-theme/?expand-path=$.palette)           |
 | `bottom`              | `bottom`                                                                                     | [`bottom`](/system/positions/)                               | none                                                                                    |
 | `left`                | `left`                                                                                       | [`left`](/system/positions/)                                 | none                                                                                    |
@@ -94,9 +94,9 @@ Note that this table only lists custom properties, all other regular CSS propert
 
 Let's take one row from [the table above](#properties-reference-table), for example:
 
-| System key(s)        | CSS property/properties | System style function         | Theme mapping                                                                 |
-|:-------------------- |:----------------------- |:----------------------------- |:----------------------------------------------------------------------------- |
-| `mb`, `marginBottom` | `margin-bottom`         | [`spacing`](/system/spacing/) | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
+| Chave(s) do sistema  | Propriedade CSS/propriedades | Função de estilo do sistema   | Mapeamento no tema                                                            |
+|:-------------------- |:---------------------------- |:----------------------------- |:----------------------------------------------------------------------------- |
+| `mb`, `marginBottom` | `margin-bottom`              | [`spacing`](/system/spacing/) | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
 
 <br />
 
@@ -120,7 +120,7 @@ and detail each column:
   }
   ```
 
-- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@mui/system`. Você pode ver um exemplo de como usar as funções de estilo na [página avançada](/system/advanced/#using-standalone-system-utilities). The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
+- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page. As funções podem ser importadas de `@material-ui/system`. Você pode ver um exemplo de como usar as funções de estilo na [página avançada](/system/advanced/#using-standalone-system-utilities).
 
 - **Theme mapping**. Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.
 

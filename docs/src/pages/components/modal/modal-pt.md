@@ -17,7 +17,7 @@ O componente renderiza o conteúdo de seu `children` sobre um componente backdro
 - ♿️ Gerencia adequadamente o foco; movendo para o conteúdo modal, e mantendo-o lá até que o modal seja fechado.
 - ♿️ Adiciona as funções ARIA apropriadas automaticamente.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
 > **Nota sobre a terminologia**. O termo "modal" algumas vezes é usado com o sentido de "diálogo", mas isto é um equívoco. Uma janela modal descreve partes de uma UI. Um elemento é considerado modal se [ele bloqueia interações com o resto da aplicação](https://en.wikipedia.org/wiki/Modal_window).
 
@@ -52,14 +52,14 @@ Modals can be nested, for example a select within a dialog, but stacking of more
 
 {{"demo": "pages/components/modal/NestedModal.js"}}
 
-## Transitions
+## Transições
 
-O estado de aberto/fechado do modal pode ser animado com um componente de transição. This component should respect the following conditions:
+O estado de aberto/fechado do modal pode ser animado com um componente de transição. Este componente deve respeitar as seguintes condições:
 
 - Seja um filho direto descendente do modal.
 - Tenha uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
-- Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. Esses dois callbacks permitem que o modal desmonte o conteúdo filho quando fechado e seja totalmente transitado.
+- Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
+- Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. Esses dois callbacks permitem que o modal desmonte o conteúdo filho quando fechado e seja totalmente transitado.
 
 O modal possui suporte interno para [react-transition-group](https://github.com/reactjs/react-transition-group).
 
@@ -83,11 +83,11 @@ As with any performance optimization, this is not a silver bullet. Be sure to id
 
 ## Modal do lado do servidor
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. Para exibir o modal, você precisa desativar o recurso portal com a propriedade `disablePortal`:
+React [não suporta](https://github.com/facebook/react/issues/13097) a API [`createPortal()`](https://pt-br.reactjs.org/docs/portals.html) no servidor. Para exibir o modal, você precisa desativar o recurso portal com a propriedade `disablePortal`:
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 
-## Limitations
+## Limitações
 
 ### Captura do foco
 
@@ -99,7 +99,7 @@ This is done for accessibility purposes. However, it might create issues. No cas
 <Modal disableEnforceFocus />
 ```
 
-## Accessibility
+## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 

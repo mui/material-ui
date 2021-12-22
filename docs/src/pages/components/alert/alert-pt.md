@@ -45,7 +45,7 @@ A propriedade `icon` permite que você adicione um ícone no início do componen
 
 Você pode alterar a severidade padrão e o mapeamento do ícone com a propriedade `iconMapping`. Isso pode ser definido globalmente utilizando a [customização do tema](/customization/theme-components/#default-props).
 
-Definir a propriedade ícone como falso removerá o ícone completamente.
+Definir a propriedade `icon` como falso removerá o ícone completamente.
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 
