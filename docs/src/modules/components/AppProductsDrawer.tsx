@@ -8,7 +8,7 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import Typography from 'docs/src/pages/premium-themes/onepirate/modules/components/Typography';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
-import Close from '@mui/icons-material/Close';
+import CloseIcon from '@mui/icons-material/Close';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
 type ProductSubMenuProps = {
@@ -43,7 +43,7 @@ const ProductSubMenu = React.forwardRef<HTMLDivElement, ProductSubMenuProps>(
           {icon}
         </Box>
         <div>
-          <Typography color="text.primary" variant="body2" fontWeight={700}>
+          <Typography color="text.primary" variant="body2" fontWeight="700">
             {name}
           </Typography>
           <Typography color="text.secondary" variant="body2">
@@ -57,17 +57,31 @@ const ProductSubMenu = React.forwardRef<HTMLDivElement, ProductSubMenuProps>(
 
 const LinksWrapper = styled('div')(
   sx({
-    pl: 6.5,
+    pl: 5.5,
     pt: 1,
-    gap: 0.5,
+    // gap: 0.5,
     display: 'flex',
     flexDirection: 'column',
     '& > a': {
-      fontSize: '0.875rem',
-      lineHeight: 1.7,
       display: 'flex',
       justifyContent: 'space-between',
-      '&:hover': { textDecoration: 'underline' },
+      py: 0.5,
+      px: 1,
+      borderRadius: 0.5,
+      fontWeight: 500,
+      fontSize: (theme) => theme.typography.pxToRem(14),
+      color: (theme) =>
+        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+      '&:hover': {
+        backgroundColor: (theme) =>
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primaryDark[700], 0.4)
+            : theme.palette.grey[50],
+      },
+      '& svg': {
+        width: 18,
+        height: 18,
+      },
     },
   }),
 );
@@ -78,16 +92,15 @@ export default function AppProductsDrawer(props: DrawerProps) {
       variant="temporary"
       PaperProps={{
         sx: {
-          maxWidth: 300,
+          maxWidth: 360,
           overflow: 'hidden',
+          borderRadius: '0px 10px 10px 0px',
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
           bgcolor: (theme) =>
             theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
           boxShadow: (theme) =>
             `0px 4px 20px ${
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.background.paper, 0.72)
-                : 'rgba(170, 180, 190, 0.3)'
+              theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
             }`,
           '& ul': {
             margin: 0,
@@ -108,7 +121,7 @@ export default function AppProductsDrawer(props: DrawerProps) {
       {...props}
     >
       <Box sx={{ p: 2, display: 'flex', justifyContent: 'space-between' }}>
-        <Typography fontWeight="500" color="text.secondary">
+        <Typography variant="body1" fontWeight="500">
           Products
         </Typography>{' '}
         <Box sx={{ my: -1, alignSelf: 'center' }}>
@@ -117,7 +130,7 @@ export default function AppProductsDrawer(props: DrawerProps) {
             size="small"
             onClick={(event) => props.onClose?.(event, 'backdropClick')}
           >
-            <Close />
+            <CloseIcon color="primary" fontSize="small" />
           </IconButton>
         </Box>
       </Box>

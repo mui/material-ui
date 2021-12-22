@@ -439,7 +439,7 @@ export function getThemedComponents(theme: Theme) {
           root: {
             borderColor:
               theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
+                ? alpha(theme.palette.primary[100], 0.08)
                 : theme.palette.grey[100],
           },
         },

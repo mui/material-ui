@@ -330,12 +330,7 @@ function AppNavDrawer(props) {
             )}
           </ToolbarDiv>
         </ToolbarIE11>
-        <Divider
-          sx={{
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? alpha(theme.palette.primary[100], 0.08) : null,
-          }}
-        />
+        <Divider />
         {FEATURE_TOGGLE.enable_product_scope && (
           <React.Fragment>
             {router.asPath.startsWith('/material/') && (
