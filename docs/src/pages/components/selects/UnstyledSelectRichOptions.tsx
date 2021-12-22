@@ -7,6 +7,8 @@ import SelectUnstyled, {
 import { styled } from '@mui/system';
 
 const StyledButton = styled('button')`
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
   min-width: 200px;
@@ -17,6 +19,7 @@ const StyledButton = styled('button')`
   padding: 10px;
   text-align: left;
   line-height: 1.5;
+  color: #000;
 
   &.${selectUnstyledClasses.focusVisible} {
     outline: 4px solid rgba(100, 100, 100, 0.3);
@@ -37,6 +40,8 @@ const StyledButton = styled('button')`
 `;
 
 const StyledListbox = styled('ul')`
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -44,6 +49,7 @@ const StyledListbox = styled('ul')`
   min-width: 200px;
   border: 1px solid #ccc;
   border-top: none;
+  color: #000;
 `;
 
 const StyledOption = styled('li')`

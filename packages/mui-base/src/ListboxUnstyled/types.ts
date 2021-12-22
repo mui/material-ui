@@ -22,7 +22,6 @@ export enum ActionTypes {
 
 interface OptionClickAction<TOption> {
   type: ActionTypes.optionClick;
-  optionIndex: number;
   option: TOption;
   event: React.MouseEvent;
   props: UseListboxStrictProps<TOption>;

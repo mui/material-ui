@@ -4,23 +4,26 @@ import { useSelect } from '@mui/base';
 import { styled } from '@mui/system';
 
 const Root = styled('div')`
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
   position: relative;
   display: inline-block;
   vertical-align: baseline;
+  color: #000;
 `;
 
 const Toggle = styled('div')`
   min-width: 150px;
   min-height: calc(1.5em + 10px);
   padding: 5px;
-  background: var(--color, #333);
+  background-color: var(--color, #333);
   box-shadow: 0 5px 13px -3px var(--color, #333);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
   color: #fff;
   cursor: default;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 
   & .placeholder {
     opacity: 0.5;
@@ -53,7 +56,7 @@ const Listbox = styled('ul')`
   }
 `;
 
-function CustomSelect({ options }) {
+function CustomSelect({ options, placeholder }) {
   const { getButtonProps, getListboxProps, getOptionProps, value } = useSelect({
     options,
   });
@@ -68,7 +71,7 @@ function CustomSelect({ options }) {
       onBlur={() => setListboxVisible(false)}
     >
       <Toggle {...getButtonProps()} style={{ '--color': value }}>
-        {value ?? <span className="placeholder">nothing selected</span>}
+        {value ?? <span className="placeholder">{placeholder ?? ' '}</span>}
       </Toggle>
       <Listbox {...getListboxProps()} className={listboxVisible ? '' : 'hidden'}>
         {options.map((option) => (
@@ -89,6 +92,7 @@ CustomSelect.propTypes = {
       value: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  placeholder: PropTypes.string,
 };
 
 const options = [
@@ -110,9 +114,5 @@ const options = [
 ];
 
 export default function UseSelect() {
-  return (
-    <p>
-      Select a color: <CustomSelect options={options} />
-    </p>
-  );
+  return <CustomSelect placeholder="Select a color..." options={options} />;
 }

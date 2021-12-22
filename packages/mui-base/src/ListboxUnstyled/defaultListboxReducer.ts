@@ -208,7 +208,6 @@ function handleKeyDown<TOption>(
 
 function handleOptionClick<TOption>(
   option: TOption,
-  optionIndex: number,
   state: ListboxState<TOption>,
   props: UseListboxStrictProps<TOption>,
 ): ListboxState<TOption> {
@@ -218,6 +217,8 @@ function handleOptionClick<TOption>(
     isOptionDisabled = () => false,
   } = props;
   const { selectedValue } = state;
+
+  const optionIndex = props.options.indexOf(option);
 
   if (isOptionDisabled(option, optionIndex)) {
     return state;
@@ -298,7 +299,7 @@ export default function defaultListboxReducer<TOption>(
     case ActionTypes.keyDown:
       return handleKeyDown(action.event, state, action.props);
     case ActionTypes.optionClick:
-      return handleOptionClick(action.option, action.optionIndex, state, action.props);
+      return handleOptionClick(action.option, state, action.props);
     case ActionTypes.blur:
       return handleBlur(state);
     case ActionTypes.setControlledValue:

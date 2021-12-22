@@ -213,4 +213,7 @@ import { useSelect } from '@mui/base/SelectUnstyled';
 If you need to use Select's functionality in another component, you can use the `useSelect` hook.
 It enables maximal customizability at the cost of being low-level.
 
+The following example shows a select that opens when hovered over or focused.
+It can be controlled by a mouse/touch or a keyboard.
+
 {{"demo": "pages/components/selects/UseSelect.js"}}

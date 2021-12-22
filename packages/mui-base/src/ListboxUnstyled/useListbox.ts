@@ -65,16 +65,18 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
   }, [options, optionComparer, dispatch]);
 
   const createHandleOptionClick =
-    (optionIndex: number, other: Record<string, React.EventHandler<any>>) =>
+    (option: TOption, other: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent) => {
       other.onClick?.(event);
-      const option = options[optionIndex];
+      if (event.defaultPrevented) {
+        return;
+      }
+
       event.preventDefault();
 
       dispatch({
         type: ActionTypes.optionClick,
         option,
-        optionIndex,
         event,
         props: propsWithDefaults,
       });
@@ -176,9 +178,8 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     return {
       'aria-disabled': disabled || undefined,
       'aria-selected': selected,
-      'data-option-index': index,
       id: optionIdGenerator(option, index),
-      onClick: createHandleOptionClick(index, other),
+      onClick: createHandleOptionClick(option, other),
       role: 'option',
     };
   };
