@@ -114,7 +114,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
           main: blue[400],
         }),
       },
-      divider: mode === 'dark' ? blueDark[700] : grey[100],
+      divider: mode === 'dark' ? alpha(blue[100], 0.08) : grey[100],
       primaryDark: blueDark,
       mode,
       ...(mode === 'dark' && {
@@ -461,7 +461,7 @@ export function getThemedComponents(theme: Theme) {
           root: {
             borderColor:
               theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
+                ? alpha(theme.palette.primary[100], 0.08)
                 : theme.palette.grey[100],
           },
         },

@@ -187,6 +187,8 @@ function AppNavDrawer(props) {
                   variant="outlined"
                   endIcon={<ArrowDropDownRoundedIcon fontSize="small" />}
                   sx={{
+                    py: 0.4,
+                    px: 1,
                     border: (theme) =>
                       `1px solid ${
                         theme.palette.mode === 'dark'
@@ -244,14 +246,7 @@ function AppNavDrawer(props) {
             ) : null}
           </ToolbarDiv>
         </ToolbarIE11>
-        <Divider
-          sx={{
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primary[100], 0.08)
-                : theme.palette.grey[100],
-          }}
-        />
+        <Divider />
         <DiamondSponsors spot="drawer" />
         {navItems}
         <Box sx={{ height: 40 }} />
