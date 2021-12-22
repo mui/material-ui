@@ -71,7 +71,6 @@ describe('useListbox defaultReducer', () => {
           multiple: false,
         },
         option: 'two',
-        optionIndex: 1,
       };
 
       const result = defaultReducer(state, action);
@@ -96,7 +95,6 @@ describe('useListbox defaultReducer', () => {
           multiple: true,
         },
         option: 'two',
-        optionIndex: 1,
       };
 
       const result = defaultReducer(state, action);
@@ -121,7 +119,6 @@ describe('useListbox defaultReducer', () => {
           multiple: true,
         },
         option: 'two',
-        optionIndex: 1,
       };
 
       const result = defaultReducer(state, action);
@@ -309,7 +306,6 @@ describe('useListbox defaultReducer', () => {
             multiple: true,
           },
           option: 'two',
-          optionIndex: 1,
         };
 
         const result = defaultReducer(state, action);
