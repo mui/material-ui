@@ -318,7 +318,11 @@ function AppNavDrawer(props) {
             </NextLink>
             {process.env.LIB_VERSION && FEATURE_TOGGLE.enable_product_scope ? (
               <Tooltip title="MUI products" enterDelay={300}>
-                <IconButton color="primary" onClick={() => setProductsDrawerOpen(true)}>
+                <IconButton
+                  color="primary"
+                  onClick={() => setProductsDrawerOpen(true)}
+                  sx={{ display: { xs: 'none', sm: 'flex' } }}
+                >
                   <Apps fontSize="small" />
                 </IconButton>
               </Tooltip>

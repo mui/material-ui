@@ -32,6 +32,8 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import LanguageIcon from '@mui/icons-material/Translate';
 import { debounce } from '@mui/material/utils';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import NextLink from 'next/link';
+import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
@@ -189,7 +191,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
 });
 
 function AppFrame(props) {
-  const { children, disableDrawer = false } = props;
+  const { children, onClose, disableDrawer = false } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
@@ -243,16 +245,24 @@ function AppFrame(props) {
         <Toolbar variant="dense">
           <NavIconButton
             edge="start"
-            color="inherit"
+            color="primary"
             aria-label={t('appFrame.openDrawer')}
             disablePermanent={disablePermanent}
             onClick={() => setMobileOpen(true)}
-            sx={{ py: '0.375rem' }}
           >
             <MenuIcon fontSize="small" />
           </NavIconButton>
+          <NextLink href="/" passHref onClick={onClose}>
+            <Box
+              component="a"
+              aria-label={t('goToHome')}
+              sx={{ display: { xs: 'block', sm: 'none' }, ml: { xs: 2, sm: 0 }, lineHeight: 0 }}
+            >
+              <SvgMuiLogo width={30} />
+            </Box>
+          </NextLink>
           <GrowingDiv />
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" spacing={1.2}>
             {isProductScoped && FEATURE_TOGGLE.enable_product_scope && (
               <Tooltip title="MUI products" enterDelay={300}>
                 <IconButton
@@ -272,13 +282,18 @@ function AppFrame(props) {
                 href={process.env.SOURCE_CODE_REPO}
                 data-ga-event-category="header"
                 data-ga-event-action="github"
+                sx={{ display: { xs: 'none', sm: 'flex' } }}
               >
                 <GitHubIcon fontSize="small" />
               </IconButton>
             </Tooltip>
             <Notifications />
             <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
-              <IconButton color="primary" {...languageButtonProps}>
+              <IconButton
+                color="primary"
+                {...languageButtonProps}
+                sx={{ display: { xs: 'none', sm: 'flex' } }}
+              >
                 <LanguageIcon fontSize="small" />
               </IconButton>
             </Tooltip>
