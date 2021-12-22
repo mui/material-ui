@@ -369,6 +369,62 @@ export function getThemedComponents(theme: Theme) {
           },
         ],
       },
+      MuiMenu: {
+        styleOverrides: {
+          paper: {
+            mt: 0.5,
+            minWidth: 160,
+            elevation: 0,
+            color: theme.palette.text.secondary,
+            backgroundImage: 'none',
+            bgColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[900]
+                : theme.palette.background.paper,
+            border: `1px solid ${
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[700]
+                : theme.palette.grey[200]
+            }`,
+            '& .MuiMenuItem-root': {
+              fontSize: theme.typography.pxToRem(14),
+              fontWeight: 500,
+              '&:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.primaryDark[700], 0.4)
+                    : theme.palette.grey[50],
+              },
+              '&:focus': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.primaryDark[700], 0.4)
+                    : theme.palette.grey[50],
+              },
+              '&.Mui-selected': {
+                fontWeight: 500,
+                color:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primary[300]
+                    : theme.palette.primary[600],
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : alpha(theme.palette.primary[100], 0.6),
+              },
+            },
+          },
+        },
+      },
+      MuiPopover: {
+        styleOverrides: {
+          paper: {
+            boxShadow: `0px 4px 20px ${
+              theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
+            }`,
+          },
+        },
+      },
       MuiContainer: {
         styleOverrides: {
           root: {
