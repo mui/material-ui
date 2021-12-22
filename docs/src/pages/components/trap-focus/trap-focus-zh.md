@@ -1,14 +1,14 @@
 ---
-title: React Trap Focus（陷阱焦点）组件
+title: React Trap Focus（容器焦点）组件
 components: Unstable_TrapFocus
 githubLabel: 'component: TrapFocus'
 ---
 
-# Trap Focus 陷阱焦点
+# Trap Focus 容器焦点
 
 <p class="description">在 DOM 节点内捕获焦点。</p>
 
-陷阱焦点是一个为其子节点管理焦点的组件。 这在实现遮罩层时很有用，比如模态对话框，它不应该允许在该组件打开时转移焦点。
+容器焦点是一个为其子节点管理焦点的组件。 这在实现遮罩层时很有用，比如模态对话框，它不应该允许在该组件打开时转移焦点。
 
 When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> or <kbd><kbd class="key">Shift</kbd>+<kbd class="key">Tab</kbd></kbd> will rotate focus within the inner focusable elements of the component.
 
