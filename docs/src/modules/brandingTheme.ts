@@ -385,9 +385,6 @@ export function getThemedComponents(theme: Theme) {
                 ? theme.palette.primaryDark[700]
                 : theme.palette.grey[200]
             }`,
-            // boxShadow: `0px 4px 20px ${
-            //   theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
-            // }`,
             '& .MuiMenuItem-root': {
               fontSize: theme.typography.pxToRem(14),
               fontWeight: 500,

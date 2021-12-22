@@ -32,8 +32,9 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 const savedScrollTop = {};
 
 const ProductIdentifier = ({ name, icon, metadata, versionSelector }) => (
-  <Box sx={{ p: 2, pl: 1, display: 'flex', alignItems: 'center', gap: 0.5 }}>
-    <Box
+  <Box sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 0.8 }}>
+    {/* Leaving the product icon not apparent for now just to sleep on it a bit and see how it feels */}
+    {/* <Box
       sx={{
         '& circle': {
           fill: (theme) =>
@@ -44,17 +45,24 @@ const ProductIdentifier = ({ name, icon, metadata, versionSelector }) => (
       }}
     >
       {icon}
-    </Box>
+    </Box> */}
     <Box sx={{ flexShrink: 0 }}>
-      <Typography fontSize="0.75rem" lineHeight={1.43} fontWeight="bold" color="primary.main">
+      <Typography
+        sx={(theme) => ({
+          mb: 0.5,
+          color: theme.palette.grey[600],
+          fontSize: theme.typography.pxToRem(11),
+          fontWeight: theme.typography.fontWeightBold,
+          textTransform: 'uppercase',
+          letterSpacing: '.08rem',
+        })}
+      >
         {metadata}
       </Typography>
       <Typography
-        fontSize="0.875rem"
         fontWeight="500"
-        color="text.secondary"
-        lineHeight={1.2}
-        letterSpacing="-0.25px"
+        color="text.primary"
+        sx={{ fontSize: (theme) => theme.typography.pxToRem(14) }}
       >
         {name}
       </Typography>
@@ -231,28 +239,27 @@ function AppNavDrawer(props) {
             size="small"
             variant="outlined"
             endIcon={<ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />}
-            sx={{
-              border: (theme) =>
-                `1px solid  ${
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.grey[200]
-                }`,
-              color: (theme) =>
+            sx={(theme) => ({
+              border: `1px solid  ${
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[200]
+              }`,
+              color:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primary[300]
                   : theme.palette.primary[500],
               '&:hover': {
-                borderColor: (theme) =>
+                borderColor:
                   theme.palette.mode === 'dark'
                     ? theme.palette.primaryDark[600]
                     : theme.palette.grey[300],
-                background: (theme) =>
+                background:
                   theme.palette.mode === 'dark'
                     ? alpha(theme.palette.primaryDark[700], 0.4)
                     : theme.palette.grey[50],
               },
-            }}
+            })}
           >
             {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
             {`v${process.env.LIB_VERSION}`}
@@ -323,12 +330,17 @@ function AppNavDrawer(props) {
             )}
           </ToolbarDiv>
         </ToolbarIE11>
-        <Divider />
+        <Divider
+          sx={{
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark' ? alpha(theme.palette.primary[100], 0.08) : null,
+          }}
+        />
         {FEATURE_TOGGLE.enable_product_scope && (
           <React.Fragment>
             {router.asPath.startsWith('/material/') && (
               <ProductIdentifier
-                icon={<IconImage name="product-core" />}
+                icon={<IconImage name="product-core" sx={{ height: 30, width: 30 }} />}
                 name="Material"
                 metadata="MUI Core"
                 versionSelector={renderVersionSelector([
