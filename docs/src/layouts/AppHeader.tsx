@@ -34,7 +34,6 @@ const Header = styled('header')(({ theme }) => ({
 }));
 
 export default function AppHeader() {
-  const theme = useTheme();
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState<string | null>(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');

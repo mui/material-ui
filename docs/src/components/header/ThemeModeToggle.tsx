@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha, useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
@@ -11,7 +11,6 @@ interface ThemeModeToggleProps {
 }
 
 export default function ThemeModeToggle(props: ThemeModeToggleProps) {
-  const theme = useTheme();
   return (
     <Tooltip title={props.checked ? 'Turn on the light' : 'Turn off the light'}>
       <IconButton color="primary" disableTouchRipple onClick={() => props.onChange(!props.checked)}>
