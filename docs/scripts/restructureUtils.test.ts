@@ -1,10 +1,5 @@
 import { expect } from 'chai';
-import {
-  markdown,
-  refactorJsonContent,
-  getNewDataLocation,
-  getNewPageLocation,
-} from './restructureUtils';
+import { markdown, getNewDataLocation, getNewPageLocation } from './restructureUtils';
 
 describe('restructure utils', () => {
   describe('refactorMarkdownContent', () => {
@@ -71,24 +66,6 @@ githubLabel: 'component: Avatar'
     });
   });
 
-  describe('refactorJsonContent', () => {
-    it('add prefix to demos value', () => {
-      expect(
-        refactorJsonContent(
-          `"demos": "<ul><li><a href=\\"/components/cards/\\">Cards</a></li></ul>"`,
-        ),
-      ).to.equal(
-        `"demos": "<ul><li><a href=\\"/material/components/cards/\\">Cards</a></li></ul>"`,
-      );
-    });
-
-    it('add prefix to pathname value', () => {
-      expect(
-        refactorJsonContent(`"inheritance": { "component": "Paper", "pathname": "/api/paper/" },`),
-      ).to.equal(`"inheritance": { "component": "Paper", "pathname": "/material/api/paper/" },`);
-    });
-  });
-
   it('getNewDataLocation', () => {
     expect(
       getNewDataLocation(
@@ -114,6 +91,16 @@ githubLabel: 'component: Avatar'
     ).to.deep.equal({
       directory: 'material-ui/docs/pages/material/getting-started',
       path: 'material-ui/docs/pages/material/getting-started/installation.js',
+    });
+
+    expect(getNewPageLocation('material-ui/docs/pages/components/buttons.js')).to.deep.equal({
+      directory: 'material-ui/docs/pages/material',
+      path: 'material-ui/docs/pages/material/react-buttons.js',
+    });
+
+    expect(getNewPageLocation('material-ui/docs/pages/components/about-the-lab.js')).to.deep.equal({
+      directory: 'material-ui/docs/pages/material',
+      path: 'material-ui/docs/pages/material/about-the-lab.js',
     });
   });
 });
