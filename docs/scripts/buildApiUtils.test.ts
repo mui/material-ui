@@ -46,44 +46,44 @@ describe('buildApiUtils', () => {
   describe('getMaterialPathInfo', () => {
     it('[mui-material] return correct apiUrl', () => {
       const info = getMaterialPathInfo(`/packages/mui-material/src/Button/Button.js`);
-      expect(info.apiUrl).to.equal(`/material/api/button`);
+      expect(info.apiUrl).to.equal(`/material/api/mui-material/button`);
     });
 
     it('[mui-material] return correct demoUrl', () => {
       const info = getMaterialPathInfo(`/docs/data/material/components/buttons/buttons.md`);
-      expect(info.demoUrl).to.equal(`/material/components/buttons`);
+      expect(info.demoUrl).to.equal(`/material/react-buttons`);
     });
 
     it('[mui-lab] return correct apiUrl', () => {
       const info = getMaterialPathInfo(`/packages/mui-lab/src/LoadingButton/LoadingButton.js`);
-      expect(info.apiUrl).to.equal(`/material/api/loading-button`);
+      expect(info.apiUrl).to.equal(`/material/api/mui-lab/loading-button`);
     });
 
     it('[mui-lab] return correct demoUrl', () => {
       const info = getMaterialPathInfo(`/docs/data/material/components/buttons/buttons.md`);
-      expect(info.demoUrl).to.equal(`/material/components/buttons`);
+      expect(info.demoUrl).to.equal(`/material/react-buttons`);
     });
 
     it('[mui-base] return correct apiUrl', () => {
       const info = getMaterialPathInfo(`/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx`);
-      expect(info.apiUrl).to.equal(`/material/api/button-unstyled`);
+      expect(info.apiUrl).to.equal(`/material/api/mui-base/button-unstyled`);
     });
 
     it('[mui-base] return correct demoUrl', () => {
       const info = getMaterialPathInfo(`/docs/data/material/components/buttons/buttons.md`);
-      expect(info.demoUrl).to.equal(`/material/components/buttons`);
+      expect(info.demoUrl).to.equal(`/material/react-buttons`);
     });
   });
 
   describe('getBasePathInfo', () => {
     it('return correct apiUrl', () => {
       const info = getBasePathInfo(`/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx`);
-      expect(info.apiUrl).to.equal(`/base/api/button-unstyled`);
+      expect(info.apiUrl).to.equal(`/base/api/mui-base/button-unstyled`);
     });
 
     it('return correct demoUrl', () => {
       const info = getBasePathInfo(`/docs/data/base/components/button-unstyled/button-unstyled.md`);
-      expect(info.demoUrl).to.equal(`/base/components/button-unstyled`);
+      expect(info.demoUrl).to.equal(`/base/react-button-unstyled`);
     });
   });
 });

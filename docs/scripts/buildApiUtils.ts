@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 
@@ -38,20 +39,66 @@ export const getGeneralPathInfo = (filename: string) => {
   };
 };
 
+const componentPackageMapping = {
+  material: {} as Record<string, string | undefined>,
+  base: {} as Record<string, string | undefined>,
+};
+
+const packages = [
+  {
+    name: 'mui-material',
+    product: 'material',
+    paths: [
+      path.join(__dirname, '../../packages/mui-lab/src'),
+      path.join(__dirname, '../../packages/mui-material/src'),
+      path.join(__dirname, '../../packages/mui-base/src'),
+    ],
+  },
+  {
+    name: 'mui-base',
+    product: 'base',
+    paths: [path.join(__dirname, '../../packages/mui-base/src')],
+  },
+];
+
+packages.forEach((pkg) => {
+  pkg.paths.forEach((pkgPath) => {
+    const packageName = pkgPath.match(/packages\/([^/]+)\/src/)?.[1];
+    if (!packageName) {
+      throw new Error(`cannot find package name from path: ${pkgPath}`);
+    }
+    const filePaths = fs.readdirSync(pkgPath);
+    filePaths.forEach((folder) => {
+      if (folder.match(/^[A-Z]/)) {
+        // @ts-ignore
+        componentPackageMapping[pkg.product][folder] = packageName;
+      }
+    });
+  });
+});
+
 export const getMaterialPathInfo = (filename: string) => {
   filename = normalizeFilePath(filename);
   const componentName = filename.match(/.*\/([^/]+)\.(tsx|js)/)?.[1];
+  const componentPkg = componentPackageMapping.material?.[componentName ?? ''];
   return {
-    apiUrl: `/material/api/${kebabCase(componentName)}`,
-    demoUrl: filename.replace(/^.*\/data/, '').replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
+    apiUrl: `/material/api/${componentPkg}/${kebabCase(componentName)}`,
+    demoUrl: filename
+      .replace(/^.*\/data/, '')
+      .replace('components/', 'react-')
+      .replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
   };
 };
 
 export const getBasePathInfo = (filename: string) => {
   filename = normalizeFilePath(filename);
   const componentName = filename.match(/.*\/([^/]+)\.(tsx|js)/)?.[1];
+  const componentPkg = componentPackageMapping.base?.[componentName ?? ''];
   return {
-    apiUrl: `/base/api/${kebabCase(componentName)}`,
-    demoUrl: filename.replace(/^.*\/data/, '').replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
+    apiUrl: `/base/api/${componentPkg}/${kebabCase(componentName)}`,
+    demoUrl: filename
+      .replace(/^.*\/data/, '')
+      .replace('components/', 'react-')
+      .replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
   };
 };
