@@ -22,7 +22,7 @@ The breakpoints are used internally in various components to make them responsiv
 
 ## CSS 媒体查询（Media queries）
 
-CSS media queries 是一种做出响应式的用户界面的特有方法。 而 theme 提供了四种样式的辅助方式：
+CSS media queries 是一种做出响应式的用户界面的特有方法。 The theme provides five styles helpers to do so:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
