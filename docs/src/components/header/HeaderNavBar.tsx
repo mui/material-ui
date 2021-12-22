@@ -18,7 +18,7 @@ const Navigation = styled('nav')(({ theme }) => ({
     display: 'flex',
   },
   '& li': {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
     ...theme.typography.body2,
     fontWeight: 700,
     '& > a, & > div': {

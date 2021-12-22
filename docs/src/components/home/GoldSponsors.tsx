@@ -71,7 +71,7 @@ export default function GoldSponsors() {
   });
   return (
     <Box ref={ref}>
-      <Box sx={{ mb: 2 }}>
+      <Box sx={{ mb: 1 }}>
         <Typography
           component="h3"
           variant="h5"
@@ -80,7 +80,7 @@ export default function GoldSponsors() {
             color: (theme) =>
               theme.palette.mode === 'dark'
                 ? theme.palette.warning[500]
-                : theme.palette.warning[800],
+                : theme.palette.warning[700],
           }}
         >
           Gold

@@ -177,8 +177,8 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         300: '#FFDC48', // vs blueDark900: WCAG 10.4 AAA, APCA 72 Ok for text
         400: '#F4C000', // vs blueDark900: WCAG 6.4 AA normal, APCA 48 Only large text
         500: '#DEA500', // vs blueDark900: WCAG 8 AAA normal, APCA 58 Only large text
+        main: '#DEA500',
         600: '#D18E00', // vs blueDark900: WCAG 6.4 AA normal, APCA 48 Only large text
-        main: '#AB6800',
         700: '#AB6800', // vs white bg: WCAG 4.4 AA large, APCA 71 Ok for text
         800: '#8C5800', // vs white bg: WCAG 5.9 AAA large, APCA 80 Best for text
         900: '#5A3600', // vs white bg: WCAG 10.7 AAA, APCA 95 Best for text
@@ -285,10 +285,13 @@ export function getThemedComponents(theme: Theme) {
         },
         styleOverrides: {
           sizeLarge: {
-            padding: '1rem 1.25rem',
+            padding: '0.875rem 1rem',
             ...theme.typography.body1,
             lineHeight: 21 / 16,
             fontWeight: 700,
+          },
+          sizeSmall: {
+            padding: '0.375rem 0rem',
           },
           containedPrimary: {
             backgroundColor: theme.palette.primary[500],
@@ -333,6 +336,24 @@ export function getThemedComponents(theme: Theme) {
               '& .MuiButton-endIcon': {
                 color:
                   theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[700],
+              },
+            },
+          },
+          {
+            props: { variant: 'link' },
+            style: {
+              // '& .MuiButton-root': {
+              //   padding: '0px',
+              // },
+              fontSize: theme.typography.pxToRem(14),
+              fontWeight: 700,
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[300]
+                  : theme.palette.primary[600],
+              mb: 1,
+              '& svg': {
+                ml: -0.5,
               },
             },
           },
@@ -453,11 +474,17 @@ export function getThemedComponents(theme: Theme) {
           root: {
             color:
               theme.palette.mode === 'dark'
-                ? theme.palette.primary[400]
+                ? theme.palette.primary[300]
                 : theme.palette.primary[600],
             fontWeight: 700,
             display: 'inline-flex',
             alignItems: 'center',
+            '&:hover': {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[200]
+                  : theme.palette.primary[700],
+            },
             '&.MuiTypography-body1 > svg': {
               marginTop: 2,
             },
