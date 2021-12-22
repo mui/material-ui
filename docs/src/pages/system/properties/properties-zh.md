@@ -1,10 +1,10 @@
-# 属性
+# Properties 属性
 
 <p class="description">本页列出了所有的自定义系统属性，解释了它们是如何与主题链接的，以及它们所计算的 CSS 属性。 所有其他常规的 CSS 属性和选择器也被支持。</p>
 
 ## 属性参考表
 
-请注意，此表仅列出自定义属性，支持所有其他常规的 CSS 属性和选择器。 You can check out the [legend](/system/properties/#legend) below.
+请注意，此表仅列出自定义属性，支持所有其他常规的 CSS 属性和选择器。 您可以参考下面的 [图例](/system/properties/#legend)。
 
 | 系统键                   | CSS 属性                                                                                       | 系统样式函数                                                       | 主题映射                                                                                    |
 |:--------------------- |:-------------------------------------------------------------------------------------------- |:------------------------------------------------------------ |:--------------------------------------------------------------------------------------- |
@@ -102,7 +102,7 @@ Let's take one row from [the table above](#properties-reference-table), for exam
 
 and detail each column:
 
-- **System keys**. **System keys**. The column lists the key(s) by which you can use this property with the `sx` prop (or as a system function).
+- **System keys**. The column lists the key(s) by which you can use this property with the `sx` prop (or as a system function).
 
   ```jsx
   <Button sx={{ mb: 3 }}>
@@ -112,7 +112,7 @@ and detail each column:
   <Box marginBottom={3}>
   ```
 
-- **CSS properties**. **CSS properties**. The column describes which CSS property will be generated when this system property is used.
+- **CSS properties**. The column describes which CSS property will be generated when this system property is used.
 
   ```css
   .my-class {
@@ -120,16 +120,16 @@ and detail each column:
   }
   ```
 
-- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. 函数可以从 `@material-ui/system` 导入。 The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@mui/system`. 你可以在 [进阶页面](/system/advanced/#using-standalone-system-utilities) 上看到使用样式函数的例子。 The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
+- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@mui/system`. 你可以在 [进阶页面](/system/advanced/#using-standalone-system-utilities) 上看到使用样式函数的例子。 The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
 
-- **Theme mapping**. **Theme mapping**. Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.
+- **Theme mapping**. Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.
 
 让我们看看一个例子：
 
 ```jsx
 <Button sx={{ mb: 3 }} />
 
-// is equivalent to
+// 等同于
 <Button sx={{ marginBottom: theme => theme.spacing(3)}} />
 ```
 
