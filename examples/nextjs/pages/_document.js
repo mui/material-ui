@@ -80,7 +80,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
   return {
     ...initialProps,
-    // Styles fragment is rendered after the app and page rendering finish.
+    // Inject MUI styles first to match with the prepend: true configuration.
     styles: [...emotionStyleTags, ...React.Children.toArray(initialProps.styles)],
   };
 };

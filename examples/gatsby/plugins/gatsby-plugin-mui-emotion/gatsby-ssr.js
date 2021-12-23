@@ -5,7 +5,7 @@ import createEmotionServer from '@emotion/server/create-instance';
 import { renderToString } from 'react-dom/server';
 import getEmotionCache from './getEmotionCache';
 
-// Move MUI styles to the top of the head section so they're loaded first.
+// Inject MUI styles first to match with the prepend: true configuration.
 export const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
   const headComponents = getHeadComponents();
   headComponents.sort((x, y) => {
