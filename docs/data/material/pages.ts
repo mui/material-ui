@@ -17,7 +17,8 @@ const pages = [
     ],
   },
   {
-    pathname: '/material/components',
+    pathname: '/material/react-',
+    title: 'Components',
     icon: 'ToggleOnIcon',
     children: [
       {
@@ -125,7 +126,7 @@ const pages = [
         subheader: 'data-grid',
       },
       {
-        pathname: '/material/lab',
+        pathname: '/material',
         subheader: 'lab',
         children: [
           { pathname: '/material/about-the-lab', title: 'About the lab 🧪' },
