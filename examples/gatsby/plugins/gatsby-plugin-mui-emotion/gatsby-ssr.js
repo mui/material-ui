@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
