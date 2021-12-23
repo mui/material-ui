@@ -26,13 +26,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## Size
+## Size 大小
 
 使用 `size` 属性或调整svg 图标的字体大小以更改复选框的大小。
 
 {{"demo": "pages/components/checkboxes/SizeCheckboxes.js"}}
 
-## Color
+## Color 颜色
 
 {{"demo": "pages/components/checkboxes/ColorCheckboxes.js"}}
 
@@ -52,7 +52,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 {{"demo": "pages/components/checkboxes/IndeterminateCheckbox.js"}}
 
-> ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
+> ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications. It has no accessibility or UX implications.
 
 ## 表单组
 
@@ -66,9 +66,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
-## Customization
+## 自定义的多选框
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
 
@@ -79,7 +79,7 @@ Here is an example of customizing the component. You can learn more about this i
 - [多选框 对比 单选按钮（Radio Buttons）](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 - [多选框 对比 Switches（开关控件）](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
-## Accessibility
+## 无障碍设计
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
 

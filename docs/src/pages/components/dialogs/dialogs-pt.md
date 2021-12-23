@@ -57,11 +57,11 @@ Os formulários de diálogo permitem que usuários preencham campos dentro de um
 
 {{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Customization
+## Diálogos customizados
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
-The dialog has a close button added to aid usability.
+O diálogo tem um botão de fechar para facilitar a utilização.
 
 {{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
@@ -80,13 +80,13 @@ Você pode definir uma largura máxima usando um enumerador na propriedade `maxW
 Você pode fazer um diálogo totalmente responsivo usando [`useMediaQuery`](/components/use-media-query/#usemediaquery).
 
 ```jsx
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  return <Dialog fullScreen={fullScreen} />;
+  return <Dialog fullScreen={fullScreen} />
 }
 ```
 
@@ -121,10 +121,10 @@ Experimente a demonstração abaixo para ver o que queremos dizer:
 
 Veja a seção [Performance Modal](/components/modal/#performance).
 
-## Limitations
+## Limitações
 
 Siga a [seção de limitações do Modal](/components/modal/#limitations).
 
-## Accessibility
+## Acessibilidade
 
 Siga a [seção de acessibilidade do Modal](/components/modal/#accessibility).

@@ -16,7 +16,7 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them.
+> **请注意：**步骤条不再出现在 [Material Design 指南](https://material.io/)中, 但 Material-UI 会继续支持此组件。
 
 ## 水平步骤条
 
@@ -28,7 +28,7 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 线性步骤条可以让用户依次完成步骤。
 
-您可以在 `activeStep` 属性中传入一个初始值为 0 的当前步骤值来控制 `步骤条`。 你也可以借助 `orientation` 属性来设置 `步骤条` 的方向。
+您可以在 `activeStep` 属性中传入一个初始值为 0 的当前步骤值来控制 `步骤条`。 您也可以借助 `orientation` 属性来设置 `步骤条` 的方向。
 
 这个例子把 `optional` 属性放在第二个 `步骤` 的组件上，它展示了如何使用一个可选的步骤条。 请注意，您可以自行选择管理跳过一个可选的步骤。 一旦决定将一个特定步骤设置为可选的，您就必须配置这个属性 `completed={false}` 以表示即使激活的步骤索引超出了可选的步骤，步骤条并没有完成。
 
@@ -36,7 +36,7 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 ### 非线性的步骤条
 
-Non-linear steppers allow the user to enter a multi-step flow at any point.
+非线性步进器允许用户在任何点输入多步流程。
 
 此示例类似于常规的水平步骤条，但不同之处在于该组件不再基于 `activeStep` 属性自动设置 `disabled = {true}`。
 
@@ -56,7 +56,7 @@ Non-linear steppers allow the user to enter a multi-step flow at any point.
 
 ### 自定义水平步骤条
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
@@ -66,7 +66,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
-### Performance
+### 文本
 
 步骤内容将在关闭时自动卸载。 若您需要提供内容给搜索引擎，亦或是在您的模态框内渲染复杂的组件树，同时还要达到最佳的优化性能，您一般需要以下代码来装载模态框：
 
@@ -74,11 +74,11 @@ Here is an example of customizing the component. You can learn more about this i
 <StepContent TransitionProps={{ unmountOnExit: false }} />
 ```
 
-## Mobile stepper
+## 移动设备上的步骤条
 
 该组件实现了适用于移动设备上的紧凑型步骤条。 与垂直步骤条相比，它的功能更为有限。 如果你还在寻找灵感，请参阅 [移动设备上的步骤条](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)。
 
-移动端的步骤条支持三种变量来显示可用步数的进度：文本、圆点和进度条。
+当前步骤数和总步骤数以文字形式显示。
 
 ### 文本
 
@@ -86,7 +86,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/steppers/TextMobileStepper.js", "bg": true}}
 
-### 具有轮播效果的文本
+### 点状
 
 这个演示使用 [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) 来创建一个轮播。
 
@@ -98,7 +98,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/steppers/DotsMobileStepper.js", "bg": true}}
 
-### Progress
+### Progress 进度条组件
 
 当有许多步骤时，或者如果在此过程中需要插入步骤（基于对早期步骤的响应），请使用进度条。
 
