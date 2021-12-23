@@ -2,6 +2,7 @@ const marked = require('marked');
 const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
+const FEATURE_TOGGLE = require('../../src/featureToggle');
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
@@ -268,6 +269,9 @@ function prepareMarkdown(config) {
 
 ${headers.components
   .map((component) => {
+    if (!FEATURE_TOGGLE.enable_product_scope) {
+      return `- [\`<${component} />\`](/api/${kebabCase(component)}/)`;
+    }
     const componentPkg = componentPackageMapping[headers.product]?.[component];
     return `- [\`<${component} />\`](${headers.product ? `/${headers.product}` : ''}/api/${
       componentPkg ? `${componentPkg}/` : ''
