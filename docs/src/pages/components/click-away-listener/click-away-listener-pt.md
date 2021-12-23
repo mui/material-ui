@@ -11,9 +11,9 @@ githubLabel: 'component: ClickAwayListener'
 - 📦 [1.5 kB gzipped](/size-snapshot).
 - ⚛️ Suporte para portais
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
-## Example
+## Exemplo
 
 Por exemplo, se você precisar ocultar um menu quando as pessoas clicarem em qualquer outro lugar da sua página:
 
@@ -39,7 +39,7 @@ Por padrão, o componente responde aos eventos de clique e de toque final (click
 
 - 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-As the component does not have any styles, it also comes with the unstyled package.
+As the component does not have any styles, it also comes with the Base package.
 
 ```js
 import ClickAwayListener from '@mui/base/ClickAwayListener';

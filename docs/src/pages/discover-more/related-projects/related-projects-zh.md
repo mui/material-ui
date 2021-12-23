@@ -12,9 +12,9 @@ Because the scope of problems MUI solves is bound, we try to play nicely with ot
 
 一套可重复使用的设计工具组件已经面世，这些工具是为了配合 React 组件而设计的，它们可以帮助你制作优秀的产品。
 
-- [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-figma): A large UI kit with over 600 handcrafted MUI components.
-- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-adobe-xd): A large UI kit with over 600 handcrafted MUI components.
-- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch): A large UI kit with over 600 handcrafted MUI symbols.
+- [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-figma)：大型 UI 套件，包含 600 多个手工制作的 Material-UI 组件。
+- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-adobe-xd)：大型 UI 套件，包含六百多个手工制作的 Material-UI 组件。
+- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch)：大型 UI 套件，包含 600 多个手工制作的 Material-UI 符号。
 - [UXPin](https://github.com/uxpin-merge/material-ui-5-merge): A large UI kit of MUI components. The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.
 
 ## 图像和图案
@@ -29,15 +29,15 @@ Because the scope of problems MUI solves is bound, we try to play nicely with ot
 
 ## IDE 工具
 
-- [MUI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets): VSCode extension providing snippets.
-- [MUI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs): VSCode extension providing codemods.
-- [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): ESLint plugin to detect unused styling classes with `@mui/styles`.
+- [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets)：提供编写提示的 VSCode 扩展。
+- [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs)：提供代码模块的 VSCode 扩展。
+- [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes)：ESLint 插件检测到 `@material-ui/styles` 中未使用的类。
 
-## Components
+## Components 组件
 
-This is a collection of third-party projects that extend MUI.
+这是一个扩展 Material-UI 的第三方项目的集合。
 
-### Layout
+### 布局
 
 - [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs/).
 
@@ -51,11 +51,12 @@ This is a collection of third-party projects that extend MUI.
 
 ### 表单
 
-- [react-hook-form](https://react-hook-form.com/): React hook for form validation.
+- [react-hook-form](https://react-hook-form.com/)：用于表单验证的 React 钩子。
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
-- [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
-- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using MUI with [UI Schema](https://github.com/ui-schema/ui-schema), JSON Schema compatible
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui)：用于 [Redux Form](https://redux-form.com/) 和 Material-UI 捆绑使用。
+- [mui-rff](https://github.com/lookfirst/mui-rff)：用于 [React Final Form](https://final-form.org/react) 和 Material-UI 捆绑使用。
+- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) 用于 [UI Schema](https://github.com/ui-schema/ui-schema) 和 Material-UI 捆绑使用，兼容 JSON Schema
+- [@data-driven-forms/mui-component-mapper](https://data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using MUI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).
 
 ### 幻灯片
 
@@ -68,11 +69,11 @@ This is a collection of third-party projects that extend MUI.
 
 ### 日程表/日历
 
-- [dx-react-scheduler-material-ui](https://devexpress.github.io/devextreme-reactive/react/scheduler/): A scheduler/calendar component for MUI with multiple calendar views, editing, recurrence appointments and date navigation features ([paid license](https://js.devexpress.com/licensing/)).
+- [dx-react-scheduler-material-ui](https://devexpress.github.io/devextreme-reactive/react/scheduler/)：一个基于 Material-UI 的日程表/日历组件，它具有多个功能，包括日历视图、编辑、重复一些预约和日期导航（需要 [付费的许可证](https://js.devexpress.com/licensing/)）。
 
 ### 图表
 
-- [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/): Charts for MUI that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more ([paid license](https://js.devexpress.com/licensing/)).
+- [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/)：一个基于 Material-UI 的图表，它可以提供各种图表类型来可视化数据，包括条形图、线形图、面积图、散点图、饼图，以及更多（需要 [付费许可证](https://js.devexpress.com/licensing/)）。
 
 ### Dialog
 
@@ -88,9 +89,9 @@ This is a collection of third-party projects that extend MUI.
 
 ## Blocks（块级元素）
 
-- [components-extra](https://github.com/alexandre-lelain/components-extra): Provides a set of "molecule" components built on top of MUI, such as a Footer, a CookiesBanner, a BackToTop button, and other highly customizable complex elements, to help devs build the macro parts of their UI very quickly. Those components are often duplicated across sites. This library solves this exact problem.
+- [components-extra](https://github.com/alexandre-lelain/components-extra)：提供给了一系列基于 Material-UI 而搭建的”分子（molecule）”组件，譬如一个页脚（Footer），一个 CookiesBanner，一个 BackToTop 按钮，以及一些其他复杂的组件，它们都是高度可自定义的，来帮助开发人员来迅速搭建 UI 的宏观部分。 这些组件往往在网站上重复 —— 这个库解决了这个问题。 This library solves this exact problem.
 
-## Theming
+## Theming 主题
 
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your MUI applications by just selecting the colors and having a live preview.
-- [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/)：只需要选择颜色即可为你的 Material-UI 应用生成主题的工具，同时还支持在线预览。
+- [Material palette generator](https://material.io/inline-tools/color/)：它可用于通过您输入的任何颜色生成一系列的调色板。

@@ -4,7 +4,7 @@ title: 超过 9 个免费的 React 模板
 
 # React 模板
 
-<p class="description">A selection of free react templates to help you get started building your app. The collection contains react dashboard, react admin, and more.</p>
+<p class="description">你可以通过一系列的免费 React 模板开始建造你的程序。 这个集合包含了 react dashboard， react admin，当然还有更多。</p>
 
 <!-- #default-branch-switch -->
 
@@ -20,6 +20,6 @@ title: 超过 9 个免费的 React 模板
 
 ## 高级版主题
 
-你还在寻找更多主题吗？ 你可以在 <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">高级模板区域</a>找到完整的模板和主题列表。
+你还在寻找更多主题吗？ 你还在寻找更多主题吗？ 你可以在 <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">高级模板区域</a>找到完整的模板和主题列表。
 
 <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>

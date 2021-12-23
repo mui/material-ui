@@ -39,7 +39,7 @@ Exemplo de um cartão usando uma imagem para reforçar o conteúdo.
 
 {{"demo": "pages/components/cards/MediaCard.js", "bg": true}}
 
-Por padrão, nós usamos uma combinação de um elemento `&lt;div&gt;` e um *background image* para exibir o componente media. Isto pode ser problemático em algumas situações. Por exemplo, você pode querer exibir um vídeo ou uma imagem responsiva. Use a propriedade `component` para estes casos de uso:
+Por padrão, nós usamos a combinação de um elemento `<div>` e uma *imagem de fundo* para exibir a mídia. Isto pode ser problemático em algumas situações. Por exemplo, você pode querer exibir um vídeo ou uma imagem responsiva. Use a propriedade `component` para estas situações:
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 

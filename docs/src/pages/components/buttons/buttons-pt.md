@@ -1,6 +1,6 @@
 ---
 title: Componente React para Botão
-components: Button, IconButton, ButtonBase, LoadingButton, ButtonUnstyled
+components: Button, IconButton, ButtonBase
 materialDesign: https://material.io/components/buttons
 githubLabel: 'component: Button'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
@@ -19,29 +19,29 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic button
+## Basic Button
 
 O `Botão` vem com três variantes: texto (padrão), contido e delineado.
 
 {{"demo": "pages/components/buttons/BasicButtons.js"}}
 
-### Text button
+### Botões de texto
 
 [Text buttons](https://material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located: in dialogs, in cards. Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
-### Contained button
+### Botões contidos
 
 [Botões Contidos](https://material.io/design/components/buttons.html#contained-button) tem alta ênfase, distinguem-se pelo uso de elevação e preenchimento. Eles contém as principais ações da sua aplicação.
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
-You can remove the elevation with the `disableElevation` prop.
+Você pode remover a elevação com a propriedade `disableElevation`.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-### Outlined button
+### Botões delineados
 
 [Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app.
 
@@ -59,13 +59,13 @@ Todos os componentes aceitam um método manipulador `onClick` que é aplicado ao
 
 Note que a documentação [evita](/guides/api/#native-properties) mencionar as propriedades nativas (existem várias) na seção de API dos componentes.
 
-## Color
+## Cor
 
 {{"demo": "pages/components/buttons/ColorButtons.js"}}
 
 Além de usar as cores de botão padrão, você pode adicionar outras personalizadas ou desativar as que não forem necessárias. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
 
-## Sizes
+## Tamanhos
 
 For larger or smaller buttons, use the `size` prop.
 
@@ -89,7 +89,7 @@ Botões de ícones são comumente encontrados em barras de aplicativos e barras 
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-### Sizes
+### Tamanhos
 
 For larger or smaller icon buttons, use the `size` prop.
 
@@ -101,9 +101,9 @@ Use a propriedade `color` para aplicar uma paleta de cores ao componente.
 
 {{"demo": "pages/components/buttons/IconButtonColors.js"}}
 
-## Customization
+## Botões customizados
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
@@ -125,11 +125,11 @@ Os botões de texto, botões contidos, botões de ação flutuante e botões de 
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
-## Third-party routing library
+## Biblioteca de roteamento de terceiros
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. Aqui está um [guia mais detalhado](/guides/routing/#button).
 
-## Limitations
+## Limitações
 
 ### Propriedade CSS Cursor not-allowed
 

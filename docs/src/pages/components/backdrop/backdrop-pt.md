@@ -18,7 +18,7 @@ O backdrop sinaliza para o usuário uma mudança de estado dentro do aplicativo 
 
 ## Unstyled
 
-O badge também vem com uma versão sem estilo. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
+The backdrop also comes with the Base package. É ideal para fazer personalizações pesadas e diminuir o tamanho do pacote.
 
 ```js
 import BackdropUnstyled from '@mui/base/BackdropUnstyled';

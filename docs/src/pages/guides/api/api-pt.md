@@ -1,6 +1,6 @@
 # Abordagem do Design da API
 
-<p class="description">We have learned a great deal regarding how MUI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
+<p class="description">Nós aprendemos bastante como o Material-UI é usado e a refatoração da v1 permitiu-nos repensar completamente a API dos componentes.</p>
 
 > O design da API é difícil porque você pode fazer com que pareça simples, mas na verdade é extremamente complexo ou simples, mas parece complexo.
 
@@ -30,7 +30,7 @@ Agora, digamos que você queira desabilitar o efeito cascata do `MenuItem`. Voc�
 <MenuItem disableRipple />
 ```
 
-A propriedade `disableRipple` fluirá desta maneira: [`MenuItem`](/api/menu-item/) > [`ListItem`](/api/list-item/) > [`ButtonBase`](/api/button-base/).
+A propriedade `disableRipple` propagará desta maneira: [`MenuItem`](/api/menu-item/) > [`ListItem`](/api/list-item/) > [`ButtonBase`](/api/button-base/).
 
 ### Propriedades nativas
 
@@ -64,20 +64,22 @@ const styles = {
 
 Os componentes aninhados dentro de um componente possuem:
 
-- suas próprias propriedades niveladas quando estas são chaves para a abstração do componente de nível superior, por exemplo uma propriedade `id` para o componente `input`.
+- suas próprias propriedades niveladas quando estas são chaves para a abstração do componente de nível superior, por exemplo, uma propriedade `id` para o componente `input`.
 - suas próprias propriedades `xxxProps`, quando os usuários podem precisar ajustar os subcomponentes do método de renderização interno, por exemplo, expondo as propriedades `inputProps` e `InputProps` em componentes que usam `Input` internamente.
 - suas próprias propriedades `xxxComponent` para executar a injeção de componentes.
 - suas próprias propriedades `xxxRef`, quando o usuário precisar executar ações imperativas, por exemplo, expondo uma propriedade `inputRef` para acessar nativamente o `input` no componente `Input`. Isso ajuda a responder a pergunta ["Como posso acessar o elemento DOM?"](/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### Nomeando propriedades
 
-O nome de uma propriedade booleana deve ser escolhido com base no **valor padrão**. This choice allows:
+O nome de uma propriedade booleana deve ser escolhido com base no **valor padrão**. Essa escolha permite a notação abreviada:
 
 - the shorthand notation. Por exemplo, o atributo `disabled` em um elemento de entrada, se fornecido, é padronizado para `true`:
 
   ```jsx
-  <Input enabled={false} /> ❌
-  <Input disabled /> ✅
+  type Props = {
+    contained: boolean;
+    fab: boolean;
+    };
   ```
 
 - developers to know what the default value is from the name of the boolean prop. It's always the opposite.
@@ -88,35 +90,34 @@ A maior parte de componentes controlados, é controlado pelas propriedades `valu
 
 ### boolean vs. enum
 
-Existem duas opções para projetar a API para as variações de um componente: com um *boolean*; ou com um *enum*. Por exemplo, vamos pegar um botão que tenha tipos diferentes. Cada opção tem seus prós e contras:
+Existem duas opções para projetar a API para as variações de um componente: com um *booleano*; ou com um *enumerador*. Por exemplo, vamos pegar um botão que tenha tipos diferentes. Cada opção tem seus prós e contras:
 
 - Opção 1 _booleano_:
 
   ```tsx
   type Props = {
-    contained: boolean;
-    fab: boolean;
-  };
+      variant: 'text' | 'contained' | 'fab';
+    }
   ```
 
-  This API enables the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
+  Esta API ativou a notação abreviada: `<Button>`, `<Button contained />`, `<Button fab />`.
 
 - Opção 2 _enumerador_:
 
   ```tsx
   type Props = {
-    variant: 'text' | 'contained' | 'fab';
-  };
+      variant: 'text' | 'contained' | 'fab';
+    }
   ```
 
   Esta API é mais verbosa: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
 
   However, it prevents an invalid combination from being used, bounds the number of props exposed, and can easily support new values in the future.
 
-The MUI components use a combination of the two approaches according to the following rules:
+Os componentes do Material-UI usam uma combinação das duas abordagens de acordo com as seguintes regras:
 
 - Um _booleano_ é usado quando **2** valores possíveis são necessários.
-- An _enum_ is used when **> 2** possible values are required, or if there is the possibility that additional possible values may be required in the future.
+- **elemento hospedeiro**: um nó DOM no contexto de `react-dom`, por exemplo, uma instância de `window.HTMLDivElement`.
 
 Voltando ao exemplo do botão anterior; ele requer 3 valores possíveis, usamos um *enumerador*.
 

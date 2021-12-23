@@ -22,7 +22,7 @@ O componente `RadioGroup` é um wrapper utilizado para agrupar componentes `Radi
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-### Direction
+### Direção
 
 To lay out the buttons horizontally, set the `row` prop:
 
@@ -40,17 +40,17 @@ O componente `Radio` também pode ser usado de forma independente, sem o wrapper
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
 
-## Size
+## Tamanho
 
 Use the `size` prop or customize the font size of the svg icons to change the size of the radios.
 
 {{"demo": "pages/components/radio-buttons/SizeRadioButtons.js"}}
 
-## Color
+## Cor
 
 {{"demo": "pages/components/radio-buttons/ColorRadioButtons.js"}}
 
-## Label placement
+## Posicionamento do rótulo
 
 Você pode alterar o posicionamento do rótulo com o componente `FormControlLabel` na propriedade `labelPlacement`:
 
@@ -62,9 +62,9 @@ Em geral, os botões de opção devem ter um valor selecionado por padrão. Se e
 
 {{"demo": "pages/components/radio-buttons/ErrorRadios.js"}}
 
-## Customization
+## Opções customizadas
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
@@ -75,10 +75,10 @@ Para situações de uso avançadas de customização, um hook `useRadioGroup()` 
 ### API
 
 ```jsx
-import { useRadioGroup } from '@mui/material/RadioGroup';
+import { useRadioGroup } from '@material-ui/core/RadioGroup';
 ```
 
-#### Returns
+#### Retornos
 
 `value` (_object_):
 
@@ -86,20 +86,20 @@ import { useRadioGroup } from '@mui/material/RadioGroup';
 - `value.onChange` (_func_ [optional]): Callback fired when a radio button is selected.
 - `value.value` (_any_ [opcional]): Valor do botão de opção selecionado.
 
-#### Example
+#### Exemplo
 
 {{"demo": "pages/components/radio-buttons/UseRadioGroup.js"}}
 
-## When to use
+## Quando usar
 
-- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Caixas de Seleção vs. Botões de Opção](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
-## Accessibility
+## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
 
-- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
-- When a label can't be used, it's necessary to add an attribute directly to the input component. Nesse caso você pode aplicar um atributo adicional (por exemplo, `aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
+- Todos os controles de formulário devem ter rótulos, e isso inclui os botões de opção, caixas de seleção e interruptores. Na maioria dos casos, isso é feito usando o elemento `<label>` ([FormControlLabel](/api/form-control-label/)).
+- Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (por exemplo, `aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
 
 ```jsx
 <Radio

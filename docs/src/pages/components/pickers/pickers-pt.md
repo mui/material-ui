@@ -1,17 +1,17 @@
 ---
 title: Componente React para Data e Hora
-components: DatePicker,DateTimePicker,TimePicker,TextField
+components: TextField
 githubLabel: 'component: DatePicker'
 materialDesign: https://material.io/components/date-pickers
 waiAria: https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 ---
 
 # Seletores Data / Hora
 
-<p class="description">Date pickers and Time pickers allow selecting a single value from a pre-determined set.</p>
+<p class="description">Seletores de data e seletores de hora fornecem uma maneira simples de selecionar um único valor de um conjunto pré-determinado.</p>
 
-- On mobile, pickers are best suited for display in a confirmation dialog.
+- Em dispositivos móveis, seletores são melhores aplicados quando mostrados em diálogos de confirmação.
 - Para exibição em linha, como em um formulário, considere usar controles compactos, como botões suspensos segmentados.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
@@ -20,18 +20,18 @@ packageName: '@mui/lab'
 
 {{"demo": "pages/components/pickers/MaterialUIPickers.js"}}
 
-### Setup
+### Seletor de data
 
-You need to provide a date-library that is used by the pickers by setting the `dateAdapter` to an adapter of your choosing.
+⚠️ O suporte dos navegadores aos controles de entrada nativos [não é perfeito](https://caniuse.com/#feat=input-datetime).
 
-We currently support 4 different date-libraries:
+Um exemplo de seletor de data nativo com `type="date"`.
 
 - [date-fns](https://date-fns.org/)
 - [Day.js](https://day.js.org/)
 - [Luxon](https://moment.github.io/luxon/#/)
 - [Moment.js](https://momentjs.com/)
 
-First you have to install the adapter package for the date-library you want to use:
+{{"demo": "pages/components/pickers/DatePickers.js"}}
 
 ```sh
 // date-fns
@@ -44,7 +44,7 @@ npm install -s @date-io/luxon
 npm install @date-io/moment
 ```
 
-Then you have to set the `dateAdapter` prop of the `LocalizationProvider` accordingly:
+Um exemplo de seletor de data & hora nativo com `type="datetime-local"`.
 
 ```js
 // date-fns
@@ -67,6 +67,6 @@ function App({ children }) {
 
 ⚠️ O suporte dos navegadores aos controles de entrada nativos [não é perfeito](https://caniuse.com/#feat=input-datetime).
 
-Native date (`type="date"`), time (`type="time"`) and date&time (`type="datetime-local"`) pickers.
+Um exemplo de seletor de hora nativo com `type="time"`.
 
-{{"demo": "pages/components/pickers/NativePickers.js"}}
+{{"demo": "pages/components/pickers/TimePickers.js"}}
