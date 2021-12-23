@@ -78,6 +78,21 @@ packages.forEach((pkg) => {
   });
 });
 
+export const extractPackageFilePath = (filePath: string) => {
+  filePath = filePath.replace(new RegExp(`\\${path.sep}`, 'g'), '/');
+  const match = filePath.match(
+    /.*\/packages.*\/(?<packagePath>[^/]+)\/src\/(.*\/)?(?<name>[^/]+)\.(js|tsx|ts|d\.ts)/,
+  );
+  const result = {
+    packagePath: match ? match.groups?.packagePath! : null,
+    name: match ? match.groups?.name! : null,
+  };
+  return {
+    ...result,
+    muiPackage: result.packagePath?.replace('x-', 'mui-'),
+  };
+};
+
 export const getMaterialPathInfo = (filename: string) => {
   filename = normalizeFilePath(filename);
   const packageName = filename.match(/packages\/([^/]+)\/src/)?.[1];
