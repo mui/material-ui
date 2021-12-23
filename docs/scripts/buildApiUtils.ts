@@ -36,6 +36,7 @@ export const getGeneralPathInfo = (filename: string) => {
   return {
     apiUrl: `/api/${kebabCase(componentName)}`,
     demoUrl: filename.replace(/^.*\/pages/, '').replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
+    pagesDirectory: path.join(process.cwd(), 'docs/pages/api-docs'),
   };
 };
 
@@ -79,6 +80,7 @@ packages.forEach((pkg) => {
 
 export const getMaterialPathInfo = (filename: string) => {
   filename = normalizeFilePath(filename);
+  const packageName = filename.match(/packages\/([^/]+)\/src/)?.[1];
   const componentName = filename.match(/.*\/([^/]+)\.(tsx|js)/)?.[1];
   const componentPkg = componentPackageMapping.material?.[componentName ?? ''];
   return {
@@ -87,6 +89,7 @@ export const getMaterialPathInfo = (filename: string) => {
       .replace(/^.*\/data/, '')
       .replace('components/', 'react-')
       .replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
+    pagesDirectory: path.join(process.cwd(), `docs/pages/material/api/${packageName}`),
   };
 };
 
@@ -100,5 +103,6 @@ export const getBasePathInfo = (filename: string) => {
       .replace(/^.*\/data/, '')
       .replace('components/', 'react-')
       .replace(/\/[^/]+\.(md|js|ts|tsx)/, ''),
+    pagesDirectory: path.join(process.cwd(), 'docs/pages/base/api/mui-base'),
   };
 };

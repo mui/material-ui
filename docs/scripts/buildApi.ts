@@ -82,6 +82,61 @@ async function removeOutdatedApiDocsTranslations(components: readonly ReactApi[]
   );
 }
 
+const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []) => {
+  const files = fse.readdirSync(dirPath);
+
+  files.forEach((file) => {
+    if (fse.statSync(`${dirPath}/${file}`).isDirectory()) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      arrayOfFiles = getAllFiles(`${dirPath}/${file}`, arrayOfFiles);
+    } else {
+      arrayOfFiles.push(path.join(__dirname, dirPath, '/', file));
+    }
+  });
+
+  return arrayOfFiles;
+};
+
+function findApiPages(relativeFolder: string) {
+  let pages: Array<{ pathname: string }> = [];
+  let filePaths = [];
+  try {
+    filePaths = getAllFiles(path.join(process.cwd(), relativeFolder));
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+    return [];
+  }
+  filePaths.forEach((itemPath) => {
+    if (itemPath.endsWith('.js')) {
+      const pathname = itemPath
+        .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
+        .replace(/^.*\/pages/, '')
+        .replace('.js', '')
+        .replace('.tsx', '')
+        .replace(/^\/index$/, '/') // Replace `index` by `/`.
+        .replace(/\/index$/, '');
+
+      pages.push({ pathname: `${relativeFolder.replace(/^.*\/pages/, '')}/${pathname}` });
+    }
+  });
+
+  // sort by pathnames without '-' so that e.g. card comes before card-action
+  pages = pages.sort((a, b) => {
+    const pathnameA = a.pathname.replace(/-/g, '');
+    const pathnameB = b.pathname.replace(/-/g, '');
+    if (pathnameA < pathnameB) {
+      return -1;
+    }
+    if (pathnameA > pathnameB) {
+      return 1;
+    }
+    return 0;
+  });
+
+  return pages;
+}
+
 interface Settings {
   input: {
     /**
@@ -100,16 +155,20 @@ interface Settings {
   };
   output: {
     /**
-     * API page + json content output directory
-     */
-    pagesDirectory: string;
-    /**
      * The output path of `pagesApi` generated from `input.pageDirectory`
      */
     apiManifestPath: string;
   };
+  apiPages: Array<{ pathname: string }>;
   productUrlPrefix: string;
-  getPathInfo: (filename: string) => { apiUrl: string; demoUrl: string };
+  getPathInfo: (filename: string) => {
+    apiUrl: string;
+    demoUrl: string;
+    /**
+     * API page + json content output directory
+     */
+    pagesDirectory: string;
+  };
 }
 
 /**
@@ -127,9 +186,12 @@ const BEFORE_MIGRATION_SETTINGS: Settings[] = [
       markdownDirectory: path.join(process.cwd(), 'docs/src/pages'),
     },
     output: {
-      pagesDirectory: path.join(process.cwd(), 'docs/pages/api-docs'),
       apiManifestPath: path.join(process.cwd(), 'docs/src/pagesApi.js'),
     },
+    apiPages: (() => {
+      const pages = findPages({ front: true }, path.join(process.cwd(), 'docs/pages'));
+      return pages.find(({ pathname }) => pathname.indexOf('api') !== -1)?.children ?? [];
+    })(),
     productUrlPrefix: '',
     getPathInfo: getGeneralPathInfo,
   },
@@ -155,9 +217,9 @@ const MIGRATION_SETTINGS: Settings[] = [
       markdownDirectory: path.join(process.cwd(), 'docs/data'),
     },
     output: {
-      pagesDirectory: path.join(process.cwd(), 'docs/pages/material/api-docs'),
       apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
     },
+    apiPages: (() => findApiPages('docs/pages/material/api/mui-material'))(),
     productUrlPrefix: '/material',
     getPathInfo: getMaterialPathInfo,
   },
@@ -181,9 +243,9 @@ const POST_MIGRATION_SETTINGS: Settings[] = [
       markdownDirectory: path.join(process.cwd(), 'docs/data'),
     },
     output: {
-      pagesDirectory: path.join(process.cwd(), 'docs/pages/material/api-docs'),
       apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
     },
+    apiPages: (() => findApiPages('docs/pages/material/api'))(),
     productUrlPrefix: '/material',
     getPathInfo: getMaterialPathInfo,
   },
@@ -194,16 +256,16 @@ const POST_MIGRATION_SETTINGS: Settings[] = [
       markdownDirectory: path.join(process.cwd(), 'docs/data'),
     },
     output: {
-      pagesDirectory: path.join(process.cwd(), 'docs/pages/base/api-docs'),
       apiManifestPath: path.join(process.cwd(), 'docs/data/base/pagesApi.js'),
     },
+    apiPages: (() => findApiPages('docs/pages/base/api'))(),
     productUrlPrefix: '/base',
     getPathInfo: getBasePathInfo,
   },
   // add other products, eg. joy, data-grid, ...etc
 ];
 
-const ACTIVE_SETTINGS = BEFORE_MIGRATION_SETTINGS;
+const ACTIVE_SETTINGS = POST_MIGRATION_SETTINGS;
 
 async function run(argv: { grep?: string }) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
@@ -215,9 +277,7 @@ async function run(argv: { grep?: string }) {
      */
     const componentDirectories = setting.input.libDirectory;
     const apiPagesManifestPath = setting.output.apiManifestPath;
-    const pagesDirectory = setting.output.pagesDirectory;
 
-    mkdirSync(pagesDirectory, { mode: 0o777, recursive: true });
     const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];
     if (manifestDir) {
       mkdirSync(manifestDir, { recursive: true });
@@ -284,12 +344,14 @@ async function run(argv: { grep?: string }) {
         const { filename } = component;
         const pathInfo = setting.getPathInfo(filename);
 
+        mkdirSync(pathInfo.pagesDirectory, { mode: 0o777, recursive: true });
+
         return buildComponentApi(filename, {
           ttpProgram: program,
           pagesMarkdown,
           apiUrl: pathInfo.apiUrl,
           productUrlPrefix: setting.productUrlPrefix,
-          outputPagesDirectory: setting.output.pagesDirectory,
+          outputPagesDirectory: pathInfo.pagesDirectory,
         });
       } catch (error: any) {
         error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
@@ -312,13 +374,7 @@ async function run(argv: { grep?: string }) {
 
     allBuilds = [...allBuilds, ...builds];
 
-    const pages = findPages({ front: true }, setting.input.pageDirectory);
-    const apiPages = pages.find(({ pathname }) => pathname.indexOf('api') !== -1)?.children;
-    if (apiPages === undefined) {
-      throw new TypeError('Unable to find pages under /api');
-    }
-
-    const source = `module.exports = ${JSON.stringify(apiPages)}`;
+    const source = `module.exports = ${JSON.stringify(setting.apiPages)}`;
     writePrettifiedFile(apiPagesManifestPath, source);
 
     await resolvedPromise;
