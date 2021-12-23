@@ -1,8 +1,9 @@
 import * as React from 'react';
 import SelectUnstyled, {
   SelectUnstyledProps,
-  Option,
+  OptionUnstyled,
   selectUnstyledClasses,
+  optionUnstyledClasses,
   SelectOption,
 } from '@mui/base/SelectUnstyled';
 import { styled } from '@mui/system';
@@ -53,7 +54,7 @@ const StyledListbox = styled('ul')`
   color: #000;
 `;
 
-const StyledOption = styled('li')`
+const StyledOption = styled(OptionUnstyled)`
   list-style: none;
   padding: 4px 10px;
   margin: 0;
@@ -64,25 +65,25 @@ const StyledOption = styled('li')`
     border-bottom: none;
   }
 
-  &.${selectUnstyledClasses.disabled} {
+  &.${optionUnstyledClasses.disabled} {
     color: #888;
   }
 
-  &.${selectUnstyledClasses.selected} {
+  &.${optionUnstyledClasses.selected} {
     background-color: rgba(25, 118, 210, 0.08);
   }
 
-  &.${selectUnstyledClasses.highlighted} {
+  &.${optionUnstyledClasses.highlighted} {
     background-color: #16d;
     color: #fff;
   }
 
-  &.${selectUnstyledClasses.highlighted}.${selectUnstyledClasses.selected} {
+  &.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
     background-color: #05e;
     color: #fff;
   }
 
-  &:hover:not(.${selectUnstyledClasses.disabled}) {
+  &:hover:not(.${optionUnstyledClasses.disabled}) {
     background-color: #39e;
   }
 `;
@@ -93,8 +94,7 @@ const CustomSelect = React.forwardRef(function CustomSelect(
 ) {
   const components: SelectUnstyledProps<number>['components'] = {
     Root: StyledButton,
-    ListboxRoot: StyledListbox,
-    ListboxOption: StyledOption,
+    Listbox: StyledListbox,
   };
 
   const componentsProps: SelectUnstyledProps<number>['componentsProps'] = {};
@@ -124,9 +124,9 @@ function renderValue(option: SelectOption<number> | null) {
 export default function UnstyledSelectCustomRenderValue() {
   return (
     <CustomSelect renderValue={renderValue}>
-      <Option value={10}>Ten</Option>
-      <Option value={20}>Twenty</Option>
-      <Option value={30}>Thirty</Option>
+      <StyledOption value={10}>Ten</StyledOption>
+      <StyledOption value={20}>Twenty</StyledOption>
+      <StyledOption value={30}>Thirty</StyledOption>
     </CustomSelect>
   );
 }

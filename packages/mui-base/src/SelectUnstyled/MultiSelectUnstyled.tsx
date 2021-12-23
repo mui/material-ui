@@ -5,16 +5,12 @@ import {
   unstable_useControlled as useControlled,
 } from '@mui/utils';
 import { MultiSelectUnstyledOwnerState, MultiSelectUnstyledProps } from './SelectUnstyledProps';
-import {
-  flattenOptionGroups,
-  getOptionsFromChildren,
-  useUtilityClasses,
-  renderOption,
-} from './utils';
+import { flattenOptionGroups, getOptionsFromChildren, useUtilityClasses } from './utils';
 import useSelect from './useSelect';
 import { SelectChild, SelectOption } from './useSelectProps';
 import { appendOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
+import { SelectUnstyledContext, SelectUnstyledContextType } from './SelectUnstyledContext';
 
 function defaultRenderMultipleValues<TValue extends {}>(selectedOptions: SelectOption<TValue>[]) {
   return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
@@ -63,11 +59,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   const buttonRef = React.useRef<HTMLElement | null>(null);
 
   const Button = component ?? components.Root ?? 'button';
-  const ListboxRoot = components.ListboxRoot ?? 'ul';
-  const ListboxOption = components.ListboxOption ?? 'li';
-  const ListboxOptionGroupRoot = components.ListboxOptionGroupRoot ?? 'li';
-  const ListboxOptionGroupHeader = components.ListboxOptionGroupHeader ?? 'span';
-  const ListboxOptionGroupOptions = components.ListboxOptionGroupOptions ?? 'ul';
+  const ListboxRoot = components.Listbox ?? 'ul';
 
   const handleButtonRefChange = (element: HTMLElement | null) => {
     buttonRef.current = element;
@@ -159,26 +151,17 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   const listboxProps = appendOwnerState(
     ListboxRoot,
     {
-      ...componentsProps.listboxRoot,
+      ...componentsProps.listbox,
       ...getListboxProps(),
-      className: clsx(componentsProps.listboxRoot?.className, classes.listbox),
+      className: clsx(componentsProps.listbox?.className, classes.listbox),
     },
     ownerState,
   );
 
-  const getRenderOptionParameters = (option: SelectChild<TValue>, itemIndex: number) => ({
-    option,
-    itemIndex,
-    getOptionState,
+  const context: SelectUnstyledContextType = {
     getOptionProps,
-    listboxOption: ListboxOption,
-    listboxOptionGroupRoot: ListboxOptionGroupRoot,
-    listboxOptionGroupHeader: ListboxOptionGroupHeader,
-    listboxOptionGroupOptions: ListboxOptionGroupOptions,
-    componentsProps,
-    ownerState,
-    optionClassName: classes.option,
-  });
+    getOptionState,
+  };
 
   return (
     <React.Fragment>
@@ -192,9 +175,9 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
           role={undefined}
         >
           <ListboxRoot {...listboxProps}>
-            {groupedOptions.map((option, index) =>
-              renderOption(getRenderOptionParameters(option, index)),
-            )}
+            <SelectUnstyledContext.Provider value={context}>
+              {children}
+            </SelectUnstyledContext.Provider>
           </ListboxRoot>
         </PopperUnstyled>
       )}

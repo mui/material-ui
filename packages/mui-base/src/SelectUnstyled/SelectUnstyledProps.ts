@@ -18,11 +18,7 @@ interface SelectUnstyledCommonProps {
    */
   components?: {
     Root?: React.ElementType;
-    ListboxRoot?: React.ElementType;
-    ListboxOption?: React.ElementType;
-    ListboxOptionGroupRoot?: React.ElementType;
-    ListboxOptionGroupHeader?: React.ElementType;
-    ListboxOptionGroupOptions?: React.ElementType;
+    Listbox?: React.ElementType;
   };
   /**
    * The props used for each slot inside the Input.
@@ -30,14 +26,7 @@ interface SelectUnstyledCommonProps {
    */
   componentsProps?: {
     root?: React.ComponentPropsWithRef<'button'> & SelectUnstyledComponentsPropsOverrides;
-    listboxRoot?: React.ComponentPropsWithRef<'ul'> & SelectUnstyledComponentsPropsOverrides;
-    listboxOption?: React.ComponentPropsWithRef<'li'> & SelectUnstyledComponentsPropsOverrides;
-    listboxOptionGroupRoot?: React.ComponentPropsWithRef<'li'> &
-      SelectUnstyledComponentsPropsOverrides;
-    listboxOptionGroupHeader?: React.ComponentPropsWithRef<'span'> &
-      SelectUnstyledComponentsPropsOverrides;
-    listboxOptionGroupOptions?: React.ComponentPropsWithRef<'ul'> &
-      SelectUnstyledComponentsPropsOverrides;
+    listbox?: React.ComponentPropsWithRef<'ul'> & SelectUnstyledComponentsPropsOverrides;
   };
   /**
    * If `true`, the select is disabled.

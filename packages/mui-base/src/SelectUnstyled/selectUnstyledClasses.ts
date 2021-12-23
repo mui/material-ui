@@ -5,16 +5,10 @@ export interface SelectUnstyledClasses {
   root: string;
   button: string;
   listbox: string;
-  option: string;
   active: string;
   expanded: string;
   disabled: string;
   focusVisible: string;
-  selected: string;
-  highlighted: string;
-  groupRoot: string;
-  groupHeader: string;
-  groupOptions: string;
 }
 
 export type SelectUnstyledClassKey = keyof SelectUnstyledClasses;
@@ -27,16 +21,10 @@ const selectUnstyledClasses: SelectUnstyledClasses = generateUtilityClasses('Mui
   'root',
   'button',
   'listbox',
-  'option',
   'active',
   'expanded',
   'disabled',
   'focusVisible',
-  'selected',
-  'highlighted',
-  'groupRoot',
-  'groupHeader',
-  'groupOptions',
 ]);
 
 export default selectUnstyledClasses;

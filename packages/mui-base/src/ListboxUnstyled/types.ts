@@ -165,10 +165,10 @@ export type UseListboxProps<TOption> =
   | UseSingleSelectListboxProps<TOption>
   | UseMultiSelectListboxProps<TOption>;
 
-export interface OptionState<TOption> {
+export interface OptionState {
   disabled: boolean;
   highlighted: boolean;
   index: number;
-  option: TOption;
+  // option: TOption;
   selected: boolean;
 }

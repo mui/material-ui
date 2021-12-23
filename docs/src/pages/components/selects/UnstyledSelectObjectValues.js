@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {
   SingleSelectUnstyled,
-  Option,
+  OptionUnstyled,
   selectUnstyledClasses,
+  optionUnstyledClasses,
 } from '@mui/base/SelectUnstyled';
 import { styled } from '@mui/system';
 
@@ -52,7 +53,7 @@ const StyledListbox = styled('ul')`
   color: #000;
 `;
 
-const StyledOption = styled('li')`
+const StyledOption = styled(OptionUnstyled)`
   list-style: none;
   padding: 4px 10px;
   margin: 0;
@@ -63,25 +64,25 @@ const StyledOption = styled('li')`
     border-bottom: none;
   }
 
-  &.${selectUnstyledClasses.disabled} {
+  &.${optionUnstyledClasses.disabled} {
     color: #888;
   }
 
-  &.${selectUnstyledClasses.selected} {
+  &.${optionUnstyledClasses.selected} {
     background-color: rgba(25, 118, 210, 0.08);
   }
 
-  &.${selectUnstyledClasses.highlighted} {
+  &.${optionUnstyledClasses.highlighted} {
     background-color: #16d;
     color: #fff;
   }
 
-  &.${selectUnstyledClasses.highlighted}.${selectUnstyledClasses.selected} {
+  &.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
     background-color: #05e;
     color: #fff;
   }
 
-  &:hover:not(.${selectUnstyledClasses.disabled}) {
+  &:hover:not(.${optionUnstyledClasses.disabled}) {
     background-color: #39e;
   }
 `;
@@ -89,8 +90,7 @@ const StyledOption = styled('li')`
 function CustomSelect(props) {
   const components = {
     Root: StyledButton,
-    ListboxRoot: StyledListbox,
-    ListboxOption: StyledOption,
+    Listbox: StyledListbox,
   };
 
   return <SingleSelectUnstyled {...props} components={components} />;
@@ -110,9 +110,9 @@ export default function UnstyledSelectObjectValues() {
     <div>
       <CustomSelect value={character} onChange={setCharacter}>
         {characters.map((c) => (
-          <Option key={c.name} value={c}>
+          <StyledOption key={c.name} value={c}>
             {c.name}
-          </Option>
+          </StyledOption>
         ))}
       </CustomSelect>
 

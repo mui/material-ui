@@ -168,7 +168,7 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
       selected,
       disabled,
       highlighted: highlightedIndex === index,
-    } as OptionState<TOption>;
+    } as OptionState;
   };
 
   const getOptionProps = (option: TOption, other: Record<string, React.EventHandler<any>> = {}) => {

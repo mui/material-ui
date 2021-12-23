@@ -1,8 +1,9 @@
 import * as React from 'react';
 import SelectUnstyled, {
   SelectUnstyledProps,
-  Option,
+  OptionUnstyled,
   selectUnstyledClasses,
+  optionUnstyledClasses,
 } from '@mui/base/SelectUnstyled';
 import { styled } from '@mui/system';
 
@@ -52,7 +53,7 @@ const StyledListbox = styled('ul')`
   color: #000;
 `;
 
-const StyledOption = styled('li')`
+const StyledOption = styled(OptionUnstyled)`
   list-style: none;
   padding: 4px 10px;
   margin: 0;
@@ -63,25 +64,25 @@ const StyledOption = styled('li')`
     border-bottom: none;
   }
 
-  &.${selectUnstyledClasses.disabled} {
+  &.${optionUnstyledClasses.disabled} {
     color: #888;
   }
 
-  &.${selectUnstyledClasses.selected} {
+  &.${optionUnstyledClasses.selected} {
     background-color: rgba(25, 118, 210, 0.08);
   }
 
-  &.${selectUnstyledClasses.highlighted} {
+  &.${optionUnstyledClasses.highlighted} {
     background-color: #16d;
     color: #fff;
   }
 
-  &.${selectUnstyledClasses.highlighted}.${selectUnstyledClasses.selected} {
+  &.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
     background-color: #05e;
     color: #fff;
   }
 
-  &:hover:not(.${selectUnstyledClasses.disabled}) {
+  &:hover:not(.${optionUnstyledClasses.disabled}) {
     background-color: #39e;
   }
 `;
@@ -92,8 +93,7 @@ const CustomSelect = React.forwardRef(function CustomSelect(
 ) {
   const components: SelectUnstyledProps<number>['components'] = {
     Root: StyledButton,
-    ListboxRoot: StyledListbox,
-    ListboxOption: StyledOption,
+    Listbox: StyledListbox,
   };
 
   const componentsProps: SelectUnstyledProps<number>['componentsProps'] = {};
@@ -126,24 +126,24 @@ function ColorDot(props: { color: string }) {
 export default function UnstyledSelectRichOptions() {
   return (
     <CustomSelect>
-      <Option value="#ff0000">
+      <StyledOption value="#ff0000">
         <span>
           <ColorDot color="#ff0000" />
           Red
         </span>
-      </Option>
-      <Option value="#00ff00">
+      </StyledOption>
+      <StyledOption value="#00ff00">
         <span>
           <ColorDot color="#00ff00" />
           Green
         </span>
-      </Option>
-      <Option value="#0000ff">
+      </StyledOption>
+      <StyledOption value="#0000ff">
         <span>
           <ColorDot color="#0000ff" />
           Blue
         </span>
-      </Option>
+      </StyledOption>
     </CustomSelect>
   );
 }

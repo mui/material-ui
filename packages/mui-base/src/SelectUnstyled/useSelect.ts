@@ -26,7 +26,7 @@ interface UseSelectCommonResult<TValue> {
     option: SelectOption<TValue>,
     otherHandlers?: Record<string, React.EventHandler<any>>,
   ) => Record<string, any>;
-  getOptionState: (option: SelectOption<TValue>) => OptionState<SelectOption<TValue>>;
+  getOptionState: (option: SelectOption<TValue>) => OptionState;
 }
 
 interface UseSelectSingleResult<TValue> extends UseSelectCommonResult<TValue> {
