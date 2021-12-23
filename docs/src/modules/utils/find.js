@@ -46,6 +46,49 @@ function findPagesMarkdown(
   return pagesMarkdown;
 }
 
+/**
+ * Returns the markdowns of the documentation in a flat array.
+ * @param {string} [directory]
+ * @param {Array<{ filename: string, pathname: string }>} [pagesMarkdown]
+ * @returns {Array<{ filename: string, pathname: string }>}
+ */
+function findPagesMarkdownNew(
+  directory = path.resolve(__dirname, '../../../data'),
+  pagesMarkdown = [],
+) {
+  const items = fs.readdirSync(directory);
+
+  items.forEach((item) => {
+    const itemPath = path.resolve(directory, item);
+
+    if (fs.statSync(itemPath).isDirectory()) {
+      findPagesMarkdownNew(itemPath, pagesMarkdown);
+      return;
+    }
+
+    if (!markdownRegex.test(item)) {
+      return;
+    }
+
+    let pathname = itemPath
+      .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
+      .replace(/^.*\/data/, '')
+      .replace('.md', '');
+
+    // Remove the last pathname segment.
+    pathname = pathname.split('/').slice(0, 4).join('/');
+
+    pagesMarkdown.push({
+      // Relative location in the path (URL) system.
+      pathname: pathname.replace('components/', 'react-'),
+      // Relative location in the file system.
+      filename: itemPath,
+    });
+  });
+
+  return pagesMarkdown;
+}
+
 const componentRegex = /^(Unstable_)?([A-Z][a-z]+)+\.(js|tsx)/;
 
 /**
@@ -159,5 +202,6 @@ function findPages(
 module.exports = {
   findPages,
   findPagesMarkdown,
+  findPagesMarkdownNew,
   findComponents,
 };

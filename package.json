@@ -12,7 +12,7 @@
     "release:publish": "lerna publish from-package --dist-tag latest --contents build",
     "release:publish:dry-run": "lerna publish from-package --dist-tag latest --contents build --registry=\"http://localhost:4873/\"",
     "release:tag": "node scripts/releaseTag",
-    "docs:api": "rimraf ./docs/pages/**/api-docs && yarn docs:api:build",
+    "docs:api": "rimraf ./docs/pages/**/api-docs ./docs/pages/**/api && yarn docs:api:build",
     "docs:api:build": "cross-env BABEL_ENV=development __NEXT_EXPORT_TRAILING_SLASH=true babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/buildApi.ts",
     "docs:build": "yarn workspace docs build",
     "docs:build-sw": "yarn workspace docs build-sw",

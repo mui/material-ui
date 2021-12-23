@@ -1,35 +1,29 @@
+import path from 'path';
+import fs from 'fs';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import {
-  findComponentDemos,
-  getMuiName,
-  getGeneralPathInfo,
-  getMaterialPathInfo,
-  getBasePathInfo,
-  extractPackageFilePath,
+  extractApiPage,
+  extractPackageFile,
+  getGenericComponentInfo,
+  getMaterialComponentInfo,
+  getBaseComponentInfo,
 } from './buildApiUtils';
 
 describe('buildApiUtils', () => {
-  it('findComponentDemos return matched component', () => {
-    expect(
-      findComponentDemos('Accordion', [
-        {
-          pathname: '/material/components/accordion',
-          components: ['Accordion', 'AccordionDetails'],
-        },
-        {
-          pathname: '/material/components/accordion-details',
-          components: ['Accordion', 'AccordionDetails'],
-        },
-      ]),
-    ).to.deep.equal(['/material/components/accordion', '/material/components/accordion-details']);
+  describe('extractApiPage', () => {
+    it('return info for api page', () => {
+      expect(
+        extractApiPage('/material-ui/docs/pages/material/api/mui-material/accordion-actions.js'),
+      ).to.deep.equal({
+        apiPathname: '/material/api/mui-material/accordion-actions',
+      });
+    });
   });
 
   describe('extractPackageFilePath', () => {
     it('return info if path is a package (material)', () => {
-      const result = extractPackageFilePath(
-        '/material-ui/packages/mui-material/src/Button/Button.js',
-      );
+      const result = extractPackageFile('/material-ui/packages/mui-material/src/Button/Button.js');
       sinon.assert.match(result, {
         packagePath: 'mui-material',
         muiPackage: 'mui-material',
@@ -38,7 +32,7 @@ describe('buildApiUtils', () => {
     });
 
     it('return info if path is a package (lab)', () => {
-      const result = extractPackageFilePath(
+      const result = extractPackageFile(
         '/material-ui/packages/mui-lab/src/LoadingButton/LoadingButton.js',
       );
       sinon.assert.match(result, {
@@ -49,7 +43,7 @@ describe('buildApiUtils', () => {
     });
 
     it('return info if path is a package (base)', () => {
-      const result = extractPackageFilePath(
+      const result = extractPackageFile(
         '/material-ui/packages/mui-base/src/TabUnstyled/TabUnstyled.tsx',
       );
       sinon.assert.match(result, {
@@ -60,9 +54,7 @@ describe('buildApiUtils', () => {
     });
 
     it('return info if path is a package (data-grid)', () => {
-      const result = extractPackageFilePath(
-        '/material-ui/packages/grid/x-data-grid/src/DataGrid.tsx',
-      );
+      const result = extractPackageFile('/material-ui/packages/grid/x-data-grid/src/DataGrid.tsx');
       sinon.assert.match(result, {
         packagePath: 'x-data-grid',
         muiPackage: 'mui-data-grid',
@@ -71,7 +63,7 @@ describe('buildApiUtils', () => {
     });
 
     it('return info if path is a package (data-grid-pro)', () => {
-      const result = extractPackageFilePath(
+      const result = extractPackageFile(
         '/material-ui/packages/grid/x-data-grid-pro/src/DataGridPro.tsx',
       );
       sinon.assert.match(result, {
@@ -82,7 +74,7 @@ describe('buildApiUtils', () => {
     });
 
     it('return null if path is not a package', () => {
-      const result = extractPackageFilePath(
+      const result = extractPackageFile(
         '/material-ui/docs/pages/material/getting-started/getting-started.md',
       );
       sinon.assert.match(result, {
@@ -92,67 +84,108 @@ describe('buildApiUtils', () => {
     });
   });
 
-  it('getMuiName return name without Unstyled', () => {
-    expect(getMuiName('ButtonUnstyled')).to.equal('MuiButton');
-  });
+  describe('getGenericComponentInfo', () => {
+    it('return correct apiPathname', () => {
+      const info = getGenericComponentInfo(
+        path.join(process.cwd(), `/packages/mui-material/src/Button/Button.js`),
+      );
+      sinon.assert.match(info, {
+        name: 'Button',
+        apiPathname: '/api/button/',
+        muiName: 'MuiButton',
+        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/api-docs')),
+      });
 
-  it('getMuiName return name without Styled', () => {
-    expect(getMuiName('StyledInputBase')).to.equal('MuiInputBase');
-  });
+      expect(info.getInheritance('ButtonBase')).to.deep.equal({
+        name: 'ButtonBase',
+        pathname: '/api/button-base/',
+      });
 
-  describe('getGeneralPathInfo', () => {
-    it('return correct apiUrl', () => {
-      const info = getGeneralPathInfo(`/packages/mui-material/src/Button/Button.js`);
-      expect(info.apiUrl).to.equal(`/api/button`);
-    });
-
-    it('return correct demoUrl', () => {
-      const info = getGeneralPathInfo(`/docs/src/pages/components/buttons/buttons.md`);
-      expect(info.demoUrl).to.equal(`/components/buttons`);
-    });
-  });
-
-  describe('getMaterialPathInfo', () => {
-    it('[mui-material] return correct apiUrl', () => {
-      const info = getMaterialPathInfo(`/packages/mui-material/src/Button/Button.js`);
-      expect(info.apiUrl).to.equal(`/material/api/mui-material/button`);
-    });
-
-    it('[mui-material] return correct demoUrl', () => {
-      const info = getMaterialPathInfo(`/docs/data/material/components/buttons/buttons.md`);
-      expect(info.demoUrl).to.equal(`/material/react-buttons`);
-    });
-
-    it('[mui-lab] return correct apiUrl', () => {
-      const info = getMaterialPathInfo(`/packages/mui-lab/src/LoadingButton/LoadingButton.js`);
-      expect(info.apiUrl).to.equal(`/material/api/mui-lab/loading-button`);
-    });
-
-    it('[mui-lab] return correct demoUrl', () => {
-      const info = getMaterialPathInfo(`/docs/data/material/components/buttons/buttons.md`);
-      expect(info.demoUrl).to.equal(`/material/react-buttons`);
-    });
-
-    it('[mui-base] return correct apiUrl', () => {
-      const info = getMaterialPathInfo(`/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx`);
-      expect(info.apiUrl).to.equal(`/material/api/mui-base/button-unstyled`);
-    });
-
-    it('[mui-base] return correct demoUrl', () => {
-      const info = getMaterialPathInfo(`/docs/data/material/components/buttons/buttons.md`);
-      expect(info.demoUrl).to.equal(`/material/react-buttons`);
+      expect(info.getDemos()).to.deep.equal([
+        {
+          name: 'Button Group',
+          demoPathname: '/components/button-group/',
+        },
+        {
+          name: 'Buttons',
+          demoPathname: '/components/buttons/',
+        },
+      ]);
     });
   });
 
-  describe('getBasePathInfo', () => {
-    it('return correct apiUrl', () => {
-      const info = getBasePathInfo(`/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx`);
-      expect(info.apiUrl).to.equal(`/base/api/mui-base/button-unstyled`);
-    });
+  describe('getMaterialComponentInfo', () => {
+    it('return correct info for material component file', () => {
+      const info = getMaterialComponentInfo(
+        path.join(process.cwd(), `/packages/mui-material/src/Button/Button.js`),
+      );
+      sinon.assert.match(info, {
+        name: 'Button',
+        apiPathname: '/material/api/mui-material/button/',
+        muiName: 'MuiButton',
+        apiPagesDirectory: sinon.match((value) =>
+          value.endsWith('docs/pages/material/api/mui-material'),
+        ),
+      });
 
-    it('return correct demoUrl', () => {
-      const info = getBasePathInfo(`/docs/data/base/components/button-unstyled/button-unstyled.md`);
-      expect(info.demoUrl).to.equal(`/base/react-button-unstyled`);
+      expect(info.getInheritance('ButtonBase')).to.deep.equal({
+        name: 'ButtonBase',
+        pathname: '/material/api/mui-material/button-base/',
+      });
+
+      let existed = false;
+      try {
+        fs.readdirSync(path.join(process.cwd(), 'docs/data'));
+        existed = true;
+      } catch (error) {
+        // eslint-disable-next-line no-empty
+      }
+      if (existed) {
+        expect(info.getDemos()).to.deep.equal([
+          {
+            name: 'Button Group',
+            demoPathname: '/material/react-button-group/',
+          },
+          {
+            name: 'Buttons',
+            demoPathname: '/material/react-buttons/',
+          },
+        ]);
+      }
+    });
+  });
+
+  describe('getBaseComponentInfo', () => {
+    it('return correct info for base component file', () => {
+      const info = getBaseComponentInfo(
+        path.join(process.cwd(), `/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx`),
+      );
+      sinon.assert.match(info, {
+        name: 'ButtonUnstyled',
+        apiPathname: '/base/api/mui-base/button-unstyled/',
+        muiName: 'MuiButton',
+        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/base/api/mui-base')),
+      });
+
+      info.readFile();
+
+      expect(info.getInheritance()).to.deep.equal(null);
+
+      let existed = false;
+      try {
+        fs.readdirSync(path.join(process.cwd(), 'docs/data'));
+        existed = true;
+      } catch (error) {
+        // eslint-disable-next-line no-empty
+      }
+      if (existed) {
+        expect(info.getDemos()).to.deep.equal([
+          {
+            name: 'Buttons',
+            demoPathname: '/material/react-buttons/',
+          },
+        ]);
+      }
     });
   });
 });
