@@ -342,9 +342,6 @@ export function getThemedComponents(theme: Theme) {
           {
             props: { variant: 'link' },
             style: {
-              // '& .MuiButton-root': {
-              //   padding: '0px',
-              // },
               fontSize: theme.typography.pxToRem(14),
               fontWeight: 700,
               color:
