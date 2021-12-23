@@ -199,7 +199,7 @@ async function annotateComponentDefinition(api: ReactApi) {
 
   let inheritanceAPILink = null;
   if (api.inheritance !== null) {
-    inheritanceAPILink = `[${api.inheritance.name} API](${HOST}${api.inheritance.pathname})`;
+    inheritanceAPILink = `[${api.inheritance.name} API](${HOST}${api.inheritance.apiPathname})`;
   }
 
   const markdownLines = (await computeApiDescription(api, { host: HOST })).split('\n');
@@ -336,7 +336,12 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
     spread: reactApi.spread,
     forwardsRefTo: reactApi.forwardsRefTo,
     filename: toGithubPath(reactApi.filename),
-    inheritance: reactApi.inheritance,
+    inheritance: reactApi.inheritance
+      ? {
+          component: reactApi.inheritance.name,
+          pathname: reactApi.inheritance.apiPathname,
+        }
+      : null,
     demos: `<ul>${reactApi.demos
       .map((item) => `<li><a href="${item.demoPathname}">${item.name}</a></li>`)
       .join('\n')}</ul>`,

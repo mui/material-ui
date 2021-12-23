@@ -131,7 +131,7 @@ export type ComponentInfo = {
     /**
      * API pathname
      */
-    pathname: string;
+    apiPathname: string;
   };
   getDemos: () => Array<{ name: string; demoPathname: string }>;
   apiPagesDirectory: string;
@@ -159,7 +159,7 @@ export const getGenericComponentInfo = (filename: string): ComponentInfo => {
       }
       return {
         name: inheritedComponent,
-        pathname:
+        apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
             : `/api/${kebabCase(inheritedComponent)}/`,
@@ -199,7 +199,7 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
       const inheritedPkg = componentPackageMapping.material?.[inheritedComponent ?? ''];
       return {
         name: inheritedComponent,
-        pathname:
+        apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
             : `/material/api/${inheritedPkg}/${kebabCase(inheritedComponent)}/`,
@@ -239,7 +239,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
       const inheritedPkg = componentPackageMapping.base?.[inheritedComponent ?? ''];
       return {
         name: inheritedComponent,
-        pathname:
+        apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
             : `/base/api/${inheritedPkg}/${kebabCase(inheritedComponent)}/`,

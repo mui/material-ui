@@ -98,7 +98,7 @@ describe('buildApiUtils', () => {
 
       expect(info.getInheritance('ButtonBase')).to.deep.equal({
         name: 'ButtonBase',
-        pathname: '/api/button-base/',
+        apiPathname: '/api/button-base/',
       });
 
       expect(info.getDemos()).to.deep.equal([
@@ -130,7 +130,7 @@ describe('buildApiUtils', () => {
 
       expect(info.getInheritance('ButtonBase')).to.deep.equal({
         name: 'ButtonBase',
-        pathname: '/material/api/mui-material/button-base/',
+        apiPathname: '/material/api/mui-material/button-base/',
       });
 
       let existed = false;
