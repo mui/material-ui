@@ -40,7 +40,8 @@ const StyledInputElement = styled('input')(
   }
 
   &:focus {
-    outline: 2px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+    outline: 4px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+    outline-offset: 2px;
   }
 `,
 );

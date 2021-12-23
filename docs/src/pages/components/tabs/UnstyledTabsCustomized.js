@@ -38,10 +38,10 @@ const Tab = styled(TabUnstyled)`
     background-color: ${blue[400]};
   }
 
-  &.${buttonUnstyledClasses.focusVisible} {
+  &:focus {
     color: #fff;
-    outline: none;
-    background-color: ${blue[200]};
+    outline: 4px solid ${blue[200]};
+    outline-offset: 4px;
   }
 
   &.${tabUnstyledClasses.selected} {
