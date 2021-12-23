@@ -199,7 +199,11 @@ async function annotateComponentDefinition(api: ReactApi) {
 
   let inheritanceAPILink = null;
   if (api.inheritance !== null) {
-    inheritanceAPILink = `[${api.inheritance.name} API](${HOST}${api.inheritance.apiPathname})`;
+    inheritanceAPILink = `[${api.inheritance.name} API](${
+      api.inheritance.apiPathname.startsWith('http')
+        ? api.inheritance.apiPathname
+        : `${HOST}${api.inheritance.apiPathname}`
+    })`;
   }
 
   const markdownLines = (await computeApiDescription(api, { host: HOST })).split('\n');
@@ -211,12 +215,20 @@ async function annotateComponentDefinition(api: ReactApi) {
     'Demos:',
     '',
     ...api.demos.map((item) => {
-      return `- [${item.name}](${HOST}${item.demoPathname})`;
+      return `- [${item.name}](${
+        item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
+      })`;
     }),
     '',
   );
 
-  markdownLines.push('API:', '', `- [${api.name} API](${HOST}${api.apiPathname})`);
+  markdownLines.push(
+    'API:',
+    '',
+    `- [${api.name} API](${
+      api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
+    })`,
+  );
   if (api.inheritance !== null) {
     markdownLines.push(`- inherits ${inheritanceAPILink}`);
   }

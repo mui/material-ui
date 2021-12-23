@@ -116,9 +116,6 @@ interface Settings {
   getComponentInfo: (filename: string) => ComponentInfo;
 }
 
-/**
- * This is the refactored version of the current API building process, nothing's changed.
- */
 const BEFORE_MIGRATION_SETTINGS: Settings[] = [
   {
     input: {
@@ -139,40 +136,7 @@ const BEFORE_MIGRATION_SETTINGS: Settings[] = [
   },
 ];
 
-/**
- * Once the preparation is done (as described in https://github.com/mui-org/material-ui/issues/30091), swithc to this settings.
- * It will generate API for the current & `/material` paths, then set the redirect to link `/api/*` to `/material/api/*`
- * At this point, `mui-base` content is still live in with `mui-material`.
- */
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MIGRATION_SETTINGS: Settings[] = [
-  ...BEFORE_MIGRATION_SETTINGS,
-  {
-    input: {
-      libDirectory: [
-        path.join(process.cwd(), 'packages/mui-base/src'),
-        path.join(process.cwd(), 'packages/mui-material/src'),
-        path.join(process.cwd(), 'packages/mui-lab/src'),
-      ],
-    },
-    output: {
-      apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
-    },
-    getApiPages: () => findApiPages('docs/pages/material/api/mui-material'),
-    getComponentInfo: getMaterialComponentInfo,
-  },
-];
-
-/**
- * Once redirects are stable
- * - Create `mui-base` content in `docs/pages/base/*` and switch to this settings.
- * - Remove old content directories, eg. `docs/pages/components/*`, ...etc
- */
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const POST_MIGRATION_SETTINGS: Settings[] = [
-  ...BEFORE_MIGRATION_SETTINGS,
   {
     input: {
       libDirectory: [
@@ -197,14 +161,35 @@ const POST_MIGRATION_SETTINGS: Settings[] = [
     getComponentInfo: getBaseComponentInfo,
   },
   // add other products, eg. joy, data-grid, ...etc
+  {
+    // use old config so that component type definition does not change by `annotateComponentDefinition`
+    // TODO: remove this setting at cleanup phase
+    input: {
+      libDirectory: [
+        path.join(process.cwd(), 'packages/mui-base/src'),
+        path.join(process.cwd(), 'packages/mui-material/src'),
+        path.join(process.cwd(), 'packages/mui-lab/src'),
+      ],
+    },
+    output: {
+      apiManifestPath: path.join(process.cwd(), 'docs/src/pagesApi.js'),
+    },
+    getApiPages: () => {
+      const pages = findPages({ front: true }, path.join(process.cwd(), 'docs/pages'));
+      return pages.find(({ pathname }) => pathname.indexOf('api') !== -1)?.children ?? [];
+    },
+    getComponentInfo: getGenericComponentInfo,
+  },
 ];
 
-const ACTIVE_SETTINGS = POST_MIGRATION_SETTINGS;
+// TODO: Switch to MIGRATION_SETTINGS once ready to migrate content
+const ACTIVE_SETTINGS = BEFORE_MIGRATION_SETTINGS || MIGRATION_SETTINGS;
 
 async function run(argv: { grep?: string }) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
   await ACTIVE_SETTINGS.reduce(async (resolvedPromise, setting) => {
+    await resolvedPromise;
     const workspaceRoot = path.resolve(__dirname, '../../');
     /**
      * @type {string[]}
@@ -283,8 +268,7 @@ async function run(argv: { grep?: string }) {
 
     const source = `module.exports = ${JSON.stringify(setting.getApiPages())}`;
     writePrettifiedFile(apiPagesManifestPath, source);
-
-    await resolvedPromise;
+    return Promise.resolve();
   }, Promise.resolve());
 
   if (grep === null) {
