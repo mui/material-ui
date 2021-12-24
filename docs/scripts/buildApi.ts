@@ -16,6 +16,7 @@ import buildComponentApi, {
   writePrettifiedFile,
   ReactApi,
 } from './ApiBuilders/ComponentApiBuilder';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
 
@@ -182,7 +183,9 @@ const MIGRATION_SETTINGS: Settings[] = [
 ];
 
 // TODO: Switch to MIGRATION_SETTINGS once ready to migrate content
-const ACTIVE_SETTINGS = BEFORE_MIGRATION_SETTINGS || MIGRATION_SETTINGS;
+const ACTIVE_SETTINGS = FEATURE_TOGGLE.enable_product_scope
+  ? MIGRATION_SETTINGS
+  : BEFORE_MIGRATION_SETTINGS;
 
 async function run(argv: { grep?: string }) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);

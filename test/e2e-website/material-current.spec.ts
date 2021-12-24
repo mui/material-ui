@@ -1,4 +1,4 @@
-import { test as base, expect } from '@playwright/test';
+import { test as base, expect, Page } from '@playwright/test';
 import kebabCase from 'lodash/kebabCase';
 import { TestFixture } from './playwright.config';
 
@@ -72,15 +72,21 @@ test.describe.parallel('Material docs', () => {
   });
 
   test.describe.parallel('Search', () => {
-    test('should have correct link when searching component', async ({ page }) => {
-      await page.goto(`/getting-started/installation/`, { waitUntil: 'networkidle' });
-
+    const retryToggleSearch = async (page: Page, count = 3) => {
       try {
         await page.keyboard.press('Meta+k');
         await page.waitForSelector('input#docsearch-input', { timeout: 2000 });
       } catch (error) {
-        await page.keyboard.press('Meta+k'); // retry
+        if (count === 0) {
+          throw error;
+        }
+        await retryToggleSearch(page, count - 1);
       }
+    };
+    test('should have correct link when searching component', async ({ page }) => {
+      await page.goto(`/getting-started/installation/`, { waitUntil: 'networkidle' });
+
+      await retryToggleSearch(page);
 
       await page.type('input#docsearch-input', 'card', { delay: 50 });
 
@@ -92,12 +98,7 @@ test.describe.parallel('Material docs', () => {
     test('should have correct link when searching API', async ({ page }) => {
       await page.goto(`/getting-started/installation/`, { waitUntil: 'networkidle' });
 
-      try {
-        await page.keyboard.press('Meta+k');
-        await page.waitForSelector('input#docsearch-input', { timeout: 2000 });
-      } catch (error) {
-        await page.keyboard.press('Meta+k'); // retry
-      }
+      await retryToggleSearch(page);
 
       await page.type('input#docsearch-input', 'card api', { delay: 50 });
 
@@ -111,7 +112,7 @@ test.describe.parallel('Material docs', () => {
 
       await page.waitForLoadState('networkidle'); // wait for docsearch
 
-      await page.keyboard.press('Meta+k');
+      await retryToggleSearch(page);
 
       await page.type('input#docsearch-input', 'loading api', { delay: 50 });
 

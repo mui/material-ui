@@ -1,4 +1,4 @@
-import { test as base, expect } from '@playwright/test';
+import { test as base, expect, Page } from '@playwright/test';
 import kebabCase from 'lodash/kebabCase';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import { TestFixture } from './playwright.config';
@@ -82,11 +82,11 @@ test.describe.parallel('Material docs', () => {
           expect(link.startsWith(`/material`)).toBeTruthy();
         }
 
-        if (link.startsWith('/material') && link.includes('api')) {
+        if (link.startsWith('/material/api/')) {
           expect(link).toMatch(/\/material\/api\/mui-(material|lab)\/.*/);
         }
 
-        expect(link).not.toMatch(/components/); // there should be no `components` in the url anymore
+        expect(link).not.toMatch(/\/components/); // there should be no `/components` in the url anymore
 
         if (link.startsWith('/system')) {
           expect(link.startsWith('/system')).toBeTruthy();
@@ -103,12 +103,23 @@ test.describe.parallel('Material docs', () => {
 
   // enable these tests once new pages are indexed on algolia
   test.describe.parallel('Search', () => {
+    const retryToggleSearch = async (page: Page, count = 3) => {
+      try {
+        await page.keyboard.press('Meta+k');
+        await page.waitForSelector('input#docsearch-input', { timeout: 2000 });
+      } catch (error) {
+        if (count === 0) {
+          throw error;
+        }
+        await retryToggleSearch(page, count - 1);
+      }
+    };
     test.skip('should have correct link when searching component', async ({ page }) => {
       await page.goto(`/material/getting-started/installation/`);
 
       await page.waitForLoadState('networkidle'); // wait for docsearch
 
-      await page.keyboard.press('Meta+k');
+      await retryToggleSearch(page);
 
       await page.type('input#docsearch-input', 'card', { delay: 50 });
 
@@ -122,7 +133,7 @@ test.describe.parallel('Material docs', () => {
 
       await page.waitForLoadState('networkidle'); // wait for docsearch
 
-      await page.keyboard.press('Meta+k');
+      await retryToggleSearch(page);
 
       await page.type('input#docsearch-input', 'card api', { delay: 50 });
 
