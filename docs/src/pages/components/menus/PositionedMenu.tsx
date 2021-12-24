@@ -17,7 +17,7 @@ export default function PositionedMenu() {
     <div>
       <Button
         id="demo-positioned-button"
-        aria-controls="demo-positioned-menu"
+        aria-controls={open ? 'demo-positioned-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
