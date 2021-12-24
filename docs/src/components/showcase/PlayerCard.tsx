@@ -79,7 +79,9 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
         },
         spacing: 10,
         typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
+          fontFamily: ['IBM Plex Sans', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
+            ',',
+          ),
         },
         components: {
           MuiButtonBase: {

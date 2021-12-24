@@ -21,12 +21,12 @@ declare module '@mui/material/Paper' {
 const primary = {
   50: '#F0F7FF',
   100: '#C2E0FF',
-  200: '#80BFFF',
+  200: '#99CCF3',
   300: '#66B2FF',
   400: '#3399FF',
-  main: '#007FFF', // contrast 3.83:1
+  main: '#007FFF',
   500: '#007FFF',
-  600: '#0072E5',
+  600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
   700: '#0059B2',
   800: '#004C99',
   900: '#003A75',

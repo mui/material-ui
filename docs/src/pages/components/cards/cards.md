@@ -63,4 +63,10 @@ Here's an example of a media control card.
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
 
+## Customization
+
+Here is the customized card example used in MUI's website homepage. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card/).
+
+{{"demo": "pages/components/cards/CustomizedCard.js", "bg": true}}
