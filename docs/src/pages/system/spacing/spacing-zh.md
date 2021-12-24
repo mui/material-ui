@@ -1,4 +1,4 @@
-# Spacing
+# Spacing 间距
 
 <p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element's appearance.</p>
 
@@ -8,24 +8,24 @@
 
 其中_属性_是其中之一：
 
-- `m` - 能够设置 _margin_ 的类名
-- `p` - 能够设置 _padding_ 的类名
+- `m` - 能够设置 *margin* 的类名
+- `p` - 能够设置 *padding* 的类名
 
-而 _sides_ 是以下其中之一：
+而 *sides* 是以下其中之一：
 
-- `t` - 能够设置 _margin-top_ 或 _padding-top_ 的类名
-- `b` - 能够设置 _margin-bottom_ 或 _padding-bottom_ 的类名
-- `l` - 能够设置 _margin-left_ 或 _padding-left_ 的类名
-- `r` - 能够设置 _margin-right_ 或 _padding-right_ 的类名
-- `x` - for classes that set both _\*-left_ and _\*-right_
-- `y` - for classes that set both _\*-top_ and _\*-bottom_
+- `t` - 对于设置* margin-top*或*padding-top*的类
+- `b` - 对于设置*margin-bottom的类*或*padding-bottom*的类
+- `l` - 对于设置*margin-left*或*padding-left*的类
+- `r` - 对于设置*margin-right*或*padding-right*的类
+- `x` - 对于设置** -left*和** -right*的类
+- `y` - 对于设置** -top*和** -bottom*的类
 - blank - 能够设置元素的所有 4 个边的 margin 或者 padding 的类名
 
 ## 转换
 
 根据输入和主题配置，您可以应用以下的转换：
 
-- input: `number` & theme: `number`: the prop value is multiplied by the theme value.
+- input: `number` & theme: `number`: 该属性乘以 theme 的值。
 
 ```jsx
 const theme = {
@@ -38,7 +38,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 16px;
 ```
 
-- input: `number` & theme: `array`: the prop value is used as the array index.
+- input: `number` & theme: `array` ：属性值用作数组索引。
 
 ```jsx
 const theme = {
@@ -50,7 +50,7 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 3px;
 ```
 
-- input: `number` & theme: `function`: the function is called with the prop value.
+- input: `number` & theme: `function`：使用属性值调用该函数。
 
 ```jsx
 const theme = {
@@ -61,14 +61,14 @@ const theme = {
 <Box sx={{ m: 2 }} /> // margin: 4px;
 ```
 
-- input: `string`: the prop value is passed as raw CSS value.
+- input: `string`: 该属性作为原始的 CSS 值传递。
 
 ```jsx
 <Box sx={{ m: "2rem" }} /> // margin: 2rem;
 <Box sx={{ mx: "auto" }} /> // margin-left: auto; margin-right: auto;
 ```
 
-## Example
+## 示例
 
 {{"demo": "pages/system/spacing/Demo.js", "defaultCodeOpen": false, "bg": true}}
 
@@ -80,44 +80,36 @@ const theme = {
 
 ## 水平居中
 
-The CSS flex and grid display properties are often used to align elements at the center. However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a width for horizontally centering:
+The CSS flex and grid display properties are often used to align elements at the center. The CSS flex and grid display properties are often used to align elements at the center. However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a width for horizontally centering:
 
 {{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box sx={{ mx: "auto", width: 200 }}>…
-<Box border={0}>…
-<Box sx={{ borderTop: 1 }}>…
-<Box borderRight={0}>…
-<Box borderBottom={0}>…
-<Box borderLeft={0}>…
-<Box sx={{ borderRight: 1 }}>…
-<Box sx={{ borderBottom: 1 }}>…
-<Box sx={{ borderLeft: 1 }}>…
 ```
 
 ## API
 
 ```js
-import { spacing } from '@mui/system';
+import { spacing } from '@material-ui/system';
 ```
 
-| Import name | Prop | CSS property                    | Theme key                                                        |
-|:----------- |:---- |:------------------------------- |:---------------------------------------------------------------- |
-| `spacing`   | `m`  | `margin`                        | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `mt` | `margin-top`                    | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `mr` | `margin-right`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `mb` | `margin-bottom`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `ml` | `margin-left`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `mx` | `margin-left`, `margin-right`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `my` | `margin-top`, `margin-bottom`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `p`  | `padding`                       | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `pt` | `padding-top`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `pr` | `padding-right`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `pb` | `padding-bottom`                | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `pl` | `padding-left`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`   | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| 导入名称      | 属性   | CSS 属性                          | Theme key                                                        |
+|:--------- |:---- |:------------------------------- |:---------------------------------------------------------------- |
+| `spacing` | `m`  | `margin`                        | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `mt` | `margin-top`                    | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `mr` | `margin-right`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `mb` | `margin-bottom`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `ml` | `margin-left`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `mx` | `margin-left`, `margin-right`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `my` | `margin-top`, `margin-bottom`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `p`  | `padding`                       | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `pt` | `padding-top`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `pr` | `padding-right`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `pb` | `padding-bottom`                | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `pl` | `padding-left`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
 _有些人觉得属性简写让人困惑，如果你愿意的话，您也可以使用完整版：_
 

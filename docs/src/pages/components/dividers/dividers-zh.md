@@ -13,17 +13,17 @@ materialDesign: https://material.io/components/dividers
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## List dividers
+## 列表分隔线
 
 默认情况下，分割线会渲染成一个 `<hr>`。 您可以使用 `ListItem` 组件上的 `divider` 属性来保存渲染此 DOM 元素。
 
 {{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 
-## HTML5 specification
+## HTML5 规范
 
 在一个列表中，请确保您将 `Divider` 渲染成一个 `<li>` 元素，这样才能遵循 HTML5 规范。 下面的例子展示了两种实现方式。
 
-## Inset dividers
+## 内嵌分隔线
 
 {{"demo": "pages/components/dividers/InsetDividers.js", "bg": true}}
 
@@ -31,7 +31,7 @@ materialDesign: https://material.io/components/dividers
 
 {{"demo": "pages/components/dividers/SubheaderDividers.js", "bg": true}}
 
-## Middle divider
+## 中段分隔线
 
 {{"demo": "pages/components/dividers/MiddleDividers.js", "bg": true}}
 

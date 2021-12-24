@@ -12,7 +12,7 @@ githubLabel: 'component: TextareaAutosize'
 
 O componente `TextareaAutosize` ajusta automaticamente a altura do textarea em eventos de teclado e redimensionamento de janela.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
 ## Vazio
 
@@ -30,7 +30,7 @@ O componente `TextareaAutosize` ajusta automaticamente a altura do textarea em e
 
 - 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-As the component does not have any styles, it also comes with the unstyled package.
+As the component does not have any styles, it also comes with the Base package.
 
 ```js
 import TextareaAutosize from '@mui/base/TextareaAutosize';

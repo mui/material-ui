@@ -1,6 +1,6 @@
-# Usage
+# 使用
 
-<p class="description">Get started with React and MUI in no time.</p>
+<p class="description">立即开始使用 React 和 Material-UI。</p>
 
 MUI components work in isolation. **它们是自我支持的**，只需注入所需样式即可运作。 它们并不依赖任何全局的样式表，如 [normalize.css](https://github.com/necolas/normalize.css/)。
 
@@ -13,10 +13,10 @@ MUI components work in isolation. **它们是自我支持的**，只需注入所
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import Button from '@mui/material/Button';
+import Button from '@material-ui/core/Button';
 
 function App() {
-  return <Button variant="contained">Hello World</Button>;
+  return <Button variant="contained">你好，世界</Button>;
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'));
@@ -28,11 +28,11 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## 全局样式
 
-MUI usage experience can be improved with a handful of important globals that you'll need to be aware of.
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### 响应式元标记（meta tag）
 
-MUI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries. 如要确保所有设备的正确渲染和触摸缩放，请将响应式可视区域的元标记添加到您的`<head>`元素中。
+Material-UI 是先在移动设备上开发的，我们采用了首先为移动设备编写代码，然后根据需要使用 CSS media queries（CSS媒体查询）扩展组件的策略。 如要确保所有设备的正确渲染和触摸缩放，请将响应式可视区域的元标记添加到您的`<head>`元素中。
 
 ```html
 <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -40,11 +40,11 @@ MUI is developed mobile-first, a strategy in which we first write code for mobil
 
 ### CssBaseline
 
-MUI provides an optional [CssBaseline](/components/css-baseline/) component. 它修复了浏览器和设备之间的一些不一致性，同时为常见的 HTML 元素提供了一点更多不同方式的的重置。
+Material-UI 提供了一个可选的 [CssBaseline](/components/css-baseline/) 组件。 它修复了浏览器和设备之间的一些不一致性，同时为常见的 HTML 元素提供了一点更多不同方式的的重置。
 
 ## 不同版本的文档
 
-This documentation always reflects the latest stable version of MUI. 您可以在一个[单独的页面上](https://mui.com/versions/)找到旧版本的文档。
+本文档始终展示了最新最稳定的 Material-UI 版本。 您可以在一个[单独的页面上](https://mui.com/versions/)找到旧版本的文档。
 
 ## 下一步
 

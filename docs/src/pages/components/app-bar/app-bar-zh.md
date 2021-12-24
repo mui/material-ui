@@ -15,7 +15,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 基础应用栏
+## 简单的应用栏
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 

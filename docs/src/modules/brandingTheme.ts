@@ -47,12 +47,12 @@ const defaultTheme = createTheme();
 const blue = {
   50: '#F0F7FF',
   100: '#C2E0FF',
-  200: '#A5D8FF',
+  200: '#99CCF3',
   300: '#66B2FF',
   400: '#3399FF',
-  main: '#007FFF', // contrast 3.83:1
+  main: '#007FFF',
   500: '#007FFF',
-  600: '#0072E5',
+  600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
   700: '#0059B2',
   800: '#004C99',
   900: '#003A75',
@@ -72,16 +72,17 @@ export const blueDark = {
 };
 const grey = {
   50: '#F3F6F9',
-  100: '#EAEEF3',
-  200: '#E5E8EC',
-  300: '#D7DCE1',
-  400: '#BFC7CF',
-  500: '#AAB4BE',
-  600: '#7F8E9D',
-  700: '#46505A', // contrast 8.21:1
-  800: '#2F3A45', // contrast 11.58:1
-  900: '#20262D',
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
+  400: '#B2BAC2', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
+  500: '#A0AAB4', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
+  600: '#6F7E8C', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
+  700: '#3E5060', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
+  800: '#2D3843', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
+  900: '#1A2027',
 };
+// context on the Advanced Perceptual Contrast Algorithm (APCA) used above here: https://github.com/w3c/wcag/issues/695
 
 const systemFont = [
   '-apple-system',
@@ -113,7 +114,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
           main: blue[400],
         }),
       },
-      divider: mode === 'dark' ? blueDark[700] : grey[200],
+      divider: mode === 'dark' ? blueDark[700] : grey[100],
       primaryDark: blueDark,
       mode,
       ...(mode === 'dark' && {
@@ -134,7 +135,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       ...(mode === 'dark' && {
         text: {
           primary: '#fff',
-          secondary: grey[500],
+          secondary: grey[400],
         },
       }),
       grey,
@@ -171,16 +172,16 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       },
       warning: {
         50: '#FFF9EB',
-        100: '#FFF4DB',
-        200: '#FFEDC2',
-        300: '#FFE4A3',
-        400: '#FFD980',
-        500: '#FCC419',
-        600: '#FAB005',
-        main: '#F1A204', // does not pass constrast ratio
-        700: '#F1A204',
-        800: '#DB9A00',
-        900: '#8F6400',
+        100: '#FFF3C1',
+        200: '#FFECA1',
+        300: '#FFDC48', // vs blueDark900: WCAG 10.4 AAA, APCA 72 Ok for text
+        400: '#F4C000', // vs blueDark900: WCAG 6.4 AA normal, APCA 48 Only large text
+        500: '#DEA500', // vs blueDark900: WCAG 8 AAA normal, APCA 58 Only large text
+        600: '#D18E00', // vs blueDark900: WCAG 6.4 AA normal, APCA 48 Only large text
+        main: '#AB6800',
+        700: '#AB6800', // vs white bg: WCAG 4.4 AA large, APCA 71 Ok for text
+        800: '#8C5800', // vs white bg: WCAG 5.9 AAA large, APCA 80 Best for text
+        900: '#5A3600', // vs white bg: WCAG 10.7 AAA, APCA 95 Best for text
       },
     },
     shape: {
@@ -214,27 +215,30 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
         fontWeight: 800,
         lineHeight: 44 / 36,
-        color: mode === 'dark' ? grey[200] : blueDark[700],
+        color: mode === 'dark' ? grey[100] : blueDark[700],
       },
       h3: {
+        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(36),
         lineHeight: 44 / 36,
-        letterSpacing: 0,
+        letterSpacing: 0.2,
       },
       h4: {
+        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(28),
         lineHeight: 42 / 28,
-        letterSpacing: 0,
+        letterSpacing: 0.2,
       },
       h5: {
+        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(24),
         lineHeight: 36 / 24,
-        letterSpacing: 0,
+        letterSpacing: 0.1,
+        color: mode === 'dark' ? blue[300] : blue.main,
       },
       h6: {
         fontSize: defaultTheme.typography.pxToRem(20),
         lineHeight: 30 / 20,
-        letterSpacing: 0,
       },
       button: {
         textTransform: 'initial',
@@ -462,12 +466,21 @@ export function getThemedComponents(theme: Theme) {
                 ? theme.palette.primaryDark[500]
                 : theme.palette.grey[200],
             '&.Mui-selected': {
-              borderColor: `${theme.palette.primary[500]} !important`,
               color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? `${theme.palette.primary[700]} !important`
+                  : `${theme.palette.primary[500]} !important`,
               backgroundColor:
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primary[800]
+                  ? theme.palette.primaryDark[700]
                   : theme.palette.primary[50],
+              '&:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.primary[100],
+              },
             },
           },
         },
