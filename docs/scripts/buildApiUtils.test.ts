@@ -86,7 +86,7 @@ describe('buildApiUtils', () => {
   });
 
   describe('getGenericComponentInfo', () => {
-    it.only('return correct apiPathname', () => {
+    it('return correct apiPathname', () => {
       const info = getGenericComponentInfo(
         path.join(process.cwd(), `/packages/mui-material/src/Button/Button.js`),
       );
@@ -166,9 +166,7 @@ describe('buildApiUtils', () => {
       try {
         fs.readdirSync(path.join(process.cwd(), 'docs/data'));
         existed = true;
-      } catch (error) {
-        // eslint-disable-next-line no-empty
-      }
+      } catch (error) {}
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
@@ -209,9 +207,7 @@ describe('buildApiUtils', () => {
       try {
         fs.readdirSync(path.join(process.cwd(), 'docs/data'));
         existed = true;
-      } catch (error) {
-        // eslint-disable-next-line no-empty
-      }
+      } catch (error) {}
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {

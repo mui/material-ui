@@ -55,7 +55,6 @@ const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []) => {
 
   files.forEach((file) => {
     if (fse.statSync(`${dirPath}/${file}`).isDirectory()) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       arrayOfFiles = getAllFiles(`${dirPath}/${file}`, arrayOfFiles);
     } else {
       arrayOfFiles.push(path.join(__dirname, dirPath, '/', file));
