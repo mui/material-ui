@@ -2786,7 +2786,7 @@ or fix it manually like this:
 +import { red } from '@mui/material/colors';
 ```
 
-### makeStyles - TypeError: Cannot read property 'drawer' of undefined
+### makeStyles - TypeError：无法读取未定义的属性“drawer”
 
 This error occurs when calling `useStyles` (result of `makeStyles`) or `withStyles` outside of `<ThemeProvider>` scope like this:
 
