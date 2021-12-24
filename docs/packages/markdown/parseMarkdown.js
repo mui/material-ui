@@ -272,7 +272,8 @@ ${headers.components
     if (!FEATURE_TOGGLE.enable_product_scope) {
       return `- [\`<${component} />\`](/api/${kebabCase(component)}/)`;
     }
-    const componentPkg = componentPackageMapping[headers.product]?.[component];
+    const productPackage = componentPackageMapping[headers.product];
+    const componentPkg = productPackage ? productPackage[component] : null;
     return `- [\`<${component} />\`](${headers.product ? `/${headers.product}` : ''}/api/${
       componentPkg ? `${componentPkg}/` : ''
     }${kebabCase(component)}/)`;
