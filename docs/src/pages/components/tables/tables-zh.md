@@ -28,7 +28,7 @@ materialDesign: https://material.io/components/data-tables
 
 `Table` 组件与原生 `<table>` 元素存在密切关联。 这种限制条件导致要构建丰富的数据表格会变得很有挑战性。
 
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data. 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data. 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。
 
 {{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
@@ -46,9 +46,9 @@ The [`DataGrid` component](/components/data-grid/) is designed for use-cases tha
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## Customization
+## 自定义表格
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -70,13 +70,13 @@ Here is an example of customizing the component. You can learn more about this i
 
 ### 自定义表格分页操作
 
-通过 `TablePagination` 组件的 `Action` 属性，可以实现自定义操作。
+`TablePagination` 组件的 `ActionsComponent` 属性能够让您实现一些自定义的行为。
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
 ## Sticky header
 
-Here is an example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop. (⚠️ no IE 11 support)
+Here is an example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop. (⚠️ no IE 11 support) It leverages the `stickyHeader` prop. (⚠️ no IE 11 support)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
@@ -107,7 +107,7 @@ Here is an example of a table with scrollable rows and fixed column headers. It 
 
 ## 大型列表渲染（Virtualized Table）
 
-以下例子展示了将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `Table` 组件一起使用的方法。 It renders 200 rows and can easily handle more. Virtualization helps with performance issues.
+以下例子展示了将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `Table` 组件一起使用的方法。 它渲染了200多行，并且可以轻松的延展到更多行。 可视化优化了整体的性能。
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
@@ -116,6 +116,10 @@ Here is an example of a table with scrollable rows and fixed column headers. It 
 If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below.
 
 {{"demo": "pages/components/tables/TableUnstyled.js"}}
+
+#### Customized look and feel
+
+{{"demo": "pages/components/tables/TableCustomized.js"}}
 
 ## Accessibility
 

@@ -111,8 +111,8 @@ function transform(value) {
 If the value is between [0, 1], it's converted to percent. Otherwise, it is directly set on the CSS property.
 
 ```jsx
-<Box sx={{ width: 1/2 }} /> // equivalent to width: '50%'
-<Box sx={{ width: 20 }} /> // equivalent to width: '20px'
+<Box sx={{ width: 1/2 }} /> // equivalente a width: '50%'
+<Box sx={{ width: 20 }} /> // equivalente a width: '20px'
 ```
 
 _Head to the [sizing page](/system/sizing/) for more details._
@@ -149,7 +149,7 @@ _Head to the [spacing page](/system/spacing/) for more details._
 
 ### Typography
 
-The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their value to the `theme.typography` value.
+As propriedades `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` mapeiam seus valores para o valor de ` theme.typography`.
 
 ```jsx
 <Box sx={{ fontWeight: 'fontWeightLight' }} />

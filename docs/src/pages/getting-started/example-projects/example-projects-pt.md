@@ -1,4 +1,4 @@
-# Example projects
+# Projetos de exemplo
 
 <p class="description">Uma seleção de projetos de exemplo para começar.</p>
 
@@ -8,8 +8,8 @@ Você pode encontrar alguns exemplos de projetos no repositório [GitHub](https:
 
 <!-- #default-branch-switch -->
 
-- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/nextjs-with-typescript))
-- [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript))
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) ([Versão TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript))
+- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app) ([versão TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript))
 - [Remix](https://github.com/mui-org/material-ui/tree/master/examples/remix-with-typescript)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
 - [Preact](https://github.com/mui-org/material-ui/tree/master/examples/preact)
@@ -29,7 +29,7 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
 
 - [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/relay-starter-kit):
 
-  - ![stars](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
+  - ![estrelas](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
   - GraphQL API project using code-first design (TypeScript, OAuth, GraphQL.js, Knex, Cloud SQL)
   - Web application project pre-configured with Webpack v5, TypeScript, React, Relay, Material UI
   - Serverless deployment: `api` -> Cloud Functions, `web` -> Cloudflare Workers
@@ -38,7 +38,7 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
 
 - [React Most Wanted](https://github.com/TarikHuber/react-most-wanted):
 
-  - ![stars](https://img.shields.io/github/stars/TarikHuber/react-most-wanted.svg?style=social&label=Star)
+  - ![estrelas](https://img.shields.io/github/stars/TarikHuber/react-most-wanted.svg?style=social&label=Star)
   - Criado com o Create React App
   - Script customizado de Create React App para iniciar um novo projeto com somente um único comando CLI
   - Construído para Firebase incluindo autenticação usando a oficial Firebase Web Auth UI
@@ -48,8 +48,8 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
 
 - [React SaaS Template](https://github.com/dunky11/react-saas-template):
 
-  - ![stars](https://img.shields.io/github/stars/dunky11/react-saas-template.svg?style=social&label=Star)
-  - Created with Create React App
+  - ![estrelas](https://img.shields.io/github/stars/dunky11/react-saas-template.svg?style=social&label=Star)
+  - Criado com o Create React App
   - Apresentando uma página inicial, um blog, uma área para login/registro e um painel de administração
   - Totalmente roteado usando react-router
   - De forma tardia, carrega componentes para aumentar o desempenho
@@ -57,15 +57,15 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
 
 - [Material Sense](https://github.com/alexanmtz/material-sense):
 
-  - ![stars](https://img.shields.io/github/stars/alexanmtz/material-sense.svg?style=social&label=Star)
+  - ![estrelas](https://img.shields.io/github/stars/alexanmtz/material-sense.svg?style=social&label=Star)
   - Gráfico usando recharts
   - React Router incluído com um exemplo de navegação
   - Um contêiner docker com um servidor Nginx para compilação de produção
-  - Created with Create React App
+  - Criado com o Create React App
 
 - [RMUIF](https://github.com/phoqe/rmuif):
 
-  - ![stars](https://img.shields.io/github/stars/rmuif/web.svg?style=social&label=Star)
+  - ![estrelas](https://img.shields.io/github/stars/rmuif/web.svg?style=social&label=Star)
   - Bootstrapped com Create React App, as mesmas ferramentas de trabalho de get-go
   - Construído sobre o Firebase com todos os seus produtos para a web incluído
   - Roteamento robusto com React Router, incluindo rotas protegidas e manipulação de erros
@@ -77,7 +77,7 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
 - [ScaffoldHub](https://scaffoldhub.io/?partner=1):
 
   - Crie o seu aplicativo completo com esta ferramenta online
-  - Choose your framework and library (React & MUI!)
+  - Escolha o seu framework e biblioteca (React & Material-UI!)
   - Escolha seu banco de dados (SQL, MongoDB ou Firestore)
   - Modele seu banco de dados e aplicativo com uma interface intuitiva
   - Gere sua aplicação, incluindo um scaffolded de backend completo
@@ -85,5 +85,5 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
 
 - [Divjoy](https://divjoy.com?via=material-ui):
 
-  - Create your MUI app in minutes.
+  - Create your Material-UI app in minutes.
   - You'll get a nice template, authentication, database integration, subscription payments, and more.

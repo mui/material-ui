@@ -34,45 +34,37 @@ const nonce = new Buffer(uuidv4()).toString('base64');
 
 ```js
 header('Content-Security-Policy').set(
-  `default-src 'self'; style-src 'self' 'nonce-${nonce}';`,
+  `default-src 'self'; style-src: 'self' 'nonce-${nonce}';`,
 );
 ```
 
-You should pass the nonce in the `<style>` tags on the server.
+你应该在服务端的 `<style>` 标签中传递一次性加密数字（nonce）。
 
 ```jsx
 <style
-  data-emotion={`${style.key} ${style.ids.join(' ')}`}
+  id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: style.css }}
+  dangerouslySetInnerHTML={{
+    __html: sheets.toString(),
+  }}
 />
 ```
 
-Then, you must pass this nonce to the emotion cache so it can add it to subsequent `<style>`.
+然后，您必须将此随机数传递给 JSS ，以便将其添加到后续 `<style>` 标记中。
 
 > Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from emotion and add the `prepend: true` option.
 
 ```js
-const cache = createCache({
-  key: 'my-prefix-key',
-  nonce: nonce,
-  prepend: true,
-});
-
-function App(props) {
-  return (
-    <CacheProvider value={cache}>
-      <Home />
-    </CacheProvider>
-  );
-}
+<head>
+  <meta property="csp-nonce" content="this-is-a-nonce-123" />
+</head>
 ```
 
 ### Create React App (CRA)
 
-According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default. This will require a new hash to be set in your CSP during each deployment.
+根据 [Create React App 文档](https://create-react-app.dev/docs/advanced-configuration/)，Create React App 会在生产构建过程中默认将运行时脚本动态嵌入到 index.html 中。 这需要在你的每次部署时都要在 CSP 中设置一个新的哈希值。
 
-To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build. This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
+要将 CSP 与 Create React App 的项目一起使用，你需要在用于生产构建的 `.env` 文件中设置 `INLINE_RUNTIME_CHUNK=false`。 这将像往常一样导入运行时脚本，而不是直接嵌入它，就可以避免在每次部署时都需要设置一个新的哈希值的情况了。
 
 ### styled-components
 

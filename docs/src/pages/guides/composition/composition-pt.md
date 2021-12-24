@@ -1,14 +1,14 @@
-# Composition
+# Composição
 
-<p class="description">MUI tries to make composition as easy as possible.</p>
+<p class="description">Material-UI tenta tornar a composição a mais simples possível.</p>
 
 ## Encapsulando componentes
 
-To provide maximum flexibility and performance, MUI needs a way to know the nature of the child elements a component receives. To solve this problem, we tag some of the components with a `muiName` static property when needed.
+Para fornecer o máximo de flexibilidade e desempenho, precisamos de uma maneira de conhecer a natureza dos elementos filhos que um componente recebe. To solve this problem, we tag some of the components with a `muiName` static property when needed.
 
-You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution. If you wrap a component, verify if that component has this static property set.
+Você pode, no entanto, precisar encapsular um componente para melhorá-lo, o que pode entrar em conflito com a solução `muiName`. Se você encapsular um componente, verifique se ele tem esta propriedade estática definida.
 
-If you encounter this issue, you need to use the same tag for your wrapping component that is used with the wrapped component. In addition, you should forward the props, as the parent component may need to control the wrapped components props.
+Se você se deparar com esta situação, precisará usar a mesma propriedade `muiName` do componente que será encapsulado no seu componente encapsulador. Além disso, você deve encaminhar as propriedades, já que o componente pai pode precisar controlar as propriedades do componente encapsulado.
 
 Vamos ver um exemplo:
 
@@ -20,11 +20,11 @@ const WrappedIcon = props => <Icon {...props} />; WrappedIcon.muiName = Icon.mui
 
 ## Propriedade Componente
 
-MUI allows you to change the root element that will be rendered via a prop called `component`.
+Material-UI permite que você altere o elemento raiz que será renderizado por meio de uma propriedade chamada `component`.
 
 ### Como é que funciona?
 
-The custom component will be rendered by MUI like this:
+O componente customizado será renderizado pelo Material-UI desta forma:
 
 ```js
 return React.createElement(props.component, props)
@@ -123,9 +123,11 @@ Os exemplos abaixo usam `TypographyProps` mas o mesmo funcionará para qualquer 
 O componente `CustomComponent` a seguir tem as mesmas propriedades que o componente `Typography`.
 
 ```ts
-function CustomComponent(props: TypographyProps<'a', { component: 'a' }>) {
-  /* ... */
-}
+-const MyButton = () => <div role="button" />;
++const MyButton = React.forwardRef((props, ref) =>
++  <div role="button" {...props} ref={ref} />);
+
+<Button component={MyButton} />;
 ```
 
 Agora o `CustomComponent` pode ser usado com uma propriedade `component` que deve ser definida para `'a'`. Além disso, o `CustomComponent` terá todas as propriedades de um elemento HTML `<a>`. As outras propriedades do componente `Typography` também estarão presentes nas propriedades do `CustomComponent`.
@@ -133,11 +135,9 @@ Agora o `CustomComponent` pode ser usado com uma propriedade `component` que dev
 It is possible to have generic `CustomComponent` which will accept any React component, custom, and HTML elements.
 
 ```ts
-function GenericCustomComponent<C extends React. ElementType>(
-  props: TypographyProps<C, { component?: C }>,
-) {
-  /* ... */
-}
+-const SomeContent = props => <div {...props}>Olá, Mundo!</div>;
++const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>);
+<Tooltip title="Olá, de novo."><SomeContent /></Tooltip>;
 ```
 
 If the `GenericCustomComponent` will be used with a `component` prop provided, it should also have all props required by the provided component.
@@ -163,7 +163,7 @@ Esta seção aborda advertências ao usar um componente customizado como `childr
 
 Alguns dos componentes precisam acessar o nó DOM. Anteriormente, isso era possível usando `ReactDOM.findDOMNode`. Esta função está obsoleta em favor da utilização de `ref` e encaminhamento de ref. No entanto, apenas os seguintes tipos de componentes podem receber um `ref`:
 
-- Any MUI component
+- Qualquer componente do Material-UI
 - Componentes de classe, ou seja, `React.Component` ou `React.PureComponent`
 - Componentes DOM (ou hospedeiro), por exemplo, `div` ou `button`
 - [Componentes React.forwardRef](https://pt-br.reactjs.org/docs/react-api.html#reactforwardref)
@@ -174,7 +174,7 @@ If you don't use one of the above types when using your components in conjunctio
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-Note that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref. In some instances, an additional warning is issued to help with debugging, similar to:
+Note que você ainda receberá este aviso para componentes `lazy` ou `memo` se eles forem encapsulados por um componente que não contém ref. Em alguns casos, um aviso adicional é emitido para ajudar na depuração, semelhante a:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
@@ -196,20 +196,20 @@ Só as duas formas de utilização mais comuns são cobertas aqui. Para mais inf
  <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
-To find out if the MUI component you're using has this requirement, check out the props API documentation for that component. Se você precisar encaminhar refs, a descrição será vinculada a esta seção.
+Para descobrir se o componente de Material-UI que você está usando tem esse requisito, verifique na documentação de propriedades da API do componente. Se você precisar encaminhar refs, a descrição será vinculada a esta seção.
 
 ### Advertência com StrictMode
 
-If you use class components for the cases described above you will still see warnings in `React.StrictMode`. `ReactDOM.findDOMNode` é usado internamente para compatibilidade com versões anteriores. Você pode usar `React.forwardRef` e uma propriedade designada em seu componente de classe para encaminhar o `ref` para um componente DOM. Fazendo isso não deve acionar mais nenhum aviso relacionado à depreciação de uso de `ReactDOM.findDOMNode`.
+Se você usar componentes de classe para os casos descritos acima, ainda verá avisos em `React. StrictMode`. `ReactDOM.findDOMNode` é usado internamente para compatibilidade com versões anteriores. Você pode usar `React.forwardRef` e uma propriedade designada em seu componente de classe para encaminhar o `ref` para um componente DOM. Fazendo isso não deve acionar mais nenhum aviso relacionado à depreciação de uso de `ReactDOM.findDOMNode`.
 
 ```diff
- class Component extends React.Component {
-   render() {
--    const { props } = this;
-+    const { forwardedRef, ...props } = this.props;
-     return <div {...props} ref={forwardedRef} />;
-   }
- }
+ class Component extends React. Component {
+  render() {
+-   const { props } = this;
++   const { forwardedRef, ...props } = this.props;
+    return <div {...props} ref={forwardedRef} />;
+  }
+}
 
 -export default Component;
 +export default React.forwardRef((props, ref) => <Component {...props} forwardedRef={ref} />);

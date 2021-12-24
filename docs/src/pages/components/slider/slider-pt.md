@@ -20,7 +20,7 @@ Os sliders contínuos permitem que os usuários selecionem um valor ao longo de 
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
-## Sizes
+## Tamanhos
 
 For smaller slider, use the prop `size="small"`.
 
@@ -74,13 +74,13 @@ In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/InputSlider.js"}}
 
-## Color
+## Cor
 
 {{"demo": "pages/components/slider/ColorSlider.js"}}
 
-## Customization
+## Sliders customizados
 
-Here are some examples of customizing the component. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
@@ -136,7 +136,7 @@ import SliderUnstyled from '@mui/base/SliderUnstyled';
 
 {{"demo": "pages/components/slider/UnstyledSlider.js"}}
 
-## Accessibility
+## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
@@ -145,14 +145,14 @@ O componente lida com a maior parte do trabalho necessário para torná-lo acess
 - Cada marcador possua propriedades de rótulo amigável para o usuário (`aria-label`, `aria-labelledby` ou `getAriaLabel`).
 - Cada marcador tenha um texto amigável para o seu valor atual. Isso não é necessário se o valor corresponder ao rótulo exibido no slider. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.
 
-## Limitations
+## Limitações
 
 ### IE 11
 
 The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
 
 ```css
-.MuiSlider-valueLabel {
+. MuiSlider-valueLabel {
   left: calc(-50% - 4px);
 }
 ```

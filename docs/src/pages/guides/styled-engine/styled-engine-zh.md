@@ -1,43 +1,42 @@
-# `@mui/styled-engine`
+# `@material-ui/styled-engine`
 
-<p class="description">Configuring your preferred styling library.</p>
+<p class="description">配置您首选的样式库。</p>
 
-The default style library used for generating CSS styles for MUI components is [emotion](https://github.com/emotion-js/emotion). All of the MUI components rely on the `styled()` API to inject CSS into the page. This API is supported by multiple popular styling libraries, which makes it possible to switch between them in MUI.
+[emotion](https://github.com/emotion-js/emotion)是 MUI 组件用于生成 CSS 样式的默认样式库。 所有 MUI 组件都依靠 `styled()` API 将 CSS 注入到页面。 此 API 得到多个流行式样式库的支持，这样就可以在 MUI 中切换它们。
 
-## How to switch to styled-components
+## 如何切换到 styled-components
 
-> ❗ **Warning**: Using `styled-components` as an engine at this moment is not working when used in a SSR projects. The reason is that the `babel-plugin-styled-components` is not picking up correctly the usages of the `styled()` utility inside the `@mui` packages. For more details, take a look at this [issue](https://github.com/mui-org/material-ui/issues/29742). We strongly recommend using `emotion` for SSR projects.
+> ❗ **警告**: 目前使用 `styled-components` 作为服务端渲染(SSR)项目的样式引擎时无法工作。 原因是 `babel-plugin-styled-components` 没有正确获取 `@mui` 软件包中的 `styled()` 方法。 欲了解更多详情，请查看这个 [issue](https://github.com/mui-org/material-ui/issues/29742)。 我们强烈建议在服务端渲染(SSR)项目中使用 `emotion`。
 
-If you already have [styled-components](https://github.com/styled-components/styled-components) installed, it's possible to use it exclusively. There are currently two packages available to choose from:
+如果您已经安装了 [styled-components](https://github.com/styled-components/styled-components) ，用它作为样式引擎是可行的。 目前有两个软件包可供选择：
 
-- `@mui/styled-engine` - a thin wrapper around [emotion's `styled()`](https://emotion.sh/docs/styled) API, with the addition of few other required utilities, such as the `<GlobalStyles />` component, the `css` and `keyframe` helpers, etc. This is the default.
-- `@mui/styled-engine-sc` - a similar wrapper around `styled-components`.
+- `@mui/styled-engine` - 一个围绕 [emotion 的 `styled()`](https://emotion.sh/docs/styled) API， 包含一些所需的方法， 例如 `<GlobalStyles />` 组件， `css` 和 `keyframe` 等。 这是默认的。
+- `@mui/styled-engine-sc` - 一个类似于上者的 `styled-components` 包装库。
 
-These two packages implement the same interface, which makes it possible to replace one with the other. By default, `@mui/material` has `@mui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@mui/styled-engine-sc`.
+这两个包实现了相同的接口，使一个软件包能够被另一个软件包替换。 默认情况下， `@mui/materials` 用 `@mui/styed-engine` 作为依赖， 但是您可以将其替换为 `@mui/styed-engine-sc`
 
 ### yarn
 
-If you are using yarn, you can configure it using a package resolution:
+如果您正在使用 yarn，您可以使用 resolution 来实现配置：
 
-**package.json**
+**webpack.config.js**
 
 <!-- #default-branch-switch -->
 
 ```diff
- {
-   "dependencies": {
--    "@mui/styled-engine": "latest"
-+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
-   },
-+  "resolutions": {
-+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
-+  },
- }
+ module.exports = {
+  //...
+  resolve: {
+    alias: {
+      '@material-ui/styled-engine': '@material-ui/styled-engine-sc',
+    },
+  },
+};
 ```
 
 ### npm
 
-As package resolutions are not available in npm at this moment, you need to update you bundler's config to add this alias. Here is an example of how you can do it, if you use `webpack`:
+由于目前在 npm 中没有 resolution，您需要更新您的打包配置来添加此 alias。 如果您使用 `webpack` ，您可以依照下面的示例来配置：
 
 **webpack.alias.js**
 
@@ -52,7 +51,7 @@ As package resolutions are not available in npm at this moment, you need to upda
  };
 ```
 
-If you are using TypeScript, you will need to also update the TSConfig.
+如果您正在使用TypeScript，您也需要更新TSConfig。
 
 **tsconfig.json**
 
@@ -71,35 +70,23 @@ If you are using TypeScript, you will need to also update the TSConfig.
 **next.config.js**
 
 ```diff
-+const withTM = require('next-transpile-modules')([
-+  '@mui/material',
-+  '@mui/system',
-+  '@mui/icons-material', // If @mui/icons-material is being used
-+]);
-
-+module.exports = withTM({
- webpack: (config) => {
-   config.resolve.alias = {
-     ...config.resolve.alias,
-+    '@mui/styled-engine': '@mui/styled-engine-sc',
-    };
-    return config;
-  }
-+});
+These two packages implement the same interface, which makes it makes possible to replace one with the other. By default, <code>@material-ui/core</code> has <code>@material-ui/styled-engine</code> as a dependency, but you can configure your bundler to replace it with <code>@material-ui/styled-engine-sc</code>. For example, if you are using webpack you can configure this by adding a resolver:
 ```
+ has @material-ui/styled-engine as a dependency, but you can configure your bundler to replace it with @material-ui/styled-engine-sc. For example, if you are using webpack you can configure this by adding a resolver:
+</code>
 
 ### Ready-to-use examples
 
-If you are using create-react-app, there is a ready-to-use template in the example projects.
+如果您正在使用 create-react-app，示例项目中有一个开箱即用的模板。
 
-You can use these `styled-component` examples as a reference:
+If you already have [styled-components](https://github.com/styled-components/styled-components) installed, it's possible to use it exclusively. There are currently two packages available to choose from:
 
 <!-- #default-branch-switch -->
 
 - [create-react-app](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components)
-- [create-react-app with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
-- [and many others](https://github.com/mui-org/material-ui/tree/master/examples)
+- [使用 TypeScript 来 create-react-app](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
+- [其他模板](https://github.com/mui-org/material-ui/tree/master/examples)
 
-> **Note**: `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself. See the [Installation guide](/getting-started/installation/) for more info.
+> **注意**: `@emotion/react`, `@emotion/styled`, 和 `styled-components` 是 `@mui/materials` 的可选对等依赖，所以您需要自己安装它们。 更多信息请访问 [安装指南](/getting-started/installation/)。
 
-> **Note:** This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with MUI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.
+> **注意：** 这个 package-swap 方法与替换 React 的 [Preact](https://github.com/preactjs/preact) 完全相同。 Preact 开发团队记录了大量安装配置。 如果您被 MUI + styled-components，请不要犹豫，直接查看他们是如何解决问题的，因为您可能会在里面找到解决思路。

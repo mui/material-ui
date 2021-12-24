@@ -1,10 +1,10 @@
-# 属性
+# Properties 属性
 
 <p class="description">本页列出了所有的自定义系统属性，解释了它们是如何与主题链接的，以及它们所计算的 CSS 属性。 所有其他常规的 CSS 属性和选择器也被支持。</p>
 
 ## 属性参考表
 
-请注意，此表仅列出自定义属性，支持所有其他常规的 CSS 属性和选择器。 You can check out the [legend](/system/properties/#legend) below.
+请注意，此表仅列出自定义属性，支持所有其他常规的 CSS 属性和选择器。 您可以参考下面的 [图例](/system/properties/#legend)。
 
 | 系统键                   | CSS 属性                                                                                       | 系统样式函数                                                       | 主题映射                                                                                    |
 |:--------------------- |:-------------------------------------------------------------------------------------------- |:------------------------------------------------------------ |:--------------------------------------------------------------------------------------- |
@@ -40,7 +40,7 @@
 | `gridTemplateRows`    | `grid-template-rows`                                                                         | [`gridTemplateRows`](/system/grid/#grid-template-rows)       | none                                                                                    |
 | `gridTemplateAreas`   | `grid-template-areas`                                                                        | [`gridTemplateAreas`](/system/grid/#grid-template-areas)     | none                                                                                    |
 | `gridArea`            | `grid-area`                                                                                  | [`gridArea`](/system/grid/#grid-area)                        | none                                                                                    |
-| `bgcolor`             | `background-color`                                                                           | [`bgcolor`](/system/palette/#background-color)               | [`theme.palette[value]`](/customization/default-theme/?expand-path=$.palette)           |
+| `bgcolor`             | `backgroundColor`                                                                            | [`bgcolor`](/system/palette/#background-color)               | [`theme.palette[value]`](/customization/default-theme/?expand-path=$.palette)           |
 | `color`               | `color`                                                                                      | [`color`](/system/palette/#color)                            | [`theme.palette[value]`](/customization/default-theme/?expand-path=$.palette)           |
 | `bottom`              | `bottom`                                                                                     | [`bottom`](/system/positions/)                               | none                                                                                    |
 | `left`                | `left`                                                                                       | [`left`](/system/positions/)                                 | none                                                                                    |
@@ -94,9 +94,9 @@
 
 Let's take one row from [the table above](#properties-reference-table), for example:
 
-| System key(s)        | CSS property/properties | System style function         | Theme mapping                                                                 |
-|:-------------------- |:----------------------- |:----------------------------- |:----------------------------------------------------------------------------- |
-| `mb`, `marginBottom` | `margin-bottom`         | [`spacing`](/system/spacing/) | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
+| 系统键                  | CSS 属性          | 系统样式函数                        | 主题映射                                                                          |
+|:-------------------- |:--------------- |:----------------------------- |:----------------------------------------------------------------------------- |
+| `mb`, `marginBottom` | `margin-bottom` | [`spacing`](/system/spacing/) | [`theme.spacing(value)`](/customization/default-theme/?expand-path=$.spacing) |
 
 <br />
 
@@ -129,7 +129,7 @@ and detail each column:
 ```jsx
 <Button sx={{ mb: 3 }} />
 
-// is equivalent to
+// 等同于
 <Button sx={{ marginBottom: theme => theme.spacing(3)}} />
 ```
 
