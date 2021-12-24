@@ -419,7 +419,7 @@ function CareersContent() {
             const roles = category.roles;
             return (
               <React.Fragment>
-                <Typography component="h3" variant="h5" color="primary" fontWeight="extraBold">
+                <Typography component="h3" variant="h5" fontWeight="extraBold">
                   {category.title}
                 </Typography>
                 {roles.length > 0 ? (
@@ -465,7 +465,7 @@ function CareersContent() {
                 const roles = category.roles;
                 return (
                   <React.Fragment>
-                    <Typography component="h3" variant="h5" color="primary" fontWeight="extraBold">
+                    <Typography component="h3" variant="h5" fontWeight="extraBold">
                       {category.title}
                     </Typography>
                     {roles.length > 0 ? (
@@ -528,7 +528,7 @@ export default function Careers() {
     <BrandingProvider>
       <Head
         title="Careers - MUI"
-        description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+        description="Interested in joining MUI? Learn about the roles we're hiring for."
       />
       <AppHeaderBanner />
       <AppHeader />

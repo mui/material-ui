@@ -1,5 +1,63 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.2.5
+
+<!-- generated comparing v5.2.4..master -->
+
+_Dec 20, 2021_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- 🛠 This release mostly improves what's behind the scenes: infrastructure and tests
+- 📓 Danish (da-DK) locale was added (#29485) @mikk5829
+- 🖌 Polished the design of Base components (#30149) and the docs in general (#29994) @danilo-leal
+- 📚 Many additions and improvements to the documentation were made
+
+### `@mui/material@5.2.5`
+
+- [l10n] Add Danish (da-DK) locale (#29485) @mikk5829
+- [LoadingButton] Label progressbar by the LoadingButton (#30002) @eps1lon
+- [Tabs] Remove unnecessary `Partial<>` type around TabIndicatorProps type (#30254) @ZeeshanTamboli
+
+### `@mui/system@5.2.5`
+
+- [system] Use `useEnhancedEffect` to prevent flicker (#30216) @hbjORbj
+
+### `@mui/lab@5.0.0-alpha.61`
+
+- [pickers] Fix the wrong MuiClockPicker's ArrowSwitcher slot name (#30226) @rejetto
+
+### Docs
+
+- [docs] Run JS compiler on markdown output (#29732) @Janpot
+- [Badge] Add tests for `anchorOrigin` prop (#30147) @daniel-sachs
+- [docs] Add cssmodule injection order comments to Nextjs example (#30213) @ShuPink
+- [docs] Remove extra word in Select component code example comments (#30281) @KThompso
+- [docs] Improve the description of the Accordion (#30253) @jamesmelzer
+- [docs] Heading capitalization convention @oliviertassinari
+- [docs] Rename remaining 'unstyled' references to 'base' (#30206) @michaldudak
+- [docs] Add to migration doc about ref type specificity (#30114) @hbjORbj
+- [docs] Add script to clone pages (#30107) @siriwatknp
+- [docs] Correct colors in breakpoints documentation (#30219) @michaldudak
+- [docs] Sync icon search UI state with the url (#30075) @Janpot
+- [docs] Base components demos design polish (#30149) @danilo-leal
+- [docs] General documentation polish (#29994) @danilo-leal
+- [examples] Fix typo in the remix example's README (#30289) @lemol
+- [website] Remove expired gold sponsor (#30222) @oliviertassinari
+- [website] Remove broken showcase links (#30217) @mnajdova
+
+### Core
+
+- [test] Reduce bundle size comparison memory consumption (#30195) @Janpot
+- [core] make snapshot comparison more resilient (#30183) @Janpot
+- [core] update formatted ts demo to support new structure (#30248) @siriwatknp
+- [core] cache dependencies in github actions (#30211) @siriwatknp
+- [core] fix root package version (#30204) @siriwatknp
+- [core] Fail the build when the dangerjs script errors (#30186) @Janpot
+- [test] Add E2E website tests (#30128) @siriwatknp
+
+All contributors of this release in alphabetical order: @daniel-sachs, @danilo-leal, @eps1lon, @hbjORbj, @jamesmelzer, @Janpot, @KThompso, @lemol, @michaldudak, @mikk5829, @mnajdova, @oliviertassinari, @rejetto, @ShuPink, @siriwatknp, @ZeeshanTamboli
+
 ## 5.2.4
 
 <!-- generated comparing v5.2.3..master -->

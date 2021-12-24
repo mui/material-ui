@@ -121,10 +121,18 @@ test.describe.parallel('Material docs', () => {
 
       const anchor = await page.locator('.DocSearch-Hits a:has-text("Card")');
 
-      await expect(anchor.first()).toHaveAttribute(
-        'href',
-        `${materialUrlPrefix}/components/cards/#main-content`,
-      );
+      if (FEATURE_TOGGLE.enable_product_scope && !materialUrlPrefix) {
+        // the old url doc should point to the new location
+        await expect(anchor.first()).toHaveAttribute(
+          'href',
+          `/material/components/cards/#main-content`,
+        );
+      } else {
+        await expect(anchor.first()).toHaveAttribute(
+          'href',
+          `${materialUrlPrefix}/components/cards/#main-content`,
+        );
+      }
     });
 
     test('should have correct link when searching API', async ({ page, materialUrlPrefix }) => {

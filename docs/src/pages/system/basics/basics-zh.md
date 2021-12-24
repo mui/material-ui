@@ -1,4 +1,4 @@
-# MUI System
+# Material-UI 系统（System）
 
 <p class="description">用于快速布置自定义设计的 CSS 工具集。</p>
 
@@ -6,22 +6,22 @@ MUI核心配备了几十个**可随时使用**的组件。 这些组件是一个
 
 **系统**让你可以利用主题中所定义的值来快速构建自定义 UI 组件。
 
-## Demo
+## 演示
 
 _（调整窗口大小以查看响应的断点）_
 
 {{"demo": "pages/system/basics/Demo.js", "bg": true, "defaultCodeOpen": true}}
 
-## Installation
+## 安装
 
 <!-- #default-branch-switch -->
 
 ```jsx
 // with npm
-npm install @mui/system @emotion/react @emotion/styled
+npm install @material-ui/system@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @mui/system @emotion/react @emotion/styled
+yarn add @material-ui/system@next @emotion/react @emotion/styled
 ```
 
 Or if you want to use `styled-components` as a styling engine:
@@ -30,10 +30,10 @@ Or if you want to use `styled-components` as a styling engine:
 
 ```sh
 // with npm
-npm install @mui/system @mui/styled-engine-sc styled-components
+npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 
 // with yarn
-yarn add @mui/system @mui/styled-engine-sc styled-components
+yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 ```
 
 请参阅[Styled Engine guide](/guides/styled-engine/)，了解更多关于如何配置`styled-components`作为样式引擎的信息。
@@ -156,7 +156,7 @@ return (
 
 你是否曾发现自己在为一个有样式的组件寻找一个好名字而苦恼？ 该系统可以直接将样式映射到元素。 所以你要做的就是只关心实际的样式属性。
 
-**3.  UI 中要达成一致是很困难的。**
+**3.  2. UI 中要达成一致是很困难的。**
 
 当不止一个人在构建应用程序时尤其如此，因为团队成员之间必须就设计标记的选择和使用方式进行一些协调，主题结构的哪些部分应该使用哪些 CSS 属性等等。
 
@@ -186,12 +186,12 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 
 - 运行时会造成性能影响：
 
-  | 基准测试              | 代码片段                        | 花费时间  |
-  |:----------------- |:--------------------------- | ----- |
-  | a. 渲染 1,000 个基元   | `<div className="…">` | 100ms |
-  | b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
-  | c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
-  | d. 渲染一千个分组（Box）   | `<Box sx={…}>`        | 370ms |
+  | 基准测试                       | 代码片段                        | 花费时间  |
+  |:-------------------------- |:--------------------------- | ----- |
+  | a. a. 渲染 1,000 个基元         | `<div className="…">` | 100ms |
+  | b. b. b. b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
+  | c. c. c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
+  | d. 渲染一千个分组（Box）            | `<Box sx={…}>`        | 370ms |
 
 <!-- #default-branch-switch -->
 
@@ -205,7 +205,7 @@ _Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/mast
 
 只有 `Box`, `Stack`, `类型`, 和 `格子` 组件接受系统属性为 _props_ 基于上述理由。 这些组件旨在解决CSS 问题，它们是 CSS 组件实用工具。
 
-## Usage
+## 使用
 
 ### 主题中的设计标记
 
@@ -278,13 +278,13 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 
 如果你想要你的 CSS 属性是响应式的，那么可以使用断点速记语法。 确定断点有两种方法：
 
-#### 1. 将断点作为对象
+#### 1. 1. 1. 1. 将断点作为对象
 
-定义断点的第一种选择是将断点定义为一个对象，将断点作为其键。 请注意，每个断点属性都与断点和每个大断点相匹配。 For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`. 这里又是前面的例子，使用的是对象语法。
+定义断点的第一种选择是将断点定义为一个对象，将断点作为其键。 请注意，每个断点属性都与断点和每个大断点相匹配。 Note that each breakpoint property matches the breakpoint and every larger breakpoint. For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`. 这里又是前面的例子，使用的是对象语法。 这里又是前面的例子，使用的是对象语法。
 
 {{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
 
-#### 2. 将断点作为数组
+#### 3。 UI 中要达成一致是很困难的。
 
 第二种选择是将你的断点沿着最小到最大来进行定义。
 
@@ -295,18 +295,17 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 你可以使用 `null` 值来跳过断点：
 
 ```jsx
-<Box sx={{ width: [null, null, 300] }}>该分组的宽度是响应式的。</Box>
-
+<Box sx={{ width: [null, null, 300] }}>该分组的宽度是响应式的。 </Box>
 ```
 
-### Custom breakpoints
+### 自定义断点
 
 你也可以指定自定义断点，并在定义断点对象时将其作为键。 下面是一个如何操作的例子。
 
 ```jsx
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Box from '@material-ui/core/Box';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createTheme({
   breakpoints: {
@@ -340,14 +339,14 @@ export default function CustomBreakpoints() {
 如果你使用的是 TypeScript，那么将需要使用 [模块扩展（module augmentation）](/guides/typescript/#customization-of-theme) 来让主题接收上述值。
 
 ```ts
-declare module '@mui/material/styles' {
+declare module "@material-ui/core/styles/createBreakpoints" {
   interface BreakpointOverrides {
-    xs: false; // removes the `xs` breakpoint
+    xs: false; // 移除 `xs` 断点
     sm: false;
     md: false;
     lg: false;
     xl: false;
-    tablet: true; // adds the `tablet` breakpoint
+    tablet: true; // 添加 `tablet` 断点
     laptop: true;
     desktop: true;
   }
@@ -364,7 +363,7 @@ declare module '@mui/material/styles' {
 
 `sx` 属性可以用于四个不同的位置：
 
-### 1. 核心组件
+### 3。 2. 自定义组件
 
 所有核心MUI组件将支持 `sx` prop。
 
@@ -372,16 +371,16 @@ declare module '@mui/material/styles' {
 
 [`Box`](/components/box/) 是一个轻量级组件，它可以以工具集的方式通过包装其他组件来达到访问其 `sx` 属性的目的。 默认情况下将渲染一个 `<div>` 元素。
 
-### 3. 自定义组件
+### 3. 2. 自定义组件
 
 除了MUI组件外，您也可以将 `sx` prop添加到您的自定义组件。 使用 `风格的` 实用程序来自 `@mui/material/styles`
 
 ```jsx
-import { styled } from '@mui/material/styles';
+import { styled } from '@material-ui/core/styles';
 
 const Div = styled('div')``;
 ```
 
-### 4. 使用 babel 插件的任何元素
+### 4. 4、 4、 4、 使用 babel 插件的任何元素
 
 等待开发 [#23220](https://github.com/mui-org/material-ui/issues/23220)。

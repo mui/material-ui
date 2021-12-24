@@ -1,4 +1,4 @@
-# Example projects
+# 示例项目
 
 <p class="description">请参考以下一些入门项目，来帮助你快速开始。</p>
 
@@ -8,8 +8,8 @@
 
 <!-- #default-branch-switch -->
 
-- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/nextjs-with-typescript))
-- [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript))
+- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) （[TypeScript 版本](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript)）
+- [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app) （[TypeScript 版本](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript)）
 - [Remix](https://github.com/mui-org/material-ui/tree/master/examples/remix-with-typescript)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
 - [Preact](https://github.com/mui-org/material-ui/tree/master/examples/preact)
@@ -49,7 +49,7 @@ Create React App 是一个很棒的学习 React 的项目。 Have a look at [the
 - [React SaaS 模板](https://github.com/dunky11/react-saas-template)：
 
   - ![stars](https://img.shields.io/github/stars/dunky11/react-saas-template.svg?style=social&label=Star)
-  - Created with Create React App
+  - 使用 Create React App 创建
   - 特征是一个登录页面，博客，一个登录和注册的区块，以及一个管理员控制界面
   - 完全使用 react-router 来路由
   - 延迟加载组件以提高性能
@@ -61,9 +61,9 @@ Create React App 是一个很棒的学习 React 的项目。 Have a look at [the
   - 使用 recharts 的图表
   - 运用 React Router 的一个导航示例
   - 一个在生产环境下使用的带有 Nginx 服务器的 docker container（docker 容器)。
-  - Created with Create React App
+  - 使用 Create React App 创建
 
-- [RMUIF](https://github.com/phoqe/rmuif):
+- [RMUIF](https://github.com/rmuif/web):
 
   - ![stars](https://img.shields.io/github/stars/rmuif/web.svg?style=social&label=Star)
   - 使用 Create React App 创建，也是可以开箱即用

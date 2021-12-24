@@ -1,14 +1,14 @@
-# @mui/styles
+# @material-ui/styles
 
-<p class="description">The legacy styling solution of MUI.</p>
+<p class="description">无论您是否使用了 Material-UI 组件，都可以在应用中使用 Material-UI 的样式方案。</p>
 
 > ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
 
 > ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
-MUI aims to provide a strong foundation for building dynamic UIs. For the sake of simplicity, **we expose the styling solution used in MUI components** as the `@mui/styles` package. You can use it, but you don't have to, since MUI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
+Material-UI 旨在为构建动态的 UI 提供扎实的基础。 为了构造更加清晰的结构，**我们单独发布了 Material-UI 组件中使用的样式方案**，它将作为一个 `@material-ui/styles` 的依赖包存在。 @material-ui/styles 并不是你唯一的选择，Material-UI 也可以与其他主流样式方案[彼此协作](/guides/interoperability/)。
 
-## Why use MUI's styling solution?
+## 为什么要使用 Material-UI 的样式方案呢？
 
 In previous versions, MUI has used [Less](https://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited. [_CSS-in-JS_ 方案](https://github.com/oliviertassinari/a-journey-toward-better-style) 突破了这些限制，并**提供了很多强大的功能**（主题嵌套、动态样式、自我支持等等）。
 
@@ -23,18 +23,18 @@ MUI's styling solution is inspired by many other styling libraries such as [styl
 - ⚡️它使用 [JSS](https://github.com/cssinjs/jss) 为其核心 —— 一个 [高性能的](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript 到 CSS 的编译器，它在运行时和服务器端编译。
 - 📦 Less than [15 KB gzipped](https://bundlephobia.com/package/@mui/styles); and no bundle size increase if used alongside MUI.
 
-## Installation
+## 安装
 
-To install and save in your `package.json` dependencies, run:
+若想安装并写入您的 `package.json` 依赖包，请运行以下命令：
 
 <!-- #default-branch-switch -->
 
 ```sh
-// with npm
-npm install @mui/styles
+// 用 npm 安装
+npm install @material-ui/styles
 
-// with yarn
-yarn add @mui/styles
+// 用 yarn 安装
+yarn add @material-ui/styles
 ```
 
 ## 快速开始
@@ -45,8 +45,8 @@ yarn add @mui/styles
 
 ```jsx
 import * as React from 'react';
-import { makeStyles } from '@mui/styles';
-import Button from '@mui/material/Button';
+import { makeStyles } from '@material-ui/styles';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   root: {
@@ -74,8 +74,8 @@ export default function Hook() {
 
 ```jsx
 import * as React from 'react';
-import { styled } from '@mui/styles';
-import Button from '@mui/material/Button';
+import { styled } from '@material-ui/styles';
+import Button from '@material-ui/core/Button';
 
 const MyButton = styled(Button)({
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -99,8 +99,8 @@ export default function StyledComponents() {
 ```jsx
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@mui/styles';
-import Button from '@mui/material/Button';
+import { withStyles } from '@material-ui/styles';
+import Button from '@material-ui/core/Button';
 
 const styles = {
   root: {
@@ -177,7 +177,7 @@ function MyComponent() {
 }
 ```
 
-This button component has a `color` prop that changes its color:
+此按钮组件有一个颜色属性，通过它可以改变颜色：
 
 ### 采用 hook API
 
@@ -208,13 +208,13 @@ const useStyles = makeStyles((theme) => ({
 
 ## Using the theme context
 
-Starting from v5, MUI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@mui/styles` and they depend on the `theme`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@mui/styles`, or, if you are already using `@mui/material`, you should use the one exported from `@mui/material/styles` so that the same `theme` is available for components from '@mui/material'.
+Starting from v5, Material-UI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@material-ui/styles`, or, if you are already using `@material-ui/core`, you should use the one exported from `@material-ui/core/styles` so that the same `theme` is available for components from '@material-ui/core'. If you still want to use the utilities exported by `@mui/styles` and they depend on the `theme`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@mui/styles`, or, if you are already using `@mui/material`, you should use the one exported from `@mui/material/styles` so that the same `theme` is available for components from '@mui/material'.
 
 ```jsx
-import { makeStyles } from '@mui/styles';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
-const theme = createTheme();
+const theme = createMuiTheme();
 
 const useStyles = makeStyles((theme) => ({
   root: {

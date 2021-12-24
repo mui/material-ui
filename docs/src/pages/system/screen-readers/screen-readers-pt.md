@@ -11,7 +11,7 @@ The visually hidden style utility provides a common mechanism for hidings elemen
 If you don't have a strict CSP policy in place, you can also do:
 
 ```jsx
-import { visuallyHidden } from '@mui/utils';
+import { visuallyHidden } from '@material-ui/utils';
 
 <div style={visuallyHidden}>about how to visually hide elements</div>;
 ```
