@@ -92,7 +92,6 @@ function run() {
           let data = fs.readFileSync(filePath, { encoding: 'utf-8' });
           if (filePath.endsWith('.md')) {
             data = markdown.removeDemoRelativePath(data);
-            data = markdown.addMaterialPrefixToLinks(data);
             if (product === 'material') {
               data = markdown.addProductFrontmatter(data, 'material');
             }
