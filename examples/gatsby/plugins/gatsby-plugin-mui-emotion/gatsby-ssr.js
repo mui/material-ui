@@ -1,9 +1,23 @@
-/* eslint-disable import/prefer-default-export */
 import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import { renderToString } from 'react-dom/server';
 import getEmotionCache from './getEmotionCache';
+
+// Inject MUI styles first to match with the prepend: true configuration.
+export const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
+  const headComponents = getHeadComponents();
+  headComponents.sort((x, y) => {
+    if (x.key === 'emotion-css-global' || x.key === 'emotion-css') {
+      return -1;
+    }
+    if (y.key === 'style') {
+      return 1;
+    }
+    return 0;
+  });
+  replaceHeadComponents(headComponents);
+};
 
 export const replaceRenderer = ({ bodyComponent, setHeadComponents, replaceBodyHTMLString }) => {
   const cache = getEmotionCache();
@@ -17,7 +31,7 @@ export const replaceRenderer = ({ bodyComponent, setHeadComponents, replaceBodyH
     emotionStyles.styles.map((style) => (
       <style
         data-emotion={`${style.key} ${style.ids.join(' ')}`}
-        key={style.key}
+        key={`emotion-${style.key}`}
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: style.css }}
       />
