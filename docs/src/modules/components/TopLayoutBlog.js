@@ -168,7 +168,8 @@ function TopLayoutBlog(props) {
                     <Avatar
                       sx={{ width: 32, height: 32 }}
                       alt=""
-                      src={`https://github.com/${authors[author].github}.png`}
+                      src={`${authors[author].avatar}?s=${32}`}
+                      srcSet={`${authors[author].avatar}?s=${32 * 2} 2x`}
                     />
                     <Typography variant="body2">{authors[author].name}</Typography>
                   </div>
