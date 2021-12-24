@@ -134,6 +134,17 @@ function run() {
       });
     });
   });
+
+  // Turn feature toggle `enable_product_scope: true`
+  const featureTogglePath = path.join(process.cwd(), 'docs/src/featureToggle.js');
+  let featureToggle = fs.readFileSync(featureTogglePath, { encoding: 'utf8' });
+
+  featureToggle = featureToggle.replace(
+    `enable_product_scope: false`,
+    `enable_product_scope: true`,
+  );
+
+  fs.writeFileSync(featureTogglePath, featureToggle);
 }
 
 run();
