@@ -41,20 +41,27 @@ module.exports = async function demoLoader() {
   const translations = await Promise.all(
     files
       .filter((filename) => {
-        return (
-          path.extname(filename) === '.md' &&
-          path.basename(filename, '.md').startsWith(englishFilename)
-        );
+        if (filename === `${englishFilename}.md`) {
+          return true;
+        }
+
+        const matchNotEnglishMarkdown = filename.match(notEnglishMarkdownRegExp);
+
+        if (
+          filename.startsWith(englishFilename) &&
+          matchNotEnglishMarkdown !== null &&
+          LANGUAGES_IN_PROGRESS.indexOf(matchNotEnglishMarkdown[1]) !== -1
+        ) {
+          return true;
+        }
+
+        return false;
       })
       .map(async (filename) => {
         const filepath = path.join(path.dirname(englishFilepath), filename);
 
         const matchNotEnglishMarkdown = filename.match(notEnglishMarkdownRegExp);
-        const userLanguage =
-          matchNotEnglishMarkdown !== null &&
-          LANGUAGES_IN_PROGRESS.indexOf(matchNotEnglishMarkdown[1]) !== -1
-            ? matchNotEnglishMarkdown[1]
-            : 'en';
+        const userLanguage = matchNotEnglishMarkdown !== null ? matchNotEnglishMarkdown[1] : 'en';
 
         this.addDependency(filepath);
         const markdown = await fs.readFile(filepath, { encoding: 'utf8' });
