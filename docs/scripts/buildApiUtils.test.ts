@@ -166,6 +166,7 @@ describe('buildApiUtils', () => {
       try {
         fs.readdirSync(path.join(process.cwd(), 'docs/data'));
         existed = true;
+        // eslint-disable-next-line no-empty
       } catch (error) {}
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
@@ -207,6 +208,7 @@ describe('buildApiUtils', () => {
       try {
         fs.readdirSync(path.join(process.cwd(), 'docs/data'));
         existed = true;
+        // eslint-disable-next-line no-empty
       } catch (error) {}
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
