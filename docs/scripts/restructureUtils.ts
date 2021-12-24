@@ -24,7 +24,7 @@ export const getNewDataLocation = (
   filePath: string,
   product: string,
 ): { directory: string; path: string } | null => {
-  const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json)$/);
+  const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json|tsx\.preview)$/);
   if (!match) {
     return null;
   }
@@ -39,7 +39,7 @@ const nonComponents = ['about-the-lab'];
 export const getNewPageLocation = (
   filePath: string,
 ): { directory: string; path: string } | null => {
-  const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json)$/);
+  const match = filePath.match(/^(.*)\/[^/]+\.(ts|js|tsx|md|json|tsx\.preview)$/);
   if (!match) {
     return null;
   }
