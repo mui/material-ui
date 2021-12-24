@@ -3,12 +3,13 @@ import { ThemeProvider, createTheme, useTheme, Theme } from '@mui/material/style
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Fade from '@mui/material/Fade';
+import Popover from '@mui/material/Popover';
+import Link from '@mui/material/Link';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FastForwardRounded from '@mui/icons-material/FastForwardRounded';
 import FastRewindRounded from '@mui/icons-material/FastRewindRounded';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
-import PauseRounded from '@mui/icons-material/PauseRounded';
 
 const primaryDark = {
   50: '#E2EDF8',
@@ -24,19 +25,30 @@ const primaryDark = {
 };
 const grey = {
   50: '#F3F6F9',
-  100: '#EAEEF3',
-  200: '#E5E8EC',
-  300: '#D7DCE1',
-  400: '#BFC7CF',
-  500: '#AAB4BE',
-  600: '#96A3B0',
-  700: '#8796A5',
-  800: '#5A6978',
-  900: '#3D4752',
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7', // vs blueDark 900: WCAG 11.6 AAA, APCA 78 Best for text
+  400: '#B2BAC2', // vs blueDark 900: WCAG 9 AAA, APCA 63.3 Ok for text
+  500: '#A0AAB4', // vs blueDark 900: WCAG 7.5 AAA, APCA 54.3 Only for large text
+  600: '#6F7E8C', // vs white bg: WCAG 4.1 AA, APCA 68.7 Ok for text
+  700: '#3E5060', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
+  800: '#2D3843', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
+  900: '#1A2027',
 };
 
 export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) {
-  const [paused, setPaused] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
   /*
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
@@ -99,6 +111,22 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
               fontSize: 'small',
             },
           },
+          MuiPopover: {
+            styleOverrides: {
+              paper: {
+                mt: 0.5,
+                minWidth: 160,
+                elevation: 0,
+                color: mode === 'dark' ? grey[100] : grey[900],
+                backgroundImage: 'none',
+                backgroundColor: mode === 'dark' ? grey[900] : '#fff',
+                border: `1px solid ${mode === 'dark' ? grey[800] : grey[200]}`,
+                boxShadow: `0px 4px 20px ${
+                  mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
+                }`,
+              },
+            },
+          },
         },
       }),
     [mode],
@@ -145,13 +173,36 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
               <IconButton aria-label="fast rewind" disabled>
                 <FastRewindRounded />
               </IconButton>
-              <IconButton
-                aria-label={paused ? 'play' : 'pause'}
-                sx={{ mx: 2 }}
-                onClick={() => setPaused((val) => !val)}
-              >
-                {paused ? <PlayArrowRounded /> : <PauseRounded />}
+              <IconButton aria-describedby={id} onClick={handleClick} size="small" sx={{ mx: 2 }}>
+                <PlayArrowRounded />
               </IconButton>
+              <Popover
+                id={id}
+                sx={{
+                  mt: 0.5,
+                }}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+              >
+                <Box sx={{ p: 1, maxWidth: 320 }}>
+                  <Typography variant="body2" fontWeight={500}>
+                    Card component
+                  </Typography>
+                  <Typography sx={{ mt: 0.5, fontSize: 12 }}>
+                    Visit the <Link href="/">Card customization section</Link> to learn how to
+                    customize it so it look lke this.
+                  </Typography>
+                </Box>
+              </Popover>
               <IconButton aria-label="fast forward" disabled>
                 <FastForwardRounded />
               </IconButton>
