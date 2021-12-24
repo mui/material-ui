@@ -3,6 +3,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
 const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
+const FEATURE_TOGGLE = require('./src/featureToggle');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -224,6 +225,64 @@ module.exports = {
       { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
       // Make sure to include the trailing slash if `trailingSlash` option is set
       { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
+    ];
+  },
+  async redirects() {
+    if (!FEATURE_TOGGLE.enable_redirects) {
+      return [];
+    }
+    return [
+      {
+        source: '/getting-started/:path*',
+        destination: '/material/getting-started/:path*',
+        permanent: true,
+      },
+      {
+        source: '/customization/:path*',
+        destination: '/material/customization/:path*',
+        permanent: true,
+      },
+      {
+        source: '/guides/:path*',
+        destination: '/material/guides/:path*',
+        permanent: true,
+      },
+      {
+        source: '/discover-more/:path*',
+        destination: '/material/discover-more/:path*',
+        permanent: true,
+      },
+      {
+        source: '/components/about-the-lab',
+        destination: '/material/about-the-lab',
+        permanent: true,
+      },
+      {
+        source: '/components/data-grid/:path*',
+        destination: '/x/react-data-grid/:path*',
+        permanent: true,
+      },
+      {
+        source: '/components/:path*',
+        destination: '/material/react-:path*',
+        permanent: true,
+      },
+      {
+        source: '/api/data-grid/:path*',
+        destination: '/x/api/mui-data-grid/:path*',
+        permanent: true,
+      },
+      {
+        source:
+          '/api/:path(date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)',
+        destination: '/material/api/mui-lab/:path*',
+        permanent: true,
+      },
+      {
+        source: '/api/:path*',
+        destination: '/material/api/mui-material/:path*',
+        permanent: true,
+      },
     ];
   },
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
