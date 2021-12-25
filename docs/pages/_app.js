@@ -214,6 +214,7 @@ function AppWrapper(props) {
   return (
     <React.Fragment>
       <NextHead>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
         {fonts.map((font) => (
           <link rel="stylesheet" href={font} key={font} />
         ))}
