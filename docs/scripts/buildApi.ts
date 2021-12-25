@@ -3,20 +3,20 @@ import * as fse from 'fs-extra';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import * as yargs from 'yargs';
-import { findPages, findComponents } from 'docs/src/modules/utils/find';
 import * as ttp from 'typescript-to-proptypes';
+import { findPages, findComponents } from 'docs/src/modules/utils/find';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import {
   ComponentInfo,
   getGenericComponentInfo,
   getMaterialComponentInfo,
   getBaseComponentInfo,
   extractApiPage,
-} from './buildApiUtils';
+} from 'docs/scripts/buildApiUtils';
 import buildComponentApi, {
   writePrettifiedFile,
   ReactApi,
-} from './ApiBuilders/ComponentApiBuilder';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
+} from 'docs/scripts/ApiBuilders/ComponentApiBuilder';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
 
