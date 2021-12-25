@@ -1,0 +1,6 @@
+{
+  // MD013/line-length. Already handled by Prettier.
+  "MD013": false,
+  // MD033/no-inline-html. We use it from time to time, it's fine.
+  "MD033": false
+}
