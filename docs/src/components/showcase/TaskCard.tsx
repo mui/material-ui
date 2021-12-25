@@ -172,8 +172,9 @@ export default function TaskCard({ theme: externalTheme }: { theme?: Theme }) {
                   Card component
                 </Typography>
                 <Typography sx={{ mt: 0.5, fontSize: 12 }}>
-                  Visit the <Link href="/">Card customization section</Link> to learn how to
-                  customize it so it look lke this.
+                  Visit the{' '}
+                  <Link href="/components/cards/#customization">Card customization section</Link> to
+                  learn how to customize it so it look lke this.
                 </Typography>
               </Box>
             </Popover>
