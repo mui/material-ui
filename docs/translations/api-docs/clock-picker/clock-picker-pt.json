@@ -24,7 +24,7 @@
   "classDescriptions": {
     "arrowSwitcher": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the arrowSwticher element"
+      "nodeName": "the arrowSwitcher element"
     }
   }
 }

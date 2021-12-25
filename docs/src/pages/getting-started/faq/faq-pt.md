@@ -4,20 +4,20 @@
 
 Se mesmo assim você não encontrar o que você está procurando, você pode consultar a nossa [página de suporte](/getting-started/support/).
 
-## Material-UI é incrível. Como posso apoiar o projeto?
+## MUI is awesome. Como posso apoiar o projeto?
 
 Existem muitas maneiras de apoiar o Material-UI:
 
 - **Espalhe a palavra**. Evangelize Material-UI [vinculando o material-ui.com](https://material-ui.com/) no seu site, todo backlink conta. Siga-nos no [Twitter](https://twitter.com/MaterialUI), curta e retuíte as notícias importantes. Ou apenas fale sobre nós com os seus amigos.
 - **Dê-nos sua opinião**. Conte-nos o que estamos fazendo bem ou onde podemos melhorar. Por favor vote (👍) nos issues do GitHub que você está mais interessado em ver resolvidos.
-- **Ajude novos usuários**. Você pode responder a perguntas no [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
+- **Ajude novos usuários**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/mui).
 - **Faça as alterações acontecerem**.
   - Edite a documentação. Cada página da versão em inglês tem um link "EDIT THIS PAGE" no canto superior direito.
   - Reporte erros ou recursos faltantes [criando uma issue](https://github.com/mui-org/material-ui/issues/new).
   - Revise e comente em [pull requests](https://github.com/mui-org/material-ui/pulls) e [issues](https://github.com/mui-org/material-ui/issues) existentes.
-  - Ajude a [traduzir](https://translate.material-ui.com) a documentação.
+  - Ajude a [traduzir](https://translate.mui.com) a documentação.
   - [Aprimore nossa documentação](https://github.com/mui-org/material-ui/tree/master/docs), corrija bugs, ou adicione recursos [enviando um pull request](https://github.com/mui-org/material-ui/pulls).
-- **Apoie-nos financeiramente no [OpenCollective](https://opencollective.com/material-ui)**. Se você usa Material-UI em um projeto comercial e gostaria de apoiar seu desenvolvimento contínuo tornando-se um Patrocinador, ou em um projeto freelancer ou hobby e gostaria de se tornar um Apoiador, você pode se tornar através do OpenCollective. Todos os fundos doados são geridos de forma transparente e os Patrocinadores recebem reconhecimento no README e na página inicial do Material-UI.
+- **Support us financially on [OpenCollective](https://opencollective.com/mui)**. Se você usa Material-UI em um projeto comercial e gostaria de apoiar seu desenvolvimento contínuo tornando-se um Patrocinador, ou em um projeto freelancer ou hobby e gostaria de se tornar um Apoiador, você pode se tornar através do OpenCollective. Todos os fundos doados são geridos de forma transparente e os Patrocinadores recebem reconhecimento no README e na página inicial do Material-UI.
 
 ## Por que meus componentes não estão renderizando corretamente em compilações de produção?
 
@@ -37,7 +37,7 @@ No geral, é simples livrar-se desse problema encapsulando cada aplicação Mate
 
 ## Por que os elementos posicionados como fixos se movem quando um modal é aberto?
 
-A rolagem é bloqueada assim que um modal é aberto. Isto impede a interação com o segundo plano, pois o modal deve ser o único conteúdo interativo. No entanto, removendo a barra de rolagem pode fazer com que seus **elementos fixos posicionados** se movam. Nesta situação, você pode aplicar um nome de classe global `.mui-fixed ` para informar ao Material-UI para manipular esses elementos.
+A rolagem é bloqueada assim que um modal é aberto. Isto impede a interação com o segundo plano, pois o modal deve ser o único conteúdo interativo. No entanto, removendo a barra de rolagem pode fazer com que seus **elementos fixos posicionados** se movam. Nesta situação, você pode aplicar um nome de classe global `.mui-fixed` para informar ao Material-UI para manipular esses elementos.
 
 ## Como posso desativar o efeito cascata globalmente?
 
@@ -178,7 +178,7 @@ Se você estiver usando o webpack, você pode mudar a maneira como ele irá reso
 
 ### Uso com Lerna
 
-Uma possível correção para que o @material-ui/styles seja executado em um monorepo Lerna através de pacotes é fazer [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) das dependências compartilhadas para a raiz do seu arquivo monorepo. Tente executar a opção de auto inicialização com o parâmetro --hoist.
+One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. Tente executar a opção de auto inicialização com o parâmetro --hoist.
 
 ```sh
 lerna bootstrap --hoist
@@ -218,7 +218,7 @@ Se você tiver várias aplicações em execução em uma página, considere o us
       app2: "./src/app.2.js",
     },
     plugins: [
-+     new webpack.optimize.CommonsChunkPlugin({
++     new webpack.optimize. CommonsChunkPlugin({
 +       name: "vendor",
 +       minChunks: Infinity,
 +     }),
@@ -255,6 +255,10 @@ function handleRender(req, res) {
 
   // Renderize o componente para uma string.
 
+  + const sheets = new ServerStyleSheets();
+
+  //…
+
   // Renderize o componente para uma string.
   const html = ReactDOMServer.renderToString(
 ```
@@ -267,7 +271,7 @@ Há uma incompatibilidade de nome de classe entre o cliente e o servidor. Pode f
 
 #### Ação a tomar
 
-O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). Este gerador precisa se comportar de forma idêntica no servidor e no cliente. Por exemplo:
+O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de classe](/styles/advanced/#class-names). Este gerador precisa se comportar de forma idêntica no servidor e no cliente. For instance:
 
 - Você precisa fornecer um novo gerador de nome de classe para cada requisição. Mas você não deve compartilhar um `createGenerateClassName()` entre diferentes requisições:
 
@@ -295,8 +299,7 @@ function handleRender(req, res) {
   ```diff
     "dependencies": {
     ...
-  -   "@material-ui/core": "^4.0.0",
-+   "@material-ui/core": "4.0.0",
+  "dependencies": {
     ...
     },
   ```
@@ -398,3 +401,7 @@ return (
   />
 );
 ```
+
+## I cannot use components as selectors in the styled() utility. What should I do?
+
+If you are getting the error: `TypeError: Cannot convert a Symbol value to a string`, take a look at the [styled()](/system/styled/#how-to-use-components-selector-api) docs page for instructions on how you can fix this.

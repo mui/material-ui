@@ -8,15 +8,15 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 # Acordeão
 
-<p class="description">Os acordeões contêm fluxos de criação e permitem a edição simplificada de um elemento.</p>
+<p class="description">The accordion component allows the user to show and hide sections of related content on a page.</p>
 
 [Um painel de expansão](https://material.io/archive/guidelines/components/expansion-panels.html) é um contêiner leve que pode estar sozinho ou conectado em uma superfície maior, como um cartão.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Nota:** Os acordeões não estão mais documentados nas [diretrizes do Material Design](https://material.io/), mas o Material-UI continuará a suportá-los. Anteriormente, ele era formalmente conhecido como "painel de expansão".
+> **Nota:** Os acordeões não estão mais documentados nas [diretrizes do Material Design](https://material.io/), mas MUI continuará a suportá-los. Anteriormente, ele era formalmente conhecido como "painel de expansão".
 
-## Painel de Expansão Simples
+## Acordeão básico
 
 {{"demo": "pages/components/accordion/BasicAccordion.js", "bg": true}}
 

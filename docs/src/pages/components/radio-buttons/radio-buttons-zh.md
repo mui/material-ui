@@ -24,7 +24,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
 
 ### 方向
 
-To lay out the buttons horizontally, set the `row` prop:
+要使按钮水平布局，需要将 `row` 属性设置为：
 
 {{"demo": "pages/components/radio-buttons/RowRadioButtonsGroup.js"}}
 
@@ -83,7 +83,7 @@ import { useRadioGroup } from '@material-ui/core/RadioGroup';
 `value` (_object_):
 
 - `value.name` (_string_ [optional])：用于引用控件值的名称。
-- `value.onChange` (_func_ [optional]): Callback fired when a radio button is selected.
+- `value.onChange` (_func_ [optional])：选择单选按钮时触发的回调。
 - `value.value` (_any_ [optional])：所被选定的单选框的值。
 
 #### 示例

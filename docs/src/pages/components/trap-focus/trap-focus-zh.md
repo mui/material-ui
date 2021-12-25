@@ -1,16 +1,16 @@
 ---
-title: React Trap Focus（陷阱焦点）组件
+title: React Trap Focus（容器焦点）组件
 components: Unstable_TrapFocus
 githubLabel: 'component: TrapFocus'
 ---
 
-# Trap Focus 陷阱焦点
+# Trap Focus 容器焦点
 
 <p class="description">在 DOM 节点内捕获焦点。</p>
 
-陷阱焦点是一个为其子节点管理焦点的组件。 这在实现遮罩层时很有用，比如模态对话框，它不应该允许在该组件打开时转移焦点。
+容器焦点是一个为其子节点管理焦点的组件。 这在实现遮罩层时很有用，比如模态对话框，它不应该允许在该组件打开时转移焦点。
 
-当 `open={true}` 的陷阱被启用时，按下 <kbd class="key">Tab</kbd> 或 <kbd><kbd class="key">Shift</kbd>+<kbd class="key">Tab</kbd></kbd> 将在组件的内部可聚焦元素内旋转聚焦。
+When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> or <kbd><kbd class="key">Shift</kbd>+<kbd class="key">Tab</kbd></kbd> will rotate focus within the inner focusable elements of the component.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -22,12 +22,12 @@ githubLabel: 'component: TrapFocus'
 
 ## Unstyled
 
-- 📦 [2.0kB 已压缩的包](https://bundlephobia.com/package/@material-ui/unstyled@next)
+- 📦 [2.0 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
-As the component does not have any styles, it also comes with the unstyled package.
+As the component does not have any styles, it also comes with the Base package.
 
 ```js
-import TrapFocus from '@material-ui/unstyled/Unstable_TrapFocus';
+import TrapFocus from '@mui/base/Unstable_TrapFocus';
 ```
 
 ## 禁用强制对焦

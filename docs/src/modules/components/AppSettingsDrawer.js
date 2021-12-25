@@ -143,7 +143,7 @@ function AppSettingsDrawer(props) {
             data-ga-event-category="settings"
             data-ga-event-action="ltr"
           >
-            <FormatTextdirectionLToRIcon />
+            <FormatTextdirectionLToRIcon fontSize="small" />
             {t('settings.ltr')}
           </IconToggleButton>
           <IconToggleButton
@@ -152,7 +152,7 @@ function AppSettingsDrawer(props) {
             data-ga-event-category="settings"
             data-ga-event-action="rtl"
           >
-            <FormatTextdirectionRToLIcon />
+            <FormatTextdirectionRToLIcon fontSize="small" />
             {t('settings.rtl')}
           </IconToggleButton>
         </ToggleButtonGroup>

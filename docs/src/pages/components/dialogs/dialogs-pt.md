@@ -71,7 +71,7 @@ O diálogo tem um botão de fechar para facilitar a utilização.
 
 ## Tamanhos opcionais
 
-Você pode definir uma largura máxima usando um enumerador na propriedade `maxWidth` combinando com a propriedade booleana `fullWidth`. Quando a propriedade `fullWidth` for verdadeira, o diálogo será adaptado com base no valor definido em `maxWidth`.
+Você pode definir uma largura máxima usando um enumerador na propriedade `maxWidth` combinando com a propriedade booleana `fullWidth`. Quando a propriedade `fullWidth` for verdadeira, a caixa de diálogo será adaptada com base no valor definido em `maxWidth`.
 
 {{"demo": "pages/components/dialogs/MaxWidthDialog.js"}}
 
@@ -102,7 +102,7 @@ Tocar em "Cancelar" em um diálogo de confirmação ou pressionar Voltar, cancel
 
 ## Diálogo arrastável
 
-Você pode criar um diálogo arrastável usando [react-draggable](https://github.com/mzabriskie/react-draggable). Para fazer isso, você deve passar o componente importado `Draggable` como `PaperComponent` do componente `Dialog`. Isso fará com que todo o diálogo seja arrastável.
+You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable). Para fazer isso, você deve passar o componente importado `Draggable` como `PaperComponent` do componente `Dialog`. Isso fará com que todo o diálogo seja arrastável.
 
 {{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 

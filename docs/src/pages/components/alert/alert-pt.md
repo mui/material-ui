@@ -9,7 +9,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 <p class="description">Um alerta exibe uma mensagem curta e importante de uma forma que atrai a atenção do usuário sem interromper o que ele estiver fazendo.</p>
 
-**Observação:** Este componente não está documentado nas [diretrizes do Material Design](https://material.io/), mas o Material-UI o suporta.
+**Nota:** Este componente não está documentado nas [diretrizes do Material Design](https://material.io/), mas MUI o suporta.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

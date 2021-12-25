@@ -10,14 +10,14 @@ Você pode encontrar alguns exemplos de projetos no repositório [GitHub](https:
 
 - [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) ([Versão TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript))
 - [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app) ([versão TypeScript](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript))
-- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- [Tema Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-theme)
-- [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
-- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
-- [Plain server-side](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
-- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript))
+- [Remix](https://github.com/mui-org/material-ui/tree/master/examples/remix-with-typescript)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
+- [Preact](https://github.com/mui-org/material-ui/tree/master/examples/preact)
+- [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
+- [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
+- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
 
-Create React App é um projeto incrível para aprender React. Dê uma olhada nas [alternativas disponíveis](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) para ver qual projeto melhor atende às suas necessidades.
+Create React App é um projeto incrível para aprender React. Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
 
 O código-fonte deste site de documentação também está incluído no repositório. Este é um projeto um pouco mais complexo. Confira a pasta [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) para instruções de compilação.
 
@@ -27,7 +27,7 @@ Se você quer começar com um exemplo mais completo e do mundo real, você pode 
 
 ### Grátis
 
-- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/graphql-starter):
+- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/relay-starter-kit):
 
   - ![estrelas](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
   - GraphQL API project using code-first design (TypeScript, OAuth, GraphQL.js, Knex, Cloud SQL)

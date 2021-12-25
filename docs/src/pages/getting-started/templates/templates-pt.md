@@ -6,6 +6,8 @@ title: +9 Modelos Grátis de React
 
 <p class="description">Uma seleção grátis de modelos react para ajudar a você começar a criar o seu aplicativo. A coleção contém painel de controle, administrativo e muito mais.</p>
 
+<!-- #default-branch-switch -->
+
 Os modelos podem ser combinados com uma das [aplicações de exemplo](https://github.com/mui-org/material-ui/tree/master/examples) para gerar um projeto inicial completo.
 
 Seções de cada leiaute são claramente definidas por comentários ou uso de arquivos separados, tornando simples extrair partes de uma página (como uma "hero unit" ou rodapé, por exemplo) para reutilização em outras páginas. Para exemplos de várias partes, uma tabela no README no local do código-fonte vinculado descreve a finalidade de cada arquivo.

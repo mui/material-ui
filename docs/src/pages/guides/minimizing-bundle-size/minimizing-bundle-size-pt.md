@@ -93,7 +93,7 @@ No entanto, você precisa aplicar as duas etapas seguintes corretamente.
 
 Escolha um dos seguintes plugins:
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) com a seguinte configuração:
+- [babel-plugin-import](https://github.com/umijs/babel-plugin-import) with the following configuration:
 
   `yarn add -D babel-plugin-import`
 
@@ -196,7 +196,21 @@ Finalmente, você pode converter sua base de código existente com esse [codemod
 
 O pacote publicado no npm é **transpilado** com [Babel](https://github.com/babel/babel), para levar em consideração as [plataformas suportadas](/getting-started/supported-platforms/).
 
-⚠️ Para minimizar a duplicação de código nos pacotes de usuários, autores de biblioteca são **fortemente desencorajados** a importar de qualquer um dos outros pacotes.
+⚠️ Para minimizar a duplicação de código nos pacotes de usuários, autores de biblioteca são **fortemente desencorajados** a importar de qualquer um dos outros pacotes. Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles. Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
+
+```js
+{
+  resolve: {
+    alias: {
+      '@mui/base': '@mui/base/legacy',
+      '@mui/lab': '@mui/lab/legacy',
+      '@mui/material': '@mui/material/legacy',
+      '@mui/styled-engine': '@mui/styled-engine/legacy',
+      '@mui/system': '@mui/system/legacy',
+    }
+  }
+}
+```
 
 ### Pacote moderno
 

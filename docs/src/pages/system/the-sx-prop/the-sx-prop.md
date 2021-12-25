@@ -252,7 +252,7 @@ If you want to receive `sx` prop from your component and pass it down to MUI's c
 
 ## TypeScript usage
 
-A frequent source of confusion with the `sx` prop is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+A frequent source of confusion with the `sx` prop is TypeScript's [type widening](https://mariusschulz.com/blog/literal-type-widening-in-typescript), which causes this example not to work as expected:
 
 ```ts
 const style = {

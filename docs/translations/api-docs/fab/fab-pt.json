@@ -17,10 +17,6 @@
     "root": {
       "description": "Estilos aplicados ao elemento raiz."
     },
-    "label": {
-      "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the span element that wraps the children"
-    },
     "primary": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",

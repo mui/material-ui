@@ -9,7 +9,7 @@ import isHostComponent from './isHostComponent';
  */
 export default function appendOwnerState(
   elementType: React.ElementType,
-  existingProps: Record<string, any>,
+  existingProps: Record<string, any> = {},
   ownerState: object,
 ) {
   if (isHostComponent(elementType)) {

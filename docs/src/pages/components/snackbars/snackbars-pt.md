@@ -68,11 +68,27 @@ Snackbars devem aparecer acima de BAFs (no mobile).
 
 Você pode alterar a direção da transição do [Slide](/components/transitions/#slide).
 
+Example of making the slide transition to the left:
+
+```jsx
+import Slide from '@material-ui/core/Slide';
+
+function TransitionLeft(props) {
+  return <Slide {...props} direction="left" />;
+}
+
+export default function MyComponent() {
+  return <Snackbar TransitionComponent={TransitionLeft} />;
+}
+```
+
+Para situações de uso mais avançadas, você pode tirar proveito com:
+
 {{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
 
 ## Projetos Complementares
 
-Para situações de uso mais avançadas, você pode tirar proveito com:
+For more advanced use cases you might be able to take advantage of:
 
 ### notistack
 
@@ -80,10 +96,32 @@ Para situações de uso mais avançadas, você pode tirar proveito com:
 
 Este exemplo demonstra como usar com [notistack](https://github.com/iamhosseindhv/notistack). notistack tem uma **API imperativa** que facilita a exibição de snackbars, sem ter que lidar com seu estado de aberto/fechado. It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design guidelines).
 
-TODO: Add example once notistack is compatible with v5 or replace with [#1824](https://github.com/mui-org/material-ui/issues/1824).
+{{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
 
 ## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
 
-- Por padrão, o snackbar não irá se esconder automaticamente. No entanto, se você decidir usar a propriedade `autoHideDuration`, é recomendado dar ao usuário [tempo suficiente](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) para compreensão.
+By default, the snackbar won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended to give the user [sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) to respond.
+
+When open, **every** `Snackbar` will be dismissed if <kbd class="key">Escape</kbd> is pressed. Unless you don't handle `onClose` with the `"escapeKeyDown"` reason. If you want to limit this behavior to only dismiss the oldest currently open Snackbar call `event.preventDefault` in `onClose`.
+
+```jsx
+export default function MyComponent() {
+  const [open, setOpen] = React.useState(true);
+
+  return (
+    <React.Fragment>
+      <Snackbar
+        open={open}
+        onClose={(event, reason) => {
+          // `reason === 'escapeKeyDown'` if `Escape` was pressed
+          setOpen(false);
+          // call `event.preventDefault` to only close one Snackbar at a time.
+        }}
+      />
+      <Snackbar open={open} onClose={() => setOpen(false)} />
+    </React.Fragment>
+  );
+}
+```

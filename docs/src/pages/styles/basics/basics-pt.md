@@ -2,28 +2,32 @@
 
 <p class="description">Você pode usar a solução de estilo do Material-UI na sua aplicação, esteja ou não usando componentes de Material-UI.</p>
 
-Material-UI visa fornecer uma base sólida para a criação de interfaces de usuário dinâmicas. Material-UI visa fornecer uma base sólida para a criação de interfaces de usuário dinâmicas. Você pode usá-la, mas você não é obrigado, já que Material-UI também é [ interoperável com](/guides/interoperability/) todas as outras soluções de estilo principais.
+> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
+
+> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
+
+MUI aims to provide a strong foundation for building dynamic UIs. For the sake of simplicity, **we expose the styling solution used in MUI components** as the `@mui/styles` package. Você pode usá-la, mas você não é obrigado, já que Material-UI também é [ interoperável com](/guides/interoperability/) todas as outras soluções de estilo principais.
 
 ## Por que usar a solução de estilo do Material-UI?
 
-Nas versões anteriores, o Material-UI usava o LESS, e em seguida, uma solução customizada no estilo em linha para escrever os estilos dos componentes, mas essas abordagens provaram ser limitadas. [Uma solução *CSS-em-JS*](https://github.com/oliviertassinari/a-journey-toward-better-style) supera muitas destas limitações, e **libera excelentes funcionalidades**(aninhamento de temas, estilos dinâmicos, auto-suporte etc.).
+In previous versions, MUI has used [Less](https://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited. [Uma solução *CSS-em-JS*](https://github.com/oliviertassinari/a-journey-toward-better-style) supera muitas destas limitações, e **libera excelentes funcionalidades**(aninhamento de temas, estilos dinâmicos, auto-suporte etc.).
 
-A solução de estilo do Material-UI é inspirada em muitas outras bibliotecas de estilo, como [styled-components](https://www.styled-components.com/) e [emotion](https://emotion.sh/).
+MUI's styling solution is inspired by many other styling libraries such as [styled-components](https://styled-components.com/) and [emotion](https://emotion.sh/).
 
-- 💅 Você pode esperar [as mesmas vantagens](https://www.styled-components.com/docs/basics#motivation) que styled-components.
+- 💅 You can expect [the same advantages](https://styled-components.com/docs/basics#motivation) as styled-components.
 
 <!-- #default-branch-switch -->
 
-- 🚀 Ela é [super rápida](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles).
+- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/tree/master/benchmark/server#material-uistyles).
 - 🧩 É extensível através de uma API de [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md).
 - ⚡️Ela usa [JSS](https://github.com/cssinjs/jss) em seu núcleo – um [alto desempenho](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript para o compilador CSS, que funciona em tempo de execução e no lado do servidor.
-- 📦 Menor que [15 KB gzipped](https://bundlephobia.com/package/@material-ui/styles); e nenhum aumento no tamanho do pacote se usado juntamente com o Material-UI.
+- 📦 Less than [15 KB gzipped](https://bundlephobia.com/package/@mui/styles); and no bundle size increase if used alongside MUI.
 
 ## Instalação
 
-> `@material-ui/styles` é re-exportada como `@material-ui/core/styles` - você só precisa instalá-la se desejar usá-la independentemente do Material-UI.
-
 Para instalar e salvar em suas dependências do `package.json`, execute:
+
+<!-- #default-branch-switch -->
 
 ```sh
 // utilizando o npm
@@ -113,9 +117,7 @@ const styles = {
 function HigherOrderComponent(props) {
   const { classes } = props;
   return <Button className={classes.root}>Higher-order component</Button>;
-}
-
-HigherOrderComponent.propTypes = {
+} HigherOrderComponent.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -174,7 +176,7 @@ Este componente botão tem uma propriedade de cor que modifica sua cor:
 
 ### Adaptando a hook API
 
-{{"demo": "pages/styles/basics/AdaptingHook.js", "react":"next"}}
+{{"demo": "pages/styles/basics/AdaptingHook.js"}}
 
 ### Adaptando a styled components API
 

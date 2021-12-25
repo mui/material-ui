@@ -1,6 +1,6 @@
 {
   "name": "benchmark",
-  "version": "5.0.2",
+  "version": "5.0.0",
   "private": true,
   "scripts": {
     "browser": "yarn webpack --config browser/webpack.config.js && node browser/scripts/benchmark.js",
@@ -11,15 +11,15 @@
     "server:system": "cd ../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node benchmark/server/scenarios/system.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\""
   },
   "dependencies": {
-    "@chakra-ui/system": "^1.8.2",
-    "@emotion/react": "^11.7.0",
+    "@chakra-ui/system": "^1.8.3",
+    "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@mui/material": "^5.2.2",
-    "@mui/styles": "^5.2.2",
-    "@mui/system": "^5.2.2",
+    "@mui/material": "^5.2.5",
+    "@mui/styles": "^5.2.3",
+    "@mui/system": "^5.2.5",
     "@styled-system/css": "^5.1.5",
     "benchmark": "^2.1.4",
-    "playwright": "^1.16.3",
+    "playwright": "^1.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",

@@ -26,6 +26,8 @@ yarn add @material-ui/system@next @emotion/react @emotion/styled
 
 Or if you want to use `styled-components` as a styling engine:
 
+<!-- #default-branch-switch -->
+
 ```sh
 // with npm
 npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
@@ -34,7 +36,7 @@ npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-c
 yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 ```
 
-Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+Dê uma olhada no [guia do Motor de Estilização](/guides/styled-engine/) para mais informações sobre como configurar  `componentes estilizados` como seu motor de estilização.
 
 ## Por que usar o sistema?
 
@@ -164,7 +166,7 @@ O sistema oferece acesso direto ao valor no tema. Fica mais fácil de lidar com 
 
 A propriedade `sx`, como a parte principal do sistema, resolve esses problemas, fornecendo uma maneira rápida & simples de aplicar os tokens de design corretos para propriedades CSS específicas diretamente a um elemento React. A [demonstração acima](#demo) mostra como ela pode ser usada para criar um design único.
 
-This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Além disso, permite uma maneira simples de definir valores responsivos que correspondem aos pontos de quebra definidos no tema.
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Além disso, permite uma maneira simples de definir valores responsivos que correspondem aos pontos de quebra definidos no tema. Para mais detalhes, visite a [página da propriedade `sx`](/system/the-sx-prop/).
 
 ### Quando usar ela?
 
@@ -178,7 +180,7 @@ O sistema depende do CSS-in-JS. Funciona com ambos, emotion e styled-components.
 Prós:
 
 - 📚 Permite uma grande flexibilidade na API. A propriedade `sx` suporta um super conjunto de CSS. Não há **nenhuma necessidade de aprender CSS duas vezes**. Uma vez que você aprendeu a sintaxe padronizada do CSS, é seguro pois, não mudou durante uma década. Então, você pode **opcionalmente** aprender os atalhos, se você valoriza a economia de tempo que eles trazem.
-- 📦 Auto-purge. Somente o CSS usado na página é enviado para o cliente. O custo inicial do tamanho do pacote é **fixo**. Ele não aumenta com o número de propriedades CSS usadas. Você paga o custo de [@emotion/react](https://bundlephobia.com/package/@emotion/react) e [@material-ui/system](https://bundlephobia.com/package/@material-ui/system). Custa cerca de ~15 kB gzipped. Se você já está usando os componentes principais, eles não vêm com sobrecarga extra.
+- 📦 Auto-purge. Somente o CSS usado na página é enviado para o cliente. O custo inicial do tamanho do pacote é **fixo**. Ele não aumenta com o número de propriedades CSS usadas. You pay the cost of [@emotion/react](https://bundlephobia.com/package/@emotion/react) and [@mui/system](https://bundlephobia.com/package/@mui/system). Você paga o custo de [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) e [@material-ui/system](https://bundlephobia.com/result?p=@material-ui/system). Custa cerca de ~15 kB gzipped.
 
 Contras:
 
@@ -191,9 +193,11 @@ Contras:
   | c. Renderizar 1,000 styled components | `<StyledDiv>`         | 160ms             |
   | d. a. Renderizar 1.000 Box            | `<Box sx={…}>`        | 370ms             |
 
-  _Vá até a [pasta de benchmark](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) para uma reprodução dessas métricas._
+<!-- #default-branch-switch -->
 
-  Nós acreditamos que para a maioria das situações é **rápido o suficiente**, mas há soluções alternativas simples onde a performance se torna crítica. Por exemplo, ao renderizar uma lista com muitos itens, você pode usar um seletor filho CSS para ter um único ponto de "injeção de estilo" (usando d. para o wrapper e a. para cada item).
+_Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
+
+Nós acreditamos que para a maioria das situações é **rápido o suficiente**, mas há soluções alternativas simples onde a performance se torna crítica. Por exemplo, ao renderizar uma lista com muitos itens, você pode usar um seletor filho CSS para ter um único ponto de "injeção de estilo" (usando d. para o wrapper e a. para cada item).
 
 ### API tradeoff
 
@@ -229,7 +233,7 @@ Estas abreviações são **opcionais**, elas são ótimas para economizar tempo 
 
 ### Super conjunto de CSS
 
-Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos:
+Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos: Aqui esta alguns exemplos:
 
 - Usando pseudo seletores:
 

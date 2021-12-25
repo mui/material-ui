@@ -21,7 +21,7 @@ packageName: '@material-ui/lab'
 
 ## Left-positioned timeline
 
-The main content of the timeline can be positioned on the left side relative to the time axis.
+时间轴的主要内容可以被放置在相对时间轴的左侧。
 
 {{"demo": "pages/components/timeline/LeftPositionedTimeline.js"}}
 

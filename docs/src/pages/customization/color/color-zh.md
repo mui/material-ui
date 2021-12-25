@@ -2,7 +2,7 @@
 
 <p class="description">颜色承载了不同的寓意。 Out of the box you get access to all colors in the Material Design guidelines.</p>
 
-使用 Material Design 的[颜色系统](https://material.io/design/color/)，您可创建表现独特品牌或风格的颜色主题。
+Material Design [颜色系统](https://material.io/design/color/) 可用于创建反映您的品牌或风格的颜色主题。
 
 ## 选取颜色
 
@@ -71,7 +71,6 @@ If you are using the default primary and / or secondary shades then by providing
 
 ### 社区提供的一些工具
 
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/)：使用 Material Design 颜色工具来创建 Material-UI 主题的在线工具。
 - [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/)：一个帮助设计和定制 Material-UI 组件库主题的工具。 包括基本的网站模板，并且展示各种组件及其受主题影响的方式。
 - [Material palette generator](https://material.io/inline-tools/color/)：它可用于通过您输入的任何颜色生成一系列的调色板。
 
@@ -81,7 +80,7 @@ If you are using the default primary and / or secondary shades then by providing
 
 ### 一些重要的术语
 
-- **Palette**：调色板是颜色的集合，即色调及其深度。 Material-UI 提供 Material Design 指南中的所有颜色。 设计 [此调色板](#color-palette) 时，我们确保了各个颜色之间的协调呈现。
+- **Palette**：调色板是颜色的集合，即色调及其深度。 设计 [此调色板](#color-palette) 时，我们确保了各个颜色之间的协调呈现。 设计 [此调色板](#color-palette) 时，我们确保了各个颜色之间的协调呈现。
 - **Hue & Shade**：调色板中的单一颜色由色调（如“red”）和深度（如“500”）组成。 "rad 50" 是红色的最浅的阴影（_ 粉红色！ _），而 "red 900" 是最暗的深红色。 除此之外，大多数的色调都带有以 `A` 为前缀的强调（accent）色调。
 
 ### 调色板

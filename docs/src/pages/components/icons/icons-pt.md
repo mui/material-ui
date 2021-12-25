@@ -17,7 +17,7 @@ Material-UI fornece suporte de ícones de três maneiras:
 
 ## Ícones Material
 
-Google has created over 1,700 official Material icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote @material-ui/icons. Você pode [pesquisar na lista completa destes ícones](/components/material-icons/).
+Google has created over 1,900 official Material icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote @material-ui/icons. Você pode [pesquisar na lista completa destes ícones](/components/material-icons/).
 
 ### Instalação
 
@@ -25,10 +25,10 @@ Instale o pacote no diretório do seu projeto com:
 
 ```sh
 // usando npm
-npm install @material-ui/icons
+npm install @mui/icons-material
 
 // usando yarn
-yarn add @material-ui/icons
+yarn add @mui/icons-material
 ```
 
 Esses componentes usam o componente `SvgIcon` do Material-UI para renderizar o caminho SVG de cada ícone, e por isso tem uma dependência com `@mui/material`.
@@ -50,14 +50,14 @@ Importe ícones usando uma destas duas opções:
 - Opção 1:
 
   ```jsx
-  import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-  import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
+  import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+  import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
   ```
 
 - Opção 2:
 
   ```jsx
-  import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+  import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
 O mais seguro para o tamanho do pacote é a opção 1, mas alguns desenvolvedores preferem a opção 2. Certifique-se de seguir o guia [minimizando o tamanho do pacote](/guides/minimizing-bundle-size/#option-2) antes de usar a segunda abordagem.
@@ -79,7 +79,7 @@ Cada ícone Material também tem um "tema": Filled (padrão), Outlined, Rounded,
 Para fins de teste, cada ícone exposto do `@material-ui/icons` tem um atributo `data-testid` com o nome do ícone. Por exemplo:
 
 ```jsx
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@mui/icons-material/Delete';
 ```
 
 tem o seguinte atributo assim que montado:
@@ -90,7 +90,7 @@ tem o seguinte atributo assim que montado:
 
 ## SvgIcon
 
-Se você precisa de um ícone SVG customizado (não disponível nos [ícones Material](/components/material-icons/)) você pode usar encapsular com `SvgIcon`. Este componente estende o elemento nativo `<svg>`:
+Ele pode ser usado para encapsular um caminho SVG com um componente SvgIcon. Este componente estende o elemento nativo `<svg>`:
 
 - Ele vem internamente com a acessibilidade.
 - Os elementos SVG devem ser dimensionados para uma visualização de 24x24px, de modo que o ícone resultante possa ser usado como está, ou incluído como filho para outros componentes de Material-UI que usam ícones. (Isso pode ser customizado com o atributo `viewBox`).
@@ -116,7 +116,7 @@ function HomeIcon(props) {
 
 ### Propriedade Componente
 
-Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes estejam salvos no formato `.svg`. A biblioteca [svgr](https://github.com/gregberge/svgr) possui loaders para importar arquivos SVG e usá-los como componentes React. Por exemplo, com webpack:
+Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes estejam salvos no formato `.svg`. [svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. Por exemplo, com webpack:
 
 ```jsx
 // webpack.config.js
@@ -148,7 +148,7 @@ import { ReactComponent as StarIcon } from './star.svg';
 
 ### createSvgIcon
 
-O componente utilitário `createSvgIcon` é usado para criar [ícones Material](#material-icons). Ele pode ser usado para encapsular um caminho SVG com um componente SvgIcon.
+Se você precisa de um ícone SVG customizado (não disponível nos [ícones Material](/components/material-icons/)) você pode usar encapsular com `SvgIcon`. Este componente estende o elemento nativo `<svg>`:
 
 ```jsx
 const HomeIcon = createSvgIcon(
@@ -165,7 +165,7 @@ Se você descobrir que há problemas de leiaute ao usar FontAwesomeIcon de `@for
 
 [Fonte Awesome](https://fontawesome.com/icons) pode ser usada com o componente `Icon` da seguinte forma:
 
-Nota: A biblioteca [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) já agrupou cada um desses ícones SVG com o componente `SvgIcon`, para que você não precise fazer isso.
+Nota: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) já agrupou cada um desses ícones SVG com o componente `SvgIcon`, para que você não precise fazer isso.
 
 A propriedade `fullWidth` de FontAwesomeIcon também pode ser usada para aproximar as dimensões corretas, mas não é garantida.
 
@@ -320,4 +320,4 @@ import { visuallyHidden } from '@material-ui/utils';
 
 #### Referência
 
-- https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/
+- https://www.tpgi.com/using-aria-enhance-svg-accessibility/

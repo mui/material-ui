@@ -27,6 +27,7 @@ The **why** is covered in the [release blog post](/blog/mui-core-v5/).
 - [Handling Breaking Changes](#handling-breaking-changes)
 - [Migrate theme's `styleOverrides` to emotion](#migrate-themes-styleoverrides-to-emotion)
 - [Migrate from JSS](#migrate-from-jss)
+- [CSS specificity](#css-specificity)
 - [Troubleshooting](#troubleshooting)
 
 > 💡 Aim to create small commits on any changes to help the migration go more smoothly.
@@ -233,6 +234,54 @@ If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-b
 Support for non-ref-forwarding class components in the `component` prop or as immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything.
 Otherwise check out the [Caveat with refs](/guides/composition/#caveat-with-refs) section in the composition guide to find out how to migrate.
 This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
+
+### Ref type specificity
+
+For some components, you may get a type error when passing `ref`.
+To avoid the error, you should use a specific element type.
+For example, `Card` expects the type of `ref` to be `HTMLDivElement`, and `ListItem` expects its `ref` type to be `HTMLLIElement`.
+
+Here is an example:
+
+```diff
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import ListItem from '@mui/material/ListItem';
+
+export default function SpecificRefType() {
+- const cardRef = React.useRef<HTMLElement>(null);
++ const cardRef = React.useRef<HTMLDivElement>(null);
+
+- const listItemRef = React.useRef<HTMLElement>(null);
++ const listItemRef = React.useRef<HTMLLIElement>(null);
+  return (
+    <div>
+      <Card ref={cardRef}></Card>
+      <ListItem ref={listItemRef}></ListItem>
+    </div>
+  );
+}
+```
+
+The list of components that expect a specific element type is as follows:
+
+##### `@mui/material`
+
+- [Accordion](/api/accordion/) - `HTMLDivElement`
+- [Alert](/api/alert/) - `HTMLDivElement`
+- [Avatar](/api/avatar/) - `HTMLDivElement`
+- [ButtonGroup](/api/button-group/) - `HTMLDivElement`
+- [Card](/api/card/) - `HTMLDivElement`
+- [Dialog](/api/dialog/) - `HTMLDivElement`
+- [ImageList](/api/image-list/) - `HTMLUListElement`
+- [List](/api/list/) - `HTMLUListElement`
+- [Tab](/api/tab/) - `HTMLDivElement`
+- [Tabs](/api/tabs/) - `HTMLDivElement`
+- [ToggleButton](/api/toggle-button/) - `HTMLButtonElement`
+
+##### `@mui/lab`
+
+- [Timeline](/api/timeline/) - `HTMLUListElement`
 
 ### Style library
 
@@ -491,7 +540,7 @@ The `@mui/styles` package is no longer part of `@mui/material/styles`. If you ar
 > ✅ This is handled in the [preset-safe codemod](#preset-safe).
 
 ```ts
-// in your theme file that you call `createTheme()`
+// in the file where you are creating the theme (invoking the function `createTheme()`)
 import { Theme } from '@mui/material/styles';
 
 declare module '@mui/styles' {
@@ -2589,6 +2638,39 @@ npm uninstall @mui/styles
 
 // or with `yarn`
 yarn remove @mui/styles
+```
+
+## CSS Specificity
+
+If you want to apply styles to components by importing a css file, you need to bump up specificity in order to always select the correct component. Consider the following example.
+
+```js
+import './style.css';
+import Chip from '@mui/material/Chip';
+
+const ChipWithGreenIcon = () => (
+  <Chip
+    classes={{ deleteIcon: 'green' }}
+    label="delete icon is green"
+    onDelete={() => {}}
+  />
+);
+```
+
+In this example, in order to correctly apply a particular style to the delete icon of `Chip`, you need to bump the specificity as shown below:
+
+```css
+.MuiChip-root .green {
+  color: green;
+}
+```
+
+The following will not correctly apply the style to the delete icon:
+
+```css
+.green {
+  color: green;
+}
 ```
 
 ## Troubleshooting

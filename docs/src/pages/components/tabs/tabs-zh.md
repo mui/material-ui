@@ -1,6 +1,6 @@
 ---
 title: React Tabs（选项卡）组件
-components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
+components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: Tabs'
 materialDesign: https://material.io/components/tabs
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
@@ -28,7 +28,7 @@ A basic example with tab panels.
 
 ## 包装的标签
 
-对于那些比较长的标签，它们会被自动包装成选项卡。 If the label is too long for the tab, it will overflow, and the text will not be visible.
+对于那些比较长的标签，它们会被自动包装成选项卡。 对于那些比较长的标签，它们会被自动包装成选项卡。
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
@@ -106,7 +106,7 @@ Fixed tabs should be used with a limited number of tabs, and when a consistent p
 
 ## Nav tabs
 
-By default, tabs use a `button` element, but you can provide your custom tag or component. 下面是一个实现导航选项卡的例子：
+By default, tabs use a `button` element, but you can provide your custom tag or component. 下面是一个实现导航选项卡的例子： 下面是一个实现导航选项卡的例子：
 
 {{"demo": "pages/components/tabs/NavTabs.js"}}
 
@@ -120,9 +120,15 @@ By default, tabs use a `button` element, but you can provide your custom tag or 
 
 ## Third-party routing library（第三方路由库）
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
+By default, the icon is positioned at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`.
+
+{{"demo": "pages/components/tabs/IconPositionTabs.js"}}
 
 ## 无障碍设计
+
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs). The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
+
+## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
 
@@ -154,3 +160,26 @@ One frequent use case is to perform navigation on the client only, without an HT
 ```
 
 {{"demo": "pages/components/tabs/AccessibleTabs2.js", "defaultCodeOpen": false}}
+
+## Unstyled
+
+The Tabs also come with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+### Unstyled component
+
+```js
+import TabsUnstyled from '@mui/base/TabsUnstyled';
+import TabsListUnstyled from '@mui/base/TabUnstyled';
+import TabUnstyled from '@mui/base/TabUnstyled';
+import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
+```
+
+{{"demo": "pages/components/tabs/UnstyledTabsBasic.js"}}
+
+#### Customizing the root element
+
+By default, the `TabUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `TabUnstyled` will take care of adding accessibility attributes.
+
+The `TabPanelUnstyled` on the other hand renders a native `div` element by default. You are free to override this as well by setting the `component` or `components.Root` prop on the `TabPanelUnstyled`.
+
+{{"demo": "pages/components/tabs/UnstyledTabsCustomized.js"}}

@@ -20,23 +20,52 @@ packageName: '@material-ui/lab'
 
 {{"demo": "pages/components/pickers/MaterialUIPickers.js"}}
 
-## Seletores nativos
+### Seletor de data
 
 ⚠️ O suporte dos navegadores aos controles de entrada nativos [não é perfeito](https://caniuse.com/#feat=input-datetime).
 
-### Seletor de data
-
 Um exemplo de seletor de data nativo com `type="date"`.
+
+- [date-fns](https://date-fns.org/)
+- [Day.js](https://day.js.org/)
+- [Luxon](https://moment.github.io/luxon/#/)
+- [Moment.js](https://momentjs.com/)
 
 {{"demo": "pages/components/pickers/DatePickers.js"}}
 
-### Seletores Data & Hora
+```sh
+// date-fns
+npm install @date-io/date-fns
+// or for Day.js
+npm install -s @date-io/dayjs
+// or for Luxon
+npm install -s @date-io/luxon
+// or for Moment.js
+npm install @date-io/moment
+```
 
 Um exemplo de seletor de data & hora nativo com `type="datetime-local"`.
 
-{{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
+```js
+// date-fns
+import DateAdapter from '@mui/lab/AdapterDateFns';
+// or for Day.js
+import DateAdapter from '@mui/lab/AdapterDayjs';
+// or for Luxon
+import DateAdapter from '@mui/lab/AdapterLuxon';
+// or for Moment.js
+import DateAdapter from '@mui/lab/AdapterMoment';
 
-### Seletor de hora
+function App({ children }) {
+  return (
+    <LocalizationProvider dateAdapter={DateAdapter}>{children}</LocalizationProvider>
+  );
+}
+```
+
+## Seletores nativos
+
+⚠️ O suporte dos navegadores aos controles de entrada nativos [não é perfeito](https://caniuse.com/#feat=input-datetime).
 
 Um exemplo de seletor de hora nativo com `type="time"`.
 

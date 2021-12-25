@@ -10,16 +10,16 @@
 
 - [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) （[TypeScript 版本](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript)）
 - [Create React App](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app) （[TypeScript 版本](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-typescript)）
-- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- [Gatsby 主题](https://github.com/mui-org/material-ui/tree/next/examples/gatsby-theme)
-- [Preact](https://github.com/mui-org/material-ui/tree/next/examples/preact)
-- [CDN](https://github.com/mui-org/material-ui/tree/next/examples/cdn)
-- [朴素的服务端渲染](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
-- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript))
+- [Remix](https://github.com/mui-org/material-ui/tree/master/examples/remix-with-typescript)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
+- [Preact](https://github.com/mui-org/material-ui/tree/master/examples/preact)
+- [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
+- [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
+- [Use styled-components as style engine](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components) ([TypeScript version](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript))
 
-Create React App 是一个很棒的学习 React 的项目。 请看一下这些[可用的替代方案](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) ，看看哪个项目最符合您的需求。
+Create React App 是一个很棒的学习 React 的项目。 Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
 
-此文档站点的源代码也包含在存储库中。 这是一个稍微复杂一点的项目。 请查看 [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) 文件夹以获取创建项目的说明。
+此文档站点的源代码也包含在存储库中。 这是一个稍微复杂一点的项目。 请查看 [`/ docs`](https://github.com/mui-org/material-ui/tree/master/docs) 文件夹以获取创建项目的说明。
 
 ## 进阶示例项目
 
@@ -27,7 +27,7 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 
 ### 免费的资源
 
-- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/graphql-starter):
+- [GraphQL API and Relay Starter Kit](https://github.com/kriasoft/relay-starter-kit):
 
   - ![stars](https://img.shields.io/github/stars/kriasoft/graphql-starter.svg?style=social&label=Star)
   - GraphQL API project using code-first design (TypeScript, OAuth, GraphQL.js, Knex, Cloud SQL)
@@ -63,7 +63,7 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
   - 一个在生产环境下使用的带有 Nginx 服务器的 docker container（docker 容器)。
   - 使用 Create React App 创建
 
-- [RMUIF](https://github.com/phoqe/rmuif):
+- [RMUIF](https://github.com/rmuif/web):
 
   - ![stars](https://img.shields.io/github/stars/rmuif/web.svg?style=social&label=Star)
   - 使用 Create React App 创建，也是可以开箱即用
@@ -85,5 +85,5 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 
 - [Divjoy](https://divjoy.com?via=material-ui):
 
-  - Create your Material-UI app in minutes.
-  - You'll get a nice template, authentication, database integration, subscription payments, and more.
+  - 在几分钟内创建您的 MUI 应用程序。
+  - 您将获得一个好模板、认证模块、数据库整合、订阅付款等等。

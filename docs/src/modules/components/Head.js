@@ -21,7 +21,6 @@ export default function Head(props) {
   const preview = card.startsWith('http') ? card : `${HOST}${card}`;
   return (
     <NextHead>
-      <meta name="viewport" content="initial-scale=1, width=device-width" />
       <title>{title}</title>
       <meta name="description" content={description} />
       {/* Twitter */}

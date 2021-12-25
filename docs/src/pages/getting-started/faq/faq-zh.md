@@ -4,20 +4,20 @@
 
 如果仍然找不到所需的内容，您可以参考我们的 [支持页面](/getting-started/support/) 。
 
-## Material-UI 超赞。 我该如何支持该项目？
+## MUI is awesome. 我该如何支持该项目？
 
 其实有很多方法可以支持 Material-UI：
 
-- **口口相传**。 通过在您的网站上 [链接到 material-ui.com](https://material-ui.com/) 来传播 Material-UI ，每个反向链接对我们来说都很重要。 在 [Twitter 上关注我们](https://twitter.com/MaterialUI) ，点赞并转发一些重要的新闻。 或者只是与您的朋友谈论我们。
+- **口口相传**。 Evangelize MUI by [linking to mui.com](https://mui.com/) on your website, every backlink matters. 在 [Twitter 上关注我们](https://twitter.com/MaterialUI) ，点赞并转发一些重要的新闻。 或者只是与您的朋友谈论我们。
 - **给我们反馈** 。 告诉我们一些做得好的地方或者可以改进的地方。 请给您最希望看到能够解决的问题投票（👍）。
-- **帮助新用户** 。 您可以在 [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) 中回答一些问题。
+- **帮助新用户** 。 You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/mui).
 - **做出一些改变吧**。
   - 编辑文档。 每个页面右上角都有一个“编辑此页面”的链接。
   - 通过 [创建一个问题](https://github.com/mui-org/material-ui/issues/new) 来报告错误或缺少的功能 。
   - 查看和评论一些现有的 [pull requests](https://github.com/mui-org/material-ui/pulls) 和 [issues](https://github.com/mui-org/material-ui/issues)。
-  - 帮助我们 [翻译](https://translate.material-ui.com) 文档。
+  - 帮助我们 [翻译](https://translate.mui.com) 文档。
   - [改进我们的文档](https://github.com/mui-org/material-ui/tree/next/docs)，修复错误，或者通过 [拉取请求](https://github.com/mui-org/material-ui/pulls) 来添加功能。
-- **在 [OpenCollective](https://opencollective.com/material-ui)**上资助我们。 如果您在商业项目中使用了 Material-UI，并希望通过成为我们的赞助商来支持我们的持续发展，或者在一个业余的或者爱好的项目中使用了，并想成为我们的一个支持者， 您都可以通过 OpenCollective 来资助我们。 筹集的所有资金都是透明管理的，赞助商在 README 和 Material-UI 主页上都会获得认可。
+- **Support us financially on [OpenCollective](https://opencollective.com/mui)**. 如果您在商业项目中使用了 Material-UI，并希望通过成为我们的赞助商来支持我们的持续发展，或者在一个业余的或者爱好的项目中使用了，并想成为我们的一个支持者， 您都可以通过 OpenCollective 来资助我们。 筹集的所有资金都是透明管理的，赞助商在 README 和 Material-UI 主页上都会获得认可。
 
 ## 为什么我的组件在生产构造中没有正确地渲染？
 
@@ -53,6 +53,10 @@ const theme = createTheme({
       defaultProps: {
         // The props to apply
         disableRipple: true, // No more ripple, on the whole application 💣!
+      },
+    },
+  },
+});
       },
     },
   },
@@ -113,7 +117,7 @@ const theme = createTheme({
 
 然而，也许您正在给应用程序添加一些 Material-UI 组件，而应用程序以及使用了其他的样式解决方案，或者您已经熟悉了不同的 API，而不想学习一个新的 API？ 在这种情况下，请访问 [样式库互用](/guides/interoperability/) 章节，在那你可以发现我们使用了一些替代样式库来重新设置 Material-UI 组件的样式，而这是多么的简单。
 
-## When should I use inline-style vs. CSS?
+## 我应该何时使用内联样式与 CSS？
 
 根据经验，仅对动态样式属性使用内联样式。 CSS 的替代方案也有诸多优势，例如：
 
@@ -181,7 +185,7 @@ const element = ref.current;
 
 ### 与 Lerna 一起使用
 
-如果您想要让 @material-ui/styles 在 Lerna monorepo 中跨包运行，一个可行的修复方法是 [提升（hoist）](https://github.com/lerna/lerna/blob/master/doc/hoist.md)共享的依赖包到 monorepo 文件的根部。 您可以尝试使用 --hoist 标识运行引导的选项。
+One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/HEAD/doc/hoist.md) shared dependencies to the root of your monorepo file. 您可以尝试使用 --hoist 标识运行引导的选项。
 
 ```sh
 lerna bootstrap --hoist
@@ -198,7 +202,7 @@ Lerna 根目录下的 package.json 文件示例：
     "lerna": "latest"
   },
   "dependencies": {
-    "@material-ui/styles": "^4.0.0"
+    "@mui/styles": "^4.0.0"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -284,7 +288,7 @@ function handleRender(req, res) {
 
     //…
 
-    // 将组件渲染为字符串。
+    // Render the component to a string.
     const html = ReactDOMServer.renderToString(
   ```
 
@@ -297,9 +301,12 @@ function handleRender(req, res) {
   ```diff
     "dependencies": {
       ...
+  "dependencies": {
+      ...
   -   "@material-ui/core": "^4.0.0",
   +   "@material-ui/core": "4.0.0",
       ...
+    },
     },
   ```
 
@@ -383,6 +390,10 @@ return (
       selected ? 'Mui-selected' : ''
     }`}
   />
+); 'Mui-disabled' : ''} ${
+      selected ? 'Mui-selected' : ''
+    }`}
+  />
 );
 ```
 
@@ -400,3 +411,7 @@ return (
   />
 );
 ```
+
+## I cannot use components as selectors in the styled() utility. What should I do?
+
+If you are getting the error: `TypeError: Cannot convert a Symbol value to a string`, take a look at the [styled()](/system/styled/#how-to-use-components-selector-api) docs page for instructions on how you can fix this.

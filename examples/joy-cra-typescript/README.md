@@ -24,4 +24,6 @@ or:
 
 <!-- #default-branch-switch -->
 
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui-org/material-ui/tree/master/examples/joy-cra-typescript)
+
 [![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/joy-cra-typescript)

@@ -23,15 +23,15 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.1.16",
+    "@types/babel__core": "^7.1.17",
     "@types/doctrine": "^0.0.5",
-    "@types/lodash": "^4.14.177",
+    "@types/lodash": "^4.14.178",
     "@types/node": "^16.11.4",
     "@types/prettier": "^2.4.2",
     "@types/react": "^17.0.37",
     "@types/uuid": "^8.3.3",
     "fast-glob": "^3.2.7",
-    "prettier": "^2.5.0",
+    "prettier": "^2.5.1",
     "rimraf": "^3.0.2"
   },
   "dependencies": {
@@ -41,7 +41,7 @@
     "@babel/types": "^7.16.0",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
-    "typescript": "^4.5.2",
+    "typescript": "^4.5.4",
     "uuid": "^8.3.2"
   }
 }

@@ -16,6 +16,7 @@
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       }
     },
+    "total": { "type": { "name": "number" }, "default": "children.length" },
     "variant": {
       "type": {
         "name": "union",

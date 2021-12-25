@@ -36,13 +36,13 @@ Use the `size` prop or customize the font size of the svg icons to change the si
 
 {{"demo": "pages/components/checkboxes/ColorCheckboxes.js"}}
 
-## Icon
+## Ícone
 
 {{"demo": "pages/components/checkboxes/IconCheckboxes.js"}}
 
-## Controlled
+## Controlado
 
-You can control the checkbox with the `checked` and `onChange` props:
+Você pode controlar a checkbox com as opções `checked` e `onChange`:
 
 {{"demo": "pages/components/checkboxes/ControlledCheckbox.js"}}
 
@@ -72,7 +72,7 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
 
-🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/checkbox/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox/).
 
 ## Quando usar
 

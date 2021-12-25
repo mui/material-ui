@@ -4,7 +4,7 @@ import { describeConformance, createRenderer, screen } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
-import { generateRowGap, generateColumnGap, generateDirection } from './Grid';
+import { generateGrid, generateRowGap, generateColumnGap, generateDirection } from './Grid';
 
 describe('<Grid />', () => {
   const { render } = createRenderer();
@@ -166,6 +166,44 @@ describe('<Grid />', () => {
       });
     });
 
+    it('should not support undefined values', () => {
+      const { container } = render(
+        <Grid container>
+          <Grid item data-testid="child" />
+        </Grid>,
+      );
+      expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-undefined');
+    });
+
+    it('should not support zero values', () => {
+      const { container } = render(
+        <Grid container spacing={0}>
+          <Grid item data-testid="child" />
+        </Grid>,
+      );
+      expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-0');
+    });
+
+    it('should support object values', () => {
+      const { container } = render(
+        <Grid container spacing={{ sm: 1.5, md: 2 }}>
+          <Grid item data-testid="child" />
+        </Grid>,
+      );
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-sm-1.5');
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-md-2');
+    });
+
+    it('should ignore object values of zero', () => {
+      const { container } = render(
+        <Grid container spacing={{ sm: 0, md: 2 }}>
+          <Grid item data-testid="child" />
+        </Grid>,
+      );
+      expect(container.firstChild).not.to.have.class('MuiGrid-spacing-sm-0');
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-md-2');
+    });
+
     it('should generate correct responsive styles', () => {
       const theme = createTheme();
       expect(
@@ -264,6 +302,61 @@ describe('<Grid />', () => {
           },
           marginLeft: '-16px',
           width: 'calc(100% + 16px)',
+        },
+      });
+    });
+  });
+
+  describe('prop: columns', () => {
+    it('should generate responsive grid when grid item misses breakpoints of its container', () => {
+      const theme = createTheme();
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: { xs: 4, sm: 8, md: 12 },
+            xs: 2,
+            item: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        flexBasis: '50%',
+        flexGrow: 0,
+        maxWidth: '50%',
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          flexBasis: '25%',
+          flexGrow: 0,
+          maxWidth: '25%',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          flexBasis: '16.666667%',
+          flexGrow: 0,
+          maxWidth: '16.666667%',
+        },
+      });
+    });
+
+    it('should generate responsive grid when grid item misses breakpoints of its container and breakpoint starts from the middle', () => {
+      const theme = createTheme();
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: { sm: 8, md: 12 },
+            sm: 4,
+            item: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          flexBasis: '33.333333%',
+          flexGrow: 0,
+          maxWidth: '33.333333%',
         },
       });
     });

@@ -23,10 +23,6 @@
       "nodeName": "o elemento raiz",
       "conditions": "<code>showLabel={false}</code> and not selected"
     },
-    "wrapper": {
-      "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the span element that wraps the icon and label"
-    },
     "label": {
       "description": "Estilos aplicados a {{nodeName}}.",
       "nodeName": "the label's span element"

@@ -109,7 +109,7 @@ Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action
 
 ## Draggable dialog
 
-You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable).
+You can create a draggable dialog by using [react-draggable](https://github.com/react-grid-layout/react-draggable).
 To do so, you can pass the imported `Draggable` component as the `PaperComponent` of the `Dialog` component.
 This will make the entire dialog draggable.
 

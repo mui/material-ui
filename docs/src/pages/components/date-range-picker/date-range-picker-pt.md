@@ -53,7 +53,7 @@ O componente de seletor de intervalo de data é projetado e otimizado para o dis
 - The `MobileDateRangePicker` component works best for touch devices and small screens.
 - The `DesktopDateRangePicker` component works best for mouse devices and large screens.
 
-By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. Isto pode ser customizado com a propriedade `desktopModeMediaQuery`. Isto pode ser customizado com a propriedade `desktopModeMediaQuery`.
+By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. This can be customized with the `desktopModeMediaQuery` prop.
 
 {{"demo": "pages/components/date-range-picker/ResponsiveDateRangePicker.js"}}
 

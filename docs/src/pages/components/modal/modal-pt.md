@@ -36,12 +36,12 @@ Você pode desativar o contorno (muitas vezes azul ou ouro) com a propriedade CS
 
 ## Unstyled
 
-- 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@material-ui/unstyled@next)
+- 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
 The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import ModalUnstyled from '@material-ui/unstyled/ModalUnstyled';
+import ModalUnstyled from '@mui/base/ModalUnstyled';
 ```
 
 {{"demo": "pages/components/modal/ModalUnstyled.js"}}
@@ -65,7 +65,7 @@ O modal possui suporte interno para [react-transition-group](https://github.com/
 
 {{"demo": "pages/components/modal/TransitionsModal.js"}}
 
-Como alternativa, você pode usar [react-spring](https://github.com/react-spring/react-spring).
+Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring).
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
