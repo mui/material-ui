@@ -14,10 +14,12 @@ Here are the most significant improvements in March:
 - We have migrated a few demos from the `withStyles()` API to the `makeStyles()` API.
   If you are wondering which you should use, we would encourage the use of `makeStyles()` where possible. `withStyles()` is interesting for overriding component styles or for handling legacy class logics.
 - We have made the [Box API](/system/basics/) stable 🥳.
+
   ```diff
   -import { unstable_Box as Box } from '@mui/material/Box';
   +import Box from '@mui/material/Box';
   ```
+
 - We have committed to [a new Roadmap](/discover-more/roadmap/) (prioritized) for the next 6 months.
 - We have migrated 50% of the codebase from the Classes API to the Hooks API. Once we are done with this task we can remove the internal usage of higher-order components.
 - We have introduced [a simplified server-side rendering API](/styles/advanced/#server-side-rendering), inspired by styled-components.

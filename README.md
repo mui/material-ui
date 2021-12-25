@@ -75,7 +75,7 @@ via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://ww
 
 Gold Sponsors are those who have pledged \$500/month or more to MUI.
 
-### There is more!
+### There is more
 
 See the full list of [our backers](https://mui.com/discover-more/backers/).
 
