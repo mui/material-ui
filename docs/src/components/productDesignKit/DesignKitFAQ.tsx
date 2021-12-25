@@ -39,7 +39,7 @@ const faqData = [
     detail: (
       <React.Fragment>
         We&apos;ll send you an email when a new release is available. You can access the item on the{' '}
-        <InternalLink href="https://material-ui.com/store/account/downloads/">
+        <InternalLink href="https://mui.com/store/account/downloads/">
           download
         </InternalLink>{' '}
         page of your store account. You can find a detailed description of the changes under the

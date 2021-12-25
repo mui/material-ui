@@ -120,7 +120,7 @@ Check out our [documentation website](https://mui.com/).
 
 ## Premium Themes
 
-You can find complete templates & themes in the [MUI Store](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
+You can find complete templates & themes in the [MUI Store](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
 
 ## Contributing
 
