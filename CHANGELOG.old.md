@@ -1,5 +1,9 @@
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+
 ## 4.12.3
 
+<!-- markdownlint-restore -->
 <!-- generated comparing v4.12.2..master -->
 
 _Jul 27, 2021_
@@ -561,6 +565,7 @@ Here are some highlights ✨:
   ```
 
   Follow [the docs to learn more](https://mui.com/components/skeleton/#inferring-dimensions).
+
 - ♿️ Add tabs accessibility docs section (#20965) @eps1lon.
   The behavior of the [keyboard navigation](https://mui.com/components/tabs/#keyboard-navigation) can be customized with the `selectionFollowsFocus` prop.
 - ℹ Improve tooltip arrow customizability (#21095) @sakulstra.
@@ -2452,7 +2457,7 @@ Here are some highlights ✨:
 
 - [system] Fix props being required from `style` function (#17534) @abukurov
 
-### `@material-ui/codemod@v4.5.0`
+### `@material-ui/styles@v4.5.0`
 
 - [styles] Bump jss dependencies to v10.0.0 stable (#17536) @eps1lon
 
@@ -4704,7 +4709,7 @@ Here are some highlights ✨:
 
 - [utils] Drop componentPropType in favor of PropTypes.elementType (#14602) @eps1lon
 
-## Docs
+### Docs
 
 - [MobileStepper] Remove unused classname in example (#14597) @charlax
 - [docs] Update the Team (#14613) @oliviertassinari
@@ -4723,7 +4728,7 @@ Here are some highlights ✨:
 - [docs] Add simple list TypeScript demo (#14485) @eps1lon
 - [docs] Fix wrong source code URLs (#14716) @oliviertassinari
 
-## Core
+### Core
 
 - [core] Fix webstorm autocompletion (#14599) @eps1lon
 - [ci] Use dangerJS to report bundle size changes (#14587) @eps1lon
@@ -8861,6 +8866,7 @@ Here are some highlights ✨:
 ### Breaking change
 
 - [palette] Keep simplifying the solution (#9876) @oliviertassinari
+
   - Remove the contrast color from our API. This color variation hasn't proven itseft to be useful enough.
 
   ```diff
@@ -8869,6 +8875,7 @@ Here are some highlights ✨:
   ```
 
   Instead, you can use the `color="inherit"` property or use the `theme.palette.XXX.contrastText` value.
+
   - Rename `accent` to `secondary`. We have removed the accent indirection to be closer to the object people are providing to customize the palette.
 
   ```diff

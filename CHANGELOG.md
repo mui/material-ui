@@ -1,4 +1,4 @@
-### [Versions](https://mui.com/versions/)
+# [Versions](https://mui.com/versions/)
 
 ## 5.2.7
 
@@ -6395,7 +6395,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v5.0.0-alpha.6`
 
-### Breaking changes
+#### Breaking changes
 
 - [Avatar] Rename variant circle -> circular for consistency (#22015) @kodai3
   Rename `circle` to `circular` for consistency. The possible values should be adjectives, not nouns:
@@ -6554,7 +6554,7 @@ Here are some highlights ✨:
   +},
   ```
 
-### Changes
+#### Changes
 
 - [Avatar] Custom variant (#22139) @mnajdova
 - [Badge] Add missing class key (#22095) @kodai3
@@ -6574,7 +6574,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/lab@v5.0.0-alpha.6`
 
-### Breaking changes
+#### Breaking changes
 
 - [Skeleton] Rename variant circle -> circular and rect -> rectangular for consistency (#22053) @kodai3
   Rename `circle` to `circular` and `rect` to `rectangular` for consistency. The possible values should be adjectives, not nouns:
@@ -6586,7 +6586,7 @@ Here are some highlights ✨:
   +<Skeleton variant="rectangular">
   ```
 
-### Changes
+#### Changes
 
 - [Autocomplete] Add support for "{label: string}" data type as a default for "options" (#21992) @DanailH
 - [TreeView] Add disabled prop (#20133) @netochaves

@@ -13,16 +13,14 @@
     // RegExp for matching title in front matter
     "front_matter_title": ""
   },
-
-  // TODO
   // MD024/no-duplicate-heading/no-duplicate-header
-  "MD024": false,
-  // MD036/no-emphasis-as-heading/no-emphasis-as-header
+  "MD024": {
+    "siblings_only": true
+  },
+  // MD036/no-emphasis-as-heading/no-emphasis-as-header. It's OK.
   "MD036": false,
-  // MD041/first-line-heading/first-line-h1
-  "MD041": false,
-  // MD029/ol-prefix
+  // MD029/ol-prefix. Buggy
   "MD029": false,
-  // MD004/ul-style
+  // MD004/ul-style. Buggy
   "MD004": false
 }
