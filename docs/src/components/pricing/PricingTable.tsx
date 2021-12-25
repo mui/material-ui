@@ -869,7 +869,7 @@ export default function PricingTable({
             <Button
               component={Link}
               noLinkStyle
-              href="https://material-ui.com/store/items/material-ui-pro/"
+              href="https://mui.com/store/items/material-ui-pro/"
               variant="contained"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}

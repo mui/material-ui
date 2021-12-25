@@ -344,7 +344,7 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
-    pathname: 'https://material-ui.com/store/',
+    pathname: 'https://mui.com/store/',
     title: 'Templates',
     icon: 'ReaderIcon',
     linkProps: {

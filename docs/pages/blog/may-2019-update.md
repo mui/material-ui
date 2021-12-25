@@ -26,7 +26,7 @@ _(We'll do our best, no guarantee!)_
 
 ![Tree View](/static/blog/may-2019-update/tree-view.png)
 
-- We will add more themes to the [premium theme marketplace](https://material-ui.com/store/).
+- We will add more themes to the [premium theme marketplace](https://mui.com/store/).
 - We will start exploring how we can provide style adapters in v5 (styled-components, JSS, linaria, naked, etc.)
 - We will experiment around advisory offerings for enterprises.
   If you are an enterprise and are looking for one of the following:
