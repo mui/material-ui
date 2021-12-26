@@ -1,6 +1,6 @@
 # Theming 主题
 
-<p class="description">定制属于你自己的 Material-UI 主题。 你可以改变颜色、文字铸排等等。</p>
+<p class="description">用你的主题定制MUI。 你可以改变颜色、文字铸排等等。</p>
 
 主题可以指定组件的配色、平面的明暗、阴影的深浅、墨水元素的合适的不透明度等等。
 
@@ -16,7 +16,7 @@
 
 ## 主题配置变量
 
-更改主题配置变量是将 Material-UI 与您的需求相匹配的最有效方法。 以下各节涵盖了一些最重要的主题变量：
+修改主题配置变量是使MUI符合你的需求的最有效方法。 以下各节涵盖了一些最重要的主题变量：
 
 - [`.调色板`](/customization/palette/)
 - [`.typography`](/customization/typography/)
