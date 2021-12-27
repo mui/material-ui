@@ -2632,7 +2632,7 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
 
 #### Manual
 
-We recommend `sx` API over `styled` when you have to create responsive styles or needs minor CSS overrides.
+We recommend `sx` API over `styled` for creating responsive styles or overriding minor CSS.
 [Read more about `sx`](/system/the-sx-prop/#main-content).
 
 ```diff
