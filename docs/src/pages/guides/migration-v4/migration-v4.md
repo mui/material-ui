@@ -124,7 +124,7 @@ npm install @emotion/react @emotion/styled
 yarn add @emotion/react @emotion/styled
 ```
 
-> 💡 If you want to use MUI Core v5 with **styled-components** instead of emotion, check out [the installation guide](/getting-started/installation/#npm). If you are using SSR (or a framework that depends on it), there is currently a [known bug](https://github.com/mui-org/material-ui/issues/29742) with the babel plugin for `styled-components` that prevents `@mui/styled-engine-sc` (the adapter for `styled-components`) to be used. We strongly recommend using the default setup with emotion instead.
+> 💡 If you want to use MUI Core v5 with **styled-components** instead of emotion, check out [the installation guide](/getting-started/installation/#npm). If you are using SSR (or a framework that depends on it), there is currently a [known bug](https://github.com/mui-org/material-ui/issues/29742) with the babel plugin for `styled-components`, which prevents `@mui/styled-engine-sc` (the adapter for `styled-components`) from being used. We strongly recommend using the default setup with emotion instead.
 
 If you are using `@material-ui/pickers`, it has moved to `@mui/lab`. You can follow [these steps](#material-ui-pickers).
 
