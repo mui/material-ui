@@ -101,7 +101,6 @@ test.describe.parallel('Material docs', () => {
     });
   });
 
-  // enable these tests once new pages are indexed on algolia
   test.describe.parallel('Search', () => {
     const retryToggleSearch = async (page: Page, count = 3) => {
       try {
@@ -114,7 +113,7 @@ test.describe.parallel('Material docs', () => {
         await retryToggleSearch(page, count - 1);
       }
     };
-    test.skip('should have correct link when searching component', async ({ page }) => {
+    test('should have correct link when searching component', async ({ page }) => {
       await page.goto(`/material/getting-started/installation/`);
 
       await page.waitForLoadState('networkidle'); // wait for docsearch
@@ -128,7 +127,7 @@ test.describe.parallel('Material docs', () => {
       await expect(anchor.first()).toHaveAttribute('href', `/material/react-cards/#main-content`);
     });
 
-    test.skip('should have correct link when searching API', async ({ page }) => {
+    test('should have correct link when searching API', async ({ page }) => {
       await page.goto(`/material/getting-started/installation/`);
 
       await page.waitForLoadState('networkidle'); // wait for docsearch
