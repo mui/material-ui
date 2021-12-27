@@ -18,6 +18,7 @@ function useUtilityClasses(ownerState: OptionState) {
 
   return composeClasses(slots, getOptionUnstyledUtilityClass, {});
 }
+
 /**
  *
  * Demos:
