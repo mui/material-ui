@@ -1,47 +1,43 @@
-import * as CSS from 'csstype';
 import { CSSObject } from '@mui/system';
 
-type CSSProperties = CSS.Properties<number | string>;
-
 export interface FontSize {
-  xs: CSSProperties['fontSize'];
-  sm: CSSProperties['fontSize'];
-  md: CSSProperties['fontSize'];
-  lg: CSSProperties['fontSize'];
-  xl: CSSProperties['fontSize'];
-  xl2: CSSProperties['fontSize'];
-  xl3: CSSProperties['fontSize'];
-  xl4: CSSProperties['fontSize'];
-  xl5: CSSProperties['fontSize'];
-  xl6: CSSProperties['fontSize'];
+  xs: string;
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
+  xl2: string;
+  xl3: string;
+  xl4: string;
+  xl5: string;
+  xl6: string;
 }
 
 export interface FontFamily {
-  body: CSSProperties['fontFamily'];
-  display: CSSProperties['fontFamily'];
-  code: CSSProperties['fontFamily'];
-  fallback: CSSProperties['fontFamily'];
+  body: string;
+  display: string;
+  code: string;
+  fallback: string;
 }
 
 export interface FontWeight {
-  // add string to support css variable value.
-  xs: CSSProperties['fontWeight'];
-  sm: CSSProperties['fontWeight'];
-  md: CSSProperties['fontWeight'];
-  lg: CSSProperties['fontWeight'];
-  xl: CSSProperties['fontWeight'];
+  xs: string | number;
+  sm: string | number;
+  md: string | number;
+  lg: string | number;
+  xl: string | number;
 }
 
 export interface LineHeight {
-  sm: CSSProperties['lineHeight'];
-  md: CSSProperties['lineHeight'];
-  lg: CSSProperties['lineHeight'];
+  sm: string | number;
+  md: string | number;
+  lg: string | number;
 }
 
 export interface LetterSpacing {
-  sm: CSSProperties['letterSpacing'];
-  md: CSSProperties['letterSpacing'];
-  lg: CSSProperties['letterSpacing'];
+  sm: string;
+  md: string;
+  lg: string;
 }
 
 export interface TypographySystem {

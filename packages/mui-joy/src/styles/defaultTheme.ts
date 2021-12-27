@@ -5,6 +5,7 @@ import {
   Spacing,
   CSSObject,
   SxProps as SystemSxProps,
+  unstable_createGetThemeVar as systemCreateGetThemeVar,
 } from '@mui/system';
 import colors from '../colors';
 import {
@@ -34,6 +35,21 @@ import {
 } from './types/typography';
 
 type CSSProperties = CSS.Properties<number | string>;
+
+type Split<T, K extends keyof T = keyof T> = K extends string | number ? { [k in K]: T[K] } : never;
+
+type ConcatDeep<T> = T extends Record<string | number, infer V>
+  ? keyof T extends string | number
+    ? V extends string | number
+      ? keyof T
+      : keyof V extends string | number
+      ? `${keyof T}-${ConcatDeep<Split<V>>}`
+      : never
+    : never
+  : never;
+
+type NormalizeVars<T> = ConcatDeep<Split<T>>;
+
 export interface Focus {
   default: CSSObject;
 }
@@ -294,49 +310,49 @@ const internalDefaultTheme: BaseDesignTokens & {
       color: 'var(--joy-palette-text-primary)',
     },
     h3: {
-      fontFamily: 'var(--joy-fontFamily-md)',
+      fontFamily: 'var(--joy-fontFamily-body)',
       fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl2)',
       lineHeight: 'var(--joy-lineHeight-sm)',
       color: 'var(--joy-palette-text-primary)',
     },
     h4: {
-      fontFamily: 'var(--joy-fontFamily-md)',
+      fontFamily: 'var(--joy-fontFamily-body)',
       fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xl)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-primary)',
     },
     h5: {
-      fontFamily: 'var(--joy-fontFamily-md)',
+      fontFamily: 'var(--joy-fontFamily-body)',
       fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-lg)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-primary)',
     },
     h6: {
-      fontFamily: 'var(--joy-fontFamily-md)',
+      fontFamily: 'var(--joy-fontFamily-body)',
       fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-primary)',
     },
     body1: {
-      fontFamily: 'var(--joy-fontFamily-md)',
+      fontFamily: 'var(--joy-fontFamily-body)',
       fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-md)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-primary)',
     },
     body2: {
-      fontFamily: 'var(--joy-fontFamily-md)',
+      fontFamily: 'var(--joy-fontFamily-body)',
       fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-sm)',
       lineHeight: 'var(--joy-lineHeight-md)',
       color: 'var(--joy-palette-text-secondary)',
     },
     body3: {
-      fontFamily: 'var(--joy-fontFamily-md)',
+      fontFamily: 'var(--joy-fontFamily-body)',
       fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
       fontSize: 'var(--joy-fontSize-xs)',
       lineHeight: 'var(--joy-lineHeight-md)',
@@ -379,6 +395,12 @@ export interface ThemeScales {
   letterSpacing: LetterSpacing;
 }
 
+type Vars = ThemeScales & ColorSystem;
+
+export type ThemeVar = NormalizeVars<Vars>;
+
+export const createGetThemeVar = (prefix = 'joy') => systemCreateGetThemeVar<ThemeVar>(prefix);
+
 export interface JoyTheme<ApplicationColorScheme extends string = ExtendedColorScheme>
   extends ThemeScales,
     ColorSystem {
@@ -388,7 +410,8 @@ export interface JoyTheme<ApplicationColorScheme extends string = ExtendedColorS
   variants: Variants;
   spacing: Spacing;
   breakpoints: Breakpoints;
-  vars: ThemeScales & ColorSystem;
+  vars: Vars;
+  getThemeVar: ReturnType<typeof createGetThemeVar>;
 }
 
 export type SxProps = SystemSxProps<JoyTheme>;
