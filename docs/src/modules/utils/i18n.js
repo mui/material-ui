@@ -69,7 +69,7 @@ export function useTranslate() {
   return React.useMemo(
     () =>
       function translate(key, options = {}) {
-        // TODO: remove this function once migration is done
+        // TODO: remove this logic once the migration to new structure is done.
         function pointToNewHref(translation) {
           if (typeof translation === 'string') {
             return replaceMarkdownLinks(translation, router.asPath);
