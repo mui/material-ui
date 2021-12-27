@@ -24,5 +24,6 @@ describe('OptionGroupUnstyled', () => {
         expectedClassName: optionGroupUnstyledClasses.list,
       },
     },
+    skip: ['ownerStatePropagation'], // the component does not have its own state
   }));
 });

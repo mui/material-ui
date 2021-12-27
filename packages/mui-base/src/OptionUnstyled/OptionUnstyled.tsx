@@ -72,6 +72,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
       ...other,
       ref,
       ...optionProps,
+      ...componentsProps.root,
       className: clsx(classes.root, className, componentsProps.root?.className),
     },
     ownerState,
