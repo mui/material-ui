@@ -8,10 +8,9 @@ _Dec 27, 2021_
 
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
-- 📚 Many additions and improvements to the documentation were made
-- 📓 Norwegian Bokmål (nb-NO) locale was added (#27520) @wogsland
-- 🛠 `useBadge` hook, which is used inside `BadgeUnstyled` was added (#30246) @mnajdova
-- And more 🐛 bug fixes and 📚 improvements in general.
+- 📓 The Norwegian Bokmål (nb-NO) locale was added (#27520) @wogsland
+- 🛠 Introduced a new `useBadge` hook in the `@mui/base` package (#30246) @mnajdova
+- And more 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.2.6`
 
@@ -45,7 +44,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - &#8203;<!-- 09 -->[docs] Fix incorrect aria label in SpeedDial demo (#30354) @chwallen
 - &#8203;<!-- 08 -->[docs] Fix incorrect number of breakpoint helpers (#30353) @chwallen
 - &#8203;<!-- 07 -->[docs] Update outdated links (#30260) @oliviertassinari
-- &#8203;<!-- 06 -->[docs] support redirect old urls to /material/* (#30286) @siriwatknp
+- &#8203;<!-- 06 -->[docs] Support redirects from old urls to /material/\* (#30286) @siriwatknp
 - &#8203;<!-- 05 -->[examples] Fix CSS modules integration (#30381) @oliviertassinari
 - &#8203;<!-- 02 -->[website] Fix SEO issues (#30372) @oliviertassinari
 - &#8203;<!-- 01 -->[website] Sync sponsors (#30259) @oliviertassinari
