@@ -67,6 +67,7 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
     <PickerStaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
       <Picker
         {...pickerProps}
+        autoFocus
         toolbarTitle={props.label || props.toolbarTitle}
         ToolbarComponent={ToolbarComponent}
         DateInputProps={DateInputProps}
