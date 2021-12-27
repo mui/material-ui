@@ -2,7 +2,6 @@ const marked = require('marked');
 const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
-const FEATURE_TOGGLE = require('../../src/featureToggle');
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
@@ -269,9 +268,10 @@ function prepareMarkdown(config) {
 
 ${headers.components
   .map((component) => {
-    if (!FEATURE_TOGGLE.enable_product_scope) {
-      return `- [\`<${component} />\`](/api/${kebabCase(component)}/)`;
-    }
+    return `- [\`<${component} />\`](/api/${kebabCase(component)}/)`;
+
+    // TODO: enable the code below once the migration is done.
+    // eslint-disable-next-line no-unreachable
     const productPackage = componentPackageMapping[headers.product];
     const componentPkg = productPackage ? productPackage[component] : null;
     return `- [\`<${component} />\`](${headers.product ? `/${headers.product}` : ''}/api/${
