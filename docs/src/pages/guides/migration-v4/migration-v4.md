@@ -2711,30 +2711,32 @@ In some cases, you might want to create multiple styled components in a file ins
 
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
-The API is similar to JSS `makeStyles` but, under the hood, it uses `@emotion/react`, 
-it also features a much better TypeScript support than v4's `makeStyles`.
+> Note: This API does not support `styled-components`.
 
-First you'll need to to edit your providers: 
+The API is similar to JSS `makeStyles` but, under the hood, it uses `@emotion/react`.
+It is also features a much better TypeScript support than v4's `makeStyles`.
+
+In order to use it, first you'll need to to edit your providers:
 
 ```diff
-import { render } from 'react-dom';
+ import { render } from 'react-dom';
 -import { StylesProvider } from '@material-ui/core/styles';
 +import createCache from "@emotion/cache";
 +import { ThemeProvider } from "@mui/material/styles";
 
 +export const muiCache = createCache({
-+    "key": "mui",
-+    "prepend": true,
++  "key": "mui",
++  "prepend": true,
 +});
 
-render(
--   <StylesProvider injectFirst>
-+   <CacheProvider value={muiCache}>
-        <Root />
--   </StylesProvider>,
-+   </CacheProvider>,
-    document.getElementById('root')
-);
+ render(
+-  <StylesProvider injectFirst>
++  <CacheProvider value={muiCache}>
+     <Root />
+-  </StylesProvider>,
++  </CacheProvider>,
+   document.getElementById('root')
+ );
 ```
 
 Then here is one example:
@@ -2818,73 +2820,60 @@ Now, a comprehensive example using bot the `$` syntax and passing parameters to 
 -import { makeStyles, createStyles } from '@material-ui/core/styles';
 +import { makeStyles } from 'tss-react/mui';
 
+-const useStyles = makeStyles((theme) => createStyles<
+-  "root" | "small" | "child", { color: "primary" | "secondary" }
+->({
 +const useStyles = makeStyles<
-+    { color: "primary" | "secondary" },
-+    "child" | "small"
++  { color: "primary" | "secondary" }, "child" | "small"
 +>()((theme, { color }, classes) => ({
-+    root: {
-+        padding: 30,
-+        [`&:hover .${classes.child}`]: {
-+            backgroundColor: theme.palette[color].main,
-+        }
-+    },
-+    small: {},
-+    child: {
-+        border: "1px solid black",
-+        height: 50,
-+        [`&.${classes.small}`]: {
-+            height: 30
-+        }
-+    }
+-  root: ({ color })=> ({
++  root: {
+     padding: 30,
+-    "&:hover .child": {
++    [`&:hover .${classes.child}`]: {
+       backgroundColor: theme.palette[color].main,
+     }
+-  }),
++  },
+  small: {},
+  child: {
+    border: "1px solid black",
+    height: 50,
+-    "&.small": {
++    [`&.${classes.small}`]: {
+        height: 30
+    }
+  }
+-});
 +}));
 
--const useStyles = makeStyles(
--    (theme) => createStyles<"root" | "small" | "child", { color: "primary" | "secondary" }>({
--        root: ({ color })=> ({
--            padding: 30,
--            "&:hover .child": {
--                backgroundColor: theme.palette[color].main,
--            }
--        }),
--        small: {},
--        child: {
--            border: "1px solid black",
--            height: 50,
--            "&.small": {
--                height: 30
--            }
--        }
--    })
--);
+ function App() {
+-  const classes = useStyles({ "color": "primary" });
++  const { classes, cx } = useStyles({ "color": "primary" });
 
-function App() {
--    const classes = useStyles({ "color": "primary" });
-+    const { classes, cx } = useStyles({ "color": "primary" });
+   return (
+     <div className={classes.root}>
+       <div className={classes.child}>
+         The Background take the primary theme color when the mouse hovers the parent.
+       </div>
+-      <div className={cx(classes.child, classes.small)}>
++      <div className={clsx(classes.child, classes.small)}>
+         The Background take the primary theme color when the mouse hovers the parent.
+         I am smaller than the other child.
+       </div>
+     </div>
+   );
+ }
 
-    return (
-        <div className={classes.root}>
-            <div className={classes.child}>
-                The Background take the primary theme color when the mouse is
-                hover the parent.
-            </div>
--           <div className={cx(classes.child, classes.small)}>
-+           <div className={clsx(classes.child, classes.small)}>
-                The Background take the primary theme color when the mouse is
-                hover the parent. I am smaller than the other child.
-            </div>
-        </div>
-    );
-}
-
-export default App;
+ export default App;
 ```
 
 > **Note:** This library is **not maintained** by MUI.  
-> If you have any question about how to setup SSR (Next.js) or if you are wondering 
-> how to customize the `theme` object please refer to `tss-react`'s documentation, 
+> If you have any question about how to setup SSR (Next.js) or if you are wondering
+> how to customize the `theme` object please refer to `tss-react`'s documentation,
 > the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular.  
 > You can also [submit an issue](https://github.com/garronej/tss-react/issues/new) for any bug or
-> feature request and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.  
+> feature request and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.
 
 💡 Once you migrate all of the styling, remove unnecessary `@mui/styles` by:
 
