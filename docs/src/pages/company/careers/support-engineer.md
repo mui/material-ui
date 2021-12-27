@@ -45,6 +45,14 @@ You will own the following responsibilities:
   - On the surface, you will answer developers on GitHub, Zendesk, Twitter, email, Slack.
   - At the root, you will create/update the documentation, fix bugs in collaboration with the relevant developer, and more.
 - **Provide feedback**. You will work alongside product managers to define and shape the product goals, roadmap, priorities, and strategy based on your frontline knowledge of customer needs.
+- **Operations**.
+  - You will establish key support metrics and identify how best to measure them.
+  - You will establish workflow to reduce 'time to response' and 'time to fix' that can scale to multiple team members.
+  - You will identify where internal tooling might be developed or obtained to improve support efficiency.
+
+For the right candidate:
+
+- Working with the Leadership to construct and execute on a hiring plan to grow the support team.
 
 ### What you'll do on a day-to-day basis
 
