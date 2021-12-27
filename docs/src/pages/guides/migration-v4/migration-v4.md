@@ -2890,7 +2890,7 @@ yarn remove @mui/styles
 ## CSS Specificity
 
 If you want to apply styles to components by importing a css file, you need to bump up specificity in order to always select the correct component.
-Consider the following example.
+Consider the following example:
 
 ```js
 import './style.css';
