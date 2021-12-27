@@ -13,7 +13,7 @@
 
 ## About us
 
-See the [careers](/careers/) and [about us](/about/) pages.
+See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
 
 ### Why we're hiring
 
