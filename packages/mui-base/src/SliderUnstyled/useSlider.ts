@@ -312,6 +312,8 @@ export default function useSlider(props: UseSliderProps) {
 
   const createHandleHiddenInputChange =
     (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.ChangeEvent) => {
+      otherHandlers.onChange?.(event);
+
       const index = Number(event.currentTarget.getAttribute('data-index'));
       const value = values[index];
       const marksIndex = marksValues.indexOf(value);
@@ -367,8 +369,6 @@ export default function useSlider(props: UseSliderProps) {
       if (onChangeCommitted) {
         onChangeCommitted(event, newValue);
       }
-
-      otherHandlers.onChange?.(event);
     };
 
   const previousIndex = React.useRef<number>();
@@ -567,6 +567,11 @@ export default function useSlider(props: UseSliderProps) {
   const createHandleMouseDown =
     (otherHandlers: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+      otherHandlers.onMouseDown?.(event);
+      if (event.defaultPrevented) {
+        return;
+      }
+
       // Only handle left clicks
       if (event.button !== 0) {
         return;
@@ -590,8 +595,6 @@ export default function useSlider(props: UseSliderProps) {
       const doc = ownerDocument(sliderRef.current);
       doc.addEventListener('mousemove', handleTouchMove);
       doc.addEventListener('mouseup', handleTouchEnd);
-
-      otherHandlers.onMouseDown?.(event);
     };
 
   const trackOffset = valueToPercent(range ? values[0] : min, min, max);
@@ -615,18 +618,18 @@ export default function useSlider(props: UseSliderProps) {
   const createHandleMouseOver =
     (otherHandlers: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+      otherHandlers.onMouseOver?.(event);
+
       const index = Number(event.currentTarget.getAttribute('data-index'));
       setOpen(index);
-
-      otherHandlers.onMouseOver?.(event);
     };
 
   const createHandleMouseLeave =
     (otherHandlers: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
-      setOpen(-1);
-
       otherHandlers.onMouseLeave?.(event);
+
+      setOpen(-1);
     };
 
   const getThumbProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
