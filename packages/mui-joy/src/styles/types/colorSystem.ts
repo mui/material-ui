@@ -1,11 +1,10 @@
 import { OverridableStringUnion } from '@mui/types';
-import React from 'react';
+
 /**
  * ====================================================
  * Developer facing types, they can augment these types.
  * ====================================================
  */
-
 export interface PaletteVariant {
   textColor: string;
   textHoverBg: string;
@@ -47,16 +46,16 @@ export interface PaletteRange extends PaletteVariant {
 }
 
 export interface PaletteText {
-  primary: React.CSSProperties['color'];
-  secondary: React.CSSProperties['color'];
-  tertiary: React.CSSProperties['color'];
+  primary: string;
+  secondary: string;
+  tertiary: string;
 }
 
 export interface PaletteBackground {
-  default: React.CSSProperties['backgroundColor'];
-  level1: React.CSSProperties['backgroundColor'];
-  level2: React.CSSProperties['backgroundColor'];
-  level3: React.CSSProperties['backgroundColor'];
+  body: string;
+  level1: string;
+  level2: string;
+  level3: string;
 }
 
 export interface ColorPalettePropOverrides {}
@@ -82,11 +81,11 @@ export type ColorPalette = {
 export interface Palette extends ColorPalette {
   text: PaletteText;
   background: PaletteBackground;
-  focusVisible: React.CSSProperties['outline'];
+  focusVisible: string;
 }
 
 export interface ColorSystem {
   palette: Palette;
-  elevationRing: React.CSSProperties['boxShadow'];
-  elevationChannel: string;
+  shadowRing: string;
+  shadowChannel: string;
 }

@@ -191,6 +191,18 @@ async function generateProptypes(
     return;
   }
 
+  // exclude internal slot components, eg. ButtonRoot
+  proptypes.body = proptypes.body.filter((data) => {
+    if (data.propsFilename?.endsWith('.tsx')) {
+      // only check for .tsx
+      const match = data.propsFilename.match(/.*\/([A-Z][a-zA-Z]+)\.tsx/);
+      if (match) {
+        return data.name === match[1];
+      }
+    }
+    return true;
+  });
+
   proptypes.body.forEach((component) => {
     component.types.forEach((prop) => {
       if (
