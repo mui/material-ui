@@ -1,7 +1,7 @@
 import React from 'react';
 import composeClasses from '../composeClasses';
-import { OptionUnstyledProps } from './OptionUnstyled';
-import { OptionGroupUnstyledProps } from './OptionGroupUnstyled';
+import { OptionUnstyledProps } from '../OptionUnstyled';
+import { OptionGroupUnstyledProps } from '../OptionGroupUnstyled';
 import { getSelectUnstyledUtilityClass } from './selectUnstyledClasses';
 import {
   SingleSelectUnstyledOwnerState,

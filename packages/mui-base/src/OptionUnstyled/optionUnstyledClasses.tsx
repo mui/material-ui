@@ -1,5 +1,5 @@
-import generateUtilityClass from '../../generateUtilityClass';
-import generateUtilityClasses from '../../generateUtilityClasses';
+import generateUtilityClass from '../generateUtilityClass';
+import generateUtilityClasses from '../generateUtilityClasses';
 
 export interface OptionUnstyledClasses {
   root: string;

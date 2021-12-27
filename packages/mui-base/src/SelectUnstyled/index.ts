@@ -1,9 +1,3 @@
-export { default as OptionUnstyled } from './OptionUnstyled';
-export * from './OptionUnstyled';
-
-export { default as OptionGroupUnstyled } from './OptionGroupUnstyled';
-export * from './OptionGroupUnstyled';
-
 export { default } from './SelectUnstyled';
 
 export { default as selectUnstyledClasses } from './selectUnstyledClasses';

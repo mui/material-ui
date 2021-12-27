@@ -34,6 +34,12 @@ export * from './ModalUnstyled';
 
 export { default as NoSsr } from './NoSsr';
 
+export { default as OptionGroupUnstyled } from './OptionGroupUnstyled';
+export * from './OptionGroupUnstyled';
+
+export { default as OptionUnstyled } from './OptionUnstyled';
+export * from './OptionUnstyled';
+
 export { default as PopperUnstyled } from './PopperUnstyled';
 export * from './PopperUnstyled';
 

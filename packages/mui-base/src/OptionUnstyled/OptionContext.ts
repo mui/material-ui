@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OptionState } from '../../ListboxUnstyled';
+import { OptionState } from '../ListboxUnstyled';
 
 export const OptionContext = React.createContext<OptionState | undefined>(undefined);
 

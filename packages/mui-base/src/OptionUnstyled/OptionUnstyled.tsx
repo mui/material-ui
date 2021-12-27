@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import React from 'react';
-import { OptionState } from '../../ListboxUnstyled';
-import composeClasses from '../../composeClasses';
+import { OptionState } from '../ListboxUnstyled';
+import composeClasses from '../composeClasses';
 import OptionUnstyledProps from './OptionUnstyledProps';
-import { SelectUnstyledContext } from '../SelectUnstyledContext';
+import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
-import appendOwnerState from '../../utils/appendOwnerState';
+import appendOwnerState from '../utils/appendOwnerState';
 import { OptionContext } from './OptionContext';
 
 function useUtilityClasses(ownerState: OptionState) {

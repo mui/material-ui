@@ -1,11 +1,10 @@
 import * as React from 'react';
 import SelectUnstyled, {
   SelectUnstyledProps,
-  OptionUnstyled,
   selectUnstyledClasses,
-  optionUnstyledClasses,
   SelectOption,
 } from '@mui/base/SelectUnstyled';
+import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import { styled } from '@mui/system';
 
 const StyledButton = styled('button')`

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
-import composeClasses from '../../composeClasses';
+import composeClasses from '../composeClasses';
 import { getOptionGroupUnstyledUtilityClass } from './optionGroupUnstyledClasses';
 import OptionGroupUnstyledProps from './OptionGroupUnstyledProps';
 
