@@ -49,16 +49,21 @@ Depending on the day, you'll:
 
 ### Here are a few initiatives you might work on
 
-A project you might have worked on if you were part of the team: [the new mui.com brand](https://www.figma.com/proto/4uv2dT18rXJPZBbrbpw61q/Marketing-site?node-id=4849%3A24442&scaling=min-zoom&page-id=0%3A1).
-And more importantly, tasks that you might work on once you join:
+Projects you might have worked on if you were part of the team:
+
+- [the new mui.com brand](https://www.figma.com/proto/4uv2dT18rXJPZBbrbpw61q/Marketing-site?node-id=4849%3A24442&scaling=min-zoom&page-id=0%3A1)
+- A redesign of the docs to isolate the products (`@mui/base`, `@mui/material`, `@mui/x`, etc.)
+
+Tasks that you might work on once you join depending on how we organize the design team:
 
 - Polish of all the content in the docs, e.g. customization demos.
-- A redesign of the docs to isolate the products (`@mui/base`, `@mui/system`, `@mui/material`, etc.).
-- The design and implementation of new marketing pages, e.g. showcases and case studies.
+- The product design on our work-in-progress low-code UI builder.
+- The UX and visual design on our advanced components, like the data grid filtering or the date picker components.
 - The update of the components to match the latest Material Design guidelines.
-- The design and implementation of a new design system based on `@mui/base`.
 - The design and implementation of `@mui/material-next` to match [Material You](https://m3.material.io/).
-- Take the product ownership of the [MUI Design kits](https://mui.com/design-kits/).
+- Design and implementation of new free templates, e.g. for refreshing Material Design or for second design system Joy.
+- Design and implementation of new marketing pages, e.g. showcases and case studies.
+- Take responsibility for the [MUI Design kits](https://mui.com/design-kits/) product while collaborating with the existing two designers working on it.
 
 ## About you
 
