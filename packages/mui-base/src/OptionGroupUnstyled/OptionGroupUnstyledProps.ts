@@ -8,17 +8,33 @@ export default interface OptionGroupUnstyledProps {
    */
   label?: React.ReactNode;
   className?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /**
    * If `true` all the options in the group will be disabled.
+   * @default false
    */
   disabled?: boolean;
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to components.Root.
+   * If both are provided, the component is used.
+   */
   component?: React.ElementType;
+  /**
+   * The components used for each slot inside the OptionGroupUnstyled.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
   components?: {
     Root?: React.ElementType;
     Label?: React.ElementType;
     List?: React.ElementType;
   };
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
   componentsProps?: {
     root?: React.ComponentPropsWithRef<'li'> & OptionGroupUnstyledComponentsPropsOverrides;
     label?: React.ComponentPropsWithRef<'span'> & OptionGroupUnstyledComponentsPropsOverrides;

@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { OptionState } from '../ListboxUnstyled';
 import composeClasses from '../composeClasses';
@@ -17,7 +18,16 @@ function useUtilityClasses(ownerState: OptionState) {
 
   return composeClasses(slots, getOptionUnstyledUtilityClass, {});
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Selects](https://mui.com/components/selects/)
+ *
+ * API:
+ *
+ * - [OptionUnstyled API](https://mui.com/api/option-unstyled/)
+ */
 const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
   props: OptionUnstyledProps<TValue>,
   ref: React.ForwardedRef<HTMLLIElement>,
@@ -73,5 +83,49 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     </OptionContext.Provider>
   );
 });
+
+OptionUnstyled.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to components.Root.
+   * If both are provided, the component is used.
+   */
+  component: PropTypes.elementType,
+  /**
+   * The components used for each slot inside the OptionUnstyled.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
+  /**
+   * If `true`, the option will be disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * The value of the option.
+   */
+  value: PropTypes.any.isRequired,
+} as any;
 
 export default OptionUnstyled;
