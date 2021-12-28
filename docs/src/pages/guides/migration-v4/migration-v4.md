@@ -2718,7 +2718,10 @@ It is also features a much better TypeScript support than v4's `makeStyles`.
 
 In order to use it, you'll need to add it to your project's dependencies:
 
-```bash
+```sh
+npm install tss-react
+
+// or with `yarn`
 yarn add tss-react
 ```
 
@@ -2876,14 +2879,14 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
 ```
 
 > **Note**: To ensure that your class names always includes the actual name of your components,
-> you can provide the `name` as an implicitly named key (`name: { App }`). 
+> you can provide the `name` as an implicitly named key (`name: { App }`).
 > [See doc](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
 
 #### `withStyles()`
 
-`tss-react` also features a [type-safe implementation](https://github.com/garronej/tss-react#withstyles) of [v4's `withStyles()`](https://v4.mui.com/styles/api/#withstyles-styles-options-higher-order-component).  
+`tss-react` also features a [type-safe implementation](https://github.com/garronej/tss-react#withstyles) of [v4's `withStyles()`](https://v4.mui.com/styles/api/#withstyles-styles-options-higher-order-component).
 
-> **Note:** The equivalent of the `$` syntax is also supported in tss's `withStyles()`. 
+> **Note:** The equivalent of the `$` syntax is also supported in tss's `withStyles()`.
 > [See doc](https://github.com/garronej/tss-react#nested-selector-with-the-withstyles-api).
 
 ```diff
@@ -2892,25 +2895,25 @@ and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#
 -import withStyles from '@material-ui/styles/withStyles';
 +import { withStyles } from "tss-react/mui";
 
-const MyCustomButton = withStyles(
-+   Button,
-    (theme) => ({
-        root: {
-            minHeight: '30px'
-        },
-        textPrimary: {
-            color: theme.palette.text.primary
-        },
-        '@media (min-width: 960px)': {
-            textPrimary: {
-                fontWeight: "bold"
-            }
-        }
-    }),
+ const MyCustomButton = withStyles(
++  Button,
+   (theme) => ({
+     root: {
+       minHeight: '30px'
+     },
+     textPrimary: {
+       color: theme.palette.text.primary
+     },
+     '@media (min-width: 960px)': {
+       textPrimary: {
+         fontWeight: "bold"
+       }
+     }
+   }),
 -)(Button);
 +);
 
-export default MyCustomButton;
+ export default MyCustomButton;
 ```
 
 > **Note:** `tss-react` is **not maintained** by MUI.  
