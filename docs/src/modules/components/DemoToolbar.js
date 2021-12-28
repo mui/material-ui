@@ -538,7 +538,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               data-ga-event-action="expand"
               onClick={handleCodeOpenClick}
-              color={demoHovered ? 'primary' : 'default'}
+              color="default"
               {...getControlProps(2)}
             >
               <CodeRoundedIcon />

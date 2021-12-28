@@ -36,11 +36,11 @@ const StyledInputElement = styled('input')(
 
   &:hover {
     background: ${theme.palette.mode === 'dark' ? null : grey[100]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[400]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
 
   &:focus {
-    outline: 4px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+    outline: 2px solid ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
     outline-offset: 2px;
   }
 `,

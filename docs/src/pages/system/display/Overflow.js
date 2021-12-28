@@ -6,15 +6,33 @@ export default function Overflow() {
     <div style={{ width: 200, whiteSpace: 'nowrap' }}>
       <Box
         component="div"
-        sx={{ overflow: 'hidden', my: 2, bgcolor: 'background.paper' }}
+        sx={{
+          overflow: 'hidden',
+          my: 2,
+          p: 1,
+          bgcolor: 'background.paper',
+          borderRadius: 1,
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+        }}
       >
-        Overflow Hidden. Overflow Hidden. Overflow Hidden.
+        Not scrollable, overflow is hidden
       </Box>
       <Box
         component="div"
-        sx={{ overflow: 'auto', my: 2, bgcolor: 'background.paper' }}
+        sx={{
+          overflow: 'auto',
+          my: 2,
+          p: 1,
+          bgcolor: 'background.paper',
+          borderRadius: 1,
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+        }}
       >
-        Overflow Auto. Overflow Auto. Overflow Auto.
+        Try scrolling this overflow auto box
       </Box>
     </div>
   );

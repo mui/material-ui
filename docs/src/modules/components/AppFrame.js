@@ -130,9 +130,6 @@ const StyledAppBar = styled(AppBar, {
 })(({ disablePermanent, theme }) => {
   return {
     padding: theme.spacing(1, 2),
-    '& .MuiToolbar-gutters': {
-      padding: 0,
-    },
     transition: theme.transitions.create('width'),
     ...(disablePermanent && {
       boxShadow: 'none',
@@ -246,7 +243,7 @@ function AppFrame(props) {
       </SkipLink>
       <MarkdownLinks />
       <StyledAppBar disablePermanent={disablePermanent}>
-        <Toolbar variant="dense">
+        <Toolbar variant="dense" disableGutters>
           <NavIconButton
             edge="start"
             color="primary"

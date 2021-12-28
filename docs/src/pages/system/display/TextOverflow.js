@@ -8,23 +8,33 @@ export default function TextOverflow() {
         component="div"
         sx={{
           textOverflow: 'clip',
-          my: 2,
           overflow: 'hidden',
+          my: 2,
+          p: 1,
           bgcolor: 'background.paper',
+          borderRadius: 1,
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
         }}
       >
-        Text Overflow Clip. Text Overflow Clip.
+        Lorem Ipsum is simply dummy text
       </Box>
       <Box
         component="div"
         sx={{
           textOverflow: 'ellipsis',
-          my: 2,
           overflow: 'hidden',
+          my: 2,
+          p: 1,
           bgcolor: 'background.paper',
+          borderRadius: 1,
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
         }}
       >
-        Text Overflow Ellipsis. Text Overflow Ellipsis
+        Lorem Ipsum is simply dummy text
       </Box>
     </div>
   );

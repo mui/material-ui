@@ -8,21 +8,32 @@ export default function WhiteSpace() {
         component="div"
         sx={{
           whiteSpace: 'nowrap',
+          overflowX: 'auto',
           my: 2,
+          p: 1,
           bgcolor: 'background.paper',
+          borderRadius: 1,
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
         }}
       >
-        White Space Nowrap. White Space Nowrap.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
       </Box>
       <Box
         component="div"
         sx={{
           whiteSpace: 'normal',
           my: 2,
+          p: 1,
           bgcolor: 'background.paper',
+          borderRadius: 1,
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
         }}
       >
-        White Space Normal. White Space Normal.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
       </Box>
     </div>
   );

@@ -7,10 +7,20 @@ export default function Height() {
       <Box
         sx={{
           height: '25%',
-          bgcolor: 'grey.300',
-          mx: 0.5,
           width: 120,
           display: 'inline-block',
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          mx: 1,
+          p: 1,
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
         Height 25%
@@ -18,10 +28,20 @@ export default function Height() {
       <Box
         sx={{
           height: '50%',
-          bgcolor: 'grey.300',
-          mx: 0.5,
           width: 120,
           display: 'inline-block',
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          mx: 1,
+          p: 1,
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
         Height 50%
@@ -29,10 +49,20 @@ export default function Height() {
       <Box
         sx={{
           height: '75%',
-          bgcolor: 'grey.300',
-          mx: 0.5,
           width: 120,
           display: 'inline-block',
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          mx: 1,
+          p: 1,
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
         Height 75%
@@ -40,10 +70,20 @@ export default function Height() {
       <Box
         sx={{
           height: '100%',
-          bgcolor: 'grey.300',
-          mx: 0.5,
           width: 120,
           display: 'inline-block',
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          mx: 1,
+          p: 1,
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
         Height 100%

@@ -40,8 +40,9 @@ const Tab = styled(TabUnstyled)`
 
   &:focus {
     color: #fff;
-    outline: 4px solid ${blue[200]};
-    outline-offset: 4px;
+    border-radius: 3px;
+    outline: 2px solid ${blue[200]};
+    outline-offset: 2px;
   }
 
   &.${tabUnstyledClasses.selected} {

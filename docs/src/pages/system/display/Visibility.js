@@ -8,12 +8,16 @@ export default function Visibility() {
         component="span"
         sx={{
           visibility: 'visible',
+          my: 2,
           p: 1,
-          m: 1,
           bgcolor: 'background.paper',
+          borderRadius: 1,
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
         }}
       >
-        Visibility Visible
+        Visible container
       </Box>
       <Box
         component="span"
@@ -24,7 +28,7 @@ export default function Visibility() {
           bgcolor: 'background.paper',
         }}
       >
-        Visibility Hidden
+        Invisible container
       </Box>
     </div>
   );
