@@ -2716,7 +2716,13 @@ In some cases, you might want to create multiple styled components in a file ins
 The API is similar to JSS `makeStyles` but, under the hood, it uses `@emotion/react`.
 It is also features a much better TypeScript support than v4's `makeStyles`.
 
-In order to use it, first you'll need to to edit your providers:
+In order to use it, you'll need to add it to your project's dependencies:
+
+```bash
+yarn add tss-react
+```
+
+...and to edit your providers:
 
 ```diff
  import { render } from 'react-dom';
@@ -2813,7 +2819,8 @@ If you were using the `$` syntax, the transformation would look like this:
 
 > **Note:** In plain JS projects (not using TypeScript), remove `<void, "child">`.
 
-Now, a comprehensive example using bot the `$` syntax and passing parameters to `useStyles()`.
+Now, a comprehensive example using both the `$` syntax, `useStyles()` parameters
+and [an explicit name for the stylesheet](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
 
 ```diff
 -import clsx from 'clsx';
@@ -2825,7 +2832,7 @@ Now, a comprehensive example using bot the `$` syntax and passing parameters to 
 ->({
 +const useStyles = makeStyles<
 +  { color: "primary" | "secondary" }, "child" | "small"
-+>()((theme, { color }, classes) => ({
++>({ name: "App" })((theme, { color }, classes) => ({
 -  root: ({ color })=> ({
 +  root: {
      padding: 30,
@@ -2844,12 +2851,12 @@ Now, a comprehensive example using bot the `$` syntax and passing parameters to 
         height: 30
     }
   }
--});
+-}, { name: "App" });
 +}));
 
  function App() {
--  const classes = useStyles({ "color": "primary" });
-+  const { classes, cx } = useStyles({ "color": "primary" });
+-  const classes = useStyles({ color: "primary" });
++  const { classes, cx } = useStyles({ color: "primary" });
 
    return (
      <div className={classes.root}>
@@ -2868,7 +2875,45 @@ Now, a comprehensive example using bot the `$` syntax and passing parameters to 
  export default App;
 ```
 
-> **Note:** This library is **not maintained** by MUI.  
+> **Note**: To ensure that your class names always includes the actual name of your components,
+> you can provide the `name` as an implicitly named key (`name: { App }`). 
+> [See doc](https://github.com/garronej/tss-react#naming-the-stylesheets-useful-for-debugging).
+
+#### `withStyles()`
+
+`tss-react` also features a [type-safe implementation](https://github.com/garronej/tss-react#withstyles) of [v4's `withStyles()`](https://v4.mui.com/styles/api/#withstyles-styles-options-higher-order-component).  
+
+> **Note:** The equivalent of the `$` syntax is also supported in tss's `withStyles()`. 
+> [See doc](https://github.com/garronej/tss-react#nested-selector-with-the-withstyles-api).
+
+```diff
+-import Button from '@material-ui/core/Button';
++import Button from '@mui/material/Button';
+-import withStyles from '@material-ui/styles/withStyles';
++import { withStyles } from "tss-react/mui";
+
+const MyCustomButton = withStyles(
++   Button,
+    (theme) => ({
+        root: {
+            minHeight: '30px'
+        },
+        textPrimary: {
+            color: theme.palette.text.primary
+        },
+        '@media (min-width: 960px)': {
+            textPrimary: {
+                fontWeight: "bold"
+            }
+        }
+    }),
+-)(Button);
++);
+
+export default MyCustomButton;
+```
+
+> **Note:** `tss-react` is **not maintained** by MUI.  
 > If you have any question about how to setup SSR (Next.js) or if you are wondering
 > how to customize the `theme` object please refer to `tss-react`'s documentation,
 > the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular.  
