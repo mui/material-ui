@@ -89,11 +89,12 @@ export default function AppProductsDrawer(props: DrawerProps) {
   return (
     <Drawer
       variant="temporary"
+      anchor="right"
       PaperProps={{
         sx: {
-          maxWidth: 360,
+          width: { xs: 310, sm: 360 },
           overflow: 'hidden',
-          borderRadius: '0px 10px 10px 0px',
+          borderRadius: '10px 0px 0px 10px',
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
           bgcolor: (theme) =>
             theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',

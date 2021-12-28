@@ -12,10 +12,10 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
-import NoSsr from '@mui/material/NoSsr';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Divider from '@mui/material/Divider';
+// import NoSsr from '@mui/material/NoSsr';
+// import Menu from '@mui/material/Menu';
+// import MenuItem from '@mui/material/MenuItem';
+// import Divider from '@mui/material/Divider';
 import Apps from '@mui/icons-material/Apps';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -25,18 +25,17 @@ import AppProductsDrawer from 'docs/src/modules/components/AppProductsDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
-import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+// import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
+// import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
-import LanguageIcon from '@mui/icons-material/Translate';
+import { /* useUserLanguage, */ useTranslate } from 'docs/src/modules/utils/i18n';
 import { debounce } from '@mui/material/utils';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import NextLink from 'next/link';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 
-const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
-const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
+// const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
+// const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
 
 const nProgressStart = debounce(() => {
   NProgress.start();
@@ -134,7 +133,7 @@ const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
 })(({ disablePermanent, theme }) => {
   return {
-    padding: '5px 0px 5px 8px',
+    padding: '8px 12px',
     transition: theme.transitions.create('width'),
     ...(disablePermanent && {
       boxShadow: 'none',
@@ -159,6 +158,7 @@ const StyledAppBar = styled(AppBar, {
         : 'rgba(255,255,255,0.7)',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
     '& .MuiIconButton-root': {
+      width: 38,
       border: `1px solid ${
         theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]
       }`,
@@ -210,27 +210,27 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
 function AppFrame(props) {
   const { children, disableDrawer = false } = props;
   const t = useTranslate();
-  const userLanguage = useUserLanguage();
+  // const userLanguage = useUserLanguage();
 
-  const crowdInLocale = LOCALES[userLanguage] || userLanguage;
+  // const crowdInLocale = LOCALES[userLanguage] || userLanguage;
 
-  const [languageMenu, setLanguageMenu] = React.useState(null);
-  const handleLanguageIconClick = (event) => {
-    setLanguageMenu(event.currentTarget);
-  };
-  const handleLanguageMenuClose = (event) => {
-    if (event.currentTarget.nodeName === 'A') {
-      document.cookie = `userLanguage=${event.currentTarget.lang};path=/;max-age=31536000`;
-    }
-    setLanguageMenu(null);
-  };
+  // const [languageMenu, setLanguageMenu] = React.useState(null);
+  // const handleLanguageIconClick = (event) => {
+  //   setLanguageMenu(event.currentTarget);
+  // };
+  // const handleLanguageMenuClose = (event) => {
+  //   if (event.currentTarget.nodeName === 'A') {
+  //     document.cookie = `userLanguage=${event.currentTarget.lang};path=/;max-age=31536000`;
+  //   }
+  //   setLanguageMenu(null);
+  // };
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [settingsOpen, setSettingsOpen] = React.useState(false);
   const [productsDrawerOpen, setProductsDrawerOpen] = React.useState(false);
 
   const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
+  // const { canonicalAs } = pathnameToLanguage(router.asPath);
   const { activePage } = React.useContext(PageContext);
 
   const isProductScoped =
@@ -242,14 +242,14 @@ function AppFrame(props) {
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
-  const languageButtonProps = {
-    color: 'inherit',
-    onClick: handleLanguageIconClick,
-    'aria-owns': languageMenu ? 'language-menu' : undefined,
-    'aria-haspopup': 'true',
-    'data-ga-event-category': 'header',
-    'data-ga-event-action': 'language',
-  };
+  // const languageButtonProps = {
+  //   color: 'inherit',
+  //   onClick: handleLanguageIconClick,
+  //   'aria-owns': languageMenu ? 'language-menu' : undefined,
+  //   'aria-haspopup': 'true',
+  //   'data-ga-event-category': 'header',
+  //   'data-ga-event-action': 'language',
+  // };
 
   return (
     <RootDiv>
@@ -260,38 +260,28 @@ function AppFrame(props) {
       </SkipLink>
       <MarkdownLinks />
       <StyledAppBar disablePermanent={disablePermanent}>
-        <Toolbar variant="dense">
+        <Toolbar variant="dense" disableGutters>
           <NavIconButton
             edge="start"
             color="primary"
             aria-label={t('appFrame.openDrawer')}
             disablePermanent={disablePermanent}
             onClick={() => setMobileOpen(true)}
+            sx={{ ml: 0.5, mr: 2 }}
           >
             <MenuIcon fontSize="small" />
           </NavIconButton>
-          <NextLink href="/" passHref>
+          <NextLink href="/" passHref /* onClick={onClose} */>
             <Box
               component="a"
               aria-label={t('goToHome')}
-              sx={{ display: { xs: 'block', sm: 'none' }, ml: { xs: 2, sm: 0 }, lineHeight: 0 }}
+              sx={{ display: { md: 'flex', lg: 'none' } }}
             >
               <SvgMuiLogo width={30} />
             </Box>
           </NextLink>
           <GrowingDiv />
           <Stack direction="row" spacing={1.2}>
-            {isProductScoped && FEATURE_TOGGLE.enable_product_scope && (
-              <Tooltip title="MUI products" enterDelay={300}>
-                <IconButton
-                  color="inherit"
-                  onClick={() => setProductsDrawerOpen(true)}
-                  sx={{ display: { md: 'none' } }}
-                >
-                  <Apps fontSize="small" />
-                </IconButton>
-              </Tooltip>
-            )}
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
@@ -306,109 +296,18 @@ function AppFrame(props) {
               </IconButton>
             </Tooltip>
             <Notifications />
-            <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
-              <IconButton
-                color="inherit"
-                {...languageButtonProps}
-                sx={{ display: { xs: 'none', sm: 'flex' } }}
-              >
-                <LanguageIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
             <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
               <IconButton color="inherit" onClick={() => setSettingsOpen(true)} sx={{ px: '8px' }}>
                 <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
-            <NoSsr defer>
-              <Menu
-                id="language-menu"
-                anchorEl={languageMenu}
-                open={Boolean(languageMenu)}
-                onClose={handleLanguageMenuClose}
-                PaperProps={{
-                  variant: 'outlined',
-                  sx: {
-                    mt: 0.5,
-                    minWidth: 180,
-                    backgroundImage: 'none',
-                    borderColor: (theme) =>
-                      theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                    bgcolor: (theme) =>
-                      theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-                    boxShadow: (theme) =>
-                      `0px 4px 20px ${
-                        theme.palette.mode === 'dark'
-                          ? 'rgba(0, 0, 0, 0.5)'
-                          : 'rgba(170, 180, 190, 0.3)'
-                      }`,
-                    '& .MuiMenuItem-root': {
-                      fontSize: (theme) => theme.typography.pxToRem(14),
-                      fontWeight: 500,
-                      '&:hover': {
-                        color: (theme) =>
-                          theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
-                        backgroundColor: (theme) =>
-                          theme.palette.mode === 'dark'
-                            ? alpha(theme.palette.primaryDark[700], 0.4)
-                            : theme.palette.grey[50],
-                      },
-                      '&:focus': {
-                        backgroundColor: (theme) =>
-                          theme.palette.mode === 'dark'
-                            ? alpha(theme.palette.primaryDark[700], 0.4)
-                            : theme.palette.grey[50],
-                      },
-                      '&.Mui-selected': {
-                        fontWeight: 500,
-                        color: (theme) =>
-                          theme.palette.mode === 'dark'
-                            ? theme.palette.primary[300]
-                            : theme.palette.primary[600],
-                        backgroundColor: (theme) =>
-                          theme.palette.mode === 'dark'
-                            ? theme.palette.primaryDark[700]
-                            : alpha(theme.palette.primary[100], 0.6),
-                      },
-                    },
-                  },
-                }}
-              >
-                {LANGUAGES_LABEL.map((language) => (
-                  <MenuItem
-                    component="a"
-                    data-no-markdown-link="true"
-                    href={language.code === 'en' ? canonicalAs : `/${language.code}${canonicalAs}`}
-                    key={language.code}
-                    selected={userLanguage === language.code}
-                    onClick={handleLanguageMenuClose}
-                    lang={language.code}
-                    hrefLang={language.code}
-                  >
-                    {language.text}
-                  </MenuItem>
-                ))}
-                <Box sx={{ my: 1 }}>
-                  <Divider />
-                </Box>
-                <MenuItem
-                  component="a"
-                  href={
-                    userLanguage === 'en'
-                      ? `${CROWDIN_ROOT_URL}`
-                      : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
-                  }
-                  rel="noopener nofollow"
-                  target="_blank"
-                  key={userLanguage}
-                  lang={userLanguage}
-                  hrefLang="en"
-                  onClick={handleLanguageMenuClose}
-                >
-                  {t('appFrame.helpToTranslate')}
-                </MenuItem>
-              </Menu>
-            </NoSsr>
+            {isProductScoped && FEATURE_TOGGLE.enable_product_scope && (
+              <Tooltip title="MUI products" enterDelay={300}>
+                <IconButton color="inherit" onClick={() => setProductsDrawerOpen(true)}>
+                  <Apps fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            )}
           </Stack>
         </Toolbar>
       </StyledAppBar>
