@@ -73,7 +73,7 @@ export default function XHero() {
           <Paper
             sx={{
               backgroundColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.800' : null,
+                theme.palette.mode === 'dark' ? 'primaryDark.800' : 'initial',
               border: (theme) =>
                 `1px solid ${
                   theme.palette.mode === 'dark'
@@ -166,7 +166,7 @@ export default function XHero() {
             <Paper
               sx={{
                 backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.800' : null,
+                  theme.palette.mode === 'dark' ? 'primaryDark.800' : 'initial',
                 border: (theme) =>
                   `1px solid ${
                     theme.palette.mode === 'dark'
@@ -208,7 +208,7 @@ export default function XHero() {
                   borderRadius: 1,
                   overflow: 'auto',
                   backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.800' : null,
+                    theme.palette.mode === 'dark' ? 'primaryDark.800' : 'initial',
                 },
                 '& .MuiTypography-subtitle1': {
                   fontSize: '0.875rem',
