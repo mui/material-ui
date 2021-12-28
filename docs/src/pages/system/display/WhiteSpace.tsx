@@ -18,7 +18,8 @@ export default function WhiteSpace() {
             theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
         }}
       >
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        Lorem Ipsum has been the industry&apos;s standard dummy text ever since the
+        1500s.
       </Box>
       <Box
         component="div"
@@ -33,7 +34,8 @@ export default function WhiteSpace() {
             theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
         }}
       >
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        Lorem Ipsum has been the industry&apos;s standard dummy text ever since the
+        1500s.
       </Box>
     </div>
   );
