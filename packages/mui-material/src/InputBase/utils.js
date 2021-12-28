@@ -18,8 +18,15 @@ export function hasValue(value) {
 export function isFilled(obj, SSR = false) {
   return (
     obj &&
-    ((hasValue(obj.value) && obj.value !== '') ||
-      (SSR && hasValue(obj.defaultValue) && obj.defaultValue !== ''))
+    (
+      (hasValue(obj.value) && obj.value !== "") ||
+      // If the input type is different from text (like number or date),
+      // some browsers displays the invalid input value while the obj.value
+      // is blank. So to proper shrink the label in case of invalid input,
+      // the following test is needed
+      obj.validity?.badInput ||
+      (SSR && hasValue(obj.defaultValue) && obj.defaultValue !== "")
+    )
   );
 }
 

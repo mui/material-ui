@@ -35,5 +35,9 @@ describe('Input/utils.js', () => {
         expect(isFilled({ defaultValue: value }, true)).to.equal(false);
       });
     });
+
+    it(`is true if bad input`, () => {
+      expect(isFilled({validity: {badInput: true}})).to.equal(true);
+    })
   });
 });
