@@ -101,7 +101,7 @@ export default function TemplateDemo() {
       {
         name: 'Bazar Pro - Multipurpose React Ecommerce Template',
         src: `/static/branding/store-templates/template-bazar-${mode}.jpeg`,
-        href: 'https://material-ui.com/store/items/bazar-pro-react-ecommerce-template/',
+        href: 'https://mui.com/store/items/bazar-pro-react-ecommerce-template/',
       },
     ],
   };

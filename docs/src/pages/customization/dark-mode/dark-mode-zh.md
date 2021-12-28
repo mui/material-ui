@@ -12,7 +12,7 @@ const darkTheme = createTheme({
 });
 ```
 
-While it's only a single value change, the `createTheme` helper modifies several palette values. The colors modified by the palette mode are the following:
+While it's only a single value change, the `createTheme` helper modifies several palette values. The colors modified by the palette mode are the following: The colors modified by the palette mode are the following:
 
 {{"demo": "pages/customization/dark-mode/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 

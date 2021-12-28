@@ -20,9 +20,9 @@ Here are the most significant improvements since March 2020:
 
   <img src="/static/blog/2020-q2-update/icons.png" alt="icons" style="width: 615px; margin-bottom: 24px;" />
 
-- 🎨 [Figma assets](https://material-ui.com/store/items/figma-react/) for MUI extend the support for design tools beyond Sketch.
+- 🎨 [Figma assets](https://mui.com/store/items/figma-react/) for MUI extend the support for design tools beyond Sketch.
 
-  <a href="https://material-ui.com/store/items/figma-react/"><img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="width: 160px; margin-bottom: 24px;" /></a>
+  <a href="https://mui.com/store/items/figma-react/"><img src="/static/blog/2020-q1-update/figma.png" alt="figma" style="width: 160px; margin-bottom: 24px;" /></a>
 
   Adobe XD and Framer support are also up for consideration if they attract a significant audience, but not until we've polished the Sketch and Figma assets.
 

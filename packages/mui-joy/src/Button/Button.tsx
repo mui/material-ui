@@ -50,9 +50,9 @@ const ButtonRoot = styled('button', {
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   return [
     {
-      padding: '0.25rem 1.5rem',
+      padding: '0.25rem 1.5rem', // the padding-top, bottom act as a minimum spacing between content and root element
       minHeight: '40px',
-      borderRadius: theme.vars.borderRadius.default,
+      borderRadius: theme.vars.radius.sm,
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
@@ -60,20 +60,26 @@ const ButtonRoot = styled('button', {
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
+      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
+      transition:
+        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...theme.typography.body1,
-      fontWeight: theme.vars.fontWeight.md,
+      ...(ownerState.size === 'sm' && {
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
+        minHeight: '32px',
+        ...theme.typography.body2,
+      }),
+      ...(ownerState.size === 'lg' && {
+        paddingLeft: '2rem',
+        paddingRight: '2rem',
+        minHeight: '48px',
+        ...theme.typography.h6,
+      }),
       [`&.${buttonClasses.focusVisible}`]: theme.focus.default,
     },
     ownerState.fullWidth && {
       width: '100%',
-    },
-    ownerState.size === 'small' && {
-      padding: '0.25rem 1rem',
-      minHeight: '32px',
-    },
-    ownerState.size === 'large' && {
-      padding: '0.25rem 2rem',
-      minHeight: '48px',
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
@@ -83,7 +89,10 @@ const ButtonRoot = styled('button', {
 });
 
 const Button = React.forwardRef(function Button(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiButton' });
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+    props: inProps,
+    name: 'MuiButton',
+  });
 
   const {
     children,
@@ -92,7 +101,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     component = 'button',
     color = 'primary',
     variant = 'contained',
-    size,
+    size = 'md',
     fullWidth = false,
     ...other
   } = props;
@@ -174,11 +183,10 @@ Button.propTypes /* remove-proptypes */ = {
    */
   color: PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
-   * The component used for the Root slot.
+   * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * If `true`, the button will take up the full width of its container.
    * @default false
@@ -186,13 +194,11 @@ Button.propTypes /* remove-proptypes */ = {
   fullWidth: PropTypes.bool,
   /**
    * The size of the component.
-   * `small` is equivalent to the dense button styling.
-   * @default 'medium'
    */
-  size: PropTypes.oneOf(['small', 'large']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
    * The variant to use.
-   * @default 'text'
+   * @default 'contained'
    */
   variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
 } as any;

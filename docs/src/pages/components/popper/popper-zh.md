@@ -24,7 +24,7 @@ githubLabel: 'component: Popper'
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 
-## Transitions
+## 过渡动画
 
 通过渲染附属的子元素和一个过渡组件，您可以给弹出提示组件的打开/关闭状态加上动画效果。 此组件应遵守以下条件：
 
@@ -56,7 +56,7 @@ Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring
 
 {{"demo": "pages/components/popper/VirtualElementPopper.js"}}
 
-## Complementary projects
+## 补充项目
 
 对于更高级的用例，您可以利用：
 

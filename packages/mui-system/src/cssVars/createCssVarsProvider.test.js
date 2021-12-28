@@ -95,6 +95,27 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('text').textContent).to.equal('var(--mui-fontSize)');
     });
 
+    it('provide getThemeVar util', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: { palette: { primary: { 500: '#ff5252' } } } },
+        },
+        defaultColorScheme: 'light',
+        prefix: 'mui',
+      });
+      const Text = () => {
+        const theme = useTheme();
+        return <div data-testid={`text`}>{theme.getThemeVar('palette-primary-500')}</div>;
+      };
+      render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('text').textContent).to.equal('var(--mui-palette-primary-500)');
+    });
+
     it('can access to allColorSchemes', () => {
       const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         theme: {

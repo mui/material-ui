@@ -1017,7 +1017,7 @@ export default function useAutocomplete(props) {
       // only have an opinion about this when closed
       'aria-activedescendant': popupOpen ? '' : null,
       'aria-autocomplete': autoComplete ? 'both' : 'list',
-      'aria-controls': listboxAvailable ? `${id}-listbox` : null,
+      'aria-controls': listboxAvailable ? `${id}-listbox` : undefined,
       // Disable browser's suggestion that might overlap with the popup.
       // Handle autocomplete but not autofill.
       autoComplete: 'off',

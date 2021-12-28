@@ -280,7 +280,7 @@ function App(props) {
   React.useEffect(() => {
     webfontloader.load({
       google: {
-        families: ['Roboto:300,400,500,700', 'Material+Icons'],
+        families: ['Roboto:300,400,500,700', 'Public Sans:300,400,500,700', 'Material+Icons'],
       },
       custom: {
         families: ['Font Awesome 5 Free:n9'],

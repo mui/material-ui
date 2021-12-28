@@ -30,6 +30,26 @@ export type BadgeTypeMap<
       colorSuccess?: string;
       /** Styles applied to the badge `span` element if `color="warning"`. */
       colorWarning?: string;
+      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
+      anchorOriginTopRightRectangular: string;
+      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
+      anchorOriginBottomRightRectangular: string;
+      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
+      anchorOriginTopLeftRectangular: string;
+      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
+      anchorOriginBottomLeftRectangular: string;
+      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
+      anchorOriginTopRightCircular: string;
+      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
+      anchorOriginBottomRightCircular: string;
+      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
+      anchorOriginTopLeftCircular: string;
+      /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
+      anchorOriginBottomLeftCircular: string;
+      /** Class name applied to the badge `span` element if `overlap="rectangular"`. */
+      overlapRectangular: string;
+      /** Class name applied to the badge `span` element if `overlap="circular"`. */
+      overlapCircular: string;
     };
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
@@ -39,6 +59,11 @@ export type BadgeTypeMap<
       'primary' | 'secondary' | 'default' | 'error' | 'info' | 'success' | 'warning',
       BadgePropsColorOverrides
     >;
+    /**
+     * Wrapped shape the badge should overlap.
+     * @default 'rectangular'
+     */
+    overlap?: 'rectangular' | 'circular';
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
