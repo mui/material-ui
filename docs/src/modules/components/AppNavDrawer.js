@@ -174,7 +174,7 @@ function AppNavDrawer(props) {
           <ToolbarDiv>
             <NextLink href="/" passHref onClick={onClose}>
               <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0, mr: 2 }}>
-                <SvgMuiLogo width={30} />
+                <SvgMuiLogo width={28} />
               </Box>
             </NextLink>
             {process.env.LIB_VERSION ? (
