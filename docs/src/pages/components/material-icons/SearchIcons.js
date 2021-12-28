@@ -452,10 +452,12 @@ const allIcons = Object.keys(mui)
  */
 function useLatest(value) {
   const latest = React.useRef(value);
-  if (value !== undefined && value !== null) {
-    latest.current = value;
-  }
-  return latest.current;
+  React.useEffect(() => {
+    if (value !== undefined && value !== null) {
+      latest.current = value;
+    }
+  }, [value]);
+  return value ?? latest.current;
 }
 
 export default function SearchIcons() {
