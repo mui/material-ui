@@ -14,13 +14,13 @@ export default function RangeSlider() {
   };
 
   return (
-    <Box sx={{ width: 300 }}>
+    <Box sx={{ width: 300, mt: 4 }}>
       <Slider
         getAriaLabel={() => 'Temperature range'}
         value={value}
         onChange={handleChange}
         valueLabelDisplay="auto"
-        getAriaValueText={valuetext}
+        valueLabelFormat={valuetext}
       />
     </Box>
   );
