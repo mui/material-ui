@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import { styled } from '@mui/system';
@@ -84,27 +84,15 @@ const StyledOption = styled(OptionUnstyled)`
   }
 `;
 
-function CustomSelect(props) {
+const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
   const components = {
     Root: StyledButton,
     Listbox: StyledListbox,
     ...props.components,
   };
 
-  return <SelectUnstyled {...props} components={components} />;
-}
-
-CustomSelect.propTypes = {
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Listbox: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-};
+  return <SelectUnstyled {...props} ref={ref} components={components} />;
+});
 
 export default function UnstyledSelectSimple() {
   return (

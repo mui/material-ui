@@ -86,15 +86,20 @@ const StyledOption = styled(OptionUnstyled)`
   }
 `;
 
-function CustomSelect<TValue>(props: SelectUnstyledProps<TValue>) {
+const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
+  props: SelectUnstyledProps<TValue>,
+  ref: React.ForwardedRef<HTMLUListElement>,
+) {
   const components: SelectUnstyledProps<TValue>['components'] = {
     Root: StyledButton,
     Listbox: StyledListbox,
     ...props.components,
   };
 
-  return <SelectUnstyled {...props} components={components} />;
-}
+  return <SelectUnstyled {...props} ref={ref} components={components} />;
+}) as <TValue>(
+  props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLUListElement>,
+) => JSX.Element;
 
 export default function UnstyledSelectSimple() {
   return (
