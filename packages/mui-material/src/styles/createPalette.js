@@ -185,8 +185,7 @@ export default function createPalette(palette) {
   const { mode = 'light', contrastThreshold = 3, tonalOffset = 0.2, ...other } = palette;
 
   // seperate custom palettes from the rest
-  const { primary, secondary, error, info, success, warning, text, type, ...customPalettes } =
-    other;
+  var { primary, secondary, error, info, success, warning, text, type, ...customPalettes } = other;
 
   primary = primary || getDefaultPrimary(mode);
   secondary = secondary || getDefaultSecondary(mode);
