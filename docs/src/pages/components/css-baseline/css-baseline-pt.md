@@ -5,9 +5,9 @@ githubLabel: 'component: CssBaseline'
 
 # CSS Baseline
 
-<p class="description">MUI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
+<p class="description">Material-UI oferece um componente CSS Base a fim de inciar uma elegante, consistente e simples base para construção de aplicativos.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+[A paleta](/system/palette/) com funções de estilo.
 
 ## Reset global
 
@@ -15,31 +15,31 @@ Você já deve estar familiarizado com [normalize.css](https://github.com/necola
 
 ```jsx
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default function MyApp() {
   return (
-    <React.Fragment>
+    <React. Fragment>
       <CssBaseline />
-      {/* The rest of your application */}
-    </React.Fragment>
+      {/* O resto da sua aplicação */}
+    </React. Fragment>
   );
 }
 ```
 
 ## Escopando componentes filhos
 
-However, you might be progressively migrating a website to MUI, using a global reset might not be an option. É possível aplicar a baseline apenas aos filhos usando o componente `ScopedCssBaseline`.
+No entanto, você pode estar migrando progressivamente um site para Material-UI, usar um reset global pode não ser uma opção. É possível aplicar a baseline apenas aos filhos usando o componente `ScopedCssBaseline`.
 
 ```jsx
 import * as React from 'react';
-import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
+import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
 import MyApp from './MyApp';
 
 export default function MyApp() {
   return (
     <ScopedCssBaseline>
-      {/* The rest of your application */}
+      {/* O resto da sua aplicação */}
       <MyApp />
     </ScopedCssBaseline>
   );
@@ -69,21 +69,22 @@ Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrõe
 The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
 
 ```jsx
-import darkScrollbar from '@mui/material/darkScrollbar';
+darkScrollbar() : null,
+      },
+    },
+  },
+}); import darkScrollbar from '@material-ui/core/darkScrollbar';
+
 const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        body: theme.palette.mode === 'dark' ? darkScrollbar() : null,
-      },
-    },
-  },
-});
+        body: theme.palette.mode === 'dark' ?
 ```
 
 Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
 
-### Color scheme
+### Tipografia
 
 This API is introduced in @mui/material (v5.1.0) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` CSS property. To enable it, you can set `enableColorScheme=true` as follows:
 
@@ -104,6 +105,6 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 - Define o font-weight para `theme.typography.fontWeightBold` em elementos `<b>` e `<strong>`.
 - Uma customização da suavização da fonte (font-smoothing) é ativada para melhor exibição da fonte Roboto.
 
-## Customization
+## Customização
 
 Vá até a seção de [customização global](/customization/how-to-customize/#5-global-css-override) da documentação para alterar o comportamento desses componentes.

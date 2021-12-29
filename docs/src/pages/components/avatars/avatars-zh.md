@@ -38,7 +38,7 @@ githubLabel: 'component: Avatar'
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
 
-## Variants
+## 变体
 
 如果你需要矩形或圆角的头像组件，请使用 `variant`属性。
 
@@ -54,7 +54,7 @@ githubLabel: 'component: Avatar'
 
 {{"demo": "pages/components/avatars/FallbackAvatars.js"}}
 
-## Grouped
+## 分组
 
 `AvatarGroup` renders its children as a stack. Use the `max` prop to limit the number of avatars.
 

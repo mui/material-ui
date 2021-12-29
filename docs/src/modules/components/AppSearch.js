@@ -18,7 +18,7 @@ import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useRouter } from 'next/router';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import replaceUrl from 'docs/src/modules/utils/replaceUrl';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
@@ -296,25 +296,23 @@ export default function AppSearch() {
                 // `url` contains the domain
                 // but we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
                 const parseUrl = document.createElement('a');
+                parseUrl.href = item.url;
+
+                let hash = parseUrl.hash;
+                let pathname = parseUrl.pathname;
+
                 if (['lvl2', 'lvl3'].includes(item.type)) {
                   // remove '#heading-' from `href` url so that the link targets <span class="anchor-link"> inside <h2> or <h3>
                   // this will make the title appear under the Header
-                  parseUrl.href = item.url.replace('#heading-', '#');
-                } else {
-                  parseUrl.href = item.url;
+                  hash = hash.replace('#heading-', '#');
                 }
 
                 // TODO: remove this logic once the migration to new structure is done.
-                if (FEATURE_TOGGLE.enable_product_scope) {
-                  parseUrl.href = parseUrl.href.replace(
-                    /(?<!material\/)(getting-started|components|api|customization|guides|discover-more)(\/[^/]+\/)/,
-                    `material/$1$2`,
-                  );
-                }
+                // This logic covers us during the ~60 minutes that it takes Algolia to run a crawl and update its index.
+                // It also allows us to have a search bar that works in dev mode while the new structure is not pushed to production.
+                pathname = replaceUrl(pathname, router.asPath);
 
-                const { canonicalAs, canonicalPathname } = pathnameToLanguage(
-                  `${parseUrl.pathname}${parseUrl.hash}`,
-                );
+                const { canonicalAs, canonicalPathname } = pathnameToLanguage(`${pathname}${hash}`);
 
                 return {
                   ...item,

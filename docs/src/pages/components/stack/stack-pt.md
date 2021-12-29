@@ -8,17 +8,17 @@ githubLabel: 'component: Stack'
 
 <p class="description">The Stack component manages layout of immediate children along the vertical or horizontal axis with optional spacing and/or dividers between each child.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Usage
+## Uso
 
 `Stack` is concerned with one-dimensional layouts, while [Grid](/components/grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
 
 {{"demo": "pages/components/stack/BasicStack.js", "bg": true}}
 
-To control space between children, use the `spacing` prop. The spacing value can be any number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
+Para controlar o espaço entre os filhos, use a prop `spacing` The spacing value can be any number, including decimals and any string. The spacing value can be any number, including decimals and any string. As props são convertidas em css usando o auxiliar  [`theme.spacing()`](/customization/spacing/)
 
-## Direction
+## Direção
 
 By default, `Stack` arranges items vertically in a `column`. However, the `direction` prop can be used to position items horizontally in a `row` as well.
 
@@ -30,15 +30,15 @@ Use the `divider` prop to insert an element between each child. This works parti
 
 {{"demo": "pages/components/stack/DividerStack.js", "bg": true}}
 
-## Responsive values
+## Valores responsivos
 
 You can switch the `direction` or `spacing` values based on the active breakpoint.
 
 {{"demo": "pages/components/stack/ResponsiveStack.js", "bg": true}}
 
-## Interactive
+## Interativo
 
-Below is an interactive demo that lets you explore the visual results of the different settings:
+Abaixo está uma demonstração interativa que permite explorar os resultados visuais das diferentes configurações:
 
 {{"demo": "pages/components/stack/InteractiveStack.js", "hideToolbar": true, "bg": true}}
 

@@ -17,7 +17,7 @@ export default function BasicMenu() {
     <div>
       <Button
         id="basic-button"
-        aria-controls="basic-menu"
+        aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}

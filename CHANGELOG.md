@@ -1,5 +1,62 @@
 ### [Versions](https://mui.com/versions/)
 
+## 5.2.6
+
+<!-- generated comparing v5.2.5..master -->
+
+_Dec 27, 2021_
+
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- 📓 The Norwegian Bokmål (nb-NO) locale was added (#27520) @wogsland
+- 🛠 Introduced a new `useBadge` hook in the `@mui/base` package (#30246) @mnajdova
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.2.6`
+
+- &#8203;<!-- 24 -->[ButtonGroup] Fix typo in ButtonGroupContext's interface (#30376) @kealjones-wk
+- &#8203;<!-- 03 -->[l10n] Add Norwegian Bokmål (nb-NO) locale (#27520) @wogsland
+
+### `@mui/base@5.0.0-alpha.62`
+
+- &#8203;<!-- 26 -->[BadgeUnstyled] Add useBadge hook (#30246) @mnajdova
+
+### `@mui/joy@5.0.0-alpha.8`
+
+- &#8203;<!-- 04 -->[Joy] Button API (#29962) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 27 -->[docs] Fix color coercion (#30319) @Janpot
+- &#8203;<!-- 25 -->[blog] Fix file import conflict resolution (#30391) @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Fix crash on Safari because of unsupported lookahead feature (#30345) @cherniavskii
+- &#8203;<!-- 20 -->[docs] Update to new website domain (#30396) @ryota-murakami
+- &#8203;<!-- 19 -->[docs] Fix text from material-ui to @mui to reflect v5 name changes (#30393) @pupudu
+- &#8203;<!-- 18 -->[docs] Fix a11y in Menu demos (#30378) @ZeeshanTamboli
+- &#8203;<!-- 17 -->[docs] Document how to unmount transition child (#30382) @oliviertassinari
+- &#8203;<!-- 16 -->[docs] The current standard for quotes is QUOTATION MARK @oliviertassinari
+- &#8203;<!-- 15 -->[docs] Fix 404 links (#30380) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Fix Breadcrumb description (#30307) @jamesmelzer
+- &#8203;<!-- 13 -->[docs] Modify injection order for Gatsby and SSR examples (#30358) @ShuPink
+- &#8203;<!-- 12 -->[docs] Improve the translation experience (#30373) @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Sync translations with Crowdin (#30176) @l10nbot
+- &#8203;<!-- 10 -->[docs] Fix link to /size-snapshot (#30363) @oliviertassinari
+- &#8203;<!-- 09 -->[docs] Fix incorrect aria label in SpeedDial demo (#30354) @chwallen
+- &#8203;<!-- 08 -->[docs] Fix incorrect number of breakpoint helpers (#30353) @chwallen
+- &#8203;<!-- 07 -->[docs] Update outdated links (#30260) @oliviertassinari
+- &#8203;<!-- 06 -->[docs] Support redirects from old urls to /material/\* (#30286) @siriwatknp
+- &#8203;<!-- 05 -->[examples] Fix CSS modules integration (#30381) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Fix SEO issues (#30372) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Sync sponsors (#30259) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 28 -->[core] Rename Material-UI to MUI (#30338) @ZeeshanTamboli
+- &#8203;<!-- 23 -->[core] Fix warning in dev mode (#30368) @oliviertassinari
+- &#8203;<!-- 22 -->[core] Update `buildApi` script to support new structure (#30245) @siriwatknp
+
+All contributors of this release in alphabetical order: @cherniavskii, @chwallen, @jamesmelzer, @Janpot, @kealjones-wk, @l10nbot, @mnajdova, @oliviertassinari, @pupudu, @ryota-murakami, @ShuPink, @siriwatknp, @wogsland, @ZeeshanTamboli
+
 ## 5.2.5
 
 <!-- generated comparing v5.2.4..master -->

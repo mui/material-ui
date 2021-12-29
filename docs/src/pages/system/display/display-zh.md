@@ -2,7 +2,7 @@
 
 <p class="description">使用显示（display）工具集来快速、灵敏地切换组件的显示状态等。 这样包括对一些更常见值的支持，以及一些用于在打印时控制显示的附加功能。</p>
 
-## Examples
+## 例子
 
 ### 内嵌元素（Inline）
 
@@ -119,10 +119,10 @@
 ## API
 
 ```js
-import { display } from '@mui/system';
+import { display } from '@material-ui/system';
 ```
 
-| Import name       | Prop              | CSS property      | Theme key |
+| 导入名称              | 属性                | CSS 属性            | Theme key |
 |:----------------- |:----------------- |:----------------- |:--------- |
 | `displayPrint`    | `displayPrint`    | `display`         | none      |
 | `displayRaw`      | `display`         | `display`         | none      |
