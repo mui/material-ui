@@ -1,19 +1,19 @@
 import * as React from 'react';
-import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import { MultiSelectUnstyled, selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
 import OptionGroupUnstyled from '@mui/base/OptionGroupUnstyled';
 
-describe('SelectUnstyled', () => {
+describe('MultiSelectUnstyled', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
   const componentToTest = (
-    <SelectUnstyled defaultListboxOpen>
+    <MultiSelectUnstyled defaultListboxOpen>
       <OptionGroupUnstyled label="Group">
         <OptionUnstyled value={1}>1</OptionUnstyled>
       </OptionGroupUnstyled>
-    </SelectUnstyled>
+    </MultiSelectUnstyled>
   );
 
   describeConformanceUnstyled(componentToTest, () => ({
@@ -22,7 +22,7 @@ describe('SelectUnstyled', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'span',
-    muiName: 'MuiSelectUnstyled',
+    muiName: 'MuiSelect',
     slots: {
       root: {
         expectedClassName: selectUnstyledClasses.button,

@@ -19,14 +19,7 @@ function useUtilityClasses(ownerState: OptionState) {
 }
 
 /**
- *
- * Demos:
- *
- * - [Selects](https://mui.com/components/selects/)
- *
- * API:
- *
- * - [OptionUnstyled API](https://mui.com/api/option-unstyled/)
+ * An unstyled option to be used within a SelectUnstyled.
  */
 const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
   props: OptionUnstyledProps<TValue>,
@@ -125,4 +118,17 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
   value: PropTypes.any.isRequired,
 } as any;
 
-export default OptionUnstyled;
+/**
+ * An unstyled option to be used within a SelectUnstyled.
+ *
+ * Demos:
+ *
+ * - [Selects](https://mui.com/components/selects/)
+ *
+ * API:
+ *
+ * - [OptionUnstyled API](https://mui.com/api/option-unstyled/)
+ */
+export default OptionUnstyled as <TValue>(
+  props: OptionUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,
+) => JSX.Element | null;

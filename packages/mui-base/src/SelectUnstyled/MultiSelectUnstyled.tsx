@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
   unstable_useForkRef as useForkRef,
@@ -12,14 +13,14 @@ import { appendOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import { SelectUnstyledContext, SelectUnstyledContextType } from './SelectUnstyledContext';
 
-function defaultRenderMultipleValues<TValue extends {}>(selectedOptions: SelectOption<TValue>[]) {
+function defaultRenderMultipleValues<TValue>(selectedOptions: SelectOption<TValue>[]) {
   return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
 }
 
 /**
- * @ignore - internal component.
+ * The foundation for building custom-styled multi-selection select components.
  */
-const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue extends {}>(
+const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue>(
   props: MultiSelectUnstyledProps<TValue>,
   ref: React.ForwardedRef<any>,
 ) {
@@ -37,17 +38,18 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     listboxOpen: listboxOpenProp,
     onChange,
     onListboxOpenChange,
-    renderValue = defaultRenderMultipleValues,
     value: valueProp,
     ...other
   } = props;
+
+  const renderValue = props.renderValue ?? defaultRenderMultipleValues;
 
   const [groupedOptions, setGroupedOptions] = React.useState<SelectChild<TValue>[]>([]);
   const options = React.useMemo(() => flattenOptionGroups(groupedOptions), [groupedOptions]);
   const [listboxOpen, setListboxOpen] = useControlled({
     controlled: listboxOpenProp,
     default: defaultListboxOpen,
-    name: 'SelectUnstyled',
+    name: 'MultiSelectUnstyled',
     state: 'listboxOpen',
   });
 
@@ -185,6 +187,97 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   );
 });
 
-export default MultiSelectUnstyled as <TValue>(
-  props: MultiSelectUnstyledProps<TValue> & Pick<React.ComponentPropsWithRef<'ul'>, 'ref'>,
-) => React.ReactElement;
+MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * If `true`, the select element is focused during the first mount
+   * @default false
+   */
+  autoFocus: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  component: PropTypes.elementType,
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Listbox: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
+  /**
+   * If `true`, the select will be initially open.
+   * @default false
+   */
+  defaultListboxOpen: PropTypes.bool,
+  /**
+   * The default selected value. Use when the component is not controlled.
+   * @default []
+   */
+  defaultValue: PropTypes.array,
+  /**
+   * If `true`, the select is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Id of the listbox element.
+   */
+  listboxId: PropTypes.string,
+  /**
+   * Controls the open state of the select's listbox.
+   * @default undefined
+   */
+  listboxOpen: PropTypes.bool,
+  /**
+   * Callback fired when an option is selected.
+   */
+  onChange: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be opened.
+   * Use in controlled mode (see listboxOpen).
+   */
+  onListboxOpenChange: PropTypes.func,
+  /**
+   * Function that customizes the rendering of the selected values.
+   */
+  renderValue: PropTypes.func,
+  /**
+   * The selected values.
+   * Set to an empty array to deselect all options.
+   */
+  value: PropTypes.array,
+} as any;
+
+/**
+ * The foundation for building custom-styled multi-selection select components.
+ *
+ * Demos:
+ *
+ * - [Selects](https://mui.com/components/selects/)
+ *
+ * API:
+ *
+ * - [MultiSelectUnstyled API](https://mui.com/api/multi-select-unstyled/)
+ */
+export default MultiSelectUnstyled as <TValue extends {}>(
+  props: MultiSelectUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,
+) => JSX.Element | null;

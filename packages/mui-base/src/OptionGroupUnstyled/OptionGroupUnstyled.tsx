@@ -16,6 +16,7 @@ function useUtilityClasses(disabled: boolean) {
 }
 
 /**
+ * An unstyled option group to be used within a SelectUnstyled.
  *
  * Demos:
  *

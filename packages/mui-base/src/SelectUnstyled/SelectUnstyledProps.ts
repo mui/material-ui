@@ -54,7 +54,7 @@ interface SelectUnstyledCommonProps {
   onListboxOpenChange?: (isOpen: boolean) => void;
 }
 
-export interface SingleSelectUnstyledProps<TValue> extends SelectUnstyledCommonProps {
+export interface SelectUnstyledProps<TValue extends {}> extends SelectUnstyledCommonProps {
   /**
    * The default selected value. Use when the component is not controlled.
    */
@@ -74,9 +74,10 @@ export interface SingleSelectUnstyledProps<TValue> extends SelectUnstyledCommonP
   value?: TValue | null;
 }
 
-export interface MultiSelectUnstyledProps<TValue> extends SelectUnstyledCommonProps {
+export interface MultiSelectUnstyledProps<TValue extends {}> extends SelectUnstyledCommonProps {
   /**
    * The default selected values. Use when the component is not controlled.
+   * @default []
    */
   defaultValue?: TValue[];
   /**
@@ -94,16 +95,7 @@ export interface MultiSelectUnstyledProps<TValue> extends SelectUnstyledCommonPr
   value?: TValue[];
 }
 
-type SelectUnstyledProps<TValue> =
-  | (SingleSelectUnstyledProps<TValue> & { multiple?: false })
-  | (MultiSelectUnstyledProps<TValue> & {
-      /**
-       * If `true`, it will be possible to select multiple values.
-       */
-      multiple: true;
-    });
-
-export interface SingleSelectUnstyledOwnerState<TValue> extends SingleSelectUnstyledProps<TValue> {
+export interface SelectUnstyledOwnerState<TValue> extends SelectUnstyledProps<TValue> {
   active: boolean;
   disabled: boolean;
   open: boolean;
@@ -116,5 +108,3 @@ export interface MultiSelectUnstyledOwnerState<TValue> extends MultiSelectUnstyl
   open: boolean;
   focusVisible: boolean;
 }
-
-export default SelectUnstyledProps;

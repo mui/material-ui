@@ -1,6 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import {
+  MultiSelectUnstyled,
+  selectUnstyledClasses,
+} from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import { styled } from '@mui/system';
 
@@ -84,17 +87,17 @@ const StyledOption = styled(OptionUnstyled)`
   }
 `;
 
-const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+const CustomMultiSelect = React.forwardRef(function CustomMultiSelect(props, ref) {
   const components = {
     Root: StyledButton,
     Listbox: StyledListbox,
     ...props.components,
   };
 
-  return <SelectUnstyled {...props} ref={ref} components={components} />;
+  return <MultiSelectUnstyled {...props} ref={ref} components={components} />;
 });
 
-CustomSelect.propTypes = {
+CustomMultiSelect.propTypes = {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
@@ -108,12 +111,12 @@ CustomSelect.propTypes = {
 
 export default function UnstyledSelectsMultiple() {
   return (
-    <CustomSelect multiple defaultValue={[10, 20]}>
+    <CustomMultiSelect defaultValue={[10, 20]}>
       <StyledOption value={10}>Ten</StyledOption>
       <StyledOption value={20}>Twenty</StyledOption>
       <StyledOption value={30}>Thirty</StyledOption>
       <StyledOption value={40}>Forty</StyledOption>
       <StyledOption value={50}>Fifty</StyledOption>
-    </CustomSelect>
+    </CustomMultiSelect>
   );
 }

@@ -55,7 +55,7 @@ const StyledListbox = styled('ul')`
   color: #000;
 `;
 
-const StyledOption = styled(OptionUnstyled)`
+const StyledOption: typeof OptionUnstyled = styled(OptionUnstyled)`
   list-style: none;
   padding: 4px 10px;
   margin: 0;
@@ -110,7 +110,7 @@ const StyledGroupOptions = styled('ul')`
   }
 `;
 
-const CustomSelect = React.forwardRef(function CustomSelect(
+function CustomSelect(
   props: SelectUnstyledProps<string>,
   ref: React.ForwardedRef<any>,
 ) {
@@ -121,7 +121,7 @@ const CustomSelect = React.forwardRef(function CustomSelect(
   };
 
   return <SelectUnstyled {...props} ref={ref} components={components} />;
-});
+}
 
 const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(
   props: OptionGroupUnstyledProps,

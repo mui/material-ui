@@ -1,6 +1,6 @@
 ---
 title: React Select component
-components: Select, NativeSelect, SelectUnstyled, OptionUnstyled, OptionGroupUnstyled
+components: Select, NativeSelect, SelectUnstyled, MultiSelectUnstyled, OptionUnstyled, OptionGroupUnstyled
 githubLabel: 'component: Select'
 ---
 
@@ -200,7 +200,11 @@ Place the `Option` components inside `OptionGroup` to achieve this.
 
 #### Multiselect
 
-Setting the `multiple` prop allows to select more than one value at a time.
+To be able to select multiple options at once, use the `MultiSelectUnstyled` component.
+
+```js
+import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
+```
 
 {{"demo": "pages/components/selects/UnstyledSelectMultiple.js"}}
 

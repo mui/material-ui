@@ -87,18 +87,15 @@ const StyledOption = styled(OptionUnstyled)`
   }
 `;
 
-const CustomSelect = React.forwardRef(function CustomSelect(
-  props: SelectUnstyledProps<number>,
-  ref: React.ForwardedRef<any>,
-) {
+function CustomSelect(props: SelectUnstyledProps<number>) {
   const components: SelectUnstyledProps<number>['components'] = {
     Root: StyledButton,
     Listbox: StyledListbox,
     ...props.components,
   };
 
-  return <SelectUnstyled {...props} ref={ref} components={components} />;
-});
+  return <SelectUnstyled {...props} components={components} />;
+}
 
 function renderValue(option: SelectOption<number> | null) {
   if (option == null) {

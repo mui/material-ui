@@ -1,9 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  selectUnstyledClasses,
-  SingleSelectUnstyled,
-} from '@mui/base/SelectUnstyled';
+import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import { styled } from '@mui/system';
 
@@ -94,7 +91,7 @@ function CustomSelect(props) {
     ...props.components,
   };
 
-  return <SingleSelectUnstyled {...props} components={components} />;
+  return <SelectUnstyled {...props} components={components} />;
 }
 
 CustomSelect.propTypes = {

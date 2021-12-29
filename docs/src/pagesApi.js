@@ -97,6 +97,7 @@ module.exports = [
   { pathname: '/api-docs/modal' },
   { pathname: '/api-docs/modal-unstyled' },
   { pathname: '/api-docs/month-picker' },
+  { pathname: '/api-docs/multi-select-unstyled' },
   { pathname: '/api-docs/native-select' },
   { pathname: '/api-docs/no-ssr' },
   { pathname: '/api-docs/option-group-unstyled' },
