@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Fab from '@mui/material/Fab';
 import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
-import { Tooltip } from '@mui/material';
 
 export default function ScrollToTop() {
   const scrollUpButton = {
@@ -12,7 +11,9 @@ export default function ScrollToTop() {
   };
   const [isVisible, setIsVisible] = useState(false);
 
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined') {
+    return null;
+  }
 
   const toggleVisibility = () => {
     if (window.pageYOffset > 300) {
@@ -34,12 +35,12 @@ export default function ScrollToTop() {
   }, []);
 
   return (
-    <>
+    <React.Fragment>
       {isVisible && (
         <Fab color="primary" onClick={scrollToTop} style={scrollUpButton}>
           <ArrowUpwardOutlinedIcon />
         </Fab>
       )}
-    </>
+    </React.Fragment>
   );
 }
