@@ -227,7 +227,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
   );
 
   const handleBodyTouchEnd = useEventCallback((nativeEvent) => {
-    if (!touchDetected.current) {
+    // the ref may be null when a parent component updates while swiping
+    if (!paperRef.current || !touchDetected.current) {
       return;
     }
     claimedSwipeInstance = null;
