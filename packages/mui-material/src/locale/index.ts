@@ -3003,26 +3003,26 @@ export const ukUA: Localization = {
 
 export const viVN: Localization = {
   components: {
-    // MuiBreadcrumbs: {
-    //   defaultProps: {
-    //     expandText: 'Show path',
-    //   },
-    // },
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Mở ra',
+      },
+    },
     MuiTablePagination: {
       defaultProps: {
-        // getItemAriaLabel: (type) => {
-        //   if (type === 'first') {
-        //     return 'Go to first page';
-        //   }
-        //   if (type === 'last') {
-        //     return 'Go to last page';
-        //   }
-        //   if (type === 'next') {
-        //     return 'Go to next page';
-        //   }
-        //   // if (type === 'previous') {
-        //   return 'Go to previous page';
-        // },
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Tới trang đầu tiên';
+          }
+          if (type === 'last') {
+            return 'Tới trang cuối cùng';
+          }
+          if (type === 'next') {
+            return 'Tới trang tiếp theo';
+          }
+          // if (type === 'previous') {
+          return 'Về trang trước đó';
+        },
         labelRowsPerPage: 'Số hàng mỗi trang:',
         labelDisplayedRows: ({ from, to, count }) =>
           `${from}–${to} trong ${count !== -1 ? count : `nhiều hơn ${to}`}`,
@@ -3031,7 +3031,7 @@ export const viVN: Localization = {
     MuiRating: {
       defaultProps: {
         getLabelText: (value) => `${value} sao`,
-        emptyLabelText: 'Trống',
+        emptyLabelText: 'Không có dữ liệu',
       },
     },
     MuiAutocomplete: {
@@ -3039,7 +3039,7 @@ export const viVN: Localization = {
         clearText: 'Xóa',
         closeText: 'Đóng',
         loadingText: 'Đang tải…',
-        noOptionsText: 'Không có lựa chọn',
+        noOptionsText: 'Không có lựa chọn nào',
         openText: 'Mở',
       },
     },
@@ -3048,27 +3048,27 @@ export const viVN: Localization = {
         closeText: 'Đóng',
       },
     },
-    // MuiPagination: {
-    //   defaultProps: {
-    //     'aria-label': 'Pagination navigation',
-    //     getItemAriaLabel: (type, page, selected) => {
-    //       if (type === 'page') {
-    //         return `${selected ? '' : 'Go to '}page ${page}`;
-    //       }
-    //       if (type === 'first') {
-    //         return 'Go to first page';
-    //       }
-    //       if (type === 'last') {
-    //         return 'Go to last page';
-    //       }
-    //       if (type === 'next') {
-    //         return 'Go to next page';
-    //       }
-    //       // if (type === 'previous') {
-    //       return 'Go to previous page';
-    //     },
-    //   },
-    // },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Thanh điều khiển trang',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Tới '}trang ${page}`;
+          }
+          if (type === 'first') {
+            return 'Tới trang đầu tiên';
+          }
+          if (type === 'last') {
+            return 'Tới trang cuối cùng';
+          }
+          if (type === 'next') {
+            return 'Tới trang tiếp theo';
+          }
+          // if (type === 'previous') {
+          return 'Về trang trước đó';
+        },
+      },
+    },
   },
 };
 
