@@ -1,3 +1,4 @@
+import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
 import { deepmerge } from '@mui/utils';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { darken, getContrastRatio, lighten } from '@mui/system';
@@ -185,14 +186,18 @@ export default function createPalette(palette) {
   const { mode = 'light', contrastThreshold = 3, tonalOffset = 0.2, ...other } = palette;
 
   // seperate custom palettes from the rest
-  var { primary, secondary, error, info, success, warning, text, type, ...customPalettes } = other;
+  const defaultPalettes = ['primary', 'secondary', 'error', 'info', 'success', 'warning'];
+  const customPalettes = _objectWithoutPropertiesLoose(
+    other,
+    defaultPalettes.concat(['text', 'type']),
+  );
 
-  primary = primary || getDefaultPrimary(mode);
-  secondary = secondary || getDefaultSecondary(mode);
-  error = error || getDefaultError(mode);
-  info = info || getDefaultInfo(mode);
-  success = success || getDefaultSuccess(mode);
-  warning = warning || getDefaultWarning(mode);
+  const primary = palette.primary || getDefaultPrimary(mode);
+  const secondary = palette.secondary || getDefaultSecondary(mode);
+  const error = palette.error || getDefaultError(mode);
+  const info = palette.info || getDefaultInfo(mode);
+  const success = palette.success || getDefaultSuccess(mode);
+  const warning = palette.warning || getDefaultWarning(mode);
 
   // Use the same logic as
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
@@ -273,10 +278,10 @@ export default function createPalette(palette) {
   }
 
   // Augment Colors of customPalettes
-  Object.keys(customPalettes).forEach((palette) => {
-    customPalettes[palette] = augmentColor({
-      color: customPalettes[palette],
-      name: palette,
+  Object.keys(customPalettes).forEach((customPalette) => {
+    customPalettes[customPalette] = augmentColor({
+      color: customPalettes[customPalette],
+      name: customPalette,
     });
   });
 
