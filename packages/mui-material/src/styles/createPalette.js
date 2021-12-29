@@ -1,4 +1,4 @@
-import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
+import { _objectWithoutPropertiesLoose } from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
 import { deepmerge } from '@mui/utils';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { darken, getContrastRatio, lighten } from '@mui/system';
