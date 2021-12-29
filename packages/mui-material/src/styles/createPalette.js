@@ -184,6 +184,13 @@ function getDefaultWarning(mode = 'light') {
 export default function createPalette(palette) {
   const { mode = 'light', contrastThreshold = 3, tonalOffset = 0.2, ...other } = palette;
 
+  // seperate custom palettes from the rest
+  const defaultPalettes = ['primary', 'secondary', 'error', 'info', 'success', 'warning'];
+  const customPalettes = _objectWithoutPropertiesLoose(
+    other,
+    defaultPalettes.concat(['text', 'type']),
+  );
+
   const primary = palette.primary || getDefaultPrimary(mode);
   const secondary = palette.secondary || getDefaultSecondary(mode);
   const error = palette.error || getDefaultError(mode);
@@ -269,6 +276,14 @@ export default function createPalette(palette) {
     }
   }
 
+  // Augment Colors of customPalettes
+  Object.keys(customPalettes).forEach((palette) => {
+    customPalettes[palette] = augmentColor({
+      color: customPalettes[palette],
+      name: palette,
+    });
+  });
+
   const paletteOutput = deepmerge(
     {
       // A collection of common colors.
@@ -309,6 +324,7 @@ export default function createPalette(palette) {
       // The light and dark mode object.
       ...modes[mode],
     },
+    customPalettes,
     other,
   );
 
