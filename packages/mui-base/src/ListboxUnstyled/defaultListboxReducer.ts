@@ -95,19 +95,49 @@ function getNewHighlightedIndex<TOption>(
   return nextIndex;
 }
 
+function handleOptionSelection<TOption>(
+  option: TOption,
+  state: ListboxState<TOption>,
+  props: UseListboxStrictProps<TOption>,
+): ListboxState<TOption> {
+  const { multiple, optionComparer = (o, v) => o === v, isOptionDisabled = () => false } = props;
+  const { selectedValue } = state;
+
+  const optionIndex = props.options.indexOf(option);
+
+  if (isOptionDisabled(option, optionIndex)) {
+    return state;
+  }
+
+  if (multiple) {
+    const selectedValues = (selectedValue as TOption[]) ?? [];
+    // if the option is already selected, remove it from the selection, otherwise add it
+    const newSelectedValues = selectedValues.some((sv) => optionComparer(sv, option))
+      ? (selectedValue as TOption[]).filter((v) => !optionComparer(v, option))
+      : [...((selectedValue as TOption[]) ?? []), option];
+
+    return {
+      selectedValue: newSelectedValues,
+      highlightedIndex: optionIndex,
+    };
+  }
+
+  if (selectedValue != null && optionComparer(option, selectedValue as TOption)) {
+    return state;
+  }
+
+  return {
+    selectedValue: option,
+    highlightedIndex: optionIndex,
+  };
+}
+
 function handleKeyDown<TOption>(
   event: React.KeyboardEvent,
   state: Readonly<ListboxState<TOption>>,
   props: UseListboxStrictProps<TOption>,
 ): ListboxState<TOption> {
-  const {
-    options,
-    isOptionDisabled,
-    disableListWrap,
-    disabledItemsFocusable,
-    optionComparer,
-    multiple: selectMultiple,
-  } = props;
+  const { options, isOptionDisabled, disableListWrap, disabledItemsFocusable } = props;
 
   const moveHighlight = (
     diff: number | 'reset' | 'start' | 'end',
@@ -166,86 +196,17 @@ function handleKeyDown<TOption>(
 
     case 'Enter':
     case ' ':
-      if (state.highlightedIndex !== -1) {
-        const option = options[state.highlightedIndex];
-        const disabled = isOptionDisabled
-          ? isOptionDisabled(option, state.highlightedIndex)
-          : false;
-
-        if (disabled) {
-          return state;
-        }
-
-        if (selectMultiple) {
-          if (((state.selectedValue as TOption[]) ?? []).some((o) => optionComparer(o, option))) {
-            return {
-              ...state,
-              selectedValue: (state.selectedValue as TOption[]).filter(
-                (o) => !optionComparer(o, option),
-              ),
-            };
-          }
-
-          return {
-            ...state,
-            selectedValue: [...((state.selectedValue as TOption[]) ?? []), option],
-          };
-        }
-
-        return {
-          ...state,
-          selectedValue: option,
-        };
+      if (state.highlightedIndex === -1 || options[state.highlightedIndex] === undefined) {
+        return state;
       }
-      break;
+
+      return handleOptionSelection(options[state.highlightedIndex], state, props);
 
     default:
       break;
   }
 
   return state;
-}
-
-function handleOptionClick<TOption>(
-  option: TOption,
-  state: ListboxState<TOption>,
-  props: UseListboxStrictProps<TOption>,
-): ListboxState<TOption> {
-  const {
-    multiple: selectMultiple,
-    optionComparer = (o, v) => o === v,
-    isOptionDisabled = () => false,
-  } = props;
-  const { selectedValue } = state;
-
-  const optionIndex = props.options.indexOf(option);
-
-  if (isOptionDisabled(option, optionIndex)) {
-    return state;
-  }
-
-  if (selectMultiple) {
-    const newSelectedValue = ((selectedValue as TOption[]) ?? []).some((v) =>
-      optionComparer(v, option),
-    )
-      ? (selectedValue as TOption[]).filter((v) => !optionComparer(v, option))
-      : [...((selectedValue as TOption[]) ?? []), option];
-    return {
-      ...state,
-      selectedValue: newSelectedValue,
-      highlightedIndex: optionIndex,
-    };
-  }
-
-  if (selectedValue != null && optionComparer(option, selectedValue as TOption)) {
-    return state;
-  }
-
-  return {
-    ...state,
-    selectedValue: option,
-    highlightedIndex: optionIndex,
-  };
 }
 
 function handleBlur<TOption>(state: ListboxState<TOption>): ListboxState<TOption> {
@@ -261,29 +222,30 @@ function handleOptionsChange<TOption>(
   state: ListboxState<TOption>,
   props: UseListboxStrictProps<TOption>,
 ): ListboxState<TOption> {
+  const { multiple, optionComparer } = props;
+
   const highlightedOption = previousOptions[state.highlightedIndex];
   const hightlightedOptionNewIndex = options.findIndex((option) =>
-    props.optionComparer(option, highlightedOption),
+    optionComparer(option, highlightedOption),
   );
 
-  if (props.multiple) {
+  if (multiple) {
     // exclude selected values that are no longer in the options
-    const newSelectedValues = ((state.selectedValue ?? []) as TOption[]).filter((selectedValue) =>
-      options.some((option) => props.optionComparer(option, selectedValue)),
+    const selectedValues = (state.selectedValue as TOption[]) ?? [];
+    const newSelectedValues = selectedValues.filter((selectedValue) =>
+      options.some((option) => optionComparer(option, selectedValue)),
     );
 
     return {
-      ...state,
       highlightedIndex: hightlightedOptionNewIndex,
       selectedValue: newSelectedValues,
     };
   }
 
   const newSelectedValue =
-    options.find((option) => props.optionComparer(option, state.selectedValue as TOption)) ?? null;
+    options.find((option) => optionComparer(option, state.selectedValue as TOption)) ?? null;
 
   return {
-    ...state,
     highlightedIndex: hightlightedOptionNewIndex,
     selectedValue: newSelectedValue,
   };
@@ -299,7 +261,7 @@ export default function defaultListboxReducer<TOption>(
     case ActionTypes.keyDown:
       return handleKeyDown(action.event, state, action.props);
     case ActionTypes.optionClick:
-      return handleOptionClick(action.option, state, action.props);
+      return handleOptionSelection(action.option, state, action.props);
     case ActionTypes.blur:
       return handleBlur(state);
     case ActionTypes.setControlledValue:

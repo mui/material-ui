@@ -7,7 +7,6 @@ import OptionUnstyledProps from './OptionUnstyledProps';
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
 import appendOwnerState from '../utils/appendOwnerState';
-import { OptionContext } from './OptionContext';
 
 function useUtilityClasses(ownerState: OptionState) {
   const { disabled, highlighted, selected } = ownerState;
@@ -46,7 +45,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   const selectContext = React.useContext(SelectUnstyledContext);
   if (!selectContext) {
-    throw new Error('Option must be used within a SelectUnstyled');
+    throw new Error('OptionUnstyled must be used within a SelectUnstyled');
   }
 
   const Root = component || components.Root || 'li';
@@ -79,11 +78,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     ownerState,
   );
 
-  return (
-    <OptionContext.Provider value={optionState}>
-      <Root {...rootProps}>{children}</Root>
-    </OptionContext.Provider>
-  );
+  return <Root {...rootProps}>{children}</Root>;
 });
 
 OptionUnstyled.propTypes /* remove-proptypes */ = {

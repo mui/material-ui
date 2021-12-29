@@ -14,6 +14,7 @@ function useUtilityClasses(disabled: boolean) {
 
   return composeClasses(slots, getOptionGroupUnstyledUtilityClass, {});
 }
+
 /**
  *
  * Demos:

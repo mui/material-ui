@@ -128,11 +128,6 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
       });
     };
 
-  const createHandleFocus =
-    (other: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent<HTMLElement>) => {
-      other.onFocus?.(event);
-    };
-
   const getRootProps = (other: Record<string, React.EventHandler<any>> = {}) => {
     return {
       'aria-activedescendant':
@@ -141,7 +136,6 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
           : undefined,
       id,
       onBlur: createHandleBlur(other),
-      onFocus: createHandleFocus(other),
       onKeyDown: createHandleKeyDown(other),
       role: 'listbox',
       tabIndex: 0,
