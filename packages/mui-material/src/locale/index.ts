@@ -1131,8 +1131,8 @@ export const fiFI: Localization = {
           return 'Mene edelliselle sivulle';
         },
         labelRowsPerPage: 'Rivejä per sivu:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} / ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} / ${count !== -1 ? count : `enemmän kuin ${to}`}`,
       },
     },
     MuiRating: {
