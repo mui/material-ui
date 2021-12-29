@@ -1,4 +1,3 @@
-import { _objectWithoutPropertiesLoose } from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
 import { deepmerge } from '@mui/utils';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { darken, getContrastRatio, lighten } from '@mui/system';
@@ -185,19 +184,18 @@ function getDefaultWarning(mode = 'light') {
 export default function createPalette(palette) {
   const { mode = 'light', contrastThreshold = 3, tonalOffset = 0.2, ...other } = palette;
 
-  // seperate custom palettes from the rest
-  const defaultPalettes = ['primary', 'secondary', 'error', 'info', 'success', 'warning'];
-  const customPalettes = _objectWithoutPropertiesLoose(
-    other,
-    defaultPalettes.concat(['text', 'type']),
-  );
-
-  const primary = palette.primary || getDefaultPrimary(mode);
-  const secondary = palette.secondary || getDefaultSecondary(mode);
-  const error = palette.error || getDefaultError(mode);
-  const info = palette.info || getDefaultInfo(mode);
-  const success = palette.success || getDefaultSuccess(mode);
-  const warning = palette.warning || getDefaultWarning(mode);
+  // get default and custom palettes
+  const {
+    primary = getDefaultPrimary(mode),
+    secondary = getDefaultSecondary(mode),
+    error = getDefaultError(mode),
+    info = getDefaultInfo(mode),
+    success = getDefaultSuccess(mode),
+    warning = getDefaultWarning(mode),
+    text,
+    type,
+    ...customPalettes
+  } = other;
 
   // Use the same logic as
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
