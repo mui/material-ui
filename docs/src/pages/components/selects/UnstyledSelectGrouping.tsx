@@ -117,6 +117,7 @@ const CustomSelect = React.forwardRef(function CustomSelect(
   const components: SelectUnstyledProps<string>['components'] = {
     Root: StyledButton,
     Listbox: StyledListbox,
+    ...props.components,
   };
 
   return <SelectUnstyled {...props} ref={ref} components={components} />;
@@ -130,6 +131,7 @@ const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(
     Root: StyledGroupRoot,
     Label: StyledGroupHeader,
     List: StyledGroupOptions,
+    ...props.components,
   };
 
   return <OptionGroupUnstyled {...props} ref={ref} components={components} />;

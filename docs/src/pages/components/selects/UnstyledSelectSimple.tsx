@@ -93,18 +93,10 @@ const CustomSelect = React.forwardRef(function CustomSelect(
   const components: SelectUnstyledProps<number>['components'] = {
     Root: StyledButton,
     Listbox: StyledListbox,
+    ...props.components,
   };
 
-  const componentsProps: SelectUnstyledProps<number>['componentsProps'] = {};
-
-  return (
-    <SelectUnstyled
-      {...props}
-      ref={ref}
-      components={components}
-      componentsProps={componentsProps}
-    />
-  );
+  return <SelectUnstyled {...props} ref={ref} components={components} />;
 });
 
 export default function UnstyledSelectSimple() {

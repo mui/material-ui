@@ -92,6 +92,7 @@ function CustomSelect<TValue extends {}>(props: SingleSelectUnstyledProps<TValue
   const components: SelectUnstyledProps<number>['components'] = {
     Root: StyledButton,
     Listbox: StyledListbox,
+    ...props.components,
   };
 
   return <SingleSelectUnstyled<TValue> {...props} components={components} />;

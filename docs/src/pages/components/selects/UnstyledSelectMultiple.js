@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import { styled } from '@mui/system';
@@ -87,19 +88,23 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
   const components = {
     Root: StyledButton,
     Listbox: StyledListbox,
+    ...props.components,
   };
 
-  const componentsProps = {};
-
-  return (
-    <SelectUnstyled
-      {...props}
-      ref={ref}
-      components={components}
-      componentsProps={componentsProps}
-    />
-  );
+  return <SelectUnstyled {...props} ref={ref} components={components} />;
 });
+
+CustomSelect.propTypes = {
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Listbox: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+};
 
 export default function UnstyledSelectsMultiple() {
   return (
