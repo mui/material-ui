@@ -247,8 +247,8 @@ export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
-    <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>     
-    <ScrollToTop />
+    <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
+      <ScrollToTop />
       <Component {...pageProps} />
     </AppWrapper>
   );
