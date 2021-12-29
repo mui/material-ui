@@ -11,10 +11,6 @@ export default function ScrollToTop() {
   };
   const [isVisible, setIsVisible] = useState(false);
 
-  if (typeof window === 'undefined') {
-    return null;
-  }
-
   const toggleVisibility = () => {
     if (window.pageYOffset > 300) {
       setIsVisible(true);
@@ -31,7 +27,9 @@ export default function ScrollToTop() {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', toggleVisibility);
+    }
   }, []);
 
   return (
