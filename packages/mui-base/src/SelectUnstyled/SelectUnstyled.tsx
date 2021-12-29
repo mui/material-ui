@@ -6,15 +6,35 @@ import {
   unstable_useControlled as useControlled,
 } from '@mui/utils';
 import { SelectUnstyledOwnerState, SelectUnstyledProps } from './SelectUnstyledProps';
-import { flattenOptionGroups, getOptionsFromChildren, useUtilityClasses } from './utils';
+import { flattenOptionGroups, getOptionsFromChildren } from './utils';
 import useSelect from './useSelect';
 import { SelectChild, SelectOption } from './useSelectProps';
 import { appendOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import { SelectUnstyledContext, SelectUnstyledContextType } from './SelectUnstyledContext';
+import composeClasses from '../composeClasses';
+import { getSelectUnstyledUtilityClass } from './selectUnstyledClasses';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
   return selectedOption?.label ?? '';
+}
+
+function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
+  const { active, disabled, open, focusVisible } = ownerState;
+
+  const slots = {
+    button: [
+      'button',
+      disabled && 'disabled',
+      focusVisible && 'focusVisible',
+      active && 'active',
+      open && 'expanded',
+    ],
+    listbox: ['listbox', disabled && 'disabled'],
+    option: ['option'],
+  };
+
+  return composeClasses(slots, getSelectUnstyledUtilityClass, {});
 }
 
 /**

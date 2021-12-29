@@ -8,11 +8,7 @@ import {
 import MultiSelectUnstyledProps, {
   MultiSelectUnstyledOwnerState,
 } from './MultiSelectUnstyledProps';
-import {
-  flattenOptionGroups,
-  getOptionsFromChildren,
-  useUtilityClasses,
-} from '../SelectUnstyled/utils';
+import { flattenOptionGroups, getOptionsFromChildren } from '../SelectUnstyled/utils';
 import useSelect from '../SelectUnstyled/useSelect';
 import { SelectChild, SelectOption } from '../SelectUnstyled/useSelectProps';
 import { appendOwnerState } from '../utils';
@@ -21,9 +17,29 @@ import {
   SelectUnstyledContext,
   SelectUnstyledContextType,
 } from '../SelectUnstyled/SelectUnstyledContext';
+import composeClasses from '../composeClasses';
+import { getSelectUnstyledUtilityClass } from '../SelectUnstyled/selectUnstyledClasses';
 
 function defaultRenderMultipleValues<TValue>(selectedOptions: SelectOption<TValue>[]) {
   return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
+}
+
+function useUtilityClasses(ownerState: MultiSelectUnstyledOwnerState<any>) {
+  const { active, disabled, open, focusVisible } = ownerState;
+
+  const slots = {
+    button: [
+      'button',
+      disabled && 'disabled',
+      focusVisible && 'focusVisible',
+      active && 'active',
+      open && 'expanded',
+    ],
+    listbox: ['listbox', disabled && 'disabled'],
+    option: ['option'],
+  };
+
+  return composeClasses(slots, getSelectUnstyledUtilityClass, {});
 }
 
 /**

@@ -1,10 +1,6 @@
 import React from 'react';
-import composeClasses from '../composeClasses';
 import { OptionUnstyledProps } from '../OptionUnstyled';
 import { OptionGroupUnstyledProps } from '../OptionGroupUnstyled';
-import { getSelectUnstyledUtilityClass } from './selectUnstyledClasses';
-import { SelectUnstyledOwnerState } from './SelectUnstyledProps';
-import { MultiSelectUnstyledOwnerState } from '../MultiSelectUnstyled/MultiSelectUnstyledProps';
 import { isOptionGroup, SelectChild, SelectOption, SelectOptionGroup } from './useSelectProps';
 
 export function areOptionsEqual<TValue>(
@@ -55,26 +51,6 @@ export function getOptionsFromChildren<TValue>(children: React.ReactNode): Selec
   });
 
   return selectChildren ?? [];
-}
-
-export function useUtilityClasses(
-  ownerState: SelectUnstyledOwnerState<any> | MultiSelectUnstyledOwnerState<any>,
-) {
-  const { active, disabled, open, focusVisible } = ownerState;
-
-  const slots = {
-    button: [
-      'button',
-      disabled && 'disabled',
-      focusVisible && 'focusVisible',
-      active && 'active',
-      open && 'expanded',
-    ],
-    listbox: ['listbox', disabled && 'disabled'],
-    option: ['option'],
-  };
-
-  return composeClasses(slots, getSelectUnstyledUtilityClass, {});
 }
 
 export function flattenOptionGroups<TValue>(
