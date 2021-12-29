@@ -20,7 +20,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/mui-base/src/SelectUnstyled/MultiSelectUnstyled.tsx",
+  "filename": "/packages/mui-base/src/MultiSelectUnstyled/MultiSelectUnstyled.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/selects/\">Selects</a></li></ul>",
   "cssComponent": false
