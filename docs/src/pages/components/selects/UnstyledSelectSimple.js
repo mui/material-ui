@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';

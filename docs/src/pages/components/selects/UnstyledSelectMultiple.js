@@ -1,9 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  MultiSelectUnstyled,
-  selectUnstyledClasses,
-} from '@mui/base/SelectUnstyled';
+import MultiSelectUnstyled from '@mui/base/MultiSelectUnstyled';
+import { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import { styled } from '@mui/system';
 

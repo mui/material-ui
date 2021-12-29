@@ -10,5 +10,3 @@ export * from './SelectUnstyledProps';
 export { default as useSelect } from './useSelect';
 
 export * from './useSelectProps';
-
-export { default as MultiSelectUnstyled } from './MultiSelectUnstyled';

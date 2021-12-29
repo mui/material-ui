@@ -2,7 +2,7 @@ import { SelectOption } from './useSelectProps';
 
 export interface SelectUnstyledComponentsPropsOverrides {}
 
-interface SelectUnstyledCommonProps {
+export interface SelectUnstyledCommonProps {
   /**
    * If `true`, the select element is focused during the first mount
    * @default false
@@ -74,35 +74,7 @@ export interface SelectUnstyledProps<TValue extends {}> extends SelectUnstyledCo
   value?: TValue | null;
 }
 
-export interface MultiSelectUnstyledProps<TValue extends {}> extends SelectUnstyledCommonProps {
-  /**
-   * The default selected values. Use when the component is not controlled.
-   * @default []
-   */
-  defaultValue?: TValue[];
-  /**
-   * Callback fired when an option is selected.
-   */
-  onChange?: (value: TValue[]) => void;
-  /**
-   * Function that customizes the rendering of the selected values.
-   */
-  renderValue?: (option: SelectOption<TValue>[]) => React.ReactNode;
-  /**
-   * The selected values.
-   * Set to an empty array to deselect all options.
-   */
-  value?: TValue[];
-}
-
 export interface SelectUnstyledOwnerState<TValue> extends SelectUnstyledProps<TValue> {
-  active: boolean;
-  disabled: boolean;
-  open: boolean;
-  focusVisible: boolean;
-}
-
-export interface MultiSelectUnstyledOwnerState<TValue> extends MultiSelectUnstyledProps<TValue> {
   active: boolean;
   disabled: boolean;
   open: boolean;

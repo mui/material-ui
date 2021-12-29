@@ -3,10 +3,8 @@ import composeClasses from '../composeClasses';
 import { OptionUnstyledProps } from '../OptionUnstyled';
 import { OptionGroupUnstyledProps } from '../OptionGroupUnstyled';
 import { getSelectUnstyledUtilityClass } from './selectUnstyledClasses';
-import {
-  SingleSelectUnstyledOwnerState,
-  MultiSelectUnstyledOwnerState,
-} from './SelectUnstyledProps';
+import { SelectUnstyledOwnerState } from './SelectUnstyledProps';
+import { MultiSelectUnstyledOwnerState } from '../MultiSelectUnstyled/MultiSelectUnstyledProps';
 import { isOptionGroup, SelectChild, SelectOption, SelectOptionGroup } from './useSelectProps';
 
 export function areOptionsEqual<TValue>(
@@ -60,7 +58,7 @@ export function getOptionsFromChildren<TValue>(children: React.ReactNode): Selec
 }
 
 export function useUtilityClasses(
-  ownerState: SingleSelectUnstyledOwnerState<any> | MultiSelectUnstyledOwnerState<any>,
+  ownerState: SelectUnstyledOwnerState<any> | MultiSelectUnstyledOwnerState<any>,
 ) {
   const { active, disabled, open, focusVisible } = ownerState;
 

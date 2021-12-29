@@ -5,13 +5,22 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
 } from '@mui/utils';
-import { MultiSelectUnstyledOwnerState, MultiSelectUnstyledProps } from './SelectUnstyledProps';
-import { flattenOptionGroups, getOptionsFromChildren, useUtilityClasses } from './utils';
-import useSelect from './useSelect';
-import { SelectChild, SelectOption } from './useSelectProps';
+import MultiSelectUnstyledProps, {
+  MultiSelectUnstyledOwnerState,
+} from './MultiSelectUnstyledProps';
+import {
+  flattenOptionGroups,
+  getOptionsFromChildren,
+  useUtilityClasses,
+} from '../SelectUnstyled/utils';
+import useSelect from '../SelectUnstyled/useSelect';
+import { SelectChild, SelectOption } from '../SelectUnstyled/useSelectProps';
 import { appendOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
-import { SelectUnstyledContext, SelectUnstyledContextType } from './SelectUnstyledContext';
+import {
+  SelectUnstyledContext,
+  SelectUnstyledContextType,
+} from '../SelectUnstyled/SelectUnstyledContext';
 
 function defaultRenderMultipleValues<TValue>(selectedOptions: SelectOption<TValue>[]) {
   return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
@@ -229,7 +238,7 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   defaultListboxOpen: PropTypes.bool,
   /**
-   * The default selected value. Use when the component is not controlled.
+   * The default selected values. Use when the component is not controlled.
    * @default []
    */
   defaultValue: PropTypes.array,

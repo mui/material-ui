@@ -1,9 +1,8 @@
 import * as React from 'react';
-import {
-  MultiSelectUnstyled,
+import MultiSelectUnstyled, {
   MultiSelectUnstyledProps,
-  selectUnstyledClasses,
-} from '@mui/base/SelectUnstyled';
+} from '@mui/base/MultiSelectUnstyled';
+import { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import { styled } from '@mui/system';
 

@@ -32,6 +32,9 @@ export * from './InputUnstyled';
 export { default as ModalUnstyled } from './ModalUnstyled';
 export * from './ModalUnstyled';
 
+export { default as MultiSelectUnstyled } from './MultiSelectUnstyled';
+export * from './MultiSelectUnstyled';
+
 export { default as NoSsr } from './NoSsr';
 
 export { default as OptionGroupUnstyled } from './OptionGroupUnstyled';
