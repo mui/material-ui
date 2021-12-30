@@ -27,7 +27,7 @@ function ScrollTop(props) {
   );
 }
 
-export default function BackToTop(props) {
+export default function ScrollToTop(props) {
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
