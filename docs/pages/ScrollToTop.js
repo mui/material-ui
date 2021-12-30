@@ -1,44 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
-import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Zoom from '@mui/material/Zoom';
 
-export default function ScrollToTop() {
-  const scrollUpButton = {
-    'z-index': '5',
-    position: 'fixed',
-    right: 20,
-    bottom: 10,
+function ScrollTop(props) {
+  const { children, window } = props;
+
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  return (
+    <Zoom in={trigger}>
+      <Box
+        onClick={props.handleClick}
+        role="presentation"
+        sx={{ position: 'fixed', bottom: 16, right: 16, 'z-index': 10 }}
+      >
+        {children}
+      </Box>
+    </Zoom>
+  );
+}
+
+export default function BackToTop(props) {
+  const handleClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-  const [isVisible, setIsVisible] = useState(false);
-
-  const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', toggleVisibility);
-    }
-  }, []);
 
   return (
     <React.Fragment>
-      {isVisible && (
-        <Fab color="primary" onClick={scrollToTop} style={scrollUpButton}>
-          <ArrowUpwardOutlinedIcon />
+      <ScrollTop {...props} handleClick={handleClick}>
+        <Fab color="primary" size="small" aria-label="scroll back to top">
+          <KeyboardArrowUpIcon />
         </Fab>
-      )}
+      </ScrollTop>
     </React.Fragment>
   );
 }

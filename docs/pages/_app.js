@@ -253,7 +253,6 @@ export default function MyApp(props) {
     </AppWrapper>
   );
 }
-
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   emotionCache: PropTypes.object,
