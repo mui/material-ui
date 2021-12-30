@@ -570,7 +570,11 @@ export default function useAutocomplete(props) {
   };
 
   const handleValue = (event, newValue, reason, details) => {
-    if (value === newValue) {
+    if (Array.isArray(value)) {
+      if (value.length === newValue.length && value.every((val, i) => val === newValue[i])) {
+        return;
+      }
+    } else if (value === newValue) {
       return;
     }
 
