@@ -192,8 +192,6 @@ export default function createPalette(palette) {
     info = getDefaultInfo(mode),
     success = getDefaultSuccess(mode),
     warning = getDefaultWarning(mode),
-    text,
-    type,
     ...customPalettes
   } = other;
 
@@ -275,12 +273,25 @@ export default function createPalette(palette) {
     }
   }
 
-  // Augment Colors of customPalettes
+  // Augment Colors of custom Palettes only. Ignore other elements in object like background
+  const ignoreKeys = [
+    'common',
+    'grey',
+    'getContrastText',
+    'augmentColor',
+    'text',
+    'type',
+    'divider',
+    'background',
+    'action',
+  ];
   Object.keys(customPalettes).forEach((customPalette) => {
-    customPalettes[customPalette] = augmentColor({
-      color: customPalettes[customPalette],
-      name: customPalette,
-    });
+    if (ignoreKeys.findIndex((key) => key === customPalette) < 0) {
+      customPalettes[customPalette] = augmentColor({
+        color: customPalettes[customPalette],
+        name: customPalette,
+      });
+    }
   });
 
   const paletteOutput = deepmerge(
