@@ -49,6 +49,14 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      */
     htmlColor?: string;
     /**
+     * Useful when you want to reference a custom `component` and have `SvgIcon` pass that
+     * `component`'s viewBox to the root node.
+     * If `true`, the root node will inherit the custom `component`'s viewBox and the `viewBox`
+     * prop will be ignored.
+     * @default false
+     */
+    inheritViewBox?: boolean;
+    /**
      * The shape-rendering attribute. The behavior of the different options is described on the
      * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
      * If you are having issues with blurry icons you should investigate this prop.

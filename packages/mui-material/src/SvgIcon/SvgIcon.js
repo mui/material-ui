@@ -69,6 +69,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     fontSize = 'medium',
     htmlColor,
     titleAccess,
+    inheritViewBox = false,
     viewBox = '0 0 24 24',
     ...other
   } = props;
@@ -78,8 +79,15 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     color,
     component,
     fontSize,
+    inheritViewBox,
     viewBox,
   };
+
+  const more = {};
+
+  if (!inheritViewBox) {
+    more.viewBox = viewBox;
+  }
 
   const classes = useUtilityClasses(ownerState);
 
@@ -89,11 +97,11 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       focusable="false"
-      viewBox={viewBox}
       color={htmlColor}
       aria-hidden={titleAccess ? undefined : true}
       role={titleAccess ? 'img' : undefined}
       ref={ref}
+      {...more}
       {...other}
     >
       {children}
@@ -155,6 +163,14 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * Applies a color attribute to the SVG element.
    */
   htmlColor: PropTypes.string,
+  /**
+   * Useful when you want to reference a custom `component` and have `SvgIcon` pass that
+   * `component`'s viewBox to the root node.
+   * If `true`, the root node will inherit the custom `component`'s viewBox and the `viewBox`
+   * prop will be ignored.
+   * @default false
+   */
+  inheritViewBox: PropTypes.bool,
   /**
    * The shape-rendering attribute. The behavior of the different options is described on the
    * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
