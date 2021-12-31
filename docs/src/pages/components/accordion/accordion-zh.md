@@ -40,7 +40,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 <Accordion TransitionProps={{ unmountOnExit: true }} />
 ```
 
-不过对所有情况下的性能优化，这并不是灵丹妙药。 请您务必先确定性能的瓶颈所在，再考虑这些优化策略。
+不过对所有情况下的性能优化，这并不是灵丹妙药。 Be sure to identify bottlenecks first and then try out these optimization strategies.
 
 ## 无障碍设计
 
