@@ -19,7 +19,7 @@ See the [careers](/careers/) and [about us](/about/) pages.
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
 
-Our mission is to make building UIs more accessible.
+Our mission is to empower as many people as possible to build great UIs, faster.
 The faster and simpler it is, and the broader the audience that can create custom UIs, the better.
 We believe that the best way to improve on these dimensions is to eliminate [80%](https://www.youtube.com/watch?v=GnO7D5UaDig&t=2451s) of the code that has to be written: low-code.
 
