@@ -1,6 +1,6 @@
-# React Engineer - X
+# Support Engineer - X
 
-<p class="description">You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.</p>
+<p class="description">You will provide support to users for the advanced components team. You will directly impact developers' satisfaction and success.</p>
 
 ## Details of the Role
 
@@ -20,59 +20,53 @@ See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f0
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
 
-The advanced components team (MUI X) needs help.
-We have started with the [data grid](/components/data-grid/#commercial-version) component.
-We need to build new features on it and introduce new components.
-The enterprise version is built on the open-source version of the components.
+We need a Support Engineer to solve friction points of users.
+We face challenges on multiple fronts:
 
-We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open-source community.
+- As a result of this growth, we (will) have more users questions and feedback coming in than ever before.
+- The commercial version of the library is growing, but our community of developers is still small and has a reduced incentive to contribute compared to the community plan.
+- Software engineers at MUI are tasked with doing support, however, they could benefit from the help of a dedicated person in the company, for instance to improve the workflows and tooling.
+- The MUI X Premium plan will offer a technical advisor service, we need a Support Engineer to help deliver it.
 
 ### Why this is interesting
 
-The advanced components portfolio is still small, with a million interesting and challenging problems to solve.
+You will be a key member of the Developer Experience's team and will directly impact customer satisfaction and success.
+You will troubleshoot complex issues related to MUI.
+At MUI a Support Engineer is as considered as a Developer, it's a person that enjoys optimizing what already exists more than working on new shiny features.
 
 Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
 
 ## About the role
 
+You will own the following responsibilities:
+
+- **Build product knowledge**. You will continually research and learn the current and future best practices of using MUI.
+- **Resolve users' issues**. You will solve these issues at two levels:
+  - On the surface, you will answer developers on GitHub, Zendesk, Twitter, email, Slack.
+  - At the root, you will create/update the documentation, fix bugs in collaboration with the relevant developer, and more.
+- **Provide feedback**. You will work alongside product managers to define and shape the product goals, roadmap, priorities, and strategy based on your frontline knowledge of customer needs.
+- **Operations**.
+  - You will establish key support metrics and identify how best to measure them.
+  - You will establish workflow to reduce 'time to response' and 'time to fix' that can scale to multiple team members.
+  - You will identify where internal tooling might be developed or obtained to improve support efficiency.
+
+For the right candidate:
+
+- Working with the Leadership to construct and execute on a hiring plan to grow the support team.
+
 ### What you'll do on a day-to-day basis
 
 Depending on the day, you'll:
 
-- **Help guide architectural decisions**.
-  The future of MUI is discussed and planned in our public RFCs and issues.
-  You'll be helping drive these conversations and guiding MUI toward the best possible solutions.
-- **Contribute to deep, meaningful refactors and feature releases**.
-  MUI is a complex codebase. Components we've shipped recently, such as the data grid have required months of dedicated, careful work.
+- **You'll be interacting with the users** on a regular basis, handling inbound support and feature requests (every developer helps with developer requests).
 - **Reduce friction**.
   A large amount of the work on MUI is reducing friction and making it easier to use.
   This might involve careful API design, identifying and fixing top bugs, creating easier to understand error messages, and writing documentation and blog posts about features you ship.
 - **Collaborate with the community**.
   Many small as well as meaningful fixes and features have been contributed by the community. Your role is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
 - **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
-- **Take ownership of features from idea/mockup to live deployment**.
-  You'll shape and guide the direction of crucial new features, including new components.
 - **Ship. Early and often**. You'll iterate and ship frequently.
   You'll have a real impact on the end-user experience and you'll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
-- **You'll be interacting with the users** on a regular basis, handling inbound support and feature requests (every developer helps with developer requests).
-
-### The best parts of this job
-
-- **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
-- **You'll be part of an active, open, friendly community** of developers that are excited about building awesome applications.
-- **Your role will be key to making MUI the go-to UI framework** for building applications, websites, and design systems with React.
-
-### The worst parts of this job
-
-- **Shifting context.**
-  You will necessarily have to shift context and dive into a different feature before the current one is done.
-  It may even be in an area of the codebase you're unfamiliar with or don't have a ton of understanding about.
-  It's fun, rewarding work, but it can be very challenging.
-- **We move quickly, but don't sacrifice quality**.
-  We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue with quality should be enough for any given iteration. Our users quickly tell us when we haven't pushed a solution far enough.
-- **MUI is a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌.
-  The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
-- **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
 
 ## About you
 
@@ -83,7 +77,6 @@ We're looking for someone with strong front-end skills. More important than spec
 - **Expertise in the modern JavaScript ecosystem**.
   MUI is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, webpack, and Babel.
 - **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
-- **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
 - **Strong written and verbal communication skills**.
   As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
 - **Ability to dive into complex problems**.
@@ -114,4 +107,4 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 
 ## Apply
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=React%20Engineer%20-%20X)
+[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Support%20Engineer%20-%20X)

@@ -182,7 +182,7 @@ We have welcomed four new members to the company 🏢:
 
   <img loading="lazy" src="/static/blog/2021-q2-update/michal.jpg" alt="michal" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
-- [Danilo](https://daniloleal.co/), a lead designer to raise our design game.
+- [Danilo](https://daniloleal.co/), a Lead Designer to raise our design game.
 
   <img loading="lazy" src="/static/blog/2021-q2-update/danilo.jpg" alt="danilo" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
