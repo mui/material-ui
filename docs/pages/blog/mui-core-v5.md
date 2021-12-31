@@ -335,7 +335,7 @@ But what about the medium/large size engineering team that works on ambitious pr
 
 We have started working on this exact problem,
 isolating the logic of the Material Design components into hooks and unstyled components.
-While the effort is still in alpha, you can already find the first building blocks in a new unstyled package.
+While the effort is still in alpha, you can already find the first building blocks in a new Base package.
 
 So far it features:
 
@@ -727,7 +727,7 @@ You can read more about them in [the docs](/customization/unstyled-components/) 
 
 Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
 We are aiming to complete this work with the next major release (v6).
-As of now, you can evaluate the unstyled primitives in a new unstyled package, or check out the next implementation of the Material Design components in the `@mui/material-next` package (targeted at v6).
+As of now, you can evaluate the unstyled primitives in a new Base package, or check out the next implementation of the Material Design components in the `@mui/material-next` package (targeted at v6).
 Please note that both packages are in an alpha state so that we can release breaking changes –
 we want to take the opportunity to create the best APIs we possibly can.
 
