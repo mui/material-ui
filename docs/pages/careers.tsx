@@ -138,24 +138,79 @@ const faqData = [
 ];
 
 const openRolesData = [
+  // {
+  //   // 1
+  //   title: 'Product',
+  //   roles: [
+  //     {
+  //       title: 'Product Designer',
+  //       description:
+  //         'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
+  //       url: '/company/11-product-designer/',
+  //     },
+  //   ],
+  // },
   {
-    title: 'Engineering',
-    roles: [],
-  },
-  {
-    title: 'Product',
+    // 5
+    title: 'Developer Experience',
     roles: [
-      {
-        title: 'Technical Product Manager - MUI X',
-        description:
-          'You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features. Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning.',
-        url: '/company/technical-product-manager/',
-      },
       {
         title: 'Developer Advocate',
         description:
-          'You will educate users on the latest features, craft high-quality examples and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components.',
-        url: '/company/developer-advocate/',
+          'You will educate users on the latest features, craft high-quality examples, and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components.',
+        url: '/company/50-developer-advocate/',
+      },
+      {
+        title: 'Developer Experience Engineer',
+        description: 'You will focus on providing experiences that delight developers using MUI.',
+        url: '/company/51-developer-experience-engineer/',
+      },
+      {
+        title: 'Support Engineer - X',
+        description:
+          "You will provide support to users for the advanced components team. You will directly impact developers' satisfaction and success.",
+        url: '/company/50-support-engineer/',
+      },
+    ],
+  },
+  {
+    // 2
+    title: 'Engineering',
+    roles: [
+      {
+        title: 'React Engineer - X',
+        description:
+          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
+        url: '/company/20-react-engineer/',
+      },
+      {
+        title: 'Hustler Engineer - Store',
+        description: 'You will lead the technical and operational development of MUI Store.',
+        url: '/company/22-hustler-engineer/',
+      },
+    ],
+  },
+  {
+    // 3
+    title: 'People',
+    roles: [
+      {
+        title: 'People Operations Manager',
+        description:
+          'You will build the HR function from the ground up at a high-growth tech company.',
+        url: '/company/30-people-operations-manager/',
+      },
+    ],
+  },
+  {
+    // 4
+    title: 'Support',
+    roles: [
+      {
+        title: 'Support Agent - Store',
+        description:
+          "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
+        url: '/company/41-support-agent/',
       },
     ],
   },
@@ -163,12 +218,14 @@ const openRolesData = [
 
 const futureRolesData = [
   {
-    title: 'Operations',
+    // 1
+    title: 'Product',
     roles: [
       {
-        title: 'Head of talent',
+        title: 'Product Designer',
         description:
-          'Recruit an exceptional team and lay the foundations for a modern corporation. We will be looking for a self-starter who acts as a strategic designer, builder, and champion for our engineering-centric and customer-oriented culture. They will serve as part of the company’s leadership team, collaborating to continuously evolve our high-performance, high-engagement crew.',
+          'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
+        url: '/company/11-product-designer/',
       },
     ],
   },
@@ -178,24 +235,8 @@ const futureRolesData = [
       {
         title: 'Full-stack Engineer',
         description:
-          'You will initiate the development of a bold new product vertical. We are looking for an experienced and ambitious full-stack engineer that is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
-        url: '/company/full-stack-engineer/',
-      },
-      {
-        title: 'React Engineer',
-        description:
-          'You will support the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption of the free open-source tier (freemium/open-core business model).',
-        url: '/company/react-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'Product',
-    roles: [
-      {
-        title: 'Product Designer',
-        description:
-          'Design is critical to the success of our mission. We will be looking for skills that complement our lead designer. It could be a graphic designer or a UX expert for instance, depending on our exact needs.',
+          'You will strengthen the team working on a new low-code product. We are looking for an experienced and ambitious full-stack engineer that is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
+        url: undefined,
       },
     ],
   },
@@ -388,12 +429,13 @@ function CareersContent() {
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <div>
           <Typography variant="h2" sx={{ my: 1 }} id="open-roles">
-            Open roles
+            {`Open roles (${openRolesData.reduce((acc, item) => acc + item.roles.length, 0)})`}
           </Typography>
-          <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
-            The company is bootstrapped (so far). It was incorporated in mid-2019 and yet growing
-            fast (x2-3 YoY). We doubled the team in 2020 (6), are on track to tripled it in 2021
-            (18). We&apos;re looking for help keep growing in the following areas:
+          <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 500 }}>
+            The company is bootstrapped (up to now). It was incorporated in mid-2019 and yet growing
+            fast (x2-3 YoY). We doubled the team in 2020 (6), accelerated in 2021 (16), and are on
+            track to triple it in 2022 (40). We&apos;re looking for help keep growing in the
+            following areas:
           </Typography>
         </div>
         <Divider
@@ -418,13 +460,18 @@ function CareersContent() {
           {openRolesData.map((category) => {
             const roles = category.roles;
             return (
-              <React.Fragment>
+              <React.Fragment key={category.title}>
                 <Typography component="h3" variant="h5" fontWeight="extraBold">
                   {category.title}
                 </Typography>
                 {roles.length > 0 ? (
                   roles.map((role) => (
-                    <Role title={role.title} description={role.description} url={role.url} />
+                    <Role
+                      key={role.title}
+                      title={role.title}
+                      description={role.description}
+                      url={role.url}
+                    />
                   ))
                 ) : (
                   <Typography color="text.secondary">No open roles.</Typography>
@@ -464,13 +511,18 @@ function CareersContent() {
               {futureRolesData.map((category) => {
                 const roles = category.roles;
                 return (
-                  <React.Fragment>
+                  <React.Fragment key={category.title}>
                     <Typography component="h3" variant="h5" fontWeight="extraBold">
                       {category.title}
                     </Typography>
                     {roles.length > 0 ? (
                       roles.map((role) => (
-                        <Role title={role.title} description={role.description} />
+                        <Role
+                          key={role.title}
+                          title={role.title}
+                          description={role.description}
+                          url={role.url}
+                        />
                       ))
                     ) : (
                       <Typography color="text.secondary">No plans yet.</Typography>
@@ -512,7 +564,7 @@ function CareersContent() {
               <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
                 We&apos;re to help you with any other question you have about our hiring process.
               </Typography>
-              <Link href="mailto:contact@mui.com" variant="body2">
+              <Link href="mailto:job@mui.com" variant="body2">
                 Contact us <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
               </Link>
             </Paper>

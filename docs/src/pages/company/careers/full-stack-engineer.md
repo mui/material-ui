@@ -4,7 +4,7 @@
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-5 to UTC+4).
+- Location: Remote (preference for UTC-6 to UTC+3).
 - Type of work: Full-time (contractor or employee [depending on the case](https://www.notion.so/mui-org/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
@@ -13,7 +13,7 @@
 
 ## About us
 
-See the [careers](/careers/) and [about us](/about/) pages.
+See the [careers](/careers/), [handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b), and [about us](/about/) pages.
 
 ### Why we're hiring
 
@@ -23,6 +23,8 @@ We need talented people to keep that going!
 Our mission is to empower as many people as possible to build great UIs, faster.
 The faster and simpler it is, and the broader the audience that can create custom UIs, the better.
 We believe that the best way to improve on these dimensions is to eliminate [80%](https://www.youtube.com/watch?v=GnO7D5UaDig&t=2451s) of the code that has to be written.
+
+You will initiate the development of a bold new product vertical. We are looking for an experienced, and ambitious full-stack engineer that is ready to work in an entrepreneurial environment.
 
 ### Why this is interesting
 
@@ -35,9 +37,9 @@ They are working on a couple of new projects every year, and where the integrati
 
 ## About the role
 
-You will initiate the development of a bold new product vertical. We are looking for an experienced, and ambitious full-stack engineer that is ready to work in an entrepreneurial environment.
-
 ### What you'll do on a day-to-day basis
+
+Depending on the day, you'll:
 
 - **Define the roadmap** and refine the product direction.
 - **Take ownership of features from idea/mockup to live deployment**. You'll shape user-facing features with everything from database models to UI components.
@@ -51,7 +53,7 @@ You are curious, you enjoy taking risks, and learning.
 
 ### Skills you should have
 
-- **Expertise in the modern JavaScript ecosystem**. MUI is built on the shoulders of giants, making use of technologies such as ES2020+, TypeScript, Node.js, React, Next.js, and Babel. The knowledge of SQL, Docker, and the AWS stack will prove itself valuable.
+- **Expertise in the modern JavaScript ecosystem**. MUI is built on the shoulders of giants, making use of technologies such as ES2021+, TypeScript, Node.js, React, Next.js, and Babel. The knowledge of SQL, Docker, and the AWS stack will prove itself valuable.
 - ​You are autonomous and a faster learner. You are proactive and can start projects without constant direction.
 - You ship code often that is elegant to use and read, and you take ownership of it. You can be relied upon throughout its lifecycle.
 - You can put a lot of thoughts into design, product roadmap, and the details of each feature. You won't only take a project and make it "functional."
@@ -64,8 +66,10 @@ You are curious, you enjoy taking risks, and learning.
 
 ## Compensation
 
-Competitive compensation of up to \$140,000 USD/year, depending on the profile and location. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/careers/#perks-amp-benefits) page.
+Competitive compensation depending on the profile and location.
+We are ready to pay top market rates for a person that can significantly push the mission forward.
+You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## Apply
 
-[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Full-stack%20Engineer)
+[Apply for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Full-stack%20Engineer%20-%20Studio)
