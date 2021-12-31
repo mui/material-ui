@@ -154,7 +154,7 @@ function handleRender(req, res) {
       width: deviceType === 'mobile' ? '0px' : '1024px',
     }),
   });
-  
+
   const theme = createTheme({
     components: {
       // Change the default options of useMediaQuery
