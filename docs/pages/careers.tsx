@@ -236,7 +236,7 @@ const futureRolesData = [
         title: 'Full-stack Engineer',
         description:
           'You will strengthen the team working on a new low-code product. We are looking for an experienced and ambitious full-stack engineer that is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
-        url: null,
+        url: undefined,
       },
     ],
   },
