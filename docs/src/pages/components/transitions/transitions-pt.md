@@ -101,3 +101,13 @@ For more information on creating a custom transition, visit the _react-transitio
 - [Popper](/components/popper/#transitions)
 - [Snackbar](/components/snackbars/#transitions)
 - [Tooltip](/components/tooltips/#transitions)
+
+## Performance & SEO
+
+The content of transition component is mounted by default even if `in={false}`. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your transition it might be a good idea to change this default behavior by enabling the `unmountOnExit` prop:
+
+```jsx
+<Fade in={false} unmountOnExit />
+```
+
+As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.

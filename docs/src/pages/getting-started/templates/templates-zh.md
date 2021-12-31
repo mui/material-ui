@@ -18,8 +18,8 @@ title: 超过 9 个免费的 React 模板
 
 目前为止，我们提供了关于主控面板（dashboard），登录页面（sign in page），注册页面（sign up page），博客（blog page），付款流程（checkout flow），专辑页面（album page），价格页面（pricing page）以及固定页脚（sticky footer page）的演示。
 
-## 高级版主题
+## Premium templates
 
-你还在寻找更多主题吗？ 你还在寻找更多主题吗？ 你可以在 <a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">高级模板区域</a>找到完整的模板和主题列表。
+你还在寻找更多主题吗？ You can find complete templates & themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">premium template section</a>.
 
-<a href="https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>
+<a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>
