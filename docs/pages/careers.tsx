@@ -138,18 +138,18 @@ const faqData = [
 ];
 
 const openRolesData = [
-  {
-    // 1
-    title: 'Product',
-    roles: [
-      {
-        title: 'Product Designer',
-        description:
-          'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
-        url: '/company/11-product-designer/',
-      },
-    ],
-  },
+  // {
+  //   // 1
+  //   title: 'Product',
+  //   roles: [
+  //     {
+  //       title: 'Product Designer',
+  //       description:
+  //         'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
+  //       url: '/company/11-product-designer/',
+  //     },
+  //   ],
+  // },
   {
     // 5
     title: 'Developer Experience',
@@ -218,12 +218,25 @@ const openRolesData = [
 
 const futureRolesData = [
   {
+    // 1
+    title: 'Product',
+    roles: [
+      {
+        title: 'Product Designer',
+        description:
+          'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
+        url: '/company/11-product-designer/',
+      },
+    ],
+  },
+  {
     title: 'Engineering',
     roles: [
       {
         title: 'Full-stack Engineer',
         description:
           'You will strengthen the team working on a new low-code product. We are looking for an experienced and ambitious full-stack engineer that is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
+        url: null,
       },
     ],
   },
@@ -416,7 +429,7 @@ function CareersContent() {
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <div>
           <Typography variant="h2" sx={{ my: 1 }} id="open-roles">
-            Open roles (8)
+            {`Open roles (${openRolesData.reduce((acc, item) => acc + item.roles.length, 0)})`}
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 500 }}>
             The company is bootstrapped (up to now). It was incorporated in mid-2019 and yet growing
@@ -504,7 +517,12 @@ function CareersContent() {
                     </Typography>
                     {roles.length > 0 ? (
                       roles.map((role) => (
-                        <Role key={role.title} title={role.title} description={role.description} />
+                        <Role
+                          key={role.title}
+                          title={role.title}
+                          description={role.description}
+                          url={role.url}
+                        />
                       ))
                     ) : (
                       <Typography color="text.secondary">No plans yet.</Typography>
