@@ -135,49 +135,30 @@ const theme = createTheme({
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
   const ssrMatchMedia = (query) => ({
     matches: mediaQuery.match(query, {
-      // 浏览器的 CSS 宽度预计值
+      // The estimated CSS width of the browser.
       width: deviceType === 'mobile' ? '0px' : '1024px',
     }),
   });
 
-  const html = ReactDOMServer.renderToString(
-    <ThemeProvider
-      theme={{
-        props: {
-          // 更改 useMediaQuery 的默认选项
-          MuiUseMediaQuery: {
-            ssrMatchMedia,
-          },
+  const theme = createTheme({
+    components: {
+      // Change the default options of useMediaQuery
+      MuiUseMediaQuery: {
+        defaultProps: {
+          ssrMatchMedia,
         },
-      }}
-    >
-      <App />
-    </ThemeProvider>,
-  );
-
-  // …
-}
-      width: deviceType === 'mobile' ? '0px' : '1024px',
-    }),
+      },
+    },
   });
 
   const html = ReactDOMServer.renderToString(
-    <ThemeProvider
-      theme={{
-        props: {
-          // 更改 useMediaQuery 的默认选项
-          MuiUseMediaQuery: {
-            ssrMatchMedia,
-          },
-        },
-      }}
-    >
+    <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>,
   );
