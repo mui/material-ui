@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#radiobutton
 <p class="description">Radio buttons allow the user to select one option from a set.</p>
 
 Use radio buttons when the user needs to see all available options.
-If available options can be collapsed, consider using a dropdown menu because it uses less space.
+If available options can be collapsed, consider using a [Select component](/components/selects/) because it uses less space.
 
 Radio buttons should have the most commonly used option selected by default.
 
