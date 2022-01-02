@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ForwardRef, Memo } from 'react-is';
+import * as ReactIs from 'react-is';
 
 // Simplified polyfill for IE11 support
 // https://github.com/JamesMGreene/Function.name/blob/58b314d4a983110c3682f1228f845d39ccca1817/Function.name.js#L3
@@ -45,9 +45,9 @@ export default function getDisplayName(Component: React.ElementType): string | u
   // TypeScript can't have components as objects but they exist in the form of `memo` or `Suspense`
   if (typeof Component === 'object') {
     switch ((Component as any).$$typeof) {
-      case ForwardRef:
+      case ReactIs.ForwardRef:
         return getWrappedName(Component, (Component as any).render, 'ForwardRef');
-      case Memo:
+      case ReactIs.Memo:
         return getWrappedName(Component, (Component as any).type, 'memo');
       default:
         return undefined;
