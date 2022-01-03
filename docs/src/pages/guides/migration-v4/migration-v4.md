@@ -2,7 +2,7 @@
 
 <p class="description">Yeah, v5 has been released!</p>
 
-If you're looking for the v4 docs, you can [find it here](https://v4.mui.com/versions/).
+If you're looking for the v4 docs, you can [find them here](https://v4.mui.com/versions/).
 
 ## Introduction
 
