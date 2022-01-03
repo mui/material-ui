@@ -8,7 +8,7 @@ export default function Display() {
         sx={{
           display: 'grid',
           bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.900' : 'grey.200',
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
           color: (theme) =>
             theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
           border: '1px solid',

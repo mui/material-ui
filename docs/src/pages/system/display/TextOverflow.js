@@ -11,11 +11,16 @@ export default function TextOverflow() {
           overflow: 'hidden',
           my: 2,
           p: 1,
-          bgcolor: 'background.paper',
-          borderRadius: 1,
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
           border: '1px solid',
           borderColor: (theme) =>
             theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
         Lorem Ipsum is simply dummy text
@@ -27,11 +32,16 @@ export default function TextOverflow() {
           overflow: 'hidden',
           my: 2,
           p: 1,
-          bgcolor: 'background.paper',
-          borderRadius: 1,
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
           border: '1px solid',
           borderColor: (theme) =>
             theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
         }}
       >
         Lorem Ipsum is simply dummy text

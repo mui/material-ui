@@ -9,18 +9,19 @@ export default function Height() {
           height: '25%',
           width: 120,
           display: 'inline-block',
+          p: 1,
+          mx: 1,
           bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
           color: (theme) =>
             theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
           border: '1px solid',
           borderColor: (theme) =>
             theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-          mx: 1,
-          p: 1,
           borderRadius: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
+          textAlign: 'center',
         }}
       >
         Height 25%
@@ -30,18 +31,19 @@ export default function Height() {
           height: '50%',
           width: 120,
           display: 'inline-block',
+          p: 1,
+          mx: 1,
           bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
           color: (theme) =>
             theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
           border: '1px solid',
           borderColor: (theme) =>
             theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-          mx: 1,
-          p: 1,
           borderRadius: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
+          textAlign: 'center',
         }}
       >
         Height 50%
@@ -51,18 +53,19 @@ export default function Height() {
           height: '75%',
           width: 120,
           display: 'inline-block',
+          p: 1,
+          mx: 1,
           bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
           color: (theme) =>
             theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
           border: '1px solid',
           borderColor: (theme) =>
             theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-          mx: 1,
-          p: 1,
           borderRadius: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
+          textAlign: 'center',
         }}
       >
         Height 75%
@@ -72,18 +75,19 @@ export default function Height() {
           height: '100%',
           width: 120,
           display: 'inline-block',
+          p: 1,
+          mx: 1,
           bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
           color: (theme) =>
             theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
           border: '1px solid',
           borderColor: (theme) =>
             theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-          mx: 1,
-          p: 1,
           borderRadius: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
+          textAlign: 'center',
         }}
       >
         Height 100%
