@@ -14,7 +14,6 @@ function Item(props) {
           theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
         p: 1,
         borderRadius: 2,
-        textAlign: 'center',
         fontSize: '0.875rem',
         fontWeight: '700',
         ...sx,
