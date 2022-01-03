@@ -215,16 +215,6 @@ const teamMembers: Array<Profile> = [
     github: 'mbrookes',
   },
   {
-    name: 'Sebastian Silbermann',
-    src: '/static/branding/about/sebastian.png',
-    title: 'Core components team',
-    location: 'Dresden, Germany',
-    country: 'de',
-    about: 'Everything Open Source',
-    twitter: 'sebsilbermann',
-    github: 'eps1lon',
-  },
-  {
     name: 'Marija Najdova',
     src: '/static/branding/about/marija.png',
     title: 'Core components team',
@@ -342,6 +332,15 @@ const teamMembers: Array<Profile> = [
 ];
 
 const contributors = [
+  {
+    name: 'Sebastian Silbermann',
+    github: 'eps1lon',
+    title: 'Everything Open Source',
+    location: 'Dresden, Germany',
+    country: 'de',
+    src: 'https://avatars.githubusercontent.com/u/12292047',
+    twitter: 'sebsilbermann',
+  },
   {
     name: 'Danica Shen',
     github: 'DDDDDanica',
