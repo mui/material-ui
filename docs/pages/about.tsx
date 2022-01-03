@@ -342,12 +342,12 @@ const contributors = [
     twitter: 'sebsilbermann',
   },
   {
-    name: 'Danica Shen',
-    github: 'DDDDDanica',
-    title: 'Chinese docs',
-    location: 'Ireland',
-    country: 'ie',
-    src: 'https://avatars.githubusercontent.com/u/12678455',
+    name: 'Ryan Cogswell',
+    github: 'ryancogswell',
+    title: 'Stack Overflow top contributor',
+    location: 'Minnesota, United States',
+    country: 'us',
+    src: 'https://avatars.githubusercontent.com/u/287804',
   },
   {
     name: 'Yan Lee',
@@ -366,12 +366,12 @@ const contributors = [
     src: 'https://avatars.githubusercontent.com/u/29267813',
   },
   {
-    name: 'Ryan Cogswell',
-    github: 'ryancogswell',
-    title: 'Stack Overflow top contributor',
-    location: 'Minnesota, United States',
-    country: 'us',
-    src: 'https://avatars.githubusercontent.com/u/287804',
+    name: 'Danica Shen',
+    github: 'DDDDDanica',
+    title: 'Chinese docs',
+    location: 'Ireland',
+    country: 'ie',
+    src: 'https://avatars.githubusercontent.com/u/12678455',
   },
 ];
 
