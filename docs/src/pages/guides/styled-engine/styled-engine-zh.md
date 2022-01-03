@@ -19,19 +19,20 @@
 
 如果您正在使用 yarn，您可以使用 resolution 来实现配置：
 
-**webpack.config.js**
+**package.json**
 
 <!-- #default-branch-switch -->
 
 ```diff
- module.exports = {
-  //...
-  resolve: {
-    alias: {
-      '@material-ui/styled-engine': '@material-ui/styled-engine-sc',
-    },
-  },
-};
+ {
+   "dependencies": {
+-    "@mui/styled-engine": "latest"
++    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+   },
++  "resolutions": {
++    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
++  },
+ }
 ```
 
 ### npm
