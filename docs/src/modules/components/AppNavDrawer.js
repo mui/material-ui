@@ -219,6 +219,7 @@ function AppNavDrawer(props) {
                   onClose={() => setAnchorEl(null)}
                   PaperProps={{
                     variant: 'outlined',
+                    elevation: 0,
                     sx: {
                       mt: 0.5,
                       minWidth: 180,

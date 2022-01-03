@@ -336,7 +336,7 @@ But what about the medium/large size engineering team that works on ambitious pr
 
 We have started working on this exact problem,
 isolating the logic of the Material Design components into hooks and unstyled components.
-While the effort is still in alpha, you can already find the first building blocks in a new unstyled package.
+While the effort is still in alpha, you can already find the first building blocks in a new Base package.
 
 So far it features:
 
@@ -661,7 +661,7 @@ These changes have allowed us to save [6 kB gzipped](https://github.com/mui-org/
 
 ## Design kits
 
-We now have design kits for the MUI components available in the three main design tools out there: [Figma](https://material-ui.com/store/items/figma-react/), [Sketch](https://material-ui.com/store/items/sketch-react/), and [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/). If you work together with a designer or team of designers, having them use the design kits makes for easier communication, as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling much faster development.
+We now have design kits for the MUI components available in the three main design tools out there: [Figma](https://mui.com/store/items/figma-react/), [Sketch](https://mui.com/store/items/sketch-react/), and [Adobe XD](https://mui.com/store/items/adobe-xd-react/). If you work together with a designer or team of designers, having them use the design kits makes for easier communication, as you'll be speaking the same language around the components. It'll also help designers to understand how the library is structured, especially theming features and each component prop, enabling much faster development.
 
 <a href="https://mui.com/store/#design"><img loading="lazy" src="/static/blog/mui-core-v5/design-kits.png" alt="Screenshot of buttons in the Figma design kit" style="width: 700px; margin-bottom: 16px;" /></a>
 
@@ -728,7 +728,7 @@ You can read more about them in [the docs](/customization/unstyled-components/) 
 
 Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
 We are aiming to complete this work with the next major release (v6).
-As of now, you can evaluate the unstyled primitives in a new unstyled package, or check out the next implementation of the Material Design components in the `@mui/material-next` package (targeted at v6).
+As of now, you can evaluate the unstyled primitives in a new Base package, or check out the next implementation of the Material Design components in the `@mui/material-next` package (targeted at v6).
 Please note that both packages are in an alpha state so that we can release breaking changes –
 we want to take the opportunity to create the best APIs we possibly can.
 

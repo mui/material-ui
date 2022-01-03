@@ -21,7 +21,7 @@ export default function EditPage(props) {
       href={
         userLanguage === 'en'
           ? `${process.env.SOURCE_CODE_ROOT_URL}${markdownLocation}`
-          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging${crowdInPath}`
+          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/master${crowdInPath}`
       }
       target="_blank"
       rel="noopener nofollow"

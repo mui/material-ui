@@ -12,7 +12,7 @@ githubLabel: '组件：按钮组'
 
 ## Basic button group 基本的按钮组
 
-通过使用 `ButtonGroup` 组件包装按钮，可以对按钮进行分组。 它们必须是直接的子组件。
+The buttons can be grouped by wrapping them with the `ButtonGroup` component. They need to be immediate children. 它们必须是直接的子组件。
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 

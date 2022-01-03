@@ -1,22 +1,21 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_capitalize as capitalize, usePreviousProps } from '@mui/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '../composeClasses';
 import appendOwnerState from '../utils/appendOwnerState';
+import useBadge from './useBadge';
 import { getBadgeUtilityClass } from './badgeUnstyledClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { variant, anchorOrigin, overlap, invisible, classes } = ownerState;
+  const { variant, anchorOrigin, invisible, classes } = ownerState;
 
   const slots = {
     root: ['root'],
     badge: [
       'badge',
       variant,
-      `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
-        anchorOrigin.horizontal,
-      )}${capitalize(overlap)}`,
+      `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(anchorOrigin.horizontal)}`,
       invisible && 'invisible',
     ],
   };
@@ -39,38 +38,17 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     componentsProps = {},
     invisible: invisibleProp,
     max: maxProp = 99,
-    overlap: overlapProp = 'rectangular',
     showZero = false,
     variant: variantProp = 'standard',
-    /* eslint-disable react/prop-types */
-    theme,
     ...other
   } = props;
 
-  const prevProps = usePreviousProps({
+  const { anchorOrigin, badgeContent, max, variant, displayValue, invisible } = useBadge({
+    ...props,
     anchorOrigin: anchorOriginProp,
-    badgeContent: badgeContentProp,
     max: maxProp,
-    overlap: overlapProp,
     variant: variantProp,
   });
-
-  let invisible = invisibleProp;
-
-  if (
-    invisibleProp == null &&
-    ((badgeContentProp === 0 && !showZero) || (badgeContentProp == null && variantProp !== 'dot'))
-  ) {
-    invisible = true;
-  }
-
-  const {
-    anchorOrigin = anchorOriginProp,
-    badgeContent,
-    max = maxProp,
-    overlap = overlapProp,
-    variant = variantProp,
-  } = invisible ? prevProps : props;
 
   const ownerState = {
     ...props,
@@ -79,15 +57,9 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     classes: classesProp,
     invisible,
     max,
-    overlap,
     variant,
+    showZero,
   };
-
-  let displayValue = '';
-
-  if (variant !== 'dot') {
-    displayValue = badgeContent > max ? `${max}+` : badgeContent;
-  }
 
   const classes = useUtilityClasses(ownerState);
 
@@ -172,11 +144,6 @@ BadgeUnstyled.propTypes /* remove-proptypes */ = {
    * @default 99
    */
   max: PropTypes.number,
-  /**
-   * Wrapped shape the badge should overlap.
-   * @default 'rectangular'
-   */
-  overlap: PropTypes.oneOf(['circular', 'rectangular']),
   /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    * @default false
