@@ -8,7 +8,7 @@ _Jan 3, 2022_
 
 A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
-- 📓 Improvements on the Vietnamese (vi-VN) and Finnish (fi-FI) locales (#30426, 30442) @hckhanh @Certificate
+- 📓 Improvements on the Vietnamese (vi-VN) and Finnish (fi-FI) locales (#30426, #30442) @hckhanh @Certificate
 - And more 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.2.7`
