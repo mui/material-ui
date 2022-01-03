@@ -12,7 +12,8 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Pagination from '@mui/material/Pagination';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import Button from '@mui/material/Button';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import Chip from '@mui/material/Chip';
 import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
@@ -34,7 +35,7 @@ const PostPreview = (props: BlogPost) => {
   return (
     <React.Fragment>
       {props.tags && (
-        <Box sx={{ display: 'flex', gap: 1, mb: 1 }}>
+        <Box sx={{ display: 'flex', gap: 1, mb: 1.5 }}>
           {props.tags.map((tag) => (
             <Chip
               key={tag}
@@ -44,12 +45,12 @@ const PostPreview = (props: BlogPost) => {
                 fontWeight: 500,
                 color: (theme) =>
                   theme.palette.mode === 'dark'
-                    ? theme.palette.success[100]
-                    : theme.palette.success[900],
+                    ? theme.palette.primary[50]
+                    : theme.palette.primary[700],
                 background: (theme) =>
                   theme.palette.mode === 'dark'
-                    ? theme.palette.success[900]
-                    : theme.palette.success[100],
+                    ? theme.palette.primary[900]
+                    : theme.palette.primary[50],
               }}
             />
           ))}
@@ -68,7 +69,9 @@ const PostPreview = (props: BlogPost) => {
           href={`/blog/${props.slug}`}
           sx={{
             color: 'text.primary',
-            '&:before': { content: '""', display: 'block', position: 'absolute', inset: 0 },
+            '&:hover': {
+              textDecoration: 'underline',
+            },
           }}
         >
           {props.title}
@@ -90,7 +93,7 @@ const PostPreview = (props: BlogPost) => {
               borderColor: (theme) =>
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[800]
-                  : theme.palette.grey[200],
+                  : theme.palette.grey[100],
               backgroundColor: (theme) =>
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[700]
@@ -129,24 +132,25 @@ const PostPreview = (props: BlogPost) => {
             </Typography>
           )}
         </Box>
-        <Typography
-          aria-hidden="true"
+        <Button
+          component="a"
+          aria-describedby={`describe-${props.slug}`}
+          href={`/blog/${props.slug}`}
           id={`describe-${props.slug}`}
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            p: { xs: 0, sm: 0.5 },
-            mt: { xs: 1, sm: 0 },
-            fontWeight: 700,
-            fontSize: (theme) => theme.typography.pxToRem(14),
-            color: (theme) =>
+          size="small"
+          endIcon={<KeyboardArrowRightRoundedIcon />}
+          sx={(theme) => ({
+            color:
               theme.palette.mode === 'dark'
                 ? theme.palette.primary[300]
                 : theme.palette.primary[600],
-          }}
+            '& svg': {
+              ml: -0.5,
+            },
+          })}
         >
-          Read more <KeyboardArrowRightRounded fontSize="small" />
-        </Typography>
+          Read more
+        </Button>
       </Box>
     </React.Fragment>
   );
@@ -205,22 +209,18 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       <AppHeader />
       <main>
         <Section bg="gradient">
-          <Typography
-            variant="body2"
-            color="primary.600"
-            fontWeight="bold"
-            textAlign="center"
-            sx={{ mb: 0.5 }}
-          >
+          <Typography variant="body2" color="primary.600" fontWeight="bold" textAlign="center">
             Blog
           </Typography>
-          <Typography component="h1" variant="h2" textAlign="center" sx={{ mb: { xs: 4, md: 10 } }}>
+          <Typography component="h1" variant="h2" textAlign="center" sx={{ mb: { xs: 5, md: 10 } }}>
             The <GradientText>latest</GradientText> about MUI
           </Typography>
           <Box
             component="ul"
             sx={{
               display: 'grid',
+              m: 0,
+              p: 0,
               gap: 2,
               gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
             }}
@@ -235,9 +235,14 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                   display: 'flex',
                   flexDirection: 'column',
                   position: 'relative',
+                  transition: 'all ease 120ms',
                   '&:hover, &:focus-within': {
-                    bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.600' : 'primary.50',
-                    borderColor: 'primary.300',
+                    borderColor: theme.palette.mode === 'dark' ? 'primary.600' : 'grey.300',
+                    boxShadow: `0px 4px 20px ${
+                      theme.palette.mode === 'dark'
+                        ? 'rgba(0, 0, 0, 0.5)'
+                        : 'rgba(170, 180, 190, 0.3)'
+                    }`,
                   },
                   '&:focus-within': {
                     '& a': {
@@ -273,7 +278,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             columnGap: 8,
           }}
         >
-          <Typography component="h2" variant="h5" fontWeight="700" sx={{ mb: { xs: 1, sm: 2 } }}>
+          <Typography component="h2" variant="h4" fontWeight="700" sx={{ mb: { xs: 1, sm: 2 } }}>
             All posts
           </Typography>
           <Box sx={{ gridRow: 'span 2' }}>
@@ -297,7 +302,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
               }}
             >
               <Typography color="text.primary" fontWeight="500" sx={{ mb: 2 }}>
-                Filter by tag
+                Filter by subject
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                 {allTags.map((tag) => {
@@ -380,18 +385,13 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                   component="li"
                   key={post.slug}
                   sx={() => ({
-                    py: 3,
+                    py: 2,
                     display: 'flex',
                     flexDirection: 'column',
                     position: 'relative',
                     '&:not(:last-of-type)': {
                       borderBottom: '1px solid',
                       borderColor: 'divider',
-                    },
-                    '&:hover, &:focus-within': {
-                      '& a': {
-                        textDecoration: 'underline',
-                      },
                     },
                   })}
                 >
@@ -411,7 +411,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                   postList.scrollIntoView();
                 }
               }}
-              sx={{ mt: 2, mb: 10 }}
+              sx={{ mt: 1, mb: 8 }}
             />
           </Box>
         </Container>

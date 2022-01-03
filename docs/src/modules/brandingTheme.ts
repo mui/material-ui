@@ -391,21 +391,22 @@ export function getThemedComponents(theme: Theme) {
                 : theme.palette.grey[300],
           },
           filled: {
-            fontWeight: 500,
+            fontWeight: 400,
             border: '1px solid transparent',
             color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
             backgroundColor:
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[500]
                 : theme.palette.primary[100],
-            '&.MuiChip-clickable': {
-              '&:hover': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.primary[200],
-              },
+            '&:hover': {
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[600]
+                  : theme.palette.primary[200],
             },
+          },
+          deleteIcon: {
+            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
           },
         },
       },
@@ -554,6 +555,37 @@ export function getThemedComponents(theme: Theme) {
             flexShrink: 0,
             width: '14px',
             height: '14px',
+          },
+        },
+      },
+      MuiPaginationItem: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none',
+            fontWeight: 700,
+            color:
+              theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[500]
+                : theme.palette.grey[200],
+            '&.Mui-selected': {
+              color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? `${theme.palette.primary[700]} !important`
+                  : `${theme.palette.primary[500]} !important`,
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.primary[50],
+              '&:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.primary[100],
+              },
+            },
           },
         },
       },
