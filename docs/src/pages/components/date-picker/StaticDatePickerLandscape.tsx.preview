@@ -1,5 +1,5 @@
 <LocalizationProvider dateAdapter={AdapterDateFns}>
-  <StaticDatePicker<Date>
+  <StaticDatePicker
     orientation="landscape"
     openTo="day"
     value={value}
