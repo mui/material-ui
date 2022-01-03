@@ -93,8 +93,8 @@ tem o seguinte atributo assim que montado:
 Ele pode ser usado para encapsular um caminho SVG com um componente SvgIcon. Este componente estende o elemento nativo `<svg>`:
 
 - Ele vem internamente com a acessibilidade.
-- Os elementos SVG devem ser dimensionados para uma visualização de 24x24px, de modo que o ícone resultante possa ser usado como está, ou incluído como filho para outros componentes de Material-UI que usam ícones. (This can be customized with the `viewBox` attribute, to inherit `viewBox` value from original image `inheritViewBox` attribute can be used).
-- Por padrão, o componente herda a cor atual. Opcionalmente, você pode aplicar uma das cores do tema usando a propriedade `color`.
+- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other MUI components that use icons. This can be customized with the `viewBox` attribute. To inherit the `viewBox` value from the original image, the `inheritViewBox` attribute can be used.
+- By default, the component inherits the current color. Optionally, you can apply one of the theme colors using the `color` prop.
 
 ```jsx
 function HomeIcon(props) {
@@ -128,7 +128,7 @@ Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes esteja
 // ---
 import StarIcon from './star.svg';
 
-<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
+<SvgIcon component={StarIcon} inheritViewBox />
 ```
 
 Também é possível usá-lo com "url-loader" ou "file-loader". Esta é a abordagem usada pelo Create React App.
@@ -143,7 +143,7 @@ Também é possível usá-lo com "url-loader" ou "file-loader". Esta é a aborda
 // ---
 import { ReactComponent as StarIcon } from './star.svg';
 
-<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
+<SvgIcon component={StarIcon} inheritViewBox />
 ```
 
 ### createSvgIcon
