@@ -97,7 +97,9 @@ If you need a custom SVG icon (not available in the [Material Icons](/components
 This component extends the native `<svg>` element:
 
 - It comes with built-in accessibility.
-- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other MUI components that use icons. (This can be customized with the `viewBox` attribute, to inherit `viewBox` value from original image `inheritViewBox` attribute can be used).
+- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other MUI components that use icons.
+  This can be customized with the `viewBox` attribute.
+  To inherit the `viewBox` value from the original image, the `inheritViewBox` attribute can be used.
 - By default, the component inherits the current color. Optionally, you can apply one of the theme colors using the `color` prop.
 
 ```jsx
@@ -133,7 +135,7 @@ You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` for
 // ---
 import StarIcon from './star.svg';
 
-<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
+<SvgIcon component={StarIcon} inheritViewBox />
 ```
 
 It's also possible to use it with "url-loader" or "file-loader". This is the approach used by Create React App.
@@ -148,7 +150,7 @@ It's also possible to use it with "url-loader" or "file-loader". This is the app
 // ---
 import { ReactComponent as StarIcon } from './star.svg';
 
-<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
+<SvgIcon component={StarIcon} inheritViewBox />
 ```
 
 ### createSvgIcon

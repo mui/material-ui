@@ -68,8 +68,8 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     component = 'svg',
     fontSize = 'medium',
     htmlColor,
-    titleAccess,
     inheritViewBox = false,
+    titleAccess,
     viewBox = '0 0 24 24',
     ...other
   } = props;
@@ -164,10 +164,10 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    */
   htmlColor: PropTypes.string,
   /**
-   * Useful when you want to reference a custom `component` and have `SvgIcon` pass that
-   * `component`'s viewBox to the root node.
    * If `true`, the root node will inherit the custom `component`'s viewBox and the `viewBox`
    * prop will be ignored.
+   * Useful when you want to reference a custom `component` and have `SvgIcon` pass that
+   * `component`'s viewBox to the root node.
    * @default false
    */
   inheritViewBox: PropTypes.bool,
