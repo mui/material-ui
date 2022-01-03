@@ -93,8 +93,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 如果你需要使用自定义的 SVG 图标（而它在 [Material Icons](/components/material-icons/) 中不存在），那么你可以使用 `SvgIcon` 封装。 此组件是原生 `<svg>` 元素的拓展版：
 
 - 它具备一些内置的无障碍设计。
-- SVG 元素应该在 24x24px 的视口中进行缩放，这样所渲染的图标就可以按原样使用，或者作为其他使用图标的 Material-UI 组件的子元素。 (This can be customized with the `viewBox` attribute, to inherit `viewBox` value from original image `inheritViewBox` attribute can be used).
-- 默认情况下，此组件会继承当前的颜色。 当然，通过 `color` 这个属性，你可以让图标使用主题里的颜色。
+- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other MUI components that use icons. This can be customized with the `viewBox` attribute. To inherit the `viewBox` value from the original image, the `inheritViewBox` attribute can be used.
+- By default, the component inherits the current color. Optionally, you can apply one of the theme colors using the `color` prop.
 
 ```jsx
 function HomeIcon(props) {
@@ -128,7 +128,7 @@ function HomeIcon(props) {
 // ---
 import StarIcon from './star.svg';
 
-<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
+<SvgIcon component={StarIcon} inheritViewBox />
 ```
 
 通过 “url-loader” 或 “file-loader” 加载也是可行的。 这是 Create React App 使用的方法。
@@ -143,7 +143,7 @@ import StarIcon from './star.svg';
 // ---
 import { ReactComponent as StarIcon } from './star.svg';
 
-<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
+<SvgIcon component={StarIcon} inheritViewBox />
 ```
 
 ### createSvgIcon
