@@ -37,8 +37,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 All contributors of this release in alphabetical order: @abhi45, @ahmad-reza619, @alex-dikusar, @alisasanib, @boazrymland, @Certificate, @hckhanh, @l10nbot, @mnajdova, @oliviertassinari, @siriwatknp, @ValentinH, @ZeeshanTamboli
 
-Done in 1.59s.
-
 ## 5.2.6
 
 <!-- generated comparing v5.2.5..master -->
