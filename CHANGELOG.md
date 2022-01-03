@@ -6,7 +6,7 @@
 
 _Jan 3, 2022_
 
-A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - 📓 Improvements on the Vietnamese (vi-VN) and Finnish (fi-FI) locales (#30426, #30442) @hckhanh @Certificate
 - And more 🐛 bug fixes and 📚 documentation improvements.
@@ -17,14 +17,16 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - &#8203;<!-- 13 -->[Avatar] Fix TypeScript error on imgProps (#30255) @ahmad-reza619
 - &#8203;<!-- 12 -->[Badge] Fix `classes` prop TypeScript type (#30427) @ZeeshanTamboli
 - &#8203;<!-- 03 -->[SvgIcon] Allow viewBox to inherit from Component through inheritViewBox prop (#29954) @alex-dikusar
+- &#8203;<!-- 04 -->[SvgIcon] Correct API docs and code style (#30470) @michaldudak
 
 ### Docs
 
 - &#8203;<!-- 11 -->[blog] 2021 (#30425) @oliviertassinari
 - &#8203;<!-- 15 -->[docs] Fix typo on the Grid docs page (#30446) @abhi45
+- &#8203;<!-- 07 -->[docs] Fix `useMediaQuery` SSR example to v5 theme API (#30454) @ValentinH
+- &#8203;<!-- 11 -->[docs] Improve the migration guide and add examples for transforming to `tss-react` (#30388) @mnajdova
 - &#8203;<!-- 09 -->[docs] Make the reference to the select clearer (#30460) @boazrymland
 - &#8203;<!-- 08 -->[docs] Sync translations with Crowdin (#30385) @l10nbot
-- &#8203;<!-- 07 -->[docs] Fix `useMediaQuery` SSR example to v5 theme API (#30454) @ValentinH
 - &#8203;<!-- 06 -->[example] Avoid double rendering in the Remix example (#30366) @mnajdova
 - &#8203;<!-- 05 -->[i18n] improve viVN locale (#30426) @hckhanh
 - &#8203;<!-- 04 -->[l10n] Improve fiFI locale (#30442) @Certificate
@@ -33,9 +35,10 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 ### Core
 
+- &#8203;<!-- 13 -->[core] Automatically close issues that are incomplete and inactive (#30459) @oliviertassinari
 - &#8203;<!-- 10 -->[core] Remove contrib tweet (#30455) @oliviertassinari
 
-All contributors of this release in alphabetical order: @abhi45, @ahmad-reza619, @alex-dikusar, @alisasanib, @boazrymland, @Certificate, @hckhanh, @l10nbot, @mnajdova, @oliviertassinari, @siriwatknp, @ValentinH, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @abhi45, @ahmad-reza619, @alex-dikusar, @alisasanib, @boazrymland, @Certificate, @hckhanh, @l10nbot, @michaldudak, @mnajdova, @oliviertassinari, @siriwatknp, @ValentinH, @ZeeshanTamboli
 
 ## 5.2.6
 
