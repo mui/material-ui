@@ -29,7 +29,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 ## 校验
 
-The `error` prop toggles the error state. The `error` prop toggles the error state. The `helperText` prop can then be used to provide feedback to the user about the error.
+`error` 参数用于切换错误状态。 `helperText` 参数通常用于向用户提供错误信息。
 
 {{"demo": "pages/components/text-fields/ValidationTextFields.js"}}
 
