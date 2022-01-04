@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { styled, alpha, useTheme } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
@@ -33,7 +34,6 @@ const Header = styled('header')(({ theme }) => ({
 }));
 
 export default function AppHeader() {
-  const theme = useTheme();
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState<string | null>(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -55,67 +55,39 @@ export default function AppHeader() {
 
   return (
     <Header>
-      <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
+      <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 56 }}>
         <Box
           component={Link}
           href={ROUTES.home}
           aria-label="Go to homepage"
           sx={{ lineHeight: 0, mr: 2 }}
         >
-          <SvgMuiLogo width={32} />
+          <SvgMuiLogo width={30} />
         </Box>
         <Box sx={{ display: { xs: 'none', md: 'initial' } }}>
           <HeaderNavBar />
         </Box>
         <Box sx={{ ml: 'auto' }} />
-        <Box sx={{ mr: { xs: 1, md: 1 } }}>
+        <Stack direction="row" spacing={1}>
           <DeferredAppSearch />
-        </Box>
-        <Tooltip title={t('appFrame.github')} enterDelay={300}>
-          <IconButton
-            component="a"
-            color="inherit"
-            href="https://github.com/mui-org/"
-            data-ga-event-category="header"
-            data-ga-event-action="github"
-            sx={{
-              position: 'relative',
-              p: '6.5px',
-              mr: 1,
-              borderRadius: 1,
-              border: '1px solid',
-              color: theme.palette.mode === 'dark' ? 'primary.300' : 'primary.main',
-              bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.900' : 'transparent',
-              borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-              '& svg': { width: 20, height: 20 },
-              '&:hover': {
-                background:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.4)
-                    : alpha(theme.palette.grey[100], 0.7),
-                borderColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.grey[300],
-              },
-              '&:focus': {
-                boxShadow: `0 0 0 1px ${
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.grey[200]
-                }`,
-              },
-            }}
-          >
-            <GitHubIcon fontSize="small" />
-          </IconButton>
-        </Tooltip>
-        {mode !== null ? (
-          <ThemeModeToggle
-            checked={mode === 'system' ? prefersDarkMode : mode === 'dark'}
-            onChange={handleChangeThemeMode}
-          />
-        ) : null}
+          <Tooltip title={t('appFrame.github')} enterDelay={300}>
+            <IconButton
+              component="a"
+              color="primary"
+              href="https://github.com/mui-org/"
+              data-ga-event-category="header"
+              data-ga-event-action="github"
+            >
+              <GitHubIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
+          {mode !== null ? (
+            <ThemeModeToggle
+              checked={mode === 'system' ? prefersDarkMode : mode === 'dark'}
+              onChange={handleChangeThemeMode}
+            />
+          ) : null}
+        </Stack>
         <Box sx={{ display: { md: 'none' }, ml: 1 }}>
           <HeaderNavDropdown />
         </Box>

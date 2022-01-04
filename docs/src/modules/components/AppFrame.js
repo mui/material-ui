@@ -9,7 +9,7 @@ import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
@@ -129,7 +129,7 @@ const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
 })(({ disablePermanent, theme }) => {
   return {
-    padding: '5px 0px 5px 8px',
+    padding: theme.spacing(1, 2),
     transition: theme.transitions.create('width'),
     ...(disablePermanent && {
       boxShadow: 'none',
@@ -153,23 +153,6 @@ const StyledAppBar = styled(AppBar, {
         ? alpha(theme.palette.primaryDark[900], 0.7)
         : 'rgba(255,255,255,0.7)',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
-    '& .MuiIconButton-root': {
-      border: `1px solid ${
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]
-      }`,
-      borderRadius: theme.shape.borderRadius,
-      color:
-        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
-      // background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
-      '&:hover': {
-        borderColor:
-          theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[300],
-        background:
-          theme.palette.mode === 'dark'
-            ? alpha(theme.palette.primaryDark[700], 0.4)
-            : theme.palette.grey[50],
-      },
-    },
   };
 });
 
@@ -260,44 +243,39 @@ function AppFrame(props) {
       </SkipLink>
       <MarkdownLinks />
       <StyledAppBar disablePermanent={disablePermanent}>
-        <Toolbar variant="dense">
+        <Toolbar variant="dense" disableGutters>
           <NavIconButton
             edge="start"
-            color="inherit"
+            color="primary"
             aria-label={t('appFrame.openDrawer')}
             disablePermanent={disablePermanent}
             onClick={handleNavDrawerOpen}
+            sx={{ ml: '1px' }}
           >
-            <MenuIcon fontSize="small" />
+            <SvgHamburgerMenu />
           </NavIconButton>
           <GrowingDiv />
-          <Stack direction="row" spacing={1.5} sx={{ '& > button': { width: 38 } }}>
+          <Stack direction="row" spacing={1.3}>
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
                 component="a"
-                color="inherit"
+                color="primary"
                 href={process.env.SOURCE_CODE_REPO}
                 data-ga-event-category="header"
                 data-ga-event-action="github"
-                sx={{ px: '8px' }}
               >
                 <GitHubIcon fontSize="small" />
               </IconButton>
             </Tooltip>
             <Notifications />
             <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
-              <IconButton
-                {...languageButtonProps}
-                sx={{
-                  px: '8px',
-                }}
-              >
+              <IconButton {...languageButtonProps} color="primary">
                 <LanguageIcon fontSize="small" />
               </IconButton>
             </Tooltip>
             <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '8px' }}>
+              <IconButton color="primary" onClick={handleSettingsDrawerOpen} sx={{ px: '8px' }}>
                 <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
@@ -307,54 +285,6 @@ function AppFrame(props) {
                 anchorEl={languageMenu}
                 open={Boolean(languageMenu)}
                 onClose={handleLanguageMenuClose}
-                PaperProps={{
-                  variant: 'outlined',
-                  elevation: 0,
-                  sx: {
-                    mt: 0.5,
-                    minWidth: 180,
-                    backgroundImage: 'none',
-                    borderColor: (theme) =>
-                      theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                    bgcolor: (theme) =>
-                      theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-                    boxShadow: (theme) =>
-                      `0px 4px 20px ${
-                        theme.palette.mode === 'dark'
-                          ? 'rgba(0, 0, 0, 0.5)'
-                          : 'rgba(170, 180, 190, 0.3)'
-                      }`,
-                    '& .MuiMenuItem-root': {
-                      fontSize: (theme) => theme.typography.pxToRem(14),
-                      fontWeight: 500,
-                      '&:hover': {
-                        color: (theme) =>
-                          theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
-                        backgroundColor: (theme) =>
-                          theme.palette.mode === 'dark'
-                            ? alpha(theme.palette.primaryDark[700], 0.4)
-                            : theme.palette.grey[50],
-                      },
-                      '&:focus': {
-                        backgroundColor: (theme) =>
-                          theme.palette.mode === 'dark'
-                            ? alpha(theme.palette.primaryDark[700], 0.4)
-                            : theme.palette.grey[50],
-                      },
-                      '&.Mui-selected': {
-                        fontWeight: 500,
-                        color: (theme) =>
-                          theme.palette.mode === 'dark'
-                            ? theme.palette.primary[300]
-                            : theme.palette.primary[600],
-                        backgroundColor: (theme) =>
-                          theme.palette.mode === 'dark'
-                            ? theme.palette.primaryDark[700]
-                            : alpha(theme.palette.primary[100], 0.6),
-                      },
-                    },
-                  },
-                }}
               >
                 {LANGUAGES_LABEL.map((language) => (
                   <MenuItem

@@ -133,14 +133,13 @@ export default function Notifications() {
         enterDelay={300}
       >
         <IconButton
-          color="inherit"
+          color="primary"
           ref={anchorRef}
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
-          sx={{ px: '10px' }}
         >
           <Badge
             color="error"

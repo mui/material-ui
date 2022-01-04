@@ -22,14 +22,14 @@ import replaceUrl from 'docs/src/modules/utils/replaceUrl';
 
 const SearchButton = styled('button')(({ theme }) => {
   return {
-    minHeight: 35,
+    minHeight: 34,
     display: 'flex',
     alignItems: 'center',
     paddingLeft: theme.spacing(1),
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
       padding: 0,
-      minWidth: 35,
+      minWidth: 34,
       justifyContent: 'center',
       '& > *:not(.MuiSvgIcon-root)': {
         display: 'none',
@@ -73,13 +73,13 @@ const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(12),
     fontWeight: 700,
-    lineHeight: '21px',
+    lineHeight: '20px',
     marginLeft: theme.spacing(0.5),
     border: `1px solid ${
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200]
     }`,
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
-    padding: theme.spacing(0, 0.7),
+    padding: theme.spacing(0, 0.8),
     borderRadius: 5,
   };
 });

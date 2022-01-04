@@ -40,9 +40,13 @@ export default function StartToday() {
               See more projects and companies that rely on MUI.
             </Typography>
             <Typography
-              color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
+              color="primary"
               variant="body2"
               fontWeight="bold"
+              sx={{
+                '& > svg': { transition: '0.2s' },
+                '&:hover > svg': { transform: 'translateX(2px)' },
+              }}
             >
               Learn more{' '}
               <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
@@ -66,9 +70,13 @@ export default function StartToday() {
               Check behind the scenes and news from the company.
             </Typography>
             <Typography
-              color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
+              color="primary"
               variant="body2"
               fontWeight="bold"
+              sx={{
+                '& > svg': { transition: '0.2s' },
+                '&:hover > svg': { transform: 'translateX(2px)' },
+              }}
             >
               Learn more{' '}
               <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />

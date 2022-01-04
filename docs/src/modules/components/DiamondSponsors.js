@@ -7,7 +7,7 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 
 const Root = styled('div')(({ theme }) => ({
-  margin: theme.spacing(1, 2, 3),
+  margin: theme.spacing(1, 2, 2),
   '& img': {
     display: 'inline-block',
   },
@@ -32,7 +32,7 @@ export default function DiamondSponsors(props) {
           fontWeight: 500,
           color:
             theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
-          mb: 1,
+          mb: 0.5,
           '& svg': {
             ml: -0.5,
           },

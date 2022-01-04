@@ -7,11 +7,11 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
 import Link from 'docs/src/modules/components/Link';
-import MuiLink from '@mui/material/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
@@ -35,8 +35,7 @@ function Role(props: RoleProps) {
   if (props.url) {
     return (
       <Box
-        component={Link}
-        href={props.url}
+        component="div"
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -62,9 +61,16 @@ function Role(props: RoleProps) {
             {props.description}
           </Typography>
         </span>
-        <MuiLink component="span" variant="body2" sx={{ my: 1 }}>
-          More about this role <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
-        </MuiLink>
+        <Button
+          component="a"
+          // @ts-expect-error
+          variant="link"
+          size="small"
+          href={props.url}
+          endIcon={<KeyboardArrowRightRounded />}
+        >
+          More about this role
+        </Button>
       </Box>
     );
   }

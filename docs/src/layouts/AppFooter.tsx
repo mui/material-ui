@@ -147,7 +147,7 @@ export default function AppFooter() {
               title="GitHub"
               size="small"
             >
-              <GitHubIcon />
+              <GitHubIcon fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
@@ -157,7 +157,7 @@ export default function AppFooter() {
               title="Stack Overflow"
               size="small"
             >
-              <SvgStackOverflow />
+              <SvgStackOverflow fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
@@ -167,7 +167,7 @@ export default function AppFooter() {
               title="Twitter"
               size="small"
             >
-              <TwitterIcon />
+              <TwitterIcon fontSize="small" />
             </IconButton>
             <IconButton
               target="_blank"
@@ -177,7 +177,7 @@ export default function AppFooter() {
               title="LinkedIn"
               size="small"
             >
-              <LinkedInIcon />
+              <LinkedInIcon fontSize="small" />
             </IconButton>
           </Stack>
         </Box>
