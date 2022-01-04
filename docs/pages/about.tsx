@@ -339,6 +339,15 @@ const teamMembers: Array<Profile> = [
     about: 'Into sports and hiking!',
     twitter: 'gprakhar123',
   },
+  {
+    src: '/static/branding/about/prakhar.png',
+    name: 'José Freitas',
+    title: 'Advanced components team',
+    location: 'Augsburg, Germany',
+    country: 'br',
+    about: 'Art, fiction',
+    twitter: 'joserodolfofreitas',
+  },
 ];
 
 const contributors = [
