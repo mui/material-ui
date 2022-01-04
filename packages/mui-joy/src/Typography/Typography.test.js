@@ -14,9 +14,8 @@ describe('<Typography />', () => {
     render,
     refInstanceof: window.HTMLParagraphElement,
     muiName: 'MuiTypography',
-    testVariantProps: { level: 'dot' },
     testStateOverrides: { prop: 'level', value: 'h2', styleKey: 'h2' },
-    skip: ['componentsProp', 'classesRoot'],
+    skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 
   it('should render the text', () => {
