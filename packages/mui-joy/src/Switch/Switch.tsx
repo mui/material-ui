@@ -27,7 +27,7 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
 };
 
 const SwitchRoot = styled('span', {
-  name: 'JoySwitch',
+  name: 'MuiSwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
@@ -76,7 +76,7 @@ const SwitchRoot = styled('span', {
 });
 
 const SwitchInput = styled('input', {
-  name: 'JoySwitch',
+  name: 'MuiSwitch',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
 })<{ ownerState: SwitchProps }>(() => ({
@@ -93,7 +93,7 @@ const SwitchInput = styled('input', {
 }));
 
 const SwitchTrack = styled('span', {
-  name: 'JoySwitch',
+  name: 'MuiSwitch',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
 })<{ ownerState: SwitchProps & { focusVisible: boolean } }>(() => ({
@@ -107,7 +107,7 @@ const SwitchTrack = styled('span', {
 }));
 
 const SwitchThumb = styled('span', {
-  name: 'JoySwitch',
+  name: 'MuiSwitch',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
 })<{ ownerState: SwitchProps }>(() => ({
