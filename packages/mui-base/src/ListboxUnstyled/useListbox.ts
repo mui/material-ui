@@ -84,6 +84,22 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
       });
     };
 
+  const createHandleOptionMouseOver =
+    (option: TOption, other: Record<string, React.EventHandler<any>>) =>
+    (event: React.MouseEvent) => {
+      other.onMouseOver?.(event);
+      if (event.defaultPrevented) {
+        return;
+      }
+
+      dispatch({
+        type: ActionTypes.optionHover,
+        option,
+        event,
+        props: propsWithDefaults,
+      });
+    };
+
   const createHandleKeyDown =
     (other: Record<string, React.EventHandler<any>>) =>
     (event: React.KeyboardEvent<HTMLElement>) => {
@@ -176,19 +192,26 @@ export default function useListbox<TOption>(props: UseListboxProps<TOption>) {
     const index = options.findIndex((opt) => optionComparer(opt, option));
 
     return {
+      ...other,
       'aria-disabled': disabled || undefined,
       'aria-selected': selected,
       id: optionIdGenerator(option, index),
       onClick: createHandleOptionClick(option, other),
+      onMouseOver: createHandleOptionMouseOver(option, other),
       role: 'option',
     };
   };
+
+  React.useDebugValue({
+    highlightedOption: options[highlightedIndex],
+    selectedOption: selectedValue,
+  });
 
   return {
     getRootProps,
     getOptionProps,
     getOptionState,
-    selectedOption: selectedValue,
     highlightedOption: options[highlightedIndex] ?? null,
+    selectedOption: selectedValue,
   };
 }

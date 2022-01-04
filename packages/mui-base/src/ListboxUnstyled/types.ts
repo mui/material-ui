@@ -16,8 +16,9 @@ enum ActionTypes {
   focus = 'focus',
   keyDown = 'keyDown',
   optionClick = 'optionClick',
-  setControlledValue = 'setControlledValue',
+  optionHover = 'optionHover',
   optionsChange = 'optionsChange',
+  setControlledValue = 'setControlledValue',
 }
 
 // split declaration and export due to https://github.com/codesandbox/codesandbox-client/issues/6435
@@ -25,6 +26,13 @@ export { ActionTypes };
 
 interface OptionClickAction<TOption> {
   type: ActionTypes.optionClick;
+  option: TOption;
+  event: React.MouseEvent;
+  props: UseListboxStrictProps<TOption>;
+}
+
+interface OptionHoverAction<TOption> {
+  type: ActionTypes.optionHover;
   option: TOption;
   event: React.MouseEvent;
   props: UseListboxStrictProps<TOption>;
@@ -63,6 +71,7 @@ interface OptionsChangeAction<TOption> {
 
 export type ListboxAction<TOption> =
   | OptionClickAction<TOption>
+  | OptionHoverAction<TOption>
   | FocusAction<TOption>
   | BlurAction<TOption>
   | KeyDownAction<TOption>
