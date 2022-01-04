@@ -32,34 +32,30 @@ const SwitchRoot = styled('span', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
   return {
-    [theme.getThemeVar('Switch-track-radius')]: theme.vars.radius.lg,
-    [theme.getThemeVar('Switch-track-width')]: '48px',
-    [theme.getThemeVar('Switch-track-height')]: '24px',
-    [theme.getThemeVar('Switch-thumb-size')]: '16px',
+    '--Switch-track-radius': theme.vars.radius.lg,
+    '--Switch-track-width': '48px',
+    '--Switch-track-height': '24px',
+    '--Switch-thumb-size': '16px',
     ...(ownerState.size === 'sm' && {
-      [theme.getThemeVar('Switch-track-width')]: '40px',
-      [theme.getThemeVar('Switch-track-height')]: '20px',
-      [theme.getThemeVar('Switch-thumb-size')]: '12px',
+      '--Switch-track-width': '40px',
+      '--Switch-track-height': '20px',
+      '--Switch-thumb-size': '12px',
     }),
     ...(ownerState.size === 'lg' && {
-      [theme.getThemeVar('Switch-track-width')]: '64px',
-      [theme.getThemeVar('Switch-track-height')]: '32px',
-      [theme.getThemeVar('Switch-thumb-size')]: '24px',
+      '--Switch-track-width': '64px',
+      '--Switch-track-height': '32px',
+      '--Switch-thumb-size': '24px',
     }),
-    [theme.getThemeVar('Switch-thumb-radius')]: `calc(${theme.getThemeVar(
-      'Switch-track-radius',
-    )} - 2px)`,
-    [theme.getThemeVar('Switch-thumb-width')]: theme.getThemeVar('Switch-thumb-size'),
-    [theme.getThemeVar('Switch-thumb-offset')]: `max((${theme.getThemeVar(
-      'Switch-track-height',
-    )} - ${theme.getThemeVar('Switch-thumb-size')}) / 2, 0px)`,
+    '--Switch-thumb-radius': 'calc(var(--Switch-track-radius) - 2px)',
+    '--Switch-thumb-width': 'var(--Switch-thumb-size)',
+    '--Switch-thumb-offset':
+      'max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)',
     display: 'inline-block',
-    width: `${theme.getThemeVar('Switch-track-width')}`, // should have the same width as track because flex parent can stretch SwitchRoot.
-    borderRadius: `${theme.getThemeVar('Switch-track-radius')}`,
+    width: 'var(--Switch-track-width)', // should have the same width as track because flex parent can stretch SwitchRoot.
+    borderRadius: 'var(--Switch-track-radius)',
     position: 'relative',
-    padding: `calc((${theme.getThemeVar('Switch-thumb-size')} / 2) - (${theme.getThemeVar(
-      'Switch-track-height',
-    )} / 2)) calc(-1 * ${theme.getThemeVar('Switch-thumb-offset')})`,
+    padding:
+      'calc((var(--Switch-thumb-size) / 2) - (var(--Switch-track-height) / 2)) calc(-1 * var(--Switch-thumb-offset))',
     color: theme.vars.palette.neutral.containedBg,
     '&:hover': {
       color: theme.vars.palette.neutral.containedBg,
@@ -100,36 +96,32 @@ const SwitchTrack = styled('span', {
   name: 'MuiSwitch',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})<{ ownerState: SwitchProps & { focusVisible: boolean } }>(({ theme }) => ({
+})<{ ownerState: SwitchProps & { focusVisible: boolean } }>(() => ({
   position: 'relative',
   color: 'inherit',
-  height: theme.getThemeVar('Switch-track-height'),
-  width: theme.getThemeVar('Switch-track-width'),
+  height: 'var(--Switch-track-height)',
+  width: 'var(--Switch-track-width)',
   display: 'block',
   backgroundColor: 'currentColor',
-  borderRadius: theme.getThemeVar('Switch-track-radius'),
+  borderRadius: 'var(--Switch-track-radius)',
 }));
 
 const SwitchThumb = styled('span', {
   name: 'MuiSwitch',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
-})<{ ownerState: SwitchProps }>(({ theme }) => ({
+})<{ ownerState: SwitchProps }>(() => ({
   transition: 'left 0.2s',
   position: 'absolute',
   top: '50%',
-  left: `calc(50% - ${theme.getThemeVar('Switch-track-width')} / 2 + ${theme.getThemeVar(
-    'Switch-thumb-width',
-  )} / 2 + ${theme.getThemeVar('Switch-thumb-offset')})`,
+  left: 'calc(50% - var(--Switch-track-width) / 2 + var(--Switch-thumb-width) / 2 + var(--Switch-thumb-offset))',
   transform: 'translate(-50%, -50%)',
-  width: theme.getThemeVar('Switch-thumb-width'),
-  height: theme.getThemeVar('Switch-thumb-size'),
-  borderRadius: theme.getThemeVar('Switch-thumb-radius'),
+  width: 'var(--Switch-thumb-width)',
+  height: 'var(--Switch-thumb-size)',
+  borderRadius: 'var(--Switch-thumb-radius)',
   backgroundColor: '#fff',
   [`&.${switchClasses.checked}`]: {
-    left: `calc(50% + ${theme.getThemeVar('Switch-track-width')} / 2 - ${theme.getThemeVar(
-      'Switch-thumb-width',
-    )} / 2 - ${theme.getThemeVar('Switch-thumb-offset')})`,
+    left: 'calc(50% + var(--Switch-track-width) / 2 - var(--Switch-thumb-width) / 2 - var(--Switch-thumb-offset))',
   },
 }));
 
