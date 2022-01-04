@@ -81,7 +81,11 @@ const defaultVariantMapping = {
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const themeProps = useThemeProps({ props: inProps, name: 'MuiTypography' });
+  const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+    props: inProps,
+    name: 'MuiTypography',
+  });
+
   const props = extendSxProp(themeProps);
 
   const {

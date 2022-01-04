@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { SxProps } from '@mui/system';
 import { TypographyClasses } from './typographyClasses';
-import { TypographySystem, JoyTheme } from '../styles/defaultTheme';
+import { SxProps } from '../styles/defaultTheme';
+import { TypographySystem } from '../styles/types';
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
@@ -20,12 +20,6 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
      * Override or extend the styles applied to the component.
      */
     classes?: Partial<TypographyClasses>;
-    /**
-     * The component used for the Root slot.
-     * Either a string to use a HTML element or a component.
-     * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-     */
-    component?: React.ElementType;
     /**
      * If `true`, the text will have a bottom margin.
      * @default false
@@ -72,7 +66,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
-    sx?: SxProps<JoyTheme>;
+    sx?: SxProps;
     /**
      * Applies the theme typography styles.
      * @default 'body1'
@@ -105,5 +99,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
 
 export type TypographyProps<
   D extends React.ElementType = TypographyTypeMap['defaultComponent'],
-  P = {},
+  P = {
+    component?: React.ElementType;
+  },
 > = OverrideProps<TypographyTypeMap<P, D>, D>;
